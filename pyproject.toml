@@ -1,0 +1,23 @@
+[project]
+name = "sciscout"
+version = "0.1.0"
+description = "Track research directions, score importance and urgency, and model the investment case quantitatively."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pyyaml>=6.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+sciscout = "sciscout.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

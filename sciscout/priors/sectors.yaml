@@ -1,0 +1,244 @@
+# Commercialisation priors by sector.
+#
+# READ THIS BEFORE TRUSTING ANY NUMBER BELOW.
+#
+# Each stage spans a TRL band and carries three distributions -- duration, cost,
+# and probability of technical success -- plus an explicit provenance grade:
+#
+#   sourced  : a figure from a named, checkable external reference.
+#   assumed  : a seed value set by judgement. Order-of-magnitude plausible,
+#              not measured. These exist so the pipeline runs end to end; they
+#              are placeholders for your own numbers, not findings.
+#
+# Every entry carries `needs_review: true` on first release, including the
+# sourced ones: the citations below are well-known headline figures, but a
+# figure you have not checked against its original is a figure you are
+# borrowing, not one you know. The engine reports how much of any ROI
+# distribution traces back to `assumed` inputs, so replacing these with your own
+# sourced values visibly raises the confidence of every downstream result.
+#
+# Distributions are three-point (low / mode / high) and interpreted as PERT
+# unless noted, which is the standard way to turn an expert's plausible range
+# into a smooth distribution without pretending to know its shape.
+
+sectors:
+
+  biopharma:
+    label: "Therapeutics and biologics"
+    stages:
+      - name: "Discovery and target validation"
+        from_trl: 1
+        to_trl: 3
+        duration_years: {low: 1.5, mode: 3.0, high: 6.0}
+        cost_usd: {low: 1.0e6, mode: 4.0e6, high: 15.0e6}
+        p_success: {low: 0.20, mode: 0.35, high: 0.55}
+        provenance:
+          grade: assumed
+          detail: >-
+            Discovery-phase duration, spend and attrition vary enormously by
+            modality and are rarely reported in a comparable way. Seeded from the
+            common industry framing of a 3-6 year discovery phase. Replace with
+            your own portfolio data, which will be far better than this.
+          needs_review: true
+
+      - name: "Preclinical"
+        from_trl: 3
+        to_trl: 6
+        duration_years: {low: 1.0, mode: 2.5, high: 5.0}
+        cost_usd: {low: 3.0e6, mode: 10.0e6, high: 30.0e6}
+        p_success: {low: 0.30, mode: 0.45, high: 0.65}
+        provenance:
+          grade: assumed
+          detail: >-
+            Preclinical-to-IND attrition is not consistently published; seeded
+            from the widely repeated framing that a minority of preclinical
+            programmes reach first-in-human. Treat as a placeholder.
+          needs_review: true
+
+      - name: "Phase I"
+        from_trl: 6
+        to_trl: 7
+        duration_years: {low: 1.0, mode: 1.7, high: 3.0}
+        cost_usd: {low: 8.0e6, mode: 25.0e6, high: 60.0e6}
+        p_success: {low: 0.45, mode: 0.52, high: 0.60}
+        provenance:
+          grade: sourced
+          detail: >-
+            Phase I to Phase II transition success rate of approximately 52%.
+          reference: >-
+            BIO, Informa Pharma Intelligence and QLS Advisors, "Clinical
+            Development Success Rates and Contributing Factors 2011-2020"
+          needs_review: true
+
+      - name: "Phase II"
+        from_trl: 7
+        to_trl: 8
+        duration_years: {low: 1.5, mode: 2.5, high: 4.5}
+        cost_usd: {low: 20.0e6, mode: 60.0e6, high: 150.0e6}
+        p_success: {low: 0.24, mode: 0.29, high: 0.35}
+        provenance:
+          grade: sourced
+          detail: >-
+            Phase II to Phase III transition success rate of approximately 29%.
+            This is the single largest attrition step in drug development and
+            dominates the value of any biopharma investment case.
+          reference: >-
+            BIO, Informa Pharma Intelligence and QLS Advisors, "Clinical
+            Development Success Rates and Contributing Factors 2011-2020"
+          needs_review: true
+
+      - name: "Phase III and filing"
+        from_trl: 8
+        to_trl: 9
+        duration_years: {low: 2.0, mode: 3.5, high: 6.0}
+        cost_usd: {low: 100.0e6, mode: 300.0e6, high: 800.0e6}
+        p_success: {low: 0.45, mode: 0.55, high: 0.65}
+        provenance:
+          grade: sourced
+          detail: >-
+            Phase III to filing success of roughly 57%, combined with filing to
+            approval of roughly 90%, giving a blended stage success near 0.5-0.55.
+          reference: >-
+            BIO, Informa Pharma Intelligence and QLS Advisors, "Clinical
+            Development Success Rates and Contributing Factors 2011-2020"
+          needs_review: true
+    constraints:
+      - {kind: regulatory, severity: high, note: "Approval is a hard gate with no partial credit; timelines are set by the agency, not by the programme."}
+      - {kind: capital, severity: high, note: "Phase III spend is concentrated and non-recoverable if the readout misses."}
+      - {kind: ip, severity: medium, note: "Effective exclusivity is the patent term minus development time, so slow programmes earn less even when they succeed."}
+      - {kind: reimbursement, severity: high, note: "Approval does not imply payment; payer coverage decisions can gate revenue for years."}
+
+  energy_hardware:
+    label: "Energy generation, storage and industrial hardware"
+    stages:
+      - name: "Lab validation"
+        from_trl: 1
+        to_trl: 4
+        duration_years: {low: 2.0, mode: 4.0, high: 8.0}
+        cost_usd: {low: 1.0e6, mode: 5.0e6, high: 20.0e6}
+        p_success: {low: 0.25, mode: 0.45, high: 0.65}
+        provenance: {grade: assumed, detail: "Seed value. Lab-stage durations for energy materials vary by an order of magnitude between chemistries.", needs_review: true}
+      - name: "Pilot and scale-up"
+        from_trl: 4
+        to_trl: 7
+        duration_years: {low: 3.0, mode: 5.0, high: 10.0}
+        cost_usd: {low: 20.0e6, mode: 80.0e6, high: 300.0e6}
+        p_success: {low: 0.20, mode: 0.35, high: 0.55}
+        provenance:
+          grade: assumed
+          detail: >-
+            Scale-up is where energy hardware most often dies -- performance that
+            holds in a coin cell or a bench reactor frequently does not survive
+            manufacturing tolerances. Seeded pessimistically for that reason, but
+            it is a judgement, not a measurement.
+          needs_review: true
+      - name: "First commercial plant"
+        from_trl: 7
+        to_trl: 9
+        duration_years: {low: 2.0, mode: 4.0, high: 8.0}
+        cost_usd: {low: 100.0e6, mode: 500.0e6, high: 2.0e9}
+        p_success: {low: 0.40, mode: 0.60, high: 0.80}
+        provenance: {grade: assumed, detail: "Seed value; first-of-a-kind plant cost and overrun risk are highly project-specific.", needs_review: true}
+    constraints:
+      - {kind: capital, severity: high, note: "First-of-a-kind plants are capital-intensive and rarely financeable on venture terms alone."}
+      - {kind: supply_chain, severity: high, note: "Critical-mineral and specialised-equipment lead times can set the schedule regardless of technical readiness."}
+      - {kind: permitting, severity: high, note: "Siting, grid interconnection and environmental permitting routinely add multi-year delays."}
+      - {kind: incumbent_cost, severity: high, note: "Must beat an incumbent whose costs keep falling; the target moves during development."}
+
+  semiconductors:
+    label: "Semiconductor devices and computing hardware"
+    stages:
+      - name: "Device demonstration"
+        from_trl: 1
+        to_trl: 4
+        duration_years: {low: 2.0, mode: 4.0, high: 7.0}
+        cost_usd: {low: 2.0e6, mode: 10.0e6, high: 40.0e6}
+        p_success: {low: 0.25, mode: 0.40, high: 0.60}
+        provenance: {grade: assumed, detail: "Seed value.", needs_review: true}
+      - name: "Process integration and yield"
+        from_trl: 4
+        to_trl: 7
+        duration_years: {low: 2.0, mode: 4.0, high: 8.0}
+        cost_usd: {low: 30.0e6, mode: 150.0e6, high: 600.0e6}
+        p_success: {low: 0.20, mode: 0.35, high: 0.55}
+        provenance:
+          grade: assumed
+          detail: >-
+            Yield learning, not device physics, is the usual failure mode.
+            Seeded to reflect that; replace with fab-specific data if you have it.
+          needs_review: true
+      - name: "Qualification and ramp"
+        from_trl: 7
+        to_trl: 9
+        duration_years: {low: 1.5, mode: 3.0, high: 6.0}
+        cost_usd: {low: 100.0e6, mode: 400.0e6, high: 1.5e9}
+        p_success: {low: 0.45, mode: 0.65, high: 0.85}
+        provenance: {grade: assumed, detail: "Seed value.", needs_review: true}
+    constraints:
+      - {kind: capital, severity: high, note: "Fab access or construction dominates cost and is largely fixed."}
+      - {kind: ecosystem, severity: high, note: "A new device needs design tools, models and a supply chain before anyone can buy it."}
+      - {kind: export_control, severity: medium, note: "Advanced-node and equipment export controls can foreclose entire markets."}
+
+  software_ai:
+    label: "Software, algorithms and applied machine learning"
+    stages:
+      - name: "Research to working system"
+        from_trl: 1
+        to_trl: 5
+        duration_years: {low: 0.5, mode: 1.5, high: 3.0}
+        cost_usd: {low: 0.5e6, mode: 3.0e6, high: 12.0e6}
+        p_success: {low: 0.40, mode: 0.60, high: 0.80}
+        provenance: {grade: assumed, detail: "Seed value. Software moves from result to working system far faster than physical technology, which is the main reason sector choice dominates any commercialisation estimate.", needs_review: true}
+      - name: "Productisation"
+        from_trl: 5
+        to_trl: 8
+        duration_years: {low: 0.5, mode: 1.5, high: 3.0}
+        cost_usd: {low: 2.0e6, mode: 10.0e6, high: 40.0e6}
+        p_success: {low: 0.35, mode: 0.55, high: 0.75}
+        provenance: {grade: assumed, detail: "Seed value.", needs_review: true}
+      - name: "Scale and distribution"
+        from_trl: 8
+        to_trl: 9
+        duration_years: {low: 0.5, mode: 1.0, high: 2.5}
+        cost_usd: {low: 5.0e6, mode: 25.0e6, high: 120.0e6}
+        p_success: {low: 0.30, mode: 0.50, high: 0.70}
+        provenance:
+          grade: assumed
+          detail: >-
+            Note that for software the binding risk is usually distribution and
+            competition rather than technical success, so this stage's
+            'probability of technical success' is standing in for commercial
+            traction. That is a modelling compromise; if software is your main
+            focus, model traction explicitly instead.
+          needs_review: true
+    constraints:
+      - {kind: competition, severity: high, note: "Low technical barriers mean fast replication; advantage comes from data, distribution or switching costs rather than the result itself."}
+      - {kind: talent, severity: medium, note: "Small teams with scarce skills; key-person risk is concentrated."}
+      - {kind: compute_cost, severity: medium, note: "Training and serving costs can dominate unit economics and move with hardware markets."}
+
+  generic:
+    label: "Unclassified research direction"
+    stages:
+      - name: "Research to lab validation"
+        from_trl: 1
+        to_trl: 4
+        duration_years: {low: 2.0, mode: 4.0, high: 8.0}
+        cost_usd: {low: 1.0e6, mode: 5.0e6, high: 20.0e6}
+        p_success: {low: 0.25, mode: 0.40, high: 0.60}
+        provenance: {grade: assumed, detail: "Sector-agnostic fallback. Any result computed from these is a placeholder, not an analysis -- classify the track into a real sector before relying on it.", needs_review: true}
+      - name: "Scale-up"
+        from_trl: 4
+        to_trl: 7
+        duration_years: {low: 2.0, mode: 4.0, high: 9.0}
+        cost_usd: {low: 10.0e6, mode: 50.0e6, high: 200.0e6}
+        p_success: {low: 0.20, mode: 0.35, high: 0.55}
+        provenance: {grade: assumed, detail: "Sector-agnostic fallback.", needs_review: true}
+      - name: "Commercial deployment"
+        from_trl: 7
+        to_trl: 9
+        duration_years: {low: 1.5, mode: 3.0, high: 6.0}
+        cost_usd: {low: 20.0e6, mode: 100.0e6, high: 500.0e6}
+        p_success: {low: 0.40, mode: 0.60, high: 0.80}
+        provenance: {grade: assumed, detail: "Sector-agnostic fallback.", needs_review: true}
+    constraints:
+      - {kind: unclassified, severity: medium, note: "No sector assigned, so no sector-specific constraints are known. This is a gap, not a clean bill of health."}

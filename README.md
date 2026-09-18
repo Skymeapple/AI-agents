@@ -74,6 +74,60 @@ survivors at a venture rate on top charges for the same risk twice, and over a
 decade-long development path the double charge is enough to turn genuinely
 attractive programmes negative. The default is 12%.
 
+## Scenarios
+
+A single simulation answers "what does this look like?". The question that drives
+a decision is "what would have to be true for this to work, and how far off are
+we?" — so scenarios are first-class. A scenario file supplies the assumptions the
+platform cannot derive from a research corpus, and runs several cases side by
+side against the same science.
+
+**Every value in a scenario file must carry a `source` block.** This is enforced,
+not encouraged. A config loader that quietly accepted bare numbers would undo the
+provenance discipline the rest of the system rests on, because a config file is
+exactly where an unfounded figure would enter wearing the same clothes as a
+measured one. A misspelled field name or a stage that isn't on the programme's
+remaining path is an error too, so you can't believe you've overridden something
+you haven't.
+
+```yaml
+track: solid-state-sodium
+scenarios:
+  - name: Conservative
+    description: The case to beat — if it works here, the thesis needs no optimism.
+    market:
+      tam_usd:
+        median: 4.0e9
+        spread: 2.5              # p95 / median
+        source:
+          grade: assumed
+          detail: grid storage niche where sodium's cost advantage is decisive
+    stages:
+      Pilot and scale-up:
+        cost_usd:
+          low: 60.0e6
+          mode: 140.0e6
+          high: 400.0e6
+          source:
+            grade: sourced
+            detail: three comparable pilot lines
+            reference: <your source, by name>
+```
+
+```bash
+python -m sciscout.cli scenarios --file examples/sodium-battery-scenarios.yaml
+```
+
+Scenarios use **common random numbers**: each input draws from its own stream,
+keyed by a stable hash of its name. Change one assumption and only that column
+moves — every other draw is bit-identical across scenarios. This is not a
+nicety. numpy's beta sampler uses rejection sampling and consumes a variable
+number of underlying values, so on a single shared stream two scenarios differing
+only in a stage cost come back with different success rates: a pure sampling
+artefact, indistinguishable from a real effect. A worked three-scenario
+comparison is in
+[`examples/sodium-battery-comparison.md`](examples/sodium-battery-comparison.md).
+
 ## Quick start
 
 ```bash
@@ -91,6 +145,9 @@ python -m sciscout.cli model --corpus data/demo_corpus.json \
 
 # Full markdown report
 python -m sciscout.cli report --corpus data/demo_corpus.json --out report.md
+
+# Compare scenarios for one direction
+python -m sciscout.cli scenarios --file examples/sodium-battery-scenarios.yaml
 
 # What commercialisation priors exist, and how well sourced they are
 python -m sciscout.cli sectors
@@ -156,15 +213,17 @@ sciscout/
   provenance.py          Grade / Provenance / Estimate / ProvenanceLedger
   models.py              Work and Track
   pipeline.py            corpus -> ranked investment cases
+  scenarios.py           named scenarios, provenance-enforced config, comparison
   report.py              markdown rendering
-  cli.py                 harvest / rank / model / report / sectors
+  cli.py                 harvest / rank / model / report / scenarios / sectors
   sources/               arxiv, openalex, local JSON corpus
   scoring/               citation baseline, importance and urgency, TRL inference
   commercial/            TRL -> stages, costs, timelines, constraints
   invest/                distributions, investment case, Monte Carlo engine
   priors/sectors.yaml    commercialisation priors, graded by provenance
+examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generator
-tests/                   42 tests
+tests/                   59 tests
 ```
 
 ## Tests
@@ -176,5 +235,6 @@ python -m pytest tests/ -q
 The suite asserts the modelling claims directly, not just that the code runs:
 abandoned programmes accrue no downstream cost, capital-hungry programmes dilute
 early investors, sensitivity analysis recovers a driver that was deliberately
-planted, missing citation data is scored as absent rather than zero, and a
-two-year publication history is refused as a trend.
+planted, missing citation data is scored as absent rather than zero, a two-year
+publication history is refused as a trend, and a scenario file cannot introduce a
+number without saying where it came from.

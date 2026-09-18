@@ -6,10 +6,10 @@ _Generated 2026-09-18 by sciscout._
 
 | # | Direction | Priority | Importance | Urgency | Confidence | TRL | P(market) | E[MOIC] |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Solid-state sodium batteries | **0.65** | 0.51 | 0.95 | 88% | 6 | 21% | 0.69x |
-| 2 | Targeted protein degradation | **0.61** | 0.47 | 0.90 | 88% | 6 | 8% | 0.54x |
-| 3 | Neuromorphic photonic computing | **0.61** | 0.51 | 0.78 | 88% | 3 | 9% | 0.36x |
-| 4 | Ambient-pressure high-Tc superconductivity | **0.48** | 0.41 | 0.61 | 88% | 2 | 10% | 0.40x |
+| 1 | Solid-state sodium batteries | **0.65** | 0.51 | 0.95 | 88% | 6 | 21% | 0.70x |
+| 2 | Targeted protein degradation | **0.61** | 0.47 | 0.90 | 88% | 6 | 8% | 0.52x |
+| 3 | Neuromorphic photonic computing | **0.61** | 0.51 | 0.78 | 88% | 3 | 10% | 0.37x |
+| 4 | Ambient-pressure high-Tc superconductivity | **0.48** | 0.41 | 0.61 | 88% | 2 | 9% | 0.40x |
 
 Priority combines importance and urgency geometrically, so a direction cannot rank highly on one axis alone. Confidence is the share of scoring inputs that were measured rather than assumed — read it alongside priority, because a confident 0.5 is a better basis for a decision than an unfounded 0.8.
 
@@ -54,34 +54,34 @@ _20,000 Monte Carlo draws, seed 20260918._
 
 | Measure | P10 | P50 | P90 |
 | --- | --- | --- | --- |
-| Project NPV | -$361M | -$92M | -$32M |
-| Investor MOIC | 0.00x | 0.00x | 2.04x |
+| Project NPV | -$362M | -$91M | -$32M |
+| Investor MOIC | 0.00x | 0.00x | 2.09x |
 | Years to market _(successes)_ | 7.7 | 9.8 | 12.1 |
-| Capital consumed _(successes)_ | $378M | $751M | $1.26B |
-| Investor stake at exit _(successes)_ | 0.74% | 1.33% | 2.82% |
+| Capital consumed _(successes)_ | $376M | $742M | $1.26B |
+| Investor stake at exit _(successes)_ | 0.75% | 1.35% | 2.83% |
 
-- Probability of reaching market: **21.4%**
-- Expected investor multiple across all outcomes: **0.69x** (**3.24x** conditional on reaching market)
+- Probability of reaching market: **20.9%**
+- Expected investor multiple across all outcomes: **0.70x** (**3.36x** conditional on reaching market)
 - Probability the project destroys value: **96.2%**
 
 **Where the programme dies**
 
-- Pilot and scale-up: 64.5%
-- First commercial plant: 14.1%
-- reached market: 21.4%
+- Pilot and scale-up: 64.7%
+- First commercial plant: 14.4%
+- reached market: 20.9%
 
 **What drives the outcome** (rank correlation with project NPV)
 
 | Input | All draws | Conditional on success | Provenance |
 | --- | --- | --- | --- |
 | Pilot and scale-up: cost (USD) | -0.49 | -0.15 | _ASSUMED_ |
-| First commercial plant: cost (USD) | -0.17 | -0.66 | _ASSUMED_ |
-| TAM (USD) | +0.12 | +0.46 | _ASSUMED_ |
-| Pilot and scale-up: duration (y) | +0.10 | +0.15 | _ASSUMED_ |
-| peak market share | +0.09 | +0.38 | _ASSUMED_ |
-| Pilot and scale-up: P(success) | -0.07 | +0.01 | _ASSUMED_ |
-| exit revenue multiple | +0.06 | +0.18 | _ASSUMED_ |
-| First commercial plant: P(success) | +0.03 | +0.04 | _ASSUMED_ |
+| First commercial plant: cost (USD) | -0.17 | -0.65 | _ASSUMED_ |
+| TAM (USD) | +0.13 | +0.48 | _ASSUMED_ |
+| peak market share | +0.10 | +0.38 | _ASSUMED_ |
+| Pilot and scale-up: duration (y) | +0.09 | +0.10 | _ASSUMED_ |
+| Pilot and scale-up: P(success) | -0.08 | -0.00 | _ASSUMED_ |
+| discount rate | +0.05 | +0.04 | _ASSUMED_ |
+| exit revenue multiple | +0.05 | +0.19 | _ASSUMED_ |
 
 **Provenance of this forecast:** 0% of the spread traces to measured inputs, 0% to sourced figures, and **100% to assumptions**.
 
@@ -129,37 +129,37 @@ _20,000 Monte Carlo draws, seed 20260918._
 
 | Measure | P10 | P50 | P90 |
 | --- | --- | --- | --- |
-| Project NPV | -$123M | -$40M | -$15M |
+| Project NPV | -$124M | -$40M | -$16M |
 | Investor MOIC | 0.00x | 0.00x | 0.00x |
 | Years to market _(successes)_ | 6.9 | 8.1 | 9.5 |
-| Capital consumed _(successes)_ | $279M | $437M | $624M |
-| Investor stake at exit _(successes)_ | 1.93% | 3.07% | 4.65% |
+| Capital consumed _(successes)_ | $291M | $433M | $636M |
+| Investor stake at exit _(successes)_ | 1.92% | 3.00% | 4.47% |
 
-- Probability of reaching market: **8.3%**
-- Expected investor multiple across all outcomes: **0.54x** (**6.53x** conditional on reaching market)
-- Probability the project destroys value: **97.2%**
+- Probability of reaching market: **8.2%**
+- Expected investor multiple across all outcomes: **0.52x** (**6.36x** conditional on reaching market)
+- Probability the project destroys value: **97.3%**
 
 **Where the programme dies**
 
 - Phase I: 48.3%
 - Phase II: 36.4%
-- Phase III and filing: 7.0%
-- reached market: 8.3%
+- Phase III and filing: 7.1%
+- reached market: 8.2%
 
 **What drives the outcome** (rank correlation with project NPV)
 
 | Input | All draws | Conditional on success | Provenance |
 | --- | --- | --- | --- |
-| Phase I: cost (USD) | -0.32 | -0.03 | _sourced_ |
-| Phase II: cost (USD) | -0.13 | -0.11 | _sourced_ |
-| TAM (USD) | +0.08 | +0.63 | _ASSUMED_ |
-| peak market share | +0.06 | +0.51 | _ASSUMED_ |
-| Phase I: duration (y) | +0.05 | +0.06 | _sourced_ |
-| Phase I: P(success) | -0.04 | -0.04 | _sourced_ |
-| exit revenue multiple | +0.03 | +0.25 | _ASSUMED_ |
-| Phase III and filing: cost (USD) | -0.03 | -0.36 | _sourced_ |
+| Phase I: cost (USD) | -0.30 | -0.07 | _sourced_ |
+| Phase II: cost (USD) | -0.13 | -0.08 | _sourced_ |
+| TAM (USD) | +0.07 | +0.64 | _ASSUMED_ |
+| peak market share | +0.06 | +0.52 | _ASSUMED_ |
+| Phase III and filing: cost (USD) | -0.04 | -0.42 | _sourced_ |
+| Phase I: P(success) | -0.04 | -0.03 | _sourced_ |
+| discount rate | +0.03 | -0.03 | _ASSUMED_ |
+| Phase I: duration (y) | +0.03 | +0.04 | _sourced_ |
 
-**Provenance of this forecast:** 0% of the spread traces to measured inputs, 92% to sourced figures, and **8% to assumptions**.
+**Provenance of this forecast:** 0% of the spread traces to measured inputs, 91% to sourced figures, and **9% to assumptions**.
 
 17 of 17 simulation inputs are flagged as placeholders awaiting a real number.
 
@@ -204,35 +204,35 @@ _20,000 Monte Carlo draws, seed 20260918._
 
 | Measure | P10 | P50 | P90 |
 | --- | --- | --- | --- |
-| Project NPV | -$185M | -$16M | -$5M |
+| Project NPV | -$186M | -$16M | -$5M |
 | Investor MOIC | 0.00x | 0.00x | 0.00x |
-| Years to market _(successes)_ | 9.6 | 11.7 | 13.9 |
-| Capital consumed _(successes)_ | $417M | $736M | $1.12B |
-| Investor stake at exit _(successes)_ | 1.09% | 1.78% | 2.94% |
+| Years to market _(successes)_ | 9.7 | 11.7 | 13.9 |
+| Capital consumed _(successes)_ | $433M | $733M | $1.12B |
+| Investor stake at exit _(successes)_ | 1.05% | 1.75% | 2.87% |
 
-- Probability of reaching market: **9.2%**
-- Expected investor multiple across all outcomes: **0.36x** (**3.96x** conditional on reaching market)
+- Probability of reaching market: **9.6%**
+- Expected investor multiple across all outcomes: **0.37x** (**3.85x** conditional on reaching market)
 - Probability the project destroys value: **98.4%**
 
 **Where the programme dies**
 
-- Device demonstration: 59.9%
-- Process integration and yield: 25.8%
-- Qualification and ramp: 5.1%
-- reached market: 9.2%
+- Device demonstration: 58.9%
+- Process integration and yield: 26.1%
+- Qualification and ramp: 5.3%
+- reached market: 9.6%
 
 **What drives the outcome** (rank correlation with project NPV)
 
 | Input | All draws | Conditional on success | Provenance |
 | --- | --- | --- | --- |
-| Device demonstration: cost (USD) | -0.37 | +0.00 | _ASSUMED_ |
-| Process integration and yield: cost (USD) | -0.11 | -0.33 | _ASSUMED_ |
-| Device demonstration: P(success) | -0.10 | -0.03 | _ASSUMED_ |
-| Device demonstration: duration (y) | +0.07 | +0.10 | _ASSUMED_ |
-| TAM (USD) | +0.06 | +0.50 | _ASSUMED_ |
-| Qualification and ramp: cost (USD) | -0.05 | -0.51 | _ASSUMED_ |
-| peak market share | +0.05 | +0.38 | _ASSUMED_ |
-| discount rate | +0.04 | +0.04 | _ASSUMED_ |
+| Device demonstration: cost (USD) | -0.35 | -0.02 | _ASSUMED_ |
+| Device demonstration: P(success) | -0.12 | -0.03 | _ASSUMED_ |
+| Process integration and yield: cost (USD) | -0.11 | -0.27 | _ASSUMED_ |
+| TAM (USD) | +0.06 | +0.49 | _ASSUMED_ |
+| Device demonstration: duration (y) | +0.05 | +0.13 | _ASSUMED_ |
+| peak market share | +0.05 | +0.43 | _ASSUMED_ |
+| Qualification and ramp: cost (USD) | -0.04 | -0.52 | _ASSUMED_ |
+| discount rate | +0.03 | +0.06 | _ASSUMED_ |
 
 **Provenance of this forecast:** 0% of the spread traces to measured inputs, 0% to sourced figures, and **100% to assumptions**.
 
@@ -280,35 +280,35 @@ _20,000 Monte Carlo draws, seed 20260918._
 
 | Measure | P10 | P50 | P90 |
 | --- | --- | --- | --- |
-| Project NPV | -$126M | -$9M | -$3M |
+| Project NPV | -$125M | -$9M | -$3M |
 | Investor MOIC | 0.00x | 0.00x | 0.00x |
-| Years to market _(successes)_ | 11.6 | 14.0 | 16.7 |
-| Capital consumed _(successes)_ | $390M | $750M | $1.25B |
-| Investor stake at exit _(successes)_ | 1.04% | 1.86% | 3.37% |
+| Years to market _(successes)_ | 11.7 | 14.1 | 16.8 |
+| Capital consumed _(successes)_ | $392M | $749M | $1.27B |
+| Investor stake at exit _(successes)_ | 1.02% | 1.82% | 3.24% |
 
-- Probability of reaching market: **9.6%**
-- Expected investor multiple across all outcomes: **0.40x** (**4.20x** conditional on reaching market)
-- Probability the project destroys value: **98.4%**
+- Probability of reaching market: **9.2%**
+- Expected investor multiple across all outcomes: **0.40x** (**4.33x** conditional on reaching market)
+- Probability the project destroys value: **98.3%**
 
 **Where the programme dies**
 
-- Lab validation: 55.2%
-- Pilot and scale-up: 28.9%
-- First commercial plant: 6.3%
-- reached market: 9.6%
+- Lab validation: 54.9%
+- Pilot and scale-up: 29.2%
+- First commercial plant: 6.7%
+- reached market: 9.2%
 
 **What drives the outcome** (rank correlation with project NPV)
 
 | Input | All draws | Conditional on success | Provenance |
 | --- | --- | --- | --- |
-| Lab validation: cost (USD) | -0.32 | -0.01 | _ASSUMED_ |
-| Lab validation: P(success) | -0.11 | +0.01 | _ASSUMED_ |
-| Pilot and scale-up: cost (USD) | -0.10 | -0.16 | _ASSUMED_ |
-| Lab validation: duration (y) | +0.06 | +0.10 | _ASSUMED_ |
-| First commercial plant: cost (USD) | -0.06 | -0.61 | _ASSUMED_ |
-| TAM (USD) | +0.05 | +0.50 | _ASSUMED_ |
-| discount rate | +0.05 | +0.09 | _ASSUMED_ |
-| peak market share | +0.04 | +0.36 | _ASSUMED_ |
+| Lab validation: cost (USD) | -0.30 | +0.02 | _ASSUMED_ |
+| Lab validation: P(success) | -0.12 | +0.01 | _ASSUMED_ |
+| Pilot and scale-up: cost (USD) | -0.09 | -0.14 | _ASSUMED_ |
+| Lab validation: duration (y) | +0.07 | +0.10 | _ASSUMED_ |
+| TAM (USD) | +0.06 | +0.48 | _ASSUMED_ |
+| discount rate | +0.06 | +0.12 | _ASSUMED_ |
+| First commercial plant: cost (USD) | -0.05 | -0.63 | _ASSUMED_ |
+| peak market share | +0.04 | +0.37 | _ASSUMED_ |
 
 **Provenance of this forecast:** 0% of the spread traces to measured inputs, 0% to sourced figures, and **100% to assumptions**.
 

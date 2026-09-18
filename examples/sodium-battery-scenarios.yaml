@@ -1,0 +1,131 @@
+# Worked example: three scenarios for one research direction.
+#
+# EVERY value carries a `source` block. The loader rejects a number without one,
+# because a config file is exactly where an unfounded figure would otherwise
+# slip in wearing the same clothes as a measured one.
+#
+# The values below are all graded `assumed` and marked for review, because they
+# are illustrative. When you have a real figure, raise its grade and cite it:
+#
+#     source:
+#       grade: sourced
+#       detail: global grid-storage TAM, mid case
+#       reference: <the market study, by name>
+#       retrieved: 2026-09-18
+#
+# Run:
+#   python -m sciscout.cli scenarios --file examples/sodium-battery-scenarios.yaml
+
+track: solid-state-sodium
+
+scenarios:
+
+  - name: Conservative
+    description: >-
+      Sodium competes only where lithium is supply-constrained, and scale-up
+      costs run at the high end of the prior. This is the case to beat: if the
+      investment still works here, the thesis does not depend on optimism.
+    market:
+      tam_usd:
+        median: 4.0e9
+        spread: 2.5
+        source:
+          grade: assumed
+          detail: >-
+            grid storage niche where sodium's cost and safety advantages are
+            decisive, rather than the whole storage market
+      peak_share:
+        low: 0.01
+        mode: 0.03
+        high: 0.08
+        source:
+          grade: assumed
+          detail: a late entrant against entrenched lithium supply chains
+      gross_margin:
+        low: 0.12
+        mode: 0.20
+        high: 0.30
+        source:
+          grade: assumed
+          detail: commodity cell economics with little pricing power
+    deal:
+      check_usd: 5.0e6
+      entry_ownership: 0.15
+    stages:
+      Pilot and scale-up:
+        cost_usd:
+          low: 60.0e6
+          mode: 140.0e6
+          high: 400.0e6
+          source:
+            grade: assumed
+            detail: >-
+              scale-up runs long and expensive; this is the failure mode that
+              kills most energy-materials programmes
+
+  - name: Base case
+    description: >-
+      Sodium takes a real but bounded share of stationary storage, and scale-up
+      lands near the middle of the shipped prior.
+    market:
+      tam_usd:
+        median: 12.0e9
+        spread: 3.0
+        source:
+          grade: assumed
+          detail: stationary storage addressable by a competitive sodium cell
+      peak_share:
+        low: 0.02
+        mode: 0.06
+        high: 0.15
+        source:
+          grade: assumed
+          detail: one credible supplier among several in a growing market
+      gross_margin:
+        low: 0.18
+        mode: 0.28
+        high: 0.40
+        source:
+          grade: assumed
+          detail: manufacturing margin once yield matures
+    deal:
+      check_usd: 5.0e6
+      entry_ownership: 0.15
+
+  - name: Breakthrough
+    description: >-
+      Cycle life and cost land well enough that sodium displaces lithium in
+      stationary storage broadly. Note what this case does NOT do: it leaves the
+      technical success probabilities at their priors. Better science does not
+      make scale-up more likely to work, it makes the prize bigger.
+    market:
+      tam_usd:
+        median: 45.0e9
+        spread: 3.5
+        source:
+          grade: assumed
+          detail: broad displacement of lithium in stationary storage
+      peak_share:
+        low: 0.04
+        mode: 0.12
+        high: 0.30
+        source:
+          grade: assumed
+          detail: a cost-leading position in a market that rewards it
+      gross_margin:
+        low: 0.25
+        mode: 0.38
+        high: 0.52
+        source:
+          grade: assumed
+          detail: cost leadership sustains margin against incumbents
+      exit_revenue_multiple:
+        low: 2.5
+        mode: 6.0
+        high: 14.0
+        source:
+          grade: assumed
+          detail: a category leader commands a higher multiple at exit
+    deal:
+      check_usd: 5.0e6
+      entry_ownership: 0.15

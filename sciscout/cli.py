@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import json
 import sys
 from pathlib import Path
 
@@ -27,6 +26,7 @@ from .commercial.profile import PriorLibrary
 from .invest.model import DealTerms, MarketModel
 from .pipeline import Pipeline
 from .report import render_portfolio, render_track
+from .scenarios import ScenarioSet, render_comparison
 from .sources.base import dump_works
 from .sources.local import LocalCorpus
 
@@ -42,13 +42,12 @@ def _load_tracks(pipeline: Pipeline, corpus: Path, label_key: str):
 
 
 def _market_from_args(args) -> MarketModel:
-    if args.market_json:
-        spec = json.loads(Path(args.market_json).read_text())
-        model = MarketModel.placeholder(tam_usd=float(spec.get("tam_usd", 2.0e9)))
-        # Only TAM is overridable from the simple JSON form. Anything richer
-        # should be built in Python, where the provenance of each input can be
-        # stated properly rather than inferred from a bare number in a file.
-        return model
+    """Market model for the simple `model` verb.
+
+    Only the median market size is settable here, because a bare number on a
+    command line cannot carry provenance. Anything richer belongs in a scenario
+    file, where every value must state its basis -- see the `scenarios` verb.
+    """
     return MarketModel.placeholder(tam_usd=args.tam)
 
 
@@ -147,6 +146,41 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_scenarios(args) -> int:
+    """Compare named scenarios for one research direction."""
+    scenario_set = ScenarioSet.from_file(args.file)
+    track_id = args.track or scenario_set.track_id
+
+    pipeline = Pipeline(asof=args.asof, draws=args.draws, seed=args.seed)
+    _, tracks = _load_tracks(pipeline, Path(args.corpus), args.label_key)
+    selected = [t for t in tracks if t.id == track_id]
+    if not selected:
+        print(
+            f"error: scenario file names track {track_id!r}, which is not in "
+            f"{args.corpus}; available: {', '.join(t.id for t in tracks)}",
+            file=sys.stderr,
+        )
+        return 2
+
+    profile = pipeline.priors.profile(selected[0])
+    if not profile.remaining_stages:
+        print(
+            f"error: {selected[0].name} has no development stages remaining at "
+            "its inferred readiness, so there is nothing to model",
+            file=sys.stderr,
+        )
+        return 2
+
+    outcomes = scenario_set.run(profile, draws=args.draws, seed=args.seed)
+    markdown = render_comparison(outcomes, selected[0].name)
+    if args.out:
+        Path(args.out).write_text(markdown)
+        print(f"wrote {len(outcomes)} scenarios to {args.out}")
+    else:
+        print(markdown)
+    return 0
+
+
 def cmd_sectors(args) -> int:
     """List the sectors that commercialisation priors exist for."""
     library = PriorLibrary()
@@ -206,7 +240,6 @@ def build_parser() -> argparse.ArgumentParser:
     add_common(model)
     model.add_argument("--track", required=True)
     model.add_argument("--tam", type=float, default=2.0e9, help="median addressable market (USD)")
-    model.add_argument("--market-json", help="JSON file of market assumptions")
     model.add_argument("--check", type=float, default=5.0e6, help="entry cheque (USD)")
     model.add_argument("--ownership", type=float, default=0.15, help="entry ownership fraction")
     model.set_defaults(func=cmd_model)
@@ -215,6 +248,15 @@ def build_parser() -> argparse.ArgumentParser:
     add_common(report)
     report.add_argument("--out", help="output file; prints to stdout if omitted")
     report.set_defaults(func=cmd_report)
+
+    scenarios = sub.add_parser(
+        "scenarios", help="compare named scenarios from a YAML file"
+    )
+    add_common(scenarios)
+    scenarios.add_argument("--file", required=True, help="scenario YAML file")
+    scenarios.add_argument("--track", help="override the track named in the file")
+    scenarios.add_argument("--out", help="output file; prints to stdout if omitted")
+    scenarios.set_defaults(func=cmd_scenarios)
 
     sectors = sub.add_parser("sectors", help="list commercialisation priors by sector")
     sectors.set_defaults(func=cmd_sectors)

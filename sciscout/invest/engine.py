@@ -19,6 +19,7 @@ traces to assumption rather than evidence.
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -179,6 +180,29 @@ def _rank(values: np.ndarray) -> np.ndarray:
     return ranks
 
 
+def _stream(seed: int, label: str) -> np.random.Generator:
+    """An independent generator for one named input.
+
+    Each input draws from its own stream rather than from one shared generator.
+    This matters for scenario comparison: numpy's beta sampler uses rejection
+    sampling, so it consumes a variable number of underlying values depending on
+    its shape parameters. With a single shared stream, changing one distribution
+    shifts every draw made after it, and two scenarios differing only in a stage
+    cost would come back with different success rates -- pure sampling artefact,
+    indistinguishable from a real effect.
+
+    Keying each stream by a stable hash of the input's label gives common random
+    numbers across scenarios: change one assumption and only that column moves.
+    The hash is taken from hashlib rather than ``hash()`` because Python's string
+    hashing is randomised per process, which would make runs irreproducible
+    across invocations.
+    """
+    digest = hashlib.blake2b(label.encode("utf-8"), digest_size=8).digest()
+    return np.random.default_rng(
+        np.random.SeedSequence([seed, int.from_bytes(digest, "big")])
+    )
+
+
 def _pearson(a: np.ndarray, b: np.ndarray) -> float:
     a_centred = a - a.mean()
     b_centred = b - b.mean()
@@ -204,14 +228,13 @@ class MonteCarlo:
         terms: DealTerms,
     ) -> MonteCarloResult:
         n = self.draws
-        rng = np.random.default_rng(self.seed)
 
         inputs: dict[str, np.ndarray] = {}
         grades: dict[str, Grade] = {}
         ledger = ProvenanceLedger()
 
         def draw(distribution: Distribution, label: str) -> np.ndarray:
-            values = distribution.sample(n, rng)
+            values = distribution.sample(n, _stream(self.seed, label))
             inputs[label] = values
             grades[label] = distribution.grade
             ledger.record(distribution.as_estimate().relabel(label))
@@ -265,7 +288,7 @@ class MonteCarlo:
                 ownership = ownership * retained
                 post_money = np.where(alive, new_post, post_money)
 
-            survived = rng.random(n) < p_success
+            survived = _stream(self.seed, f"{stage.name}: survival").random(n) < p_success
             newly_failed = alive & ~survived
             failure_stage[newly_failed] = index
             alive &= survived

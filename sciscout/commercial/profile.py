@@ -26,7 +26,7 @@ import yaml
 
 from ..invest.dist import Distribution, from_three_point
 from ..models import Track
-from ..provenance import Grade, Provenance, ProvenanceLedger
+from ..provenance import Grade, ProvenanceLedger, parse_provenance
 from ..scoring.trl import TRLBelief, infer_trl
 
 PRIORS_PATH = Path(__file__).resolve().parent.parent / "priors" / "sectors.yaml"
@@ -126,14 +126,7 @@ class PriorLibrary:
         return sorted(self._data["sectors"])
 
     def _provenance(self, raw: dict, context: str) -> Provenance:
-        grade = Grade(raw.get("grade", "assumed"))
-        detail = " ".join(raw.get("detail", "").split()) or f"prior for {context}"
-        return Provenance(
-            grade=grade,
-            detail=f"{context}: {detail}",
-            reference=raw.get("reference"),
-            needs_review=bool(raw.get("needs_review", grade is Grade.ASSUMED)),
-        )
+        return parse_provenance(raw, context)
 
     def stages(self, sector: str) -> list[Stage]:
         entry = self._data["sectors"].get(sector)

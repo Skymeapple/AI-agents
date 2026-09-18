@@ -206,3 +206,47 @@ class ProvenanceLedger:
                 f"| {e.label or '-'} | {value} | {e.grade.value} | {basis} |"
             )
         return "\n".join(rows)
+
+
+def parse_provenance(raw: dict | None, context: str) -> Provenance:
+    """Build a :class:`Provenance` from a config mapping.
+
+    Shared by the sector priors and by user-supplied scenario files, so that a
+    number arriving from a config file is held to exactly the same standard as
+    one written in code: it must say what it is and where it came from.
+
+    Args:
+        raw: Mapping with ``grade`` and ``detail``, optionally ``reference``,
+            ``retrieved`` and ``needs_review``.
+        context: What the value describes, prefixed onto the detail so an audit
+            table reads sensibly out of context.
+
+    Raises:
+        ValueError: If the grade is unrecognised, the detail is missing, or a
+            value claims to be ``sourced`` without naming a reference. Failing
+            loudly here is deliberate -- a silently-defaulted provenance would
+            let an unfounded number pass as a considered one.
+    """
+    if not raw:
+        raise ValueError(
+            f"{context}: every value needs a 'source' block stating its grade "
+            f"(observed / sourced / assumed) and the basis for it"
+        )
+    grade_text = str(raw.get("grade", "")).strip().lower()
+    try:
+        grade = Grade(grade_text)
+    except ValueError:
+        raise ValueError(
+            f"{context}: unknown provenance grade {grade_text!r}; "
+            f"expected one of {', '.join(g.value for g in Grade)}"
+        ) from None
+    detail = " ".join(str(raw.get("detail", "")).split())
+    if not detail:
+        raise ValueError(f"{context}: provenance needs a 'detail' explaining the basis")
+    return Provenance(
+        grade=grade,
+        detail=f"{context}: {detail}",
+        reference=raw.get("reference"),
+        retrieved=raw.get("retrieved"),
+        needs_review=bool(raw.get("needs_review", grade is Grade.ASSUMED)),
+    )

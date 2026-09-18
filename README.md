@@ -74,6 +74,65 @@ survivors at a venture rate on top charges for the same risk twice, and over a
 decade-long development path the double charge is enough to turn genuinely
 attractive programmes negative. The default is 12%.
 
+## Finding directions without labels
+
+Watching science broadly rules out hand-labelling research directions. Nobody is
+going to label all of it, and the labels you would write are the ones you already
+know to look for — which excludes exactly the emerging directions worth catching.
+
+`discover` clusters works into candidate directions from their text alone, then
+routes each to a commercialisation model:
+
+```bash
+python -m sciscout.cli discover --corpus data/demo_corpus.json --evaluate --rank
+```
+
+TF-IDF, cosine similarity, average-linkage agglomerative clustering with a
+similarity floor. No embeddings and no network, so it runs anywhere the corpus
+does, and it is deterministic — the same corpus gives the same directions.
+Average linkage rather than single linkage because single linkage chains: one
+paper bridging two topics would otherwise fuse them into one direction.
+
+**Discovery is measured, not asserted.** `--evaluate` scores the clustering
+against known labels where a corpus has them. On the shipped demo corpus — 1,174
+works across 16 planted directions, including deliberately adjacent pairs like
+quantum error correction beside topological qubits, and protein design beside
+climate emulators — it recovers **16 of 16 at purity 1.00**.
+
+**That number is weaker evidence than it looks**, and worth being plain about: the
+demo corpus is synthetic and its vocabulary was written alongside the classifier's
+keyword sets. It demonstrates the mechanism is sound and would catch a regression.
+It does not tell you how the method performs on real abstracts, which are messier,
+and where two groups pursuing one idea in different vocabularies will land in
+separate clusters. Embeddings would do better; that is the upgrade path when the
+environment can reach a model.
+
+### Routing, and admitting when it fails
+
+The sector decides every downstream number — which stages lie ahead, their cost,
+their duration, which constraints bite. Getting it wrong doesn't give a
+slightly-off answer, it gives an answer about a different kind of technology. So
+routing is graded `assumed`, never `observed`, and two conditions must both hold
+before a sector is trusted: it must take a third of the total score *and* beat the
+runner-up by 1.5x. Below that it routes to `generic` and `coverage_report` names
+it.
+
+That refusal is the point. The tempting design picks the best-scoring sector
+regardless, so every direction lands somewhere and the pipeline never visibly
+fails. On a corpus spanning all of science most directions will not match any
+modelled archetype, and a platform that hides that is lying about its coverage.
+
+Two rules stop a lexical classifier from quietly misrouting whole fields:
+
+- **Ambiguous words are excluded even though they look discriminative.** `model`
+  ("mouse model", "manufacturing model"), `cell` (a battery cell and a biological
+  one), `yield` (fab yield and crop yield), `strain` (bacterial and mechanical).
+- **A discipline label with no supporting vocabulary is discounted.**
+  "Electrical engineering" covers battery packs and lithography alike. Before this
+  rule, one incidental discipline label scored as highly as a direction saturated
+  in a sector's actual vocabulary, and sent batteries, protein design and quantum
+  error correction to `generic`.
+
 ## Scenarios
 
 A single simulation answers "what does this look like?". The question that drives
@@ -136,6 +195,9 @@ pip install numpy pyyaml requests pytest
 # Generate a synthetic demo corpus (no network required)
 python scripts/make_demo_corpus.py
 
+# Find research directions with no labels, route and rank them
+python -m sciscout.cli discover --corpus data/demo_corpus.json --evaluate --rank
+
 # Rank research directions
 python -m sciscout.cli rank --corpus data/demo_corpus.json
 
@@ -178,15 +240,20 @@ These are the things most likely to mislead you. None are hidden in the code.
    not one you know. Any ROI number produced on the defaults will report itself
    as ~100% assumption-driven. That is the system working, not failing.
 
-2. **The demo corpus is synthetic.** Every record in `data/demo_corpus.json` is
-   machine-generated, with `synthetic:` identifiers and placeholder authors. It
-   exercises the pipeline. It tells you nothing about any real field.
+2. **The demo corpus is synthetic.** All 1,174 records in
+   `data/demo_corpus.json` are machine-generated, with `synthetic:` identifiers and
+   placeholder authors, spanning 16 planted directions across energy, biopharma,
+   semiconductors, software and agriculture. It exercises the pipeline and gives
+   discovery something measurable to be scored against. It tells you nothing about
+   any real field.
 
-3. **Clustering into research directions is by explicit label.** Proper
-   clustering needs embeddings or citation-graph community detection. Grouping by
-   a human-assigned label is a real limitation and also a defensible default: the
-   boundary of a "research direction" is a judgement a clustering algorithm makes
-   silently and usually badly.
+3. **Clustering is lexical, and it scales only so far.** `discover` groups
+   papers that use the same words, so one idea pursued in two vocabularies splits,
+   and a shared methods vocabulary can pull unrelated work together. Dense
+   clustering refuses above 12,000 works rather than dying on a multi-gigabyte
+   allocation; `discover_by_discipline` partitions first, which scales further and
+   avoids cross-field lexical collisions, at the cost of splitting genuinely
+   cross-disciplinary directions. Neither failure is hidden — run both and compare.
 
 4. **Foundationality is a lexical proxy.** It counts platform/method/enabling
    language in abstracts. Properly it is how much downstream work builds on a
@@ -213,9 +280,11 @@ sciscout/
   provenance.py          Grade / Provenance / Estimate / ProvenanceLedger
   models.py              Work and Track
   pipeline.py            corpus -> ranked investment cases
+  discovery.py           unsupervised clustering into candidate directions
+  classify.py            routing to a commercialisation model, and coverage gaps
   scenarios.py           named scenarios, provenance-enforced config, comparison
   report.py              markdown rendering
-  cli.py                 harvest / rank / model / report / scenarios / sectors
+  cli.py                 discover / harvest / rank / model / report / scenarios / sectors
   sources/               arxiv, openalex, local JSON corpus
   scoring/               citation baseline, importance and urgency, TRL inference
   commercial/            TRL -> stages, costs, timelines, constraints
@@ -223,7 +292,7 @@ sciscout/
   priors/sectors.yaml    commercialisation priors, graded by provenance
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generator
-tests/                   59 tests
+tests/                   78 tests
 ```
 
 ## Tests
@@ -236,5 +305,6 @@ The suite asserts the modelling claims directly, not just that the code runs:
 abandoned programmes accrue no downstream cost, capital-hungry programmes dilute
 early investors, sensitivity analysis recovers a driver that was deliberately
 planted, missing citation data is scored as absent rather than zero, a two-year
-publication history is refused as a trend, and a scenario file cannot introduce a
-number without saying where it came from.
+publication history is refused as a trend, a scenario file cannot introduce a
+number without saying where it came from, and discovery recovers 16 of 16 planted
+directions on a corpus built with adjacent topic pairs.

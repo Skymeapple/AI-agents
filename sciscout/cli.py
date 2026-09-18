@@ -2,6 +2,9 @@
 
 Four verbs, matching the four things the platform does:
 
+``discover``
+    Find research directions in a corpus with no labels, and route each to a
+    commercialisation model. This is the verb for surveying science broadly.
 ``harvest``
     Pull works from a source into a local corpus file. Separated from analysis so
     that scoring is reproducible: the corpus is the input you can diff.
@@ -28,6 +31,8 @@ from .pipeline import Pipeline
 from .report import render_portfolio, render_track
 from .scenarios import ScenarioSet, render_comparison
 from .sources.base import dump_works
+from .classify import classify, coverage_report
+from .discovery import discover, discover_by_discipline, evaluate_against_labels
 from .sources.local import LocalCorpus
 
 
@@ -146,6 +151,76 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_discover(args) -> int:
+    """Find research directions in a corpus without being told what they are."""
+    result_harvest = LocalCorpus(Path(args.corpus)).harvest()
+    for error in result_harvest.errors:
+        print(f"warning: {error}", file=sys.stderr)
+    works = result_harvest.works
+    if not works:
+        print(f"error: no works loaded from {args.corpus}", file=sys.stderr)
+        return 2
+
+    finder = discover_by_discipline if args.by_discipline else discover
+    try:
+        found = finder(
+            works, threshold=args.threshold, min_cluster_size=args.min_cluster_size
+        )
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+
+    print(f"# Discovered directions\n\n_{found.summary()}_\n")
+
+    pipeline = Pipeline(asof=args.asof, draws=args.draws, seed=args.seed)
+    available = set(pipeline.priors.sectors())
+
+    tracks = []
+    matches = {}
+    for discovered in found.tracks:
+        track = discovered.to_track()
+        match = classify(track, available)
+        track.sector = match.sector
+        tracks.append(track)
+        matches[discovered.label] = match
+
+    print("| Direction | Works | Cohesion | Sector | Routing confidence |")
+    print("| --- | --- | --- | --- | --- |")
+    for discovered, track in zip(found.tracks, tracks):
+        match = matches[discovered.label]
+        print(
+            f"| {discovered.label} | {discovered.size} | {discovered.cohesion:.2f} "
+            f"| {track.sector} | {match.confidence:.0%} |"
+        )
+    print()
+    print(coverage_report(matches))
+
+    if args.evaluate:
+        scores = evaluate_against_labels(found, works, args.label_key)
+        print("## Discovery quality against known labels\n")
+        print(
+            f"- Directions recovered: **{scores['directions_recovered']} of "
+            f"{scores['true_directions']}** ({scores['recovery_rate']:.0%})"
+        )
+        print(f"- Mean cluster purity: **{scores['mean_purity']:.2f}**")
+        print(f"- Works placed in a direction: **{scores['coverage']:.0%}**")
+        print()
+
+    if args.rank:
+        reports = pipeline.analyse(tracks, simulate=not args.no_simulate)
+        print("## Ranked by priority\n")
+        print("| # | Direction | Priority | Importance | Urgency | Confidence | TRL |")
+        print("| --- | --- | --- | --- | --- | --- | --- |")
+        for index, report in enumerate(reports, start=1):
+            a = report.assessment
+            print(
+                f"| {index} | {report.name} | {a.priority:.2f} | {a.importance:.2f} "
+                f"| {a.urgency:.2f} | {a.confidence:.0%} | {report.profile.trl.mode} |"
+            )
+        print()
+    return 0
+
+
 def cmd_scenarios(args) -> int:
     """Compare named scenarios for one research direction."""
     scenario_set = ScenarioSet.from_file(args.file)
@@ -257,6 +332,28 @@ def build_parser() -> argparse.ArgumentParser:
     scenarios.add_argument("--track", help="override the track named in the file")
     scenarios.add_argument("--out", help="output file; prints to stdout if omitted")
     scenarios.set_defaults(func=cmd_scenarios)
+
+    discovery = sub.add_parser(
+        "discover", help="find research directions in a corpus without labels"
+    )
+    add_common(discovery)
+    discovery.add_argument(
+        "--threshold", type=float, default=0.16, help="clustering similarity floor"
+    )
+    discovery.add_argument("--min-cluster-size", type=int, default=3)
+    discovery.add_argument(
+        "--by-discipline",
+        action="store_true",
+        help="cluster within each discipline; scales further, splits cross-disciplinary work",
+    )
+    discovery.add_argument(
+        "--evaluate",
+        action="store_true",
+        help="score discovery against labels, where the corpus carries them",
+    )
+    discovery.add_argument("--rank", action="store_true", help="also score and rank")
+    discovery.add_argument("--no-simulate", action="store_true")
+    discovery.set_defaults(func=cmd_discover)
 
     sectors = sub.add_parser("sectors", help="list commercialisation priors by sector")
     sectors.set_defaults(func=cmd_sectors)

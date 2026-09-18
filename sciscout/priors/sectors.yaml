@@ -216,6 +216,53 @@ sectors:
       - {kind: talent, severity: medium, note: "Small teams with scarce skills; key-person risk is concentrated."}
       - {kind: compute_cost, severity: medium, note: "Training and serving costs can dominate unit economics and move with hardware markets."}
 
+  agriculture_food:
+    label: "Agriculture, food and bio-production"
+    stages:
+      - name: "Strain or trait development"
+        from_trl: 1
+        to_trl: 4
+        duration_years: {low: 1.5, mode: 3.0, high: 6.0}
+        cost_usd: {low: 1.0e6, mode: 4.0e6, high: 15.0e6}
+        p_success: {low: 0.30, mode: 0.50, high: 0.70}
+        provenance:
+          grade: assumed
+          detail: >-
+            Seed value. Note the structural difference from other sectors: crop
+            work is gated by growing seasons, so a trial cycle cannot be bought
+            faster with more money the way a bench experiment often can.
+          needs_review: true
+      - name: "Field trials or pilot production"
+        from_trl: 4
+        to_trl: 7
+        duration_years: {low: 2.0, mode: 4.0, high: 7.0}
+        cost_usd: {low: 5.0e6, mode: 20.0e6, high: 70.0e6}
+        p_success: {low: 0.25, mode: 0.45, high: 0.65}
+        provenance:
+          grade: assumed
+          detail: >-
+            Seed value. Multi-season field validation is the usual gate for crops;
+            for fermentation the equivalent is pilot-scale titre and recovery.
+          needs_review: true
+      - name: "Regulatory approval and market entry"
+        from_trl: 7
+        to_trl: 9
+        duration_years: {low: 1.5, mode: 3.5, high: 8.0}
+        cost_usd: {low: 10.0e6, mode: 50.0e6, high: 250.0e6}
+        p_success: {low: 0.35, mode: 0.55, high: 0.75}
+        provenance:
+          grade: assumed
+          detail: >-
+            Seed value, and unusually jurisdiction-dependent: the same edited
+            crop or novel food faces very different routes in different markets,
+            so a single global figure is a weaker abstraction here than elsewhere.
+          needs_review: true
+    constraints:
+      - {kind: regulatory, severity: high, note: "Novel food and gene-edited crop rules differ sharply by jurisdiction; approval in one market implies little about another."}
+      - {kind: seasonality, severity: high, note: "Field validation is paced by growing seasons and cannot be accelerated with capital."}
+      - {kind: margin, severity: high, note: "Competing against commodity agricultural inputs leaves little pricing headroom."}
+      - {kind: consumer_acceptance, severity: medium, note: "Public acceptance of edited or fermented products can gate adoption independently of approval."}
+
   generic:
     label: "Unclassified research direction"
     stages:

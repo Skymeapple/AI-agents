@@ -5,3 +5,6 @@ __pycache__/
 venv/
 *.egg-info/
 .DS_Store
+# local autoscout runs; CI keeps its tracked state in autoscout_state/
+autoscout_runs/
+/label_queue.jsonl

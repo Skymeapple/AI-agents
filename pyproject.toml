@@ -11,9 +11,19 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
+# Only needed for autoscout's LLM proposer; the agent runs without it.
+llm = ["anthropic>=1.8"]
 
 [project.scripts]
 sciscout = "sciscout.cli:main"
+autoscout = "autoscout.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sciscout*", "autoscout*"]
+
+[tool.setuptools.package-data]
+sciscout = ["priors/*.yaml"]
+autoscout = ["agenda.yaml"]
 
 [build-system]
 requires = ["setuptools>=68"]

@@ -308,3 +308,81 @@ planted, missing citation data is scored as absent rather than zero, a two-year
 publication history is refused as a trend, a scenario file cannot introduce a
 number without saying where it came from, and discovery recovers 16 of 16 planted
 directions on a corpus built with adjacent topic pairs.
+
+
+# airadar: the AI app radar
+
+A second tool in this repo, built on the same provenance discipline. It collects
+signals on AI applications every day, ranks the fastest-growing ones, groups
+them into directions, generates innovation hypotheses, and **grades its own
+forecasts and tunes itself on the result**.
+
+```
+collect             ->  score growth   ->  directions,     ->  forecast and    ->  tune one knob
+(live APIs, inbox       (measured,         emergent           score matured       by backtest,
+ from agent web         stated,            groupings,         forecasts           if the evidence
+ research)              reported)          hypotheses                             clears the bar)
+```
+
+**Growth is derived, never stored.** Observations are append-only and dated;
+every score is recomputed from them with an `asof` date that hides the future.
+That is what makes backtesting honest: replaying a past day sees exactly what
+was known that day.
+
+**Three grades of growth evidence.** A *delta* between two of the radar's own
+snapshots is measured. A *period* gain ("+4,774 stars this week") is stated by a
+source. A *reported* growth rate ("ARR tripled") is a company's chosen framing.
+Each carries a trust weight, and every number reaches the report labelled with
+how it was obtained.
+
+**Comparable across kinds by percentile.** Stars and revenue cannot be compared
+directly. Relative growth (log-growth per day) is ranked across everything;
+absolute velocity is ranked only within its own metric family. Thin evidence is
+shrunk toward the median, so one page-read claim cannot top the table. A gain of
+more than half an app's total in a week is flagged as possible extraction error
+or star farming, and discounted rather than dropped.
+
+**Self-iteration is measured, not asserted.** Every day's ranking is recorded as
+a forecast. Once its 7-day horizon passes, it is scored against the growth that
+followed: Spearman rank correlation and precision@k. The tuner nudges each
+knob one step up and down, replays every matured day with each candidate, and
+adopts the best only if it beats the current settings by 0.02 on mean Spearman,
+across at least 3 days, winning on two-thirds of them. The yardstick is computed
+with fixed default parameters, so the tuner can never move its own target. A
+test plants a noisy source in a synthetic world and checks the tuner learns to
+discount it, and that it holds still when nothing is wrong.
+
+**Collection works around a sandbox.** Live collectors (GitHub search, Hugging
+Face, Hacker News, npm, PyPI) run wherever outbound network is open, such as the
+included GitHub Actions workflow. A daily Claude Code session collects through
+web tools into a strictly validated inbox (`airadar/INBOX.md`): every
+observation needs a source URL and a method, and a malformed file is rejected
+whole, not partially loaded. The session then writes the prose analysis and makes
+one tested improvement to the system. The procedure and its guardrails are in
+`airadar/DAILY_AGENT.md`.
+
+```bash
+python -m airadar.cli collect                          # live APIs (needs network)
+python -m airadar.cli validate data/radar/inbox/*.json # check inbox files
+python -m airadar.cli daily                            # the full daily cycle
+python -m airadar.cli recheck                          # apps to re-observe today
+```
+
+Reports land in `data/radar/reports/`: `DATE.md` is the radar's own output,
+`DATE-analysis.md` the agent's researched commentary on it.
+
+### Limitations
+
+1. **The first week has no measured growth.** Until apps are re-observed, every
+   signal is a stated period gain or a reported rate, graded `sourced`. The
+   report says so. The forecast scorecard and the tuner need about 10 days of
+   history before either says anything.
+2. **Page reads go through a model.** Numbers read off rendered pages by the
+   agent's fetch tool can be mangled; they are graded `sourced`, flagged
+   `needs_review`, and re-observation corrects them over time.
+3. **Coverage follows the sources.** Open-source repos are easy to measure daily;
+   commercial apps are mostly seen through what companies choose to report. A
+   direction with no open-source footprint is under-represented.
+4. **Opportunities are heuristics.** "Fast and uncrowded" or "open source ahead
+   of product" are patterns in the radar's own table, graded `assumed`. They
+   generate research questions; the agent's analysis is where they are tested.

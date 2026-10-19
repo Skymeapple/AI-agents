@@ -65,8 +65,14 @@ class Signal:
         if self.rel_per_day is not None:
             weekly = math.expm1(self.rel_per_day * 7) * 100
             parts.append(f"{weekly:+.1f}%/wk")
-        how = {"delta": "measured", "period": "stated", "reported_growth": "reported"}[self.kind]
-        return f"{', '.join(parts)} ({how}, {self.method.value})"
+        if self.kind == "delta" and self.method is Method.API:
+            how = "measured"
+        elif self.kind == "delta":
+            how = f"between two {self.method.value.replace('_', ' ')} figures"
+        else:
+            how = {"period": "stated", "reported_growth": "reported rate"}[self.kind]
+            how = f"{how}, {self.method.value.replace('_', ' ')}"
+        return f"{', '.join(parts)} ({how})"
 
 
 def _fmt(x: float) -> str:
@@ -107,8 +113,18 @@ def extract_signals(
     The baseline of a delta may sit on or before ``after`` -- it has to, to
     measure growth across it -- but its endpoint must fall after.
     """
-    window_start = after if after is not None else asof - dt.timedelta(days=lookback_days)
-    known = [o for o in observations if o.observed_on <= asof]
+    def window(method: Method) -> tuple[dt.date, int, int]:
+        """(endpoint must fall after, baseline target offset, max baseline span)."""
+        if method is Method.REPORTED:
+            back, span = FIXED["reported_lookback_days"], FIXED["reported_max_span_days"]
+        else:
+            back, span = lookback_days, MAX_DELTA_BASELINE_DAYS
+        start = after if after is not None else asof - dt.timedelta(days=back)
+        return start, back, span
+
+    # Known by asof means *collected* by asof: a late-reported figure about an
+    # earlier date was not available on that earlier date.
+    known = [o for o in observations if o.known_on <= asof]
 
     levels: dict[tuple[str, str], dict[dt.date, Observation]] = {}
     grouped: dict[tuple[str, str], list[Observation]] = defaultdict(list)
@@ -127,14 +143,15 @@ def extract_signals(
     # delta: our own two snapshots of one level metric
     for (app_id, metric), by_day in levels.items():
         days = sorted(by_day)
-        endpoints = [d for d in days if d > window_start]
+        endpoints = [d for d in days if d > window(by_day[d].method)[0]]
         if not endpoints:
             continue
         end = endpoints[-1]
-        target = end - dt.timedelta(days=lookback_days)
+        _, back, span_limit = window(by_day[end].method)
+        target = end - dt.timedelta(days=back)
         baselines = [
             d for d in days
-            if d < end and (end - d).days <= MAX_DELTA_BASELINE_DAYS
+            if d < end and (end - d).days <= span_limit
             and (after is None or d <= after)
         ]
         if not baselines:
@@ -162,13 +179,14 @@ def extract_signals(
     for (app_id, metric, period), rows in rates.items():
         by_day = _best_per_day(rows)
         days = sorted(by_day)
-        endpoints = [d for d in days if d > window_start]
+        endpoints = [d for d in days if d > window(by_day[d].method)[0]]
         if not endpoints:
             continue
         end = endpoints[-1]
+        span_limit = window(by_day[end].method)[2]
         baselines = [
             d for d in days
-            if (end - d).days >= period and (end - d).days <= MAX_DELTA_BASELINE_DAYS
+            if (end - d).days >= period and (end - d).days <= span_limit
             and (after is None or d <= after)
         ]
         if not baselines:
@@ -186,7 +204,7 @@ def extract_signals(
 
     # period and reported_growth: a source stating growth over a period
     for o in known:
-        if o.spec.type is not MetricType.PERIOD or o.observed_on <= window_start:
+        if o.spec.type is not MetricType.PERIOD or o.observed_on <= window(o.method)[0]:
             continue
         start = o.observed_on - dt.timedelta(days=o.period_days)
         # Realised growth must be growth that happened after the prediction.
@@ -286,11 +304,23 @@ class AppScore:
         return self.signals[best].describe()
 
 
-def score_apps(signals: dict[str, list[Signal]], params: Params) -> list[AppScore]:
-    """Rank apps by growth. See the module docstring for the method."""
+def score_apps(signals: dict[str, list[Signal]], params: Params,
+               asof: dt.date | None = None) -> list[AppScore]:
+    """Rank apps by growth. See the module docstring for the method.
+
+    With ``asof`` set, a signal's weight halves for every
+    ``staleness_half_life_days`` between its end and ``asof``: September's
+    revenue figure is weaker evidence of today's growth than this week's stars.
+    """
     flat = [s for rows in signals.values() for s in rows]
     if not flat:
         return []
+    half_life = FIXED["staleness_half_life_days"]
+
+    def freshness(s: Signal) -> float:
+        if asof is None:
+            return 1.0
+        return 0.5 ** (max(0, (asof - s.end).days) / half_life)
 
     rel_index = [i for i, s in enumerate(flat) if s.rel_per_day is not None]
     rel_pct = dict(zip(rel_index, percentile_ranks([flat[i].rel_per_day for i in rel_index])))
@@ -329,6 +359,7 @@ def score_apps(signals: dict[str, list[Signal]], params: Params) -> list[AppScor
         weights = [
             params.trust(s.method.value) * params[f"weight.{s.kind}"] / group_sizes[(s.family, s.kind)]
             * (FIXED["anomaly_penalty"] if s.anomaly else 1.0)
+            * freshness(s)
             for s in rows
         ]
         evidence = sum(weights)

@@ -5,6 +5,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Verify reported figures at source.** Day one's commercial figures came from
+  search-result summaries because the fetch tool could not open the pages.
+  Re-collect them from the cited URLs when fetching works, and record a
+  disagreement as a new observation rather than editing the old one.
 - **Measured deltas for products.** Repos and Spaces can be re-observed from
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
@@ -27,3 +31,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 - 2026-10-19: initial system: inbox contract, growth model, directions,
   hypotheses, forecast scorecard, backtest tuner, source health, daily runbook.
+- 2026-10-19: first real run exposed three faults, now fixed. (1) Reported
+  figures dated months back fell outside the 7-day window, so every commercial
+  app was baseline-only; they now get a 120-day window with a 45-day staleness
+  half-life. (2) Point-in-time filtering used the date a figure describes, not
+  the date it was collected, which let backtests see late-reported figures early;
+  observations now carry `collected_on`. (3) Products on multi-product company
+  domains (`openai.com/codex`) collapsed into one identity.

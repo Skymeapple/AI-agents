@@ -54,6 +54,8 @@ def inbox_payload(**overrides):
     ("https://pypi.org/project/vllm/", "pypi:vllm"),
     ("https://www.cursor.com/pricing", "web:cursor.com"),
     ("https://apps.apple.com/app/x/id1", "web:apps.apple.com/app"),
+    ("https://openai.com/codex", "web:openai.com/codex"),
+    ("https://chatgpt.com", "web:chatgpt.com"),
 ])
 def test_canonical_id_collapses_variants(url, expected):
     assert canonical_id(url) == expected
@@ -275,3 +277,34 @@ def test_daily_run_ingests_records_forecast_and_archives(tmp_path):
     assert len(store.load_predictions()) == 1
     assert store.load_iterations()[0]["adopted"] is False
     assert any(h.collector == "inbox:2026-10-19-bad" and h.consecutive_failures for h in analysis.health)
+
+
+# -- late and sparse reporting -----------------------------------------------
+
+
+def test_a_late_reported_figure_is_invisible_before_it_was_collected():
+    june, july, october = dt.date(2026, 6, 1), dt.date(2026, 7, 1), dt.date(2026, 10, 1)
+    rows = [
+        Observation("c", "revenue_annualized_usd", 3e9, june, "https://x/1", Method.REPORTED, "t",
+                    collected_on=october),
+        Observation("c", "revenue_annualized_usd", 4e9, july, "https://x/2", Method.REPORTED, "t",
+                    collected_on=october),
+    ]
+    assert extract_signals(rows, asof=dt.date(2026, 7, 15)) == {}
+    (s,) = extract_signals(rows, asof=october)["c"]
+    assert s.kind == "delta" and s.start == june and s.end == july
+
+
+def test_reported_figures_use_a_longer_window_and_decay_with_age():
+    today = dt.date(2026, 10, 19)
+    rows = [
+        obs("c", "revenue_annualized_usd", 3e9, dt.date(2026, 6, 1), Method.REPORTED),
+        obs("c", "revenue_annualized_usd", 4e9, dt.date(2026, 9, 1), Method.REPORTED),
+        obs("r", "stars", 1000, today - dt.timedelta(days=7)),
+        obs("r", "stars", 1200, today),
+    ]
+    signals = extract_signals(rows, asof=today)
+    assert "c" in signals  # a 7-day window would have dropped it
+    fresh = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults(), asof=today)}
+    stale = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults())}
+    assert fresh["c"] < stale["c"] and fresh["r"] == pytest.approx(stale["r"])

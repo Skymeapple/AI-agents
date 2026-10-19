@@ -47,6 +47,19 @@ TAG_ALIASES = {
 }
 
 
+# Words common in app descriptions that name no direction. Without these, a
+# grouping gets labelled "your / anything / free" and the watch list fills with
+# terms that match everything.
+GENERIC_TERMS = frozenset(
+    """
+    your anything everything free tool tools system systems web app apps platform
+    open source code per language model models build built make makes across
+    first fast faster simple easy local official library framework kit based
+    support supports powered help helps run runs like real time way into
+    """.split()
+)
+
+
 def normalise_tag(tag: str) -> str:
     tag = tag.strip().lower().replace(" ", "-").replace("_", "-")
     return TAG_ALIASES.get(tag, tag)
@@ -153,11 +166,15 @@ def emergent_groups(
     if len(works) < 6:
         return []
     known = {normalise_tag(t) for a in apps.values() for t in a.tags}
-    known_words = {part for tag in known for part in tag.split("-")}
+    known_words = known | {part for tag in known for part in tag.split("-")}
+    owners = {a.name.split("/")[0].lower() for a in apps.values() if "/" in a.name}
     result = discover(works, threshold=threshold, min_cluster_size=3, min_df=2, max_df_ratio=0.3)
     groups = []
     for track in result.tracks:
-        novel = [t for t in track.terms if t not in known_words]
+        novel = [
+            t for t in track.terms
+            if t not in known_words and t not in GENERIC_TERMS and t not in owners and len(t) >= 4
+        ]
         if len(novel) < 2:
             continue
         groups.append(EmergentGroup(

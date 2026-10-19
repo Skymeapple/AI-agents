@@ -80,7 +80,7 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     added = []
     for group in sorted(groups, key=lambda g: -sum(score_of.get(m, 0) for m in g.members) / len(g.members)):
         mean = sum(score_of.get(m, 0) for m in group.members) / len(group.members)
-        if mean < 0.5:
+        if mean < 0.55 or group.cohesion < 0.3:
             continue
         for term in group.terms[:2]:
             if term not in existing and len(added) < NEW_TERMS_PER_DAY:
@@ -97,8 +97,8 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     apps = store.load_apps()
     observations = store.load_observations()
     signals = extract_signals(observations, asof=date)
-    scores = [s for s in score_apps(signals, params) if s.app_id in apps]
-    seen = {o.app_id for o in observations if o.observed_on <= date}
+    scores = [s for s in score_apps(signals, params, asof=date) if s.app_id in apps]
+    seen = {o.app_id for o in observations if o.known_on <= date}
     baseline_only = sorted(seen - set(signals))
     previous = store.previous_snapshot(date)
     directions = tag_directions(apps, scores, previous)

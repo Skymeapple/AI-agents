@@ -94,8 +94,9 @@ def canonical_id(url: str) -> str:
       -> ``hf-model:a/b``
     - ``npmjs.com/package/x`` -> ``npm:x``; ``pypi.org/project/x`` -> ``pypi:x``
     - anything else -> ``web:host`` plus the first path segment when the host is
-      a shared platform (``apps.apple.com``, ``chromewebstore.google.com``)
-      rather than the product's own domain.
+      a shared platform (``apps.apple.com``, ``chromewebstore.google.com``) or
+      a company domain hosting several products (``openai.com/codex``), rather
+      than the product's own domain.
     """
     raw = url.strip()
     if "://" not in raw:
@@ -124,6 +125,11 @@ def canonical_id(url: str) -> str:
     shared = {
         "apps.apple.com", "play.google.com", "chromewebstore.google.com",
         "producthunt.com", "news.ycombinator.com", "chatgpt.com",
+        # company domains with several products: one product's growth must not
+        # merge into another's
+        "openai.com", "anthropic.com", "google.com", "blog.google", "microsoft.com",
+        "meta.com", "about.meta.com", "amazon.com", "aws.amazon.com", "apple.com",
+        "nvidia.com", "x.ai", "mistral.ai", "bytedance.com", "alibabacloud.com",
     }
     if host in shared and parts:
         return "web:" + slug(host, parts[0] if host != "news.ycombinator.com" else parsed.query)
@@ -198,6 +204,10 @@ class Observation:
     # Lets the self-tuner tell productive watch terms from dead ones.
     via: str | None = None
     note: str = ""
+    # When the radar learned the number, as distinct from ``observed_on``, the
+    # date it describes. A figure for June reported in October was not known in
+    # July, and a backtest replaying July must not see it.
+    collected_on: dt.date | None = None
 
     def __post_init__(self) -> None:
         spec = METRICS.get(self.metric)
@@ -211,6 +221,12 @@ class Observation:
             raise ValueError(f"{self.metric} cannot be negative (got {self.value})")
         if not self.source_url.strip():
             raise ValueError("every observation needs a source_url")
+        if self.collected_on is not None and self.collected_on < self.observed_on:
+            raise ValueError("collected_on cannot precede observed_on")
+
+    @property
+    def known_on(self) -> dt.date:
+        return self.collected_on or self.observed_on
 
     @property
     def spec(self) -> MetricSpec:
@@ -244,6 +260,7 @@ class Observation:
             "collector": self.collector,
             "via": self.via,
             "note": self.note,
+            "collected_on": self.collected_on.isoformat() if self.collected_on else None,
         }
 
     @classmethod
@@ -259,4 +276,5 @@ class Observation:
             period_days=float(raw["period_days"]) if raw.get("period_days") is not None else None,
             via=raw.get("via"),
             note=raw.get("note", ""),
+            collected_on=dt.date.fromisoformat(raw["collected_on"]) if raw.get("collected_on") else None,
         )

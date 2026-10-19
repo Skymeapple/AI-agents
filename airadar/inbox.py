@@ -126,6 +126,7 @@ def parse_batch(payload: dict, origin: str = "<inbox>") -> InboxBatch:
                 period_days=float(period) if period is not None else None,
                 via=raw.get("via"),
                 note=str(raw.get("note") or ""),
+                collected_on=collected_at,
             )
         except ValueError as exc:
             raise InboxError(f"{where}: {exc}") from None

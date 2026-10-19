@@ -138,7 +138,7 @@ def scorecard(store: Store, today: dt.date, observations: list[Observation]) -> 
 
 
 def _evaluable_days(observations: list[Observation], today: dt.date, horizon: int) -> list[dt.date]:
-    days = sorted({o.observed_on for o in observations if o.observed_on + dt.timedelta(days=horizon) <= today})
+    days = sorted({o.known_on for o in observations if o.known_on + dt.timedelta(days=horizon) <= today})
     return days[-BACKTEST_DAYS:]
 
 
@@ -149,7 +149,7 @@ def backtest(params: Params, observations: list[Observation], days: list[dt.date
     for day in days:
         if day not in cache:
             cache[day] = realised_scores(observations, day, horizon)
-        predicted = {s.app_id: s.score for s in score_apps(extract_signals(observations, asof=day), params)}
+        predicted = {s.app_id: s.score for s in score_apps(extract_signals(observations, asof=day), params, asof=day)}
         evaluation = evaluate(predicted, cache[day], day, horizon)
         if evaluation.spearman is not None and evaluation.apps >= MIN_APPS_PER_EVAL:
             out.append(evaluation)

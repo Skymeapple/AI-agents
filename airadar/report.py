@@ -8,8 +8,6 @@ as its forecasts.
 
 from __future__ import annotations
 
-from collections import Counter
-
 from sciscout.provenance import Estimate, Grade, ProvenanceLedger
 
 from .pipeline import Analysis
@@ -166,14 +164,18 @@ def render(analysis: Analysis) -> str:
                      f"{h.last_count} | {err} |")
     lines.append("")
 
-    kinds = Counter(s.kind for score in a.scores for s in score.signals)
-    if kinds and not kinds.get("delta"):
+    measured = sum(
+        1 for score in a.scores for s in score.signals
+        if s.kind == "delta" and s.method.value != "reported"
+    )
+    if a.scores and not measured:
         lines += [
             "## Caveat for today",
             "",
-            "No growth here was measured between two of the radar's own snapshots yet: every signal "
-            "is a period gain stated by a source or a reported growth rate. Measured deltas start "
-            "from the next run that re-observes these apps.",
+            "No growth here was measured between two of the radar's own snapshots yet. Every signal "
+            "is a gain stated by a page, a rate a company reported, or the difference between two "
+            "company-reported figures. Measured deltas start from the next run that re-observes "
+            "these apps.",
             "",
         ]
     return "\n".join(lines)

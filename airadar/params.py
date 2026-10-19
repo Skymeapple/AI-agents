@@ -64,6 +64,12 @@ KNOBS: dict[str, Knob] = {
 # the radar is measuring, which is a decision for a person, not for a backtest.
 FIXED = {
     "lookback_days": 7,
+    # Company-reported figures arrive sparsely and late -- a quarter's numbers
+    # surface weeks after the quarter -- so they get a longer window, and their
+    # weight halves every staleness_half_life_days of age.
+    "reported_lookback_days": 120,
+    "reported_max_span_days": 365,
+    "staleness_half_life_days": 45,
     "horizon_days": 7,
     "top_k": 15,
     # Below these levels relative growth is noise (1 -> 10 stars is +900%), so it

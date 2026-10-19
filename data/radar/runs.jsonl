@@ -1,2 +1,4 @@
 {"collector": "agent:github-trending", "date": "2026-10-19", "errors": [], "observations": 102}
 {"collector": "agent:web-research", "date": "2026-10-19", "errors": [], "observations": 64}
+{"collector": "agent:huggingface", "date": "2026-10-19", "errors": ["huggingface.co unreachable: DNS failure through WebFetch, 403 from the network proxy"], "observations": 0}
+{"collector": "agent:hackernews", "date": "2026-10-19", "errors": ["hn.algolia.com and news.ycombinator.com unreachable: DNS failure through WebFetch"], "observations": 0}

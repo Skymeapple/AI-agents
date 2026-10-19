@@ -308,3 +308,73 @@ def test_reported_figures_use_a_longer_window_and_decay_with_age():
     fresh = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults(), asof=today)}
     stale = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults())}
     assert fresh["c"] < stale["c"] and fresh["r"] == pytest.approx(stale["r"])
+
+
+# -- shared page export ------------------------------------------------------
+
+
+def _daily_store(tmp_path):
+    store = Store(tmp_path)
+    store.inbox.mkdir(parents=True)
+    payload = inbox_payload()
+    payload["observations"] += [
+        dict(payload["observations"][0], app={"name": f"o/r{i}", "url": f"https://github.com/o/r{i}",
+                                              "kind": "repo", "tags": ["mcp"]}, value=10 * i)
+        for i in range(1, 6)
+    ]
+    (store.inbox / "2026-10-19-test.json").write_text(json.dumps(payload))
+    run_day(store, dt.date(2026, 10, 19))
+    return store
+
+
+def _editorial(store, **overrides):
+    body = {
+        "takeaway": "MCP tooling is growing fastest.",
+        "findings": [{"id": "mcp", "heading": "MCP leads", "text": "Six repos.", "source": "https://github.com/o/r"}],
+        "caveats": ["Day one."],
+    }
+    body.update(overrides)
+    store.reports.mkdir(parents=True, exist_ok=True)
+    (store.reports / "2026-10-19-dashboard.json").write_text(json.dumps(body))
+
+
+def test_dashboard_export_writes_every_dataset(tmp_path):
+    import csv
+
+    from airadar.dashboard import FILES, export
+
+    store = _daily_store(tmp_path)
+    _editorial(store)
+    written = export(store, dt.date(2026, 10, 19), tmp_path / "out")
+    assert set(written) == set(FILES)
+    with written["apps"].open() as handle:
+        apps = list(csv.DictReader(handle))
+    assert len(apps) == 6 and apps[0]["rank"] == "1"
+    with written["summary"].open() as handle:
+        (summary,) = list(csv.DictReader(handle))
+    assert summary["takeaway"] == "MCP tooling is growing fastest."
+    assert summary["first_scorecard_expected"] == "2026-10-26"
+    assert summary["tuning_status"] == "No change"
+
+
+@pytest.mark.parametrize("override,message", [
+    ({"takeaway": ""}, "takeaway"),
+    ({"findings": []}, "at least one finding"),
+    ({"findings": [{"id": "x", "heading": "h", "text": "t", "source": ""}]}, "source"),
+    ({"findings": [{"id": "x", "heading": "h", "text": "t", "source": "github.com/o/r"}]}, "must be a URL"),
+])
+def test_dashboard_refuses_unsourced_findings(tmp_path, override, message):
+    from airadar.dashboard import DashboardError, export
+
+    store = _daily_store(tmp_path)
+    _editorial(store, **override)
+    with pytest.raises(DashboardError, match=message):
+        export(store, dt.date(2026, 10, 19), tmp_path / "out")
+
+
+def test_dashboard_needs_the_agents_editorial_file(tmp_path):
+    from airadar.dashboard import DashboardError, export
+
+    store = _daily_store(tmp_path)
+    with pytest.raises(DashboardError, match="missing"):
+        export(store, dt.date(2026, 10, 19), tmp_path / "out")

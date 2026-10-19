@@ -56,6 +56,13 @@ raw pages stay out of your context. Pass the subagent the INBOX.md rules verbati
    failures): try once through a different route (another page, a mirror, a
    different tool). If it still fails, say so in the analysis and stop.
 
+Every source you tried and could not collect gets a failure record, so source
+health and the shared page show it rather than a silent gap:
+
+```bash
+python -m airadar.cli log-failure agent:huggingface "huggingface.co unreachable: <what happened>"
+```
+
 Then:
 
 ```bash
@@ -104,6 +111,13 @@ to build or back, so be specific and cite everything. Sections:
    about the radar's forecasts, and what single change would most improve
    tomorrow's report.
 
+Then write `data/radar/reports/$TODAY-dashboard.json` for the shared page (the
+format is in `airadar/dashboard.py`): a one- or two-sentence `takeaway`, three
+to six `findings` from the analysis (each with `id`, `heading`, `text` and the
+`source` URL it rests on), and the day's `caveats`. The page shows these
+verbatim beside the radar's own numbers, so they follow the same rule: no
+number without a source.
+
 ## 6. Improve the system (one change)
 
 Read the scorecard, the source-health table, today's self-critique and
@@ -129,7 +143,46 @@ is out of scope however good it looks:
   numbers without a source URL.
 - No new dependency that needs an API key in order to run tests.
 
-## 7. Commit and push
+## 7. Refresh the shared page
+
+The radar's web page is the claude.ai artifact
+**https://claude.ai/artifact/Bo2xqWyfYbJvqZxE2SPsBh** (a Dashboard). The page
+holds no numbers itself; each section reads a CSV file attached to it.
+Refreshing means uploading today's files and pointing the page at them.
+
+1. Export:
+   ```bash
+   python -m airadar.cli dashboard --out /tmp/radar-page
+   ```
+   It refuses to run without today's `-dashboard.json` (step 5); fix that file,
+   don't bypass the check.
+2. Read the artifact once with the Artifact tool (`action: "read"`, the url
+   above). Load the `ArtifactData` tool with ToolSearch if it is not loaded.
+3. Upload each CSV, one Artifact call per file: `action: "publish"`, the url
+   above, `asset: true`, `file_path: /tmp/radar-page/<name>.csv`. Note the
+   `/_blob/<id>` url each returns.
+4. `ArtifactData` `list` on collection `datasets` for each document's current
+   `version` and its old `source.url`.
+5. One `ArtifactData` `batch`: for each `datasets/<name>`, an `update` pinned
+   with `if_version`, setting
+   `source: {kind: "file", url: "<new /_blob url>", name: "<name>.csv"}` and
+   `updated: {at: "<now, ISO 8601 UTC>", by: "Claude (airadar daily run)"}`.
+   A file with no dataset document yet (a new export file) gets a `set` with a
+   `title`, a one-sentence `description`,
+   `schedule: "Refreshed by the radar's daily run, scheduled 06:47 UTC"` and
+   `staleAfterHours: 48`. If `airadar/dashboard_page.html` changed today, the
+   same batch sets `files/index.html` to `{text: <its contents>}`, pinned.
+6. Read `data/users/me` doc `check` up to 5 times. If it says `failed`, fix
+   what the code confirms and write again (at most 2 fixes).
+7. Delete each replaced file (Artifact `action: "delete"`, the url above,
+   `path` = the old blob id), but only once no dataset points at it.
+
+If the Artifact or ArtifactData tools are unavailable, or a write is refused,
+leave the page as it is and say so in the session summary. The page then shows
+yesterday's data, marked stale after 48 hours. Do not publish a different
+artifact in its place.
+
+## 8. Commit and push
 
 ```bash
 git add -A data/radar airadar tests
@@ -138,4 +191,5 @@ git push -u origin ai-radar
 ```
 
 Make sure a draft PR exists for `ai-radar`. End the session with a summary: the
-top 3 findings, the improvement made, and anything a person needs to decide.
+top 3 findings, the improvement made, whether the shared page was refreshed
+(with its link), and anything a person needs to decide.

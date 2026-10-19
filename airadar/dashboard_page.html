@@ -1,0 +1,475 @@
+<style>
+.rd { font-family: var(--font-anthropic-sans); display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.rd-head { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.rd-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.rd-take { color: var(--color-fg-muted); margin: 0; max-width: 70ch; line-height: 1.5; }
+.rd-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: var(--cds-gap-md); }
+.rd-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.rd-kpi-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rd-kpi-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; min-height: 1.3em; }
+.rd-kpi-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rd-kpi.rd-warn .rd-kpi-value { color: var(--color-warn); }
+.rd-section { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.rd-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rd-sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; max-width: 80ch; line-height: 1.45; }
+.rd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.rd-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+.rd-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.rd-card p { margin: 0; line-height: 1.5; }
+.rd-finding a { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); overflow-wrap: anywhere; }
+.rd-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+.rd-search { flex: 1 1 14rem; min-width: 0; padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); font: inherit; }
+.rd-chip { border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: var(--cds-pad-xs) var(--cds-pad-sm); font: inherit; font-size: var(--cds-font-size-caption); cursor: pointer; }
+.rd-chip[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+.rd-chip:focus-visible, .rd-search:focus-visible, .rd-sort:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.rd-tablebox { overflow: auto; max-height: 34rem; }
+.rd-tablebox.rd-short { max-height: none; }
+.rd-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.rd-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; z-index: 1; }
+.rd-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; line-height: 1.4; }
+.rd-table td.rd-num, .rd-table th.rd-num { text-align: right; }
+.rd-sort { all: unset; cursor: pointer; }
+.rd-sort::after { content: ""; margin-left: 4px; }
+th[aria-sort="ascending"] .rd-sort::after { content: "▲"; font-size: 0.7em; }
+th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
+.rd-app a { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); text-decoration: none; overflow-wrap: anywhere; }
+.rd-app a:hover { text-decoration: underline; }
+.rd-tags { color: var(--color-fg-muted); }
+.rd-scorecell { display: flex; align-items: center; gap: var(--cds-gap-xs); min-width: 7rem; }
+.rd-bar { flex: 1; height: 6px; background: var(--cds-chart-grid); border-radius: 3px; overflow: hidden; }
+.rd-bar > span { display: block; height: 100%; border-radius: 3px; }
+.rd-pill { display: inline-block; border-radius: 999px; padding: 0 var(--cds-pad-xs); border: 1px solid var(--color-border-line); white-space: nowrap; }
+.rd-flag { color: var(--color-warn); }
+.rd-hide-narrow { }
+.rd-chart { position: relative; min-height: 20rem; }
+.rd-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; line-height: 1.4; }
+.rd-tip-k { color: var(--cds-text-secondary); }
+.rd-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: 6rem; }
+.rd-fail::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--color-bad); }
+.rd-caveats { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--cds-gap-xs); line-height: 1.5; max-width: 80ch; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+@media (max-width: 40rem) { .rd-hide-narrow { display: none; } }
+</style>
+
+<div class="rd">
+  <header class="rd-head" id="top">
+    <h1 class="rd-title">AI App Radar · <span class="dash-skeleton" data-source="summary" data-field="report_date" data-row="0" id="rd-date">—</span></h1>
+    <p class="rd-take dash-skeleton" id="rd-take" data-source="summary" data-field="takeaway" data-row="0">—</p>
+  </header>
+
+  <section class="rd-kpis" aria-label="Headline figures">
+    <div class="rd-kpi">
+      <span class="rd-kpi-label">Apps with growth evidence</span>
+      <span class="rd-kpi-value dash-skeleton" data-source="summary" data-field="with_growth_evidence" data-row="0" id="k-evidence">—</span>
+      <span class="rd-kpi-note">of <span data-source="summary" data-field="apps_tracked" data-row="0" id="k-tracked">—</span> tracked</span>
+    </div>
+    <div class="rd-kpi" id="k-measured-tile">
+      <span class="rd-kpi-label">Growth measured by the radar</span>
+      <span class="rd-kpi-value dash-skeleton" data-source="summary" data-field="measured_share" data-row="0" id="k-measured">—</span>
+      <span class="rd-kpi-note">Share of the top apps' evidence the radar measured itself</span>
+    </div>
+    <div class="rd-kpi">
+      <span class="rd-kpi-label">Baseline only</span>
+      <span class="rd-kpi-value dash-skeleton" data-source="summary" data-field="baseline_only" data-row="0" id="k-baseline">—</span>
+      <span class="rd-kpi-note">Seen once; growth needs a second look</span>
+    </div>
+    <div class="rd-kpi">
+      <span class="rd-kpi-label">Observations</span>
+      <span class="rd-kpi-value dash-skeleton" data-source="summary" data-field="observations" data-row="0" id="k-obs">—</span>
+      <span class="rd-kpi-note">Each with a source URL</span>
+    </div>
+    <div class="rd-kpi">
+      <span class="rd-kpi-label">Forecasts scored</span>
+      <span class="rd-kpi-value dash-skeleton" data-source="summary" data-field="matured_forecasts" data-row="0" id="k-forecasts">—</span>
+      <span class="rd-kpi-note" id="k-first-note">First scorecard <span data-source="summary" data-field="first_scorecard_expected" data-row="0" id="k-first">—</span></span>
+      <span class="rd-kpi-note" id="k-rho-note" hidden>Latest rank correlation <span data-source="summary" data-field="latest_spearman" data-row="0" id="k-rho">—</span></span>
+    </div>
+  </section>
+
+  <section class="rd-section" id="findings">
+    <h2 class="rd-h2">Key findings</h2>
+    <div class="rd-grid" id="rd-findings" data-source="findings"></div>
+  </section>
+
+  <section class="rd-section" id="apps">
+    <h2 class="rd-h2">Fastest-growing apps</h2>
+    <p class="rd-sub">Score is the evidence-weighted percentile of each app's growth signals (0 to 1), pulled toward 0.5 when evidence is thin. Evidence type says how the strongest signal was obtained. Flagged rows gained over half their total in a week; their weight is halved until a person or a re-check confirms them.</p>
+    <div class="rd-card">
+      <div class="rd-tools">
+        <input class="rd-search" id="rd-search" type="search" placeholder="Search apps, tags or signals" aria-label="Search apps">
+        <div class="rd-tools" role="group" aria-label="Filter by kind" id="rd-kinds"></div>
+      </div>
+      <div class="rd-tablebox">
+        <table class="rd-table" id="rd-apps" data-source="apps" data-row-key="app">
+          <thead><tr>
+            <th class="rd-num" data-field="rank" aria-sort="ascending"><button class="rd-sort" data-col="rank" data-type="num">#</button></th>
+            <th data-field="app"><button class="rd-sort" data-col="app">App</button></th>
+            <th data-field="kind" class="rd-hide-narrow"><button class="rd-sort" data-col="kind">Kind</button></th>
+            <th data-field="tags" class="rd-hide-narrow"><button class="rd-sort" data-col="tags">Tags</button></th>
+            <th data-field="score"><button class="rd-sort" data-col="score" data-type="num">Score</button></th>
+            <th class="rd-num" data-field="weekly_growth_pct"><button class="rd-sort" data-col="weekly_growth_pct" data-type="num">Growth/wk</button></th>
+            <th data-field="signal" class="rd-hide-narrow"><button class="rd-sort" data-col="signal">Strongest signal</button></th>
+            <th data-field="evidence_type"><button class="rd-sort" data-col="evidence_type">Evidence</button></th>
+            <th data-field="flag"><button class="rd-sort" data-col="flag">Flag</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="rd-sub" id="rd-apps-count"></p>
+    </div>
+  </section>
+
+  <section class="rd-section" id="directions">
+    <h2 class="rd-h2">Directions</h2>
+    <p class="rd-sub">Top-quartile share is the fraction of a direction's scored apps that rank in the top quarter of all apps. It resists one category having many slow members. Status compares each direction's mean score with the previous run: accelerating or cooling means a move of at least 0.05.</p>
+    <div class="rd-grid">
+      <div class="rd-card">
+        <h3>Share of apps in the top quartile</h3>
+        <p class="rd-sub">Bar length is top-quartile share. The label gives the number of apps and, once there is a previous run, whether the direction is accelerating or cooling.</p>
+        <div class="rd-chart" id="rd-dir-chart" data-source="directions"></div>
+      </div>
+      <div class="rd-card">
+        <h3>Innovation hypotheses</h3>
+        <p class="rd-sub">Rule-based patterns in the direction table, graded as assumptions. They point research at a gap; they do not establish one.</p>
+        <div class="rd-tablebox rd-short">
+          <table class="rd-table" id="rd-hyp" data-source="hypotheses" data-row-key="pattern,direction">
+            <thead><tr>
+              <th data-field="direction">Direction</th>
+              <th data-field="pattern">Pattern</th>
+              <th data-field="rationale" class="rd-hide-narrow">Why</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rd-section" id="system">
+    <h2 class="rd-h2">How the radar is doing</h2>
+    <div class="rd-grid">
+      <div class="rd-card">
+        <h3>Self-tuning</h3>
+        <p><b data-source="summary" data-field="tuning_status" data-row="0" id="rd-tune-status">—</b>: <span data-source="summary" data-field="tuning_reason" data-row="0" id="rd-tune-reason">—</span>.</p>
+        <p class="rd-sub">Each day's ranking is saved as a forecast and scored after 7 days against the growth that followed. The tuner moves one setting one step only if a backtest beats the current settings by a fixed margin on most past days. Its yardstick uses fixed default settings, so it cannot move its own target.</p>
+        <h3>Forecast scorecard</h3>
+        <p class="rd-sub" id="rd-score-empty">No forecast has reached its 7-day horizon yet.</p>
+        <div class="rd-tablebox rd-short">
+          <table class="rd-table" id="rd-scorecard" data-source="scorecard" data-row-key="made_on">
+            <thead><tr>
+              <th data-field="made_on">Forecast made</th>
+              <th class="rd-num" data-field="apps_compared">Apps compared</th>
+              <th class="rd-num" data-field="spearman">Rank correlation</th>
+              <th class="rd-num" data-field="precision_at_k">Top-k hit rate</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="rd-tablebox rd-short">
+          <table class="rd-table" id="rd-params" data-source="params" data-row-key="parameter">
+            <thead><tr>
+              <th data-field="parameter">Setting</th>
+              <th class="rd-num" data-field="value">Value</th>
+              <th data-field="basis" class="rd-hide-narrow">Basis</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="rd-card">
+        <h3>Source health</h3>
+        <p class="rd-sub">A collector with failures in a row produced nothing on those runs, so what it covers is missing from the report until it recovers.</p>
+        <div class="rd-tablebox rd-short">
+          <table class="rd-table" id="rd-sources" data-source="sources" data-row-key="collector">
+            <thead><tr>
+              <th data-field="collector">Collector</th>
+              <th data-field="last_ok">Last OK</th>
+              <th class="rd-num" data-field="last_count">Observations</th>
+              <th class="rd-num" data-field="consecutive_failures">Failures in a row</th>
+              <th data-field="last_error" class="rd-hide-narrow">Last error</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <h3>Read with care</h3>
+        <ul class="rd-caveats" id="rd-caveats" data-source="caveats"></ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const fmtInt = d3.format(',');
+  const fmtPct0 = d3.format('.0%');
+  const fmtScore = d3.format('.2f');
+  const state = { q: '', kind: 'all', sortCol: 'rank', sortDir: 'ascending' };
+
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = value;
+    el.classList.remove('dash-skeleton');
+  };
+
+  function failLine(container) {
+    container.textContent = '';
+    const div = document.createElement('div');
+    div.className = 'rd-fail';
+    div.textContent = 'Failed to load';
+    container.appendChild(div);
+  }
+
+  function renderSummary() {
+    const s = dash.data('summary');
+    const ids = ['rd-date', 'rd-take', 'k-evidence', 'k-tracked', 'k-measured', 'k-baseline', 'k-obs', 'k-forecasts', 'k-first', 'k-rho', 'rd-tune-status', 'rd-tune-reason'];
+    if (s.status !== 'ok' || !s.data.length) {
+      ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
+      return;
+    }
+    const r = s.data[0];
+    const day = d3.utcParse('%Y-%m-%d')(r.report_date);
+    setText('rd-date', day ? d3.utcFormat('%-d %B %Y')(day) : r.report_date);
+    setText('rd-take', r.takeaway);
+    setText('k-evidence', fmtInt(Number(r.with_growth_evidence)));
+    setText('k-tracked', fmtInt(Number(r.apps_tracked)));
+    setText('k-measured', fmtPct0(Number(r.measured_share)));
+    document.getElementById('k-measured-tile').classList.toggle('rd-warn', Number(r.measured_share) < 0.5);
+    setText('k-baseline', fmtInt(Number(r.baseline_only)));
+    setText('k-obs', fmtInt(Number(r.observations)));
+    setText('k-forecasts', fmtInt(Number(r.matured_forecasts)));
+    const first = d3.utcParse('%Y-%m-%d')(r.first_scorecard_expected);
+    setText('k-first', first ? d3.utcFormat('%b %-d')(first) : r.first_scorecard_expected);
+    const scored = Number(r.matured_forecasts) > 0 && r.latest_spearman !== '';
+    document.getElementById('k-first-note').hidden = scored;
+    document.getElementById('k-rho-note').hidden = !scored;
+    setText('k-rho', scored ? fmtScore(Number(r.latest_spearman)) : '—');
+    setText('rd-tune-status', r.tuning_status);
+    setText('rd-tune-reason', r.tuning_reason);
+  }
+
+  function renderFindings() {
+    const box = document.getElementById('rd-findings');
+    const f = dash.data('findings');
+    if (f.status === 'error' || f.status === 'connect') { failLine(box); return; }
+    box.textContent = '';
+    if (f.status !== 'ok') return;
+    f.data.forEach(row => {
+      const card = document.createElement('article');
+      card.className = 'rd-card rd-finding';
+      const where = 'id=' + encodeURIComponent(row.id);
+      const h = document.createElement('h3');
+      h.textContent = row.heading;
+      h.setAttribute('data-source', 'findings'); h.setAttribute('data-field', 'heading'); h.setAttribute('data-where', where);
+      const p = document.createElement('p');
+      p.textContent = row.text;
+      p.setAttribute('data-source', 'findings'); p.setAttribute('data-field', 'text'); p.setAttribute('data-where', where);
+      const a = document.createElement('a');
+      a.href = row.source; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = row.source.replace(/^https?:\/\/(www\.)?/, '');
+      a.setAttribute('data-source', 'findings'); a.setAttribute('data-field', 'source'); a.setAttribute('data-where', where);
+      card.append(h, p, a);
+      box.appendChild(card);
+    });
+  }
+
+  function renderKinds(rows) {
+    const box = document.getElementById('rd-kinds');
+    const kinds = ['all', ...Array.from(new Set(rows.map(r => r.kind))).sort()];
+    if (box.dataset.built === kinds.join('|')) return;
+    box.dataset.built = kinds.join('|');
+    box.textContent = '';
+    kinds.forEach(k => {
+      const b = document.createElement('button');
+      b.className = 'rd-chip';
+      b.type = 'button';
+      b.textContent = k === 'all' ? 'All kinds' : k;
+      b.setAttribute('aria-pressed', String(state.kind === k));
+      b.addEventListener('click', () => {
+        state.kind = k;
+        box.querySelectorAll('.rd-chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+        renderApps();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function renderApps() {
+    const table = document.getElementById('rd-apps');
+    const tbody = table.querySelector('tbody');
+    const count = document.getElementById('rd-apps-count');
+    const res = dash.data('apps');
+    tbody.textContent = '';
+    if (res.status !== 'ok') {
+      count.textContent = (res.status === 'error' || res.status === 'connect') ? 'Failed to load' : '';
+      return;
+    }
+    const rows = res.data;
+    renderKinds(rows);
+    const num = new Set(['rank', 'score', 'weekly_growth_pct']);
+    const q = state.q.trim().toLowerCase();
+    let shown = rows.filter(r => (state.kind === 'all' || r.kind === state.kind) &&
+      (!q || [r.app, r.tags, r.signal, r.kind, r.flag].join(' ').toLowerCase().includes(q)));
+    const dir = state.sortDir === 'ascending' ? 1 : -1;
+    shown = shown.slice().sort((a, b) => {
+      const col = state.sortCol;
+      if (num.has(col)) {
+        const x = a[col] === '' ? -Infinity : Number(a[col]);
+        const y = b[col] === '' ? -Infinity : Number(b[col]);
+        return (x - y) * dir;
+      }
+      return String(a[col]).localeCompare(String(b[col])) * dir;
+    });
+    const color = dash.colors[0];
+    shown.forEach(r => {
+      const tr = document.createElement('tr');
+      const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (text !== undefined) c.textContent = text; tr.appendChild(c); return c; };
+      td(r.rank, 'rd-num');
+      const appCell = td(undefined, 'rd-app');
+      const link = document.createElement('a');
+      link.href = r.url; link.target = '_blank'; link.rel = 'noopener';
+      link.textContent = r.app;
+      appCell.appendChild(link);
+      const kindCell = td(undefined, 'rd-hide-narrow');
+      const pill = document.createElement('span'); pill.className = 'rd-pill'; pill.textContent = r.kind; kindCell.appendChild(pill);
+      td(r.tags, 'rd-tags rd-hide-narrow');
+      const sc = td(undefined);
+      const wrap = document.createElement('div'); wrap.className = 'rd-scorecell';
+      const val = document.createElement('span'); val.textContent = fmtScore(Number(r.score));
+      const bar = document.createElement('div'); bar.className = 'rd-bar';
+      const fill = document.createElement('span'); fill.style.width = (Number(r.score) * 100) + '%'; fill.style.background = color;
+      bar.appendChild(fill); wrap.append(val, bar); sc.appendChild(wrap);
+      td(r.weekly_growth_pct === '' ? '' : (Number(r.weekly_growth_pct) >= 0 ? '+' : '') + d3.format('.1f')(Number(r.weekly_growth_pct)) + '%', 'rd-num');
+      td(r.signal, 'rd-hide-narrow');
+      td(r.evidence_type);
+      td(r.flag, r.flag ? 'rd-flag' : '');
+      tbody.appendChild(tr);
+    });
+    count.textContent = `Showing ${fmtInt(shown.length)} of ${fmtInt(rows.length)} apps.`;
+  }
+
+  function renderDirections() {
+    const box = document.getElementById('rd-dir-chart');
+    const res = dash.data('directions');
+    box.textContent = '';
+    if (res.status === 'error' || res.status === 'connect') { failLine(box); return; }
+    if (res.status !== 'ok') { box.classList.add('dash-skeleton'); return; }
+    box.classList.remove('dash-skeleton');
+    const rows = res.data.map(r => ({ ...r, share: Number(r.top_quartile_share), mean: Number(r.mean_score), n: Number(r.apps), moved: r.status === 'accelerating' || r.status === 'cooling' }))
+      .sort((a, b) => b.share - a.share || b.mean - a.mean);
+    const width = Math.max(260, box.clientWidth);
+    const rowH = 26;
+    const top = 6, bottom = 24;
+    const height = top + bottom + rowH * rows.length;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${width} ${height}`).attr('role', 'img')
+      .attr('aria-label', 'Top-quartile share by direction');
+    const probe = svg.append('g').attr('font-size', 12);
+    let left = 0;
+    rows.forEach(r => { const t = probe.append('text').text(r.direction); left = Math.max(left, t.node().getComputedTextLength()); t.remove(); });
+    const endProbe = probe.append('text').text('100% · 21 apps · accelerating');
+    const endW = endProbe.node().getComputedTextLength(); endProbe.remove(); probe.remove();
+    left = Math.ceil(left) + 10;
+    const right = Math.ceil(endW) + 8;
+    const x = d3.scaleLinear([0, 1], [left, width - right]);
+    const y = d3.scaleBand(rows.map(r => r.direction), [top, height - bottom]).padding(0.3);
+
+    svg.append('g').selectAll('line').data([0, 0.25, 0.5, 0.75, 1]).join('line')
+      .attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', top).attr('y2', height - bottom)
+      .attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+    svg.append('g').attr('transform', `translate(0,${height - bottom})`)
+      .call(d3.axisBottom(x).tickValues([0, 0.5, 1]).tickFormat(fmtPct0).tickSize(0))
+      .attr('font-size', null).attr('font-family', null)
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('text').attr('fill', 'var(--color-fg-muted)').attr('font-size', 11).attr('dy', '1.2em'));
+
+    const tip = document.createElement('div');
+    tip.className = 'rd-tip'; tip.hidden = true; box.appendChild(tip);
+    const g = svg.append('g');
+    const rowG = g.selectAll('g').data(rows).join('g');
+    rowG.append('text').attr('x', left - 10).attr('y', d => y(d.direction) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(d => d.direction);
+    rowG.append('rect').attr('x', x(0)).attr('y', d => y(d.direction)).attr('height', y.bandwidth())
+      .attr('width', d => Math.max(2, x(d.share) - x(0))).attr('rx', 4)
+      .attr('fill', d => d.share >= 0.5 ? dash.colors[0] : 'var(--cds-chart-muted)');
+    rowG.append('text').attr('x', d => Math.max(x(d.share), x(0) + 2) + 6).attr('y', d => y(d.direction) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)')
+      .text(d => `${fmtPct0(d.share)} · ${d.n} apps` + (d.moved ? ` · ${d.status}` : ''));
+    rowG.append('rect').attr('x', 0).attr('y', d => y(d.direction) - y.step() * y.paddingInner() / 2).attr('width', width)
+      .attr('height', y.step()).attr('fill', 'transparent')
+      .on('mousemove', (event, d) => {
+        tip.textContent = '';
+        const head = document.createElement('div'); head.className = 'rd-tip-k'; head.textContent = d.direction;
+        const l1 = document.createElement('div'); l1.textContent = `Top-quartile share ${fmtPct0(d.share)}, mean score ${fmtScore(d.mean)}`;
+        const l2 = document.createElement('div'); l2.textContent = `${d.n} apps (${d.open_source} open source, ${d.commercial} commercial)`;
+        const l2b = document.createElement('div'); l2b.textContent = d.change === '' ? `Status: ${d.status}` : `Status: ${d.status} (${d3.format('+.2f')(Number(d.change))} since the previous run)`;
+        const l3 = document.createElement('div'); l3.className = 'rd-tip-k'; l3.textContent = `Leaders: ${d.leaders}`;
+        tip.append(head, l1, l2, l2b, l3);
+        tip.hidden = false;
+        const [mx, my] = d3.pointer(event, box);
+        const tw = tip.offsetWidth, th = tip.offsetHeight;
+        tip.style.left = Math.min(Math.max(0, mx + 12), box.clientWidth - tw) + 'px';
+        tip.style.top = Math.max(0, my - th - 8) + 'px';
+      })
+      .on('mouseleave', () => { tip.hidden = true; });
+  }
+
+  function renderCaveats() {
+    const list = document.getElementById('rd-caveats');
+    const res = dash.data('caveats');
+    list.textContent = '';
+    if (res.status !== 'ok') return;
+    res.data.forEach(r => {
+      const li = document.createElement('li');
+      li.textContent = r.text;
+      li.setAttribute('data-source', 'caveats'); li.setAttribute('data-field', 'text'); li.setAttribute('data-where', 'id=' + encodeURIComponent(r.id));
+      list.appendChild(li);
+    });
+  }
+
+  function renderSimpleTable(tableId, id, cells) {
+    const tbody = document.querySelector(`#${tableId} tbody`);
+    const res = dash.data(id);
+    tbody.textContent = '';
+    if (res.status !== 'ok') return;
+    res.data.forEach(r => {
+      const tr = document.createElement('tr');
+      cells.forEach(([fn, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = fn(r); tr.appendChild(td); });
+      tbody.appendChild(tr);
+    });
+  }
+
+  document.getElementById('rd-search').addEventListener('input', e => { state.q = e.target.value; renderApps(); });
+  document.querySelectorAll('#rd-apps .rd-sort').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const col = btn.dataset.col;
+      const numeric = btn.dataset.type === 'num';
+      if (state.sortCol === col) state.sortDir = state.sortDir === 'ascending' ? 'descending' : 'ascending';
+      else { state.sortCol = col; state.sortDir = numeric && col !== 'rank' ? 'descending' : 'ascending'; }
+      document.querySelectorAll('#rd-apps th').forEach(th => th.removeAttribute('aria-sort'));
+      btn.closest('th').setAttribute('aria-sort', state.sortDir);
+      renderApps();
+    });
+  });
+
+  let linked = false;
+  dash.onData(() => {
+    renderSummary();
+    renderFindings();
+    renderApps();
+    renderDirections();
+    renderSimpleTable('rd-hyp', 'hypotheses', [[r => r.direction], [r => r.pattern], [r => r.rationale, 'rd-hide-narrow']]);
+    renderSimpleTable('rd-params', 'params', [[r => r.parameter], [r => d3.format('.2~f')(Number(r.value)), 'rd-num'], [r => r.basis, 'rd-hide-narrow']]);
+    renderSimpleTable('rd-sources', 'sources', [[r => r.collector], [r => r.last_ok || 'Never'], [r => fmtInt(Number(r.last_count)), 'rd-num'], [r => fmtInt(Number(r.consecutive_failures)), 'rd-num'], [r => r.last_error, 'rd-hide-narrow']]);
+    renderSimpleTable('rd-scorecard', 'scorecard', [[r => r.made_on], [r => fmtInt(Number(r.apps_compared)), 'rd-num'], [r => r.spearman === '' ? '' : fmtScore(Number(r.spearman)), 'rd-num'], [r => r.precision_at_k === '' ? '' : fmtPct0(Number(r.precision_at_k)), 'rd-num']]);
+    const sc = dash.data('scorecard');
+    document.getElementById('rd-score-empty').hidden = !(sc.status === 'ok' && sc.data.length === 0);
+    renderCaveats();
+    if (!linked && dash.data('apps').status === 'ok') {
+      linked = true;
+      const named = document.getElementById(location.hash.slice(1));
+      if (named) { named.scrollIntoView(); dash.setLink(named.id); }
+    }
+  });
+})();
+</script>

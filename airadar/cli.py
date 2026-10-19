@@ -12,6 +12,11 @@
     forecast, score matured forecasts, tune, write the snapshot and report.
 ``report``
     Re-render a day's report without tuning or recording a forecast.
+``dashboard``
+    Export a day's output as the CSV files behind the shared web page.
+``log-failure``
+    Record that a source could not be collected today, so source health and
+    the page show it.
 ``recheck``
     List the apps worth re-observing today -- the current leaders and every app
     seen only once -- with the metric to record. Re-observation is what turns a
@@ -118,6 +123,25 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_dashboard(args) -> int:
+    from .dashboard import DashboardError, export
+
+    try:
+        written = export(Store(args.root), _date(args.date), Path(args.out))
+    except DashboardError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    for name, path in written.items():
+        print(f"{name}\t{path}")
+    return 0
+
+
+def cmd_log_failure(args) -> int:
+    Store(args.root).record_run(RunRecord(_date(args.date), args.collector, 0, [args.error]))
+    print(f"recorded failure for {args.collector}")
+    return 0
+
+
 RECHECK_METRIC = {"repo": "stars", "space": "likes", "model": "likes"}
 
 
@@ -166,6 +190,17 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--date")
     p.add_argument("--out")
     p.set_defaults(func=cmd_report)
+
+    p = sub.add_parser("dashboard", help="export the shared page's data files")
+    p.add_argument("--date")
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_dashboard)
+
+    p = sub.add_parser("log-failure", help="record a source that could not be collected")
+    p.add_argument("collector", help="e.g. agent:huggingface")
+    p.add_argument("error", help="what went wrong, e.g. DNS failure through WebFetch")
+    p.add_argument("--date")
+    p.set_defaults(func=cmd_log_failure)
 
     p = sub.add_parser("recheck", help="list apps to re-observe today")
     p.add_argument("--date")

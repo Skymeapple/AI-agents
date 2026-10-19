@@ -370,6 +370,10 @@ python -m airadar.cli recheck                          # apps to re-observe toda
 
 Reports land in `data/radar/reports/`: `DATE.md` is the radar's own output,
 `DATE-analysis.md` the agent's researched commentary on it.
+The daily run also refreshes a shared web page of the latest report
+(`python -m airadar.cli dashboard` exports its data files; the page template is
+`airadar/dashboard_page.html`, and the refresh procedure is step 7 of the
+runbook).
 
 ### Limitations
 

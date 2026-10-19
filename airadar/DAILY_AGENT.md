@@ -13,12 +13,14 @@ with its gaps stated is worth more than a skipped day.
 
 ```bash
 cd AI-agents   # the repo clone
-git fetch origin ai-radar main
+DEFAULT=$(git remote show origin | sed -n 's/.*HEAD branch: //p')
+git fetch origin ai-radar "$DEFAULT"
 ```
 
 Work on the `ai-radar` branch. If its pull request has been merged, follow the
-session's git instructions: restart `ai-radar` from the latest `main` and open a
-fresh draft PR for today's work.
+session's git instructions: restart `ai-radar` from the latest default branch
+(`$DEFAULT`, which is not `main` in this repo) and open a fresh draft PR for
+today's work against it.
 
 ```bash
 pip install numpy pyyaml requests pytest

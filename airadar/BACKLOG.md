@@ -5,6 +5,21 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **One metric, mixed definitions.** `users` mixes WAU, MAU and web unique
+  visitors, and `revenue_annualized_usd` mixes gross and net-of-partner run-rates
+  (OpenAI: $70B per Axios on 2026-09-29, $50B per the FT on 2026-09-30). Deltas
+  between them are artefacts (ChatGPT −$20B in a day; Claude 245M MAU -> 111M
+  web uniques). Give observations a definition qualifier (e.g. `basis: wau|mau|
+  web_uniques`, `gross|net`) and only diff like with like.
+- **Re-observation pages are rounded.** GitHub repo pages read through WebFetch
+  show "58.7k", never the exact count. Repos on a trending page get exact counts
+  the same day; the rest are only resolvable to 100 stars. Find a page that shows
+  exact counts (e.g. the stargazers page) for the recheck list.
+- **Rate-change signals on 1-day gains are noisy.** `stars_gained` over 1 day on
+  two consecutive days becomes a "rate change" signal (Kronos 355 -> 363 reads
+  as +16.9%/wk) that can be an app's strongest signal. Consider a minimum span
+  of several periods before a rate change counts.
+
 - **Verify reported figures at source.** Day one's commercial figures came from
   search-result summaries because the fetch tool could not open the pages.
   Re-collect them from the cited URLs when fetching works, and record a
@@ -38,3 +53,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   the date it was collected, which let backtests see late-reported figures early;
   observations now carry `collected_on`. (3) Products on multi-product company
   domains (`openai.com/codex`) collapsed into one identity.
+- 2026-10-20: rounding-aware level readings. Re-observed GitHub pages show
+  rounded counts ("58.7k"), and the same-day tie-break preferred the larger
+  value, so a rounded-up figure beat the exact count from a trending page and
+  invented stars. Observations now carry an optional `rounded_to`; the most
+  precise reading wins a same-day tie, and a delta no larger than the two
+  readings' rounding is not counted as growth. Tests pin all three.

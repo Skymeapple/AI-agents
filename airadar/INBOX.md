@@ -58,6 +58,11 @@ offending observation, rather than silently dropping or defaulting fields.
   `page_extract` (read off a rendered web page, possibly via a model -> sourced,
   needs review), `reported` (stated by an article, filing or company -> sourced,
   needs review).
+- `rounded_to` (optional) is the unit a page rounded the value to: `100` for a
+  star count shown as "58.7k", `1000` for "10k". Leave it out when the value is
+  exact as stated. A change between two readings no larger than their rounding
+  is not counted as growth, and an exact count beats a rounded one on the same
+  day.
 - `source_url` is required for every observation. A number with no URL is not
   accepted, however plausible.
 - Never estimate, interpolate or fill in a value. If a page does not state a

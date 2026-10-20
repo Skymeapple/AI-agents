@@ -85,17 +85,21 @@ def _fmt(x: float) -> str:
 
 
 def _best_per_day(observations: list[Observation]) -> dict[dt.date, Observation]:
-    """One value per day: the most trusted method wins, then the larger value.
+    """One value per day: the most trusted method wins, then the most precise
+    reading, then the larger value.
 
     Two pages read minutes apart differ by a handful of stars; which one wins
-    does not matter, but the choice has to be deterministic.
+    does not matter, but the choice has to be deterministic. An exact count has
+    to beat a rounded one, though: "58.7k" rounds 58,670 up, and letting it win
+    as the larger value would invent 30 stars.
     """
+    def rank(o: Observation) -> tuple:
+        return (METHOD_RANK[o.method], -(o.rounded_to or 0.0), o.value)
+
     best: dict[dt.date, Observation] = {}
     for o in observations:
         current = best.get(o.observed_on)
-        if current is None or (METHOD_RANK[o.method], o.value) > (
-            METHOD_RANK[current.method], current.value
-        ):
+        if current is None or rank(o) > rank(current):
             best[o.observed_on] = o
     return best
 
@@ -158,6 +162,11 @@ def extract_signals(
             continue
         start = min(baselines, key=lambda d: (abs((d - target).days), -d.toordinal()))
         v0, v1 = by_day[start].value, by_day[end].value
+        # A change no larger than the two readings' rounding is not resolved:
+        # 58.7k one day and 58.7k the next says nothing about growth.
+        slack = ((by_day[start].rounded_to or 0.0) + (by_day[end].rounded_to or 0.0)) / 2
+        if slack and abs(v1 - v0) <= slack:
+            continue
         span = (end - start).days
         family = METRICS[metric].family
         rel = None

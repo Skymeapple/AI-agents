@@ -23,7 +23,7 @@ from .models import App, AppKind, Method, Observation, canonical_id
 APP_FIELDS = {"name", "url", "kind", "description", "tags"}
 OBS_FIELDS = {
     "app", "metric", "value", "period_days", "observed_on", "source_url",
-    "method", "note", "via",
+    "method", "note", "via", "rounded_to",
 }
 
 
@@ -114,6 +114,10 @@ def parse_batch(payload: dict, origin: str = "<inbox>") -> InboxBatch:
         if observed_on > collected_at:
             raise InboxError(f"{where}: observed_on {observed_on} is after collected_at")
         period = raw.get("period_days")
+        rounded_to = raw.get("rounded_to")
+        if rounded_to is not None and (
+                isinstance(rounded_to, bool) or not isinstance(rounded_to, (int, float))):
+            raise InboxError(f"{where}: rounded_to must be a number, got {rounded_to!r}")
         try:
             observation = Observation(
                 app_id=app.id,
@@ -127,6 +131,7 @@ def parse_batch(payload: dict, origin: str = "<inbox>") -> InboxBatch:
                 via=raw.get("via"),
                 note=str(raw.get("note") or ""),
                 collected_on=collected_at,
+                rounded_to=float(rounded_to) if rounded_to is not None else None,
             )
         except ValueError as exc:
             raise InboxError(f"{where}: {exc}") from None

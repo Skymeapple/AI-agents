@@ -102,6 +102,41 @@ def test_delta_is_measured_between_two_snapshots():
     assert s.rel_per_day == pytest.approx(0.0758, abs=1e-3)
 
 
+def test_an_exact_count_beats_a_rounded_one_on_the_same_day():
+    d1 = D0 + dt.timedelta(days=1)
+    rounded = Observation("a", "stars", 58700.0, d1, "https://github.com/o/r",
+                          Method.PAGE_EXTRACT, "test", rounded_to=100)
+    exact = obs("a", "stars", 58670, d1, method=Method.PAGE_EXTRACT)
+    rows = [obs("a", "stars", 58000, D0, method=Method.PAGE_EXTRACT), rounded, exact]
+    (s,) = extract_signals(rows, asof=d1)["a"]
+    assert s.evidence[1] is exact
+    assert s.abs_per_day == pytest.approx(670)
+
+
+def test_a_change_within_rounding_is_not_growth():
+    d1 = D0 + dt.timedelta(days=1)
+    rows = [
+        obs("a", "stars", 58670, D0, method=Method.PAGE_EXTRACT),
+        Observation("a", "stars", 58700.0, d1, "https://github.com/o/r",
+                    Method.PAGE_EXTRACT, "test", rounded_to=100),
+    ]
+    assert extract_signals(rows, asof=d1) == {}
+    # A change larger than the rounding still counts.
+    rows[1] = Observation("a", "stars", 59900.0, d1, "https://github.com/o/r",
+                          Method.PAGE_EXTRACT, "test", rounded_to=100)
+    (s,) = extract_signals(rows, asof=d1)["a"]
+    assert s.abs_per_day == pytest.approx(1230)
+
+
+def test_inbox_carries_rounding_and_rejects_a_bad_one():
+    batch = parse_batch(inbox_payload(metric="stars", period_days=None, value=58700, rounded_to=100))
+    assert batch.observations[0].rounded_to == 100
+    assert Observation.from_dict(batch.observations[0].to_dict()).rounded_to == 100
+    for bad, message in ((0, "positive"), ("100", "number"), (True, "number")):
+        with pytest.raises(InboxError, match=message):
+            parse_batch(inbox_payload(metric="stars", period_days=None, value=58700, rounded_to=bad))
+
+
 def test_a_single_level_is_a_baseline_not_growth():
     assert extract_signals([obs("a", "stars", 5000, D0)], asof=D0) == {}
 

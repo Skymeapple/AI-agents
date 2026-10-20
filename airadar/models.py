@@ -208,6 +208,10 @@ class Observation:
     # date it describes. A figure for June reported in October was not known in
     # July, and a backtest replaying July must not see it.
     collected_on: dt.date | None = None
+    # The unit a page rounded the value to ("58.7k" -> 100), or None when the
+    # value is exact as stated. Two rounded readings a day apart can differ by
+    # less than their rounding, and that difference is not growth.
+    rounded_to: float | None = None
 
     def __post_init__(self) -> None:
         spec = METRICS.get(self.metric)
@@ -223,6 +227,8 @@ class Observation:
             raise ValueError("every observation needs a source_url")
         if self.collected_on is not None and self.collected_on < self.observed_on:
             raise ValueError("collected_on cannot precede observed_on")
+        if self.rounded_to is not None and not self.rounded_to > 0:
+            raise ValueError(f"rounded_to must be positive (got {self.rounded_to})")
 
     @property
     def known_on(self) -> dt.date:
@@ -261,6 +267,7 @@ class Observation:
             "via": self.via,
             "note": self.note,
             "collected_on": self.collected_on.isoformat() if self.collected_on else None,
+            "rounded_to": self.rounded_to,
         }
 
     @classmethod
@@ -277,4 +284,5 @@ class Observation:
             via=raw.get("via"),
             note=raw.get("note", ""),
             collected_on=dt.date.fromisoformat(raw["collected_on"]) if raw.get("collected_on") else None,
+            rounded_to=float(raw["rounded_to"]) if raw.get("rounded_to") is not None else None,
         )

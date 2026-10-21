@@ -85,6 +85,11 @@ FIXED = {
     # the report is where a person decides which it was. Longer windows are not
     # checked, because a repo created this month legitimately gained most of
     # its stars this month.
+    # A rate change compares the same period gain on two runs. Daily gains
+    # wobble day to day (355 -> 363 stars reads as +16.9%/wk), so two readings
+    # must sit at least this far apart, however short the period, before the
+    # change counts as acceleration.
+    "min_rate_change_span_days": 7,
     "anomaly_share": 0.5,
     "anomaly_max_period_days": 7,
     "anomaly_penalty": 0.5,

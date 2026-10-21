@@ -181,6 +181,19 @@ def test_rate_change_captures_accelerating_downloads():
     assert "delta" in kinds
 
 
+def test_daily_gains_a_day_apart_are_not_a_rate_change():
+    rows = [
+        obs("r", "stars_gained", 355, D0, method=Method.PAGE_EXTRACT, period=1),
+        obs("r", "stars_gained", 363, D0 + dt.timedelta(days=1), method=Method.PAGE_EXTRACT, period=1),
+    ]
+    signals = extract_signals(rows, asof=D0 + dt.timedelta(days=1))
+    assert not any(s.family == "stars_rate" for s in signals.get("r", []))
+    # A week apart, the same daily metric does show acceleration.
+    rows[1] = obs("r", "stars_gained", 710, D0 + dt.timedelta(days=7), method=Method.PAGE_EXTRACT, period=1)
+    signals = extract_signals(rows, asof=D0 + dt.timedelta(days=7))
+    assert any(s.family == "stars_rate" for s in signals["r"])
+
+
 def test_realised_growth_excludes_windows_overlapping_the_forecast():
     # A weekly gain stated the day after the forecast is mostly the week before
     # it. Counting it would make momentum look more persistent than it is.

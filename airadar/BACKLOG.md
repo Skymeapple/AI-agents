@@ -15,11 +15,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   show "58.7k", never the exact count. Repos on a trending page get exact counts
   the same day; the rest are only resolvable to 100 stars. Find a page that shows
   exact counts (e.g. the stargazers page) for the recheck list.
-- **Rate-change signals on 1-day gains are noisy.** `stars_gained` over 1 day on
-  two consecutive days becomes a "rate change" signal (Kronos 355 -> 363 reads
-  as +16.9%/wk) that can be an app's strongest signal. Consider a minimum span
-  of several periods before a rate change counts.
-
 - **Verify reported figures at source.** Day one's commercial figures came from
   search-result summaries because the fetch tool could not open the pages.
   Re-collect them from the cited URLs when fetching works, and record a
@@ -59,3 +54,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   invented stars. Observations now carry an optional `rounded_to`; the most
   precise reading wins a same-day tie, and a delta no larger than the two
   readings' rounding is not counted as growth. Tests pin all three.
+- 2026-10-21: rate changes need a week between readings. A `stars_gained`
+  over 1 day seen on two consecutive runs counted as a rate change, so day-to-day
+  wobble (Kronos 355 -> 363 stars/day) read as +16.9%/wk and was the #8 app's
+  strongest signal. Two readings of a period gain must now sit at least
+  `min_rate_change_span_days` (7) apart, however short the period. A fixed
+  extraction rule, not a tuner knob.

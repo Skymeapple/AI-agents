@@ -195,7 +195,8 @@ def extract_signals(
         span_limit = window(by_day[end].method)[2]
         baselines = [
             d for d in days
-            if (end - d).days >= period and (end - d).days <= span_limit
+            if (end - d).days >= max(period, FIXED["min_rate_change_span_days"])
+            and (end - d).days <= span_limit
             and (after is None or d <= after)
         ]
         if not baselines:

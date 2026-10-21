@@ -5,6 +5,15 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Deleted repos keep ranking.** YuJunZhiXue/dsh-purge returned 404 on
+  2026-10-21 but ranked #3 on signals from before. Record a "gone" observation
+  (e.g. a recheck that finds a 404) and drop or flag gone apps in the report.
+- **Hypotheses forget research.** The rule engine re-proposes directions the
+  analysis already disproved (agent-memory, agent-orchestration) because the
+  commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.
+  Track the incumbents the research names, or keep a verdict list that the
+  hypothesis rules consult.
+
 - **One metric, mixed definitions.** `users` mixes WAU, MAU and web unique
   visitors, and `revenue_annualized_usd` mixes gross and net-of-partner run-rates
   (OpenAI: $70B per Axios on 2026-09-29, $50B per the FT on 2026-09-30). Deltas

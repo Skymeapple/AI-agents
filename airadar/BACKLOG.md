@@ -5,9 +5,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Deleted repos keep ranking.** YuJunZhiXue/dsh-purge returned 404 on
-  2026-10-21 but ranked #3 on signals from before. Record a "gone" observation
-  (e.g. a recheck that finds a 404) and drop or flag gone apps in the report.
 - **Hypotheses forget research.** The rule engine re-proposes directions the
   analysis already disproved (agent-memory, agent-orchestration) because the
   commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.
@@ -69,3 +66,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   strongest signal. Two readings of a period gain must now sit at least
   `min_rate_change_span_days` (7) apart, however short the period. A fixed
   extraction rule, not a tuner knob.
+- 2026-10-22: gone apps leave the ranking. YuJunZhiXue/dsh-purge returned 404
+  on 2026-10-21 yet ranked #3 on older signals. `airadar mark-gone` appends an
+  availability record (url checked, date, evidence) to `availability.jsonl`; an
+  app whose latest record is "gone" is not scored and is listed under "Removed
+  from the ranking", and `--back` restores it. Observations are untouched.

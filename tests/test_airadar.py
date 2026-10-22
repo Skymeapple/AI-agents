@@ -426,3 +426,27 @@ def test_dashboard_needs_the_agents_editorial_file(tmp_path):
     store = _daily_store(tmp_path)
     with pytest.raises(DashboardError, match="missing"):
         export(store, dt.date(2026, 10, 19), tmp_path / "out")
+
+
+def test_a_gone_app_leaves_the_ranking_until_it_is_back(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    assert "gh:o/r5" in {s.app_id for s in analyse(store, day).scores}
+
+    store.record_availability("gh:o/r5", "gone", day, "https://github.com/o/r5", "HTTP 404")
+    a = analyse(store, day)
+    assert "gh:o/r5" not in {s.app_id for s in a.scores}
+    assert "gh:o/r5" not in a.baseline_only
+    assert "Removed from the ranking" in render(a) and "HTTP 404" in render(a)
+    # The record of what was seen stays: no observation is touched.
+    assert any(o.app_id == "gh:o/r5" for o in store.load_observations())
+    # A gone record dated later is invisible to an earlier day.
+    assert not store.gone_as_of(day - dt.timedelta(days=1))
+
+    store.record_availability("gh:o/r5", "back", day + dt.timedelta(days=1), "https://github.com/o/r5")
+    assert store.gone_as_of(day) and not store.gone_as_of(day + dt.timedelta(days=1))
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_availability("gh:o/r5", "gone", day, " ")

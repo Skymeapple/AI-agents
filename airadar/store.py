@@ -12,6 +12,7 @@ data/radar/
   params.json           current scoring parameters, each with its provenance
   predictions.jsonl     what each day's ranking predicted, for scoring later
   iterations.jsonl      every parameter change the tuner made, with its evidence
+  availability.jsonl    append-only: an app's page found gone (404) or back, with evidence
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -88,6 +89,7 @@ class Store:
         self.params_path = self.root / "params.json"
         self.predictions_path = self.root / "predictions.jsonl"
         self.iterations_path = self.root / "iterations.jsonl"
+        self.availability_path = self.root / "availability.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -163,6 +165,32 @@ class Store:
 
     def load_iterations(self) -> list[dict]:
         return _read_jsonl(self.iterations_path)
+
+    # -- availability -----------------------------------------------------------
+
+    def record_availability(self, app_id: str, status: str, observed_on: dt.date,
+                            source_url: str, note: str = "") -> None:
+        """Record that an app's page was found gone, or back. Append-only, like
+        observations: the record of what the radar saw stays intact."""
+        if status not in ("gone", "back"):
+            raise ValueError(f"status must be 'gone' or 'back', got {status!r}")
+        if not source_url.strip():
+            raise ValueError("an availability record needs the source_url that was checked")
+        _append_jsonl(self.availability_path, [{
+            "app_id": app_id, "status": status, "observed_on": observed_on.isoformat(),
+            "source_url": source_url, "note": note,
+        }])
+
+    def gone_as_of(self, asof: dt.date) -> dict[str, dict]:
+        """Apps whose latest availability record on or before ``asof`` says gone."""
+        latest: dict[str, dict] = {}
+        for row in _read_jsonl(self.availability_path):
+            if dt.date.fromisoformat(row["observed_on"]) > asof:
+                continue
+            current = latest.get(row["app_id"])
+            if current is None or row["observed_on"] >= current["observed_on"]:
+                latest[row["app_id"]] = row
+        return {app_id: row for app_id, row in latest.items() if row["status"] == "gone"}
 
     # -- snapshots and reports --------------------------------------------------
 

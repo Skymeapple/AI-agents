@@ -46,7 +46,11 @@ raw pages stay out of your context. Pass the subagent the INBOX.md rules verbati
 1. **Re-observe** (most important). Run `python -m airadar.cli recheck` and
    record the current `stars`/`likes` for every app it lists, from each app's
    own page. A second observation of the same app is what gives the radar
-   *measured* growth, which outweighs everything else it collects.
+   *measured* growth, which outweighs everything else it collects. An app
+   whose page is gone (404, deleted, made private) gets no observation;
+   record it instead, so it leaves the ranking:
+   `python -m airadar.cli mark-gone <app url> <checked url> "HTTP 404"`
+   (`--back` when it reappears).
 2. **GitHub trending**: daily, weekly and monthly; also the Python and TypeScript
    weekly lists. Keep AI-related repos only. Record `stars` and `stars_gained`.
 3. **Reported growth**: web research for company-reported users, ARR, traffic

@@ -72,6 +72,14 @@ def render(analysis: Analysis) -> str:
                 f"{s.score:.2f} | {s.evidence:.2f} | {s.headline()} | {flags} |"
             )
         lines.append("")
+    if a.gone:
+        lines += ["### Removed from the ranking", "",
+                  "Pages found gone (deleted or made private). Their observations are kept; "
+                  "they are not scored while gone.", ""]
+        for app_id, row in sorted(a.gone.items()):
+            lines.append(f"- {_link(a, app_id)}: gone since {row['observed_on']} "
+                         f"([checked]({row['source_url']})). {row['note']}".rstrip())
+        lines.append("")
 
     lines += ["## Directions", ""]
     if not a.directions:

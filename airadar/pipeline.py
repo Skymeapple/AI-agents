@@ -45,6 +45,10 @@ class Analysis:
     health: list[SourceHealth] = field(default_factory=list)
     ingest_log: list[str] = field(default_factory=list)
     watch_added: list[str] = field(default_factory=list)
+    # Apps whose page was found gone (deleted, made private), with the record
+    # that says so. They leave the ranking: growth claimed for a page that no
+    # longer exists cannot be checked, and no one can build on or back it.
+    gone: dict[str, dict] = field(default_factory=dict)
 
 
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
@@ -96,9 +100,13 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     params = params or Params.load(store.params_path)
     apps = store.load_apps()
     observations = store.load_observations()
-    signals = extract_signals(observations, asof=date)
+    gone = store.gone_as_of(date)
+    signals = {
+        app_id: rows for app_id, rows in extract_signals(observations, asof=date).items()
+        if app_id not in gone
+    }
     scores = [s for s in score_apps(signals, params, asof=date) if s.app_id in apps]
-    seen = {o.app_id for o in observations if o.known_on <= date}
+    seen = {o.app_id for o in observations if o.known_on <= date} - set(gone)
     baseline_only = sorted(seen - set(signals))
     previous = store.previous_snapshot(date)
     directions = tag_directions(apps, scores, previous)
@@ -115,6 +123,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         params=params,
         evaluations=scorecard(store, date, observations),
         health=source_health(store.load_runs()),
+        gone=gone,
     )
 
 

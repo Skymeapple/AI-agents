@@ -17,6 +17,9 @@
 ``log-failure``
     Record that a source could not be collected today, so source health and
     the page show it.
+``mark-gone``
+    Record that an app's page is gone (404, deleted, made private), or back
+    with ``--back``. A gone app leaves the ranking until it is seen again.
 ``recheck``
     List the apps worth re-observing today -- the current leaders and every app
     seen only once -- with the metric to record. Re-observation is what turns a
@@ -142,6 +145,15 @@ def cmd_log_failure(args) -> int:
     return 0
 
 
+def cmd_mark_gone(args) -> int:
+    from .models import canonical_id
+    app_id = canonical_id(args.url)
+    status = "back" if args.back else "gone"
+    Store(args.root).record_availability(app_id, status, _date(args.date), args.source_url, args.note)
+    print(f"recorded {app_id} as {status}")
+    return 0
+
+
 RECHECK_METRIC = {"repo": "stars", "space": "likes", "model": "likes"}
 
 
@@ -201,6 +213,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("error", help="what went wrong, e.g. DNS failure through WebFetch")
     p.add_argument("--date")
     p.set_defaults(func=cmd_log_failure)
+
+    p = sub.add_parser("mark-gone", help="record that an app's page is gone, or back")
+    p.add_argument("url", help="the app's url, as in apps.json")
+    p.add_argument("source_url", help="the page that was checked")
+    p.add_argument("note", nargs="?", default="", help="what was seen, e.g. HTTP 404")
+    p.add_argument("--back", action="store_true", help="the page is reachable again")
+    p.add_argument("--date")
+    p.set_defaults(func=cmd_mark_gone)
 
     p = sub.add_parser("recheck", help="list apps to re-observe today")
     p.add_argument("--date")

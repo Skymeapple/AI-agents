@@ -5,6 +5,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Identity drifts when repos move.** MadsLorentzen/ai-job-search was
+  transferred to ai-job-search-dev/ai-job-search (2026-10-22). Apps are keyed by
+  URL, so the new owner's URL would become a second app. Record a "moved to"
+  alias (like `mark-gone`, append-only) and resolve it in `canonical_id`.
+
 - **Hypotheses forget research.** The rule engine re-proposes directions the
   analysis already disproved (agent-memory, agent-orchestration) because the
   commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.

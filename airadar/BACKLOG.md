@@ -5,6 +5,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Stale stated gains outrank fresh measurements.** On 2026-10-23
+  ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
+  measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
+  (`weight.delta` vs `weight.period`) decide first; if they can't, give
+  stated period signals the same age decay reported figures already have.
+
 - **Hypotheses forget research.** The rule engine re-proposes directions the
   analysis already disproved (agent-memory, agent-orchestration) because the
   commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.

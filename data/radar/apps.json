@@ -46,6 +46,18 @@
   ],
   "url": "https://github.com/ahujasid/mcp-for-blender"
  },
+ "gh:ai-job-search-dev/ai-job-search": {
+  "description": "The job search that runs on your machine: an AI job application framework built on Claude Code.",
+  "first_seen": "2026-10-19",
+  "id": "gh:ai-job-search-dev/ai-job-search",
+  "kind": "repo",
+  "name": "ai-job-search-dev/ai-job-search",
+  "tags": [
+   "productivity",
+   "agent-skills"
+  ],
+  "url": "https://github.com/ai-job-search-dev/ai-job-search"
+ },
  "gh:akitaonrails/ai-memory": {
   "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors.",
   "first_seen": "2026-10-19",
@@ -388,17 +400,17 @@
   ],
   "url": "https://github.com/lightseekorg/tokenspeed"
  },
- "gh:madslorentzen/ai-job-search": {
-  "description": "The job search that runs on your machine: an AI job application framework built on Claude Code.",
-  "first_seen": "2026-10-19",
-  "id": "gh:madslorentzen/ai-job-search",
+ "gh:luongnv89/claude-howto": {
+  "description": "A visual, example-driven guide to Claude Code, from basic concepts to advanced agents, with copy-paste templates.",
+  "first_seen": "2026-10-23",
+  "id": "gh:luongnv89/claude-howto",
   "kind": "repo",
-  "name": "MadsLorentzen/ai-job-search",
+  "name": "luongnv89/claude-howto",
   "tags": [
-   "productivity",
-   "agent-skills"
+   "education",
+   "coding-agent"
   ],
-  "url": "https://github.com/MadsLorentzen/ai-job-search"
+  "url": "https://github.com/luongnv89/claude-howto"
  },
  "gh:mksglu/context-mode": {
   "description": "Context window optimization for AI coding agents.",
@@ -554,6 +566,17 @@
    "video-generation"
   ],
   "url": "https://github.com/SegFault42/HeliosGen"
+ },
+ "gh:sgl-project/sglang": {
+  "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+  "first_seen": "2026-10-23",
+  "id": "gh:sgl-project/sglang",
+  "kind": "repo",
+  "name": "sgl-project/sglang",
+  "tags": [
+   "llm-inference"
+  ],
+  "url": "https://github.com/sgl-project/sglang"
  },
  "gh:shawnpana/phone-harness": {
   "description": "let your agent control your phone",
@@ -728,6 +751,19 @@
   ],
   "url": "https://github.com/YuJunZhiXue/dsh-purge"
  },
+ "web:adobe.com": {
+  "description": "Adobe's AI-first product line, including the Firefly generative image/video app and Acrobat AI Assistant.",
+  "first_seen": "2026-10-23",
+  "id": "web:adobe.com",
+  "kind": "product",
+  "name": "Adobe AI-first products (Firefly, Acrobat AI Assistant, GenStudio)",
+  "tags": [
+   "image-generation",
+   "video-generation",
+   "productivity"
+  ],
+  "url": "https://www.adobe.com/ai"
+ },
  "web:aisdr.com": {
   "description": "Outbound sales agent that plans and runs email/LinkedIn prospecting campaigns.",
   "first_seen": "2026-10-19",
@@ -863,6 +899,18 @@
    "foundation-model"
   ],
   "url": "https://www.deepseek.com"
+ },
+ "web:designarena.ai": {
+  "description": "Crowdsourced arena where users vote between AI-generated outputs; preference data is sold to AI labs.",
+  "first_seen": "2026-10-23",
+  "id": "web:designarena.ai",
+  "kind": "product",
+  "name": "Design Arena (Intelligence)",
+  "tags": [
+   "agent-evaluation",
+   "image-generation"
+  ],
+  "url": "https://www.designarena.ai"
  },
  "web:elevenlabs.io": {
   "description": "AI voice generation and conversational voice agents platform.",
@@ -1155,6 +1203,18 @@
   ],
   "url": "https://modal.com"
  },
+ "web:muse.ai": {
+  "description": "Meta's personal AI agent app that sends email, books travel, fills forms and shops on the user's behalf.",
+  "first_seen": "2026-10-23",
+  "id": "web:muse.ai",
+  "kind": "consumer_app",
+  "name": "Meta Muse",
+  "tags": [
+   "assistant",
+   "mobile-agent"
+  ],
+  "url": "https://muse.ai"
+ },
  "web:omi.me": {
   "description": "AI wearable and desktop app capturing meetings and screen context.",
   "first_seen": "2026-10-21",
@@ -1190,6 +1250,18 @@
    "coding-agent"
   ],
   "url": "https://openai.com/codex"
+ },
+ "web:openart.ai": {
+  "description": "AI image and video creation platform with workflow and 'Director' storytelling tools.",
+  "first_seen": "2026-10-23",
+  "id": "web:openart.ai",
+  "kind": "product",
+  "name": "OpenArt",
+  "tags": [
+   "image-generation",
+   "video-generation"
+  ],
+  "url": "https://openart.ai"
  },
  "web:openevidence.com": {
   "description": "Ad-supported AI medical search and answer engine for clinicians.",
@@ -1261,6 +1333,19 @@
   ],
   "url": "https://pluto.security"
  },
+ "web:podium.com": {
+  "description": "Local-business communications platform selling AI agents for sales, scheduling and customer messaging.",
+  "first_seen": "2026-10-23",
+  "id": "web:podium.com",
+  "kind": "product",
+  "name": "Podium",
+  "tags": [
+   "enterprise-agent",
+   "customer-support",
+   "sales"
+  ],
+  "url": "https://www.podium.com"
+ },
  "web:rapidcanvas.ai": {
   "description": "Enterprise AI agent / data-science automation platform.",
   "first_seen": "2026-10-20",
@@ -1294,6 +1379,19 @@
   ],
   "url": "https://runwayml.com"
  },
+ "web:salesforce.com": {
+  "description": "Salesforce's enterprise AI agent platform for sales, service and other CRM workflows.",
+  "first_seen": "2026-10-23",
+  "id": "web:salesforce.com",
+  "kind": "product",
+  "name": "Salesforce Agentforce",
+  "tags": [
+   "enterprise-agent",
+   "customer-support",
+   "sales"
+  ],
+  "url": "https://www.salesforce.com/agentforce"
+ },
  "web:sierra.ai": {
   "description": "AI customer service agents for enterprises.",
   "first_seen": "2026-10-19",
@@ -1305,6 +1403,18 @@
    "enterprise-agent"
   ],
   "url": "https://sierra.ai"
+ },
+ "web:skild.ai": {
+  "description": "General-purpose robot foundation model ('Skild Brain') licensed to robotics deployments.",
+  "first_seen": "2026-10-23",
+  "id": "web:skild.ai",
+  "kind": "product",
+  "name": "Skild AI",
+  "tags": [
+   "foundation-model",
+   "multimodal"
+  ],
+  "url": "https://www.skild.ai"
  },
  "web:starbridge.ai": {
   "description": "AI sales intelligence for companies selling to government and education.",
@@ -1340,6 +1450,18 @@
    "agent-runtime"
   ],
   "url": "https://vercel.com"
+ },
+ "web:wisprflow.ai": {
+  "description": "AI voice dictation app that turns natural speech into formatted text across apps.",
+  "first_seen": "2026-10-23",
+  "id": "web:wisprflow.ai",
+  "kind": "product",
+  "name": "Wispr Flow",
+  "tags": [
+   "voice",
+   "productivity"
+  ],
+  "url": "https://wisprflow.ai"
  },
  "web:z.ai": {
   "description": "Zhipu AI's GLM models, MaaS/API platform and chat app.",

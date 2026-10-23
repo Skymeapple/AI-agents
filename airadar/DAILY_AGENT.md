@@ -50,7 +50,9 @@ raw pages stay out of your context. Pass the subagent the INBOX.md rules verbati
    whose page is gone (404, deleted, made private) gets no observation;
    record it instead, so it leaves the ranking:
    `python -m airadar.cli mark-gone <app url> <checked url> "HTTP 404"`
-   (`--back` when it reappears).
+   (`--back` when it reappears). An app whose page now shows a different
+   owner or name (a transfer) keeps one history once you record the move:
+   `python -m airadar.cli mark-moved <old url> <new url> <page that shows it>`.
 2. **GitHub trending**: daily, weekly and monthly; also the Python and TypeScript
    weekly lists. Keep AI-related repos only. Record `stars` and `stars_gained`.
 3. **Reported growth**: web research for company-reported users, ARR, traffic

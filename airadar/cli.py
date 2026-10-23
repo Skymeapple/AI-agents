@@ -20,6 +20,9 @@
 ``mark-gone``
     Record that an app's page is gone (404, deleted, made private), or back
     with ``--back``. A gone app leaves the ranking until it is seen again.
+``mark-moved``
+    Record that an app moved to a new url (a repo transferred to another
+    owner). Its history under the old url and the new one become one app.
 ``recheck``
     List the apps worth re-observing today -- the current leaders and every app
     seen only once -- with the metric to record. Re-observation is what turns a
@@ -154,6 +157,12 @@ def cmd_mark_gone(args) -> int:
     return 0
 
 
+def cmd_mark_moved(args) -> int:
+    Store(args.root).record_move(args.old_url, args.new_url, _date(args.date), args.source_url, args.note)
+    print(f"recorded {args.old_url} -> {args.new_url}")
+    return 0
+
+
 RECHECK_METRIC = {"repo": "stars", "space": "likes", "model": "likes"}
 
 
@@ -221,6 +230,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--back", action="store_true", help="the page is reachable again")
     p.add_argument("--date")
     p.set_defaults(func=cmd_mark_gone)
+
+    p = sub.add_parser("mark-moved", help="record that an app moved to a new url")
+    p.add_argument("old_url")
+    p.add_argument("new_url")
+    p.add_argument("source_url", help="the page that shows the move")
+    p.add_argument("note", nargs="?", default="")
+    p.add_argument("--date")
+    p.set_defaults(func=cmd_mark_moved)
 
     p = sub.add_parser("recheck", help="list apps to re-observe today")
     p.add_argument("--date")

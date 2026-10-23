@@ -13,6 +13,7 @@ data/radar/
   predictions.jsonl     what each day's ranking predicted, for scoring later
   iterations.jsonl      every parameter change the tuner made, with its evidence
   availability.jsonl    append-only: an app's page found gone (404) or back, with evidence
+  aliases.jsonl         append-only: an app that moved (repo transfer, rename) to a new url
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -24,11 +25,12 @@ from __future__ import annotations
 import datetime as dt
 import json
 import shutil
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
+from urllib.parse import urlparse
 
 from .inbox import InboxBatch
-from .models import App, Observation
+from .models import App, Observation, canonical_id
 
 DEFAULT_ROOT = Path("data/radar")
 
@@ -90,6 +92,7 @@ class Store:
         self.predictions_path = self.root / "predictions.jsonl"
         self.iterations_path = self.root / "iterations.jsonl"
         self.availability_path = self.root / "availability.jsonl"
+        self.aliases_path = self.root / "aliases.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -99,7 +102,18 @@ class Store:
         if not self.apps_path.exists():
             return {}
         raw = json.loads(self.apps_path.read_text())
-        return {key: App.from_dict(value) for key, value in raw.items()}
+        registry = {key: App.from_dict(value) for key, value in raw.items()}
+        for old_id, (new_id, new_url) in self.aliases().items():
+            if old_id not in registry:
+                continue
+            app = registry.pop(old_id)
+            if new_id in registry:
+                registry[new_id].merge(app)
+            else:
+                app.id, app.url = new_id, new_url
+                app.name = urlparse(new_url if "//" in new_url else "//" + new_url).path.strip("/") or app.name
+                registry[new_id] = app
+        return registry
 
     def save_apps(self, apps: dict[str, App]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
@@ -107,7 +121,16 @@ class Store:
         self.apps_path.write_text(json.dumps(payload, indent=1, sort_keys=True) + "\n")
 
     def load_observations(self) -> list[Observation]:
-        return [Observation.from_dict(r) for r in _read_jsonl(self.observations_path)]
+        """Every observation, with the app ids of moved apps resolved to where
+        they live now. The file itself is never rewritten."""
+        rows = [Observation.from_dict(r) for r in _read_jsonl(self.observations_path)]
+        return self._resolve(rows)
+
+    def _resolve(self, rows: list[Observation]) -> list[Observation]:
+        aliases = self.aliases()
+        if not aliases:
+            return rows
+        return [replace(o, app_id=aliases[o.app_id][0]) if o.app_id in aliases else o for o in rows]
 
     def add(self, apps: list[App], observations: list[Observation]) -> int:
         """Merge apps into the registry and append new observations.
@@ -116,7 +139,10 @@ class Store:
         file adds nothing.
         """
         registry = self.load_apps()
+        aliases = self.aliases()
         for app in apps:
+            if app.id in aliases:
+                app.id, app.url = aliases[app.id]
             if app.id in registry:
                 registry[app.id].merge(app)
             else:
@@ -125,7 +151,7 @@ class Store:
 
         seen = {o.key() for o in self.load_observations()}
         fresh = []
-        for observation in observations:
+        for observation in self._resolve(observations):
             if observation.key() not in seen:
                 seen.add(observation.key())
                 fresh.append(observation)
@@ -181,15 +207,50 @@ class Store:
             "source_url": source_url, "note": note,
         }])
 
+    # -- aliases ---------------------------------------------------------------
+
+    def record_move(self, old_url: str, new_url: str, observed_on: dt.date,
+                    source_url: str, note: str = "") -> None:
+        """Record that an app moved (a repo transferred to another owner, a
+        product renamed its domain). Its old and new history become one app."""
+        old_id, new_id = canonical_id(old_url), canonical_id(new_url)
+        if old_id == new_id:
+            raise ValueError(f"{old_url} and {new_url} are the same app ({old_id})")
+        if not source_url.strip():
+            raise ValueError("a move record needs the source_url that shows it")
+        if self.aliases().get(new_id, (None,))[0] == old_id:
+            raise ValueError(f"{new_id} already moved to {old_id}; a move back would loop")
+        _append_jsonl(self.aliases_path, [{
+            "from_id": old_id, "to_id": new_id, "to_url": new_url,
+            "observed_on": observed_on.isoformat(), "source_url": source_url, "note": note,
+        }])
+
+    def aliases(self) -> dict[str, tuple[str, str]]:
+        """old app id -> (current app id, current url), following chains of moves."""
+        direct: dict[str, tuple[str, str]] = {}
+        for row in _read_jsonl(self.aliases_path):
+            direct[row["from_id"]] = (row["to_id"], row["to_url"])
+        resolved = {}
+        for old_id, target in direct.items():
+            seen = {old_id}
+            while target[0] in direct and target[0] not in seen:
+                seen.add(target[0])
+                target = direct[target[0]]
+            if target[0] != old_id:
+                resolved[old_id] = target
+        return resolved
+
     def gone_as_of(self, asof: dt.date) -> dict[str, dict]:
         """Apps whose latest availability record on or before ``asof`` says gone."""
         latest: dict[str, dict] = {}
+        aliases = self.aliases()
         for row in _read_jsonl(self.availability_path):
             if dt.date.fromisoformat(row["observed_on"]) > asof:
                 continue
-            current = latest.get(row["app_id"])
+            app_id = aliases.get(row["app_id"], (row["app_id"],))[0]
+            current = latest.get(app_id)
             if current is None or row["observed_on"] >= current["observed_on"]:
-                latest[row["app_id"]] = row
+                latest[app_id] = row
         return {app_id: row for app_id, row in latest.items() if row["status"] == "gone"}
 
     # -- snapshots and reports --------------------------------------------------

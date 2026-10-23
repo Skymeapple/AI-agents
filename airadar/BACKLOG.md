@@ -5,11 +5,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Identity drifts when repos move.** MadsLorentzen/ai-job-search was
-  transferred to ai-job-search-dev/ai-job-search (2026-10-22). Apps are keyed by
-  URL, so the new owner's URL would become a second app. Record a "moved to"
-  alias (like `mark-gone`, append-only) and resolve it in `canonical_id`.
-
 - **Hypotheses forget research.** The rule engine re-proposes directions the
   analysis already disproved (agent-memory, agent-orchestration) because the
   commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.
@@ -76,3 +71,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   availability record (url checked, date, evidence) to `availability.jsonl`; an
   app whose latest record is "gone" is not scored and is listed under "Removed
   from the ranking", and `--back` restores it. Observations are untouched.
+- 2026-10-23: moved apps keep one history. MadsLorentzen/ai-job-search was
+  transferred to ai-job-search-dev/ai-job-search, and apps are keyed by URL, so
+  a sighting under the new owner would have started a second app with no
+  history. `airadar mark-moved` appends an alias (old id -> new id and url, with
+  the page that shows it) to `aliases.jsonl`. Observations, apps and gone
+  records resolve through it when read; `observations.jsonl` is never rewritten.

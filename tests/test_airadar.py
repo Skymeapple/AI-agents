@@ -450,3 +450,33 @@ def test_a_gone_app_leaves_the_ranking_until_it_is_back(tmp_path):
     assert store.gone_as_of(day) and not store.gone_as_of(day + dt.timedelta(days=1))
     with pytest.raises(ValueError, match="source_url"):
         store.record_availability("gh:o/r5", "gone", day, " ")
+
+
+def test_a_moved_app_keeps_one_history(tmp_path):
+    from airadar.pipeline import analyse
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    store.record_move("https://github.com/o/r5", "https://github.com/neworg/r5", day,
+                      "https://github.com/neworg/r5", "transferred")
+    # Old observations now belong to the new identity; the file is untouched.
+    assert {o.app_id for o in store.load_observations()} >= {"gh:neworg/r5"}
+    assert "gh:o/r5" not in {o.app_id for o in store.load_observations()}
+    assert '"gh:o/r5"' in store.observations_path.read_text()
+    apps = store.load_apps()
+    assert "gh:o/r5" not in apps and apps["gh:neworg/r5"].url == "https://github.com/neworg/r5"
+    # A sighting under either url lands on the one app.
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r5", "stars", 900, later, method=Method.PAGE_EXTRACT),
+                   obs("gh:neworg/r5", "stars", 950, later, method=Method.PAGE_EXTRACT,
+                       url="https://github.com/trending")])
+    rows = [o for o in store.load_observations() if o.metric == "stars"]
+    assert {o.app_id for o in rows} == {"gh:neworg/r5"}
+    assert "gh:neworg/r5" in {s.app_id for s in analyse(store, later).scores}
+    # Gone records follow the move.
+    store.record_availability("gh:o/r5", "gone", later, "https://github.com/o/r5")
+    assert "gh:neworg/r5" in store.gone_as_of(later)
+    with pytest.raises(ValueError, match="same app"):
+        store.record_move("https://github.com/A/B", "https://github.com/a/b", day, "https://x")
+    with pytest.raises(ValueError, match="loop"):
+        store.record_move("https://github.com/neworg/r5", "https://github.com/o/r5", day, "https://x")

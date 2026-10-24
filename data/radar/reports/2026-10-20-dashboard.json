@@ -1,0 +1,48 @@
+{
+ "takeaway": "For the first time the radar measured growth itself, re-reading 45 repos a day apart: morluto/rea (+5,004), ai-job-search (+1,559) and dsh-purge (+1,342) gained most. The new leader is storytold/artcraft, an open AI art and video IDE, but rea's stated +201k-a-week does not hold up.",
+ "findings": [
+  {
+   "id": "measured",
+   "heading": "The radar measured its own growth for the first time",
+   "text": "45 repos were re-read one day after first being seen. The largest one-day gains: morluto/rea +5,004, MadsLorentzen/ai-job-search +1,559, YuJunZhiXue/dsh-purge +1,342, stablyai/orca +637, debpalash/VoiceStudio +623.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "rea",
+   "heading": "morluto/rea's stated growth does not hold up",
+   "text": "The trending page states +201,065 stars this week, but the radar measured +5,004 in the last day. The repo has 86.0k forks and only 1.2k watchers. It stays flagged and discounted.",
+   "source": "https://github.com/morluto/rea"
+  },
+  {
+   "id": "artcraft",
+   "heading": "A new leader: an open-source IDE for AI art and video",
+   "text": "storytold/artcraft gained 13,572 stars in 7 days, to 34,022. It wraps 62 image, video, 3D and music models. No launch event or backer was found; the cause is GitHub Trending exposure.",
+   "source": "https://github.com/storytold/artcraft"
+  },
+  {
+   "id": "security",
+   "heading": "Agent security leads, but the commercial gap is narrower than it looks",
+   "text": "80% of tracked security repos are in the top quartile. Runtime-guardrail vendors already exist and were bought (Lakera by Check Point). The open gap is auditing from inside coding agents.",
+   "source": "https://www.csoonline.com/article/4058653/check-point-acquires-lakera-to-build-a-unified-ai-security-stack.html"
+  },
+  {
+   "id": "billion",
+   "heading": "Coding-agent companies are reaching $1B run-rates",
+   "text": "Cognition reported a $1B run-rate on Sep 25, up from $492M in May. Modal passed $1B on Oct 14. Both figures were read from search results, not opened at source.",
+   "source": "https://cognition.com/blog/1b-run-rate"
+  },
+  {
+   "id": "farming",
+   "heading": "Star counts of agent plugins are being gamed",
+   "text": "YuJunZhiXue/dsh-purge gained 1,342 stars in a day with only 18 watchers for 10.0k stars, and its README asks for stars. The radar's anomaly rule cannot catch this yet.",
+   "source": "https://github.com/YuJunZhiXue/dsh-purge"
+  }
+ ],
+ "caveats": [
+  "Catch-up run: the scheduled run failed, so this one ran later in the day.",
+  "Every company figure today came from search-result summaries, because no source page could be opened. Each needs a check at its cited URL.",
+  "Hugging Face, Hacker News, the GitHub API and npm could not be reached for a second day, so models, Spaces, launches and package downloads are missing.",
+  "Some company metrics mix definitions (weekly vs monthly users, gross vs net revenue). Deltas between them, such as ChatGPT revenue falling $20B in a day, are artefacts.",
+  "No forecast has matured yet; the first scorecard is expected around 2026-10-27."
+ ]
+}

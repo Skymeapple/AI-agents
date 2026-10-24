@@ -1,0 +1,48 @@
+{
+ "takeaway": "Cloudflare's security-audit skill more than doubled its pace, gaining 2,654 stars in a day with no announcement found. morluto/rea (+9,258) still leads on volume, and the two repos that vanished this week now leave the ranking.",
+ "findings": [
+  {
+   "id": "measured",
+   "heading": "Fastest measured growth, Oct 21 to Oct 22",
+   "text": "Between two of the radar's own readings: morluto/rea +9,258 stars, cloudflare/security-audit-skill +2,654, DietrichGebert/ponytail +1,873, stablyai/orca +1,610, debpalash/VoiceStudio +1,458. 43 repos were compared day on day.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill is accelerating with no trigger found",
+   "text": "It went from about +1,147 stars a day to +2,654 in the last day. Its last commit was Sep 14 and no new post or listing was found. It has 14 commits and 139 watchers.",
+   "source": "https://github.com/cloudflare/security-audit-skill"
+  },
+  {
+   "id": "gone",
+   "heading": "Two vanished repos now leave the ranking",
+   "text": "YuJunZhiXue/dsh-purge (404 since Oct 21) and corrinehu/dsh-workbuddy-connect (404 on Oct 22, the shutdown date its README announced) are no longer scored. Their observations are kept.",
+   "source": "https://github.com/corrinehu/dsh-workbuddy-connect"
+  },
+  {
+   "id": "harvey",
+   "heading": "A new AI sales agent tells users to skip permission prompts",
+   "text": "ethanplusai/harvey gained 1,491 of its 2,020 stars this week. It looks like a genuine launch, but it is an agent that sends email for you, and a scan flags its instruction to run Claude Code with permissions skipped.",
+   "source": "https://github.com/ethanplusai/harvey"
+  },
+  {
+   "id": "vertical",
+   "heading": "Vertical enterprise AI keeps compounding",
+   "text": "Legora raised $550M at an $8.8B valuation with ARR above $200M, up from $100M in April. Pigment raised $250M with ARR above $100M, doubling year on year. Both were read from search results.",
+   "source": "https://techcrunch.com/2026/10/21/legal-ai-startup-legora-raises-550m-series-e-at-8-8b-valuation"
+  },
+  {
+   "id": "compression",
+   "heading": "Context compression is fast but crowded",
+   "text": "OpenAI and Anthropic ship compaction in their APIs, gateways pass it through, and YC startups sell it. The open gap is a neutral layer that works across providers, with independent quality evidence.",
+   "source": "https://developers.openai.com/api/docs/guides/compaction.md"
+  }
+ ],
+ "caveats": [
+  "Every company figure today came from search-result summaries; no news site could be opened from the cloud environment.",
+  "Hugging Face and Hacker News were not retried: both have been unreachable for three days.",
+  "ai-job-search moved to a new owner (ai-job-search-dev); the radar still tracks it under its old address.",
+  "Some apps still rank on gains stated up to a week ago, ahead of growth the radar measured itself.",
+  "No forecast has matured yet; the first scorecard is expected around 2026-10-27."
+ ]
+}

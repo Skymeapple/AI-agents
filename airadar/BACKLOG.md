@@ -11,12 +11,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   (`weight.delta` vs `weight.period`) decide first; if they can't, give
   stated period signals the same age decay reported figures already have.
 
-- **Hypotheses forget research.** The rule engine re-proposes directions the
-  analysis already disproved (agent-memory, agent-orchestration) because the
-  commercial incumbents (Mem0, Letta, LangChain, CrewAI) are not tracked apps.
-  Track the incumbents the research names, or keep a verdict list that the
-  hypothesis rules consult.
-
 - **One metric, mixed definitions.** `users` mixes WAU, MAU and web unique
   visitors, and `revenue_annualized_usd` mixes gross and net-of-partner run-rates
   (OpenAI: $70B per Axios on 2026-09-29, $50B per the FT on 2026-09-30). Deltas
@@ -83,3 +77,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   history. `airadar mark-moved` appends an alias (old id -> new id and url, with
   the page that shows it) to `aliases.jsonl`. Observations, apps and gone
   records resolve through it when read; `observations.jsonl` is never rewritten.
+- 2026-10-24: hypotheses carry their research verdict. The rules re-proposed
+  agent-memory, agent-orchestration, generative-ui and llm-gateway every day
+  after research had disproved them. `airadar verdict` appends what research
+  found (disproved / partly disproved / holds, with the analysis it rests on) to
+  `verdicts.jsonl`; the report and the page's hypotheses table show it beside
+  the rule. Nine verdicts from 2026-10-20 to 2026-10-23 recorded. The rules
+  themselves are unchanged: a verdict annotates, it does not suppress.

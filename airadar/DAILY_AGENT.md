@@ -111,7 +111,11 @@ to build or back, so be specific and cite everything. Sections:
 4. **Innovation opportunities**: take the report's hypotheses and research each:
    who is already there, what the gap actually is, and what would have to be true
    for it to be worth building. Drop any hypothesis that research disproves, and
-   say so. Add at most two of your own, labelled as yours.
+   say so. Add at most two of your own, labelled as yours. Record each verdict
+   so the report carries it beside the rule from then on, and research only
+   hypotheses that have none (or whose evidence has changed):
+   `python -m airadar.cli verdict <direction> "<pattern>" disproved <analysis url> "<one line>"`
+   (`"*"` as the pattern covers every rule on that direction).
 5. **Radar self-critique**: where the data was thin or biased today (one source
    dominating, a category the collectors cannot see), what the scorecard says
    about the radar's forecasts, and what single change would most improve

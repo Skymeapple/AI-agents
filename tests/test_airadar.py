@@ -480,3 +480,42 @@ def test_a_moved_app_keeps_one_history(tmp_path):
         store.record_move("https://github.com/A/B", "https://github.com/a/b", day, "https://x")
     with pytest.raises(ValueError, match="loop"):
         store.record_move("https://github.com/neworg/r5", "https://github.com/o/r5", day, "https://x")
+
+
+def test_a_research_verdict_travels_with_its_hypothesis(tmp_path, monkeypatch):
+    import airadar.pipeline as pipeline
+    from airadar.dashboard import export
+    from airadar.directions import Opportunity
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    monkeypatch.setattr(pipeline, "opportunities", lambda directions, apps: [
+        Opportunity("fast and uncrowded", "mcp", "few tracked apps"),
+        Opportunity("open source ahead of product", "mcp", "no product tracked"),
+    ])
+    assert all(o.verdict is None for o in pipeline.analyse(store, day).opportunities)
+
+    store.record_verdict("mcp", "*", "partly disproved", day - dt.timedelta(days=1),
+                         "https://example.com/older", "older, applies to every pattern")
+    store.record_verdict("mcp", "fast and uncrowded", "disproved", day,
+                         "https://example.com/analysis", "incumbents exist")
+    store.record_verdict("mcp", "*", "holds", day + dt.timedelta(days=1), "https://example.com/later")
+    a = pipeline.analyse(store, day)
+    fast, open_ = a.opportunities
+    assert fast.verdict["verdict"] == "disproved"        # specific and newest as of day
+    assert open_.verdict["verdict"] == "partly disproved"  # falls back to the "*" verdict
+    text = render(a)
+    assert "Researched 2026-10-19: disproved" in text and "https://example.com/analysis" in text
+    assert "https://example.com/later" not in text        # a later verdict is invisible
+
+    out = tmp_path / "page"
+    _editorial(store)
+    export(store, day, out)
+    rows = (out / "hypotheses.csv").read_text().splitlines()
+    assert rows[0].endswith("researched") and "disproved (2026-10-19): incumbents exist" in rows[1]
+
+    with pytest.raises(ValueError, match="verdict must be"):
+        store.record_verdict("mcp", "*", "maybe", day, "https://x")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_verdict("mcp", "*", "holds", day, "")

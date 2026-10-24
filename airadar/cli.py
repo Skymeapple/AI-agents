@@ -23,6 +23,9 @@
 ``mark-moved``
     Record that an app moved to a new url (a repo transferred to another
     owner). Its history under the old url and the new one become one app.
+``verdict``
+    Record what research found when it tested a hypothesis, so the report
+    shows it beside the rule each day the rule fires again.
 ``recheck``
     List the apps worth re-observing today -- the current leaders and every app
     seen only once -- with the metric to record. Re-observation is what turns a
@@ -163,6 +166,13 @@ def cmd_mark_moved(args) -> int:
     return 0
 
 
+def cmd_verdict(args) -> int:
+    Store(args.root).record_verdict(args.direction, args.pattern, args.verdict, _date(args.date),
+                                    args.source_url, args.note)
+    print(f"recorded {args.verdict} for {args.pattern} / {args.direction}")
+    return 0
+
+
 RECHECK_METRIC = {"repo": "stars", "space": "likes", "model": "likes"}
 
 
@@ -238,6 +248,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("note", nargs="?", default="")
     p.add_argument("--date")
     p.set_defaults(func=cmd_mark_moved)
+
+    p = sub.add_parser("verdict", help="record what research found about a hypothesis")
+    p.add_argument("direction", help="e.g. agent-memory")
+    p.add_argument("pattern", help='e.g. "fast and uncrowded", or "*" for every pattern')
+    p.add_argument("verdict", choices=Store.VERDICTS)
+    p.add_argument("source_url", help="the analysis or source the verdict rests on")
+    p.add_argument("note", nargs="?", default="")
+    p.add_argument("--date")
+    p.set_defaults(func=cmd_verdict)
 
     p = sub.add_parser("recheck", help="list apps to re-observe today")
     p.add_argument("--date")

@@ -103,6 +103,11 @@ class Opportunity:
     direction: str
     rationale: str
     evidence: list[str] = field(default_factory=list)
+    # What research found when it last tested this hypothesis, if it has. A
+    # rule keeps firing on the direction table whatever the research said; the
+    # verdict travels with it so the report does not re-propose a closed idea
+    # as if it were new.
+    verdict: dict | None = None
 
 
 def tag_directions(

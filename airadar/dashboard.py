@@ -45,7 +45,7 @@ FILES = {
              "weekly_growth_pct", "flag"],
     "directions": ["direction", "status", "change", "top_quartile_share", "mean_score", "apps",
                    "open_source", "commercial", "leaders"],
-    "hypotheses": ["pattern", "direction", "rationale", "leaders"],
+    "hypotheses": ["pattern", "direction", "rationale", "leaders", "researched"],
     "findings": ["id", "heading", "text", "source"],
     "caveats": ["id", "text"],
     "scorecard": ["made_on", "apps_compared", "spearman", "precision_at_k", "k"],
@@ -114,6 +114,8 @@ def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[d
     hypotheses = [{
         "pattern": o.kind, "direction": o.direction, "rationale": o.rationale,
         "leaders": ", ".join(o.evidence),
+        "researched": (f"{o.verdict['verdict']} ({o.verdict['observed_on']}): {o.verdict['note']}".rstrip(": ")
+                       if o.verdict else ""),
     } for o in a.opportunities]
 
     scorecard = [{

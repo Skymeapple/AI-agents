@@ -111,6 +111,9 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     previous = store.previous_snapshot(date)
     directions = tag_directions(apps, scores, previous)
     groups = emergent_groups(apps, scores)
+    hypotheses = opportunities(directions, apps)
+    for o in hypotheses:
+        o.verdict = store.verdict_for(o.direction, o.kind, date)
     return Analysis(
         date=date,
         apps=apps,
@@ -118,7 +121,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         baseline_only=baseline_only,
         directions=directions,
         emergent=groups,
-        opportunities=opportunities(directions, apps),
+        opportunities=hypotheses,
         pairs=rising_pairs(apps, scores),
         params=params,
         evaluations=scorecard(store, date, observations),

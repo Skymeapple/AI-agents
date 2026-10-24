@@ -138,6 +138,7 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
               <th data-field="direction">Direction</th>
               <th data-field="pattern">Pattern</th>
               <th data-field="rationale" class="rd-hide-narrow">Why</th>
+              <th data-field="researched">Researched</th>
             </tr></thead>
             <tbody></tbody>
           </table>
@@ -458,7 +459,7 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
     renderFindings();
     renderApps();
     renderDirections();
-    renderSimpleTable('rd-hyp', 'hypotheses', [[r => r.direction], [r => r.pattern], [r => r.rationale, 'rd-hide-narrow']]);
+    renderSimpleTable('rd-hyp', 'hypotheses', [[r => r.direction], [r => r.pattern], [r => r.rationale, 'rd-hide-narrow'], [r => r.researched || 'not yet']]);
     renderSimpleTable('rd-params', 'params', [[r => r.parameter], [r => d3.format('.2~f')(Number(r.value)), 'rd-num'], [r => r.basis, 'rd-hide-narrow']]);
     renderSimpleTable('rd-sources', 'sources', [[r => r.collector], [r => r.last_ok || 'Never'], [r => fmtInt(Number(r.last_count)), 'rd-num'], [r => fmtInt(Number(r.consecutive_failures)), 'rd-num'], [r => r.last_error, 'rd-hide-narrow']]);
     renderSimpleTable('rd-scorecard', 'scorecard', [[r => r.made_on], [r => fmtInt(Number(r.apps_compared)), 'rd-num'], [r => r.spearman === '' ? '' : fmtScore(Number(r.spearman)), 'rd-num'], [r => r.precision_at_k === '' ? '' : fmtPct0(Number(r.precision_at_k)), 'rd-num']]);

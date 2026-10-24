@@ -127,7 +127,12 @@ def render(analysis: Analysis) -> str:
     if a.opportunities:
         for o in a.opportunities:
             lead = f" Leaders: {', '.join(o.evidence)}." if o.evidence else ""
-            lines.append(f"- **{o.kind}: {o.direction}**: {o.rationale}.{lead}")
+            seen = ""
+            if o.verdict:
+                v = o.verdict
+                seen = (f" **Researched {v['observed_on']}: {v['verdict']}** "
+                        f"([source]({v['source_url']})). {v['note']}".rstrip())
+            lines.append(f"- **{o.kind}: {o.direction}**: {o.rationale}.{lead}{seen}")
     else:
         lines.append("_None triggered today._")
     lines.append("")

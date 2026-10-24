@@ -14,6 +14,7 @@ data/radar/
   iterations.jsonl      every parameter change the tuner made, with its evidence
   availability.jsonl    append-only: an app's page found gone (404) or back, with evidence
   aliases.jsonl         append-only: an app that moved (repo transfer, rename) to a new url
+  verdicts.jsonl        append-only: what research found when it tested a hypothesis
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -93,6 +94,7 @@ class Store:
         self.iterations_path = self.root / "iterations.jsonl"
         self.availability_path = self.root / "availability.jsonl"
         self.aliases_path = self.root / "aliases.jsonl"
+        self.verdicts_path = self.root / "verdicts.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -239,6 +241,38 @@ class Store:
             if target[0] != old_id:
                 resolved[old_id] = target
         return resolved
+
+    # -- research verdicts --------------------------------------------------------
+
+    VERDICTS = ("disproved", "partly disproved", "holds")
+
+    def record_verdict(self, direction: str, pattern: str, verdict: str, observed_on: dt.date,
+                       source_url: str, note: str = "") -> None:
+        """Record what research found when it tested a hypothesis. ``pattern``
+        is the rule's name ("fast and uncrowded") or "*" for every pattern on
+        that direction."""
+        if verdict not in self.VERDICTS:
+            raise ValueError(f"verdict must be one of {self.VERDICTS}, got {verdict!r}")
+        if not source_url.strip():
+            raise ValueError("a verdict needs the source_url of the research behind it")
+        _append_jsonl(self.verdicts_path, [{
+            "direction": direction, "pattern": pattern, "verdict": verdict,
+            "observed_on": observed_on.isoformat(), "source_url": source_url, "note": note,
+        }])
+
+    def verdict_for(self, direction: str, pattern: str, asof: dt.date) -> dict | None:
+        """The latest verdict on or before ``asof`` for this direction and
+        pattern, a pattern-specific one winning a tie with a "*" one."""
+        best = None
+        for row in _read_jsonl(self.verdicts_path):
+            if row["direction"] != direction or row["pattern"] not in (pattern, "*"):
+                continue
+            if dt.date.fromisoformat(row["observed_on"]) > asof:
+                continue
+            rank = (row["observed_on"], row["pattern"] == pattern)
+            if best is None or rank >= best[0]:
+                best = (rank, row)
+        return best[1] if best else None
 
     def gone_as_of(self, asof: dt.date) -> dict[str, dict]:
         """Apps whose latest availability record on or before ``asof`` says gone."""

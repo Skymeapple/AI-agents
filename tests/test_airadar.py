@@ -540,6 +540,11 @@ def test_measured_movers_compare_the_last_two_readings():
     assert (a.start, a.before, a.after, a.change) == (d1, 1300, 2300, 1000)
     assert b.per_day == pytest.approx(100) and not b.rounded
     assert measured_movers(rows, asof=d1)[0].app_id == "a"   # asof hides later readings
+    rows.append(Observation("f", "stars", 4000.0, d1, "https://github.com/o/f", Method.PAGE_EXTRACT,
+                            "test", rounded_to=100))
+    rows.append(obs("f", "stars", 4300, d2, method=Method.PAGE_EXTRACT))
+    (f,) = [m for m in measured_movers(rows, asof=d2) if m.app_id == "f"]
+    assert f.before_rounded and not f.after_rounded and f.rounded
 
 
 def test_report_lists_measured_movers(tmp_path):

@@ -82,10 +82,12 @@ def render(analysis: Analysis) -> str:
             "| --- | --- | --- | --- | --- |",
         ]
         for m in a.movers[:MOVERS_N]:
-            mark = "≈" if m.rounded else ""
+            def mark(rounded: bool) -> str:
+                return "≈" if rounded else ""
             lines.append(
-                f"| {_link(a, m.app_id)} | {m.before:,.0f} ({m.start.isoformat()}) | "
-                f"{mark}{m.after:,.0f} | {m.change:+,.0f} | {mark}{m.per_day:+,.0f} |"
+                f"| {_link(a, m.app_id)} | {mark(m.before_rounded)}{m.before:,.0f} ({m.start.isoformat()}) | "
+                f"{mark(m.after_rounded)}{m.after:,.0f} | {mark(m.rounded)}{m.change:+,.0f} | "
+                f"{mark(m.rounded)}{m.per_day:+,.0f} |"
             )
         lines += ["", f"{len(a.movers)} apps were read on both runs.", ""]
     if a.gone:

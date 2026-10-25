@@ -261,7 +261,13 @@ class Mover:
     end: dt.date
     before: float
     after: float
-    rounded: bool  # either reading rounded by its page
+    before_rounded: bool = False
+    after_rounded: bool = False
+
+    @property
+    def rounded(self) -> bool:
+        """Either reading was rounded by its page."""
+        return self.before_rounded or self.after_rounded
 
     @property
     def change(self) -> float:
@@ -295,7 +301,7 @@ def measured_movers(observations: list[Observation], asof: dt.date, metric: str 
         if slack and abs(o1.value - o0.value) <= slack:
             continue
         out.append(Mover(app_id, metric, o0.observed_on, asof, o0.value, o1.value,
-                         bool(o0.rounded_to or o1.rounded_to)))
+                         bool(o0.rounded_to), bool(o1.rounded_to)))
     out.sort(key=lambda m: (-m.per_day, m.app_id))
     return out
 

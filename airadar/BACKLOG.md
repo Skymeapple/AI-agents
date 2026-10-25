@@ -5,6 +5,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Show measured movers on the shared page.** The report now has a
+  "Measured since the last reading" table; the page does not yet. Export it as
+  a `movers` dataset and add a table to `dashboard_page.html`.
+
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
@@ -84,3 +88,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   `verdicts.jsonl`; the report and the page's hypotheses table show it beside
   the rule. Nine verdicts from 2026-10-20 to 2026-10-23 recorded. The rules
   themselves are unchanged: a verdict annotates, it does not suppress.
+- 2026-10-25: the report shows measured movers. From 2026-10-20 the daily
+  analysis computed the day-on-day star changes between the radar's own
+  readings by hand, because the report only showed each app's strongest signal,
+  often a gain a page stated days earlier. `growth.measured_movers` now lists
+  every app read on the latest run and on one up to 3 days before, largest
+  change per day first, skipping changes within rounding; the report renders
+  the top 15 under "Measured since the last reading".

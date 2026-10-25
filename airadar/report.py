@@ -14,6 +14,7 @@ from .pipeline import Analysis
 from .params import KNOBS
 
 TOP_N = 25
+MOVERS_N = 15
 
 
 def _link(analysis: Analysis, app_id: str) -> str:
@@ -72,6 +73,21 @@ def render(analysis: Analysis) -> str:
                 f"{s.score:.2f} | {s.evidence:.2f} | {s.headline()} | {flags} |"
             )
         lines.append("")
+    if a.movers:
+        lines += [
+            "### Measured since the last reading", "",
+            "Stars gained between the radar's own two latest readings of each app, not a gain a "
+            "page stated. ≈ marks a rounded page reading (accurate to about ±50).", "",
+            "| App | Previous | Now | Change | Per day |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+        for m in a.movers[:MOVERS_N]:
+            mark = "≈" if m.rounded else ""
+            lines.append(
+                f"| {_link(a, m.app_id)} | {m.before:,.0f} ({m.start.isoformat()}) | "
+                f"{mark}{m.after:,.0f} | {m.change:+,.0f} | {mark}{m.per_day:+,.0f} |"
+            )
+        lines += ["", f"{len(a.movers)} apps were read on both runs.", ""]
     if a.gone:
         lines += ["### Removed from the ranking", "",
                   "Pages found gone (deleted or made private). Their observations are kept; "

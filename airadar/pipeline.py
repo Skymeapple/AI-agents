@@ -15,7 +15,7 @@ from .directions import (
     Direction, EmergentGroup, Opportunity, emergent_groups, opportunities, rising_pairs,
     tag_directions,
 )
-from .growth import AppScore, extract_signals, score_apps
+from .growth import AppScore, extract_signals, measured_movers, score_apps
 from .inbox import InboxError, load_inbox_file
 from .iterate import (
     Evaluation, SourceHealth, TuningOutcome, apply_tuning, record_prediction, scorecard,
@@ -49,6 +49,8 @@ class Analysis:
     # that says so. They leave the ranking: growth claimed for a page that no
     # longer exists cannot be checked, and no one can build on or back it.
     gone: dict[str, dict] = field(default_factory=dict)
+    # Growth the radar measured between its own last two readings.
+    movers: list = field(default_factory=list)
 
 
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
@@ -127,6 +129,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         evaluations=scorecard(store, date, observations),
         health=source_health(store.load_runs()),
         gone=gone,
+        movers=[m for m in measured_movers(observations, date) if m.app_id in apps and m.app_id not in gone],
     )
 
 

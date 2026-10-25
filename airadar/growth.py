@@ -251,6 +251,55 @@ def extract_signals(
     return dict(signals)
 
 
+@dataclass
+class Mover:
+    """A level metric read on two of the radar's own runs: the newest reading
+    on ``asof`` and the one before it."""
+    app_id: str
+    metric: str
+    start: dt.date
+    end: dt.date
+    before: float
+    after: float
+    rounded: bool  # either reading rounded by its page
+
+    @property
+    def change(self) -> float:
+        return self.after - self.before
+
+    @property
+    def per_day(self) -> float:
+        return self.change / max(1, (self.end - self.start).days)
+
+
+def measured_movers(observations: list[Observation], asof: dt.date, metric: str = "stars",
+                    max_gap_days: int = 3) -> list[Mover]:
+    """Apps read on ``asof`` and on an earlier run at most ``max_gap_days``
+    back, largest change per day first. This is the growth the radar measured
+    itself, as opposed to growth a page stated. A change within the readings'
+    rounding is left out, as it is for delta signals."""
+    rows: dict[str, list[Observation]] = defaultdict(list)
+    for o in observations:
+        if o.metric == metric and o.known_on <= asof:
+            rows[o.app_id].append(o)
+    out = []
+    for app_id, obs in rows.items():
+        by_day = _best_per_day(obs)
+        if asof not in by_day:
+            continue
+        earlier = [d for d in by_day if d < asof and (asof - d).days <= max_gap_days]
+        if not earlier:
+            continue
+        o0, o1 = by_day[max(earlier)], by_day[asof]
+        slack = ((o0.rounded_to or 0.0) + (o1.rounded_to or 0.0)) / 2
+        if slack and abs(o1.value - o0.value) <= slack:
+            continue
+        out.append(Mover(app_id, metric, o0.observed_on, asof, o0.value, o1.value,
+                         bool(o0.rounded_to or o1.rounded_to)))
+    out.sort(key=lambda m: (-m.per_day, m.app_id))
+    return out
+
+
 def _nearest_level(by_day: dict[dt.date, Observation], when: dt.date, tolerance: int = 3):
     candidates = [d for d in by_day if abs((d - when).days) <= tolerance]
     if not candidates:

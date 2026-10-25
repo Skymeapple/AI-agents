@@ -519,3 +519,38 @@ def test_a_research_verdict_travels_with_its_hypothesis(tmp_path, monkeypatch):
         store.record_verdict("mcp", "*", "maybe", day, "https://x")
     with pytest.raises(ValueError, match="source_url"):
         store.record_verdict("mcp", "*", "holds", day, "")
+
+
+def test_measured_movers_compare_the_last_two_readings():
+    from airadar.growth import measured_movers
+
+    d0, d1, d2 = D0, D0 + dt.timedelta(days=1), D0 + dt.timedelta(days=2)
+    rows = [
+        obs("a", "stars", 1000, d0), obs("a", "stars", 1300, d1), obs("a", "stars", 2300, d2),
+        obs("b", "stars", 5000, d0), obs("b", "stars", 5200, d2),           # 2-day gap
+        obs("c", "stars", 9000, d1),
+        Observation("c", "stars", 9000.0, d2, "https://github.com/o/c", Method.PAGE_EXTRACT,
+                    "test", rounded_to=100),                                  # within rounding
+        obs("d", "stars", 700, d2),                                           # read once
+        obs("e", "stars", 100, D0 - dt.timedelta(days=5)), obs("e", "stars", 900, d2),  # too old
+    ]
+    movers = measured_movers(rows, asof=d2)
+    assert [m.app_id for m in movers] == ["a", "b"]
+    a, b = movers
+    assert (a.start, a.before, a.after, a.change) == (d1, 1300, 2300, 1000)
+    assert b.per_day == pytest.approx(100) and not b.rounded
+    assert measured_movers(rows, asof=d1)[0].app_id == "a"   # asof hides later readings
+
+
+def test_report_lists_measured_movers(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 400, later, method=Method.PAGE_EXTRACT,
+                       url="https://github.com/o/r3"),
+                   obs("gh:o/r3", "stars", 250, dt.date(2026, 10, 19), method=Method.PAGE_EXTRACT,
+                       url="https://github.com/o/r3")])
+    text = render(analyse(store, later))
+    assert "Measured since the last reading" in text and "| +150 |" in text

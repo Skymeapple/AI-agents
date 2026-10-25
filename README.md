@@ -249,11 +249,16 @@ These are the things most likely to mislead you. None are hidden in the code.
 
 3. **Clustering is lexical, and it scales only so far.** `discover` groups
    papers that use the same words, so one idea pursued in two vocabularies splits,
-   and a shared methods vocabulary can pull unrelated work together. Dense
-   clustering refuses above 12,000 works rather than dying on a multi-gigabyte
-   allocation; `discover_by_discipline` partitions first, which scales further and
-   avoids cross-field lexical collisions, at the cost of splitting genuinely
-   cross-disciplinary directions. Neither failure is hidden — run both and compare.
+   and a shared methods vocabulary can pull unrelated work together. Up to
+   12,000 works clustering is exact average linkage. Above that it clusters a
+   deterministic sample exactly and extends it, which is close to exact but not
+   identical: on a 30,000-work benchmark it agrees with the exact partition at
+   ARI 0.98 and scores the same against planted labels (`bench/README.md`). The
+   TF-IDF matrix is still dense, so a real corpus with a vocabulary of tens of
+   thousands of terms runs out of memory long before the clustering does.
+   `discover_by_discipline` partitions first, avoiding cross-field lexical
+   collisions at the cost of splitting genuinely cross-disciplinary directions.
+   Neither failure is hidden — run both and compare.
 
 4. **Foundationality is a lexical proxy.** It counts platform/method/enabling
    language in abstracts. Properly it is how much downstream work builds on a
@@ -292,7 +297,8 @@ sciscout/
   priors/sectors.yaml    commercialisation priors, graded by provenance
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generator
-tests/                   78 tests
+tests/                   81 tests
+bench/                   frozen baseline, scaling benchmark and its results
 ```
 
 ## Tests

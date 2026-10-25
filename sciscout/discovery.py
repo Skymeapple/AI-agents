@@ -24,6 +24,7 @@ environment can reach a model, that is the upgrade path.
 
 from __future__ import annotations
 
+import hashlib
 import math
 import re
 from collections import Counter
@@ -155,7 +156,9 @@ def _build_tfidf(
     return matrix / norms, vocabulary
 
 
-def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
+def _agglomerate(
+    pair_sum: np.ndarray, threshold: float, sizes: np.ndarray | None = None
+) -> list[list[int]]:
     """Average-linkage agglomerative clustering down to a similarity floor.
 
     Merges the closest pair of clusters repeatedly, stopping when the best
@@ -163,34 +166,48 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
     linkage because single linkage chains: one paper bridging two topics would
     otherwise fuse them into one direction.
 
-    Implemented with cached per-row maxima rather than rescanning the whole
-    matrix on every merge. The naive form is O(n^3), which takes tens of seconds
-    at a thousand works and is hopeless at the scale a broad survey of science
-    would produce. Here a merge updates one row and column, then refreshes only
-    the rows whose best partner was one of the two clusters just merged.
+    ``pair_sum[i, j]`` is the total similarity between the members of ``i`` and
+    those of ``j``; it is modified in place, so pass a matrix you no longer need.
+    Every item starts as a singleton unless ``sizes`` says otherwise, which is how
+    already-formed clusters are merged further with exact average linkage.
+
+    One matrix is kept, not three: average linkage is computed from
+    ``pair_sum`` and the cluster sizes when a row is scanned, rather than
+    stored as a second n-by-n matrix next to a copy of the input. The output
+    is unchanged; peak memory falls by two thirds.
+
+    Rows are refreshed lazily. Merging ``i`` and ``j`` gives every other row a
+    linkage to the new cluster that is a weighted mean of its linkages to
+    ``i`` and ``j``, so it cannot exceed that row's cached best. A cached best
+    is therefore always an upper bound, and a row that is stale only needs
+    rescanning when it actually reaches the top of the queue. Most never do --
+    rows pointing at a big, growing cluster were previously rescanned on
+    every merge into it, which is where nearly all the time went.
     """
-    n = similarity.shape[0]
+    n = pair_sum.shape[0]
     clusters: dict[int, list[int]] = {i: [i] for i in range(n)}
 
-    # pair_sum[i, j] is the total similarity between members of i and members of
-    # j; dividing by the product of sizes gives average linkage.
-    pair_sum = similarity.astype(np.float64).copy()
     np.fill_diagonal(pair_sum, -np.inf)
-    sizes = np.ones(n, dtype=np.float64)
+    sizes = np.ones(n, dtype=np.float64) if sizes is None else sizes.astype(np.float64)
     active = np.ones(n, dtype=bool)
+    # A row's cache is fresh while neither it nor its best partner has merged
+    # since it was computed.
+    version = np.zeros(n, dtype=np.int64)
+    seen_version = np.zeros(n, dtype=np.int64)
 
-    average = pair_sum.copy()  # sizes are all 1 initially
+    row_best_index = np.zeros(n, dtype=np.int64)
+    row_best_value = np.full(n, -np.inf)
 
     def refresh(row: int) -> None:
-        values = average[row]
+        with np.errstate(invalid="ignore"):
+            values = pair_sum[row] / (sizes[row] * sizes)
         masked = np.where(active, values, -np.inf)
         masked[row] = -np.inf
         best = int(np.argmax(masked))
         row_best_index[row] = best
         row_best_value[row] = masked[best]
+        seen_version[row] = version[row] + version[best]
 
-    row_best_index = np.zeros(n, dtype=np.int64)
-    row_best_value = np.full(n, -np.inf)
     for row in range(n):
         refresh(row)
 
@@ -200,7 +217,7 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
         if not np.isfinite(candidate_values[i]) or candidate_values[i] < threshold:
             break
         j = int(row_best_index[i])
-        if not active[j] or i == j:
+        if not active[j] or i == j or seen_version[i] != version[i] + version[j]:
             refresh(i)
             continue
 
@@ -212,21 +229,10 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
         sizes[i] += sizes[j]
         active[j] = False
         pair_sum[i, i] = -np.inf
-
-        # Recompute average linkage for the merged row only.
-        with np.errstate(invalid="ignore"):
-            denom = sizes[i] * sizes
-            safe = np.where(denom > 0, denom, 1.0)
-            average[i, :] = np.where(denom > 0, pair_sum[i, :] / safe, -np.inf)
-        average[i, i] = -np.inf
-        average[:, i] = average[i, :]
+        version[i] += 1
+        version[j] += 1
 
         refresh(i)
-        # Any row that was pointing at i or j needs a new best partner.
-        stale = np.where(active & ((row_best_index == i) | (row_best_index == j)))[0]
-        for row in stale:
-            if row != i:
-                refresh(int(row))
 
     return [members for members in clusters.values()]
 
@@ -244,20 +250,118 @@ def _label_cluster(
     return [vocabulary[i] for i in order if distinctiveness[i] > 0]
 
 
-def _cohesion(similarity: np.ndarray, members: list[int]) -> float:
-    """Mean pairwise similarity within a cluster. A singleton scores 1.0."""
+def _cohesion(matrix: np.ndarray, members: list[int]) -> float:
+    """Mean pairwise similarity within a cluster. A singleton scores 1.0.
+
+    Computed from the member vectors' sum rather than their similarity block:
+    for rows ``x``, the sum of all pairwise dot products is ``|sum(x)|^2``, and
+    the diagonal is the sum of squared norms. The same number, in O(n) memory
+    instead of O(n^2) -- which matters once one cluster holds tens of thousands
+    of works.
+    """
     if len(members) < 2:
         return 1.0
-    block = similarity[np.ix_(members, members)]
+    rows = matrix[members]
+    total = rows.sum(axis=0)
     n = len(members)
-    return float((block.sum() - np.trace(block)) / (n * (n - 1)))
+    return float((total @ total - (rows * rows).sum()) / (n * (n - 1)))
 
 
-# Above this many works the dense similarity matrix stops being reasonable:
-# memory grows as n^2 (25k works is roughly 5GB) and clustering time with it.
-# Rather than grinding or dying on an allocation, discovery refuses and points
-# at partitioning, which is both faster and usually better clustering.
+# Up to this many works, clustering is exact average linkage over the full
+# similarity matrix: one n-by-n float64 matrix, so 12k works is about 1.2GB.
+# Above it, discovery clusters a sample exactly and extends it; see
+# _cluster_at_scale for what that changes.
 MAX_WORKS_DENSE = 12_000
+
+# How many works the scaled path clusters exactly in each round.
+SAMPLE_SIZE = 8_000
+
+# Rows scored against the seed clusters at a time when assigning the rest.
+_ASSIGN_CHUNK = 20_000
+
+
+def _stable_order(works: list[Work]) -> np.ndarray:
+    """Row indices in an order fixed by the works' ids, not by corpus order.
+
+    Sampling the first k of this order is a deterministic, unbiased sample: the
+    same corpus gives the same sample however it was harvested or sorted.
+    """
+    keys = [hashlib.sha1(w.id.encode()).hexdigest() for w in works]
+    return np.array(sorted(range(len(works)), key=keys.__getitem__), dtype=np.int64)
+
+
+def _cluster_at_scale(
+    matrix: np.ndarray,
+    order: np.ndarray,
+    threshold: float,
+    min_cluster_size: int,
+    sample_size: int,
+) -> list[list[int]]:
+    """Average-linkage clustering for corpora too big for the dense matrix.
+
+    Exact average linkage needs every pairwise similarity, and within one big
+    direction nearly every pair is similar, so no sparse graph or partition
+    avoids n^2 work. But the answer is a partition into a few dozen directions,
+    and placing a work in one only takes its linkage to each direction. So:
+
+    1. Cluster a deterministic sample exactly.
+    2. Assign every other work to the sample cluster it has the highest
+       average linkage to -- if that clears ``threshold``, the same test a merge
+       has to pass. Linkage to a cluster is ``x . sum(cluster) / size``, so this
+       costs one matrix product against the cluster sums, never an n-by-n
+       matrix.
+    3. Works that matched nothing, and sample clusters too small to count, go
+       back into the pool and are clustered in the next round. A direction too
+       rare to show up in the sample is not lost: its works fail to match any
+       seed, collect in the pool, and meet each other there.
+    4. Finish with exact average linkage over the clusters themselves, using
+       their sums, so clusters formed in different rounds still merge if the
+       dense method would have merged them.
+
+    The approximation is in step 2: a work is placed against the sample
+    clusters as they stand, not as they grow. It is measured, not assumed --
+    see bench/README.md.
+    """
+    rank = np.empty(len(order), dtype=np.int64)
+    rank[order] = np.arange(len(order))
+    pool = order
+    groups: list[np.ndarray] = []
+
+    while len(pool) > sample_size:
+        sample, rest = pool[:sample_size], pool[sample_size:]
+        sub = matrix[sample]
+        parts = _agglomerate(sub @ sub.T, threshold)
+        seeds = [sample[p] for p in parts if len(p) >= min_cluster_size]
+        if not seeds:
+            groups.extend(sample[p] for p in parts)
+            pool = rest
+            continue
+        small = [sample[p] for p in parts if len(p) < min_cluster_size]
+
+        sums = np.stack([matrix[seed].sum(axis=0) for seed in seeds])
+        sizes = np.array([len(seed) for seed in seeds], dtype=np.float64)
+        best = np.empty(len(rest), dtype=np.int64)
+        value = np.empty(len(rest))
+        for start in range(0, len(rest), _ASSIGN_CHUNK):
+            rows = rest[start : start + _ASSIGN_CHUNK]
+            linkage = (matrix[rows] @ sums.T) / sizes
+            best[start : start + len(rows)] = linkage.argmax(axis=1)
+            value[start : start + len(rows)] = linkage.max(axis=1)
+        placed = value >= threshold
+        for k, seed in enumerate(seeds):
+            groups.append(np.concatenate([seed, rest[placed & (best == k)]]))
+
+        pool = np.concatenate(small + [rest[~placed]]) if small else rest[~placed]
+        pool = pool[np.argsort(rank[pool], kind="stable")]
+
+    if len(pool):
+        sub = matrix[pool]
+        groups.extend(pool[p] for p in _agglomerate(sub @ sub.T, threshold))
+
+    sums = np.stack([matrix[g].sum(axis=0) for g in groups])
+    sizes = np.array([len(g) for g in groups], dtype=np.float64)
+    merged = _agglomerate(sums @ sums.T, threshold, sizes=sizes)
+    return [np.concatenate([groups[g] for g in m]).tolist() for m in merged]
 
 
 def discover(
@@ -267,6 +371,8 @@ def discover(
     min_df: int = 2,
     max_df_ratio: float = 0.5,
     top_terms: int = 10,
+    max_exact: int = MAX_WORKS_DENSE,
+    sample_size: int = SAMPLE_SIZE,
 ) -> DiscoveryResult:
     """Cluster ``works`` into candidate research directions.
 
@@ -279,25 +385,24 @@ def discover(
             ``unclustered`` rather than reported as directions. Two papers that
             resemble each other are not evidence of a research direction, and
             promoting them to one would flood the ranking with noise.
+        max_exact: Corpora up to this size are clustered exactly. Larger ones
+            take the sampled path in :func:`_cluster_at_scale`, which is close
+            to exact but not identical.
+        sample_size: Works clustered exactly per round on the sampled path.
     """
     if not works:
         return DiscoveryResult(tracks=[])
-    if len(works) > MAX_WORKS_DENSE:
-        raise ValueError(
-            f"discover() was given {len(works):,} works, above the "
-            f"{MAX_WORKS_DENSE:,} limit for dense clustering: the similarity "
-            f"matrix alone would need roughly "
-            f"{len(works) ** 2 * 8 / 1e9:.1f}GB. Use discover_by_discipline(), "
-            f"which clusters within each discipline and is usually better "
-            f"anyway, or narrow the corpus first"
-        )
 
     matrix, vocabulary = _build_tfidf(works, min_df, max_df_ratio)
     if not vocabulary:
         return DiscoveryResult(tracks=[], unclustered=list(works), threshold=threshold)
 
-    similarity = matrix @ matrix.T
-    clusters = _agglomerate(similarity, threshold)
+    if len(works) <= max_exact:
+        clusters = _agglomerate(matrix @ matrix.T, threshold)
+    else:
+        clusters = _cluster_at_scale(
+            matrix, _stable_order(works), threshold, min_cluster_size, sample_size
+        )
 
     tracks: list[DiscoveredTrack] = []
     unclustered: list[Work] = []
@@ -313,7 +418,7 @@ def discover(
                 label=label,
                 works=[works[i] for i in members],
                 terms=terms,
-                cohesion=_cohesion(similarity, members),
+                cohesion=_cohesion(matrix, members),
             )
         )
 

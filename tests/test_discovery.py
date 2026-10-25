@@ -6,12 +6,14 @@ matters: an unsupervised step nobody measures is one nobody should trust.
 
 import datetime as dt
 
+import numpy as np
 import pytest
 
 from sciscout.classify import CONFIDENCE_FLOOR, classify, coverage_report
 from sciscout.commercial.profile import PriorLibrary
 from sciscout.discovery import (
-    MAX_WORKS_DENSE,
+    _agglomerate,
+    _cohesion,
     discover,
     discover_by_discipline,
     evaluate_against_labels,
@@ -109,14 +111,77 @@ def test_a_higher_threshold_never_yields_fewer_clusters():
     assert len(tight.tracks) >= len(loose.tracks)
 
 
-def test_dense_clustering_refuses_a_corpus_it_cannot_hold():
-    """Failing loudly beats dying on a multi-gigabyte allocation."""
-    works = [
-        Work(id=str(i), title="x y z", published=dt.date(2025, 1, 1))
-        for i in range(MAX_WORKS_DENSE + 1)
+def _naive_average_linkage(similarity: np.ndarray, threshold: float) -> list[list[int]]:
+    """Textbook O(n^3) average linkage: rescan every cluster pair on every merge."""
+    clusters = [[i] for i in range(similarity.shape[0])]
+    while len(clusters) > 1:
+        best, pair = -np.inf, None
+        for a in range(len(clusters)):
+            for b in range(a + 1, len(clusters)):
+                value = similarity[np.ix_(clusters[a], clusters[b])].mean()
+                if value > best:
+                    best, pair = value, (a, b)
+        if best < threshold:
+            break
+        a, b = pair
+        clusters[a] = clusters[a] + clusters[b]
+        del clusters[b]
+    return clusters
+
+
+def test_fast_agglomeration_matches_the_textbook_algorithm():
+    """The cached, lazily refreshed merge loop must not change any partition."""
+    rng = np.random.default_rng(3)
+    for trial in range(25):
+        points = rng.normal(size=(40, 6)) + rng.integers(0, 4, size=(40, 1)) * 2.0
+        points /= np.linalg.norm(points, axis=1, keepdims=True)
+        similarity = points @ points.T
+        threshold = float(rng.uniform(0.0, 0.6))
+        fast = _agglomerate(similarity.copy(), threshold)
+        slow = _naive_average_linkage(similarity, threshold)
+        assert sorted(map(sorted, fast)) == sorted(map(sorted, slow)), trial
+
+
+def test_cohesion_from_sums_equals_mean_pairwise_similarity():
+    rng = np.random.default_rng(5)
+    matrix = rng.random((30, 8))
+    matrix /= np.linalg.norm(matrix, axis=1, keepdims=True)
+    members = [0, 3, 4, 9, 17, 22]
+    block = (matrix @ matrix.T)[np.ix_(members, members)]
+    expected = (block.sum() - np.trace(block)) / (len(members) * (len(members) - 1))
+    assert _cohesion(matrix, members) == pytest.approx(expected)
+
+
+def test_large_corpora_take_the_sampled_path_and_still_find_the_directions():
+    """Above max_exact, discovery samples instead of refusing, and must not
+    lose quality doing it. The demo corpus is forced down the sampled path."""
+    works = LocalCorpus("data/demo_corpus.json").harvest().works
+    result = discover(works, max_exact=400, sample_size=300)
+    scores = evaluate_against_labels(result, works)
+    assert scores["directions_recovered"] == scores["true_directions"] == 16
+    assert scores["mean_purity"] >= 0.99
+
+
+def test_a_direction_too_rare_to_be_sampled_is_still_found():
+    """Sampling must not cost the emerging directions discovery exists to catch."""
+    works = LocalCorpus("data/demo_corpus.json").harvest().works
+    rare = [
+        Work(
+            id=f"rare-{i}",
+            title="Magnetocaloric refrigeration regenerator",
+            abstract="Gadolinium magnetocaloric regenerator beds cool without "
+            "refrigerant gases using permanent magnet field cycles",
+            published=dt.date(2026, 1, 1),
+            extra={"track": "rare"},
+        )
+        for i in range(5)
     ]
-    with pytest.raises(ValueError, match="above the"):
-        discover(works)
+    result = discover(works + rare, max_exact=400, sample_size=300)
+    homes = {id(t) for t in result.tracks for w in t.works if w.id.startswith("rare-")}
+    assert len(homes) == 1
+    track = next(t for t in result.tracks if id(t) in homes)
+    assert sum(w.id.startswith("rare-") for w in track.works) == 5
+    assert track.size == 5
 
 
 def test_partitioned_discovery_keeps_disciplines_apart():

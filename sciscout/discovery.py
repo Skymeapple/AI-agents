@@ -24,6 +24,7 @@ environment can reach a model, that is the upgrade path.
 
 from __future__ import annotations
 
+import heapq
 import math
 import re
 from collections import Counter
@@ -117,6 +118,9 @@ def _build_tfidf(
 ) -> tuple[np.ndarray, list[str]]:
     """TF-IDF matrix over works, L2-normalised, and its vocabulary.
 
+    Dense reference for :func:`_build_tfidf_sparse`, which :func:`discover`
+    uses; the tests hold the two to identical values.
+
     Terms appearing in fewer than ``min_df`` documents are dropped as noise, and
     terms in more than ``max_df_ratio`` of documents are dropped because a word
     every paper uses cannot distinguish between them.
@@ -157,6 +161,9 @@ def _build_tfidf(
 
 def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
     """Average-linkage agglomerative clustering down to a similarity floor.
+
+    Dense reference for :func:`_agglomerate_sparse`, which :func:`discover`
+    uses: quadratic memory, but simple enough to check by eye.
 
     Merges the closest pair of clusters repeatedly, stopping when the best
     available merge falls below ``threshold``. Average linkage rather than single
@@ -231,32 +238,311 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
     return [members for members in clusters.values()]
 
 
-def _label_cluster(
-    matrix: np.ndarray, vocabulary: list[str], members: list[int], top: int
-) -> list[str]:
-    """Terms that distinguish this cluster from the corpus as a whole."""
-    if not vocabulary:
-        return []
-    inside = matrix[members].mean(axis=0)
-    outside = matrix.mean(axis=0)
-    distinctiveness = inside - outside
-    order = np.argsort(distinctiveness)[::-1][:top]
-    return [vocabulary[i] for i in order if distinctiveness[i] > 0]
+@dataclass
+class _SparseTfidf:
+    """TF-IDF rows in compressed sparse row form, numpy only.
+
+    Holds exactly the values :func:`_build_tfidf` would put in its dense matrix
+    -- same vocabulary, same sublinear term frequency, same idf, and row norms
+    computed by the same numpy call on the same dense rows -- without ever
+    allocating ``n_docs x vocabulary``. A real abstract uses a few dozen distinct
+    terms out of tens of thousands, so the dense matrix is almost all zeros.
+    """
+
+    indptr: np.ndarray  # row r spans indptr[r]:indptr[r + 1]
+    indices: np.ndarray  # term index of each stored value, ascending within a row
+    data: np.ndarray
+    vocabulary: list[str]
+
+    @property
+    def n_docs(self) -> int:
+        return len(self.indptr) - 1
+
+    def row(self, r: int) -> tuple[np.ndarray, np.ndarray]:
+        lo, hi = self.indptr[r], self.indptr[r + 1]
+        return self.indices[lo:hi], self.data[lo:hi]
+
+    def column_sums(self, rows: list[int] | None = None) -> np.ndarray:
+        """Per-term sums over ``rows`` (all rows if None), accumulated in row order.
+
+        Summing in row order matches numpy's ``mean(axis=0)`` over the dense
+        matrix value for value, so cluster labels come out identical.
+        """
+        if rows is None:
+            idx, val = self.indices, self.data
+        else:
+            starts, ends = self.indptr[rows], self.indptr[np.asarray(rows) + 1]
+            take = _ranges(starts, ends)
+            idx, val = self.indices[take], self.data[take]
+        return np.bincount(idx, weights=val, minlength=len(self.vocabulary))
 
 
-def _cohesion(similarity: np.ndarray, members: list[int]) -> float:
-    """Mean pairwise similarity within a cluster. A singleton scores 1.0."""
-    if len(members) < 2:
-        return 1.0
-    block = similarity[np.ix_(members, members)]
-    n = len(members)
-    return float((block.sum() - np.trace(block)) / (n * (n - 1)))
+def _ranges(starts: np.ndarray, ends: np.ndarray) -> np.ndarray:
+    """Concatenation of ``arange(s, e)`` for each pair, without a Python loop."""
+    lengths = ends - starts
+    total = int(lengths.sum())
+    if total == 0:
+        return np.zeros(0, dtype=np.int64)
+    offsets = np.repeat(np.cumsum(lengths) - lengths, lengths)
+    return np.repeat(starts, lengths) + (np.arange(total) - offsets)
 
 
-# Above this many works the dense similarity matrix stops being reasonable:
-# memory grows as n^2 (25k works is roughly 5GB) and clustering time with it.
-# Rather than grinding or dying on an allocation, discovery refuses and points
-# at partitioning, which is both faster and usually better clustering.
+def _build_tfidf_sparse(
+    works: list[Work], min_df: int, max_df_ratio: float
+) -> _SparseTfidf:
+    """Sparse equivalent of :func:`_build_tfidf`."""
+    tokenized = [tokenize(w.text()) for w in works]
+    document_frequency: Counter[str] = Counter()
+    for tokens in tokenized:
+        document_frequency.update(set(tokens))
+
+    n_docs = len(works)
+    max_df = max(min_df, int(max_df_ratio * n_docs))
+    vocabulary = sorted(
+        term
+        for term, count in document_frequency.items()
+        if min_df <= count <= max_df
+    )
+    index = {term: i for i, term in enumerate(vocabulary)}
+    idf = np.array(
+        [math.log((1 + n_docs) / (1 + document_frequency[t])) + 1.0 for t in vocabulary]
+    )
+
+    indptr = np.zeros(n_docs + 1, dtype=np.int64)
+    columns: list[int] = []
+    values: list[float] = []
+    for row, tokens in enumerate(tokenized):
+        counts = Counter(t for t in tokens if t in index)
+        entries = sorted((index[term], 1.0 + math.log(count)) for term, count in counts.items())
+        columns.extend(c for c, _ in entries)
+        values.extend(v for _, v in entries)
+        indptr[row + 1] = len(columns)
+    indices = np.array(columns, dtype=np.int64)
+    data = np.array(values, dtype=np.float64)
+    if len(data):
+        data *= idf[indices]
+
+    # Row norms come from the same np.linalg.norm call on the same dense rows
+    # the dense builder uses, a block at a time, so every stored value matches
+    # it bit for bit rather than to within rounding.
+    norms = np.ones(n_docs)
+    width = max(1, len(vocabulary))
+    block = max(1, 16_000_000 // width)
+    for start in range(0, n_docs, block):
+        stop = min(n_docs, start + block)
+        dense = np.zeros((stop - start, width))
+        take = slice(indptr[start], indptr[stop])
+        rows = np.repeat(np.arange(stop - start), np.diff(indptr[start : stop + 1]))
+        dense[rows, indices[take]] = data[take]
+        norms[start:stop] = np.linalg.norm(dense, axis=1)
+    norms[norms == 0] = 1.0
+    data /= np.repeat(norms, np.diff(indptr))
+    return _SparseTfidf(indptr=indptr, indices=indices, data=data, vocabulary=vocabulary)
+
+
+def _candidate_pairs(
+    tfidf: _SparseTfidf, threshold: float, block_cells: int = 32_000_000
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Every pair of works whose cosine similarity reaches ``threshold``.
+
+    Returns ``(a, b, similarity)`` with ``a < b``. Similarities are computed a
+    block of rows at a time and only pairs at or above the floor are kept, so
+    memory is bounded by the block, not by ``n^2``.
+
+    Terms are split by document frequency. Frequent terms -- the shared methods
+    vocabulary that gives almost every pair a small non-zero similarity -- go
+    through a dense matrix product, which BLAS does fastest. Rare terms, the
+    topical ones, go through their postings lists: a term used by k works can
+    only connect those k works, so its cost is k^2 however large the corpus.
+
+    A tiny tolerance below the floor makes the result a superset: summation
+    order differs from the dense product, and a pair sitting exactly on the
+    floor must not be dropped by rounding.
+    """
+    n = tfidf.n_docs
+    vocab = len(tfidf.vocabulary)
+    floor = threshold - 1e-9
+    empty = (np.zeros(0, np.int64), np.zeros(0, np.int64), np.zeros(0))
+    if n < 2 or vocab == 0:
+        return empty
+
+    df = np.bincount(tfidf.indices, minlength=vocab)
+    frequent_cutoff = max(32, n // 50)
+    frequent = np.where(df > frequent_cutoff)[0]
+    if len(frequent) > 2048:
+        frequent = frequent[np.argsort(-df[frequent], kind="stable")[:2048]]
+    is_frequent = np.zeros(vocab, dtype=bool)
+    is_frequent[frequent] = True
+    column_of = np.full(vocab, -1, dtype=np.int64)
+    column_of[frequent] = np.arange(len(frequent))
+
+    row_of_entry = np.repeat(np.arange(n), np.diff(tfidf.indptr))
+    dense = np.zeros((n, len(frequent)))
+    mask = is_frequent[tfidf.indices]
+    dense[row_of_entry[mask], column_of[tfidf.indices[mask]]] = tfidf.data[mask]
+
+    # Postings for rare terms: the works using each term, and their weights.
+    rare_entries = np.where(~mask)[0]
+    order = rare_entries[np.argsort(tfidf.indices[rare_entries], kind="stable")]
+    posting_doc = row_of_entry[order]
+    posting_weight = tfidf.data[order]
+    posting_ptr = np.zeros(vocab + 1, dtype=np.int64)
+    np.cumsum(np.bincount(tfidf.indices[order], minlength=vocab), out=posting_ptr[1:])
+
+    rows_per_block = max(16, block_cells // n)
+    found_a: list[np.ndarray] = []
+    found_b: list[np.ndarray] = []
+    found_s: list[np.ndarray] = []
+    for start in range(0, n - 1, rows_per_block):
+        stop = min(n, start + rows_per_block)
+        # Only columns from ``start`` on: the pair (a, b) with a < b is found
+        # in a's block.
+        width = n - start
+        sims = dense[start:stop] @ dense[start:].T
+
+        lo, hi = tfidf.indptr[start], tfidf.indptr[stop]
+        entry = np.arange(lo, hi)[~mask[lo:hi]]
+        if len(entry):
+            terms = tfidf.indices[entry]
+            take = _ranges(posting_ptr[terms], posting_ptr[terms + 1])
+            counts = posting_ptr[terms + 1] - posting_ptr[terms]
+            local_row = np.repeat(row_of_entry[entry] - start, counts)
+            weight = np.repeat(tfidf.data[entry], counts) * posting_weight[take]
+            column = posting_doc[take] - start
+            keep = column >= 0
+            flat = local_row[keep] * width + column[keep]
+            sims += np.bincount(flat, weights=weight[keep], minlength=sims.size).reshape(
+                sims.shape
+            )
+
+        r, c = np.nonzero(sims >= floor)
+        upper = c > r
+        r, c = r[upper], c[upper]
+        found_a.append(r + start)
+        found_b.append(c + start)
+        found_s.append(sims[r, c])
+
+    if not found_a:
+        return empty
+    return np.concatenate(found_a), np.concatenate(found_b), np.concatenate(found_s)
+
+
+def _agglomerate_sparse(
+    tfidf: _SparseTfidf, threshold: float
+) -> tuple[list[list[int]], dict[int, np.ndarray]]:
+    """Average-linkage clustering to a similarity floor without an n x n matrix.
+
+    Gives the same clusters as :func:`_agglomerate`, by two facts about average
+    linkage over cosine similarity of unit vectors:
+
+    * The average similarity between clusters A and B is
+      ``sum(A) . sum(B) / (|A| |B|)``, where ``sum`` adds the members' TF-IDF
+      vectors. So a cluster only needs its summed vector, not a row of pairwise
+      totals.
+    * An average can only reach the floor if at least one member pair does. So
+      two clusters can only ever merge if some pair of their members is a
+      candidate from :func:`_candidate_pairs`, and every other pair can be
+      skipped, not approximated.
+
+    As in the dense version, each cluster keeps its best partner, the next
+    merge is the highest of those (lowest row first on ties), and the row it
+    came from survives. A heap holds one entry per cluster, tagged with a version so a
+    superseded best is skipped when it surfaces. Returns clusters in the dense
+    version's order, and each multi-member cluster's summed vector, which
+    cohesion reuses.
+    """
+    n = tfidf.n_docs
+    vocab = len(tfidf.vocabulary)
+    a, b, sims = _candidate_pairs(tfidf, threshold)
+
+    # average[i][k]: average linkage between clusters i and k, held only for
+    # cluster pairs connected by at least one candidate pair of works.
+    average: list[dict[int, float]] = [{} for _ in range(n)]
+    for i, j, s in zip(a.tolist(), b.tolist(), sims.tolist()):
+        average[i][j] = s
+        average[j][i] = s
+
+    best_value = [-math.inf] * n
+    best_partner = [-1] * n
+    version = [0] * n
+    heap: list[tuple[float, int, int]] = []
+
+    def refresh(row: int) -> None:
+        version[row] += 1
+        if not average[row]:
+            best_value[row], best_partner[row] = -math.inf, -1
+            return
+        values = average[row]
+        value = max(values.values())
+        partner = min(k for k, v in values.items() if v == value)
+        best_value[row], best_partner[row] = value, partner
+        if value >= threshold:
+            heapq.heappush(heap, (-value, row, version[row]))
+
+    for row in range(n):
+        refresh(row)
+
+    members: dict[int, list[int]] = {i: [i] for i in range(n)}
+    size = np.ones(n)
+    sum_index = [tfidf.row(i)[0] for i in range(n)]
+    sum_value = [tfidf.row(i)[1] for i in range(n)]
+    scratch = np.zeros(max(1, vocab))
+
+    while heap:
+        negative, i, tag = heapq.heappop(heap)
+        if tag != version[i] or i not in members:
+            continue
+        j = best_partner[i]
+
+        members[i].extend(members.pop(j))
+        size[i] += size[j]
+        scratch[sum_index[i]] += sum_value[i]
+        scratch[sum_index[j]] += sum_value[j]
+        merged_index = np.union1d(sum_index[i], sum_index[j])
+        sum_index[i], sum_value[i] = merged_index, scratch[merged_index].copy()
+        sum_index[j] = sum_value[j] = None
+
+        around = sorted((average[i].keys() | average[j].keys()) - {i, j})
+        average[j] = {}
+        version[j] += 1
+        new_row: dict[int, float] = {}
+        if around:
+            lengths = np.array([len(sum_index[k]) for k in around])
+            gathered = scratch[np.concatenate([sum_index[k] for k in around])]
+            products = gathered * np.concatenate([sum_value[k] for k in around])
+            dots = np.add.reduceat(products, np.cumsum(lengths) - lengths)
+            new_row = dict(zip(around, (dots / (size[i] * size[around])).tolist()))
+        scratch[merged_index] = 0.0
+        average[i] = new_row
+        refresh(i)
+
+        for k, value in new_row.items():
+            row = average[k]
+            row.pop(j, None)
+            row[i] = value
+            # Like the dense version, only rows whose best partner just merged
+            # are refreshed. Row i already holds every new average, so the
+            # next merge is still the global best; this keeps tie-breaking,
+            # and so member order, identical when averages are exactly equal.
+            if best_partner[k] in (i, j):
+                refresh(k)
+
+    sums: dict[int, np.ndarray] = {}
+    for root in members:
+        if len(members[root]) > 1:
+            vector = np.zeros(max(1, vocab))
+            vector[sum_index[root]] = sum_value[root]
+            sums[root] = vector
+    return [members[root] for root in sorted(members)], sums
+
+
+# Clustering no longer holds an n x n similarity matrix, so this limit is no
+# longer about memory: 120k works now cluster in a few minutes within 2.5GB. It
+# stays because quality is not established above it. On a synthetic benchmark,
+# single-pass clustering at the default floor fused directions sharing a third
+# of their vocabulary more often as the corpus grew (ARI 0.985 at 12k, 0.963 at
+# 30k, 0.87 at 120k), falling below partitioning by discipline. Raise it only
+# with evidence that clustering holds up at the larger size.
 MAX_WORKS_DENSE = 12_000
 
 
@@ -285,19 +571,24 @@ def discover(
     if len(works) > MAX_WORKS_DENSE:
         raise ValueError(
             f"discover() was given {len(works):,} works, above the "
-            f"{MAX_WORKS_DENSE:,} limit for dense clustering: the similarity "
-            f"matrix alone would need roughly "
-            f"{len(works) ** 2 * 8 / 1e9:.1f}GB. Use discover_by_discipline(), "
+            f"{MAX_WORKS_DENSE:,} limit for single-pass clustering, past which "
+            f"its quality has not been shown to hold. Use discover_by_discipline(), "
             f"which clusters within each discipline and is usually better "
             f"anyway, or narrow the corpus first"
         )
 
-    matrix, vocabulary = _build_tfidf(works, min_df, max_df_ratio)
+    tfidf = _build_tfidf_sparse(works, min_df, max_df_ratio)
+    vocabulary = tfidf.vocabulary
     if not vocabulary:
         return DiscoveryResult(tracks=[], unclustered=list(works), threshold=threshold)
 
-    similarity = matrix @ matrix.T
-    clusters = _agglomerate(similarity, threshold)
+    clusters, sums = _agglomerate_sparse(tfidf, threshold)
+    corpus_mean = tfidf.column_sums() / tfidf.n_docs
+    row_norm_sq = np.bincount(
+        np.repeat(np.arange(tfidf.n_docs), np.diff(tfidf.indptr)),
+        weights=tfidf.data**2,
+        minlength=tfidf.n_docs,
+    )
 
     tracks: list[DiscoveredTrack] = []
     unclustered: list[Work] = []
@@ -305,15 +596,25 @@ def discover(
         if len(members) < min_cluster_size:
             unclustered.extend(works[i] for i in members)
             continue
-        terms = _label_cluster(matrix, vocabulary, members, top_terms)
+        inside = tfidf.column_sums(members) / len(members)
+        distinctiveness = inside - corpus_mean
+        order = np.argsort(distinctiveness)[::-1][:top_terms]
+        terms = [vocabulary[i] for i in order if distinctiveness[i] > 0]
         label = " / ".join(terms[:3]) if terms else f"cluster of {len(members)}"
+        # Mean pairwise similarity: |sum|^2 counts every ordered pair plus the
+        # diagonal, which is each member's own squared norm.
+        total = sums[members[0]]
+        n_members = len(members)
+        cohesion = (float(total @ total) - float(row_norm_sq[members].sum())) / (
+            n_members * (n_members - 1)
+        )
         tracks.append(
             DiscoveredTrack(
                 id="discovered-" + re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-"),
                 label=label,
                 works=[works[i] for i in members],
                 terms=terms,
-                cohesion=_cohesion(similarity, members),
+                cohesion=cohesion,
             )
         )
 

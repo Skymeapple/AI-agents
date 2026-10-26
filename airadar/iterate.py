@@ -125,15 +125,25 @@ def record_prediction(store: Store, made_on: dt.date, scores, params: Params) ->
 
 
 def scorecard(store: Store, today: dt.date, observations: list[Observation]) -> list[Evaluation]:
-    """Evaluate every recorded prediction whose horizon has passed."""
+    """Evaluate every recorded prediction whose horizon has passed.
+
+    A prediction names apps by the ids they had on the day it was made. An app
+    that has moved since (a repo transfer) is looked up under its current id,
+    or its realised growth -- recorded under the new id -- would never be
+    compared and the app would silently drop out of the scorecard.
+    """
+    aliases = store.aliases()
     out = []
     for row in store.load_predictions():
         made_on = dt.date.fromisoformat(row["made_on"])
         horizon = int(row["horizon_days"])
         if made_on + dt.timedelta(days=horizon) > today:
             continue
+        predicted: dict[str, float] = {}
+        for app_id, score in row["scores"].items():
+            predicted.setdefault(aliases.get(app_id, (app_id,))[0], score)
         realised = realised_scores(observations, made_on, horizon)
-        out.append(evaluate(row["scores"], realised, made_on, horizon))
+        out.append(evaluate(predicted, realised, made_on, horizon))
     return out
 
 

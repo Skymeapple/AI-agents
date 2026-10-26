@@ -95,3 +95,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   every app read on the latest run and on one up to 3 days before, largest
   change per day first, skipping changes within rounding; the report renders
   the top 15 under "Measured since the last reading".
+- 2026-10-26: the scorecard follows moves. Forecasts store app ids as they
+  were on the day they were made; ai-job-search moved on 2026-10-22, so the
+  first matured forecast (2026-10-19) named it by an id no realised growth was
+  recorded under, and it would have silently dropped out of the first
+  scorecard. `scorecard` now resolves each forecast id through `aliases.jsonl`.
+  The yardstick (`realised_scores`, default parameters) is unchanged.

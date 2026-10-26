@@ -559,3 +559,25 @@ def test_report_lists_measured_movers(tmp_path):
                        url="https://github.com/o/r3")])
     text = render(analyse(store, later))
     assert "Measured since the last reading" in text and "| +150 |" in text
+
+
+def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
+    from airadar.iterate import scorecard
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    later = made + dt.timedelta(days=7)
+    apps = [f"gh:o/r{i}" for i in range(5)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        rows.append(obs(app_id, "stars", 1000, made, method=Method.PAGE_EXTRACT))
+        rows.append(obs(app_id, "stars", 1000 + 100 * (i + 1), later, method=Method.PAGE_EXTRACT))
+    store.add([], rows)
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": {a: 0.1 * (i + 1) for i, a in enumerate(apps)}}])
+    (before,) = scorecard(store, later, store.load_observations())
+    assert before.apps == 5
+    store.record_move("https://github.com/o/r4", "https://github.com/neworg/r4", later,
+                      "https://github.com/neworg/r4")
+    (after,) = scorecard(store, later, store.load_observations())
+    assert after.apps == 5 and after.spearman == pytest.approx(before.spearman)

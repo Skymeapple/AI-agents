@@ -5,10 +5,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Show measured movers on the shared page.** The report now has a
-  "Measured since the last reading" table; the page does not yet. Export it as
-  a `movers` dataset and add a table to `dashboard_page.html`.
-
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
@@ -101,3 +97,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   recorded under, and it would have silently dropped out of the first
   scorecard. `scorecard` now resolves each forecast id through `aliases.jsonl`.
   The yardstick (`realised_scores`, default parameters) is unchanged.
+- 2026-10-27: the shared page shows measured movers. The report has listed the
+  growth measured between the radar's own readings since 2026-10-25; the page
+  showed only the ranking, which leans on stated gains. The export now writes a
+  `movers` dataset (top 25) and the page has a "Measured since the last
+  reading" table beside the ranking.

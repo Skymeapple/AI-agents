@@ -49,6 +49,7 @@ FILES = {
     "findings": ["id", "heading", "text", "source"],
     "caveats": ["id", "text"],
     "scorecard": ["made_on", "apps_compared", "spearman", "precision_at_k", "k"],
+    "movers": ["app", "url", "previous_date", "previous", "now", "change", "per_day", "rounded"],
     "params": ["parameter", "value", "basis"],
     "sources": ["collector", "last_ok", "consecutive_failures", "last_count", "last_error"],
 }
@@ -125,6 +126,12 @@ def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[d
         "k": e.k,
     } for e in a.evaluations]
 
+    movers = [{
+        "app": a.apps[m.app_id].name, "url": a.apps[m.app_id].url,
+        "previous_date": m.start.isoformat(), "previous": round(m.before), "now": round(m.after),
+        "change": round(m.change), "per_day": round(m.per_day), "rounded": "yes" if m.rounded else "",
+    } for m in a.movers[:TOP_N]]
+
     predictions = store.load_predictions()
     first_expected = ""
     if not a.evaluations and predictions:
@@ -168,7 +175,7 @@ def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[d
     return {
         "summary": summary, "apps": apps, "directions": directions, "hypotheses": hypotheses,
         "findings": findings, "caveats": caveats, "scorecard": scorecard, "params": params,
-        "sources": sources,
+        "sources": sources, "movers": movers,
     }
 
 

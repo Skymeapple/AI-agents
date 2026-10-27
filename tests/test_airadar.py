@@ -403,6 +403,8 @@ def test_dashboard_export_writes_every_dataset(tmp_path):
     assert summary["takeaway"] == "MCP tooling is growing fastest."
     assert summary["first_scorecard_expected"] == "2026-10-26"
     assert summary["tuning_status"] == "No change"
+    with written["movers"].open() as handle:
+        assert next(csv.reader(handle)) == FILES["movers"]
 
 
 @pytest.mark.parametrize("override,message", [

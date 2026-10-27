@@ -118,6 +118,22 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
       </div>
       <p class="rd-sub" id="rd-apps-count"></p>
     </div>
+    <div class="rd-card">
+      <h3>Measured since the last reading</h3>
+      <p class="rd-sub">Stars gained between the radar's own two latest readings of each app, not a gain a page stated. A rounded page reading is accurate to about 50 stars.</p>
+      <div class="rd-tablebox rd-short">
+        <table class="rd-table" id="rd-movers" data-source="movers" data-row-key="app">
+          <thead><tr>
+            <th data-field="app">App</th>
+            <th class="rd-num rd-hide-narrow" data-field="previous">Previous</th>
+            <th class="rd-num" data-field="now">Now</th>
+            <th class="rd-num" data-field="per_day">Per day</th>
+            <th class="rd-hide-narrow" data-field="rounded">Rounded</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
   </section>
 
   <section class="rd-section" id="directions">
@@ -460,6 +476,7 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
     renderApps();
     renderDirections();
     renderSimpleTable('rd-hyp', 'hypotheses', [[r => r.direction], [r => r.pattern], [r => r.rationale, 'rd-hide-narrow'], [r => r.researched || 'not yet']]);
+    renderSimpleTable('rd-movers', 'movers', [[r => r.app], [r => fmtInt(Number(r.previous)), 'rd-num rd-hide-narrow'], [r => fmtInt(Number(r.now)), 'rd-num'], [r => (Number(r.per_day) >= 0 ? '+' : '') + fmtInt(Number(r.per_day)), 'rd-num'], [r => r.rounded ? 'rounded' : '', 'rd-hide-narrow']]);
     renderSimpleTable('rd-params', 'params', [[r => r.parameter], [r => d3.format('.2~f')(Number(r.value)), 'rd-num'], [r => r.basis, 'rd-hide-narrow']]);
     renderSimpleTable('rd-sources', 'sources', [[r => r.collector], [r => r.last_ok || 'Never'], [r => fmtInt(Number(r.last_count)), 'rd-num'], [r => fmtInt(Number(r.consecutive_failures)), 'rd-num'], [r => r.last_error, 'rd-hide-narrow']]);
     renderSimpleTable('rd-scorecard', 'scorecard', [[r => r.made_on], [r => fmtInt(Number(r.apps_compared)), 'rd-num'], [r => r.spearman === '' ? '' : fmtScore(Number(r.spearman)), 'rd-num'], [r => r.precision_at_k === '' ? '' : fmtPct0(Number(r.precision_at_k)), 'rd-num']]);

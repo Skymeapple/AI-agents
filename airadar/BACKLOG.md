@@ -102,3 +102,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   showed only the ranking, which leans on stated gains. The export now writes a
   `movers` dataset (top 25) and the page has a "Measured since the last
   reading" table beside the ranking.
+- 2026-10-28: the report shows the tuner's evidence. On the first day three
+  forecasts matured, the tuner can move a parameter for the first time; until
+  now the report gave only a one-line verdict, though every candidate's
+  backtest was already stored in `iterations.jsonl`. The Self-tuning section now
+  lists the current settings' mean rank correlation and every one-step
+  candidate with its change and share of days won, against the fixed bars
+  (`MIN_IMPROVEMENT`, `MIN_WIN_SHARE`, unchanged).

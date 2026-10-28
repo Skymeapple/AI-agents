@@ -11,6 +11,7 @@ from __future__ import annotations
 from sciscout.provenance import Estimate, Grade, ProvenanceLedger
 
 from .pipeline import Analysis
+from .iterate import MIN_IMPROVEMENT, MIN_WIN_SHARE
 from .params import KNOBS
 
 TOP_N = 25
@@ -177,6 +178,23 @@ def render(analysis: Analysis) -> str:
     if a.tuning is not None:
         verdict = "**Adopted**" if a.tuning.adopted else "No change"
         lines.append(f"{verdict}: {a.tuning.reason}.")
+        t = a.tuning
+        if t.candidates_tried and t.baseline is not None:
+            lines += [
+                "",
+                f"Every one-step candidate, backtested over the same {t.days} matured days. A candidate "
+                f"must raise mean rank correlation by at least {MIN_IMPROVEMENT:+.2f} and win on at least "
+                f"{MIN_WIN_SHARE:.0%} of days.",
+                "",
+                "| Candidate | Mean Spearman | Change | Days better |",
+                "| --- | --- | --- | --- |",
+                f"| current settings | {t.baseline:.3f} | – | – |",
+            ]
+            for c in sorted(t.candidates_tried, key=lambda c: -c["spearman"]):
+                lines.append(
+                    f"| {c['knob']} → {c['value']:g} | {c['spearman']:.3f} | "
+                    f"{c['spearman'] - t.baseline:+.3f} | {c['win_share']:.0%} |"
+                )
     else:
         lines.append("_Tuning was not run._")
     lines += ["", "| Parameter | Value | Basis |", "| --- | --- | --- |"]

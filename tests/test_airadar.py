@@ -583,3 +583,23 @@ def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
                       "https://github.com/neworg/r4")
     (after,) = scorecard(store, later, store.load_observations())
     assert after.apps == 5 and after.spearman == pytest.approx(before.spearman)
+
+
+def test_report_shows_every_tuning_candidate_against_the_baseline(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    rows = synthetic_world()
+    params = Params.defaults().with_value("trust.reported", 1.0).with_value("weight.reported_growth", 1.0)
+    outcome = tune(params, rows, D0 + dt.timedelta(days=24))
+    assert outcome.candidates_tried
+    store = _daily_store(tmp_path)
+    a = analyse(store, dt.date(2026, 10, 19))
+    a.tuning = outcome
+    text = render(a)
+    assert "| current settings |" in text and "Days better" in text
+    best = max(outcome.candidates_tried, key=lambda c: c["spearman"])
+    assert f"| {best['knob']} → {best['value']:g} |" in text
+    # A day without a backtest (too little history) shows no table.
+    a.tuning = tune(Params.defaults(), synthetic_world(days=5), D0 + dt.timedelta(days=5))
+    assert "| current settings |" not in render(a)

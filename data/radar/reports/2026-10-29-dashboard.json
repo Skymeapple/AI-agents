@@ -1,0 +1,40 @@
+{
+ "takeaway": "A fourth forecast has been scored and the radar's ranking held its level (rank correlation 0.69, 9 of its top 15 right). Design skills for coding agents remain the fastest-moving open category, now joined by taste-skill at 104.8k stars.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Four forecasts scored; the ranking holds its level",
+   "text": "Rank correlation with the growth that followed: 0.55 (Oct 19), 0.66 (Oct 20), 0.71 (Oct 21), 0.69 (Oct 22). Top-15 hit rate 60% on the last three, against about 25% for random picks of 15 from 61 apps.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-29.md"
+  },
+  {
+   "id": "tuner",
+   "heading": "The self-tuner held again",
+   "text": "Over 4 days, weighing stated gains 1.0 to 0.9 raises mean rank correlation from 0.656 to 0.661, better on every day but under the +0.02 bar. Weight caps stay at 1.0.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-29.md"
+  },
+  {
+   "id": "design",
+   "heading": "Design skills: five on the radar now",
+   "text": "impeccable gained 2,473 stars in a day (to 93,460) and hallmark 1,609. New today: leonxlnx/taste-skill at 104.8k stars (+13,933 in 30 days) and jakubkrehel/skills at 9.1k.",
+   "source": "https://github.com/trending?since=monthly"
+  },
+  {
+   "id": "bigtech",
+   "heading": "Big tech reports growth rates, not levels",
+   "text": "Alphabet: the Gemini app is at one billion users, not labelled MAU. Microsoft: Copilot daily users up nearly 50% in a quarter, with no seat count. Read from search results.",
+   "source": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/"
+  },
+  {
+   "id": "jailbreaks",
+   "heading": "A jailbreak-prompt repo grew 26% in a day",
+   "text": "togg53192-cmd/jailbreaks went from 5,983 to 7,536 stars, the fastest relative gain among today's measured movers. It is not judged inorganic.",
+   "source": "https://github.com/togg53192-cmd/jailbreaks"
+  }
+ ],
+ "caveats": [
+  "Four matured forecasts are still a small sample; the tuner's bar keeps noise-sized gains from moving any setting.",
+  "Every company figure today came from search-result summaries; two rows (one duplicate, one with an inferred date) were dropped before ingest.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

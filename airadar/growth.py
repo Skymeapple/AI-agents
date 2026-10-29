@@ -130,22 +130,24 @@ def extract_signals(
     # earlier date was not available on that earlier date.
     known = [o for o in observations if o.known_on <= asof]
 
-    levels: dict[tuple[str, str], dict[dt.date, Observation]] = {}
-    grouped: dict[tuple[str, str], list[Observation]] = defaultdict(list)
+    # Levels are compared only within one basis: 1.2B weekly users and 1.1B
+    # monthly users are two different counts, not a change of 100M.
+    levels: dict[tuple[str, str, str | None], dict[dt.date, Observation]] = {}
+    grouped: dict[tuple[str, str, str | None], list[Observation]] = defaultdict(list)
     for o in known:
         if o.spec.type is MetricType.LEVEL:
-            grouped[(o.app_id, o.metric)].append(o)
+            grouped[(o.app_id, o.metric, o.basis)].append(o)
     for key, rows in grouped.items():
         levels[key] = _best_per_day(rows)
 
     family_levels: dict[tuple[str, str], dict[dt.date, Observation]] = defaultdict(dict)
-    for (app_id, metric), by_day in levels.items():
+    for (app_id, metric, _basis), by_day in levels.items():
         family_levels[(app_id, METRICS[metric].family)].update(by_day)
 
     signals: dict[str, list[Signal]] = defaultdict(list)
 
     # delta: our own two snapshots of one level metric
-    for (app_id, metric), by_day in levels.items():
+    for (app_id, metric, _basis), by_day in levels.items():
         days = sorted(by_day)
         endpoints = [d for d in days if d > window(by_day[d].method)[0]]
         if not endpoints:

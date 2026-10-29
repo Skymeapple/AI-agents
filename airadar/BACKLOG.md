@@ -11,12 +11,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   (`weight.delta` vs `weight.period`) decide first; if they can't, give
   stated period signals the same age decay reported figures already have.
 
-- **One metric, mixed definitions.** `users` mixes WAU, MAU and web unique
-  visitors, and `revenue_annualized_usd` mixes gross and net-of-partner run-rates
-  (OpenAI: $70B per Axios on 2026-09-29, $50B per the FT on 2026-09-30). Deltas
-  between them are artefacts (ChatGPT −$20B in a day; Claude 245M MAU -> 111M
-  web uniques). Give observations a definition qualifier (e.g. `basis: wau|mau|
-  web_uniques`, `gross|net`) and only diff like with like.
 - **Re-observation pages are rounded.** GitHub repo pages read through WebFetch
   show "58.7k", never the exact count. Repos on a trending page get exact counts
   the same day; the rest are only resolvable to 100 stars. Find a page that shows
@@ -109,3 +103,14 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   lists the current settings' mean rank correlation and every one-step
   candidate with its change and share of days won, against the fixed bars
   (`MIN_IMPROVEMENT`, `MIN_WIN_SHARE`, unchanged).
+- 2026-10-29: levels are compared only within one basis. `users` mixed WAU,
+  MAU, registered and web-unique counts, and revenue mixed gross and net
+  run-rates, so the radar read ChatGPT's $70B gross and $50B net run-rates a
+  day apart as -$20B. Observations take an optional `basis` from a fixed
+  vocabulary per metric (users: dau/wau/mau/registered/paid_seats/web_uniques;
+  revenue: gross/net/contracted); level deltas are computed within one basis
+  only. Observations recorded before today carry no basis and form their own
+  group, so old artefacts remain until those apps are re-reported with one.
+- 2026-10-29 (decision, not a change): the `weight.delta` and `weight.period`
+  caps stay at 1.0. Lowering `weight.period` achieves the same relative effect
+  within the current bounds, so no guardrail is loosened.

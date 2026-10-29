@@ -603,3 +603,28 @@ def test_report_shows_every_tuning_candidate_against_the_baseline(tmp_path):
     # A day without a backtest (too little history) shows no table.
     a.tuning = tune(Params.defaults(), synthetic_world(days=5), D0 + dt.timedelta(days=5))
     assert "| current settings |" not in render(a)
+
+
+def test_levels_on_different_bases_are_not_differenced():
+    def users(value, day, basis):
+        return Observation("c", "users", float(value), day, "https://example.com/r", Method.REPORTED,
+                           "test", basis=basis)
+
+    d1 = D0 + dt.timedelta(days=30)
+    # 1.1B monthly then 1.2B weekly: two different counts, not +100M.
+    rows = [users(1.1e9, D0, "mau"), users(1.2e9, d1, "wau")]
+    assert extract_signals(rows, asof=d1) == {}
+    # The same basis on both readings is a real change.
+    rows.append(users(1.0e9, D0, "wau"))
+    (s,) = extract_signals(rows, asof=d1)["c"]
+    assert s.abs_per_day == pytest.approx(0.2e9 / 30)
+
+
+def test_inbox_checks_the_basis_against_the_metric():
+    batch = parse_batch(inbox_payload(metric="users", period_days=None, value=5, basis="mau"))
+    assert batch.observations[0].basis == "mau"
+    assert Observation.from_dict(batch.observations[0].to_dict()).basis == "mau"
+    with pytest.raises(InboxError, match="basis"):
+        parse_batch(inbox_payload(metric="users", period_days=None, value=5, basis="monthly-ish"))
+    with pytest.raises(InboxError, match="basis"):
+        parse_batch(inbox_payload(metric="stars", period_days=None, value=5, basis="net"))

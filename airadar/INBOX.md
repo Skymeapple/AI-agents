@@ -63,6 +63,12 @@ offending observation, rather than silently dropping or defaulting fields.
   exact as stated. A change between two readings no larger than their rounding
   is not counted as growth, and an exact count beats a rounded one on the same
   day.
+- `basis` (optional) says what a number counts when the metric has several
+  readings, and is required in spirit whenever the source says: for `users`
+  one of `dau`, `wau`, `mau`, `registered`, `paid_seats`, `web_uniques`; for
+  `revenue_annualized_usd` one of `gross`, `net`, `contracted`. Levels on
+  different bases are never compared, so 1.2B weekly users after 1.1B monthly
+  users is not read as growth. Other metrics take no basis.
 - `source_url` is required for every observation. A number with no URL is not
   accepted, however plausible.
 - Never estimate, interpolate or fill in a value. If a page does not state a

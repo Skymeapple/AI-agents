@@ -190,6 +190,14 @@ class App:
         )
 
 
+# The definitions a metric is reported under. A metric with no entry takes no
+# basis: stars are stars.
+BASES = {
+    "users": ("dau", "wau", "mau", "registered", "paid_seats", "web_uniques"),
+    "revenue_annualized_usd": ("gross", "net", "contracted"),
+}
+
+
 @dataclass(frozen=True)
 class Observation:
     app_id: str
@@ -212,6 +220,10 @@ class Observation:
     # value is exact as stated. Two rounded readings a day apart can differ by
     # less than their rounding, and that difference is not growth.
     rounded_to: float | None = None
+    # What the number counts, when the source says and the metric admits more
+    # than one reading: weekly vs monthly users, gross vs net revenue. Readings
+    # on different bases are never differenced against each other.
+    basis: str | None = None
 
     def __post_init__(self) -> None:
         spec = METRICS.get(self.metric)
@@ -227,6 +239,10 @@ class Observation:
             raise ValueError("every observation needs a source_url")
         if self.collected_on is not None and self.collected_on < self.observed_on:
             raise ValueError("collected_on cannot precede observed_on")
+        if self.basis is not None and self.basis not in BASES.get(self.metric, ()):
+            raise ValueError(
+                f"basis {self.basis!r} is not one of {sorted(BASES.get(self.metric, ()))} for {self.metric}"
+            )
         if self.rounded_to is not None and not self.rounded_to > 0:
             raise ValueError(f"rounded_to must be positive (got {self.rounded_to})")
 
@@ -268,6 +284,7 @@ class Observation:
             "note": self.note,
             "collected_on": self.collected_on.isoformat() if self.collected_on else None,
             "rounded_to": self.rounded_to,
+            "basis": self.basis,
         }
 
     @classmethod
@@ -285,4 +302,5 @@ class Observation:
             note=raw.get("note", ""),
             collected_on=dt.date.fromisoformat(raw["collected_on"]) if raw.get("collected_on") else None,
             rounded_to=float(raw["rounded_to"]) if raw.get("rounded_to") is not None else None,
+            basis=raw.get("basis"),
         )

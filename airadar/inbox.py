@@ -23,7 +23,7 @@ from .models import App, AppKind, Method, Observation, canonical_id
 APP_FIELDS = {"name", "url", "kind", "description", "tags"}
 OBS_FIELDS = {
     "app", "metric", "value", "period_days", "observed_on", "source_url",
-    "method", "note", "via", "rounded_to",
+    "method", "note", "via", "rounded_to", "basis",
 }
 
 
@@ -132,6 +132,7 @@ def parse_batch(payload: dict, origin: str = "<inbox>") -> InboxBatch:
                 note=str(raw.get("note") or ""),
                 collected_on=collected_at,
                 rounded_to=float(rounded_to) if rounded_to is not None else None,
+                basis=str(raw["basis"]) if raw.get("basis") is not None else None,
             )
         except ValueError as exc:
             raise InboxError(f"{where}: {exc}") from None

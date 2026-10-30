@@ -78,9 +78,11 @@ def render(analysis: Analysis) -> str:
         lines += [
             "### Measured since the last reading", "",
             "Stars gained between the radar's own two latest readings of each app, not a gain a "
-            "page stated. ≈ marks a rounded page reading (accurate to about ±50).", "",
-            "| App | Previous | Now | Change | Per day |",
-            "| --- | --- | --- | --- | --- |",
+            "page stated. ≈ marks a rounded page reading (accurate to about ±50). Per day before is "
+            "the pace between the two readings before that, so a faster or slower day shows; – "
+            "means the radar has no earlier pair.", "",
+            "| App | Previous | Now | Change | Per day | Per day before |",
+            "| --- | --- | --- | --- | --- | --- |",
         ]
         for m in a.movers[:MOVERS_N]:
             def mark(rounded: bool) -> str:
@@ -88,7 +90,8 @@ def render(analysis: Analysis) -> str:
             lines.append(
                 f"| {_link(a, m.app_id)} | {mark(m.before_rounded)}{m.before:,.0f} ({m.start.isoformat()}) | "
                 f"{mark(m.after_rounded)}{m.after:,.0f} | {mark(m.rounded)}{m.change:+,.0f} | "
-                f"{mark(m.rounded)}{m.per_day:+,.0f} |"
+                f"{mark(m.rounded)}{m.per_day:+,.0f} | "
+                + (f"{mark(m.prior_rounded)}{m.prior_per_day:+,.0f} |" if m.prior_per_day is not None else "– |")
             )
         lines += ["", f"{len(a.movers)} apps were read on both runs.", ""]
     if a.gone:

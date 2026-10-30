@@ -10,6 +10,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
   (`weight.delta` vs `weight.period`) decide first; if they can't, give
   stated period signals the same age decay reported figures already have.
+  Tested 2026-10-30, not adopted: dropping a stated gain from the forecast
+  when the app has a newer measured delta of the same family changed the
+  4-day backtest mean Spearman from 0.656 to 0.655 (Oct 20 +0.019, Oct 21
+  -0.002, Oct 22 -0.021). Revisit once more forecasts have matured.
 
 - **Re-observation pages are rounded.** GitHub repo pages read through WebFetch
   show "58.7k", never the exact count. Repos on a trending page get exact counts
@@ -111,6 +115,13 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   revenue: gross/net/contracted); level deltas are computed within one basis
   only. Observations recorded before today carry no basis and form their own
   group, so old artefacts remain until those apps are re-reported with one.
-- 2026-10-29 (decision, not a change): the `weight.delta` and `weight.period`
-  caps stay at 1.0. Lowering `weight.period` achieves the same relative effect
+- 2026-10-29 (recommendation, not a change; made by the orchestrating
+  session, not by a person, who has not weighed in): the `weight.delta` and
+  `weight.period` caps stay at 1.0. Lowering `weight.period` achieves the same relative effect
   within the current bounds, so no guardrail is loosened.
+- 2026-10-30: measured movers show the pace before. The analysis kept
+  describing movers as "easing" or "accelerating" from memory of earlier
+  reports. Each mover now carries the per-day pace between the two readings
+  before the latest pair (none when there is no earlier pair, or when that
+  change is within the readings' rounding), and the report's table shows it as
+  "Per day before".

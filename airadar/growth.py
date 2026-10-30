@@ -256,7 +256,9 @@ def extract_signals(
 @dataclass
 class Mover:
     """A level metric read on two of the radar's own runs: the newest reading
-    on ``asof`` and the one before it."""
+    on ``asof`` and the one before it. ``prior_per_day`` is the pace over the
+    pair of readings before that, when the radar has one, so a reader can see
+    whether a mover is speeding up or slowing down."""
     app_id: str
     metric: str
     start: dt.date
@@ -265,6 +267,8 @@ class Mover:
     after: float
     before_rounded: bool = False
     after_rounded: bool = False
+    prior_per_day: float | None = None
+    prior_rounded: bool = False
 
     @property
     def rounded(self) -> bool:
@@ -285,7 +289,8 @@ def measured_movers(observations: list[Observation], asof: dt.date, metric: str 
     """Apps read on ``asof`` and on an earlier run at most ``max_gap_days``
     back, largest change per day first. This is the growth the radar measured
     itself, as opposed to growth a page stated. A change within the readings'
-    rounding is left out, as it is for delta signals."""
+    rounding is left out, as it is for delta signals; so is a prior pace whose
+    change is within its readings' rounding."""
     rows: dict[str, list[Observation]] = defaultdict(list)
     for o in observations:
         if o.metric == metric and o.known_on <= asof:
@@ -299,13 +304,24 @@ def measured_movers(observations: list[Observation], asof: dt.date, metric: str 
         if not earlier:
             continue
         o0, o1 = by_day[max(earlier)], by_day[asof]
-        slack = ((o0.rounded_to or 0.0) + (o1.rounded_to or 0.0)) / 2
-        if slack and abs(o1.value - o0.value) <= slack:
+        if _within_rounding(o0, o1):
             continue
+        prior, prior_rounded = None, False
+        before = [d for d in by_day if d < o0.observed_on and (o0.observed_on - d).days <= max_gap_days]
+        if before:
+            op = by_day[max(before)]
+            if not _within_rounding(op, o0):
+                prior = (o0.value - op.value) / (o0.observed_on - op.observed_on).days
+                prior_rounded = bool(op.rounded_to or o0.rounded_to)
         out.append(Mover(app_id, metric, o0.observed_on, asof, o0.value, o1.value,
-                         bool(o0.rounded_to), bool(o1.rounded_to)))
+                         bool(o0.rounded_to), bool(o1.rounded_to), prior, prior_rounded))
     out.sort(key=lambda m: (-m.per_day, m.app_id))
     return out
+
+
+def _within_rounding(o0: Observation, o1: Observation) -> bool:
+    slack = ((o0.rounded_to or 0.0) + (o1.rounded_to or 0.0)) / 2
+    return bool(slack) and abs(o1.value - o0.value) <= slack
 
 
 def _nearest_level(by_day: dict[dt.date, Observation], when: dt.date, tolerance: int = 3):

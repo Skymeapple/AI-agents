@@ -549,6 +549,23 @@ def test_measured_movers_compare_the_last_two_readings():
     assert f.before_rounded and not f.after_rounded and f.rounded
 
 
+def test_measured_movers_carry_the_pace_before():
+    from airadar.growth import measured_movers
+
+    d0, d1, d2 = D0, D0 + dt.timedelta(days=1), D0 + dt.timedelta(days=2)
+    rows = [
+        obs("a", "stars", 1000, d0), obs("a", "stars", 1300, d1), obs("a", "stars", 2300, d2),
+        obs("b", "stars", 5000, d1), obs("b", "stars", 5200, d2),            # no earlier pair
+        Observation("c", "stars", 9000.0, d0, "https://github.com/o/c", Method.PAGE_EXTRACT,
+                    "test", rounded_to=100),
+        obs("c", "stars", 9040, d1), obs("c", "stars", 9500, d2),            # prior within rounding
+    ]
+    by_id = {m.app_id: m for m in measured_movers(rows, asof=d2)}
+    assert by_id["a"].prior_per_day == pytest.approx(300) and not by_id["a"].prior_rounded
+    assert by_id["b"].prior_per_day is None
+    assert by_id["c"].prior_per_day is None
+
+
 def test_report_lists_measured_movers(tmp_path):
     from airadar.pipeline import analyse
     from airadar.report import render
@@ -560,7 +577,7 @@ def test_report_lists_measured_movers(tmp_path):
                    obs("gh:o/r3", "stars", 250, dt.date(2026, 10, 19), method=Method.PAGE_EXTRACT,
                        url="https://github.com/o/r3")])
     text = render(analyse(store, later))
-    assert "Measured since the last reading" in text and "| +150 |" in text
+    assert "Measured since the last reading" in text and "| +150 | – |" in text
 
 
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):

@@ -51,6 +51,9 @@ class Analysis:
     gone: dict[str, dict] = field(default_factory=dict)
     # Growth the radar measured between its own last two readings.
     movers: list = field(default_factory=list)
+    # The latest review of each flagged app, so a check already made is shown
+    # beside the flag instead of being repeated.
+    reviews: dict[str, dict] = field(default_factory=dict)
 
 
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
@@ -130,6 +133,8 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         health=source_health(store.load_runs()),
         gone=gone,
         movers=[m for m in measured_movers(observations, date) if m.app_id in apps and m.app_id not in gone],
+        reviews={s.app_id: r for s in scores if s.anomalies
+                 for r in [store.review_for(s.app_id, date)] if r},
     )
 
 

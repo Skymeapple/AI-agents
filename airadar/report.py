@@ -69,6 +69,9 @@ def render(analysis: Analysis) -> str:
         for rank, s in enumerate(a.scores[:TOP_N], 1):
             app = a.apps[s.app_id]
             flags = "; ".join(s.anomalies) or ""
+            if flags and s.app_id in a.reviews:
+                r = a.reviews[s.app_id]
+                flags += f" — **reviewed {r['observed_on']}: {r['verdict']}** ([checked]({r['source_url']}))"
             lines.append(
                 f"| {rank} | {_link(a, s.app_id)} | {app.kind.value} | {', '.join(app.tags[:3])} | "
                 f"{s.score:.2f} | {s.evidence:.2f} | {s.headline()} | {flags} |"

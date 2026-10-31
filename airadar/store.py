@@ -15,6 +15,7 @@ data/radar/
   availability.jsonl    append-only: an app's page found gone (404) or back, with evidence
   aliases.jsonl         append-only: an app that moved (repo transfer, rename) to a new url
   verdicts.jsonl        append-only: what research found when it tested a hypothesis
+  reviews.jsonl         append-only: what a check of a flagged app's page found
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -95,6 +96,7 @@ class Store:
         self.availability_path = self.root / "availability.jsonl"
         self.aliases_path = self.root / "aliases.jsonl"
         self.verdicts_path = self.root / "verdicts.jsonl"
+        self.reviews_path = self.root / "reviews.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -273,6 +275,38 @@ class Store:
             if best is None or rank >= best[0]:
                 best = (rank, row)
         return best[1] if best else None
+
+    # -- anomaly reviews -----------------------------------------------------------
+
+    REVIEWS = ("organic", "inorganic", "unclear")
+
+    def record_review(self, url: str, verdict: str, observed_on: dt.date,
+                      source_url: str, note: str = "") -> None:
+        """Record what a check of a flagged app found: whether its growth looks
+        real. The flag and its scoring penalty stay; the review sits beside the
+        flag so the next run doesn't re-check an app already judged."""
+        if verdict not in self.REVIEWS:
+            raise ValueError(f"review must be one of {self.REVIEWS}, got {verdict!r}")
+        if not source_url.strip():
+            raise ValueError("a review needs the source_url of the page that was checked")
+        _append_jsonl(self.reviews_path, [{
+            "app_id": canonical_id(url), "verdict": verdict,
+            "observed_on": observed_on.isoformat(), "source_url": source_url, "note": note,
+        }])
+
+    def review_for(self, app_id: str, asof: dt.date) -> dict | None:
+        """The latest review on or before ``asof`` of this app, under any id it
+        has had."""
+        aliases = self.aliases()
+        best = None
+        for row in _read_jsonl(self.reviews_path):
+            if aliases.get(row["app_id"], (row["app_id"],))[0] != app_id:
+                continue
+            if dt.date.fromisoformat(row["observed_on"]) > asof:
+                continue
+            if best is None or row["observed_on"] >= best["observed_on"]:
+                best = row
+        return best
 
     def gone_as_of(self, asof: dt.date) -> dict[str, dict]:
         """Apps whose latest availability record on or before ``asof`` says gone."""

@@ -580,6 +580,43 @@ def test_report_lists_measured_movers(tmp_path):
     assert "Measured since the last reading" in text and "| +150 | – |" in text
 
 
+def test_reviews_are_append_only_and_follow_moves(tmp_path):
+    store = Store(tmp_path)
+    day = dt.date(2026, 10, 27)
+    with pytest.raises(ValueError, match="review must be"):
+        store.record_review("https://github.com/o/r", "fine", day, "https://github.com/o/r")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_review("https://github.com/o/r", "organic", day, " ")
+    store.record_review("https://github.com/o/r", "unclear", day, "https://github.com/o/r")
+    store.record_review("https://github.com/o/r", "organic", day + dt.timedelta(days=2),
+                        "https://github.com/o/r", "launch week")
+    assert store.review_for("gh:o/r", day)["verdict"] == "unclear"         # asof hides later ones
+    assert store.review_for("gh:o/r", day + dt.timedelta(days=3))["verdict"] == "organic"
+    store.record_move("https://github.com/o/r", "https://github.com/n/r", day, "https://github.com/n/r")
+    assert store.review_for("gh:n/r", day + dt.timedelta(days=3))["note"] == "launch week"
+    assert store.review_for("gh:o/other", day + dt.timedelta(days=3)) is None
+
+
+def test_report_shows_a_review_beside_the_flag(tmp_path):
+    from airadar.dashboard import _flag
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 10_000, later, Method.PAGE_EXTRACT, url="https://github.com/o/r3"),
+                   obs("gh:o/r3", "stars_gained", 8_000, later, Method.PAGE_EXTRACT, period=7,
+                       url="https://github.com/o/r3")])
+    assert "reviewed" not in render(analyse(store, later))
+    store.record_review("https://github.com/o/r3", "organic", later, "https://github.com/o/r3/commits")
+    a = analyse(store, later)
+    text = render(a)
+    assert "80%" in text and "**reviewed 2026-10-20: organic**" in text
+    (flagged,) = [s for s in a.scores if s.app_id == "gh:o/r3"]
+    assert _flag(a, flagged).endswith("(reviewed 2026-10-20: organic)")
+    assert flagged.anomalies                                                # the flag itself stays
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

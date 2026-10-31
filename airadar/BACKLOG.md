@@ -40,6 +40,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   Python process. Lexical clustering over one-line descriptions is weak.
 - **Star-farming check.** Repos flagged as anomalous could be checked against
   forks, issues and contributor counts automatically, not only by the agent.
+  Recheck notes now carry forks and watchers as text; recording them as
+  metrics that don't feed the growth score would make this automatic.
 
 ## Done
 
@@ -125,3 +127,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   before the latest pair (none when there is no earlier pair, or when that
   change is within the readings' rounding), and the report's table shows it as
   "Per day before".
+- 2026-10-31: anomaly reviews. The same launch-week repos (thinkrail, cindy,
+  openbot) tripped the "most stars gained this week" flag every day, and each
+  day's run had to re-establish that they had already been checked. A check
+  is now recorded (`airadar review <url> organic|inorganic|unclear <checked
+  url>`, append-only `reviews.jsonl`, following repo moves), and the report and
+  shared page show the latest review beside the flag. The flag and its scoring
+  penalty are unchanged: a review explains a flag, it doesn't clear it.

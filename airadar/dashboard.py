@@ -87,6 +87,12 @@ def load_editorial(path: Path) -> dict:
     return {"takeaway": takeaway, "findings": findings, "caveats": caveats}
 
 
+def _flag(a: Analysis, s) -> str:
+    flag = "; ".join(s.anomalies)
+    r = a.reviews.get(s.app_id) if flag else None
+    return f"{flag} (reviewed {r['observed_on']}: {r['verdict']})" if r else flag
+
+
 def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[dict]]:
     a = analysis
     apps = []
@@ -101,7 +107,7 @@ def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[d
             "rank": rank, "app": app.name, "url": app.url, "kind": app.kind.value.replace("_", " "),
             "tags": ", ".join(app.tags[:3]), "score": round(s.score, 4), "evidence": round(s.evidence, 3),
             "signal": s.headline(), "evidence_type": evidence_type, "weekly_growth_pct": weekly,
-            "flag": "; ".join(s.anomalies),
+            "flag": _flag(a, s),
         })
 
     directions = [{

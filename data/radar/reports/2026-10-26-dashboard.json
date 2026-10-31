@@ -1,0 +1,41 @@
+{
+ "takeaway": "The radar's first forecast scored a Spearman correlation of 0.55: 8 of its top 15 picks for the week from Oct 19 were among the 15 fastest growers it then measured, against about 5 expected by chance. Cloudflare's security-audit skill is now #1 on GitHub's weekly trending.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "First forecast: 8 of the top 15 picks were right",
+   "text": "The Oct 19 ranking, scored against growth measured over the next 7 days across 46 apps: Spearman 0.55, precision@15 53%. It over-ranked apps with stale stated gains and missed steady growers and a surprise launch (NVIDIA OpenShell).",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-26.md"
+  },
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill tops the weekly trending page",
+   "text": "+15,072 stars this week, 47,385 in total. The radar measured +46% since Oct 19 (32,421 to 47,385). No announcement or commit explains it.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "rea",
+   "heading": "morluto/rea left the trending pages but still grows",
+   "text": "It is on none of today's trending pages, but its own page shows about 386.4k stars, roughly 6,400 more than yesterday. No takedown or fake-star finding has been reported.",
+   "source": "https://github.com/morluto/rea"
+  },
+  {
+   "id": "design",
+   "heading": "Anti-AI-slop design skills are the fastest new movers",
+   "text": "Nutlope/hallmark gained 1,994 stars in a day (to 34,481) and pbakaus/impeccable 1,440. Both are design skills that stop coding agents producing generic interfaces.",
+   "source": "https://github.com/trending?since=daily"
+  },
+  {
+   "id": "vendors",
+   "heading": "More big vendors ship agent tooling",
+   "text": "Microsoft's skill-recorder (records a task and turns it into an agent skill) and JetBrains' thinkrail (an agentic IDE) are new on trending, after AWS's agent toolkit yesterday.",
+   "source": "https://github.com/microsoft/skill-recorder"
+  }
+ ],
+ "caveats": [
+  "One matured forecast is a single data point, not a validation; the tuner needs three before it may change any setting.",
+  "Several apps still rank on gains stated a week ago; the first scorecard suggests this over-ranks them.",
+  "Every company figure today came from search-result summaries; one derived growth figure was removed before ingest.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

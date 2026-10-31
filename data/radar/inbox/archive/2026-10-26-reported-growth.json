@@ -1,0 +1,191 @@
+{
+  "collected_at": "2026-10-26",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "1Password",
+        "url": "https://1password.com",
+        "kind": "product",
+        "description": "Password and identity security platform, now extending access management to AI agents (1Password for Agents).",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 500000000,
+      "observed_on": "2026-10-22",
+      "source_url": "https://www.morningstar.com/news/business-wire/20261022714042/1password-surpasses-500-million-in-arr-as-developers-and-ai-builders-accelerate-growth",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Business Wire release Oct 22: surpassed $500M ARR (lower bound), company-wide, up from $400M in Nov 2025; net new ARR up ~60% in first nine months of FY26 (~90% YoY in Q3), growth attributed to developers/AI builders and agents. Also reported by WSJ via Techmeme (techmeme.com/261022/p26)."
+    },
+    {
+      "app": {
+        "name": "Mave",
+        "url": "https://www.mave.com",
+        "kind": "product",
+        "description": "Agentic security-operations platform whose AI agents investigate alerts across a company's existing cloud, endpoint and SaaS data.",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 400,
+      "period_days": 365,
+      "observed_on": "2026-10-22",
+      "source_url": "https://pomegra.io/startups/mave-raises-34m-for-agentic-secops-in-2026-2026-10-26",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company-reported with $28M Series A (Red Dot lead) announced Oct 22: ARR grew more than 400% over the past year (lower bound); absolute ARR not disclosed (RuntimeWire: runtimewire.com/article/mave-raises-28m-ai-security-investigations). Website from Caplight/Startupim listing."
+    },
+    {
+      "app": {
+        "name": "Evos",
+        "url": "https://getevos.ai",
+        "kind": "product",
+        "description": "Autonomous AI 'operators' for freight, logistics and manufacturing SMBs (Workhorse platform), e.g. carrier-invoice auditing.",
+        "tags": [
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 1000000,
+      "observed_on": "2026-10-14",
+      "source_url": "https://www.supplychain247.com/article/evos-9-million-funding-ai-freight-manufacturing",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company says it passed $1M ARR about four weeks after going live (lower bound); announced with $9M pre-seed (Uncork, Field Ventures) ~Oct 14, 2026; annualized, not cash collected. Also arr.club/signal/evos-hit-1m-arr-four-weeks-raised-9m-pre-seed."
+    },
+    {
+      "app": {
+        "name": "GMI Cloud",
+        "url": "https://www.gmicloud.ai",
+        "kind": "product",
+        "description": "On-demand GPU cloud and inference infrastructure provider.",
+        "tags": [
+          "llm-inference",
+          "agent-runtime"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 400,
+      "period_days": 365,
+      "observed_on": "2026-09-30",
+      "source_url": "https://siliconangle.com/2026/09/30/on-demand-gpu-infrastructure-startup-gmi-cloud-raises-263m-to-fuel-global-expansion/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). With $223M Series B + credit facility (Sep 30): realized ARR up about five-fold (5x = +400%) over the past year; contracted ARR expected to reach 10x the Dec 2025 level by year-end (projection, not recorded)."
+    },
+    {
+      "app": {
+        "name": "fal",
+        "url": "https://fal.ai",
+        "kind": "product",
+        "description": "Generative media inference platform/API for image, video and audio models.",
+        "tags": [
+          "llm-inference",
+          "image-generation",
+          "video-generation"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 800000000,
+      "observed_on": "2026-09-25",
+      "source_url": "https://sovereignmagazine.com/article/fal-fireworks-inference-valuations-15b-30b",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Media report: The Information (Sep 25), citing a person familiar, said fal's annualized revenue reached $800M (up from $400M in March 2026 and $200M in Oct 2025) amid talks at ~$15B valuation; company-wide; NOT company-confirmed."
+    },
+    {
+      "app": {
+        "name": "Wonderful",
+        "url": "https://wonderful.ai",
+        "kind": "product",
+        "description": "Enterprise platform for building AI agents for customer service (voice, chat, email) and internal functions across many languages.",
+        "tags": [
+          "customer-support",
+          "enterprise-agent",
+          "voice"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 70000000,
+      "observed_on": "2026-09-02",
+      "source_url": "https://www.calcalistech.com/ctechnews/article/i3481b92n",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Reported with $550M Series C at $5B (Sep 2): ~$70M revenue run rate / ARR, company-wide; approximate; outlets do not clearly say whether company-confirmed."
+    },
+    {
+      "app": {
+        "name": "Island",
+        "url": "https://www.island.io",
+        "kind": "product",
+        "description": "Enterprise browser and security platform repositioning as a governance layer for employees and AI agents.",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 200000000,
+      "observed_on": "2026-09-24",
+      "source_url": "https://calcalistech.com/ctechnews/article/bkonawz9fx",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). CTech reported ARR of about $200M with $400M Series F at $6.4B (Sep 24); company itself did not publish the figure; approximate, company-wide."
+    },
+    {
+      "app": {
+        "name": "Island",
+        "url": "https://www.island.io",
+        "kind": "product",
+        "description": "Enterprise browser and security platform repositioning as a governance layer for employees and AI agents.",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 100,
+      "period_days": 365,
+      "observed_on": "2026-09-24",
+      "source_url": "https://www.island.io/press/island-announces-400-million-series-f-bringing-valuation-to-6-4-billion",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company press release: ARR has doubled every fiscal year since its 2022 launch (2x = +100% per year); no dollar figure in the release."
+    },
+    {
+      "app": {
+        "name": "Comp AI",
+        "url": "https://trycomp.ai",
+        "kind": "product",
+        "description": "AI agents that automate security compliance (policies, audit evidence, continuous control monitoring) and AI pentesting.",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 7500000,
+      "observed_on": "2026-09-17",
+      "source_url": "https://techcrunch.com/2026/09/17/comp-ai-sets-eyes-on-a-continiously-agentic-future-for-security-and-complaince/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Co-founder Claudio Fuentes claims over $7.5M ARR (lower bound), self-reported, with $34M Series A (Roo Capital, Grand Ventures); 1,000+ customers."
+    },
+    {
+      "app": {
+        "name": "Comp AI",
+        "url": "https://trycomp.ai",
+        "kind": "product",
+        "description": "AI agents that automate security compliance (policies, audit evidence, continuous control monitoring) and AI pentesting.",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1400,
+      "period_days": 365,
+      "observed_on": "2026-09-17",
+      "source_url": "https://finance.yahoo.com/technology/ai/articles/comp-ai-raises-34m-series-130000036.html",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Press release with Series A: 15x ARR growth year-over-year (15x = +1400%); company-reported."
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "collected_at": "2026-10-25",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Horizon3.ai (NodeZero)",
+        "url": "https://horizon3.ai",
+        "kind": "product",
+        "description": "Autonomous AI pentesting and security platform (NodeZero).",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 120,
+      "observed_on": "2026-10-20",
+      "source_url": "https://horizon3.ai/news/press-release/horizon3-surpasses-100-million-arr/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). At-source check of the Oct 20 release (headline 'Horizon3 Surpasses $100 Million ARR with 120%+ Growth'): surpassed $100M ARR (matches the 10-24 record), ARR up more than 120% YoY (lower bound); 95% GDR, 125% NDR; company-wide.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Claude",
+        "url": "https://claude.ai",
+        "kind": "consumer_app",
+        "description": "Anthropic's AI assistant (web, apps, Claude Code) and the company's model business.",
+        "tags": [
+          "assistant",
+          "coding-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000000,
+      "observed_on": "2026-09-18",
+      "source_url": "https://www.axios.com/2026/09/18/anthropic-100-billion-revenue",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Anthropic company-wide pace: Axios, citing the New York Times, reported Anthropic pacing to generate more than $100B in annual revenue (run-rate, not booked; up ~50% from ~$65B two months earlier). Media report from people familiar, not a company statement; lower bound."
+    },
+    {
+      "app": {
+        "name": "Exa",
+        "url": "https://exa.ai",
+        "kind": "product",
+        "description": "Web search engine and API built for AI agents.",
+        "tags": [
+          "ai-search",
+          "agent-tools"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-10-13",
+      "source_url": "https://exa.ai/blog/100m-run-rate",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). CEO Will Bryk announced Exa passed $100M annualized revenue (company blog + X post); company-wide; unaudited. Also 2B requests/month from 200k+ teams."
+    },
+    {
+      "app": {
+        "name": "Exa",
+        "url": "https://exa.ai",
+        "kind": "product",
+        "description": "Web search engine and API built for AI agents.",
+        "tags": [
+          "ai-search",
+          "agent-tools"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 900,
+      "observed_on": "2026-10-13",
+      "source_url": "https://exa.ai/blog/100m-run-rate",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Revenue grew 'almost exactly 10x per year for 3 years' per CEO (10x = +900%); approximate, company-stated.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Daytona",
+        "url": "https://www.daytona.io",
+        "kind": "product",
+        "description": "Sandbox cloud infrastructure where AI agents run code and tools.",
+        "tags": [
+          "agent-runtime",
+          "devtools"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 2400,
+      "observed_on": "2026-09-30",
+      "source_url": "https://fortune.com/2026/10/20/daytona-startup-building-the-agentic-cloud-valued-at-1-billion-in-latest-funding-round/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). CEO Ivan Burazin: revenue run rate grew 25x between January and September 2026 (avg 50.9% monthly); 25x = +2400%. Only months stated: observed_on = last day of September, period_days ~8 months (Jan->Sep). Announced with $60M Series B at $1B on Oct 20.",
+      "period_days": 243
+    },
+    {
+      "app": {
+        "name": "Chamelio",
+        "url": "https://www.chamelio.ai",
+        "kind": "product",
+        "description": "AI legal agents and legal-operations platform for corporate legal departments.",
+        "tags": [
+          "legal",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 300,
+      "observed_on": "2026-09-23",
+      "source_url": "https://techstartups.com/2026/09/23/chamelio-raises-26m-series-a-for-ai-legal-agents-as-arr-quadruples-in-five-months/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company: ARR roughly quadrupled (4x = +300%) in the ~five months since its seed round; announced with $26M Series A (Sep 22-23, sources differ). period_days ~5 months.",
+      "period_days": 152
+    },
+    {
+      "app": {
+        "name": "Sela",
+        "url": "https://trysela.com",
+        "kind": "product",
+        "description": "Voice AI agents for mortgage lenders and consumer lending sales.",
+        "tags": [
+          "voice",
+          "sales",
+          "finance"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 10000000,
+      "observed_on": "2026-09-30",
+      "source_url": "https://forkast.news/sela-raises-21m-for-voice-ai-agents-that-originate-1b-in-mortgage-loans-monthly/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Self-reported $10M annualized run-rate ~18 months after founding, announced with $21M Seed+Series A in late September 2026 (exact day not stated; month only -> last day of September). A later job posting cites ~$13M (not recorded, no date)."
+    },
+    {
+      "app": {
+        "name": "Oligo Security",
+        "url": "https://www.oligo.security",
+        "kind": "product",
+        "description": "Runtime application and AI security platform (exploit detection and blocking).",
+        "tags": [
+          "security"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 300,
+      "observed_on": "2026-08-04",
+      "source_url": "https://www.ynetnews.com/business/article/b1oobnxumg",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company: 300% YoY growth in ARR (some outlets say revenue), announced with $60M raise on ~Aug 4, 2026; company-wide.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Avarra",
+        "url": "https://www.avarra.ai",
+        "kind": "product",
+        "description": "AI avatars that coach and upskill sales and go-to-market teams.",
+        "tags": [
+          "sales",
+          "education"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 400,
+      "observed_on": "2026-10-06",
+      "source_url": "https://runtimewire.com/article/avarra-17m-series-a-ai-sales-avatars",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company press release with $17M Series A (Oct 6): total ARR grew more than 400% YoY (lower bound); contracted mid-market/enterprise ARR +698% YoY (segment, not recorded). No ARR base disclosed.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Blacksmith",
+        "url": "https://www.blacksmith.sh",
+        "kind": "product",
+        "description": "CI platform for validating fast-growing volumes of AI-written code.",
+        "tags": [
+          "devtools",
+          "coding-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1600,
+      "observed_on": "2026-10-21",
+      "source_url": "https://aiweekly.co/alerts/blacksmith-doubles-to-1b-on-sequoia-led-66m-series-c",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company: ARR grew 17x (+1600%) 'since January 2026' to 'tens of millions' (period_days counted from Jan 1, approximate); CI jobs 5M -> 90M+/week. Announced with $66M Series C at $1B (Fortune, Oct 21).",
+      "period_days": 293
+    },
+    {
+      "app": {
+        "name": "HiddenLayer",
+        "url": "https://hiddenlayer.com",
+        "kind": "product",
+        "description": "Security platform for AI models and agents at runtime.",
+        "tags": [
+          "security"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 900,
+      "observed_on": "2026-09-02",
+      "source_url": "https://siliconangle.com/?p=842675",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). CEO told TechCrunch ARR grew more than tenfold (+900%, lower bound) over the past year to 'tens of millions'; announced with $100M Series B on Sep 2, 2026. One outlet says 'more than doubled' (conflict).",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Owner",
+        "url": "https://www.owner.com",
+        "kind": "product",
+        "description": "AI-native marketing, ordering and phone-agent platform for local restaurants.",
+        "tags": [
+          "sales",
+          "customer-support"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-08-28",
+      "source_url": "https://am.gs.com/en-au/advisors/news/press-release/2026/owner-raises-240m-gs-alts",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Press release with $240M raise at $2.3B: surpassed $100M ARR (lower bound); company-wide."
+    },
+    {
+      "app": {
+        "name": "Ema",
+        "url": "https://www.ema.co",
+        "kind": "product",
+        "description": "Enterprise 'AI employee' agent platform.",
+        "tags": [
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 4900,
+      "observed_on": "2026-09-23",
+      "source_url": "https://yourstory.com/2026/09/enterprise-ai-startup-ema-raises-series-b-round-led-by-creaegis",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company: revenue increased 50-fold (+4900%) over the past 24 months; announced with $77M Series B on Sep 23, 2026; revenue metric not specified as ARR.",
+      "period_days": 730
+    },
+    {
+      "app": {
+        "name": "Rillet",
+        "url": "https://www.rillet.com",
+        "kind": "product",
+        "description": "AI-native accounting / ERP with finance agents.",
+        "tags": [
+          "finance",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 100,
+      "observed_on": "2026-08-19",
+      "source_url": "https://techcrunch.com/2026/08/19/rillet-raises-100m-series-c-at-1b-valuation-2-years-after-emerging-from-stealth/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND on all hosts, Tavily 432 over quota). Company: doubled ARR in the past three months (Fortune frames it as new ARR); announced with $100M Series C at $1B; 600+ customers.",
+      "period_days": 91
+    }
+  ]
+}

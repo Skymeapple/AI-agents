@@ -1,0 +1,47 @@
+{
+ "takeaway": "Agent security and agent tooling lead open-source growth, and generative video leads commercial growth. None of today's growth was measured by the radar itself yet: every figure was stated by a page or reported by a company.",
+ "findings": [
+  {
+   "id": "tooling",
+   "heading": "The agent toolchain is where open-source growth is",
+   "text": "17 of the top 25 are coding agents or tooling around them: memory, orchestration, skills, context compression, gateways and security. The end-user apps near the top ship as agent skills.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "security",
+   "heading": "Security for autonomous agents is the strongest new direction",
+   "text": "80% of tracked security repos rank in the top quartile. An untagged lexical grouping ('agents / autonomous') joins cloudflare/security-audit-skill, iFixAi, NVIDIA/OpenShell and morluto/rea.",
+   "source": "https://github.com/cloudflare/security-audit-skill"
+  },
+  {
+   "id": "video",
+   "heading": "Generative video is the commercial breakout",
+   "text": "Higgsfield is the highest-ranked commercial app: a reported $700M to $1B run-rate in 25 days. Runway and HeyGen each passed $200M by doubling in 5 to 8 months.",
+   "source": "https://www.arr.club/signal/higgsfield-arr-hit-1b-with-20x-growth-in-the-past-12-months"
+  },
+  {
+   "id": "skills",
+   "heading": "Skills are becoming an app distribution format",
+   "text": "ai-job-search, diagram-design, scientific-agent-skills and Cloudflare's security skill are end-user applications shipped as agent skills. If that continues, discovery and trust for skills becomes the scarce asset. This is the radar agent's own hypothesis.",
+   "source": "https://github.com/MadsLorentzen/ai-job-search"
+  },
+  {
+   "id": "revenue",
+   "heading": "Reported revenue is getting less comparable",
+   "text": "OpenAI's reported run-rate was revised down by about $20B once cloud-partner accounting was separated out. The radar discounts company-reported figures for this reason.",
+   "source": "https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/"
+  },
+  {
+   "id": "anomaly",
+   "heading": "One leader is suspect",
+   "text": "morluto/rea states 229k of its 336k stars were gained in one week. Its page shows 84.9k forks but only 1.2k watchers. It stays ranked with its signal weight halved until re-observation settles it.",
+   "source": "https://github.com/morluto/rea"
+  }
+ ],
+ "caveats": [
+  "Open-source figures are star gains stated on GitHub trending pages, read through a model. Re-observation will confirm or correct them.",
+  "Company figures came from search-result summaries, because the source pages could not be opened. Each needs a check against its cited URL.",
+  "Hugging Face and Hacker News could not be reached from the cloud environment, so Spaces, models and launches are missing.",
+  "Commercial apps are seen only when a company publishes a number, so they rank on older, discounted evidence."
+ ]
+}

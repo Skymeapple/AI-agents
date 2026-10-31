@@ -1,0 +1,41 @@
+{
+ "takeaway": "The radar's second forecast scored better than its first (Spearman 0.66, 9 of its top 15 right). Agent security is consolidating around platform owners: Anthropic's sandbox-runtime and NVIDIA's SkillSpector are new on GitHub trending.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Second forecast beats the first",
+   "text": "The Oct 20 ranking scored Spearman 0.66 and precision@15 of 60% across 48 apps, against 0.55 and 53% for Oct 19. One more matured forecast is needed before the tuner may change any setting.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-27.md"
+  },
+  {
+   "id": "platform-security",
+   "heading": "Platform owners now ship agent sandboxing and skill scanning",
+   "text": "anthropics/sandbox-runtime (OS-level file and network limits, built for Claude Code) and NVIDIA/SkillSpector (scans agent skills for prompt injection and exfiltration; 22.5k stars) are new on trending, after NVIDIA OpenShell.",
+   "source": "https://github.com/anthropics/sandbox-runtime"
+  },
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill is slowing",
+   "text": "It gained 1,513 stars in a day, down from about 2,200 to 2,800. It is still #1 on the weekly page (+16,593) and up 51% since Oct 19 (32,421 to 48,898).",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "design",
+   "heading": "Anti-AI-slop design skills keep accelerating",
+   "text": "Nutlope/hallmark gained 2,667 stars in a day (to 37,148) and pbakaus/impeccable 1,441, a third day above 1,000.",
+   "source": "https://github.com/Nutlope/hallmark"
+  },
+  {
+   "id": "anthropic",
+   "heading": "Anthropic's S-1 shows revenue up from $1.2B to $16.3B",
+   "text": "The Oct 26 filing gives H1 2026 revenue of $16,286M against $1,163M a year earlier, net revenue retention of about 900%, and over 11,900 customers paying more than $100k a year. Read from search results; the filing could not be opened.",
+   "source": "https://www.sec.gov/Archives/edgar/data/0002130357/000162828026067168/anthropicpbc-sx1.htm"
+  }
+ ],
+ "caveats": [
+  "Two matured forecasts are not a validation; the tuner needs three.",
+  "The ranking still leans on gains stated days ago; the new measured-movers table shows what the radar itself measured.",
+  "Every company figure today came from search-result summaries, including the Anthropic S-1.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

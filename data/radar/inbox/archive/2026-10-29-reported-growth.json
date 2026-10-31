@@ -1,0 +1,153 @@
+{
+ "collected_at": "2026-10-29",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Gemini",
+    "url": "https://gemini.google.com",
+    "kind": "consumer_app",
+    "description": "Google's AI assistant app.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "users",
+   "value": 1000000000,
+   "observed_on": "2026-10-28",
+   "source_url": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
+   "method": "reported",
+   "note": "Pichai, Q3 2026 earnings remarks (Oct 28): 'The Gemini app is now at one billion users and is the fastest-growing product in Google's history.' 'Users' is not explicitly labelled MAU in the excerpt; prior quarters reported MAU. Dated to the call date because he said 'now'. Search-result summary only (blog.google not reachable by WebFetch)."
+  },
+  {
+   "app": {
+    "name": "Microsoft 365 Copilot",
+    "url": "https://www.microsoft.com/microsoft-365/copilot",
+    "kind": "product",
+    "description": "Microsoft's AI assistant and agents embedded across Microsoft 365 apps.",
+    "tags": [
+     "assistant",
+     "productivity",
+     "enterprise-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 50,
+   "period_days": 92,
+   "observed_on": "2026-09-30",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-said-q1-earnings-040415977.html",
+   "method": "reported",
+   "note": "Nadella, FY27 Q1 call (Oct 28): Copilot daily users up 'nearly 50%' quarter over quarter (quarter ended Sep 30, 2026). The call says 'Copilot' daily users; attributed to Microsoft 365 Copilot, but the exact product scope is not spelled out in the excerpts. Microsoft gave no updated paid-seat count. Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Microsoft Foundry",
+    "url": "https://ai.azure.com",
+    "kind": "product",
+    "description": "Microsoft's Azure platform for building, hosting and running AI models and agents.",
+    "tags": [
+     "agent-runtime",
+     "llm-inference",
+     "agent-orchestration"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 200,
+   "period_days": 365,
+   "observed_on": "2026-09-30",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/",
+   "method": "reported",
+   "note": "Nadella, FY27 Q1 call: 'over 120,000 Foundry customers with revenue more than tripling year-over-year'. Recorded as +200% revenue growth (a lower bound), quarter ended Sep 30, 2026. Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Upwind",
+    "url": "https://www.upwind.io",
+    "kind": "product",
+    "description": "Cloud and AI security platform that secures cloud infrastructure and workloads at runtime.",
+    "tags": [
+     "security"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 300,
+   "period_days": 301,
+   "observed_on": "2026-10-28",
+   "source_url": "https://siliconangle.com/2026/10/28/cloud-security-startup-upwind-raises-400m-at-3-8b-valuation-as-revenue-quadruples/",
+   "method": "reported",
+   "note": "Company disclosed with its $400M Series C at a $3.8B valuation (Oct 28) that revenue has 'quadrupled so far in 2026'. Recorded as +300%; the period is Jan 1 to Oct 28, 2026. No dollar level given. Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Databricks",
+    "url": "https://www.databricks.com",
+    "kind": "product",
+    "description": "Data and AI platform with lakehouse, Lakebase for AI agents and the Genie conversational data assistant.",
+    "tags": [
+     "devtools",
+     "enterprise-agent"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 7000000000,
+   "observed_on": "2026-08-14",
+   "source_url": "https://itbrief.co.uk/story/databricks-tops-usd-7-billion-run-rate-after-funding",
+   "method": "reported",
+   "note": "Revenue run-rate passed $7B (a threshold, not an exact figure), announced with the $5B round at a $190B valuation (Aug 14, 2026). Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Suno",
+    "url": "https://suno.com",
+    "kind": "consumer_app",
+    "description": "AI music generator that creates songs from text prompts.",
+    "tags": [
+     "multimodal"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 300000000,
+   "observed_on": "2026-10-01",
+   "source_url": "https://www.digitalmusicnews.com/2026/10/01/suno-revenue-october-2026/",
+   "method": "reported",
+   "note": "CEO Mikey Shulman at Bloomberg Screentime (Oct 1, 2026): ARR is still about $300M, and paid subscribers are 'far beyond' 2M (no exact count given). Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Runable",
+    "url": "https://runable.com",
+    "kind": "product",
+    "description": "General-purpose AI agent platform that builds and runs sites, decks, content and marketing workflows for small businesses.",
+    "tags": [
+     "enterprise-agent",
+     "productivity"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 2000000,
+   "observed_on": "2026-08-26",
+   "source_url": "https://www.saasrise.com/deals/ai-agent-startup-runable-raises-21m-in-series-a-946c4917-8470-4e0d-ac36-594652150fd9",
+   "method": "reported",
+   "note": "$21M Series A announcement (Aug 26, 2026) cites $2M ARR, alongside 1.5M users, reached within weeks of launch. Dated to the announcement. Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Zenity",
+    "url": "https://zenity.io",
+    "kind": "product",
+    "description": "Security and governance platform for enterprise AI agents and copilots.",
+    "tags": [
+     "security",
+     "enterprise-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 200,
+   "period_days": 365,
+   "observed_on": "2026-08-03",
+   "source_url": "https://zenity.io/press-release/zenity-raises-125-million-to-secure-the-era-of-1-billion-ai-agents",
+   "method": "reported",
+   "note": "$125M Series C announcement (Aug 3, 2026): revenue 'tripled in each of the past two years' and is on pace to triple again. Recorded as +200% for the latest year only. No dollar level given. Search-result summary only; a follow-up search did not reproduce the claim."
+  }
+ ]
+}

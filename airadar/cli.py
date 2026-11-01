@@ -31,8 +31,10 @@
     unclear), so the report shows it beside the flag instead of asking again.
 ``recheck``
     List the apps worth re-observing today -- the current leaders and every app
-    seen only once -- with the metric to record. Re-observation is what turns a
-    stated claim into growth the radar measured itself.
+    seen only once -- with the metric to record, leaving out any already read
+    today. Re-observation is what turns a stated claim into growth the radar
+    measured itself. ``collect`` reads the repos on this list through the
+    GitHub API (exact counts) when it can reach it.
 
 Run ``python -m airadar.cli <verb> --help`` for arguments.
 """
@@ -57,14 +59,23 @@ def cmd_collect(args) -> int:
 
     from .collectors.base import load_watch
     from .collectors.live import (
-        collect_github, collect_hackernews, collect_huggingface, collect_packages,
+        collect_github, collect_github_repos, collect_hackernews, collect_huggingface,
+        collect_packages,
     )
 
     store = Store(args.root)
     watch = load_watch(store.root / "watch.json")
     session = requests.Session()
+    def recheck_repos():
+        # Runs after the search: a repo the search just read is not read twice.
+        return collect_github_repos(
+            [app for app, metric in recheck_targets(store, _date(None)) if app.kind.value == "repo"],
+            session, os.environ.get("GITHUB_TOKEN"),
+        )
+
     runners = {
         "github": lambda: collect_github(watch, session, os.environ.get("GITHUB_TOKEN")),
+        "github-repos": recheck_repos,
         "huggingface": lambda: collect_huggingface(session),
         "hackernews": lambda: collect_hackernews(watch, session),
         "packages": lambda: collect_packages(watch, session),
@@ -185,22 +196,32 @@ def cmd_verdict(args) -> int:
 RECHECK_METRIC = {"repo": "stars", "space": "likes", "model": "likes"}
 
 
-def cmd_recheck(args) -> int:
-    import json
-
+def recheck_targets(store: Store, date: dt.date, top: int = 40) -> list:
+    """(app, metric) pairs worth re-observing on ``date``: the current leaders
+    and every app seen only once, minus any already read that day (a repo the
+    API search just returned needs no second reading)."""
     from .pipeline import analyse
 
-    store = Store(args.root)
-    analysis = analyse(store, _date(args.date))
-    chosen = [s.app_id for s in analysis.scores[: args.top]] + analysis.baseline_only
-    seen = set()
+    analysis = analyse(store, date)
+    read_today = {(o.app_id, o.metric) for o in store.load_observations() if o.observed_on == date}
+    chosen = [s.app_id for s in analysis.scores[:top]] + analysis.baseline_only
+    out, seen = [], set()
     for app_id in chosen:
         app = analysis.apps.get(app_id)
         if app is None or app_id in seen or app.kind.value not in RECHECK_METRIC:
             continue
         seen.add(app_id)
-        print(json.dumps({"name": app.name, "url": app.url, "kind": app.kind.value,
-                          "metric": RECHECK_METRIC[app.kind.value]}))
+        metric = RECHECK_METRIC[app.kind.value]
+        if (app_id, metric) not in read_today:
+            out.append((app, metric))
+    return out
+
+
+def cmd_recheck(args) -> int:
+    import json
+
+    for app, metric in recheck_targets(Store(args.root), _date(args.date), args.top):
+        print(json.dumps({"name": app.name, "url": app.url, "kind": app.kind.value, "metric": metric}))
     return 0
 
 
@@ -210,7 +231,8 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="verb", required=True)
 
     p = sub.add_parser("collect", help="run live API collectors")
-    p.add_argument("--only", nargs="+", choices=["github", "huggingface", "hackernews", "packages"])
+    p.add_argument("--only", nargs="+",
+                   choices=["github", "github-repos", "huggingface", "hackernews", "packages"])
     p.set_defaults(func=cmd_collect)
 
     p = sub.add_parser("validate", help="check inbox files")

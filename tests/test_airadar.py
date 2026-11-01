@@ -617,6 +617,58 @@ def test_report_shows_a_review_beside_the_flag(tmp_path):
     assert flagged.anomalies                                                # the flag itself stays
 
 
+class _FakeGitHubSearch:
+    """Answers repo: searches from a dict of full_name -> stars."""
+
+    def __init__(self, repos):
+        self.repos, self.queries = repos, []
+
+    def get(self, url, params=None, timeout=None, headers=None):
+        names = [q[len("repo:"):] for q in params["q"].split()]
+        self.queries.append(params["q"])
+        items = [{"full_name": real, "stargazers_count": stars}
+                 for real, stars in self.repos.items() if real.lower() in names]
+
+        class Response:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"items": items}
+
+        return Response()
+
+
+def test_repos_are_reobserved_by_api_with_exact_counts():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    def repo(name):
+        return App(f"gh:{name.lower()}", name, f"https://github.com/{name}", AppKind.REPO, "", [], D0)
+
+    session = _FakeGitHubSearch({"O/a": 58712, "o/b": 7})
+    out = collect_github_repos([repo("o/a"), repo("o/b"), repo("o/gone")], session, max_query=20)
+    assert len(session.queries) == 2                          # batched under the query cap
+    assert all(len(q) <= 20 for q in session.queries)
+    by_app = {o.app_id: o for o in out.observations}
+    assert by_app["gh:o/a"].value == 58712 and by_app["gh:o/a"].method is Method.API
+    assert by_app["gh:o/a"].rounded_to is None
+    assert by_app["gh:o/a"].source_url.endswith("?q=repo:O/a")
+    assert "gh:o/gone" not in by_app and any("o/gone" in e for e in out.errors)
+
+
+def test_recheck_leaves_out_apps_already_read_today(tmp_path):
+    from airadar.cli import recheck_targets
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    before = {app.id for app, _ in recheck_targets(store, day)}
+    assert "gh:o/r3" in before
+    store.add([], [obs("gh:o/r3", "stars", 400, day, method=Method.API, url="https://github.com/o/r3")])
+    after = {app.id for app, _ in recheck_targets(store, day)}
+    assert after == before - {"gh:o/r3"}
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

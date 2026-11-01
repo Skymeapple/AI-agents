@@ -45,7 +45,10 @@ raw pages stay out of your context. Pass the subagent the INBOX.md rules verbati
 
 1. **Re-observe** (most important). Run `python -m airadar.cli recheck` and
    record the current `stars`/`likes` for every app it lists, from each app's
-   own page. A second observation of the same app is what gives the radar
+   own page. The list leaves out apps already read today: when step 1 could
+   reach the GitHub API, `collect` has already re-read the listed repos with
+   exact counts (collector `api:github-repos`), and only what it missed
+   remains. A second observation of the same app is what gives the radar
    *measured* growth, which outweighs everything else it collects. An app
    whose page is gone (404, deleted, made private) gets no observation;
    record it instead, so it leaves the ranking:

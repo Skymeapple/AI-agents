@@ -15,7 +15,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   4-day backtest mean Spearman from 0.656 to 0.655 (Oct 20 +0.019, Oct 21
   -0.002, Oct 22 -0.021). Revisit once more forecasts have matured.
 
-- **Re-observation pages are rounded.** GitHub repo pages read through WebFetch
+- **Re-observation pages are rounded.** Solved while the GitHub API is
+  reachable (2026-11-01, `api:github-repos`); the page path below remains the
+  fallback when it is not. GitHub repo pages read through WebFetch
   show "58.7k", never the exact count. Repos on a trending page get exact counts
   the same day; the rest are only resolvable to 100 stars. Find a page that shows
   exact counts (e.g. the stargazers page) for the recheck list.
@@ -27,6 +29,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
+- **The API search adds ~1,000 repos a day to the registry.** On 2026-11-01
+  the topic search added about 970 apps. Most are slow-moving; watch whether
+  the ranking and the page stay readable, and consider a minimum-stars or
+  minimum-gain bar for what the search registers.
 - **Hugging Face and Hacker News are unreachable from the cloud sandbox** (DNS
   failure through WebFetch, 403 from the proxy). Allowing `huggingface.co` and
   `hn.algolia.com` in the environment's network settings, or running
@@ -134,3 +140,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   url>`, append-only `reviews.jsonl`, following repo moves), and the report and
   shared page show the latest review beside the flag. The flag and its scoring
   penalty are unchanged: a review explains a flag, it doesn't clear it.
+- 2026-11-01: re-observation by API. The GitHub API became reachable today (a
+  token is set in the environment), and `recheck` still listed 594 apps,
+  almost all of them repos the API search had just read. `recheck` now leaves
+  out any app already read that day, and `collect` re-reads the remaining
+  repos through the search endpoint (`repo:owner/name` qualifiers, batched
+  under GitHub's 256-character query cap) as collector `api:github-repos`.
+  That turns rounded page reads ("58.7k") into exact counts. Per-repo REST
+  reads (`/repos/owner/name`) are refused by the environment's proxy (403);
+  search is the endpoint the topic collector already uses.

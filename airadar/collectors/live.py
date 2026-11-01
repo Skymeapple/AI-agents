@@ -64,6 +64,54 @@ def collect_github(watch: dict, session: requests.Session, token: str | None = N
     return out
 
 
+def collect_github_repos(apps: list[App], session: requests.Session,
+                         token: str | None = None, max_query: int = 250) -> Collected:
+    """Exact star counts for repos the radar already tracks.
+
+    This is re-observation by API: a repo's own page shows "58.7k", the API
+    shows 58,712. It goes through the search endpoint the topic collector
+    uses, several ``repo:owner/name`` qualifiers per query (GitHub caps a
+    query at 256 characters). A repo the search doesn't return -- deleted,
+    made private, or renamed -- is reported as an error, not recorded, so it
+    can be checked and marked gone or moved.
+    """
+    out = Collected("api:github-repos")
+    on = today()
+    headers = {"Accept": "application/vnd.github+json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    wanted = {}
+    for app in apps:
+        if "github.com/" in app.url:
+            wanted[app.url.split("github.com/", 1)[1].strip("/").lower()] = app
+    batches, batch = [], []
+    for name in wanted:
+        if batch and len(" ".join(f"repo:{n}" for n in batch + [name])) > max_query:
+            batches.append(batch)
+            batch = []
+        batch.append(name)
+    if batch:
+        batches.append(batch)
+    for batch in batches:
+        try:
+            payload = get_json(session, GITHUB_API, {
+                "q": " ".join(f"repo:{n}" for n in batch), "per_page": 100,
+            }, headers)
+        except (requests.RequestException, ValueError) as exc:
+            out.errors.append(f"github {', '.join(batch)}: {exc}")
+            continue
+        found = {item["full_name"].lower(): item for item in payload.get("items", [])}
+        for name in batch:
+            app = wanted[name]
+            item = found.get(name)
+            if item is None:
+                out.errors.append(f"github {name}: not returned (gone, private or renamed?)")
+                continue
+            source = f"{GITHUB_API}?q=repo:{item['full_name']}"
+            out.add(app, _obs(app, "stars", item["stargazers_count"], source, out.collector, on=on))
+    return out
+
+
 def collect_huggingface(session: requests.Session, limit: int = 100) -> Collected:
     out = Collected("api:huggingface")
     on = today()

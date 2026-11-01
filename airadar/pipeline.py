@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 
 from .collectors.base import load_watch, save_watch
 from .directions import (
-    Direction, EmergentGroup, Opportunity, emergent_groups, opportunities, rising_pairs,
+    GENERIC_TERMS, Direction, EmergentGroup, Opportunity, emergent_groups, opportunities, rising_pairs,
     tag_directions,
 )
 from .growth import AppScore, extract_signals, measured_movers, score_apps
@@ -84,6 +84,11 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     """
     path = store.root / "watch.json"
     watch = load_watch(path)
+    # A generic word as a search term pulls in whatever matches it ("engine"
+    # brought in Godot and Redis): drop any already mined, and never mine one.
+    pruned = [t for t in watch["auto_terms"] if t not in GENERIC_TERMS]
+    changed = pruned != watch["auto_terms"]
+    watch["auto_terms"] = pruned
     score_of = {s.app_id: s.score for s in scores}
     existing = set(watch["auto_terms"]) | set(watch["github_topics"]) | set(watch["hn_queries"])
     added = []
@@ -92,10 +97,10 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
         if mean < 0.55 or group.cohesion < 0.3:
             continue
         for term in group.terms[:2]:
-            if term not in existing and len(added) < NEW_TERMS_PER_DAY:
+            if term not in existing and term not in GENERIC_TERMS and len(added) < NEW_TERMS_PER_DAY:
                 added.append(term)
                 existing.add(term)
-    if added:
+    if added or changed:
         watch["auto_terms"] = (watch["auto_terms"] + added)[-MAX_AUTO_TERMS:]
         save_watch(path, watch)
     return added

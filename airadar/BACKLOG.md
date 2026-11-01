@@ -29,6 +29,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
+- **Off-topic repos from the 2026-11-01 search stay in the registry.** About
+  168 repos came only through generic search terms. They are slow-moving and
+  sit low in the ranking, but their raw GitHub topics inflate the direction
+  list (236 directions, 83 rule hypotheses on 2026-11-01). A way to mark an
+  app out of scope (append-only, like `mark-gone`) would let them leave the
+  ranking and the direction table without touching observations.
 - **The API search adds ~1,000 repos a day to the registry.** On 2026-11-01
   the topic search added about 970 apps. Most are slow-moving; watch whether
   the ranking and the page stay readable, and consider a minimum-stars or
@@ -149,3 +155,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   That turns rounded page reads ("58.7k") into exact counts. Per-repo REST
   reads (`/repos/owner/name`) are refused by the environment's proxy (403);
   search is the endpoint the topic collector already uses.
+- 2026-11-01 (follow-on, same cause): generic words stopped becoming search
+  terms. The watch list's automatic terms had picked up "engine", "without",
+  "working", "unified" and "ad-free" from emergent groupings. Harmless while
+  the API was blocked; once it answered, each pulled in 150 repos, 168 of
+  them seen only through those terms (Godot, Redis, Elasticsearch). They are
+  now generic terms: never mined, and pruned from the watch list. The repos
+  already registered stay (observations are append-only).

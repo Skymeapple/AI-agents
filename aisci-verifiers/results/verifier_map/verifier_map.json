@@ -1,0 +1,191 @@
+{
+  "agreement": {
+    "strength_quadratic_kappa": 0.923,
+    "strength_exact_match": 0.8,
+    "cost_spearman": 0.952,
+    "latency_spearman": 0.872
+  },
+  "map": [
+    {
+      "id": "algorithm_design",
+      "strength": 5.0,
+      "cost_exp": 0.5,
+      "latency_exp": -1.0,
+      "readiness": 5.12,
+      "best_verifier": "Exact correctness check plus operation count or benchmark",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "math_proofs",
+      "strength": 5.0,
+      "cost_exp": 1.5,
+      "latency_exp": 0.0,
+      "readiness": 4.62,
+      "best_verifier": "Lean/Isabelle formal proof check",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "crystal_stability",
+      "strength": 3.5,
+      "cost_exp": 1.0,
+      "latency_exp": 0.25,
+      "readiness": 3.19,
+      "best_verifier": "DFT energy above convex hull",
+      "strength_disagreement": 1.0
+    },
+    {
+      "id": "weather_forecasting",
+      "strength": 4.0,
+      "cost_exp": 2.0,
+      "latency_exp": 2.0,
+      "readiness": 3.0,
+      "best_verifier": "Scoring against observations and reanalysis",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "drug_potency_invitro",
+      "strength": 4.0,
+      "cost_exp": 3.0,
+      "latency_exp": 2.25,
+      "readiness": 2.69,
+      "best_verifier": "Synthesis plus biochemical IC50/Kd assay",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "ml_research",
+      "strength": 3.5,
+      "cost_exp": 2.5,
+      "latency_exp": 1.0,
+      "readiness": 2.62,
+      "best_verifier": "Held-out benchmark re-run with multiple seeds",
+      "strength_disagreement": 1.0
+    },
+    {
+      "id": "protein_binder_design",
+      "strength": 4.0,
+      "cost_exp": 3.5,
+      "latency_exp": 2.75,
+      "readiness": 2.44,
+      "best_verifier": "Expression plus BLI/SPR binding assay",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "protein_structure",
+      "strength": 3.5,
+      "cost_exp": 4.0,
+      "latency_exp": 3.0,
+      "readiness": 1.75,
+      "best_verifier": "Experimental structure or CASP-style blind comparison",
+      "strength_disagreement": 1.0
+    },
+    {
+      "id": "particle_physics_analysis",
+      "strength": 3.5,
+      "cost_exp": 5.0,
+      "latency_exp": 3.0,
+      "readiness": 1.5,
+      "best_verifier": "Blinded analysis plus independent confirmation",
+      "strength_disagreement": 1.0
+    },
+    {
+      "id": "genomic_variant_effect",
+      "strength": 3.0,
+      "cost_exp": 3.5,
+      "latency_exp": 2.75,
+      "readiness": 1.44,
+      "best_verifier": "Multiplexed assay of variant effect",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "materials_synthesis",
+      "strength": 3.0,
+      "cost_exp": 3.75,
+      "latency_exp": 2.75,
+      "readiness": 1.38,
+      "best_verifier": "Synthesis plus XRD with Rietveld refinement",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "superconductivity_discovery",
+      "strength": 3.0,
+      "cost_exp": 4.5,
+      "latency_exp": 3.0,
+      "readiness": 1.12,
+      "best_verifier": "Zero resistance plus Meissner effect on phase-pure sample",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "fusion_plasma_control",
+      "strength": 3.0,
+      "cost_exp": 5.5,
+      "latency_exp": 2.5,
+      "readiness": 1.0,
+      "best_verifier": "Validated simulator then tokamak shots",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "heterogeneous_catalysis",
+      "strength": 2.0,
+      "cost_exp": 4.5,
+      "latency_exp": 3.0,
+      "readiness": 0.12,
+      "best_verifier": "Reactor activity and selectivity testing",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "battery_materials",
+      "strength": 2.0,
+      "cost_exp": 4.5,
+      "latency_exp": 3.25,
+      "readiness": 0.06,
+      "best_verifier": "Coin- or pouch-cell cycling tests",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "cell_biology_mechanism",
+      "strength": 2.0,
+      "cost_exp": 4.5,
+      "latency_exp": 3.5,
+      "readiness": 0.0,
+      "best_verifier": "Orthogonal perturbation experiments",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "cosmology_inference",
+      "strength": 2.0,
+      "cost_exp": 5.0,
+      "latency_exp": 3.5,
+      "readiness": -0.12,
+      "best_verifier": "Consistency across independent probes",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "neuroscience_circuits",
+      "strength": 2.0,
+      "cost_exp": 5.25,
+      "latency_exp": 3.75,
+      "readiness": -0.25,
+      "best_verifier": "Causal optogenetic/chemogenetic manipulation in vivo",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "climate_projection",
+      "strength": 1.0,
+      "cost_exp": 6.0,
+      "latency_exp": 5.0,
+      "readiness": -1.75,
+      "best_verifier": "Hindcast skill plus emergent constraints",
+      "strength_disagreement": 0.0
+    },
+    {
+      "id": "drug_clinical_efficacy",
+      "strength": 1.0,
+      "cost_exp": 8.0,
+      "latency_exp": 4.25,
+      "readiness": -2.06,
+      "best_verifier": "Randomized controlled clinical trial",
+      "strength_disagreement": 0.0
+    }
+  ],
+  "note": "Raters are two independently prompted model instances standing in for human experts."
+}

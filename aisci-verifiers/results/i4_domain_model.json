@@ -1,0 +1,21 @@
+{
+  "n_train": 780,
+  "n_test": 393,
+  "mean_baseline": {
+    "rmse": 0.8593,
+    "r2": -0.0
+  },
+  "linear_baseline": {
+    "rmse": 0.7391,
+    "r2": 0.2603
+  },
+  "quadratic_baseline": {
+    "rmse": 0.6504,
+    "r2": 0.4272
+  },
+  "domain_model_gp": {
+    "rmse": 0.077,
+    "r2": 0.992
+  },
+  "beats_all_baselines": true
+}

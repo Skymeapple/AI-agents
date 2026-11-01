@@ -1,0 +1,98 @@
+{
+  "calibration": {
+    "matmul_tensor": {
+      "n_wrong": 40,
+      "false_pass": 0,
+      "false_pass_rate": 0.0,
+      "false_pass_95ci": [
+        0.0,
+        0.08762453925039232
+      ],
+      "n_right": 3,
+      "false_reject": 0,
+      "false_reject_rate": 0.0
+    },
+    "optimum_claim[needle]": {
+      "n_wrong": 1,
+      "false_pass": 1,
+      "false_pass_rate": 1.0,
+      "false_pass_95ci": [
+        0.20654329147389294,
+        1.0
+      ],
+      "n_right": 1,
+      "false_reject": 1,
+      "false_reject_rate": 1.0
+    },
+    "optimum_claim[rastrigin]": {
+      "n_wrong": 3,
+      "false_pass": 0,
+      "false_pass_rate": 0.0,
+      "false_pass_95ci": [
+        0.0,
+        0.5615060804490177
+      ],
+      "n_right": 1,
+      "false_reject": 0,
+      "false_reject_rate": 0.0
+    },
+    "python_tests[strong tests]": {
+      "n_wrong": 8,
+      "false_pass": 0,
+      "false_pass_rate": 0.0,
+      "false_pass_95ci": [
+        0.0,
+        0.3244156195108769
+      ],
+      "n_right": 1,
+      "false_reject": 0,
+      "false_reject_rate": 0.0
+    },
+    "python_tests[weak tests]": {
+      "n_wrong": 8,
+      "false_pass": 6,
+      "false_pass_rate": 0.75,
+      "false_pass_95ci": [
+        0.40926987910258916,
+        0.9285223111419724
+      ],
+      "n_right": 1,
+      "false_reject": 0,
+      "false_reject_rate": 0.0
+    },
+    "symbolic_identity": {
+      "n_wrong": 33,
+      "false_pass": 0,
+      "false_pass_rate": 0.0,
+      "false_pass_95ci": [
+        0.0,
+        0.10427343003561192
+      ],
+      "n_right": 7,
+      "false_reject": 0,
+      "false_reject_rate": 0.0
+    }
+  },
+  "service_stats": {
+    "matmul_tensor": {
+      "calls": 43,
+      "latency_s": 0.0010281429996439329,
+      "cost_usd": 0.0004300000000000005
+    },
+    "python_tests": {
+      "calls": 18,
+      "latency_s": 0.36508664999973917,
+      "cost_usd": 0.0018000000000000006
+    },
+    "symbolic_identity": {
+      "calls": 40,
+      "latency_s": 0.5691916620003212,
+      "cost_usd": 0.0004000000000000004
+    },
+    "optimum_claim": {
+      "calls": 6,
+      "latency_s": 0.06720376299995223,
+      "cost_usd": 0.003
+    }
+  }
+}

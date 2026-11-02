@@ -44,7 +44,29 @@ TAG_ALIASES = {
     "text-to-image": "image-generation", "image-gen": "image-generation",
     "skills": "agent-skills", "claude-skills": "agent-skills",
     "model-context-protocol": "mcp", "search": "ai-search",
+    # Common GitHub topics, which the API search brings in as tags.
+    "claude-code": "coding-agent", "codex": "coding-agent", "agentic-coding": "coding-agent",
+    "text-to-speech": "voice", "ai-video": "video-generation", "comfyui": "image-generation",
+    "developer-tools": "devtools", "browser-automation": "agent-tools",
+    "ai-assistant": "assistant", "chatbot": "assistant", "agent-harness": "agent-runtime",
+    "agentic-workflow": "agent-orchestration", "autonomous-agents": "agent-framework",
+    "gguf": "local-llm",
 }
+
+# The directions the radar reports on: the vocabulary its collectors tag with.
+# A raw GitHub topic ("ai", "cli", "mcdonalds") is a tag but not a direction --
+# counted as one, a thousand API repos turn 32 directions into 236, each with
+# a hypothesis rule firing on two repos. A topic that names a real direction
+# joins through TAG_ALIASES; a direction the vocabulary lacks shows up first
+# as an emergent grouping, and is added here once it holds.
+DIRECTION_TAGS = frozenset("""
+    coding-agent agent-skills enterprise-agent security productivity assistant
+    video-generation voice devtools llm-inference design sales customer-support
+    agent-tools image-generation foundation-model finance agent-runtime
+    agent-framework agent-orchestration multimodal ai-search agent-evaluation
+    research-agent agent-memory local-llm context-compression education mcp
+    llm-gateway mobile-agent companion legal generative-ui jailbreak healthcare cad
+""".split())
 
 
 # Words common in app descriptions that name no direction. Without these, a
@@ -116,6 +138,7 @@ def tag_directions(
     scores: list[AppScore],
     previous: dict | None = None,
     min_members: int = 2,
+    vocabulary: frozenset[str] = DIRECTION_TAGS,
 ) -> list[Direction]:
     """Aggregate app growth by tag, and compare with the previous snapshot.
 
@@ -128,7 +151,7 @@ def tag_directions(
     top = set(ranked[: max(1, len(ranked) // 4)])
     members: dict[str, list[str]] = defaultdict(list)
     for app in apps.values():
-        for tag in {normalise_tag(t) for t in app.tags}:
+        for tag in {normalise_tag(t) for t in app.tags} & vocabulary:
             members[tag].append(app.id)
 
     previous_by_key = {d["key"]: d for d in (previous or {}).get("directions", [])}
@@ -242,7 +265,7 @@ def rising_pairs(apps: dict[str, App], scores: list[AppScore], min_count: int = 
     top = [s.app_id for s in scores[: max(1, len(scores) // 4)]]
     counts: Counter[tuple[str, str]] = Counter()
     for app_id in top:
-        tags = sorted({normalise_tag(t) for t in apps[app_id].tags})
+        tags = sorted({normalise_tag(t) for t in apps[app_id].tags} & DIRECTION_TAGS)
         for i in range(len(tags)):
             for j in range(i + 1, len(tags)):
                 counts[(tags[i], tags[j])] += 1

@@ -45,9 +45,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   `python -m airadar.cli collect` from GitHub Actions, would restore them.
 - **Product Hunt**: needs an API token (`PRODUCTHUNT_TOKEN`); add a collector
   that is skipped cleanly when the token is absent.
-- **Tag vocabulary drift.** Collectors invent tags freely. Grow `TAG_ALIASES` in
-  `directions.py` from what actually appears in `apps.json`, so one direction is
-  not split across synonyms.
+- **Tag vocabulary drift.** `DIRECTION_TAGS` is now fixed and API topics map in
+  through `TAG_ALIASES` (2026-11-02). Review the most common unmapped topics
+  weekly; add an alias where one names an existing direction, and a new
+  direction only once its emergent grouping has held for several days.
 - **Embeddings for emergent groupings**, once a model is reachable from the
   Python process. Lexical clustering over one-line descriptions is weak.
 - **Star-farming check.** Repos flagged as anomalous could be checked against
@@ -162,3 +163,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   them seen only through those terms (Godot, Redis, Elasticsearch). They are
   now generic terms: never mined, and pruned from the watch list. The repos
   already registered stay (observations are append-only).
+- 2026-11-02: directions come from a tag vocabulary. API repos bring raw GitHub
+  topics as tags ("ai", "cli", "mcdonalds"), and each topic on two scored repos
+  became a direction: 236 directions and 83 rule hypotheses on 2026-11-01,
+  against 32 and 3 the day before. Directions and convergence pairs now count
+  only `DIRECTION_TAGS`, the vocabulary the collectors tag with. Common topics
+  that name a real direction join through `TAG_ALIASES` (claude-code and codex
+  -> coding-agent, text-to-speech -> voice, ...). Rerun on 2026-11-01's data:
+  34 directions, 8 hypotheses. Emergent groupings still find what the
+  vocabulary lacks.

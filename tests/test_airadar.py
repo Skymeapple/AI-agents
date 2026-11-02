@@ -687,6 +687,24 @@ def test_generic_words_never_become_search_terms(tmp_path):
     assert load_watch(path)["auto_terms"] == ["codex", "orchestration"]
 
 
+def test_only_the_tag_vocabulary_forms_directions():
+    from airadar.directions import tag_directions
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+
+    apps = {
+        f"gh:o/r{i}": App(f"gh:o/r{i}", f"o/r{i}", f"https://github.com/o/r{i}", AppKind.REPO, "",
+                          tags, D0)
+        for i, tags in enumerate([["ai", "cli", "claude-code"], ["ai", "cli", "coding-agent"], ["ai", "mcp"]])
+    }
+    scores = [AppScore(a, 0.5 + 0.1 * i, 1, [], []) for i, a in enumerate(apps)]
+    keys = {d.key for d in tag_directions(apps, scores)}
+    assert keys == {"coding-agent"}                      # "claude-code" joins through its alias
+    (coding,) = tag_directions(apps, scores)
+    assert sorted(coding.members) == ["gh:o/r0", "gh:o/r1"]
+    assert {d.key for d in tag_directions(apps, scores, vocabulary=frozenset({"ai"}))} == {"ai"}
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

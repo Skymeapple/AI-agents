@@ -29,12 +29,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
-- **Off-topic repos from the 2026-11-01 search stay in the registry.** About
-  168 repos came only through generic search terms. They are slow-moving and
-  sit low in the ranking, but their raw GitHub topics inflate the direction
-  list (236 directions, 83 rule hypotheses on 2026-11-01). A way to mark an
-  app out of scope (append-only, like `mark-gone`) would let them leave the
-  ranking and the direction table without touching observations.
+- **Scope by rule for the API search.** Out-of-scope marking is manual. A
+  cheap automatic first pass (an AI-terms check on description and topics,
+  flagged for review rather than applied) would keep the API's daily intake
+  clean; the 2026-11-03 review found the keyword check misses about 1 in 9
+  AI repos, so it can only suggest, not decide.
 - **The API search adds ~1,000 repos a day to the registry.** On 2026-11-01
   the topic search added about 970 apps. Most are slow-moving; watch whether
   the ranking and the page stay readable, and consider a minimum-stars or
@@ -172,3 +171,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   -> coding-agent, text-to-speech -> voice, ...). Rerun on 2026-11-01's data:
   34 directions, 8 hypotheses. Emergent groupings still find what the
   vocabulary lacks.
+- 2026-11-03: apps can be marked out of scope. The API search sweeps in repos
+  that are not AI apps (an Android TV debloater ranked #2 on 2026-11-02).
+  `airadar mark-out-of-scope <url> <page> "<what it is>"` (append-only
+  `scope.jsonl`, `--back` to undo, following repo moves) leaves an app out of
+  the ranking, directions, movers and recheck list while its observations stay;
+  the report lists them. First use: 50 apps, the 49 that came in only through
+  the generic search terms and whose descriptions show no AI (each read; 6
+  AI-related ones in that group were kept), plus cleanyourtv.

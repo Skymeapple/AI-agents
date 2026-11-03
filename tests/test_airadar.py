@@ -705,6 +705,30 @@ def test_only_the_tag_vocabulary_forms_directions():
     assert {d.key for d in tag_directions(apps, scores, vocabulary=frozenset({"ai"}))} == {"ai"}
 
 
+def test_out_of_scope_apps_leave_the_ranking_but_keep_their_observations(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 400, day, method=Method.API, url="https://github.com/o/r3")])
+    assert "gh:o/r3" in {s.app_id for s in analyse(store, day).scores}
+    with pytest.raises(ValueError, match="status"):
+        store.record_scope("https://github.com/o/r3", "maybe", day, "https://github.com/o/r3")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_scope("https://github.com/o/r3", "out", day, "")
+    before = len(store.load_observations())
+    store.record_scope("https://github.com/o/r3", "out", day, "https://github.com/o/r3", "a TV debloater")
+    a = analyse(store, day)
+    assert "gh:o/r3" not in {s.app_id for s in a.scores} | set(a.baseline_only)
+    assert "gh:o/r3" in a.out_of_scope and len(store.load_observations()) == before
+    assert "### Out of scope" in render(a) and "a TV debloater" in render(a)
+    assert "gh:o/r3" in {s.app_id for s in analyse(store, day - dt.timedelta(days=1)).scores} | \
+        set(analyse(store, day - dt.timedelta(days=1)).baseline_only)          # asof respected
+    store.record_scope("https://github.com/o/r3", "in", day + dt.timedelta(days=1), "https://github.com/o/r3")
+    assert "gh:o/r3" not in analyse(store, day + dt.timedelta(days=1)).out_of_scope
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

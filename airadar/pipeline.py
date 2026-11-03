@@ -49,6 +49,8 @@ class Analysis:
     # that says so. They leave the ranking: growth claimed for a page that no
     # longer exists cannot be checked, and no one can build on or back it.
     gone: dict[str, dict] = field(default_factory=dict)
+    # Apps judged outside the radar's scope (not AI apps), with the record.
+    out_of_scope: dict[str, dict] = field(default_factory=dict)
     # Growth the radar measured between its own last two readings.
     movers: list = field(default_factory=list)
     # The latest review of each flagged app, so a check already made is shown
@@ -111,12 +113,14 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     apps = store.load_apps()
     observations = store.load_observations()
     gone = store.gone_as_of(date)
+    out_of_scope = store.out_of_scope_as_of(date)
+    left_out = set(gone) | set(out_of_scope)
     signals = {
         app_id: rows for app_id, rows in extract_signals(observations, asof=date).items()
-        if app_id not in gone
+        if app_id not in left_out
     }
     scores = [s for s in score_apps(signals, params, asof=date) if s.app_id in apps]
-    seen = {o.app_id for o in observations if o.known_on <= date} - set(gone)
+    seen = {o.app_id for o in observations if o.known_on <= date} - left_out
     baseline_only = sorted(seen - set(signals))
     previous = store.previous_snapshot(date)
     directions = tag_directions(apps, scores, previous)
@@ -137,7 +141,8 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         evaluations=scorecard(store, date, observations),
         health=source_health(store.load_runs()),
         gone=gone,
-        movers=[m for m in measured_movers(observations, date) if m.app_id in apps and m.app_id not in gone],
+        out_of_scope=out_of_scope,
+        movers=[m for m in measured_movers(observations, date) if m.app_id in apps and m.app_id not in left_out],
         reviews={s.app_id: r for s in scores if s.anomalies
                  for r in [store.review_for(s.app_id, date)] if r},
     )

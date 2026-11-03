@@ -16,6 +16,7 @@ data/radar/
   aliases.jsonl         append-only: an app that moved (repo transfer, rename) to a new url
   verdicts.jsonl        append-only: what research found when it tested a hypothesis
   reviews.jsonl         append-only: what a check of a flagged app's page found
+  scope.jsonl           append-only: an app judged outside the radar's scope (not an AI app), or back in
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -97,6 +98,7 @@ class Store:
         self.aliases_path = self.root / "aliases.jsonl"
         self.verdicts_path = self.root / "verdicts.jsonl"
         self.reviews_path = self.root / "reviews.jsonl"
+        self.scope_path = self.root / "scope.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -320,6 +322,35 @@ class Store:
             if current is None or row["observed_on"] >= current["observed_on"]:
                 latest[app_id] = row
         return {app_id: row for app_id, row in latest.items() if row["status"] == "gone"}
+
+    # -- scope -------------------------------------------------------------------
+
+    def record_scope(self, url: str, status: str, observed_on: dt.date,
+                     source_url: str, note: str = "") -> None:
+        """Record that an app is outside the radar's scope (it is not an AI
+        app, e.g. a TV debloater a topic search swept in), or back in scope.
+        Append-only: its observations stay; it is only left out of scoring."""
+        if status not in ("out", "in"):
+            raise ValueError(f"status must be 'out' or 'in', got {status!r}")
+        if not source_url.strip():
+            raise ValueError("a scope record needs the source_url of the page that shows what the app is")
+        _append_jsonl(self.scope_path, [{
+            "app_id": canonical_id(url), "status": status,
+            "observed_on": observed_on.isoformat(), "source_url": source_url, "note": note,
+        }])
+
+    def out_of_scope_as_of(self, asof: dt.date) -> dict[str, dict]:
+        """Apps whose latest scope record on or before ``asof`` says out."""
+        latest: dict[str, dict] = {}
+        aliases = self.aliases()
+        for row in _read_jsonl(self.scope_path):
+            if dt.date.fromisoformat(row["observed_on"]) > asof:
+                continue
+            app_id = aliases.get(row["app_id"], (row["app_id"],))[0]
+            current = latest.get(app_id)
+            if current is None or row["observed_on"] >= current["observed_on"]:
+                latest[app_id] = row
+        return {app_id: row for app_id, row in latest.items() if row["status"] == "out"}
 
     # -- snapshots and reports --------------------------------------------------
 

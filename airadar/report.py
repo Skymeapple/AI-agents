@@ -106,6 +106,17 @@ def render(analysis: Analysis) -> str:
                          f"([checked]({row['source_url']})). {row['note']}".rstrip())
         lines.append("")
 
+    if a.out_of_scope:
+        lines += ["### Out of scope", "",
+                  f"{len(a.out_of_scope)} apps judged not to be AI apps (swept in by a topic search) "
+                  "are left out of the ranking. Their observations are kept.", ""]
+        for app_id, row in sorted(a.out_of_scope.items())[:20]:
+            lines.append(f"- {_link(a, app_id)}: since {row['observed_on']} "
+                         f"([checked]({row['source_url']})). {row['note']}".rstrip())
+        if len(a.out_of_scope) > 20:
+            lines.append(f"- … and {len(a.out_of_scope) - 20} more (`scope.jsonl`).")
+        lines.append("")
+
     lines += ["## Directions", ""]
     if not a.directions:
         lines += ["_Too few tagged apps with growth evidence to form directions._", ""]

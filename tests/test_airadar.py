@@ -624,10 +624,15 @@ class _FakeGitHubSearch:
         self.repos, self.queries = repos, []
 
     def get(self, url, params=None, timeout=None, headers=None):
-        names = [q[len("repo:"):] for q in params["q"].split()]
         self.queries.append(params["q"])
-        items = [{"full_name": real, "stargazers_count": stars}
-                 for real, stars in self.repos.items() if real.lower() in names]
+        if params["q"].endswith(" in:name"):
+            wanted = params["q"].split()[0]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.split("/")[1].lower() == wanted]
+        else:
+            names = [q[len("repo:"):] for q in params["q"].split()]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.lower() in names]
 
         class Response:
             def raise_for_status(self):
@@ -655,6 +660,22 @@ def test_repos_are_reobserved_by_api_with_exact_counts():
     assert by_app["gh:o/a"].rounded_to is None
     assert by_app["gh:o/a"].source_url.endswith("?q=repo:O/a")
     assert "gh:o/gone" not in by_app and any("o/gone" in e for e in out.errors)
+
+
+def test_a_repo_missing_from_the_search_gets_a_move_suggestion():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    def repo(name):
+        return App(f"gh:{name.lower()}", name, f"https://github.com/{name}", AppKind.REPO, "", [], D0)
+
+    session = _FakeGitHubSearch({"neworg/tool": 17_400, "fork/tool": 12, "x/other": 17_000})
+    out = collect_github_repos([repo("old/tool")], session, last_stars={"gh:old/tool": 15_700})
+    (error,) = out.errors
+    assert "possible move to neworg/tool (17,400 stars)" in error and "fork/tool" not in error
+    assert not out.observations                                  # suggested, never applied
+    out = collect_github_repos([repo("old/tool")], _FakeGitHubSearch({"neworg/tool": 17_400}))
+    assert "possible move" not in out.errors[0]                   # no last reading, no guess
 
 
 def test_recheck_leaves_out_apps_already_read_today(tmp_path):

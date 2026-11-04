@@ -71,9 +71,13 @@ def cmd_collect(args) -> int:
     session = requests.Session()
     def recheck_repos():
         # Runs after the search: a repo the search just read is not read twice.
+        last: dict[str, float] = {}
+        for o in sorted(store.load_observations(), key=lambda o: o.observed_on):
+            if o.metric == "stars":
+                last[o.app_id] = o.value
         return collect_github_repos(
             [app for app, metric in recheck_targets(store, _date(None)) if app.kind.value == "repo"],
-            session, os.environ.get("GITHUB_TOKEN"),
+            session, os.environ.get("GITHUB_TOKEN"), last_stars=last,
         )
 
     runners = {

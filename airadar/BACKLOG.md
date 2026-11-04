@@ -179,3 +179,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   the report lists them. First use: 50 apps, the 49 that came in only through
   the generic search terms and whose descriptions show no AI (each read; 6
   AI-related ones in that group were kept), plus cleanyourtv.
+- 2026-11-04: the API re-read suggests where a missing repo moved. Two repos
+  transferred in two days (phone-harness on 11-03, dsh-purge on 11-04); each
+  showed up only as "not returned" and needed a page read to find its new
+  owner. github.com pages are refused to Python by the proxy, so redirects
+  can't be followed. A transferred repo keeps its name and stars, so the
+  re-read now searches the name and reports any same-named repo within a
+  quarter of the last star reading as a possible move. It is a suggestion
+  for `mark-moved`, never applied. Live check: it names HunYiSage/dsh-purge and
+  phone-harness/phone-harness for the two real moves.

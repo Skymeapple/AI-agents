@@ -65,7 +65,8 @@ def collect_github(watch: dict, session: requests.Session, token: str | None = N
 
 
 def collect_github_repos(apps: list[App], session: requests.Session,
-                         token: str | None = None, max_query: int = 250) -> Collected:
+                         token: str | None = None, max_query: int = 250,
+                         last_stars: dict[str, float] | None = None) -> Collected:
     """Exact star counts for repos the radar already tracks.
 
     This is re-observation by API: a repo's own page shows "58.7k", the API
@@ -73,7 +74,10 @@ def collect_github_repos(apps: list[App], session: requests.Session,
     uses, several ``repo:owner/name`` qualifiers per query (GitHub caps a
     query at 256 characters). A repo the search doesn't return -- deleted,
     made private, or renamed -- is reported as an error, not recorded, so it
-    can be checked and marked gone or moved.
+    can be checked and marked gone or moved. A transferred repo keeps its name
+    and its stars, so the error names any repo of the same name whose count
+    is within a quarter of ``last_stars`` as a possible new home: a
+    suggestion for ``mark-moved``, never applied here.
     """
     out = Collected("api:github-repos")
     on = today()
@@ -105,11 +109,33 @@ def collect_github_repos(apps: list[App], session: requests.Session,
             app = wanted[name]
             item = found.get(name)
             if item is None:
-                out.errors.append(f"github {name}: not returned (gone, private or renamed?)")
+                hint = _possible_move(session, headers, name, (last_stars or {}).get(app.id))
+                out.errors.append(f"github {name}: not returned (gone, private or renamed?){hint}")
                 continue
             source = f"{GITHUB_API}?q=repo:{item['full_name']}"
             out.add(app, _obs(app, "stars", item["stargazers_count"], source, out.collector, on=on))
     return out
+
+
+def _possible_move(session: requests.Session, headers: dict, full_name: str,
+                   last: float | None) -> str:
+    if not last:
+        return ""
+    repo_name = full_name.split("/", 1)[1]
+    try:
+        payload = get_json(session, GITHUB_API, {"q": f"{repo_name} in:name", "per_page": 30}, headers)
+    except (requests.RequestException, ValueError):
+        return ""
+    hits = [
+        f"{item['full_name']} ({item['stargazers_count']:,} stars)"
+        for item in payload.get("items", [])
+        if item["full_name"].split("/", 1)[1].lower() == repo_name
+        and item["full_name"].lower() != full_name
+        and abs(item["stargazers_count"] - last) <= 0.25 * last
+    ]
+    if not hits:
+        return ""
+    return f"; possible move to {', '.join(hits)} against a last reading of {last:,.0f}: check, then mark-moved"
 
 
 def collect_huggingface(session: requests.Session, limit: int = 100) -> Collected:

@@ -180,6 +180,15 @@
   ],
   "url": "https://github.com/4ian/GDevelop"
  },
+ "gh:9bie/php2shell-bypass-aslr-exp": {
+  "description": "A php2shell exploit that requires no modifications to the official version, and does not require display_errors or limit_memory.",
+  "first_seen": "2026-11-04",
+  "id": "gh:9bie/php2shell-bypass-aslr-exp",
+  "kind": "repo",
+  "name": "9bie/php2shell-bypass-aslr-exp",
+  "tags": [],
+  "url": "https://github.com/9bie/php2shell-bypass-aslr-exp"
+ },
  "gh:a2aproject/a2a": {
   "description": "Agent2Agent (A2A) is an open protocol enabling communication and interoperability between opaque agentic applications.",
   "first_seen": "2026-11-01",
@@ -873,6 +882,18 @@
   ],
   "url": "https://github.com/alchaincyf/huashu-design"
  },
+ "gh:alchaincyf/huashu-excel": {
+  "description": "\u6570\u636e\u5206\u6790\u4e0e Excel \u5168\u6d41\u7a0b skill\uff1a\u4f53\u68c0\u810f\u8868\u3001\u6e05\u6d17\u3001\u5bf9\u9f50\u9700\u6c42\u3001\u5206\u6790\u3001\u5bf9\u8d26\u3001\u4ea4\u4ed8\u3002\u8ba9 AI \u7b97\u51fa\u6765\u7684\u6570\u5b57\u7ecf\u5f97\u8d77\u8ffd\u95ee\u3002\u8de8 agent \u901a\u7528\uff0c\u4f9d\u8d56\u4ec5 openpyxl\u3002",
+  "first_seen": "2026-11-04",
+  "id": "gh:alchaincyf/huashu-excel",
+  "kind": "repo",
+  "name": "alchaincyf/huashu-excel",
+  "tags": [
+   "deepseek-harness",
+   "dsh-plugin"
+  ],
+  "url": "https://github.com/alchaincyf/huashu-excel"
+ },
  "gh:alchaincyf/huashu-motion": {
   "description": "\u8ba9\u4f60\u7684agent\u4e00\u952e\u76f4\u51fa\u5546\u4e1a\u7ea7\u4ea7\u54c1\u5ba3\u4f20\u7247\uff1a\u4f1a\u4f5c\u66f2\uff0c\u80fd\u6307\u7740\u753b\u9762\u6539\u3002Commercial-grade launch films by your coding agent \u2014 point at the frame to change it.",
   "first_seen": "2026-11-01",
@@ -888,13 +909,31 @@
   ],
   "url": "https://github.com/alchaincyf/huashu-motion"
  },
+ "gh:alchaincyf/huashu-skills": {
+  "description": "\u82b1\u53d4\u5168\u90e8\u5f00\u6e90 Agent Skills \u603b\u76ee\u5f55\uff1a16 \u65d7\u8230 + 14 \u4eba\u7269\u89c6\u89d2 + 22 \u5185\u7f6e\u5171 52 \u4e2a skill\uff0c\u5206\u5c42\u5206\u7c7b + AI Agent \u5b89\u88c5\u534f\u8bae + \u673a\u5668\u53ef\u8bfb skills.json + \u66f4\u65b0\u68c0\u67e5\u673a\u5236",
+  "first_seen": "2026-11-04",
+  "id": "gh:alchaincyf/huashu-skills",
+  "kind": "repo",
+  "name": "alchaincyf/huashu-skills",
+  "tags": [
+   "agent-skills",
+   "ai-agents",
+   "claude",
+   "claude-code",
+   "skills"
+  ],
+  "url": "https://github.com/alchaincyf/huashu-skills"
+ },
  "gh:alchaincyf/nuwa-skill": {
   "description": "\u4f60\u60f3\u84b8\u998f\u7684\u4e0b\u4e00\u4e2a\u5458\u5de5\uff0c\u4f55\u5fc5\u662f\u540c\u4e8b\u3002\u84b8\u998f\u4efb\u4f55\u4eba\u7684\u601d\u7ef4\u65b9\u5f0f\u2014\u2014\u5fc3\u667a\u6a21\u578b\u3001\u51b3\u7b56\u542f\u53d1\u5f0f\u3001\u8868\u8fbeDNA\u3002Distill how anyone thinks.",
   "first_seen": "2026-11-01",
   "id": "gh:alchaincyf/nuwa-skill",
   "kind": "repo",
   "name": "alchaincyf/nuwa-skill",
-  "tags": [],
+  "tags": [
+   "deepseek-harness",
+   "dsh-plugin"
+  ],
   "url": "https://github.com/alchaincyf/nuwa-skill"
  },
  "gh:alexgaoth/awesome-reverse-engineered": {
@@ -957,6 +996,15 @@
   ],
   "url": "https://github.com/alexturkey/voxcpm2-turkce-ses-tasarimi"
  },
+ "gh:alezx311/earthng": {
+  "description": "A prototype of real-world streaming map modification for BeamNG.Drive",
+  "first_seen": "2026-11-04",
+  "id": "gh:alezx311/earthng",
+  "kind": "repo",
+  "name": "Alezx311/earthng",
+  "tags": [],
+  "url": "https://github.com/Alezx311/earthng"
+ },
  "gh:alibaba/open-code-review": {
   "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
   "first_seen": "2026-11-01",
@@ -1001,6 +1049,36 @@
    "fts"
   ],
   "url": "https://github.com/alibaba/zvec"
+ },
+ "gh:alicealys/h2-mod": {
+  "description": "Modification for H2 (MW2CR)",
+  "first_seen": "2026-11-04",
+  "id": "gh:alicealys/h2-mod",
+  "kind": "repo",
+  "name": "alicealys/h2-mod",
+  "tags": [
+   "call-of-duty",
+   "call-of-duty-modern-warfare-2",
+   "callofduty",
+   "cod",
+   "hacktoberfest"
+  ],
+  "url": "https://github.com/alicealys/h2-mod"
+ },
+ "gh:aligh98/tts-director": {
+  "description": "Agent skill that directs scripts for TTS (ElevenLabs v3/v4 tags): rewrite for the ear, tag budget, free linter, A/B tester. | \u0627\u0633\u06a9\u06cc\u0644\u06cc \u0628\u0631\u0627\u06cc \u06a9\u0627\u0631\u06af\u0631\u062f\u0627\u0646\u06cc \u0645\u062a\u0646 \u0642\u0628\u0644 \u0627\u0632 TTS: \u0628\u0627\u0632\u0646\u0648\u06cc\u0633\u06cc \u0628\u0631\u0627\u06cc \u06af\u0648\u0634\u060c \u062a\u06af\u200c\u06af\u0630\u0627\u0631\u06cc \u0628\u062f\u0648\u0646 \u0632\u06cc\u0627\u062f\u0647\u200c\u0631\u0648\u06cc\u060c \u0644\u06cc\u0646\u062a\u0631 \u0631\u0627\u06cc\u06af\u0627\u0646 \u0648 \u062a\u0633\u062a A/B. \u0641\u0627\u0631\u0633\u06cc\u200c\u0645\u062d\u0648\u0631.",
+  "first_seen": "2026-11-04",
+  "id": "gh:aligh98/tts-director",
+  "kind": "repo",
+  "name": "aligh98/tts-director",
+  "tags": [
+   "agent-skills",
+   "claude-code",
+   "elevenlabs",
+   "persian",
+   "text-to-speech"
+  ],
+  "url": "https://github.com/aligh98/tts-director"
  },
  "gh:aliihsaad/windock": {
   "description": "Remote app dock and control surface for a Windows or Linux (Hyprland) PC, driven from a phone over Wi-Fi or USB.",
@@ -1343,6 +1421,20 @@
   ],
   "url": "https://github.com/anthropics/skills"
  },
+ "gh:antiburn/antiburn": {
+  "description": "Fast, free local checks to reduce your token burn. Helps you avoid limits by checking for: sessions too deep, models too powerful, caching broken, unused tools/MCPs/skills, and many more.",
+  "first_seen": "2026-11-04",
+  "id": "gh:antiburn/antiburn",
+  "kind": "repo",
+  "name": "antiburn/antiburn",
+  "tags": [
+   "ai-coding",
+   "desktop-app",
+   "developer-tools",
+   "local-first"
+  ],
+  "url": "https://github.com/antiburn/antiburn"
+ },
  "gh:antirez/ds4": {
   "description": "DeepSeek 4 Flash and PRO local inference engine for Metal, CUDA and ROCm",
   "first_seen": "2026-11-01",
@@ -1366,6 +1458,21 @@
    "cve-2026-109619"
   ],
   "url": "https://github.com/Anton-Barinov/php2shell-patches"
+ },
+ "gh:anubis-security-tool/anubis": {
+  "description": "\ud83d\udee1\ufe0f Free Open-Source AI-Powered Security Terminal & Vulnerability Scanner (CVE, SBOM). Multi-Protocol Access: SSH, SFTP, RDP, VNC, Serial. 12+ AI Agents (OpenAI, DeepSeek) for Pentesting, CTF, DevSecOps & Security Automation. Cross-Platform & Web UI.",
+  "first_seen": "2026-11-04",
+  "id": "gh:anubis-security-tool/anubis",
+  "kind": "repo",
+  "name": "Anubis-Security-Tool/anubis",
+  "tags": [
+   "anubis",
+   "anubis-security-tool",
+   "developer-tools",
+   "electron",
+   "ftp"
+  ],
+  "url": "https://github.com/Anubis-Security-Tool/anubis"
  },
  "gh:aoci-spec/aoci-code": {
   "description": "A persistent, Git-versioned map of your whole codebase and database schema that coding agents read before they touch anything. Local-first MCP server + CLI in Go: a governed repository index of code knowledge that gives Claude Code, Codex, Cursor, and opencode long-term context, memory, and code intelligence.",
@@ -1671,6 +1778,21 @@
   ],
   "url": "https://github.com/AstrBotDevs/AstrBot"
  },
+ "gh:atlas-os/atlas": {
+  "description": "\ud83d\ude80 An open and lightweight modification to Windows, designed to optimize performance, privacy and usability.",
+  "first_seen": "2026-11-04",
+  "id": "gh:atlas-os/atlas",
+  "kind": "repo",
+  "name": "Atlas-OS/Atlas",
+  "tags": [
+   "ame-wizard",
+   "atlas",
+   "atlasos",
+   "debloat",
+   "fps"
+  ],
+  "url": "https://github.com/Atlas-OS/Atlas"
+ },
  "gh:atlascloudai/awesome-seedance-2.5-prompts-skills": {
   "description": "100+ curated Seedance 2.5 prompts with real video previews, plus an installable Agent Skill that optimizes prompts, creates storyboards, and generates videos via Seedance models.",
   "first_seen": "2026-11-01",
@@ -1730,6 +1852,30 @@
    "deepseek"
   ],
   "url": "https://github.com/AtomicBot-ai/Atomic-Chat"
+ },
+ "gh:auroramod/h1-mod": {
+  "description": "Modification for H1 (MWR)",
+  "first_seen": "2026-11-04",
+  "id": "gh:auroramod/h1-mod",
+  "kind": "repo",
+  "name": "auroramod/h1-mod",
+  "tags": [
+   "h1",
+   "mwr"
+  ],
+  "url": "https://github.com/auroramod/h1-mod"
+ },
+ "gh:auroramod/iw7-mod": {
+  "description": "Modification for IW7 (Infinite Warfare)",
+  "first_seen": "2026-11-04",
+  "id": "gh:auroramod/iw7-mod",
+  "kind": "repo",
+  "name": "auroramod/iw7-mod",
+  "tags": [
+   "infinite-warfare",
+   "iw7"
+  ],
+  "url": "https://github.com/auroramod/iw7-mod"
  },
  "gh:autocoderoversg/auto-code-rover": {
   "description": "A project structure aware autonomous software engineer aiming for autonomous program improvement. Resolved 37.3% tasks (pass@1) in SWE-bench lite and 46.2% tasks (pass@1) in SWE-bench verified with each task costs less than $0.7.",
@@ -1826,6 +1972,21 @@
    "agent-skills"
   ],
   "url": "https://github.com/aws/agent-toolkit-for-aws"
+ },
+ "gh:awslabs/threat-composer": {
+  "description": "A simple threat modeling tool to help humans to reduce time-to-value when threat modeling",
+  "first_seen": "2026-11-04",
+  "id": "gh:awslabs/threat-composer",
+  "kind": "repo",
+  "name": "awslabs/threat-composer",
+  "tags": [
+   "threat-modeling",
+   "threat-modeling-tool",
+   "threat-modelling-tool",
+   "threatmodeling",
+   "threatmodelling"
+  ],
+  "url": "https://github.com/awslabs/threat-composer"
  },
  "gh:axoviq-ai/synthadoc": {
   "description": "Synthadoc: An open-source LLM knowledge compilation engine that turns raw documents into structured, local-first wikis. A transparent, human-readable alternative to traditional RAG, which can be self-managed and self-improved without the use of any tools.",
@@ -2369,6 +2530,15 @@
   ],
   "url": "https://github.com/blues-sechseck/Mitsubishi-WF-RAC-Integration"
  },
+ "gh:bnuuysolutions/psvr2toolkit": {
+  "description": "Unofficial modification for the official PlayStation VR2 driver/app, which aims to improve your PlayStation VR2 experience on PC.",
+  "first_seen": "2026-11-04",
+  "id": "gh:bnuuysolutions/psvr2toolkit",
+  "kind": "repo",
+  "name": "BnuuySolutions/PSVR2Toolkit",
+  "tags": [],
+  "url": "https://github.com/BnuuySolutions/PSVR2Toolkit"
+ },
  "gh:boardshogunfluctuate/capri-ai": {
   "description": "\u26a1 Tell your PC what to do. Capri is a cyberpunk AI agent that works with your files, projects and code through Claude Code, Codex or Antigravity. Windows installer, no terminal. Fan-made, not affiliated with CD PROJEKT RED.",
   "first_seen": "2026-11-01",
@@ -2513,6 +2683,19 @@
   ],
   "url": "https://github.com/C4rohan/Lampline"
  },
+ "gh:caffeinemc/sodium": {
+  "description": "A high-performance rendering engine replacement for Minecraft, which greatly improves frame rates and reduces micro-stutter",
+  "first_seen": "2026-11-04",
+  "id": "gh:caffeinemc/sodium",
+  "kind": "repo",
+  "name": "CaffeineMC/sodium",
+  "tags": [
+   "fabric",
+   "minecraft",
+   "neoforge"
+  ],
+  "url": "https://github.com/CaffeineMC/sodium"
+ },
  "gh:calesthio/openmontage": {
   "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
   "first_seen": "2026-11-01",
@@ -2572,6 +2755,36 @@
    "clickhouse"
   ],
   "url": "https://github.com/Canner/WrenAI"
+ },
+ "gh:canvixel-eloweny/ai-bot-groupmate": {
+  "description": "Estrella Bot \u00b7 QQ \u7fa4 AI \u7fa4\u53cb\u673a\u5668\u4eba\u3002\u628a QQ \u5c0f\u53f7\u63a5\u7ed9\u4efb\u610f OpenAI \u517c\u5bb9\u6a21\u578b\uff08\u672c\u673a / DeepSeek / \u667a\u8c31 / \u901a\u4e49\uff09\uff0c\u8ba9 AI \u50cf\u7fa4\u53cb\u4e00\u6837\u63d2\u8bdd\u3001\u63a5\u6897\u3001\u6f5c\u6c34\u3002OneBot v11 + NapCat\uff0c\u96f6\u6784\u5efa\u7f51\u9875\u63a7\u5236\u53f0\u3002Apache-2.0",
+  "first_seen": "2026-11-04",
+  "id": "gh:canvixel-eloweny/ai-bot-groupmate",
+  "kind": "repo",
+  "name": "Canvixel-Eloweny/ai-bot-groupmate",
+  "tags": [
+   "ai-agent",
+   "ai-groupmate",
+   "bot",
+   "chatbot",
+   "chinese"
+  ],
+  "url": "https://github.com/Canvixel-Eloweny/ai-bot-groupmate"
+ },
+ "gh:capri-cmd/capri-ai": {
+  "description": "Capri from Cyberpunk: Edgerunners 2 living on your desktop. A local AI desktop companion: talks, remembers you, DJs your music. 100% local, no API keys.",
+  "first_seen": "2026-11-04",
+  "id": "gh:capri-cmd/capri-ai",
+  "kind": "repo",
+  "name": "Capri-cmd/capri-ai",
+  "tags": [
+   "ai-companion",
+   "cyberpunk",
+   "desktop-companion",
+   "desktop-pet",
+   "edgerunners"
+  ],
+  "url": "https://github.com/Capri-cmd/capri-ai"
  },
  "gh:capsize-games/airunner": {
   "description": "Offline inference engine for art, real-time voice conversations, LLM powered chatbots and automated workflows",
@@ -2694,6 +2907,15 @@
   ],
   "url": "https://github.com/Cattmonkey/ChaosIntelligence"
  },
+ "gh:cbepx-me/anbernic-h700-rg-xx-stockos-modification": {
+  "description": "Anbernic H700 Stock OS Modification",
+  "first_seen": "2026-11-04",
+  "id": "gh:cbepx-me/anbernic-h700-rg-xx-stockos-modification",
+  "kind": "repo",
+  "name": "cbepx-me/Anbernic-H700-RG-xx-StockOS-Modification",
+  "tags": [],
+  "url": "https://github.com/cbepx-me/Anbernic-H700-RG-xx-StockOS-Modification"
+ },
  "gh:ccch1mneyyy/dsh-go": {
   "description": "dsh-go \u2014 DeepSeek Harness \u88c5\u8fdb\u53e3\u888b\uff1a\u624b\u673a\u672c\u673a\u8fd0\u884c\uff0c\u4e5f\u80fd\u9065\u63a7\u4f60\u7684\u7535\u8111\u3002",
   "first_seen": "2026-11-01",
@@ -2708,6 +2930,36 @@
    "deepseek"
   ],
   "url": "https://github.com/ccch1mneyyy/dsh-Go"
+ },
+ "gh:ccharlie-xiu/aoci-wuch": {
+  "description": "Task-first AI agent skill library \u00b7 https://skill.wuch-ai.net",
+  "first_seen": "2026-11-04",
+  "id": "gh:ccharlie-xiu/aoci-wuch",
+  "kind": "repo",
+  "name": "CCharlie-xiu/aoci-wuch",
+  "tags": [
+   "agent-skills",
+   "ai-agent",
+   "ai-coding-assistant",
+   "ai-tools",
+   "developer-tools"
+  ],
+  "url": "https://github.com/CCharlie-xiu/aoci-wuch"
+ },
+ "gh:ccharlie-xiu/wuch-ai": {
+  "description": "\u8bf4\u4e00\u53e5\uff0c\u754c\u9762\u5728\u753b\u5e03\u4e0a\u957f\u51fa\u6765 \u00b7 https://wuch-ai.net",
+  "first_seen": "2026-11-04",
+  "id": "gh:ccharlie-xiu/wuch-ai",
+  "kind": "repo",
+  "name": "CCharlie-xiu/wuch-ai",
+  "tags": [
+   "ai",
+   "ai-agent",
+   "ai-tools",
+   "bun",
+   "canvas"
+  ],
+  "url": "https://github.com/CCharlie-xiu/wuch-ai"
  },
  "gh:cd1s/safarier": {
   "description": "Native macOS multi-profile isolated WebKit browser with sing-box integration and engine-level privacy alignment",
@@ -2733,6 +2985,21 @@
   ],
   "url": "https://github.com/cdcailf/cjkfold"
  },
+ "gh:celenityy/phoenix": {
+  "description": "Phoenix is a suite of configurations & advanced modifications for Mozilla Firefox, designed to put the user first - with a focus on privacy, security, freedom, & usability. ",
+  "first_seen": "2026-11-04",
+  "id": "gh:celenityy/phoenix",
+  "kind": "repo",
+  "name": "celenityy/Phoenix",
+  "tags": [
+   "anti-tracking",
+   "browser",
+   "firefox",
+   "firefox-based",
+   "firefox-browser"
+  ],
+  "url": "https://github.com/celenityy/Phoenix"
+ },
  "gh:chachamaru127/claude-code-harness": {
   "description": "Claude Code Dedicated Development Harness - Achieving High-Quality Development Through an Autonomous Plan\u2192Work\u2192Review Cycle",
   "first_seen": "2026-11-01",
@@ -2756,6 +3023,21 @@
    "aicoding"
   ],
   "url": "https://github.com/chaitin/MonkeyCode"
+ },
+ "gh:chakravala/reduce.jl": {
+  "description": "Symbolic parser for Julia language algebra using REDUCE",
+  "first_seen": "2026-11-04",
+  "id": "gh:chakravala/reduce.jl",
+  "kind": "repo",
+  "name": "chakravala/Reduce.jl",
+  "tags": [
+   "algebra",
+   "computer-algebra",
+   "julia",
+   "math",
+   "metaprogramming"
+  ],
+  "url": "https://github.com/chakravala/Reduce.jl"
  },
  "gh:chalarangelo/30-seconds-of-code": {
   "description": "Coding articles to level up your development skills",
@@ -2901,6 +3183,20 @@
   ],
   "url": "https://github.com/chienbm98/foxprofile"
  },
+ "gh:chrislusf/gleam": {
+  "description": "Fast, efficient, and scalable distributed map/reduce system, DAG execution, in memory or on disk, written in pure Go, runs standalone or distributedly.",
+  "first_seen": "2026-11-04",
+  "id": "gh:chrislusf/gleam",
+  "kind": "repo",
+  "name": "chrislusf/gleam",
+  "tags": [
+   "distributed-computing",
+   "distributed-systems",
+   "golang",
+   "map-reduce"
+  ],
+  "url": "https://github.com/chrislusf/gleam"
+ },
  "gh:christos-antono/npctalk": {
   "description": "Make any NPC in any game talk back with Fish Audio: skills, a self-hosted voice server and tools for AI coding agents, with a full GTA V example.",
   "first_seen": "2026-11-01",
@@ -2970,6 +3266,21 @@
   ],
   "url": "https://github.com/ciddwd/overlay-translator"
  },
+ "gh:citizenfx/fivem": {
+  "description": "The source code for the Cfx modification frameworks, such as FiveM and RedM, as well as FXServer.",
+  "first_seen": "2026-11-04",
+  "id": "gh:citizenfx/fivem",
+  "kind": "repo",
+  "name": "citizenfx/fivem",
+  "tags": [
+   "cfx",
+   "fivem",
+   "gta",
+   "gtav",
+   "mod-framework"
+  ],
+  "url": "https://github.com/citizenfx/fivem"
+ },
  "gh:citrolabs/ego-lite": {
   "description": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
   "first_seen": "2026-11-01",
@@ -3016,6 +3327,21 @@
    "agent-skills"
   ],
   "url": "https://github.com/cloudflare/security-audit-skill"
+ },
+ "gh:cloudposse/terraform-aws-tfstate-backend": {
+  "description": "Terraform module that provision an S3 bucket to store the `terraform.tfstate` file and a DynamoDB table to lock the state file to prevent concurrent modifications and state corruption.",
+  "first_seen": "2026-11-04",
+  "id": "gh:cloudposse/terraform-aws-tfstate-backend",
+  "kind": "repo",
+  "name": "cloudposse/terraform-aws-tfstate-backend",
+  "tags": [
+   "aws",
+   "aws-dynamodb",
+   "backend",
+   "dynamodb",
+   "dynamodb-table"
+  ],
+  "url": "https://github.com/cloudposse/terraform-aws-tfstate-backend"
  },
  "gh:cobblerhover/auto-withdraw-bot": {
   "description": "Auto Withdraw Bot 2023: Full working installer for a professional desktop utility, ready to run without further configuration.",
@@ -3213,6 +3539,21 @@
    "assistive-technology"
   ],
   "url": "https://github.com/Community-Access/accessibility-agents"
+ },
+ "gh:community-shaders/skyrim-community-shaders": {
+  "description": "Community-driven advanced graphics modifications for AE, SE and VR.",
+  "first_seen": "2026-11-04",
+  "id": "gh:community-shaders/skyrim-community-shaders",
+  "kind": "repo",
+  "name": "community-shaders/skyrim-community-shaders",
+  "tags": [
+   "c-plus-plus",
+   "directx",
+   "fun",
+   "game-engine",
+   "graphics"
+  ],
+  "url": "https://github.com/community-shaders/skyrim-community-shaders"
  },
  "gh:composiohq/composio": {
   "description": "Composio powers 1000+ toolkits, tool search, context management, authentication, and a sandboxed workbench to help you build AI agents that turn intent into action.",
@@ -3562,6 +3903,20 @@
   ],
   "url": "https://github.com/daichongaixiamo/chatgpt-plus-pro-codex-cn-guide"
  },
+ "gh:dashs20/crap": {
+  "description": "CRAP: Cycloidal Reducer Algorithm & Parametrizer. Parametric cycloidal gearbox generator (build123d): give it bearings, motor, ratio and eccentricity; get collision-checked, toleranced STEP/STL parts and a live 3D web GUI.",
+  "first_seen": "2026-11-04",
+  "id": "gh:dashs20/crap",
+  "kind": "repo",
+  "name": "dashs20/CRAP",
+  "tags": [
+   "build123d",
+   "cad",
+   "cycloidal-drive",
+   "parametric-design"
+  ],
+  "url": "https://github.com/dashs20/CRAP"
+ },
  "gh:dasterprokio/awesome-ai-companion": {
   "description": "Open-source AI companions, desktop pets, long-term memory & proactive chat. \u4eba\u673a\u604b\u5f00\u6e90\u9879\u76ee\u5927\u5168\u3002\u8ba9\u4f60\u7684\u5bb6\u673a\u80fd\u591f\u8131\u79bb\u5b98\u7aef\u81ea\u4e3b\u5b58\u5728\uff0c\u62e5\u6709\u8bb0\u5fc6\u548c\u4e3b\u52a8\u6027\u3002",
   "first_seen": "2026-11-01",
@@ -3621,6 +3976,21 @@
    "workflows"
   ],
   "url": "https://github.com/davemessew/AgentFlux"
+ },
+ "gh:davidkpiano/useeffectreducer": {
+  "description": "useReducer + useEffect = useEffectReducer",
+  "first_seen": "2026-11-04",
+  "id": "gh:davidkpiano/useeffectreducer",
+  "kind": "repo",
+  "name": "davidkpiano/useEffectReducer",
+  "tags": [
+   "hacktoberfest",
+   "hook",
+   "react",
+   "reducer",
+   "state"
+  ],
+  "url": "https://github.com/davidkpiano/useEffectReducer"
  },
  "gh:davila7/claude-code-templates": {
   "description": "CLI tool for configuring and monitoring Claude Code",
@@ -3695,6 +4065,15 @@
    "elevenlabs-alternative"
   ],
   "url": "https://github.com/debpalash/VoiceStudio"
+ },
+ "gh:deckhouse/prompp": {
+  "description": "Deckhouse Prom++ \u2013 high-performance fork of Prometheus, designed to significantly reduce memory consumption",
+  "first_seen": "2026-11-04",
+  "id": "gh:deckhouse/prompp",
+  "kind": "repo",
+  "name": "deckhouse/prompp",
+  "tags": [],
+  "url": "https://github.com/deckhouse/prompp"
  },
  "gh:decolua/9router": {
   "description": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.",
@@ -3794,6 +4173,21 @@
    "ebook"
   ],
   "url": "https://github.com/denizsafak/abogen"
+ },
+ "gh:dependencytrack/dependency-track": {
+  "description": "Dependency-Track is an intelligent Component Analysis platform that allows organizations to identify and reduce risk in the software supply chain.",
+  "first_seen": "2026-11-04",
+  "id": "gh:dependencytrack/dependency-track",
+  "kind": "repo",
+  "name": "DependencyTrack/dependency-track",
+  "tags": [
+   "appsec",
+   "bill-of-materials",
+   "bom",
+   "component-analysis",
+   "cyclonedx"
+  ],
+  "url": "https://github.com/DependencyTrack/dependency-track"
  },
  "gh:deusdata/codebase-memory-mcp": {
   "description": "Local code intelligence for developers and AI agents. Connect code, docs and infrastructure in a persistent graph, with CBM Lens, MCP tools, agent integrations and change-aware test selection.",
@@ -3946,6 +4340,15 @@
   ],
   "url": "https://github.com/dipakkr/awesome-ai-engineering"
  },
+ "gh:dirac-run/dirac": {
+  "description": "Coding Agent singularly focused efficiency and context curation. Reduces API costs by 50-80% vs other agent AND improves the code quality at the same time. Uses Hash Anchored edits, massively parallel operations, AST manipulation and many many other optimizations.  https://dirac.run/",
+  "first_seen": "2026-11-04",
+  "id": "gh:dirac-run/dirac",
+  "kind": "repo",
+  "name": "dirac-run/dirac",
+  "tags": [],
+  "url": "https://github.com/dirac-run/dirac"
+ },
  "gh:divagr18/qwenputer": {
   "description": "A computer, compiled into the weights of a language model. An exact CPU inside Qwen3.5-4B, with Gated DeltaNet state as RAM.",
   "first_seen": "2026-11-01",
@@ -3960,6 +4363,21 @@
    "qwen"
   ],
   "url": "https://github.com/divagr18/qwenputer"
+ },
+ "gh:dn-programming-core-management/dn-famitracker": {
+  "description": "modifications and improvements for 0CC-FamiTracker (based on j0CC-FamiTracker 0.6.3)",
+  "first_seen": "2026-11-04",
+  "id": "gh:dn-programming-core-management/dn-famitracker",
+  "kind": "repo",
+  "name": "Dn-Programming-Core-Management/Dn-FamiTracker",
+  "tags": [
+   "0cc-famitracker",
+   "chiptune",
+   "chiptune-tracker",
+   "famicom",
+   "famitracker"
+  ],
+  "url": "https://github.com/Dn-Programming-Core-Management/Dn-FamiTracker"
  },
  "gh:dograh-hq/dograh": {
   "description": "Open source voice AI platform. Self-hosted alternative to Vapi and Retell. On Prem, BYOK across  Speech to Speech or LLM/STT/TTS, with a visual workflow builder, MCP native and telephony support.",
@@ -4304,6 +4722,20 @@
   ],
   "url": "https://github.com/dyad-sh/dyad"
  },
+ "gh:dyninst/dyninst": {
+  "description": "DyninstAPI: Tools for binary instrumentation, analysis, and modification.",
+  "first_seen": "2026-11-04",
+  "id": "gh:dyninst/dyninst",
+  "kind": "repo",
+  "name": "dyninst/dyninst",
+  "tags": [
+   "binary-analysis",
+   "dyninst",
+   "stackwalker",
+   "symtab"
+  ],
+  "url": "https://github.com/dyninst/dyninst"
+ },
  "gh:dyoshikawa/rulesync": {
   "description": "A Utility CLI for AI Coding Agents",
   "first_seen": "2026-11-01",
@@ -4379,6 +4811,36 @@
    "edsm"
   ],
   "url": "https://github.com/EDDiscovery/EDDiscovery"
+ },
+ "gh:edouard-claude/snip": {
+  "description": "CLI proxy that reduces LLM token usage by 60-90%. Declarative YAML filters for Claude Code, Cursor, Copilot, Gemini. rtk alternative in Go. ",
+  "first_seen": "2026-11-04",
+  "id": "gh:edouard-claude/snip",
+  "kind": "repo",
+  "name": "edouard-claude/snip",
+  "tags": [
+   "ai-coding",
+   "ai-tools",
+   "aider",
+   "claude-code",
+   "cli"
+  ],
+  "url": "https://github.com/edouard-claude/snip"
+ },
+ "gh:eduwxyz/tucano": {
+  "description": "Your team of AI agents, on your Mac, Windows or Linux. Agents that talk in channels, write code, review each other and use your tools, on the Claude Code, Codex, OpenCode or Pi you already have. Anything that touches the real world waits for your yes.",
+  "first_seen": "2026-11-04",
+  "id": "gh:eduwxyz/tucano",
+  "kind": "repo",
+  "name": "eduwxyz/tucano",
+  "tags": [
+   "agent-team",
+   "ai-agents",
+   "claude-code",
+   "codex",
+   "electron"
+  ],
+  "url": "https://github.com/eduwxyz/tucano"
  },
  "gh:egonex-ai/understand-anything": {
   "description": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
@@ -4657,6 +5119,21 @@
   ],
   "url": "https://github.com/EntranceStarfish/VoiceStudioV2"
  },
+ "gh:envmodules/modules": {
+  "description": "Environment Modules: provides dynamic modification of a user's environment",
+  "first_seen": "2026-11-04",
+  "id": "gh:envmodules/modules",
+  "kind": "repo",
+  "name": "envmodules/modules",
+  "tags": [
+   "environment",
+   "environment-modules",
+   "hpc",
+   "module",
+   "modulefiles"
+  ],
+  "url": "https://github.com/envmodules/modules"
+ },
  "gh:eosphoros-ai/db-gpt": {
   "description": "open-source agentic AI data assistant for the next generation of AI + Data products.",
   "first_seen": "2026-11-01",
@@ -4761,6 +5238,21 @@
    "machine-translation"
   ],
   "url": "https://github.com/espnet/espnet"
+ },
+ "gh:esrrhs/hookso": {
+  "description": "A tool for injection, modification and search of linux dynamic link library",
+  "first_seen": "2026-11-04",
+  "id": "gh:esrrhs/hookso",
+  "kind": "repo",
+  "name": "esrrhs/hookso",
+  "tags": [
+   "cpp",
+   "dll-injection",
+   "elf",
+   "function-hooking",
+   "linux"
+  ],
+  "url": "https://github.com/esrrhs/hookso"
  },
  "gh:esterfourth/kosmos-agent-platform": {
   "description": "Kosmos: AI Agent Management Platform for Your Computer and Subscription",
@@ -5013,6 +5505,18 @@
   ],
   "url": "https://github.com/ffroliva/gflow-cli"
  },
+ "gh:filosottile/sunlight": {
+  "description": "A Certificate Transparency log implementation and monitoring API designed for scalability, ease of operation, and reduced cost.",
+  "first_seen": "2026-11-04",
+  "id": "gh:filosottile/sunlight",
+  "kind": "repo",
+  "name": "FiloSottile/sunlight",
+  "tags": [
+   "certificate-transparency",
+   "tlog"
+  ],
+  "url": "https://github.com/FiloSottile/sunlight"
+ },
  "gh:firecrawl/firecrawl": {
   "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. \ud83d\udd25",
   "first_seen": "2026-11-01",
@@ -5240,6 +5744,21 @@
   ],
   "url": "https://github.com/GabrieleLozupone/kokon"
  },
+ "gh:galkahana/hummusjs": {
+  "description": "Node.js module for high performance creation, modification and parsing of PDF files and streams",
+  "first_seen": "2026-11-04",
+  "id": "gh:galkahana/hummusjs",
+  "kind": "repo",
+  "name": "galkahana/HummusJS",
+  "tags": [
+   "nodejs",
+   "pdf-generation",
+   "pdf-manipulation",
+   "pdf-modification",
+   "pdf-parsing"
+  ],
+  "url": "https://github.com/galkahana/HummusJS"
+ },
  "gh:gasb07/ps4mount": {
   "description": "Allows for PKG games on USB external devices to mount on jailbroken PS5s without installing on internal storage or PS5 formatted USB storage",
   "first_seen": "2026-11-01",
@@ -5318,6 +5837,21 @@
    "inference-acceleration"
   ],
   "url": "https://github.com/Generated-Computers/Locals"
+ },
+ "gh:genex-games/genex-desktop": {
+  "description": "Desktop app for game dev with AI: make games in Unreal Engine, Unity, Godot or the browser. The agent sets up the engine, builds your game and play-tests it by itself.",
+  "first_seen": "2026-11-04",
+  "id": "gh:genex-games/genex-desktop",
+  "kind": "repo",
+  "name": "genex-games/genex-desktop",
+  "tags": [
+   "ai-agents",
+   "claude-code",
+   "codex",
+   "gamedev",
+   "godot"
+  ],
+  "url": "https://github.com/genex-games/genex-desktop"
  },
  "gh:genspark-ai/genoffice": {
   "description": "Free, open-source AI Office suite: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent, plus a `genoffice` CLI and agent skill so Claude Code, Codex and Cursor can create and edit real .docx/.xlsx/.pptx files locally. Bring your own key. macOS, Windows & Linux.",
@@ -5467,6 +6001,21 @@
    "android-app"
   ],
   "url": "https://github.com/ghorbelhamdi/buddy-android"
+ },
+ "gh:gibberlings3/eet": {
+  "description": "Baldur's Gate: Enhanced Edition Trilogy (EET) is a modification for Baldur's Gate II: Enhanced Edition that merges whole saga into one game and provides continuity between the events of Baldur's Gate, Tales of the Sword Coast, Shadows of Amn, Throne of Bhaal and Siege of Dragonspear expansion (also for both Black Pits adventures). The name of this this modification probably rings a bell to those who have been following IE modding scene, thanks to the classic mod that inspired this project, called Baldur's Gate Trilogy (BGT), developed by Bardez and Ascension64. While EET remains mostly faithful to the premise of the BGT, it shouldn't be considered a direct continuation of that project. In fact both mods share little to no common code and took different design decisions in many aspects.",
+  "first_seen": "2026-11-04",
+  "id": "gh:gibberlings3/eet",
+  "kind": "repo",
+  "name": "Gibberlings3/EET",
+  "tags": [
+   "bg2ee",
+   "bgee",
+   "eet",
+   "infinity-engine",
+   "mod"
+  ],
+  "url": "https://github.com/Gibberlings3/EET"
  },
  "gh:gillesgoetsch/omacvm": {
   "description": "Omarchy VM for Apple Silicon (OmacVM.app, UTM, VMware or Parallels), feeling native: Full notch rendering, trackpad gestures, macOS-like scrolling, GPU\u00a0acceleration, synced Wi-Fi, audio and key controls AND\u00a0TouchID \ud83d\udca5",
@@ -5677,7 +6226,8 @@
    "gcp",
    "gemini",
    "gemini-api",
-   "gen-ai"
+   "gen-ai",
+   "gemini-platform"
   ],
   "url": "https://github.com/GoogleCloudPlatform/generative-ai"
  },
@@ -5830,6 +6380,39 @@
   ],
   "url": "https://github.com/GraphiteEditor/Graphite"
  },
+ "gh:graysky2/profile-sync-daemon": {
+  "description": "Symlinks and syncs browser profile dirs to RAM thus reducing HDD/SDD calls and speeding-up browsers.",
+  "first_seen": "2026-11-04",
+  "id": "gh:graysky2/profile-sync-daemon",
+  "kind": "repo",
+  "name": "graysky2/profile-sync-daemon",
+  "tags": [],
+  "url": "https://github.com/graysky2/profile-sync-daemon"
+ },
+ "gh:grishahq/recursive-llm": {
+  "description": "Recursive Language Models for efficient long-context processing. Analyze 1M+ tokens by storing context in a Python REPL while reducing LLM token usage.",
+  "first_seen": "2026-11-04",
+  "id": "gh:grishahq/recursive-llm",
+  "kind": "repo",
+  "name": "grishahq/recursive-llm",
+  "tags": [],
+  "url": "https://github.com/grishahq/recursive-llm"
+ },
+ "gh:grodowski/undercover": {
+  "description": "undercover warns about methods, classes and blocks that were changed without tests, to help you easily find untested code and reduce the number of bugs. It does so by analysing data from git diffs, code structure and SimpleCov coverage reports",
+  "first_seen": "2026-11-04",
+  "id": "gh:grodowski/undercover",
+  "kind": "repo",
+  "name": "grodowski/undercover",
+  "tags": [
+   "cli",
+   "code-quality",
+   "coverage",
+   "hacktoberfest",
+   "linter"
+  ],
+  "url": "https://github.com/grodowski/undercover"
+ },
  "gh:gsl0001/windows-airdrop": {
   "description": "Research harness: OWL's AWDL core built and tested on Windows with a mock radio (no Wi-Fi hardware)",
   "first_seen": "2026-11-03",
@@ -5926,6 +6509,21 @@
   ],
   "url": "https://github.com/guregodevo/memdoor"
  },
+ "gh:guyi-ai/gugu": {
+  "description": "Gugu (\u5495\u5495): personal assistant, chat and device client \u2014 source release",
+  "first_seen": "2026-11-04",
+  "id": "gh:guyi-ai/gugu",
+  "kind": "repo",
+  "name": "GUYI-AI/gugu",
+  "tags": [
+   "ai-agent",
+   "capacitor",
+   "chat",
+   "electron",
+   "personal-assistant"
+  ],
+  "url": "https://github.com/GUYI-AI/gugu"
+ },
  "gh:h0ll0w-akuzr0guy/miaotask": {
   "description": "\ud83d\udc31 MiaoTask\uff1a\u57fa\u4e8e uiautomator2 + ADB \u7684\u672c\u5730\u591a\u8bbe\u5907\u4efb\u52a1\u5de5\u4f5c\u53f0\uff0c\u7ed3\u5408 UI \u63a7\u4ef6\u8bc6\u522b\u4e0e\u79bb\u7ebf OCR \u8f85\u52a9\u3002\u652f\u6301 USB / Wi-Fi\u3001\u591a\u8bbe\u5907\u5e76\u884c\u3001\u5206\u8eab\u4e32\u884c\u548c\u6d3b\u52a8\u6e90\u7801\u6309\u9700\u66f4\u65b0\uff0c\u63d0\u4f9b Windows \u4fbf\u643a\u5305\uff1b\u5df2\u9002\u914d\u6dd8\u5b9d\u6dd8\u91d1\u5e01\u3001\u82ad\u82ad\u519c\u573a\u3001\u7ea2\u5305\u7b7e\u5230\u3001\u6210\u5c31\u4e2d\u5fc3\u4e0e\u53cc11\u6d3b\u52a8\u4ee5\u53ca\u652f\u4ed8\u5b9d\u6708\u6708\u8d5a\u6d3b\u52a8\u3002",
   "first_seen": "2026-11-03",
@@ -5949,6 +6547,21 @@
    "learning-path"
   ],
   "url": "https://github.com/h9-tec/ai-roadmap-2026"
+ },
+ "gh:ha-china/haos-cn": {
+  "description": "Home Assistant OS Turbo is specifically optimized for the China region. All modifications are made solely for acceleration and compliance purposes, without altering any other information within the system.",
+  "first_seen": "2026-11-04",
+  "id": "gh:ha-china/haos-cn",
+  "kind": "repo",
+  "name": "ha-china/HAOS-CN",
+  "tags": [
+   "buildroot",
+   "china",
+   "docker",
+   "hacktoberfest",
+   "haos"
+  ],
+  "url": "https://github.com/ha-china/HAOS-CN"
  },
  "gh:haiderfarooq3/paper-reel": {
   "description": "Claude Code skill: faceless 9:16 explainer reels in a cut-paper style. Voice-timed scenes, word-by-word captions. Free, local, no API keys.",
@@ -6252,6 +6865,21 @@
    "mercado-livre"
   ],
   "url": "https://github.com/heqiangdiao-wq/AI-Cross-Border-Ecommerce-Agent-Toolkit"
+ },
+ "gh:herculesws/hercules": {
+  "description": "Hercules is a collaborative software development project revolving around the creation of a robust massively multiplayer online role playing game (MMORPG) server package. Written in C, the program is very versatile and provides NPCs, warps and modifications. The project is jointly managed by a group of volunteers located around the world as well as a tremendous community providing QA and support. Hercules is a continuation of the original Athena project.",
+  "first_seen": "2026-11-04",
+  "id": "gh:herculesws/hercules",
+  "kind": "repo",
+  "name": "HerculesWS/Hercules",
+  "tags": [
+   "c",
+   "hacktoberfest",
+   "hercules",
+   "mmorpg",
+   "ragnarok"
+  ],
+  "url": "https://github.com/HerculesWS/Hercules"
  },
  "gh:herdrdev/herdr": {
   "description": "the runtime your coding agents live on",
@@ -6613,6 +7241,21 @@
   ],
   "url": "https://github.com/huaxialucaicaizi/ai-startup-skills"
  },
+ "gh:huggingface/agents-course": {
+  "description": "This repository contains the Hugging Face Agents Course. ",
+  "first_seen": "2026-11-04",
+  "id": "gh:huggingface/agents-course",
+  "kind": "repo",
+  "name": "huggingface/agents-course",
+  "tags": [
+   "agentic-ai",
+   "agents",
+   "course",
+   "huggingface",
+   "langchain"
+  ],
+  "url": "https://github.com/huggingface/agents-course"
+ },
  "gh:huggingface/transformers": {
   "description": "\ud83e\udd17 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. ",
   "first_seen": "2026-11-01",
@@ -6684,6 +7327,18 @@
    "gpt-4"
   ],
   "url": "https://github.com/HumanSignal/Adala"
+ },
+ "gh:hunyisage/dsh-purge": {
+  "description": "Jailbreak for every model \u2014 swap prompts per model.",
+  "first_seen": "2026-10-19",
+  "id": "gh:hunyisage/dsh-purge",
+  "kind": "repo",
+  "name": "HunYiSage/dsh-purge",
+  "tags": [
+   "security",
+   "jailbreak"
+  ],
+  "url": "https://github.com/HunYiSage/dsh-purge"
  },
  "gh:hybirdss/hycli": {
   "description": "Websites, ready for AI. Turn website tasks into verified CLI and MCP actions, with a local dashboard and 20 languages.",
@@ -7096,6 +7751,21 @@
   ],
   "url": "https://github.com/iOfficeAI/OfficeCLI"
  },
+ "gh:iridiumio/compactgui": {
+  "description": "Reduce the space taken up by games and programs on disk by using native Windows APIs",
+  "first_seen": "2026-11-04",
+  "id": "gh:iridiumio/compactgui",
+  "kind": "repo",
+  "name": "IridiumIO/CompactGUI",
+  "tags": [
+   "compressing-folders",
+   "compression",
+   "csharp",
+   "dotnet",
+   "dotnet9"
+  ],
+  "url": "https://github.com/IridiumIO/CompactGUI"
+ },
  "gh:irraz/vulnerator-ai": {
   "description": "Autonomous OODA-loop pentesting agent. Hermes brain, Kali + Playwright tools over MCP, ATT&CK as the Orient language.",
   "first_seen": "2026-11-01",
@@ -7152,9 +7822,25 @@
    "cpp",
    "dear-imgui",
    "digital-sculpting",
-   "fbx"
+   "fbx",
+   "3d-sculpting"
   ],
   "url": "https://github.com/islandmed/SculptForge"
+ },
+ "gh:ithaca-fv/ithaca-fv": {
+  "description": "Reduced order modelling techniques for OpenFOAM",
+  "first_seen": "2026-11-04",
+  "id": "gh:ithaca-fv/ithaca-fv",
+  "kind": "repo",
+  "name": "ITHACA-FV/ITHACA-FV",
+  "tags": [
+   "eigen",
+   "finite-volume",
+   "hacktoberfest",
+   "ithaca-fv",
+   "openfoam"
+  ],
+  "url": "https://github.com/ITHACA-FV/ITHACA-FV"
  },
  "gh:izzyfrm/roblox-ai": {
   "description": "A curated collection of Roblox UI references for Claude Code, Codex, and other AI coding assistants to study and use as design inspiration - over 12K References.",
@@ -7302,6 +7988,15 @@
    "design"
   ],
   "url": "https://github.com/jakubkrehel/skills"
+ },
+ "gh:james-howard/awdlcontrol": {
+  "description": "A Mac utility to automatically disable AWDL to reduce lag spikes when playing online games",
+  "first_seen": "2026-11-04",
+  "id": "gh:james-howard/awdlcontrol",
+  "kind": "repo",
+  "name": "james-howard/AWDLControl",
+  "tags": [],
+  "url": "https://github.com/james-howard/AWDLControl"
  },
  "gh:janetom645-coder/mcd-buddy": {
   "description": "\u9ea6\u95e8\u56db\u91cd\u594f McQuartet \u00b7 \u4e00\u4e2a Skill \u88c5\u56db\u4e2a\u73a9\u6cd5\uff1a\u4fee\u884c\u5f55 / \u56e2\u9910\u6307\u6325\u5b98 / \u9690\u85cf\u83dc\u5355\u5b9e\u9a8c\u5ba4 / \u6bcf\u65e5\u8fd0\u52bf\u7b7e\u3002\u57fa\u4e8e\u9ea6\u5f53\u52b3\u4e2d\u56fd\u5b98\u65b9 MCP\uff0c187 \u4e2a\u6d4b\u8bd5\u5168\u7eff\uff0c\u79bb\u7ebf\u6f14\u793a\u53ef\u4e00\u952e\u590d\u73b0\u3002",
@@ -7811,6 +8506,21 @@
   ],
   "url": "https://github.com/JuneYaooo/awesome-ai-media-cn"
  },
+ "gh:juneyaooo/rea-video": {
+  "description": "\u9006\u5411\u4e00\u5207\u89c6\u9891\uff1a\u5b9e\u62cd\u53e3\u64ad\u3001\u684c\u62cd\u3001AI \u89c6\u9891\u30013D\u3001\u4ee3\u7801\u52a8\u6548\u3001\u6df7\u526a\uff0c\u9010\u955c\u62c6\u51fa\u753b\u9762\u3001\u82b1\u5b57\u3001\u526a\u8f91\u548c\u58f0\u97f3\u662f\u600e\u4e48\u505a\u7684\uff0c\u5e76\u7ed9\u51fa\u590d\u523b\u65b9\u6848\u3002Reverse-engineer any video, shot by shot.",
+  "first_seen": "2026-11-04",
+  "id": "gh:juneyaooo/rea-video",
+  "kind": "repo",
+  "name": "JuneYaooo/rea-video",
+  "tags": [
+   "agent-skills",
+   "ai-video",
+   "aigc-detection",
+   "claude-code",
+   "codex"
+  ],
+  "url": "https://github.com/JuneYaooo/rea-video"
+ },
  "gh:junwan666/astrbot-for-android": {
   "description": "\u5728 Android \u624b\u673a\u4e0a\u672c\u5730\u90e8\u7f72\u548c\u7ba1\u7406 AstrBot \u4e0e NapCat\uff0c\u5185\u7f6e PRoot Ubuntu \u8fd0\u884c\u73af\u5883\uff0c\u652f\u6301\u539f\u751f\u7ba1\u7406\u754c\u9762\u3001WebUI\u3001\u65e5\u5fd7\u3001\u5907\u4efd\u6062\u590d\u548c\u72ec\u7acb\u66f4\u65b0\uff0c\u65e0\u9700 Root\u3002",
   "first_seen": "2026-11-01",
@@ -7840,6 +8550,21 @@
    "claude"
   ],
   "url": "https://github.com/junxchan54-maker/mcd-cn-assistant"
+ },
+ "gh:juspay/hyperswitch": {
+  "description": "Open source, composable payments platform | PCI compliant | SaaS and Self-host options | Enables connectivity to multiple payment, payout, fraud, vault and tokenization providers | Uplifts authorization with intelligent routing and revenue recovery | Reduce payment processing costs with cost observability | Reduces payment ops with reconciliation",
+  "first_seen": "2026-11-04",
+  "id": "gh:juspay/hyperswitch",
+  "kind": "repo",
+  "name": "juspay/hyperswitch",
+  "tags": [
+   "adyen",
+   "beginner-friendly",
+   "featured",
+   "finance",
+   "fintech"
+  ],
+  "url": "https://github.com/juspay/hyperswitch"
  },
  "gh:justjake/fujimod": {
   "description": "Fujifilm camera modification tools. DO NOT FLASH CUSTOM FIRMWARE TO YOUR CAMERA WITHOUT DUAL BOOTING FIRST",
@@ -8063,6 +8788,15 @@
   ],
   "url": "https://github.com/khanhtq29vn/contextcraft"
  },
+ "gh:khr898/ntfsmac": {
+  "description": "NTFS read/write on Apple Silicon macOS \u2014 no kernel extension, no SIP modification.",
+  "first_seen": "2026-11-04",
+  "id": "gh:khr898/ntfsmac",
+  "kind": "repo",
+  "name": "khr898/ntfsmac",
+  "tags": [],
+  "url": "https://github.com/khr898/ntfsmac"
+ },
  "gh:killm12321idgard/rpocket-team-mod-playerbots-portable": {
   "description": "Portable Windows AzerothCore server with earned Vanilla, TBC and Wrath progression, historical talents, autonomous bot dungeons, raid support, bot auction trading and automatic updates.",
   "first_seen": "2026-11-01",
@@ -8150,6 +8884,36 @@
   ],
   "url": "https://github.com/kkjiangk/agent-py"
  },
+ "gh:kkkkhazix/agent-autoloop": {
+  "description": "\u8ba9\u4f60\u7684\u547d\u4ee4\u884c Agent \u5728\u540e\u53f0\u81ea\u5df1\u63a5\u6d3b\u3001\u81ea\u5df1\u8ddf\u8fdb\u5230\u5e95\uff1b\u5e73\u65f6\u4e0d\u70e6\u4f60\uff0c\u9047\u5230\u62ff\u4e0d\u51c6\u7684\u4e8b\u624d\u53d1\u5361\u7247\u627e\u4f60\u62cd\u677f\u3002",
+  "first_seen": "2026-11-04",
+  "id": "gh:kkkkhazix/agent-autoloop",
+  "kind": "repo",
+  "name": "KKKKhazix/agent-autoloop",
+  "tags": [
+   "ai-agents",
+   "automation",
+   "claude-code",
+   "cli",
+   "codex"
+  ],
+  "url": "https://github.com/KKKKhazix/agent-autoloop"
+ },
+ "gh:kkkkhazix/khazix-skills": {
+  "description": "\u6570\u5b57\u751f\u547d\u5361\u5179\u514b\u5f00\u6e90\u7684 AI Skills \u5408\u96c6 | Agent Skills: leader\uff08\u5e2e\u4f60\u5b9a\u4e49\u76ee\u6807\uff09, neat-freak \u6d01\u7656, hv-analysis, khazix-writer & more \u2014 Claude Code, Codex & 40+ agents",
+  "first_seen": "2026-11-04",
+  "id": "gh:kkkkhazix/khazix-skills",
+  "kind": "repo",
+  "name": "KKKKhazix/khazix-skills",
+  "tags": [
+   "agent-skills",
+   "ai-agents",
+   "claude",
+   "claude-code",
+   "codex"
+  ],
+  "url": "https://github.com/KKKKhazix/khazix-skills"
+ },
  "gh:klarluft/pitupitu": {
   "description": "Talk to Claude Code and Codex by voice, from your phone, on any of your machines. The open-source box agent for pitupitu.chat; your agents run in herdr.",
   "first_seen": "2026-11-01",
@@ -8164,6 +8928,15 @@
    "cli"
   ],
   "url": "https://github.com/klarluft/pitupitu"
+ },
+ "gh:kmfdmanic/nesc-snesc-modifications": {
+  "description": "All of your NES-SNES-Playstation Classic Modification Needs!",
+  "first_seen": "2026-11-04",
+  "id": "gh:kmfdmanic/nesc-snesc-modifications",
+  "kind": "repo",
+  "name": "KMFDManic/NESC-SNESC-Modifications",
+  "tags": [],
+  "url": "https://github.com/KMFDManic/NESC-SNESC-Modifications"
  },
  "gh:knifelemon/droidline": {
   "description": "Android automation from code. Test your apps on real phones, script the tasks you repeat, run a shelf of phones, or let an AI agent use one, from Python, Node.js, the CLI, HTTP or Appium clients. No ADB, no USB cable, no root.",
@@ -8333,6 +9106,30 @@
   "tags": [],
   "url": "https://github.com/kutukam/autonomous-pentest-agent"
  },
+ "gh:kylebrown-eng20w4/minecraft-fps-booster": {
+  "description": "Powerful Minecraft FPS booster and performance optimization mod. Dramatically increases frames, reduces lag, and optimizes rendering for 1.20\u20131.21. Forge & Fabric support, clean modular structure.",
+  "first_seen": "2026-11-04",
+  "id": "gh:kylebrown-eng20w4/minecraft-fps-booster",
+  "kind": "repo",
+  "name": "kylebrown-eng20w4/Minecraft-FPS-Booster",
+  "tags": [],
+  "url": "https://github.com/kylebrown-eng20w4/Minecraft-FPS-Booster"
+ },
+ "gh:kyy-logs/code-review-skill": {
+  "description": "Auditable code review skill for Claude Code and Codex: four independent probes, evidence-backed findings, and a JSON-derived merge gate.",
+  "first_seen": "2026-11-04",
+  "id": "gh:kyy-logs/code-review-skill",
+  "kind": "repo",
+  "name": "kyy-logs/code-review-skill",
+  "tags": [
+   "agent-skills",
+   "ai-code-review",
+   "claude-code",
+   "code-review",
+   "codex"
+  ],
+  "url": "https://github.com/kyy-logs/code-review-skill"
+ },
  "gh:labring/fastgpt": {
   "description": "FastGPT is a knowledge-based platform built on the LLMs, offers a comprehensive suite of out-of-the-box capabilities such as data processing, RAG retrieval, and visual AI workflow orchestration, letting you easily develop and deploy complex question-answering systems without the need for extensive setup or configuration.",
   "first_seen": "2026-11-01",
@@ -8464,6 +9261,15 @@
    "gpt"
   ],
   "url": "https://github.com/langroid/langroid"
+ },
+ "gh:laobamac/itlwm": {
+  "description": "Intel Wi-Fi Drivers for macOS",
+  "first_seen": "2026-11-04",
+  "id": "gh:laobamac/itlwm",
+  "kind": "repo",
+  "name": "laobamac/itlwm",
+  "tags": [],
+  "url": "https://github.com/laobamac/itlwm"
  },
  "gh:laobamac/simplebcm": {
   "description": "Restore Broadcom Wi-Fi on macOS Tahoe with standalone OpenCore drivers",
@@ -8637,6 +9443,21 @@
   ],
   "url": "https://github.com/lemomo-ai/lemo-wake"
  },
+ "gh:lemon177777/mcd-omni-assistant": {
+  "description": "\u9ea6\u5f53\u52b3 MCP \u5168\u80fd\u52a9\u624b | \u5168\u8986\u76d6 35 \u4e2a\u5de5\u5177 \u00b7 7 \u5927\u5de5\u4f5c\u6d41 \u00b7 14 \u6761\u9632\u9519\u94c1\u5f8b | \u9886\u5238 / \u70b9\u9910 / \u5916\u9001 / \u6d3e\u5bf9\u9884\u7ea6 / \u79ef\u5206\u5230\u671f\u6b62\u635f\uff0c\u9644\u96f6\u4f9d\u8d56 CLI \u901a\u9053",
+  "first_seen": "2026-11-04",
+  "id": "gh:lemon177777/mcd-omni-assistant",
+  "kind": "repo",
+  "name": "Lemon177777/mcd-omni-assistant",
+  "tags": [
+   "agent-skill",
+   "ai-agent",
+   "automation",
+   "cli",
+   "llm"
+  ],
+  "url": "https://github.com/Lemon177777/mcd-omni-assistant"
+ },
  "gh:lemonadesaltbagel/airlock": {
   "description": "A privacy-first local coding agent that consults frontier AI models without exposing your source code.",
   "first_seen": "2026-11-02",
@@ -8776,6 +9597,21 @@
   "tags": [],
   "url": "https://github.com/levhakobyan/OpenTV-Remote"
  },
+ "gh:lexifina/global-law": {
+  "description": "The world's law in git: any provision, any country, any date, and the law that wrote each word.",
+  "first_seen": "2026-11-04",
+  "id": "gh:lexifina/global-law",
+  "kind": "repo",
+  "name": "lexifina/global-law",
+  "tags": [
+   "git",
+   "law",
+   "legal-tech",
+   "legislation",
+   "mcp"
+  ],
+  "url": "https://github.com/lexifina/global-law"
+ },
  "gh:lfnovo/open-notebook": {
   "description": "An open-source implementation of NotebookLM with more flexibility and features.",
   "first_seen": "2026-11-02",
@@ -8811,6 +9647,21 @@
    "azure"
   ],
   "url": "https://github.com/LibreChat-AI/LibreChat"
+ },
+ "gh:libreqoe/libreqos": {
+  "description": "Self-hosted traffic management and network operations platform for ISPs. Use CAKE and fq_codel to reduce bufferbloat, enforce bandwidth plans, and troubleshoot congestion with topology-aware subscriber visibility.",
+  "first_seen": "2026-11-04",
+  "id": "gh:libreqoe/libreqos",
+  "kind": "repo",
+  "name": "LibreQoE/LibreQoS",
+  "tags": [
+   "active-queue-management",
+   "aqm",
+   "bandwidth-limiting",
+   "bufferbloat",
+   "cake"
+  ],
+  "url": "https://github.com/LibreQoE/LibreQoS"
  },
  "gh:lidge-jun/opencodex": {
   "description": "Universal provider proxy for OpenAI Codex & Claude Code \u2014 use any LLM (Claude, Gemini, Grok, DeepSeek, Ollama\u2026) with Codex CLI, App, SDK, and Claude Code",
@@ -9134,6 +9985,21 @@
   ],
   "url": "https://github.com/LumaryLabsLLC/muxin"
  },
+ "gh:lunarmodules/penlight": {
+  "description": "A set of pure Lua libraries focusing on input data handling (such as reading configuration files), functional programming (such as map, reduce, placeholder expressions,etc), and OS path management.  Much of the functionality is inspired by the Python standard libraries.",
+  "first_seen": "2026-11-04",
+  "id": "gh:lunarmodules/penlight",
+  "kind": "repo",
+  "name": "lunarmodules/Penlight",
+  "tags": [
+   "lua",
+   "lua-library",
+   "lua-modules",
+   "luajit",
+   "luarocks"
+  ],
+  "url": "https://github.com/lunarmodules/Penlight"
+ },
  "gh:luongnv89/claude-howto": {
   "description": "A visual, example-driven guide to Claude Code, from basic concepts to advanced agents, with copy-paste templates.",
   "first_seen": "2026-10-23",
@@ -9239,6 +10105,21 @@
   "tags": [],
   "url": "https://github.com/madeyexz/louisa-wifi"
  },
+ "gh:maedstone/pc-gaming-tweaker": {
+  "description": "Optimize Windows 10/11 for gaming \u2013 boost FPS, reduce latency, clean disk, and enhance privacy. All-in-one system tweaker for gamers.",
+  "first_seen": "2026-11-04",
+  "id": "gh:maedstone/pc-gaming-tweaker",
+  "kind": "repo",
+  "name": "Maedstone/PC-Gaming-Tweaker",
+  "tags": [
+   "gaming-optimization",
+   "gaming-tweaks",
+   "optimizasyon",
+   "optimization",
+   "optimization-tool"
+  ],
+  "url": "https://github.com/Maedstone/PC-Gaming-Tweaker"
+ },
  "gh:magnvs7/promethevs": {
   "description": "PROMETHEVS: run the full DeepSeek-V4.1-Flash-1017 (510 GB) on a gaming PC with 64 GB RAM and a 12 GB GPU. PROMETHEVS engine (compress-then-correct), OpenAI-compatible local server, report and logs.",
   "first_seen": "2026-11-03",
@@ -9281,6 +10162,21 @@
   ],
   "url": "https://github.com/makecindy/cindy"
  },
+ "gh:malganiswu/red-bean-nian-gao": {
+  "description": "AI Agent \u5bf9\u8bdd\u5e73\u53f0 \u2014\u2014 \u6d41\u5f0f\u5bf9\u8bdd\u3001\u5de5\u5177\u8c03\u7528\u3001\u5b50 Agent \u59d4\u6d3e\u3001\u5b9a\u65f6\u4efb\u52a1\uff0c\u4ee5\u53ca\u6bcf\u4e00\u6b21\u8fd0\u884c\u7684\u5b8c\u6574\u5ba1\u8ba1\u8f68\u8ff9\u3002",
+  "first_seen": "2026-11-04",
+  "id": "gh:malganiswu/red-bean-nian-gao",
+  "kind": "repo",
+  "name": "MalganisWu/red-bean-nian-gao",
+  "tags": [
+   "agent-platform",
+   "ai-agent",
+   "fastify",
+   "postgresql",
+   "react"
+  ],
+  "url": "https://github.com/MalganisWu/red-bean-nian-gao"
+ },
  "gh:marclou/mailcheap": {
   "description": "Newsletters where you pay for the emails you send, not for dormant subscribers, at a fraction of the price of beehiiv and the like. Open source: self-host it, or use mailcheap.ai.",
   "first_seen": "2026-11-01",
@@ -9319,6 +10215,15 @@
    "inkbox"
   ],
   "url": "https://github.com/mariagorskikh/open-instinct"
+ },
+ "gh:markklab1903d9/cs2-fps-optimizer-performance-boost-lag-fix-tool-2026": {
+  "description": "Powerful CS2 FPS optimizer that boosts frame rate, reduces lag and optimizes system settings. One-click performance profiles, clean interface, fully configurable for Counter-Strike 2.",
+  "first_seen": "2026-11-04",
+  "id": "gh:markklab1903d9/cs2-fps-optimizer-performance-boost-lag-fix-tool-2026",
+  "kind": "repo",
+  "name": "markklab1903d9/CS2-FPS-Optimizer-Performance-Boost-Lag-Fix-Tool-2026",
+  "tags": [],
+  "url": "https://github.com/markklab1903d9/CS2-FPS-Optimizer-Performance-Boost-Lag-Fix-Tool-2026"
  },
  "gh:martindelophy/ai-video-editor": {
   "description": "Open-source, local-first video editor where creators and AI agents edit the same real timeline.",
@@ -9364,6 +10269,21 @@
    "javascript"
   ],
   "url": "https://github.com/mastra-ai/mastra"
+ },
+ "gh:matrixorigin/memoria": {
+  "description": "Secure memory management for AI Agents \u2022 Ensures data integrity \u2022 Reduces hallucinations \u2022 Maintains consistent long-term context",
+  "first_seen": "2026-11-04",
+  "id": "gh:matrixorigin/memoria",
+  "kind": "repo",
+  "name": "matrixorigin/memoria",
+  "tags": [
+   "agent",
+   "ai",
+   "database",
+   "llm",
+   "memory"
+  ],
+  "url": "https://github.com/matrixorigin/memoria"
  },
  "gh:matt-pulsipher/gt3-revisited": {
   "description": "Gran Turismo 3 A-Spec engine reimplementation for modern platforms (bring your own disc)",
@@ -9415,6 +10335,21 @@
    "coding-agent"
   ],
   "url": "https://github.com/mattpocock/skills"
+ },
+ "gh:mattreecebentley/plf_colony": {
+  "description": "An unordered C++ data container providing fast iteration/insertion/erasure while maintaining pointer/iterator validity to non-erased elements regardless of insertions/erasures. Provides higher-performance than std:: library containers for high-modification scenarios with unordered data.",
+  "first_seen": "2026-11-04",
+  "id": "gh:mattreecebentley/plf_colony",
+  "kind": "repo",
+  "name": "mattreecebentley/plf_colony",
+  "tags": [
+   "bucket",
+   "container",
+   "cpp",
+   "template",
+   "unordered"
+  ],
+  "url": "https://github.com/mattreecebentley/plf_colony"
  },
  "gh:mattt/preowned": {
   "description": "OpenAI-compatible API for built-in macOS functionality. 100% certified!",
@@ -9860,6 +10795,15 @@
   ],
   "url": "https://github.com/microsoft/SkillOpt"
  },
+ "gh:microsoft/sqlnexus": {
+  "description": "SQL Nexus is a tool that helps you identify the root cause of SQL Server performance issues. It loads and analyzes performance data collected by  SQL LogScout, SQLDiag or PSSDiag. It can dramatically reduce the amount of time you spend manually analyzing data.",
+  "first_seen": "2026-11-04",
+  "id": "gh:microsoft/sqlnexus",
+  "kind": "repo",
+  "name": "microsoft/SqlNexus",
+  "tags": [],
+  "url": "https://github.com/microsoft/SqlNexus"
+ },
  "gh:microsoft/tokeneconomizer": {
   "description": "Experience-Driven Black-Box Cost Control for Coding Agents",
   "first_seen": "2026-11-01",
@@ -9954,6 +10898,20 @@
    "claude"
   ],
   "url": "https://github.com/mindsdb/mindshub"
+ },
+ "gh:minecraftforge/minecraftforge": {
+  "description": "Modifications to the Minecraft base files to assist in compatibility between mods. New Discord: https://discord.minecraftforge.net/",
+  "first_seen": "2026-11-04",
+  "id": "gh:minecraftforge/minecraftforge",
+  "kind": "repo",
+  "name": "MinecraftForge/MinecraftForge",
+  "tags": [
+   "forge",
+   "java",
+   "minecraft",
+   "mod"
+  ],
+  "url": "https://github.com/MinecraftForge/MinecraftForge"
  },
  "gh:minimax-ai/mcode-stack": {
   "description": "The workflows and skills the MiniMax Code team uses to build MiniMax Code. Open source, install and use.",
@@ -10092,6 +11050,21 @@
   ],
   "url": "https://github.com/mlc-ai/web-llm"
  },
+ "gh:mlco2/codecarbon": {
+  "description": "Track emissions from Compute and recommend ways to reduce their impact on the environment.",
+  "first_seen": "2026-11-04",
+  "id": "gh:mlco2/codecarbon",
+  "kind": "repo",
+  "name": "mlco2/codecarbon",
+  "tags": [
+   "ai-ethics",
+   "carbon-emissions",
+   "carbon-footprint",
+   "co2-emissions",
+   "energy-consumption"
+  ],
+  "url": "https://github.com/mlco2/codecarbon"
+ },
  "gh:mlflow/mlflow": {
   "description": "The open source AI engineering platform for agents, LLMs, and ML models. MLflow enables teams of all sizes to debug, evaluate, monitor, and optimize production-quality AI applications while controlling costs and managing access to models and data.",
   "first_seen": "2026-11-01",
@@ -10152,6 +11125,19 @@
   ],
   "url": "https://github.com/modelstudioai/cli"
  },
+ "gh:modem-dev/boxery": {
+  "description": "Easiest way to give your coding agents VMs - locally, remote, or cloud sandboxes",
+  "first_seen": "2026-11-04",
+  "id": "gh:modem-dev/boxery",
+  "kind": "repo",
+  "name": "modem-dev/boxery",
+  "tags": [
+   "agents",
+   "mcp",
+   "vm"
+  ],
+  "url": "https://github.com/modem-dev/boxery"
+ },
  "gh:modsetter/surfsense": {
   "description": "Air-gapped, privacy-focused, open-source NotebookLM alternative. AI agent that researches, transforms, and edits your documents. Join our Discord: https://discord.gg/ejRNvftDp9",
   "first_seen": "2026-11-01",
@@ -10196,6 +11182,21 @@
    "jetpack-compose"
   ],
   "url": "https://github.com/mohammadmrh12/glassio"
+ },
+ "gh:mohammadrezwankhan/matlab-simulink-energy-lab": {
+  "description": "Run reduced-order battery, thermal, converter and BESS control models with transparent equations and repeatable testing.",
+  "first_seen": "2026-11-04",
+  "id": "gh:mohammadrezwankhan/matlab-simulink-energy-lab",
+  "kind": "repo",
+  "name": "mohammadrezwankhan/matlab-simulink-energy-lab",
+  "tags": [
+   "battery-modeling",
+   "battery-thermal-management",
+   "bess",
+   "control-systems",
+   "dc-dc-converter"
+  ],
+  "url": "https://github.com/mohammadrezwankhan/matlab-simulink-energy-lab"
  },
  "gh:morganlinton/beautifulrust": {
   "description": "Agent Skills that teach coding agents to write, review, and port idiomatic Rust, plus a tested clippy config. Works with Claude Code, Codex, Copilot, Cursor, and Gemini CLI.",
@@ -10252,6 +11253,21 @@
   "name": "Motionsites-AI/claude-skill",
   "tags": [],
   "url": "https://github.com/Motionsites-AI/claude-skill"
+ },
+ "gh:mozilla-ai/llamafile": {
+  "description": "Distribute and run LLMs with a single file.",
+  "first_seen": "2026-11-04",
+  "id": "gh:mozilla-ai/llamafile",
+  "kind": "repo",
+  "name": "mozilla-ai/llamafile",
+  "tags": [
+   "cross-platform",
+   "gguf",
+   "llama-cpp",
+   "local-ai",
+   "local-inference"
+  ],
+  "url": "https://github.com/mozilla-ai/llamafile"
  },
  "gh:mrbizarro/phosphene": {
   "description": "Free, open-source AI video generator for Mac. Run LTX-2.5 and MiniMax H3 (Hailuo) locally on Apple Silicon: text-to-video and image-to-video with sound, lip-sync, character LoRA training, songs from lyrics (YuE2) and image editing (Qwen-Image-Edit). One-click install via Pinokio. Offline: no cloud, no API key, no NVIDIA GPU.",
@@ -10625,6 +11641,46 @@
   ],
   "url": "https://github.com/Nehanth/pooled"
  },
+ "gh:nekogram/nekogram": {
+  "description": "Open-source third-party Telegram client with not many but useful modifications.",
+  "first_seen": "2026-11-04",
+  "id": "gh:nekogram/nekogram",
+  "kind": "repo",
+  "name": "Nekogram/Nekogram",
+  "tags": [
+   "nekogram",
+   "telegram"
+  ],
+  "url": "https://github.com/Nekogram/Nekogram"
+ },
+ "gh:neofreebird/app": {
+  "description": "A modified Twitter app, with branding reverts, BHTwitter and other QoL modifications.",
+  "first_seen": "2026-11-04",
+  "id": "gh:neofreebird/app",
+  "kind": "repo",
+  "name": "NeoFreeBird/app",
+  "tags": [
+   "freebird",
+   "ipa",
+   "twitter"
+  ],
+  "url": "https://github.com/NeoFreeBird/app"
+ },
+ "gh:neontoshadow/fps-boost-2026-windows-gaming-optimizer-resp": {
+  "description": "FPS Boost 2026 \u2014 Windows 10/11 gaming optimization toolkit concept for improving FPS stability, reducing input lag, troubleshooting stuttering, monitoring system performance and optimizing gaming settings",
+  "first_seen": "2026-11-04",
+  "id": "gh:neontoshadow/fps-boost-2026-windows-gaming-optimizer-resp",
+  "kind": "repo",
+  "name": "NeonToShadow/fps-boost-2026-windows-gaming-optimizer-resp",
+  "tags": [
+   "cpu-affinity",
+   "cpu-affinity-gaming",
+   "cpu-sets",
+   "electron",
+   "fps-booster-exe"
+  ],
+  "url": "https://github.com/NeonToShadow/fps-boost-2026-windows-gaming-optimizer-resp"
+ },
  "gh:neopen/story-shot-agent": {
   "description": "\u5267\u672c\u5206\u955c\u667a\u80fd\u4f53\uff08PenShot\uff09\uff1a\u7535\u5f71/\u52a8\u6f2b/\u77ed\u5267/\u5c0f\u8bf4\u2192\u5206\u955c\u7247\u6bb5\u2192\u89c6\u9891\u63d0\u793a\u8bcd\u3002\u57fa\u4e8e LLM \u901a\u8fc7 LangGraph+LlamaIndex\u5b9e\u73b0\u4efb\u610f\u683c\u5f0f\u5267\u672c\u7684\u81ea\u52a8\u89e3\u6790\uff0c\u751f\u6210 Sora/Veo/Runway \u7b49\u6a21\u578b\u53ef\u7528\u7684\u8fde\u8d2ftext-to-video\u63d0\u793a\u8bcd\u3002\u4fdd\u6301\u89d2\u8272/\u5267\u60c5\u8de8\u7247\u6bb5\u4e00\u81f4\uff0c\u652f\u6301 MCP/REST API/Function Calls/A2A \u96c6\u6210\u3002\uff08LLM-powered text-to-video-prompt agent. Break scripts into Sora/Veo-ready shots with character consistency\uff09",
   "first_seen": "2026-11-01",
@@ -10639,6 +11695,21 @@
    "function-calling"
   ],
   "url": "https://github.com/neopen/story-shot-agent"
+ },
+ "gh:nerverdevs/nervecenter": {
+  "description": "new-api / sub2api \u4e2d\u8f6c\u7ad9\u8d26\u53f7\u7ba1\u7406\u4e2d\u5fc3\uff1a\u4f59\u989d\u3001API Key\u3001\u7528\u91cf\u3001\u500d\u7387\u3001\u6a21\u578b\u6bd4\u4ef7 | https://nvcenter.cc",
+  "first_seen": "2026-11-04",
+  "id": "gh:nerverdevs/nervecenter",
+  "kind": "repo",
+  "name": "NerverDevs/nervecenter",
+  "tags": [
+   "api-key-management",
+   "api-relay",
+   "claude",
+   "dashboard",
+   "llm"
+  ],
+  "url": "https://github.com/NerverDevs/nervecenter"
  },
  "gh:net-merge/net-merge": {
   "description": "Use all your internet connections at once on Windows, macOS, Linux and Android: per-connection load balancing over Wi-Fi, Ethernet, mobile data and phone tethers",
@@ -10669,6 +11740,21 @@
    "database"
   ],
   "url": "https://github.com/netdata/netdata"
+ },
+ "gh:netease-youdao/confucius4-tts": {
+  "description": "Confucius4-TTS: a Multilingual and Cross-Lingual Zero-Shot TTS Engine",
+  "first_seen": "2026-11-04",
+  "id": "gh:netease-youdao/confucius4-tts",
+  "kind": "repo",
+  "name": "netease-youdao/Confucius4-TTS",
+  "tags": [
+   "audio",
+   "cross-lingual",
+   "deep-learning",
+   "fine-tuning",
+   "multi-lingual"
+  ],
+  "url": "https://github.com/netease-youdao/Confucius4-TTS"
  },
  "gh:netflix/metaflow": {
   "description": "Build, Manage and Deploy AI/ML Systems",
@@ -10775,6 +11861,21 @@
   ],
   "url": "https://github.com/nexu-io/open-design"
  },
+ "gh:neywa-labs/mlx-audio": {
+  "description": "A text-to-speech (TTS), speech-to-text (STT) and speech-to-speech (STS) library built on Apple's MLX framework, providing efficient speech analysis on Apple Silicon.",
+  "first_seen": "2026-11-04",
+  "id": "gh:neywa-labs/mlx-audio",
+  "kind": "repo",
+  "name": "Neywa-Labs/mlx-audio",
+  "tags": [
+   "apple-silicon",
+   "audio-processing",
+   "mlx",
+   "multimodal",
+   "speech-recognition"
+  ],
+  "url": "https://github.com/Neywa-Labs/mlx-audio"
+ },
  "gh:niazmorshed2007/reanimate": {
   "description": "A Claude Code skill that reverse-engineers any animation frame by frame, then proves the copy moves the same.",
   "first_seen": "2026-11-01",
@@ -10804,6 +11905,21 @@
    "claude-code"
   ],
   "url": "https://github.com/nicedreamzapp/claude-code-local"
+ },
+ "gh:nicoverbruggen/libron": {
+  "description": "A manually tuned font revision of Readerly, with reduced and altered serifs, optimized for digital reading and e-readers. OFL licensed.",
+  "first_seen": "2026-11-04",
+  "id": "gh:nicoverbruggen/libron",
+  "kind": "repo",
+  "name": "nicoverbruggen/libron",
+  "tags": [
+   "e-reader",
+   "font",
+   "kindle",
+   "kobo",
+   "ofl"
+  ],
+  "url": "https://github.com/nicoverbruggen/libron"
  },
  "gh:nightly-labs/openbot": {
   "description": "Local-first desktop workspace for running persistent AI coding agents with task queues, browser control and agent-to-agent collaboration.",
@@ -10939,6 +12055,15 @@
    "openxml"
   ],
   "url": "https://github.com/nissl-lab/npoi"
+ },
+ "gh:no8d/comfyui-no8d-controls": {
+  "description": "This is a set of high-efficiency custom nodes covering prompt writing to final image generation. By optimizing every link, it greatly reduces workflow complexity, enhances convenience and delivers more intuitive operations, so as to boost your work efficiency.",
+  "first_seen": "2026-11-04",
+  "id": "gh:no8d/comfyui-no8d-controls",
+  "kind": "repo",
+  "name": "no8d/ComfyUI-NO8D-controls",
+  "tags": [],
+  "url": "https://github.com/no8d/ComfyUI-NO8D-controls"
  },
  "gh:nobodywho-ooo/nobodywho": {
   "description": "NobodyWho is an inference engine that lets you run LLMs locally and efficiently on any device.  ",
@@ -11101,6 +12226,21 @@
   ],
   "url": "https://github.com/Nutlope/hallmark"
  },
+ "gh:nuxt-modules/fontaine": {
+  "description": "\ud83d\udd24 Font metric overrides to reduce CLS",
+  "first_seen": "2026-11-04",
+  "id": "gh:nuxt-modules/fontaine",
+  "kind": "repo",
+  "name": "nuxt-modules/fontaine",
+  "tags": [
+   "cls",
+   "hacktoberfest",
+   "nuxt",
+   "nuxt-module",
+   "performance"
+  ],
+  "url": "https://github.com/nuxt-modules/fontaine"
+ },
  "gh:nvidia-nemo/guardrails": {
   "description": "NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.",
   "first_seen": "2026-11-01",
@@ -11139,6 +12279,21 @@
   "name": "NVIDIA/cosmos",
   "tags": [],
   "url": "https://github.com/NVIDIA/cosmos"
+ },
+ "gh:nvidia/nvshmem": {
+  "description": "NVIDIA NVSHMEM is a parallel programming interface for NVIDIA GPUs based on OpenSHMEM. NVSHMEM can significantly reduce multi-process communication and coordination overheads by allowing programmers to perform one-sided communication from within CUDA kernels and on CUDA streams.",
+  "first_seen": "2026-11-04",
+  "id": "gh:nvidia/nvshmem",
+  "kind": "repo",
+  "name": "NVIDIA/nvshmem",
+  "tags": [
+   "communciations",
+   "cpp",
+   "cuda",
+   "deep-learning",
+   "nvidia"
+  ],
+  "url": "https://github.com/NVIDIA/nvshmem"
  },
  "gh:nvidia/openshell": {
   "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
@@ -11632,6 +12787,15 @@
   ],
   "url": "https://github.com/opensandbox-group/OpenSandbox"
  },
+ "gh:opensuse/snapper": {
+  "description": "Manage filesystem snapshots and allow undo of system modifications",
+  "first_seen": "2026-11-04",
+  "id": "gh:opensuse/snapper",
+  "kind": "repo",
+  "name": "openSUSE/snapper",
+  "tags": [],
+  "url": "https://github.com/openSUSE/snapper"
+ },
  "gh:opentodoapp/opentodo": {
   "description": "Your tasks, your server. An open-source, local-first task manager you can host yourself. Everything you expect from a commercial task app, without the subscription or the lock-in.",
   "first_seen": "2026-11-01",
@@ -11876,7 +13040,12 @@
   "name": "p-e-w/heretic",
   "tags": [
    "model-tools",
-   "jailbreak"
+   "jailbreak",
+   "abliteration",
+   "anti-censorship",
+   "anticensorship",
+   "censorship",
+   "censorship-resistance"
   ],
   "url": "https://github.com/p-e-w/heretic"
  },
@@ -12025,6 +13194,21 @@
    "multiplayer"
   ],
   "url": "https://github.com/Paradigm-Study/claude-share"
+ },
+ "gh:parseablehq/parseable": {
+  "description": "Parseable is an open source, unified infrastructure observability platform built in Rust on a data lake architecture. It tracks logs, metrics, traces, and events across apps, agents, and systems, reducing storage costs by up to 90% through columnar telemetry compression.",
+  "first_seen": "2026-11-04",
+  "id": "gh:parseablehq/parseable",
+  "kind": "repo",
+  "name": "parseablehq/parseable",
+  "tags": [
+   "agent-observability",
+   "alerting",
+   "apm",
+   "cloud-native",
+   "dashboards"
+  ],
+  "url": "https://github.com/parseablehq/parseable"
  },
  "gh:pascalorg/editor": {
   "description": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.",
@@ -12305,6 +13489,21 @@
   ],
   "url": "https://github.com/Phantomduke375846-alt/clinic_rag_rpocket_bot"
  },
+ "gh:phone-harness/mcp": {
+  "description": "Connect AI agents to real iPhones and Androids",
+  "first_seen": "2026-11-04",
+  "id": "gh:phone-harness/mcp",
+  "kind": "repo",
+  "name": "phone-harness/mcp",
+  "tags": [
+   "ai-agents",
+   "android",
+   "iphone",
+   "mcp",
+   "mcp-server"
+  ],
+  "url": "https://github.com/phone-harness/mcp"
+ },
  "gh:phone-harness/phone-harness": {
   "description": "let your agent control your phone",
   "first_seen": "2026-10-19",
@@ -12409,6 +13608,21 @@
   "name": "PierreGode/Ragnar",
   "tags": [],
   "url": "https://github.com/PierreGode/Ragnar"
+ },
+ "gh:pik-4/hsmod": {
+  "description": "Hearthstone Modification Based on BepInEx",
+  "first_seen": "2026-11-04",
+  "id": "gh:pik-4/hsmod",
+  "kind": "repo",
+  "name": "Pik-4/HsMod",
+  "tags": [
+   "bepinex",
+   "harmony",
+   "hearthstone",
+   "mod",
+   "unity"
+  ],
+  "url": "https://github.com/Pik-4/HsMod"
  },
  "gh:pinganbbovo/ai-companion-kit": {
   "description": "\u7ed9\u4f60\u7684 AI \u4e00\u526f\u8eab\u4f53\uff0c\u548c\u4e00\u70b9\u4eba\u5473 \u2014\u2014 \u4f1a\u8bb0\u4e8b\u3001\u4f1a\u770b\u573a\u5408\u7684 QQ \u966a\u804a + \u80fd\u63a7\u5236\u5b89\u5353\u624b\u673a\u7684 MCP",
@@ -12536,6 +13750,24 @@
   ],
   "url": "https://github.com/polaris-smart/mcd-agent-gourmet"
  },
+ "gh:postcss/postcss-calc": {
+  "description": "PostCSS plugin to reduce calc()",
+  "first_seen": "2026-11-04",
+  "id": "gh:postcss/postcss-calc",
+  "kind": "repo",
+  "name": "postcss/postcss-calc",
+  "tags": [],
+  "url": "https://github.com/postcss/postcss-calc"
+ },
+ "gh:pqrs-org/ke-complex_modifications": {
+  "description": "Karabiner-Elements complex_modifications rules",
+  "first_seen": "2026-11-04",
+  "id": "gh:pqrs-org/ke-complex_modifications",
+  "kind": "repo",
+  "name": "pqrs-org/KE-complex_modifications",
+  "tags": [],
+  "url": "https://github.com/pqrs-org/KE-complex_modifications"
+ },
  "gh:prabanta-dev/janas": {
   "description": "37 tok/s from Qwen3-Next-80B (48 GB) on a 32 GB laptop, 24 without drafts vs 2.8 for llama.cpp; reading 62 vs 16 tok/s. Faster than llama.cpp on all 13 models compared in Q4_K_M. LLMs bigger than your RAM, pure C, CPU or GPU.",
   "first_seen": "2026-11-01",
@@ -12629,6 +13861,21 @@
   "tags": [],
   "url": "https://github.com/Prophetlab/Investor-Last-Exam"
  },
+ "gh:pubkey/event-reduce": {
+  "description": "An algorithm to optimize database queries that run multiple times https://pubkey.github.io/event-reduce/",
+  "first_seen": "2026-11-04",
+  "id": "gh:pubkey/event-reduce",
+  "kind": "repo",
+  "name": "pubkey/event-reduce",
+  "tags": [
+   "bdd",
+   "database",
+   "event-reduce",
+   "live-queries",
+   "nosql-database"
+  ],
+  "url": "https://github.com/pubkey/event-reduce"
+ },
  "gh:pullboard-dev/pullboard": {
   "description": "Autonomous development for real products. Governed agents build from specs you approve, follow the rules you set, and nothing merges until another agent proves it. Your decisions, judgement and taste are the bar that work must clear. Declare your vision and let agents build it.",
   "first_seen": "2026-11-01",
@@ -12686,6 +13933,21 @@
   ],
   "url": "https://github.com/python-attrs/attrs"
  },
+ "gh:python-roborock/local_roborock_server": {
+  "description": "Local HTTPS and MQTT cloud emulator for Roborock vacuums without rooting or hardware modifications",
+  "first_seen": "2026-11-04",
+  "id": "gh:python-roborock/local_roborock_server",
+  "kind": "repo",
+  "name": "Python-roborock/local_roborock_server",
+  "tags": [
+   "home-assistant",
+   "iot",
+   "local-control",
+   "mqtt",
+   "reverse-engineering"
+  ],
+  "url": "https://github.com/Python-roborock/local_roborock_server"
+ },
  "gh:pzw152/one-click-eu-lord": {
   "description": "\u4e00\u9375\u8f49\u751f\u6b50\u723a \u00b7 \u4e00\u952e\u8f6c\u751f\u6b27\u7237 \u00b7 One-Click EU Lord \u2014 give Windows 11 every gain from Ireland's EU/EEA (DMA) policy without the features the EU build removes, and keep it across updates. One 166 KB exe, no runtime, fully reversible. \u7e41\u4e2d / \u7b80\u4e2d / English.",
   "first_seen": "2026-11-01",
@@ -12716,6 +13978,20 @@
   ],
   "url": "https://github.com/qdrant/qdrant"
  },
+ "gh:qimingjiu/trianon": {
+  "description": "Trianon \u662f\u4e00\u5957\u4e3a AI \u7f16\u7a0b\u667a\u80fd\u4f53\u8bbe\u8ba1\u7684\u6d1b\u53ef\u53ef\u98ce\u684c\u9762\u5de5\u4f5c\u53f0\u6982\u5ff5\u3002\u5b83\u628a\u5bf9\u8bdd\u3001\u5de5\u5177\u8c03\u7528\u3001\u6587\u4ef6\u3001\u641c\u7d22\u3001\u7ec8\u7aef\u3001\u5185\u7f6e\u6d4f\u89c8\u5668\u4e0e\u8bbe\u7f6e\uff0c\u5206\u522b\u5199\u6210\u4fe1\u7b3a\u3001\u7968\u6839\u3001\u5377\u5b97\u548c\u6863\u6848\u5939\uff1b\u4ee5\u96fe\u84dd\u3001\u94f6\u84dd\u4e0e\u5976\u767d\uff0c\u628a\u901a\u5e38\u51b7\u786c\u7684\u5f00\u53d1\u5de5\u5177\u53d8\u6210\u4e00\u95f4\u53ef\u4ee5\u5de5\u4f5c\u7684\u51e1\u5c14\u8d5b\u6c99\u9f99\u3002",
+  "first_seen": "2026-11-04",
+  "id": "gh:qimingjiu/trianon",
+  "kind": "repo",
+  "name": "qimingjiu/Trianon",
+  "tags": [
+   "ai-coding",
+   "desktop-ui",
+   "rococo",
+   "ui-design"
+  ],
+  "url": "https://github.com/qimingjiu/Trianon"
+ },
  "gh:qlabs-eng/noise": {
   "description": "Speedrun for pretraining without backpropagation",
   "first_seen": "2026-11-01",
@@ -12739,6 +14015,15 @@
    "forex"
   ],
   "url": "https://github.com/QuantConnect/Lean"
+ },
+ "gh:quantumbladesmith/fps-optimizer-universal-game-performance-booster-2026": {
+  "description": "Powerful FPS Optimizer for all games. Increase frame rate, reduce lag and stutters with one-click profiles. Clean interface, fully reversible, easy to use.",
+  "first_seen": "2026-11-04",
+  "id": "gh:quantumbladesmith/fps-optimizer-universal-game-performance-booster-2026",
+  "kind": "repo",
+  "name": "QuantumBladesmith/FPS-Optimizer-Universal-Game-Performance-Booster-2026",
+  "tags": [],
+  "url": "https://github.com/QuantumBladesmith/FPS-Optimizer-Universal-Game-Performance-Booster-2026"
  },
  "gh:qwenaudio/qwen-audio-agent": {
   "description": "A realtime voice runtime that keeps Agents talking, working, and present.  Real-time Voice Runtime for AI Agents",
@@ -13132,6 +14417,36 @@
   ],
   "url": "https://github.com/redis/redis"
  },
+ "gh:redisson/redisson": {
+  "description": "Redisson: Valkey & Redis Java Client and Real-Time Data Platform. Sync/Async/RxJava/Reactive API. Extends Valkey and Redis with over 60 objects and services: Set, Multimap, SortedSet, Map, List, Queue, Deque, Semaphore, Lock, AtomicLong, Map Reduce, Bloom filter, Spring, Tomcat, Scheduler, JCache API, Hibernate, RPC, local cache..",
+  "first_seen": "2026-11-04",
+  "id": "gh:redisson/redisson",
+  "kind": "repo",
+  "name": "redisson/redisson",
+  "tags": [
+   "cache",
+   "distributed",
+   "distributed-locks",
+   "executor",
+   "hibernate"
+  ],
+  "url": "https://github.com/redisson/redisson"
+ },
+ "gh:reizumii/parfait": {
+  "description": "A tasty theme modification for Firefox \ud83e\udd8a",
+  "first_seen": "2026-11-04",
+  "id": "gh:reizumii/parfait",
+  "kind": "repo",
+  "name": "reizumii/parfait",
+  "tags": [
+   "css",
+   "firefox",
+   "firefox-css",
+   "firefox-theme",
+   "userchrome"
+  ],
+  "url": "https://github.com/reizumii/parfait"
+ },
  "gh:rejig-app/rejig": {
   "description": "Mac app for arranging your iPhone Home Screen over Wi-Fi or USB, with a change list, backups and readback.",
   "first_seen": "2026-11-03",
@@ -13179,6 +14494,21 @@
   "name": "riozilla/hermes-proactive",
   "tags": [],
   "url": "https://github.com/riozilla/hermes-proactive"
+ },
+ "gh:rneomy/auto-tab-discard": {
+  "description": "Use native tab discarding method to automatically reduce memory usage of inactive tabs",
+  "first_seen": "2026-11-04",
+  "id": "gh:rneomy/auto-tab-discard",
+  "kind": "repo",
+  "name": "rNeomy/auto-tab-discard",
+  "tags": [
+   "browser-extension",
+   "chrome",
+   "chrome-extension",
+   "firefox-addon",
+   "firefox-extension"
+  ],
+  "url": "https://github.com/rNeomy/auto-tab-discard"
  },
  "gh:robinebers/attentionmachine-skills": {
   "description": "Rob's skills to make you post every day without the hassle of editing. Turn raw recordings into finished Reels with the Claude or Codex you already have.",
@@ -13306,6 +14636,15 @@
    "obsidian"
   ],
   "url": "https://github.com/rothsandro/eleventy-notes"
+ },
+ "gh:router-for-me/cli-proxy-api-management-center": {
+  "description": "This is a WebUI interface based on CLI-Proxy-API, designed to simplify configuration modifications and runtime status monitoring.",
+  "first_seen": "2026-11-04",
+  "id": "gh:router-for-me/cli-proxy-api-management-center",
+  "kind": "repo",
+  "name": "router-for-me/Cli-Proxy-API-Management-Center",
+  "tags": [],
+  "url": "https://github.com/router-for-me/Cli-Proxy-API-Management-Center"
  },
  "gh:router-for-me/cliproxyapi": {
   "description": "Wrap Antigravity, ChatGPT Codex, Claude Code, Grok Build, Muse Code, Devin as an OpenAI/Gemini/Claude/Codex compatible API service, allowing you to enjoy the free Gemini Series, GPT Series, Grok Series, Claude model through API",
@@ -13490,6 +14829,21 @@
    "framework"
   ],
   "url": "https://github.com/run-llama/llama_index"
+ },
+ "gh:runnergutter/aion-2-stutter-fix": {
+  "description": "AION 2 Stutter Fix 2026 \u2014 FPS boost, frame-time consistency, graphics presets, shader cache cleanup. Free Windows utility for Steam. No gameplay modifications.",
+  "first_seen": "2026-11-04",
+  "id": "gh:runnergutter/aion-2-stutter-fix",
+  "kind": "repo",
+  "name": "RunnerGutter/aion-2-stutter-fix",
+  "tags": [
+   "aion-2",
+   "aion-2-fps",
+   "aion-2-stutter-fix",
+   "fps-boost",
+   "game-optimizer"
+  ],
+  "url": "https://github.com/RunnerGutter/aion-2-stutter-fix"
  },
  "gh:rusty4444/hermes-android": {
   "description": "Android client for Hermes Agent - chat with your Hermes sessions from a phone or tablet over local Wi-Fi or a private Tailscale network.",
@@ -13695,6 +15049,21 @@
   ],
   "url": "https://github.com/SandboxWorldOnline/Open-Terraria"
  },
+ "gh:sanluan/publiccms": {
+  "description": "More than 2.7 million lines of code modification continuously iterated for 10 years to modernize java cms, easily supporting tens of millions of data, tens of millions of PV; Support static, server side includes; Currently has 0.0005% of the world's users (w3techs provided data), language support in Chinese, Japanese, English",
+  "first_seen": "2026-11-04",
+  "id": "gh:sanluan/publiccms",
+  "kind": "repo",
+  "name": "sanluan/PublicCMS",
+  "tags": [
+   "cms",
+   "freemarker",
+   "gradle",
+   "hibernate",
+   "hibernate-search"
+  ],
+  "url": "https://github.com/sanluan/PublicCMS"
+ },
  "gh:sansan0/trendradar": {
   "description": "\u2b50AI-driven public opinion & trend monitor with multi-platform aggregation, RSS, and smart alerts.\ud83c\udfaf \u544a\u522b\u4fe1\u606f\u8fc7\u8f7d\uff0c\u4f60\u7684 AI \u8206\u60c5\u76d1\u63a7\u52a9\u624b\u4e0e\u70ed\u70b9\u7b5b\u9009\u5de5\u5177\uff01\u805a\u5408\u591a\u5e73\u53f0\u70ed\u70b9 +  RSS \u8ba2\u9605\uff0c\u652f\u6301\u5173\u952e\u8bcd\u7cbe\u51c6\u7b5b\u9009\u3002AI \u667a\u80fd\u7b5b\u9009\u65b0\u95fb + AI \u7ffb\u8bd1 +  AI \u5206\u6790\u7b80\u62a5\u76f4\u63a8\u624b\u673a\uff0c\u4e5f\u652f\u6301\u63a5\u5165 MCP \u67b6\u6784\uff0c\u8d4b\u80fd AI \u81ea\u7136\u8bed\u8a00\u5bf9\u8bdd\u5206\u6790\u3001\u60c5\u611f\u6d1e\u5bdf\u4e0e\u8d8b\u52bf\u9884\u6d4b\u7b49\u3002\u652f\u6301 Docker \uff0c\u6570\u636e\u672c\u5730/\u4e91\u7aef\u81ea\u6301\u3002\u96c6\u6210\u5fae\u4fe1/\u98de\u4e66/\u9489\u9489/Telegram/\u90ae\u4ef6/ntfy/bark/slack \u7b49\u6e20\u9053\u667a\u80fd\u63a8\u9001\u3002",
   "first_seen": "2026-11-01",
@@ -13724,6 +15093,30 @@
    "llm"
   ],
   "url": "https://github.com/SAOS-3624/dsh-see-now"
+ },
+ "gh:sap/cloud-sdk-js": {
+  "description": "Use the SAP Cloud SDK for JavaScript / TypeScript to reduce development effort when building applications on SAP Business Technology Platform that communicate with SAP solutions and services such as SAP S/4HANA Cloud, SAP SuccessFactors, and many others. ",
+  "first_seen": "2026-11-04",
+  "id": "gh:sap/cloud-sdk-js",
+  "kind": "repo",
+  "name": "SAP/cloud-sdk-js",
+  "tags": [
+   "odata",
+   "openapi",
+   "sap-btp",
+   "sap-business-technology-platform",
+   "sap-cloud-platform"
+  ],
+  "url": "https://github.com/SAP/cloud-sdk-js"
+ },
+ "gh:sarsonj/rodokmen-skill": {
+  "description": "",
+  "first_seen": "2026-11-04",
+  "id": "gh:sarsonj/rodokmen-skill",
+  "kind": "repo",
+  "name": "sarsonj/rodokmen-skill",
+  "tags": [],
+  "url": "https://github.com/sarsonj/rodokmen-skill"
  },
  "gh:scarletkc/hatoba": {
   "description": "Open-source desktop SSH client with an AI assistant and end-to-end encrypted sync through your own Cloudflare account",
@@ -13923,6 +15316,21 @@
    "context-engineering"
   ],
   "url": "https://github.com/Sev7eEn7/dsh-sieve"
+ },
+ "gh:sfall-team/sfall": {
+  "description": "sfall - Engine modifications for Fallout 2",
+  "first_seen": "2026-11-04",
+  "id": "gh:sfall-team/sfall",
+  "kind": "repo",
+  "name": "sfall-team/sfall",
+  "tags": [
+   "engine-modifications",
+   "fallout",
+   "fallout2",
+   "game",
+   "modding"
+  ],
+  "url": "https://github.com/sfall-team/sfall"
  },
  "gh:sgaofen/humanizer-local-model": {
   "description": "Rewrites AI drafts so they read like a person wrote them \u2014 runs locally, keeps the facts",
@@ -14246,6 +15654,21 @@
   ],
   "url": "https://github.com/simplex-chat/simplex-chat"
  },
+ "gh:simplexai-labs/polystrata": {
+  "description": "Run large AI models on your own PC: Qwen3.8-Flash-Next on Strata's engine, and GLM 5.3 Flash, DeepSeek V4 Flash, LFM2.5, Qwen3.6, Ornith 1.5, Gemma 4, Tiel Coder and MiniCPM-V on a second engine written for PolyStrata. One-click install for Windows and Linux, OpenAI/Anthropic API on localhost.",
+  "first_seen": "2026-11-04",
+  "id": "gh:simplexai-labs/polystrata",
+  "kind": "repo",
+  "name": "simplexai-labs/PolyStrata",
+  "tags": [
+   "anthropic-api",
+   "cuda",
+   "gemma",
+   "gguf",
+   "glm"
+  ],
+  "url": "https://github.com/simplexai-labs/PolyStrata"
+ },
  "gh:simstudioai/sim": {
   "description": "Sim is the collaborative workspace to build, deploy, and monitor AI agents and workflows. Used by 100,000+ builders.",
   "first_seen": "2026-11-01",
@@ -14260,6 +15683,21 @@
    "aiagents"
   ],
   "url": "https://github.com/simstudioai/sim"
+ },
+ "gh:sipeter/clonetts": {
+  "description": "A lightweight, offline Android Text-to-Speech (TTS) engine enabling seamless system-wide voice cloning and high-fidelity text reading. / \u8fd0\u884c\u5728\u5b89\u5353\u672c\u5730\u7684\u8f7b\u91cf\u7ea7\u6587\u5b57\u8f6c\u8bed\u97f3 (TTS) \u5f15\u64ce\uff0c\u652f\u6301\u79bb\u7ebf\u53d1\u97f3\u4eba\u63d0\u53d6\u3001\u96f6\u95e8\u69db\u97f3\u8272\u514b\u9686\u4e0e\u53cc\u64ce\u7cfb\u7edf\u7ea7\u5168\u5c40\u542c\u4e66\u3002",
+  "first_seen": "2026-11-04",
+  "id": "gh:sipeter/clonetts",
+  "kind": "repo",
+  "name": "sipeter/CloneTTS",
+  "tags": [
+   "android",
+   "offline-tts",
+   "reader",
+   "text-to-speech",
+   "tts"
+  ],
+  "url": "https://github.com/sipeter/CloneTTS"
  },
  "gh:sisyphuslabs/dori-superagent": {
   "description": "A proactive multi-session coding-agent harness on herdr + omo: one lead, a duty loop, many lanes, a gated merge. Plus Dori mode, the messenger-facing skill.",
@@ -14673,6 +16111,20 @@
   ],
   "url": "https://github.com/steipete/CodexBar"
  },
+ "gh:stellar-tradehub/stellar-trade": {
+  "description": "Stellar prediction-market prototype: buy a YES/NO position, sell by reducing it, and inspect pooled XLM settlement onchain.",
+  "first_seen": "2026-11-04",
+  "id": "gh:stellar-tradehub/stellar-trade",
+  "kind": "repo",
+  "name": "Stellar-tradehub/stellar-trade",
+  "tags": [
+   "open-source",
+   "prediction-market",
+   "soroban",
+   "stellar"
+  ],
+  "url": "https://github.com/Stellar-tradehub/stellar-trade"
+ },
  "gh:steven2358/awesome-generative-ai": {
   "description": "A curated list of modern Generative Artificial Intelligence projects and services",
   "first_seen": "2026-11-01",
@@ -14774,6 +16226,20 @@
   ],
   "url": "https://github.com/SubmitGame/awesome-decomp-games"
  },
+ "gh:subnauticanitrox/nitrox": {
+  "description": "An open-source, multiplayer modification for the game Subnautica.",
+  "first_seen": "2026-11-04",
+  "id": "gh:subnauticanitrox/nitrox",
+  "kind": "repo",
+  "name": "SubnauticaNitrox/Nitrox",
+  "tags": [
+   "mod",
+   "nitrox",
+   "subnautica",
+   "unity3d"
+  ],
+  "url": "https://github.com/SubnauticaNitrox/Nitrox"
+ },
  "gh:superdesigndev/treg": {
   "description": "OpenRouter for agent tools.",
   "first_seen": "2026-11-03",
@@ -14815,6 +16281,21 @@
    "ai-software-engineering"
   ],
   "url": "https://github.com/superplanehq/superplane"
+ },
+ "gh:surendranb/google-analytics-mcp": {
+  "description": "Google Analytics 4 data to AI agents, agentic workflows, and MCP clients. Give agents analysis-ready access to website traffic, user behavior, and performance data with schema discovery, server-side aggregation, and safe defaults that reduce data wrangling.",
+  "first_seen": "2026-11-04",
+  "id": "gh:surendranb/google-analytics-mcp",
+  "kind": "repo",
+  "name": "surendranb/google-analytics-mcp",
+  "tags": [
+   "ai-agent",
+   "ai-agents",
+   "analytics",
+   "claude",
+   "claude-mcp"
+  ],
+  "url": "https://github.com/surendranb/google-analytics-mcp"
  },
  "gh:sv3nbeast/agent-manager-lite": {
   "description": "macOS \u4e0a\u7684 Codex\u3001Claude Code CLI \u4e0e Claude Desktop \u591a\u5b9e\u4f8b\u7ba1\u7406\u5668\uff0c\u7edf\u4e00\u7ba1\u7406\u8d26\u53f7\u3001\u4f9b\u5e94\u5546\u5bc6\u94a5\u3001\u72ec\u7acb\u914d\u7f6e\u3001\u4f1a\u8bdd\u4e0e\u4ee3\u7406\u3002 / A macOS manager for Codex, Claude Code CLI and Claude Desktop instances, accounts, provider keys, isolated configs, sessions and proxies.",
@@ -14906,6 +16387,19 @@
   ],
   "url": "https://github.com/syv-ai/HyperQwen"
  },
+ "gh:t-auto/dsh-ops": {
+  "description": "A toolkit for low-level operations in DSH, designed to reduce token usage and task execution time / DSH \u5e95\u5c42\u64cd\u4f5c\u5de5\u5177\u63d2\u4ef6\uff0c\u65e8\u5728\u51cf\u5c11 Token \u6d88\u8017\u4e0e\u4efb\u52a1\u8017\u65f6",
+  "first_seen": "2026-11-04",
+  "id": "gh:t-auto/dsh-ops",
+  "kind": "repo",
+  "name": "T-Auto/dsh-ops",
+  "tags": [
+   "dsh",
+   "dsh-plugin",
+   "dsh-plugins"
+  ],
+  "url": "https://github.com/T-Auto/dsh-ops"
+ },
  "gh:t-crypt/berth": {
   "description": "Decides who gets your GPU. Chat, image and voice engines lease the card in turn instead of grabbing it, so two of them never load at once and crash each other. One Go binary, nothing else to install.",
   "first_seen": "2026-11-01",
@@ -14975,6 +16469,36 @@
   ],
   "url": "https://github.com/TannerMidd/pi-pocket"
  },
+ "gh:tanujnotes/olauncher": {
+  "description": "Minimal AF Launcher for Android. Reduce your screen time. Daily wallpapers.",
+  "first_seen": "2026-11-04",
+  "id": "gh:tanujnotes/olauncher",
+  "kind": "repo",
+  "name": "tanujnotes/Olauncher",
+  "tags": [
+   "android",
+   "android-launcher",
+   "digital-wellbeing",
+   "gplv3",
+   "kotlin"
+  ],
+  "url": "https://github.com/tanujnotes/Olauncher"
+ },
+ "gh:taritsyn/webmarkupmin": {
+  "description": "The Web Markup Minifier (abbreviated WebMarkupMin) - a .NET library that contains a set of markup minifiers. The objective of this project is to improve the performance of web applications by reducing the size of HTML, XHTML and XML code.",
+  "first_seen": "2026-11-04",
+  "id": "gh:taritsyn/webmarkupmin",
+  "kind": "repo",
+  "name": "Taritsyn/WebMarkupMin",
+  "tags": [
+   "aspnet",
+   "dotnet",
+   "html",
+   "markup",
+   "minification"
+  ],
+  "url": "https://github.com/Taritsyn/WebMarkupMin"
+ },
  "gh:tashfeenahmed/freellmapi": {
   "description": "7.4 billion tokens per month from 34 free LLM providers and 635 free model endpoints, all behind one /v1 endpoint.",
   "first_seen": "2026-10-19",
@@ -15001,6 +16525,36 @@
    "trading"
   ],
   "url": "https://github.com/TauricResearch/TradingAgents"
+ },
+ "gh:tbarbette/fastclick": {
+  "description": "FastClick - A faster version of the Click Modular Router featuring batching, advanced multi-processing and improved Netmap and DPDK support (ANCS'15). Check the metron branch for Metron specificities (NSDI'18). PacketMill modifications (ASPLOS'21) as well as MiddleClick(ToN, 2021) are merged in main.",
+  "first_seen": "2026-11-04",
+  "id": "gh:tbarbette/fastclick",
+  "kind": "repo",
+  "name": "tbarbette/fastclick",
+  "tags": [
+   "batch-mode",
+   "click",
+   "dpdk",
+   "fastclick",
+   "high-speed"
+  ],
+  "url": "https://github.com/tbarbette/fastclick"
+ },
+ "gh:tcyclops95705/cs2-fps-optimizer-for-windows-10-11-boost-performance-2026-rpocket": {
+  "description": "Maximize Counter-Strike 2 FPS on Windows 10/11 with system tweaks, GPU scheduling, and reduced input latency via a safe, native one-click installer.",
+  "first_seen": "2026-11-04",
+  "id": "gh:tcyclops95705/cs2-fps-optimizer-for-windows-10-11-boost-performance-2026-rpocket",
+  "kind": "repo",
+  "name": "TCyclops95705/CS2-FPS-Optimizer-for-Windows-10-11-Boost-Performance-2026-rpocket",
+  "tags": [
+   "2026",
+   "desktop-app",
+   "desktop-apps",
+   "fps-booster-no-lag",
+   "fps-booster-software"
+  ],
+  "url": "https://github.com/TCyclops95705/CS2-FPS-Optimizer-for-Windows-10-11-Boost-Performance-2026-rpocket"
  },
  "gh:teableio/teable": {
   "description": "\u2728 AI Spreadsheet for Business",
@@ -15298,6 +16852,21 @@
   ],
   "url": "https://github.com/theonedev/onedev"
  },
+ "gh:theploggy/creatoros-studio": {
+  "description": "Open-source Higgsfield on your own GPU: train a recurring character, turn a one-line brief into an edited reel, move the camera, re-shoot an angle, block shots in 3D, sketch to video, restore old footage. Runs on local ComfyUI, open-weights models only.",
+  "first_seen": "2026-11-04",
+  "id": "gh:theploggy/creatoros-studio",
+  "kind": "repo",
+  "name": "thePloggy/CreatorOS-Studio",
+  "tags": [
+   "ai-influencer",
+   "ai-video",
+   "character-consistency",
+   "comfyui",
+   "flux"
+  ],
+  "url": "https://github.com/thePloggy/CreatorOS-Studio"
+ },
  "gh:therizwan/flagshiprouter": {
   "description": "Free AI models for every coding tool \u2014 a local OpenAI-compatible gateway for Claude Code, Codex, Cursor, Cline and OpenCode. Based on 9router (MIT).",
   "first_seen": "2026-11-01",
@@ -15517,6 +17086,21 @@
   ],
   "url": "https://github.com/togg53192-cmd/jailbreaks"
  },
+ "gh:tomwright/dasel": {
+  "description": "Unified querying, transformation, and modification of JSON, TOML, YAML, XML, INI, HCL, KDL and CSV.",
+  "first_seen": "2026-11-04",
+  "id": "gh:tomwright/dasel",
+  "kind": "repo",
+  "name": "TomWright/dasel",
+  "tags": [
+   "cli",
+   "config",
+   "configuration",
+   "data-processing",
+   "data-structures"
+  ],
+  "url": "https://github.com/TomWright/dasel"
+ },
  "gh:tonf1917/claude-desktop-multiple-windows-different-api": {
   "description": "Multiple windows for Claude Desktop with different APIs at the same time: keep your official Claude subscription in one window and run other windows on custom / third-party APIs (cc-switch). Windows. \u591a\u5f00 Claude Desktop,\u591a\u4e2a\u7a97\u53e3\u540c\u65f6\u4f7f\u7528\u4e0d\u540c API(\u5b98\u65b9\u8ba2\u9605 + \u7b2c\u4e09\u65b9 API \u540c\u65f6\u5de5\u4f5c)\u3002",
   "first_seen": "2026-11-01",
@@ -15576,6 +17160,21 @@
    "good-first-issues"
   ],
   "url": "https://github.com/traceloop/openllmetry"
+ },
+ "gh:tracemachina/nativelink": {
+  "description": "NativeLink is a Nix-powered, open source, high-performance build cache and remote execution server, compatible with Bazel, Soong, Pants, Buck2, Reclient, and other RE-compatible build systems. It offers drastically faster builds, reduced test flakiness, and support for specialized hardware.",
+  "first_seen": "2026-11-04",
+  "id": "gh:tracemachina/nativelink",
+  "kind": "repo",
+  "name": "TraceMachina/nativelink",
+  "tags": [
+   "apache2",
+   "bazel",
+   "buck2",
+   "build-automation",
+   "build-system"
+  ],
+  "url": "https://github.com/TraceMachina/nativelink"
  },
  "gh:transact-rs/sqlx": {
   "description": "\ud83e\uddf0 The Rust SQL Toolkit. An async, pure Rust SQL crate featuring compile-time checked queries without a DSL. Supports PostgreSQL, MySQL, and SQLite.",
@@ -15736,6 +17335,36 @@
   ],
   "url": "https://github.com/typesense/typesense"
  },
+ "gh:tyrrrz/lightbulb": {
+  "description": "Reduces eye strain by adjusting screen gamma based on the current time",
+  "first_seen": "2026-11-04",
+  "id": "gh:tyrrrz/lightbulb",
+  "kind": "repo",
+  "name": "Tyrrrz/LightBulb",
+  "tags": [
+   "brightness",
+   "correction",
+   "display",
+   "eye-strain",
+   "gamma"
+  ],
+  "url": "https://github.com/Tyrrrz/LightBulb"
+ },
+ "gh:uclanlp/openvlharness": {
+  "description": "Official Code for OpenVLHarness: Real-World Visual Agentic Tool\u2011Use with Multimodal Memory",
+  "first_seen": "2026-11-04",
+  "id": "gh:uclanlp/openvlharness",
+  "kind": "repo",
+  "name": "uclanlp/OpenVLHarness",
+  "tags": [
+   "agent-harness",
+   "agent-skills",
+   "agentic-ai",
+   "ai-agents",
+   "coding-agent"
+  ],
+  "url": "https://github.com/uclanlp/OpenVLHarness"
+ },
  "gh:uditgoenka/autoresearch": {
   "description": "Claude Autoresearch Skill \u2014 Autonomous goal-directed iteration for Claude Code. Inspired by Karpathy's autoresearch. Modify \u2192 Verify \u2192 Keep/Discard \u2192 Repeat forever.",
   "first_seen": "2026-11-01",
@@ -15819,6 +17448,21 @@
    "awesome-list"
   ],
   "url": "https://github.com/UnderleveledBuilder/awesome-short-drama-skills"
+ },
+ "gh:underleveledbuilder/awesome-social-media-skills": {
+  "description": "\u81ea\u5a92\u4f53\u8fd0\u8425 Skill\uff08\u6280\u80fd\u5305\uff09\u7cbe\u9009\uff1a\u5c0f\u7ea2\u4e66\u3001\u6296\u97f3\u3001\u516c\u4f17\u53f7\u3001\u89c6\u9891\u53f7\u3001B \u7ad9\u3001X\u3001YouTube\u3001TikTok\u3001LinkedIn \u7684\u9009\u9898\u3001\u5199\u7a3f\u3001\u914d\u56fe\u3001\u53d1\u5e03\u548c\u6570\u636e\uff0c\u5343\u95ee\u3001\u8c46\u5305\u3001\u9f99\u867e OpenClaw\u3001WorkBuddy\u3001Claude Code\u3001Codex \u7b49\u667a\u80fd\u4f53\u53ef\u7528 | Curated agent skills for social media: Xiaohongshu (RedNote), Douyin, WeChat, X, YouTube, TikTok and LinkedIn",
+  "first_seen": "2026-11-04",
+  "id": "gh:underleveledbuilder/awesome-social-media-skills",
+  "kind": "repo",
+  "name": "UnderleveledBuilder/awesome-social-media-skills",
+  "tags": [
+   "agent-skills",
+   "awesome",
+   "awesome-list",
+   "claude-code",
+   "claude-skills"
+  ],
+  "url": "https://github.com/UnderleveledBuilder/awesome-social-media-skills"
  },
  "gh:unicity-sphere/sphere-sdk": {
   "description": "The SDK for autonomous economic agents. Give an agent an identity, a wallet, and the ability to find, negotiate with, and settle with other agents - peer-to-peer, with perfect privacy and ultra-fast finality",
@@ -15923,6 +17567,21 @@
   ],
   "url": "https://github.com/upstash/context7"
  },
+ "gh:usdag/cstc": {
+  "description": "CSTC is a Burp Suite extension that allows request/response modification using a GUI analogous to CyberChef ",
+  "first_seen": "2026-11-04",
+  "id": "gh:usdag/cstc",
+  "kind": "repo",
+  "name": "usdAG/cstc",
+  "tags": [
+   "burp-extensions",
+   "burp-plugin",
+   "burpsuite",
+   "cyberchef",
+   "encoding"
+  ],
+  "url": "https://github.com/usdAG/cstc"
+ },
  "gh:usestrix/strix": {
   "description": "Open-source AI penetration testing tool to find and fix your app\u2019s vulnerabilities.",
   "first_seen": "2026-11-01",
@@ -15938,6 +17597,21 @@
   ],
   "url": "https://github.com/usestrix/strix"
  },
+ "gh:uw-pluverse/perses": {
+  "description": "language-agnostic program reducer. ",
+  "first_seen": "2026-11-04",
+  "id": "gh:uw-pluverse/perses",
+  "kind": "repo",
+  "name": "uw-pluverse/perses",
+  "tags": [
+   "clang",
+   "compiler-bugs",
+   "crash",
+   "developer-tools",
+   "gcc"
+  ],
+  "url": "https://github.com/uw-pluverse/perses"
+ },
  "gh:uzairansaruzi/p3-stack": {
   "description": "pstack reworked for T3 Code: delegated subagents, worktree threads, PR watching, scheduled runs.",
   "first_seen": "2026-11-01",
@@ -15950,6 +17624,39 @@
    "t3-code"
   ],
   "url": "https://github.com/uzairansaruzi/p3-stack"
+ },
+ "gh:valenced/valenced": {
+  "description": "Supercharge your Discord experience. Valenced is a client modification for Discord mobile.",
+  "first_seen": "2026-11-04",
+  "id": "gh:valenced/valenced",
+  "kind": "repo",
+  "name": "Valenced/valenced",
+  "tags": [
+   "android",
+   "discord",
+   "ios",
+   "ios-tweak",
+   "ios-tweaks"
+  ],
+  "url": "https://github.com/Valenced/valenced"
+ },
+ "gh:valenced/valenced-manager": {
+  "description": "Install and update Valenced on Android. A client modification for Discord mobile.",
+  "first_seen": "2026-11-04",
+  "id": "gh:valenced/valenced-manager",
+  "kind": "repo",
+  "name": "Valenced/valenced-manager",
+  "tags": [],
+  "url": "https://github.com/Valenced/valenced-manager"
+ },
+ "gh:valentyn-l/gtaiv.eflc.various.fixes": {
+  "description": "Various Fixes is a modification for Grand Theft Auto IV and EFLC, purpose of which is fix various kinds of bugs in game.",
+  "first_seen": "2026-11-04",
+  "id": "gh:valentyn-l/gtaiv.eflc.various.fixes",
+  "kind": "repo",
+  "name": "valentyn-l/GTAIV.EFLC.Various.Fixes",
+  "tags": [],
+  "url": "https://github.com/valentyn-l/GTAIV.EFLC.Various.Fixes"
  },
  "gh:valuecell-ai/clawx": {
   "description": "ClawX is a desktop app that provides a graphical interface for OpenClaw AI agents. It turns CLI-based AI orchestration into a desktop experience without using the terminal. China website is https://clawx.com.cn.",
@@ -16011,6 +17718,21 @@
   ],
   "url": "https://github.com/vatavale/folivox"
  },
+ "gh:vavr-io/vavr": {
+  "description": "v\u028cvr (formerly called Javaslang) is a non-commercial, non-profit object-functional library that runs with Java 8+. It aims to reduce the lines of code and increase code quality.",
+  "first_seen": "2026-11-04",
+  "id": "gh:vavr-io/vavr",
+  "kind": "repo",
+  "name": "vavr-io/vavr",
+  "tags": [
+   "functional-programming",
+   "hacktoberfest",
+   "immutable-collections",
+   "java",
+   "javaslang"
+  ],
+  "url": "https://github.com/vavr-io/vavr"
+ },
  "gh:vecszn/polystrata": {
   "description": "Run large AI models on your own PC: Qwen3.8-Flash-Next on Strata's engine, and GLM 5.3 Flash, DeepSeek V4 Flash, LFM2.5, Qwen3.6, Ornith 1.5, Gemma 4, Tiel Coder and MiniCPM-V on a second engine written for PolyStrata. One-click install for Windows and Linux, OpenAI/Anthropic API on localhost.",
   "first_seen": "2026-11-01",
@@ -16056,6 +17778,21 @@
    "memory"
   ],
   "url": "https://github.com/vectorize-io/hindsight"
+ },
+ "gh:vendicated/vencord": {
+  "description": "The cutest Discord modification",
+  "first_seen": "2026-11-04",
+  "id": "gh:vendicated/vencord",
+  "kind": "repo",
+  "name": "Vendicated/Vencord",
+  "tags": [
+   "discord",
+   "mod",
+   "plugins",
+   "themes",
+   "vendetta"
+  ],
+  "url": "https://github.com/Vendicated/Vencord"
  },
  "gh:vercel-labs/agent-desktop": {
   "description": "Computer use CLI for AI agents.",
@@ -16118,6 +17855,21 @@
    "generative-ui"
   ],
   "url": "https://github.com/vercel/ai"
+ },
+ "gh:victordomingos/optimize-images": {
+  "description": "A command-line interface (CLI) utility written in pure Python to help you reduce the file size of images.",
+  "first_seen": "2026-11-04",
+  "id": "gh:victordomingos/optimize-images",
+  "kind": "repo",
+  "name": "victordomingos/optimize-images",
+  "tags": [
+   "image-compression",
+   "image-optimisation",
+   "image-optimization",
+   "image-processing",
+   "pillow"
+  ],
+  "url": "https://github.com/victordomingos/optimize-images"
  },
  "gh:vincentwei1021/video-shotcraft": {
   "description": "AI video skill for Claude Code and Codex that creates cinematic product videos with Remotion.",
@@ -16463,6 +18215,21 @@
   ],
   "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
  },
+ "gh:watchexec/watchexec": {
+  "description": "Executes commands in response to file modifications",
+  "first_seen": "2026-11-04",
+  "id": "gh:watchexec/watchexec",
+  "kind": "repo",
+  "name": "watchexec/watchexec",
+  "tags": [
+   "command-line",
+   "developer-tools",
+   "file-watchers",
+   "linux",
+   "macos"
+  ],
+  "url": "https://github.com/watchexec/watchexec"
+ },
  "gh:wavealfield/local-ai-resocket-telegram": {
   "description": " An Autonomous Dual-Model Private AI Assistant with Telegram Voice/Chat interface, ComfyUI 720p HD Video Generation, Dynamic Scheduling, Real-Time Web Browsing & Self-Evolving Markdown Skill Memory.",
   "first_seen": "2026-11-01",
@@ -16595,6 +18362,21 @@
    "ai-game-development"
   ],
   "url": "https://github.com/WhiteTowerAI/ohmygame"
+ },
+ "gh:whoan/docker-build-with-cache-action": {
+  "description": ":octocat: Build and push docker images caching each stage to reduce build time",
+  "first_seen": "2026-11-04",
+  "id": "gh:whoan/docker-build-with-cache-action",
+  "kind": "repo",
+  "name": "whoan/docker-build-with-cache-action",
+  "tags": [
+   "actions",
+   "docker",
+   "docker-cache",
+   "docker-image",
+   "docker-registry"
+  ],
+  "url": "https://github.com/whoan/docker-build-with-cache-action"
  },
  "gh:wici-ai/inferssd": {
   "description": "Run models larger than your RAM or VRAM by streaming MoE experts from SSD. Built on llama.cpp.",
@@ -16852,6 +18634,20 @@
   ],
   "url": "https://github.com/XD-MHLOO/facebook-gql-scraper"
  },
+ "gh:xenondevs/nova": {
+  "description": "Nova is a server-side modding framework for Paper servers that aims to streamline adding custom content like items, blocks, guis, and more, without client-side modifications, using resource pack tricks.",
+  "first_seen": "2026-11-04",
+  "id": "gh:xenondevs/nova",
+  "kind": "repo",
+  "name": "xenondevs/Nova",
+  "tags": [
+   "minecraft",
+   "minecraft-plugin",
+   "paper",
+   "paper-plugin"
+  ],
+  "url": "https://github.com/xenondevs/Nova"
+ },
  "gh:xerj-org/xerj": {
   "description": "AI search engine and MCP server for bots and agents. One Rust binary indexes code, docs, logs, JSONL/CSV and PDFs for BM25 full-text, vector and hybrid search, code search without grep, agent memory and RAG. Elasticsearch-compatible API; Corpus Hub serves hundreds of reference memory corpora.",
   "first_seen": "2026-11-01",
@@ -16935,6 +18731,21 @@
    "pi"
   ],
   "url": "https://github.com/Xpropel/Pi-Remote"
+ },
+ "gh:xxxily/hello-ai": {
+  "description": "It's not AI that takes away your job, but the people who master the use of AI tools. The most deadly attack is a dimension-reducing strike: destroying you has nothing to do with you - from \"The Three-Body Problem\".         \u4e2d\u6587\u8bf4\u660e\uff1a \u62a2\u8d70\u4f60\u5de5\u4f5c\u7684\u4e0d\u662fAI\uff0c\u800c\u662f\u638c\u63e1\u4f7f\u7528AI\u5de5\u5177\u7684\u4eba\u3002 \u964d\u7ef4\u6253\u51fb\u6700\u4e3a\u81f4\u547d\uff1a\u6bc1\u706d\u4f60\uff0c\u4e0e\u4f60\u4f55\u5e72\u300a\u4e09\u4f53\u300b",
+  "first_seen": "2026-11-04",
+  "id": "gh:xxxily/hello-ai",
+  "kind": "repo",
+  "name": "xxxily/hello-ai",
+  "tags": [
+   "agi",
+   "ai",
+   "aigc",
+   "chatgpt",
+   "claude-3"
+  ],
+  "url": "https://github.com/xxxily/hello-ai"
  },
  "gh:xyproto/algernon": {
   "description": "Small self-contained pure-Go web server with Lua, Teal, Markdown, HTTP/2, QUIC, Redis, TypeScript, npm-less React 19, SQLite, and PostgreSQL support ++",
@@ -17198,18 +19009,6 @@
    "ghidra"
   ],
   "url": "https://github.com/yuatemycat/SuperGhidra"
- },
- "gh:yujunzhixue/dsh-purge": {
-  "description": "Jailbreak for every model \u2014 swap prompts per model.",
-  "first_seen": "2026-10-19",
-  "id": "gh:yujunzhixue/dsh-purge",
-  "kind": "repo",
-  "name": "YuJunZhiXue/dsh-purge",
-  "tags": [
-   "security",
-   "jailbreak"
-  ],
-  "url": "https://github.com/YuJunZhiXue/dsh-purge"
  },
  "gh:yushua0808-cpu/dragon-codex-boot": {
   "description": "Community Windows startup animation launcher for Codex with live-window handoff and reversible shortcut integration",

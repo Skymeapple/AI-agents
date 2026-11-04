@@ -1,0 +1,41 @@
+{
+ "takeaway": "The radar's forecasts recovered: the Oct 28 ranking scored a rank correlation of 0.70 and got 60% of its top 15 right. Computer-use agents lead today's new growth: vercel-labs/agent-desktop gained 2,601 stars in a day.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Forecasts recover",
+   "text": "The Oct 28 ranking scored 0.70 (rank correlation) and 60% of its top 15, across 91 apps, after 0.53 to 0.61 for Oct 25 to 27. Random picks would get about 16%.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-04.md"
+  },
+  {
+   "id": "agent-desktop",
+   "heading": "Computer use for agents: agent-desktop",
+   "text": "vercel-labs/agent-desktop went from 10,793 to 13,394 stars in a day (+24%). The DeepSeek Harness phone client dsh-Go sped up to 1,985 a day.",
+   "source": "https://github.com/vercel-labs/agent-desktop"
+  },
+  {
+   "id": "deepseek",
+   "heading": "DeepSeek's agent repo slows",
+   "text": "deepseek-ai/dsh-superagent-prototype gained 3,075 stars (to 17,555), after 4,732 and 5,162.",
+   "source": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+  },
+  {
+   "id": "scrapling",
+   "heading": "Scrapling accelerates for a third day",
+   "text": "D4Vinci/Scrapling, an adaptive web scraper, gained 648, 1,408 and then 1,954 stars a day, to 95,300.",
+   "source": "https://github.com/D4Vinci/Scrapling"
+  },
+  {
+   "id": "applied-compute",
+   "heading": "Applied Compute reaches a $100M run rate",
+   "text": "The company announced a $100M run rate with a $350M raise on Nov 2. Read from search results.",
+   "source": "https://www.appliedcompute.com/company/100m-run-rate-fundraise"
+  }
+ ],
+ "caveats": [
+  "Ten matured forecasts; the recovery on Oct 28 is one point, and it predates the API data.",
+  "Trending pages listed 13 to 17 repos today, fewer than usual.",
+  "Company figures come from search-result summaries.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

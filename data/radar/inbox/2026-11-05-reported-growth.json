@@ -1,0 +1,25 @@
+{
+ "collected_at": "2026-11-05",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Shopify Sidekick",
+    "url": "https://www.shopify.com/sidekick",
+    "kind": "product",
+    "description": "Shopify's AI assistant for merchants that answers questions, builds Shopify Flow automations and custom apps, and runs store tasks.",
+    "tags": [
+     "ai-assistant",
+     "commerce"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 14,
+   "period_days": 91,
+   "observed_on": "2026-11-03",
+   "source_url": "https://www.shashi.co/2026/11/shopify-cuts-sidekicks-cost-per.html",
+   "method": "reported",
+   "note": "Stated on Shopify's Q3 2026 earnings call (Nov 3, 2026): 'From the second to the third quarter, merchant conversations rose 14%, while cost per conversation fell 28% and total Sidekick cost declined 18%.' Growth in merchant conversations with Sidekick, quarter over quarter (91 days). The snippet gives no period end date, so this is dated to the Nov 3 announcement. Another search summary of Q3 coverage (results incl. https://ppc.land/shopify-revenue-gains-32-to-3-7bn-as-ai-referred-orders-rise-3-3x/ and https://finance.yahoo.com/markets/stocks/articles/shopify-inc-shop-q3-2026-210823609.html) gave the same figure: 'merchant conversations with Sidekick ... increased 14% quarter-over-quarter while cost per conversation fell 28%.' Company-stated, unaudited. Search-result snippets only; no page was read (WebFetch got ENOTFOUND for sec.gov, fool.com and ppc.land)."
+  }
+ ]
+}

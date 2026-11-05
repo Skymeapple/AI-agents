@@ -188,3 +188,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   quarter of the last star reading as a possible move. It is a suggestion
   for `mark-moved`, never applied. Live check: it names HunYiSage/dsh-purge and
   phone-harness/phone-harness for the two real moves.
+- 2026-11-05: `computer-use` joins the direction vocabulary. Agents that operate
+  a desktop, browser or phone led new growth for three days running
+  (vercel-labs/agent-desktop, phone-harness, Mika, dsh-Go), which is the bar the
+  2026-11-02 rule set for a new direction. GitHub topics computer-use-agent,
+  computer-agent, agent-computer, browser-use and browser-use-agent map to it.
+  Rerun on 2026-11-04's data: 13 scored apps, led by agent-desktop.

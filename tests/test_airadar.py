@@ -750,6 +750,13 @@ def test_out_of_scope_apps_leave_the_ranking_but_keep_their_observations(tmp_pat
     assert "gh:o/r3" not in analyse(store, day + dt.timedelta(days=1)).out_of_scope
 
 
+def test_computer_use_is_a_direction_its_synonyms_join():
+    from airadar.directions import DIRECTION_TAGS, normalise_tag
+
+    assert "computer-use" in DIRECTION_TAGS
+    assert {normalise_tag(t) for t in ["computer-use-agent", "browser-use", "Computer Use"]} == {"computer-use"}
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

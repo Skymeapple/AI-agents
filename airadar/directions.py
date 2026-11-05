@@ -51,6 +51,9 @@ TAG_ALIASES = {
     "ai-assistant": "assistant", "chatbot": "assistant", "agent-harness": "agent-runtime",
     "agentic-workflow": "agent-orchestration", "autonomous-agents": "agent-framework",
     "gguf": "local-llm",
+    "computer-use-agent": "computer-use", "computer-agent": "computer-use",
+    "agent-computer": "computer-use", "browser-use": "computer-use",
+    "browser-use-agent": "computer-use",
 }
 
 # The directions the radar reports on: the vocabulary its collectors tag with.
@@ -66,6 +69,7 @@ DIRECTION_TAGS = frozenset("""
     agent-framework agent-orchestration multimodal ai-search agent-evaluation
     research-agent agent-memory local-llm context-compression education mcp
     llm-gateway mobile-agent companion legal generative-ui jailbreak healthcare cad
+    computer-use
 """.split())
 
 

@@ -19,3 +19,6 @@ Collector: agent:web-research. Tools: WebSearch worked, but its index for Nov 3â
 ## Trends
 - Incumbents report AI-feature usage as efficiency and engagement ratios (Sidekick conversations +14% QoQ with cost per conversation -28%) rather than user counts.
 - AI-referred commerce keeps growing but decelerating in multiple terms at Shopify (orders ~13x in Q1, ~3x in Q2, 3.3x in Q3).
+
+## Dropped before ingest (radar agent)
+- Shopify Sidekick "+14% merchant conversations" (Q2 to Q3): a usage count (conversations), not users or revenue, consistent with how earlier runs treated Alexa interactions and token volume; and its only source is a low-authority blog. Not recorded.

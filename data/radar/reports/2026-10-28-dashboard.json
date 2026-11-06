@@ -1,0 +1,41 @@
+{
+ "takeaway": "With three forecasts scored, the radar's ranking has improved each day (rank correlation 0.55, 0.66, 0.71). The self-tuner ran for the first time and held: its best change, weighing stated gains slightly less, helped on every day but by too little to clear the bar.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Three forecasts scored, each better than the last",
+   "text": "Rank correlation with the growth that followed: 0.55 (Oct 19), 0.66 (Oct 20), 0.71 (Oct 21). Top-15 hit rate 53%, 60%, 60%, against 25% to 33% for random picks (15 of 46 to 59 apps).",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-28.md"
+  },
+  {
+   "id": "tuner",
+   "heading": "The self-tuner's first run: no change",
+   "text": "Best candidate: weight on stated gains 1.0 to 0.9, mean rank correlation 0.646 to 0.650, better on all 3 days. The bar is +0.02, so nothing moved. It points the same way as the scorecards: stale stated gains over-rank apps.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-28.md"
+  },
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill passes 50,000 stars",
+   "text": "It reached 50,560 and leads the weekly trending page for a fourth day (+16,388). Its daily pace has settled at about 1,500 to 1,700.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "design",
+   "heading": "Design skills are the most crowded fast-moving category",
+   "text": "hallmark gained 2,316 stars and impeccable 1,452 in a day, and elayadesign/ai-design-skills is new on trending with 10.0k stars from 8 commits.",
+   "source": "https://github.com/trending?since=daily"
+  },
+  {
+   "id": "workspaces",
+   "heading": "Local agent workspaces are converging",
+   "text": "nightly-labs/openbot grew 58% in a day after three releases; makecindy/cindy and JetBrains thinkrail also grew strongly this week. Each runs and steers several coding agents on one machine.",
+   "source": "https://github.com/nightly-labs/openbot/releases"
+  }
+ ],
+ "caveats": [
+  "Three matured forecasts are still a small sample; the tuner's bar keeps noise-sized gains from moving any setting.",
+  "Both weight settings are capped at 1.0, so the tuner can favour measured growth only by weighing stated gains less.",
+  "Every company figure today came from search-result summaries; one duplicate growth claim was dropped before ingest.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

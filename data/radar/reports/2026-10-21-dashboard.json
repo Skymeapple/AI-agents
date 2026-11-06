@@ -1,0 +1,48 @@
+{
+ "takeaway": "Measured over two days, morluto/rea (+7,460 stars a day), ai-job-search (+2,226) and Cloudflare's security skill (+1,147) grew fastest. Yesterday's #2, the jailbreak plugin dsh-purge, has been deleted from GitHub.",
+ "findings": [
+  {
+   "id": "measured",
+   "heading": "Fastest measured growth, Oct 19 to Oct 21",
+   "text": "Between two of the radar's own readings: morluto/rea +7,460 stars a day, MadsLorentzen/ai-job-search +2,226, cloudflare/security-audit-skill +1,147, stablyai/orca +1,002, debpalash/VoiceStudio +986. 40 repos now have a measured delta.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "removed",
+   "heading": "The top jailbreak plugin is gone",
+   "text": "YuJunZhiXue/dsh-purge, ranked #2 yesterday with 18 watchers for 10k stars, now returns 404. The radar still ranks it on last week's signals; read it as delisted.",
+   "source": "https://github.com/YuJunZhiXue/dsh-purge"
+  },
+  {
+   "id": "jobsearch",
+   "heading": "ai-job-search is accelerating without a news trigger",
+   "text": "Its gain rose from +1,559 stars a day to +2,226 a day. Its newest commits harden it against prompt injection in job postings. No launch or press was found.",
+   "source": "https://github.com/MadsLorentzen/ai-job-search/commits/master"
+  },
+  {
+   "id": "rea",
+   "heading": "morluto/rea's stated gains are still three times what the radar measures",
+   "text": "The trending page states +157,631 stars this week; the radar measured about 7,460 a day. It has 1.3k watchers for 350.8k stars. It stays flagged and discounted.",
+   "source": "https://github.com/morluto/rea"
+  },
+  {
+   "id": "genui",
+   "heading": "Generative UI is not uncrowded",
+   "text": "CopilotKit raised a $27M Series A for enterprise generative UI, and Thesys, Google (A2UI) and Vercel are all there. The open leaders are those companies' own funnels.",
+   "source": "https://www.geekwire.com/2026/seattles-copilotkit-raises-27m"
+  },
+  {
+   "id": "platform",
+   "heading": "Unofficial clients face platform risk",
+   "text": "dsh-workbuddy-connect is shutting down on Oct 22 after WorkBuddy began restricting unofficial clients on Oct 20. The free-API gateway projects carry the same risk.",
+   "source": "https://github.com/corrinehu/dsh-workbuddy-connect"
+  }
+ ],
+ "caveats": [
+  "Every company figure today came from search-result summaries, because no news site could be opened from the cloud environment.",
+  "Hugging Face, Hacker News, the GitHub API and npm could not be reached for a third day.",
+  "Deleted or private repos keep ranking on their earlier signals until those age out of the 7-day window.",
+  "Some rule-generated hypotheses (agent memory, orchestration) repeat ideas the analysis has already disproved, because the commercial incumbents are not tracked.",
+  "No forecast has matured yet; the first scorecard is expected around 2026-10-27."
+ ]
+}

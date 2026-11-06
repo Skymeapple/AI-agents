@@ -1,0 +1,43 @@
+{
+ "collected_at": "2026-11-03",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Peec AI",
+    "url": "https://peec.ai",
+    "kind": "product",
+    "description": "Berlin-based AI search visibility (GEO/AEO) analytics platform that tracks how brands appear in answers from ChatGPT, Perplexity and other AI assistants.",
+    "tags": [
+     "marketing",
+     "ai-search"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 20000000,
+   "observed_on": "2026-11-02",
+   "source_url": "https://www.globenewswire.com/news-release/2026/11/02/3393511/0/en/peec-ai-doubles-revenue-in-six-months-to-hit-20m-arr.html",
+   "method": "reported",
+   "note": "Company press release (GlobeNewswire, Nov 2, 2026; republished by the Manila Times on Nov 3, https://www.manilatimes.net/2026/11/03/tmt-newswire/globenewswire/peec-ai-doubles-revenue-in-six-months-to-hit-20m-arr/2459810): Peec AI 'has today announced that it has passed $20M in annual recurring revenue (ARR) less than two years after launch'. A threshold ('passed $20M'). The release gives no period end date, so this is dated to the Nov 2 announcement. ARR type (gross/net/contracted) not stated, so no basis is set. The headline 'doubles revenue in six months' (from $10M ARR in May 2026) is not recorded as growth_pct: the window is stated in months, and growth_pct needs period_days, which I would only set from a stated day or week count. Company-reported, unaudited. Search-result snippet only; the page was not read (WebFetch was stopped after ENOTFOUND on two other hosts)."
+  },
+  {
+   "app": {
+    "name": "Cohere",
+    "url": "https://cohere.com",
+    "kind": "product",
+    "description": "Enterprise and sovereign AI platform: foundation models, agents and search for regulated industries.",
+    "tags": [
+     "foundation-model",
+     "enterprise-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 165,
+   "period_days": 365,
+   "observed_on": "2026-10-30",
+   "source_url": "https://www.newswire.ca/news-releases/cohere-announces-series-e-fundraise-targeting-cad-7-billion-to-meet-surging-global-demand-for-secure-sovereign-ai-811489745.html",
+   "method": "reported",
+   "note": "Series E announcement (Oct 30, 2026): Cohere 'ended Q3 2026 with 165% year-over-year ARR growth'. Year-over-year recorded as 365 days. Dated to the announcement because the release does not give its quarter's end date. No ARR level disclosed. Search snippet only; added by the radar agent after the collector left it out under an over-strict instruction."
+  }
+ ]
+}

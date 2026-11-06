@@ -1,0 +1,21 @@
+# Reported growth notes, 2026-10-29
+
+Collector: agent:web-research. Tools: WebSearch worked. WebFetch got ENOTFOUND for abc.xyz and blog.google, which are outside the session's allowed network domains. Tavily returned 432 (over its usage limit) and Quartr requires a Pro subscription. Every figure comes from search-result summaries only. There are 10 observations; dedup was checked against the archive.
+
+## Big-tech earnings (Oct 28, after the close)
+- Alphabet Q3 2026: Pichai said "the Gemini app is now at one billion users". Recorded, dated Oct 28; the earlier 1B figure from Aug 11 is already in the archive. Not recordable: first-party model APIs process ~32B tokens/min (+40% QoQ, >4x YoY), and token volume isn't a radar metric; Google Cloud grew +103%; nearly 90% of the Fortune 100 use Gemini Enterprise; 2,600+ customers used 100B+ tokens in 12 months. No AI Mode or AI Overviews user count was given this quarter. https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/ ; https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/
+- Microsoft FY27 Q1: Copilot daily users rose ~50% QoQ and more than 5x YoY. Foundry revenue more than tripled YoY, with 120k+ customers. Recorded. Microsoft gave no updated M365 Copilot paid seats, no GitHub Copilot user count and no AI run-rate. Not recordable: Copilot customers consuming credits through usage billing rose >75% QoQ, and agents now open more than a third of GitHub PRs (6x in 6 months). https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-said-q1-earnings-040415977.html ; https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html
+- ServiceNow Q3 2026: AI net new ACV +65% YoY and a 2026 AI ACV target raised to $1.7B. These are bookings and a target, so nothing is recorded. https://gurufocus.com/news/9150183/servicenow-inc-now-q3-2026-earnings-call-highlights-ai-momentum-accelerates-as-guidance-raised-across-the-board
+- Amazon reports Oct 29 after the close, so it is not covered here. https://www.aboutamazon.com/md/news/company-news/amazon-earnings-q3-2026-report
+
+## Trends
+- Big tech now discloses growth rates instead of levels. Microsoft dropped seat counts in favour of DAU and usage-billing growth, and Alphabet said "users" rather than MAU. https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html ; https://www.calcalistech.com/ctechnews/article/86rmzrc2i
+- Coding agents are shifting to usage-based pricing. GitHub Copilot drove Microsoft's ARPU, and agentic-feature credit consumption more than doubled after usage billing started. https://www.tradingkey.com/news/transcripts/262249601-tradingkey
+- Agent platforms and infrastructure are compounding fastest: Foundry revenue more than tripled, and Databricks passed a $7B run-rate at +80% YoY. https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/ ; https://itbrief.co.uk/story/databricks-tops-usd-7-billion-run-rate-after-funding
+- Security startups for cloud and AI agents are raising on growth multiples without dollar ARR: Upwind 4x YTD at a $3.8B valuation, and Zenity tripling annually. https://siliconangle.com/2026/10/28/cloud-security-startup-upwind-raises-400m-at-3-8b-valuation-as-revenue-quadruples/ ; https://zenity.io/press-release/zenity-raises-125-million-to-secure-the-era-of-1-billion-ai-agents
+- Some consumer creative apps are plateauing. Suno's ARR is still ~$300M in October, flat since February, though subscribers grew. https://www.digitalmusicnews.com/2026/10/01/suno-revenue-october-2026/
+- Anthropic's S-1 (filed Oct 26) gives H1 2026 revenue of $16.3B, ~80% of it usage-based, with ~900% NRR and 11,900+ customers at $100k+. It gives no user counts and no run-rate (the run-rate field is blank). The Q3 +45% QoQ figure is already in the archive. https://www.sec.gov/Archives/edgar/data/0002130357/000162828026067168/anthropicpbc-sx1.htm
+
+## Dropped before ingest (radar agent)
+- Microsoft 365 Copilot "more than 5x" YoY: the same daily-user growth as the "nearly 50%" QoQ figure, over a longer window. Kept the latest quarter only, so one claim isn't counted twice.
+- Databricks "+80% YoY in the second quarter": the Jul 31 date was the collector's inference, not stated by the source. The $7B run-rate (Aug 14) is kept.

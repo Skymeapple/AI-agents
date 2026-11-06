@@ -1,0 +1,36 @@
+{
+ "collected_at": "2026-11-01",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Gamma",
+    "url": "https://gamma.app",
+    "kind": "product",
+    "description": "AI presentation, document and website builder; Gamma 5 adds an orchestrating agent and data connectors.",
+    "tags": ["productivity", "presentations"]
+   },
+   "metric": "users",
+   "value": 100000000,
+   "observed_on": "2026-10-06",
+   "source_url": "https://gamma.app/zh-cn/insights/introducing-gamma-5-your-story-your-style-your-tools",
+   "method": "reported",
+   "note": "Company's Gamma 5 launch post: 'more than 100 million people have used Gamma to date' (cumulative people who have ever used it, not MAU/DAU, so no basis is set; a threshold). The post's own date was not visible in the snippet; dated to the Gamma 5 unveiling on Oct 6, 2026 as reported by borncity.com (https://borncity.com/news/gamma-5-gamma-tech-stellt-den-groessten-umbau-seiner-praesentationsplattform-vor/). Earlier figure: 70M users at the Nov 2025 $100M ARR announcement (level only, no growth recorded). No 2026 ARR stated. The app URL is an identity key. Search-result summary only (WebFetch ENOTFOUND for gamma.app)."
+  },
+  {
+   "app": {
+    "name": "Ema",
+    "url": "https://www.ema.co",
+    "kind": "product",
+    "description": "Agentic AI platform of 'AI employees' that replace enterprise software and services workflows.",
+    "tags": ["enterprise-agent", "productivity"]
+   },
+   "metric": "users",
+   "value": 1000000,
+   "observed_on": "2026-09-23",
+   "source_url": "https://techcrunch.com/2026/09/23/ema-raises-77m-as-ai-starts-eating-into-enterprise-software-and-services/",
+   "method": "reported",
+   "note": "Announced with the $77M Series B led by Creaegis (Sep 23, 2026): Ema says it has 'more than one million active enterprise users', plus 50+ active enterprise deals and 5M+ actions and queries. 'Active' window not stated, so no basis is set. Dated to the announcement date (no period end given). The +4900% revenue figure from the same round is already in observations.jsonl; bookings ($150M+, multiyear) and ~180% NDR are not radar metrics. Company-reported. Search-result summary only (WebFetch ENOTFOUND for techcrunch.com)."
+  }
+ ]
+}

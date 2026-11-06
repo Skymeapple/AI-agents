@@ -1,0 +1,47 @@
+{
+ "takeaway": "A fifth forecast has been scored: the Oct 23 ranking got 10 of its top 15 right, the best yet. The fastest measured riser is a public library of jailbreak prompts, up 27% in a day, while the design skills that led last week are slowing slightly.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Fifth forecast: best top-15 hit rate so far",
+   "text": "The Oct 23 ranking scored a rank correlation of 0.65 and got 67% of its top 15 right across 61 apps, against about 25% for random picks. The earlier four scored 0.55 to 0.71 with 53% to 60%.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-30.md"
+  },
+  {
+   "id": "tuner",
+   "heading": "The self-tuner held for a third run",
+   "text": "Over 5 matured days, weighing stated gains 1.0 to 0.9 raises mean rank correlation from 0.656 to 0.662, better on every day but under the +0.02 bar.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-30.md"
+  },
+  {
+   "id": "jailbreaks",
+   "heading": "A jailbreak-prompt library is the fastest riser",
+   "text": "togg53192-cmd/jailbreaks went from 7,536 to 9,549 stars in a day (+27%), after +1,553 the day before. It has 1.3k forks and 95 watchers; not judged inorganic.",
+   "source": "https://github.com/togg53192-cmd/jailbreaks"
+  },
+  {
+   "id": "design",
+   "heading": "Design skills slow slightly",
+   "text": "hallmark gained 1,203 stars (1,609 the day before) and ai-design-skills 1,055 (1,453); impeccable held at 2,433.",
+   "source": "https://github.com/trending?since=daily"
+  },
+  {
+   "id": "own-computer",
+   "heading": "Agents with their own computers",
+   "text": "Two new entrants give each agent its own machine: milind-soni/OpenMausBot (7,696 stars, +1,199 in a day) and CopilotKit/OpenBot (8,322 stars).",
+   "source": "https://github.com/trending?since=daily"
+  },
+  {
+   "id": "alexa",
+   "heading": "Amazon counts Alexa for Shopping users over 12 months",
+   "text": "Over 400 million customers used Alexa for Shopping (formerly Rufus) in the last 12 months, a reach figure rather than monthly users. Read from search results.",
+   "source": "https://www.modernretail.co/technology/amazon-says-more-than-400m-customers-have-used-alexa-for-shopping-in-the-last-12-months/"
+  }
+ ],
+ "caveats": [
+  "Five matured forecasts are still a small sample; the tuner's bar keeps noise-sized gains from moving any setting.",
+  "Only 2 company figures could be recorded today; most Q3 disclosures were usage multiples the radar does not track.",
+  "Every re-observed repo page showed a rounded count today.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

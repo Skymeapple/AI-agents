@@ -1,0 +1,43 @@
+# Runs the radar's live API collectors once a day, where outbound network is
+# open, and commits what they measured to the ai-radar branch. The daily agent
+# session runs about an hour later, pulls these observations, adds what it
+# collects through the inbox, and runs the analysis.
+#
+# Scheduled workflows only fire from the default branch, so this starts working
+# once it is merged. Run it by hand from the Actions tab to try it sooner.
+name: airadar collect
+
+on:
+  schedule:
+    - cron: "37 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: airadar-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ai-radar
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pyyaml requests
+      - name: Collect
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m airadar.cli collect
+      - name: Commit observations
+        run: |
+          git config user.name "airadar-bot"
+          git config user.email "airadar-bot@users.noreply.github.com"
+          git add data/radar
+          git diff --cached --quiet || git commit -m "Radar: live collection $(date -u +%F)"
+          git push origin HEAD:ai-radar

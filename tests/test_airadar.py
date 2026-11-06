@@ -625,7 +625,11 @@ class _FakeGitHubSearch:
 
     def get(self, url, params=None, timeout=None, headers=None):
         self.queries.append(params["q"])
-        if params["q"].endswith(" in:name"):
+        if params["q"].startswith("user:"):
+            owner = params["q"][len("user:"):]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.split("/")[0].lower() == owner]
+        elif params["q"].endswith(" in:name"):
             wanted = params["q"].split()[0]
             items = [{"full_name": real, "stargazers_count": stars}
                      for real, stars in self.repos.items() if real.split("/")[1].lower() == wanted]
@@ -676,6 +680,16 @@ def test_a_repo_missing_from_the_search_gets_a_move_suggestion():
     assert not out.observations                                  # suggested, never applied
     out = collect_github_repos([repo("old/tool")], _FakeGitHubSearch({"neworg/tool": 17_400}))
     assert "possible move" not in out.errors[0]                   # no last reading, no guess
+
+
+def test_a_renamed_repo_is_found_under_its_owner():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    app = App("gh:me/old-name", "me/old-name", "https://github.com/me/old-name", AppKind.REPO, "", [], D0)
+    session = _FakeGitHubSearch({"me/new-name": 32_400, "me/small": 900})
+    (error,) = collect_github_repos([app], session, last_stars={"gh:me/old-name": 31_800}).errors
+    assert "possible move to me/new-name (32,400 stars)" in error and "me/small" not in error
 
 
 def test_recheck_leaves_out_apps_already_read_today(tmp_path):

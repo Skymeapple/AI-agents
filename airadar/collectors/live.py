@@ -75,9 +75,10 @@ def collect_github_repos(apps: list[App], session: requests.Session,
     query at 256 characters). A repo the search doesn't return -- deleted,
     made private, or renamed -- is reported as an error, not recorded, so it
     can be checked and marked gone or moved. A transferred repo keeps its name
-    and its stars, so the error names any repo of the same name whose count
-    is within a quarter of ``last_stars`` as a possible new home: a
-    suggestion for ``mark-moved``, never applied here.
+    and its stars, a renamed one its owner and its stars, so the error names
+    any repo of the same name or the same owner whose count is within a
+    quarter of ``last_stars`` as a possible new home: a suggestion for
+    ``mark-moved``, never applied here.
     """
     out = Collected("api:github-repos")
     on = today()
@@ -121,18 +122,22 @@ def _possible_move(session: requests.Session, headers: dict, full_name: str,
                    last: float | None) -> str:
     if not last:
         return ""
-    repo_name = full_name.split("/", 1)[1]
-    try:
-        payload = get_json(session, GITHUB_API, {"q": f"{repo_name} in:name", "per_page": 30}, headers)
-    except (requests.RequestException, ValueError):
-        return ""
-    hits = [
+    owner, repo_name = full_name.split("/", 1)
+    items = []
+    # A transfer keeps the name under a new owner; a rename keeps the owner.
+    for query in (f"{repo_name} in:name", f"user:{owner}"):
+        try:
+            items += get_json(session, GITHUB_API, {"q": query, "per_page": 30}, headers).get("items", [])
+        except (requests.RequestException, ValueError):
+            continue
+    hits = list(dict.fromkeys(
         f"{item['full_name']} ({item['stargazers_count']:,} stars)"
-        for item in payload.get("items", [])
-        if item["full_name"].split("/", 1)[1].lower() == repo_name
+        for item in items
+        if (item["full_name"].split("/", 1)[1].lower() == repo_name
+            or item["full_name"].split("/", 1)[0].lower() == owner)
         and item["full_name"].lower() != full_name
         and abs(item["stargazers_count"] - last) <= 0.25 * last
-    ]
+    ))
     if not hits:
         return ""
     return f"; possible move to {', '.join(hits)} against a last reading of {last:,.0f}: check, then mark-moved"

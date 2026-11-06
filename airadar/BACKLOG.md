@@ -194,3 +194,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   2026-11-02 rule set for a new direction. GitHub topics computer-use-agent,
   computer-agent, agent-computer, browser-use and browser-use-agent map to it.
   Rerun on 2026-11-04's data: 13 scored apps, led by agent-desktop.
+- 2026-11-06: move suggestions cover renames too. feder-cr renamed
+  Jobs_Applier_AI_Agent_AIHawk to Jobs_Applier_AI_Agent: same owner, new name,
+  so the 2026-11-04 same-name search found only tiny forks. The suggestion now
+  also searches the owner's repos (`user:<owner>`) for a star count within a
+  quarter of the last reading. Live check: it names feder-cr/Jobs_Applier_AI_Agent
+  for the rename and still names HunYiSage/dsh-purge for the transfer.

@@ -1,0 +1,64 @@
+{
+ "collected_at": "2026-11-06",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "E2B",
+    "url": "https://e2b.dev",
+    "kind": "product",
+    "description": "Cloud sandboxes ('agent computers') that let AI agents run code and use their own cloud computers.",
+    "tags": [
+     "ai-infrastructure",
+     "agent-sandbox"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 100000000,
+   "observed_on": "2026-11-05",
+   "source_url": "https://www.financialcontent.com/article/bizwire-2026-11-5-e2b-which-gives-ai-agents-their-own-cloud-computers-passes-120-million-in-annual-recurring-revenue-with-100-inbound",
+   "method": "reported",
+   "note": "Business Wire release dated Nov 5, 2026. Search summaries of the release body say E2B 'has passed $100 million in annualized run rate', its 'first public revenue disclosure', coming 'almost 100% from ALG: Agentic-Led Growth'; the syndicated headline says 'Passes $120 Million in Annualized Run Rate' (some copies: 'Annual Recurring Revenue'). The sources conflict on 100M vs 120M; recorded the lower stated threshold ($100M passed is true under either reading) - reviewer should check the release. A threshold. No period end date given, so dated to the Nov 5 announcement. Revenue type not stated, so no basis. Also stated: 'at $8m just a year ago' (two levels; no growth rate derived). Company-reported, unaudited. Search-result snippets/summaries only; the page was not read (WebFetch stopped after ENOTFOUND on two hosts). Same release: https://finance.yahoo.com/technology/ai/articles/e2b-gives-ai-agents-own-150000787.html"
+  },
+  {
+   "app": {
+    "name": "Figma MCP server",
+    "url": "https://mcp.figma.com/mcp",
+    "kind": "product",
+    "description": "Figma's Model Context Protocol server that gives AI coding agents (Claude Code, Cursor, VS Code, etc.) access to Figma design context and write-back.",
+    "tags": [
+     "mcp",
+     "design",
+     "coding-agent"
+    ]
+   },
+   "metric": "users",
+   "value": 1000000,
+   "basis": "wau",
+   "observed_on": "2026-11-04",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/05/figma-fig-q3-2026-earnings-call-transcript/",
+   "method": "reported",
+   "note": "Figma Q3 2026 earnings call (Nov 4, 2026; transcript posted Nov 5): the MCP server has 'approximately 1 million weekly active users' and is 'our fastest-growing product by growth in weekly active users'. Approximate figure. The call gives no as-of date for the count, so dated to the Nov 4 call. Basis wau as stated. Also stated: 'total MCP usage grew 3x quarter-over-quarter' and write-back usage 4x QoQ (usage, not users; not recorded). Company-reported. Search-result snippets/summaries only; the transcript was not read."
+  },
+  {
+   "app": {
+    "name": "Cars.com Carson",
+    "url": "https://investor.cars.com/2025-11-06-Meet-Carson-TM-Cars-coms-New-AI-Engine-for-Car-Shopping",
+    "kind": "product",
+    "description": "Cars.com's multilingual AI shopping assistant that turns conversational car-shopping requests into search results.",
+    "tags": [
+     "ai-assistant",
+     "consumer",
+     "automotive"
+    ]
+   },
+   "metric": "users",
+   "value": 1000000,
+   "basis": "mau",
+   "observed_on": "2026-11-05",
+   "source_url": "https://investor.cars.com/2026-11-05-Cars-com-Reports-Third-Quarter-2026-Results",
+   "method": "reported",
+   "note": "Cars.com Q3 2026 results (Nov 5, 2026): Carson 'crossed 1 million monthly users, nearly doubling year-over-year'; earnings call (https://www.fool.com/earnings/call-transcripts/2026/11/05/carscom-cars-q3-2026-earnings-call-transcript/): Carson 'almost doubled its user base year-over-year to surpass 1 million monthly users during Q3'. A threshold. 'Monthly users' read as basis mau. The figure is for 'during Q3' with no as-of date stated, so dated to the Nov 5 announcement. 'Nearly/almost doubled' is not a precise rate, so no growth_pct. App URL is Cars.com's Carson launch release (no dedicated Carson page found). Search-result snippets only; neither page was read."
+  }
+ ]
+}

@@ -200,3 +200,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   also searches the owner's repos (`user:<owner>`) for a star count within a
   quarter of the last reading. Live check: it names feder-cr/Jobs_Applier_AI_Agent
   for the rename and still names HunYiSage/dsh-purge for the transfer.
+- 2026-11-07: API re-reads repeat until the recheck list settles. Each pass's
+  readings move scores, which can bring new apps into the top of the list: on
+  2026-11-06 NVIDIA/auto-ontology appeared only after the pass and needed a
+  second run by hand. `collect` now re-reads up to three times, stopping when
+  nothing is left; a repo a pass couldn't read is not tried again that day.

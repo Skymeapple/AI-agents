@@ -71,13 +71,10 @@ def cmd_collect(args) -> int:
     session = requests.Session()
     def recheck_repos():
         # Runs after the search: a repo the search just read is not read twice.
-        last: dict[str, float] = {}
-        for o in sorted(store.load_observations(), key=lambda o: o.observed_on):
-            if o.metric == "stars":
-                last[o.app_id] = o.value
-        return collect_github_repos(
-            [app for app, metric in recheck_targets(store, _date(None)) if app.kind.value == "repo"],
-            session, os.environ.get("GITHUB_TOKEN"), last_stars=last,
+        return reread_until_settled(
+            store, _date(None),
+            lambda apps, last: collect_github_repos(apps, session, os.environ.get("GITHUB_TOKEN"),
+                                                    last_stars=last),
         )
 
     runners = {
@@ -228,6 +225,35 @@ def recheck_targets(store: Store, date: dt.date, top: int = 40) -> list:
         metric = RECHECK_METRIC[app.kind.value]
         if (app_id, metric) not in read_today:
             out.append((app, metric))
+    return out
+
+
+def reread_until_settled(store: Store, date: dt.date, collect, max_passes: int = 3):
+    """Re-read the recheck list's repos until it holds none left to read.
+
+    Each pass's readings move scores, which can bring new apps into the top of
+    the list; on 2026-11-05 one only appeared after the pass and needed a second
+    run by hand. A repo a pass could not read is not tried again the same day.
+    """
+    from .collectors.base import Collected
+
+    out = Collected("api:github-repos")
+    tried: set[str] = set()
+    for _ in range(max_passes):
+        apps = [app for app, _metric in recheck_targets(store, date)
+                if app.kind.value == "repo" and app.id not in tried]
+        if not apps:
+            break
+        tried.update(app.id for app in apps)
+        last: dict[str, float] = {}
+        for o in sorted(store.load_observations(), key=lambda o: o.observed_on):
+            if o.metric == "stars":
+                last[o.app_id] = o.value
+        collected = collect(apps, last)
+        store.add(collected.apps, collected.observations)
+        out.apps += collected.apps
+        out.observations += collected.observations
+        out.errors += collected.errors
     return out
 
 

@@ -771,6 +771,40 @@ def test_computer_use_is_a_direction_its_synonyms_join():
     assert {normalise_tag(t) for t in ["computer-use-agent", "browser-use", "Computer Use"]} == {"computer-use"}
 
 
+def test_rereads_repeat_until_the_recheck_list_is_settled(tmp_path, monkeypatch):
+    from airadar import cli
+    from airadar.collectors.base import Collected
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    apps = store.load_apps()
+    waves = [["gh:o/r1", "gh:o/r2"], ["gh:o/r3", "gh:o/missing"], ["gh:o/missing"], []]
+    calls = []
+
+    def targets(_store, _date):
+        wave = waves[min(len(calls), len(waves) - 1)]
+        return [(apps.get(a) or apps["gh:o/r1"].__class__(a, a[3:], f"https://github.com/{a[3:]}",
+                                                         apps["gh:o/r1"].kind, "", [], day), "stars")
+                for a in wave]
+
+    def collect(batch, last):
+        calls.append([a.id for a in batch])
+        out = Collected("api:github-repos")
+        for app in batch:
+            if app.id == "gh:o/missing":
+                out.errors.append("github o/missing: not returned")
+            else:
+                out.add(app, obs(app.id, "stars", 999, day, method=Method.API, url=app.url))
+        return out
+
+    monkeypatch.setattr(cli, "recheck_targets", targets)
+    out = cli.reread_until_settled(store, day, collect)
+    assert calls == [["gh:o/r1", "gh:o/r2"], ["gh:o/r3", "gh:o/missing"]]   # the missing repo is tried once
+    assert len(out.observations) == 3 and len(out.errors) == 1
+    assert {o.app_id for o in store.load_observations() if o.observed_on == day and o.value == 999} == \
+        {"gh:o/r1", "gh:o/r2", "gh:o/r3"}
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

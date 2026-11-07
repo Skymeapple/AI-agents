@@ -1,0 +1,34 @@
+{
+ "takeaway": "A quieter day: OpenMausBot returned to its launch pace (+1,999 stars) and Cloudflare's security-audit skill held above 2,300 a day, while last week's leaders cooled. Tomorrow scores the first forecast built mostly on the radar's own API measurements.",
+ "findings": [
+  {
+   "id": "openmausbot",
+   "heading": "OpenMausBot rebounds",
+   "text": "milind-soni/OpenMausBot, a local-first chat app where each bot is an agent with its own cloud computer, went from 13,835 to 15,834 stars in a day, after 1,549 and 493.",
+   "source": "https://github.com/milind-soni/OpenMausBot"
+  },
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill holds its pace",
+   "text": "cloudflare/security-audit-skill gained 2,300 stars (to 64,444), its second day above 2,300.",
+   "source": "https://github.com/cloudflare/security-audit-skill"
+  },
+  {
+   "id": "cooling",
+   "heading": "Last week's leaders cool",
+   "text": "vercel-labs/agent-desktop gained 992 stars (after 1,595) and NVIDIA/auto-ontology 1,478 (after 2,127); t3code passed 50,000.",
+   "source": "https://github.com/vercel-labs/agent-desktop"
+  },
+  {
+   "id": "scorecard",
+   "heading": "Forecasts steady",
+   "text": "The Oct 31 ranking scored a rank correlation of 0.58 and got 53% of its top 15 right across 103 apps; random picks would get about 15%.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-07.md"
+  }
+ ],
+ "caveats": [
+  "No company figure was recorded today: the three candidates were a repeat, a stale figure and a feature count.",
+  "Today's daily trending page was mostly non-AI; measured growth came from the API.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

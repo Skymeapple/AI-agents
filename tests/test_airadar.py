@@ -716,6 +716,8 @@ def test_generic_words_never_become_search_terms(tmp_path):
     watch = load_watch(path)
     watch["auto_terms"] = ["codex", "engine", "without"]
     save_watch(path, watch)
+    from airadar.models import App, AppKind
+    store.add([App(i, i, f"https://github.com/o/{i}", AppKind.REPO, "", ["coding-agent"], D0) for i in "ab"], [])
     group = EmergentGroup("x", ["unified", "orchestration"], ["a", "b"], 0.5)
     added = expand_watch(store, [group], [AppScore("a", 0.9, 1, [], []), AppScore("b", 0.9, 1, [], [])])
     assert added == ["orchestration"]
@@ -803,6 +805,23 @@ def test_rereads_repeat_until_the_recheck_list_is_settled(tmp_path, monkeypatch)
     assert len(out.observations) == 3 and len(out.errors) == 1
     assert {o.app_id for o in store.load_observations() if o.observed_on == day and o.value == 999} == \
         {"gh:o/r1", "gh:o/r2", "gh:o/r3"}
+
+
+def test_off_topic_groups_are_not_mined_for_search_terms(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.directions import EmergentGroup
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    save_watch(path, load_watch(path))
+    store.add([App(f"gh:o/c{i}", f"o/c{i}", f"https://github.com/o/c{i}", AppKind.REPO, "",
+                   ["mc-cheat-client"], D0) for i in range(3)], [])
+    cheats = EmergentGroup("x", ["bedrock", "wardrobe"], [f"gh:o/c{i}" for i in range(3)], 0.6)
+    assert expand_watch(store, [cheats], [AppScore(f"gh:o/c{i}", 0.9, 1, [], []) for i in range(3)]) == []
 
 
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):

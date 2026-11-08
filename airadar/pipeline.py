@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 
 from .collectors.base import load_watch, save_watch
 from .directions import (
-    GENERIC_TERMS, Direction, EmergentGroup, Opportunity, emergent_groups, opportunities, rising_pairs,
+    DIRECTION_TAGS, GENERIC_TERMS, Direction, EmergentGroup, normalise_tag, Opportunity, emergent_groups, opportunities, rising_pairs,
     tag_directions,
 )
 from .growth import AppScore, extract_signals, measured_movers, score_apps
@@ -83,6 +83,10 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
 
     Only groups whose members average in the top half are mined, at most a few
     terms a day, and the list is capped -- the oldest auto terms drop first.
+    A group is mined only if most of its members carry a direction tag: a
+    cluster of off-topic or fake repos (game "cheats" with bought stars) also
+    scores high and has distinctive words, and mining them makes tomorrow's
+    search fetch more of the same.
     """
     path = store.root / "watch.json"
     watch = load_watch(path)
@@ -92,11 +96,18 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     changed = pruned != watch["auto_terms"]
     watch["auto_terms"] = pruned
     score_of = {s.app_id: s.score for s in scores}
+    apps = store.load_apps()
+
+    def on_topic(group) -> bool:
+        tagged = sum(1 for m in group.members if m in apps
+                     and {normalise_tag(t) for t in apps[m].tags} & DIRECTION_TAGS)
+        return tagged * 2 > len(group.members)
+
     existing = set(watch["auto_terms"]) | set(watch["github_topics"]) | set(watch["hn_queries"])
     added = []
     for group in sorted(groups, key=lambda g: -sum(score_of.get(m, 0) for m in g.members) / len(g.members)):
         mean = sum(score_of.get(m, 0) for m in group.members) / len(group.members)
-        if mean < 0.55 or group.cohesion < 0.3:
+        if mean < 0.55 or group.cohesion < 0.3 or not on_topic(group):
             continue
         for term in group.terms[:2]:
             if term not in existing and term not in GENERIC_TERMS and len(added) < NEW_TERMS_PER_DAY:

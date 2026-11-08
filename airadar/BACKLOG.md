@@ -29,6 +29,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
+- **Watch the auto terms weekly.** They degraded for a week before anyone
+  noticed. The report could list today's auto terms and the repos each one
+  brought in, so a bad term is visible the day it is mined.
 - **Scope by rule for the API search.** Out-of-scope marking is manual. A
   cheap automatic first pass (an AI-terms check on description and topics,
   flagged for review rather than applied) would keep the API's daily intake
@@ -205,3 +208,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   2026-11-06 NVIDIA/auto-ontology appeared only after the pass and needed a
   second run by hand. `collect` now re-reads up to three times, stopping when
   nothing is left; a repo a pass couldn't read is not tried again that day.
+- 2026-11-08: search terms are mined only from on-topic groupings. Since the API
+  search started (2026-11-01) the watch list's automatic terms had filled with
+  words from clusters of fake repos ("wi-fi", "reduce", "profile", "writes",
+  "binaries", "pull", "request"...), and each term fetched more of the same: 53
+  "rpocket-team"/"resocket" repos (game cheats, Windows "tweakers" and clones,
+  several already deleted by GitHub). A grouping is now mined only when most of
+  its members carry a direction tag. The auto terms were reset to the three
+  mined before the API ran (autonomous, skill, codex), and the 52 campaign repos
+  not already excluded were marked out of scope.

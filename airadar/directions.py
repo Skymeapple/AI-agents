@@ -83,6 +83,7 @@ GENERIC_TERMS = frozenset(
     first fast faster simple easy local official library framework kit based
     support supports powered help helps run runs like real time way into
     without working unified engine ad-free using every more best
+    general-purpose standalone
     """.split()
 )
 

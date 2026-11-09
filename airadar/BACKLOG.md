@@ -5,6 +5,15 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Like-for-like scorecard figure.** (Raised 2026-11-09 by the parent
+  session.) The Nov 2 forecast scored Spearman 0.84, but its pool grew from
+  about 100 apps to 1,058, mostly low-growth search hits that are easy to
+  rank below trending repos. A bigger pool alone can raise Spearman, so 0.84
+  is not comparable with the Oct 19-31 figures (0.53-0.71). Add a second
+  scorecard column computed on a fixed-size subset: e.g. only apps in the
+  previous day's top 100 by forecast, or only apps with nonzero realised
+  growth. Until then, don't call a forecast the "best" on Spearman alone.
+
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner

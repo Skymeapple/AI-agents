@@ -56,6 +56,9 @@ class Analysis:
     # The latest review of each flagged app, so a check already made is shown
     # beside the flag instead of being repeated.
     reviews: dict[str, dict] = field(default_factory=dict)
+    # What each automatic search term brought in on the day: a term mined from
+    # an off-topic cluster shows here the day it starts fetching.
+    term_intake: list[dict] = field(default_factory=list)
 
 
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
@@ -119,6 +122,23 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     return added
 
 
+def term_intake(terms: list[str], observations, apps: dict, date: dt.date) -> list[dict]:
+    """For each automatic search term, the apps it returned on ``date``, how
+    many of them carry a direction tag, and a few examples of the rest."""
+    found: dict[str, set[str]] = {t: set() for t in terms}
+    for o in observations:
+        if o.observed_on == date and o.via in found:
+            found[o.via].add(o.app_id)
+    out = []
+    for term in terms:
+        ids = sorted(found[term])
+        on_topic = [i for i in ids if i in apps
+                    and {normalise_tag(t) for t in apps[i].tags} & DIRECTION_TAGS]
+        off = [apps[i].name for i in ids if i in apps and i not in on_topic]
+        out.append({"term": term, "apps": len(ids), "on_topic": len(on_topic), "off_examples": off[:3]})
+    return out
+
+
 def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analysis:
     params = params or Params.load(store.params_path)
     apps = store.load_apps()
@@ -139,7 +159,9 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     hypotheses = opportunities(directions, apps)
     for o in hypotheses:
         o.verdict = store.verdict_for(o.direction, o.kind, date)
+    auto_terms = load_watch(store.root / "watch.json")["auto_terms"]
     return Analysis(
+        term_intake=term_intake(auto_terms, observations, apps, date),
         date=date,
         apps=apps,
         scores=scores,

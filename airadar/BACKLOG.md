@@ -29,9 +29,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
-- **Watch the auto terms weekly.** They degraded for a week before anyone
-  noticed. The report could list today's auto terms and the repos each one
-  brought in, so a bad term is visible the day it is mined.
 - **Scope by rule for the API search.** Out-of-scope marking is manual. A
   cheap automatic first pass (an AI-terms check on description and topics,
   flagged for review rather than applied) would keep the API's daily intake
@@ -217,3 +214,9 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   its members carry a direction tag. The auto terms were reset to the three
   mined before the API ran (autonomous, skill, codex), and the 52 campaign repos
   not already excluded were marked out of scope.
+- 2026-11-09: the report lists what each automatic search term brought in. After
+  the 2026-11-08 reset, the next mining run added "manus", "general-purpose" and
+  "standalone"; the last two are generic words. A new "Automatic search terms"
+  table shows, per term, the repos it returned that day, how many carry a
+  direction tag, and off-topic examples, and marks ⚠ a term whose intake is
+  mostly off-topic. A bad term is now visible the day it first fetches.

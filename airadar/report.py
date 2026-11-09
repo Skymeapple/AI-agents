@@ -117,6 +117,19 @@ def render(analysis: Analysis) -> str:
             lines.append(f"- … and {len(a.out_of_scope) - 20} more (`scope.jsonl`).")
         lines.append("")
 
+    if a.term_intake:
+        lines += ["### Automatic search terms", "",
+                  "Terms mined from emergent groupings and searched on GitHub today. A term whose "
+                  "intake is mostly off-topic (no direction tag) is marked ⚠ and should be dropped "
+                  "or made a generic term.", "",
+                  "| Term | Repos today | With a direction tag | Off-topic examples |",
+                  "| --- | --- | --- | --- |"]
+        for t in a.term_intake:
+            warn = " ⚠" if t["apps"] and t["on_topic"] * 2 < t["apps"] else ""
+            lines.append(f"| {t['term']}{warn} | {t['apps']} | {t['on_topic']} | "
+                         f"{', '.join(t['off_examples']) or '–'} |")
+        lines.append("")
+
     lines += ["## Directions", ""]
     if not a.directions:
         lines += ["_Too few tagged apps with growth evidence to form directions._", ""]

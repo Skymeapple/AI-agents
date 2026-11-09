@@ -824,6 +824,32 @@ def test_off_topic_groups_are_not_mined_for_search_terms(tmp_path):
     assert expand_watch(store, [cheats], [AppScore(f"gh:o/c{i}", 0.9, 1, [], []) for i in range(3)]) == []
 
 
+def test_the_report_shows_what_each_auto_term_brought_in(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.models import App, AppKind
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    watch = load_watch(store.root / "watch.json")
+    watch["auto_terms"] = ["standalone", "agentish"]
+    save_watch(store.root / "watch.json", watch)
+    apps = [App(f"gh:o/t{i}", f"o/t{i}", f"https://github.com/o/t{i}", AppKind.REPO, "",
+                ["coding-agent"] if i == 0 else ["windows-tweaks"], day) for i in range(3)]
+    rows = [Observation(a.id, "stars", 500.0, day, a.url, Method.API, "api:github", via="standalone")
+            for a in apps]
+    rows.append(Observation(apps[0].id, "stars", 501.0, day, "https://api.github.com/search?q=agentish",
+                            Method.API, "api:github", via="agentish"))
+    store.add(apps, rows)
+    a = analyse(store, day)
+    intake = {t["term"]: t for t in a.term_intake}
+    assert intake["standalone"]["apps"] == 3 and intake["standalone"]["on_topic"] == 1
+    assert intake["agentish"]["on_topic"] == 1
+    text = render(a)
+    assert "| standalone ⚠ | 3 | 1 | o/t1, o/t2 |" in text and "| agentish | 1 | 1 | – |" in text
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

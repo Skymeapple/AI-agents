@@ -1,0 +1,34 @@
+{
+ "takeaway": "The radar's Nov 2 forecast, scored on 1,058 apps, reached a rank correlation of 0.84, its best yet. DeepSeek Harness disclosed 1.54 million daily users, making an open-source agent harness a mass-market product.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Best forecast yet: 0.84 across 1,058 apps",
+   "text": "The Nov 2 ranking's top 15 held 7 of the real top 15, where random picks would average about 0.2. It is the second forecast built mostly on the radar's own API measurements.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-09.md"
+  },
+  {
+   "id": "dsh",
+   "heading": "DeepSeek Harness: 1.54M daily users",
+   "text": "As of Nov 4, DeepSeek Harness had 1.54 million daily active users counted through DeepSeek's official API. Its main repo has 276,806 stars. Read from search results.",
+   "source": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million"
+  },
+  {
+   "id": "astryx",
+   "heading": "Meta's agent-ready design system jumps",
+   "text": "meta/astryx went from 14,770 to 17,654 stars in a day; Google's elephant-goldfish-model, a plugin for designing software with agents, gained 1,364.",
+   "source": "https://github.com/meta/astryx"
+  },
+  {
+   "id": "terms",
+   "heading": "Bad search terms now caught the day they fetch",
+   "text": "A new table shows what each automatic search term brought in. On day one it flagged three mostly off-topic terms, which are now dropped automatically.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-09.md"
+  }
+ ],
+ "caveats": [
+  "From Nov 1 the scorecard compares hundreds or thousands of apps; read precision@15 against chance (15 divided by the apps compared).",
+  "The DeepSeek Harness user count comes from news reports of its disclosure, read in search results.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

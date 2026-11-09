@@ -850,6 +850,23 @@ def test_the_report_shows_what_each_auto_term_brought_in(tmp_path):
     assert "| standalone ⚠ | 3 | 1 | o/t1, o/t2 |" in text and "| agentish | 1 | 1 | – |" in text
 
 
+def test_a_term_with_mostly_off_topic_intake_is_dropped(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    watch = load_watch(path)
+    watch["auto_terms"] = ["skill", "scenario", "rare"]
+    save_watch(path, watch)
+    intake = [{"term": "skill", "apps": 100, "on_topic": 66, "off_examples": []},
+              {"term": "scenario", "apps": 40, "on_topic": 12, "off_examples": []},
+              {"term": "rare", "apps": 4, "on_topic": 0, "off_examples": []}]   # too few to judge
+    expand_watch(store, [], [], intake)
+    assert load_watch(path)["auto_terms"] == ["skill", "rare"]
+
+
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
     from airadar.iterate import scorecard
 

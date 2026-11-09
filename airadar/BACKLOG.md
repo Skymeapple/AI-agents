@@ -220,3 +220,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   table shows, per term, the repos it returned that day, how many carry a
   direction tag, and off-topic examples, and marks ⚠ a term whose intake is
   mostly off-topic. A bad term is now visible the day it first fetches.
+  The same day, mining (now filtered to on-topic groupings) still added the
+  generic "complete" and "scenario". So the intake also acts: a term whose day's
+  search returned at least 10 repos, fewer than half with a direction tag, is
+  dropped at the next mining step. "general-purpose" and "standalone" were
+  also added to `GENERIC_TERMS` after their first day (40/84 and 34/100).

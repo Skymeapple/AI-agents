@@ -27,6 +27,7 @@ from .store import RunRecord, Store
 
 MAX_AUTO_TERMS = 40
 NEW_TERMS_PER_DAY = 3
+MIN_INTAKE_TO_JUDGE = 10   # repos a term must return before its intake can drop it
 
 
 @dataclass
@@ -80,7 +81,8 @@ def ingest_inbox(store: Store, date: dt.date) -> list[str]:
     return log
 
 
-def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScore]) -> list[str]:
+def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScore],
+                 intake: list[dict] | None = None) -> list[str]:
     """Add the distinctive terms of fast-growing emergent groupings to the live
     collectors' watch list, so tomorrow's search looks where today's growth was.
 
@@ -95,7 +97,11 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     watch = load_watch(path)
     # A generic word as a search term pulls in whatever matches it ("engine"
     # brought in Godot and Redis): drop any already mined, and never mine one.
-    pruned = [t for t in watch["auto_terms"] if t not in GENERIC_TERMS]
+    # A term whose search today returned mostly off-topic repos (no direction
+    # tag) goes too: its words looked distinctive, its results say otherwise.
+    off_topic = {t["term"] for t in intake or [] if t["apps"] >= MIN_INTAKE_TO_JUDGE
+                 and t["on_topic"] * 2 < t["apps"]}
+    pruned = [t for t in watch["auto_terms"] if t not in GENERIC_TERMS and t not in off_topic]
     changed = pruned != watch["auto_terms"]
     watch["auto_terms"] = pruned
     score_of = {s.app_id: s.score for s in scores}
@@ -204,5 +210,5 @@ def run_day(store: Store, date: dt.date, tune_params: bool = True) -> Analysis:
         outcome = tune(analysis.params, store.load_observations(), date)
         analysis.params = apply_tuning(store, analysis.params, outcome, date)
         analysis.tuning = outcome
-    analysis.watch_added = expand_watch(store, analysis.emergent, analysis.scores)
+    analysis.watch_added = expand_watch(store, analysis.emergent, analysis.scores, analysis.term_intake)
     return analysis

@@ -932,3 +932,28 @@ def test_inbox_checks_the_basis_against_the_metric():
         parse_batch(inbox_payload(metric="users", period_days=None, value=5, basis="monthly-ish"))
     with pytest.raises(InboxError, match="basis"):
         parse_batch(inbox_payload(metric="stars", period_days=None, value=5, basis="net"))
+
+
+def test_scorecard_reports_like_for_like_spearman_over_forecast_top_n():
+    """A pool padded with easy-to-rank, near-zero-growth apps inflates the full
+    Spearman; the top-N figure ranks only the forecast's own top N, so it is
+    unaffected by the padding and comparable across days."""
+    from airadar.iterate import LIKE_FOR_LIKE_N, evaluate
+
+    made_on = dt.date(2026, 11, 2)
+    # The forecast's top N are ranked exactly backwards against what happened.
+    predicted = {f"top{i}": 1000.0 - i for i in range(LIKE_FOR_LIKE_N)}
+    realised = {f"top{i}": float(i) + 100 for i in range(LIKE_FOR_LIKE_N)}
+    small = evaluate(predicted, realised, made_on, 7)
+    assert small.top_n == LIKE_FOR_LIKE_N
+    assert small.spearman_top == pytest.approx(-1.0)
+
+    # Pad with 900 apps the forecast correctly puts last and that did not grow.
+    for i in range(900):
+        predicted[f"pad{i}"] = -float(i)
+        realised[f"pad{i}"] = -float(i)
+    padded = evaluate(predicted, realised, made_on, 7)
+    assert padded.apps == LIKE_FOR_LIKE_N + 900
+    assert padded.spearman > 0.5               # the padding alone lifts the full figure
+    assert padded.spearman_top == pytest.approx(-1.0)   # the like-for-like one is unmoved
+    assert padded.to_dict()["spearman_top"] == padded.spearman_top

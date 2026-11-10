@@ -40,6 +40,11 @@ MIN_APPS_PER_EVAL = 15
 MIN_IMPROVEMENT = 0.02
 MIN_WIN_SHARE = 2 / 3
 BACKTEST_DAYS = 30
+# Like-for-like scorecard: Spearman over only the forecast's own top N of the
+# apps compared. The full figure rises with pool size alone -- a pool padded
+# with near-zero-growth search hits is easy to rank -- so it cannot be compared
+# across days whose pools differ tenfold. Reported beside it, never tuned on.
+LIKE_FOR_LIKE_N = 100
 
 
 def spearman(xs: list[float], ys: list[float]) -> float | None:
@@ -79,6 +84,8 @@ class Evaluation:
     spearman: float | None
     precision_at_k: float | None
     k: int
+    spearman_top: float | None = None
+    top_n: int = 0
 
     def to_dict(self) -> dict:
         return {
@@ -88,6 +95,8 @@ class Evaluation:
             "spearman": self.spearman,
             "precision_at_k": self.precision_at_k,
             "k": self.k,
+            "spearman_top": self.spearman_top,
+            "top_n": self.top_n,
         }
 
 
@@ -109,7 +118,9 @@ def evaluate(predicted: dict[str, float], realised: dict[str, float], made_on: d
         top_pred = set(sorted(common, key=lambda a: -predicted[a])[:k])
         top_real = set(sorted(common, key=lambda a: -realised[a])[:k])
         precision = len(top_pred & top_real) / k
-    return Evaluation(made_on, horizon, len(common), rho, precision, k)
+    top = sorted(common, key=lambda a: (-predicted[a], a))[:LIKE_FOR_LIKE_N]
+    rho_top = spearman([predicted[a] for a in top], [realised[a] for a in top])
+    return Evaluation(made_on, horizon, len(common), rho, precision, k, rho_top, len(top))
 
 
 def record_prediction(store: Store, made_on: dt.date, scores, params: Params) -> None:

@@ -190,15 +190,18 @@ def render(analysis: Analysis) -> str:
     if a.evaluations:
         lines += [
             "Each day's ranking is a forecast. Once its horizon passes it is scored against the "
-            "growth that actually followed, measured with the fixed default parameters.",
+            "growth that actually followed, measured with the fixed default parameters. "
+            "*Spearman, forecast top N* ranks only the forecast's own top N apps, a fixed-size "
+            "pool: the full Spearman rises with pool size alone, so compare days on the top-N figure.",
             "",
-            "| Made on | Horizon | Apps compared | Spearman | Precision@k |",
-            "| --- | --- | --- | --- | --- |",
+            "| Made on | Horizon | Apps compared | Spearman | Spearman, forecast top N | Precision@k |",
+            "| --- | --- | --- | --- | --- | --- |",
         ]
         for e in a.evaluations[-10:]:
             rho = f"{e.spearman:.2f}" if e.spearman is not None else "–"
             prec = f"{e.precision_at_k:.0%} (k={e.k})" if e.precision_at_k is not None else "–"
-            lines.append(f"| {e.made_on} | {e.horizon_days}d | {e.apps} | {rho} | {prec} |")
+            top = f"{e.spearman_top:.2f} (N={e.top_n})" if e.spearman_top is not None else "–"
+            lines.append(f"| {e.made_on} | {e.horizon_days}d | {e.apps} | {rho} | {top} | {prec} |")
     else:
         lines.append(
             "_No forecast has matured yet. The first scorecard appears once a forecast is "

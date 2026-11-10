@@ -178,6 +178,7 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
               <th data-field="made_on">Forecast made</th>
               <th class="rd-num" data-field="apps_compared">Apps compared</th>
               <th class="rd-num" data-field="spearman">Rank correlation</th>
+              <th class="rd-num" data-field="spearman_top" title="Rank correlation over only the forecast's own top 100 apps: a fixed-size pool, so days with very different pool sizes can be compared">Same, forecast top 100</th>
               <th class="rd-num" data-field="precision_at_k">Top-k hit rate</th>
             </tr></thead>
             <tbody></tbody>
@@ -479,7 +480,7 @@ th[aria-sort="descending"] .rd-sort::after { content: "▼"; font-size: 0.7em; }
     renderSimpleTable('rd-movers', 'movers', [[r => r.app], [r => fmtInt(Number(r.previous)), 'rd-num rd-hide-narrow'], [r => fmtInt(Number(r.now)), 'rd-num'], [r => (Number(r.per_day) >= 0 ? '+' : '') + fmtInt(Number(r.per_day)), 'rd-num'], [r => r.rounded ? 'rounded' : '', 'rd-hide-narrow']]);
     renderSimpleTable('rd-params', 'params', [[r => r.parameter], [r => d3.format('.2~f')(Number(r.value)), 'rd-num'], [r => r.basis, 'rd-hide-narrow']]);
     renderSimpleTable('rd-sources', 'sources', [[r => r.collector], [r => r.last_ok || 'Never'], [r => fmtInt(Number(r.last_count)), 'rd-num'], [r => fmtInt(Number(r.consecutive_failures)), 'rd-num'], [r => r.last_error, 'rd-hide-narrow']]);
-    renderSimpleTable('rd-scorecard', 'scorecard', [[r => r.made_on], [r => fmtInt(Number(r.apps_compared)), 'rd-num'], [r => r.spearman === '' ? '' : fmtScore(Number(r.spearman)), 'rd-num'], [r => r.precision_at_k === '' ? '' : fmtPct0(Number(r.precision_at_k)), 'rd-num']]);
+    renderSimpleTable('rd-scorecard', 'scorecard', [[r => r.made_on], [r => fmtInt(Number(r.apps_compared)), 'rd-num'], [r => r.spearman === '' ? '' : fmtScore(Number(r.spearman)), 'rd-num'], [r => (r.spearman_top ?? '') === '' ? '' : fmtScore(Number(r.spearman_top)), 'rd-num'], [r => r.precision_at_k === '' ? '' : fmtPct0(Number(r.precision_at_k)), 'rd-num']]);
     const sc = dash.data('scorecard');
     document.getElementById('rd-score-empty').hidden = !(sc.status === 'ok' && sc.data.length === 0);
     renderCaveats();

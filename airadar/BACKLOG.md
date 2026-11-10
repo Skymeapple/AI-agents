@@ -12,12 +12,15 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   instead. The yardstick and thresholds would not change, but it changes
   what the radar optimises, so it is not a daily-run call.
 - **Why the API-era forecasts' own top 100 rank poorly** (0.26-0.41 vs
-  0.53-0.70 in October). Hypothesis: many top-100 apps are new repos scored
-  on one stated API gain. Compare the top-100 figure for apps with two or
-  more readings against apps with one.
-- **Term mining splits at digits.** On 2026-11-10 mining added "d-models"
-  (from "3d-models"). Keep digits in tokens, or drop fragments that start
-  with a hyphen-joined remainder.
+  0.53-0.70 in October). First step (suggested by the parent session,
+  2026-11-10): split each forecast's top 100 by the kind of signal behind
+  each app's score -- measured delta, page-stated gain, API-stated gain on a
+  new search hit, company-reported -- and compute the like-for-like figure
+  per group. That shows whether stated gains on newly found search hits are
+  what's bringing it down.
+- **If `spearman_top` ever becomes the tuner's objective, keep
+  precision@15 beside it as a guard.** A top-100 figure cannot penalise a
+  forecast for missing a fast grower ranked below 100.
 
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar

@@ -5,14 +5,19 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Like-for-like scorecard figure.** (Raised 2026-11-09 by the parent
-  session.) The Nov 2 forecast scored Spearman 0.84, but its pool grew from
-  about 100 apps to 1,058, mostly low-growth search hits that are easy to
-  rank below trending repos. A bigger pool alone can raise Spearman, so 0.84
-  is not comparable with the Oct 19-31 figures (0.53-0.71). Add a second
-  scorecard column computed on a fixed-size subset: e.g. only apps in the
-  previous day's top 100 by forecast, or only apps with nonzero realised
-  growth. Until then, don't call a forecast the "best" on Spearman alone.
+- **Tuner objective: decide whether to tune on the like-for-like figure.**
+  (Needs a person.) Since 2026-11-01 pools are 5-10x bigger and padded with
+  easy-to-rank search hits, so the backtest's full Spearman can reward a
+  setting that sorts the padding better. Candidate: average `spearman_top`
+  instead. The yardstick and thresholds would not change, but it changes
+  what the radar optimises, so it is not a daily-run call.
+- **Why the API-era forecasts' own top 100 rank poorly** (0.26-0.41 vs
+  0.53-0.70 in October). Hypothesis: many top-100 apps are new repos scored
+  on one stated API gain. Compare the top-100 figure for apps with two or
+  more readings against apps with one.
+- **Term mining splits at digits.** On 2026-11-10 mining added "d-models"
+  (from "3d-models"). Keep digits in tokens, or drop fragments that start
+  with a hyphen-joined remainder.
 
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
@@ -66,6 +71,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-10: like-for-like scorecard figure. Each scored forecast now also
+  shows the Spearman over the forecast's own top 100 apps
+  (`LIKE_FOR_LIKE_N`), in the report, the dashboard CSV and the shared page.
+  The full figure rises with pool size alone (Nov 2: 0.84 full vs 0.32 on
+  the top 100), so yesterday's "best forecast" claim was withdrawn. Reported
+  only; the tuner still uses the full figure (see Next). Test pins it.
 - 2026-10-19: initial system: inbox contract, growth model, directions,
   hypotheses, forecast scorecard, backtest tuner, source health, daily runbook.
 - 2026-10-19: first real run exposed three faults, now fixed. (1) Reported

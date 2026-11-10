@@ -2156,21 +2156,6 @@
   ],
   "url": "https://github.com/Anil-matcha/awesome-generative-ai-apps"
  },
- "gh:anil-matcha/open-duet": {
-  "description": "Open-source, self-hosted alternative to Grok Bot, Claude Duet, OpenAI Dots, Meta Muse, Instinct, Manus Cue: AI coworkers (named agents) with instructions, memory, routines, their own isolated computer, and your approval before they act.",
-  "first_seen": "2026-11-09",
-  "id": "gh:anil-matcha/open-duet",
-  "kind": "repo",
-  "name": "Anil-matcha/open-duet",
-  "tags": [
-   "agentic-ai",
-   "ai-agent",
-   "ai-assistant",
-   "ai-coworker",
-   "ai-employees"
-  ],
-  "url": "https://github.com/Anil-matcha/open-duet"
- },
  "gh:anil-matcha/open-generative-ai": {
   "description": "Unrestricted Open-source alternative to AI video platforms \u2014 Free AI image & video generation studio with 600+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
   "first_seen": "2026-11-01",
@@ -2188,7 +2173,7 @@
  },
  "gh:anil-matcha/suparagent": {
   "description": "Open-source, self-hosted alternative to Grok Bot, Claude Duet, OpenAI Dots, Meta Muse, Instinct, Manus Cue: AI coworkers (named agents) with instructions, memory, routines, their own isolated computer, and your approval before they act.",
-  "first_seen": "2026-11-10",
+  "first_seen": "2026-11-09",
   "id": "gh:anil-matcha/suparagent",
   "kind": "repo",
   "name": "Anil-matcha/suparagent",
@@ -4306,21 +4291,6 @@
    "claude"
   ],
   "url": "https://github.com/blader/humanizer"
- },
- "gh:blaizzy/mlx-audio": {
-  "description": "A text-to-speech (TTS), speech-to-text (STT) and speech-to-speech (STS) library built on Apple's MLX framework, providing efficient speech analysis on Apple Silicon.",
-  "first_seen": "2026-11-01",
-  "id": "gh:blaizzy/mlx-audio",
-  "kind": "repo",
-  "name": "Blaizzy/mlx-audio",
-  "tags": [
-   "apple-silicon",
-   "audio-processing",
-   "mlx",
-   "multimodal",
-   "speech-recognition"
-  ],
-  "url": "https://github.com/Blaizzy/mlx-audio"
  },
  "gh:blinue/magpie": {
   "description": "A general-purpose window upscaler for Windows 10/11.",
@@ -10729,6 +10699,17 @@
   ],
   "url": "https://github.com/GalleanDev/Gallean"
  },
+ "gh:garrytan/gbrain": {
+  "description": "Garry Tan's opinionated agent brain for OpenClaw/Hermes agents.",
+  "first_seen": "2026-11-10",
+  "id": "gh:garrytan/gbrain",
+  "kind": "repo",
+  "name": "garrytan/gbrain",
+  "tags": [
+   "agent-memory"
+  ],
+  "url": "https://github.com/garrytan/gbrain"
+ },
  "gh:garrytan/gstack": {
   "description": "Garry Tan's Claude Code setup: 23 opinionated tools acting as CEO, designer, engineering manager, release manager, docs engineer and QA.",
   "first_seen": "2026-11-05",
@@ -12120,7 +12101,7 @@
  },
  "gh:guyi-ai/gugu": {
   "description": "Gugu (\u5495\u5495): personal assistant, chat and device client \u2014 source release",
-  "first_seen": "2026-11-04",
+  "first_seen": "2026-11-01",
   "id": "gh:guyi-ai/gugu",
   "kind": "repo",
   "name": "GUYI-AI/gugu",
@@ -13172,6 +13153,18 @@
    "selfhosting"
   ],
   "url": "https://github.com/homarr-labs/homarr"
+ },
+ "gh:homeassistant-ai/ha-mcp": {
+  "description": "MCP server to configure and automate Home Assistant with Claude, ChatGPT and other AI assistants.",
+  "first_seen": "2026-11-10",
+  "id": "gh:homeassistant-ai/ha-mcp",
+  "kind": "repo",
+  "name": "homeassistant-ai/ha-mcp",
+  "tags": [
+   "mcp",
+   "assistant"
+  ],
+  "url": "https://github.com/homeassistant-ai/ha-mcp"
  },
  "gh:homebrew/homebrew-cask": {
   "description": "\ud83c\udf7b Default casks (upstream binary packages) for the package manager for everywhere",
@@ -21413,7 +21406,7 @@
  },
  "gh:neywa-labs/mlx-audio": {
   "description": "A text-to-speech (TTS), speech-to-text (STT) and speech-to-speech (STS) library built on Apple's MLX framework, providing efficient speech analysis on Apple Silicon.",
-  "first_seen": "2026-11-04",
+  "first_seen": "2026-11-01",
   "id": "gh:neywa-labs/mlx-audio",
   "kind": "repo",
   "name": "Neywa-Labs/mlx-audio",
@@ -22881,21 +22874,6 @@
    "document-parsing"
   ],
   "url": "https://github.com/opendataloader-project/opendataloader-pdf"
- },
- "gh:opendcai/gugu": {
-  "description": "Gugu (\u5495\u5495): personal assistant, chat and device client \u2014 source release",
-  "first_seen": "2026-11-01",
-  "id": "gh:opendcai/gugu",
-  "kind": "repo",
-  "name": "OpenDCAI/gugu",
-  "tags": [
-   "ai-agent",
-   "capacitor",
-   "chat",
-   "electron",
-   "personal-assistant"
-  ],
-  "url": "https://github.com/OpenDCAI/gugu"
  },
  "gh:openfilm/openfilm": {
   "description": "The open source AI video agent: turns any coding agent into a video agent, with an editor to change anything it makes.",
@@ -28593,7 +28571,7 @@
  },
  "gh:simplexai-labs/polystrata": {
   "description": "Run large AI models on your own PC: Qwen3.8-Flash-Next on Strata's engine, and GLM 5.3 Flash, DeepSeek V4 Flash, LFM2.5, Qwen3.6, Ornith 1.5, Gemma 4, Tiel Coder and MiniCPM-V on a second engine written for PolyStrata. One-click install for Windows and Linux, OpenAI/Anthropic API on localhost.",
-  "first_seen": "2026-11-04",
+  "first_seen": "2026-11-01",
   "id": "gh:simplexai-labs/polystrata",
   "kind": "repo",
   "name": "simplexai-labs/PolyStrata",
@@ -32895,21 +32873,6 @@
    "vechain"
   ],
   "url": "https://github.com/vechain/thor"
- },
- "gh:vecszn/polystrata": {
-  "description": "Run large AI models on your own PC: Qwen3.8-Flash-Next on Strata's engine, and GLM 5.3 Flash, DeepSeek V4 Flash, LFM2.5, Qwen3.6, Ornith 1.5, Gemma 4, Tiel Coder and MiniCPM-V on a second engine written for PolyStrata. One-click install for Windows and Linux, OpenAI/Anthropic API on localhost.",
-  "first_seen": "2026-11-01",
-  "id": "gh:vecszn/polystrata",
-  "kind": "repo",
-  "name": "VecSzn/PolyStrata",
-  "tags": [
-   "anthropic-api",
-   "cuda",
-   "gemma",
-   "gguf",
-   "glm"
-  ],
-  "url": "https://github.com/VecSzn/PolyStrata"
  },
  "gh:vectifyai/pageindex": {
   "description": "PageIndex: a document index for vectorless, reasoning-based RAG.",
@@ -39501,6 +39464,19 @@
    "agent-runtime"
   ],
   "url": "https://modal.com"
+ },
+ "web:monday.com": {
+  "description": "monday.com's AI product line on its work-management platform: AI credits, AI agents and the vibe app builder.",
+  "first_seen": "2026-11-10",
+  "id": "web:monday.com",
+  "kind": "product",
+  "name": "monday.com AI (AI credits, agents, vibe)",
+  "tags": [
+   "ai-agents",
+   "work-management",
+   "vibe-coding"
+  ],
+  "url": "https://monday.com"
  },
  "web:muse.ai": {
   "description": "Meta's personal AI agent app that sends email, books travel, fills forms and shops on the user's behalf.",

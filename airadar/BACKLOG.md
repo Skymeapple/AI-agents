@@ -5,23 +5,22 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Remember dropped search terms.** (Found 2026-11-11.) A term dropped as
+  off-topic is not remembered: "developer-tools", dropped on Nov 10, was
+  mined back on Nov 11, along with the spam term "ios-unlocker". Keep a
+  `dropped_terms` list in watch.json, and never mine a term on it again.
+- **One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
+  like-for-like split showed the drop sits in the measured class (Oct
+  0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
+  score rests on one daily delta against apps with a delta spanning several
+  days.
+
 - **Tuner objective: decide whether to tune on the like-for-like figure.**
   (Needs a person.) Since 2026-11-01 pools are 5-10x bigger and padded with
   easy-to-rank search hits, so the backtest's full Spearman can reward a
   setting that sorts the padding better. Candidate: average `spearman_top`
   instead. The yardstick and thresholds would not change, but it changes
   what the radar optimises, so it is not a daily-run call.
-- **Why the API-era forecasts' own top 100 rank poorly** (0.26-0.41 vs
-  0.53-0.70 in October). First step (suggested by the parent session,
-  2026-11-10): split each forecast's top 100 by the kind of signal behind
-  each app's score -- measured delta, page-stated gain, API-stated gain on a
-  new search hit, company-reported -- and compute the like-for-like figure
-  per group. That shows whether stated gains on newly found search hits are
-  what's bringing it down.
-- **If `spearman_top` ever becomes the tuner's objective, keep
-  precision@15 beside it as a guard.** A top-100 figure cannot penalise a
-  forecast for missing a fast grower ranked below 100.
-
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
@@ -74,6 +73,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-11: like-for-like split by kind of evidence
+  (`like_for_like_by_evidence`, report table under the scorecard). Each
+  matured forecast's top 100 is classed as measured, stated by API, stated
+  on a page or company-reported, with the Spearman within each class.
+  Result: the drop is in the measured class, not in new search hits, which
+  disproves the Nov 10 hypothesis. Diagnostic only; test pins it.
 - 2026-11-10: like-for-like scorecard figure. Each scored forecast now also
   shows the Spearman over the forecast's own top 100 apps
   (`LIKE_FOR_LIKE_N`), in the report, the dashboard CSV and the shared page.

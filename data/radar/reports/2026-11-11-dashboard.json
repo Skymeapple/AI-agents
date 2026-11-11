@@ -1,0 +1,40 @@
+{
+ "takeaway": "The forecasts' weak like-for-like score comes from the radar's own measured growth, not from new search hits. Apps scored on measured change make up 94–96 of each recent top 100 and rank at only 0.34–0.44, against 0.56–0.68 in October. meta/astryx and Jane Street's skill repo kept growing fast.",
+ "findings": [
+  {
+   "id": "split",
+   "heading": "Measured growth became a weaker predictor",
+   "text": "Split by the evidence behind each score, measured apps in the Nov 2–4 forecasts' top 100 rank at 0.34–0.44, down from 0.56–0.68 in October. New repos scored on an API-stated gain dominated only the Nov 1 forecast.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-11.md"
+  },
+  {
+   "id": "astryx",
+   "heading": "meta/astryx: third day above +2,700",
+   "text": "Meta's agent-ready design system gained 2,759 stars, to 23,598.",
+   "source": "https://github.com/meta/astryx"
+  },
+  {
+   "id": "janestreet",
+   "heading": "Jane Street's one-skill repo: +3,468 in two days",
+   "text": "janestreet/agent_skills, which holds a single Socratic-tutor skill, reached 4,173 stars.",
+   "source": "https://github.com/janestreet/agent_skills"
+  },
+  {
+   "id": "hf",
+   "heading": "First Hugging Face growth in three weeks",
+   "text": "speridlabs/idol gained 224 likes and lightricks/ltx-2.5 gained 126. A one-Space account's image-to-video Space jumped from 127 to 795 likes and is reviewed as unclear.",
+   "source": "https://huggingface.co/api/models?sort=trendingScore"
+  },
+  {
+   "id": "compression",
+   "heading": "Context compression already has products",
+   "text": "The 'open source ahead of product' hypothesis for context compression is disproved: The Token Company and Compresr (both YC W26) sell compression APIs. Read from search results.",
+   "source": "https://ycombinator.com/companies/the-token-company"
+  }
+ ],
+ "caveats": [
+  "Compare forecasts on the top-100 column; the full rank correlation rises with pool size alone.",
+  "Two offensive-security repos in the top 25 (fujiang-pojia, sapper-v2) have fork ratios above 50%, and their growth is reviewed as unclear.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

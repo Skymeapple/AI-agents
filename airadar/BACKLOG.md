@@ -9,11 +9,19 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   off-topic is not remembered: "developer-tools", dropped on Nov 10, was
   mined back on Nov 11, along with the spam term "ios-unlocker". Keep a
   `dropped_terms` list in watch.json, and never mine a term on it again.
+  Interim (2026-11-11, after the day's run): "ios-unlocker" and
+  "developer-tools" were removed from auto_terms by hand so the next collect
+  does not fetch on them.
 - **One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
   like-for-like split showed the drop sits in the measured class (Oct
   0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
   score rests on one daily delta against apps with a delta spanning several
-  days.
+  days. Concrete test (suggested by the parent session): backtest a fixed
+  extraction rule that scores measured deltas only over a span of at least
+  N days (3 or 7), from the oldest reading in the window, not the latest
+  pair -- like `min_rate_change_span_days`. Report the like-for-like and
+  full-pool scores for both; change no setting unless it passes the
+  existing tuner bars.
 
 - **Tuner objective: decide whether to tune on the like-for-like figure.**
   (Needs a person.) Since 2026-11-01 pools are 5-10x bigger and padded with

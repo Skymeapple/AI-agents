@@ -1,0 +1,349 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-11",
+ "observations": [
+  {
+   "app": {
+    "name": "autotrust/AutoTrust-JEV-27B-v1.1",
+    "url": "https://huggingface.co/autotrust/AutoTrust-JEV-27B-v1.1",
+    "kind": "model",
+    "tags": [
+     "text-classification",
+     "vllm",
+     "safetensors",
+     "qwen3_5",
+     "text-classification"
+    ]
+   },
+   "metric": "likes",
+   "value": 1412,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/autotrust/AutoTrust-JEV-27B-v1.1",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+    "url": "https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "gsq",
+     "rco",
+     "quantization"
+    ]
+   },
+   "metric": "likes",
+   "value": 652,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+    "url": "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "gguf",
+     "gsq",
+     "rco",
+     "quantization"
+    ]
+   },
+   "metric": "likes",
+   "value": 1216,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "LiquidAI/LFM3-1.7B-GGUF",
+    "url": "https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "liquid",
+     "lfm3",
+     "llama.cpp"
+    ]
+   },
+   "metric": "likes",
+   "value": 271,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/LiquidAI/LFM3-1.7B-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+    "url": "https://huggingface.co/ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 70,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Nanbeige/Nanbeige4.3-33B",
+    "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "transformers",
+     "safetensors",
+     "llama",
+     "text-generation"
+    ]
+   },
+   "metric": "likes",
+   "value": 1073,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/Nanbeige/Nanbeige4.3-33B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "OliviaRossi/Minimax-h3_Singularity-x-10Eros-Max_PRISM",
+    "url": "https://huggingface.co/OliviaRossi/Minimax-h3_Singularity-x-10Eros-Max_PRISM",
+    "kind": "model",
+    "tags": [
+     "minimax-h3",
+     "merge",
+     "ref2va"
+    ]
+   },
+   "metric": "likes",
+   "value": 270,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/OliviaRossi/Minimax-h3_Singularity-x-10Eros-Max_PRISM",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "speridlabs/idol-turbo",
+    "url": "https://huggingface.co/speridlabs/idol-turbo",
+    "kind": "model",
+    "tags": [
+     "image-to-3d",
+     "idol",
+     "gaussian-splatting",
+     "3d",
+     "image-to-3d"
+    ]
+   },
+   "metric": "likes",
+   "value": 55,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/speridlabs/idol-turbo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "xiaomi-research/Xiaomi-OCR-0",
+    "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 317,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/models/xiaomi-research/Xiaomi-OCR-0",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "FastVideo/FastH3-Omni",
+    "url": "https://huggingface.co/spaces/FastVideo/FastH3-Omni",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 114,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/FastVideo/FastH3-Omni",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "fishaudio/Drama-3",
+    "url": "https://huggingface.co/spaces/fishaudio/Drama-3",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "text-to-speech",
+     "fish-audio",
+     "zerogpu"
+    ]
+   },
+   "metric": "likes",
+   "value": 165,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/fishaudio/Drama-3",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "FrameAI4687/Omni-Video-Factory",
+    "url": "https://huggingface.co/spaces/FrameAI4687/Omni-Video-Factory",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 1628,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/FrameAI4687/Omni-Video-Factory",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ggml-org/gguf-my-repo",
+    "url": "https://huggingface.co/spaces/ggml-org/gguf-my-repo",
+    "kind": "space",
+    "tags": [
+     "docker"
+    ]
+   },
+   "metric": "likes",
+   "value": 2125,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/ggml-org/gguf-my-repo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "huggingface/hub-stats",
+    "url": "https://huggingface.co/spaces/huggingface/hub-stats",
+    "kind": "space",
+    "tags": [
+     "static"
+    ]
+   },
+   "metric": "likes",
+   "value": 62,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/huggingface/hub-stats",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ibm-research/cuga-policy-playground",
+    "url": "https://huggingface.co/spaces/ibm-research/cuga-policy-playground",
+    "kind": "space",
+    "tags": [
+     "docker"
+    ]
+   },
+   "metric": "likes",
+   "value": 22,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/ibm-research/cuga-policy-playground",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "MiniMaxAI/MiniMax-H3-Turbo-Lora",
+    "url": "https://huggingface.co/spaces/MiniMaxAI/MiniMax-H3-Turbo-Lora",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 566,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/MiniMaxAI/MiniMax-H3-Turbo-Lora",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ML-Intern-lab/weight-space-programming-demo",
+    "url": "https://huggingface.co/spaces/ML-Intern-lab/weight-space-programming-demo",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "ml-intern",
+     "weight-space-programming"
+    ]
+   },
+   "metric": "likes",
+   "value": 28,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/ML-Intern-lab/weight-space-programming-demo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ppxxyy/H3-Turbo-Lora",
+    "url": "https://huggingface.co/spaces/ppxxyy/H3-Turbo-Lora",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 63,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/ppxxyy/H3-Turbo-Lora",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "vamo455/Omni-videos-custom-auto_prompt_high-quality",
+    "url": "https://huggingface.co/spaces/vamo455/Omni-videos-custom-auto_prompt_high-quality",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 420,
+   "observed_on": "2026-11-11",
+   "source_url": "https://huggingface.co/api/spaces/vamo455/Omni-videos-custom-auto_prompt_high-quality",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

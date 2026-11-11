@@ -19,7 +19,7 @@ from .growth import AppScore, extract_signals, measured_movers, score_apps
 from .inbox import InboxError, load_inbox_file
 from .iterate import (
     Evaluation, SourceHealth, TuningOutcome, apply_tuning, record_prediction, scorecard,
-    source_health, tune,
+    source_health, tune, like_for_like_by_evidence,
 )
 from .models import App
 from .params import Params
@@ -42,6 +42,9 @@ class Analysis:
     pairs: list[tuple[str, str, int]]
     params: Params
     evaluations: list[Evaluation] = field(default_factory=list)
+    # Each matured forecast's own top N, split by the kind of evidence behind
+    # each app's score: which kind a weak like-for-like figure comes from.
+    evidence_split: list = field(default_factory=list)
     tuning: TuningOutcome | None = None
     health: list[SourceHealth] = field(default_factory=list)
     ingest_log: list[str] = field(default_factory=list)
@@ -178,6 +181,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         pairs=rising_pairs(apps, scores),
         params=params,
         evaluations=scorecard(store, date, observations),
+        evidence_split=like_for_like_by_evidence(store, date, observations),
         health=source_health(store.load_runs()),
         gone=gone,
         out_of_scope=out_of_scope,

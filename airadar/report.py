@@ -207,6 +207,24 @@ def render(analysis: Analysis) -> str:
             "_No forecast has matured yet. The first scorecard appears once a forecast is "
             "older than its horizon and the same apps have been observed again._"
         )
+    if a.evidence_split:
+        lines += [
+            "",
+            "#### Like-for-like, by kind of evidence",
+            "",
+            "Each forecast's own top N, split by the strongest evidence behind each app's score on the day "
+            "it was made: *measured* (the radar's own change between two readings), *stated by API* (a "
+            "newly found repo's stars over its age), *stated on a page*, *company-reported*. Spearman "
+            "within each kind shows which kind a weak like-for-like figure comes from.",
+            "",
+            "| Made on | Kind of evidence | Apps | Spearman |",
+            "| --- | --- | --- | --- |",
+        ]
+        recent = sorted({c.made_on for c in a.evidence_split})[-10:]
+        for c in a.evidence_split:
+            if c.made_on in recent:
+                rho = f"{c.spearman:.2f}" if c.spearman is not None else "–"
+                lines.append(f"| {c.made_on} | {c.evidence} | {c.apps} | {rho} |")
     lines += ["", "### Self-tuning", ""]
     if a.tuning is not None:
         verdict = "**Adopted**" if a.tuning.adopted else "No change"

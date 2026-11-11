@@ -158,6 +158,70 @@ def scorecard(store: Store, today: dt.date, observations: list[Observation]) -> 
     return out
 
 
+EVIDENCE_CLASSES = ("measured", "stated by API", "stated on a page", "company-reported")
+
+
+def evidence_class(signals) -> str:
+    """The strongest kind of evidence behind an app's score, in the order the
+    radar trusts it: its own measured change, then a gain an API stated (a
+    newly found search hit's stars over its age), a gain a page stated, then
+    a company's own figure."""
+    kinds = {(s.kind, s.method.value) for s in signals}
+    if any(kind == "delta" for kind, _ in kinds):
+        return "measured"
+    if any(kind == "period" and method == "api" for kind, method in kinds):
+        return "stated by API"
+    if any(kind == "period" and method == "page_extract" for kind, method in kinds):
+        return "stated on a page"
+    return "company-reported"
+
+
+@dataclass
+class ClassSplit:
+    made_on: dt.date
+    evidence: str
+    apps: int
+    spearman: float | None
+
+
+def like_for_like_by_evidence(store: Store, today: dt.date,
+                              observations: list[Observation]) -> list[ClassSplit]:
+    """Split each matured forecast's own top ``LIKE_FOR_LIKE_N`` apps by the
+    kind of evidence behind their score on the day it was made, and give the
+    rank correlation within each kind. Diagnostic only: it shows which kind
+    of evidence a weak like-for-like figure comes from. Nothing tunes on it.
+    """
+    aliases = store.aliases()
+
+    def current(app_id: str) -> str:
+        return aliases.get(app_id, (app_id,))[0]
+
+    out: list[ClassSplit] = []
+    for row in store.load_predictions():
+        made_on = dt.date.fromisoformat(row["made_on"])
+        horizon = int(row["horizon_days"])
+        if made_on + dt.timedelta(days=horizon) > today:
+            continue
+        params = Params.defaults()
+        params.values.update(row.get("params", {}))
+        classes: dict[str, str] = {}
+        for app in score_apps(extract_signals(observations, asof=made_on), params, asof=made_on):
+            classes.setdefault(current(app.app_id), evidence_class(app.signals))
+        predicted: dict[str, float] = {}
+        for app_id, score in row["scores"].items():
+            predicted.setdefault(current(app_id), score)
+        realised = realised_scores(observations, made_on, horizon)
+        common = [a for a in predicted if a in realised]
+        top = sorted(common, key=lambda a: (-predicted[a], a))[:LIKE_FOR_LIKE_N]
+        for kind in EVIDENCE_CLASSES:
+            group = [a for a in top if classes.get(a) == kind]
+            if not group:
+                continue
+            rho = spearman([predicted[a] for a in group], [realised[a] for a in group])
+            out.append(ClassSplit(made_on, kind, len(group), rho))
+    return out
+
+
 def _evaluable_days(observations: list[Observation], today: dt.date, horizon: int) -> list[dt.date]:
     days = sorted({o.known_on for o in observations if o.known_on + dt.timedelta(days=horizon) <= today})
     return days[-BACKTEST_DAYS:]

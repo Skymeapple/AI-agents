@@ -957,3 +957,39 @@ def test_scorecard_reports_like_for_like_spearman_over_forecast_top_n():
     assert padded.spearman > 0.5               # the padding alone lifts the full figure
     assert padded.spearman_top == pytest.approx(-1.0)   # the like-for-like one is unmoved
     assert padded.to_dict()["spearman_top"] == padded.spearman_top
+
+
+def test_like_for_like_is_split_by_the_kind_of_evidence_behind_each_score(tmp_path):
+    """Apps measured by the radar's own two readings are classed 'measured';
+    an app known only from a page-stated weekly gain is 'stated on a page'.
+    Each class gets its own rank correlation over the forecast's top N."""
+    from airadar.iterate import evidence_class, like_for_like_by_evidence
+    from airadar.growth import extract_signals
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    before, later = made - dt.timedelta(days=3), made + dt.timedelta(days=7)
+    measured = [f"gh:o/m{i}" for i in range(4)]
+    stated = [f"gh:o/s{i}" for i in range(3)]
+    rows = []
+    for i, app_id in enumerate(measured):
+        rows += [obs(app_id, "stars", 1000, before), obs(app_id, "stars", 1000 + 50 * (i + 1), made),
+                 obs(app_id, "stars", 1000 + 50 * (i + 1) + 100 * (i + 1), later)]
+    for i, app_id in enumerate(stated):
+        rows += [obs(app_id, "stars_gained", 100 * (i + 1), made, method=Method.PAGE_EXTRACT, period=7),
+                 obs(app_id, "stars", 5000, made, method=Method.PAGE_EXTRACT),
+                 # realised order is the reverse of the forecast's
+                 obs(app_id, "stars", 5000 + 300 * (3 - i), later, method=Method.PAGE_EXTRACT)]
+    store.add([], rows)
+
+    signals = extract_signals(store.load_observations(), asof=made)
+    assert evidence_class(signals[measured[0]]) == "measured"
+    assert evidence_class(signals[stated[0]]) == "stated on a page"
+
+    scores = {a: 0.1 * (i + 1) for i, a in enumerate(measured)}
+    scores.update({a: 0.01 * (i + 1) for i, a in enumerate(stated)})
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": scores}])
+    split = {c.evidence: c for c in like_for_like_by_evidence(store, later, store.load_observations())}
+    assert split["measured"].apps == 4 and split["measured"].spearman == pytest.approx(1.0)
+    assert split["stated on a page"].apps == 3 and split["stated on a page"].spearman == pytest.approx(-1.0)

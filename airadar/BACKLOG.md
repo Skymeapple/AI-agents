@@ -5,13 +5,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Remember dropped search terms.** (Found 2026-11-11.) A term dropped as
-  off-topic is not remembered: "developer-tools", dropped on Nov 10, was
-  mined back on Nov 11, along with the spam term "ios-unlocker". Keep a
-  `dropped_terms` list in watch.json, and never mine a term on it again.
-  Interim (2026-11-11, after the day's run): "ios-unlocker" and
-  "developer-tools" were removed from auto_terms by hand so the next collect
-  does not fetch on them.
+- **Term mining splits at digits.** On 2026-11-10 mining added "d-models"
+  (from "3d-models"), and on 2026-11-12 "deepseek-v" (from "deepseek-v4").
+  Keep digits in tokens, or drop fragments that start with a hyphen-joined
+  remainder. (Restored 2026-11-12: lost by a faulty backlog edit on Nov 10.)
+
 - **One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
   like-for-like split showed the drop sits in the measured class (Oct
   0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
@@ -29,6 +27,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   setting that sorts the padding better. Candidate: average `spearman_top`
   instead. The yardstick and thresholds would not change, but it changes
   what the radar optimises, so it is not a daily-run call.
+
+- **If `spearman_top` ever becomes the tuner's objective, keep
+  precision@15 beside it as a guard.** A top-100 figure cannot penalise a
+  forecast for missing a fast grower ranked below 100. (Raised by the parent
+  session, 2026-11-10; restored 2026-11-12 after a faulty backlog edit.)
+
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
@@ -45,35 +49,46 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   show "58.7k", never the exact count. Repos on a trending page get exact counts
   the same day; the rest are only resolvable to 100 stars. Find a page that shows
   exact counts (e.g. the stargazers page) for the recheck list.
+
 - **Verify reported figures at source.** Day one's commercial figures came from
   search-result summaries because the fetch tool could not open the pages.
   Re-collect them from the cited URLs when fetching works, and record a
   disagreement as a new observation rather than editing the old one.
+
 - **Measured deltas for products.** Repos and Spaces can be re-observed from
   their own pages; commercial apps cannot. Find a repeatable, citable per-app
   number (app-store ranking pages, public traffic estimates, Chrome Web Store
   user counts) and record it daily.
+
 - **Scope by rule for the API search.** Out-of-scope marking is manual. A
   cheap automatic first pass (an AI-terms check on description and topics,
   flagged for review rather than applied) would keep the API's daily intake
   clean; the 2026-11-03 review found the keyword check misses about 1 in 9
   AI repos, so it can only suggest, not decide.
+
 - **The API search adds ~1,000 repos a day to the registry.** On 2026-11-01
   the topic search added about 970 apps. Most are slow-moving; watch whether
   the ranking and the page stay readable, and consider a minimum-stars or
   minimum-gain bar for what the search registers.
-- **Hugging Face and Hacker News are unreachable from the cloud sandbox** (DNS
-  failure through WebFetch, 403 from the proxy). Allowing `huggingface.co` and
-  `hn.algolia.com` in the environment's network settings, or running
-  `python -m airadar.cli collect` from GitHub Actions, would restore them.
+
+- **Hacker News (and npm) are unreachable from the cloud sandbox** (403 from
+  the proxy). Hugging Face's API has worked since 2026-11-10. Allowing
+  `hn.algolia.com` and `api.npmjs.org` in the environment's network settings,
+  or running `python -m airadar.cli collect` from GitHub Actions, would
+  restore them. The retired `agent:huggingface` row in source health can be
+  ignored; `api:huggingface` is the live one.
+
 - **Product Hunt**: needs an API token (`PRODUCTHUNT_TOKEN`); add a collector
   that is skipped cleanly when the token is absent.
+
 - **Tag vocabulary drift.** `DIRECTION_TAGS` is now fixed and API topics map in
   through `TAG_ALIASES` (2026-11-02). Review the most common unmapped topics
   weekly; add an alias where one names an existing direction, and a new
   direction only once its emergent grouping has held for several days.
+
 - **Embeddings for emergent groupings**, once a model is reachable from the
   Python process. Lexical clustering over one-line descriptions is weak.
+
 - **Star-farming check.** Repos flagged as anomalous could be checked against
   forks, issues and contributor counts automatically, not only by the agent.
   Recheck notes now carry forks and watchers as text; recording them as
@@ -81,6 +96,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-12: dropped search terms are remembered. watch.json keeps
+  `dropped_terms`; expand_watch adds every term it drops as off-topic and
+  never mines one on the list again. Seeded with the nine terms dropped
+  since Nov 9. Test replays the Nov 11 "developer-tools" case.
 - 2026-11-11: like-for-like split by kind of evidence
   (`like_for_like_by_evidence`, report table under the scorecard). Each
   matured forecast's top 100 is classed as measured, stated by API, stated

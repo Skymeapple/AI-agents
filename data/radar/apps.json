@@ -16418,6 +16418,21 @@
   ],
   "url": "https://github.com/johnstiles/ai-manus"
  },
+ "gh:joinpactora/pactora": {
+  "description": "The RelayWorks website and recovery console. Your AI agent quit at 70%, and Patch finishes the job. Plain HTML, CSS and ES modules with Three.js scenes, a hand-drawn SVG cast, Solana wallet sign-in and x402 USDC checkout.",
+  "first_seen": "2026-11-05",
+  "id": "gh:joinpactora/pactora",
+  "kind": "repo",
+  "name": "joinpactora/pactora",
+  "tags": [
+   "ai-agent",
+   "claudeflare-workers",
+   "solana",
+   "svg",
+   "threejs"
+  ],
+  "url": "https://github.com/joinpactora/pactora"
+ },
  "gh:jonataslaw/getx": {
   "description": "Open screens/snackbars/dialogs/bottomSheets without context, manage states and inject dependencies easily with Get.",
   "first_seen": "2026-11-01",
@@ -24436,6 +24451,18 @@
   "tags": [],
   "url": "https://github.com/openai/codex"
  },
+ "gh:openai/codex-security": {
+  "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating and fixing security vulnerabilities.",
+  "first_seen": "2026-11-12",
+  "id": "gh:openai/codex-security",
+  "kind": "repo",
+  "name": "openai/codex-security",
+  "tags": [
+   "security",
+   "coding-agent"
+  ],
+  "url": "https://github.com/openai/codex-security"
+ },
  "gh:openai/openai-agents-python": {
   "description": "A lightweight, powerful framework for multi-agent workflows",
   "first_seen": "2026-11-01",
@@ -28037,21 +28064,6 @@
   "tags": [],
   "url": "https://github.com/rejig-app/rejig"
  },
- "gh:relayworkslab/relayworks": {
-  "description": "The RelayWorks website and recovery console. Your AI agent quit at 70%, and Patch finishes the job. Plain HTML, CSS and ES modules with Three.js scenes, a hand-drawn SVG cast, Solana wallet sign-in and x402 USDC checkout.",
-  "first_seen": "2026-11-05",
-  "id": "gh:relayworkslab/relayworks",
-  "kind": "repo",
-  "name": "relayworkslab/relayworks",
-  "tags": [
-   "ai-agent",
-   "claudeflare-workers",
-   "solana",
-   "svg",
-   "threejs"
-  ],
-  "url": "https://github.com/relayworkslab/relayworks"
- },
  "gh:release-drafter/release-drafter": {
   "description": "Drafts your next release notes as pull requests are merged into master. ",
   "first_seen": "2026-11-08",
@@ -29969,6 +29981,18 @@
    "generative-ai"
   ],
   "url": "https://github.com/shadcn-ui/ui"
+ },
+ "gh:shadcn/improve": {
+  "description": "Uses your most capable model to audit a codebase and write plans for cheaper models to execute.",
+  "first_seen": "2026-11-12",
+  "id": "gh:shadcn/improve",
+  "kind": "repo",
+  "name": "shadcn/improve",
+  "tags": [
+   "coding-agent",
+   "devtools"
+  ],
+  "url": "https://github.com/shadcn/improve"
  },
  "gh:shadowdarkmr/ai--manus": {
   "description": "AI Manus is a general-purpose AI Agent system that supports running various tools and operations in a sandbox environment.",
@@ -42192,6 +42216,18 @@
   ],
   "url": "https://www.databricks.com"
  },
+ "web:daylight.ai": {
+  "description": "Managed detection and response service in which AI agents handle most security operations work, overseen by human engineers.",
+  "first_seen": "2026-11-12",
+  "id": "web:daylight.ai",
+  "kind": "product",
+  "name": "Daylight Security",
+  "tags": [
+   "ai-agents",
+   "security"
+  ],
+  "url": "https://daylight.ai"
+ },
  "web:daytona.io": {
   "description": "Sandbox cloud infrastructure where AI agents run code and tools.",
   "first_seen": "2026-10-25",
@@ -42518,7 +42554,9 @@
   "name": "Higgsfield",
   "tags": [
    "video-generation",
-   "image-generation"
+   "image-generation",
+   "ai-video",
+   "generative-media"
   ],
   "url": "https://higgsfield.ai"
  },

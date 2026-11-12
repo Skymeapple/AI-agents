@@ -104,9 +104,13 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
     # tag) goes too: its words looked distinctive, its results say otherwise.
     off_topic = {t["term"] for t in intake or [] if t["apps"] >= MIN_INTAKE_TO_JUDGE
                  and t["on_topic"] * 2 < t["apps"]}
-    pruned = [t for t in watch["auto_terms"] if t not in GENERIC_TERMS and t not in off_topic]
-    changed = pruned != watch["auto_terms"]
+    dropped = set(watch["dropped_terms"])
+    newly_dropped = sorted(t for t in watch["auto_terms"] if t in off_topic and t not in dropped)
+    pruned = [t for t in watch["auto_terms"]
+              if t not in GENERIC_TERMS and t not in off_topic and t not in dropped]
+    changed = pruned != watch["auto_terms"] or bool(newly_dropped)
     watch["auto_terms"] = pruned
+    watch["dropped_terms"] = sorted(dropped | set(newly_dropped))
     score_of = {s.app_id: s.score for s in scores}
     apps = store.load_apps()
 
@@ -115,7 +119,8 @@ def expand_watch(store: Store, groups: list[EmergentGroup], scores: list[AppScor
                      and {normalise_tag(t) for t in apps[m].tags} & DIRECTION_TAGS)
         return tagged * 2 > len(group.members)
 
-    existing = set(watch["auto_terms"]) | set(watch["github_topics"]) | set(watch["hn_queries"])
+    existing = (set(watch["auto_terms"]) | set(watch["github_topics"]) | set(watch["hn_queries"])
+                | set(watch["dropped_terms"]))
     added = []
     for group in sorted(groups, key=lambda g: -sum(score_of.get(m, 0) for m in g.members) / len(g.members)):
         mean = sum(score_of.get(m, 0) for m in group.members) / len(group.members)

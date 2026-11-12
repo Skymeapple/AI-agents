@@ -1,0 +1,76 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-12",
+ "observations": [
+  {
+   "app": {
+    "name": "thea2026/image-to-video",
+    "url": "https://huggingface.co/spaces/thea2026/image-to-video",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 1111,
+   "observed_on": "2026-11-12",
+   "source_url": "https://huggingface.co/api/spaces/thea2026/image-to-video",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "AtomicChat/Ripple-65B-Preview-GGUF",
+    "url": "https://huggingface.co/AtomicChat/Ripple-65B-Preview-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "llama.cpp",
+     "ripple",
+     "ricursiveai"
+    ]
+   },
+   "metric": "likes",
+   "value": 52,
+   "observed_on": "2026-11-12",
+   "source_url": "https://huggingface.co/api/models/AtomicChat/Ripple-65B-Preview-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Aahana787/Qwen-Image-Edit-2509-Custom",
+    "url": "https://huggingface.co/spaces/Aahana787/Qwen-Image-Edit-2509-Custom",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 40,
+   "observed_on": "2026-11-12",
+   "source_url": "https://huggingface.co/api/spaces/Aahana787/Qwen-Image-Edit-2509-Custom",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "hugging-apps/qwen-qwen-image-2-1-turbo",
+    "url": "https://huggingface.co/spaces/hugging-apps/qwen-qwen-image-2-1-turbo",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 159,
+   "observed_on": "2026-11-12",
+   "source_url": "https://huggingface.co/api/spaces/hugging-apps/qwen-qwen-image-2-1-turbo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

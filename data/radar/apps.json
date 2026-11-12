@@ -255,6 +255,21 @@
   ],
   "url": "https://github.com/24pullrequests/24pullrequests"
  },
+ "gh:2fastlabs/agent-squad": {
+  "description": "Flexible and powerful framework for managing multiple AI agents and handling complex conversations",
+  "first_seen": "2026-11-12",
+  "id": "gh:2fastlabs/agent-squad",
+  "kind": "repo",
+  "name": "2FastLabs/agent-squad",
+  "tags": [
+   "agentic-ai",
+   "agents",
+   "ai-agents",
+   "ai-agents-framework",
+   "anthropic"
+  ],
+  "url": "https://github.com/2FastLabs/agent-squad"
+ },
  "gh:3proxy/3proxy": {
   "description": "3proxy - tiny free proxy server",
   "first_seen": "2026-11-06",
@@ -920,6 +935,21 @@
    "linux"
   ],
   "url": "https://github.com/agent0ai/tuxee"
+ },
+ "gh:agentes-chat/agentes-chat": {
+  "description": "Open-source, self-hosted Slack alternative where your team and AI agents work together in channels and DMs. Agents run on Claude, ChatGPT/Codex, Gemini or Grok, with MCP tools, their own computer and browser, routines, memory and approvals. Web, desktop and phone apps. Docker Compose + Postgres. AGPL-3.0.",
+  "first_seen": "2026-11-12",
+  "id": "gh:agentes-chat/agentes-chat",
+  "kind": "repo",
+  "name": "agentes-chat/agentes-chat",
+  "tags": [
+   "agentic-ai",
+   "ai-agents",
+   "browser-automation",
+   "chat",
+   "claude"
+  ],
+  "url": "https://github.com/agentes-chat/agentes-chat"
  },
  "gh:agentic-system-lab/agent-loop-visualizer": {
   "description": "This project is for learning: it shows how an agent loop works underneath, in a way more intuitive and visual than reading about it. Behind an agent's chat box runs a loop: step after step, the model proposes an action and the harness carries it out, until it stops.",
@@ -1709,6 +1739,21 @@
    "cka"
   ],
   "url": "https://github.com/alexellis/arkade"
+ },
+ "gh:alexeyw/lot-map": {
+  "description": "A live map beside the chat that shows what Claude Code is doing: tool calls, model steps, hooks, skills and subagents light up as they happen. Local only, in five languages.",
+  "first_seen": "2026-11-12",
+  "id": "gh:alexeyw/lot-map",
+  "kind": "repo",
+  "name": "alexeyw/lot-map",
+  "tags": [
+   "agent-observability",
+   "ai-agents",
+   "claude",
+   "claude-code",
+   "claude-code-plugin"
+  ],
+  "url": "https://github.com/alexeyw/lot-map"
  },
  "gh:alexgaoth/awesome-reverse-engineered": {
   "description": "Don't reverse engineer it twice. 17,000+ open-source tools built by reverse engineering closed apps, APIs, devices, protocols, file formats, games and AI tools. Search site + agent skill + MCP server, refreshed nightly.",
@@ -4406,6 +4451,21 @@
   "tags": [],
   "url": "https://github.com/BigPizzaV3/CodexPlusPlus"
  },
+ "gh:bil0000/hill-climb": {
+  "description": "Make your coding agent prove \"done\". Each change is kept only if a locked test or benchmark scores it better. Claude Code and Codex skill.",
+  "first_seen": "2026-11-12",
+  "id": "gh:bil0000/hill-climb",
+  "kind": "repo",
+  "name": "Bil0000/Hill-Climb",
+  "tags": [
+   "agent-skills",
+   "ai-agents",
+   "ai-coding",
+   "autonomous-agents",
+   "benchmarking"
+  ],
+  "url": "https://github.com/Bil0000/Hill-Climb"
+ },
  "gh:billion-token-one-task/deepgraph": {
   "description": "Token-scale scientific discovery engine \u2014 autonomous hypothesis generation, experiment execution, and knowledge graph synthesis",
   "first_seen": "2026-11-05",
@@ -6948,6 +7008,21 @@
   ],
   "url": "https://github.com/CSUNX233/qwen3.8-27b-ninfer-5070tilaptop-kvmem-local-agent"
  },
+ "gh:csunx233/sparkle-qwen27b-kvmem-ninfer": {
+  "description": "RTX 5070 Ti Laptop 12GB \u8dd1 Qwen3.8-27B\uff1aNInfer + KVMem\u3001256K \u903b\u8f91\u4e0a\u4e0b\u6587\u3001RAM KV\u3001MTP\u3001\u5feb\u901f\u7f13\u5b58\u7eed\u63a5\u4e0e dsh \u672c\u5730 Agent / \u641c\u7d22 / \u6d4f\u89c8\u5668\u3002\u542b\u6e90\u7801\u3001Windows \u90e8\u7f72\u53ca\u5b9e\u6d4b\u3002",
+  "first_seen": "2026-11-12",
+  "id": "gh:csunx233/sparkle-qwen27b-kvmem-ninfer",
+  "kind": "repo",
+  "name": "CSUNX233/Sparkle-Qwen27b-Kvmem-ninfer",
+  "tags": [
+   "12gb-vram",
+   "ai-agent",
+   "cuda",
+   "deepseek-harness",
+   "kvmem"
+  ],
+  "url": "https://github.com/CSUNX233/Sparkle-Qwen27b-Kvmem-ninfer"
+ },
  "gh:cth9191/animate": {
   "description": "Procedural animation in any style for Claude Code: short single-file canvas videos with story, look and storyboard check-ins. 7 built-in styles or one matched from your references, your own music (beat-mapped), real product screenshots, every format from one piece.",
   "first_seen": "2026-11-01",
@@ -9480,7 +9555,13 @@
   "id": "gh:emilkowalski/skills",
   "kind": "repo",
   "name": "emilkowalski/skills",
-  "tags": [],
+  "tags": [
+   "agent-skills",
+   "animation",
+   "claude-code",
+   "codex",
+   "cursor"
+  ],
   "url": "https://github.com/emilkowalski/skills"
  },
  "gh:emrahaydemir960-ai/daimon-data-agent": {
@@ -10405,6 +10486,21 @@
   ],
   "url": "https://github.com/FastLED/FastLED"
  },
+ "gh:fathah/hermes-desktop": {
+  "description": "Desktop Companion for Hermes Agent",
+  "first_seen": "2026-11-12",
+  "id": "gh:fathah/hermes-desktop",
+  "kind": "repo",
+  "name": "fathah/hermes-desktop",
+  "tags": [
+   "ai",
+   "ai-agent",
+   "autonomous-agents",
+   "chatbot",
+   "hermes"
+  ],
+  "url": "https://github.com/fathah/hermes-desktop"
+ },
  "gh:fatihaydost/brand-identity-skill": {
   "description": "A Claude Code skill that designs a brand identity as one system: logo, typography and colour palette built together from one brief, measured, compared as identity cards, and delivered as a brand guidelines kit.",
   "first_seen": "2026-11-01",
@@ -10477,7 +10573,8 @@
    "job-application",
    "agentic-ai",
    "ai-automation",
-   "autonomous-agents"
+   "autonomous-agents",
+   "aihawk"
   ],
   "url": "https://github.com/feder-cr/Jobs_Applier_AI_Agent"
  },
@@ -11087,6 +11184,21 @@
    "desktop-app"
   ],
   "url": "https://github.com/FrigadeHQ/hob"
+ },
+ "gh:frigadehq/yogurt": {
+  "description": "Private AI meeting notes. Free and open source.",
+  "first_seen": "2026-11-12",
+  "id": "gh:frigadehq/yogurt",
+  "kind": "repo",
+  "name": "FrigadeHQ/yogurt",
+  "tags": [
+   "electron",
+   "linux",
+   "llama-cpp",
+   "local-ai",
+   "macos"
+  ],
+  "url": "https://github.com/FrigadeHQ/yogurt"
  },
  "gh:frknkrc44/hma-oss": {
   "description": "A Zygisk module to hide your app list, settings, package installers and more. It is a fork of Hide My Applist project, but LSPosed dependency is replaced with Zygisk.",
@@ -11992,6 +12104,21 @@
    "awesome-list"
   ],
   "url": "https://github.com/Glen-Web-App/best-agent-memory-mcp"
+ },
+ "gh:glen-web-app/best-memory-plugins": {
+  "description": "Best Memory Plugins for AI coding agents: Claude Code, Codex, Cursor, OpenCode, Cline and more. Glen, claude-mem, Supermemory, Hindsight, agentmemory, Mem0, Cognee, MemPalace and others ranked on automatic capture vs tool calls, local vs hosted, team sharing, privacy and install steps, plus built-in agent memory compared.",
+  "first_seen": "2026-11-12",
+  "id": "gh:glen-web-app/best-memory-plugins",
+  "kind": "repo",
+  "name": "Glen-Web-App/best-memory-plugins",
+  "tags": [
+   "agent-memory",
+   "ai-coding",
+   "ai-memory",
+   "awesome",
+   "awesome-list"
+  ],
+  "url": "https://github.com/Glen-Web-App/best-memory-plugins"
  },
  "gh:glincker/awesome-selfhosted-ai": {
   "description": "Curated list of self-hosted open-source AI: local LLMs, chat UIs, agents, MCP servers, RAG, speech and image generation. Health-checked weekly, dead projects removed automatically.",
@@ -14969,6 +15096,21 @@
   ],
   "url": "https://github.com/init-co-jp/diff-tour"
  },
+ "gh:innei/ryugi": {
+  "description": "Ryugi (ryoo-ghee) \u2014 artifacts for coding agents: artboards of mockups, design docs, whiteboards, HTML benches and verify reports you comment on, with every comment sent back to the agent. Install artifacts only, or the full brainstorm \u2192 spec \u2192 TDD workflow. Claude Code, Codex and more.",
+  "first_seen": "2026-11-12",
+  "id": "gh:innei/ryugi",
+  "kind": "repo",
+  "name": "Innei/ryugi",
+  "tags": [
+   "agent-skills",
+   "ai-agents",
+   "artboard",
+   "artifacts",
+   "brainstorming"
+  ],
+  "url": "https://github.com/Innei/ryugi"
+ },
  "gh:insanearts/atlas": {
   "description": "hypervised desktop for autonomous agents",
   "first_seen": "2026-11-05",
@@ -15245,7 +15387,9 @@
    "dear-imgui",
    "digital-sculpting",
    "fbx",
-   "3d-sculpting"
+   "3d-sculpting",
+   "blender",
+   "blender-addon"
   ],
   "url": "https://github.com/islandmed/SculptForge"
  },
@@ -17002,6 +17146,21 @@
   ],
   "url": "https://github.com/kayraucklnc/beluga"
  },
+ "gh:kenkaiii/roamies": {
+  "description": "Desktop creatures with an AI sidekick that lives on your screen. Talk to it, it remembers what you said you'd do, reminds you and points at things. Your choice of AI. Mac and Windows.",
+  "first_seen": "2026-11-12",
+  "id": "gh:kenkaiii/roamies",
+  "kind": "repo",
+  "name": "KenKaiii/Roamies",
+  "tags": [
+   "adhd",
+   "agentic-ai",
+   "ai",
+   "ai-agent",
+   "ai-assistant"
+  ],
+  "url": "https://github.com/KenKaiii/Roamies"
+ },
  "gh:kennss/siliconscope": {
   "description": "Sudoless Apple Silicon system monitor (native SwiftUI GUI) with ANE / Media Engine / memory-bandwidth tracking",
   "first_seen": "2026-11-01",
@@ -17136,6 +17295,21 @@
    "chatgpt"
   ],
   "url": "https://github.com/Kilo-Org/kilocode"
+ },
+ "gh:kingcharleslzy-ai/sentetrader": {
+  "description": "Sente \u5f08\u5148 \u00b7 AI \u79c1\u4eba\u4ea4\u6613\u52a9\u7406\uff1a\u4e00\u4e2a\u4eba\uff0c\u4e00\u652f\u4ea4\u6613\u56e2\u961f\u3002\u5b89\u88c5\u5305\u4e0b\u8f7d \u00b7 \u6ce8\u518c\u9080\u8bf7\u7801 sente",
+  "first_seen": "2026-11-12",
+  "id": "gh:kingcharleslzy-ai/sentetrader",
+  "kind": "repo",
+  "name": "kingcharleslzy-ai/sentetrader",
+  "tags": [
+   "ai-agent",
+   "ai-trading-assistant",
+   "chinese",
+   "futures",
+   "sente"
+  ],
+  "url": "https://github.com/kingcharleslzy-ai/sentetrader"
  },
  "gh:kitao/pyxel": {
   "description": "A retro game engine for Python",
@@ -17782,7 +17956,12 @@
   "name": "langfuse/langfuse",
   "tags": [
    "agent-evaluation",
-   "devtools"
+   "devtools",
+   "ai-gateway",
+   "analytics",
+   "evaluation",
+   "gateway",
+   "langchain"
   ],
   "url": "https://github.com/langfuse/langfuse"
  },
@@ -18313,6 +18492,21 @@
   ],
   "url": "https://github.com/Leonxlnx/taste-skill"
  },
+ "gh:leonxlnx/tastecode": {
+  "description": "One desktop app for your coding agents, made for creative work. Early beta, Windows and macOS.",
+  "first_seen": "2026-11-12",
+  "id": "gh:leonxlnx/tastecode",
+  "kind": "repo",
+  "name": "Leonxlnx/tastecode",
+  "tags": [
+   "claude-code",
+   "codex",
+   "coding-agents",
+   "creative-coding",
+   "cursor"
+  ],
+  "url": "https://github.com/Leonxlnx/tastecode"
+ },
  "gh:leooochen/ponwrt-tyfza1": {
   "description": "Native OpenWrt port for Tianyi TYFZA1 / Realtek RTL9617CVW. Experimental PON, Wi-Fi and hardware forwarding.",
   "first_seen": "2026-11-03",
@@ -18372,6 +18566,21 @@
    "productivity"
   ],
   "url": "https://github.com/lfnovo/open-notebook"
+ },
+ "gh:lgwrightlab/schematic-figure": {
+  "description": "Skill for AI agents that draws publication-quality scientific schematic figures as vector code",
+  "first_seen": "2026-11-12",
+  "id": "gh:lgwrightlab/schematic-figure",
+  "kind": "repo",
+  "name": "lgwrightlab/schematic-figure",
+  "tags": [
+   "agent-skill",
+   "claude-code",
+   "codex",
+   "llm",
+   "schematic"
+  ],
+  "url": "https://github.com/lgwrightlab/schematic-figure"
  },
  "gh:li-ch/rouster": {
   "description": "A routing protocol suite in Rust \u2014 router + Rust.",
@@ -19718,6 +19927,15 @@
   ],
   "url": "https://github.com/MartinDelophy/ai-video-editor"
  },
+ "gh:martinpuli/taste-library": {
+  "description": "Design references from Cosign's top 40 High Taste Companies, extracted with TasteLabs and indexed for AI agents.",
+  "first_seen": "2026-11-12",
+  "id": "gh:martinpuli/taste-library",
+  "kind": "repo",
+  "name": "MartinPuli/taste-library",
+  "tags": [],
+  "url": "https://github.com/MartinPuli/taste-library"
+ },
  "gh:masscodeio/masscode": {
   "description": "A free, open-source developer workspace. Snippets, notes, HTTP requests, calculations, and dev tools in one local-first app.",
   "first_seen": "2026-11-08",
@@ -21000,6 +21218,21 @@
   ],
   "url": "https://github.com/MiniMax-AI/mcode-stack"
  },
+ "gh:minimax-ai/minimax-h3-image": {
+  "description": "MiniMax-H3-Image, an open-weight model for 16-megapixel image generation and editing.",
+  "first_seen": "2026-11-12",
+  "id": "gh:minimax-ai/minimax-h3-image",
+  "kind": "repo",
+  "name": "MiniMax-AI/MiniMax-H3-Image",
+  "tags": [
+   "agent-skills",
+   "diffusion-models",
+   "image-editing",
+   "image-generation",
+   "minimax-h3-image"
+  ],
+  "url": "https://github.com/MiniMax-AI/MiniMax-H3-Image"
+ },
  "gh:minimax-ai/minimax-mcp": {
   "description": "Official MiniMax Model Context Protocol (MCP) server that enables interaction with powerful Text to Speech, image generation and video generation APIs.",
   "first_seen": "2026-11-11",
@@ -21404,6 +21637,21 @@
   "name": "Moeblack/moss-image-prompt-skill",
   "tags": [],
   "url": "https://github.com/Moeblack/moss-image-prompt-skill"
+ },
+ "gh:moh4696/cinematic-skill": {
+  "description": "Agent skill for narrated cinematic films built entirely from code: one continuous camera over photos, maps and cards, timed to the voice. Claude Code, Codex, Cursor, Gemini CLI.",
+  "first_seen": "2026-11-12",
+  "id": "gh:moh4696/cinematic-skill",
+  "kind": "repo",
+  "name": "Moh4696/cinematic-skill",
+  "tags": [
+   "agent-skills",
+   "claude-code",
+   "codex",
+   "documentary",
+   "explainer-video"
+  ],
+  "url": "https://github.com/Moh4696/cinematic-skill"
  },
  "gh:moh4696/open-3d-skills": {
   "description": "Eight agent skills for 3D and animated websites: three.js scenes from code, scroll films, transparent video, cursor rigs, exploded views, AI motion assets, browser checks and 60 fps recording. Claude Code, Codex, Cursor, Gemini CLI.",
@@ -22049,7 +22297,9 @@
    "autonomous-agents",
    "claude-code",
    "ctf",
-   "llm"
+   "llm",
+   "agentic-workflows",
+   "ai-security"
   ],
   "url": "https://github.com/N1nEmAn/sapper-v2"
  },
@@ -22636,6 +22886,21 @@
   ],
   "url": "https://github.com/neutro2025/chimera-desktop-installer"
  },
+ "gh:nevertoday/xxd-pstack": {
+  "description": "Your AI says \u201cfixed\u201d and it's still broken. pstack makes it try its own work first. A plain-language guide to pstack for Claude Code, Cursor and Codex: start with no coding, in 10 languages.",
+  "first_seen": "2026-11-12",
+  "id": "gh:nevertoday/xxd-pstack",
+  "kind": "repo",
+  "name": "nevertoday/xxd-pstack",
+  "tags": [
+   "agent-skills",
+   "ai-coding",
+   "astro",
+   "beginners",
+   "claude-code"
+  ],
+  "url": "https://github.com/nevertoday/xxd-pstack"
+ },
  "gh:newbeem4n/codex-overload-fix": {
   "description": "A local retry shim that stops Codex's \"Selected model is at capacity\" error from interrupting your work.",
   "first_seen": "2026-11-03",
@@ -22710,6 +22975,21 @@
    "claude-design"
   ],
   "url": "https://github.com/nexu-io/open-design"
+ },
+ "gh:nexu-io/openmotion": {
+  "description": "The open-source full-stack studio for Opus 5.5 motion video. Reverse engineering for any video. Code video with HTML: recreate, edit and render. BYOA + BYOK \u00b7 Motion.md \u00b7 Images, Video, Music & Voice.",
+  "first_seen": "2026-11-12",
+  "id": "gh:nexu-io/openmotion",
+  "kind": "repo",
+  "name": "nexu-io/openmotion",
+  "tags": [
+   "agent-skills",
+   "agentic-ai",
+   "ai-agents",
+   "ai-video",
+   "byok"
+  ],
+  "url": "https://github.com/nexu-io/openmotion"
  },
  "gh:neywa-labs/mlx-audio": {
   "description": "A text-to-speech (TTS), speech-to-text (STT) and speech-to-speech (STS) library built on Apple's MLX framework, providing efficient speech analysis on Apple Silicon.",
@@ -23013,6 +23293,21 @@
   "name": "no8d/ComfyUI-NO8D-controls",
   "tags": [],
   "url": "https://github.com/no8d/ComfyUI-NO8D-controls"
+ },
+ "gh:noah-thing/open-cursor": {
+  "description": "The free, open source Cursor alternative. An AI code editor that runs on your own API key, your Claude Code or Codex plan, local models, or free models.",
+  "first_seen": "2026-11-12",
+  "id": "gh:noah-thing/open-cursor",
+  "kind": "repo",
+  "name": "noah-thing/open-cursor",
+  "tags": [
+   "ai",
+   "ai-agent",
+   "ai-code-editor",
+   "ai-ide",
+   "byok"
+  ],
+  "url": "https://github.com/noah-thing/open-cursor"
  },
  "gh:nobodywho-ooo/nobodywho": {
   "description": "NobodyWho is an inference engine that lets you run LLMs locally and efficiently on any device.  ",
@@ -23610,6 +23905,21 @@
    "feedback-analysis"
   ],
   "url": "https://github.com/obsei/obsei"
+ },
+ "gh:obsidianmd/obsidian-skills": {
+  "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
+  "first_seen": "2026-11-12",
+  "id": "gh:obsidianmd/obsidian-skills",
+  "kind": "repo",
+  "name": "obsidianmd/obsidian-skills",
+  "tags": [
+   "agents",
+   "agentskills",
+   "bases",
+   "claude",
+   "clawdbot"
+  ],
+  "url": "https://github.com/obsidianmd/obsidian-skills"
  },
  "gh:ocornut/imgui": {
   "description": "Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies",
@@ -25823,7 +26133,13 @@
   "id": "gh:phuryn/product-engineering",
   "kind": "repo",
   "name": "phuryn/product-engineering",
-  "tags": [],
+  "tags": [
+   "agent-skills",
+   "ai-agents",
+   "claude-code",
+   "claude-code-marketplace",
+   "claude-code-plugins"
+  ],
   "url": "https://github.com/phuryn/product-engineering"
  },
  "gh:phuryn/work-humanizer": {
@@ -26107,6 +26423,21 @@
    "text-to-speech"
   ],
   "url": "https://github.com/pnnbao97/VieNeu-TTS"
+ },
+ "gh:poco-ai/agentero-dsh-plugin": {
+  "description": "\u7ed9 DeepSeek Harness \u7528\u7684\u79d1\u7814\u6587\u732e\u5e93\u63d2\u4ef6\uff1a\u641c\u8bba\u6587\u3001\u5e26\u51fa\u5904\u3001\u5ba1\u6279\u5165\u5e93\u3001\u628a\u7b14\u8bb0\u7ebf\u7d22\u4ea4\u7ed9\u540c\u4f1a\u8bdd\u5176\u4ed6\u63d2\u4ef6\u3002Academic research library for DSH \u2014 search, cite, approve imports, hand off notes.",
+  "first_seen": "2026-11-12",
+  "id": "gh:poco-ai/agentero-dsh-plugin",
+  "kind": "repo",
+  "name": "poco-ai/agentero-dsh-plugin",
+  "tags": [
+   "academic",
+   "agentero",
+   "ai-agents",
+   "citations",
+   "deepseek-harness"
+  ],
+  "url": "https://github.com/poco-ai/agentero-dsh-plugin"
  },
  "gh:pola-rs/polars": {
   "description": "Extremely fast Query Engine for DataFrames, written in Rust",
@@ -27835,6 +28166,21 @@
   ],
   "url": "https://github.com/RfidResearchGroup/ChameleonUltra"
  },
+ "gh:rhinoc/xprite-pixelate": {
+  "description": "Recover the real pixel grid of AI-generated and upscaled pixel art, and turn images into pixel art.",
+  "first_seen": "2026-11-12",
+  "id": "gh:rhinoc/xprite-pixelate",
+  "kind": "repo",
+  "name": "rhinoc/xprite-pixelate",
+  "tags": [
+   "ai-pixel-art",
+   "computer-vision",
+   "game-dev",
+   "generative-ai",
+   "grid-detection"
+  ],
+  "url": "https://github.com/rhinoc/xprite-pixelate"
+ },
  "gh:rhosunace/umbrella-hwid-resp-tool": {
   "description": "Umbrella Spoofer: HWID changer, hardware identifier modification, disk serial number spoofing, MAC address changer. Kernel-level driver, SMBIOS UUID update, registry cleanup, motherboard serials. Anti-cheat integrity, EAC validation, BattlEye status, hardware ban removal, permanent spoofing.",
   "first_seen": "2026-11-08",
@@ -28216,7 +28562,8 @@
    "claude-code",
    "cluade",
    "codex",
-   "devin"
+   "devin",
+   "claude"
   ],
   "url": "https://github.com/router-for-me/CLIProxyAPI"
  },
@@ -29940,6 +30287,15 @@
   ],
   "url": "https://github.com/shiyu-coder/Kronos"
  },
+ "gh:shouryan01/nikon-recipes": {
+  "description": "AI culling & recipe studio for Nikon that learns your taste",
+  "first_seen": "2026-11-12",
+  "id": "gh:shouryan01/nikon-recipes",
+  "kind": "repo",
+  "name": "shouryan01/Nikon-Recipes",
+  "tags": [],
+  "url": "https://github.com/shouryan01/Nikon-Recipes"
+ },
  "gh:shubhamsaboo/awesome-llm-apps": {
   "description": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
   "first_seen": "2026-11-01",
@@ -30204,6 +30560,21 @@
    "haskell"
   ],
   "url": "https://github.com/simplex-chat/simplex-chat"
+ },
+ "gh:simplexai-labs/linger": {
+  "description": "Linger is An Open-Source Personal Agent That Runs Fully on Your PC.  We aim to break Big Tech\u2019s grip on AI by bringing powerful local AI to everyday computers through efficient model\u2013harness co-design, so everyone can run their own.",
+  "first_seen": "2026-11-12",
+  "id": "gh:simplexai-labs/linger",
+  "kind": "repo",
+  "name": "simplexai-labs/linger",
+  "tags": [
+   "agent-teams",
+   "local-llm",
+   "memory",
+   "personal-agent",
+   "proactive-agent"
+  ],
+  "url": "https://github.com/simplexai-labs/linger"
  },
  "gh:simplexai-labs/polystrata": {
   "description": "Run large AI models on your own PC: Qwen3.8-Flash-Next on Strata's engine, and GLM 5.3 Flash, DeepSeek V4 Flash, LFM2.5, Qwen3.6, Ornith 1.5, Gemma 4, Tiel Coder and MiniCPM-V on a second engine written for PolyStrata. One-click install for Windows and Linux, OpenAI/Anthropic API on localhost.",
@@ -31338,6 +31709,21 @@
   ],
   "url": "https://github.com/stas00/ml-engineering"
  },
+ "gh:stashdock/stashdock": {
+  "description": "Your AI-native personal context library. Collect, organize and reuse context across AI conversations.",
+  "first_seen": "2026-11-12",
+  "id": "gh:stashdock/stashdock",
+  "kind": "repo",
+  "name": "StashDock/StashDock",
+  "tags": [
+   "ai",
+   "context-library",
+   "local-first",
+   "mcp",
+   "productivity"
+  ],
+  "url": "https://github.com/StashDock/StashDock"
+ },
  "gh:staylamebro/backburner": {
   "description": "Your iPhone helps your Mac run a 27B model: faster prompt reading and more context over a USB-C cable",
   "first_seen": "2026-11-01",
@@ -31662,6 +32048,21 @@
    "mapping"
   ],
   "url": "https://github.com/streetcomplete/StreetComplete"
+ },
+ "gh:study8677/awesome-architecture": {
+  "description": "\ud83e\udded Architecture-first system design: 26 bilingual tutorials, 25 architecture templates, and 6 end-to-end cases covering distributed systems, AI-native systems, RAG, coding Agents, and production trade-offs.",
+  "first_seen": "2026-11-12",
+  "id": "gh:study8677/awesome-architecture",
+  "kind": "repo",
+  "name": "study8677/awesome-architecture",
+  "tags": [
+   "ai-agents",
+   "ai-coding",
+   "ai-native",
+   "architecture-decision-records",
+   "architecture-patterns"
+  ],
+  "url": "https://github.com/study8677/awesome-architecture"
  },
  "gh:subframeapp/subframe": {
   "description": "Open-source developer tools by Subframe, including our CLI tool, Radix components, and doc site",
@@ -33689,6 +34090,20 @@
   ],
   "url": "https://github.com/TonF1917/claude-desktop-multiple-windows-different-api"
  },
+ "gh:tongjingqi/ai-can-learn-scientific-taste": {
+  "description": "We propose Reinforcement Learning from Community Feedback (RLCF), a training paradigm that uses large-scale community signals as supervision, and formulate scientific taste learning as a preference modeling and alignment problem.",
+  "first_seen": "2026-11-12",
+  "id": "gh:tongjingqi/ai-can-learn-scientific-taste",
+  "kind": "repo",
+  "name": "tongjingqi/AI-Can-Learn-Scientific-Taste",
+  "tags": [
+   "agent",
+   "ai-innovator",
+   "ai-scientists",
+   "rl"
+  ],
+  "url": "https://github.com/tongjingqi/AI-Can-Learn-Scientific-Taste"
+ },
  "gh:tooljet/tooljet": {
   "description": "Open-source foundation of ToolJet AI - the enterprise app generation platform for internal tools, dashboards, business applications, workflows and AI agents. Build visually, from a prompt, or from Claude Code, Codex and Cursor over MCP \ud83d\ude80",
   "first_seen": "2026-11-01",
@@ -35639,6 +36054,15 @@
   ],
   "url": "https://github.com/vxcontrol/pentagi"
  },
+ "gh:vzroslieigry/maxagent": {
+  "description": "Experience for AI agents: hooks that make Claude Code, Codex, Antigravity and OpenClaw recall and record what worked, plus maxagent-bridge for your own Chrome.",
+  "first_seen": "2026-11-12",
+  "id": "gh:vzroslieigry/maxagent",
+  "kind": "repo",
+  "name": "vzroslieigry/maxagent",
+  "tags": [],
+  "url": "https://github.com/vzroslieigry/maxagent"
+ },
  "gh:w2sv/wifi-widget": {
   "description": "A sleek, customizable Android widget for monitoring your Wi-Fi connection.",
   "first_seen": "2026-11-03",
@@ -35999,6 +36423,21 @@
    "mcp"
   ],
   "url": "https://github.com/weike-zhang/architecture-canvas"
+ },
+ "gh:weixijia/mas-office": {
+  "description": "See your multi-agent system work: a framework-agnostic protocol and live, animated office for AI agent teams.",
+  "first_seen": "2026-11-12",
+  "id": "gh:weixijia/mas-office",
+  "kind": "repo",
+  "name": "weixijia/mas-office",
+  "tags": [
+   "agents",
+   "ai-agents",
+   "claude",
+   "langgraph",
+   "llm"
+  ],
+  "url": "https://github.com/weixijia/mas-office"
  },
  "gh:wendigolord/cloudflare-telegram-rpocket-bot-builder": {
   "description": "HG-TeleFlare: Build Telegram bots without code. Zero-config, self-bootstrapping Cloudflare Workers with D1, KV, and visual rule builder. Deploy in 60s. \u26a1",
@@ -38110,6 +38549,21 @@
   ],
   "url": "https://github.com/ZigZagBoi1/PS5-14.10-Research"
  },
+ "gh:zilliztech/claude-context": {
+  "description": "Code search MCP for Claude Code. Make entire codebase the context for any coding agent.",
+  "first_seen": "2026-11-12",
+  "id": "gh:zilliztech/claude-context",
+  "kind": "repo",
+  "name": "zilliztech/claude-context",
+  "tags": [
+   "agent",
+   "agentic-rag",
+   "ai-coding",
+   "claude-code",
+   "code-generation"
+  ],
+  "url": "https://github.com/zilliztech/claude-context"
+ },
  "gh:zionatoprain/pc-resp-gaming-windows-compatibility": {
   "description": "PC gaming compatibility resources for Windows 10 and Windows 11, including TPM 2.0, Secure Boot, anti-cheat compatibility, and troubleshooting guides.",
   "first_seen": "2026-11-11",
@@ -38291,6 +38745,21 @@
   ],
   "url": "https://github.com/zylon-ai/private-gpt"
  },
+ "hf-model:0ppxnhximxr/snapref-v2a": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:0ppxnhximxr/snapref-v2a",
+  "kind": "model",
+  "name": "0ppxnhximxr/snapref-v2a",
+  "tags": [
+   "text-to-image",
+   "diffusers",
+   "anima",
+   "comfyui",
+   "reference-image"
+  ],
+  "url": "https://huggingface.co/0ppxnhximxr/snapref-v2a"
+ },
  "hf-model:abenzerps/qwen-image-2.1-turbo-quantized": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -38471,6 +38940,21 @@
   ],
   "url": "https://huggingface.co/Axion1-0/Axion-1.0-35B"
  },
+ "hf-model:baai/arex-2": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:baai/arex-2",
+  "kind": "model",
+  "name": "BAAI/AREX-2",
+  "tags": [
+   "image-text-to-text",
+   "transformers",
+   "safetensors",
+   "qwen3_5",
+   "image-text-to-text"
+  ],
+  "url": "https://huggingface.co/BAAI/AREX-2"
+ },
  "hf-model:baidu/ernie-5.5-flash-base": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -38618,6 +39102,21 @@
    "code"
   ],
   "url": "https://huggingface.co/ccore/Qwen3.5-4B-GLB-3D-Coder"
+ },
+ "hf-model:chatrlabs/qwen-image-2.1-uncensored-omni-quantized": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:chatrlabs/qwen-image-2.1-uncensored-omni-quantized",
+  "kind": "model",
+  "name": "chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized",
+  "tags": [
+   "text-to-image",
+   "diffusers",
+   "safetensors",
+   "gguf",
+   "qwen-image"
+  ],
+  "url": "https://huggingface.co/chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized"
  },
  "hf-model:comfy-org/idol": {
   "description": "",
@@ -38934,6 +39433,21 @@
   ],
   "url": "https://huggingface.co/google/embeddinggemma-2"
  },
+ "hf-model:hal-x-ai/thx-02": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:hal-x-ai/thx-02",
+  "kind": "model",
+  "name": "HAL-X-AI/THX-02",
+  "tags": [
+   "zero-shot-classification",
+   "thx02",
+   "safetensors",
+   "decision-model",
+   "classification"
+  ],
+  "url": "https://huggingface.co/HAL-X-AI/THX-02"
+ },
  "hf-model:hauhaucs/qwen3.8-27b-uncensored-hauhaucs-aggressive-mtp-gguf": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -38949,6 +39463,19 @@
   ],
   "url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF"
  },
+ "hf-model:hexgrad/kokoro-82m": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:hexgrad/kokoro-82m",
+  "kind": "model",
+  "name": "hexgrad/Kokoro-82M",
+  "tags": [
+   "text-to-speech",
+   "text-to-speech",
+   "en"
+  ],
+  "url": "https://huggingface.co/hexgrad/Kokoro-82M"
+ },
  "hf-model:huihui-ai/huihui-qwen3.8-27b-abliterated-gguf": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -38963,6 +39490,21 @@
    "uncensored"
   ],
   "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF"
+ },
+ "hf-model:ifm/pan2": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:ifm/pan2",
+  "kind": "model",
+  "name": "IFM/PAN2",
+  "tags": [
+   "image-text-to-video",
+   "pan",
+   "diffusers",
+   "safetensors",
+   "world-model"
+  ],
+  "url": "https://huggingface.co/IFM/PAN2"
  },
  "hf-model:ista-daslab/deepseek-v4.1-flash-1017-gsq-rco-coder-gguf": {
   "description": "",
@@ -39062,6 +39604,21 @@
   "name": "kopper/RelayVSR",
   "tags": [],
   "url": "https://huggingface.co/kopper/RelayVSR"
+ },
+ "hf-model:krafton/raon-1-nano": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:krafton/raon-1-nano",
+  "kind": "model",
+  "name": "KRAFTON/Raon-1-nano",
+  "tags": [
+   "text-generation",
+   "transformers",
+   "safetensors",
+   "raon1_nano",
+   "text-generation"
+  ],
+  "url": "https://huggingface.co/KRAFTON/Raon-1-nano"
  },
  "hf-model:kyutai/pocket-tts": {
   "description": "",
@@ -39182,6 +39739,21 @@
   ],
   "url": "https://huggingface.co/meituan-longcat/LongCat-2.5"
  },
+ "hf-model:meta-llama/llama-3.1-8b-instruct": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:meta-llama/llama-3.1-8b-instruct",
+  "kind": "model",
+  "name": "meta-llama/Llama-3.1-8B-Instruct",
+  "tags": [
+   "text-generation",
+   "transformers",
+   "safetensors",
+   "llama",
+   "text-generation"
+  ],
+  "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+ },
  "hf-model:microsoft/mage-vl-cowork": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -39196,6 +39768,21 @@
    "multimodal"
   ],
   "url": "https://huggingface.co/microsoft/Mage-VL-Cowork"
+ },
+ "hf-model:minimalabs/klm-1.6": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:minimalabs/klm-1.6",
+  "kind": "model",
+  "name": "MinimaLabs/KLM-1.6",
+  "tags": [
+   "text-generation",
+   "transformers",
+   "safetensors",
+   "klm",
+   "text-generation"
+  ],
+  "url": "https://huggingface.co/MinimaLabs/KLM-1.6"
  },
  "hf-model:minimaxai/minimax-h3": {
   "description": "",
@@ -39227,6 +39814,21 @@
   ],
   "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image"
  },
+ "hf-model:minimaxai/minimax-h3-image-pe": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:minimaxai/minimax-h3-image-pe",
+  "kind": "model",
+  "name": "MiniMaxAI/MiniMax-H3-Image-PE",
+  "tags": [
+   "text-generation",
+   "transformers",
+   "safetensors",
+   "qwen3_5",
+   "image-text-to-text"
+  ],
+  "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image-PE"
+ },
  "hf-model:mistralai/mistral-large-4-1t-a52b": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -39256,6 +39858,21 @@
    "image-text-to-text"
   ],
   "url": "https://huggingface.co/ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming"
+ },
+ "hf-model:moonmath-ai/deepseek-v4.1-flash-1017-uncensored": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:moonmath-ai/deepseek-v4.1-flash-1017-uncensored",
+  "kind": "model",
+  "name": "MoonMath-ai/DeepSeek-V4.1-Flash-1017-uncensored",
+  "tags": [
+   "text-generation",
+   "transformers",
+   "safetensors",
+   "deepseek_v41",
+   "text-generation"
+  ],
+  "url": "https://huggingface.co/MoonMath-ai/DeepSeek-V4.1-Flash-1017-uncensored"
  },
  "hf-model:moonshotai/kimi-k3.1-pro": {
   "description": "",
@@ -39522,6 +40139,21 @@
   ],
   "url": "https://huggingface.co/PrunaAI/P-H3-Image-Comfy"
  },
+ "hf-model:pyannote/segmentation-3.0": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:pyannote/segmentation-3.0",
+  "kind": "model",
+  "name": "pyannote/segmentation-3.0",
+  "tags": [
+   "voice-activity-detection",
+   "pyannote-audio",
+   "pytorch",
+   "pyannote",
+   "pyannote-audio-model"
+  ],
+  "url": "https://huggingface.co/pyannote/segmentation-3.0"
+ },
  "hf-model:pyannote/speaker-diarization-3.1": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -39754,7 +40386,8 @@
    "gguf",
    "qwen3_5",
    "unsloth",
-   "endpoints_compatible"
+   "endpoints_compatible",
+   "qwen"
   ],
   "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF"
  },
@@ -39787,6 +40420,21 @@
    "gguf"
   ],
   "url": "https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash"
+ },
+ "hf-model:viggle/viggle-image-swap": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-model:viggle/viggle-image-swap",
+  "kind": "model",
+  "name": "Viggle/Viggle-Image-Swap",
+  "tags": [
+   "image-to-image",
+   "diffusers",
+   "lora",
+   "image-to-image",
+   "image-editing"
+  ],
+  "url": "https://huggingface.co/Viggle/Viggle-Image-Swap"
  },
  "hf-model:viggle/viggle-remake": {
   "description": "",
@@ -39954,6 +40602,20 @@
    "mcp-server"
   ],
   "url": "https://huggingface.co/spaces/aet256/Qwen-Image-Edit-Rapid-AIO-Loras-Experimental"
+ },
+ "hf-space:akhaliq/minimax-h3-image-2step": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:akhaliq/minimax-h3-image-2step",
+  "kind": "space",
+  "name": "akhaliq/minimax-h3-image-2step",
+  "tags": [
+   "gradio",
+   "text-to-image",
+   "image-generation",
+   "minimax-h3"
+  ],
+  "url": "https://huggingface.co/spaces/akhaliq/minimax-h3-image-2step"
  },
  "hf-space:akhaliq/qwen35-3d-coder-studio": {
   "description": "",
@@ -40190,6 +40852,17 @@
    "gradio"
   ],
   "url": "https://huggingface.co/spaces/FastVideo/FastH3-Omni"
+ },
+ "hf-space:fat-pig/moe-blogpost-zh": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:fat-pig/moe-blogpost-zh",
+  "kind": "space",
+  "name": "fat-pig/moe-blogpost-zh",
+  "tags": [
+   "static"
+  ],
+  "url": "https://huggingface.co/spaces/fat-pig/moe-blogpost-zh"
  },
  "hf-space:felyahuhing/qwen-image-21-uncensored": {
   "description": "",
@@ -40577,6 +41250,17 @@
   ],
   "url": "https://huggingface.co/spaces/kulkas2pintu/wan777"
  },
+ "hf-space:lakonik/pi-h3": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:lakonik/pi-h3",
+  "kind": "space",
+  "name": "Lakonik/pi-H3",
+  "tags": [
+   "gradio"
+  ],
+  "url": "https://huggingface.co/spaces/Lakonik/pi-H3"
+ },
  "hf-space:lampyy/qwen-image-edit": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -40769,6 +41453,17 @@
   ],
   "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index"
  },
+ "hf-space:mxderncultxre/gemma4-31b-uncensored-assistant": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:mxderncultxre/gemma4-31b-uncensored-assistant",
+  "kind": "space",
+  "name": "mxderncultxre/Gemma4-31b-uncensored-assistant",
+  "tags": [
+   "gradio"
+  ],
+  "url": "https://huggingface.co/spaces/mxderncultxre/Gemma4-31b-uncensored-assistant"
+ },
  "hf-space:nanotron/ultrascale-playbook": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -40826,6 +41521,17 @@
    "gradio"
   ],
   "url": "https://huggingface.co/spaces/observantdistressed/minimax-h3-turbo"
+ },
+ "hf-space:openbmb/voxcpm-demo": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:openbmb/voxcpm-demo",
+  "kind": "space",
+  "name": "openbmb/VoxCPM-Demo",
+  "tags": [
+   "gradio"
+  ],
+  "url": "https://huggingface.co/spaces/openbmb/VoxCPM-Demo"
  },
  "hf-space:phips/upscaler": {
   "description": "",
@@ -40940,6 +41646,17 @@
   ],
   "url": "https://huggingface.co/spaces/rdata92/LTX-2.3-10Eros"
  },
+ "hf-space:ritianyu/splatanything": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:ritianyu/splatanything",
+  "kind": "space",
+  "name": "ritianyu/SplatAnything",
+  "tags": [
+   "gradio"
+  ],
+  "url": "https://huggingface.co/spaces/ritianyu/SplatAnything"
+ },
  "hf-space:sandflow/sand3d-explorer": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -41041,6 +41758,17 @@
   ],
   "url": "https://huggingface.co/spaces/thea2026/image-to-video"
  },
+ "hf-space:tonyassi/video-face-swap": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:tonyassi/video-face-swap",
+  "kind": "space",
+  "name": "tonyassi/video-face-swap",
+  "tags": [
+   "gradio"
+  ],
+  "url": "https://huggingface.co/spaces/tonyassi/video-face-swap"
+ },
  "hf-space:townbox/ava": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -41066,6 +41794,20 @@
   ],
   "url": "https://huggingface.co/spaces/townbox/motionbricks-playground"
  },
+ "hf-space:ukrainiancatholicuniversity/rukopys-leaderboard": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:ukrainiancatholicuniversity/rukopys-leaderboard",
+  "kind": "space",
+  "name": "UkrainianCatholicUniversity/rukopys-leaderboard",
+  "tags": [
+   "static",
+   "leaderboard",
+   "ocr",
+   "handwriting-recognition"
+  ],
+  "url": "https://huggingface.co/spaces/UkrainianCatholicUniversity/rukopys-leaderboard"
+ },
  "hf-space:umaircxnd/minimax-h3-turbo-lora-uncensored-workflow": {
   "description": "",
   "first_seen": "2026-11-10",
@@ -41076,6 +41818,17 @@
    "gradio"
   ],
   "url": "https://huggingface.co/spaces/umaircxnd/MiniMax-H3-Turbo-Lora-UNCENSORED-Workflow"
+ },
+ "hf-space:uv-scripts/run-on-jobs": {
+  "description": "",
+  "first_seen": "2026-11-12",
+  "id": "hf-space:uv-scripts/run-on-jobs",
+  "kind": "space",
+  "name": "uv-scripts/run-on-jobs",
+  "tags": [
+   "static"
+  ],
+  "url": "https://huggingface.co/spaces/uv-scripts/run-on-jobs"
  },
  "hf-space:vagosolutions/sauerkrautlm-glinerel-knowledge-graph": {
   "description": "",

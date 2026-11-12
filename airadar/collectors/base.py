@@ -52,6 +52,10 @@ DEFAULT_WATCH = {
     "pypi": ["openai", "anthropic", "langchain", "llama-index", "mcp", "litellm", "crewai",
              "dspy", "pydantic-ai", "vllm", "transformers", "smolagents"],
     "auto_terms": [],
+    # Auto terms dropped because their search came back mostly off-topic.
+    # Remembered, so mining never adds them back ("developer-tools", dropped
+    # on 2026-11-10, was mined again the next day before this existed).
+    "dropped_terms": [],
 }
 
 

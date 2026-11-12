@@ -865,6 +865,34 @@ def test_a_term_with_mostly_off_topic_intake_is_dropped(tmp_path):
               {"term": "rare", "apps": 4, "on_topic": 0, "off_examples": []}]   # too few to judge
     expand_watch(store, [], [], intake)
     assert load_watch(path)["auto_terms"] == ["skill", "rare"]
+    assert load_watch(path)["dropped_terms"] == ["scenario"]
+
+
+def test_a_dropped_term_is_never_mined_again(tmp_path):
+    """On 2026-11-11 "developer-tools", dropped the day before as off-topic,
+    was mined back from a high-scoring group. Dropped terms are remembered."""
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.directions import EmergentGroup
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    watch = load_watch(path)
+    watch["auto_terms"] = ["developer-tools"]
+    save_watch(path, watch)
+    expand_watch(store, [], [], [{"term": "developer-tools", "apps": 21, "on_topic": 3, "off_examples": []}])
+    assert load_watch(path)["auto_terms"] == []
+
+    members = [f"gh:o/d{i}" for i in range(3)]
+    store.add([App(m, m[3:], f"https://github.com/{m[3:]}", AppKind.REPO, "", ["coding-agent"], D0)
+               for m in members], [])
+    group = EmergentGroup("x", ["developer-tools", "worktree"], members, 0.6)
+    added = expand_watch(store, [group], [AppScore(m, 0.9, 1, [], []) for m in members])
+    assert added == ["worktree"]
+    assert "developer-tools" not in load_watch(path)["auto_terms"]
 
 
 def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):

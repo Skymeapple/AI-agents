@@ -1,0 +1,40 @@
+{
+ "takeaway": "The radar caught its first hard evidence of fake likes: an 'uncensored' model's GGUF copy on Hugging Face fell from 196 likes to 10 in a day. Retell reported a $100M run rate and 56,000 monthly users. The Nov 6 forecast posted the best like-for-like score since October.",
+ "findings": [
+  {
+   "id": "fakelikes",
+   "heading": "Fake likes withdrawn on Hugging Face",
+   "text": "mradermacher's GGUF copy of an 'uncensored' DeepSeek-V4-Pro merge went from 82 likes to 196 and then to 10 in two days. Reviewed as inorganic. The original kept its 4,790 likes and is still under review.",
+   "source": "https://huggingface.co/api/models/mradermacher/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-GGUF"
+  },
+  {
+   "id": "retell",
+   "heading": "Retell: $100M run rate, 56,000 monthly users",
+   "text": "The voice-agent company surpassed $100 million in annualized run rate and serves more than 56,000 monthly active users, as of Nov 12.",
+   "source": "https://finance.yahoo.com/technology/ai/articles/retell-surpasses-100m-annualized-run-140000130.html"
+  },
+  {
+   "id": "forecast",
+   "heading": "Nov 6 forecast: best like-for-like since October",
+   "text": "Rank correlation 0.53 over its own top 100, with 6 of its top 15 picks right. Measured apps ranked at 0.54, near October's 0.56–0.68.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-13.md"
+  },
+  {
+   "id": "jailbreak",
+   "heading": "The DeepSeek Harness jailbreak plugin is deleted",
+   "text": "FJNB5/fujiang-pojia, a jailbreak-and-exploit plugin with a 53% fork ratio, now returns HTTP 404, two days after it reached the top 25.",
+   "source": "https://github.com/FJNB5/fujiang-pojia"
+  },
+  {
+   "id": "launches",
+   "heading": "Launches: OpenAI codex-security, agentes-chat",
+   "text": "openai/codex-security gained 721 stars in a day, to 12,650. agentes-chat, a self-hosted Slack alternative shared with AI agents, gained 699 and already has 152 open issues.",
+   "source": "https://github.com/openai/codex-security"
+  }
+ ],
+ "caveats": [
+  "Hugging Face likes can be bought and later withdrawn; the radar reads them at face value until reviewed.",
+  "Kindo's +800% is stated as 'approximately' and is revenue growth for 2026, not ARR.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

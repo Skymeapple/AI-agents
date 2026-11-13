@@ -23,6 +23,7 @@ market gap exists.
 from __future__ import annotations
 
 import datetime as dt
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
@@ -205,9 +206,11 @@ def emergent_groups(
     result = discover(works, threshold=threshold, min_cluster_size=3, min_df=2, max_df_ratio=0.3)
     groups = []
     for track in result.tracks:
+        texts = [w.title.lower() + " " + w.abstract.lower() for w in track.works]
         novel = [
             t for t in track.terms
             if t not in known_words and t not in GENERIC_TERMS and t not in owners and len(t) >= 4
+            and _whole_word(t, texts)
         ]
         if len(novel) < 2:
             continue
@@ -218,6 +221,18 @@ def emergent_groups(
             cohesion=track.cohesion,
         ))
     return groups
+
+
+def _whole_word(term: str, texts: list[str]) -> bool:
+    """Whether ``term`` appears as a word of its own in any of ``texts``.
+
+    The tokenizer keeps letters and hyphens only, so a word with digits leaves
+    a fragment: "3d-models" gives "d-models", "deepseek-v4" gives
+    "deepseek-v". Searched on GitHub, a fragment matches nothing like the
+    group it came from, so it is not a term (seen 2026-11-10 and 2026-11-12).
+    """
+    pattern = re.compile(r"(?<![a-z0-9-])" + re.escape(term) + r"(?![a-z0-9-])")
+    return any(pattern.search(text) for text in texts)
 
 
 def opportunities(directions: list[Direction], apps: dict[str, App]) -> list[Opportunity]:

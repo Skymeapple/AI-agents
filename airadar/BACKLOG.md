@@ -5,10 +5,17 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Term mining splits at digits.** On 2026-11-10 mining added "d-models"
-  (from "3d-models"), and on 2026-11-12 "deepseek-v" (from "deepseek-v4").
-  Keep digits in tokens, or drop fragments that start with a hyphen-joined
-  remainder. (Restored 2026-11-12: lost by a faulty backlog edit on Nov 10.)
+- **Mining picks generic words and owner-name fragments.** On 2026-11-13
+  mining added "mini", "persistent" (generic) and "gentleman" (from the
+  owner Gentleman-Programming; the owner filter matches whole names only).
+  Split owner names on hyphens for the filter, and consider requiring a term
+  to appear in at least two members' descriptions, not just names.
+
+- **Clean up what dropped terms registered.** Repos pulled in by
+  "standalone" and "secure" (cracked-installer lures) keep surfacing in the
+  recheck list and occasionally the top 25, days after the terms were
+  dropped; they are removed by hand, a few a day. When a term is dropped,
+  list the repos only it brought in for one-pass review.
 
 - **One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
   like-for-like split showed the drop sits in the measured class (Oct
@@ -96,6 +103,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-13: digit fragments are no longer mined. The shared tokenizer
+  keeps letters and hyphens only ("3d-models" -> "d-models", "deepseek-v4"
+  -> "deepseek-v"); `emergent_groups` now keeps a term only if it appears as
+  a whole word in the group's text. Radar-side fix; sciscout untouched. The
+  two existing fragments moved to dropped_terms. Test uses the real
+  tokenizer.
 - 2026-11-12: dropped search terms are remembered. watch.json keeps
   `dropped_terms`; expand_watch adds every term it drops as off-topic and
   never mines one on the list again. Seeded with the nine terms dropped

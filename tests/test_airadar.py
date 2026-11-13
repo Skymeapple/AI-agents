@@ -1021,3 +1021,18 @@ def test_like_for_like_is_split_by_the_kind_of_evidence_behind_each_score(tmp_pa
     split = {c.evidence: c for c in like_for_like_by_evidence(store, later, store.load_observations())}
     assert split["measured"].apps == 4 and split["measured"].spearman == pytest.approx(1.0)
     assert split["stated on a page"].apps == 3 and split["stated on a page"].spearman == pytest.approx(-1.0)
+
+
+def test_a_fragment_of_a_word_with_digits_is_not_a_search_term():
+    """The tokenizer drops digits, so "3d-models" leaves "d-models" and
+    "deepseek-v4" leaves "deepseek-v" (both mined in Nov 2026). A mined term
+    must appear as a word of its own somewhere in its group."""
+    from airadar.directions import _whole_word
+    from sciscout.discovery import tokenize
+
+    text = "awesome 3d-models and deepseek-v4 tools in gguf"
+    assert "d-models" in tokenize(text) and "deepseek-v" in tokenize(text)
+    assert not _whole_word("d-models", [text])
+    assert not _whole_word("deepseek-v", [text])
+    assert _whole_word("gguf", [text])
+    assert _whole_word("d-models", [text, "a list of d-models"])

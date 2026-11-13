@@ -5,6 +5,16 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Scorecard rows drift after they are published.** (Raised by the parent
+  session, 2026-11-13.) Nov 5's like-for-like was 0.452 on Nov 12 and 0.468
+  on Nov 13. Cause, checked by swapping files: recording the move
+  ethanplusai/harvey -> ethanplusai/sellbird on Nov 13 re-keyed that repo in
+  the Nov 5 forecast to the new id, whose realised history (readings under
+  the new name only) differs from the old id's. Fix options: freeze each
+  row when its forecast matures (store the evaluation), or have
+  `realised_scores` merge observations across aliases so a move changes
+  nothing. Interim: the report's scorecard text says rows can change and why.
+
 - **Mining picks generic words and owner-name fragments.** On 2026-11-13
   mining added "mini", "persistent" (generic) and "gentleman" (from the
   owner Gentleman-Programming; the owner filter matches whole names only).

@@ -5,16 +5,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Scorecard rows drift after they are published.** (Raised by the parent
-  session, 2026-11-13.) Nov 5's like-for-like was 0.452 on Nov 12 and 0.468
-  on Nov 13. Cause, checked by swapping files: recording the move
-  ethanplusai/harvey -> ethanplusai/sellbird on Nov 13 re-keyed that repo in
-  the Nov 5 forecast to the new id, whose realised history (readings under
-  the new name only) differs from the old id's. Fix options: freeze each
-  row when its forecast matures (store the evaluation), or have
-  `realised_scores` merge observations across aliases so a move changes
-  nothing. Interim: the report's scorecard text says rows can change and why.
-
 - **Mining picks generic words and owner-name fragments.** On 2026-11-13
   mining added "mini", "persistent" (generic) and "gentleman" (from the
   owner Gentleman-Programming; the owner filter matches whole names only).
@@ -113,6 +103,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-14: scorecard rows are frozen. `scorecard.jsonl` (append-only)
+  stores each forecast's evaluation the first day the daily run scores it;
+  `scorecard()` reports stored rows from then on, so a later move or reading
+  cannot change a published score (Nov 5 had drifted 0.452 -> 0.468 on a
+  move). Rows to Nov 7 frozen at their Nov 14 values. realised_scores and the
+  tuner untouched; the evidence-kind split is still computed live.
 - 2026-11-13: digit fragments are no longer mined. The shared tokenizer
   keeps letters and hyphens only ("3d-models" -> "d-models", "deepseek-v4"
   -> "deepseek-v"); `emergent_groups` now keeps a term only if it appears as

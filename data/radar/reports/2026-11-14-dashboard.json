@@ -1,0 +1,40 @@
+{
+ "takeaway": "Mercor's CEO says it reached $3B in run-rate revenue. Platform-owned agent repos led the day: Vercel's ui gained 1,756 stars and Google Chrome's modern-web-guidance 1,473. Scorecard rows are now frozen once published.",
+ "findings": [
+  {
+   "id": "mercor",
+   "heading": "Mercor: $3B run-rate revenue",
+   "text": "Announcing a $750M Series D at a $20B valuation, CEO Brendan Foody wrote that Mercor scaled from $1M to $3B in run-rate revenue in 27 months.",
+   "source": "https://www.linkedin.com/posts/brendan-foody-2995ab10b_we-raised-our-750-million-series-d-at-a-activity-752595"
+  },
+  {
+   "id": "vercelui",
+   "heading": "vercel-labs/ui: +1,756 stars in a day",
+   "text": "A library of behaviors for agents to build user interfaces, created Oct 26, went from 2,258 to 4,014 stars.",
+   "source": "https://github.com/vercel-labs/ui"
+  },
+  {
+   "id": "chrome",
+   "heading": "Google Chrome's guidance for coding agents",
+   "text": "GoogleChrome/modern-web-guidance-src, which keeps coding agents current on web best practices, gained 1,473 stars, to 5,080, with 389 open issues.",
+   "source": "https://github.com/GoogleChrome/modern-web-guidance-src"
+  },
+  {
+   "id": "astryx",
+   "heading": "meta/astryx cools sharply",
+   "text": "It gained 671 stars, down from 1,375 the day before: its slowest day since it entered the radar.",
+   "source": "https://github.com/meta/astryx"
+  },
+  {
+   "id": "frozen",
+   "heading": "Scorecard rows are frozen",
+   "text": "Each forecast's score is now stored the first day it is scored, so published rows no longer change. The Nov 7 forecast scored 0.46 on its top 100, with 5 of its top 15 picks right.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-14.md"
+  }
+ ],
+ "caveats": [
+  "Mercor's figure is the CEO's own post; its press release gives no revenue figure.",
+  "Scorecard rows up to Nov 7 were frozen at today's values, so Nov 5 shows 0.47 rather than the 0.45 first published.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

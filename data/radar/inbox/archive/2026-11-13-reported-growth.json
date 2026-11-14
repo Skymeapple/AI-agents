@@ -1,0 +1,53 @@
+{
+ "collected_at": "2026-11-13",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Retell",
+    "url": "https://www.retellai.com",
+    "kind": "product",
+    "description": "Voice AI agent platform for contact centers that lets businesses build, test and run their own phone agents.",
+    "tags": ["voice-ai", "ai-agents", "customer-service"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 100000000,
+   "observed_on": "2026-11-12",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/retell-surpasses-100m-annualized-run-140000130.html",
+   "method": "reported",
+   "note": "Company press release (Business Wire, San Carlos, Nov 12, 2026), syndicated on Yahoo Finance: Retell 'today announced it has surpassed $100 million in annualized run rate less than three years after launch'; listed under 'Key stats as of November 12, 2026'. Dated to the stated as-of date, Nov 12. No basis set: the release does not say gross, net or contracted. 'Surpassed' makes it a floor. The '$10 million to $100 million in 17 months' window is in months and is not recorded as growth. Page read with Tavily extract (Yahoo copy; the businesswire.com original timed out)."
+  },
+  {
+   "app": {
+    "name": "Retell",
+    "url": "https://www.retellai.com",
+    "kind": "product",
+    "description": "Voice AI agent platform for contact centers that lets businesses build, test and run their own phone agents.",
+    "tags": ["voice-ai", "ai-agents", "customer-service"]
+   },
+   "metric": "users",
+   "value": 56000,
+   "basis": "mau",
+   "observed_on": "2026-11-12",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/retell-surpasses-100m-annualized-run-140000130.html",
+   "method": "reported",
+   "note": "Same Nov 12, 2026 Business Wire release, under 'Key stats as of November 12, 2026': 'Serves more than 56,000 monthly active users and 4,000 businesses'. Basis mau as stated ('monthly active users'). 'More than' makes it a floor. Dated to the stated as-of date, Nov 12. Page read with Tavily extract (Yahoo copy)."
+  },
+  {
+   "app": {
+    "name": "Kindo",
+    "url": "https://kindo.ai",
+    "kind": "product",
+    "description": "AI agent management platform and enterprise AI control center for building, securing, governing and controlling the cost of AI agents.",
+    "tags": ["ai-agents", "enterprise-ai", "security"]
+   },
+   "metric": "growth_pct",
+   "value": 800,
+   "period_days": 365,
+   "observed_on": "2026-11-12",
+   "source_url": "https://www.prnewswire.com/news-releases/kindo-secures-57-6-million-to-expand-enterprise-control-over-ai-agent-actions-and-reduce-costs-302937058.html",
+   "method": "reported",
+   "note": "Company press release (PR Newswire, Los Angeles, Nov 12, 2026) announcing a $30M raise co-led by Crosspoint Capital and Forgepoint Capital: 'The company grew revenue by approximately 800% year over year in 2026'. Revenue, not ARR; 'approximately' as stated. 'Year over year' recorded as 365 days. The release gives no end date for the period, so this is dated to the Nov 12 announcement date. No revenue level disclosed. Page read with Tavily extract. App URL kindo.ai is the domain named in the release ('Learn more at kindo.ai')."
+  }
+ ]
+}

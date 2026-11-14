@@ -1,0 +1,1135 @@
+{
+ "date": "2026-10-24",
+ "directions": [
+  {
+   "commercial_count": 2,
+   "key": "security",
+   "mean_score": 0.6898,
+   "members": [
+    "gh:cloudflare/security-audit-skill",
+    "gh:ifixai-ai/ifixai",
+    "gh:morluto/rea",
+    "gh:nvidia/openshell",
+    "gh:snailsploit/claude-red",
+    "gh:yujunzhixue/dsh-purge",
+    "web:horizon3.ai",
+    "web:pluto.security"
+   ],
+   "open_count": 6,
+   "scored": 5,
+   "top_share": 1.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-orchestration",
+   "mean_score": 0.5708,
+   "members": [
+    "gh:paperclipai/paperclip",
+    "gh:stablyai/orca"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 3,
+   "key": "agent-runtime",
+   "mean_score": 0.5306,
+   "members": [
+    "gh:nvidia/openshell",
+    "web:modal.com",
+    "web:runpod.io",
+    "web:vercel.com"
+   ],
+   "open_count": 1,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 0,
+   "key": "generative-ui",
+   "mean_score": 0.4949,
+   "members": [
+    "gh:copilotkit/openintelligentui",
+    "gh:thesysdev/openui"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 0,
+   "key": "llm-gateway",
+   "mean_score": 0.4602,
+   "members": [
+    "gh:alishahryar1/free-claude-code",
+    "gh:corrinehu/dsh-workbuddy-connect",
+    "gh:tashfeenahmed/freellmapi"
+   ],
+   "open_count": 3,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-memory",
+   "mean_score": 0.4539,
+   "members": [
+    "gh:akitaonrails/ai-memory",
+    "gh:tencentcloud/tencentdb-agent-memory",
+    "gh:thedotmack/claude-mem",
+    "gh:vectorize-io/hindsight"
+   ],
+   "open_count": 4,
+   "scored": 4,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 4,
+   "key": "image-generation",
+   "mean_score": 0.4855,
+   "members": [
+    "gh:comfy-org/comfyui",
+    "gh:segfault42/heliosgen",
+    "gh:storytold/artcraft",
+    "web:adobe.com",
+    "web:designarena.ai",
+    "web:higgsfield.ai",
+    "web:openart.ai"
+   ],
+   "open_count": 3,
+   "scored": 5,
+   "top_share": 0.4
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-tools",
+   "mean_score": 0.4329,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:earthtojake/text-to-cad",
+    "gh:graphify-labs/graphify",
+    "gh:heygen-com/hyperframes",
+    "gh:hkuds/cli-anything",
+    "gh:shawnpana/phone-harness"
+   ],
+   "open_count": 6,
+   "scored": 6,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 1,
+   "key": "design",
+   "mean_score": 0.4179,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:cathrynlavery/diagram-design",
+    "gh:pbakaus/impeccable",
+    "web:meshy.ai"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 0,
+   "key": "local-llm",
+   "mean_score": 0.3627,
+   "members": [
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "gh:openbmb/minicpm-v"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 8,
+   "key": "video-generation",
+   "mean_score": 0.4558,
+   "members": [
+    "gh:harry0703/moneyprinterturbo",
+    "gh:heygen-com/hyperframes",
+    "gh:krillinai/opencreator",
+    "gh:segfault42/heliosgen",
+    "gh:storytold/artcraft",
+    "web:adobe.com",
+    "web:clueso.io",
+    "web:heygen.com",
+    "web:higgsfield.ai",
+    "web:klingai.com",
+    "web:minimax.io",
+    "web:openart.ai",
+    "web:runwayml.com"
+   ],
+   "open_count": 5,
+   "scored": 10,
+   "top_share": 0.3
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-skills",
+   "mean_score": 0.4582,
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:ai-job-search-dev/ai-job-search",
+    "gh:android/skills",
+    "gh:anthropics/claude-plugins-official",
+    "gh:anthropics/financial-services",
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:cathrynlavery/diagram-design",
+    "gh:cloudflare/security-audit-skill",
+    "gh:cursor/plugins",
+    "gh:dietrichgebert/ponytail",
+    "gh:k-dense-ai/scientific-agent-skills",
+    "gh:msitarzewski/agency-agents",
+    "gh:pbakaus/impeccable",
+    "gh:sickn33/agentic-awesome-skills",
+    "gh:snailsploit/claude-red",
+    "gh:vercel-labs/skills",
+    "gh:wshobson/agents"
+   ],
+   "open_count": 17,
+   "scored": 17,
+   "top_share": 0.2941
+  },
+  {
+   "commercial_count": 9,
+   "key": "coding-agent",
+   "mean_score": 0.461,
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:akitaonrails/ai-memory",
+    "gh:alishahryar1/free-claude-code",
+    "gh:android/skills",
+    "gh:anomalyco/opencode",
+    "gh:anthropics/claude-code",
+    "gh:anthropics/claude-plugins-official",
+    "gh:corrinehu/dsh-workbuddy-connect",
+    "gh:cursor/plugins",
+    "gh:dietrichgebert/ponytail",
+    "gh:elie222/rakazo",
+    "gh:graphify-labs/graphify",
+    "gh:luongnv89/claude-howto",
+    "gh:mksglu/context-mode",
+    "gh:morluto/rea",
+    "gh:pingdotgg/t3code",
+    "gh:ranxianglei/billion-context",
+    "gh:stablyai/orca",
+    "gh:thedotmack/claude-mem",
+    "gh:wshobson/agents",
+    "web:base44.com",
+    "web:claude.ai",
+    "web:cognition.ai",
+    "web:copilot.github.com",
+    "web:cursor.com",
+    "web:emergent.sh",
+    "web:kilo.ai",
+    "web:lovable.dev",
+    "web:openai.com/codex"
+   ],
+   "open_count": 20,
+   "scored": 24,
+   "top_share": 0.2917
+  },
+  {
+   "commercial_count": 11,
+   "key": "productivity",
+   "mean_score": 0.5001,
+   "members": [
+    "gh:ai-job-search-dev/ai-job-search",
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:paperclipai/paperclip",
+    "web:adobe.com",
+    "web:clueso.io",
+    "web:genspark.ai",
+    "web:getviktor.com",
+    "web:glean.com",
+    "web:jobright.ai",
+    "web:microsoft.com/microsoft-365",
+    "web:omi.me",
+    "web:otter.ai",
+    "web:plaud.ai",
+    "web:wisprflow.ai"
+   ],
+   "open_count": 3,
+   "scored": 7,
+   "top_share": 0.2857
+  },
+  {
+   "commercial_count": 5,
+   "key": "sales",
+   "mean_score": 0.4696,
+   "members": [
+    "gh:ethanplusai/harvey",
+    "web:aisdr.com",
+    "web:floqer.com",
+    "web:podium.com",
+    "web:salesforce.com",
+    "web:starbridge.ai"
+   ],
+   "open_count": 1,
+   "scored": 4,
+   "top_share": 0.25
+  },
+  {
+   "commercial_count": 0,
+   "key": "context-compression",
+   "mean_score": 0.4237,
+   "members": [
+    "gh:headroomlabs-ai/headroom",
+    "gh:mksglu/context-mode",
+    "gh:ranxianglei/billion-context",
+    "gh:thedotmack/claude-mem"
+   ],
+   "open_count": 4,
+   "scored": 4,
+   "top_share": 0.25
+  },
+  {
+   "commercial_count": 2,
+   "key": "devtools",
+   "mean_score": 0.4399,
+   "members": [
+    "gh:copilotkit/openintelligentui",
+    "gh:headroomlabs-ai/headroom",
+    "gh:hkuds/cli-anything",
+    "gh:pingdotgg/t3code",
+    "gh:thesysdev/openui",
+    "web:copilot.github.com",
+    "web:vercel.com"
+   ],
+   "open_count": 5,
+   "scored": 5,
+   "top_share": 0.2
+  },
+  {
+   "commercial_count": 13,
+   "key": "enterprise-agent",
+   "mean_score": 0.4262,
+   "members": [
+    "gh:ethanplusai/harvey",
+    "web:eliseai.com",
+    "web:genspark.ai",
+    "web:getviktor.com",
+    "web:glean.com",
+    "web:horizon3.ai",
+    "web:langdock.com",
+    "web:microsoft.com/microsoft-365",
+    "web:omilia.com",
+    "web:pigment.com",
+    "web:podium.com",
+    "web:rapidcanvas.ai",
+    "web:salesforce.com",
+    "web:sierra.ai"
+   ],
+   "open_count": 1,
+   "scored": 5,
+   "top_share": 0.2
+  },
+  {
+   "commercial_count": 8,
+   "key": "voice",
+   "mean_score": 0.3905,
+   "members": [
+    "gh:abus-aikorea/voice-pro",
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "gh:krillinai/opencreator",
+    "gh:nvidia/personaplex",
+    "gh:openbmb/voxcpm",
+    "web:anam.ai",
+    "web:elevenlabs.io",
+    "web:fish.audio",
+    "web:fonio.ai",
+    "web:minimax.io",
+    "web:omilia.com",
+    "web:otter.ai",
+    "web:wisprflow.ai"
+   ],
+   "open_count": 6,
+   "scored": 10,
+   "top_share": 0.2
+  },
+  {
+   "commercial_count": 16,
+   "key": "assistant",
+   "mean_score": 0.4128,
+   "members": [
+    "gh:tencentcloud/octop",
+    "web:chatgpt.com",
+    "web:claude.ai",
+    "web:deepseek.com",
+    "web:gemini.google.com",
+    "web:grok.com",
+    "web:instinct.ai",
+    "web:jobright.ai",
+    "web:kimi.com",
+    "web:langdock.com",
+    "web:microsoft.com/microsoft-365",
+    "web:muse.ai",
+    "web:omi.me",
+    "web:perplexity.ai",
+    "web:tolans.com",
+    "web:use.ai",
+    "web:venice.ai"
+   ],
+   "open_count": 1,
+   "scored": 6,
+   "top_share": 0.1667
+  },
+  {
+   "commercial_count": 6,
+   "key": "foundation-model",
+   "mean_score": 0.4202,
+   "members": [
+    "gh:nvidia/personaplex",
+    "gh:openbmb/voxcpm",
+    "gh:shiyu-coder/kronos",
+    "web:deepseek.com",
+    "web:fish.audio",
+    "web:kimi.com",
+    "web:minimax.io",
+    "web:skild.ai",
+    "web:z.ai"
+   ],
+   "open_count": 3,
+   "scored": 7,
+   "top_share": 0.1429
+  },
+  {
+   "commercial_count": 8,
+   "key": "customer-support",
+   "mean_score": 0.4688,
+   "members": [
+    "web:decagon.ai",
+    "web:elevenlabs.io",
+    "web:eliseai.com",
+    "web:fonio.ai",
+    "web:omilia.com",
+    "web:podium.com",
+    "web:salesforce.com",
+    "web:sierra.ai"
+   ],
+   "open_count": 0,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 3,
+   "key": "research-agent",
+   "mean_score": 0.4437,
+   "members": [
+    "gh:k-dense-ai/scientific-agent-skills",
+    "web:floqer.com",
+    "web:listenlabs.ai",
+    "web:starbridge.ai"
+   ],
+   "open_count": 1,
+   "scored": 3,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "education",
+   "mean_score": 0.4354,
+   "members": [
+    "gh:luongnv89/claude-howto",
+    "gh:rohitg00/ai-engineering-from-scratch"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-framework",
+   "mean_score": 0.4243,
+   "members": [
+    "gh:agent-substrate/substrate",
+    "gh:msitarzewski/agency-agents",
+    "gh:ruvnet/ruflo",
+    "gh:tencentcloud/octop"
+   ],
+   "open_count": 4,
+   "scored": 4,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 2,
+   "key": "legal",
+   "mean_score": 0.4015,
+   "members": [
+    "web:harvey.ai",
+    "web:legora.com"
+   ],
+   "open_count": 0,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 2,
+   "key": "finance",
+   "mean_score": 0.3527,
+   "members": [
+    "gh:anthropics/financial-services",
+    "gh:shiyu-coder/kronos",
+    "web:pigment.com",
+    "web:rogo.ai"
+   ],
+   "open_count": 2,
+   "scored": 3,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "mcp",
+   "mean_score": 0.3351,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:mksglu/context-mode"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 3,
+   "key": "llm-inference",
+   "mean_score": 0.3336,
+   "members": [
+    "gh:lightseekorg/tokenspeed",
+    "gh:sgl-project/sglang",
+    "gh:vllm-project/vllm",
+    "web:modal.com",
+    "web:runpod.io",
+    "web:z.ai"
+   ],
+   "open_count": 3,
+   "scored": 5,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 4,
+   "key": "multimodal",
+   "mean_score": 0.2989,
+   "members": [
+    "gh:openbmb/minicpm-v",
+    "web:anam.ai",
+    "web:meshy.ai",
+    "web:skild.ai",
+    "web:venice.ai"
+   ],
+   "open_count": 1,
+   "scored": 2,
+   "top_share": 0.0
+  }
+ ],
+ "emergent": [
+  {
+   "label": "cloning / open-source / dubbing",
+   "members": [
+    "gh:abus-aikorea/voice-pro",
+    "gh:openbmb/voxcpm",
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "web:wisprflow.ai",
+    "web:anam.ai",
+    "web:minimax.io",
+    "gh:krillinai/opencreator"
+   ]
+  },
+  {
+   "label": "open-weight / business / calls",
+   "members": [
+    "gh:tencentcloud/octop",
+    "web:adobe.com",
+    "web:chatgpt.com",
+    "web:gemini.google.com",
+    "web:deepseek.com",
+    "web:kimi.com",
+    "web:claude.ai",
+    "web:fonio.ai"
+   ]
+  },
+  {
+   "label": "higgsfield / desktop",
+   "members": [
+    "gh:harry0703/moneyprinterturbo",
+    "gh:heygen-com/hyperframes",
+    "gh:storytold/artcraft",
+    "web:higgsfield.ai",
+    "web:klingai.com",
+    "web:runwayml.com",
+    "gh:segfault42/heliosgen"
+   ]
+  },
+  {
+   "label": "agentic / optimization / labs",
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:snailsploit/claude-red",
+    "gh:android/skills",
+    "gh:vercel-labs/skills",
+    "gh:k-dense-ai/scientific-agent-skills",
+    "gh:sickn33/agentic-awesome-skills"
+   ]
+  },
+  {
+   "label": "claude / working / terminal",
+   "members": [
+    "gh:ai-job-search-dev/ai-job-search",
+    "gh:alishahryar1/free-claude-code",
+    "gh:anthropics/claude-code",
+    "gh:dietrichgebert/ponytail",
+    "gh:pingdotgg/t3code",
+    "gh:stablyai/orca"
+   ]
+  },
+  {
+   "label": "plugins / claude / repository",
+   "members": [
+    "gh:anthropics/claude-plugins-official",
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:anthropics/financial-services",
+    "gh:cursor/plugins",
+    "gh:wshobson/agents"
+   ]
+  },
+  {
+   "label": "harvey / workflows",
+   "members": [
+    "gh:ethanplusai/harvey",
+    "web:floqer.com",
+    "web:starbridge.ai",
+    "web:rapidcanvas.ai",
+    "web:salesforce.com"
+   ]
+  },
+  {
+   "label": "solution / agents / claude",
+   "members": [
+    "gh:akitaonrails/ai-memory",
+    "gh:vectorize-io/hindsight",
+    "gh:tencentcloud/tencentdb-agent-memory",
+    "gh:thedotmack/claude-mem"
+   ]
+  },
+  {
+   "label": "engine / serving / project",
+   "members": [
+    "gh:lightseekorg/tokenspeed",
+    "gh:vllm-project/vllm",
+    "web:modal.com",
+    "gh:sgl-project/sglang"
+   ]
+  },
+  {
+   "label": "workflows / harness / autonomous",
+   "members": [
+    "gh:agent-substrate/substrate",
+    "gh:msitarzewski/agency-agents",
+    "gh:ruvnet/ruflo"
+   ]
+  },
+  {
+   "label": "harness / codex / plugin",
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:cathrynlavery/diagram-design",
+    "gh:pbakaus/impeccable"
+   ]
+  },
+  {
+   "label": "vibe-coding / builds / prompts",
+   "members": [
+    "web:base44.com",
+    "web:emergent.sh",
+    "web:lovable.dev"
+   ]
+  }
+ ],
+ "params": {
+  "relative_weight": 0.5,
+  "shrinkage": 0.5,
+  "trust.api": 1.0,
+  "trust.page_extract": 0.7,
+  "trust.reported": 0.5,
+  "weight.delta": 1.0,
+  "weight.period": 1.0,
+  "weight.reported_growth": 0.6
+ },
+ "scores": [
+  {
+   "app_id": "gh:morluto/rea",
+   "evidence": 1.2868,
+   "score": 0.79832
+  },
+  {
+   "app_id": "gh:cloudflare/security-audit-skill",
+   "evidence": 1.3779,
+   "score": 0.776196
+  },
+  {
+   "app_id": "gh:ai-job-search-dev/ai-job-search",
+   "evidence": 1.3595,
+   "score": 0.770176
+  },
+  {
+   "app_id": "gh:debpalash/voicestudio",
+   "evidence": 1.3753,
+   "score": 0.742346
+  },
+  {
+   "app_id": "gh:ifixai-ai/ifixai",
+   "evidence": 1.3582,
+   "score": 0.72926
+  },
+  {
+   "app_id": "gh:storytold/artcraft",
+   "evidence": 1.3633,
+   "score": 0.696573
+  },
+  {
+   "app_id": "gh:stablyai/orca",
+   "evidence": 1.378,
+   "score": 0.670553
+  },
+  {
+   "app_id": "gh:akitaonrails/ai-memory",
+   "evidence": 1.3755,
+   "score": 0.650108
+  },
+  {
+   "app_id": "gh:dietrichgebert/ponytail",
+   "evidence": 1.3788,
+   "score": 0.644673
+  },
+  {
+   "app_id": "gh:nvidia/openshell",
+   "evidence": 1.3775,
+   "score": 0.605277
+  },
+  {
+   "app_id": "gh:graphify-labs/graphify",
+   "evidence": 1.3788,
+   "score": 0.600909
+  },
+  {
+   "app_id": "web:kimi.com",
+   "evidence": 0.3482,
+   "score": 0.58721
+  },
+  {
+   "app_id": "gh:heygen-com/hyperframes",
+   "evidence": 1.3753,
+   "score": 0.585392
+  },
+  {
+   "app_id": "gh:tashfeenahmed/freellmapi",
+   "evidence": 1.3738,
+   "score": 0.569971
+  },
+  {
+   "app_id": "gh:vectorize-io/hindsight",
+   "evidence": 1.3738,
+   "score": 0.561803
+  },
+  {
+   "app_id": "gh:ethanplusai/harvey",
+   "evidence": 1.0447,
+   "score": 0.560793
+  },
+  {
+   "app_id": "web:higgsfield.ai",
+   "evidence": 0.5118,
+   "score": 0.557831
+  },
+  {
+   "app_id": "gh:cathrynlavery/diagram-design",
+   "evidence": 1.3582,
+   "score": 0.557182
+  },
+  {
+   "app_id": "gh:snailsploit/claude-red",
+   "evidence": 0.7,
+   "score": 0.540098
+  },
+  {
+   "app_id": "gh:thesysdev/openui",
+   "evidence": 1.3738,
+   "score": 0.529868
+  },
+  {
+   "app_id": "gh:ranxianglei/billion-context",
+   "evidence": 1.3685,
+   "score": 0.522516
+  },
+  {
+   "app_id": "gh:elie222/rakazo",
+   "evidence": 1.3775,
+   "score": 0.503369
+  },
+  {
+   "app_id": "web:wisprflow.ai",
+   "evidence": 0.1053,
+   "score": 0.501227
+  },
+  {
+   "app_id": "web:fonio.ai",
+   "evidence": 0.096,
+   "score": 0.489774
+  },
+  {
+   "app_id": "gh:shiyu-coder/kronos",
+   "evidence": 1.3745,
+   "score": 0.483633
+  },
+  {
+   "app_id": "web:plaud.ai",
+   "evidence": 0.0502,
+   "score": 0.482601
+  },
+  {
+   "app_id": "gh:paperclipai/paperclip",
+   "evidence": 1.3738,
+   "score": 0.470989
+  },
+  {
+   "app_id": "web:minimax.io",
+   "evidence": 0.0502,
+   "score": 0.46824
+  },
+  {
+   "app_id": "web:emergent.sh",
+   "evidence": 0.0633,
+   "score": 0.465898
+  },
+  {
+   "app_id": "web:klingai.com",
+   "evidence": 0.0502,
+   "score": 0.464189
+  },
+  {
+   "app_id": "gh:anomalyco/opencode",
+   "evidence": 1.3738,
+   "score": 0.462336
+  },
+  {
+   "app_id": "gh:k-dense-ai/scientific-agent-skills",
+   "evidence": 1.3761,
+   "score": 0.46112
+  },
+  {
+   "app_id": "gh:copilotkit/openintelligentui",
+   "evidence": 1.3531,
+   "score": 0.459952
+  },
+  {
+   "app_id": "gh:comfy-org/comfyui",
+   "evidence": 1.3779,
+   "score": 0.458795
+  },
+  {
+   "app_id": "gh:anthropics/knowledge-work-plugins",
+   "evidence": 1.3778,
+   "score": 0.457463
+  },
+  {
+   "app_id": "gh:tencentcloud/octop",
+   "evidence": 1.3738,
+   "score": 0.457151
+  },
+  {
+   "app_id": "gh:android/skills",
+   "evidence": 1.3841,
+   "score": 0.455911
+  },
+  {
+   "app_id": "web:modal.com",
+   "evidence": 0.2572,
+   "score": 0.455832
+  },
+  {
+   "app_id": "gh:cursor/plugins",
+   "evidence": 1.3753,
+   "score": 0.455606
+  },
+  {
+   "app_id": "web:harvey.ai",
+   "evidence": 0.25,
+   "score": 0.453828
+  },
+  {
+   "app_id": "web:z.ai",
+   "evidence": 0.0904,
+   "score": 0.449109
+  },
+  {
+   "app_id": "web:cognition.ai",
+   "evidence": 0.5118,
+   "score": 0.448398
+  },
+  {
+   "app_id": "web:salesforce.com",
+   "evidence": 0.081,
+   "score": 0.447858
+  },
+  {
+   "app_id": "web:anam.ai",
+   "evidence": 0.2456,
+   "score": 0.445217
+  },
+  {
+   "app_id": "gh:pbakaus/impeccable",
+   "evidence": 1.3738,
+   "score": 0.44351
+  },
+  {
+   "app_id": "gh:earthtojake/text-to-cad",
+   "evidence": 1.3742,
+   "score": 0.442001
+  },
+  {
+   "app_id": "gh:luongnv89/claude-howto",
+   "evidence": 1.3929,
+   "score": 0.436064
+  },
+  {
+   "app_id": "web:runwayml.com",
+   "evidence": 0.1477,
+   "score": 0.435862
+  },
+  {
+   "app_id": "web:floqer.com",
+   "evidence": 0.2572,
+   "score": 0.435289
+  },
+  {
+   "app_id": "gh:rohitg00/ai-engineering-from-scratch",
+   "evidence": 1.3738,
+   "score": 0.43478
+  },
+  {
+   "app_id": "web:starbridge.ai",
+   "evidence": 0.2612,
+   "score": 0.434629
+  },
+  {
+   "app_id": "gh:msitarzewski/agency-agents",
+   "evidence": 0.6684,
+   "score": 0.431552
+  },
+  {
+   "app_id": "gh:anthropics/claude-plugins-official",
+   "evidence": 1.3753,
+   "score": 0.427609
+  },
+  {
+   "app_id": "gh:affaan-m/ecc",
+   "evidence": 1.3738,
+   "score": 0.427299
+  },
+  {
+   "app_id": "gh:mksglu/context-mode",
+   "evidence": 1.3738,
+   "score": 0.417214
+  },
+  {
+   "app_id": "web:adobe.com",
+   "evidence": 0.1247,
+   "score": 0.415292
+  },
+  {
+   "app_id": "web:lovable.dev",
+   "evidence": 0.315,
+   "score": 0.410586
+  },
+  {
+   "app_id": "gh:ruvnet/ruflo",
+   "evidence": 1.3723,
+   "score": 0.409102
+  },
+  {
+   "app_id": "gh:headroomlabs-ai/headroom",
+   "evidence": 1.3421,
+   "score": 0.407203
+  },
+  {
+   "app_id": "web:base44.com",
+   "evidence": 0.2176,
+   "score": 0.406854
+  },
+  {
+   "app_id": "gh:hkuds/cli-anything",
+   "evidence": 1.3725,
+   "score": 0.40541
+  },
+  {
+   "app_id": "web:genspark.ai",
+   "evidence": 0.1458,
+   "score": 0.403298
+  },
+  {
+   "app_id": "gh:agent-substrate/substrate",
+   "evidence": 1.3266,
+   "score": 0.399261
+  },
+  {
+   "app_id": "web:deepseek.com",
+   "evidence": 0.1306,
+   "score": 0.399173
+  },
+  {
+   "app_id": "gh:pingdotgg/t3code",
+   "evidence": 1.3841,
+   "score": 0.396868
+  },
+  {
+   "app_id": "web:rapidcanvas.ai",
+   "evidence": 0.2652,
+   "score": 0.382256
+  },
+  {
+   "app_id": "gh:harry0703/moneyprinterturbo",
+   "evidence": 1.3733,
+   "score": 0.375036
+  },
+  {
+   "app_id": "web:gemini.google.com",
+   "evidence": 0.5054,
+   "score": 0.365522
+  },
+  {
+   "app_id": "web:chai-research.com",
+   "evidence": 0.3508,
+   "score": 0.362507
+  },
+  {
+   "app_id": "web:claude.ai",
+   "evidence": 0.8275,
+   "score": 0.350639
+  },
+  {
+   "app_id": "gh:alishahryar1/free-claude-code",
+   "evidence": 1.3266,
+   "score": 0.350507
+  },
+  {
+   "app_id": "web:legora.com",
+   "evidence": 0.6847,
+   "score": 0.34927
+  },
+  {
+   "app_id": "gh:thedotmack/claude-mem",
+   "evidence": 0.7,
+   "score": 0.34805
+  },
+  {
+   "app_id": "gh:lightseekorg/tokenspeed",
+   "evidence": 1.3579,
+   "score": 0.337435
+  },
+  {
+   "app_id": "web:pigment.com",
+   "evidence": 0.2821,
+   "score": 0.336751
+  },
+  {
+   "app_id": "web:chatgpt.com",
+   "evidence": 1.1583,
+   "score": 0.316981
+  },
+  {
+   "app_id": "gh:shawnpana/phone-harness",
+   "evidence": 1.3113,
+   "score": 0.310586
+  },
+  {
+   "app_id": "gh:segfault42/heliosgen",
+   "evidence": 1.3404,
+   "score": 0.298761
+  },
+  {
+   "app_id": "gh:openbmb/voxcpm",
+   "evidence": 0.7,
+   "score": 0.294236
+  },
+  {
+   "app_id": "gh:vercel-labs/skills",
+   "evidence": 1.3578,
+   "score": 0.278082
+  },
+  {
+   "app_id": "gh:vllm-project/vllm",
+   "evidence": 1.3841,
+   "score": 0.268089
+  },
+  {
+   "app_id": "gh:krillinai/opencreator",
+   "evidence": 1.3113,
+   "score": 0.260568
+  },
+  {
+   "app_id": "gh:nvidia/personaplex",
+   "evidence": 0.6582,
+   "score": 0.259702
+  },
+  {
+   "app_id": "gh:tencentcloud/tencentdb-agent-memory",
+   "evidence": 1.3266,
+   "score": 0.255602
+  },
+  {
+   "app_id": "gh:ahujasid/mcp-for-blender",
+   "evidence": 1.3523,
+   "score": 0.252975
+  },
+  {
+   "app_id": "gh:abus-aikorea/voice-pro",
+   "evidence": 0.6684,
+   "score": 0.250665
+  },
+  {
+   "app_id": "gh:sickn33/agentic-awesome-skills",
+   "evidence": 0.6684,
+   "score": 0.241352
+  },
+  {
+   "app_id": "gh:anthropics/financial-services",
+   "evidence": 1.3472,
+   "score": 0.237778
+  },
+  {
+   "app_id": "gh:anthropics/claude-code",
+   "evidence": 1.3113,
+   "score": 0.2297
+  },
+  {
+   "app_id": "gh:kittenml/kittentts",
+   "evidence": 1.3523,
+   "score": 0.193201
+  },
+  {
+   "app_id": "gh:vectifyai/pageindex",
+   "evidence": 1.3859,
+   "score": 0.188958
+  },
+  {
+   "app_id": "gh:wshobson/agents",
+   "evidence": 1.3789,
+   "score": 0.183455
+  },
+  {
+   "app_id": "gh:sgl-project/sglang",
+   "evidence": 1.3947,
+   "score": 0.157708
+  },
+  {
+   "app_id": "gh:openbmb/minicpm-v",
+   "evidence": 1.3113,
+   "score": 0.15266
+  }
+ ]
+}

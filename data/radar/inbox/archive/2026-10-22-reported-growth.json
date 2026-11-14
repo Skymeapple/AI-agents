@@ -1,0 +1,223 @@
+{
+  "collected_at": "2026-10-22",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Legora",
+        "url": "https://legora.com",
+        "kind": "product",
+        "description": "Collaborative AI workspace for lawyers.",
+        "tags": [
+          "legal"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 200000000,
+      "observed_on": "2026-10-21",
+      "source_url": "https://techcrunch.com/2026/10/21/legal-ai-startup-legora-raises-550m-series-e-at-8-8b-valuation",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company-wide ARR 'now stands at over $200 million' (stated with $550M Series E at $8.8B, Oct 21); up from $100M at its April round. Lower bound.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Omilia",
+        "url": "https://omilia.com",
+        "kind": "product",
+        "description": "Agentic voice and chat customer-experience platform for contact centers.",
+        "tags": [
+          "customer-support",
+          "voice",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 60000000,
+      "observed_on": "2026-08-06",
+      "source_url": "https://techcrunch.com/2026/08/06/omilia-raises-67m-to-scale-its-customer-support-platform/",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company-stated 'live ARR' over $60M (lower bound), more than 10x since its 2020 Series A; stated with $67M Series B led by Expedition Growth Capital.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Fish Audio",
+        "url": "https://fish.audio",
+        "kind": "product",
+        "description": "Voice generation and text-to-speech platform grown from the open-source Fish Speech project.",
+        "tags": [
+          "voice",
+          "foundation-model"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 21000000,
+      "observed_on": "2026-07-28",
+      "source_url": "https://aiweekly.co/alerts/fish-audio-raises-52m-seed-discloses-21m-arr-and-8m-users",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). CEO Rissa Cao disclosed $21M ARR with $52M seed (PR Newswire dated Jul 28, 2026; summarising TechCrunch). Company-wide.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Fish Audio",
+        "url": "https://fish.audio",
+        "kind": "product",
+        "description": "Voice generation and text-to-speech platform grown from the open-source Fish Speech project.",
+        "tags": [
+          "voice",
+          "foundation-model"
+        ]
+      },
+      "metric": "users",
+      "value": 8000000,
+      "observed_on": "2026-07-28",
+      "source_url": "https://aiweekly.co/alerts/fish-audio-raises-52m-seed-discloses-21m-arr-and-8m-users",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). 'More than 8 million users' across open-source and hosted versions (registered/total users, not MAU). Lower bound.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Kling AI",
+        "url": "https://klingai.com",
+        "kind": "product",
+        "description": "Kuaishou's AI video generation model and app.",
+        "tags": [
+          "video-generation"
+        ]
+      },
+      "metric": "users",
+      "value": 100000000,
+      "observed_on": "2026-06-30",
+      "source_url": "https://www.itiger.com/news/1104990905",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Kling AI global user base surpassed 100M 'as of June' (month only, last day used), +~67% vs end-2025; cumulative/registered users, not MAU. From coverage of Kuaishou Q2 2026 results (published Aug).",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Pigment",
+        "url": "https://www.pigment.com",
+        "kind": "product",
+        "description": "AI-powered business planning and forecasting platform for finance teams.",
+        "tags": [
+          "finance",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-10-20",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-10-20/nvidia-backed-pigment-nabs-250-million-to-challenge-microsoft",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Bloomberg (Oct 20): ARR has grown past $100M (lower bound), company-wide; stated with $250M Series E.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Pigment",
+        "url": "https://www.pigment.com",
+        "kind": "product",
+        "description": "AI-powered business planning and forecasting platform for finance teams.",
+        "tags": [
+          "finance",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 100,
+      "period_days": 365,
+      "observed_on": "2026-10-20",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-10-20/nvidia-backed-pigment-nabs-250-million-to-challenge-microsoft",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). ARR 'doubling from the year prior' (year-over-year).",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "fonio.ai",
+        "url": "https://www.fonio.ai",
+        "kind": "product",
+        "description": "AI phone assistant that answers and handles business calls.",
+        "tags": [
+          "voice",
+          "customer-support"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 10000000,
+      "observed_on": "2026-08-11",
+      "source_url": "https://www.fonio.ai/en/news-cool-stuff/fonio-ai-surpasses-10-million-arr-in-under-12-months-and-grows-to-more-than-80-employees",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company press release (dated 11.8.2026): passed $10M ARR under 12 months after launch; company-wide.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "fonio.ai",
+        "url": "https://www.fonio.ai",
+        "kind": "product",
+        "description": "AI phone assistant that answers and handles business calls.",
+        "tags": [
+          "voice",
+          "customer-support"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 30,
+      "period_days": 30,
+      "observed_on": "2026-08-11",
+      "source_url": "https://www.fonio.ai/en/news-cool-stuff/fonio-ai-surpasses-10-million-arr-in-under-12-months-and-grows-to-more-than-80-employees",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Revenue grew 'more than 30% a month on average' since start of 2026 / switch to subscriptions in Feb (average monthly rate, lower bound).",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Vercel",
+        "url": "https://vercel.com",
+        "kind": "product",
+        "description": "Frontend/AI cloud and v0 app builder; a common deploy target for coding agents.",
+        "tags": [
+          "devtools",
+          "agent-runtime"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 500000000,
+      "observed_on": "2026-07-31",
+      "source_url": "https://dealroom.co/news/info-hyu6e4-why-coding-agents-are-choosing-vercel-as-often-as-humans-do/",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Dealroom reprint of The Information (person close to company): annualized revenue now ~$600M, 'up from $500M in July' (month only, last day used). The $600M figure itself is not recorded because its date is not stated in the snippet. Company-wide.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Genspark",
+        "url": "https://www.genspark.ai",
+        "kind": "product",
+        "description": "General AI agent workspace (slides, docs, research, calls).",
+        "tags": [
+          "enterprise-agent",
+          "productivity"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 250000000,
+      "observed_on": "2026-08-05",
+      "source_url": "https://simplify.jobs/c/Genspark",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Aggregator profile: 'Genspark said August 5, 2026 it reached $250M ARR and 7,000 business clients' (with WEF Unicorn Innovator announcement). Same value as the Apr 8 milestone; restated, not new growth.",
+      "method": "reported"
+    },
+    {
+      "app": {
+        "name": "Instinct",
+        "url": "https://instinct.ai",
+        "kind": "consumer_app",
+        "description": "Invite-only personal AI agent that texts or calls businesses on a user's behalf.",
+        "tags": [
+          "assistant",
+          "mobile-agent"
+        ]
+      },
+      "metric": "users",
+      "value": 100000,
+      "observed_on": "2026-09-28",
+      "source_url": "https://dealroom.co/news/157240-ai-startup-instinct-raises-1b-series-c-at-10b-valuation/",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Dealroom: more than 100,000 users (lower bound; invite-only service, total users, not MAU); with $1B Series C at $10B. Company release disclosed no active-user count.",
+      "method": "reported"
+    }
+  ]
+}

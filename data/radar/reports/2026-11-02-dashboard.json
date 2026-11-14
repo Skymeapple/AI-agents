@@ -1,0 +1,41 @@
+{
+ "takeaway": "DeepSeek Harness has become a plugin ecosystem: DeepSeek's own agent repo more than doubled in a day to 9,748 stars, and the deepseek-harness topic holds 20,947 repos. The radar now measures most of its ranking through the GitHub API.",
+ "findings": [
+  {
+   "id": "dsh",
+   "heading": "DeepSeek Harness: a 20,947-repo plugin ecosystem",
+   "text": "The deepseek-harness topic includes desktop clients (dsh-desktop, 34,452 stars), a plugin list (21,941), a phone client (dsh-Go) and a free-model plugin with 56,223 stars.",
+   "source": "https://api.github.com/search/repositories?q=topic:deepseek-harness"
+  },
+  {
+   "id": "deepseek",
+   "heading": "DeepSeek's agent repo more than doubles",
+   "text": "deepseek-ai/dsh-superagent-prototype went from 4,586 to 9,748 stars in a day, measured by the radar through the API.",
+   "source": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+  },
+  {
+   "id": "api",
+   "heading": "Most of the ranking is now measured",
+   "text": "924 apps were read on both of the last two days, and 44% of the evidence behind the top 25 is the radar's own API measurement, up from 20% yesterday.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-02.md"
+  },
+  {
+   "id": "scorecard",
+   "heading": "Two weak forecasts in a row",
+   "text": "The Oct 25 and Oct 26 rankings got 40% and 33% of their top 15 right, against 73% on Oct 24. Both predate the API data, and the week after them was dominated by new launches.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-02.md"
+  },
+  {
+   "id": "sierra",
+   "heading": "Sierra reports $400M+ ARR",
+   "text": "The customer-service agent company says it doubled from $200M to $400M in five months and added over $150M in the third quarter alone. Read from search results.",
+   "source": "https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth"
+  }
+ ],
+ "caveats": [
+  "The API-found ranking includes some off-topic fast growers (an Android TV debloater is #2); a way to mark apps out of scope is not built yet.",
+  "Forecasts scored so far were made before API measurement began; the scorecard tests the new setup from Nov 8.",
+  "All company figures today come from search-result summaries.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

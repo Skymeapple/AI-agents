@@ -1,0 +1,43 @@
+{
+ "collected_at": "2026-10-30",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Alexa for Shopping",
+    "url": "https://www.amazon.com/alexa-for-shopping",
+    "kind": "consumer_app",
+    "description": "Amazon's AI shopping assistant (formerly Rufus, renamed and merged with Alexa+ in May 2026).",
+    "tags": [
+     "assistant",
+     "shopping"
+    ]
+   },
+   "metric": "users",
+   "value": 400000000,
+   "observed_on": "2026-10-29",
+   "source_url": "https://www.modernretail.co/technology/amazon-says-more-than-400m-customers-have-used-alexa-for-shopping-in-the-last-12-months/",
+   "method": "reported",
+   "note": "Jassy, Q3 2026 earnings call (Oct 29): 'over 400 million customers have used Alexa for Shopping in the last 12 months' (a threshold, trailing-12-month users, not MAU/DAU, so no basis is set). The source gives no period end date, so this is dated to the call date. Up from 350M on the prior quarter's call (level only, no growth recorded). The app URL is an identity key, not a page that was checked. Search-result summary only (WebFetch could not reach sec.gov or stockanalysis.com)."
+  },
+  {
+   "app": {
+    "name": "Serval",
+    "url": "https://www.serval.com",
+    "kind": "product",
+    "description": "AI agent platform that automates IT, HR, legal and finance service desks, positioned as a ServiceNow replacement.",
+    "tags": [
+     "enterprise-agent",
+     "productivity"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 100,
+   "period_days": 91,
+   "observed_on": "2026-10-29",
+   "source_url": "https://en.wowtale.net/2026/10/30/235782/",
+   "method": "reported",
+   "note": "Announced with the $150M Series C at a $3B valuation led by Sequoia (Fortune, Oct 29): the company says annual recurring revenue 'has doubled every quarter since the Series B' (Dec 2025). Recorded as +100% per quarter (a stated per-quarter rate). The source gives no quarter end date, so this is dated to the announcement date. No dollar ARR was disclosed. Company-reported. Search-result summary only."
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "collected_at": "2026-11-09",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "DeepSeek Harness",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "kind": "product",
+    "description": "DeepSeek's open-source (MIT) agent harness app, run via npx @deepseek-ai/dsh web or desktop builds, with a third-party plugin ecosystem.",
+    "tags": [
+     "coding-agent",
+     "agent-harness",
+     "deepseek-harness"
+    ]
+   },
+   "metric": "users",
+   "value": 1540000,
+   "basis": "dau",
+   "rounded_to": 10000,
+   "observed_on": "2026-11-04",
+   "source_url": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million",
+   "method": "reported",
+   "note": "Company disclosure (first DAU release by the DeepSeek Harness team, Nov 5, 2026) as reported by Yicai Global ('DeepSeek Harness Releases DAU Data for First Time, Topping 1.5 Million') and ifeng (https://tech.ifeng.com/c/8xp20MhJRe4, 'DeepSeek Harness日活达154万'): '截至11月4日,DeepSeek Harness日活跃用户已达154万' (daily active users reached 1.54 million as of Nov 4). Basis dau as stated 'daily active users'; dated to the stated Nov 4. Scope stated: counts only users of DeepSeek's official API, so not the standalone client's DAU. The same disclosure gives Sep 30 DAU as a 7-day daily average (27.1万); whether the Nov 4 figure is also a 7-day average is not clear from the snippets. Earlier levels (27.1万 Sep 30, 42.9万 Oct 7) not recorded and no growth rate derived from them. '92万亿' tokens/day and ~35,000 plugins are usage, not recorded. A 5.48M monthly-user figure appears only in a FourWeekMBA secondary write-up and was not corroborated; not recorded. Search-result snippets only; no page was read (WebFetch of www.yicaiglobal.com got ENOTFOUND). App keyed to the deepseek-ai/deepseek-harness repo named by install guides as the official source; not verified on the page."
+  }
+ ]
+}

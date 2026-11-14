@@ -1,0 +1,238 @@
+{
+  "collected_at": "2026-10-21",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Perplexity",
+        "url": "https://www.perplexity.ai",
+        "kind": "consumer_app",
+        "description": "AI answer engine and Comet agentic browser.",
+        "tags": [
+          "ai-search",
+          "assistant"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 750000000,
+      "observed_on": "2026-08-31",
+      "source_url": "https://siliconvalleyinvestclub.com/2026/08/25/perplexity-in-talks-to-raise-a-new-funding-round-at-a-30-billion-valuation/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company-wide annualized revenue 'surpassed $750 million in August 2026' per The Information (relayed); up from under $250M at start of 2026; Perplexity declined to comment. Month only stated, day set to month end."
+    },
+    {
+      "app": {
+        "name": "Otter.ai",
+        "url": "https://otter.ai",
+        "kind": "product",
+        "description": "AI meeting notes and transcription assistant.",
+        "tags": [
+          "productivity",
+          "voice"
+        ]
+      },
+      "metric": "users",
+      "value": 40000000,
+      "observed_on": "2026-10-20",
+      "source_url": "https://aiweekly.co/alerts/otterai-raises-320m-in-non-dilutive-capital-from-general-catalysts-customer",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Otter says it has 40M users (type not specified: likely registered, not MAU) at $320M non-dilutive raise from General Catalyst's Customer Value Fund; passed $100M ARR 'last year' (not recorded, undated)."
+    },
+    {
+      "app": {
+        "name": "Meshy",
+        "url": "https://www.meshy.ai",
+        "kind": "product",
+        "description": "Generative AI platform for 3D models.",
+        "tags": [
+          "design",
+          "multimodal"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-09-30",
+      "source_url": "https://pulse2.com/meshy-surpasses-100-million-in-arr-after-raising-nearly-400-million-at-1-5-billion-valuation/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company announced (Sep 30) ARR passed $100M, ~100x from ~$1M in under two years; first AI 3D company at the milestone; follows ~$400M Series B in July."
+    },
+    {
+      "app": {
+        "name": "Meshy",
+        "url": "https://www.meshy.ai",
+        "kind": "product",
+        "description": "Generative AI platform for 3D models.",
+        "tags": [
+          "design",
+          "multimodal"
+        ]
+      },
+      "metric": "users",
+      "value": 15000000,
+      "observed_on": "2026-09-30",
+      "source_url": "https://pulse2.com/meshy-surpasses-100-million-in-arr-after-raising-nearly-400-million-at-1-5-billion-valuation/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); More than 15M registered users (not MAU), 3,000+ companies/institutions, 100M+ 3D models generated."
+    },
+    {
+      "app": {
+        "name": "Chai",
+        "url": "https://www.chai-research.com",
+        "kind": "consumer_app",
+        "description": "Consumer AI chat/companion app built by Chai Research.",
+        "tags": [
+          "companion"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-07-31",
+      "source_url": "https://dealroom.co/news/160910-chai-ai-passes-100m-arr-with-a-team-of-around-15/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company says ARR reached $100M in July 2026 with ~15 staff; month only stated, day set to month end."
+    },
+    {
+      "app": {
+        "name": "Chai",
+        "url": "https://www.chai-research.com",
+        "kind": "consumer_app",
+        "description": "Consumer AI chat/companion app built by Chai Research.",
+        "tags": [
+          "companion"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 120000000,
+      "observed_on": "2026-10-01",
+      "source_url": "https://dealroom.co/news/160910-chai-ai-passes-100m-arr-with-a-team-of-around-15/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company put ARR at $120M as of 1 October 2026 (unaudited run-rate); single source."
+    },
+    {
+      "app": {
+        "name": "Omi",
+        "url": "https://www.omi.me",
+        "kind": "product",
+        "description": "AI wearable and desktop app capturing meetings and screen context.",
+        "tags": [
+          "assistant",
+          "productivity"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 10000000,
+      "observed_on": "2026-10-12",
+      "source_url": "https://www.arr.club/omi/omi-crossed-10m-annualized-run-rate",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company LinkedIn post (Oct 12) relayed by ARR Club: crossed $10M annualized run rate, up from $5M ~3 weeks earlier and $8M in early October; growth tied to paid ads."
+    },
+    {
+      "app": {
+        "name": "Jobright",
+        "url": "https://jobright.ai",
+        "kind": "product",
+        "description": "AI job-search agent for candidates, now also an AI recruiter for employers.",
+        "tags": [
+          "assistant",
+          "productivity"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 10000000,
+      "observed_on": "2026-10-13",
+      "source_url": "https://www.arr.club/signal/jobright-arr-hit-10m-up-from-1m-in-10-months",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Co-founder announced Oct 13 ARR went from $1M to $10M in 10 months (relayed by ARR Club); ~3M US professional users claimed (window not stated, not recorded)."
+    },
+    {
+      "app": {
+        "name": "Starbridge",
+        "url": "https://starbridge.ai",
+        "kind": "product",
+        "description": "AI sales intelligence for companies selling to government and education.",
+        "tags": [
+          "sales",
+          "research-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 900,
+      "observed_on": "2026-10-15",
+      "source_url": "https://www.arr.club/signal/starbridge-10x-arr-year-600-customers",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); ARR 'more than 10x' in a year (recorded as +900%), 600+ customers; ARR Club entry dated Oct 15; single source, absolute ARR not disclosed.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Pluto Security",
+        "url": "https://pluto.security",
+        "kind": "product",
+        "description": "Security platform monitoring enterprise AI agents and vibe-coded apps.",
+        "tags": [
+          "security"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 2000000,
+      "observed_on": "2026-10-13",
+      "source_url": "https://techcrunch.com/2026/10/13/pluto-security-raises-42m-as-ai-gives-enterprise-security-teams-a-new-headache/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); ARR passed $2M after starting sales in April 2026, at exit from stealth with $42M (seed + Series A)."
+    },
+    {
+      "app": {
+        "name": "Floqer",
+        "url": "https://floqer.com",
+        "kind": "product",
+        "description": "AI agents that research B2B sales prospects and keep customer data current.",
+        "tags": [
+          "sales",
+          "research-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 1200000,
+      "observed_on": "2026-10-14",
+      "source_url": "https://techcrunch.com/2026/10/14/floqers-ai-agents-help-b2b-revenue-teams-research-customers/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Company says ARR surpassed $1.2M; 8 employees, 1,000+ customers; 85% of ARR enterprise (RuntimeWire)."
+    },
+    {
+      "app": {
+        "name": "Floqer",
+        "url": "https://floqer.com",
+        "kind": "product",
+        "description": "AI agents that research B2B sales prospects and keep customer data current.",
+        "tags": [
+          "sales",
+          "research-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 900,
+      "observed_on": "2026-10-14",
+      "source_url": "https://techcrunch.com/2026/10/14/floqers-ai-agents-help-b2b-revenue-teams-research-customers/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); Overall revenue 'grown roughly tenfold over the past year' (recorded as +900%); revenue, not ARR.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Listen Labs",
+        "url": "https://listenlabs.ai",
+        "kind": "product",
+        "description": "AI-moderated customer interview and research platform.",
+        "tags": [
+          "research-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 30000000,
+      "observed_on": "2026-09-09",
+      "source_url": "https://techcrunch.com/2026/09/09/ai-research-startup-listen-labs-scrubbed-a-1-5b-funding-round-for-salesforce-talks/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch DNS failure, proxy blocks direct fetch, Tavily over quota); About $30M annualized revenue per people familiar with financials (not company-confirmed); Salesforce later signed deal to acquire (Sep 29), price undisclosed (~$2B reported)."
+    }
+  ]
+}

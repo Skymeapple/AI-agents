@@ -1,0 +1,41 @@
+{
+ "takeaway": "The radar's sixth scored forecast got 11 of its top 15 right (73%), the best yet. Agent memory is picking up: claude-mem's daily star gains rose from 315 to 1,612 over three days after three releases.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "Best top-15 hit rate so far",
+   "text": "The Oct 24 ranking got 73% of its top 15 right across 64 apps, against about 23% for random picks. Rank correlation held at 0.65: the top is right, the tail less so.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-31.md"
+  },
+  {
+   "id": "claude-mem",
+   "heading": "claude-mem accelerates after three releases",
+   "text": "Measured gains of 315, 949 and then 1,612 stars a day, to 106,674. Versions 15.5 to 15.7 shipped on Oct 29 and 30, adding a My Work view of agent sessions.",
+   "source": "https://github.com/thedotmack/claude-mem/releases"
+  },
+  {
+   "id": "jailbreaks",
+   "heading": "Jailbreak-prompt library stays #1",
+   "text": "togg53192-cmd/jailbreaks gained 1,972 stars (9,549 to 11,521), a third day near 2,000.",
+   "source": "https://github.com/togg53192-cmd/jailbreaks"
+  },
+  {
+   "id": "slowing",
+   "heading": "Last week's leaders slow",
+   "text": "impeccable gained 1,492 stars (2,433 the day before), DeepTutor 1,220 (2,202) and hallmark 944 (1,203).",
+   "source": "https://github.com/trending?since=daily"
+  },
+  {
+   "id": "skills",
+   "heading": "Big skill collections reach trending",
+   "text": "mattpocock/skills (307,670 stars) and anthropics/skills (185,514, +1,888 this week) appeared on trending for the first time on the radar.",
+   "source": "https://github.com/trending?since=weekly"
+  }
+ ],
+ "caveats": [
+  "Six matured forecasts are still a small sample; the tuner's bar keeps noise-sized gains from moving any setting.",
+  "Only one new company figure today, from August, and from a search-result summary.",
+  "Every re-observed repo page showed a rounded count.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

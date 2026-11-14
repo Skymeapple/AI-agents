@@ -1,0 +1,571 @@
+{
+  "collected_at": "2026-10-25",
+  "collector": "agent:recheck",
+  "observations": [
+    {
+      "app": {
+        "name": "morluto/rea",
+        "url": "https://github.com/morluto/rea",
+        "kind": "repo",
+        "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+        "tags": [
+          "security",
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 380000,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/morluto/rea",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 380.0k; forks 95.0k, watchers 1.4k, commits 5,436 as shown; button shows 380k; page also has a milestone note '300,000 GitHub stars' inconsistent with counter"
+    },
+    {
+      "app": {
+        "name": "cloudflare/security-audit-skill",
+        "url": "https://github.com/cloudflare/security-audit-skill",
+        "kind": "repo",
+        "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings.",
+        "tags": [
+          "security",
+          "agent-skills"
+        ]
+      },
+      "metric": "stars",
+      "value": 45200,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/cloudflare/security-audit-skill",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 45.2k; forks 2.8k, watchers 172, commits 14 as shown"
+    },
+    {
+      "app": {
+        "name": "ai-job-search-dev/ai-job-search",
+        "url": "https://github.com/ai-job-search-dev/ai-job-search",
+        "kind": "repo",
+        "description": "The job search that runs on your machine: an AI job application framework built on Claude Code.",
+        "tags": [
+          "productivity",
+          "agent-skills"
+        ]
+      },
+      "metric": "stars",
+      "value": 65100,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/ai-job-search-dev/ai-job-search",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 65.1k; forks 20.3k, watchers 221, commits 417 as shown; README clone/fork links point to MadsLorentzen/ai-job-search; header shows requested repo"
+    },
+    {
+      "app": {
+        "name": "debpalash/VoiceStudio",
+        "url": "https://github.com/debpalash/VoiceStudio",
+        "kind": "repo",
+        "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative for voice cloning, voice design and video dubbing.",
+        "tags": [
+          "voice",
+          "local-llm"
+        ]
+      },
+      "metric": "stars",
+      "value": 85300,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/debpalash/VoiceStudio",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 85.3k; forks 9.4k (button 9.5k), watchers 304, commits 5,003 as shown"
+    },
+    {
+      "app": {
+        "name": "ifixai-ai/iFixAi",
+        "url": "https://github.com/ifixai-ai/iFixAi",
+        "kind": "repo",
+        "description": "Independent Auditing of AI Agents.",
+        "tags": [
+          "security",
+          "agent-evaluation"
+        ]
+      },
+      "metric": "stars",
+      "value": 34100,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/ifixai-ai/iFixAi",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 34.1k; forks 1.7k, watchers 403, commits 331 as shown"
+    },
+    {
+      "app": {
+        "name": "storytold/artcraft",
+        "url": "https://github.com/storytold/artcraft",
+        "kind": "repo",
+        "description": "Crafting engine for artists, designers, and filmmakers that combines AI image and video generation.",
+        "tags": [
+          "image-generation",
+          "video-generation"
+        ]
+      },
+      "metric": "stars",
+      "value": 36400,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/storytold/artcraft",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 36.4k; forks 5.8k, watchers 214, commits 31 as shown"
+    },
+    {
+      "app": {
+        "name": "stablyai/orca",
+        "url": "https://github.com/stablyai/orca",
+        "kind": "repo",
+        "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code).",
+        "tags": [
+          "coding-agent",
+          "agent-orchestration"
+        ]
+      },
+      "metric": "stars",
+      "value": 105100,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/stablyai/orca",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 105.1k; forks 6.6k, watchers 142, commits 16,311 as shown; button shows 105k"
+    },
+    {
+      "app": {
+        "name": "akitaonrails/ai-memory",
+        "url": "https://github.com/akitaonrails/ai-memory",
+        "kind": "repo",
+        "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors.",
+        "tags": [
+          "coding-agent",
+          "agent-memory"
+        ]
+      },
+      "metric": "stars",
+      "value": 13300,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/akitaonrails/ai-memory",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 13.3k; forks 944, watchers 64, commits 4,692 as shown"
+    },
+    {
+      "app": {
+        "name": "DietrichGebert/ponytail",
+        "url": "https://github.com/DietrichGebert/ponytail",
+        "kind": "repo",
+        "description": "Prompts AI agents to favor the simplest solution with the least code written.",
+        "tags": [
+          "agent-skills",
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 175700,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/DietrichGebert/ponytail",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 175.7k; forks 9.6k, watchers 408, commits 363 as shown; button shows 176k"
+    },
+    {
+      "app": {
+        "name": "NVIDIA/OpenShell",
+        "url": "https://github.com/NVIDIA/OpenShell",
+        "kind": "repo",
+        "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+        "tags": [
+          "agent-runtime",
+          "security"
+        ]
+      },
+      "metric": "stars",
+      "value": 19600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/NVIDIA/OpenShell",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 19.6k; forks 1.9k, watchers 71, commits 1,861 as shown"
+    },
+    {
+      "app": {
+        "name": "Graphify-Labs/graphify",
+        "url": "https://github.com/Graphify-Labs/graphify",
+        "kind": "repo",
+        "description": "Turns codebases and their docs into a queryable knowledge graph for coding assistants.",
+        "tags": [
+          "coding-agent",
+          "agent-tools"
+        ]
+      },
+      "metric": "stars",
+      "value": 134600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/Graphify-Labs/graphify",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 134.6k; forks 12.8k, watchers 406, commits 2,539 as shown; button shows 135k"
+    },
+    {
+      "app": {
+        "name": "heygen-com/hyperframes",
+        "url": "https://github.com/heygen-com/hyperframes",
+        "kind": "repo",
+        "description": "Write HTML. Render video. Built for agents.",
+        "tags": [
+          "video-generation",
+          "agent-tools"
+        ]
+      },
+      "metric": "stars",
+      "value": 71600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/heygen-com/hyperframes",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 71.6k; forks 6.5k, watchers 179, commits 6,049 as shown"
+    },
+    {
+      "app": {
+        "name": "tashfeenahmed/freellmapi",
+        "url": "https://github.com/tashfeenahmed/freellmapi",
+        "kind": "repo",
+        "description": "7.4 billion tokens per month from 34 free LLM providers and 635 free model endpoints, all behind one /v1 endpoint.",
+        "tags": [
+          "llm-gateway"
+        ]
+      },
+      "metric": "stars",
+      "value": 41100,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/tashfeenahmed/freellmapi",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 41.1k; forks 5.5k (button 5.6k), watchers 226, commits 1,010 as shown"
+    },
+    {
+      "app": {
+        "name": "vectorize-io/hindsight",
+        "url": "https://github.com/vectorize-io/hindsight",
+        "kind": "repo",
+        "description": "Hindsight: Agent Memory That Learns.",
+        "tags": [
+          "agent-memory"
+        ]
+      },
+      "metric": "stars",
+      "value": 53500,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/vectorize-io/hindsight",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 53.5k; forks 6.2k, watchers 108, commits 3,924 as shown"
+    },
+    {
+      "app": {
+        "name": "ethanplusai/harvey",
+        "url": "https://github.com/ethanplusai/harvey",
+        "kind": "repo",
+        "description": "Autonomous AI sales agent that runs on Claude Code or Codex subscriptions.",
+        "tags": [
+          "sales",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 2500,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/ethanplusai/harvey",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 2.5k; forks 513, watchers 22, commits 303 as shown"
+    },
+    {
+      "app": {
+        "name": "cathrynlavery/diagram-design",
+        "url": "https://github.com/cathrynlavery/diagram-design",
+        "kind": "repo",
+        "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi.",
+        "tags": [
+          "agent-skills",
+          "design"
+        ]
+      },
+      "metric": "stars",
+      "value": 60800,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/cathrynlavery/diagram-design",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 60.8k; forks 3.9k, watchers 151, commits 377 as shown"
+    },
+    {
+      "app": {
+        "name": "SnailSploit/Claude-Red",
+        "url": "https://github.com/SnailSploit/Claude-Red",
+        "kind": "repo",
+        "description": "A curated library of offensive security skills for the Claude skills system.",
+        "tags": [
+          "security",
+          "agent-skills"
+        ]
+      },
+      "metric": "stars",
+      "value": 8900,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/SnailSploit/Claude-Red",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 8.9k; forks 1.1k, watchers 59, commits 45 as shown"
+    },
+    {
+      "app": {
+        "name": "thesysdev/openui",
+        "url": "https://github.com/thesysdev/openui",
+        "kind": "repo",
+        "description": "The Open Standard for Generative UI.",
+        "tags": [
+          "generative-ui",
+          "devtools"
+        ]
+      },
+      "metric": "stars",
+      "value": 13700,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/thesysdev/openui",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 13.7k; forks 904, watchers 45, commits 1,060 as shown"
+    },
+    {
+      "app": {
+        "name": "ranxianglei/billion-context",
+        "url": "https://github.com/ranxianglei/billion-context",
+        "kind": "repo",
+        "description": "A context-compression plugin for small context windows, with token savings.",
+        "tags": [
+          "context-compression",
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 2700,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/ranxianglei/billion-context",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 2.7k; forks 222, watchers 6, commits 6,537 as shown"
+    },
+    {
+      "app": {
+        "name": "elie222/rakazo",
+        "url": "https://github.com/elie222/rakazo",
+        "kind": "repo",
+        "description": "Open-source Grok Bot alternative. Choose your own model and sandbox.",
+        "tags": [
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 5600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/elie222/rakazo",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 5.6k; forks 994, watchers 29, commits 1,815 as shown"
+    },
+    {
+      "app": {
+        "name": "shiyu-coder/Kronos",
+        "url": "https://github.com/shiyu-coder/Kronos",
+        "kind": "repo",
+        "description": "Kronos: A Foundation Model for the Language of Financial Markets.",
+        "tags": [
+          "finance",
+          "foundation-model"
+        ]
+      },
+      "metric": "stars",
+      "value": 43600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/shiyu-coder/Kronos",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 43.6k; forks 7.2k, watchers 379, commits 76 as shown"
+    },
+    {
+      "app": {
+        "name": "paperclipai/paperclip",
+        "url": "https://github.com/paperclipai/paperclip",
+        "kind": "repo",
+        "description": "The open-source app everyone uses to manage agents at work.",
+        "tags": [
+          "agent-orchestration",
+          "productivity"
+        ]
+      },
+      "metric": "stars",
+      "value": 107000,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/paperclipai/paperclip",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 107.0k; forks 17.8k, watchers 476, commits 5,642 as shown; button shows 107k"
+    },
+    {
+      "app": {
+        "name": "anomalyco/opencode",
+        "url": "https://github.com/anomalyco/opencode",
+        "kind": "repo",
+        "description": "The open source coding agent.",
+        "tags": [
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 221300,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/anomalyco/opencode",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 221.3k; forks 29.6k, watchers 858, commits 20,883 as shown; button shows 221k"
+    },
+    {
+      "app": {
+        "name": "K-Dense-AI/scientific-agent-skills",
+        "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+        "kind": "repo",
+        "description": "Turn any AI agent into an AI Scientist.",
+        "tags": [
+          "agent-skills",
+          "research-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 54500,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 54.5k; forks 4.8k, watchers 207, commits 761 as shown"
+    },
+    {
+      "app": {
+        "name": "CopilotKit/OpenIntelligentUI",
+        "url": "https://github.com/CopilotKit/OpenIntelligentUI",
+        "kind": "repo",
+        "description": "Open-Source Generative UI Framework.",
+        "tags": [
+          "generative-ui",
+          "devtools"
+        ]
+      },
+      "metric": "stars",
+      "value": 3900,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/CopilotKit/OpenIntelligentUI",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 3.9k; forks 413, watchers 12, commits 162 as shown"
+    },
+    {
+      "app": {
+        "name": "Comfy-Org/ComfyUI",
+        "url": "https://github.com/Comfy-Org/ComfyUI",
+        "kind": "repo",
+        "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
+        "tags": [
+          "image-generation"
+        ]
+      },
+      "metric": "stars",
+      "value": 142700,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/Comfy-Org/ComfyUI",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 142.7k; forks 16.8k, watchers 839, commits 6,220 as shown; button shows 143k"
+    },
+    {
+      "app": {
+        "name": "anthropics/knowledge-work-plugins",
+        "url": "https://github.com/anthropics/knowledge-work-plugins",
+        "kind": "repo",
+        "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork.",
+        "tags": [
+          "agent-skills",
+          "productivity"
+        ]
+      },
+      "metric": "stars",
+      "value": 32700,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/anthropics/knowledge-work-plugins",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 32.7k; forks 3.6k, watchers 202, commits 1,124 as shown"
+    },
+    {
+      "app": {
+        "name": "TencentCloud/Octop",
+        "url": "https://github.com/TencentCloud/Octop",
+        "kind": "repo",
+        "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+        "tags": [
+          "assistant",
+          "agent-framework"
+        ]
+      },
+      "metric": "stars",
+      "value": 11000,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/TencentCloud/Octop",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 11.0k; forks 1.4k, watchers 67, commits 879 as shown; button shows 11k"
+    },
+    {
+      "app": {
+        "name": "android/skills",
+        "url": "https://github.com/android/skills",
+        "kind": "repo",
+        "description": "Android development skills for AI agents.",
+        "tags": [
+          "agent-skills",
+          "coding-agent"
+        ]
+      },
+      "metric": "stars",
+      "value": 9600,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/android/skills",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 9.6k; forks 621, watchers 97, commits 88 as shown"
+    },
+    {
+      "app": {
+        "name": "cursor/plugins",
+        "url": "https://github.com/cursor/plugins",
+        "kind": "repo",
+        "description": "Cursor plugin specification and official plugins.",
+        "tags": [
+          "coding-agent",
+          "agent-skills"
+        ]
+      },
+      "metric": "stars",
+      "value": 13900,
+      "observed_on": "2026-10-25",
+      "source_url": "https://github.com/cursor/plugins",
+      "method": "page_extract",
+      "rounded_to": 100,
+      "note": "rounded on page: 13.9k; forks 1.4k, watchers 66, commits 675 as shown"
+    }
+  ]
+}

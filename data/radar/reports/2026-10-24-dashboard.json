@@ -1,0 +1,48 @@
+{
+ "takeaway": "Agent security keeps leading. Cloudflare's security-audit skill is up 31% in five days with no announcement found, NVIDIA's OpenShell had a second strong day after launch, and an offensive-security skill library for Claude is now trending.",
+ "findings": [
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill: +31% in five days, cause still unknown",
+   "text": "Measured by the radar from 32,421 stars on Oct 19 to 42,602 on Oct 24 (+2,465 in the last day). No announcement, merged commit, marketplace listing or newsletter mention was found.",
+   "source": "https://github.com/cloudflare/security-audit-skill"
+  },
+  {
+   "id": "openshell",
+   "heading": "NVIDIA OpenShell keeps climbing after launch",
+   "text": "The open agent sandbox runtime gained 924 stars in a day, to 18,963, its second strong day after NVIDIA's GTC Berlin announcement on Oct 21.",
+   "source": "https://github.com/NVIDIA/OpenShell"
+  },
+  {
+   "id": "offensive",
+   "heading": "Offensive-security skills for Claude are trending",
+   "text": "SnailSploit/Claude-Red packages 78 offensive-security skills (SQL injection, EDR evasion, AD attacks) for Claude, with 8.7k stars and no explicit authorization or misuse disclaimer on its page.",
+   "source": "https://github.com/SnailSploit/Claude-Red"
+  },
+  {
+   "id": "rea",
+   "heading": "morluto/rea is slowing",
+   "text": "Its measured daily gain fell four days running, from 9,917 to 6,200 stars, and its stated weekly gain dropped to 88,243 as last week's spike ages out. It stays flagged.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "compute",
+   "heading": "Agent compute and app builders keep compounding",
+   "text": "Runpod reports $325M ARR and 1.2M registered developers, and Base44 reached $200M ARR in August. Both were read from search results.",
+   "source": "https://www.runpod.io/press/runpod-325m-arr-new-cfo"
+  },
+  {
+   "id": "verdicts",
+   "heading": "Every hypothesis raised today was already disproved",
+   "text": "All 7 rule-generated hypotheses (agent orchestration, generative UI, LLM gateways, agent memory) had been researched and disproved earlier this week. The hypotheses table now shows each verdict.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-10-20-analysis.md"
+  }
+ ],
+ "caveats": [
+  "Some apps still rank on gains stated up to five days ago, ahead of the radar's own readings that show them cooling.",
+  "Every company figure today came from search-result summaries; Horizon3's $100M ARR conflicts with coverage saying it was nearing $100M.",
+  "GitHub trending pages list 8 to 21 repos instead of 25, so lower-ranked repos are missed.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment.",
+  "No forecast has matured yet; the first scorecard is expected around Oct 26."
+ ]
+}

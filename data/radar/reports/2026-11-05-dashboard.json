@@ -1,0 +1,40 @@
+{
+ "takeaway": "Computer-use agents are now a tracked direction: 14 apps, led by vercel-labs/agent-desktop, which gained 2,316 stars today. The radar's forecasts held their recovery (53% of the top 15 right for Oct 29).",
+ "findings": [
+  {
+   "id": "computer-use",
+   "heading": "Computer-use becomes a direction",
+   "text": "Agents that operate a desktop, browser or phone led new growth three days running. The new direction has 14 apps, 43% of them in the top quartile; agent-desktop went from 13,394 to 15,710 stars.",
+   "source": "https://github.com/vercel-labs/agent-desktop"
+  },
+  {
+   "id": "scorecard",
+   "heading": "The forecast recovery held",
+   "text": "The Oct 29 ranking scored a rank correlation of 0.66 and 53% of its top 15 across 95 apps, after 0.70 and 60% for Oct 28. Random picks would get about 16%.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-05.md"
+  },
+  {
+   "id": "deepseek",
+   "heading": "DeepSeek's agent repo cools; its ecosystem doesn't",
+   "text": "dsh-superagent-prototype gained 1,343 stars (after 3,075 and 4,732), while the dsh-Go phone client gained 1,934 to pass 10,000.",
+   "source": "https://github.com/ccch1mneyyy/dsh-Go"
+  },
+  {
+   "id": "autoloop",
+   "heading": "A background agent more than doubles",
+   "text": "KKKKhazix/agent-autoloop, created Nov 3, went from 1,296 to 2,841 stars. It lets a command-line agent take on and follow up work on its own, asking only when unsure.",
+   "source": "https://github.com/KKKKhazix/agent-autoloop"
+  },
+  {
+   "id": "anymodelbot",
+   "heading": "One computer-use leader to treat with caution",
+   "text": "modelflare-ai/AnyModelBot has 2,703 stars but only 32 forks (1.2%), far below other new agent repos; it ranks second in the new direction.",
+   "source": "https://github.com/modelflare-ai/AnyModelBot"
+  }
+ ],
+ "caveats": [
+  "No company figure was recorded today; the one candidate counted usage, not users or revenue.",
+  "The first forecast built mostly on the radar's own API measurements is scored on Nov 8.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

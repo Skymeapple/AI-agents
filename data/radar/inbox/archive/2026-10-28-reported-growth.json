@@ -1,0 +1,150 @@
+{
+  "collected_at": "2026-10-28",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Higgsfield",
+        "url": "https://higgsfield.ai",
+        "kind": "product",
+        "description": "AI video and image generation platform for creators and brands.",
+        "tags": [
+          "video-generation",
+          "image-generation"
+        ]
+      },
+      "metric": "users",
+      "value": 40000000,
+      "observed_on": "2026-10-23",
+      "source_url": "https://higgsfield.ai/blog/higgsfield-series-b-extension-tcv-nvidia",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). Company blog on Series B extension from TCV and NVIDIA (Oct 23, 2026): more than 40 million users across 238 countries and territories; coverage describes it as registered users. Same post repeats the $1B run-rate crossed in September (already recorded)."
+    },
+    {
+      "app": {
+        "name": "Legora",
+        "url": "https://legora.com",
+        "kind": "product",
+        "description": "Collaborative AI workspace for lawyers.",
+        "tags": [
+          "legal"
+        ]
+      },
+      "metric": "users",
+      "value": 140000,
+      "observed_on": "2026-10-21",
+      "source_url": "https://legora.com/newsroom/legora-raises-550-million-series-e-at-8.8-billion-valuation-to-accelerate-growth",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). Company press release with $550M Series E at $8.8B: supports more than 140,000 legal professionals at 2,400+ law firms and in-house teams in 80+ markets (seat-holders, not an activity-based count). ARR >$200M already recorded."
+    },
+    {
+      "app": {
+        "name": "DeepInfra",
+        "url": "https://deepinfra.com",
+        "kind": "product",
+        "description": "Inference cloud serving open-source models via API.",
+        "tags": [
+          "llm-inference"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 105000000,
+      "observed_on": "2026-10-05",
+      "source_url": "https://www.storagenewsletter.com/?p=305786",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). Company press release (republished Oct 5, 2026): surpassed $100M ARR, 'over $105 million annualized run-rate'; 22 trillion tokens/week, more than tripled since May. Company-wide."
+    },
+    {
+      "app": {
+        "name": "DeepInfra",
+        "url": "https://deepinfra.com",
+        "kind": "product",
+        "description": "Inference cloud serving open-source models via API.",
+        "tags": [
+          "llm-inference"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1300,
+      "observed_on": "2026-10-05",
+      "source_url": "https://www.storagenewsletter.com/?p=305786",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). Run-rate described as 'nearly 14x Y/Y growth' (recorded as 1300 = 14x; stated as approximate).",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Simplismart",
+        "url": "https://simplismart.ai",
+        "kind": "product",
+        "description": "AI inference platform that runs models on fewer GPUs.",
+        "tags": [
+          "llm-inference"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1300,
+      "observed_on": "2026-10-27",
+      "source_url": "https://techcrunch.com/2026/10/27/nvidia-backs-indian-startup-helping-companies-run-ai-models-with-fewer-gpus/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). $14M Series B led by Dallas Venture Capital with NVIDIA (Oct 27, 2026): annualized revenue run rate grew 14-fold over the past six months; dollar level not disclosed; run rate based on recent usage, not contracted revenue. ~$100M valuation.",
+      "period_days": 182
+    },
+    {
+      "app": {
+        "name": "Flai",
+        "url": "https://www.ycombinator.com/companies/flai",
+        "kind": "product",
+        "description": "AI agents for car dealerships that handle calls and book sales and service appointments.",
+        "tags": [
+          "sales",
+          "enterprise-agent",
+          "voice"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1900,
+      "observed_on": "2026-10-06",
+      "source_url": "https://aiweekly.co/alerts/flai-raises-27m-for-ai-dealership-crm-booking-50000-a-month",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). $27M Series A led by Base10 (Oct 6, 2026): CEO says revenue grew about 20x over the past year (company post says 'more than 20x'); books ~50,000 dealership appointments a month.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "Vesta",
+        "url": "https://www.vesta.com",
+        "kind": "product",
+        "description": "AI-native mortgage loan origination platform with agents for underwriting and closing.",
+        "tags": [
+          "finance",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1100,
+      "observed_on": "2026-10-08",
+      "source_url": "https://aiweekly.co/alerts/vesta-raises-30m-series-b-led-by-conversion-capital-to-scale-ai-mortgage-agents",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). $30M Series B led by Conversion Capital (Oct 8, 2026): CEO Mike Yu told TechCrunch revenue is up 12x year over year (also techcrunch.com/?p=3175175). Lenders on/moving to platform originate $100B+ a year.",
+      "period_days": 365
+    },
+    {
+      "app": {
+        "name": "SailPoint (AI-driven products)",
+        "url": "https://www.sailpoint.com",
+        "kind": "product",
+        "description": "Identity security vendor; AI-driven products include agent identity security.",
+        "tags": [
+          "security"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 70000000,
+      "observed_on": "2026-07-31",
+      "source_url": "https://pulse2.com/sailpoint-q2-arr-rises-25-to-1-23-billion-as-ai-driven-arr-tops-70-million/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota, Quartr requires subscription). Fiscal Q2 2027 results (quarter ended Jul 31, 2026, reported Sep 2026): AI-driven ARR topped $70M (product-line ARR, not company total); company ARR $1.231B, +25%; AI products drove >30% of net-new ARR. Quarter-end date assumed as observed_on."
+    }
+  ]
+}

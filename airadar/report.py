@@ -193,8 +193,8 @@ def render(analysis: Analysis) -> str:
             "growth that actually followed, measured with the fixed default parameters. "
             "*Spearman, forecast top N* ranks only the forecast's own top N apps, a fixed-size "
             "pool: the full Spearman rises with pool size alone, so compare days on the top-N figure. "
-            "A row can change after it first appears: recording a repo move re-keys that repo in "
-            "past forecasts to its new name, whose measured history differs.",
+            "Each row is frozen the first day the daily run scores it, so later records (a repo move, "
+            "a late reading) do not change a published score.",
             "",
             "| Made on | Horizon | Apps compared | Spearman | Spearman, forecast top N | Precision@k |",
             "| --- | --- | --- | --- | --- | --- |",

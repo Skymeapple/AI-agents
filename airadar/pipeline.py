@@ -214,6 +214,7 @@ def run_day(store: Store, date: dt.date, tune_params: bool = True) -> Analysis:
     analysis = analyse(store, date)
     analysis.ingest_log = ingest_log
     record_prediction(store, date, analysis.scores, analysis.params)
+    store.freeze_scores([dict(e.to_dict(), frozen_on=date.isoformat()) for e in analysis.evaluations])
     store.write_snapshot(date, snapshot_payload(analysis))
     if tune_params:
         outcome = tune(analysis.params, store.load_observations(), date)

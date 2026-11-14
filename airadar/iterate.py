@@ -99,6 +99,12 @@ class Evaluation:
             "top_n": self.top_n,
         }
 
+    @classmethod
+    def from_dict(cls, raw: dict) -> "Evaluation":
+        return cls(dt.date.fromisoformat(raw["made_on"]), int(raw["horizon_days"]), int(raw["apps"]),
+                   raw["spearman"], raw["precision_at_k"], int(raw["k"]),
+                   raw.get("spearman_top"), int(raw.get("top_n", 0)))
+
 
 def realised_scores(observations: list[Observation], made_on: dt.date, horizon: int) -> dict[str, float]:
     """Growth that actually happened in ``(made_on, made_on + horizon]``,
@@ -138,17 +144,26 @@ def record_prediction(store: Store, made_on: dt.date, scores, params: Params) ->
 def scorecard(store: Store, today: dt.date, observations: list[Observation]) -> list[Evaluation]:
     """Evaluate every recorded prediction whose horizon has passed.
 
+    A score already frozen (``scorecard.jsonl``, written by the daily run the
+    first day it scores a forecast) is reported as frozen: a published row
+    does not drift when later records -- a repo move, a late reading --
+    would change its recomputation.
+
     A prediction names apps by the ids they had on the day it was made. An app
     that has moved since (a repo transfer) is looked up under its current id,
     or its realised growth -- recorded under the new id -- would never be
     compared and the app would silently drop out of the scorecard.
     """
     aliases = store.aliases()
+    frozen = store.frozen_scores()
     out = []
     for row in store.load_predictions():
         made_on = dt.date.fromisoformat(row["made_on"])
         horizon = int(row["horizon_days"])
         if made_on + dt.timedelta(days=horizon) > today:
+            continue
+        if row["made_on"] in frozen:
+            out.append(Evaluation.from_dict(frozen[row["made_on"]]))
             continue
         predicted: dict[str, float] = {}
         for app_id, score in row["scores"].items():

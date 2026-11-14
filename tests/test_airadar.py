@@ -1036,3 +1036,34 @@ def test_a_fragment_of_a_word_with_digits_is_not_a_search_term():
     assert not _whole_word("deepseek-v", [text])
     assert _whole_word("gguf", [text])
     assert _whole_word("d-models", [text, "a list of d-models"])
+
+
+def test_a_frozen_scorecard_row_does_not_drift(tmp_path):
+    """On 2026-11-13 Nov 5's like-for-like moved from 0.452 to 0.468 because a
+    repo move recorded after publication changed its recomputation. Rows are
+    frozen the first day the daily run scores them; a frozen row is reported
+    as frozen and never rewritten."""
+    from airadar.iterate import Evaluation, scorecard
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    later = made + dt.timedelta(days=7)
+    apps = [f"gh:o/r{i}" for i in range(5)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        rows.append(obs(app_id, "stars", 1000, made))
+        rows.append(obs(app_id, "stars", 1000 + 100 * (i + 1), later))
+    store.add([], rows)
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": {a: 0.1 * (i + 1) for i, a in enumerate(apps)}}])
+    (live,) = scorecard(store, later, store.load_observations())
+    assert Evaluation.from_dict(live.to_dict()) == live
+
+    # What was published on the day differs from what a recomputation now gives.
+    published = dict(live.to_dict(), spearman=0.452, spearman_top=0.452, frozen_on=later.isoformat())
+    store.freeze_scores([published])
+    (reported,) = scorecard(store, later + dt.timedelta(days=1), store.load_observations())
+    assert reported.spearman == pytest.approx(0.452) and reported.spearman_top == pytest.approx(0.452)
+
+    store.freeze_scores([dict(live.to_dict(), frozen_on="2026-10-28")])   # never rewritten
+    assert store.frozen_scores()[made.isoformat()]["spearman"] == pytest.approx(0.452)

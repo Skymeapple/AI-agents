@@ -17,6 +17,7 @@ data/radar/
   verdicts.jsonl        append-only: what research found when it tested a hypothesis
   reviews.jsonl         append-only: what a check of a flagged app's page found
   scope.jsonl           append-only: an app judged outside the radar's scope (not an AI app), or back in
+  scorecard.jsonl       append-only: each forecast's score, frozen the first day a run scores it
   snapshots/DATE.json   that day's scores and directions, for day-on-day comparison
   reports/DATE.md       the human-readable daily report
   inbox/                pending inbox files; moved to inbox/archive once ingested
@@ -99,6 +100,7 @@ class Store:
         self.verdicts_path = self.root / "verdicts.jsonl"
         self.reviews_path = self.root / "reviews.jsonl"
         self.scope_path = self.root / "scope.jsonl"
+        self.scorecard_path = self.root / "scorecard.jsonl"
         self.snapshots = self.root / "snapshots"
         self.reports = self.root / "reports"
 
@@ -191,6 +193,19 @@ class Store:
 
     def load_predictions(self) -> list[dict]:
         return _read_jsonl(self.predictions_path)
+
+    def freeze_scores(self, rows: list[dict]) -> None:
+        """Record forecast scores once; a made_on already frozen is never rewritten."""
+        frozen = {r["made_on"] for r in _read_jsonl(self.scorecard_path)}
+        fresh = [r for r in rows if r["made_on"] not in frozen]
+        if fresh:
+            _append_jsonl(self.scorecard_path, fresh)
+
+    def frozen_scores(self) -> dict[str, dict]:
+        out: dict[str, dict] = {}
+        for row in _read_jsonl(self.scorecard_path):
+            out.setdefault(row["made_on"], row)
+        return out
 
     def append_iteration(self, row: dict) -> None:
         _append_jsonl(self.iterations_path, [row])

@@ -9,12 +9,22 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   "ai--manus" under random-looking accounts with five-digit suffixes came in
   through the "manus" term, carried AI tags (so the intake filter saw 52/55
   on-topic), and were deleted en masse on Nov 15. Flag a repo name seen
-  under many recently created owners before it reaches the ranking.
+  under many recently created owners before it reaches the ranking. Cheap
+  signal: many near-identical repo names from accounts with digit suffixes.
+  Interim (2026-11-15, after the run): "manus" moved to dropped_terms by hand.
 
 - **Mark a reading superseded without deleting it.** (Found 2026-11-15.)
   Anthropic's $100B (Axios, Sept 18) and $81B (S-1/A, Oct 31) both stand;
-  the radar reads the pair as a decline. Add an append-only "superseded by"
-  record (like reviews) that the scorer honours.
+  the radar reads the pair as a decline. First check whether they are the
+  same metric (parent session, Nov 15): the filing defines run-rate as
+  trailing-28-day consumption x13 plus subscriptions x12. If Axios reported
+  something else (projected, gross, another date), it is a basis difference
+  and the `basis` field handles it; only a true same-metric conflict needs
+  an append-only "superseded by" record the scorer honours. Primary source
+  for the $81B: the S-1/A-2 on EDGAR,
+  https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm
+  (the recorded observation cites a Fidelity-hosted copy; cite sec.gov for
+  filings from now on).
 
 - **Mining picks generic words.** Owner-name fragments are fixed
   (2026-11-15); generic English words ("mini", "persistent", "give",

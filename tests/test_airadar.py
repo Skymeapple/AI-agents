@@ -1067,3 +1067,31 @@ def test_a_frozen_scorecard_row_does_not_drift(tmp_path):
 
     store.freeze_scores([dict(live.to_dict(), frozen_on="2026-10-28")])   # never rewritten
     assert store.frozen_scores()[made.isoformat()]["spearman"] == pytest.approx(0.452)
+
+
+def test_pieces_of_owner_names_are_not_mined_as_terms():
+    """Mining added "gentleman" (Gentleman-Programming) and "daslab"
+    (ISTA-DASLab) in Nov 2026: pieces of a hyphenated owner name are names.
+    The group still forms and keeps its real terms."""
+    from airadar.directions import emergent_groups
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+
+    rnd = random.Random(1)
+    owners = ["Gentleman-Programming", "ISTA-DASLab"]
+    apps, scores = {}, []
+    for i in range(6):
+        owner = owners[i % 2]
+        app = App(f"gh:{owner.lower()}/tool{i}", f"{owner}/tool{i}", f"https://github.com/{owner}/tool{i}",
+                  AppKind.REPO, "gentleman daslab zorblex quantiser toolkit", [], D0)
+        apps[app.id] = app
+        scores.append(AppScore(app.id, 0.9, 1, [], []))
+    vocab = [f"w{chr(97 + a)}{chr(97 + b)}{chr(97 + c)}" for a in range(6) for b in range(6) for c in range(6)]
+    for i in range(40):   # varied background, so the group's words are distinctive
+        app = App(f"gh:o/other{i}", f"o/other{i}", f"https://github.com/o/other{i}", AppKind.REPO,
+                  " ".join(rnd.sample(vocab, 6)), [], D0)
+        apps[app.id] = app
+        scores.append(AppScore(app.id, 0.5, 1, [], []))
+    groups = emergent_groups(apps, scores)
+    group = next(g for g in groups if "zorblex" in g.terms)
+    assert {"gentleman", "daslab", "programming", "ista"}.isdisjoint(group.terms)

@@ -203,6 +203,12 @@ def emergent_groups(
     known = {normalise_tag(t) for a in apps.values() for t in a.tags}
     known_words = known | {part for tag in known for part in tag.split("-")}
     owners = {a.name.split("/")[0].lower() for a in apps.values() if "/" in a.name}
+    # Pieces of a hyphenated owner name are names too: "gentleman" from
+    # Gentleman-Programming, "daslab" from ISTA-DASLab (both mined in Nov 2026).
+    # Only pieces that are not known vocabulary, so an owner such as
+    # "agent-labs" does not block the word "agent".
+    owners |= {part for owner in list(owners) for part in re.split(r"[-_.]", owner)
+               if len(part) >= 4 and part not in known_words}
     result = discover(works, threshold=threshold, min_cluster_size=3, min_df=2, max_df_ratio=0.3)
     groups = []
     for track in result.tracks:

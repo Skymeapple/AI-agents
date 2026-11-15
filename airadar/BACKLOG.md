@@ -5,11 +5,22 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Mining picks generic words and owner-name fragments.** On 2026-11-13
-  mining added "mini", "persistent" (generic) and "gentleman" (from the
-  owner Gentleman-Programming; the owner filter matches whole names only).
-  Split owner names on hyphens for the filter, and consider requiring a term
-  to appear in at least two members' descriptions, not just names.
+- **Same-name clone campaigns.** (Found 2026-11-15.) About 30 repos named
+  "ai--manus" under random-looking accounts with five-digit suffixes came in
+  through the "manus" term, carried AI tags (so the intake filter saw 52/55
+  on-topic), and were deleted en masse on Nov 15. Flag a repo name seen
+  under many recently created owners before it reaches the ranking.
+
+- **Mark a reading superseded without deleting it.** (Found 2026-11-15.)
+  Anthropic's $100B (Axios, Sept 18) and $81B (S-1/A, Oct 31) both stand;
+  the radar reads the pair as a decline. Add an append-only "superseded by"
+  record (like reviews) that the scorer honours.
+
+- **Mining picks generic words.** Owner-name fragments are fixed
+  (2026-11-15); generic English words ("mini", "persistent", "give",
+  "upstream") are still mined and only dropped by the intake filter a day
+  later. Consider requiring a term to appear in at least two members'
+  descriptions, not names.
 
 - **Clean up what dropped terms registered.** Repos pulled in by
   "standalone" and "secure" (cracked-installer lures) keep surfacing in the
@@ -103,6 +114,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-15: owner-name fragments are not mined. Pieces of hyphenated
+  owner names ("gentleman" from Gentleman-Programming, "daslab" from
+  ISTA-DASLab) count as owner names in `emergent_groups`, unless they are
+  known vocabulary. Checked on the live registry (blocks both, none of the
+  productive terms). Test rebuilt after the first version passed vacuously.
 - 2026-11-14: scorecard rows are frozen. `scorecard.jsonl` (append-only)
   stores each forecast's evaluation the first day the daily run scores it;
   `scorecard()` reports stored rows from then on, so a later move or reading

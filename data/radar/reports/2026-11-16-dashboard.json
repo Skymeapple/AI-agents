@@ -1,0 +1,40 @@
+{
+ "takeaway": "A new check found five fake-repo campaigns in the registry: 248 accounts under borrowed names (AI Manus, the GitHub Copilot app, Gemini access), with stars bought in identical batches. 222 still-ranked clones are now left out. Jane Street's one-skill repo leads the ranking.",
+ "findings": [
+  {
+   "id": "clones",
+   "heading": "Five clone campaigns, 222 repos removed",
+   "text": "Repo names shared by 15 to 127 owners each, first seen within a week, with 92-100% of members tying another's star count: ai-manus, github-copilot-app, manus-ai, gemini-config-checker, ai-manus2-0. The genuine Simpleyyt/ai-manus was kept.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-16.md"
+  },
+  {
+   "id": "janestreet",
+   "heading": "Jane Street's skill repo is #1",
+   "text": "janestreet/agent_skills leads the ranking on 8.5k stars gained over 7 days, measured by the radar.",
+   "source": "https://github.com/janestreet/agent_skills"
+  },
+  {
+   "id": "launches",
+   "heading": "AI in office and 3D tools grows fast",
+   "text": "dream-num/univer, an SDK for AI-enabled office suites, gained 1,510 stars, to 26,600. A Blender AI assistant and MCP server gained 1,405, to 1,805, with 74 open issues.",
+   "source": "https://github.com/dream-num/univer"
+  },
+  {
+   "id": "charta",
+   "heading": "Charta Health: revenue 10x in 12 months",
+   "text": "Announcing its Series B, Charta Health said it has grown its revenue 10x in the last 12 months.",
+   "source": "https://www.prnewswire.com/news-releases/charta-health-raises-55-million-series-b-to-establish-a-shared-standard-of-accuracy-in-healthcare-billing-302934401.html"
+  },
+  {
+   "id": "forecast",
+   "heading": "Nov 9 forecast: 0.44, 3 of 15 picks right",
+   "text": "Rank correlation 0.44 over its own top 100; its top 15 held 3 of the real top 15.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-16.md"
+  }
+ ],
+ "caveats": [
+  "The clone check flags groups for review; the radar does not remove repos on its own.",
+  "Baidu's Q3 results were not out when the radar searched.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

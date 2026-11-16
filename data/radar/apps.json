@@ -460,6 +460,18 @@
   ],
   "url": "https://github.com/a2sys-ai/jevfetch"
  },
+ "gh:a2ui-project/a2ui": {
+  "description": "Open-source generative UI framework where agents stream layout data and apps render it with native components.",
+  "first_seen": "2026-11-16",
+  "id": "gh:a2ui-project/a2ui",
+  "kind": "repo",
+  "name": "a2ui-project/a2ui",
+  "tags": [
+   "generative-ui",
+   "agent-tools"
+  ],
+  "url": "https://github.com/a2ui-project/a2ui"
+ },
  "gh:a775828b-dot/xtier": {
   "description": "Cross-tier CPU/GPU hybrid MoE inference for SGLang (plugin, tracks upstream main)",
   "first_seen": "2026-11-15",
@@ -13383,21 +13395,6 @@
   ],
   "url": "https://github.com/Gaurav-Gosain/tuios"
  },
- "gh:gcwing/openbitfun": {
-  "description": "OpenBitFun combines a high-performance agent runtime written in Rust with a polished desktop application. It pairs the depth of a Code Agent with open, general-purpose capabilities for work beyond software development.",
-  "first_seen": "2026-11-01",
-  "id": "gh:gcwing/openbitfun",
-  "kind": "repo",
-  "name": "GCWing/OpenBitFun",
-  "tags": [
-   "agent-teams",
-   "agentic",
-   "agentic-os",
-   "agentic-runtime",
-   "ai-coding"
-  ],
-  "url": "https://github.com/GCWing/OpenBitFun"
- },
  "gh:geerlingguy/mini-rack": {
   "description": "Miniature rack builds, for portable or compact Homelabs.",
   "first_seen": "2026-11-14",
@@ -13724,6 +13721,18 @@
    "speech-synthesis"
   ],
   "url": "https://github.com/gexgd0419/NaturalVoiceSAPIAdapter"
+ },
+ "gh:ggml-org/ggml": {
+  "description": "Tensor library for machine learning.",
+  "first_seen": "2026-11-16",
+  "id": "gh:ggml-org/ggml",
+  "kind": "repo",
+  "name": "ggml-org/ggml",
+  "tags": [
+   "llm-inference",
+   "local-llm"
+  ],
+  "url": "https://github.com/ggml-org/ggml"
  },
  "gh:ggml-org/llama.cpp": {
   "description": "LLM inference in C/C++.",
@@ -14241,6 +14250,19 @@
   "name": "google-labs-code/design.md",
   "tags": [],
   "url": "https://github.com/google-labs-code/design.md"
+ },
+ "gh:google-labs-code/stitch-skills": {
+  "description": "Library of agent skills for the Stitch MCP server, following the Agent Skills open standard and compatible with several coding agents.",
+  "first_seen": "2026-11-16",
+  "id": "gh:google-labs-code/stitch-skills",
+  "kind": "repo",
+  "name": "google-labs-code/stitch-skills",
+  "tags": [
+   "agent-skills",
+   "mcp",
+   "design"
+  ],
+  "url": "https://github.com/google-labs-code/stitch-skills"
  },
  "gh:google/adk-python": {
   "description": "An open-source, code-first Python toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control.",
@@ -20810,7 +20832,7 @@
  },
  "gh:kyy-logs/code-review-gate-skill": {
   "description": "Auditable code review skill for Claude Code and Codex: four independent probes, evidence-backed findings, and a JSON-derived merge gate.",
-  "first_seen": "2026-11-10",
+  "first_seen": "2026-11-04",
   "id": "gh:kyy-logs/code-review-gate-skill",
   "kind": "repo",
   "name": "kyy-logs/code-review-gate-skill",
@@ -20822,21 +20844,6 @@
    "codex"
   ],
   "url": "https://github.com/kyy-logs/code-review-gate-skill"
- },
- "gh:kyy-logs/code-review-skill": {
-  "description": "Auditable code review skill for Claude Code and Codex: four independent probes, evidence-backed findings, and a JSON-derived merge gate.",
-  "first_seen": "2026-11-04",
-  "id": "gh:kyy-logs/code-review-skill",
-  "kind": "repo",
-  "name": "kyy-logs/code-review-skill",
-  "tags": [
-   "agent-skills",
-   "ai-code-review",
-   "claude-code",
-   "code-review",
-   "codex"
-  ],
-  "url": "https://github.com/kyy-logs/code-review-skill"
  },
  "gh:labring/fastgpt": {
   "description": "FastGPT is a knowledge-based platform built on the LLMs, offers a comprehensive suite of out-of-the-box capabilities such as data processing, RAG retrieval, and visual AI workflow orchestration, letting you easily develop and deploy complex question-answering systems without the need for extensive setup or configuration.",
@@ -22300,6 +22307,21 @@
    "paged-attention"
   ],
   "url": "https://github.com/localai-org/vllm.cpp"
+ },
+ "gh:localixai/localix-studio": {
+  "description": "Open source Agentic Development Environment",
+  "first_seen": "2026-11-02",
+  "id": "gh:localixai/localix-studio",
+  "kind": "repo",
+  "name": "localixai/localix-studio",
+  "tags": [
+   "agentic-development-environment",
+   "agentic-ide",
+   "ai-agents",
+   "ai-coding",
+   "browser-automation"
+  ],
+  "url": "https://github.com/localixai/localix-studio"
  },
  "gh:locustio/locust": {
   "description": "Write scalable load tests in plain Python \ud83d\ude97\ud83d\udca8",
@@ -27759,6 +27781,18 @@
   ],
   "url": "https://github.com/NVIDIA/personaplex"
  },
+ "gh:nvidia/skillevaluator": {
+  "description": "Multi-tier framework for evaluating AI agent skills, with quality gates and live agent behavior tests.",
+  "first_seen": "2026-11-16",
+  "id": "gh:nvidia/skillevaluator",
+  "kind": "repo",
+  "name": "NVIDIA/SkillEvaluator",
+  "tags": [
+   "agent-evaluation",
+   "agent-skills"
+  ],
+  "url": "https://github.com/NVIDIA/SkillEvaluator"
+ },
  "gh:nvidia/skills": {
   "description": "Agent Skills for NVIDIA products for running Physical AI, robotics, simulation, CUDA and RAG workflows in coding agents.",
   "first_seen": "2026-11-15",
@@ -28613,7 +28647,7 @@
  },
  "gh:openbitfun/openbitfun": {
   "description": "OpenBitFun combines a high-performance agent runtime written in Rust with a polished desktop application. It pairs the depth of a Code Agent with open, general-purpose capabilities for work beyond software development.",
-  "first_seen": "2026-11-10",
+  "first_seen": "2026-11-01",
   "id": "gh:openbitfun/openbitfun",
   "kind": "repo",
   "name": "openBitFun/OpenBitFun",
@@ -33775,21 +33809,6 @@
    "cryptocurrency"
   ],
   "url": "https://github.com/rsalianto/tradoor"
- },
- "gh:rsaryev/localix": {
-  "description": "Open source Agentic Development Environment",
-  "first_seen": "2026-11-02",
-  "id": "gh:rsaryev/localix",
-  "kind": "repo",
-  "name": "rsaryev/localix",
-  "tags": [
-   "agentic-development-environment",
-   "agentic-ide",
-   "ai-agents",
-   "ai-coding",
-   "browser-automation"
-  ],
-  "url": "https://github.com/rsaryev/localix"
  },
  "gh:rsxdalv/tts-webui": {
   "description": "A single Gradio + React WebUI with extensions for ACE-Step, OmniVoice, Kimi Audio, Piper TTS, GPT-SoVITS, CosyVoice, XTTSv2, DIA, Kokoro, OpenVoice, ParlerTTS, Stable Audio, MMS, StyleTTS2, MAGNet, AudioGen, MusicGen, Tortoise, RVC, Vocos, Demucs, SeamlessM4T, and Bark!",
@@ -50510,6 +50529,19 @@
   ],
   "url": "https://character.ai"
  },
+ "web:chartahealth.com": {
+  "description": "AI medical chart review platform that checks coding and clinical documentation before claims are submitted, for providers and health plans.",
+  "first_seen": "2026-11-16",
+  "id": "web:chartahealth.com",
+  "kind": "product",
+  "name": "Charta Health",
+  "tags": [
+   "healthcare",
+   "medical-coding",
+   "ai-agents"
+  ],
+  "url": "https://www.chartahealth.com"
+ },
  "web:chatgpt.com": {
   "description": "OpenAI's general-purpose AI assistant.",
   "first_seen": "2026-10-19",
@@ -51749,6 +51781,18 @@
    "voice"
   ],
   "url": "https://wonderful.ai"
+ },
+ "web:xpertdox.com": {
+  "description": "AI-first healthcare company whose XpertCoding platform autonomously turns EHR clinical documentation into coded billing data.",
+  "first_seen": "2026-11-16",
+  "id": "web:xpertdox.com",
+  "kind": "product",
+  "name": "XpertDox",
+  "tags": [
+   "healthcare",
+   "medical-coding"
+  ],
+  "url": "https://www.xpertdox.com"
  },
  "web:ycombinator.com": {
   "description": "AI agents for car dealerships that handle calls and book sales and service appointments.",

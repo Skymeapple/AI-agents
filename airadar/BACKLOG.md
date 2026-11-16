@@ -5,13 +5,10 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Same-name clone campaigns.** (Found 2026-11-15.) About 30 repos named
-  "ai--manus" under random-looking accounts with five-digit suffixes came in
-  through the "manus" term, carried AI tags (so the intake filter saw 52/55
-  on-topic), and were deleted en masse on Nov 15. Flag a repo name seen
-  under many recently created owners before it reaches the ranking. Cheap
-  signal: many near-identical repo names from accounts with digit suffixes.
-  Interim (2026-11-15, after the run): "manus" moved to dropped_terms by hand.
+- **Feed the clone check back into mining.** (2026-11-16.) The clone check
+  runs after a term has already pulled clones in ("github-copilot-app" brought
+  52 in one day). Drop a mined term whose intake is mostly flagged clone
+  members, and consider restoring "manus" once its clones are left out.
 
 - **Mark a reading superseded without deleting it.** (Found 2026-11-15.)
   Anthropic's $100B (Axios, Sept 18) and $81B (S-1/A, Oct 31) both stand;
@@ -124,6 +121,12 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-16: clone-campaign detection. `clone_campaigns()` flags a repo
+  name shared by >= 5 owners, all first seen within 7 days, with >= 60% of
+  members tying another's star count within 2% (campaigns 92-100%, real
+  "skills" 11%). Report section "Possible clone campaigns"; report-only.
+  First version used star spread and missed multi-batch campaigns. Found 5
+  campaigns; 222 members scoped out after review (Simpleyyt/ai-manus kept).
 - 2026-11-15: owner-name fragments are not mined. Pieces of hyphenated
   owner names ("gentleman" from Gentleman-Programming, "daslab" from
   ISTA-DASLab) count as owner names in `emergent_groups`, unless they are

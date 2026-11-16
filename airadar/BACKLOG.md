@@ -5,6 +5,19 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **[Tomorrow, 2026-11-17] One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
+  like-for-like split showed the drop sits in the measured class (Oct
+  0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
+  score rests on one daily delta against apps with a delta spanning several
+  days. Concrete test (suggested by the parent session): backtest a fixed
+  extraction rule that scores measured deltas only over a span of at least
+  N days (3 or 7), from the oldest reading in the window, not the latest
+  pair -- like `min_rate_change_span_days`. Report the like-for-like and
+  full-pool scores for both; change no setting unless it passes the
+  existing tuner bars.
+  Priority set by the parent session (Nov 16): the like-for-like score has
+  sat at 0.40-0.53 for two weeks; do this before further cleanup work.
+
 - **Feed the clone check back into mining.** (2026-11-16.) The clone check
   runs after a term has already pulled clones in ("github-copilot-app" brought
   52 in one day). Drop a mined term whose intake is mostly flagged clone
@@ -34,17 +47,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   recheck list and occasionally the top 25, days after the terms were
   dropped; they are removed by hand, a few a day. When a term is dropped,
   list the repos only it brought in for one-pass review.
-
-- **One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
-  like-for-like split showed the drop sits in the measured class (Oct
-  0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
-  score rests on one daily delta against apps with a delta spanning several
-  days. Concrete test (suggested by the parent session): backtest a fixed
-  extraction rule that scores measured deltas only over a span of at least
-  N days (3 or 7), from the oldest reading in the window, not the latest
-  pair -- like `min_rate_change_span_days`. Report the like-for-like and
-  full-pool scores for both; change no setting unless it passes the
-  existing tuner bars.
 
 - **Tuner objective: decide whether to tune on the like-for-like figure.**
   (Needs a person.) Since 2026-11-01 pools are 5-10x bigger and padded with

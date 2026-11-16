@@ -63,6 +63,8 @@ class Analysis:
     # What each automatic search term brought in on the day: a term mined from
     # an off-topic cluster shows here the day it starts fetching.
     term_intake: list[dict] = field(default_factory=list)
+    # Repo names shared by many owners at once with near-identical stars.
+    clones: list[dict] = field(default_factory=list)
 
 
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
@@ -153,6 +155,58 @@ def term_intake(terms: list[str], observations, apps: dict, date: dt.date) -> li
     return out
 
 
+CLONE_MIN_OWNERS = 5          # distinct owners sharing one repo name
+CLONE_MAX_SPAN_DAYS = 7       # all first seen within this many days
+CLONE_MIN_TWIN_SHARE = 0.6    # share of members whose stars match another member's within 2%
+
+
+def clone_campaigns(apps: dict, observations, left_out: set[str], asof: dt.date) -> list[dict]:
+    """Repo names shared by many owners at once, with near-identical stars.
+
+    On 2026-11-15 about 30 repos named "ai--manus", each under a fresh-looking
+    account, were deleted together; the registry held 127 owners of that name.
+    Real same-name repos ("skills", "agent-skills") appear over weeks with
+    star counts that differ by orders of magnitude; a campaign appears in a
+    few days with stars bought in batches, so most members tie with another
+    member to within 2% (on Nov 16: campaigns 92-100%, "skills" 11%).
+    Report-only: marking stays a reviewed, manual step.
+    """
+    import re
+    from statistics import median
+    latest: dict[str, tuple[dt.date, float]] = {}
+    for o in observations:
+        if o.metric == "stars" and o.known_on <= asof:
+            if o.app_id not in latest or o.observed_on >= latest[o.app_id][0]:
+                latest[o.app_id] = (o.observed_on, o.value)
+    by_name: dict[str, list] = {}
+    for app in apps.values():
+        if app.kind.value != "repo" or "/" not in app.name:
+            continue
+        repo = app.name.split("/", 1)[1]
+        by_name.setdefault(re.sub(r"[-_.]+", "-", repo.lower()).strip("-"), []).append(app)
+    out = []
+    for name, members in by_name.items():
+        owners = {m.name.split("/", 1)[0].lower() for m in members}
+        if len(owners) < CLONE_MIN_OWNERS:
+            continue
+        seen = sorted(m.first_seen for m in members if m.first_seen)
+        stars = sorted(latest[m.id][1] for m in members if m.id in latest)
+        if not seen or len(stars) < CLONE_MIN_OWNERS:
+            continue
+        span = (seen[-1] - seen[0]).days
+        twins = sum(1 for i, x in enumerate(stars)
+                    if any(j != i and abs(x - y) <= max(1.0, 0.02 * x) for j, y in enumerate(stars)))
+        twin_share = twins / len(stars)
+        if span > CLONE_MAX_SPAN_DAYS or twin_share < CLONE_MIN_TWIN_SHARE:
+            continue
+        active = sorted(m.id for m in members if m.id not in left_out)
+        out.append({"name": name, "owners": len(owners), "active": active,
+                    "left_out": len(members) - len(active), "span_days": span,
+                    "median_stars": median(stars), "twin_share": round(twin_share, 3)})
+    out.sort(key=lambda c: -c["owners"])
+    return out
+
+
 def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analysis:
     params = params or Params.load(store.params_path)
     apps = store.load_apps()
@@ -176,6 +230,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
     auto_terms = load_watch(store.root / "watch.json")["auto_terms"]
     return Analysis(
         term_intake=term_intake(auto_terms, observations, apps, date),
+        clones=clone_campaigns(apps, observations, left_out, date),
         date=date,
         apps=apps,
         scores=scores,

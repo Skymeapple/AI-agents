@@ -117,6 +117,18 @@ def render(analysis: Analysis) -> str:
             lines.append(f"- … and {len(a.out_of_scope) - 20} more (`scope.jsonl`).")
         lines.append("")
 
+    if a.clones:
+        lines += ["### Possible clone campaigns", "",
+                  "Repo names shared by many owners, all first seen within a week, most of them tying "
+                  "another member's star count to within 2%: the pattern of the fake \"ai--manus\" repos deleted on 2026-11-15. "
+                  "Review, then `mark-out-of-scope` the members still listed.", "",
+                  "| Repo name | Owners | Still ranked | Already left out | First seen within | Median stars | Star twins |",
+                  "| --- | --- | --- | --- | --- | --- | --- |"]
+        for c in a.clones:
+            lines.append(f"| {c['name']} | {c['owners']} | {len(c['active'])} | {c['left_out']} | "
+                         f"{c['span_days']}d | {c['median_stars']:,.0f} | {c['twin_share']:.0%} |")
+        lines.append("")
+
     if a.term_intake:
         lines += ["### Automatic search terms", "",
                   "Terms mined from emergent groupings and searched on GitHub today. A term whose "

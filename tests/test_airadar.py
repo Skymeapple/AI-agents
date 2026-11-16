@@ -1095,3 +1095,30 @@ def test_pieces_of_owner_names_are_not_mined_as_terms():
     groups = emergent_groups(apps, scores)
     group = next(g for g in groups if "zorblex" in g.terms)
     assert {"gentleman", "daslab", "programming", "ista"}.isdisjoint(group.terms)
+
+
+def test_clone_campaigns_are_flagged_and_real_shared_names_are_not():
+    """On 2026-11-15 about 30 'ai--manus' repos under fresh accounts were
+    deleted together; the registry held 127 owners of that name, most tying
+    another's star count. Real shared names ('skills') spread over weeks with
+    stars that differ by orders of magnitude."""
+    from airadar.models import App, AppKind
+    from airadar.pipeline import clone_campaigns
+
+    day = dt.date(2026, 11, 10)
+    apps, rows = {}, []
+    for i in range(8):   # a campaign: one name, one week, stars bought in batches
+        a = App(f"gh:fresh{i}x/ai--manus", f"Fresh{i}x/ai--manus", f"https://github.com/Fresh{i}x/ai--manus",
+                AppKind.REPO, "", [], day + dt.timedelta(days=i % 3))
+        apps[a.id] = a
+        rows.append(obs(a.id, "stars", 146 if i % 2 else 378, day))
+    for i, (owner, stars) in enumerate([("anthropics", 192000), ("mattpocock", 320000), ("google", 4000),
+                                        ("android", 900), ("vercel-labs", 21000), ("caldoai", 60)]):
+        a = App(f"gh:{owner}/skills", f"{owner}/skills", f"https://github.com/{owner}/skills",
+                AppKind.REPO, "", [], day - dt.timedelta(days=5 * i))
+        apps[a.id] = a
+        rows.append(obs(a.id, "stars", stars, day))
+    found = {c["name"]: c for c in clone_campaigns(apps, rows, {"gh:fresh0x/ai--manus"}, day + dt.timedelta(days=3))}
+    assert set(found) == {"ai-manus"}
+    assert found["ai-manus"]["owners"] == 8 and len(found["ai-manus"]["active"]) == 7
+    assert found["ai-manus"]["left_out"] == 1 and found["ai-manus"]["twin_share"] == 1.0

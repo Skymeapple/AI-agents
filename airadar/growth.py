@@ -109,8 +109,12 @@ def extract_signals(
     asof: dt.date,
     after: dt.date | None = None,
     lookback_days: int = FIXED["lookback_days"],
+    min_delta_span_days: int = 0,
 ) -> dict[str, list[Signal]]:
     """Growth signals per app, using only what was known on ``asof``.
+
+    ``min_delta_span_days`` drops measured deltas over a shorter span: a
+    diagnostic switch for the span backtest (default 0: unchanged).
 
     With ``after`` set, only growth that happened after that date counts: this
     is the *realised* growth a prediction made on ``after`` is scored against.
@@ -170,6 +174,8 @@ def extract_signals(
         if slack and abs(v1 - v0) <= slack:
             continue
         span = (end - start).days
+        if span < min_delta_span_days:
+            continue
         family = METRICS[metric].family
         rel = None
         if v0 >= max(1.0, FIXED["min_base"][family]) and v1 > 0:

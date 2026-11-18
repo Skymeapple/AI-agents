@@ -1122,3 +1122,17 @@ def test_clone_campaigns_are_flagged_and_real_shared_names_are_not():
     assert set(found) == {"ai-manus"}
     assert found["ai-manus"]["owners"] == 8 and len(found["ai-manus"]["active"]) == 7
     assert found["ai-manus"]["left_out"] == 1 and found["ai-manus"]["twin_share"] == 1.0
+
+
+def test_min_delta_span_drops_short_span_deltas_only_when_asked():
+    """The span backtest (2026-11-18) restricts measured deltas to a minimum
+    span; by default nothing changes."""
+    from airadar.growth import extract_signals
+
+    day = dt.date(2026, 11, 10)
+    rows = [obs("gh:o/short", "stars", 1000, day - dt.timedelta(days=1)), obs("gh:o/short", "stars", 1200, day),
+            obs("gh:o/long", "stars", 1000, day - dt.timedelta(days=7)), obs("gh:o/long", "stars", 1500, day)]
+    default = extract_signals(rows, asof=day)
+    assert {"gh:o/short", "gh:o/long"} <= set(default)
+    strict = extract_signals(rows, asof=day, min_delta_span_days=3)
+    assert "gh:o/long" in strict and not any(s.kind == "delta" for s in strict.get("gh:o/short", []))

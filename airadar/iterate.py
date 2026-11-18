@@ -256,6 +256,36 @@ def backtest(params: Params, observations: list[Observation], days: list[dt.date
     return out
 
 
+def span_backtest(store: Store, today: dt.date, observations: list[Observation],
+                  min_spans: tuple[int, ...] = (0, 3, 7)) -> list[dict]:
+    """Re-score every matured forecast with measured deltas restricted to a
+    minimum span, and report the full and like-for-like rank correlations.
+
+    Diagnostic only (2026-11-18): it tests whether short-span deltas are what
+    keep the like-for-like score at 0.40-0.53. Each forecast is recomputed
+    with its own stored params; the yardstick (``realised_scores``) is the
+    fixed one. Nothing is tuned or adopted from it.
+    """
+    out = []
+    for row in store.load_predictions():
+        made_on = dt.date.fromisoformat(row["made_on"])
+        horizon = int(row["horizon_days"])
+        if made_on + dt.timedelta(days=horizon) > today:
+            continue
+        params = Params.defaults()
+        params.values.update(row.get("params", {}))
+        realised = realised_scores(observations, made_on, horizon)
+        result = {"made_on": made_on}
+        for n in min_spans:
+            signals = extract_signals(observations, asof=made_on, min_delta_span_days=n)
+            predicted = {s.app_id: s.score for s in score_apps(signals, params, asof=made_on)}
+            e = evaluate(predicted, realised, made_on, horizon)
+            result[n] = {"apps": e.apps, "spearman": e.spearman, "spearman_top": e.spearman_top,
+                         "precision_at_k": e.precision_at_k}
+        out.append(result)
+    return out
+
+
 @dataclass
 class TuningOutcome:
     adopted: bool

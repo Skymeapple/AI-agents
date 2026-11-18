@@ -5,18 +5,16 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **[Tomorrow, 2026-11-17] One-day measured deltas may be too noisy to rank on.** On 2026-11-11 the
-  like-for-like split showed the drop sits in the measured class (Oct
-  0.56-0.68; Nov 2-4 0.34-0.44). Compare realised growth for apps whose
-  score rests on one daily delta against apps with a delta spanning several
-  days. Concrete test (suggested by the parent session): backtest a fixed
-  extraction rule that scores measured deltas only over a span of at least
-  N days (3 or 7), from the oldest reading in the window, not the latest
-  pair -- like `min_rate_change_span_days`. Report the like-for-like and
-  full-pool scores for both; change no setting unless it passes the
-  existing tuner bars.
-  Priority set by the parent session (Nov 16): the like-for-like score has
-  sat at 0.40-0.53 for two weeks; do this before further cleanup work.
+- **Re-score like-for-like without later-purged apps.** (2026-11-18.) The
+  span backtest disproved the short-delta hypothesis. Next: recompute each
+  matured forecast's top-100 figure excluding apps later found gone, out of
+  scope or reviewed inorganic; bought stars that are purged after the
+  forecast make the realised growth collapse and the forecast look wrong.
+
+- **Re-read passes after a gap.** On 2026-11-18, after a missed day, three
+  re-read passes left ~140 apps unread; a second `collect --only
+  github-repos` was needed. Consider scaling max_passes with days since the
+  last run.
 
 - **Feed the clone check back into mining.** (2026-11-16.) The clone check
   runs after a term has already pulled clones in ("github-copilot-app" brought
@@ -123,6 +121,11 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Done
 
+- 2026-11-18: span backtest. `extract_signals(min_delta_span_days=...)`
+  (diagnostic, default 0) and `span_backtest()`. Requiring 3- or 7-day
+  delta spans made every score worse (API-era means: top-100 0.398 -> 0.384
+  -> 0.353; top-15 32% -> 27% -> 23%; full 0.833 -> 0.766 -> 0.696). The
+  short-delta hypothesis is disproved; nothing adopted.
 - 2026-11-16: clone-campaign detection. `clone_campaigns()` flags a repo
   name shared by >= 5 owners, all first seen within 7 days, with >= 60% of
   members tying another's star count within 2% (campaigns 92-100%, real

@@ -6,7 +6,7 @@
   "bin": { "ctxlint": "bin/ctxlint.js" },
   "main": "src/index.js",
   "exports": { ".": "./src/index.js" },
-  "files": ["bin", "src", "README.md", "LICENSE"],
+  "files": ["bin", "src", "README.md", "LICENSE", "CHANGELOG.md"],
   "engines": { "node": ">=18" },
   "scripts": { "test": "node --test" },
   "keywords": ["agents.md", "claude.md", "cursorrules", "copilot-instructions", "lint", "linter", "ai", "coding-agent", "claude-code", "cursor", "codex", "gemini-cli", "ci"],

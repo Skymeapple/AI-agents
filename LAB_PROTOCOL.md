@@ -8,7 +8,7 @@ Run the phases in order. Never skip **Test**. Never publish fabricated evidence 
 
 ## Phase 0: Sync and review performance (~10 min)
 
-1. `git pull`. The `metrics` workflow commits fresh numbers every morning.
+1. `git pull origin research-lab`. The lab lives on the `research-lab` branch of `Skymeapple/AI-agents`, with history separate from the rest of that repo. The `metrics` workflow commits fresh numbers after every lab push.
 2. Read `DASHBOARD.md`, `lab/LEARNINGS.md`, the last 3 files in `lab/research/`, and `lab/registry.json`.
 3. Decide **today's mode** with these rules:
    * **Improve:** a project from the last 14 days has rising downloads (positive Δ two weeks running), or has open issues or feature requests. Spend today making that project better: fix issues, add the most-requested feature, improve the README, add an integration (Action, pre-commit, VS Code task), then cut a release. Winners compound, so double down.
@@ -58,7 +58,7 @@ Pick the highest total; break ties with Reach. Don't rebuild an existing lab pro
 ## Phase 4: Ship
 
 1. Add the project to `lab/registry.json` (all fields; `evidence` holds the source URLs), then run `python3 scripts/build_dashboard.py`.
-2. Commit on `main` with the message `day YYYY-MM-DD: <name>, <one-line pain point>`, then push.
+2. Commit on `research-lab` with the message `day YYYY-MM-DD: <name>, <one-line pain point>`, then push with `git push origin research-lab`. Never push lab work to the repo's default branch.
 3. On push, `.github/workflows/publish.yml` publishes any npm or PyPI package whose version isn't on the registry yet, if the `NPM_TOKEN` / `PYPI_TOKEN` secrets are set. Without the secrets, it skips publishing and says so in the job summary. Mention that in the report.
 4. Bump the version in the manifest for any improvement release of an existing project.
 

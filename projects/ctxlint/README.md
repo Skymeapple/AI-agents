@@ -44,7 +44,7 @@ ctxlint tries hard to avoid false positives. It ignores prose like "make sure", 
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: Skymeapple/ai-research-lab/projects/ctxlint@main
+- uses: Skymeapple/AI-agents/projects/ctxlint@research-lab
   with:
     strict: false   # true = fail on warnings too
 ```
@@ -104,4 +104,4 @@ const { files, issues } = lint('.', { maxLines: 300 });
 
 ---
 
-Built by the [AI Research Lab](../../README.md), which ships one tool a day for a real developer pain point. Issues and stars help us decide what to build next.
+Built by the [AI Research Lab](https://github.com/Skymeapple/AI-agents/tree/research-lab), which ships one tool a day for a real developer pain point. Issues and stars help us decide what to build next.

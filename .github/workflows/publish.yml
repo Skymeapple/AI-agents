@@ -1,7 +1,7 @@
 name: publish
 on:
   push:
-    branches: [main]
+    branches: [research-lab]
     paths: ['projects/**']
   workflow_dispatch:
 permissions:

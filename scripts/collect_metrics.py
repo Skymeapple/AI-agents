@@ -26,7 +26,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "lab" / "registry.json"
 METRICS = ROOT / "lab" / "metrics"
-REPO = os.environ.get("GITHUB_REPOSITORY", "Skymeapple/ai-research-lab")
+REPO = os.environ.get("GITHUB_REPOSITORY", "Skymeapple/AI-agents")
+BRANCH = os.environ.get("LAB_BRANCH", "research-lab")
 TOKEN = os.environ.get("LAB_STATS_TOKEN") or os.environ.get("GITHUB_TOKEN")
 UA = {"User-Agent": "ai-research-lab-metrics"}
 
@@ -102,8 +103,8 @@ def main() -> int:
                 m["downloads"][f"npm:{name}"] = npm_stats(name, p.get("date"))
             elif eco == "pypi":
                 m["downloads"][f"pypi:{name}"] = pypi_stats(name)
-        prefix = f"/{REPO}/tree/main/{p['path']}".lower()
-        prefix_blob = f"/{REPO}/blob/main/{p['path']}".lower()
+        prefix = f"/{REPO}/tree/{BRANCH}/{p['path']}".lower()
+        prefix_blob = f"/{REPO}/blob/{BRANCH}/{p['path']}".lower()
         pv = [x for x in paths if isinstance(x, dict) and str(x.get("path", "")).lower().startswith((prefix, prefix_blob))]
         m["page_views_14d"] = sum(x.get("count", 0) for x in pv)
         m["page_uniques_14d"] = sum(x.get("uniques", 0) for x in pv)

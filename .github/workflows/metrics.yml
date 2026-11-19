@@ -1,7 +1,13 @@
 name: metrics
 on:
+  # GitHub only runs `schedule` from the default branch. While the lab lives on the
+  # `research-lab` branch, metrics refresh on every lab push (the daily mission pushes
+  # daily) and on manual dispatch. The cron applies once the lab is on a default branch.
   schedule:
-    - cron: '17 5 * * *'   # daily, before the lab's daily mission runs
+    - cron: '17 5 * * *'
+  push:
+    branches: [research-lab]
+    paths-ignore: ['lab/metrics/**', 'DASHBOARD.md']
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { ref: research-lab }
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - name: Collect metrics
@@ -28,4 +35,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add lab/metrics DASHBOARD.md README.md
           git diff --cached --quiet || git commit -m "metrics: $(date -u +%F)"
-          git push
+          git push origin HEAD:research-lab

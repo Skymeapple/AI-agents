@@ -1,0 +1,41 @@
+name: publish
+on:
+  push:
+    branches: [main]
+    paths: ['projects/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write   # npm provenance
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', registry-url: 'https://registry.npmjs.org' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Publish unreleased versions
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          set -e
+          sum() { echo "$1" >> "$GITHUB_STEP_SUMMARY"; }
+          for d in projects/*/; do
+            if [ -f "$d/package.json" ] && [ "$(node -p "require('./$d/package.json').private||false")" != "true" ]; then
+              name=$(node -p "require('./$d/package.json').name"); ver=$(node -p "require('./$d/package.json').version")
+              if npm view "$name@$ver" version >/dev/null 2>&1; then sum "- npm $name@$ver already published"; continue; fi
+              if [ -z "$NODE_AUTH_TOKEN" ]; then sum "- ⚠️ npm $name@$ver NOT published: add the NPM_TOKEN secret"; continue; fi
+              (cd "$d" && npm test && npm publish --provenance --access public) && sum "- ✅ published npm $name@$ver"
+            fi
+            if [ -f "$d/pyproject.toml" ]; then
+              pip install -q build twine tomli >/dev/null
+              name=$(python3 -c "import tomli;print(tomli.load(open('$d/pyproject.toml','rb'))['project']['name'])")
+              ver=$(python3 -c "import tomli;print(tomli.load(open('$d/pyproject.toml','rb'))['project']['version'])")
+              if curl -sf "https://pypi.org/pypi/$name/$ver/json" >/dev/null; then sum "- PyPI $name==$ver already published"; continue; fi
+              if [ -z "$PYPI_TOKEN" ]; then sum "- ⚠️ PyPI $name==$ver NOT published: add the PYPI_TOKEN secret"; continue; fi
+              (cd "$d" && python -m build && TWINE_USERNAME=__token__ TWINE_PASSWORD="$PYPI_TOKEN" twine upload dist/*) && sum "- ✅ published PyPI $name==$ver"
+            fi
+          done

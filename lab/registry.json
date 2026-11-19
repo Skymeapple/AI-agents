@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "id": "2026-11-19-ctxlint",
+      "date": "2026-11-19",
+      "name": "ctxlint",
+      "path": "projects/ctxlint",
+      "tagline": "Lint AGENTS.md / CLAUDE.md / .cursorrules / Copilot instructions: stale paths & scripts, broken @imports, hidden Unicode, secrets, drift.",
+      "pain_point": "Teams run several AI coding agents, each with its own instruction file. The files rot (renamed paths, dead scripts), drift apart, bloat, and can hide malicious invisible Unicode.",
+      "audience": "Developers using Claude Code, Codex, Cursor, Copilot or Gemini CLI",
+      "install": "npx ctxlint",
+      "packages": [{ "ecosystem": "npm", "name": "ctxlint" }],
+      "evidence": [
+        "https://www.reddit.com/r/codex/comments/1x2wkid/if_you_use_both_codex_and_claude_code_how_do_you",
+        "https://umesh-malik.com/blog/agents-md-ai-coding-agents-study",
+        "https://www.infoworld.com/article/4224410/claude-code-now-also-accepts-instructions-in-openais-agents-md-format.html",
+        "https://finance.yahoo.com/news/vulnerability-github-copilot-cursor-hackers-144000906.html"
+      ],
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+name: ctxlint
+description: Lint AGENTS.md, CLAUDE.md, .cursorrules, Copilot and other AI agent instruction files
+branding: { icon: check-square, color: purple }
+inputs:
+  path: { description: Directory to lint, default: '.' }
+  strict: { description: Fail on warnings too, default: 'false' }
+  args: { description: Extra CLI arguments, default: '' }
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: node "$GITHUB_ACTION_PATH/bin/ctxlint.js" "${{ inputs.path }}" --format github ${{ inputs.strict == 'true' && '--strict' || '' }} ${{ inputs.args }}

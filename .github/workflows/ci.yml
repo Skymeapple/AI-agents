@@ -1,0 +1,32 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '${{ matrix.node }}' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Test every project
+        run: |
+          set -e
+          for d in projects/*/; do
+            if [ -f "$d/package.json" ]; then
+              echo "::group::npm test $d"; (cd "$d" && (npm ci 2>/dev/null || npm install --no-audit --no-fund) && npm test); echo "::endgroup::"
+            fi
+            if [ -f "$d/pyproject.toml" ] && [ "${{ matrix.node }}" = "22" ]; then
+              echo "::group::pytest $d"; (cd "$d" && pip install -q -e '.[test]' 2>/dev/null || pip install -q -e . pytest; pytest -q); echo "::endgroup::"
+            fi
+          done
+      - name: Dogfood ctxlint on the lab itself
+        run: node projects/ctxlint/bin/ctxlint.js . --format github
+      - name: Dashboard builds
+        run: python3 scripts/build_dashboard.py && git diff --stat

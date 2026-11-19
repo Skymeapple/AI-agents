@@ -53,21 +53,6 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   dropped; they are removed by hand, a few a day. When a term is dropped,
   list the repos only it brought in for one-pass review.
 
-- **Tuner objective: decide whether to tune on the like-for-like figure.**
-  (Needs a person.) Since 2026-11-01 pools are 5-10x bigger and padded with
-  easy-to-rank search hits, so the backtest's full Spearman can reward a
-  setting that sorts the padding better. Candidate: average `spearman_top`
-  instead. The yardstick and thresholds would not change, but it changes
-  what the radar optimises, so it is not a daily-run call. Since
-  2026-11-19, lift is a third candidate, but it also rises with pool size.
-  The persistence baseline (Done, 2026-11-19) gives the pool-free check: a
-  candidate objective should keep the forecast ahead of it.
-
-- **If `spearman_top` ever becomes the tuner's objective, keep
-  precision@15 beside it as a guard.** A top-100 figure cannot penalise a
-  forecast for missing a fast grower ranked below 100. (Raised by the parent
-  session, 2026-11-10; restored 2026-11-12 after a faulty backlog edit.)
-
 - **Stale stated gains outrank fresh measurements.** On 2026-10-23
   ai-job-search ranked #2 on a one-day gain stated on Oct 19, while the radar
   measured it slowing from ~2.9k to ~0.6k a day. Let the scorecard and tuner
@@ -130,6 +115,21 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   metrics that don't feed the growth score would make this automatic.
 
 ## Done
+
+- 2026-11-19: the tuner optimises the top-100 score. **The user's
+  decision** ("switch the tuner to the top-100 score", written in the
+  orchestrating session at 22:57 UTC). `tune()` now averages
+  `spearman_top` (each forecast's own top 100 against the fixed
+  yardstick) instead of full-pool Spearman; MIN_IMPROVEMENT +0.02,
+  MIN_WIN_SHARE 2/3 and MIN_EVAL_DAYS unchanged, now applied to that
+  score. Guard (the backlog's standing note from 2026-11-10, passed on by
+  the orchestrating session with the decision): a candidate may not lower
+  the mean top-15 hit rate over the same days, which can only make adoption
+  stricter. Full Spearman, lift and the persistence baseline are still
+  reported, not gated on. First run on current data: baseline 0.509 over
+  25 days; best candidate shrinkage -> 0.25 at 0.524 (+0.015, better on
+  64% of days, hit rate 44.5% vs 42.7%), so nothing adopted. The 25 days
+  include October, when a forecast's top N was its whole pool (<100 apps).
 
 - 2026-11-19: naive persistence baseline (asked for by the user after the
   parent session pointed out that lift rises with pool size).

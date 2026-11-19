@@ -930,7 +930,7 @@ def test_report_shows_every_tuning_candidate_against_the_baseline(tmp_path):
     a.tuning = outcome
     text = render(a)
     assert "| current settings |" in text and "Days better" in text
-    best = max(outcome.candidates_tried, key=lambda c: c["spearman"])
+    best = max(outcome.candidates_tried, key=lambda c: c["spearman_top"])
     assert f"| {best['knob']} → {best['value']:g} |" in text
     # A day without a backtest (too little history) shows no table.
     a.tuning = tune(Params.defaults(), synthetic_world(days=5), D0 + dt.timedelta(days=5))
@@ -1184,3 +1184,33 @@ def test_persistence_baseline_ranks_the_same_apps_by_latest_measured_gain(tmp_pa
     assert row["rel_measured"].spearman == pytest.approx(-1.0)
     assert row["forecast"].apps == row["abs"].apps == 5
     assert row["forecast"].spearman > row["abs"].spearman
+
+
+def test_tuner_objective_is_top_100_spearman_guarded_by_hit_rate(monkeypatch):
+    """The user's choice (2026-11-19): tune on each forecast's top-100 rank
+    correlation, not the full pool's. A candidate that only sorts the whole
+    pool better is not adopted; one that orders the top 100 better but
+    picks fewer of the top 15 is refused; one that does both is adopted."""
+    import airadar.iterate as it
+    from airadar.params import KNOBS
+
+    days = [dt.date(2026, 11, d) for d in range(1, 7)]
+    name = next(iter(KNOBS))
+    current = Params.defaults()
+    target = current.with_value(name, current[name] + KNOBS[name].step)
+
+    def run(full, top, hits):
+        def fake_backtest(params, observations, ds, horizon, cache=None):
+            moved = params[name] == target[name]
+            return [it.Evaluation(d, 7, 500, 0.8 + (full if moved else 0), 0.4 + (hits if moved else 0), 15,
+                                  0.3 + (top if moved else 0), 100) for d in days]
+        monkeypatch.setattr(it, "backtest", fake_backtest)
+        monkeypatch.setattr(it, "_evaluable_days", lambda *a: days)
+        return it.tune(current, [], dt.date(2026, 11, 19))
+
+    only_full = run(full=0.1, top=0.0, hits=0.0)
+    assert not only_full.adopted and "top-100" in only_full.reason
+    fewer_leaders = run(full=0.0, top=0.1, hits=-1 / 15)
+    assert not fewer_leaders.adopted and "hit rate" in fewer_leaders.reason
+    better = run(full=0.0, top=0.1, hits=0.0)
+    assert better.adopted and better.knob == name and better.new == pytest.approx(target[name])

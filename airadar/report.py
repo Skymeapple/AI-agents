@@ -11,7 +11,7 @@ from __future__ import annotations
 from sciscout.provenance import Estimate, Grade, ProvenanceLedger
 
 from .pipeline import Analysis
-from .iterate import MIN_APPS_PER_EVAL, MIN_IMPROVEMENT, MIN_WIN_SHARE
+from .iterate import LIKE_FOR_LIKE_N, MIN_APPS_PER_EVAL, MIN_IMPROVEMENT, MIN_WIN_SHARE
 from .params import KNOBS
 
 TOP_N = 25
@@ -282,18 +282,21 @@ def render(analysis: Analysis) -> str:
         if t.candidates_tried and t.baseline is not None:
             lines += [
                 "",
-                f"Every one-step candidate, backtested over the same {t.days} matured days. A candidate "
-                f"must raise mean rank correlation by at least {MIN_IMPROVEMENT:+.2f} and win on at least "
-                f"{MIN_WIN_SHARE:.0%} of days.",
+                f"Every one-step candidate, backtested over the same {t.days} matured days. The objective is "
+                f"the like-for-like rank correlation: each day's forecast scored on its own top "
+                f"{LIKE_FOR_LIKE_N} apps (the user's choice, 2026-11-19; full-pool Spearman rose with pool "
+                f"size). A candidate must raise its mean by at least {MIN_IMPROVEMENT:+.2f}, win on at least "
+                f"{MIN_WIN_SHARE:.0%} of days, and not lower the mean top-15 hit rate.",
                 "",
-                "| Candidate | Mean Spearman | Change | Days better |",
-                "| --- | --- | --- | --- |",
-                f"| current settings | {t.baseline:.3f} | – | – |",
+                "| Candidate | Mean top-100 Spearman | Change | Days better | Top-15 hit rate (current) |",
+                "| --- | --- | --- | --- | --- |",
+                f"| current settings | {t.baseline:.3f} | – | – | – |",
             ]
-            for c in sorted(t.candidates_tried, key=lambda c: -c["spearman"]):
+            for c in sorted(t.candidates_tried, key=lambda c: -c["spearman_top"]):
                 lines.append(
-                    f"| {c['knob']} → {c['value']:g} | {c['spearman']:.3f} | "
-                    f"{c['spearman'] - t.baseline:+.3f} | {c['win_share']:.0%} |"
+                    f"| {c['knob']} → {c['value']:g} | {c['spearman_top']:.3f} | "
+                    f"{c['spearman_top'] - t.baseline:+.3f} | {c['win_share']:.0%} | "
+                    f"{c['precision']:.1%} ({c['base_precision']:.1%}) |"
                 )
     else:
         lines.append("_Tuning was not run._")

@@ -259,7 +259,7 @@ def backtest(params: Params, observations: list[Observation], days: list[dt.date
             cache[day] = realised_scores(observations, day, horizon)
         predicted = {s.app_id: s.score for s in score_apps(extract_signals(observations, asof=day), params, asof=day)}
         evaluation = evaluate(predicted, cache[day], day, horizon)
-        if evaluation.spearman is not None and evaluation.apps >= MIN_APPS_PER_EVAL:
+        if evaluation.spearman_top is not None and evaluation.apps >= MIN_APPS_PER_EVAL:
             out.append(evaluation)
     return out
 
@@ -371,7 +371,20 @@ class TuningOutcome:
 
 
 def _mean(evals: list[Evaluation]) -> float:
-    return sum(e.spearman for e in evals) / len(evals)
+    """The tuner's objective: mean like-for-like rank correlation, each
+    forecast's own top ``LIKE_FOR_LIKE_N`` apps against the fixed yardstick.
+
+    Chosen by the user on 2026-11-19 ("switch the tuner to the top-100
+    score"), replacing full-pool Spearman, which rose with pool size and
+    could reward a setting that only sorted easy, stale apps better."""
+    return sum(e.spearman_top for e in evals) / len(evals)
+
+
+def _mean_precision(evals: list[Evaluation]) -> float:
+    """Mean top-k hit rate: the guard beside the objective. A top-100 figure
+    cannot penalise a forecast for missing a fast grower ranked below 100."""
+    values = [e.precision_at_k for e in evals if e.precision_at_k is not None]
+    return sum(values) / len(values) if values else 0.0
 
 
 def tune(params: Params, observations: list[Observation], today: dt.date) -> TuningOutcome:
@@ -387,7 +400,8 @@ def tune(params: Params, observations: list[Observation], today: dt.date) -> Tun
             f"{MIN_APPS_PER_EVAL} comparable apps; need {MIN_EVAL_DAYS} before any parameter may move",
             days=len(base),
         )
-    base_by_day = {e.made_on: e.spearman for e in base}
+    base_by_day = {e.made_on: e.spearman_top for e in base}
+    base_eval = {e.made_on: e for e in base}
     baseline = _mean(base)
 
     best = None
@@ -402,20 +416,24 @@ def tune(params: Params, observations: list[Observation], today: dt.date) -> Tun
             if len(evals) < MIN_EVAL_DAYS:
                 continue
             mean = _mean(evals)
-            wins = sum(1 for e in evals if e.spearman > base_by_day[e.made_on]) / len(evals)
-            tried.append({"knob": name, "value": candidate[name], "spearman": round(mean, 4), "win_share": round(wins, 3)})
+            wins = sum(1 for e in evals if e.spearman_top > base_by_day[e.made_on]) / len(evals)
+            hits = _mean_precision(evals)
+            base_hits = _mean_precision([base_eval[e.made_on] for e in evals])
+            tried.append({"knob": name, "value": candidate[name], "spearman_top": round(mean, 4),
+                          "win_share": round(wins, 3), "precision": round(hits, 4),
+                          "base_precision": round(base_hits, 4)})
             if best is None or mean > best[0]:
-                best = (mean, wins, name, candidate[name], len(evals))
+                best = (mean, wins, name, candidate[name], len(evals), hits, base_hits)
 
     if best is None:
         return TuningOutcome(False, "no candidate could be evaluated", baseline=baseline, days=len(base))
-    mean, wins, name, value, n = best
+    mean, wins, name, value, n, hits, base_hits = best
     outcome = TuningOutcome(
         False, "", name, params[name], value, baseline, mean, n, tried,
     )
     if mean - baseline < MIN_IMPROVEMENT:
         outcome.reason = (
-            f"best candidate ({name} -> {value:g}) improves rank correlation by only "
+            f"best candidate ({name} -> {value:g}) improves top-100 rank correlation by only "
             f"{mean - baseline:+.3f}; the bar is {MIN_IMPROVEMENT:+.2f}"
         )
     elif wins < MIN_WIN_SHARE:
@@ -423,11 +441,18 @@ def tune(params: Params, observations: list[Observation], today: dt.date) -> Tun
             f"best candidate ({name} -> {value:g}) wins on only {wins:.0%} of {n} days; "
             f"needs {MIN_WIN_SHARE:.0%} so one lucky day cannot carry it"
         )
+    elif hits < base_hits:
+        outcome.reason = (
+            f"best candidate ({name} -> {value:g}) raises top-100 rank correlation "
+            f"{baseline:.3f} -> {mean:.3f} but lowers the mean top-{FIXED['top_k']} hit rate "
+            f"{base_hits:.1%} -> {hits:.1%}; it may not trade leaders for ordering"
+        )
     else:
         outcome.adopted = True
         outcome.reason = (
-            f"{name} {params[name]:g} -> {value:g}: mean Spearman {baseline:.3f} -> {mean:.3f} "
-            f"over {n} days, better on {wins:.0%} of them"
+            f"{name} {params[name]:g} -> {value:g}: mean top-100 Spearman {baseline:.3f} -> {mean:.3f} "
+            f"over {n} days, better on {wins:.0%} of them; top-{FIXED['top_k']} hit rate "
+            f"{base_hits:.1%} -> {hits:.1%}"
         )
     return outcome
 
@@ -440,6 +465,7 @@ def apply_tuning(store: Store, params: Params, outcome: TuningOutcome, today: dt
         "knob": outcome.knob,
         "old": outcome.old,
         "new": outcome.new,
+        "objective": "spearman_top",
         "baseline_spearman": outcome.baseline,
         "candidate_spearman": outcome.candidate,
         "days": outcome.days,

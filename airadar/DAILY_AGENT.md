@@ -150,6 +150,12 @@ is out of scope however good it looks:
   by a yardstick it can tune.
 - The tuner's acceptance thresholds (`MIN_EVAL_DAYS`, `MIN_IMPROVEMENT`,
   `MIN_WIN_SHARE`) and knob bounds only ever get stricter.
+- The tuner's objective is the user's decision, not yours (2026-11-19: "switch
+  the tuner to the top-100 score"). It is the mean like-for-like rank
+  correlation: each matured forecast scored on its own top `LIKE_FOR_LIKE_N`
+  apps against the fixed yardstick. A candidate must also not lower the mean
+  top-15 hit rate over the same days. Full-pool Spearman, lift and the
+  persistence baseline are reported but never gate adoption.
 - Observations are append-only. Nothing in `observations.jsonl` is edited or
   deleted.
 - The inbox loader stays strict: no defaulting of missing fields, no accepting

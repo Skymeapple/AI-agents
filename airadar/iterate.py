@@ -294,6 +294,69 @@ def span_backtest(store: Store, today: dt.date, observations: list[Observation],
     return out
 
 
+BASELINE_FLOOR = -1e18  # rank for apps with no measured change: below every real gain
+
+
+def latest_measured_gain(signals: dict[str, list], rate: str = "abs") -> dict[str, float]:
+    """Each app's most recent measured change (a ``delta`` signal on a level,
+    not a rate) as of the signals' date: stars or likes per day (``abs``) or
+    relative growth per day (``rel``). The naive "keep doing what you did"
+    forecast: no weights, no shrinkage, no other evidence."""
+    out: dict[str, float] = {}
+    for app_id, sigs in signals.items():
+        deltas = [s for s in sigs if s.kind == "delta" and not s.family.endswith("_rate")
+                  and (s.abs_per_day if rate == "abs" else s.rel_per_day) is not None]
+        if not deltas:
+            continue
+        latest = max(deltas, key=lambda s: (s.end, s.days))
+        out[app_id] = latest.abs_per_day if rate == "abs" else latest.rel_per_day
+    return out
+
+
+def persistence_backtest(store: Store, today: dt.date, observations: list[Observation]) -> list[dict]:
+    """Score every matured forecast beside a naive persistence baseline.
+
+    Diagnostic only (2026-11-19). Lift and full Spearman both rise with pool
+    size, so neither says whether the scoring model adds anything over the
+    raw measurements. The baseline ranks the *same apps* by their latest
+    measured gain alone (apps with none rank last) and is scored exactly
+    like the forecast, against the same fixed yardstick. If the forecast does
+    not beat it, the model adds nothing over yesterday's gainers. Nothing is
+    tuned or adopted from it.
+    """
+    aliases = store.aliases()
+
+    def current(app_id: str) -> str:
+        return aliases.get(app_id, (app_id,))[0]
+
+    out = []
+    for row in store.load_predictions():
+        made_on = dt.date.fromisoformat(row["made_on"])
+        horizon = int(row["horizon_days"])
+        if made_on + dt.timedelta(days=horizon) > today:
+            continue
+        predicted: dict[str, float] = {}
+        for app_id, score in row["scores"].items():
+            predicted.setdefault(current(app_id), score)
+        realised = realised_scores(observations, made_on, horizon)
+        signals = extract_signals(observations, asof=made_on)
+        result = {"made_on": made_on, "forecast": evaluate(predicted, realised, made_on, horizon)}
+        measured: set[str] = set()
+        for rate in ("abs", "rel"):
+            gains: dict[str, float] = {}
+            for app_id, gain in latest_measured_gain(signals, rate).items():
+                gains.setdefault(current(app_id), gain)
+            naive = {a: gains.get(a, BASELINE_FLOOR) for a in predicted}
+            result[rate] = evaluate(naive, realised, made_on, horizon)
+            result[rate + "_measured"] = evaluate({a: naive[a] for a in predicted if a in gains},
+                                                  realised, made_on, horizon)
+            measured = {a for a in predicted if a in gains}
+        result["forecast_measured"] = evaluate({a: predicted[a] for a in measured}, realised, made_on, horizon)
+        result["with_gain"] = sum(1 for a in measured if a in realised)
+        out.append(result)
+    return out
+
+
 @dataclass
 class TuningOutcome:
     adopted: bool

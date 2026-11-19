@@ -19,7 +19,7 @@ from .growth import AppScore, extract_signals, measured_movers, score_apps
 from .inbox import InboxError, load_inbox_file
 from .iterate import (
     Evaluation, SourceHealth, TuningOutcome, apply_tuning, record_prediction, scorecard,
-    source_health, tune, like_for_like_by_evidence,
+    source_health, tune, like_for_like_by_evidence, persistence_backtest,
 )
 from .models import App
 from .params import Params
@@ -45,6 +45,9 @@ class Analysis:
     # Each matured forecast's own top N, split by the kind of evidence behind
     # each app's score: which kind a weak like-for-like figure comes from.
     evidence_split: list = field(default_factory=list)
+    # Each matured forecast beside a naive persistence baseline (latest
+    # measured gain alone), scored the same way: does the model add anything?
+    persistence: list = field(default_factory=list)
     tuning: TuningOutcome | None = None
     health: list[SourceHealth] = field(default_factory=list)
     ingest_log: list[str] = field(default_factory=list)
@@ -242,6 +245,7 @@ def analyse(store: Store, date: dt.date, params: Params | None = None) -> Analys
         params=params,
         evaluations=scorecard(store, date, observations),
         evidence_split=like_for_like_by_evidence(store, date, observations),
+        persistence=persistence_backtest(store, date, observations),
         health=source_health(store.load_runs()),
         gone=gone,
         out_of_scope=out_of_scope,

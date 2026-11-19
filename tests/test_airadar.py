@@ -1149,3 +1149,38 @@ def test_lift_over_chance_compares_hit_rates_across_pool_sizes():
     assert small.lift == pytest.approx((8 / 15) / (15 / 46))
     assert big.lift > 10 * small.lift
     assert Evaluation(dt.date(2026, 10, 19), 7, 2, None, None, 1).lift is None
+
+
+def test_persistence_baseline_ranks_the_same_apps_by_latest_measured_gain(tmp_path):
+    """The naive baseline ranks a forecast's apps by their latest measured
+    gain alone (apps with none rank last) and is scored like the forecast.
+    Here past gains rise with i while later growth falls with i: the stored
+    forecast saw it coming (Spearman 1), persistence did not (Spearman -1)."""
+    from airadar.iterate import persistence_backtest
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    before, later = made - dt.timedelta(days=3), made + dt.timedelta(days=7)
+    apps = [f"gh:o/m{i}" for i in range(4)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        level = 1000 + 50 * (i + 1)
+        rows += [obs(app_id, "stars", 1000, before), obs(app_id, "stars", level, made),
+                 obs(app_id, "stars", level + 100 * (4 - i), later)]
+    # known only from a page-stated gain: no measured change, ranks last
+    rows += [obs("gh:o/s", "stars_gained", 900, made, method=Method.PAGE_EXTRACT, period=7),
+             obs("gh:o/s", "stars", 5000, made, method=Method.PAGE_EXTRACT),
+             obs("gh:o/s", "stars", 5010, later, method=Method.PAGE_EXTRACT)]
+    store.add([], rows)
+    scores = {a: 0.1 * (4 - i) for i, a in enumerate(apps)}
+    scores["gh:o/s"] = 0.01
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": scores}])
+
+    [row] = persistence_backtest(store, later, store.load_observations())
+    assert row["with_gain"] == 4
+    assert row["forecast_measured"].spearman == pytest.approx(1.0)
+    assert row["abs_measured"].spearman == pytest.approx(-1.0)
+    assert row["rel_measured"].spearman == pytest.approx(-1.0)
+    assert row["forecast"].apps == row["abs"].apps == 5
+    assert row["forecast"].spearman > row["abs"].spearman

@@ -11,7 +11,7 @@ from __future__ import annotations
 from sciscout.provenance import Estimate, Grade, ProvenanceLedger
 
 from .pipeline import Analysis
-from .iterate import MIN_IMPROVEMENT, MIN_WIN_SHARE
+from .iterate import MIN_APPS_PER_EVAL, MIN_IMPROVEMENT, MIN_WIN_SHARE
 from .params import KNOBS
 
 TOP_N = 25
@@ -243,6 +243,37 @@ def render(analysis: Analysis) -> str:
             if c.made_on in recent:
                 rho = f"{c.spearman:.2f}" if c.spearman is not None else "–"
                 lines.append(f"| {c.made_on} | {c.evidence} | {c.apps} | {rho} |")
+    rows = [r for r in a.persistence if r.get("with_gain", 0) >= MIN_APPS_PER_EVAL]
+    if rows:
+        def fmt(value, pct=False):
+            if value is None:
+                return "–"
+            return f"{value:.0%}" if pct else f"{value:.2f}"
+
+        def trio(r, attr, pct=False):
+            return " / ".join(fmt(getattr(r[key], attr), pct) for key in ("forecast", "abs", "rel"))
+
+        lines += [
+            "",
+            "#### Against a naive baseline",
+            "",
+            "Does the scoring model add anything over the raw measurements? Each matured forecast beside two "
+            "naive forecasts of the *same apps*: rank by the latest measured gain alone, in stars or likes "
+            "per day (*absolute*) or relative growth per day (*relative*); apps with no measured gain rank "
+            "last. All three are scored the same way against the same fixed yardstick. Cells read "
+            "forecast / absolute / relative. Report-only: nothing tunes on it.",
+            "",
+            "| Made on | Apps (with a measured gain) | Spearman | Spearman, own top N | Precision@k |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+        for r in rows[-10:]:
+            lines.append(f"| {r['made_on']} | {r['forecast'].apps} ({r['with_gain']}) | {trio(r, 'spearman')} | "
+                         f"{trio(r, 'spearman_top')} | {trio(r, 'precision_at_k', pct=True)} |")
+        wins = {key: sum(1 for r in rows if r["forecast"].spearman_top is not None
+                         and r[key].spearman_top is not None
+                         and r["forecast"].spearman_top > r[key].spearman_top) for key in ("abs", "rel")}
+        lines += ["", f"Over all {len(rows)} matured forecasts, the forecast's own top N is ordered better than "
+                      f"the absolute baseline's on {wins['abs']} and the relative baseline's on {wins['rel']}."]
     lines += ["", "### Self-tuning", ""]
     if a.tuning is not None:
         verdict = "**Adopted**" if a.tuning.adopted else "No change"

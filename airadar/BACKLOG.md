@@ -5,6 +5,17 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Next improvement: a naive persistence baseline.** (Raised by the
+  parent session, 2026-11-19.) Lift's chance rate is 15/N, so lift grows
+  with the pool much as full Spearman does: most of the move from 1.6-3.7x
+  (October, ~100 apps) to 18-43x (Nov 2-12, up to ~2,700 mostly stale
+  repos) is the pool, not better forecasting. Score "rank every app by its
+  latest measured gain alone" exactly like each matured forecast (top-15
+  hits and top-100 Spearman). If the radar's ranking does not beat
+  yesterday's gainers, the scoring model adds nothing over raw deltas.
+  Report-only; no setting changes. Needed before choosing a tuner
+  objective.
+
 - **Watch the slide in top-100 ordering.** (2026-11-19.) Frozen
   like-for-like scores fell from 0.52 (Nov 8) to 0.44, 0.31, 0.23 and 0.13
   (Nov 9-12), almost all of it inside measured evidence; lift held at
@@ -55,7 +66,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   setting that sorts the padding better. Candidate: average `spearman_top`
   instead. The yardstick and thresholds would not change, but it changes
   what the radar optimises, so it is not a daily-run call. Since
-  2026-11-19, lift is a third candidate: it is comparable across pool sizes.
+  2026-11-19, lift is a third candidate, but it also rises with pool size;
+  wait for the persistence baseline (above) first.
 
 - **If `spearman_top` ever becomes the tuner's objective, keep
   precision@15 beside it as a guard.** A top-100 figure cannot penalise a

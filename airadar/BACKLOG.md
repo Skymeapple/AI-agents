@@ -5,11 +5,14 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Re-score like-for-like without later-purged apps.** (2026-11-18.) The
-  span backtest disproved the short-delta hypothesis. Next: recompute each
-  matured forecast's top-100 figure excluding apps later found gone, out of
-  scope or reviewed inorganic; bought stars that are purged after the
-  forecast make the realised growth collapse and the forecast look wrong.
+- **Watch the slide in top-100 ordering.** (2026-11-19.) Frozen
+  like-for-like scores fell from 0.52 (Nov 8) to 0.44, 0.31, 0.23 and 0.13
+  (Nov 9-12), almost all of it inside measured evidence; lift held at
+  29-37x over the same days. Neither short spans (Nov 18) nor later-purged
+  apps (Nov 19: 0-2 per top 100, no change when removed) explain it. Next:
+  check whether the leaders' growth is flattening into a tie band (many
+  apps at similar daily gains), which would make any ordering of them
+  noisy, before treating it as a forecasting fault.
 
 - **Re-read passes after a gap.** On 2026-11-18, after a missed day, three
   re-read passes left ~140 apps unread; a second `collect --only
@@ -51,7 +54,8 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   easy-to-rank search hits, so the backtest's full Spearman can reward a
   setting that sorts the padding better. Candidate: average `spearman_top`
   instead. The yardstick and thresholds would not change, but it changes
-  what the radar optimises, so it is not a daily-run call.
+  what the radar optimises, so it is not a daily-run call. Since
+  2026-11-19, lift is a third candidate: it is comparable across pool sizes.
 
 - **If `spearman_top` ever becomes the tuner's objective, keep
   precision@15 beside it as a guard.** A top-100 figure cannot penalise a
@@ -120,6 +124,15 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   metrics that don't feed the growth score would make this automatic.
 
 ## Done
+
+- 2026-11-19: lift over chance. `Evaluation.lift` = precision@k / (k /
+  apps compared), shown in the report and on the page. It resolves the
+  like-for-like puzzle: October's whole-pool Spearman (0.53-0.71) and the
+  API era's top-100 figure are not comparable because of range restriction
+  (random 100-app samples of API-era pools score 0.82-0.86), while lift is
+  comparable: October 1.6-3.7x, API era 18-43x (Nov 2-12; Nov 1, a partial pool, 11x). A re-score excluding
+  later-purged apps found only 0-2 such apps per top 100 and no change;
+  reverted, nothing adopted.
 
 - 2026-11-18: span backtest. `extract_signals(min_delta_span_days=...)`
   (diagnostic, default 0) and `span_backtest()`. Requiring 3- or 7-day

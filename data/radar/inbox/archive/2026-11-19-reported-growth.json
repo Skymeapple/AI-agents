@@ -1,0 +1,84 @@
+{
+ "collected_at": "2026-11-19",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Tencent WorkBuddy",
+    "url": "https://www.workbuddy.ai",
+    "kind": "product",
+    "description": "Tencent's all-in-one AI agent workspace that plans and carries out office tasks (documents, spreadsheets, slides, data analysis, code) from a one-sentence request.",
+    "tags": [
+     "ai-agents",
+     "productivity",
+     "china"
+    ]
+   },
+   "metric": "users",
+   "value": 10000000,
+   "basis": "dau",
+   "observed_on": "2026-11-18",
+   "source_url": "https://www.prnewswire.com/apac/news-releases/tencent-announces-2026-third-quarter-results-302943839.html",
+   "method": "reported",
+   "note": "Tencent Q3 2026 results release (PR Newswire, Nov 18, 2026): 'WorkBuddy became the most used AI product in China, measured by large language model token consumption, with over 10 million DAU collectively consuming over 100 trillion tokens per day'. Daily active users, so basis dau; a floor ('over'). No as-of date beyond the release, so dated to the Nov 18 announcement. On the call Martin Lau repeated 'more than 10 million daily active users'. WorkBuddy is a separately named AI product of Tencent, not a whole-company figure. Page read with Tavily extract; the call transcript (Investing.com) and Futu/Yahoo coverage say the same. The 100 trillion tokens/day is a usage count and is not recorded."
+  },
+  {
+   "app": {
+    "name": "Tencent WorkBuddy",
+    "url": "https://www.workbuddy.ai",
+    "kind": "product",
+    "description": "Tencent's all-in-one AI agent workspace that plans and carries out office tasks (documents, spreadsheets, slides, data analysis, code) from a one-sentence request.",
+    "tags": [
+     "ai-agents",
+     "productivity",
+     "china"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 400,
+   "period_days": 91,
+   "observed_on": "2026-11-18",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-tencent-q3-2026-profit-slips-as-ai-spending-surges-93CH-5036117",
+   "method": "reported",
+   "note": "Tencent Q3 2026 earnings call (Nov 18, 2026), Investing.com transcript: 'For WorkBuddy, revenue for the third quarter was over 5x the previous quarter, driven by increasing paying users and strong initial enterprise adoption.' Quarterly (recognized) revenue growth, Q3 over Q2: 5x recorded as +400% (a floor: 'over'); quarter-over-quarter recorded as 91 days. The source names only the quarter, so dated to the Nov 18 call date, not a period end. No quarterly revenue level stated. 36Kr's call write-up repeats 'Q3 revenue is more than 5 times that of Q2'. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Perplexity",
+    "url": "https://www.perplexity.ai",
+    "kind": "consumer_app",
+    "description": "AI answer engine and agent platform (search, Comet browser, Computer) that answers questions with cited sources and carries out multi-step tasks.",
+    "tags": [
+     "search",
+     "ai-agents",
+     "consumer"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1000000000,
+   "observed_on": "2026-11-16",
+   "source_url": "https://x.com/AravSrinivas/status/2122734422445445629",
+   "method": "reported",
+   "note": "Perplexity co-founder and CEO Aravind Srinivas on X (posted Nov 17, 2026, 16:51 UTC): 'Yesterday, I revealed that Perplexity crossed $1B ARR. We have strong margins and a healthy growth rate.' He revealed it on stage at Semafor's Silicon Valley & The World event on Nov 16 (Jawlah, NDTV), so dated Nov 16. A floor ('crossed'). Basis (gross/net/contracted) not stated, so left out. Company-stated by the CEO, not a secondhand report. CBO Dmitry Shevelenko's LinkedIn post says the same. The 'up 4x in 2026' framing in Latent Space/arr.club is derived from the January sub-$250M level and is not recorded. Post read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Humyn Labs",
+    "url": "https://www.humynlabs.ai",
+    "kind": "product",
+    "description": "Physical AI data company that records how people do real-world jobs and turns it into training-ready multimodal datasets and deployment testing for robotics and world-model labs.",
+    "tags": [
+     "physical-ai",
+     "robotics",
+     "training-data"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 50000000,
+   "observed_on": "2026-11-18",
+   "source_url": "https://humynlabs.ai/blog/humyn-labs-raises-usd-47m-in-series-a",
+   "method": "reported",
+   "note": "Humyn Labs Series A release (India, 18 November 2026; $47M = $26M equity led by Accel + $21M venture debt led by Lighthouse Canton): 'Humyn Labs has surpassed USD 50 million in annualised revenue within six months of operations.' A floor ('surpassed'); no as-of date beyond the release, so dated to the Nov 18 announcement. Basis not stated, so left out. Caution: TechCrunch (Nov 18) quotes co-founder Manish Agarwal that the company 'generated $10 million in revenue between April and October and has another $20 million in signed contracts', so the run-rate may lean on recent or contracted revenue. Business Standard and Moneycontrol repeat the $50M. Page read with Tavily extract."
+  }
+ ]
+}

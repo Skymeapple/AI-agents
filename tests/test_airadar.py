@@ -1136,3 +1136,16 @@ def test_min_delta_span_drops_short_span_deltas_only_when_asked():
     assert {"gh:o/short", "gh:o/long"} <= set(default)
     strict = extract_signals(rows, asof=day, min_delta_span_days=3)
     assert "gh:o/long" in strict and not any(s.kind == "delta" for s in strict.get("gh:o/short", []))
+
+
+def test_lift_over_chance_compares_hit_rates_across_pool_sizes():
+    """47% of the top 15 right among 1,058 apps (chance 1.4%) is far better
+    than 53% among 46 (chance 33%); lift says so, the raw rate does not."""
+    from airadar.iterate import Evaluation
+
+    big = Evaluation(dt.date(2026, 11, 2), 7, 1058, 0.84, 7 / 15, 15)
+    small = Evaluation(dt.date(2026, 10, 19), 7, 46, 0.55, 8 / 15, 15)
+    assert big.lift == pytest.approx((7 / 15) / (15 / 1058))
+    assert small.lift == pytest.approx((8 / 15) / (15 / 46))
+    assert big.lift > 10 * small.lift
+    assert Evaluation(dt.date(2026, 10, 19), 7, 2, None, None, 1).lift is None

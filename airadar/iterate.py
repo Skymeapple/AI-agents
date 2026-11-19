@@ -99,6 +99,14 @@ class Evaluation:
             "top_n": self.top_n,
         }
 
+    @property
+    def lift(self) -> float | None:
+        """Top-k hit rate over what random picks would get (k / apps): the one
+        leader-picking figure comparable across pools of 50 and 2,500 apps."""
+        if self.precision_at_k is None or not self.apps or not self.k:
+            return None
+        return self.precision_at_k / (self.k / self.apps)
+
     @classmethod
     def from_dict(cls, raw: dict) -> "Evaluation":
         return cls(dt.date.fromisoformat(raw["made_on"]), int(raw["horizon_days"]), int(raw["apps"]),

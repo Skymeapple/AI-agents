@@ -203,19 +203,23 @@ def render(analysis: Analysis) -> str:
         lines += [
             "Each day's ranking is a forecast. Once its horizon passes it is scored against the "
             "growth that actually followed, measured with the fixed default parameters. "
-            "*Spearman, forecast top N* ranks only the forecast's own top N apps, a fixed-size "
-            "pool: the full Spearman rises with pool size alone, so compare days on the top-N figure. "
+            "*Spearman, forecast top N* ranks only the forecast's own top N apps: how well it orders "
+            "the leaders. It is not comparable with October's rows, whose top N was the whole, much "
+            "more varied pool (a narrow band of leaders is harder to order). *Lift* is the top-k hit "
+            "rate over what random picks would get: the leader-picking figure comparable across pool "
+            "sizes. "
             "Each row is frozen the first day the daily run scores it, so later records (a repo move, "
             "a late reading) do not change a published score.",
             "",
-            "| Made on | Horizon | Apps compared | Spearman | Spearman, forecast top N | Precision@k |",
-            "| --- | --- | --- | --- | --- | --- |",
+            "| Made on | Horizon | Apps compared | Spearman | Spearman, forecast top N | Precision@k | Lift |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
         ]
         for e in a.evaluations[-10:]:
             rho = f"{e.spearman:.2f}" if e.spearman is not None else "–"
             prec = f"{e.precision_at_k:.0%} (k={e.k})" if e.precision_at_k is not None else "–"
             top = f"{e.spearman_top:.2f} (N={e.top_n})" if e.spearman_top is not None else "–"
-            lines.append(f"| {e.made_on} | {e.horizon_days}d | {e.apps} | {rho} | {top} | {prec} |")
+            lift = f"{e.lift:.0f}×" if e.lift is not None else "–"
+            lines.append(f"| {e.made_on} | {e.horizon_days}d | {e.apps} | {rho} | {top} | {prec} | {lift} |")
     else:
         lines.append(
             "_No forecast has matured yet. The first scorecard appears once a forecast is "

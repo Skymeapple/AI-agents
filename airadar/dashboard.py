@@ -48,7 +48,7 @@ FILES = {
     "hypotheses": ["pattern", "direction", "rationale", "leaders", "researched"],
     "findings": ["id", "heading", "text", "source"],
     "caveats": ["id", "text"],
-    "scorecard": ["made_on", "apps_compared", "spearman", "spearman_top", "top_n", "precision_at_k", "k"],
+    "scorecard": ["made_on", "apps_compared", "spearman", "spearman_top", "top_n", "precision_at_k", "k", "lift"],
     "movers": ["app", "url", "previous_date", "previous", "now", "change", "per_day", "rounded"],
     "params": ["parameter", "value", "basis"],
     "sources": ["collector", "last_ok", "consecutive_failures", "last_count", "last_error"],
@@ -131,6 +131,7 @@ def _rows(analysis: Analysis, store: Store, editorial: dict) -> dict[str, list[d
         "spearman_top": round(e.spearman_top, 4) if e.spearman_top is not None else "",
         "top_n": e.top_n,
         "precision_at_k": round(e.precision_at_k, 4) if e.precision_at_k is not None else "",
+        "lift": round(e.lift, 1) if e.lift is not None else "",
         "k": e.k,
     } for e in a.evaluations]
 

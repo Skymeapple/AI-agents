@@ -313,6 +313,30 @@ def latest_measured_gain(signals: dict[str, list], rate: str = "abs") -> dict[st
     return out
 
 
+def top_n_selection(predicted: dict[str, float], baseline: dict[str, float],
+                    realised: dict[str, float], n: int = LIKE_FOR_LIKE_N) -> dict | None:
+    """Which apps a forecast's top ``n`` holds that a baseline's does not, and
+    how each group then grew: mean realised percentile (0 = slowest, 1 =
+    fastest among all apps compared) of the apps only the forecast picked,
+    only the baseline picked, and both picked. A forecast whose own picks
+    outgrow the baseline's chooses leaders better, even if it orders them
+    worse. Diagnostic only (2026-11-20)."""
+    common = [a for a in predicted if a in realised and a in baseline]
+    if len(common) < 3:
+        return None
+    order = sorted(common, key=lambda a: (realised[a], a))
+    pct = {a: i / (len(order) - 1) for i, a in enumerate(order)}
+    ftop = set(sorted(common, key=lambda a: (-predicted[a], a))[:n])
+    btop = set(sorted(common, key=lambda a: (-baseline[a], a))[:n])
+
+    def mean_pct(group: set[str]) -> float | None:
+        return sum(pct[a] for a in group) / len(group) if group else None
+
+    return {"shared": len(ftop & btop), "only_forecast": len(ftop - btop),
+            "only_baseline": len(btop - ftop), "pct_shared": mean_pct(ftop & btop),
+            "pct_only_forecast": mean_pct(ftop - btop), "pct_only_baseline": mean_pct(btop - ftop)}
+
+
 def persistence_backtest(store: Store, today: dt.date, observations: list[Observation]) -> list[dict]:
     """Score every matured forecast beside a naive persistence baseline.
 
@@ -351,8 +375,11 @@ def persistence_backtest(store: Store, today: dt.date, observations: list[Observ
             result[rate + "_measured"] = evaluate({a: naive[a] for a in predicted if a in gains},
                                                   realised, made_on, horizon)
             measured = {a for a in predicted if a in gains}
+            if rate == "rel":
+                relative = naive
         result["forecast_measured"] = evaluate({a: predicted[a] for a in measured}, realised, made_on, horizon)
         result["with_gain"] = sum(1 for a in measured if a in realised)
+        result["selection"] = top_n_selection(predicted, relative, realised)
         out.append(result)
     return out
 

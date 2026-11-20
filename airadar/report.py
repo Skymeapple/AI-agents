@@ -274,6 +274,23 @@ def render(analysis: Analysis) -> str:
                          and r["forecast"].spearman_top > r[key].spearman_top) for key in ("abs", "rel")}
         lines += ["", f"Over all {len(rows)} matured forecasts, the forecast's own top N is ordered better than "
                       f"the absolute baseline's on {wins['abs']} and the relative baseline's on {wins['rel']}."]
+        picked = [r for r in rows if r.get("selection")]
+        if picked:
+            lines += [
+                "",
+                "Which leaders each picks: the apps only the forecast put in its top N, only the relative "
+                "baseline did, and both did, with the mean realised percentile of each group (1.00 = the "
+                "fastest grower among all apps compared). Forecast-only picks outgrowing baseline-only picks "
+                "means the forecast chooses leaders better even where it orders them worse.",
+                "",
+                "| Made on | Shared | Only forecast | Only relative | Grew: shared / only forecast / only relative |",
+                "| --- | --- | --- | --- | --- |",
+            ]
+            for r in picked[-10:]:
+                sel = r["selection"]
+                grew = " / ".join(fmt(sel[k]) for k in ("pct_shared", "pct_only_forecast", "pct_only_baseline"))
+                lines.append(f"| {r['made_on']} | {sel['shared']} | {sel['only_forecast']} | "
+                             f"{sel['only_baseline']} | {grew} |")
     lines += ["", "### Self-tuning", ""]
     if a.tuning is not None:
         verdict = "**Adopted**" if a.tuning.adopted else "No change"

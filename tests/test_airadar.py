@@ -1214,3 +1214,20 @@ def test_tuner_objective_is_top_100_spearman_guarded_by_hit_rate(monkeypatch):
     assert not fewer_leaders.adopted and "hit rate" in fewer_leaders.reason
     better = run(full=0.0, top=0.1, hits=0.0)
     assert better.adopted and better.knob == name and better.new == pytest.approx(target[name])
+
+
+def test_top_n_selection_shows_whose_own_picks_grew_more():
+    """Forecast and baseline each pick a top 2 of five apps; they share one.
+    The forecast's own pick (c) grew fastest, the baseline's own pick (d)
+    slowest, so the forecast chose leaders better."""
+    from airadar.iterate import top_n_selection
+
+    realised = {"a": 3.0, "b": 2.0, "c": 5.0, "d": 1.0, "e": 4.0}
+    forecast = {"a": 0.9, "c": 0.8, "b": 0.1, "d": 0.0, "e": 0.05}
+    baseline = {"a": 0.9, "d": 0.8, "b": 0.1, "c": 0.0, "e": 0.05}
+    sel = top_n_selection(forecast, baseline, realised, n=2)
+    assert (sel["shared"], sel["only_forecast"], sel["only_baseline"]) == (1, 1, 1)
+    assert sel["pct_only_forecast"] == pytest.approx(1.0)   # c: fastest of five
+    assert sel["pct_only_baseline"] == pytest.approx(0.0)   # d: slowest
+    assert sel["pct_shared"] == pytest.approx(0.5)          # a: middle
+    assert top_n_selection({"a": 1}, {"a": 1}, {"a": 1}) is None

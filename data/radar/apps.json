@@ -34229,12 +34229,12 @@
   "tags": [],
   "url": "https://github.com/peterretief/codemap"
  },
- "gh:pgrundev/pgx": {
+ "gh:pgrundev/pgboxdb": {
   "description": "PGX \u2014 Lightweight Postgres for AI agents. Written in Rust. Thousands of isolated databases in one runtime\ud83d\udc18",
   "first_seen": "2026-11-01",
-  "id": "gh:pgrundev/pgx",
+  "id": "gh:pgrundev/pgboxdb",
   "kind": "repo",
-  "name": "pgrundev/pgx",
+  "name": "pgrundev/pgboxdb",
   "tags": [
    "agents",
    "ai-infrastructure",
@@ -34242,7 +34242,7 @@
    "ai-infrastructure-software",
    "database"
   ],
-  "url": "https://github.com/pgrundev/pgx"
+  "url": "https://github.com/pgrundev/pgboxdb"
  },
  "gh:phantomduke375846-alt/clinic_rag_rpocket_bot": {
   "description": "A domain-specific medical Retrieval-Augmented Generation (RAG) system that answers health-related questions strictly based on retrieved evidence from a local vector database.",
@@ -52450,7 +52450,8 @@
    "transformers",
    "safetensors",
    "qwen3_5",
-   "image-text-to-text"
+   "image-text-to-text",
+   "agent"
   ],
   "url": "https://huggingface.co/BAAI/AREX-2"
  },
@@ -52480,7 +52481,8 @@
    "transformers",
    "safetensors",
    "unlimited_ocr",
-   "feature-extraction"
+   "feature-extraction",
+   "baidu"
   ],
   "url": "https://huggingface.co/baidu/Unlimited-OCR"
  },
@@ -52584,7 +52586,8 @@
    "safetensors",
    "numbat",
    "custom_code",
-   "8-bit"
+   "8-bit",
+   "modelopt"
   ],
   "url": "https://huggingface.co/burner22/numbat"
  },
@@ -53135,7 +53138,8 @@
    "transformers",
    "safetensors",
    "gemma4",
-   "image-text-to-text"
+   "image-text-to-text",
+   "conversational"
   ],
   "url": "https://huggingface.co/google/gemma-4-31B-it"
  },
@@ -53150,7 +53154,8 @@
    "thx02",
    "safetensors",
    "decision-model",
-   "classification"
+   "classification",
+   "routing"
   ],
   "url": "https://huggingface.co/HAL-X-AI/THX-02"
  },
@@ -53209,7 +53214,8 @@
    "gguf",
    "llama.cpp",
    "lora",
-   "agents"
+   "agents",
+   "harbor"
   ],
   "url": "https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted-GGUF"
  },
@@ -53536,7 +53542,8 @@
    "onnx",
    "safetensors",
    "text-to-speech",
-   "int8"
+   "int8",
+   "int4"
   ],
   "url": "https://huggingface.co/KittenML/kitten-tts-2-mini"
  },
@@ -53694,7 +53701,8 @@
    "pjit-21k",
    "safetensors",
    "text-to-image",
-   "diffusion"
+   "diffusion",
+   "pixel-space"
   ],
   "url": "https://huggingface.co/Linum-AI/pjit-21k"
  },
@@ -53814,7 +53822,8 @@
    "transformers",
    "safetensors",
    "qwen3_5",
-   "image-text-to-text"
+   "image-text-to-text",
+   "conversational"
   ],
   "url": "https://huggingface.co/maritaca-ai/S5-nano"
  },
@@ -53844,7 +53853,8 @@
    "pocket-tts",
    "safetensors",
    "text-to-speech",
-   "persian"
+   "persian",
+   "fa"
   ],
   "url": "https://huggingface.co/mehdi-hf/cilla-lite"
  },
@@ -53859,7 +53869,8 @@
    "pocket-tts",
    "safetensors",
    "text-to-speech",
-   "persian"
+   "persian",
+   "fa"
   ],
   "url": "https://huggingface.co/mehdi-hf/cilla-mini"
  },
@@ -54349,7 +54360,8 @@
    "diffusers",
    "safetensors",
    "moss-image",
-   "text-to-image"
+   "text-to-image",
+   "en"
   ],
   "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT"
  },
@@ -54589,7 +54601,8 @@
    "diffusers",
    "qwen",
    "qwen-image",
-   "image-editing"
+   "image-editing",
+   "object-removal"
   ],
   "url": "https://huggingface.co/PrunaAI/P-Q-Image-2.1-Remove-Object"
  },
@@ -54678,7 +54691,8 @@
    "transformers",
    "safetensors",
    "qwen3_5",
-   "image-text-to-text"
+   "image-text-to-text",
+   "conversational"
   ],
   "url": "https://huggingface.co/Qwen/Qwen3.5-9B"
  },
@@ -55285,7 +55299,8 @@
    "transformers",
    "safetensors",
    "qwen4_exp_text",
-   "text-generation"
+   "text-generation",
+   "whittle"
   ],
   "url": "https://huggingface.co/whittleOrg/Whittle-Next-27B-A3B"
  },
@@ -57857,6 +57872,19 @@
   ],
   "url": "https://www.databricks.com"
  },
+ "web:daydream.ing": {
+  "description": "AI fashion shopping agent that searches 10,000+ brands through one chat, offers virtual try-on and can buy from participating retailers.",
+  "first_seen": "2026-11-20",
+  "id": "web:daydream.ing",
+  "kind": "consumer_app",
+  "name": "Daydream",
+  "tags": [
+   "shopping",
+   "ai-agents",
+   "consumer"
+  ],
+  "url": "https://daydream.ing"
+ },
  "web:daylight.ai": {
   "description": "Managed detection and response service in which AI agents handle most security operations work, overseen by human engineers.",
   "first_seen": "2026-11-12",
@@ -58072,6 +58100,19 @@
    "presentations"
   ],
   "url": "https://gamma.app"
+ },
+ "web:gc.ai": {
+  "description": "Legal intelligence platform for in-house legal teams that drafts, reviews and negotiates contracts, researches legal questions and runs legal agents.",
+  "first_seen": "2026-11-20",
+  "id": "web:gc.ai",
+  "kind": "product",
+  "name": "GC AI",
+  "tags": [
+   "legal",
+   "ai-agents",
+   "enterprise"
+  ],
+  "url": "https://gc.ai"
  },
  "web:gemini.google.com": {
   "description": "Google's AI assistant app.",
@@ -58347,6 +58388,19 @@
    "video-generation"
   ],
   "url": "https://klingai.com"
+ },
+ "web:kooko.ai": {
+  "description": "Baidu Wenku and Baidu Drive's AI document and creative workspace (formerly GenFlow/Oreate) that researches, writes and builds slides, sheets, reports and websites from public and personal content.",
+  "first_seen": "2026-11-20",
+  "id": "web:kooko.ai",
+  "kind": "product",
+  "name": "Baidu KOOKO (\u5e93\u5e93AI)",
+  "tags": [
+   "ai-agents",
+   "productivity",
+   "china"
+  ],
+  "url": "https://www.kooko.ai"
  },
  "web:langdock.com": {
   "description": "Berlin-based enterprise AI workspace for chat, assistants and agents on multiple models.",
@@ -58747,6 +58801,19 @@
    "enterprise-agent"
   ],
   "url": "https://www.rapidcanvas.ai"
+ },
+ "web:replit.com": {
+  "description": "Agentic software creation platform that lets anyone build and deploy applications from natural-language prompts.",
+  "first_seen": "2026-11-20",
+  "id": "web:replit.com",
+  "kind": "product",
+  "name": "Replit",
+  "tags": [
+   "coding-agent",
+   "vibe-coding",
+   "app-builder"
+  ],
+  "url": "https://replit.com"
  },
  "web:retellai.com": {
   "description": "Voice AI agent platform for contact centers that lets businesses build, test and run their own phone agents.",

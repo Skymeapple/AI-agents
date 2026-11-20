@@ -8,7 +8,11 @@
     "url": "https://www.workbuddy.ai",
     "kind": "product",
     "description": "Tencent's all-in-one AI agent workspace that plans and carries out office tasks (documents, spreadsheets, slides, data analysis, code) from a one-sentence request.",
-    "tags": ["ai-agents", "productivity", "china"]
+    "tags": [
+     "ai-agents",
+     "productivity",
+     "china"
+    ]
    },
    "metric": "revenue_annualized_usd",
    "value": 500000000,
@@ -20,27 +24,15 @@
   },
   {
    "app": {
-    "name": "Doubao Work (豆包工作)",
-    "url": "https://www.doubao.com/work",
-    "kind": "product",
-    "description": "ByteDance's AI office agent under the Doubao brand that carries out work tasks end to end, delivering slides, documents, spreadsheets, research reports and media, with Feishu integration.",
-    "tags": ["ai-agents", "productivity", "china"]
-   },
-   "metric": "users",
-   "value": 8000000,
-   "basis": "dau",
-   "observed_on": "2026-11-18",
-   "source_url": "http://k.sina.com.cn/article_1496814565_593793e5020028vqi.html",
-   "method": "reported",
-   "note": "Cover News via Sina (Nov 18, 2026): '11月18日，豆包官方宣布，上线仅三个月的豆包工作日活跃用户数（DAU）突破800万，企业客户年度经常性收入（ARR）突破20亿元。' Daily active users, a floor ('突破'). Company-stated (Doubao official announcement), relayed by media; launched Aug 25, 2026. NBD via ifeng says the same. The ARR of RMB 2B (enterprise customers) is not recorded because the metric is USD and converting would be an estimate. Identity URL doubao.com/work is the product's own site (confirmed by reading it), kept separate from the Doubao chatbot. Page read with Tavily extract."
-  },
-  {
-   "app": {
     "name": "GC AI",
     "url": "https://gc.ai",
     "kind": "product",
     "description": "Legal intelligence platform for in-house legal teams that drafts, reviews and negotiates contracts, researches legal questions and runs legal agents.",
-    "tags": ["legal", "ai-agents", "enterprise"]
+    "tags": [
+     "legal",
+     "ai-agents",
+     "enterprise"
+    ]
    },
    "metric": "revenue_annualized_usd",
    "value": 40000000,
@@ -55,7 +47,11 @@
     "url": "https://gc.ai",
     "kind": "product",
     "description": "Legal intelligence platform for in-house legal teams that drafts, reviews and negotiates contracts, researches legal questions and runs legal agents.",
-    "tags": ["legal", "ai-agents", "enterprise"]
+    "tags": [
+     "legal",
+     "ai-agents",
+     "enterprise"
+    ]
    },
    "metric": "growth_pct",
    "value": 300,
@@ -71,7 +67,11 @@
     "url": "https://replit.com",
     "kind": "product",
     "description": "Agentic software creation platform that lets anyone build and deploy applications from natural-language prompts.",
-    "tags": ["coding-agent", "vibe-coding", "app-builder"]
+    "tags": [
+     "coding-agent",
+     "vibe-coding",
+     "app-builder"
+    ]
    },
    "metric": "users",
    "value": 60000000,
@@ -86,7 +86,11 @@
     "url": "https://daydream.ing",
     "kind": "consumer_app",
     "description": "AI fashion shopping agent that searches 10,000+ brands through one chat, offers virtual try-on and can buy from participating retailers.",
-    "tags": ["shopping", "ai-agents", "consumer"]
+    "tags": [
+     "shopping",
+     "ai-agents",
+     "consumer"
+    ]
    },
    "metric": "users",
    "value": 2000000,
@@ -101,7 +105,11 @@
     "url": "https://www.kooko.ai",
     "kind": "product",
     "description": "Baidu Wenku and Baidu Drive's AI document and creative workspace (formerly GenFlow/Oreate) that researches, writes and builds slides, sheets, reports and websites from public and personal content.",
-    "tags": ["ai-agents", "productivity", "china"]
+    "tags": [
+     "ai-agents",
+     "productivity",
+     "china"
+    ]
    },
    "metric": "users",
    "value": 50000000,

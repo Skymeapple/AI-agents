@@ -5,19 +5,22 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Watch the slide in top-100 ordering.** (2026-11-19.) Frozen
-  like-for-like scores fell from 0.52 (Nov 8) to 0.44, 0.31, 0.23 and 0.13
-  (Nov 9-12), almost all of it inside measured evidence; lift held at
-  29-37x over the same days. Neither short spans (Nov 18) nor later-purged
-  apps (Nov 19: 0-2 per top 100, no change when removed) explain it. Next:
-  check whether the leaders' growth is flattening into a tie band (many
-  apps at similar daily gains), which would make any ordering of them
-  noisy, before treating it as a forecasting fault. The persistence
-  baseline sharpens it: on Nov 10-12 ranking by relative gain alone ordered
-  its own top 100 better (0.38/0.36/0.32) than the forecast (0.31/0.23/0.13),
-  while on Nov 3-9 the forecast won every day. Compare the two top 100s:
-  which apps the forecast promotes that relative gain does not.
+- **Warn when a page-read count is below the API's.** (2026-11-20.)
+  Tavily served stale GitHub pages today: 22 of the 23 trending repos
+  with an API reading (the other's was from Nov 1) and two repo pages showed fewer stars than the
+  radar's own API reading, some by days (simplexai-labs/linger 97 on the
+  page vs 2,107 [API]). Caught by hand and rejected. The inbox validator,
+  or ingest, should warn on any page_extract star or like count below the
+  latest API reading for the same app; a whole file of them means a stale
+  source.
 
+- **Order within the top 100.** (2026-11-19, narrowed 2026-11-20.) The
+  forecast picks better leaders than relative gain alone (its own picks
+  outgrow the baseline's every day, Nov 6-13) but orders them worse (top-100
+  Spearman 0.13 vs 0.31 on Nov 13). Next: within the forecast's top 100,
+  check which signal the order follows (stated gains over long spans, the
+  evidence weight, shrinkage) and whether relative gain would order the same
+  apps better. Report-only until a person decides.
 - **Re-read passes after a gap.** On 2026-11-18, after a missed day, three
   re-read passes left ~140 apps unread; a second `collect --only
   github-repos` was needed. Consider scaling max_passes with days since the
@@ -115,6 +118,14 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   metrics that don't feed the growth score would make this automatic.
 
 ## Done
+
+- 2026-11-20: which leaders each forecast picks. `top_n_selection()`
+  compares a matured forecast's top 100 with the relative-gain baseline's:
+  apps only the forecast picked, only the baseline did, and both, with each
+  group's mean realised percentile. Report table under "Against a naive
+  baseline". Nov 6-13: the two share 48-52 apps; forecast-only picks
+  realised 0.86-0.90 against 0.84-0.88 for baseline-only picks, every day.
+  So the like-for-like weakness is ordering, not selection. Report-only.
 
 - 2026-11-19: the tuner optimises the top-100 score. **The user's
   decision** ("switch the tuner to the top-100 score", written in the

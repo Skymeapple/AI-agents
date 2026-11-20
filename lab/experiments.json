@@ -1,0 +1,38 @@
+{
+  "_doc": "Preregistered experiments. Write the hypothesis and evaluate_on date BEFORE the data exists. Phase 0 of each daily mission evaluates every experiment whose evaluate_on has passed, fills in result/verdict, and records the lesson in lab/LEARNINGS.md. Metric types the dashboard computes: project_dl_week (needs project), channel_median_dl_week (needs channel), gated_vs_ungated_median.",
+  "experiments": [
+    {
+      "id": "E1",
+      "started": "2026-11-20",
+      "change": "Protocol v2 strict gap gate: no build if a package with >= 1,000 weekly downloads covers >= 70% of planned features; collision check includes scoped names.",
+      "hypothesis": "Projects shipped under the gap gate reach a weekly-download count at day 30 that is at or above the median of their category's small entrants (benchmarks with < 5,000/wk). The pre-gate project (ctxlint) would have landed in the long tail.",
+      "metric": { "type": "gated_vs_ungated_median" },
+      "success": "median day-30 weekly downloads of gated projects >= category small-entrant median",
+      "evaluate_on": "2026-12-20",
+      "result": null,
+      "verdict": null
+    },
+    {
+      "id": "E2",
+      "started": "2026-11-20",
+      "change": "Protocol v2 distribution rule: every project ships at least one auto-invoked surface (agent hook, MCP server, GitHub Action or pre-commit) instead of a manual CLI only.",
+      "hypothesis": "Auto-invoked channels produce recurring downloads, so projects with a hook/mcp/action channel have at least 3x the median weekly downloads of cli-only projects at the same age. Evidence that motivated this: block-no-verify (hook) 55,877/wk and @yawlabs/ctxlint (npx @latest) 39,400/wk, versus manual-CLI lookalikes at 31-443/wk.",
+      "metric": { "type": "channel_median_dl_week", "channels": ["hook", "mcp", "action", "cli-only"] },
+      "success": "median(auto-invoked) >= 3 x median(cli-only), with >= 2 projects per group",
+      "evaluate_on": "2026-12-20",
+      "result": null,
+      "verdict": null
+    },
+    {
+      "id": "E3",
+      "started": "2026-11-20",
+      "change": "Improve-first mode: each shipped project gets patch releases (fixes, integrations, README proof) on later days instead of being left after day 1.",
+      "hypothesis": "Projects that receive >= 3 releases in their first 30 days have higher day-30 weekly downloads than projects with 1 release (leaders in the category ship 20-100 versions).",
+      "metric": { "type": "releases_vs_downloads" },
+      "success": "median day-30 weekly downloads, >= 3 releases group > 1 release group",
+      "evaluate_on": "2026-12-31",
+      "result": null,
+      "verdict": null
+    }
+  ]
+}

@@ -84,6 +84,96 @@ if refs:
     out += ["", "## Where visitors come from (14d)", "", "| Referrer | Views |", "|---|---:|"]
     out += [f"| {r['source']} | {r['count']} |" for r in refs[:10]]
 
+# ---------------------------------------------------------------------------
+# Market benchmarks, channels, experiments
+# ---------------------------------------------------------------------------
+from statistics import median  # noqa: E402
+
+CURVES_P = ROOT / "lab" / "metrics" / "launch_curves.json"
+CURVES = json.loads(CURVES_P.read_text()) if CURVES_P.exists() else {}
+EXP_P = ROOT / "lab" / "experiments.json"
+EXPS = json.loads(EXP_P.read_text()).get("experiments", []) if EXP_P.exists() else []
+AUTO = {"hook", "mcp", "action", "pre-commit"}
+SMALL = 5000  # "small entrant" = under 5,000 weekly downloads
+today = dt.date.today().isoformat()
+
+
+def own_pkg(p: dict) -> str | None:
+    return next((x["name"] for x in p.get("packages", []) if x["ecosystem"] == "npm"), None)
+
+
+def day30_rate(p: dict) -> int | None:
+    """Weekly downloads around day 30 (or the current weekly rate if younger and published)."""
+    c = CURVES.get(own_pkg(p) or "")
+    if c and c.get("complete"):
+        return c["week_at_day30"]
+    if c:
+        return by_id.get(p["id"], {}).get("downloads_last_week", 0)
+    return None  # never published
+
+
+def med(xs):
+    xs = [x for x in xs if x is not None]
+    return int(median(xs)) if xs else None
+
+
+def fmt(x):
+    return "-" if x is None else f"{x:,}"
+
+
+bench_now = LATEST.get("benchmarks", {})
+if bench_now:
+    out += ["", "## Market benchmarks", "",
+            "These are competitors in each project's category. *Day-30 rate* is a package's downloads in days 24–30 after its first publish, which lets the lab compare a new project against established ones at the same age.", ""]
+    for cat, rows in bench_now.items():
+        ours = [p for p in REG["projects"] if p.get("category") == cat]
+        small = [CURVES.get(r["name"], {}).get("week_at_day30") for r in rows if r["dl_week"] < SMALL and CURVES.get(r["name"], {}).get("complete")]
+        out += [f"### {cat}", "", f"Median day-30 rate of small entrants (< {SMALL:,}/wk now): **{fmt(med(small))}**", "",
+                "| Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |", "|---|---:|---:|---:|---:|"]
+        for r in sorted(rows, key=lambda r: -r["dl_week"]):
+            c = CURVES.get(r["name"], {})
+            out.append(f"| {r['name']} | {fmt(r['dl_week'])} | {fmt(c.get('d7'))} | {fmt(c.get('d30'))} | {fmt(c.get('week_at_day30'))} |")
+        for p in ours:
+            c = CURVES.get(own_pkg(p) or "", {})
+            m = by_id.get(p["id"], {})
+            label = f"**{p['name']} (lab)**" + ("" if c else f" _{p.get('status', 'unpublished')}_")
+            out.append(f"| {label} | {fmt(m.get('downloads_last_week'))} | {fmt(c.get('d7'))} | {fmt(c.get('d30'))} | {fmt(c.get('week_at_day30'))} |")
+        out.append("")
+
+published = [p for p in REG["projects"] if CURVES.get(own_pkg(p) or "")]
+out += ["## Downloads by distribution channel", "",
+        "This tests experiment E2: tools that run automatically (agent hooks, MCP servers, Actions, pre-commit) should earn recurring downloads; manual CLIs shouldn't.", "",
+        "| Channel group | Published projects | Median weekly downloads |", "|---|---:|---:|"]
+groups = {"auto-invoked (hook/mcp/action/pre-commit)": [p for p in published if AUTO & set(p.get("distribution", []))],
+          "cli-only": [p for p in published if not AUTO & set(p.get("distribution", []))]}
+for g, ps in groups.items():
+    out.append(f"| {g} | {len(ps)} | {fmt(med([by_id.get(p['id'], {}).get('downloads_last_week', 0) for p in ps]))} |")
+
+
+def reading(e: dict) -> str:
+    t = e.get("metric", {}).get("type")
+    if t == "gated_vs_ungated_median":
+        g = med([day30_rate(p) for p in published if p.get("gated")])
+        u = med([day30_rate(p) for p in published if not p.get("gated")])
+        return f"gated median {fmt(g)} vs ungated {fmt(u)} ({sum(1 for p in published if p.get('gated'))} gated published)"
+    if t == "channel_median_dl_week":
+        return "; ".join(f"{g.split(' ')[0]}: {fmt(med([by_id.get(p['id'], {}).get('downloads_last_week', 0) for p in ps]))} (n={len(ps)})" for g, ps in groups.items())
+    if t == "releases_vs_downloads":
+        many = [day30_rate(p) for p in published if len(p.get("releases", [])) >= 3]
+        one = [day30_rate(p) for p in published if len(p.get("releases", [])) < 3]
+        return f">=3 releases: {fmt(med(many))} (n={len(many)}); fewer: {fmt(med(one))} (n={len(one)})"
+    if t == "project_dl_week":
+        return fmt(by_id.get(e["metric"].get("project"), {}).get("downloads_last_week"))
+    return "-"
+
+
+if EXPS:
+    out += ["", "## Experiments", "", "These were written down before the data arrived. A daily mission evaluates each one once its date passes (see `lab/experiments.json`).", "",
+            "| ID | Change | Evaluate on | Status | Current reading |", "|---|---|---|---|---|"]
+    for e in EXPS:
+        status = f"✅ {e['verdict']}" if e.get("verdict") else ("⏰ **DUE**" if e["evaluate_on"] <= today else "running")
+        out.append(f"| {e['id']} | {e['change'][:90]}{'…' if len(e['change']) > 90 else ''} | {e['evaluate_on']} | {status} | {reading(e)} |")
+
 out += [
     "",
     "## Pain points addressed",

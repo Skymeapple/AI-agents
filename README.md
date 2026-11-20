@@ -18,7 +18,7 @@ Every day the lab:
 <!-- projects:start -->
 | Project | What it does | Install |
 |---|---|---|
-| [**ctxlint**](projects/ctxlint) | Lint AGENTS.md / CLAUDE.md / .cursorrules / Copilot instructions: stale paths & scripts, broken @imports, hidden Unicode, secrets, drift. | `npx ctxlint` |
+| [**ctxlint**](projects/ctxlint) | Lint AGENTS.md / CLAUDE.md / .cursorrules / Copilot instructions: stale paths & scripts, broken @imports, hidden Unicode, secrets, drift. | `not published (parked)` |
 <!-- projects:end -->
 
 ## Have a pain point?

@@ -1,16 +1,49 @@
 {
   "name": "ctxlint",
+  "private": true,
   "version": "0.1.0",
   "description": "Lint AGENTS.md, CLAUDE.md, .cursorrules, Copilot & other AI agent instruction files: stale paths/scripts, broken @imports, hidden Unicode, leaked secrets, drifted copies.",
   "type": "module",
-  "bin": { "ctxlint": "bin/ctxlint.js" },
+  "bin": {
+    "ctxlint": "bin/ctxlint.js"
+  },
   "main": "src/index.js",
-  "exports": { ".": "./src/index.js" },
-  "files": ["bin", "src", "README.md", "LICENSE", "CHANGELOG.md"],
-  "engines": { "node": ">=18" },
-  "scripts": { "test": "node --test" },
-  "keywords": ["agents.md", "claude.md", "cursorrules", "copilot-instructions", "lint", "linter", "ai", "coding-agent", "claude-code", "cursor", "codex", "gemini-cli", "ci"],
-  "repository": { "type": "git", "url": "git+https://github.com/Skymeapple/AI-agents.git", "directory": "projects/ctxlint" },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "agents.md",
+    "claude.md",
+    "cursorrules",
+    "copilot-instructions",
+    "lint",
+    "linter",
+    "ai",
+    "coding-agent",
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini-cli",
+    "ci"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skymeapple/AI-agents.git",
+    "directory": "projects/ctxlint"
+  },
   "homepage": "https://github.com/Skymeapple/AI-agents/tree/research-lab/projects/ctxlint#readme",
   "bugs": "https://github.com/Skymeapple/AI-agents/issues",
   "license": "MIT"

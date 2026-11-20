@@ -12,6 +12,9 @@ Sources
 Output
   lab/metrics/latest.json          full snapshot
   lab/metrics/history.jsonl        one line per (date, project) for trend analysis
+  lab/metrics/benchmarks.jsonl     one line per (date, competitor package): weekly downloads
+  lab/metrics/launch_curves.json   downloads in the first 7 / 30 days after first publish,
+                                   for competitors AND lab projects (same-age comparison)
 """
 from __future__ import annotations
 
@@ -25,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "lab" / "registry.json"
+BENCHMARKS = ROOT / "lab" / "benchmarks.json"
 METRICS = ROOT / "lab" / "metrics"
 REPO = os.environ.get("GITHUB_REPOSITORY", "Skymeapple/AI-agents")
 BRANCH = os.environ.get("LAB_BRANCH", "research-lab")
@@ -59,6 +63,42 @@ def npm_stats(pkg: str, created: str) -> dict:
     d = get(f"https://api.npmjs.org/downloads/range/{start}:{today}/{pkg}")
     out["total"] = sum(x["downloads"] for x in (d or {}).get("downloads", []))
     return out
+
+
+def npm_created(pkg: str) -> str | None:
+    d = get(f"https://registry.npmjs.org/{pkg.replace('/', '%2F')}")
+    created = ((d or {}).get("time") or {}).get("created")
+    return created[:10] if created else None
+
+
+def launch_curve(pkg: str, created: str) -> dict:
+    """Downloads in the first 7 / 30 days after first publish, and the weekly rate around day 30."""
+    start = dt.date.fromisoformat(created)
+    end = start + dt.timedelta(days=29)
+    d = get(f"https://api.npmjs.org/downloads/range/{start.isoformat()}:{end.isoformat()}/{pkg}")
+    days = [x["downloads"] for x in (d or {}).get("downloads", [])]
+    age = (dt.date.today() - start).days
+    return {
+        "created": created,
+        "complete": age >= 30,
+        "d7": sum(days[:7]),
+        "d30": sum(days[:30]),
+        "week_at_day30": sum(days[23:30]),
+        "daily": days[:30],
+    }
+
+
+def collect_launch_curves(names: list[str]) -> dict:
+    path = METRICS / "launch_curves.json"
+    cache = json.loads(path.read_text()) if path.exists() else {}
+    for name in names:
+        if cache.get(name, {}).get("complete"):
+            continue  # first 30 days are history; never changes
+        created = npm_created(name)
+        if created:
+            cache[name] = launch_curve(name, created)
+    path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n")
+    return cache
 
 
 def pypi_stats(pkg: str) -> dict:
@@ -118,6 +158,28 @@ def main() -> int:
                              "page_views_14d": m["page_views_14d"], "repo_stars": snapshot["repo"]["stars"]})
 
     METRICS.mkdir(parents=True, exist_ok=True)
+
+    # Competitor benchmarks: current weekly downloads + launch curves.
+    bench = json.loads(BENCHMARKS.read_text()) if BENCHMARKS.exists() else {"categories": {}}
+    snapshot["benchmarks"] = {}
+    bench_lines = []
+    all_names = []
+    for cat, spec in bench.get("categories", {}).items():
+        rows = []
+        for name in spec.get("packages", []):
+            d = get(f"https://api.npmjs.org/downloads/point/last-week/{name}")
+            wk = (d or {}).get("downloads", 0)
+            rows.append({"name": name, "dl_week": wk})
+            bench_lines.append({"date": today, "category": cat, "package": name, "dl_week": wk})
+            all_names.append(name)
+        snapshot["benchmarks"][cat] = rows
+    own = [pkg["name"] for p in registry["projects"] for pkg in p.get("packages", [])
+           if pkg["ecosystem"] == "npm" and npm_created(pkg["name"])]
+    collect_launch_curves(all_names + own)
+    bh = METRICS / "benchmarks.jsonl"
+    old = [l for l in (bh.read_text().splitlines() if bh.exists() else []) if l.strip() and not l.startswith(f'{{"date": "{today}"')]
+    bh.write_text("\n".join(old + [json.dumps(b) for b in bench_lines]) + "\n")
+
     (METRICS / "latest.json").write_text(json.dumps(snapshot, indent=2) + "\n")
     hist = METRICS / "history.jsonl"
     lines = [l for l in (hist.read_text().splitlines() if hist.exists() else []) if not l.startswith(f'{{"date": "{today}"')]

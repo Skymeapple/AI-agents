@@ -1,9 +1,11 @@
 # ctxlint
 
+> **Status: parked (not published to npm).** The lab's [market review](../../lab/research/2026-11-20-market-review.md) found that [`@yawlabs/ctxlint`](https://www.npmjs.com/package/@yawlabs/ctxlint) already covers these checks and more, under the same name. For hidden-Unicode detection, [`anti-trojan-source`](https://www.npmjs.com/package/anti-trojan-source) is the established tool, and for package-manager enforcement, [`only-allow`](https://www.npmjs.com/package/only-allow). We recommend those. This code stays here as a reference and as Day 1 of the lab.
+
 **A linter for the instruction files your AI coding agents read**: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules` and `.cursor/rules/`, plus the instruction files for GitHub Copilot, Windsurf, Cline, Kiro, Junie and Amazon Q.
 
 ```bash
-npx ctxlint
+node bin/ctxlint.js   # run from this folder; not on npm
 ```
 
 Zero dependencies. Node ≥ 18. Scans VS Code's 39 instruction files in about 0.3s.

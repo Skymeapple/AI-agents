@@ -1,6 +1,6 @@
 # Lab Dashboard
 
-_Generated 2026-11-20 07:50 UTC · metrics as of 2026-11-20_
+_Generated 2026-11-20 07:51 UTC · metrics as of 2026-11-20_
 
 | Projects shipped | Downloads (7d) | Downloads (all-time) | ⭐ Stars | Forks | Visitors (14d) | Clones (14d) |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -56,6 +56,19 @@ Median day-30 rate of small entrants (< 5,000/wk now): **-**
 |---|---:|---:|---:|---:|
 | anti-trojan-source | 40,758 | 365 | 7,504 | 3,655 |
 | out-of-character | 8,783 | 193 | 279 | 8 |
+
+### agent-secret-leaks
+
+Median day-30 rate of small entrants (< 5,000/wk now): **-**
+
+| Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
+|---|---:|---:|---:|---:|
+| secretlint | 1,941,497 | 85 | 2,497 | 879 |
+| eslint-plugin-no-secrets | 447,180 | 94 | 123 | 8 |
+| gitleaks-secret-scanner | 26,184 | 0 | 352 | 352 |
+| @visulima/secret-scanner | 20,536 | 239 | 649 | 306 |
+| claude-settings-leak-check | 43 | 358 | 384 | 0 |
+| **agentscrub (lab)** _active_ | 0 | - | - | - |
 
 ## Downloads by distribution channel
 

@@ -27,6 +27,22 @@
       "downloads_last_week": 0,
       "downloads_last_month": 0,
       "downloads_total": 0
+    },
+    {
+      "id": "2026-11-20-agentscrub",
+      "downloads": {
+        "npm:agentscrub": {
+          "last_day": 0,
+          "last_week": 0,
+          "last_month": 0,
+          "total": 0
+        }
+      },
+      "page_views_14d": 0,
+      "page_uniques_14d": 0,
+      "downloads_last_week": 0,
+      "downloads_last_month": 0,
+      "downloads_total": 0
     }
   ],
   "benchmarks": {
@@ -98,6 +114,28 @@
       {
         "name": "out-of-character",
         "dl_week": 8783
+      }
+    ],
+    "agent-secret-leaks": [
+      {
+        "name": "claude-settings-leak-check",
+        "dl_week": 43
+      },
+      {
+        "name": "secretlint",
+        "dl_week": 1941497
+      },
+      {
+        "name": "gitleaks-secret-scanner",
+        "dl_week": 26184
+      },
+      {
+        "name": "@visulima/secret-scanner",
+        "dl_week": 20536
+      },
+      {
+        "name": "eslint-plugin-no-secrets",
+        "dl_week": 447180
       }
     ]
   }

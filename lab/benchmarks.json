@@ -3,15 +3,44 @@
   "categories": {
     "agent-instruction-linters": {
       "description": "Linters for AGENTS.md / CLAUDE.md / .cursorrules / agent configs",
-      "packages": ["@yawlabs/ctxlint", "agnix", "claude-code-lint", "agentlinter", "@promptci/cli", "tidyagents", "@felixgeelhaar/cclint", "rulecheck", "unrot"]
+      "packages": [
+        "@yawlabs/ctxlint",
+        "agnix",
+        "claude-code-lint",
+        "agentlinter",
+        "@promptci/cli",
+        "tidyagents",
+        "@felixgeelhaar/cclint",
+        "rulecheck",
+        "unrot"
+      ]
     },
     "agent-guardrail-hooks": {
       "description": "Tools that run automatically inside coding-agent hooks to block unsafe actions",
-      "packages": ["block-no-verify", "ghostimport", "@hasna/hooks", "slopcheck", "@mharoon07/slopguard"]
+      "packages": [
+        "block-no-verify",
+        "ghostimport",
+        "@hasna/hooks",
+        "slopcheck",
+        "@mharoon07/slopguard"
+      ]
     },
     "unicode-security": {
       "description": "Hidden / bidi Unicode (trojan source) detection",
-      "packages": ["anti-trojan-source", "out-of-character"]
+      "packages": [
+        "anti-trojan-source",
+        "out-of-character"
+      ]
+    },
+    "agent-secret-leaks": {
+      "description": "Secret scanning for AI agent files (allowlists, MCP configs, transcripts) and general secret scanners as the ceiling",
+      "packages": [
+        "claude-settings-leak-check",
+        "secretlint",
+        "gitleaks-secret-scanner",
+        "@visulima/secret-scanner",
+        "eslint-plugin-no-secrets"
+      ]
     }
   }
 }

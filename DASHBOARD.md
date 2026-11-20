@@ -1,10 +1,10 @@
 # Lab Dashboard
 
-_Generated 2026-11-20 00:04 UTC · metrics as of 2026-11-20_
+_Generated 2026-11-20 07:50 UTC · metrics as of 2026-11-20_
 
 | Projects shipped | Downloads (7d) | Downloads (all-time) | ⭐ Stars | Forks | Visitors (14d) | Clones (14d) |
 |---:|---:|---:|---:|---:|---:|---:|
-| 1 | 0 | 0 | 0 | 0 | - | - |
+| 2 | 0 | 0 | 0 | 0 | - | - |
 
 ## Leaderboard
 
@@ -13,6 +13,7 @@ Value score = 7-day downloads + 3 × unique page visitors (14d).
 | # | Project | Shipped | Score | DL 7d | Δ vs last wk | DL 30d | DL total | Page uniques 14d | Trend | Status |
 |---:|---|---|---:|---:|---:|---:|---:|---:|---|---|
 | 1 | [ctxlint](projects/ctxlint) | 2026-11-19 | 0 | 0 | 0 | 0 | 0 | 0 |  | parked |
+| 2 | [agentscrub](projects/agentscrub) | 2026-11-20 | 0 | 0 | - | 0 | 0 | 0 |  | active |
 
 ## Market benchmarks
 
@@ -79,4 +80,5 @@ These were written down before the data arrived. A daily mission evaluates each 
 
 | Project | Pain point | Evidence |
 |---|---|---|
+| agentscrub | Claude Code's "don't ask again" saves full approved commands, passwords included, to .claude/settings.local.json; Apiiro found 1,122 public copies holding 1,379 secrets (Nov 2026). MCP configs and session transcripts leak the same way, and generic scanners miss passwords inside commands. | [1](https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html?m=1) [2](https://medium.com/@chinmayshringi4/claude-code-dont-ask-again-saved-secrets-in-settings-local-json-d1323c85bb2d) [3](https://www.darkreading.com/cyber-risk/ai-coding-agents-leak-secrets-github) [4](https://www.backslash.security/blog/secrets-in-ai-agent-session-history) |
 | ctxlint | Teams run several AI coding agents, each with its own instruction file. The files rot (renamed paths, dead scripts), drift apart, bloat, and can hide malicious invisible Unicode. | [1](https://www.reddit.com/r/codex/comments/1x2wkid/if_you_use_both_codex_and_claude_code_how_do_you) [2](https://umesh-malik.com/blog/agents-md-ai-coding-agents-study) [3](https://www.infoworld.com/article/4224410/claude-code-now-also-accepts-instructions-in-openais-agents-md-format.html) [4](https://finance.yahoo.com/news/vulnerability-github-copilot-cursor-hackers-144000906.html) |

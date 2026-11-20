@@ -30,6 +30,43 @@
       "gated": false,
       "releases": [],
       "status_reason": "Market review 2026-11-20: @yawlabs/ctxlint (39,400/wk) covers a superset of its checks and uses the same name and config file; hidden-Unicode detection is covered by anti-trojan-source (40,758/wk) and package-manager enforcement by only-allow (2.28M/wk). Not published, to avoid name confusion and long-tail noise. See lab/research/2026-11-20-market-review.md."
+    },
+    {
+      "id": "2026-11-20-agentscrub",
+      "date": "2026-11-20",
+      "name": "agentscrub",
+      "path": "projects/agentscrub",
+      "tagline": "Find and remove secrets AI coding agents save to disk (Claude Code \"don't ask again\" allowlists, MCP configs, transcripts); hook + pre-commit guard blocks commits that would leak them.",
+      "pain_point": "Claude Code's \"don't ask again\" saves full approved commands, passwords included, to .claude/settings.local.json; Apiiro found 1,122 public copies holding 1,379 secrets (Nov 2026). MCP configs and session transcripts leak the same way, and generic scanners miss passwords inside commands.",
+      "audience": "Developers and teams using Claude Code, Cursor, Codex, Gemini CLI or MCP servers",
+      "install": "npx agentscrub",
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "agentscrub"
+        }
+      ],
+      "category": "agent-secret-leaks",
+      "distribution": [
+        "cli",
+        "hook",
+        "pre-commit",
+        "action"
+      ],
+      "gated": true,
+      "releases": [
+        {
+          "version": "0.1.0",
+          "date": "2026-11-20"
+        }
+      ],
+      "evidence": [
+        "https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html?m=1",
+        "https://medium.com/@chinmayshringi4/claude-code-dont-ask-again-saved-secrets-in-settings-local-json-d1323c85bb2d",
+        "https://www.darkreading.com/cyber-risk/ai-coding-agents-leak-secrets-github",
+        "https://www.backslash.security/blog/secrets-in-ai-agent-session-history"
+      ],
+      "status": "active"
     }
   ]
 }

@@ -18,6 +18,7 @@ Every day the lab:
 <!-- projects:start -->
 | Project | What it does | Install |
 |---|---|---|
+| [**agentscrub**](projects/agentscrub) | Find and remove secrets AI coding agents save to disk (Claude Code "don't ask again" allowlists, MCP configs, transcripts); hook + pre-commit guard blocks commits that would leak them. | `npx agentscrub` |
 | [**ctxlint**](projects/ctxlint) | Lint AGENTS.md / CLAUDE.md / .cursorrules / Copilot instructions: stale paths & scripts, broken @imports, hidden Unicode, secrets, drift. | `not published (parked)` |
 <!-- projects:end -->
 

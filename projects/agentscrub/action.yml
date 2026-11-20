@@ -1,0 +1,11 @@
+name: agentscrub
+description: Fail the build when AI coding agent files (Claude Code allowlists, MCP configs, transcripts) contain secrets
+branding: { icon: shield, color: red }
+inputs:
+  path: { description: Directory to scan, default: '.' }
+  args: { description: Extra CLI arguments, default: '' }
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: node "$GITHUB_ACTION_PATH/bin/agentscrub.js" "${{ inputs.path }}" --format github ${{ inputs.args }}

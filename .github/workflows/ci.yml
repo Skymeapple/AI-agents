@@ -28,5 +28,7 @@ jobs:
           done
       - name: Dogfood ctxlint on the lab itself
         run: node projects/ctxlint/bin/ctxlint.js . --format github
+      - name: Dogfood agentscrub on the lab itself
+        run: node projects/agentscrub/bin/agentscrub.js . --format github
       - name: Dashboard builds
         run: python3 scripts/build_dashboard.py && git diff --stat

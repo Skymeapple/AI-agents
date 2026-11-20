@@ -1,6 +1,6 @@
 # Lab Dashboard
 
-_Generated 2026-11-20 00:03 UTC · metrics as of 2026-11-19_
+_Generated 2026-11-20 00:04 UTC · metrics as of 2026-11-20_
 
 | Projects shipped | Downloads (7d) | Downloads (all-time) | ⭐ Stars | Forks | Visitors (14d) | Clones (14d) |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -12,7 +12,50 @@ Value score = 7-day downloads + 3 × unique page visitors (14d).
 
 | # | Project | Shipped | Score | DL 7d | Δ vs last wk | DL 30d | DL total | Page uniques 14d | Trend | Status |
 |---:|---|---|---:|---:|---:|---:|---:|---:|---|---|
-| 1 | [ctxlint](projects/ctxlint) | 2026-11-19 | 0 | 0 | - | 0 | 0 | 0 |  | parked |
+| 1 | [ctxlint](projects/ctxlint) | 2026-11-19 | 0 | 0 | 0 | 0 | 0 | 0 |  | parked |
+
+## Market benchmarks
+
+These are competitors in each project's category. *Day-30 rate* is a package's downloads in days 24–30 after its first publish, which lets the lab compare a new project against established ones at the same age.
+
+### agent-instruction-linters
+
+Median day-30 rate of small entrants (< 5,000/wk now): **38**
+
+| Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
+|---|---:|---:|---:|---:|
+| agnix | 42,530 | 1,537 | 3,611 | 492 |
+| @yawlabs/ctxlint | 39,400 | 1,524 | 5,557 | 538 |
+| claude-code-lint | 14,202 | 294 | 1,013 | 324 |
+| agentlinter | 3,963 | 2,067 | 2,344 | 64 |
+| @promptci/cli | 2,348 | 309 | 562 | 43 |
+| @felixgeelhaar/cclint | 452 | 291 | 400 | 14 |
+| tidyagents | 56 | 732 | 779 | 0 |
+| unrot | 42 | 2,078 | 2,310 | 34 |
+| rulecheck | 26 | 547 | 585 | 0 |
+| **ctxlint (lab)** _parked_ | 0 | - | - | - |
+
+### agent-guardrail-hooks
+
+Median day-30 rate of small entrants (< 5,000/wk now): **23**
+
+| Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
+|---|---:|---:|---:|---:|
+| block-no-verify | 55,877 | 369 | 1,229 | 417 |
+| @hasna/hooks | 8,518 | 1,325 | 1,413 | 13 |
+| ghostimport | 1,053 | 1,051 | 1,449 | 35 |
+| slopcheck | 180 | 522 | 695 | 12 |
+| @mharoon07/slopguard | 25 | 443 | 461 | 0 |
+
+### unicode-security
+
+Median day-30 rate of small entrants (< 5,000/wk now): **-**
+
+| Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
+|---|---:|---:|---:|---:|
+| anti-trojan-source | 40,758 | 365 | 7,504 | 3,655 |
+| out-of-character | 8,783 | 193 | 279 | 8 |
+
 ## Downloads by distribution channel
 
 This tests experiment E2: tools that run automatically (agent hooks, MCP servers, Actions, pre-commit) should earn recurring downloads; manual CLIs shouldn't.

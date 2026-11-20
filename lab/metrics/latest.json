@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "repo": {
     "stars": 0,
     "forks": 0,
@@ -28,5 +28,77 @@
       "downloads_last_month": 0,
       "downloads_total": 0
     }
-  ]
+  ],
+  "benchmarks": {
+    "agent-instruction-linters": [
+      {
+        "name": "@yawlabs/ctxlint",
+        "dl_week": 39400
+      },
+      {
+        "name": "agnix",
+        "dl_week": 42530
+      },
+      {
+        "name": "claude-code-lint",
+        "dl_week": 14202
+      },
+      {
+        "name": "agentlinter",
+        "dl_week": 3963
+      },
+      {
+        "name": "@promptci/cli",
+        "dl_week": 2348
+      },
+      {
+        "name": "tidyagents",
+        "dl_week": 56
+      },
+      {
+        "name": "@felixgeelhaar/cclint",
+        "dl_week": 452
+      },
+      {
+        "name": "rulecheck",
+        "dl_week": 26
+      },
+      {
+        "name": "unrot",
+        "dl_week": 42
+      }
+    ],
+    "agent-guardrail-hooks": [
+      {
+        "name": "block-no-verify",
+        "dl_week": 55877
+      },
+      {
+        "name": "ghostimport",
+        "dl_week": 1053
+      },
+      {
+        "name": "@hasna/hooks",
+        "dl_week": 8518
+      },
+      {
+        "name": "slopcheck",
+        "dl_week": 180
+      },
+      {
+        "name": "@mharoon07/slopguard",
+        "dl_week": 25
+      }
+    ],
+    "unicode-security": [
+      {
+        "name": "anti-trojan-source",
+        "dl_week": 40758
+      },
+      {
+        "name": "out-of-character",
+        "dl_week": 8783
+      }
+    ]
+  }
 }

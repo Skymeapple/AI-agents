@@ -15,13 +15,14 @@ Run the phases in order. Never skip **Test**. Never publish fabricated evidence 
 1. `git pull origin research-lab`. The lab lives on the `research-lab` branch of `Skymeapple/AI-agents`, with history separate from the rest of that repo. The `metrics` workflow commits fresh numbers after every lab push.
 2. Read `DASHBOARD.md`, `lab/LEARNINGS.md`, the last 3 files in `lab/research/`, and `lab/registry.json`.
 3. **Evaluate due experiments.** For each entry in `lab/experiments.json` whose `evaluate_on` date has passed and whose `verdict` is still null, read its *current reading* in `DASHBOARD.md`. Write `result` (numbers) and `verdict` (`confirmed`, `refuted` or `inconclusive (n too small)`), then add the lesson to `lab/LEARNINGS.md`. Let the verdicts change these rules: edit this protocol when a hypothesis is refuted.
-4. Decide **today's mode** with these rules, checked in order:
+4. Judge projects by their **day-30 rate** (downloads in days 24–30 after first publish; see *Market benchmarks* in the dashboard), never by launch-week totals. Launch weeks are inflated by mirrors and bots for every package (LEARNINGS L4). In past data, a day-30 rate ≥ ~300/wk marked future category leaders, and ≤ ~60/wk marked the long tail.
+5. Decide **today's mode** with these rules, checked in order:
    * **Improve:** a project from the last 14 days has rising downloads (positive Δ two weeks running), or has open issues or feature requests. Spend today making that project better: fix issues, add the most-requested feature, improve the README, add an integration (Action, pre-commit, VS Code task), then cut a release. Winners compound, so double down.
    * **Fix positioning:** a project has page visitors but few downloads (page uniques ≥ 3× weekly downloads). Its README, name or install path is the problem. Rewrite the README hero and add a GIF-free demo block and real-world proof. Ship a patch release, and still build a new project if time allows.
    * **Build new:** run Phases 1–5, but only ship if the market gate in Phase 1 passes.
    * **No-ship day:** if no candidate passes the gate, do *not* ship a lookalike. Spend the day improving an existing project, adding an auto-invoked channel to one, or researching deeper. Log the candidates and why they failed the gate. A day that kills a bad idea counts as progress.
-   * **Sunset:** a project over 30 days old with fewer than 5 weekly downloads. Set `"status": "sunset"` in the registry and record why in LEARNINGS. Don't delete it.
-5. Append 1–3 evidence-backed lines to `lab/LEARNINGS.md`, for example "tools for AI-agent workflows get 4× the downloads of generic dev tools". Update the hypotheses when the data confirms or refutes them.
+   * **Sunset:** a project whose day-30 rate is below 30/wk and that hasn't improved after 2 improvement releases. Set `"status": "sunset"` in the registry and record why in LEARNINGS. Don't delete it.
+6. Append 1–3 evidence-backed lines to `lab/LEARNINGS.md`, for example "tools for AI-agent workflows get 4× the downloads of generic dev tools". Update the hypotheses when the data confirms or refutes them.
 
 ## Phase 1: Research (~20 min)
 

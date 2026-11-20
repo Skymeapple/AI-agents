@@ -1,0 +1,493 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-20",
+ "observations": [
+  {
+   "app": {
+    "name": "BAAI/AREX-2",
+    "url": "https://huggingface.co/BAAI/AREX-2",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text",
+     "agent"
+    ]
+   },
+   "metric": "likes",
+   "value": 219,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/BAAI/AREX-2",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "baidu/Unlimited-OCR",
+    "url": "https://huggingface.co/baidu/Unlimited-OCR",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "unlimited_ocr",
+     "feature-extraction",
+     "baidu"
+    ]
+   },
+   "metric": "likes",
+   "value": 5021,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/baidu/Unlimited-OCR",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "burner22/numbat",
+    "url": "https://huggingface.co/burner22/numbat",
+    "kind": "model",
+    "tags": [
+     "safetensors",
+     "numbat",
+     "custom_code",
+     "8-bit",
+     "modelopt"
+    ]
+   },
+   "metric": "likes",
+   "value": 409,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/burner22/numbat",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Comfy-Org/PAN2",
+    "url": "https://huggingface.co/Comfy-Org/PAN2",
+    "kind": "model",
+    "tags": [
+     "diffusion-single-file",
+     "comfyui",
+     "text-to-video"
+    ]
+   },
+   "metric": "likes",
+   "value": 55,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/Comfy-Org/PAN2",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "google/gemma-4-31B-it",
+    "url": "https://huggingface.co/google/gemma-4-31B-it",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "gemma4",
+     "image-text-to-text",
+     "conversational"
+    ]
+   },
+   "metric": "likes",
+   "value": 4429,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/google/gemma-4-31B-it",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "HAL-X-AI/THX-02",
+    "url": "https://huggingface.co/HAL-X-AI/THX-02",
+    "kind": "model",
+    "tags": [
+     "thx02",
+     "safetensors",
+     "decision-model",
+     "classification",
+     "routing"
+    ]
+   },
+   "metric": "likes",
+   "value": 74,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/HAL-X-AI/THX-02",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "harness-hub/Qwen3.8-27B-pi-adapted-GGUF",
+    "url": "https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted-GGUF",
+    "kind": "model",
+    "tags": [
+     "gguf",
+     "llama.cpp",
+     "lora",
+     "agents",
+     "harbor"
+    ]
+   },
+   "metric": "likes",
+   "value": 65,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/harness-hub/Qwen3.8-27B-pi-adapted-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "KittenML/kitten-tts-2-mini",
+    "url": "https://huggingface.co/KittenML/kitten-tts-2-mini",
+    "kind": "model",
+    "tags": [
+     "onnx",
+     "safetensors",
+     "text-to-speech",
+     "int8",
+     "int4"
+    ]
+   },
+   "metric": "likes",
+   "value": 64,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/KittenML/kitten-tts-2-mini",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "krea/Krea-2-Raw",
+    "url": "https://huggingface.co/krea/Krea-2-Raw",
+    "kind": "model",
+    "tags": [
+     "diffusers",
+     "safetensors",
+     "text-to-image",
+     "en"
+    ]
+   },
+   "metric": "likes",
+   "value": 1412,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/krea/Krea-2-Raw",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Linum-AI/pjit-21k",
+    "url": "https://huggingface.co/Linum-AI/pjit-21k",
+    "kind": "model",
+    "tags": [
+     "pjit-21k",
+     "safetensors",
+     "text-to-image",
+     "diffusion",
+     "pixel-space"
+    ]
+   },
+   "metric": "likes",
+   "value": 78,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/Linum-AI/pjit-21k",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "maritaca-ai/S5-nano",
+    "url": "https://huggingface.co/maritaca-ai/S5-nano",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text",
+     "conversational"
+    ]
+   },
+   "metric": "likes",
+   "value": 82,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/maritaca-ai/S5-nano",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "mehdi-hf/cilla-lite",
+    "url": "https://huggingface.co/mehdi-hf/cilla-lite",
+    "kind": "model",
+    "tags": [
+     "pocket-tts",
+     "safetensors",
+     "text-to-speech",
+     "persian",
+     "fa"
+    ]
+   },
+   "metric": "likes",
+   "value": 58,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/mehdi-hf/cilla-lite",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "mehdi-hf/cilla-mini",
+    "url": "https://huggingface.co/mehdi-hf/cilla-mini",
+    "kind": "model",
+    "tags": [
+     "pocket-tts",
+     "safetensors",
+     "text-to-speech",
+     "persian",
+     "fa"
+    ]
+   },
+   "metric": "likes",
+   "value": 58,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/mehdi-hf/cilla-mini",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "OpenMOSS-Team/MOSS-Image-SFT",
+    "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT",
+    "kind": "model",
+    "tags": [
+     "diffusers",
+     "safetensors",
+     "moss-image",
+     "text-to-image",
+     "en"
+    ]
+   },
+   "metric": "likes",
+   "value": 993,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/OpenMOSS-Team/MOSS-Image-SFT",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "PrunaAI/P-Q-Image-2.1-Remove-Object",
+    "url": "https://huggingface.co/PrunaAI/P-Q-Image-2.1-Remove-Object",
+    "kind": "model",
+    "tags": [
+     "diffusers",
+     "qwen",
+     "qwen-image",
+     "image-editing",
+     "object-removal"
+    ]
+   },
+   "metric": "likes",
+   "value": 33,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/PrunaAI/P-Q-Image-2.1-Remove-Object",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Qwen/Qwen3.5-9B",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text",
+     "conversational"
+    ]
+   },
+   "metric": "likes",
+   "value": 2435,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/Qwen/Qwen3.5-9B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "whittleOrg/Whittle-Next-27B-A3B",
+    "url": "https://huggingface.co/whittleOrg/Whittle-Next-27B-A3B",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen4_exp_text",
+     "text-generation",
+     "whittle"
+    ]
+   },
+   "metric": "likes",
+   "value": 85,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/models/whittleOrg/Whittle-Next-27B-A3B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "FelyaHuhing/qwen-image-21-uncensored",
+    "url": "https://huggingface.co/spaces/FelyaHuhing/qwen-image-21-uncensored",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 4,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/FelyaHuhing/qwen-image-21-uncensored",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "frogleo/Image-to-3D",
+    "url": "https://huggingface.co/spaces/frogleo/Image-to-3D",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 268,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/frogleo/Image-to-3D",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "lerobot/robot-learning-tutorial",
+    "url": "https://huggingface.co/spaces/lerobot/robot-learning-tutorial",
+    "kind": "space",
+    "tags": [
+     "docker",
+     "research-article-template",
+     "research paper",
+     "scientific paper"
+    ]
+   },
+   "metric": "likes",
+   "value": 569,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/lerobot/robot-learning-tutorial",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "mxderncultxre/Gemma4-31b-uncensored-assistant",
+    "url": "https://huggingface.co/spaces/mxderncultxre/Gemma4-31b-uncensored-assistant",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 137,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/mxderncultxre/Gemma4-31b-uncensored-assistant",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "prithivMLmods/Qwen-Image-Edit-2511-LoRAs-Fast",
+    "url": "https://huggingface.co/spaces/prithivMLmods/Qwen-Image-Edit-2511-LoRAs-Fast",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 2799,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/prithivMLmods/Qwen-Image-Edit-2511-LoRAs-Fast",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "TabArena/leaderboard",
+    "url": "https://huggingface.co/spaces/TabArena/leaderboard",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 229,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/TabArena/leaderboard",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "umaircxnd/MiniMax-H3-Turbo-Lora-UNCENSORED-Workflow",
+    "url": "https://huggingface.co/spaces/umaircxnd/MiniMax-H3-Turbo-Lora-UNCENSORED-Workflow",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 180,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/umaircxnd/MiniMax-H3-Turbo-Lora-UNCENSORED-Workflow",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Wan-AI/Wan2.2-S2V",
+    "url": "https://huggingface.co/spaces/Wan-AI/Wan2.2-S2V",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 449,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/Wan-AI/Wan2.2-S2V",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "YuyaoTechnology/MatterSeek",
+    "url": "https://huggingface.co/spaces/YuyaoTechnology/MatterSeek",
+    "kind": "space",
+    "tags": [
+     "static"
+    ]
+   },
+   "metric": "likes",
+   "value": 3162,
+   "observed_on": "2026-11-20",
+   "source_url": "https://huggingface.co/api/spaces/YuyaoTechnology/MatterSeek",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

@@ -1,0 +1,115 @@
+{
+ "collected_at": "2026-11-20",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Tencent WorkBuddy",
+    "url": "https://www.workbuddy.ai",
+    "kind": "product",
+    "description": "Tencent's all-in-one AI agent workspace that plans and carries out office tasks (documents, spreadsheets, slides, data analysis, code) from a one-sentence request.",
+    "tags": ["ai-agents", "productivity", "china"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 500000000,
+   "basis": "gross",
+   "observed_on": "2026-11-18",
+   "source_url": "https://www.36kr.com/p/4076046847710087",
+   "method": "reported",
+   "note": "Tencent Q3 2026 earnings call (Nov 18, 2026), as quoted by 36Kr (卫夕指北, Nov 19): 刘炽平还说——'WorkBuddy过去七天的年化总收入已超过5亿美元，是七年前推出的腾讯会议的2倍以上。' The article names WorkBuddy explicitly for the figure (resolving yesterday's 'WorkMate' spelling in the Investing.com transcript) and adds '英文原话用的是gross revenue（总收入）', so basis gross. Annualized from the last seven days of revenue; a floor ('超过'). 36Kr notes the window sits around the Hy4 launch and the end of WorkBuddy's free offer (Nov 15), and that gross revenue includes model costs paid to third-party vendors. Dated to the Nov 18 call. Pengpai (via Sohu) and Jiemian also attribute the 7-day annualized >$500M to WorkBuddy. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Doubao Work (豆包工作)",
+    "url": "https://www.doubao.com/work",
+    "kind": "product",
+    "description": "ByteDance's AI office agent under the Doubao brand that carries out work tasks end to end, delivering slides, documents, spreadsheets, research reports and media, with Feishu integration.",
+    "tags": ["ai-agents", "productivity", "china"]
+   },
+   "metric": "users",
+   "value": 8000000,
+   "basis": "dau",
+   "observed_on": "2026-11-18",
+   "source_url": "http://k.sina.com.cn/article_1496814565_593793e5020028vqi.html",
+   "method": "reported",
+   "note": "Cover News via Sina (Nov 18, 2026): '11月18日，豆包官方宣布，上线仅三个月的豆包工作日活跃用户数（DAU）突破800万，企业客户年度经常性收入（ARR）突破20亿元。' Daily active users, a floor ('突破'). Company-stated (Doubao official announcement), relayed by media; launched Aug 25, 2026. NBD via ifeng says the same. The ARR of RMB 2B (enterprise customers) is not recorded because the metric is USD and converting would be an estimate. Identity URL doubao.com/work is the product's own site (confirmed by reading it), kept separate from the Doubao chatbot. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "GC AI",
+    "url": "https://gc.ai",
+    "kind": "product",
+    "description": "Legal intelligence platform for in-house legal teams that drafts, reviews and negotiates contracts, researches legal questions and runs legal agents.",
+    "tags": ["legal", "ai-agents", "enterprise"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 40000000,
+   "observed_on": "2026-11-18",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/gc-ai-hits-40-million-151500505.html",
+   "method": "reported",
+   "note": "GC AI release (Business Wire, San Francisco, November 18, 2026): 'today announced it has passed $40 million in annual recurring revenue, growing 4x year over year.' A floor ('passed'). Basis (gross/net/contracted) not stated, so left out. Dated to the release. Also: 2,200+ customer companies, 139% NRR, 'ARR more than doubled in six months' (not recorded: 'more than doubled' gives no exact value). Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "GC AI",
+    "url": "https://gc.ai",
+    "kind": "product",
+    "description": "Legal intelligence platform for in-house legal teams that drafts, reviews and negotiates contracts, researches legal questions and runs legal agents.",
+    "tags": ["legal", "ai-agents", "enterprise"]
+   },
+   "metric": "growth_pct",
+   "value": 300,
+   "period_days": 365,
+   "observed_on": "2026-11-18",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/gc-ai-hits-40-million-151500505.html",
+   "method": "reported",
+   "note": "Same Business Wire release (Nov 18, 2026): 'passed $40 million in annual recurring revenue, growing 4x year over year.' ARR growth: 4x recorded as +300%; year over year recorded as 365 days; dated to the release. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Replit",
+    "url": "https://replit.com",
+    "kind": "product",
+    "description": "Agentic software creation platform that lets anyone build and deploy applications from natural-language prompts.",
+    "tags": ["coding-agent", "vibe-coding", "app-builder"]
+   },
+   "metric": "users",
+   "value": 60000000,
+   "observed_on": "2026-11-04",
+   "source_url": "https://www.prnewswire.com/news-releases/replit-opens-first-asia-office-in-tokyo-expanding-global-footprint-302929049.html",
+   "method": "reported",
+   "note": "Replit release (PR Newswire, Tokyo and San Francisco, Nov. 4, 2026), About Replit boilerplate: 'Founded in 2016, the company has more than 60 million users worldwide, including users at 85% of the Fortune 500.' A floor ('more than'). Cumulative users worldwide; the source does not say MAU or registered, so basis left out. Dated to the release. The same boilerplate already appeared in the Oct 22, 2026 release; Replit's March 2026 Series D post said 'over 50 million users'. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Daydream",
+    "url": "https://daydream.ing",
+    "kind": "consumer_app",
+    "description": "AI fashion shopping agent that searches 10,000+ brands through one chat, offers virtual try-on and can buy from participating retailers.",
+    "tags": ["shopping", "ai-agents", "consumer"]
+   },
+   "metric": "users",
+   "value": 2000000,
+   "observed_on": "2026-11-17",
+   "source_url": "https://techcrunch.com/2026/11/17/daydreams-new-ai-agent-acts-as-your-personal-stylist-and-can-shop-for-you-too",
+   "method": "reported",
+   "note": "TechCrunch (Nov 17, 2026), on the launch of Daydream's shopping agent: 'The company ... says more than 2 million shoppers have used Daydream to discover apparel and accessories since its June 2025 launch.' Company-stated via TechCrunch; a floor ('more than'). Cumulative users since launch, not MAU, so basis left out. Dated to the article. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Baidu KOOKO (库库AI)",
+    "url": "https://www.kooko.ai",
+    "kind": "product",
+    "description": "Baidu Wenku and Baidu Drive's AI document and creative workspace (formerly GenFlow/Oreate) that researches, writes and builds slides, sheets, reports and websites from public and personal content.",
+    "tags": ["ai-agents", "productivity", "china"]
+   },
+   "metric": "users",
+   "value": 50000000,
+   "basis": "mau",
+   "observed_on": "2026-11-12",
+   "source_url": "https://wap.eastmoney.com/a/202611123929865868.html",
+   "method": "reported",
+   "note": "Securities Daily via East Money (Nov 12, 2026), Baidu World 2026: '截至目前，库库全球月活用户已达5000万。' Global monthly active users across the Kuku product family (Kuku daily, office, enterprise and overseas edition KOOKO). Dated to the Nov 12 announcement. Identity caution for review: Baidu's English release (PR Newswire, Nov 12) calls the product 'KOOKO, the global AI-powered platform for documents and creative workflows', and Baidu Baike lists KOOKO as the alias of 库库AI, so kooko.ai is used as the identity URL; but kooko.ai is the overseas site and the 50M includes China. Not recorded: KOOKO overseas '累计服务1200万海外用户' (cumulative, a subset), and the Sept 21 '全球AI办公月活超4000万' (Shanghai Securities News), whose wording ('AI办公月活') may not match this scope. Page read with Tavily extract."
+  }
+ ]
+}

@@ -5,14 +5,17 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
-- **Warn when a page-read count is below the API's.** (2026-11-20.)
-  Tavily served stale GitHub pages today: 22 of the 23 trending repos
-  with an API reading (the other's was from Nov 1) and two repo pages showed fewer stars than the
-  radar's own API reading, some by days (simplexai-labs/linger 97 on the
-  page vs 2,107 [API]). Caught by hand and rejected. The inbox validator,
-  or ingest, should warn on any page_extract star or like count below the
-  latest API reading for the same app; a whole file of them means a stale
-  source.
+- **One-day API dips create false movers.** (2026-11-21.) xerj-org/xerj
+  read 19,252 (Nov 19), 17,961 (Nov 20), 19,121 (Nov 21); the recovery
+  showed as +1,160, the 6th-largest measured gain. A reading that falls and
+  recovers within a day should not count as change on either side (skip a
+  reading that is below both neighbours by more than the tolerance).
+
+- **Carry a fake's verdict to its re-upload.** (2026-11-21.) The Blender
+  add-on purged on Nov 18 came back as bookwjitchieni1986/blender-ai-mcp-addon
+  with the same name and description and reached #3 before review. Flag a
+  new repo whose name and description match a repo reviewed inorganic or
+  marked gone; the clone check needs 5 owners and misses single re-uploads.
 
 - **Order within the top 100.** (2026-11-19, narrowed 2026-11-20.) The
   forecast picks better leaders than relative gain alone (its own picks
@@ -118,6 +121,14 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
   metrics that don't feed the growth score would make this automatic.
 
 ## Done
+
+- 2026-11-21: stale-page check. `stale_page_reads()` flags a page-read
+  star or like count below the latest API reading of the same app (on or
+  before its date; rounding and 0.5% allowed); `validate` prints it and the
+  ingest log carries a WARNING line. Warn-only: the loader stays strict
+  about form. On the rejected Nov 20 trending file it flags 27 of 29
+  checkable rows; on Nov 15-19 none. Today's trending (read with WebFetch)
+  passed.
 
 - 2026-11-20: which leaders each forecast picks. `top_n_selection()`
   compares a matured forecast's top 100 with the relative-gain baseline's:

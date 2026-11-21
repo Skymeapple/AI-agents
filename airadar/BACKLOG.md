@@ -5,6 +5,18 @@ problem it found itself. Keep *Next* ordered by expected value to the report.
 
 ## Next
 
+- **Next improvement (2026-11-22): backtest a hybrid order.** (Suggested
+  by the orchestrating session, 2026-11-21, from the selection and
+  ordering diagnostics.) Keep the forecast's top-100 selection, which picks
+  better apps, but order within it by measured relative gain, which orders
+  better. Report-only: score the hybrid on every matured forecast with the
+  same yardstick (top-100 Spearman, top-15 hits) beside the forecast and the
+  relative-gain baseline. If it clearly beats the forecast, propose a tuner
+  knob in the report (a blend weight between score order and relative-gain
+  order within the top N, bounded 0-1, default 0 = today's behaviour),
+  adopted only through the existing bars and the top-15 guard. Do not change
+  the ranking directly.
+
 - **One-day API dips create false movers.** (2026-11-21.) xerj-org/xerj
   read 19,252 (Nov 19), 17,961 (Nov 20), 19,121 (Nov 21); the recovery
   showed as +1,160, the 6th-largest measured gain. A reading that falls and

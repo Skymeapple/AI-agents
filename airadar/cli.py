@@ -97,6 +97,22 @@ def cmd_collect(args) -> int:
     return 0
 
 
+def _warn_stale(store: Store, batch) -> None:
+    """Warn when page-read counts trail the radar's own API readings."""
+    from .pipeline import checkable_page_reads, stale_page_reads
+
+    existing = store.load_observations()
+    stale = stale_page_reads(batch.observations, existing, store.aliases())
+    if not stale:
+        return
+    checkable = checkable_page_reads(batch.observations, existing, store.aliases())
+    print(f"warn {len(stale)} of {checkable} checkable page reads are below the radar's own API "
+          f"reading: a stale page? Check before ingesting.")
+    for row in stale[:5]:
+        print(f"     {row['app_id']} {row['metric']}: page {row['page']:,.0f} < API {row['api']:,.0f} "
+              f"({row['api_on']})")
+
+
 def cmd_validate(args) -> int:
     from .inbox import InboxError, load_inbox_file
 
@@ -105,6 +121,7 @@ def cmd_validate(args) -> int:
         try:
             batch = load_inbox_file(Path(path))
             print(f"ok   {path}: {len(batch.observations)} observations, {len(batch.apps)} apps")
+            _warn_stale(Store(args.root), batch)
         except InboxError as exc:
             failed += 1
             print(f"FAIL {exc}")

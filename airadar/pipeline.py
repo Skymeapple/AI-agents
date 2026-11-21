@@ -21,7 +21,7 @@ from .iterate import (
     Evaluation, SourceHealth, TuningOutcome, apply_tuning, record_prediction, scorecard,
     source_health, tune, like_for_like_by_evidence, persistence_backtest,
 )
-from .models import App
+from .models import App, Method
 from .params import Params
 from .store import RunRecord, Store
 
@@ -70,6 +70,53 @@ class Analysis:
     clones: list[dict] = field(default_factory=list)
 
 
+STALE_TOLERANCE = 0.005  # a page read may trail the API by this share (unstars, timing)
+
+
+def stale_page_reads(batch_observations, observations, aliases: dict | None = None) -> list[dict]:
+    """Page-read star or like counts below the radar's own latest API reading
+    of the same app (on or before the page's date).
+
+    A count only falls when stars are removed, so a page well below the API
+    is almost always a stale copy: on 2026-11-20 the trending pages came back
+    cached days old, with 22 of 23 checkable repos behind the API. Rounding
+    ("58.7k") and a small tolerance are allowed for. Warn-only: the loader
+    stays strict about form, and what to do with a stale file is the agent's
+    call.
+    """
+    aliases = aliases or {}
+
+    def current(app_id: str) -> str:
+        return aliases.get(app_id, (app_id,))[0]
+
+    latest: dict[tuple[str, str], list] = {}
+    for o in observations:
+        if o.method is Method.API and o.metric in ("stars", "likes"):
+            latest.setdefault((current(o.app_id), o.metric), []).append(o)
+    out = []
+    for o in batch_observations:
+        if o.method is not Method.PAGE_EXTRACT or o.metric not in ("stars", "likes"):
+            continue
+        prior = [a for a in latest.get((current(o.app_id), o.metric), []) if a.observed_on <= o.observed_on]
+        if not prior:
+            continue
+        ref = max(prior, key=lambda a: a.observed_on)
+        slack = max(STALE_TOLERANCE * ref.value, (o.rounded_to or 0) / 2)
+        if o.value + slack < ref.value:
+            out.append({"app_id": o.app_id, "metric": o.metric, "page": o.value, "api": ref.value,
+                        "api_on": ref.observed_on})
+    return out
+
+
+def checkable_page_reads(batch_observations, observations, aliases: dict | None = None) -> int:
+    """How many page-read star or like counts have an API reading to compare with."""
+    aliases = aliases or {}
+    have = {(aliases.get(o.app_id, (o.app_id,))[0], o.metric) for o in observations
+            if o.method is Method.API and o.metric in ("stars", "likes")}
+    return sum(1 for o in batch_observations if o.method is Method.PAGE_EXTRACT
+               and (aliases.get(o.app_id, (o.app_id,))[0], o.metric) in have)
+
+
 def ingest_inbox(store: Store, date: dt.date) -> list[str]:
     """Load every pending inbox file. A file that fails validation is left in
     place and logged as a failed run for its collector, so the report shows it."""
@@ -83,6 +130,12 @@ def ingest_inbox(store: Store, date: dt.date) -> list[str]:
             store.record_run(RunRecord(date, f"inbox:{path.stem}", 0, [str(exc)]))
             log.append(f"REJECTED {path.name}: {exc}")
             continue
+        existing = store.load_observations()
+        stale = stale_page_reads(batch.observations, existing, store.aliases())
+        if stale:
+            log.append(f"WARNING {path.name}: {len(stale)} of "
+                       f"{checkable_page_reads(batch.observations, existing, store.aliases())} checkable page "
+                       f"reads are below the radar's own API reading (stale page?)")
         added = store.ingest_batch(batch)
         log.append(f"{path.name}: {len(batch.observations)} observations ({added} new), "
                    f"{len(batch.apps)} apps, collector {batch.collector}")

@@ -1231,3 +1231,29 @@ def test_top_n_selection_shows_whose_own_picks_grew_more():
     assert sel["pct_only_baseline"] == pytest.approx(0.0)   # d: slowest
     assert sel["pct_shared"] == pytest.approx(0.5)          # a: middle
     assert top_n_selection({"a": 1}, {"a": 1}, {"a": 1}) is None
+
+
+def test_a_page_read_below_the_api_reading_is_flagged_as_stale():
+    """Stars only fall when removed, so a page count well under the radar's
+    own API reading is a stale copy (2026-11-20). Rounding and a small
+    tolerance are allowed; a later API reading is not used against an
+    earlier page; an app the API never read is not checkable."""
+    from airadar.pipeline import checkable_page_reads, stale_page_reads
+
+    day = dt.date(2026, 11, 20)
+    api = [obs("gh:o/a", "stars", 10_000, day), obs("gh:o/b", "stars", 5_000, day),
+           obs("gh:o/c", "stars", 9_000, day + dt.timedelta(days=1))]
+    page = [obs("gh:o/a", "stars", 8_000, day, method=Method.PAGE_EXTRACT),     # stale
+            obs("gh:o/b", "stars", 4_990, day, method=Method.PAGE_EXTRACT),     # within tolerance
+            obs("gh:o/c", "stars", 1_000, day, method=Method.PAGE_EXTRACT),     # API read only later
+            obs("gh:o/d", "stars", 1_000, day, method=Method.PAGE_EXTRACT)]     # never read by API
+    rounded = Observation("gh:o/b", "stars", 4_900, day, "https://example.com", Method.PAGE_EXTRACT,
+                          "test", rounded_to=100)
+    stale = stale_page_reads(page + [rounded], api)
+    assert [r["app_id"] for r in stale] == ["gh:o/a", "gh:o/b"]
+    assert stale[0]["page"] == 8_000 and stale[0]["api"] == 10_000
+    assert checkable_page_reads(page, api) == 3
+    # a rename: the page read under the old name is checked against the new one's history
+    moved = stale_page_reads([obs("gh:o/old", "stars", 8_000, day, method=Method.PAGE_EXTRACT)], api,
+                             {"gh:o/old": ("gh:o/a",)})
+    assert len(moved) == 1

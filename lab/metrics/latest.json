@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "repo": {
     "stars": 0,
     "forks": 0,
@@ -43,100 +43,117 @@
       "downloads_last_week": 0,
       "downloads_last_month": 0,
       "downloads_total": 0
+    },
+    {
+      "id": "2026-11-21-pthscan",
+      "downloads": {
+        "pypi:pthscan": {
+          "last_day": 0,
+          "last_week": 0,
+          "last_month": 0,
+          "total": 0
+        }
+      },
+      "page_views_14d": 0,
+      "page_uniques_14d": 0,
+      "downloads_last_week": 0,
+      "downloads_last_month": 0,
+      "downloads_total": 0
     }
   ],
   "benchmarks": {
     "agent-instruction-linters": [
       {
         "name": "@yawlabs/ctxlint",
-        "dl_week": 39400
+        "dl_week": 38690
       },
       {
         "name": "agnix",
-        "dl_week": 42530
+        "dl_week": 44155
       },
       {
         "name": "claude-code-lint",
-        "dl_week": 14202
+        "dl_week": 13046
       },
       {
         "name": "agentlinter",
-        "dl_week": 3963
+        "dl_week": 3815
       },
       {
         "name": "@promptci/cli",
-        "dl_week": 2348
+        "dl_week": 1985
       },
       {
         "name": "tidyagents",
-        "dl_week": 56
+        "dl_week": 49
       },
       {
         "name": "@felixgeelhaar/cclint",
-        "dl_week": 452
+        "dl_week": 409
       },
       {
         "name": "rulecheck",
-        "dl_week": 26
+        "dl_week": 20
       },
       {
         "name": "unrot",
-        "dl_week": 42
+        "dl_week": 39
       }
     ],
     "agent-guardrail-hooks": [
       {
         "name": "block-no-verify",
-        "dl_week": 55877
+        "dl_week": 55504
       },
       {
         "name": "ghostimport",
-        "dl_week": 1053
+        "dl_week": 1064
       },
       {
         "name": "@hasna/hooks",
-        "dl_week": 8518
+        "dl_week": 9553
       },
       {
         "name": "slopcheck",
-        "dl_week": 180
+        "dl_week": 162
       },
       {
         "name": "@mharoon07/slopguard",
-        "dl_week": 25
+        "dl_week": 21
       }
     ],
     "unicode-security": [
       {
         "name": "anti-trojan-source",
-        "dl_week": 40758
+        "dl_week": 39087
       },
       {
         "name": "out-of-character",
-        "dl_week": 8783
+        "dl_week": 8906
       }
     ],
     "agent-secret-leaks": [
       {
         "name": "claude-settings-leak-check",
-        "dl_week": 43
+        "dl_week": 46
       },
       {
         "name": "secretlint",
-        "dl_week": 1941497
+        "dl_week": 1961717
       },
       {
         "name": "gitleaks-secret-scanner",
-        "dl_week": 26184
+        "dl_week": 26845
       },
       {
         "name": "@visulima/secret-scanner",
-        "dl_week": 20536
+        "dl_week": 17644
       },
       {
         "name": "eslint-plugin-no-secrets",
-        "dl_week": 447180
+        "dl_week": 446298
       }
-    ]
+    ],
+    "python-supply-chain": []
   }
 }

@@ -1,0 +1,43 @@
+{
+ "collected_at": "2026-11-12",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Higgsfield",
+    "url": "https://higgsfield.ai",
+    "kind": "product",
+    "description": "AI video generation platform for creators and businesses.",
+    "tags": [
+     "ai-video",
+     "generative-media"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1350000000,
+   "observed_on": "2026-11-11",
+   "source_url": "https://x.com/alexmashrabov/status/2120322553600430213",
+   "method": "reported",
+   "note": "CEO Alex Mashrabov's own post on X, 1:07 AM Nov 11, 2026: 'We crossed $1B and got faster. In October we hit $1.35B.' (context: 'annualized run rate'). The post names only the month, not a date, so this is dated to the Nov 11 post date, not to a day in October. No basis set: the post does not say gross, net or contracted (the company's Sep 29 blog defines its run rate as the latest four weeks of revenue times 13). The same post's '$2B in the next 3 months' is a forecast and is not recorded. Page read with Tavily extract. CellCog (https://cellcog.ai/blog/higgsfield-1-35b-run-rate-claim) notes the figure appears in no company document as of Nov 11."
+  },
+  {
+   "app": {
+    "name": "Daylight Security",
+    "url": "https://daylight.ai",
+    "kind": "product",
+    "description": "Managed detection and response service in which AI agents handle most security operations work, overseen by human engineers.",
+    "tags": [
+     "ai-agents",
+     "security"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 3900,
+   "period_days": 365,
+   "observed_on": "2026-11-10",
+   "source_url": "https://siliconangle.com/2026/11/10/ai-driven-managed-security-startup-daylight-raises-80m-on-40-fold-revenue-growth",
+   "method": "reported",
+   "note": "SiliconANGLE, Nov 10, 2026, on the company's $80M Series B announcement: Daylight 'today revealed that it has raised $80 million in new funding after what it says was more than 40-fold revenue growth over the past year'. Company-stated; 40-fold converted to +3900%, 'over the past year' as 365 days. 'More than' makes it a floor. The source gives no end date for the year, so this is dated to the Nov 10 announcement date. No revenue level was disclosed. 'Tens of millions of dollars in revenue by the end of 2027' (Calcalist) is a forecast, not recorded. Page read with Tavily extract (the extract returned the article's opening paragraphs; the quoted sentence is among them). App URL daylight.ai is the domain named in the company's earlier Business Wire release ('visit www.daylight.ai')."
+  }
+ ]
+}

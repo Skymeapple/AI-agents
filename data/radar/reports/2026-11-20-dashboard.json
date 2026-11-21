@@ -1,0 +1,40 @@
+{
+ "takeaway": "The forecast picks better leaders than raw momentum but orders them worse: the apps only it put in its top 100 outgrew the momentum-only picks on every day checked. Tencent confirmed WorkBuddy's $500M annualized gross revenue (a seven-day run rate) as China's office agents traded numbers.",
+ "findings": [
+  {
+   "id": "selection",
+   "heading": "The forecast chooses leaders better than momentum alone",
+   "text": "The forecast's and a relative-gain baseline's top 100s share about half their apps. On Nov 6-13 the apps only the forecast picked grew more (mean realised percentile 0.86-0.90) than those only the baseline picked (0.84-0.88); the weak top-100 score comes from ordering.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-20-analysis.md"
+  },
+  {
+   "id": "workbuddy",
+   "heading": "Tencent WorkBuddy: $500M annualized gross revenue",
+   "text": "Martin Lau said WorkBuddy's annualized gross revenue over the past seven days exceeded $500 million; it is a seven-day run rate and includes payments to model vendors.",
+   "source": "https://www.36kr.com/p/4076046847710087"
+  },
+  {
+   "id": "kooko",
+   "heading": "Baidu KOOKO: 50 million monthly users",
+   "text": "Baidu's AI office assistant KOOKO (Kuku AI) reached 50 million monthly active users worldwide.",
+   "source": "https://wap.eastmoney.com/a/202611123929865868.html"
+  },
+  {
+   "id": "gcai",
+   "heading": "GC AI: $40M ARR, up 4x in a year",
+   "text": "The legal AI company passed $40 million in annual recurring revenue, growing 4x year over year.",
+   "source": "https://finance.yahoo.com/technology/ai/articles/gc-ai-hits-40-million-151500505.html"
+  },
+  {
+   "id": "linger",
+   "heading": "A local personal agent quadruples its pace",
+   "text": "simplexai-labs/linger, an agent that runs fully on a PC, gained 1,359 stars in a day to 2,107, up from 314 a day.",
+   "source": "https://github.com/simplexai-labs/linger"
+  }
+ ],
+ "caveats": [
+  "No GitHub trending data today: the pages read were stale (every repo below its API star count) and were not ingested.",
+  "WorkBuddy's $500M is a seven-day annualized gross figure, not recurring revenue.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

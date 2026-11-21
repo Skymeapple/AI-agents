@@ -1,0 +1,601 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-18",
+ "observations": [
+  {
+   "app": {
+    "name": "thea2026/image-to-video",
+    "url": "https://huggingface.co/spaces/thea2026/image-to-video",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 1105,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/thea2026/image-to-video",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "AtomicChat/LFM3-1.7B-Uncensored-GGUF",
+    "url": "https://huggingface.co/AtomicChat/LFM3-1.7B-Uncensored-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "quantized",
+     "lfm3",
+     "text-generation"
+    ]
+   },
+   "metric": "likes",
+   "value": 332,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/AtomicChat/LFM3-1.7B-Uncensored-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "autotrust/AutoTrust-JEV-27B-v1.1",
+    "url": "https://huggingface.co/autotrust/AutoTrust-JEV-27B-v1.1",
+    "kind": "model",
+    "tags": [
+     "text-classification",
+     "vllm",
+     "safetensors",
+     "qwen3_5",
+     "text-classification"
+    ]
+   },
+   "metric": "likes",
+   "value": 1657,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/autotrust/AutoTrust-JEV-27B-v1.1",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Axion1-0/Axion-1.0-35B",
+    "url": "https://huggingface.co/Axion1-0/Axion-1.0-35B",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "transformers",
+     "safetensors",
+     "qwen3_5_moe",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 76,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/Axion1-0/Axion-1.0-35B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Comfy-Org/Idol",
+    "url": "https://huggingface.co/Comfy-Org/Idol",
+    "kind": "model",
+    "tags": [
+     "image-to-3d",
+     "diffusion-single-file",
+     "comfyui",
+     "image-to-3d"
+    ]
+   },
+   "metric": "likes",
+   "value": 171,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/Comfy-Org/Idol",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+    "url": "https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "gsq",
+     "rco",
+     "quantization"
+    ]
+   },
+   "metric": "likes",
+   "value": 679,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "LiquidAI/LFM3-1.7B-GGUF",
+    "url": "https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "liquid",
+     "lfm3",
+     "llama.cpp"
+    ]
+   },
+   "metric": "likes",
+   "value": 312,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/LiquidAI/LFM3-1.7B-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "microsoft/Mage-VL-Cowork",
+    "url": "https://huggingface.co/microsoft/Mage-VL-Cowork",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "llava_onevision2",
+     "multimodal"
+    ]
+   },
+   "metric": "likes",
+   "value": 228,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/microsoft/Mage-VL-Cowork",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "mistralai/Mistral-Large-4-1T-A52B",
+    "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "mistral_large4",
+     "image-text-to-text",
+     "vLLM"
+    ]
+   },
+   "metric": "likes",
+   "value": 1668,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/mistralai/Mistral-Large-4-1T-A52B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+    "url": "https://huggingface.co/ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 72,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/ML-Intern-lab/Qwen3.5-0.8B-weight-space-programming",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Nanbeige/Nanbeige4.3-33B",
+    "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "transformers",
+     "safetensors",
+     "llama",
+     "text-generation"
+    ]
+   },
+   "metric": "likes",
+   "value": 1090,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/Nanbeige/Nanbeige4.3-33B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "nvidia/NVIDIA-NemotronLabs-RE-USE",
+    "url": "https://huggingface.co/nvidia/NVIDIA-NemotronLabs-RE-USE",
+    "kind": "model",
+    "tags": [
+     "audio-to-audio",
+     "mamba-ssm",
+     "safetensors",
+     "speech-enhancement",
+     "universal speech enhancement"
+    ]
+   },
+   "metric": "likes",
+   "value": 231,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/nvidia/NVIDIA-NemotronLabs-RE-USE",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "orcarouter/Flint-abliterated-GGUF",
+    "url": "https://huggingface.co/orcarouter/Flint-abliterated-GGUF",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "gguf",
+     "llama.cpp",
+     "local",
+     "flint"
+    ]
+   },
+   "metric": "likes",
+   "value": 73,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/orcarouter/Flint-abliterated-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
+    "url": "https://huggingface.co/Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
+    "kind": "model",
+    "tags": [
+     "image-to-video",
+     "minimax-h3",
+     "pika",
+     "pika-h3-flex",
+     "turbo"
+    ]
+   },
+   "metric": "likes",
+   "value": 198,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "RecursiveSI/flint",
+    "url": "https://huggingface.co/RecursiveSI/flint",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "transformers",
+     "safetensors",
+     "flint",
+     "text-generation"
+    ]
+   },
+   "metric": "likes",
+   "value": 1417,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/RecursiveSI/flint",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+    "url": "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 144,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "speridlabs/idol-turbo",
+    "url": "https://huggingface.co/speridlabs/idol-turbo",
+    "kind": "model",
+    "tags": [
+     "image-to-3d",
+     "idol",
+     "gaussian-splatting",
+     "3d",
+     "image-to-3d"
+    ]
+   },
+   "metric": "likes",
+   "value": 60,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/speridlabs/idol-turbo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "xiaomi-research/Xiaomi-OCR-0",
+    "url": "https://huggingface.co/xiaomi-research/Xiaomi-OCR-0",
+    "kind": "model",
+    "tags": [
+     "image-text-to-text",
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text"
+    ]
+   },
+   "metric": "likes",
+   "value": 326,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/xiaomi-research/Xiaomi-OCR-0",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "YuyaoTechnology/MatterSeek-New-Materials-Reverse-Design",
+    "url": "https://huggingface.co/YuyaoTechnology/MatterSeek-New-Materials-Reverse-Design",
+    "kind": "model",
+    "tags": [
+     "text-generation",
+     "materials-science",
+     "graph-neural-network",
+     "text-generation",
+     "zh"
+    ]
+   },
+   "metric": "likes",
+   "value": 2920,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/models/YuyaoTechnology/MatterSeek-New-Materials-Reverse-Design",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "dotlabs/cognirank",
+    "url": "https://huggingface.co/spaces/dotlabs/cognirank",
+    "kind": "space",
+    "tags": [
+     "static"
+    ]
+   },
+   "metric": "likes",
+   "value": 15,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/dotlabs/cognirank",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "FastVideo/FastH3-Omni",
+    "url": "https://huggingface.co/spaces/FastVideo/FastH3-Omni",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 122,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/FastVideo/FastH3-Omni",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "fishaudio/Drama-3",
+    "url": "https://huggingface.co/spaces/fishaudio/Drama-3",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "text-to-speech",
+     "fish-audio",
+     "zerogpu"
+    ]
+   },
+   "metric": "likes",
+   "value": 171,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/fishaudio/Drama-3",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ggml-org/gguf-my-repo",
+    "url": "https://huggingface.co/spaces/ggml-org/gguf-my-repo",
+    "kind": "space",
+    "tags": [
+     "docker"
+    ]
+   },
+   "metric": "likes",
+   "value": 2128,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/ggml-org/gguf-my-repo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ghostrider761/qwen-image-2.1-uncensored-gguf",
+    "url": "https://huggingface.co/spaces/ghostrider761/qwen-image-2.1-uncensored-gguf",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 59,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/ghostrider761/qwen-image-2.1-uncensored-gguf",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "GoHugo/uncensored-imageTOimage2Ref",
+    "url": "https://huggingface.co/spaces/GoHugo/uncensored-imageTOimage2Ref",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 26,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/GoHugo/uncensored-imageTOimage2Ref",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "hyz317/HairDeck",
+    "url": "https://huggingface.co/spaces/hyz317/HairDeck",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 38,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/hyz317/HairDeck",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "MegaPotatoAI/Face-Enhancer",
+    "url": "https://huggingface.co/spaces/MegaPotatoAI/Face-Enhancer",
+    "kind": "space",
+    "tags": [
+     "static",
+     "face-restoration",
+     "face-enhancement",
+     "image-upscaling"
+    ]
+   },
+   "metric": "likes",
+   "value": 15,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/MegaPotatoAI/Face-Enhancer",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "MiniMaxAI/MiniMax-H3-Turbo-Lora",
+    "url": "https://huggingface.co/spaces/MiniMaxAI/MiniMax-H3-Turbo-Lora",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 572,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/MiniMaxAI/MiniMax-H3-Turbo-Lora",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ML-Intern-lab/weight-space-programming-demo",
+    "url": "https://huggingface.co/spaces/ML-Intern-lab/weight-space-programming-demo",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "ml-intern",
+     "weight-space-programming"
+    ]
+   },
+   "metric": "likes",
+   "value": 30,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/ML-Intern-lab/weight-space-programming-demo",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "vamo455/Omni-videos-custom-auto_prompt_high-quality",
+    "url": "https://huggingface.co/spaces/vamo455/Omni-videos-custom-auto_prompt_high-quality",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 429,
+   "observed_on": "2026-11-18",
+   "source_url": "https://huggingface.co/api/spaces/vamo455/Omni-videos-custom-auto_prompt_high-quality",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "hitkeeen/blender-ai-mcp-addon",
+    "url": "https://github.com/hitkeeen/blender-ai-mcp-addon",
+    "kind": "repo",
+    "description": "AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
+    "tags": [
+     "ai-agents",
+     "ai-assistant",
+     "blender",
+     "blender-addon",
+     "blender-ai"
+    ]
+   },
+   "metric": "stars",
+   "value": 34,
+   "observed_on": "2026-11-18",
+   "source_url": "https://github.com/hitkeeen/blender-ai-mcp-addon",
+   "method": "page_extract",
+   "note": "read via Tavily extract: \"34 stars\", 0 forks, 31 watching; the API search no longer returns it"
+  },
+  {
+   "app": {
+    "name": "1llu50ry/Decompile",
+    "url": "https://github.com/1llu50ry/Decompile",
+    "kind": "repo"
+   },
+   "metric": "stars",
+   "value": 574,
+   "observed_on": "2026-11-18",
+   "source_url": "https://github.com/1llu50ry/mcp-reverse",
+   "method": "page_extract",
+   "note": "read via Tavily extract on the old URL, which now shows 1llu50ry/Decompile: \"574 stars\", 106 forks"
+  }
+ ]
+}

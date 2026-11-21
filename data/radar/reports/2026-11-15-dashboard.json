@@ -1,0 +1,40 @@
+{
+ "takeaway": "Anthropic's amended S-1 puts its run-rate revenue at about $81 billion as of Oct 31, the most authoritative AI revenue figure the radar holds, and below an earlier press report of $100B. A fake-repo campaign of about 30 'ai--manus' clones was deleted overnight.",
+ "findings": [
+  {
+   "id": "anthropic",
+   "heading": "Anthropic files: ~$81B run rate on Oct 31",
+   "text": "The S-1/A says run-rate revenue was approximately $81 billion as of Oct 31, up $10 billion from Sept 30. It supersedes the $100B (Sept 18) press figure the radar recorded earlier.",
+   "source": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/docu"
+  },
+  {
+   "id": "fakes",
+   "heading": "A fake 'ai--manus' repo campaign is deleted",
+   "text": "36 repos the radar tracked now return HTTP 404, about 30 of them 'ai--manus' clones under random accounts. They carried AI tags, so the radar's term filter could not catch them.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-15-analysis.md"
+  },
+  {
+   "id": "chrome",
+   "heading": "Chrome's agent tooling keeps climbing",
+   "text": "GoogleChrome/modern-web-guidance-src gained 1,219 stars, to 6,299. ChromeDevTools/chrome-devtools-mcp gained 790, to 56,458.",
+   "source": "https://github.com/GoogleChrome/modern-web-guidance-src"
+  },
+  {
+   "id": "levelai",
+   "heading": "Level AI: $20M ARR, ~50% growth",
+   "text": "On Five9's Q3 call, management said Level AI had stand-alone ARR of about $20 million as of Oct 31, growing about 50% year over year.",
+   "source": "https://www.tradingkey.com/news/transcripts/262293018-"
+  },
+  {
+   "id": "forecast",
+   "heading": "Nov 8 forecast: 0.52, 4 of 15 picks right",
+   "text": "Rank correlation 0.52 over its own top 100, every one scored on growth the radar measured itself; its top 15 held 4 of the real top 15.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-15.md"
+  }
+ ],
+ "caveats": [
+  "Anthropic's $100B press figure and $81B filed figure both stay in the record; the radar reads the pair as a decline, which it is not.",
+  "Fake repos that copy AI tags pass the radar's filters until they are deleted.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

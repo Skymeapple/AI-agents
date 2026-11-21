@@ -1,0 +1,40 @@
+{
+ "takeaway": "The planned backtest disproved the idea that short-span growth readings hold the forecasts back: requiring 3- or 7-day spans made every score worse. CodeRabbit reported $100M ARR and 400,000 monthly users. No run on Nov 17; today's changes span two days.",
+ "findings": [
+  {
+   "id": "span",
+   "heading": "Longer measurement spans make forecasts worse",
+   "text": "Re-scoring the Nov 1-11 forecasts with deltas over at least 3 or 7 days lowered the top-100 rank correlation from 0.398 to 0.384 and 0.353, and the top-15 hit rate from 32% to 27% and 23%. No setting changes.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-18-analysis.md"
+  },
+  {
+   "id": "coderabbit",
+   "heading": "CodeRabbit: $100M ARR, 400,000 monthly users",
+   "text": "The AI code-review company reported $100M ARR and 400,000 monthly active users on Nov 12, and 120,000 daily active users in its press release.",
+   "source": "https://www.coderabbit.ai/blog/coderabbit-100-million-arr"
+  },
+  {
+   "id": "purge",
+   "heading": "A Blender AI add-on's stars were purged",
+   "text": "hitkeeen/blender-ai-mcp-addon fell from 1,811 stars to 34 in two days. It had been reviewed as organic because of its 74 open issues; it is now reviewed as inorganic.",
+   "source": "https://github.com/hitkeeen/blender-ai-mcp-addon"
+  },
+  {
+   "id": "bughunter",
+   "heading": "Claude-BugHunter accelerates",
+   "text": "The bug-hunting skill bundle gained 3,095 stars over two days, to 9,834: 1,548 a day, up from 878.",
+   "source": "https://github.com/elementalsouls/Claude-BugHunter"
+  },
+  {
+   "id": "heygen",
+   "heading": "HeyGen: over 40 million users",
+   "text": "HeyGen's Avatar 6 release on Nov 17 says it now reaches over 40 million users.",
+   "source": "https://www.streetinsider.com/PRNewswire/HeyGen+Introduces+Avatar+6%2C+an+Audio-Driven%2C+Context-Aware+AI+Model+that+Alleviates+Repetitive+or+Unnatural+Motion+in+AI-Generated+Video/27362277.html"
+  }
+ ],
+ "caveats": [
+  "No collection ran on Nov 17; changes since Nov 16 span two days and are shown per day.",
+  "ag-ui-protocol/ag-ui's +2,000 may partly reflect a misread Nov 16 page figure.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "collected_at": "2026-11-02",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Sierra",
+    "url": "https://sierra.ai",
+    "kind": "product",
+    "description": "AI agents for enterprise customer service, co-founded by Bret Taylor and Clay Bavor.",
+    "tags": ["enterprise-agent", "customer-service"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 400000000,
+   "observed_on": "2026-10-30",
+   "source_url": "https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth",
+   "method": "reported",
+   "note": "Company blog post and CEO Bret Taylor's X post (Oct 30, 2026, per https://x.com/AGTPinsights/status/2116221891673210933): 'This week, we hit $400M+ in ARR, adding over $150M+ in ARR in Q3 alone.' A threshold ('$400M+'). The source gives no period end date beyond 'this week', so this is dated to the Oct 30 announcement. ARR type (gross/net) not stated, so no basis is set. The $150M+ added in Q3 is a level change and is not recorded as growth. Company-reported, unaudited. Search-result summary only (WebFetch not attempted for sierra.ai after ENOTFOUND on other hosts)."
+  },
+  {
+   "app": {
+    "name": "Sierra",
+    "url": "https://sierra.ai",
+    "kind": "product",
+    "description": "AI agents for enterprise customer service, co-founded by Bret Taylor and Clay Bavor.",
+    "tags": ["enterprise-agent", "customer-service"]
+   },
+   "metric": "growth_pct",
+   "value": 100,
+   "period_days": 150,
+   "observed_on": "2026-10-30",
+   "source_url": "https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth",
+   "method": "reported",
+   "note": "Same Oct 30, 2026 company post: 'we took six months to double from $100M to $200M ARR, and only five months to double from $200M to $400M.' Recorded the most recent stated doubling only: +100% over 'five months' (period_days 150 = 5 x 30, a conversion of the stated window, not a stated day count). The earlier six-month doubling is a separate, older window (an earlier +100% is already in observations.jsonl at 2026-06-01). Dated to the announcement date; the source gives no exact window end. Company-reported. Search-result summary only."
+  },
+  {
+   "app": {
+    "name": "Hyphenate (formerly Maximor)",
+    "url": "https://hyphenate.ai",
+    "kind": "product",
+    "description": "Autonomous finance platform whose AI agents run order-to-cash, treasury, close, procure-to-pay and reporting on top of a company's ERP.",
+    "tags": ["enterprise-agent", "finance"]
+   },
+   "metric": "growth_pct",
+   "value": 8500,
+   "period_days": 365,
+   "observed_on": "2026-10-01",
+   "source_url": "https://hackernoon.com/maximor-rebrands-as-hyphenate-after-86x-revenue-growth-across-five-finance-functions",
+   "method": "reported",
+   "note": "Company rebrand announcement (Oct 1, 2026): Maximor 'has rebranded as Hyphenate after reporting 86x revenue growth over the past twelve months' (86x = +8500%), 'reaching multimillion-dollar annual recurring revenue'; no dollar base disclosed. The source gives no period end date, so this is dated to the Oct 1 rebrand announcement. The Oct 27, 2026 $45M Series A coverage (Nexus Venture Partners; https://thenextweb.com/news/hyphenate-45m-series-a-autonomous-finance) repeats the same 86x figure, some outlets phrasing it 'since the seed' (Sep 2025); that is the same growth over a looser window, so it is not recorded again. Customer base 11x is not a radar metric. App URL hyphenate.ai is taken from a StartupHub profile. Company-reported, unverified. Search-result summary only (WebFetch ENOTFOUND for thenextweb.com)."
+  }
+ ]
+}

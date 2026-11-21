@@ -1,0 +1,103 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-15",
+ "observations": [
+  {
+   "app": {
+    "name": "Straitbrashadow/minecraft-ai-mod-builder",
+    "url": "https://github.com/Straitbrashadow/minecraft-ai-mod-builder",
+    "kind": "repo",
+    "description": "Vibe-build in Minecraft. Describe a build in your terminal, see it as a blueprint in your world, place it in one step and undo it in one. Writes datapacks too. Free local models.",
+    "tags": [
+     "ai-mods",
+     "blueprint",
+     "cli",
+     "fabric",
+     "minecraft"
+    ]
+   },
+   "metric": "stars",
+   "value": 194,
+   "observed_on": "2026-11-15",
+   "source_url": "https://github.com/Straitbrashadow/minecraft-ai-mod-builder",
+   "method": "page_extract",
+   "note": "read via Tavily extract: \"194 stars\", 12 forks; not returned by the API search today"
+  },
+  {
+   "app": {
+    "name": "kanapitsas/source-recomp",
+    "url": "https://github.com/kanapitsas/source-recomp",
+    "kind": "repo"
+   },
+   "metric": "stars",
+   "value": 125,
+   "observed_on": "2026-11-15",
+   "source_url": "https://api.github.com/search/repositories?q=repo:kanapitsas/source-recomp",
+   "method": "api",
+   "note": "re-read under the new name after the move was recorded"
+  },
+  {
+   "app": {
+    "name": "lucialuka/OpenAssembler",
+    "url": "https://github.com/lucialuka/OpenAssembler",
+    "kind": "repo"
+   },
+   "metric": "stars",
+   "value": 221,
+   "observed_on": "2026-11-15",
+   "source_url": "https://api.github.com/search/repositories?q=repo:lucialuka/OpenAssembler",
+   "method": "api",
+   "note": "re-read under the new name after the move was recorded"
+  },
+  {
+   "app": {
+    "name": "thea2026/image-to-video",
+    "url": "https://huggingface.co/spaces/thea2026/image-to-video",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 1106,
+   "observed_on": "2026-11-15",
+   "source_url": "https://huggingface.co/api/spaces/thea2026/image-to-video",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "kulkas2pintu/kv-i2v",
+    "url": "https://huggingface.co/spaces/kulkas2pintu/kv-i2v",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 198,
+   "observed_on": "2026-11-15",
+   "source_url": "https://huggingface.co/api/spaces/kulkas2pintu/kv-i2v",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "OpenMOSS-Team/MOSS-Image",
+    "url": "https://huggingface.co/spaces/OpenMOSS-Team/MOSS-Image",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "ml-intern"
+    ]
+   },
+   "metric": "likes",
+   "value": 197,
+   "observed_on": "2026-11-15",
+   "source_url": "https://huggingface.co/api/spaces/OpenMOSS-Team/MOSS-Image",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

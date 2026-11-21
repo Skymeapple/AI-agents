@@ -1,0 +1,192 @@
+{
+  "collected_at": "2026-10-27",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Claude",
+        "url": "https://claude.ai",
+        "kind": "consumer_app",
+        "description": "Anthropic's AI assistant (web, apps, Claude Code) and the company's model business.",
+        "tags": [
+          "assistant",
+          "coding-agent"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 1300,
+      "period_days": 365,
+      "observed_on": "2026-06-30",
+      "source_url": "https://www.cnn.com/2026/10/26/tech/anthropic-files-ipo",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Anthropic public S-1 filed Oct 26, 2026: GAAP revenue for six months ended Jun 30, 2026 rose 1,300% YoY to $16.3B ($16,286M vs $1,163M), company-wide revenue not run-rate. Also reported by TechCrunch (techcrunch.com/2026/10/26/anthropics-ipo-filing-reveals-its-strategy-for-keeping-enterprise-customers-hooked/). S-1 also states ~900% net revenue retention and >11,900 customers spending $100k+/yr, ~1,900 at $1M+, ~250 at $10M+ as of Sep 30, 2026; the Oct 31 run-rate figure is left blank in the filing."
+    },
+    {
+      "app": {
+        "name": "ChatGPT",
+        "url": "https://chatgpt.com",
+        "kind": "consumer_app",
+        "description": "OpenAI's general-purpose AI assistant.",
+        "tags": [
+          "assistant"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 77,
+      "period_days": 92,
+      "observed_on": "2026-09-30",
+      "source_url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). OpenAI company-wide annualized revenue run-rate growth during Q3 2026 (Jul-Sep), per investor presentation as described by a person familiar to CNBC; run-rate ~ $50B end of September on OpenAI's net basis (excludes gross partner/cloud-reseller revenue that produced the ~$68-70B figure). Enterprise run-rate grew 107% in the same period. Supersedes nothing: earlier file has Axios '70%+' (growth_pct 70, 2026-09-29)."
+    },
+    {
+      "app": {
+        "name": "GMI Cloud",
+        "url": "https://www.gmicloud.ai",
+        "kind": "product",
+        "description": "On-demand GPU cloud and inference infrastructure provider.",
+        "tags": [
+          "llm-inference",
+          "agent-runtime"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 600000000,
+      "observed_on": "2026-10-01",
+      "source_url": "https://www.prnewswire.com/apac/news-releases/gmi-cloud-raises-over-660-million-to-accelerate-global-ai-infrastructure-expansion-302894628.html",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Contracted ARR (signed contracts, not live revenue) surpassed $600M (lower bound), stated in Oct 1, 2026 release announcing $668M financing ($223M Series B equity led by ARCHIV with NVIDIA + $445M credit facility). Live production ARR given only as a multiple (>4.5x since end-2025)."
+    },
+    {
+      "app": {
+        "name": "GMI Cloud",
+        "url": "https://www.gmicloud.ai",
+        "kind": "product",
+        "description": "On-demand GPU cloud and inference infrastructure provider.",
+        "tags": [
+          "llm-inference",
+          "agent-runtime"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 800,
+      "period_days": 274,
+      "observed_on": "2026-10-01",
+      "source_url": "https://www.prnewswire.com/apac/news-releases/gmi-cloud-raises-over-660-million-to-accelerate-global-ai-infrastructure-expansion-302894628.html",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company states contracted ARR reached 'more than nine times' its end-2025 level (9x = +800%, lower bound); period end-2025 to Oct 1, 2026 release. Contracted ARR, not live ARR (live ARR >4.5x over same period)."
+    },
+    {
+      "app": {
+        "name": "Z.ai (Zhipu AI)",
+        "url": "https://z.ai",
+        "kind": "product",
+        "description": "Chinese GLM foundation model developer selling MaaS API access and GLM Coding Plan subscriptions.",
+        "tags": [
+          "foundation-model",
+          "llm-inference"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 1800000000,
+      "observed_on": "2026-09-16",
+      "source_url": "https://www.scmp.com/tech/tech-trends/article/3367755/chinas-zai-raises-revenue-target-25-after-us5-billion-cash-injection",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Executives said on a Wednesday investor call (Yicai reported Sep 17, so call taken as Sep 16, 2026) that company-wide ARR had reached ~US$1.8B 'so far this year'; year-end ARR guidance raised 25% from $2.4B to $3B after a ~$5B share placement + convertible bond. ARR based on subscription/contract run-rate, not recognized revenue. Also yicaiglobal.com/news/zai-gains-as-chinese-ai-giant-raises-revenue-forecast-after-usd5-billion-financing."
+    },
+    {
+      "app": {
+        "name": "micro1",
+        "url": "https://www.micro1.ai",
+        "kind": "product",
+        "description": "AI recruiting and human-expert data platform that supplies vetted experts for AI model training and evaluation.",
+        "tags": [
+          "enterprise-agent",
+          "agent-evaluation"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 500000000,
+      "observed_on": "2026-09-02",
+      "source_url": "https://www.hpcwire.com/aiwire/2026/09/02/ais-data-appetite-is-growing-micro1-just-hit-500m-run-rate/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company says GROSS annual run rate reached $500M (from $100M eight months earlier); gross of payouts to contract experts. Net run-rate estimates of $150-200M are third-party (not recorded). Forbes (Sep 23) describes >$500M as ARR alongside a >$100M raise at $4B valuation. A later LinkedIn claim of $1B run rate is undated/unconfirmed and not recorded."
+    },
+    {
+      "app": {
+        "name": "Alice (formerly ActiveFence)",
+        "url": "https://alice.io",
+        "kind": "product",
+        "description": "AI safety and security platform for red teaming, guardrails and monitoring of LLMs and AI agents (WonderSuite).",
+        "tags": [
+          "security",
+          "agent-evaluation"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 500,
+      "period_days": 730,
+      "observed_on": "2026-08-25",
+      "source_url": "https://pulse2.com/alice-raises-140-million-as-ai-security-business-approaches-100-million-arr-and-grows-500/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company says its AI (security/safety) business grew more than 500% over the past two years (lower bound; AI segment, not company-wide), announced with a $140M round led by Apax Digital; company-wide ARR described only as 'approaching $100M' (not recorded as a level)."
+    },
+    {
+      "app": {
+        "name": "Go.AI",
+        "url": "https://goabacus.co",
+        "kind": "product",
+        "description": "On-premises AI appliance (Go1) and Go.OS software for running private AI in regulated industries.",
+        "tags": [
+          "llm-inference",
+          "enterprise-agent",
+          "local-llm"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 700,
+      "period_days": 365,
+      "observed_on": "2026-09-22",
+      "source_url": "https://fintech.global/2026/09/22/go-ai-raises-85m-series-a-for-on-prem-ai-push/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company says ARR increased 'more than eightfold' year over year (8x = +700%, lower bound), with 200+ customers and profitability, announced with $85M Series A led by Updata Partners (formerly Go Abacus). No ARR level disclosed."
+    },
+    {
+      "app": {
+        "name": "Avarra",
+        "url": "https://www.avarra.ai",
+        "kind": "product",
+        "description": "AI avatars that coach and upskill sales and go-to-market teams.",
+        "tags": [
+          "sales",
+          "education"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 698,
+      "period_days": 365,
+      "observed_on": "2026-10-06",
+      "source_url": "https://www.arr.club/avarra/avarra-grew-arr-400pct-yoy-raised-17m-series-a",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Contracted ARR from mid-market and enterprise customers grew 698% YoY (segment metric), per Series A announcement summarized by arr.club; distinct from total ARR growth of >400% recorded in an earlier inbox file (runtimewire)."
+    },
+    {
+      "app": {
+        "name": "Runable",
+        "url": "https://runable.com",
+        "kind": "product",
+        "description": "General-purpose AI agent platform that builds and runs sites, decks, content and marketing workflows for small businesses.",
+        "tags": [
+          "enterprise-agent",
+          "productivity"
+        ]
+      },
+      "metric": "users",
+      "value": 1500000,
+      "observed_on": "2026-08-26",
+      "source_url": "https://yourstory.com/2026/08/ai-agent-startup-runable-raises-21-million-in-series-a",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily 432 over quota). Company-reported 1.5M users (registered sign-ups; Dealroom cites ~1.7M registered users) at its $21M Series A (Susquehanna VC, Nexus), closed Aug 26, 2026. Company also says it hit $2M ARR three weeks after launching payments (date of that figure not stated, so not recorded)."
+    }
+  ]
+}

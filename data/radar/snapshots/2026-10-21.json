@@ -1,0 +1,954 @@
+{
+ "date": "2026-10-21",
+ "directions": [
+  {
+   "commercial_count": 1,
+   "key": "security",
+   "mean_score": 0.6593,
+   "members": [
+    "gh:cloudflare/security-audit-skill",
+    "gh:ifixai-ai/ifixai",
+    "gh:morluto/rea",
+    "gh:nvidia/openshell",
+    "gh:yujunzhixue/dsh-purge",
+    "web:pluto.security"
+   ],
+   "open_count": 5,
+   "scored": 5,
+   "top_share": 0.8
+  },
+  {
+   "commercial_count": 1,
+   "key": "image-generation",
+   "mean_score": 0.532,
+   "members": [
+    "gh:comfy-org/comfyui",
+    "gh:segfault42/heliosgen",
+    "gh:storytold/artcraft",
+    "web:higgsfield.ai"
+   ],
+   "open_count": 3,
+   "scored": 4,
+   "top_share": 0.75
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-memory",
+   "mean_score": 0.4965,
+   "members": [
+    "gh:akitaonrails/ai-memory",
+    "gh:tencentcloud/tencentdb-agent-memory",
+    "gh:vectorize-io/hindsight"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.6667
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-orchestration",
+   "mean_score": 0.5656,
+   "members": [
+    "gh:paperclipai/paperclip",
+    "gh:stablyai/orca"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 0,
+   "key": "generative-ui",
+   "mean_score": 0.485,
+   "members": [
+    "gh:copilotkit/openintelligentui",
+    "gh:thesysdev/openui"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 1,
+   "key": "finance",
+   "mean_score": 0.3964,
+   "members": [
+    "gh:anthropics/financial-services",
+    "gh:shiyu-coder/kronos",
+    "web:rogo.ai"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.5
+  },
+  {
+   "commercial_count": 6,
+   "key": "video-generation",
+   "mean_score": 0.4752,
+   "members": [
+    "gh:heygen-com/hyperframes",
+    "gh:krillinai/opencreator",
+    "gh:segfault42/heliosgen",
+    "gh:storytold/artcraft",
+    "web:clueso.io",
+    "web:heygen.com",
+    "web:higgsfield.ai",
+    "web:klingai.com",
+    "web:minimax.io",
+    "web:runwayml.com"
+   ],
+   "open_count": 4,
+   "scored": 9,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 0,
+   "key": "llm-gateway",
+   "mean_score": 0.473,
+   "members": [
+    "gh:alishahryar1/free-claude-code",
+    "gh:corrinehu/dsh-workbuddy-connect",
+    "gh:tashfeenahmed/freellmapi"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 1,
+   "key": "design",
+   "mean_score": 0.4531,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:cathrynlavery/diagram-design",
+    "gh:pbakaus/impeccable",
+    "web:meshy.ai"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 4,
+   "key": "foundation-model",
+   "mean_score": 0.4525,
+   "members": [
+    "gh:nvidia/personaplex",
+    "gh:shiyu-coder/kronos",
+    "web:deepseek.com",
+    "web:kimi.com",
+    "web:minimax.io",
+    "web:z.ai"
+   ],
+   "open_count": 2,
+   "scored": 6,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-tools",
+   "mean_score": 0.4308,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:earthtojake/text-to-cad",
+    "gh:graphify-labs/graphify",
+    "gh:heygen-com/hyperframes",
+    "gh:hkuds/cli-anything",
+    "gh:shawnpana/phone-harness"
+   ],
+   "open_count": 6,
+   "scored": 6,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 0,
+   "key": "local-llm",
+   "mean_score": 0.3788,
+   "members": [
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "gh:openbmb/minicpm-v"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.3333
+  },
+  {
+   "commercial_count": 7,
+   "key": "productivity",
+   "mean_score": 0.533,
+   "members": [
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:madslorentzen/ai-job-search",
+    "gh:paperclipai/paperclip",
+    "web:clueso.io",
+    "web:genspark.ai",
+    "web:glean.com",
+    "web:jobright.ai",
+    "web:omi.me",
+    "web:otter.ai",
+    "web:plaud.ai"
+   ],
+   "open_count": 3,
+   "scored": 4,
+   "top_share": 0.25
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-skills",
+   "mean_score": 0.4522,
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:android/skills",
+    "gh:anthropics/claude-plugins-official",
+    "gh:anthropics/financial-services",
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:cathrynlavery/diagram-design",
+    "gh:cloudflare/security-audit-skill",
+    "gh:cursor/plugins",
+    "gh:dietrichgebert/ponytail",
+    "gh:k-dense-ai/scientific-agent-skills",
+    "gh:madslorentzen/ai-job-search",
+    "gh:msitarzewski/agency-agents",
+    "gh:pbakaus/impeccable",
+    "gh:sickn33/agentic-awesome-skills",
+    "gh:vercel-labs/skills",
+    "gh:wshobson/agents"
+   ],
+   "open_count": 16,
+   "scored": 16,
+   "top_share": 0.25
+  },
+  {
+   "commercial_count": 8,
+   "key": "coding-agent",
+   "mean_score": 0.4727,
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:akitaonrails/ai-memory",
+    "gh:alishahryar1/free-claude-code",
+    "gh:android/skills",
+    "gh:anomalyco/opencode",
+    "gh:anthropics/claude-code",
+    "gh:anthropics/claude-plugins-official",
+    "gh:corrinehu/dsh-workbuddy-connect",
+    "gh:cursor/plugins",
+    "gh:dietrichgebert/ponytail",
+    "gh:elie222/rakazo",
+    "gh:graphify-labs/graphify",
+    "gh:mksglu/context-mode",
+    "gh:morluto/rea",
+    "gh:pingdotgg/t3code",
+    "gh:ranxianglei/billion-context",
+    "gh:stablyai/orca",
+    "gh:wshobson/agents",
+    "web:base44.com",
+    "web:claude.ai",
+    "web:cognition.ai",
+    "web:cursor.com",
+    "web:emergent.sh",
+    "web:kilo.ai",
+    "web:lovable.dev",
+    "web:openai.com/codex"
+   ],
+   "open_count": 18,
+   "scored": 22,
+   "top_share": 0.2273
+  },
+  {
+   "commercial_count": 0,
+   "key": "devtools",
+   "mean_score": 0.44,
+   "members": [
+    "gh:copilotkit/openintelligentui",
+    "gh:headroomlabs-ai/headroom",
+    "gh:hkuds/cli-anything",
+    "gh:pingdotgg/t3code",
+    "gh:thesysdev/openui"
+   ],
+   "open_count": 5,
+   "scored": 5,
+   "top_share": 0.2
+  },
+  {
+   "commercial_count": 10,
+   "key": "assistant",
+   "mean_score": 0.4154,
+   "members": [
+    "gh:tencentcloud/octop",
+    "web:chatgpt.com",
+    "web:claude.ai",
+    "web:deepseek.com",
+    "web:gemini.google.com",
+    "web:grok.com",
+    "web:jobright.ai",
+    "web:kimi.com",
+    "web:omi.me",
+    "web:perplexity.ai",
+    "web:use.ai"
+   ],
+   "open_count": 1,
+   "scored": 6,
+   "top_share": 0.1667
+  },
+  {
+   "commercial_count": 4,
+   "key": "voice",
+   "mean_score": 0.3854,
+   "members": [
+    "gh:abus-aikorea/voice-pro",
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "gh:krillinai/opencreator",
+    "gh:nvidia/personaplex",
+    "web:anam.ai",
+    "web:elevenlabs.io",
+    "web:minimax.io",
+    "web:otter.ai"
+   ],
+   "open_count": 5,
+   "scored": 7,
+   "top_share": 0.1429
+  },
+  {
+   "commercial_count": 0,
+   "key": "context-compression",
+   "mean_score": 0.4605,
+   "members": [
+    "gh:headroomlabs-ai/headroom",
+    "gh:mksglu/context-mode",
+    "gh:ranxianglei/billion-context"
+   ],
+   "open_count": 3,
+   "scored": 3,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 3,
+   "key": "research-agent",
+   "mean_score": 0.4499,
+   "members": [
+    "gh:k-dense-ai/scientific-agent-skills",
+    "web:floqer.com",
+    "web:listenlabs.ai",
+    "web:starbridge.ai"
+   ],
+   "open_count": 1,
+   "scored": 3,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 3,
+   "key": "sales",
+   "mean_score": 0.4436,
+   "members": [
+    "web:aisdr.com",
+    "web:floqer.com",
+    "web:starbridge.ai"
+   ],
+   "open_count": 0,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "agent-framework",
+   "mean_score": 0.4425,
+   "members": [
+    "gh:agent-substrate/substrate",
+    "gh:msitarzewski/agency-agents",
+    "gh:ruvnet/ruflo",
+    "gh:tencentcloud/octop"
+   ],
+   "open_count": 4,
+   "scored": 4,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 1,
+   "key": "agent-runtime",
+   "mean_score": 0.4275,
+   "members": [
+    "gh:nvidia/openshell",
+    "web:modal.com"
+   ],
+   "open_count": 1,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 0,
+   "key": "mcp",
+   "mean_score": 0.4094,
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:mksglu/context-mode"
+   ],
+   "open_count": 2,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 2,
+   "key": "legal",
+   "mean_score": 0.3941,
+   "members": [
+    "web:harvey.ai",
+    "web:legora.com"
+   ],
+   "open_count": 0,
+   "scored": 2,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 2,
+   "key": "llm-inference",
+   "mean_score": 0.3797,
+   "members": [
+    "gh:lightseekorg/tokenspeed",
+    "gh:vllm-project/vllm",
+    "web:modal.com",
+    "web:z.ai"
+   ],
+   "open_count": 2,
+   "scored": 4,
+   "top_share": 0.0
+  },
+  {
+   "commercial_count": 2,
+   "key": "multimodal",
+   "mean_score": 0.3059,
+   "members": [
+    "gh:openbmb/minicpm-v",
+    "web:anam.ai",
+    "web:meshy.ai"
+   ],
+   "open_count": 1,
+   "scored": 2,
+   "top_share": 0.0
+  }
+ ],
+ "emergent": [
+  {
+   "label": "claude / working / terminal",
+   "members": [
+    "gh:alishahryar1/free-claude-code",
+    "gh:anthropics/claude-code",
+    "gh:madslorentzen/ai-job-search",
+    "gh:dietrichgebert/ponytail",
+    "gh:pingdotgg/t3code",
+    "gh:stablyai/orca"
+   ]
+  },
+  {
+   "label": "heygen / higgsfield / engine",
+   "members": [
+    "gh:heygen-com/hyperframes",
+    "web:heygen.com",
+    "gh:storytold/artcraft",
+    "web:higgsfield.ai",
+    "web:klingai.com",
+    "web:runwayml.com"
+   ]
+  },
+  {
+   "label": "open-weight / deepseek / anthropic",
+   "members": [
+    "gh:tencentcloud/octop",
+    "web:chatgpt.com",
+    "web:gemini.google.com",
+    "web:kimi.com",
+    "web:deepseek.com",
+    "web:claude.ai"
+   ]
+  },
+  {
+   "label": "agentic / optimization / control",
+   "members": [
+    "gh:affaan-m/ecc",
+    "gh:android/skills",
+    "gh:vercel-labs/skills",
+    "gh:sickn33/agentic-awesome-skills",
+    "gh:k-dense-ai/scientific-agent-skills"
+   ]
+  },
+  {
+   "label": "plugins / claude / repository",
+   "members": [
+    "gh:anthropics/claude-plugins-official",
+    "gh:anthropics/knowledge-work-plugins",
+    "gh:anthropics/financial-services",
+    "gh:cursor/plugins",
+    "gh:wshobson/agents"
+   ]
+  },
+  {
+   "label": "open-source / dubbing / cloning",
+   "members": [
+    "gh:abus-aikorea/voice-pro",
+    "gh:debpalash/voicestudio",
+    "gh:kittenml/kittentts",
+    "gh:krillinai/opencreator"
+   ]
+  },
+  {
+   "label": "autonomous / harness / agents",
+   "members": [
+    "gh:agent-substrate/substrate",
+    "gh:msitarzewski/agency-agents",
+    "gh:ruvnet/ruflo"
+   ]
+  },
+  {
+   "label": "codex / harness / plugin",
+   "members": [
+    "gh:ahujasid/mcp-for-blender",
+    "gh:cathrynlavery/diagram-design",
+    "gh:pbakaus/impeccable"
+   ]
+  },
+  {
+   "label": "solution / agents",
+   "members": [
+    "gh:akitaonrails/ai-memory",
+    "gh:vectorize-io/hindsight",
+    "gh:tencentcloud/tencentdb-agent-memory"
+   ]
+  },
+  {
+   "label": "control / harness",
+   "members": [
+    "gh:earthtojake/text-to-cad",
+    "gh:shawnpana/phone-harness",
+    "gh:hkuds/cli-anything"
+   ]
+  }
+ ],
+ "params": {
+  "relative_weight": 0.5,
+  "shrinkage": 0.5,
+  "trust.api": 1.0,
+  "trust.page_extract": 0.7,
+  "trust.reported": 0.5,
+  "weight.delta": 1.0,
+  "weight.period": 1.0,
+  "weight.reported_growth": 0.6
+ },
+ "scores": [
+  {
+   "app_id": "gh:madslorentzen/ai-job-search",
+   "evidence": 1.3907,
+   "score": 0.797759
+  },
+  {
+   "app_id": "gh:morluto/rea",
+   "evidence": 1.1857,
+   "score": 0.790067
+  },
+  {
+   "app_id": "gh:yujunzhixue/dsh-purge",
+   "evidence": 1.3733,
+   "score": 0.743586
+  },
+  {
+   "app_id": "gh:storytold/artcraft",
+   "evidence": 1.3947,
+   "score": 0.740595
+  },
+  {
+   "app_id": "gh:cloudflare/security-audit-skill",
+   "evidence": 1.392,
+   "score": 0.731537
+  },
+  {
+   "app_id": "gh:debpalash/voicestudio",
+   "evidence": 1.3907,
+   "score": 0.722904
+  },
+  {
+   "app_id": "gh:akitaonrails/ai-memory",
+   "evidence": 1.384,
+   "score": 0.682618
+  },
+  {
+   "app_id": "gh:stablyai/orca",
+   "evidence": 1.392,
+   "score": 0.66631
+  },
+  {
+   "app_id": "gh:ifixai-ai/ifixai",
+   "evidence": 1.3894,
+   "score": 0.644903
+  },
+  {
+   "app_id": "web:kimi.com",
+   "evidence": 0.3647,
+   "score": 0.579896
+  },
+  {
+   "app_id": "gh:dietrichgebert/ponytail",
+   "evidence": 0.7,
+   "score": 0.575396
+  },
+  {
+   "app_id": "gh:cathrynlavery/diagram-design",
+   "evidence": 1.3894,
+   "score": 0.569578
+  },
+  {
+   "app_id": "web:higgsfield.ai",
+   "evidence": 0.536,
+   "score": 0.560653
+  },
+  {
+   "app_id": "gh:heygen-com/hyperframes",
+   "evidence": 1.3907,
+   "score": 0.556077
+  },
+  {
+   "app_id": "gh:tashfeenahmed/freellmapi",
+   "evidence": 1.3894,
+   "score": 0.538095
+  },
+  {
+   "app_id": "gh:vectorize-io/hindsight",
+   "evidence": 1.3894,
+   "score": 0.533914
+  },
+  {
+   "app_id": "gh:thesysdev/openui",
+   "evidence": 1.3894,
+   "score": 0.532736
+  },
+  {
+   "app_id": "gh:shiyu-coder/kronos",
+   "evidence": 1.3894,
+   "score": 0.530971
+  },
+  {
+   "app_id": "gh:graphify-labs/graphify",
+   "evidence": 0.7,
+   "score": 0.52677
+  },
+  {
+   "app_id": "gh:comfy-org/comfyui",
+   "evidence": 1.392,
+   "score": 0.517001
+  },
+  {
+   "app_id": "gh:corrinehu/dsh-workbuddy-connect",
+   "evidence": 1.0447,
+   "score": 0.514809
+  },
+  {
+   "app_id": "gh:ranxianglei/billion-context",
+   "evidence": 1.3894,
+   "score": 0.513926
+  },
+  {
+   "app_id": "gh:android/skills",
+   "evidence": 0.7,
+   "score": 0.495888
+  },
+  {
+   "app_id": "gh:anomalyco/opencode",
+   "evidence": 1.3894,
+   "score": 0.485479
+  },
+  {
+   "app_id": "web:plaud.ai",
+   "evidence": 0.0526,
+   "score": 0.484737
+  },
+  {
+   "app_id": "gh:tencentcloud/octop",
+   "evidence": 1.3894,
+   "score": 0.477684
+  },
+  {
+   "app_id": "gh:elie222/rakazo",
+   "evidence": 1.3894,
+   "score": 0.473713
+  },
+  {
+   "app_id": "web:z.ai",
+   "evidence": 0.0526,
+   "score": 0.473455
+  },
+  {
+   "app_id": "web:minimax.io",
+   "evidence": 0.0526,
+   "score": 0.469142
+  },
+  {
+   "app_id": "web:modal.com",
+   "evidence": 0.2693,
+   "score": 0.468285
+  },
+  {
+   "app_id": "web:emergent.sh",
+   "evidence": 0.0663,
+   "score": 0.466956
+  },
+  {
+   "app_id": "gh:paperclipai/paperclip",
+   "evidence": 1.3894,
+   "score": 0.464945
+  },
+  {
+   "app_id": "gh:mksglu/context-mode",
+   "evidence": 1.3907,
+   "score": 0.464857
+  },
+  {
+   "app_id": "web:heygen.com",
+   "evidence": 0.0487,
+   "score": 0.464729
+  },
+  {
+   "app_id": "web:klingai.com",
+   "evidence": 0.0526,
+   "score": 0.463833
+  },
+  {
+   "app_id": "gh:k-dense-ai/scientific-agent-skills",
+   "evidence": 1.3915,
+   "score": 0.462551
+  },
+  {
+   "app_id": "web:anam.ai",
+   "evidence": 0.2572,
+   "score": 0.455029
+  },
+  {
+   "app_id": "gh:cursor/plugins",
+   "evidence": 1.3907,
+   "score": 0.451354
+  },
+  {
+   "app_id": "web:cognition.ai",
+   "evidence": 0.536,
+   "score": 0.447209
+  },
+  {
+   "app_id": "web:floqer.com",
+   "evidence": 0.2693,
+   "score": 0.443888
+  },
+  {
+   "app_id": "web:starbridge.ai",
+   "evidence": 0.2735,
+   "score": 0.443325
+  },
+  {
+   "app_id": "gh:ruvnet/ruflo",
+   "evidence": 1.3907,
+   "score": 0.442133
+  },
+  {
+   "app_id": "web:harvey.ai",
+   "evidence": 0.2618,
+   "score": 0.440724
+  },
+  {
+   "app_id": "gh:msitarzewski/agency-agents",
+   "evidence": 0.7,
+   "score": 0.440506
+  },
+  {
+   "app_id": "gh:copilotkit/openintelligentui",
+   "evidence": 1.384,
+   "score": 0.437322
+  },
+  {
+   "app_id": "web:runwayml.com",
+   "evidence": 0.1547,
+   "score": 0.436607
+  },
+  {
+   "app_id": "gh:pbakaus/impeccable",
+   "evidence": 1.3894,
+   "score": 0.435852
+  },
+  {
+   "app_id": "gh:earthtojake/text-to-cad",
+   "evidence": 1.3894,
+   "score": 0.426058
+  },
+  {
+   "app_id": "gh:rohitg00/ai-engineering-from-scratch",
+   "evidence": 1.3894,
+   "score": 0.42373
+  },
+  {
+   "app_id": "gh:pingdotgg/t3code",
+   "evidence": 0.7,
+   "score": 0.417352
+  },
+  {
+   "app_id": "gh:agent-substrate/substrate",
+   "evidence": 1.3894,
+   "score": 0.409791
+  },
+  {
+   "app_id": "gh:hkuds/cli-anything",
+   "evidence": 1.388,
+   "score": 0.40976
+  },
+  {
+   "app_id": "gh:anthropics/claude-plugins-official",
+   "evidence": 1.3907,
+   "score": 0.409459
+  },
+  {
+   "app_id": "gh:headroomlabs-ai/headroom",
+   "evidence": 1.3894,
+   "score": 0.40284
+  },
+  {
+   "app_id": "gh:affaan-m/ecc",
+   "evidence": 1.3894,
+   "score": 0.401216
+  },
+  {
+   "app_id": "web:deepseek.com",
+   "evidence": 0.1368,
+   "score": 0.396729
+  },
+  {
+   "app_id": "web:lovable.dev",
+   "evidence": 0.3299,
+   "score": 0.389275
+  },
+  {
+   "app_id": "gh:nvidia/openshell",
+   "evidence": 1.3894,
+   "score": 0.386648
+  },
+  {
+   "app_id": "web:rapidcanvas.ai",
+   "evidence": 0.2778,
+   "score": 0.385519
+  },
+  {
+   "app_id": "gh:anthropics/knowledge-work-plugins",
+   "evidence": 1.392,
+   "score": 0.384666
+  },
+  {
+   "app_id": "gh:alishahryar1/free-claude-code",
+   "evidence": 1.3894,
+   "score": 0.36601
+  },
+  {
+   "app_id": "web:gemini.google.com",
+   "evidence": 0.5293,
+   "score": 0.365462
+  },
+  {
+   "app_id": "gh:ahujasid/mcp-for-blender",
+   "evidence": 0.7,
+   "score": 0.353876
+  },
+  {
+   "app_id": "web:claude.ai",
+   "evidence": 0.8666,
+   "score": 0.351632
+  },
+  {
+   "app_id": "web:chai-research.com",
+   "evidence": 0.3674,
+   "score": 0.348227
+  },
+  {
+   "app_id": "web:legora.com",
+   "evidence": 0.5789,
+   "score": 0.347526
+  },
+  {
+   "app_id": "web:chatgpt.com",
+   "evidence": 1.2131,
+   "score": 0.321063
+  },
+  {
+   "app_id": "gh:shawnpana/phone-harness",
+   "evidence": 1.3733,
+   "score": 0.312347
+  },
+  {
+   "app_id": "gh:lightseekorg/tokenspeed",
+   "evidence": 1.3733,
+   "score": 0.311118
+  },
+  {
+   "app_id": "gh:segfault42/heliosgen",
+   "evidence": 1.3733,
+   "score": 0.309585
+  },
+  {
+   "app_id": "gh:vercel-labs/skills",
+   "evidence": 1.3894,
+   "score": 0.307632
+  },
+  {
+   "app_id": "gh:vectifyai/pageindex",
+   "evidence": 0.7,
+   "score": 0.294108
+  },
+  {
+   "app_id": "gh:krillinai/opencreator",
+   "evidence": 1.3733,
+   "score": 0.275678
+  },
+  {
+   "app_id": "gh:tencentcloud/tencentdb-agent-memory",
+   "evidence": 1.3894,
+   "score": 0.272873
+  },
+  {
+   "app_id": "gh:vllm-project/vllm",
+   "evidence": 0.7,
+   "score": 0.265953
+  },
+  {
+   "app_id": "gh:nvidia/personaplex",
+   "evidence": 0.6893,
+   "score": 0.264545
+  },
+  {
+   "app_id": "gh:anthropics/financial-services",
+   "evidence": 1.3947,
+   "score": 0.261776
+  },
+  {
+   "app_id": "gh:wshobson/agents",
+   "evidence": 0.7,
+   "score": 0.261577
+  },
+  {
+   "app_id": "gh:kittenml/kittentts",
+   "evidence": 0.7,
+   "score": 0.256661
+  },
+  {
+   "app_id": "gh:abus-aikorea/voice-pro",
+   "evidence": 0.7,
+   "score": 0.254026
+  },
+  {
+   "app_id": "gh:anthropics/claude-code",
+   "evidence": 1.3733,
+   "score": 0.247882
+  },
+  {
+   "app_id": "gh:sickn33/agentic-awesome-skills",
+   "evidence": 0.7,
+   "score": 0.247852
+  },
+  {
+   "app_id": "gh:openbmb/minicpm-v",
+   "evidence": 1.3733,
+   "score": 0.156836
+  }
+ ]
+}

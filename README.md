@@ -18,6 +18,7 @@ Every day the lab:
 <!-- projects:start -->
 | Project | What it does | Install |
 |---|---|---|
+| [**pthscan**](projects/pthscan) | Audit Python startup hooks (.pth / .start) for credential stealers like the LiteLLM and Microsoft agent-framework compromises, without running them. CI Action + agent hook. | `pipx run pthscan` |
 | [**agentscrub**](projects/agentscrub) | Find and remove secrets AI coding agents save to disk (Claude Code "don't ask again" allowlists, MCP configs, transcripts); hook + pre-commit guard blocks commits that would leak them. | `npx agentscrub` |
 | [**ctxlint**](projects/ctxlint) | Lint AGENTS.md / CLAUDE.md / .cursorrules / Copilot instructions: stale paths & scripts, broken @imports, hidden Unicode, secrets, drift. | `not published (parked)` |
 <!-- projects:end -->

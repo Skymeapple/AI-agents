@@ -41,6 +41,10 @@
         "@visulima/secret-scanner",
         "eslint-plugin-no-secrets"
       ]
+    },
+    "python-supply-chain": {
+      "description": "Python supply-chain auditing. These are npm-registry proxies only: PyPI downloads for pthscan come from pypistats via collect_metrics.",
+      "packages": []
     }
   }
 }

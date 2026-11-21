@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pthscan"
+version = "0.1.0"
+description = "Audit Python startup hooks (.pth / .start files) for credential stealers like the LiteLLM and Microsoft agent-framework PyPI compromises - without running them."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "AI Research Lab" }]
+keywords = ["security", "supply-chain", "pth", "site-packages", "pypi", "malware", "credential-stealer", "litellm", "agent-framework", "virtualenv", "ci"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+  "Environment :: Console",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+pthscan = "pthscan.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/Skymeapple/AI-agents/tree/research-lab/projects/pthscan"
+Issues = "https://github.com/Skymeapple/AI-agents/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -30,5 +30,7 @@ jobs:
         run: node projects/ctxlint/bin/ctxlint.js . --format github
       - name: Dogfood agentscrub on the lab itself
         run: node projects/agentscrub/bin/agentscrub.js . --format github
+      - name: Dogfood pthscan on the runner's Python
+        run: PYTHONPATH=projects/pthscan/src python3 -S -m pthscan --format github
       - name: Dashboard builds
         run: python3 scripts/build_dashboard.py && git diff --stat

@@ -67,6 +67,42 @@
         "https://www.backslash.security/blog/secrets-in-ai-agent-session-history"
       ],
       "status": "active"
+    },
+    {
+      "id": "2026-11-21-pthscan",
+      "date": "2026-11-21",
+      "name": "pthscan",
+      "path": "projects/pthscan",
+      "tagline": "Audit Python startup hooks (.pth / .start) for credential stealers like the LiteLLM and Microsoft agent-framework compromises, without running them. CI Action + agent hook.",
+      "pain_point": "Malicious PyPI releases (Microsoft agent-framework 1.26.1/1.26.2 on 17 Nov 2026, LiteLLM 1.82.8, the Hades campaign) plant .pth hooks that run a credential stealer on every Python start. Advice is manual find/grep, which drowns in legitimate hooks and misses payloads in imported modules; no packaged tool checks this.",
+      "audience": "Python developers, CI/CD owners, security teams",
+      "install": "pipx run pthscan",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pthscan"
+        }
+      ],
+      "category": "python-supply-chain",
+      "distribution": [
+        "cli",
+        "action",
+        "hook"
+      ],
+      "gated": true,
+      "releases": [
+        {
+          "version": "0.1.0",
+          "date": "2026-11-21"
+        }
+      ],
+      "evidence": [
+        "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised",
+        "https://www.elastic.co/security-labs/threat-command/we-caught-the-agent-framework-pypi-compromise-six-minutes-after-it-published",
+        "https://snyk.io/blog/poisoned-security-scanner-backdooring-litellm",
+        "https://github.com/jlevy/supply-chain-hardening/blob/main/guidelines/hardening-pypi.md"
+      ],
+      "status": "active"
     }
   ]
 }

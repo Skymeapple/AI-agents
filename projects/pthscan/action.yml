@@ -1,0 +1,12 @@
+name: pthscan
+description: Fail the build if installed Python packages added malicious startup hooks (.pth / .start)
+branding: { icon: shield, color: orange }
+inputs:
+  path: { description: Virtualenv, site-packages dir or folder to search (empty = python on PATH + venvs under the workspace), default: '' }
+  args: { description: Extra CLI arguments (e.g. --strict), default: '' }
+runs:
+  using: composite
+  steps:
+    # -S: the scanner itself never processes .pth files, so a compromised runner can't trigger them through us
+    - shell: bash
+      run: PYTHONPATH="$GITHUB_ACTION_PATH/src" python3 -S -m pthscan ${{ inputs.path }} --format github ${{ inputs.args }}

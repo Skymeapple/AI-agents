@@ -59,10 +59,10 @@ for alpha, c in [(0.25, 'C2'), (0.5, 'C0'), (1.0, 'C3')]:
     ax[0].plot(U, A, '-', color=c, label=f'theory top-K, α={alpha}')
     runs = [r for r in R if (r['exp'] == 'E4' and r['alpha'] == alpha) or (r['exp'] == 'E1' and r['family'] == 'random' and alpha == 0.5)]
     for r in runs:
-        ax[0].plot(r['uscore'], r['wscore'], 'o', color=c, ms=4)
+        ax[0].plot(r['learned'] / T, r['wscore'], 'o', color=c, ms=4)
         # top-K prediction from the student's own K
         pts.append(dict(alpha=alpha, h=r['h'], K=r['learned'], U=r['uscore'], A=r['wscore'], A_pred=float(A[r['learned']]), U_pred=r['learned'] / T))
-ax[0].set_xlabel('uniform-over-skills score U (tail benchmark)'); ax[0].set_ylabel('frequency-weighted score A (aggregate)')
+ax[0].set_xlabel('fraction of all skills learned K/T (uniform tail benchmark)'); ax[0].set_ylabel('frequency-weighted score A (aggregate)')
 ax[0].set_title('(a) aggregate vs tail retention'); ax[0].legend(fontsize=7)
 # theory: compression ratio vs tail retention at aggregate tolerance (infinite skills)
 d = np.linspace(0.01, 3, 300)
@@ -86,7 +86,7 @@ for i, h in enumerate([16, 32, 128]):
         K = [np.mean([r['learned'] for r in g2[(h, D, meth)]]) for D in Ds]
         W = [np.mean([r['wscore'] for r in g2[(h, D, meth)]]) for D in Ds]
         Kinf = np.mean([r['learned'] for r in g2[(h, None, meth)]])
-        ax[i].plot(Ds, K, 'o-', color=c, label=f'{meth} labels')
+        ax[i].plot(Ds, np.where(np.array(K) > 0, K, np.nan), 'o-', color=c, label=f'{meth} labels')
         ax[i].axhline(Kinf, color=c, ls=':', lw=1)
         S['E2'][h][meth] = dict(D=Ds, K=K, wscore=W, K_unlimited=float(Kinf))
     if h == 128:

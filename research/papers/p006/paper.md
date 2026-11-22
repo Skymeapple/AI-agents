@@ -6,11 +6,11 @@
 
 ## Abstract
 
-Context windows of language models have grown by orders of magnitude, and it is common to treat a long context as a long-term memory: if everything a user ever said fits in the window, the model "remembers" it. We argue that this equivalence fails for a specific and checkable reason. Long-term memory must handle *revision*: facts get updated, and a query must return the latest version while still retrieving old facts that were never revised. We formalize this as retrieval from a stream of key–value writes and prove a **recency–retention bound** for any single softmax readout head with a history-independent query, bounded logits (all logits in [−B, B]), arbitrary causal key representations and arbitrary positional encoding. Suppose the head must return the latest version of a key whose versions are Δ positions apart, in a context of T tokens, with attention weight at least 1−ε on the correct token. Then it can do so only for facts whose latest version has age A satisfying ⌊A/Δ⌋+1 ≤ (2B − log(T−1)) / log((1−ε)/ε). So the *revision-robust horizon* scales with the revision spacing Δ and the logit budget B, and **decreases** with context length. The window size does not appear in it at all. Beyond this horizon, the head must either lose old unrevised facts or confuse stale versions with current ones. An explicit construction comes within a constant factor of the bound. A delta-rule fast-weight memory escapes it entirely, but its capacity is limited by its state dimension. Numerical experiments (code included) confirm that the construction tracks the bound, trace the recency–retention frontier, and show the capacity limit of the delta rule. In small Transformers (1, 2 and 4 layers) and a delta-rule model, all trained on CPU on a revision-stream task, we find [E2 SUMMARY]. Together these results turn "is long context long-term memory?" into a quantitative statement. A context window is a memory store whose *update semantics* are bounded by logit range, not by window size. We give a falsifiable test protocol for frontier models.
+Context windows of language models have grown by orders of magnitude, and it is common to treat a long context as a long-term memory: if everything a user ever said fits in the window, the model "remembers" it. We argue that this equivalence fails for a specific and checkable reason. Long-term memory must handle *revision*: facts get updated, and a query must return the latest version while still retrieving old facts that were never revised. We formalize this as retrieval from a stream of key–value writes and prove a **recency–retention bound** for any single softmax readout head with a history-independent query, bounded logits (all logits in [−B, B]), arbitrary causal key representations and arbitrary positional encoding. Suppose the head must return the latest version of a key whose versions are Δ positions apart, in a context of T tokens, with attention weight at least 1−ε on the correct token. Then it can do so only for facts whose latest version has age A satisfying ⌊A/Δ⌋+1 ≤ (2B − log(T−1)) / log((1−ε)/ε). So the *revision-robust horizon* scales with the revision spacing Δ and the logit budget B, and **decreases** with context length. The window size does not appear in it at all. Beyond this horizon, the head must either lose old unrevised facts or confuse stale versions with current ones. An explicit construction comes within a constant factor of the bound. A delta-rule fast-weight memory escapes it entirely, but its capacity is limited by its state dimension. Numerical experiments (code included) confirm that the construction tracks the bound, trace the recency–retention frontier, and show the capacity limit of the delta rule. In small Transformers (1, 2 and 4 layers) and a delta-rule model, all trained on CPU on a revision-stream task, we find the pattern the theory predicts. With the latest version held at age 0, Transformer accuracy falls steadily as the number of prior versions R grows (e.g., 4-layer, N = 128: 1.00 at R = 1 to 0.48 at R = 64). The fall is steeper when versions are packed more densely. The same Transformers lose a never-revised fact once it is a quarter of the stream old at 4× the training length (accuracy at chance). The delta-rule model stays almost flat in R (0.95 at R = 64, N = 512). Its failures are instead age- and interference-driven, and do not depend on R. Together these results turn "is long context long-term memory?" into a quantitative statement. A context window is a memory store whose *update semantics* are bounded by logit range, not by window size. We give a falsifiable test protocol for frontier models.
 
 ## 中文摘要
 
-随着语言模型上下文窗口扩大几个数量级，人们常把“长上下文”等同于“长期记忆”：只要用户说过的一切都能放进窗口，模型就“记得”。本文指出这一等价在一个具体、可检验的方面失效：长期记忆必须处理**修订**——事实会被更新，查询应返回最新版本，同时仍能检索从未修订过的旧事实。我们把该问题形式化为对键值写入流的检索，并对任意单个 softmax 读出头（查询与历史无关、logit 有界于 [−B, B]、键表示可以是任意因果表示、位置编码任意）证明了一个**新近性–保持性界**：若要在长度为 T 的上下文中，以至少 1−ε 的注意力权重取回一个各版本间隔为 Δ 的键的最新版本，则只有最新版本“年龄” A 满足 ⌊A/Δ⌋+1 ≤ (2B − log(T−1)) / log((1−ε)/ε) 的事实才能被可靠检索。换言之，**抗修订记忆视野**与修订间隔 Δ 和 logit 预算 B 成正比，且随上下文长度**下降**，与窗口大小本身无关；超出该视野时，读出头要么丢失旧的未修订事实，要么把过时版本误当成当前版本。我们给出一个在常数因子内达到该界的显式构造，并证明 delta 规则快权重记忆可以完全规避该界，但其容量受状态维度限制。数值实验（附代码）验证了构造与界的吻合、新近性–保持性前沿以及 delta 规则的容量极限。在 CPU 上训练的小型 Transformer（1/2/4 层）与 delta 规则模型的修订流任务中，我们发现[E2 中文摘要]。这些结果将“长上下文是否等于长期记忆”转化为一个定量命题：上下文窗口是一种其**更新语义**受 logit 范围而非窗口大小约束的记忆存储。我们还给出了针对前沿模型的可证伪检验方案。
+随着语言模型上下文窗口扩大几个数量级，人们常把“长上下文”等同于“长期记忆”：只要用户说过的一切都能放进窗口，模型就“记得”。本文指出这一等价在一个具体、可检验的方面失效：长期记忆必须处理**修订**——事实会被更新，查询应返回最新版本，同时仍能检索从未修订过的旧事实。我们把该问题形式化为对键值写入流的检索，并对任意单个 softmax 读出头（查询与历史无关、logit 有界于 [−B, B]、键表示可以是任意因果表示、位置编码任意）证明了一个**新近性–保持性界**：若要在长度为 T 的上下文中，以至少 1−ε 的注意力权重取回一个各版本间隔为 Δ 的键的最新版本，则只有最新版本“年龄” A 满足 ⌊A/Δ⌋+1 ≤ (2B − log(T−1)) / log((1−ε)/ε) 的事实才能被可靠检索。换言之，**抗修订记忆视野**与修订间隔 Δ 和 logit 预算 B 成正比，且随上下文长度**下降**，与窗口大小本身无关；超出该视野时，读出头要么丢失旧的未修订事实，要么把过时版本误当成当前版本。我们给出一个在常数因子内达到该界的显式构造，并证明 delta 规则快权重记忆可以完全规避该界，但其容量受状态维度限制。数值实验（附代码）验证了构造与界的吻合、新近性–保持性前沿以及 delta 规则的容量极限。在 CPU 上训练的小型 Transformer（1/2/4 层）与 delta 规则模型的修订流任务中，我们发现与理论一致的模式：在最新版本年龄固定为 0 时，Transformer 的准确率随此前版本数 R 增加而持续下降（例如 4 层模型在 N = 128 时从 R = 1 的 1.00 降至 R = 64 的 0.48），且版本越密集下降越快；在训练长度 4 倍处，从未修订但已位于流长度四分之一处的旧事实降至随机水平。delta 规则模型对 R 几乎不敏感（N = 512、R = 64 时为 0.95），其失败来自年龄与干扰，而与 R 无关。这些结果将“长上下文是否等于长期记忆”转化为一个定量命题：上下文窗口是一种其**更新语义**受 logit 范围而非窗口大小约束的记忆存储。我们还给出了针对前沿模型的可证伪检验方案。
 
 ---
 
@@ -25,9 +25,9 @@ These are empirical observations about specific models. They leave open whether 
 **Contributions.**
 
 1. **A recency–retention impossibility bound (Theorem 1).** Consider any single softmax readout head with a history-independent query, logits bounded in [−B, B], arbitrary causal key representations and arbitrary positional scheme (absolute, relative, RoPE, ALiBi, learned timestamps, or none). If it ε-faithfully retrieves the latest version on all streams with revision spacing ≥ Δ and latest-version age ≤ A in a T-token context, then ⌊A/Δ⌋+1 ≤ (2B − log(T−1))/L_ε, where L_ε = log((1−ε)/ε). The revision-robust horizon is O(Δ·B), independent of window size and *decreasing* in T. Without revisions the bound reduces to the familiar attention-dilution condition.
-2. **Near-tightness (Proposition 2).** An explicit exact-match plus linear-recency head achieves a horizon within a factor log(1/ρ)/log(1+1/ρ) (with ρ = ε/(1−ε)) of the bound, up to an additive term. Numerically, it reaches 55–80% of the bound across the logit budgets and context lengths where the bound is non-trivial (Fig. 1a).
+2. **Near-tightness (Proposition 2).** An explicit exact-match plus linear-recency head achieves a horizon within a factor log(1/ρ)/log(1+1/ρ) (with ρ = ε/(1−ε)) of the bound, up to an additive term. Numerically, it attains 50–83% of the bound whenever the bound permits A/Δ ≥ 3 (Fig. 1a).
 3. **A clean contrast with overwrite memories (Proposition 3).** A delta-rule fast-weight memory [Schlag et al., 2021; Yang et al., 2024] returns the latest version exactly, for any number of revisions and any age, as long as the number of distinct keys is at most its key dimension. Beyond that, interference grows with M/d (Fig. 1c). Append-only context and overwrite memory therefore fail along *orthogonal* axes: revision-consistency versus capacity.
-4. **Controlled CPU experiments with trained models.** We train 1-, 2- and 4-layer RoPE Transformers and a single-layer delta-rule model on a revision-stream task (3 seeds each). We evaluate them with the number of versions R decoupled from recency, at lengths within and 4× beyond training. [E2 contributions sentence]
+4. **Controlled CPU experiments with trained models.** We train 1-, 2- and 4-layer RoPE Transformers and a single-layer delta-rule model on a revision-stream task (3 seeds for the 1-layer model, 2 for the others). We evaluate them with the number of versions R decoupled from recency, at lengths within and 4× beyond training. With recency held fixed, Transformer accuracy decays with R at every depth, and the decay is faster at tighter revision spacing, as the Δ-dependence of Theorem 1 predicts. Depth raises the curve but does not flatten it. The delta-rule model is nearly R-invariant but forgets old facts through interference: an orthogonal failure axis, as Proposition 3 predicts.
 5. **A falsifiable protocol for frontier models** (Section 7). It derives three signatures that distinguish "bounded logit budget" from other explanations of PI-LLM-style failures.
 
 We do not claim that long-context models cannot be *trained* to behave like memories in practice. Multi-layer models can compute history-dependent queries, and our theorem does not cover them (Section 8). The claim is narrower and, we think, useful: *the window size of an append-only store is the wrong quantity for judging its usefulness as a revisable memory.* The relevant quantity is a logit budget per revision.
@@ -108,7 +108,19 @@ All experiments run on a 4-core CPU. Code is in `code/` and raw outputs are in `
 
 ### 5.1 E1: bound, construction and frontier (numerical; `code/theory_sim.py`, `code/make_fig1.py`)
 
-**Bound vs construction.** For ε = 0.05 (L_ε = 2.944), Δ = 16, T ∈ {10³, 10⁵, 10⁷} and B ∈ {4,…,20}, we compute the Theorem-1 bound on A/Δ and the largest A achieved by the Proposition-2 family. For each λ on a 400-point log grid, we evaluate the exact worst-case weight on the latest version and binary-search the largest feasible A; we then maximize over λ. [TABLE E1]
+**Bound vs construction.** For ε = 0.05 (L_ε = 2.944), Δ = 16, T ∈ {10³, 10⁵, 10⁷} and B ∈ {4,…,20}, we compute the Theorem-1 bound on A/Δ and the largest A achieved by the Proposition-2 family. For each λ on a 400-point log grid, we evaluate the exact worst-case weight on the latest version and binary-search the largest feasible A; we then maximize over λ. Results (`results/theory_sim.json`, Fig. 1a):
+
+| T | B | Thm-1 bound on A/Δ (strict) | achieved A/Δ (Prop. 2 family) | ratio |
+|---|---|---|---|---|
+| 10³ | 8 | 3 | 1.50 | 0.50 |
+| 10³ | 12 | 5 | 3.88 | 0.78 |
+| 10³ | 20 | 11 | 8.94 | 0.81 |
+| 10⁵ | 12 | 4 | 2.44 | 0.61 |
+| 10⁵ | 20 | 9 | 7.50 | 0.83 |
+| 10⁷ | 12 | 2 | 1.13 | 0.56 |
+| 10⁷ | 20 | 8 | 6.00 | 0.75 |
+
+For B = 4 (all T), B = 6 (T ≥ 10⁵) and B = 8 (T = 10⁷), the bound shows that no horizon is feasible (R_ub < 1), and the construction also fails.
 
 **Recency–retention frontier.** With T = 4096, B = 10 and orthogonal keys, we sweep λ and measure two quantities over random histories (1,500 per point):
 
@@ -128,20 +140,83 @@ Success is α_latest ≥ 0.5.
 * causal pre-LN Transformers with RoPE and L ∈ {1, 2, 4} layers;
 * a single-layer, 4-head delta-rule fast-weight model (learned q/k/v projections, L2-normalized keys, learned per-token β = sigmoid(·)) with an MLP readout.
 
-All models are trained with AdamW (lr 10⁻³, one-cycle schedule, batch 128, 4,000 steps) for 3 seeds each.
+All models are trained with AdamW (lr 10⁻³, one-cycle schedule, batch 128, 4,000 steps); 3 seeds for L = 1 and 2 seeds for L = 2, L = 4 and the delta-rule model.
 
-**Evaluation** uses 500 streams per cell. We control the number of versions R of the queried key and its *latest age* a. Separately from this:
+**Evaluation** uses 300 streams per cell. We control the number of versions R of the queried key and its *latest age* a. Separately from this:
 
 * *fixed-age sweeps*: R ∈ {1,…,64} with the latest version at age 0 or at age N/4, and earlier versions placed uniformly before it;
-* *age sweeps*: R ∈ {1, 8} with latest age ∈ {0, 0.5N, 0.95N}.
+* *age sweeps*: R = 1 with the single write at age 0.5N or 0.95N, in addition to ages 0 and N/4 from the fixed-age sweep.
 
 We evaluate at N = 32 and 128 (within the training range) and at N = 512 (4× beyond it). For the Transformers, we also record the spread (max − min) of final-layer attention logits at the query position, per head, on in-distribution streams. This gives an empirical 2B for comparison with Theorem 1.
 
-[E2 RESULTS]
+Training cost and seeds. Because the machine's CPU was shared, we used 3 seeds for the 1-layer Transformer and 2 seeds for the other models, and 300 evaluation streams per cell (`results/train_toy*.json`, logs `results/log_*.txt`, `results/train_toy.log`).
 
 ## 6 Results
 
-[RESULTS]
+### 6.1 E1: the bound has the right form
+
+![Figure 1](results/fig1_theory.png)
+
+*Figure 1.* (a) Theorem-1 upper bound on the revision-robust horizon A/Δ (squares) vs the horizon achieved by the Proposition-2 construction (circles), ε = 0.05, Δ = 16. (b) Recency–retention frontier of a bounded-logit head (T = 4096, B = 10) as the recency slope λ varies; the star is the orthogonal-key delta-rule memory. (c) Delta-rule memory with random keys (d = 64): accuracy depends on M/d, not on the number of revisions.
+
+**Construction vs bound.** In the table of Section 5.1, the explicit linear-recency head attains 50–83% of the Theorem-1 horizon whenever the bound permits A/Δ ≥ 3, and the ratio increases with B, as Proposition 2 predicts. It is looser near the feasibility threshold (e.g., ratio 0.25 at T = 10⁵, B = 8; 0.12 at T = 10⁷, B = 10), where the additive log term of Proposition 2 dominates. Both quantities shrink as T grows at fixed B: at B = 12, the bound falls from A/Δ < 5 at T = 10³ to < 2 at T = 10⁷. This is the "longer context, shorter revision-robust horizon" effect.
+
+**Frontier.** Fig. 1b shows that for T = 4096 and B = 10 the frontier is essentially a corner.
+
+* Recency slopes λ ≤ 2.2·10⁻³ retrieve every cold fact (accuracy 1.00) but no hot fact (0.00).
+* Slopes 0.032 ≤ λ ≤ 0.32 retrieve every hot fact (1.00), but cold accuracy drops to 0.084 or below. These cold successes are only facts that happen to be recent.
+* No λ in the sweep exceeds 0.15 accuracy on both at once. The best compromise is λ = 0.022, with hot 0.43 and cold 0.15.
+
+The delta-rule memory with orthogonal keys sits at (1, 1) (Prop. 3).
+
+**Delta-rule capacity.** With random keys (Fig. 1c, d = 64), latest-value accuracy is unaffected by the number of revisions when M ≪ d: 1.00 at M = 8 for R = 1, 8 and 32. It degrades with M/d whatever R is: 0.88/0.82/0.80 at M = d and 0.28/0.27/0.28 at M = 4d for R = 1/8/32. The overwrite memory's limit is capacity, not revisions.
+
+### 6.2 E2: trained models show the predicted dissociation
+
+![Figure 2](results/fig2_trained.png)
+
+*Figure 2.* Latest-value accuracy of trained models vs the number of versions R of the queried key. Top row: latest version at age 0. Bottom row: latest version at age N/4. Error bars show s.d. over seeds; the dotted line is chance (1/16).
+
+In-distribution accuracy (random streams, N ∈ [16, 128]) is 0.735 ± 0.015 (L = 1), 0.853 ± 0.014 (L = 2), 0.895 ± 0.007 (L = 4) and 0.921 ± 0.022 (delta-rule). Chance is 1/16 = 0.0625. Fig. 2 and the tables below (from `results/train_toy_fixage_table.md` and `results/train_toy_age_table.md`) give the controlled evaluations.
+
+**Table 2. Latest-value accuracy with the latest version at age 0, as a function of the number of versions R** (mean ± s.d. over seeds).
+
+| model | N | R=1 | R=4 | R=16 | R=32 | R=64 |
+|---|---|---|---|---|---|---|
+| Transformer L=1 | 32 | 0.92±0.03 | 0.68±0.05 | 0.31±0.01 | 0.18±0.03 | – |
+| Transformer L=1 | 128 | 0.92±0.02 | 0.86±0.06 | 0.67±0.04 | 0.57±0.01 | 0.36±0.03 |
+| Transformer L=2 | 128 | 1.00±0.00 | 0.94±0.01 | 0.79±0.02 | 0.65±0.02 | 0.47±0.01 |
+| Transformer L=4 | 32 | 1.00±0.00 | 0.84±0.01 | 0.47±0.02 | 0.30±0.01 | – |
+| Transformer L=4 | 128 | 1.00±0.00 | 0.96±0.00 | 0.83±0.02 | 0.69±0.00 | 0.48±0.04 |
+| Transformer L=4 | 512 | 0.89±0.02 | 0.83±0.00 | 0.73±0.01 | 0.57±0.03 | 0.47±0.01 |
+| Delta-rule | 32 | 1.00±0.00 | 0.97±0.00 | 0.92±0.01 | 0.85±0.01 | – |
+| Delta-rule | 128 | 1.00±0.00 | 0.98±0.01 | 0.97±0.01 | 0.93±0.02 | 0.89±0.01 |
+| Delta-rule | 512 | 1.00±0.00 | 1.00±0.00 | 0.98±0.00 | 0.97±0.01 | 0.95±0.00 |
+
+**Table 3. Retention of a single, never-revised fact (R = 1) as a function of its age.**
+
+| model | N | age 0 | age N/4 | age N/2 | age 0.95N |
+|---|---|---|---|---|---|
+| Transformer L=1 | 128 | 0.92±0.02 | 0.38±0.06 | 0.13±0.04 | 0.14±0.01 |
+| Transformer L=4 | 128 | 1.00±0.00 | 0.92±0.00 | 0.27±0.01 | 0.25±0.01 |
+| Transformer L=4 | 512 | 0.89±0.02 | 0.08±0.01 | 0.06±0.00 | 0.08±0.01 |
+| Delta-rule | 128 | 1.00±0.00 | 0.94±0.02 | 0.64±0.00 | 0.23±0.00 |
+| Delta-rule | 512 | 1.00±0.00 | 0.19±0.03 | 0.10±0.01 | 0.06±0.01 |
+
+We draw four observations.
+
+**(i) Per-revision cost in Transformers.** At every depth and length, with the age of the latest version fixed at 0, accuracy falls monotonically in R. The current version is the most recent token of its key, so this decline cannot be explained by recency or position. It is the signature of stale versions competing with the current one.
+
+**(ii) Revision spacing matters as predicted.** Theorem 1 says that the cost is per *revision spacing*. Holding R fixed and changing N changes the mean spacing (≈ N/R). At R = 16, the 4-layer model scores 0.47 at N = 32 (spacing ≈ 2) and 0.83 at N = 128 (spacing ≈ 8). The 1-layer model scores 0.31 and 0.67. Denser revisions are harder, even though N = 32 is the *shorter* context.
+
+**(iii) Depth helps but does not remove the dependence on R.** Going from 1 to 4 layers raises the curves (N = 128, R = 16: 0.67 → 0.83) but leaves the slope in R. This is consistent with the conjecture that history-dependent queries expand, but do not eliminate, the budget. The measured final-layer logit spreads (max over heads) are 11.3 ± 0.6 (L = 1), 8.3 ± 0.03 (L = 2) and 6.4 ± 0.03 (L = 4). Deeper models therefore do *better* with *smaller* last-layer spreads. Quantitative use of Theorem 1 with a single-head spread is not justified for multi-layer models, and we do not claim it.
+
+**(iv) Orthogonal failure axes.** The delta-rule model is almost flat in R: at N = 512 it drops only from 1.00 to 0.95 as R goes from 1 to 64. The Transformers fall to 0.37–0.47 there. In contrast, neither family retains old facts at 4× the training length (Table 3, N = 512, age N/4). The two families fail for different reasons, though.
+
+* For the delta model, retention at age N/4 is ≈ 0.19 *independently of R* (0.17–0.20 across R = 1…64; Fig. 2, bottom right). Its failure is interference from the ~128 intervening writes, which is the capacity axis.
+* For the Transformers, cold retention collapses to chance at N = 512 for every R. At N = 128 it falls with age even for R = 1 (L = 1: 0.92 → 0.38 → 0.13). This is the retention side of the recency–retention trade-off. Part of the N = 512 failure is plausibly RoPE length extrapolation (Section 9).
+
+Taken together: within a trained Transformer, revisions cost accuracy at fixed recency and old facts are sacrificed to recency. A learned overwrite memory removes the revision cost but trades it for interference-driven forgetting. These are the two sides of the bound and of Proposition 3.
 
 ## 7 A Falsifiable Protocol for Frontier Models
 
@@ -159,7 +234,7 @@ Theorem 1 makes three predictions that separate a "logit-budget" mechanism from 
 
 **What "long context = long-term memory" gets wrong.** A context window guarantees *availability*: the tokens are there. Memory also needs *currency* (reads reflect updates) and *retention* (old facts survive). Under an append-only store, currency must be computed at read time from scores. Theorem 1 shows that, for a single fixed-query softmax read, this computation draws on the same finite logit budget that retention needs, and that each version boundary consumes L_ε nats. Window size enters only through the log(T−1) dilution term, and that term works *against* the memory. So the answer to the title question, in the precise sense formalized here, is **no**. A long context is a large store whose revision-consistent horizon is set by Δ·B/L_ε, not by T.
 
-**Why deeper models can partially escape, and what that costs.** Our theorem relies on a history-independent query. A two-layer model can, in principle, compute at the query position a representation that already reflects the history. For example, a first layer can locate the latest write and pass its position or content to the second layer's query. But this first-layer lookup is itself a fixed-query read, so it is subject to Theorem 1 *for its own task*. We conjecture that depth multiplies the budget rather than removing it: roughly, an L-layer stack has budget L·2B. [E2 DISCUSSION OF DEPTH]
+**Why deeper models can partially escape, and what that costs.** Our theorem relies on a history-independent query. A two-layer model can, in principle, compute at the query position a representation that already reflects the history. For example, a first layer can locate the latest write and pass its position or content to the second layer's query. But this first-layer lookup is itself a fixed-query read, so it is subject to Theorem 1 *for its own task*. We conjecture that depth multiplies the budget rather than removing it: roughly, an L-layer stack has budget L·2B. Our trained models match this picture qualitatively. Depth raises accuracy but every Transformer still shows a monotone per-revision decline at fixed recency (Table 2). A formal multi-layer version of Theorem 1 is the main open problem left by this paper.
 
 **Design implications.**
 
@@ -173,12 +248,13 @@ Theorem 1 makes three predictions that separate a "logit-budget" mechanism from 
 * **The bounded-logit assumption is a modeling choice.** Real models can grow logit spreads through large query/key norms. The bound is informative only when B_eff is measured. Our measured spreads come from tiny models and say nothing quantitative about frontier LLMs.
 * **ε-faithful weight criterion.** We bound the attention weight on the correct token, not end-task accuracy. A downstream MLP can sometimes decode correctly from a mixture, for example when stale values happen to coincide or when the mixture is dominated by one wrong value. Our trained-model accuracy measures the latter.
 * **Toy task.** Single-token key–value writes with 16 keys and 16 values are far from natural conversational updates. Semantic similarity between versions, paraphrase, implicit updates and temporal reasoning are absent. The trained models are tiny (d = 64, ≤ 4 layers), trained briefly on CPU with 3 seeds, and their length generalization also depends on RoPE extrapolation. Some N = 512 effects may be positional out-of-distribution effects rather than the mechanism studied here.
+* **Evaluation shift and small budgets.** In the controlled evaluations the queried key is over-represented at large R (e.g., R = 64 of N = 128 writes), which is rare in training, where a key has ≈ N/16 versions. Some of the large-R decline may therefore reflect distribution shift. The delta-rule model's per-head key dimension (16) equals the number of keys (16), which puts it at the edge of the Proposition-3 regime. Shared-CPU constraints limited us to 2–3 seeds and 300 evaluation streams per cell (s.d. across seeds is reported but is a weak uncertainty estimate).
 * **No frontier-model experiments.** The protocol in Section 7 is pre-registered but unexecuted.
 * **Delta-rule results assume idealized writes.** Proposition 3 assumes orthonormal keys and β = 1. Learned delta models need not discover such keys, and Fig. 1c uses random keys only.
 
 ## 10 Conclusion
 
-Long context and long-term memory differ in their update semantics. We proved that a fixed-query softmax readout with logit budget B can keep facts both current and retained only up to a horizon of order Δ·(2B − log T)/log((1−ε)/ε). This horizon is independent of window size and degrades with context length. A near-matching construction shows the bound has the right form, and an overwrite (delta-rule) memory removes it at the price of a dimension-limited capacity. [E2 conclusion sentence] Taken together, the results suggest that progress on memory should be measured along revisions, not tokens.
+Long context and long-term memory differ in their update semantics. We proved that a fixed-query softmax readout with logit budget B can keep facts both current and retained only up to a horizon of order Δ·(2B − log T)/log((1−ε)/ε). This horizon is independent of window size and degrades with context length. A near-matching construction shows the bound has the right form, and an overwrite (delta-rule) memory removes it at the price of a dimension-limited capacity. In small trained models, Transformers show the predicted per-revision decay at fixed recency, which depth softens but does not remove. A learned delta-rule memory is nearly revision-invariant but forgets through interference. Taken together, the results suggest that progress on memory should be measured along revisions, not tokens.
 
 ## References
 

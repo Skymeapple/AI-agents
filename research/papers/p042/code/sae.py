@@ -39,7 +39,7 @@ class ZipfData:
 
 
 class TopKSAE:
-    def __init__(self, d, M, k, seed=0, lr=1e-3):
+    def __init__(self, d, M, k, seed=0, lr=1e-3, opt="adam", beta2=0.999):
         # independent stream from the data generator (seed offset avoids sharing ZipfData's stream)
         rng = np.random.default_rng([seed, 987654321])
         W = rng.standard_normal((M, d)).astype(np.float32)
@@ -48,7 +48,7 @@ class TopKSAE:
         self.Wenc = W.T.copy()             # d x M (tied init, Gao et al. 2024)
         self.benc = np.zeros(M, np.float32)
         self.bdec = np.zeros(d, np.float32)
-        self.k, self.M, self.lr = k, M, lr
+        self.k, self.M, self.lr, self.opt, self.beta2 = k, M, lr, opt, beta2
         self.params = ["Wdec", "Wenc", "benc", "bdec"]
         self.m = {p: np.zeros_like(getattr(self, p)) for p in self.params}
         self.v = {p: np.zeros_like(getattr(self, p)) for p in self.params}
@@ -104,9 +104,13 @@ class TopKSAE:
         Wd = self.Wdec
         grads["Wdec"] -= (grads["Wdec"] * Wd).sum(1, keepdims=True) * Wd
         self.t += 1
-        b1, b2, eps = 0.9, 0.999, 1e-8
+        b1, b2, eps = 0.9, self.beta2, 1e-8
         for p in self.params:
             g = grads[p]
+            if self.opt == "sgd":  # heavy-ball momentum SGD: no per-parameter normalisation
+                self.m[p] = b1 * self.m[p] + g
+                setattr(self, p, getattr(self, p) - self.lr * self.m[p])
+                continue
             self.m[p] = b1 * self.m[p] + (1 - b1) * g
             self.v[p] = b2 * self.v[p] + (1 - b2) * g * g
             mh = self.m[p] / (1 - b1 ** self.t)

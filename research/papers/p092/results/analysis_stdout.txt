@@ -1,0 +1,38 @@
+{
+ "n_tasks": 228,
+ "n_families": 79,
+ "n_models": 20,
+ "n_runs": 23235,
+ "missing_cells": 37,
+ "wage_per_hour": 143.60999999999999,
+ "base_params": {
+  "rho": 0.2,
+  "r0": 2.0,
+  "s": 1.0,
+  "delta": 1.0,
+  "price": 10.0
+ },
+ "total_portfolio_cost": 77742.35165183511,
+ "identity_check_max_abs_err": 6.661338147750939e-16,
+ "n_pairs": 190,
+ "n_pairs_icx_cross": 7,
+ "boot": 500,
+ "boot_tau_passeq_dvinf_ci": [
+  0.6984847456762832,
+  0.9274159630093592
+ ],
+ "boot_top_dvinf": {
+  "Claude Opus 4.6 (Inspect)": 496,
+  "GPT-5.2": 3,
+  "GPT-5.1-Codex-Max (Inspect)": 1
+ }
+}
+0.0 {'tau_passeq_dvinf': 0.8842105263157894, 'tau_passval_dvinf': 0.9368421052631579, 'tau_h50_dvinf': 0.8947368421052632, 'tau_passeq_dvor': 0.9157894736842106, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 19}
+0.05 {'tau_passeq_dvinf': 0.8842105263157894, 'tau_passval_dvinf': 0.9157894736842106, 'tau_h50_dvinf': 0.8736842105263158, 'tau_passeq_dvor': 0.9157894736842106, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 18}
+0.1 {'tau_passeq_dvinf': 0.8947368421052632, 'tau_passval_dvinf': 0.9263157894736842, 'tau_h50_dvinf': 0.8842105263157894, 'tau_passeq_dvor': 0.9157894736842106, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 17}
+0.2 {'tau_passeq_dvinf': 0.8664216634271302, 'tau_passval_dvinf': 0.887814790919158, 'tau_h50_dvinf': 0.8664216634271302, 'tau_passeq_dvor': 0.9368421052631579, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 15}
+0.3 {'tau_passeq_dvinf': 0.7354037757927901, 'tau_passval_dvinf': 0.6921447301579201, 'tau_h50_dvinf': 0.7137742529753551, 'tau_passeq_dvor': 0.9368421052631579, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 13}
+0.4 {'tau_passeq_dvinf': 0.8390650005738352, 'tau_passval_dvinf': 0.8171286606895519, 'tau_h50_dvinf': 0.8171286606895519, 'tau_passeq_dvor': 0.9263157894736842, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'GPT-5.2', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 13}
+0.5 {'tau_passeq_dvinf': 0.8549819600709618, 'tau_passval_dvinf': 0.8207826816681233, 'tau_h50_dvinf': 0.8549819600709618, 'tau_passeq_dvor': 0.9263157894736842, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 12}
+0.6 {'tau_passeq_dvinf': 0.775183643797672, 'tau_passval_dvinf': 0.7865834032652849, 'tau_h50_dvinf': 0.775183643797672, 'tau_passeq_dvor': 0.9263157894736842, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 11}
+0.7 {'tau_passeq_dvinf': 0.8494900787115768, 'tau_passval_dvinf': 0.8615395833741524, 'tau_h50_dvinf': 0.8253910693864258, 'tau_passeq_dvor': 0.9157894736842106, 'top_passeq': 'Claude Opus 4.6 (Inspect)', 'top_dvinf': 'Claude Opus 4.6 (Inspect)', 'top_dvor': 'Claude Opus 4.6 (Inspect)', 'n_models_dvinf_positive': 10}

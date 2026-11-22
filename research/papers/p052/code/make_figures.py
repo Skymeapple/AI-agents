@@ -43,6 +43,13 @@ row("Linear-probe R^2 for report", R["A"]["steering"]["probe_r2"], lambda e: e["
 row("Coupling rho (probe direction)", R["A"]["steering"]["probe"]["rho"], lambda e: e["steering"]["probe"]["rho"])
 row("Coupling rho (report-gradient direction)", R["A"]["steering"]["gradient"]["rho"],
     lambda e: e["steering"]["gradient"]["rho"])
+row("Coupling rho_local (probe direction)", R["A"]["steering"]["probe"]["rho_local"], lambda e: e["steering"]["probe"]["rho_local"])
+row("Coupling rho_local (gradient direction)", R["A"]["steering"]["gradient"]["rho_local"], lambda e: e["steering"]["gradient"]["rho_local"])
+row("Natural global slope", R["A"]["steering"]["natural_slope"], lambda e: e["steering"]["natural_slope"])
+row("Natural local slope", R["A"]["steering"]["local_slope"], lambda e: e["steering"]["local_slope"])
+row("Layer-1 probe R^2", None, lambda e: e["steering_layer1"]["probe_r2"])
+row("Layer-1 rho_local (probe)", None, lambda e: e["steering_layer1"]["probe"]["rho_local"])
+row("Layer-1 rho_local (gradient)", None, lambda e: e["steering_layer1"]["gradient"]["rho_local"])
 out.append("")
 out.append("Analytic A: " + json.dumps(R["analytic_A"]))
 
@@ -61,6 +68,19 @@ for n, d in R["coverage"].items():
         a30 = ms([x["persistence"]["d_avoid"][i30] for x in lst]); a50 = ms([x["persistence"]["d_avoid"][i50] for x in lst])
         out.append("| %s | %s | %.4f ± %.4f | %.4f ± %.4f | %.3f ± %.3f | %.3f ± %.3f |" % (n, T, *e, *rm, *a30, *a50))
 out.append("A avoid lag30 %.3f lag50 %.3f" % (R["A"]["persistence"]["d_avoid"][i30], R["A"]["persistence"]["d_avoid"][i50]))
+# ---- Table 4: bottleneck + layer-1 steering
+out.append("\n| BottleMLP code dim b | eps | probe R2 | rho probe | rho gradient | rho_local probe | rho_local gradient |\n|---|---|---|---|---|---|---|")
+for b, lst in R["bottleneck"].items():
+    f = lambda k: ms([k(x) for x in lst])
+    out.append("| %s | %.4f ± %.4f | %.3f ± %.3f | %.3f ± %.3f | %.3f ± %.3f | %.3f ± %.3f | %.3f ± %.3f |" % (b,
+        *f(lambda x: x["fidelity"]["eps"]), *f(lambda x: x["steering"]["probe_r2"]),
+        *f(lambda x: x["steering"]["probe"]["rho"]), *f(lambda x: x["steering"]["gradient"]["rho"]),
+        *f(lambda x: x["steering"]["probe"]["rho_local"]), *f(lambda x: x["steering"]["gradient"]["rho_local"])))
+out.append("\n| Mimic | layer-1 probe R2 | layer-1 rho probe | layer-1 rho gradient |\n|---|---|---|---|")
+for n in NAMES:
+    f = lambda k: ms([k(e) for e in R[n]])
+    out.append("| %s | %.3f ± %.3f | %.3f ± %.3f | %.3f ± %.3f |" % (n, *f(lambda e: e["steering_layer1"]["probe_r2"]),
+        *f(lambda e: e["steering_layer1"]["probe"]["rho"]), *f(lambda e: e["steering_layer1"]["gradient"]["rho"])))
 open(os.path.join(RES, "tables.md"), "w").write("\n".join(out) + "\n")
 print("\n".join(out))
 
@@ -91,17 +111,19 @@ for ax, key, yl in [(axs[0], "d_report", "report response (shock - no shock)"),
 axs[1].legend(fontsize=7, frameon=False)
 fig.tight_layout(); fig.savefig(os.path.join(RES, "fig2_persistence.png"), dpi=150)
 
-# ---- Figure 3: coupling rho
-fig, ax = plt.subplots(figsize=(6, 3.4))
-xs = np.arange(4); w = 0.35
-for j, dn in enumerate(["probe", "gradient"]):
-    vals = [R["A"]["steering"][dn]["rho"]] + [ms([e["steering"][dn]["rho"] for e in R[n]])[0] for n in NAMES]
-    errs = [0] + [ms([e["steering"][dn]["rho"] for e in R[n]])[1] for n in NAMES]
-    ax.bar(xs + (j - .5) * w, vals, w, yerr=errs, capsize=3, label="%s direction" % dn,
-           color=["#7a7a7a", "#b0b0b0"][j], edgecolor="k")
+# ---- Figure 3: coupling rho_local, two layers x two directions
+fig, ax = plt.subplots(figsize=(7, 3.4))
+xs = np.arange(4); w = 0.2
+specs = [("steering", "probe", "layer 2, probe dir"), ("steering", "gradient", "layer 2, gradient dir"),
+         ("steering_layer1", "probe", "layer 1, probe dir"), ("steering_layer1", "gradient", "layer 1, gradient dir")]
+cols = ["#4d4d4d", "#a0a0a0", "#2a7ab9", "#9ecae1"]
+for j, (key, dn, lab) in enumerate(specs):
+    vals = [R["A"]["steering"][dn]["rho_local"]] + [ms([e[key][dn]["rho_local"] for e in R[n]])[0] for n in NAMES]
+    errs = [0] + [ms([e[key][dn]["rho_local"] for e in R[n]])[1] for n in NAMES]
+    ax.bar(xs + (j - 1.5) * w, vals, w, yerr=errs, capsize=2, label=lab, color=cols[j], edgecolor="k", lw=.5)
 ax.axhline(1, color="k", lw=.8, ls=":"); ax.axhline(0, color="k", lw=.8)
 ax.set_xticks(xs); ax.set_xticklabels(["A", "Window\n(shared)", "Window\n(split)", "GRU"])
-ax.set_ylabel(r"coupling $\rho$ (steered / natural slope)"); ax.legend(fontsize=8, frameon=False)
+ax.set_ylabel(r"coupling $\rho_{local}$"); ax.set_ylim(-0.1, 1.35); ax.legend(fontsize=7, frameon=False, ncol=2, loc="upper right")
 fig.tight_layout(); fig.savefig(os.path.join(RES, "fig3_coupling.png"), dpi=150)
 
 # ---- Figure 4: coverage
@@ -113,4 +135,16 @@ for T, lst in R["coverage"]["GRU"].items():
     ax.errorbar(lags, C.mean(0), yerr=C.std(0), color=cm[T], ls="--", marker=".", capsize=2, label="GRU, train horizon %s" % T)
 ax.set_xlabel("lag since shock"); ax.set_ylabel("avoidance response"); ax.grid(alpha=.3); ax.legend(fontsize=7, frameon=False)
 fig.tight_layout(); fig.savefig(os.path.join(RES, "fig4_coverage.png"), dpi=150)
+# ---- Figure 5: bottleneck
+fig, ax = plt.subplots(figsize=(6, 3.4))
+bs = list(R["bottleneck"].keys())
+for dn, k, c, ls in [("probe", "rho", "#555555", "--"), ("gradient", "rho", "#b0b0b0", "--"),
+                     ("probe", "rho_local", "#555555", "-"), ("gradient", "rho_local", "#b0b0b0", "-")]:
+    M = [ms([x["steering"][dn][k] for x in R["bottleneck"][b]]) for b in bs]
+    ax.errorbar(range(len(bs)), [m[0] for m in M], yerr=[m[1] for m in M], marker="o", color=c, ls=ls, capsize=3,
+                label="%s dir, %s" % (dn, "global norm." if k == "rho" else "matched-level norm."))
+ax.axhline(1, color="k", ls=":", lw=.8); ax.axhline(0, color="k", lw=.8)
+ax.set_xticks(range(len(bs))); ax.set_xticklabels(bs); ax.set_xlabel("dimension b of history code")
+ax.set_ylabel(r"coupling $\rho$"); ax.legend(fontsize=8, frameon=False); ax.grid(alpha=.3)
+fig.tight_layout(); fig.savefig(os.path.join(RES, "fig5_bottleneck.png"), dpi=150)
 print("figures written")

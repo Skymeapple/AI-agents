@@ -61,7 +61,7 @@ json.dump(slopes, open(os.path.join(R, "slopes_da_z.json"), "w"), indent=1)
 print("slopes d(da_z)/d(rho):", {k: (round(v[0], 3), round(v[1], 3)) for k, v in slopes.items()})
 
 # ---------- Figure 1: cross-channel effect vs rho_est ----------
-fig, axes = plt.subplots(1, 3, figsize=(10.5, 3.3))
+fig, axes = plt.subplots(1, 3, figsize=(10.5, 3.7))
 for ax, q, title in zip(axes, ["dr_z", "da_z", "delayed_da_z"],
                         ["Report shift (immediate)", "Action shift (immediate)", "Action shift (3 steps later)"]):
     for w in ORDER:
@@ -74,8 +74,9 @@ for ax, q, title in zip(axes, ["dr_z", "da_z", "delayed_da_z"],
     ax.set_xlabel(r"cue–situation correlation in estimation set, $\rho_{est}$")
     ax.axhline(0, color="#c3c2b7", lw=1)
 axes[0].set_ylabel("shift (SD of logit) per unit steer")
-axes[2].legend(frameon=False, fontsize=7.5, loc="upper left")
-fig.tight_layout()
+h, l = axes[2].get_legend_handles_labels()
+fig.legend(h, l, frameon=False, fontsize=8, loc="lower center", ncol=6)
+fig.tight_layout(rect=(0, 0.08, 1, 1))
 fig.savefig(os.path.join(R, "fig1_cross_channel_vs_rho.png"), dpi=180)
 
 # ---------- Figure 2: GI vs behavioural ground truth ----------
@@ -117,3 +118,25 @@ ax.set_title("Prop. 1: lines = closed form, dots = Monte Carlo", fontsize=9, loc
 ax.legend(frameon=False, fontsize=7)
 fig.tight_layout()
 fig.savefig(os.path.join(R, "fig3_theory_check.png"), dpi=180)
+
+# ---------- Robustness table (GRU-32, LSTM-64) ----------
+rp = os.path.join(R, "robustness_raw.json")
+if os.path.exists(rp):
+    rob = json.load(open(rp))
+    rk = ["conflict_follow_mood", "probe_mood", "probe_mood_hidden", "GI"]
+    L = ["| arch | world | " + " | ".join(rk) + " | da_z@rho0 | da_z@rho0.6 | delayed_da_z@rho0.6 |", "|---" * (len(rk) + 5) + "|"]
+    allx, ally = [], []
+    for a in ("gru32", "lstm64"):
+        for wd in ("D", "X50", "G", "M"):
+            rs = [r for r in rob if r["arch"] == a and r["world"] == wd]
+            cells = [f"{ms([r[k] for r in rs])[0]:.3f} ± {ms([r[k] for r in rs])[1]:.3f}" for k in rk]
+            for q, rho in (("da_z", 0.0), ("da_z", 0.6), ("delayed_da_z", 0.6)):
+                v = [[s[q] for s in r["sweep"] if s["rho"] == rho][0] for r in rs]
+                cells.append(f"{ms(v)[0]:.3f} ± {ms(v)[1]:.3f}")
+            L.append(f"| {a} | {wd} | " + " | ".join(cells) + " |")
+            if wd != "M":
+                allx += [r["conflict_follow_mood"] for r in rs]; ally += [r["GI"] for r in rs]
+    L.append(f"\nGI vs conflict_follow_mood (non-M, n={len(allx)}): pearson r = {np.corrcoef(allx, ally)[0,1]:.4f}, "
+             f"MAE = {np.abs(np.array(allx) - np.array(ally)).mean():.4f}")
+    open(os.path.join(R, "table_robustness.md"), "w").write("\n".join(L) + "\n")
+    print("\n".join(L))

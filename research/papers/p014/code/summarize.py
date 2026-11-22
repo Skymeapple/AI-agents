@@ -98,11 +98,13 @@ if ps:
             ax.text(xi, m + 0.02, f"{100*m:.0f}", ha="center", va="bottom", fontsize=8, color=INK)
     orc = [agg(nm, ["iid", "oracle_mec_labelorder_acc"])[0] for nm, _ in ps]
     ax.plot(x - w/2, orc, "o--", color=GRAY, ms=5, lw=1.2, label="MEC + label-order oracle (i.i.d.)")
+    unif = [agg(nm, ["iid", "oracle_mec_uniform_acc"])[0] for nm, _ in ps]
+    ax.plot(x - w/2, unif, "D:", color=AQUA, ms=5, lw=1.2, label="MEC-uniform oracle (observational limit)")
     ax.axhline(0.5, color=INK, lw=1, ls=":")
-    ax.text(len(ps) - 0.5, 0.505, "twin bound 1/2", ha="right", va="bottom", fontsize=8)
+    ax.text(-0.55, 0.47, "twin bound 1/2", ha="left", va="top", fontsize=8)
     ax.set_xticks(x, [f"p = {p}" for _, p in ps])
     ax.set_xlabel("probability that variable labels follow causal order (training & i.i.d. test)")
-    ax.set_ylabel("accuracy"); ax.set_ylim(0, 1.12)
+    ax.set_ylabel("accuracy"); ax.set_ylim(0, 1.25)
     ax.legend(loc="upper left", fontsize=8, frameon=False)
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig1_iid_vs_twin.png"), dpi=200); plt.close(fig)
 
@@ -151,3 +153,17 @@ if bars:
     ax.legend(loc="lower right", fontsize=8, frameon=False)
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig3_regimes.png"), dpi=200); plt.close(fig)
 print("figures written")
+
+# ---------------------------------------------------------------- ceiling capture
+cap = ["", "Ceiling capture kappa = (2 acc - 1) / (2 LR_ceiling - 1), per seed then mean:", "",
+       "| Model | probe | kappa per seed | mean |", "|---|---|---|---|"]
+for nm in order:
+    for probe in ["twins_matched", "twins_laplace"]:
+        ks = []
+        for d in runs.get(nm, []):
+            if probe in d and d[probe]["oracle_ceiling"] > 0.55:
+                ks.append((2 * d[probe]["twin_acc"] - 1) / (2 * d[probe]["oracle_ceiling"] - 1))
+        if ks:
+            cap.append(f"| {nm} | {probe} | {', '.join(f'{k:.3f}' for k in ks)} | {np.mean(ks):.3f} |")
+open(os.path.join(R, "summary_table.md"), "a").write("\n".join(cap) + "\n")
+print("\n".join(cap))

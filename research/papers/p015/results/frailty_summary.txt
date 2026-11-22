@@ -1,0 +1,57 @@
+                            alias  k_marg_cloglog  k_cond_taskonly_cloglog  k_cond_cloglog  sig_task_cloglog  sig_fam_cloglog  LR_RE_vs_fixed_cloglog  b_marg_logit  b_cond_logit
+          Claude 3 Opus (Inspect)           0.526                    1.219           1.082             1.332            1.687                 185.053         0.837         1.600
+Claude 3.5 Sonnet (New) (Inspect)           0.482                    1.228           1.245             2.108            1.588                 235.138         0.685         1.789
+Claude 3.5 Sonnet (Old) (Inspect)           0.504                    1.439           1.165             1.740            1.590                 206.723         0.780         1.717
+      Claude 3.7 Sonnet (Inspect)           0.608                    1.639           1.643             2.622            2.540                 250.886         0.791         2.280
+          Claude 4 Opus (Inspect)           0.627                    1.503           1.483             2.618            2.033                 338.569         0.810         2.002
+        Claude 4.1 Opus (Inspect)           0.705                    1.835           2.073             3.279            2.314                 202.501         0.910         3.043
+        Claude Opus 4.5 (Inspect)           0.635                    2.225           2.491             5.596            3.963                 277.847         0.754         3.206
+        Claude Opus 4.6 (Inspect)           0.505                    1.879           1.657             4.195            3.704                 479.871         0.558         2.533
+                       GPT-4 0314           0.646                    1.374           1.377             1.387            1.405                 225.195         0.975         2.072
+             GPT-4 1106 (Inspect)           0.603                    1.442           1.410             1.717            1.594                 171.240         0.904         2.107
+            GPT-4 Turbo (Inspect)           0.652                    1.485           1.446             1.840            1.197                 143.493         1.054         2.152
+                 GPT-4o (Inspect)           0.514                    1.086           0.970             1.317            1.299                 146.526         0.889         1.441
+                  GPT-5 (Inspect)           0.666                    1.619           2.022             3.031            2.206                 221.618         0.838         2.854
+      GPT-5.1-Codex-Max (Inspect)           0.765                    1.904           1.981             2.398            2.784                 340.204         0.945         2.766
+                          GPT-5.2           0.725                    2.124           1.980             3.698            3.540                 259.750         0.853         2.788
+                    GPT-5.3-Codex           0.635                    1.623           1.382             3.830            3.179                 539.630         0.726         2.014
+                     Gemini 3 Pro           0.730                    2.018           2.053             2.017            3.600                 212.215         0.924         2.834
+                     o1 (Inspect)           0.612                    1.204           1.181             1.731            1.498                 151.949         0.818         1.639
+                       o1-preview           0.613                    1.045           1.040             1.210            0.989                 242.931         0.914         1.519
+                     o3 (Inspect)           0.785                    1.644           1.691             2.116            2.247                 157.906         1.035         2.384
+
+median k_marg 0.631; median k_cond 1.464; agents with k_cond > k_marg: 20/20
+median sigma_total 3.201
+median LR stat RE vs fixed 223.4 (min 143.5)
+
+pass@k validation: mean signed and abs error across agents
+      emp  pred_frailty  pred_homog  err_frailty  err_homog
+k                                                          
+1  0.6516        0.6538      0.6556       0.0022     0.0040
+2  0.6919        0.6936      0.7591       0.0017     0.0671
+3  0.7122        0.7103      0.8041      -0.0019     0.0919
+4  0.7260        0.7202      0.8304      -0.0057     0.1045
+     ae_f    ae_h
+k                
+1  0.0135  0.0053
+2  0.0125  0.0671
+3  0.0105  0.0919
+4  0.0100  0.1045
+
+Projections for most capable agents (extrapolated beyond 30h max task length)
+                    alias              length      T  P_marginal_frailty  P_typical_task  frac_tasks_p_ge_0p8  frac_tasks_p_ge_0p5  frac_tasks_p_le_0p05  pass8_frailty  P_homog_weibull  pass8_homog
+Claude Opus 4.5 (Inspect)     8h (1 work-day)  480.0               0.444           0.212                0.391                0.454                 0.461          0.528            0.420        0.987
+Claude Opus 4.5 (Inspect)   40h (1 work-week) 2400.0               0.234           0.000                0.192                0.240                 0.689          0.301            0.090        0.529
+Claude Opus 4.5 (Inspect) 160h (1 work-month) 9600.0               0.111           0.000                0.084                0.113                 0.840          0.154            0.003        0.024
+Claude Opus 4.6 (Inspect)     8h (1 work-day)  480.0               0.531           0.696                0.465                0.546                 0.353          0.633            0.568        0.999
+Claude Opus 4.6 (Inspect)   40h (1 work-week) 2400.0               0.349           0.005                0.285                0.359                 0.540          0.447            0.280        0.927
+Claude Opus 4.6 (Inspect) 160h (1 work-month) 9600.0               0.216           0.000                0.165                0.221                 0.694          0.294            0.077        0.473
+                  GPT-5.2     8h (1 work-day)  480.0               0.466           0.409                0.393                0.480                 0.407          0.578            0.463        0.993
+                  GPT-5.2   40h (1 work-week) 2400.0               0.244           0.000                0.186                0.250                 0.650          0.336            0.084        0.506
+                  GPT-5.2 160h (1 work-month) 9600.0               0.113           0.000                0.077                0.114                 0.820          0.171            0.001        0.009
+            GPT-5.3-Codex     8h (1 work-day)  480.0               0.585           0.830                0.514                0.603                 0.289          0.697            0.455        0.992
+            GPT-5.3-Codex   40h (1 work-week) 2400.0               0.414           0.178                0.340                0.427                 0.456          0.528            0.112        0.613
+            GPT-5.3-Codex 160h (1 work-month) 9600.0               0.277           0.000                0.212                0.284                 0.609          0.377            0.005        0.040
+             Gemini 3 Pro     8h (1 work-day)  480.0               0.369           0.094                0.282                0.381                 0.479          0.502            0.345        0.966
+             Gemini 3 Pro   40h (1 work-week) 2400.0               0.136           0.000                0.086                0.136                 0.770          0.217            0.032        0.228
+             Gemini 3 Pro 160h (1 work-month) 9600.0               0.038           0.000                0.019                0.037                 0.925          0.070            0.000        0.001

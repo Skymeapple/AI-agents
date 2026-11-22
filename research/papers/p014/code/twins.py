@@ -205,7 +205,7 @@ def main():
         loss = lossf(net(F, G, O), Y)
         opt.zero_grad(); loss.backward(); opt.step(); sched.step()
         if step % 200 == 0:
-            curve.append((step, float(loss)))
+            curve.append((step, float(loss.detach())))
     train_time = time.time() - t0
     net.eval()
     mect = S.MECTable()

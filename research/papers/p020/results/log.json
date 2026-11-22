@@ -1,0 +1,77 @@
+{
+ "C_spearman_across_temperature": {
+  "2": {
+   "r_T_orig_mean": -0.22727272727272727,
+   "r_T_G_within": -0.2545454545454546,
+   "r_T_distinct_within": -0.30000000000000004,
+   "r_T_replicate_floor": 0.9636363636363637,
+   "r_T_I_model_star": -0.9272727272727275,
+   "p_T_orig_mean": 0.501535667604937,
+   "p_T_G_within": 0.45003657688882837,
+   "p_T_distinct_within": 0.37008312228206763,
+   "p_T_replicate_floor": 1.8520398640703137e-06,
+   "p_T_I_model_star": 3.973774256558546e-05
+  },
+  "3": {
+   "r_T_orig_mean": 0.3280190742563077,
+   "r_T_G_within": -0.6181818181818182,
+   "r_T_distinct_within": -0.5083256380785536,
+   "r_T_replicate_floor": 0.9818181818181818,
+   "r_T_I_model_star": -0.9363636363636365,
+   "p_T_orig_mean": 0.3247272070692977,
+   "p_T_G_within": 0.04264556980532674,
+   "p_T_distinct_within": 0.11036189255465287,
+   "p_T_replicate_floor": 8.403066433955256e-08,
+   "p_T_I_model_star": 2.2082076449177507e-05
+  }
+ },
+ "E_rating_welch": {
+  "2": {
+   "human": 1.4616759776536312,
+   "llm": 1.5090818858560795,
+   "t": 2.129368456479566,
+   "p": 0.03400441667842003
+  },
+  "3": {
+   "human": 2.0706606606606606,
+   "llm": 2.2007954545454544,
+   "t": 6.778164186508064,
+   "p": 5.882361906627309e-11
+  }
+ },
+ "descriptive": {
+  "1": {
+   "human_agents": 219,
+   "llm_sequences": 439,
+   "human_mean_len": 18.159817351598175,
+   "llm_mean_len": 19.0,
+   "human_agents_ge10": 211,
+   "llm_seq_ge10": 439,
+   "n_categories": 15,
+   "human_orig": null,
+   "llm_orig": null
+  },
+  "2": {
+   "human_agents": 220,
+   "llm_sequences": 440,
+   "human_mean_len": 14.818181818181818,
+   "llm_mean_len": 17.529545454545456,
+   "human_agents_ge10": 179,
+   "llm_seq_ge10": 403,
+   "n_categories": 26,
+   "human_orig": 1.5192024539877302,
+   "llm_orig": 1.647374562427071
+  },
+  "3": {
+   "human_agents": 220,
+   "llm_sequences": 440,
+   "human_mean_len": 15.059090909090909,
+   "llm_mean_len": 18.795454545454547,
+   "human_agents_ge10": 185,
+   "llm_seq_ge10": 440,
+   "n_categories": 28,
+   "human_orig": 2.1193538647342995,
+   "llm_orig": 2.2571480406386066
+  }
+ }
+}

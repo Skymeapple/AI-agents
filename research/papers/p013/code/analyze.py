@@ -26,6 +26,19 @@ P(f"Capacity estimate alpha_h = max certified bits/param over runs: {alpha}")
 allmax = [r['best']['cert_bits'] / r['P'] for r in A1]
 P(f"Certified bits/param across all A1 runs: median {np.median(allmax):.2f}, max {np.max(allmax):.2f}")
 
+# robustness: recompute certified bits with a one-sided 95% Clopper-Pearson upper bound on eps
+from scipy.stats import beta as _beta
+from common import certified_bits
+def eps_ucb(e, n=200000):
+    x = round(e * n)
+    return 1.0 if x >= n else float(_beta.ppf(0.95, x + 1, n - x))
+cp = collections.defaultdict(list)
+for r in A1:
+    best = max(certified_bits(c['g'], r['cfg']['k'], eps_ucb(c['eps']), r['cfg']['V']) for c in r['curve'])
+    cp[r['cfg']['h']].append(best / r['P'])
+P("Robustness (95% Clopper-Pearson upper bound on eps): max certified bits/param " +
+  ", ".join(f"h={h}: {np.max(v):.2f} (median {np.median(v):.2f})" for h, v in sorted(cp.items())))
+
 # zero-hallucination test: largest recall with NO false accept among 200k fresh keys
 P("\nZero-observed-false-accept operating points (eps_hat=0 of 200k => eps<1.5e-5 @95%):")
 zrows = collections.defaultdict(list)
@@ -34,6 +47,17 @@ for r in A1:
     zrows[(r['cfg']['h'], r['cfg']['k'])].append(max(zs) if zs else 0)
 for key in sorted(zrows):
     P(f"h={key[0]} k={key[1]}: max g with zero FP = {max(zrows[key])} ({max(zrows[key])/key[1]:.3f} of k); median over runs {np.median(zrows[key]):.0f}")
+
+# efficiency of trained nets vs. the bound as a function of filter strength f
+P("\nCertified bits/param achieved vs filter strength f=log2(1/eps) (A1, max over runs in bin; only points with g>=50):")
+for h in [32, 64]:
+    bins = [(0, 0.5), (0.5, 1), (1, 2), (2, 3), (3, 4), (4, 6), (6, 9)]
+    row = []
+    for lo, hi in bins:
+        v = [c['cert_bits'] / r['P'] for r in A1 if r['cfg']['h'] == h for c in r['curve']
+             if c['g'] >= 50 and lo <= math.log2(1 / max(c['eps'], 3 / 200000)) < hi]
+        row.append(f"[{lo},{hi}): {max(v):.2f}" if v else f"[{lo},{hi}): -")
+    P(f"h={h}: " + "; ".join(row))
 
 P("\n== Experiment A2: value-entropy sweep (k=2048, h=32, bit-output head) ==")
 P("H bits | P    | max cert bits/param (mean over w,seeds) | best | value-bits share at best point")

@@ -98,6 +98,13 @@ if __name__ == '__main__':
         f = np.array(d['f']); kn = np.array(d['knowledge']); hl = np.array(d['halluc'])
         sel = [0, 20, 40, 80, 160]
         P(key + ": " + "; ".join(f"f={f[i]:.0f}: know={kn[i]:.4f}, h={hl[i]:.2e}" for i in sel))
+
+    P("\nTable T6: share of capacity spent on the abstention filter, f*/(H+f*), at C=1e9")
+    P("s   H  | " + " | ".join(f"lam={l}" for l in [1, 3, 9, 30, 100]))
+    for s_ in [1.1, 1.5, 2.0]:
+        for H_ in [4, 10, 20]:
+            rr = [r for r in rows if r['s'] == s_ and r['H'] == H_ and r['C'] == 1e9 and r['lam'] in (1, 3, 9, 30, 100)]
+            P(f"{s_} {H_:<3}| " + " | ".join(f"{r['f']/(H_+r['f']):.2f}" for r in rr))
     open('../results/theory_tables.txt', 'w').write("\n".join(lines))
 
     # ---- figures

@@ -1,0 +1,7 @@
+Design: 228 tasks, 1368 runs (Claude 4 Opus TH1.1 lengths and run counts); 30 reps
+                       k_true      sig_true      k_marg             H        k_cond        sig_hat       
+                         mean  std     mean  std   mean    std   mean    std   mean    std    mean    std
+scenario                                                                                                 
+A: frailty, k=1          1.00  0.0      2.5  0.0  0.459  0.037  0.581  0.053  1.000  0.107   2.487  0.317
+B: homogeneous, k=0.63   0.63  0.0      0.0  0.0  0.640  0.034  0.020  0.029  0.646  0.033   0.078  0.100
+C: empirical, k=1.5      1.50  0.0      3.2  0.0  0.553  0.050  0.649  0.047  1.468  0.179   3.068  0.376

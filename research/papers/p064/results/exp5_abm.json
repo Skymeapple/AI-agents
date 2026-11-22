@@ -1,0 +1,96 @@
+{
+ "D0=500|extensive x=0.19": {
+  "senior_ratio": {
+   "median": 13.0,
+   "p10": 6.600000000000001,
+   "p90": 22.80000000000001,
+   "share_detected_within_30y": 0.97,
+   "share_detected_within_10y": 0.37
+  },
+  "entrant_rate": {
+   "median": 4.0,
+   "p10": 2.0,
+   "p90": 10.0,
+   "share_detected_within_30y": 0.46,
+   "share_detected_within_10y": 0.42
+  },
+  "cohort_completion": {
+   "median": 15.0,
+   "p10": 7.6000000000000005,
+   "p90": 29.400000000000002,
+   "share_detected_within_30y": 0.13,
+   "share_detected_within_10y": 0.05
+  }
+ },
+ "D0=500|intensive d=0.17": {
+  "senior_ratio": {
+   "median": 12.0,
+   "p10": 5.0,
+   "p90": 24.80000000000001,
+   "share_detected_within_30y": 0.97,
+   "share_detected_within_10y": 0.4
+  },
+  "entrant_rate": {
+   "median": 8.0,
+   "p10": 8.0,
+   "p90": 8.0,
+   "share_detected_within_30y": 0.01,
+   "share_detected_within_10y": 0.01
+  },
+  "cohort_completion": {
+   "median": 12.0,
+   "p10": 8.0,
+   "p90": 30.0,
+   "share_detected_within_30y": 0.64,
+   "share_detected_within_10y": 0.27
+  }
+ },
+ "D0=5000|extensive x=0.19": {
+  "senior_ratio": {
+   "median": 7.0,
+   "p10": 4.0,
+   "p90": 10.0,
+   "share_detected_within_30y": 1.0,
+   "share_detected_within_10y": 0.95
+  },
+  "entrant_rate": {
+   "median": 2.0,
+   "p10": 1.0,
+   "p90": 3.0,
+   "share_detected_within_30y": 1.0,
+   "share_detected_within_10y": 1.0
+  },
+  "cohort_completion": {
+   "median": 20.0,
+   "p10": 10.4,
+   "p90": 34.5,
+   "share_detected_within_30y": 0.18,
+   "share_detected_within_10y": 0.02
+  }
+ },
+ "D0=5000|intensive d=0.17": {
+  "senior_ratio": {
+   "median": 8.0,
+   "p10": 5.0,
+   "p90": 10.0,
+   "share_detected_within_30y": 1.0,
+   "share_detected_within_10y": 0.92
+  },
+  "entrant_rate": {
+   "median": 3.0,
+   "p10": 3.0,
+   "p90": 3.0,
+   "share_detected_within_30y": 0.01,
+   "share_detected_within_10y": 0.01
+  },
+  "cohort_completion": {
+   "median": 8.0,
+   "p10": 7.0,
+   "p90": 9.0,
+   "share_detected_within_30y": 1.0,
+   "share_detected_within_10y": 0.98
+  }
+ },
+ "kernel_formula_max_abs_err_D5000": 0.003565627954923309,
+ "kernel_vs_fixedtau_max_diff": 0.008460740820916975
+}

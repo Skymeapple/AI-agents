@@ -29,7 +29,7 @@ for kind, col in [('seen', '#2c7fb8'), ('unseenfact', '#c0392b')]:
     ax[0].plot(xs, acc, 'o-', c=col, label=f'accuracy ({lab})'); ax[0].plot(xs, msp, 's--', c=col, label=f'confidence ({lab})')
     ax[1].plot(xs, mi, 'o-', c=col, label=lab)
 for a_ in ax: a_.set_xscale('log'); a_.set_xlabel('entity training count (familiarity)'); a_.spines[['top', 'right']].set_visible(False)
-ax[0].set_ylabel('rate'); ax[0].legend(fontsize=7, frameon=False); ax[0].set_title('Familiarity raises confidence, not knowledge', fontsize=9)
+ax[0].set_ylabel('rate'); ax[0].legend(fontsize=7, frameon=False); ax[0].set_title('Never-seen facts get high confidence at every familiarity level', fontsize=9)
 ax[1].set_ylabel('ensemble mutual information'); ax[1].legend(fontsize=7, frameon=False); ax[1].set_title('Ensemble disagreement vs familiarity', fontsize=9)
 plt.tight_layout(); plt.savefig(f'{OUT}/fig_familiarity.png', dpi=160); plt.close()
 # ---- E1 sweep

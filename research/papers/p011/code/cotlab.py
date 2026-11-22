@@ -9,6 +9,7 @@ Sequence layout (6 positions):  [a, b, c, SEP, s, ANS]
 Ground-truth regimes are enforced with attention masks (applied in every layer):
   * 'reliant' : positions 4,5 may attend only to {2,4,5}  -> a,b reach y ONLY through the CoT token s
   * 'posthoc' : position 5 may not attend to position 4    -> y is causally independent of the CoT token
+  * 'reliant_strict': as 'reliant' and position 2 attends only to itself (closes the a,b -> c-position leak)
   * 'free'    : ordinary causal mask                       -> the model chooses its own mechanism
 Training-distribution knobs for 'free' models:
   * eta   : probability the CoT token in a training sequence is replaced by a uniformly random value
@@ -73,6 +74,14 @@ class TinyTF(nn.Module):
             for i in (4, 5):
                 m[i] = False
                 for j in (2, 4, 5):
+                    if j <= i:
+                        m[i, j] = True
+        elif regime == "reliant_strict":
+            # as 'reliant', and additionally position 2 (c) may attend only to itself, closing the
+            # leak a,b -> c-position -> CoT/ANS that exists under the 'reliant' mask
+            for i in (2, 4, 5):
+                m[i] = False
+                for j in ((2,) if i == 2 else (2, 4, 5)):
                     if j <= i:
                         m[i, j] = True
         elif regime == "posthoc":

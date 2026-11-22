@@ -129,7 +129,7 @@ def e3():
         res[f"w_target_vs_kappa_beta={beta}"] = dict(kappa=ks.tolist(), w=dp)
         ax[1].plot(ks, dp, "o-", color=col, ms=3, label=f"beta={beta}")
     ax[1].set_xlabel("retained engagement kappa (guardrail strength)"); ax[1].set_ylabel("w_95")
-    ax[1].set_title("(b) Guardrails substitute for proctoring (q=0.9)", fontsize=10)
+    ax[1].set_title("(b) Partial guardrails raise required proctoring (q=0.9)", fontsize=10)
     ax[1].set_ylim(-0.03, 1.03); ax[1].legend(frameon=False, fontsize=8)
     for a in ax: a.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(os.path.join(OUT, "fig3_wstar.png"), dpi=160); plt.close(fig)

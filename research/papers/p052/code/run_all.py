@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from testbed import (ReferenceAgent, WinMLP, SplitMLP, GRUMimic, BottleMLP, sample_episodes,
                      train_mimic, run_agent, report_gradient_direction, LAM, G, B0, B1)
 
-torch.set_num_threads(4)
+torch.set_num_threads(int(os.environ.get("NTHREADS", "2")))
 RES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
 os.makedirs(RES, exist_ok=True)
 SEEDS = [1, 2, 3, 4, 5]
@@ -127,6 +127,15 @@ def test_steering(agent, A, rng, n=2000, delta=0.45, target=0.5):
     xb = controlled_episodes(500, 12, [], rng); set_probe(xb, 11, delta)
     l0, r0, h0 = run_agent(agent, xb)
     out = {"natural_slope": nat_slope, "probe_r2": probe_r2}
+    # matched-level (local) natural slope: natural trajectories whose report is near the
+    # unsteered baseline vs near baseline + target (robust to logit saturation, Sec. 5.6)
+    rb = float(r0[:, 11].mean()); hw = 0.08
+    lo = np.abs(Rn - rb) < hw; hi = np.abs(Rn - (rb + target)) < hw
+    if lo.sum() > 10 and hi.sum() > 10:
+        loc_slope = float((Ln[hi].mean() - Ln[lo].mean()) / (Rn[hi].mean() - Rn[lo].mean()))
+    else:
+        loc_slope = float("nan")
+    out["local_slope"] = loc_slope; out["n_local"] = [int(lo.sum()), int(hi.sum())]
     scale = float(np.sqrt((Hn.var(0)).sum()))
     for dn, u in dirs.items():
         found = None
@@ -138,9 +147,10 @@ def test_steering(agent, A, rng, n=2000, delta=0.45, target=0.5):
                 dl = (l1[:, 11] - l0[:, 11]).mean()
                 found = dict(alpha_over_scale=float(a / scale), d_report=float(dr),
                              d_logit=float(dl), slope=float(dl / dr),
-                             rho=float((dl / dr) / nat_slope))
+                             rho=float((dl / dr) / nat_slope),
+                             rho_local=float((dl / dr) / loc_slope))
                 break
-        out[dn] = found if found else dict(rho=float("nan"), note="report never reached target")
+        out[dn] = found if found else dict(rho=float("nan"), rho_local=float("nan"), note="report never reached target")
     return out
 
 
@@ -226,7 +236,7 @@ def main():
         for Ttr in [12, 24, 48]:
             lst = []
             for sd in SEEDS[:3]:
-                m = train_mimic(cls, A, 200 + sd, T_train=Ttr, epochs=EPOCHS * Ttr // 12)  # equal gradient steps
+                m = train_mimic(cls, A, 200 + sd, T_train=Ttr, epochs=EPOCHS, bs=max(16, 256 * 12 // Ttr))  # equal data, equal gradient steps
                 rr = np.random.default_rng(sd + 900)
                 x = sample_episodes(1500, 48, rr); la, ra, _ = A.forward(x); lm, rm, _ = run_agent(m, x)
                 eps48 = float(bkl(sig(la), sig(lm)).mean())

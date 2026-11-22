@@ -1,0 +1,41 @@
+{
+ "takeaway": "The radar measured GitHub through its API for the first time: 2,045 readings, exact counts, and the registry grew from 213 to 1,191 apps. The newest fast mover is DeepSeek's own agent repo, 4,615 stars on its first day.",
+ "findings": [
+  {
+   "id": "api",
+   "heading": "GitHub measured by API for the first time",
+   "text": "The topic search returned 2,045 readings and the remaining repos on the recheck list were re-read with exact counts. A fifth of the evidence behind the top 25 is now the radar's own API measurement, up from none.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-01.md"
+  },
+  {
+   "id": "deepseek",
+   "heading": "DeepSeek's agent repo: 4,615 stars on day one",
+   "text": "deepseek-ai/dsh-superagent-prototype, 'Towards a More Autonomous Agent System', was created on Oct 31 and has 426 forks.",
+   "source": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+  },
+  {
+   "id": "scorecard",
+   "heading": "Seventh forecast: a weaker week",
+   "text": "The Oct 25 ranking scored a rank correlation of 0.61 and got 40% of its top 15 right (73% the day before). It ranked apps on gains stated days earlier and missed the design skills and claude-mem that took off after it.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-01.md"
+  },
+  {
+   "id": "t3code",
+   "heading": "t3code accelerates for a fourth day",
+   "text": "pingdotgg/t3code gained 3,163 stars in a day (33,060 to 36,223), after 320, 849 and 971.",
+   "source": "https://github.com/pingdotgg/t3code"
+  },
+  {
+   "id": "unslop",
+   "heading": "Design skills keep coming",
+   "text": "heydamir/unslop, a Claude skill that turns AI-looking UI into a designed interface, reached 3,979 stars three days after it was created.",
+   "source": "https://github.com/heydamir/unslop"
+  }
+ ],
+ "caveats": [
+  "Repos found by the API bring raw GitHub topics as tags, so today's direction table (236 directions) and its 83 rule hypotheses are mostly noise.",
+  "About 168 repos came in through generic search terms that are now filtered out; they stay in the registry, low in the ranking.",
+  "Seven matured forecasts are still a small sample; the tuner's bar keeps noise-sized gains from moving any setting.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

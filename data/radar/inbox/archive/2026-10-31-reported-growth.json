@@ -1,0 +1,25 @@
+{
+ "collected_at": "2026-10-31",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "MiniMax",
+    "url": "https://www.minimax.io",
+    "kind": "product",
+    "description": "Chinese model maker behind Hailuo AI video, Talkie and an open API platform.",
+    "tags": [
+     "foundation-model",
+     "video-generation",
+     "voice"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 800000000,
+   "observed_on": "2026-08-26",
+   "source_url": "https://www.edgen.tech/news/post/minimax-w-revenue-jumps-283-as-arr-tops-800-million",
+   "method": "reported",
+   "note": "Company-wide figure from MiniMax's mid-year 2026 earnings call (Aug 26, 2026). Coverage says annual recurring revenue 'for August was above $800 million' and 'exceeding $800 million in August' (a lower bound). The source names the month but not a period end date, so this is dated to the call date, Aug 26. No gross/net basis was stated, so no basis is set. The same coverage gives a '>400% within six months' figure, but an outlet computed it against the $150M February level, so it isn't recorded. The H1 revenue +283.1% figure is already recorded. Search-result summary only; the page was not read (WebFetch could not resolve substack hosts, so no more fetches were tried)."
+  }
+ ]
+}

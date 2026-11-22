@@ -1,0 +1,36 @@
+{
+ "collected_at": "2026-11-14",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "AlphaPai",
+    "url": "https://www.rabyte.cn",
+    "kind": "product",
+    "description": "AI-native investment research assistant and workstation (PaiWork, PaiMeeting) for professional investors, built by Shanghai-based Rabyte Technology.",
+    "tags": ["finance-ai", "research-assistant", "ai-agents"]
+   },
+   "metric": "users",
+   "value": 120000,
+   "observed_on": "2026-09-15",
+   "source_url": "https://www.prnewswire.com/apac/news-releases/alphapai-raises-us50-million-in-series-b-funding-as-financial-ai-moves-into-the-depths-of-professional-work-302878485.html",
+   "method": "reported",
+   "note": "Company press release (PR Newswire, Hong Kong, Sept. 15, 2026) announcing a US$50M Series B: 'Today it serves more than 120,000 professional users across over 8,000 financial institutions and asset managers'. Dated to the Sept 15 release, where the figure first appears; the Nov 13, 2026 Hong Kong FinTech Week release (https://www.prnewswire.com/apac/news-releases/alphapai-launches-its-ai-native-investment-research-platform-for-global-markets-at-hong-kong-fintech-week-302937786.html) repeats the same figure for the 'China-market product' and is not a new reading. No basis set: 'professional users' does not say monthly, weekly or registered (the boilerplate says 'has served', which may be cumulative). 'More than' makes it a floor. Both pages read with Tavily extract. App URL is the maker's official site (rabyte.cn lists Alpha派); no separate product domain was confirmed."
+  },
+  {
+   "app": {
+    "name": "Mercor",
+    "url": "https://mercor.com",
+    "kind": "product",
+    "description": "AI data company whose network of domain experts builds evaluations and post-training data for frontier labs and enterprises.",
+    "tags": ["ai-data", "evals", "post-training"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 3000000000,
+   "observed_on": "2026-11-10",
+   "source_url": "https://www.linkedin.com/posts/brendan-foody-2995ab10b_we-raised-our-750-million-series-d-at-a-activity-7525950240416366592-Aa7f",
+   "method": "reported",
+   "note": "Co-founder and CEO Brendan Foody's own LinkedIn post announcing the $750M Series D at a $20B valuation: 'Mercor scaled from $1M to $3B in run-rate revenue in 27 months, the fastest in history to $3B.' Named company executive, first-hand. The page shows only relative times; dated to the Nov 10, 2026 Series D announcement date (Business Wire release of that date; search metadata dates the post Nov 10). The Business Wire release itself gives no revenue figure. No basis set: the post does not say gross or net (commentators argue it is gross billings; that is not company-stated). The 27-month and 6-month windows are not recorded as growth. Page read with Tavily extract (advanced)."
+  }
+ ]
+}

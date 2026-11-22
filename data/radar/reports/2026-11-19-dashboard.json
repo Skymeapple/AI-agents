@@ -1,0 +1,40 @@
+{
+ "takeaway": "A new lift-over-chance column explains the weak like-for-like scores: the radar now picks leaders 18-43 times better than chance, against 1.6-3.7 times in October; it orders them less well. Perplexity crossed $1B ARR, and Tencent's WorkBuddy passed 10 million daily users.",
+ "findings": [
+  {
+   "id": "lift",
+   "heading": "Forecasts pick leaders 18-43x better than chance",
+   "text": "Lift (top-15 hit rate over random picks) is comparable across pool sizes: October 1.6-3.7x, Nov 2-12 18-43x. The lower top-100 Spearman since November reflects a narrow band of leaders, not worse pools: random 100-app samples score 0.82-0.86.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-19-analysis.md"
+  },
+  {
+   "id": "perplexity",
+   "heading": "Perplexity: $1B ARR",
+   "text": "CEO Aravind Srinivas said Perplexity crossed $1B ARR, revealed on Nov 16.",
+   "source": "https://x.com/AravSrinivas/status/2122734422445445629"
+  },
+  {
+   "id": "workbuddy",
+   "heading": "Tencent WorkBuddy: over 10 million daily users",
+   "text": "Tencent's Q3 release reports over 10 million daily active users for WorkBuddy; on the call, its Q3 revenue was over 5x the previous quarter.",
+   "source": "https://www.prnewswire.com/apac/news-releases/tencent-announces-2026-third-quarter-results-302943839.html"
+  },
+  {
+   "id": "humyn",
+   "heading": "Humyn Labs: over $50M annualised revenue",
+   "text": "Humyn Labs' Series A release says it surpassed $50M in annualised revenue; a TechCrunch interview gives a smaller figure.",
+   "source": "https://humynlabs.ai/blog/humyn-labs-raises-usd-47m-in-series-a"
+  },
+  {
+   "id": "bughunter",
+   "heading": "Claude-BugHunter keeps accelerating",
+   "text": "The bug-hunting skill bundle gained 1,721 stars in a day, to 11,555, up from 1,548 a day.",
+   "source": "https://github.com/elementalsouls/Claude-BugHunter"
+  }
+ ],
+ "caveats": [
+  "Top-100 ordering of the Nov 8-12 forecasts slid from 0.52 to 0.13 while lift held at 29-37x; the cause is still open.",
+  "Tencent's $500M annualized WorkMate figure was not recorded: the transcript's product name could not be confirmed as WorkBuddy.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "takeaway": "The first forecast built on the radar's own API measurements was tested on 478 apps and scored a rank correlation of 0.71, equal to its best; its top 15 held 5 real leaders, about ten times chance. A fake-repo campaign that had been feeding the radar's search terms was caught and removed.",
+ "findings": [
+  {
+   "id": "scorecard",
+   "heading": "First API-era forecast: 0.71 across 478 apps",
+   "text": "The Nov 1 ranking was compared on 478 apps, 4 to 10 times more than earlier forecasts. Rank correlation 0.71; 5 of its top 15 were real top-15 growers, where random picks would average about 0.5.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-08.md"
+  },
+  {
+   "id": "campaign",
+   "heading": "A fake-repo campaign removed",
+   "text": "53 near-identically named 'rpocket-team' and 'resocket' repos (game cheats, Windows tweakers, clones) had entered through search terms mined from their own clusters; several already return 404. They are now out of scope and the search terms are reset.",
+   "source": "https://github.com/boardshogunfluctuate/capri-ai"
+  },
+  {
+   "id": "atlassian",
+   "heading": "Atlassian's Rovo MCP server: 2M+ monthly users",
+   "text": "Atlassian's shareholder letter reports over 2 million monthly active users of its Rovo MCP server. Read from search results.",
+   "source": "https://www.atlassian.com/blog/company-news/shareholder-letter-q1fy27"
+  },
+  {
+   "id": "cooling",
+   "heading": "Measured leaders cool",
+   "text": "Cloudflare's security-audit skill gained 1,607 stars (after 2,300), OpenMausBot 1,485 (after 1,999) and t3code 1,384; the DeepSeek Harness phone client dsh-Go leads at 14,918.",
+   "source": "https://github.com/ccch1mneyyy/dsh-Go"
+  }
+ ],
+ "caveats": [
+  "From Nov 1 the scorecard compares hundreds of apps, so precision@15 reads lower even when the ranking improves; compare it with chance (15 divided by the apps compared).",
+  "52 repos from a fake-repo campaign are now left out of the ranking; their observations are kept.",
+  "Company figures today come from search-result summaries.",
+  "Hugging Face and Hacker News remain unreachable from the cloud environment."
+ ]
+}

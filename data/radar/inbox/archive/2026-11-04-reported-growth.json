@@ -1,0 +1,24 @@
+{
+ "collected_at": "2026-11-04",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Applied Compute",
+    "url": "https://www.appliedcompute.com",
+    "kind": "product",
+    "description": "Platform founded by former OpenAI researchers for training (reinforcement learning) and serving custom AI models for enterprises.",
+    "tags": [
+     "ai-infrastructure",
+     "enterprise-agent"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 100000000,
+   "observed_on": "2026-11-02",
+   "source_url": "https://www.appliedcompute.com/company/100m-run-rate-fundraise",
+   "method": "reported",
+   "note": "Company announcement 'Applied Compute hits $100M run rate and raises $350M' (dated Nov 2, 2026), with the round at a $3.25B valuation led by Elad Gil. Search summaries of the post say the company went 'from zero to a $100 million run rate in less than 18 months'; SiliconANGLE (Nov 3, https://siliconangle.com/2026/11/03/ai-cloud-startup-applied-compute-raises-350m-after-reaching-key-revenue-milestone/) says its 'annualized recurring revenue has passed $100 million' and that the startup 'announced the deal on Monday' (Nov 2). A threshold. No period end date is given, so this is dated to the Nov 2 announcement. Revenue type (gross/net/contracted) not stated, so no basis is set. Company-reported, unaudited. Search-result snippets only; neither page was read (WebFetch was stopped after ENOTFOUND on techcrunch.com and blog.mean.ceo)."
+  }
+ ]
+}

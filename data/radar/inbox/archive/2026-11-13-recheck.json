@@ -1,0 +1,79 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-13",
+ "observations": [
+  {
+   "app": {
+    "name": "thea2026/image-to-video",
+    "url": "https://huggingface.co/spaces/thea2026/image-to-video",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 1107,
+   "observed_on": "2026-11-13",
+   "source_url": "https://huggingface.co/api/spaces/thea2026/image-to-video",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "mradermacher/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-GGUF",
+    "url": "https://huggingface.co/mradermacher/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-GGUF",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "gguf",
+     "text-generation-inference",
+     "unsloth"
+    ]
+   },
+   "metric": "likes",
+   "value": 10,
+   "observed_on": "2026-11-13",
+   "source_url": "https://huggingface.co/api/models/mradermacher/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "HAL-X-AI/THX-02",
+    "url": "https://huggingface.co/HAL-X-AI/THX-02",
+    "kind": "model",
+    "tags": [
+     "zero-shot-classification",
+     "thx02",
+     "safetensors",
+     "decision-model",
+     "classification"
+    ]
+   },
+   "metric": "likes",
+   "value": 54,
+   "observed_on": "2026-11-13",
+   "source_url": "https://huggingface.co/api/models/HAL-X-AI/THX-02",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "hexgrad/Kokoro-82M",
+    "url": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "kind": "model",
+    "tags": [
+     "text-to-speech",
+     "text-to-speech",
+     "en"
+    ]
+   },
+   "metric": "likes",
+   "value": 7406,
+   "observed_on": "2026-11-13",
+   "source_url": "https://huggingface.co/api/models/hexgrad/Kokoro-82M",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

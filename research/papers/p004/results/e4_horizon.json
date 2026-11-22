@@ -1,0 +1,134 @@
+[
+ {
+  "source": "[measured-ext] 4-epoch repetition ~ fresh data (Muennighoff et al., 2023)",
+  "M": 4.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 2.0
+ },
+ {
+  "source": "[measured-ext] 4-epoch repetition ~ fresh data (Muennighoff et al., 2023)",
+  "M": 4.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.722706232293572
+ },
+ {
+  "source": "[measured-ext] WRAP rephrasing, ~3x pre-training speed-up (Maini et al., 2024)",
+  "M": 3.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 1.5849625007211563
+ },
+ {
+  "source": "[measured-ext] WRAP rephrasing, ~3x pre-training speed-up (Maini et al., 2024)",
+  "M": 3.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.3652123889719705
+ },
+ {
+  "source": "[measured-ext] 1/3 rephrased mix, 5x speed-up to same val. loss, low end (Kang et al., 2025)",
+  "M": 5.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 2.321928094887362
+ },
+ {
+  "source": "[measured-ext] 1/3 rephrased mix, 5x speed-up to same val. loss, low end (Kang et al., 2025)",
+  "M": 5.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.9999999999999998
+ },
+ {
+  "source": "[measured-ext] 1/3 rephrased mix, 10x speed-up, high end (Kang et al., 2025)",
+  "M": 10.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 3.3219280948873626
+ },
+ {
+  "source": "[measured-ext] 1/3 rephrased mix, 10x speed-up, high end (Kang et al., 2025)",
+  "M": 10.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 2.8613531161467862
+ },
+ {
+  "source": "[measured-here] E5 tiny LM, paraphrase saturation at coverage (alpha=1, N0=2000, r=7)",
+  "M": 2.9184482799653693,
+  "growth": "compute 4x/yr",
+  "delay_years": 1.5452015013540776
+ },
+ {
+  "source": "[measured-here] E5 tiny LM, paraphrase saturation at coverage (alpha=1, N0=2000, r=7)",
+  "M": 2.9184482799653693,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.330964128266027
+ },
+ {
+  "source": "[measured-here] E5 tiny LM, largest paraphrase multiplier observed",
+  "M": 3.7548125441370397,
+  "growth": "compute 4x/yr",
+  "delay_years": 1.9087408841990539
+ },
+ {
+  "source": "[measured-here] E5 tiny LM, largest paraphrase multiplier observed",
+  "M": 3.7548125441370397,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.6440999085216266
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.5",
+  "M": 2.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 1.0
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.5",
+  "M": 2.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 0.861353116146786
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.1",
+  "M": 10.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 3.3219280948873626
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.1",
+  "M": 10.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 2.8613531161467862
+ },
+ {
+  "source": "[model] teacher s_g=0.5, learner s=0.1",
+  "M": 5.5,
+  "growth": "compute 4x/yr",
+  "delay_years": 2.4594316186372973
+ },
+ {
+  "source": "[model] teacher s_g=0.5, learner s=0.1",
+  "M": 5.5,
+  "growth": "compute 5x/yr",
+  "delay_years": 2.11843908866317
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.01",
+  "M": 100.0,
+  "growth": "compute 4x/yr",
+  "delay_years": 6.643856189774725
+ },
+ {
+  "source": "[model] source-grounded paraphrase ceiling, s=0.01",
+  "M": 100.0,
+  "growth": "compute 5x/yr",
+  "delay_years": 5.7227062322935724
+ },
+ {
+  "source": "[sourced] stock 1000T (upper end of 90% CI) vs 300T central",
+  "M": 3.3333333333333335,
+  "growth": "compute 4x/yr",
+  "delay_years": 1.7369655941662063
+ },
+ {
+  "source": "[sourced] stock 1000T (upper end of 90% CI) vs 300T central",
+  "M": 3.3333333333333335,
+  "growth": "compute 5x/yr",
+  "delay_years": 1.4961407271748155
+ }
+]

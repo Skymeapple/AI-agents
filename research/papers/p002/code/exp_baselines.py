@@ -204,10 +204,20 @@ def main():
     files = sorted(glob.glob(os.path.join(RES, "walksat_*.npz")))
     jobs = [(f, n, s) for f in files for n in [16, 64] for s in range(10)]
     sjobs = [(li, rep, 16, 5000) for li in range(4) for rep in range(20)]
+    ck_w = os.path.join(RES, "baselines_walksat_rows.pkl"); ck_s = os.path.join(RES, "baselines_synth_rows.pkl")
     with Pool(4) as pool:
-        rows = [r for rr in pool.map(walksat_job, jobs, chunksize=1) for r in rr]
+        if os.path.exists(ck_w):
+            rows = pd.read_pickle(ck_w)
+        else:
+            rows = [r for rr in pool.map(walksat_job, jobs, chunksize=1) for r in rr]
+            pd.to_pickle(rows, ck_w)
         print("walksat done", time.time() - t0, flush=True)
-        rows += [r for rr in pool.map(synth_job, sjobs, chunksize=1) for r in rr]
+        if os.path.exists(ck_s):
+            srows = pd.read_pickle(ck_s)
+        else:
+            srows = [r for rr in pool.map(synth_job, sjobs, chunksize=1) for r in rr]
+            pd.to_pickle(srows, ck_s)
+        rows = rows + srows
     print("synthetic done", time.time() - t0, flush=True)
     df = pd.DataFrame(rows)
     tw = walksat_truth(); ts = synth_truth(16)

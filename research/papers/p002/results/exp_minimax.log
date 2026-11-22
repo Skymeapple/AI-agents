@@ -1,72 +1,129 @@
-16 16 11s [(240, np.float64(0.00684), np.float64(0.09301)), (1000, np.float64(0.00335), np.float64(0.04427)), (10000, np.float64(0.00106), np.float64(0.01378)), (1000000, np.float64(0.00011), np.float64(0.00144))]
-16 24 11s [(240, np.float64(0.00932), np.float64(0.12826)), (1000, np.float64(0.00459), np.float64(0.06123)), (10000, np.float64(0.00146), np.float64(0.01906)), (1000000, np.float64(0.00014), np.float64(0.00199))]
-16 35 13s [(240, np.float64(0.01429), np.float64(0.17824)), (1000, np.float64(0.00748), np.float64(0.0913)), (10000, np.float64(0.00267), np.float64(0.03147)), (1000000, np.float64(0.00039), np.float64(0.0043))]
-16 53 14s [(240, np.float64(0.02743), np.float64(0.2475)), (1000, np.float64(0.01706), np.float64(0.14597)), (10000, np.float64(0.00845), np.float64(0.06693)), (1000000, np.float64(0.0025), np.float64(0.01725))]
-16 116 13s [(240, np.float64(0.07896), np.float64(0.38357)), (1000, np.float64(0.06248), np.float64(0.27964)), (10000, np.float64(0.04443), np.float64(0.1821)), (1000000, np.float64(0.02515), np.float64(0.08886))]
-16 78 14s [(240, np.float64(0.04905), np.float64(0.31663)), (1000, np.float64(0.035), np.float64(0.21064)), (10000, np.float64(0.02128), np.float64(0.11858)), (1000000, np.float64(0.00937), np.float64(0.0446))]
-16 172 14s [(240, np.float64(0.11601), np.float64(0.44042)), (1000, np.float64(0.09757), np.float64(0.34292)), (10000, np.float64(0.07674), np.float64(0.24708)), (1000000, np.float64(0.05154), np.float64(0.14422))]
-16 256 15s [(240, np.float64(0.15685), np.float64(0.47907)), (1000, np.float64(0.13856), np.float64(0.39793)), (10000, np.float64(0.11649), np.float64(0.30844)), (1000000, np.float64(0.08791), np.float64(0.20435))]
-16 380 15s [(240, np.float64(0.19832), np.float64(0.49563)), (1000, np.float64(0.18128), np.float64(0.4425)), (10000, np.float64(0.15942), np.float64(0.36159)), (1000000, np.float64(0.12934), np.float64(0.26251))]
-16 840 12s [(240, np.float64(0.27364), np.float64(0.50011)), (1000, np.float64(0.25946), np.float64(0.49486)), (10000, np.float64(0.23944), np.float64(0.43882)), (1000000, np.float64(0.21316), np.float64(0.36139))]
-16 1248 13s [(240, np.float64(0.30355), np.float64(0.50013)), (1000, np.float64(0.29134), np.float64(0.49956)), (10000, np.float64(0.27478), np.float64(0.46355)), (1000000, np.float64(0.25031), np.float64(0.39882))]
-16 4096 7s [(240, np.float64(0.36214), np.float64(0.50013)), (1000, np.float64(0.35556), np.float64(0.50013)), (10000, np.float64(0.3463), np.float64(0.49941)), (1000000, np.float64(0.332), np.float64(0.46775))]
-16 1855 8s [(240, np.float64(0.32801), np.float64(0.50013)), (1000, np.float64(0.31765), np.float64(0.50011)), (10000, np.float64(0.3038), np.float64(0.48157)), (1000000, np.float64(0.28267), np.float64(0.42853))]
-16 2756 9s [(240, np.float64(0.34733), np.float64(0.50013)), (1000, np.float64(0.33906), np.float64(0.50013)), (10000, np.float64(0.32728), np.float64(0.49406)), (1000000, np.float64(0.30979), np.float64(0.45109))]
-32 32 13s [(240, np.float64(0.00684), np.float64(0.09308)), (1000, np.float64(0.00335), np.float64(0.04434)), (10000, np.float64(0.00106), np.float64(0.01385)), (1000000, np.float64(0.00011), np.float64(0.0015))]
-32 50 17s [(240, np.float64(0.00964), np.float64(0.13277)), (1000, np.float64(0.00475), np.float64(0.06356)), (10000, np.float64(0.00151), np.float64(0.01987)), (1000000, np.float64(0.00015), np.float64(0.00216))]
-32 78 18s [(240, np.float64(0.01643), np.float64(0.19468)), (1000, np.float64(0.00883), np.float64(0.10262)), (10000, np.float64(0.00328), np.float64(0.0373)), (1000000, np.float64(0.00049), np.float64(0.00576))]
-32 464 25s [(240, np.float64(0.14224), np.float64(0.47157)), (1000, np.float64(0.12305), np.float64(0.38449)), (10000, np.float64(0.09931), np.float64(0.29162)), (1000000, np.float64(0.06782), np.float64(0.18457))]
-32 1131 32s [(240, np.float64(0.2342), np.float64(0.49967)), (1000, np.float64(0.21726), np.float64(0.47661)), (10000, np.float64(0.19461), np.float64(0.40438)), (1000000, np.float64(0.16045), np.float64(0.31258))]
-32 4304 32s [(240, np.float64(0.3338), np.float64(0.50013)), (1000, np.float64(0.32344), np.float64(0.50012)), (10000, np.float64(0.30928), np.float64(0.48685)), (1000000, np.float64(0.27384), np.float64(0.43711))]
-32 2756 35s [(240, np.float64(0.3075), np.float64(0.50013)), (1000, np.float64(0.29482), np.float64(0.49984)), (10000, np.float64(0.27744), np.float64(0.46841)), (1000000, np.float64(0.24942), np.float64(0.40586))]
-32 6720 39s [(240, np.float64(0.35379), np.float64(0.50013)), (1000, np.float64(0.34572), np.float64(0.50013)), (10000, np.float64(0.33425), np.float64(0.49778)), (1000000, np.float64(0.31454), np.float64(0.45981))]
-32 16384 43s [(240, np.float64(0.37885), np.float64(0.50013)), (1000, np.float64(0.37397), np.float64(0.50013)), (10000, np.float64(0.36749), np.float64(0.50013)), (1000000, np.float64(0.35515), np.float64(0.48582))]
-32 10493 47s [(240, np.float64(0.36842), np.float64(0.50013)), (1000, np.float64(0.36212), np.float64(0.50013)), (10000, np.float64(0.35323), np.float64(0.50001)), (1000000, np.float64(0.33799), np.float64(0.47536))]
-64 64 124s [(240, np.float64(0.00684), np.float64(0.0932)), (1000, np.float64(0.00335), np.float64(0.04445)), (10000, np.float64(0.00106), np.float64(0.01396)), (1000000, np.float64(0.00011), np.float64(0.00162))]
-64 105 163s [(240, np.float64(0.01006), np.float64(0.13857)), (1000, np.float64(0.00497), np.float64(0.06668)), (10000, np.float64(0.00158), np.float64(0.02101)), (1000000, np.float64(0.00016), np.float64(0.00243))]
-64 2048 180s [(240, np.float64(0.22234), np.float64(0.49925)), (1000, np.float64(0.20455), np.float64(0.46906)), (10000, np.float64(0.18073), np.float64(0.39408)), (1000000, np.float64(0.14457), np.float64(0.30076))]
-64 3360 155s [(240, np.float64(0.26846), np.float64(0.50011)), (1000, np.float64(0.25275), np.float64(0.49479)), (10000, np.float64(0.23132), np.float64(0.43808)), (1000000, np.float64(0.19717), np.float64(0.36008))]
-64 5513 159s [(240, np.float64(0.30622), np.float64(0.50013)), (1000, np.float64(0.29329), np.float64(0.49984)), (10000, np.float64(0.27501), np.float64(0.46861)), (1000000, np.float64(0.24504), np.float64(0.40663))]
-64 9045 171s [(240, np.float64(0.33541), np.float64(0.50013)), (1000, np.float64(0.32514), np.float64(0.50012)), (10000, np.float64(0.31043), np.float64(0.48857)), (1000000, np.float64(0.28519), np.float64(0.44043))]
-64 14839 160s [(240, np.float64(0.35667), np.float64(0.50013)), (1000, np.float64(0.34893), np.float64(0.50013)), (10000, np.float64(0.33768), np.float64(0.49877)), (1000000, np.float64(0.3176), np.float64(0.46477))]
-64 39945 121s [(240, np.float64(0.382), np.float64(0.50013)), (1000, np.float64(0.37806), np.float64(0.50013)), (10000, np.float64(0.37214), np.float64(0.50013)), (1000000, np.float64(0.35952), np.float64(0.48962))]
-64 65536 126s [(240, np.float64(0.38886), np.float64(0.50013)), (1000, np.float64(0.38438), np.float64(0.50013)), (10000, np.float64(0.38051), np.float64(0.50013)), (1000000, np.float64(0.37196), np.float64(0.49497))]
-multiprocessing.pool.RemoteTraceback: 
-"""
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-                    ~~~~^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/home/user/AI-agents/research/papers/p002/code/exp_minimax.py", line 118, in job
-    up = bernstein_estimator(g, n, M, p, Bu, pv, Bv)
-  File "/home/user/AI-agents/research/papers/p002/code/exp_minimax.py", line 78, in bernstein_estimator
-    prob.solve(solver="CLARABEL")
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/cvxpy/problems/problem.py", line 687, in solve
-    return solve_func(self, *args, **kwargs)
-  File "/usr/local/lib/python3.13/site-packages/cvxpy/problems/problem.py", line 1148, in _solve
-    self.unpack_results(solution, solving_chain, inverse_data)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/cvxpy/problems/problem.py", line 1453, in unpack_results
-    raise error.SolverError(
-    ...<2 lines>...
-            "information.")
-cvxpy.error.SolverError: Solver 'CLARABEL' failed. Try another solver, or solve with verbose=True for more information.
-"""
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/user/AI-agents/research/papers/p002/code/exp_minimax.py", line 172, in <module>
-    main()
-    ~~~~^^
-  File "/home/user/AI-agents/research/papers/p002/code/exp_minimax.py", line 130, in main
-    out = pool.map(job, jobs, chunksize=1)
-  File "/usr/local/lib/python3.13/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/usr/local/lib/python3.13/multiprocessing/pool.py", line 774, in get
-    raise self._value
-cvxpy.error.SolverError: Solver 'CLARABEL' failed. Try another solver, or solve with verbose=True for more information.
+64 64 67s [(240, np.float64(0.03451), np.float64(0.08726), 'unbiased'), (1000, np.float64(0.01694), np.float64(0.04313), 'unbiased'), (10000, np.float64(0.00536), np.float64(0.01384), 'unbiased'), (100000, np.float64(0.00169), np.float64(0.00455), 'unbiased'), (1000000, np.float64(0.00054), np.float64(0.00162), 'unbiased')]
+64 83 77s [(240, np.float64(0.04031), np.float64(0.10746), 'hoeffding_lp'), (1000, np.float64(0.02015), np.float64(0.05299), 'hoeffding_lp'), (10000, np.float64(0.00645), np.float64(0.01727), 'hoeffding_lp'), (100000, np.float64(0.00205), np.float64(0.00553), 'hoeffding_lp'), (1000000, np.float64(0.00065), np.float64(0.00197), 'hoeffding_lp')]
+64 109 84s [(240, np.float64(0.04781), np.float64(0.13853), 'hoeffding_lp'), (1000, np.float64(0.02463), np.float64(0.0674), 'hoeffding_lp'), (10000, np.float64(0.00811), np.float64(0.02169), 'hoeffding_lp'), (100000, np.float64(0.00261), np.float64(0.00713), 'hoeffding_lp'), (1000000, np.float64(0.00083), np.float64(0.00252), 'hoeffding_lp')]
+64 184 75s [(240, np.float64(0.07323), np.float64(0.21522), 'hoeffding_lp'), (1000, np.float64(0.0416), np.float64(0.11774), 'hoeffding_lp'), (10000, np.float64(0.01664), np.float64(0.05228), 'hoeffding_lp'), (100000, np.float64(0.00678), np.float64(0.02267), 'hoeffding_lp'), (1000000, np.float64(0.00283), np.float64(0.0108), 'hoeffding_lp')]
+64 141 90s [(240, np.float64(0.05825), np.float64(0.17353), 'hoeffding_lp'), (1000, np.float64(0.03068), np.float64(0.08979), 'hoeffding_lp'), (10000, np.float64(0.01073), np.float64(0.03048), 'hoeffding_lp'), (100000, np.float64(0.00368), np.float64(0.01121), 'hoeffding_lp'), (1000000, np.float64(0.00126), np.float64(0.00409), 'hoeffding_lp')]
+64 240 81s [(240, np.float64(0.09093), np.float64(0.25936), 'hoeffding_lp'), (1000, np.float64(0.05614), np.float64(0.15199), 'hoeffding_lp'), (10000, np.float64(0.02621), np.float64(0.08282), 'hoeffding_lp'), (100000, np.float64(0.01268), np.float64(0.03999), 'hoeffding_lp'), (1000000, np.float64(0.00634), np.float64(0.02348), 'hoeffding_lp')]
+64 312 87s [(240, np.float64(0.10982), np.float64(0.30338), 'hoeffding_lp'), (1000, np.float64(0.07308), np.float64(0.19397), 'hoeffding_lp'), (10000, np.float64(0.03896), np.float64(0.11927), 'hoeffding_lp'), (100000, np.float64(0.02168), np.float64(0.0655), 'hoeffding_lp'), (1000000, np.float64(0.01268), np.float64(0.04216), 'hoeffding_lp')]
+64 529 84s [(240, np.float64(0.15642), np.float64(0.37255), 'hoeffding_lp'), (1000, np.float64(0.11903), np.float64(0.27528), 'hoeffding_lp'), (10000, np.float64(0.07946), np.float64(0.20155), 'hoeffding_lp'), (100000, np.float64(0.05499), np.float64(0.13774), 'hoeffding_lp'), (1000000, np.float64(0.03891), np.float64(0.10468), 'hoeffding_lp')]
+64 406 93s [(240, np.float64(0.12974), np.float64(0.34126), 'hoeffding_lp'), (1000, np.float64(0.09344), np.float64(0.23405), 'hoeffding_lp'), (10000, np.float64(0.0571), np.float64(0.15887), 'hoeffding_lp'), (100000, np.float64(0.03619), np.float64(0.09936), 'hoeffding_lp'), (1000000, np.float64(0.02355), np.float64(0.07053), 'hoeffding_lp')]
+64 689 87s [(240, np.float64(0.18263), np.float64(0.40361), 'hoeffding_lp'), (1000, np.float64(0.14532), np.float64(0.31191), 'hoeffding_lp'), (10000, np.float64(0.10412), np.float64(0.24218), 'hoeffding_lp'), (100000, np.float64(0.07713), np.float64(0.17653), 'hoeffding_lp'), (1000000, np.float64(0.05829), np.float64(0.14118), 'hoeffding_lp')]
+64 897 78s [(240, np.float64(0.20762), np.float64(0.43844), 'hoeffding_lp'), (1000, np.float64(0.17126), np.float64(0.34454), 'hoeffding_lp'), (10000, np.float64(0.12985), np.float64(0.28138), 'hoeffding_lp'), (100000, np.float64(0.10145), np.float64(0.21894), 'hoeffding_lp'), (1000000, np.float64(0.08082), np.float64(0.18173), 'hoeffding_lp')]
+64 1169 93s [(240, np.float64(0.23078), np.float64(0.45091), 'hoeffding_lp'), (1000, np.float64(0.19619), np.float64(0.37448), 'hoeffding_lp'), (10000, np.float64(0.15569), np.float64(0.32116), 'hoeffding_lp'), (100000, np.float64(0.12712), np.float64(0.25681), 'hoeffding_lp'), (1000000, np.float64(0.10506), np.float64(0.2213), 'hoeffding_lp')]
+64 1982 98s [(240, np.float64(0.27053), np.float64(0.48315), 'hoeffding_lp'), (1000, np.float64(0.24095), np.float64(0.43987), 'hoeffding_lp'), (10000, np.float64(0.20465), np.float64(0.37984), 'hoeffding_lp'), (100000, np.float64(0.17771), np.float64(0.33075), 'hoeffding_lp'), (1000000, np.float64(0.15608), np.float64(0.29412), 'hoeffding_lp')]
+64 2580 85s [(240, np.float64(0.28653), np.float64(0.49235), 'modulus'), (1000, np.float64(0.26008), np.float64(0.46236), 'hoeffding_lp'), (10000, np.float64(0.22643), np.float64(0.40194), 'hoeffding_lp'), (100000, np.float64(0.20139), np.float64(0.3637), 'hoeffding_lp'), (1000000, np.float64(0.18083), np.float64(0.32742), 'hoeffding_lp')]
+64 4376 80s [(240, np.float64(0.31234), np.float64(0.49207), 'modulus'), (1000, np.float64(0.29153), np.float64(0.48047), 'hoeffding_lp'), (10000, np.float64(0.26433), np.float64(0.43603), 'hoeffding_lp'), (100000, np.float64(0.24327), np.float64(0.41463), 'hoeffding_lp'), (1000000, np.float64(0.22497), np.float64(0.38282), 'hoeffding_lp')]
+64 3360 99s [(240, np.float64(0.3007), np.float64(0.49081), 'modulus'), (1000, np.float64(0.27702), np.float64(0.47396), 'hoeffding_lp'), (10000, np.float64(0.24664), np.float64(0.4206), 'hoeffding_lp'), (100000, np.float64(0.22328), np.float64(0.39349), 'hoeffding_lp'), (1000000, np.float64(0.20363), np.float64(0.35692), 'hoeffding_lp')]
+64 5698 95s [(240, np.float64(0.32186), np.float64(0.49448), 'modulus'), (1000, np.float64(0.30401), np.float64(0.49744), 'hoeffding_lp'), (10000, np.float64(0.2801), np.float64(0.44894), 'hoeffding_lp'), (100000, np.float64(0.26091), np.float64(0.43377), 'modulus'), (1000000, np.float64(0.24463), np.float64(0.40431), 'hoeffding_lp')]
+64 7420 102s [(240, np.float64(0.32948), np.float64(0.49822), 'modulus'), (1000, np.float64(0.31436), np.float64(0.49954), 'modulus'), (10000, np.float64(0.29354), np.float64(0.4596), 'hoeffding_lp'), (100000, np.float64(0.27686), np.float64(0.4494), 'hoeffding_lp'), (1000000, np.float64(0.26103), np.float64(0.42387), 'hoeffding_lp')]
+64 9662 100s [(240, np.float64(0.33544), np.float64(0.49903), 'modulus'), (1000, np.float64(0.32296), np.float64(0.49885), 'modulus'), (10000, np.float64(0.305), np.float64(0.47254), 'hoeffding_lp'), (100000, np.float64(0.28996), np.float64(0.46091), 'hoeffding_lp'), (1000000, np.float64(0.27685), np.float64(0.43941), 'hoeffding_lp')]
+64 12582 88s [(240, np.float64(0.34), np.float64(0.49968), 'modulus'), (1000, np.float64(0.32984), np.float64(0.49932), 'modulus'), (10000, np.float64(0.31455), np.float64(0.48827), 'hoeffding_lp'), (100000, np.float64(0.30191), np.float64(0.46855), 'hoeffding_lp'), (1000000, np.float64(0.28924), np.float64(0.45406), 'hoeffding_lp')]
+32 32 23s [(240, np.float64(0.03451), np.float64(0.08714), 'unbiased'), (1000, np.float64(0.01694), np.float64(0.04301), 'unbiased'), (10000, np.float64(0.00536), np.float64(0.01372), 'unbiased'), (100000, np.float64(0.00169), np.float64(0.00444), 'unbiased'), (1000000, np.float64(0.00054), np.float64(0.0015), 'unbiased')]
+32 40 29s [(240, np.float64(0.03942), np.float64(0.10313), 'hoeffding_lp'), (1000, np.float64(0.01964), np.float64(0.05061), 'hoeffding_lp'), (10000, np.float64(0.00628), np.float64(0.01618), 'hoeffding_lp'), (100000, np.float64(0.00199), np.float64(0.00524), 'hoeffding_lp'), (1000000, np.float64(0.00063), np.float64(0.00178), 'hoeffding_lp')]
+64 1522 472s [(240, np.float64(0.25184), np.float64(0.46525), 'hoeffding_lp'), (1000, np.float64(0.21948), np.float64(0.40132), 'hoeffding_lp'), (10000, np.float64(0.18085), np.float64(0.3529), 'hoeffding_lp'), (100000, np.float64(0.15279), np.float64(0.29408), 'hoeffding_lp'), (1000000, np.float64(0.10229), np.float64(0.25862), 'hoeffding_lp')]
+32 51 33s [(240, np.float64(0.04586), np.float64(0.13292), 'hoeffding_lp'), (1000, np.float64(0.02342), np.float64(0.06225), 'hoeffding_lp'), (10000, np.float64(0.00765), np.float64(0.02007), 'hoeffding_lp'), (100000, np.float64(0.00245), np.float64(0.0065), 'hoeffding_lp'), (1000000, np.float64(0.00078), np.float64(0.0022), 'hoeffding_lp')]
+64 16384 111s [(240, np.float64(0.3432), np.float64(0.50002), 'modulus'), (1000, np.float64(0.3354), np.float64(0.49932), 'modulus'), (10000, np.float64(0.3226), np.float64(0.4901), 'hoeffding_lp'), (100000, np.float64(0.31135), np.float64(0.47484), 'hoeffding_lp'), (1000000, np.float64(0.30157), np.float64(0.46664), 'hoeffding_lp')]
+32 64 44s [(240, np.float64(0.0538), np.float64(0.16026), 'hoeffding_lp'), (1000, np.float64(0.02811), np.float64(0.07895), 'hoeffding_lp'), (10000, np.float64(0.00961), np.float64(0.02677), 'hoeffding_lp'), (100000, np.float64(0.00319), np.float64(0.0087), 'hoeffding_lp'), (1000000, np.float64(0.00105), np.float64(0.00302), 'hoeffding_lp')]
+32 81 44s [(240, np.float64(0.06586), np.float64(0.19382), 'hoeffding_lp'), (1000, np.float64(0.03611), np.float64(0.10223), 'hoeffding_lp'), (10000, np.float64(0.01354), np.float64(0.03637), 'modulus'), (100000, np.float64(0.00514), np.float64(0.01385), 'modulus'), (1000000, np.float64(0.002), np.float64(0.00555), 'modulus')]
+32 102 49s [(240, np.float64(0.08016), np.float64(0.22859), 'hoeffding_lp'), (1000, np.float64(0.04725), np.float64(0.13145), 'hoeffding_lp'), (10000, np.float64(0.02036), np.float64(0.05086), 'modulus'), (100000, np.float64(0.00908), np.float64(0.02359), 'modulus'), (1000000, np.float64(0.0042), np.float64(0.01203), 'modulus')]
+32 161 40s [(240, np.float64(0.11253), np.float64(0.30865), 'hoeffding_lp'), (1000, np.float64(0.07581), np.float64(0.19898), 'hoeffding_lp'), (10000, np.float64(0.04147), np.float64(0.12557), 'hoeffding_lp'), (100000, np.float64(0.02438), np.float64(0.05691), 'modulus'), (1000000, np.float64(0.01485), np.float64(0.03457), 'modulus')]
+32 128 47s [(240, np.float64(0.09588), np.float64(0.26384), 'hoeffding_lp'), (1000, np.float64(0.06061), np.float64(0.16243), 'hoeffding_lp'), (10000, np.float64(0.02967), np.float64(0.08102), 'modulus'), (100000, np.float64(0.01519), np.float64(0.03742), 'modulus'), (1000000, np.float64(0.0081), np.float64(0.02046), 'modulus')]
+32 203 44s [(240, np.float64(0.1306), np.float64(0.33883), 'hoeffding_lp'), (1000, np.float64(0.09455), np.float64(0.23535), 'hoeffding_lp'), (10000, np.float64(0.0585), np.float64(0.16038), 'hoeffding_lp'), (100000, np.float64(0.03776), np.float64(0.08136), 'modulus'), (1000000, np.float64(0.02517), np.float64(0.05441), 'modulus')]
+32 256 46s [(240, np.float64(0.15404), np.float64(0.37065), 'hoeffding_lp'), (1000, np.float64(0.11702), np.float64(0.26963), 'hoeffding_lp'), (10000, np.float64(0.07818), np.float64(0.19657), 'hoeffding_lp'), (100000, np.float64(0.05435), np.float64(0.12477), 'modulus'), (1000000, np.float64(0.0389), np.float64(0.0776), 'modulus')]
+32 323 45s [(240, np.float64(0.1772), np.float64(0.39406), 'hoeffding_lp'), (1000, np.float64(0.14013), np.float64(0.30501), 'hoeffding_lp'), (10000, np.float64(0.0997), np.float64(0.2329), 'hoeffding_lp'), (100000, np.float64(0.07364), np.float64(0.1674), 'hoeffding_lp'), (1000000, np.float64(0.05576), np.float64(0.13234), 'hoeffding_lp')]
+32 406 44s [(240, np.float64(0.19919), np.float64(0.42399), 'hoeffding_lp'), (1000, np.float64(0.16276), np.float64(0.33272), 'hoeffding_lp'), (10000, np.float64(0.12186), np.float64(0.26698), 'hoeffding_lp'), (100000, np.float64(0.09449), np.float64(0.20321), 'modulus'), (1000000, np.float64(0.07491), np.float64(0.16563), 'hoeffding_lp')]
+32 512 42s [(240, np.float64(0.22022), np.float64(0.44581), 'hoeffding_lp'), (1000, np.float64(0.18509), np.float64(0.36012), 'hoeffding_lp'), (10000, np.float64(0.14463), np.float64(0.30278), 'hoeffding_lp'), (100000, np.float64(0.11671), np.float64(0.23703), 'hoeffding_lp'), (1000000, np.float64(0.09599), np.float64(0.20088), 'hoeffding_lp')]
+32 645 50s [(240, np.float64(0.23961), np.float64(0.4579), 'hoeffding_lp'), (1000, np.float64(0.20624), np.float64(0.38472), 'hoeffding_lp'), (10000, np.float64(0.167), np.float64(0.33367), 'hoeffding_lp'), (100000, np.float64(0.13912), np.float64(0.27123), 'hoeffding_lp'), (1000000, np.float64(0.11776), np.float64(0.23649), 'hoeffding_lp')]
+32 813 41s [(240, np.float64(0.25731), np.float64(0.46788), 'hoeffding_lp'), (1000, np.float64(0.22609), np.float64(0.41514), 'hoeffding_lp'), (10000, np.float64(0.18859), np.float64(0.3592), 'hoeffding_lp'), (100000, np.float64(0.16127), np.float64(0.30317), 'hoeffding_lp'), (1000000, np.float64(0.1398), np.float64(0.26875), 'hoeffding_lp')]
+32 1290 40s [(240, np.float64(0.28725), np.float64(0.4837), 'modulus'), (1000, np.float64(0.26083), np.float64(0.46277), 'hoeffding_lp'), (10000, np.float64(0.228), np.float64(0.40224), 'hoeffding_lp'), (100000, np.float64(0.20342), np.float64(0.364), 'hoeffding_lp'), (1000000, np.float64(0.18296), np.float64(0.32596), 'hoeffding_lp')]
+32 1024 176s [(240, np.float64(0.27318), np.float64(0.48062), 'modulus'), (1000, np.float64(0.2443), np.float64(0.44114), 'hoeffding_lp'), (10000, np.float64(0.20896), np.float64(0.38306), 'hoeffding_lp'), (100000, np.float64(0.18283), np.float64(0.33253), 'hoeffding_lp'), (1000000, np.float64(0.16073), np.float64(0.29931), 'hoeffding_lp')]
+32 1625 183s [(240, np.float64(0.29947), np.float64(0.4865), 'modulus'), (1000, np.float64(0.27567), np.float64(0.47301), 'hoeffding_lp'), (10000, np.float64(0.24542), np.float64(0.41859), 'hoeffding_lp'), (100000, np.float64(0.22245), np.float64(0.38973), 'hoeffding_lp'), (1000000, np.float64(0.15272), np.float64(0.35204), 'hoeffding_lp')]
+32 2048 203s [(240, np.float64(0.30982), np.float64(0.48859), 'modulus'), (1000, np.float64(0.28862), np.float64(0.47897), 'hoeffding_lp'), (10000, np.float64(0.26128), np.float64(0.43262), 'hoeffding_lp'), (100000, np.float64(0.24011), np.float64(0.40979), 'hoeffding_lp'), (1000000, np.float64(0.22101), np.float64(0.37647), 'hoeffding_lp')]
+32 4096 45s [(240, np.float64(0.33207), np.float64(0.49847), 'modulus'), (1000, np.float64(0.3181), np.float64(0.49574), 'modulus'), (10000, np.float64(0.29874), np.float64(0.46206), 'hoeffding_lp'), (100000, np.float64(0.283), np.float64(0.45356), 'hoeffding_lp'), (1000000, np.float64(0.26708), np.float64(0.42912), 'hoeffding_lp')]
+16 16 13s [(240, np.float64(0.03451), np.float64(0.08707), 'unbiased'), (1000, np.float64(0.01694), np.float64(0.04294), 'unbiased'), (10000, np.float64(0.00536), np.float64(0.01365), 'unbiased'), (100000, np.float64(0.00169), np.float64(0.00437), 'unbiased'), (1000000, np.float64(0.00054), np.float64(0.00143), 'unbiased')]
+16 20 14s [(240, np.float64(0.03943), np.float64(0.10046), 'modulus'), (1000, np.float64(0.01965), np.float64(0.05007), 'modulus'), (10000, np.float64(0.00628), np.float64(0.01611), 'hoeffding_lp'), (100000, np.float64(0.00199), np.float64(0.00516), 'hoeffding_lp'), (1000000, np.float64(0.00063), np.float64(0.0017), 'hoeffding_lp')]
+16 24 15s [(240, np.float64(0.04417), np.float64(0.11374), 'modulus'), (1000, np.float64(0.02241), np.float64(0.05774), 'modulus'), (10000, np.float64(0.00727), np.float64(0.01861), 'modulus'), (100000, np.float64(0.00232), np.float64(0.00604), 'modulus'), (1000000, np.float64(0.00074), np.float64(0.00199), 'hoeffding_lp')]
+32 2580 174s [(240, np.float64(0.31863), np.float64(0.4924), 'modulus'), (1000, np.float64(0.30008), np.float64(0.48607), 'hoeffding_lp'), (10000, np.float64(0.27524), np.float64(0.44438), 'hoeffding_lp'), (100000, np.float64(0.256), np.float64(0.42643), 'hoeffding_lp'), (1000000, np.float64(0.239), np.float64(0.39638), 'hoeffding_lp')]
+16 29 14s [(240, np.float64(0.04988), np.float64(0.13041), 'modulus'), (1000, np.float64(0.026), np.float64(0.06754), 'modulus'), (10000, np.float64(0.00869), np.float64(0.02243), 'modulus'), (100000, np.float64(0.00283), np.float64(0.00736), 'modulus'), (1000000, np.float64(0.00091), np.float64(0.00246), 'modulus')]
+16 35 16s [(240, np.float64(0.05836), np.float64(0.1505), 'modulus'), (1000, np.float64(0.03091), np.float64(0.08087), 'modulus'), (10000, np.float64(0.01088), np.float64(0.02873), 'modulus'), (100000, np.float64(0.00385), np.float64(0.01023), 'modulus'), (1000000, np.float64(0.00141), np.float64(0.00383), 'modulus')]
+16 43 15s [(240, np.float64(0.06987), np.float64(0.17615), 'modulus'), (1000, np.float64(0.03933), np.float64(0.10015), 'modulus'), (10000, np.float64(0.01567), np.float64(0.03983), 'modulus'), (100000, np.float64(0.00649), np.float64(0.01646), 'modulus'), (1000000, np.float64(0.00284), np.float64(0.0073), 'modulus')]
+32 3251 174s [(240, np.float64(0.32609), np.float64(0.49692), 'modulus'), (1000, np.float64(0.30984), np.float64(0.49498), 'modulus'), (10000, np.float64(0.28792), np.float64(0.45482), 'hoeffding_lp'), (100000, np.float64(0.27014), np.float64(0.44154), 'hoeffding_lp'), (1000000, np.float64(0.25315), np.float64(0.41387), 'hoeffding_lp')]
+16 53 17s [(240, np.float64(0.08341), np.float64(0.2052), 'modulus'), (1000, np.float64(0.05024), np.float64(0.12413), 'modulus'), (10000, np.float64(0.02276), np.float64(0.05577), 'modulus'), (100000, np.float64(0.01089), np.float64(0.02651), 'modulus'), (1000000, np.float64(0.00554), np.float64(0.01362), 'modulus')]
+16 64 16s [(240, np.float64(0.09664), np.float64(0.23272), 'modulus'), (1000, np.float64(0.06168), np.float64(0.14854), 'modulus'), (10000, np.float64(0.03101), np.float64(0.0738), 'modulus'), (100000, np.float64(0.01655), np.float64(0.03909), 'modulus'), (1000000, np.float64(0.00962), np.float64(0.02228), 'modulus')]
+16 78 17s [(240, np.float64(0.11101), np.float64(0.26194), 'modulus'), (1000, np.float64(0.07484), np.float64(0.17597), 'modulus'), (10000, np.float64(0.04183), np.float64(0.09592), 'modulus'), (100000, np.float64(0.02544), np.float64(0.05587), 'modulus'), (1000000, np.float64(0.01629), np.float64(0.03487), 'modulus')]
+16 95 18s [(240, np.float64(0.12574), np.float64(0.29093), 'modulus'), (1000, np.float64(0.09071), np.float64(0.20424), 'modulus'), (10000, np.float64(0.05633), np.float64(0.12054), 'modulus'), (100000, np.float64(0.03697), np.float64(0.07755), 'modulus'), (1000000, np.float64(0.02539), np.float64(0.05104), 'modulus')]
+16 116 18s [(240, np.float64(0.14592), np.float64(0.32102), 'modulus'), (1000, np.float64(0.10987), np.float64(0.23298), 'modulus'), (10000, np.float64(0.07295), np.float64(0.14731), 'modulus'), (100000, np.float64(0.051), np.float64(0.0991), 'modulus'), (1000000, np.float64(0.03714), np.float64(0.07277), 'modulus')]
+16 141 16s [(240, np.float64(0.16555), np.float64(0.34667), 'modulus'), (1000, np.float64(0.12912), np.float64(0.26055), 'modulus'), (10000, np.float64(0.09066), np.float64(0.17445), 'modulus'), (100000, np.float64(0.0667), np.float64(0.12411), 'modulus'), (1000000, np.float64(0.05092), np.float64(0.09314), 'modulus')]
+16 172 18s [(240, np.float64(0.18509), np.float64(0.37247), 'modulus'), (1000, np.float64(0.14897), np.float64(0.28767), 'modulus'), (10000, np.float64(0.10961), np.float64(0.20241), 'modulus'), (100000, np.float64(0.08423), np.float64(0.15074), 'modulus'), (1000000, np.float64(0.06687), np.float64(0.11812), 'modulus')]
+16 210 19s [(240, np.float64(0.20399), np.float64(0.3881), 'modulus'), (1000, np.float64(0.16852), np.float64(0.31409), 'modulus'), (10000, np.float64(0.12911), np.float64(0.23074), 'modulus'), (100000, np.float64(0.10289), np.float64(0.17848), 'modulus'), (1000000, np.float64(0.08446), np.float64(0.14481), 'modulus')]
+16 256 19s [(240, np.float64(0.22172), np.float64(0.40768), 'modulus'), (1000, np.float64(0.18743), np.float64(0.33742), 'modulus'), (10000, np.float64(0.14848), np.float64(0.25735), 'modulus'), (100000, np.float64(0.12197), np.float64(0.2058), 'modulus'), (1000000, np.float64(0.10293), np.float64(0.17198), 'modulus')]
+16 312 20s [(240, np.float64(0.23827), np.float64(0.45255), 'modulus'), (1000, np.float64(0.20556), np.float64(0.36337), 'modulus'), (10000, np.float64(0.1675), np.float64(0.28313), 'modulus'), (100000, np.float64(0.14119), np.float64(0.23284), 'modulus'), (1000000, np.float64(0.12193), np.float64(0.1992), 'modulus')]
+16 380 22s [(240, np.float64(0.25367), np.float64(0.43964), 'modulus'), (1000, np.float64(0.22258), np.float64(0.38026), 'modulus'), (10000, np.float64(0.18584), np.float64(0.30763), 'modulus'), (100000, np.float64(0.16014), np.float64(0.25907), 'modulus'), (1000000, np.float64(0.14096), np.float64(0.22682), 'modulus')]
+16 464 21s [(240, np.float64(0.2678), np.float64(0.46371), 'modulus'), (1000, np.float64(0.23863), np.float64(0.39867), 'modulus'), (10000, np.float64(0.20364), np.float64(0.33109), 'modulus'), (100000, np.float64(0.17882), np.float64(0.28453), 'modulus'), (1000000, np.float64(0.16), np.float64(0.25312), 'modulus')]
+16 565 22s [(240, np.float64(0.28033), np.float64(0.46639), 'modulus'), (1000, np.float64(0.25323), np.float64(0.41537), 'modulus'), (10000, np.float64(0.22022), np.float64(0.35243), 'modulus'), (100000, np.float64(0.19654), np.float64(0.30893), 'modulus'), (1000000, np.float64(0.17827), np.float64(0.27868), 'modulus')]
+16 689 24s [(240, np.float64(0.2916), np.float64(0.47638), 'modulus'), (1000, np.float64(0.26667), np.float64(0.46756), 'hoeffding_lp'), (10000, np.float64(0.23589), np.float64(0.37576), 'modulus'), (100000, np.float64(0.21347), np.float64(0.33081), 'modulus'), (1000000, np.float64(0.19595), np.float64(0.30277), 'modulus')]
+16 840 22s [(240, np.float64(0.30168), np.float64(0.48447), 'modulus'), (1000, np.float64(0.27887), np.float64(0.44194), 'modulus'), (10000, np.float64(0.25039), np.float64(0.39049), 'modulus'), (100000, np.float64(0.22928), np.float64(0.35187), 'modulus'), (1000000, np.float64(0.21267), np.float64(0.3259), 'modulus')]
+16 1024 17s [(240, np.float64(0.31049), np.float64(0.48823), 'modulus'), (1000, np.float64(0.28984), np.float64(0.46726), 'modulus'), (10000, np.float64(0.26368), np.float64(0.40534), 'modulus'), (100000, np.float64(0.24364), np.float64(0.37056), 'modulus'), (1000000, np.float64(0.22638), np.float64(0.34597), 'modulus')]
+    delta   n        M  k_achievable_grid  k_impossible_grid  k_population_grid  k_achievable_interp  k_impossible_interp  k_population_interp
+0    0.01  16      240                NaN                 16                 78                  NaN                  NaN            94.740393
+1    0.01  16     1000                NaN                 16                 78                  NaN                  NaN            94.740393
+2    0.01  16    10000                NaN                 35                 78                  NaN            32.619105            94.740393
+3    0.01  16   100000               29.0                 53                 78            34.553313            51.200097            94.740393
+4    0.01  16  1000000               43.0                 78                 78            47.783797            64.944174            94.740393
+5    0.01  32      240                NaN                 32                323                  NaN                  NaN           378.058046
+6    0.01  32     1000                NaN                 32                323                  NaN                  NaN           378.058046
+7    0.01  32    10000                NaN                 81                323                  NaN            65.789700           378.058046
+8    0.01  32   100000               64.0                128                323            68.676475           106.452494           378.058046
+9    0.01  32  1000000               81.0                161                323            96.522004           138.634551           378.058046
+10   0.01  64      240                NaN                 64               1169                  NaN                  NaN          1503.352415
+11   0.01  64     1000                NaN                 64               1169                  NaN                  NaN          1503.352415
+12   0.01  64    10000                NaN                141               1169                  NaN           132.166959          1503.352415
+13   0.01  64   100000              109.0                240               1169           132.114838           216.956572          1503.352415
+14   0.01  64  1000000              141.0                312               1169           180.158231           285.211379          1503.352415
+15   0.02  16      240                NaN                 16                116                  NaN                  NaN           121.069662
+16   0.02  16     1000                NaN                 24                116                  NaN            20.494165           121.069662
+17   0.02  16    10000               24.0                 53                116            25.817007            49.301124           121.069662
+18   0.02  16   100000               43.0                 78                116            46.836650            69.819277           121.069662
+19   0.02  16  1000000               53.0                 95                116            61.406643            85.449665           121.069662
+20   0.02  32      240                NaN                 32                406                  NaN                  NaN           482.646735
+21   0.02  32     1000                NaN                 51                406                  NaN            41.002494           482.646735
+22   0.02  32    10000               40.0                102                406            50.798144           100.979213           482.646735
+23   0.02  32   100000               81.0                161                406            94.958007           146.269457           482.646735
+24   0.02  32  1000000              102.0                203                406           126.765338           183.489071           482.646735
+25   0.02  64      240                NaN                 64               1522                  NaN                  NaN          1924.328170
+26   0.02  64     1000                NaN                 83               1522                  NaN            82.088483          1924.328170
+27   0.02  64    10000               83.0                240               1522            98.913289           204.883767          1924.328170
+28   0.02  64   100000              141.0                312               1522           175.487692           299.898550          1924.328170
+29   0.02  64  1000000              184.0                406               1522           227.180259           378.763413          1924.328170
+30   0.05  16      240                NaN                 35                172                  NaN            29.086786           186.505468
+31   0.05  16     1000               16.0                 53                172            19.957272            52.780707           186.505468
+32   0.05  16    10000               43.0                 95                172            49.522523            87.785909           186.505468
+33   0.05  16   100000               64.0                116                172            73.349304           114.576831           186.505468
+34   0.05  16  1000000               78.0                141                172            93.994564           139.416072           186.505468
+35   0.05  32      240                NaN                 64                645                  NaN            57.670022           744.760141
+36   0.05  32     1000               32.0                128                645            39.341524           107.398165           744.760141
+37   0.05  32    10000               81.0                203                645           100.807749           182.626351           744.760141
+38   0.05  32   100000              128.0                256                645           149.995222           242.749820           744.760141
+39   0.05  32  1000000              161.0                323                645           194.422466           301.032149           744.760141
+40   0.05  64      240                NaN                141               2580                  NaN           115.542267          2980.094246
+41   0.05  64     1000               64.0                240               2580            77.132614           216.579253          2980.094246
+42   0.05  64    10000              141.0                406               2580           179.991133           370.500795          2980.094246
+43   0.05  64   100000              240.0                529               2580           270.266039           498.126369          2980.094246
+44   0.05  64  1000000              312.0                689               2580           340.469112           623.253560          2980.094246
+            count      mean       std       min       25%       50%       75%       max
+n  M                                                                                   
+16 240       22.0  2.126788  0.375704  1.572461  1.759552  2.147021  2.505744  2.614688
+   1000      22.0  2.107869  0.384991  1.584773  1.756897  2.069211  2.519069  2.616679
+   10000     22.0  2.057793  0.413327  1.537208  1.664114  1.971685  2.519322  2.640922
+   100000    22.0  2.031519  0.434313  1.520911  1.625556  1.901841  2.510354  2.652950
+   1000000   22.0  2.040371  0.467418  1.528277  1.615240  1.894125  2.540884  2.713073
+32 240       22.0  2.210431  0.532926  1.501120  1.702787  2.176161  2.711109  2.979111
+   1000      22.0  2.176882  0.456416  1.558428  1.782089  2.110442  2.612496  2.830932
+   10000     22.0  2.225918  0.470267  1.546694  1.781442  2.263379  2.612848  3.028125
+   100000    22.0  2.155542  0.391657  1.602686  1.796777  2.152762  2.565425  2.726925
+   1000000   22.0  2.233373  0.446048  1.606698  1.877267  2.186365  2.714804  2.886436
+64 240       22.0  2.133354  0.562357  1.456944  1.589613  2.032789  2.656734  2.979054
+   1000      22.0  2.112663  0.494717  1.488709  1.663793  1.960250  2.609056  2.926545
+   10000     22.0  2.215296  0.577934  1.519207  1.663480  2.114893  2.675272  3.160225
+   100000    22.0  2.245521  0.593705  1.525088  1.718864  2.089228  2.720770  3.341919
+   1000000   22.0  2.422516  0.748700  1.547376  1.714415  2.335400  3.024661  3.813765

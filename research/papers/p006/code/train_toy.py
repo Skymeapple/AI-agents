@@ -9,6 +9,9 @@ Usage: python3 train_toy.py [--steps 3000] [--seeds 0 1 2]
 import torch, torch.nn as nn, torch.nn.functional as F, numpy as np, json, os, argparse, time, math
 p = argparse.ArgumentParser(); p.add_argument("--steps", type=int, default=3000)
 p.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2]); p.add_argument("--threads", type=int, default=4); p.add_argument("--out", default="train_toy.json"); p.add_argument("--models", nargs="+", default=["tf1", "tf2", "tf4", "delta"])
+# revision r1: --cover trains on streams where the queried key's version count R ~ U{1..N/2}
+# (so the controlled test cells with large R are inside the training distribution)
+p.add_argument("--cover", action="store_true")
 args = p.parse_args()
 torch.set_num_threads(args.threads)
 OUT = os.path.join(os.path.dirname(__file__), "..", "results"); os.makedirs(os.path.join(OUT, "models"), exist_ok=True)
@@ -25,6 +28,17 @@ def batch_train(bs, rng):
     for b in range(bs):
         idx = np.nonzero(keys[b] == q[b])[0]; y[b] = vals[b, idx[-1]]
     x = np.concatenate([toks, (K * V + q)[:, None]], 1)
+    return torch.tensor(x), torch.tensor(y)
+
+def batch_train_cover(bs, rng):
+    N = int(rng.integers(16, 129))
+    q = rng.integers(0, K, size=bs)
+    other = rng.integers(0, K - 1, size=(bs, N)); keys = other + (other >= q[:, None])
+    vals = rng.integers(0, V, size=(bs, N)); y = np.empty(bs, int)
+    for b in range(bs):
+        R = int(rng.integers(1, N // 2 + 1)); pos = np.sort(rng.choice(N, size=R, replace=False))
+        keys[b, pos] = q[b]; y[b] = vals[b, pos[-1]]
+    x = np.concatenate([keys * V + vals, (K * V + q)[:, None]], 1)
     return torch.tensor(x), torch.tensor(y)
 
 def batch_eval(bs, N, R, rng, latest_age=None):
@@ -94,14 +108,14 @@ EVAL_N = [32, 128, 512]; EVAL_R = [1, 2, 4, 8, 16, 32, 64]
 results = json.load(open(os.path.join(OUT, args.out))) if os.path.exists(os.path.join(OUT, args.out)) else {}
 for name in args.models:
     for seed in args.seeds:
-        tag = f"{name}_s{seed}"
+        tag = f"{name}{'c' if args.cover else ''}_s{seed}"
         if tag in results: print("skip", tag); continue
         torch.manual_seed(seed); rng = np.random.default_rng(seed)
         m = make(name); opt = torch.optim.AdamW(m.parameters(), lr=1e-3, weight_decay=0.01)
         sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=1e-3, total_steps=args.steps, pct_start=0.1)
         t0 = time.time(); losses = []
         for step in range(args.steps):
-            x, y = batch_train(128, rng); loss = F.cross_entropy(m(x), y)
+            x, y = (batch_train_cover(128, rng) if args.cover else batch_train(128, rng)); loss = F.cross_entropy(m(x), y)
             opt.zero_grad(); loss.backward(); nn.utils.clip_grad_norm_(m.parameters(), 1.0); opt.step(); sched.step()
             losses.append(loss.item())
             if step % 500 == 0: print(tag, step, np.mean(losses[-100:]), f"{time.time()-t0:.0f}s", flush=True)
@@ -130,7 +144,7 @@ for name in args.models:
                 last = rec[-1][..., :-1]  # B,H,N (exclude the query token itself)
                 logit_range = (last.max(-1).values - last.min(-1).values).mean(0).tolist()  # per head
         torch.save(m.state_dict(), os.path.join(OUT, "models", tag + ".pt"))
-        results[tag] = dict(model=name, seed=seed, steps=args.steps, final_train_loss=float(np.mean(losses[-200:])),
+        results[tag] = dict(model=name + ("c" if args.cover else ""), cover=args.cover, seed=seed, steps=args.steps, final_train_loss=float(np.mean(losses[-200:])),
                             indist_acc=indist, grid=grid, logit_range_per_head=logit_range, train_time_s=time.time() - t0)
         print(tag, "indist", indist, {k: round(v, 3) for k, v in grid.items() if "fixage" in k}, flush=True)
         json.dump(results, open(os.path.join(OUT, args.out), "w"), indent=1)

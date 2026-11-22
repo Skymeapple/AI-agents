@@ -6,9 +6,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 0.3712915190590704,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 1000,
@@ -16,9 +19,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 1.7297846066395048,
-   "A_ub_over_Delta": 1.0,
+   "A_ub_over_Delta_strict": 1.0,
+   "A_ach": 6,
    "A_ach_over_Delta": 0.375,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 1,
+   "staircase_A_over_Delta": 0.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 1000,
@@ -26,9 +32,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 3.088277694219939,
-   "A_ub_over_Delta": 3.0,
+   "A_ub_over_Delta_strict": 3.0,
+   "A_ach": 24,
    "A_ach_over_Delta": 1.5,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 3,
+   "staircase_A_over_Delta": 2.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 1000,
@@ -36,9 +45,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 4.446770781800374,
-   "A_ub_over_Delta": 4.0,
+   "A_ub_over_Delta_strict": 4.0,
+   "A_ach": 42,
    "A_ach_over_Delta": 2.625,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 4,
+   "staircase_A_over_Delta": 3.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 1000,
@@ -46,9 +58,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 5.805263869380808,
-   "A_ub_over_Delta": 5.0,
+   "A_ub_over_Delta_strict": 5.0,
+   "A_ach": 62,
    "A_ach_over_Delta": 3.875,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 5,
+   "staircase_A_over_Delta": 4.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 1000,
@@ -56,9 +71,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 8.522250044541677,
-   "A_ub_over_Delta": 8.0,
+   "A_ub_over_Delta_strict": 8.0,
+   "A_ach": 102,
    "A_ach_over_Delta": 6.375,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 8,
+   "staircase_A_over_Delta": 7.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 1000,
@@ -66,9 +84,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 11.239236219702546,
-   "A_ub_over_Delta": 11.0,
+   "A_ub_over_Delta_strict": 11.0,
+   "A_ach": 143,
    "A_ach_over_Delta": 8.9375,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 11,
+   "staircase_A_over_Delta": 10.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 100000,
@@ -76,9 +97,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": -1.1930678440871345,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 100000,
@@ -86,9 +110,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 0.16542524349329996,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 100000,
@@ -96,9 +123,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 1.5239183310737343,
-   "A_ub_over_Delta": 1.0,
+   "A_ub_over_Delta_strict": 1.0,
+   "A_ach": 4,
    "A_ach_over_Delta": 0.25,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 1,
+   "staircase_A_over_Delta": 0.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 100000,
@@ -106,9 +136,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 2.882411418654169,
-   "A_ub_over_Delta": 2.0,
+   "A_ub_over_Delta_strict": 2.0,
+   "A_ach": 21,
    "A_ach_over_Delta": 1.3125,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 2,
+   "staircase_A_over_Delta": 1.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 100000,
@@ -116,9 +149,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 4.240904506234603,
-   "A_ub_over_Delta": 4.0,
+   "A_ub_over_Delta_strict": 4.0,
+   "A_ach": 39,
    "A_ach_over_Delta": 2.4375,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 4,
+   "staircase_A_over_Delta": 3.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 100000,
@@ -126,9 +162,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 6.957890681395473,
-   "A_ub_over_Delta": 6.0,
+   "A_ub_over_Delta_strict": 6.0,
+   "A_ach": 79,
    "A_ach_over_Delta": 4.9375,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 6,
+   "staircase_A_over_Delta": 5.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 100000,
@@ -136,9 +175,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 9.674876856556342,
-   "A_ub_over_Delta": 9.0,
+   "A_ub_over_Delta_strict": 9.0,
+   "A_ach": 120,
    "A_ach_over_Delta": 7.5,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 9,
+   "staircase_A_over_Delta": 8.9375,
+   "staircase_verified_numerically": true
   },
   {
    "T": 10000000,
@@ -146,9 +188,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": -2.757094172573588,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -156,9 +201,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": -1.3986010849931532,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -166,9 +214,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": -0.040107997412718706,
-   "A_ub_over_Delta": -1.0,
-   "A_ach_over_Delta": -1,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "A_ub_over_Delta_strict": -1.0,
+   "A_ach": -1,
+   "A_ach_over_Delta": -1.0,
+   "staircase_R": 0,
+   "staircase_A_over_Delta": -1.0,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -176,9 +227,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 1.3183850901677157,
-   "A_ub_over_Delta": 1.0,
+   "A_ub_over_Delta_strict": 1.0,
+   "A_ach": 2,
    "A_ach_over_Delta": 0.125,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 1,
+   "staircase_A_over_Delta": 0.9375,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -186,9 +240,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 2.6768781777481503,
-   "A_ub_over_Delta": 2.0,
+   "A_ub_over_Delta_strict": 2.0,
+   "A_ach": 18,
    "A_ach_over_Delta": 1.125,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 2,
+   "staircase_A_over_Delta": 1.9375,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -196,9 +253,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 5.393864352909019,
-   "A_ub_over_Delta": 5.0,
+   "A_ub_over_Delta_strict": 5.0,
+   "A_ach": 56,
    "A_ach_over_Delta": 3.5,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
+   "staircase_R": 5,
+   "staircase_A_over_Delta": 4.9375,
+   "staircase_verified_numerically": null
   },
   {
    "T": 10000000,
@@ -206,136 +266,12 @@
    "Delta": 16,
    "eps": 0.05,
    "R_ub": 8.110850528069887,
-   "A_ub_over_Delta": 8.0,
+   "A_ub_over_Delta_strict": 8.0,
+   "A_ach": 96,
    "A_ach_over_Delta": 6.0,
-   "note": "A_ub_over_Delta = floor(R_ub) (Thm 1: A/Delta < floor(R_ub)); recomputed from R_ub"
-  }
- ],
- "E1b_frontier": [
-  {
-   "lam": 0.0001,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.0001467799267622069,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.00021544346900318845,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.00031622776601683794,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.00046415888336127773,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.0006812920690579609,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.001,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.001467799267622069,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.002154434690031882,
-   "hot": 0.0,
-   "cold": 1.0
-  },
-  {
-   "lam": 0.0031622776601683794,
-   "hot": 0.0,
-   "cold": 0.8973333333333333
-  },
-  {
-   "lam": 0.004641588833612777,
-   "hot": 0.0,
-   "cold": 0.594
-  },
-  {
-   "lam": 0.006812920690579608,
-   "hot": 0.0,
-   "cold": 0.42133333333333334
-  },
-  {
-   "lam": 0.01,
-   "hot": 0.0,
-   "cold": 0.29533333333333334
-  },
-  {
-   "lam": 0.01467799267622069,
-   "hot": 0.0,
-   "cold": 0.194
-  },
-  {
-   "lam": 0.021544346900318822,
-   "hot": 0.42866666666666664,
-   "cold": 0.14666666666666667
-  },
-  {
-   "lam": 0.03162277660168379,
-   "hot": 1.0,
-   "cold": 0.084
-  },
-  {
-   "lam": 0.046415888336127774,
-   "hot": 1.0,
-   "cold": 0.05266666666666667
-  },
-  {
-   "lam": 0.06812920690579607,
-   "hot": 1.0,
-   "cold": 0.028
-  },
-  {
-   "lam": 0.1,
-   "hot": 1.0,
-   "cold": 0.03133333333333333
-  },
-  {
-   "lam": 0.1467799267622069,
-   "hot": 1.0,
-   "cold": 0.014
-  },
-  {
-   "lam": 0.21544346900318823,
-   "hot": 1.0,
-   "cold": 0.012666666666666666
-  },
-  {
-   "lam": 0.31622776601683794,
-   "hot": 1.0,
-   "cold": 0.006666666666666667
-  },
-  {
-   "lam": 0.46415888336127775,
-   "hot": 0.818,
-   "cold": 0.007333333333333333
-  },
-  {
-   "lam": 0.6812920690579608,
-   "hot": 0.5646666666666667,
-   "cold": 0.0026666666666666666
-  },
-  {
-   "lam": 1.0,
-   "hot": 0.35,
-   "cold": 0.0013333333333333333
+   "staircase_R": 7,
+   "staircase_A_over_Delta": 6.9375,
+   "staircase_verified_numerically": null
   }
  ],
  "E1c_delta": [
@@ -343,145 +279,194 @@
    "M": 8,
    "d": 64,
    "R": 1,
-   "acc": 1.0
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 8,
    "d": 64,
    "R": 8,
-   "acc": 1.0
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 8,
    "d": 64,
    "R": 32,
-   "acc": 1.0
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 16,
    "d": 64,
    "R": 1,
-   "acc": 0.996875
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 16,
    "d": 64,
    "R": 8,
-   "acc": 0.996875
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 16,
    "d": 64,
    "R": 32,
-   "acc": 1.0
+   "acc": 1.0,
+   "se": 0.0,
+   "trials": 20
   },
   {
    "M": 32,
    "d": 64,
    "R": 1,
-   "acc": 0.9921875
+   "acc": 0.984375,
+   "se": 0.005182226234930312,
+   "trials": 20
   },
   {
    "M": 32,
    "d": 64,
    "R": 8,
-   "acc": 0.965625
+   "acc": 0.975,
+   "se": 0.005229125165837971,
+   "trials": 20
   },
   {
    "M": 32,
    "d": 64,
    "R": 32,
-   "acc": 0.9796875
+   "acc": 0.9859375,
+   "se": 0.004119195727020021,
+   "trials": 20
   },
   {
    "M": 48,
    "d": 64,
    "R": 1,
-   "acc": 0.9614583333333332
+   "acc": 0.9562500000000002,
+   "se": 0.0074971059231027405,
+   "trials": 20
   },
   {
    "M": 48,
    "d": 64,
    "R": 8,
-   "acc": 0.9093750000000002
+   "acc": 0.9010416666666666,
+   "se": 0.008823476221925737,
+   "trials": 20
   },
   {
    "M": 48,
    "d": 64,
    "R": 32,
-   "acc": 0.9114583333333334
+   "acc": 0.9229166666666666,
+   "se": 0.00626733706520472,
+   "trials": 20
   },
   {
    "M": 64,
    "d": 64,
    "R": 1,
-   "acc": 0.88046875
+   "acc": 0.88984375,
+   "se": 0.007771376140000881,
+   "trials": 20
   },
   {
    "M": 64,
    "d": 64,
    "R": 8,
-   "acc": 0.81953125
+   "acc": 0.82734375,
+   "se": 0.007450602298430308,
+   "trials": 20
   },
   {
    "M": 64,
    "d": 64,
    "R": 32,
-   "acc": 0.803125
+   "acc": 0.82578125,
+   "se": 0.012167200642891321,
+   "trials": 20
   },
   {
    "M": 96,
    "d": 64,
    "R": 1,
-   "acc": 0.7062499999999999
+   "acc": 0.6786458333333333,
+   "se": 0.007037034657498378,
+   "trials": 20
   },
   {
    "M": 96,
    "d": 64,
    "R": 8,
-   "acc": 0.6166666666666667
+   "acc": 0.6343750000000001,
+   "se": 0.008198783573392661,
+   "trials": 20
   },
   {
    "M": 96,
    "d": 64,
    "R": 32,
-   "acc": 0.621875
+   "acc": 0.6203125,
+   "se": 0.00719711765946387,
+   "trials": 20
   },
   {
    "M": 128,
    "d": 64,
    "R": 1,
-   "acc": 0.5609375
+   "acc": 0.533203125,
+   "se": 0.005711012311411502,
+   "trials": 20
   },
   {
    "M": 128,
    "d": 64,
    "R": 8,
-   "acc": 0.50078125
+   "acc": 0.500390625,
+   "se": 0.006998077128475633,
+   "trials": 20
   },
   {
    "M": 128,
    "d": 64,
    "R": 32,
-   "acc": 0.48828125
+   "acc": 0.50390625,
+   "se": 0.0075845655620889055,
+   "trials": 20
   },
   {
    "M": 256,
    "d": 64,
    "R": 1,
-   "acc": 0.276953125
+   "acc": 0.2775390625,
+   "se": 0.004063955193099874,
+   "trials": 20
   },
   {
    "M": 256,
    "d": 64,
    "R": 8,
-   "acc": 0.2703125
+   "acc": 0.2701171875,
+   "se": 0.0038100958576308725,
+   "trials": 20
   },
   {
    "M": 256,
    "d": 64,
    "R": 32,
-   "acc": 0.278125
+   "acc": 0.27265625,
+   "se": 0.0026435819243263484,
+   "trials": 20
   }
- ]
+ ],
+ "runtime_s": 16.012524604797363
 }

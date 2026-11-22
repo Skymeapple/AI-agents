@@ -12,7 +12,7 @@ def n_equiv(kind, acc):
     g = np.array(grids[kind], float); c = np.mean(curves[kind], 0)
     c = np.maximum.accumulate(c)  # monotone envelope
     if acc <= c[0]: return float(g[0]) if acc >= c[0] - 1e-9 else float("nan")
-    if acc >= c[-1]: return float(">%d" % 0 or 0) if False else float("inf")
+    if acc >= c[-1]: return float("inf")   # above the largest human budget on the curve
     return float(np.exp(np.interp(acc, c, np.log(g))))
 
 def key(r): return (r["kind"], r["n0"], r["a"], r["b"], r["mode"])

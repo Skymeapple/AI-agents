@@ -14,7 +14,7 @@ th = ca['th']
 for a, y, ttl in [(ax[0], ca['W'], f"All {cr['n_wg_items_usable']} flagged items (naive)"), (ax[1], ca['W2'], f"{cr['cleaned']['n_items']} items with P(audit error) < 0.5")]:
     a.scatter(th, y, s=22, color=C1, edgecolor='white', linewidth=0.8, zorder=3)
     b = np.polyfit(th, y, 1); xx = np.linspace(th.min(), th.max(), 10); a.plot(xx, np.polyval(b, xx), color=C2, lw=2, ls='--')
-    a.set_xlabel('model ability θ (standardised logit accuracy on OK items)'); a.set_title(ttl, fontsize=9, color=INK)
+    a.set_xlabel('model ability θ (standardised)'); a.set_title(ttl, fontsize=9, color=INK)
 ax[0].set_ylabel('share choosing the flagged original key')
 ax[0].text(0.02, 0.95, f"Spearman ρ = {cr['naive']['spearman_W']:.2f} (p = {cr['naive']['spearman_W_p']:.3g})", transform=ax[0].transAxes, va='top', color=INK)
 ax[1].text(0.02, 0.95, f"Spearman ρ = {cr['cleaned']['spearman']:.2f} (p = {cr['cleaned']['spearman_p']:.1g})", transform=ax[1].transAxes, va='top', color=INK)

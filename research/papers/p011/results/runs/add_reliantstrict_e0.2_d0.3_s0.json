@@ -1,0 +1,135 @@
+{
+ "tag": "add_reliantstrict_e0.2_d0.3_s0",
+ "task": "add",
+ "regime": "reliant_strict",
+ "eta": 0.2,
+ "delta": 0.3,
+ "L": 2,
+ "seed": 0,
+ "steps": 2500,
+ "p": 23,
+ "d": 64,
+ "final": {
+  "n": 2434,
+  "cot_acc": 1.0,
+  "acc_clean": 1.0,
+  "acc_gen": 1.0,
+  "acc_trunc": 0.03574363188167625,
+  "follow": 1.0,
+  "ignore": 0.0,
+  "other": 0.0
+ },
+ "history": [
+  {
+   "n": 2434,
+   "cot_acc": 0.5464256368118324,
+   "acc_clean": 0.3105998356614626,
+   "acc_gen": 0.19556285949055052,
+   "acc_trunc": 0.04149548069022186,
+   "follow": 0.3311421528348398,
+   "ignore": 0.02506162695152013,
+   "other": 0.6437962202136401,
+   "step": 250
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 0.9991783073130649,
+   "acc_gen": 0.9991783073130649,
+   "acc_trunc": 0.0419063270336894,
+   "follow": 0.9971240755957272,
+   "ignore": 0.0004108463434675431,
+   "other": 0.002465078060805213,
+   "step": 500
+  },
+  {
+   "n": 2434,
+   "cot_acc": 0.9995891536565324,
+   "acc_clean": 1.0,
+   "acc_gen": 0.9995891536565324,
+   "acc_trunc": 0.03820870994248151,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 750
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.041084634346754315,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 1000
+  },
+  {
+   "n": 2434,
+   "cot_acc": 0.9995891536565324,
+   "acc_clean": 1.0,
+   "acc_gen": 0.9995891536565324,
+   "acc_trunc": 0.0419063270336894,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 1250
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.042317173377156944,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 1500
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.04149548069022186,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 1750
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.04149548069022186,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 2000
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.03779786359901397,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 2250
+  },
+  {
+   "n": 2434,
+   "cot_acc": 1.0,
+   "acc_clean": 1.0,
+   "acc_gen": 1.0,
+   "acc_trunc": 0.03574363188167625,
+   "follow": 1.0,
+   "ignore": 0.0,
+   "other": 0.0,
+   "step": 2500
+  }
+ ],
+ "seconds": 59.20986771583557
+}

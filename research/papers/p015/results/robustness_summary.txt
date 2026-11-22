@@ -1,0 +1,11 @@
+            n_agents  k_marg_median  k_cond_median  k_cond_q25  k_cond_q75  frac_kcond_gt_1  frac_kcond_gt_kmarg
+variant                                                                                                         
+base            20.0          0.631          1.561       1.337       1.846            1.000                 1.00
+baseline_T      20.0          0.709          1.377       1.212       1.618            1.000                 1.00
+drop_usage      20.0          0.619          1.499       1.374       1.853            1.000                 1.00
+hetero          20.0          0.631          1.800       1.273       2.080            1.000                 1.00
+latent3         20.0          0.631          1.176       1.005       1.316            0.750                 0.95
+th10            33.0          0.701          1.524       1.312       2.119            0.939                 1.00
+
+hetero: median sd slope on log T -0.044; median LR vs base 1.86
+latent3: median LR vs Gaussian -3.74

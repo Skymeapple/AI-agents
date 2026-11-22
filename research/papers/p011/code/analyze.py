@@ -34,6 +34,12 @@ def path_cut_eval(model, Dte, p, task):
     r = C.evaluate(model, Dte, p, task)
     out["acc_internal_cut"] = r["acc_clean"]
     out["follow_internal_cut"] = r["follow"]
+    # strict internal cut: additionally block position 2 (c) from reading a, b, so that no
+    # information about a, b can reach CoT/ANS except through the CoT token itself
+    model.mask[2, 0] = False; model.mask[2, 1] = False
+    r = C.evaluate(model, Dte, p, task)
+    out["acc_internal_cut_strict"] = r["acc_clean"]
+    out["follow_internal_cut_strict"] = r["follow"]
     model.mask.copy_(m0)
     return out
 
@@ -112,7 +118,7 @@ def main():
 
     # ---------- markdown table ----------
     keys = ["regime", "eta", "delta", "seed", "cot_acc", "acc_clean", "acc_trunc", "follow", "ignore", "other",
-            "acc_cot_cut", "acc_internal_cut", "L1_true_s", "L2_true_s", "L2_stated_s", "soft_trunc", "soft_pred_trunc"]
+            "acc_cot_cut", "acc_internal_cut", "acc_internal_cut_strict", "L1_true_s", "L2_true_s", "L2_stated_s", "soft_trunc", "soft_pred_trunc"]
     with open(os.path.join(R, "final_table.md"), "w") as f:
         f.write("| " + " | ".join(keys) + " |\n|" + "---|" * len(keys) + "\n")
         for r in rows:
@@ -183,7 +189,7 @@ def main():
         etas = sorted(set(r["eta"] for r in fr))
         for key, lab, col in [("follow", "corruption: P(follow CoT)", "#1f77b4"),
                               ("acc_trunc", "truncation: acc w/o CoT", "#d62728"),
-                              ("acc_internal_cut", "path-cut: acc via CoT route only", "#2ca02c"),
+                              ("acc_internal_cut_strict", "path-cut (strict): acc via CoT route only", "#2ca02c"),
                               ("acc_cot_cut", "path-cut: acc via internal route only", "#9467bd")]:
             mu = [np.mean([r[key] for r in fr if r["eta"] == e and r["delta"] == de]) for e in etas]
             pts_ = [[r[key] for r in fr if r["eta"] == e and r["delta"] == de] for e in etas]
@@ -198,7 +204,7 @@ def main():
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig1_final_vs_eta.png"), dpi=160); plt.close(fig)
 
     # Fig 2: training dynamics for selected runs
-    sel = [t for t in ["add_free_e0_d0_s0", "add_free_e0_d0.3_s0", "add_free_e0.1_d0_s0", "add_free_e0.2_d0.3_s0", "add_free_e0.4_d0_s0"]
+    sel = [t for t in ["add_free_e0_d0_s0", "add_free_e0_d0.3_s4_long", "add_free_e0.1_d0_s0", "add_free_e0.2_d0.3_s0", "add_free_e0.4_d0_s0"]
            if any(r["tag"] == t for r in recs)]
     fig, axes = plt.subplots(1, len(sel), figsize=(2.6 * len(sel), 2.8), sharey=True)
     axes = np.atleast_1d(axes)
@@ -208,7 +214,7 @@ def main():
         ax.plot(st, [h["acc_clean"] for h in rec["history"]], "k-", label="acc (clean CoT)")
         ax.plot(st, [h["follow"] for h in rec["history"]], "-", color="#1f77b4", label="P(follow corrupted CoT)")
         ax.plot(st, [h["acc_trunc"] for h in rec["history"]], "-", color="#d62728", label="acc (CoT removed)")
-        ax.set_title(f"eta={rec['eta']}, delta={rec['delta']}", fontsize=8)
+        ax.set_title(f"eta={rec['eta']}, delta={rec['delta']}, seed={rec['seed']}", fontsize=8)
         ax.set_xlabel("step"); ax.grid(alpha=0.3)
     axes[0].legend(fontsize=6)
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig2_dynamics.png"), dpi=160); plt.close(fig)

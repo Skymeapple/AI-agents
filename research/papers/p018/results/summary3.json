@@ -1,0 +1,202 @@
+{
+ "6": {
+  "n_stable": 2938,
+  "n_stable_refuted_observed": 399,
+  "stable_tiny_tight_only": 1682,
+  "refuted_rate_stable_tiny_tight_only": 0.05291319857312723,
+  "refuted_rate_stable_tight_at_order>=4": 0.24681528662420382,
+  "gap_closing_rule(slope>0 & predicted crossing <=16)": {
+   "TP": 141,
+   "FP": 19,
+   "FN": 258,
+   "TN": 2520
+  },
+  "AUC_score(slope/(gap+1))_stable": 0.8165979146369271,
+  "refuted_rate_stable_slope<=0": 0.09287257019438445,
+  "refuted_rate_stable_slope>0": 0.88125,
+  "n_stable_slope<=0": 2778,
+  "n_stable_slope>0": 160,
+  "exhaustive_label_by10": {
+   "n_ref": 368,
+   "rate_slope<=0": 0.08459323254139668,
+   "rate_slope>0": 0.83125
+  },
+  "clean_filter(stable & slope<=0 & tight at order>=4)": {
+   "n": 1123,
+   "n_refuted_observed": 183,
+   "rate": 0.16295636687444345,
+   "examples_refuted": [
+    "alpha <= 2*res - 1  [first refuted at order 7]",
+    "alpha <= 3*res - 2  [first refuted at order 9]",
+    "gamma <= Delta + 0  [first refuted at order 7]",
+    "gamma <= diam + 0  [first refuted at order 8]",
+    "gamma <= 3/2*diam - 0.5  [first refuted at order 8]",
+    "gamma <= 2*diam - 1  [first refuted at order 13]",
+    "gamma <= 2*rad - 1  [first refuted at order 8]",
+    "gamma <= 3*rad - 2  [first refuted at order 10]",
+    "gamma <= res + 0  [first refuted at order 7]",
+    "gamma <= 3/2*res - 0.5  [first refuted at order 7]",
+    "gamma <= 1/2*ann + 1  [first refuted at order 7]",
+    "gamma <= 2/3*ann + 0.666667  [first refuted at order 7]"
+   ]
+  }
+ },
+ "7": {
+  "n_stable": 2880,
+  "n_stable_refuted_observed": 317,
+  "stable_tiny_tight_only": 1652,
+  "refuted_rate_stable_tiny_tight_only": 0.03753026634382567,
+  "refuted_rate_stable_tight_at_order>=4": 0.20765472312703584,
+  "gap_closing_rule(slope>0 & predicted crossing <=16)": {
+   "TP": 101,
+   "FP": 3,
+   "FN": 216,
+   "TN": 2560
+  },
+  "AUC_score(slope/(gap+1))_stable": 0.8289508179368864,
+  "refuted_rate_stable_slope<=0": 0.07614579574160953,
+  "refuted_rate_stable_slope>0": 0.9724770642201835,
+  "n_stable_slope<=0": 2771,
+  "n_stable_slope>0": 109,
+  "exhaustive_label_by10": {
+   "n_ref": 246,
+   "rate_slope<=0": 0.05196679898953446,
+   "rate_slope>0": 0.9357798165137615
+  },
+  "clean_filter(stable & slope<=0 & tight at order>=4)": {
+   "n": 1143,
+   "n_refuted_observed": 173,
+   "rate": 0.15135608048993876,
+   "examples_refuted": [
+    "alpha <= 3*res - 2  [first refuted at order 9]",
+    "chi <= omega + 1  [first refuted at order 10]",
+    "chi <= 3/2*omega + 0  [first refuted at order 13]",
+    "chi <= 2*omega - 1  [first refuted at order 13]",
+    "chi <= 3*omega - 3  [first refuted at order 13]",
+    "chi <= 1/3*tri + 3  [first refuted at order 9]",
+    "chi <= 1/2*tri + 3  [first refuted at order 10]",
+    "chi <= 2/3*tri + 3  [first refuted at order 10]",
+    "chi <= tri + 3  [first refuted at order 13]",
+    "chi <= 3/2*tri + 3  [first refuted at order 13]",
+    "chi <= 2*tri + 3  [first refuted at order 13]",
+    "chi <= 3*tri + 3  [first refuted at order 13]"
+   ]
+  }
+ },
+ "8": {
+  "n_stable": 2810,
+  "n_stable_refuted_observed": 225,
+  "stable_tiny_tight_only": 1619,
+  "refuted_rate_stable_tiny_tight_only": 0.017912291537986413,
+  "refuted_rate_stable_tight_at_order>=4": 0.16456759026028547,
+  "gap_closing_rule(slope>0 & predicted crossing <=16)": {
+   "TP": 38,
+   "FP": 18,
+   "FN": 187,
+   "TN": 2567
+  },
+  "AUC_score(slope/(gap+1))_stable": 0.782782720825274,
+  "refuted_rate_stable_slope<=0": 0.06758720930232558,
+  "refuted_rate_stable_slope>0": 0.6724137931034483,
+  "n_stable_slope<=0": 2752,
+  "n_stable_slope>0": 58,
+  "exhaustive_label_by10": {
+   "n_ref": 125,
+   "rate_slope<=0": 0.0345203488372093,
+   "rate_slope>0": 0.5172413793103449
+  },
+  "clean_filter(stable & slope<=0 & tight at order>=4)": {
+   "n": 1155,
+   "n_refuted_observed": 167,
+   "rate": 0.1445887445887446,
+   "examples_refuted": [
+    "alpha <= 3*res - 2  [first refuted at order 9]",
+    "chi <= omega + 1  [first refuted at order 10]",
+    "chi <= 3/2*omega + 0  [first refuted at order 13]",
+    "chi <= 2*omega - 1  [first refuted at order 13]",
+    "chi <= 3*omega - 3  [first refuted at order 13]",
+    "chi <= 1/3*tri + 3  [first refuted at order 9]",
+    "chi <= 1/2*tri + 3  [first refuted at order 10]",
+    "chi <= 2/3*tri + 3  [first refuted at order 10]",
+    "chi <= tri + 3  [first refuted at order 13]",
+    "chi <= 3/2*tri + 3  [first refuted at order 13]",
+    "chi <= 2*tri + 3  [first refuted at order 13]",
+    "chi <= 3*tri + 3  [first refuted at order 13]"
+   ]
+  }
+ },
+ "9": {
+  "n_stable": 2792,
+  "n_stable_refuted_observed": 196,
+  "stable_tiny_tight_only": 1604,
+  "refuted_rate_stable_tiny_tight_only": 0.008728179551122194,
+  "refuted_rate_stable_tight_at_order>=4": 0.1531986531986532,
+  "gap_closing_rule(slope>0 & predicted crossing <=16)": {
+   "TP": 44,
+   "FP": 17,
+   "FN": 152,
+   "TN": 2579
+  },
+  "AUC_score(slope/(gap+1))_stable": 0.8089771154995126,
+  "refuted_rate_stable_slope<=0": 0.055657268399853535,
+  "refuted_rate_stable_slope>0": 0.7213114754098361,
+  "n_stable_slope<=0": 2731,
+  "n_stable_slope>0": 61,
+  "clean_filter(stable & slope<=0 & tight at order>=4)": {
+   "n": 1147,
+   "n_refuted_observed": 142,
+   "rate": 0.12380122057541412,
+   "examples_refuted": [
+    "chi <= omega + 1  [first refuted at order 10]",
+    "chi <= 3/2*omega + 0  [first refuted at order 13]",
+    "chi <= 2*omega - 1  [first refuted at order 13]",
+    "chi <= 3*omega - 3  [first refuted at order 13]",
+    "chi <= 1/2*tri + 3  [first refuted at order 10]",
+    "chi <= 2/3*tri + 3  [first refuted at order 10]",
+    "chi <= tri + 3  [first refuted at order 13]",
+    "chi <= 3/2*tri + 3  [first refuted at order 13]",
+    "chi <= 2*tri + 3  [first refuted at order 13]",
+    "chi <= 3*tri + 3  [first refuted at order 13]",
+    "gamma <= Delta + 1  [first refuted at order 10]",
+    "gamma <= 3/2*Delta + 0  [first refuted at order 10]"
+   ]
+  }
+ },
+ "10": {
+  "n_stable": 2738,
+  "n_stable_refuted_observed": 134,
+  "stable_tiny_tight_only": 1591,
+  "refuted_rate_stable_tiny_tight_only": 0.00251414204902577,
+  "refuted_rate_stable_tight_at_order>=4": 0.11333914559721012,
+  "gap_closing_rule(slope>0 & predicted crossing <=16)": {
+   "TP": 17,
+   "FP": 13,
+   "FN": 117,
+   "TN": 2591
+  },
+  "AUC_score(slope/(gap+1))_stable": 0.7840492239264507,
+  "refuted_rate_stable_slope<=0": 0.04326923076923077,
+  "refuted_rate_stable_slope>0": 0.5,
+  "n_stable_slope<=0": 2704,
+  "n_stable_slope>0": 34,
+  "clean_filter(stable & slope<=0 & tight at order>=4)": {
+   "n": 1127,
+   "n_refuted_observed": 114,
+   "rate": 0.10115350488021295,
+   "examples_refuted": [
+    "chi <= 3/2*omega + 0  [first refuted at order 13]",
+    "chi <= 2*omega - 1  [first refuted at order 13]",
+    "chi <= 3*omega - 3  [first refuted at order 13]",
+    "chi <= tri + 3  [first refuted at order 13]",
+    "chi <= 3/2*tri + 3  [first refuted at order 13]",
+    "chi <= 2*tri + 3  [first refuted at order 13]",
+    "chi <= 3*tri + 3  [first refuted at order 13]",
+    "gamma <= 2*diam - 1  [first refuted at order 13]",
+    "diam <= 2*res + 1  [first refuted at order 11]",
+    "rad <= gamma + 1  [first refuted at order 12]",
+    "rad <= res + 1  [first refuted at order 12]",
+    "n <= 2*(alpha+omega) - 2  [first refuted at order 11]"
+   ]
+  }
+ }
+}

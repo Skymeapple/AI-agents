@@ -1,0 +1,87 @@
+{
+ "world": 2,
+ "delta_hat": 0.7993853239553161,
+ "auc_pos_vs_alea_qonly": 0.9531035457868992,
+ "n_pos": 8354,
+ "n_alea": 220,
+ "sweep": [
+  {
+   "alpha": 0.0,
+   "best_qonly": 0.8206930555555555,
+   "msp": 0.8229280555555556,
+   "ceiling_at_delta_hat": 1.0,
+   "ceiling_delta0": 1.0
+  },
+  {
+   "alpha": 0.1,
+   "best_qonly": 0.7757380555555556,
+   "msp": 0.7594623611111111,
+   "ceiling_at_delta_hat": 0.9979876875877743,
+   "ceiling_delta0": 0.95
+  },
+  {
+   "alpha": 0.2,
+   "best_qonly": 0.7183483333333334,
+   "msp": 0.6779429166666667,
+   "ceiling_at_delta_hat": 0.9959753751755487,
+   "ceiling_delta0": 0.9
+  },
+  {
+   "alpha": 0.30000000000000004,
+   "best_qonly": 0.7098872222222223,
+   "msp": 0.62377375,
+   "ceiling_at_delta_hat": 0.993963062763323,
+   "ceiling_delta0": 0.85
+  },
+  {
+   "alpha": 0.4,
+   "best_qonly": 0.7153259722222224,
+   "msp": 0.5652515277777778,
+   "ceiling_at_delta_hat": 0.9919507503510974,
+   "ceiling_delta0": 0.8
+  },
+  {
+   "alpha": 0.5,
+   "best_qonly": 0.7255175,
+   "msp": 0.4924813888888889,
+   "ceiling_at_delta_hat": 0.9899384379388716,
+   "ceiling_delta0": 0.75
+  },
+  {
+   "alpha": 0.6000000000000001,
+   "best_qonly": 0.7646411111111113,
+   "msp": 0.43028152777777773,
+   "ceiling_at_delta_hat": 0.9879261255266459,
+   "ceiling_delta0": 0.7
+  },
+  {
+   "alpha": 0.7000000000000001,
+   "best_qonly": 0.761876111111111,
+   "msp": 0.3744713888888888,
+   "ceiling_at_delta_hat": 0.9859138131144203,
+   "ceiling_delta0": 0.6499999999999999
+  },
+  {
+   "alpha": 0.8,
+   "best_qonly": 0.8124531944444444,
+   "msp": 0.3007172222222222,
+   "ceiling_at_delta_hat": 0.9839015007021946,
+   "ceiling_delta0": 0.6
+  },
+  {
+   "alpha": 0.9,
+   "best_qonly": 0.8595380555555556,
+   "msp": 0.24093069444444434,
+   "ceiling_at_delta_hat": 0.981889188289969,
+   "ceiling_delta0": 0.55
+  },
+  {
+   "alpha": 1.0,
+   "best_qonly": 0.9421804166666667,
+   "msp": 0.18388361111111112,
+   "ceiling_at_delta_hat": 0.9798768758777433,
+   "ceiling_delta0": 0.5
+  }
+ ],
+ "check_member0_acc_unseen_entity": 0.062449310624493104
+}

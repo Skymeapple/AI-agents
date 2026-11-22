@@ -1,0 +1,136 @@
+{
+ "in_dist_corr_with_gold": {
+  "RM1 (optimised; data A, seed 0)": 0.9567844576414135,
+  "H1: same data A, new init seed": 0.9578632968979947,
+  "H2: fresh draw of data A": 0.9580123409909347,
+  "H3: quadratic ridge on data A": 0.951729515770785,
+  "H4: decorrelated data B": 0.9502520268894342
+ },
+ "exploit_gold_mean": -1.314259228302466,
+ "genuine_gold_mean": -0.001516036163031543,
+ "single_RM": {
+  "lam_star": 2.6,
+  "gold_star": 1.5256640615118453,
+  "pi_at_peak": 0.10360501643619005,
+  "kl_at_peak": 2.440258529924864,
+  "gold_at_lammax": -3.1139717412873646,
+  "pi_at_lammax": 0.9993881401146578
+ },
+ "cov_identity_max_abs_err": 0.0006601390916871619,
+ "qhat_at_peak": {
+  "H1: same data A, new init seed": 0.9416537812378392,
+  "H2: fresh draw of data A": 0.878050967470527,
+  "H3: quadratic ridge on data A": 1.027172838938411,
+  "H4: decorrelated data B": 0.41752214529424214
+ },
+ "qhat_at_lam8": {
+  "H1: same data A, new init seed": 0.9211553022887772,
+  "H2: fresh draw of data A": 0.8377423996378818,
+  "H3: quadratic ridge on data A": 1.0240115801042857,
+  "H4: decorrelated data B": 0.3674451719850105
+ },
+ "ensembles": {
+  "mean(RM1,H1: same data A, new init seed)": {
+   "peak_gold": 1.5367700283222425,
+   "gold_at_lammax": -2.9083024680086225
+  },
+  "min(RM1,H1: same data A, new init seed)": {
+   "peak_gold": 1.616632000962079,
+   "gold_at_lammax": -1.4605177067113562
+  },
+  "mean(RM1,H2: fresh draw of data A)": {
+   "peak_gold": 1.7435500752479436,
+   "gold_at_lammax": 0.30312774335874626
+  },
+  "min(RM1,H2: fresh draw of data A)": {
+   "peak_gold": 2.042864333109949,
+   "gold_at_lammax": 1.763999096533673
+  },
+  "mean(RM1,H3: quadratic ridge on data A)": {
+   "peak_gold": 1.0847448231540608,
+   "gold_at_lammax": -2.447410902792681
+  },
+  "min(RM1,H3: quadratic ridge on data A)": {
+   "peak_gold": 1.249843627543139,
+   "gold_at_lammax": -3.1225831639984314
+  },
+  "mean(RM1,H4: decorrelated data B)": {
+   "peak_gold": 4.58888057891526,
+   "gold_at_lammax": 4.58888057891526
+  },
+  "min(RM1,H4: decorrelated data B)": {
+   "peak_gold": 3.9993384534276912,
+   "gold_at_lammax": 3.9993384534276912
+  }
+ },
+ "gap_alarm_tuned_on": "H4: decorrelated data B",
+ "gap_alarm_tau": 0.1,
+ "stopping": {
+  "H1: same data A, new init seed|gap-alarm(proxy-only)": {
+   "mean_lam": 3.1216666666666666,
+   "regret": 0.14153950417919225,
+   "p10_gold": 1.3281927421591446,
+   "frac_overshoot": 1.0
+  },
+  "H1: same data A, new init seed|cov-disagree m=20": {
+   "mean_lam": 2.56,
+   "regret": 0.04691300031234036,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.44
+  },
+  "H2: fresh draw of data A|gap-alarm(proxy-only)": {
+   "mean_lam": 3.0283333333333333,
+   "regret": 0.09095721162715642,
+   "p10_gold": 1.3281927421591446,
+   "frac_overshoot": 1.0
+  },
+  "H2: fresh draw of data A|cov-disagree m=20": {
+   "mean_lam": 2.546666666666667,
+   "regret": 0.04456893868054834,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.42
+  },
+  "H3: quadratic ridge on data A|gap-alarm(proxy-only)": {
+   "mean_lam": 2.223333333333333,
+   "regret": 0.060433524765020064,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.013333333333333334
+  },
+  "H3: quadratic ridge on data A|cov-disagree m=20": {
+   "mean_lam": 2.591666666666667,
+   "regret": 0.03914821821019632,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.5
+  },
+  "H4: decorrelated data B|gap-alarm(proxy-only)": {
+   "mean_lam": 2.5766666666666667,
+   "regret": 0.009370546070844643,
+   "p10_gold": 1.517247355604293,
+   "frac_overshoot": 0.38666666666666666
+  },
+  "H4: decorrelated data B|cov-disagree m=20": {
+   "mean_lam": 2.4516666666666667,
+   "regret": 0.0570602349645275,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.36666666666666664
+  },
+  "(any)|cov-uniform m=20": {
+   "mean_lam": 2.4133333333333336,
+   "regret": 0.06496914285442967,
+   "p10_gold": 1.3250670864691134,
+   "frac_overshoot": 0.31333333333333335
+  },
+  "(any)|cov-leverage m=20": {
+   "mean_lam": 2.525,
+   "regret": 0.0427405017634237,
+   "p10_gold": 1.4022761472316438,
+   "frac_overshoot": 0.37333333333333335
+  },
+  "(any)|firsthack m=20": {
+   "mean_lam": 0.7866666666666666,
+   "regret": 0.9050453894351314,
+   "p10_gold": -0.014643468084425886,
+   "frac_overshoot": 0.0
+  }
+ }
+}

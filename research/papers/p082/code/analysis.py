@@ -134,9 +134,9 @@ if E2:
         lab = f"{NAMES[s]}, CFE {int(phi*100)}%, v={v}"
         st = "-" if v == 2000 else ":"
         axs[0].plot(x, [r["caps"]["firm"] * P["firm_avail"] for r in rs], st, marker="o", ms=3, color=C[j % 8], label=lab)
-        axs[1].plot(x, [r["lcoe_served"] for r in rs], st, marker="o", ms=3, color=C[j % 8], label=lab)
+        axs[1].plot(x, [r["total_cost"] / 8760 for r in rs], st, marker="o", ms=3, color=C[j % 8], label=lab)
     axs[0].set_xlabel("Firm clean (SMR) overnight-incl. capex ($/kW)"); axs[0].set_ylabel("Firm output share of load (avail.-adj.)")
-    axs[1].set_xlabel("Firm clean (SMR) capex ($/kW)"); axs[1].set_ylabel("Supply cost per served MWh ($)")
+    axs[1].set_xlabel("Firm clean (SMR) capex ($/kW)"); axs[1].set_ylabel("Total cost per MWh of potential load ($)")
     axs[0].legend(fontsize=6, frameon=False); fig.tight_layout(); fig.savefig(os.path.join(RES, "fig3_firm_capex.png")); plt.close(fig)
     out["E2"] = [dict(site=r["site"], phi=r["phi"], v=r["v"], capex=r["firm_capex"], firm=round(r["caps"]["firm"], 3),
                       lcoe=round(r["lcoe_served"], 1), curtail_pct=round(100 * r["curtail_frac"], 2)) for r in sorted(E2, key=lambda r: (r["site"], r["phi"], r["v"], r["firm_capex"]))]
@@ -197,6 +197,82 @@ if os.path.exists(p3):
         ax.set_title(NAMES[s] + ", no firm, v=$1000/MWh", fontsize=8.5); ax.set_xlabel("Design weather year"); ax.set_xticks([2010, 2011, 2012, 2013])
     axs[0].set_ylabel("Curtailed share of load (%)"); axs[0].legend(fontsize=6.5, frameon=False)
     fig.tight_layout(); fig.savefig(os.path.join(RES, "fig5_weather_years.png")); plt.close(fig)
+
+
+# ---------- Total cost per MWh of potential load (supply + lost-compute cost) ----------
+lines = ["| Site | Mix | v | " + " | ".join(f"CFE {int(p*100)}%" for p in PHIS) + " |", "|" + "---|" * (3 + len(PHIS))]
+for s in NAMES:
+    for mix in ["all", "nofirm"]:
+        for v in [250, 500, 1000, 2000, 10000]:
+            cells = [("--" if (s, mix, p, v) not in idx else f"{idx[(s, mix, p, v)]['total_cost']/8760:.0f}") for p in PHIS]
+            lines.append(f"| {NAMES[s]} | {'with firm' if mix=='all' else 'no firm'} | {v} | " + " | ".join(cells) + " |")
+open(os.path.join(RES, "table_E1_total.md"), "w").write("Total cost (supply + v x curtailed MWh) per MWh of potential compute load ($/MWh)\n\n" + "\n".join(lines) + "\n")
+
+# ---------- E7 + Prop-2 brackets on the VoLC at which renewable-only + flexibility matches the firm option ----------
+E7 = [r for r in load("E7") if r.get("status") == 0]
+grid = collections.defaultdict(dict)
+for r in E1 + E7:
+    if r["mix"] == "nofirm" and r["phi"] in (0.99, 1.0):
+        grid[(r["site"], r["phi"])][r["v"]] = r
+be = {}
+for (s, phi), d in grid.items():
+    firm = idx.get((s, "all", phi, 1000))
+    if firm is None: continue
+    zf = firm["total_cost"] / 8760
+    vs = sorted(d); z = {v: d[v]["total_cost"] / 8760 for v in vs}; U = {v: d[v]["curtail_frac"] for v in vs}
+    lo = hi = None
+    # Z concave nondecreasing; tangent upper bound Z(w) <= Z(v)+U(v)(w-v) gives a certified lower end of the crossing,
+    # chord lower bound between grid points gives a certified upper end.
+    for a, b in zip(vs, vs[1:]):
+        if z[a] <= zf < z[b]:
+            lo = a + (zf - z[a]) / U[a] if U[a] > 0 else a
+            hi = a + (zf - z[a]) * (b - a) / (z[b] - z[a])
+    be[f"{s}|{phi}"] = dict(firm_total=round(zf, 1), grid={v: dict(total=round(z[v], 1), curtail_pct=round(100 * U[v], 2),
+                         supply_per_served=round(d[v]["lcoe_served"], 1), hours=d[v]["curtail_hours"]) for v in vs},
+                         crossing_bracket=None if lo is None else [round(lo, 0), round(hi, 0)],
+                         below_grid=z[vs[0]] > zf)
+out["breakeven_vs_firm"] = be
+if grid:
+    fig, axs = plt.subplots(1, 2, figsize=(8.4, 3.1), sharey=True)
+    for ax, phi in zip(axs, [0.99, 1.0]):
+        for j, s in enumerate(NAMES):
+            d = grid.get((s, phi), {}); vs = sorted(d)
+            ax.plot(vs, [d[v]["total_cost"] / 8760 for v in vs], "-o", ms=3, color=C[j], label=f"{NAMES[s]}: no firm + flexibility")
+            f = idx.get((s, "all", phi, 1000))
+            if f: ax.axhline(f["total_cost"] / 8760, color=C[j], ls=":", lw=1.2)
+        ax.axvspan(403, 968, color="#999999", alpha=0.12, lw=0)
+        ax.set_xscale("log"); ax.set_xlabel("Value of lost compute v ($/MWh)"); ax.set_title(f"CFE {int(phi*100)}% (dotted: SMR-option optimum)", fontsize=8.5)
+    axs[0].set_ylabel("Total cost per MWh of potential load ($)"); axs[0].legend(fontsize=6.5, frameon=False)
+    fig.tight_layout(); fig.savefig(os.path.join(RES, "fig7_breakeven.png")); plt.close(fig)
+
+# ---------- SMR capex at which a firm-only campus costs the same as the optimal renewable-only + flexibility campus ----------
+def firm_only_cost(capex):
+    Pc = model.params(firm_capex=capex)
+    return Pc["firm"] / Pc["firm_avail"] / 8760 + Pc["firm_var"]
+from scipy.optimize import brentq
+bc = {}
+for s in NAMES:
+    for v in VS:
+        r = idx.get((s, "nofirm", 1.0, v))
+        if r is None: continue
+        z = r["total_cost"] / 8760
+        bc[f"{s}|{v}"] = dict(nofirm_total=round(z, 1), firm_only_at_atb=round(firm_only_cost(9650.0), 1),
+                              breakeven_capex=round(brentq(lambda c: firm_only_cost(c) - z, 100, 1e5), -1))
+out["breakeven_firm_capex_cfe100"] = bc
+
+# ---------- E8 lumpy firm availability ----------
+E8 = [r for r in load("E8") if r.get("status") == 0]
+if E8:
+    out["E8"] = []
+    for r in sorted(E8, key=lambda r: (r["site"], r["phi"], r["modules"], r["v"])):
+        base = idx.get((r["site"], "all", r["phi"], r["v"]))
+        c = r["caps"]
+        out["E8"].append(dict(site=r["site"], phi=r["phi"], modules=r["modules"], v=r["v"], mean_avail=round(r["mean_avail"], 3),
+                              min_avail=round(r["min_avail"], 3), total=round(r["total_cost"] / 8760, 1),
+                              total_const_avail=None if base is None else round(base["total_cost"] / 8760, 1),
+                              curtail_pct=round(100 * r["curtail_frac"], 2), curtail_h=r["curtail_hours"],
+                              firm=round(c["firm"], 2), pv=round(c["pv"], 2), wind=round(c["wind"], 2), bat_e=round(c["bat_e"], 2),
+                              ct=round(c["ct"], 2), cc=round(c["cc"], 2)))
 
 json.dump(out, open(os.path.join(RES, "summary.json"), "w"), indent=1, default=float)
 print(json.dumps(out["prop_checks"]), out.get("p3_violations"))

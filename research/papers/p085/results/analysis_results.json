@@ -1,0 +1,644 @@
+{
+ "table1": [
+  {
+   "model": "Llama-3-70B (GQA-8)",
+   "hw": "8xH100 (BF16)",
+   "kappa_bytes": 327680,
+   "attn_intensity": 8.0,
+   "machine_balance": 221.4179104477612,
+   "W_over_M": 0.220625,
+   "L_star": 1560.714464321165,
+   "floors": {
+    "1024": {
+     "usd_per_Mtok": 0.16838505336479048,
+     "usd_per_Mtok_noSLO": 0.16838505336479048,
+     "b_eff": 1486.5398406982422,
+     "regime": "compute",
+     "kv_share": 0.5163558082754132
+    },
+    "4096": {
+     "usd_per_Mtok": 0.4462375638514192,
+     "usd_per_Mtok_noSLO": 0.4462375638514192,
+     "b_eff": 371.63496017456055,
+     "regime": "KV/memory",
+     "kv_share": 0.779375
+    },
+    "16384": {
+     "usd_per_Mtok": 1.7849502554056769,
+     "usd_per_Mtok_noSLO": 1.7849502554056769,
+     "b_eff": 92.90874004364014,
+     "regime": "KV/memory",
+     "kv_share": 0.779375
+    },
+    "65536": {
+     "usd_per_Mtok": 7.1398010216227075,
+     "usd_per_Mtok_noSLO": 7.1398010216227075,
+     "b_eff": 23.227185010910034,
+     "regime": "KV/memory",
+     "kv_share": 0.779375
+    },
+    "131072": {
+     "usd_per_Mtok": 14.279602043245415,
+     "usd_per_Mtok_noSLO": 14.279602043245415,
+     "b_eff": 11.613592505455017,
+     "regime": "KV/memory",
+     "kv_share": 0.779375
+    }
+   }
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "16xH100 (FP8)",
+   "kappa_bytes": 70272,
+   "attn_intensity": 241.77777777777777,
+   "machine_balance": 443.05970149253733,
+   "W_over_M": 0.52421875,
+   "L_star": 1527.383072196248,
+   "floors": {
+    "1024": {
+     "usd_per_Mtok": 0.053453608369359765,
+     "usd_per_Mtok_noSLO": 0.053453608369359765,
+     "b_eff": 8463.208141222678,
+     "regime": "compute",
+     "kv_share": 0.34882528454228395
+    },
+    "4096": {
+     "usd_per_Mtok": 0.1567608656226258,
+     "usd_per_Mtok_noSLO": 0.1567608656226258,
+     "b_eff": 2115.8020353056695,
+     "regime": "KV/memory",
+     "kv_share": 0.47578125
+    },
+    "16384": {
+     "usd_per_Mtok": 0.6270434624905032,
+     "usd_per_Mtok_noSLO": 0.6270434624905032,
+     "b_eff": 528.9505088264174,
+     "regime": "KV/memory",
+     "kv_share": 0.47578125
+    },
+    "65536": {
+     "usd_per_Mtok": 2.508173849962013,
+     "usd_per_Mtok_noSLO": 2.508173849962013,
+     "b_eff": 132.23762720660434,
+     "regime": "KV/memory",
+     "kv_share": 0.47578125
+    },
+    "131072": {
+     "usd_per_Mtok": 5.016347699924026,
+     "usd_per_Mtok_noSLO": 5.016347699924026,
+     "b_eff": 66.11881360330217,
+     "regime": "KV/memory",
+     "kv_share": 0.47578125
+    }
+   }
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "8xB200 (FP8)",
+   "kappa_bytes": 70272,
+   "attn_intensity": 241.77777777777777,
+   "machine_balance": 421.875,
+   "W_over_M": 0.46597222222222223,
+   "L_star": 1920.892547277064,
+   "floors": {
+    "1024": {
+     "usd_per_Mtok": 0.05641850184691358,
+     "usd_per_Mtok_noSLO": 0.05641850184691358,
+     "b_eff": 10686.711101149818,
+     "regime": "compute",
+     "kv_share": 0.3321463595550108
+    },
+    "4096": {
+     "usd_per_Mtok": 0.1403612379713914,
+     "usd_per_Mtok_noSLO": 0.1403612379713914,
+     "b_eff": 2671.6777752874546,
+     "regime": "KV/memory",
+     "kv_share": 0.5340277777777779
+    },
+    "16384": {
+     "usd_per_Mtok": 0.5614449518855656,
+     "usd_per_Mtok_noSLO": 0.5614449518855656,
+     "b_eff": 667.9194438218636,
+     "regime": "KV/memory",
+     "kv_share": 0.5340277777777779
+    },
+    "65536": {
+     "usd_per_Mtok": 2.2457798075422626,
+     "usd_per_Mtok_noSLO": 2.2457798075422626,
+     "b_eff": 166.9798609554659,
+     "regime": "KV/memory",
+     "kv_share": 0.5340277777777779
+    },
+    "131072": {
+     "usd_per_Mtok": 4.491559615084525,
+     "usd_per_Mtok_noSLO": 4.491559615084525,
+     "b_eff": 83.48993047773295,
+     "regime": "KV/memory",
+     "kv_share": 0.5340277777777779
+    }
+   }
+  }
+ ],
+ "table2_elasticities": [
+  {
+   "model": "Llama-3-70B (GQA-8)",
+   "hw": "8xH100 (BF16)",
+   "context": 1024,
+   "kappa(q_kv)": 0.0,
+   "W(q_w)": 0.0,
+   "N_active": 0.981,
+   "F": -1.0,
+   "B": 0.0,
+   "M": 0.0,
+   "L": 0.019
+  },
+  {
+   "model": "Llama-3-70B (GQA-8)",
+   "hw": "8xH100 (BF16)",
+   "context": 32768,
+   "kappa(q_kv)": 1.0,
+   "W(q_w)": 0.283,
+   "N_active": 0.0,
+   "F": 0.0,
+   "B": -1.0,
+   "M": -0.283,
+   "L": 1.0
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "16xH100 (FP8)",
+   "context": 1024,
+   "kappa(q_kv)": 0.0,
+   "W(q_w)": 0.0,
+   "N_active": 0.81,
+   "F": -1.0,
+   "B": 0.0,
+   "M": 0.0,
+   "L": 0.19
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "16xH100 (FP8)",
+   "context": 32768,
+   "kappa(q_kv)": 1.0,
+   "W(q_w)": 1.102,
+   "N_active": 0.0,
+   "F": 0.0,
+   "B": -1.0,
+   "M": -1.102,
+   "L": 1.0
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "8xB200 (FP8)",
+   "context": 1024,
+   "kappa(q_kv)": 0.0,
+   "W(q_w)": 0.0,
+   "N_active": 0.81,
+   "F": -1.0,
+   "B": 0.0,
+   "M": 0.0,
+   "L": 0.19
+  },
+  {
+   "model": "DeepSeek-V3 (MLA)",
+   "hw": "8xB200 (FP8)",
+   "context": 32768,
+   "kappa(q_kv)": 1.0,
+   "W(q_w)": 0.873,
+   "N_active": 0.0,
+   "F": 0.0,
+   "B": -1.0,
+   "M": -0.872,
+   "L": 1.0
+  }
+ ],
+ "ladder": [
+  {
+   "L": 4096,
+   "step": "baseline (BF16 W, BF16 KV, GQA-8)",
+   "usd_per_Mtok": 0.4462375638514192,
+   "cumulative_factor": 1.0,
+   "regime": "KV/memory",
+   "b_eff": 371.63496017456055
+  },
+  {
+   "L": 4096,
+   "step": "+ weights FP8 (W/2)",
+   "usd_per_Mtok": 0.3909084946418825,
+   "cumulative_factor": 1.1415396952686447,
+   "regime": "KV/memory",
+   "b_eff": 424.2360591888428
+  },
+  {
+   "L": 4096,
+   "step": "+ KV 4-bit (kappa/4)",
+   "usd_per_Mtok": 0.17780939669700033,
+   "cumulative_factor": 2.509639941087249,
+   "regime": "compute",
+   "b_eff": 1562.2221487603974
+  },
+  {
+   "L": 4096,
+   "step": "+ KV-architecture compression (kappa/3.56)",
+   "usd_per_Mtok": 0.17780939669700033,
+   "cumulative_factor": 2.509639941087249,
+   "regime": "compute",
+   "b_eff": 1562.2221487603974
+  },
+  {
+   "L": 4096,
+   "step": "+ sparse attention (L_eff = L/4)",
+   "usd_per_Mtok": 0.16838505336479048,
+   "cumulative_factor": 2.6501019831296264,
+   "regime": "compute",
+   "b_eff": 1649.658162806162
+  },
+  {
+   "L": 4096,
+   "step": "+ multi-token verify (2.5 tok/pass)",
+   "usd_per_Mtok": 0.16838505336479048,
+   "cumulative_factor": 2.6501019831296264,
+   "regime": "compute",
+   "b_eff": 1649.658162806162
+  },
+  {
+   "L": 4096,
+   "step": "+ FP8 compute (F x2)",
+   "usd_per_Mtok": 0.08419252668239524,
+   "cumulative_factor": 5.300203966259253,
+   "regime": "compute",
+   "b_eff": 3299.316325612324
+  },
+  {
+   "L": 4096,
+   "step": "+ utilization x1.15",
+   "usd_per_Mtok": 0.07321089276730021,
+   "cumulative_factor": 6.09523456119814,
+   "regime": "compute",
+   "b_eff": 3794.2137744541724
+  },
+  {
+   "L": 32768,
+   "step": "baseline (BF16 W, BF16 KV, GQA-8)",
+   "usd_per_Mtok": 3.5699005108113537,
+   "cumulative_factor": 1.0,
+   "regime": "KV/memory",
+   "b_eff": 46.45437002182007
+  },
+  {
+   "L": 32768,
+   "step": "+ weights FP8 (W/2)",
+   "usd_per_Mtok": 3.12726795713506,
+   "cumulative_factor": 1.1415396952686447,
+   "regime": "KV/memory",
+   "b_eff": 53.02950739860535
+  },
+  {
+   "L": 32768,
+   "step": "+ KV 4-bit (kappa/4)",
+   "usd_per_Mtok": 0.781816989283765,
+   "cumulative_factor": 4.566158781074579,
+   "regime": "KV/memory",
+   "b_eff": 212.1180295944214
+  },
+  {
+   "L": 32768,
+   "step": "+ KV-architecture compression (kappa/3.56)",
+   "usd_per_Mtok": 0.2657699344642924,
+   "cumulative_factor": 13.432296313001455,
+   "regime": "compute",
+   "b_eff": 755.1401853561401
+  },
+  {
+   "L": 32768,
+   "step": "+ sparse attention (L_eff = L/4)",
+   "usd_per_Mtok": 0.1903751878066135,
+   "cumulative_factor": 18.75192115076321,
+   "regime": "compute",
+   "b_eff": 1459.107045293893
+  },
+  {
+   "L": 32768,
+   "step": "+ multi-token verify (2.5 tok/pass)",
+   "usd_per_Mtok": 0.1903751878066135,
+   "cumulative_factor": 18.75192115076321,
+   "regime": "compute",
+   "b_eff": 1459.107045293893
+  },
+  {
+   "L": 32768,
+   "step": "+ FP8 compute (F x2)",
+   "usd_per_Mtok": 0.09518759390330675,
+   "cumulative_factor": 37.50384230152642,
+   "regime": "compute",
+   "b_eff": 2918.214090587786
+  },
+  {
+   "L": 32768,
+   "step": "+ utilization x1.15",
+   "usd_per_Mtok": 0.08277182078548412,
+   "cumulative_factor": 43.12941864675538,
+   "regime": "compute",
+   "b_eff": 3020.5607414245605
+  }
+ ],
+ "single_levers": [
+  {
+   "L": 1024,
+   "baseline_usd_per_Mtok": 0.16838505336479048,
+   "weights 4-bit (W/4)": 1.0,
+   "KV 4-bit (kappa/4)": 1.0,
+   "KV-arch compression (kappa/3.56)": 1.0,
+   "sparse attn (L/4)": 1.0141908118088012,
+   "multi-token verify (2.5/pass)": 1.0,
+   "FP8 compute (F x2)": 1.5093758751413096,
+   "2x cheaper bandwidth+FLOPs (hardware gen at equal price)": 2.0
+  },
+  {
+   "L": 4096,
+   "baseline_usd_per_Mtok": 0.4462375638514192,
+   "weights 4-bit (W/4)": 1.212309542902967,
+   "KV 4-bit (kappa/4)": 2.509639941087249,
+   "KV-arch compression (kappa/3.56)": 2.509639941087249,
+   "sparse attn (L/4)": 2.6501019831296264,
+   "multi-token verify (2.5/pass)": 1.4259317847086639,
+   "FP8 compute (F x2)": 1.0,
+   "2x cheaper bandwidth+FLOPs (hardware gen at equal price)": 2.2830793905372895
+  },
+  {
+   "L": 32768,
+   "baseline_usd_per_Mtok": 3.5699005108113537,
+   "weights 4-bit (W/4)": 1.212309542902967,
+   "KV 4-bit (kappa/4)": 4.0,
+   "KV-arch compression (kappa/3.56)": 3.5599999999999996,
+   "sparse attn (L/4)": 4.0,
+   "multi-token verify (2.5/pass)": 2.2727272727272725,
+   "FP8 compute (F x2)": 1.0,
+   "2x cheaper bandwidth+FLOPs (hardware gen at equal price)": 2.2830793905372895
+  },
+  {
+   "L": 131072,
+   "baseline_usd_per_Mtok": 14.279602043245415,
+   "weights 4-bit (W/4)": 1.212309542902967,
+   "KV 4-bit (kappa/4)": 4.0,
+   "KV-arch compression (kappa/3.56)": 3.5599999999999996,
+   "sparse attn (L/4)": 4.0,
+   "multi-token verify (2.5/pass)": 2.2727272727272725,
+   "FP8 compute (F x2)": 1.0,
+   "2x cheaper bandwidth+FLOPs (hardware gen at equal price)": 2.2830793905372895
+  }
+ ],
+ "dsv3_b200_kv_levers": [
+  {
+   "L": 4096,
+   "base_usd_per_Mtok": 0.1403612379713914,
+   "regime": "KV/memory",
+   "kappa/2": 1.5835518454226354,
+   "kappa/2_regime": "compute",
+   "kappa/4": 1.5835518454226354,
+   "kappa/4_regime": "compute",
+   "kappa/8": 1.5835518454226354,
+   "kappa/8_regime": "compute",
+   "weights FP4": 1.4362808842652797
+  },
+  {
+   "L": 32768,
+   "base_usd_per_Mtok": 1.1228899037711313,
+   "regime": "KV/memory",
+   "kappa/2": 2.0,
+   "kappa/2_regime": "KV/memory",
+   "kappa/4": 2.8840658162534227,
+   "kappa/4_regime": "compute",
+   "kappa/8": 2.8840658162534227,
+   "kappa/8_regime": "compute",
+   "weights FP4": 1.4362808842652797
+  },
+  {
+   "L": 131072,
+   "base_usd_per_Mtok": 4.491559615084525,
+   "regime": "KV/memory",
+   "kappa/2": 2.0,
+   "kappa/2_regime": "KV/memory",
+   "kappa/4": 3.1623270747473753,
+   "kappa/4_regime": "compute",
+   "kappa/8": 3.1623270747473753,
+   "kappa/8_regime": "compute",
+   "weights FP4": 1.4362808842652797
+  }
+ ],
+ "montecarlo_algorithmic_headroom_llama70_h100": {
+  "4096": {
+   "median": 5.557889410034417,
+   "p05": 3.0493295371611886,
+   "p95": 10.627186407147567,
+   "frac_still_kv_bound": 0.05635,
+   "spearman": {
+    "kvq": 0.06075183911287958,
+    "arch": 0.0692094423170236,
+    "sparse": 0.11165987488814967,
+    "accept": 0.0034809237507023093,
+    "wq": 0.006960705213901762,
+    "fq": 0.9546121524810303,
+    "util": 0.12607011351017527
+   }
+  },
+  "32768": {
+   "median": 24.32158771100272,
+   "p05": 9.241428331969928,
+   "p95": 57.35472596269824,
+   "frac_still_kv_bound": 0.4737,
+   "spearman": {
+    "kvq": 0.4065973627404934,
+    "arch": 0.3341519881468799,
+    "sparse": 0.6394933994367333,
+    "accept": 0.07687906730569766,
+    "wq": 0.043266220470165546,
+    "fq": 0.4067682744434206,
+    "util": 0.10242337506405842
+   }
+  },
+  "131072": {
+   "median": 36.75141169714042,
+   "p05": 9.891716953093155,
+   "p95": 104.61241987986234,
+   "frac_still_kv_bound": 0.69325,
+   "spearman": {
+    "kvq": 0.44056378355290937,
+    "arch": 0.3586809847017024,
+    "sparse": 0.70658407055796,
+    "accept": 0.22616159162690394,
+    "wq": 0.04545630697614075,
+    "fq": 0.18525731251314326,
+    "util": 0.07236840998942101
+   }
+  }
+ },
+ "hw_per_dollar": [
+  {
+   "device": "H100 SXM",
+   "price_range": [
+    2.0,
+    2.5,
+    4.0
+   ],
+   "TBps_per_usd_hr": [
+    0.8375,
+    1.34,
+    1.675
+   ],
+   "PFLOPs_fp8_per_usd_hr": [
+    0.49475,
+    0.7916000000000001,
+    0.9895
+   ]
+  },
+  {
+   "device": "B200",
+   "price_range": [
+    4.0,
+    6.0,
+    10.0
+   ],
+   "TBps_per_usd_hr": [
+    0.8,
+    1.3333333333333333,
+    2.0
+   ],
+   "PFLOPs_fp8_per_usd_hr": [
+    0.45,
+    0.75,
+    1.125
+   ]
+  }
+ ],
+ "hw_trend": {
+  "compute_floor_halving_years": 1.261859507142915,
+  "kv_floor_halving_years": 2.949539694713897,
+  "kv_floor_factor_per_year": 1.2649110640673518,
+  "compute_floor_factor_per_year": 1.7320508075688772,
+  "kv_factor_per_year_price_drift_0.9": 1.405456737852613,
+  "kv_factor_per_year_price_drift_1.0": 1.2649110640673518,
+  "kv_factor_per_year_price_drift_1.1": 1.1499191491521379
+ },
+ "per_task": [
+  {
+   "T_tokens": 1000,
+   "usd_per_task": 0.00018001143314033907,
+   "usd_per_token_avg_per_M": 0.18001143314033907
+  },
+  {
+   "T_tokens": 4000,
+   "usd_per_task": 0.0013220987891563879,
+   "usd_per_token_avg_per_M": 0.33052469728909695
+  },
+  {
+   "T_tokens": 16000,
+   "usd_per_task": 0.015671009750438905,
+   "usd_per_token_avg_per_M": 0.9794381094024317
+  },
+  {
+   "T_tokens": 64000,
+   "usd_per_task": 0.22955517890768093,
+   "usd_per_token_avg_per_M": 3.5867996704325145
+  }
+ ],
+ "sensitivity_eta": [
+  {
+   "eta_F": 0.4,
+   "eta_B": 0.6,
+   "L_star": 1762.186267697623,
+   "floor_32k": 4.759867347748472,
+   "floor_2k": 0.2974917092342795
+  },
+  {
+   "eta_F": 0.4,
+   "eta_B": 0.8,
+   "L_star": 2375.4869790041166,
+   "floor_32k": 3.5699005108113537,
+   "floor_2k": 0.2572897517132906
+  },
+  {
+   "eta_F": 0.4,
+   "eta_B": 0.9,
+   "L_star": 2687.236902784945,
+   "floor_32k": 3.173244898498981,
+   "floor_2k": 0.2572897517132906
+  },
+  {
+   "eta_F": 0.6,
+   "eta_B": 0.6,
+   "L_star": 1162.1176569726326,
+   "floor_32k": 4.759867347748472,
+   "floor_2k": 0.2974917092342795
+  },
+  {
+   "eta_F": 0.6,
+   "eta_B": 0.8,
+   "L_star": 1560.714464321165,
+   "floor_32k": 3.5699005108113537,
+   "floor_2k": 0.2231187819257096
+  },
+  {
+   "eta_F": 0.6,
+   "eta_B": 0.9,
+   "L_star": 1762.1862676976227,
+   "floor_32k": 3.173244898498981,
+   "floor_2k": 0.1983278061561863
+  },
+  {
+   "eta_F": 0.8,
+   "eta_B": 0.6,
+   "L_star": 866.9122859145352,
+   "floor_32k": 4.759867347748472,
+   "floor_2k": 0.2974917092342795
+  },
+  {
+   "eta_F": 0.8,
+   "eta_B": 0.8,
+   "L_star": 1162.1176569726324,
+   "floor_32k": 3.5699005108113537,
+   "floor_2k": 0.2231187819257096
+  },
+  {
+   "eta_F": 0.8,
+   "eta_B": 0.9,
+   "L_star": 1310.91778228906,
+   "floor_32k": 3.173244898498981,
+   "floor_2k": 0.1983278061561863
+  }
+ ],
+ "sensitivity_slo": [
+  {
+   "slo_ms": 20.0,
+   "floor_1k": 0.16838505336479048,
+   "floor_32k": 4.148283974656159,
+   "b_1k": 659.8632651224648
+  },
+  {
+   "slo_ms": 30.0,
+   "floor_1k": 0.16838505336479048,
+   "floor_32k": 3.5699005108113537,
+   "b_1k": 989.7948976836972
+  },
+  {
+   "slo_ms": 50.0,
+   "floor_1k": 0.16838505336479048,
+   "floor_32k": 3.5699005108113537,
+   "b_1k": 1486.5398406982422
+  },
+  {
+   "slo_ms": 100.0,
+   "floor_1k": 0.16838505336479048,
+   "floor_32k": 3.5699005108113537,
+   "b_1k": 1486.5398406982422
+  },
+  {
+   "slo_ms": null,
+   "floor_1k": 0.16838505336479048,
+   "floor_32k": 3.5699005108113537,
+   "b_1k": 1486.5398406982422
+  }
+ ],
+ "price_note": "Floors scale linearly with $/device-hour (baseline H100 $2.5, B200 $6.0)."
+}

@@ -124,7 +124,7 @@ def run_exp3(rng, OUT):
 
     # figure: regret vs q for main rules (m=20)
     qs = [0.0, 0.5, 0.9, 1.0]
-    rules = [("COV-unif|z=0.0|m=20", "cov test, uniform audit"), ("COV-lev+CV|z=0.0|m=20", "cov test, leverage+CV"),
+    rules = [("COV-unif|z=0.0|m=20", "cov test, uniform audit"), ("COV-lev|z=0.0|m=20", "cov test, leverage audit"), ("COV-lev+CV|z=0.0|m=20", "cov test, leverage+CV"),
              ("COV-dis+CV|z=0.0|m=20", "cov test, disagreement+CV"), ("first-hack-random|m=20", "first hack (random audit)"),
              ("first-hack-topproxy|m=20", "first hack (top-proxy audit)"), ("gap-alarm(proxy-only)", "proxy-only gap alarm (tuned at q=0)")]
     fig, ax = plt.subplots(figsize=(6.5, 3.8))

@@ -26,6 +26,10 @@ class GaussianShift:
         x = rng.normal(size=(n, self.k))
         return x + self.mu if which == "D" else x
 
+    def sample_H(self, n, t, rng):
+        """Honeypot of realism t: N(t*mu, I); t=1 is a perfect deployment replica."""
+        return rng.normal(size=(n, self.k)) + t * self.mu
+
     def bayes_roc(self, alpha):
         return norm.cdf(self.dprime + norm.ppf(alpha))
 
@@ -206,3 +210,28 @@ def train_constrained(env, hidden, alpha_target, rng, steps=3000, batch=8192, lr
             a, b = evaluate(model, env, rng, n=20000)
             traj.append((t, a, b, lam))
     return model, traj
+
+
+def train_anneal(env, hidden, lam_final, rng, steps=3000, batch=4096, lr=1e-2,
+                 eval_mix=None, warm=0.7):
+    """Penalty method with a geometric lambda schedule (1 -> lam_final over the first
+    `warm` fraction of training), which avoids the 'timid collapse' to a constant
+    near-zero policy that a fixed large lambda produces with sigmoid policies.
+    Objective: E_D[pi] - lam * E_{E'}[pi], where the evaluation distribution E' is
+    E itself (eval_mix=None) or a mixture given as a list of (weight, sampler)."""
+    m = MLP(env.k, hidden, rng)
+    opt = Adam(m.params, lr=lr)
+    if eval_mix is None:
+        eval_mix = [(1.0, lambda n, r: env.sample(n, "E", r))]
+    for t in range(steps):
+        lam = lam_final ** min(1.0, t / (warm * steps))
+        xd = env.sample(batch, "D", rng)
+        g = m.grad_mean_prob(xd, np.full(batch, 1.0 / batch))
+        for w, sampler in eval_mix:
+            if w <= 0:
+                continue
+            xe = sampler(batch, rng)
+            ge = m.grad_mean_prob(xe, np.full(batch, -lam * w / batch))
+            g = {k: g[k] + ge[k] for k in g}
+        opt.ascend(m.params, g)
+    return m

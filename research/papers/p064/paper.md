@@ -407,7 +407,7 @@ Afrouzi, H., Blanco, A., Drenik, A., and Hurst, E. (2026). Automation, Learning,
 
 Bainbridge, L. (1983). Ironies of Automation. *Automatica*, 19(6), 775–779. https://doi.org/10.1016/0005-1098(83)90046-8
 
-Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., and Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *Proceedings of the National Academy of Sciences*, 122(26), e2422633122.
+Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., and Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *Proceedings of the National Academy of Sciences*, 122(26), e2422633122. https://doi.org/10.1073/pnas.2422633122
 
 Beane, M. (2019). Shadow Learning: Building Robotic Surgical Skill When Approved Means Fail. *Administrative Science Quarterly*, 64(1), 87–123. https://doi.org/10.1177/0001839217751692
 
@@ -419,7 +419,7 @@ Brynjolfsson, E., Li, D., and Raymond, L. (2025). Generative AI at Work. *Quarte
 
 Bureau of Labor Statistics (2026). Employment Projections: Occupational separations and openings, projected 2025–35. U.S. Department of Labor. https://www.bls.gov/emp/tables/occupational-separations-and-openings.htm (accessed 22 November 2026).
 
-Catalini, C., Hui, X., and Wu, J. (2026). Some Simple Economics of AGI. arXiv:2602.20946.
+Catalini, C., Hui, X., and Wu, J. (2026). Some Simple Economics of AGI. arXiv:2602.20946. https://arxiv.org/abs/2602.20946
 
 Diekmann, O., Heesterbeek, J. A. P., and Metz, J. A. J. (1990). On the definition and the computation of the basic reproduction ratio R0 in models for infectious diseases in heterogeneous populations. *Journal of Mathematical Biology*, 28(4), 365–382. https://doi.org/10.1007/BF00178324
 
@@ -427,15 +427,15 @@ Feller, W. (1941). On the Integral Equation of Renewal Theory. *Annals of Mathem
 
 Freeman, R. B. (1976). A Cobweb Model of the Supply and Starting Salary of New Engineers. *Industrial and Labor Relations Review*, 29(2), 236–248.
 
-Gan, L. (2026). Execution and Evaluation: Task Content, Labor Demand, and the Evaluator Pipeline. arXiv:2607.20807 (also SSRN 7662918).
+Gan, L. (2026). Execution and Evaluation: Task Content, Labor Demand, and the Evaluator Pipeline. SSRN Working Paper 7662918. https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7662918 (an earlier version appears as arXiv:2607.20807 under the title "Execution and Evaluation: A New Occupational Measure and Long-Run Employment Gradients").
 
 Garicano, L., and Rayo, L. (2017). Relational Knowledge Transfers. *American Economic Review*, 107(9), 2695–2730. https://doi.org/10.1257/aer.20160194
 
-Garicano, L., and Rayo, L. (2025). Training in the Age of AI: A Theory of Career Viability. CEPR Discussion Paper 20634.
+Garicano, L., and Rayo, L. (2025). Training in the Age of AI: A Theory of Career Viability. CEPR Discussion Paper 20634 (revised March 2026). https://cepr.org/publications/dp20634
 
 Hayes, N. D. (1950). Roots of the Transcendental Equation Associated with a Certain Difference-Differential Equation. *Journal of the London Mathematical Society*, s1-25(3), 226–232. https://doi.org/10.1112/jlms/s1-25.3.226
 
-Hosseini, S. M., and Lichtinger, G. (2025). Generative AI as Seniority-Biased Technological Change: Evidence from U.S. Résumé and Job Posting Data. Working paper, SSRN 5425555 (revised May 2026).
+Hosseini, S. M., and Lichtinger, G. (2025). Generative AI as Seniority-Biased Technological Change: Evidence from U.S. Résumé and Job Posting Data. Working paper, SSRN 5425555. https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5425555
 
 Ide, E. (2025). Automation, AI, and the Intergenerational Transmission of Knowledge. arXiv:2507.16078 (also CEPR Discussion Paper 20940).
 

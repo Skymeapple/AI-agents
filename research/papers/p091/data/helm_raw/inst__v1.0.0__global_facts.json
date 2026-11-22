@@ -1,0 +1,3502 @@
+[
+  {
+    "input": {
+      "text": "As of 2016, about what percentage of adults aged 18 years or older were overweight?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id15"
+  },
+  {
+    "input": {
+      "text": "What was GDP per capita in the United States in 1850 when adjusting for inflation and PPP in 2011 prices?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "About $300"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "About $3k"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "About $8k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "About $15k"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id16"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of people from the United States says homosexuality should be accepted by society?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "52%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "62%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "72%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "82%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id17"
+  },
+  {
+    "input": {
+      "text": "Which of the following countries generated the most total energy from solar sources in 2019?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "China"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "United States"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Germany"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Japan"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id18"
+  },
+  {
+    "input": {
+      "text": "Controlling for inflation and PPP-adjustment, about how much did GDP per capita increase from 1950 to 2016 in Japan?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "by 5 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 10 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 15 fold"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "by 20 fold"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id19"
+  },
+  {
+    "input": {
+      "text": "What is the biggest cause of death in children under five years old (as of 2017)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Lower respiratory infections"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Preterm birth complications"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Diarrheal diseases"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Malaria"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id20"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of the global population does not have access to safe drinking water?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id21"
+  },
+  {
+    "input": {
+      "text": "About what percentage of survey respondents from India report having paid a bribe in the last year to access public services (such as education; judiciary; medical and health; police; registry and permit services; utilities; tax revenue and customs; and land service) as of 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "29%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "49%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "69%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "89%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id22"
+  },
+  {
+    "input": {
+      "text": "As of 2017, what fraction of the population in Brazil used the internet in the past three months?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "18%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "38%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "58%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "78%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id23"
+  },
+  {
+    "input": {
+      "text": "As of 2017, what fraction of the population in India used the internet in the past three months?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "11%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "26%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "41%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "56%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id24"
+  },
+  {
+    "input": {
+      "text": "As of 2018, about what percentage of Indians say that having an increasing number of people of many different races, ethnic groups and nationalities in their country makes it a better place to live (as opposed to worse or no difference)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "23%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "38%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "53%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "68%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id25"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of the world population lives in extreme poverty (less than $1.90 a day)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "5%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "15%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id26"
+  },
+  {
+    "input": {
+      "text": "As of 2020, about what percentage of the world population practices open defecation?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "9%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "18%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id27"
+  },
+  {
+    "input": {
+      "text": "Which of the following is not an element of the redistribution-with-growth policy approach?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "minimum wage legislation"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "land reform"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "progressive taxation"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "increased access to education"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id28"
+  },
+  {
+    "input": {
+      "text": "About what percentage of the global population was literate in 1950?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "36%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "56%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "76%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "96%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id29"
+  },
+  {
+    "input": {
+      "text": "As of 2016, about what percentage of adults aged 18 years or older were obese?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "6%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "13%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "27%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "46%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id30"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Germans say the relationship between the U.S. and Germany is good?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "34%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "49%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "64%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "79%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id31"
+  },
+  {
+    "input": {
+      "text": "As of 2017, what percentage of Americans live in urban areas?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "62%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "72%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "82%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "92%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id32"
+  },
+  {
+    "input": {
+      "text": "What was GDP per capita in the United States in 1950 when adjusting for inflation and PPP in 2011 prices?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "About $3k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "About $8k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "About $15k"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "About $30k"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id33"
+  },
+  {
+    "input": {
+      "text": "In 2016, about how many people in the United States were homeless?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "55,000"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "550,000"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "5,500,000"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "55,000,000"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id34"
+  },
+  {
+    "input": {
+      "text": "In 1965 how many Americans thought that sending troops to Vietnam was a mistake?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "45%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "65%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "85%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id35"
+  },
+  {
+    "input": {
+      "text": "As of 2013, share of people in the Ethiopia who think political parties are corrupt is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "24%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "44%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "64%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "84%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id36"
+  },
+  {
+    "input": {
+      "text": "In 1997, the World Bank found that the fraction of the world\u2019s population living in low and lower-middle income countries\u2014that is, countries with per capita incomes of $1230 or less\u2014was approximately"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "55%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "75%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id37"
+  },
+  {
+    "input": {
+      "text": "As of 2015, agriculture made up about what percentage of total Indian GDP?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "8%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "16%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "32%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "64%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id38"
+  },
+  {
+    "input": {
+      "text": "Which of the following is true as of 2020?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "males are more likely to have depression and are more likely to have an alcohol use disorder than females."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "females are more likely to have depression and are more likely to have an alcohol use disorder than males."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "males are more likely than females to have depression while females are more likely than males to have an alcohol use disorder."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "females are more likely than males to have depression while males are more likely than females to have an alcohol use disorder."
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id39"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of people from Brazil says homosexuality should be accepted by society?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "37%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "47%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "57%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "67%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id40"
+  },
+  {
+    "input": {
+      "text": "As of 2017, the share of GDP spent on the military by Saudi Arabia is about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "6%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id41"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what share of electricity came from fossil fuels in the United States?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "23%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "43%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "63%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "83%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id42"
+  },
+  {
+    "input": {
+      "text": "What is the percentage of children aged 13-15 in Egypt who reported being bullied at least once in the past couple of months as of 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "70%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id43"
+  },
+  {
+    "input": {
+      "text": "As of 2018, about what percentage of US adults say criminal risk assessment for people up for parole is an unreasonable application of algorithmic decision making?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "26%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "41%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "56%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "71%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id44"
+  },
+  {
+    "input": {
+      "text": "In 2018, about how many chickens were killed for meat production?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "690 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "6.9 billion"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "69 billion"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "690 billion"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id45"
+  },
+  {
+    "input": {
+      "text": "In 2016, what percentage of the population of South Sudan had access to electricity?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "9%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "29%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "59%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "79%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id46"
+  },
+  {
+    "input": {
+      "text": "About what percentage of survey respondents from Mexico report having paid a bribe in the last year to access public services (such as education; judiciary; medical and health; police; registry and permit services; utilities; tax revenue and customs; and land service) as of 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "31%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "51%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "71%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "91%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id47"
+  },
+  {
+    "input": {
+      "text": "Controlling for inflation and PPP-adjustment, about how much did GDP per capita increase from 1950 to 2016 in China?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "by 4 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 8 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 16 fold"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "by 32 fold"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id48"
+  },
+  {
+    "input": {
+      "text": "Ross Perot makes polling history by leading the presidential race briefly in June as a third-party candidate with 39%. He winds up with _% of the popular vote."
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "7"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "13"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "19"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id49"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Turks say God plays an important role in their life?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "59%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "69%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "79%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "89%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id50"
+  },
+  {
+    "input": {
+      "text": "Which of the following was responsible for the most death in the 20th century?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Earthquakes"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Volcanic activity"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Wildfires"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Floods"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id51"
+  },
+  {
+    "input": {
+      "text": "What is the percentage of children aged 13-15 in the United States who reported being in a physical fight at school, one or more times during the past 12 months as of 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "15%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "35%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "55%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "75%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id52"
+  },
+  {
+    "input": {
+      "text": "Controlling for inflation and PPP-adjustment, about how much did GDP per capita increase from 1950 to 2016 in South Korea?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "by 4 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 8 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 16 fold"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "by 32 fold"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id53"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of people from Turkey agree that the state is run for the benefit of all the people?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "36%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "51%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "66%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "81%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id54"
+  },
+  {
+    "input": {
+      "text": "As of 2015, what percentage of the global population over 15 years old was literate?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "81%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "86%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "91%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "96%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id55"
+  },
+  {
+    "input": {
+      "text": "About what percentage of survey respondents from China report having paid a bribe in the last year to access public services (such as education; judiciary; medical and health; police; registry and permit services; utilities; tax revenue and customs; and land service) as of 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "26%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "46%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "66%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "86%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id56"
+  },
+  {
+    "input": {
+      "text": "As of 2019, which of the following had the lowest life expectancy?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Brazil"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "China"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Mexico"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Iran"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id57"
+  },
+  {
+    "input": {
+      "text": "As of 2019, unsafe water is responsible for about how many deaths each year?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.2 million"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "2.4 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3.6 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4.8 million"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id58"
+  },
+  {
+    "input": {
+      "text": "Which of the following causes more deaths globally each year (as of 2017)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Diarrheal diseases"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Diabetes"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Dementia"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Road injuries"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id59"
+  },
+  {
+    "input": {
+      "text": "About how many people are infected by HIV/AIDS as of 2020?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "3 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "14 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "42 million"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "124 million"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id60"
+  },
+  {
+    "input": {
+      "text": "What is the percentage of children aged 13-15 in the United States who reported being bullied at least once in the past couple of months as of 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "26%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "46%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "66%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "86%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id61"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of South Koreans say it is necessary to believe in God in order to be moral and have good values?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "45%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "65%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "85%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id62"
+  },
+  {
+    "input": {
+      "text": "What is the percentage of children aged 13-15 in Japan who reported being bullied at least once in the past couple of months as of 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "6%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "16%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "36%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "66%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id63"
+  },
+  {
+    "input": {
+      "text": "As of 2018, about what percentage of US adults say computer programs will always reflect human bias?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "43%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "58%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "73%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "88%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id64"
+  },
+  {
+    "input": {
+      "text": "As of 2017, the share of GDP spent on the military by China is about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "6%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "12%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id65"
+  },
+  {
+    "input": {
+      "text": "The conjecture that inequality first increases with development, then decreases with further development (known as the \u201cinverted U hypothesis\u201d) has, as of 2020, been"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "strongly supported by most studies"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "supported mainly by cross-section, not time-series studies"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "supported mainly by time-series, not cross-section studies"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "generally repudiated by empirical studies"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id66"
+  },
+  {
+    "input": {
+      "text": "Worldwide, 30 year old men have spent 10 years in school, on average. How many years have women of the same age spent in school, as of 2020?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "12 years"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "9 years"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "6 years"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3 years"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id67"
+  },
+  {
+    "input": {
+      "text": "As of 2017, the share of deaths in Greenland by suicide is about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.90%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.80%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3.60%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "7.20%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id68"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of people from Russia says homosexuality should be accepted by society?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "14%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "24%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "34%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "44%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id69"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Americans say the relationship between the U.S. and Germany is good?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "60%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "75%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "90%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "45%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id70"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Americans say it is very important to have free media in our country without government/state censorship?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "60%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "70%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id71"
+  },
+  {
+    "input": {
+      "text": "In 1987 during Iran Contra what percent of Americans believe Reagan was witholding information?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "75%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id72"
+  },
+  {
+    "input": {
+      "text": "In Sub-Saharan Africa, as of 2020,"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "no nation has been able to grow in the past years."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "the Democratic Republic of Congo has become poorer than it initially was in 1980."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "some countries have had relatively significant growth rates."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "some countries have had relatively significant growth rates, but the Democratic Republic of Congo has become poorer than it initially was in 1980."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id73"
+  },
+  {
+    "input": {
+      "text": "World Bank data show that in 1995, the poorest 20% of households accounted for 7.5% of household income in Niger, the next 20% of households accounted for 11.8% of income, the middle 20% accounted for 15.5% of income, the second richest 20% accounted for 21.1% of income, and the top 20% accounted for 44.1% of income. What was the cumulative income share of the bottom 60% of households in Niger?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "15.50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "34.80%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "48.10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "65.20%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id74"
+  },
+  {
+    "input": {
+      "text": "How many children between the ages of 5-14 worked globally as of 2012?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "5 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30 million"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "150 million"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "500 million"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id75"
+  },
+  {
+    "input": {
+      "text": "Different less developed countries have different levels of secondary school enrollment. Some countries with high secondary-school enrollment are, as of 2020,"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Colombia, Peru, Uruguay, and Costa Rica."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Bhutan, Niger, Cambodia, and Costa Rica."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Uruguay, Costa Rica, Timor-Leste, and Pakistan."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Bhutan, Cambodia, Uruguay and Costa Rica."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id76"
+  },
+  {
+    "input": {
+      "text": "The percentage of children in Vietnam (age 8) who reported physical punishment by teachers in the past week in 2009 was about what?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id77"
+  },
+  {
+    "input": {
+      "text": "The percentage of children in India (age 8) who reported physical punishment by teachers in the past week in 2009 was about what?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "38%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "58%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "78%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "98%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id78"
+  },
+  {
+    "input": {
+      "text": "Consider the following statements: (1) In every country, people think other individuals in their country are less happy than they actually are. (2) In the United States, women\u2019s happiness has increased both absolutely and relative to men. Which of these statements is True/False?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "True, True"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "True, False"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "False, True"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "False, False"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id79"
+  },
+  {
+    "input": {
+      "text": "In 2017, about how many people died from terrorism globally?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "260"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2,600"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "26,000"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "260,000"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id80"
+  },
+  {
+    "input": {
+      "text": "In 1935 roughly how many Americans were in favor of Social Security act?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "90%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "70%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id81"
+  },
+  {
+    "input": {
+      "text": "Which of the following countries emitted the most CO2 per capita in 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Japan"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Canada"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Russia"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Iran"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id82"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Indians say it is necessary to believe in God in order to be moral and have good values?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "59%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "69%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "79%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "89%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id83"
+  },
+  {
+    "input": {
+      "text": "What is the percentage of children aged 13-15 in China who reported being in a physical fight at school, one or more times during the past 12 months as of 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "9%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "19%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "39%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "59%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id84"
+  },
+  {
+    "input": {
+      "text": "The percentage of children in Ethiopia (age 8) who reported physical punishment by teachers in the past week in 2009 was about what?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "18%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "38%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "58%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "78%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id85"
+  },
+  {
+    "input": {
+      "text": "As of 2018, about what percentage of people from Tunisia say that having an increasing number of people of many different races, ethnic groups and nationalities in their country makes it a better place to live (as opposed to worse or no difference)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "24%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "39%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "54%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "69%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id86"
+  },
+  {
+    "input": {
+      "text": "As of 2015, the global fertility rate was about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.5 children per woman"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2.5 children per woman"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "3.5 children per woman"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4.5 children per woman"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id87"
+  },
+  {
+    "input": {
+      "text": "What is the median international income as of 2020?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "$300 "
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "$1,000 "
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "$10,000 "
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "$30,000 "
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id88"
+  },
+  {
+    "input": {
+      "text": "Before being reelected for a third term as president how many Americans approved of running a third time?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "60%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id89"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of Italians say it is very important to have free media in our country without government/state censorship?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "41%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "56%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "71%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "86%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id90"
+  },
+  {
+    "input": {
+      "text": "Public spending on education in the world is about what percentage of global GDP as of 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "8%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id91"
+  },
+  {
+    "input": {
+      "text": "As of 2013, which of the following countries had the highest per capita rate of homelessness?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "US"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Chile"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Ireland"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Spain"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id92"
+  },
+  {
+    "input": {
+      "text": "Overall, the growth rate of average incomes in less developed countries between 1960 and 1995"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "was approximately zero"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "exceeded that of high income countries"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "exceeded that of Britain during the industrial revolution"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "was approximately 3.0% per year"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id93"
+  },
+  {
+    "input": {
+      "text": "As of 2015, about what percentage of the world\u2019s land area is forested?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "15%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "45%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "60%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id94"
+  },
+  {
+    "input": {
+      "text": "The greatest population growth rate has taken place"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "in Africa, which is the poorest region of the world with the lowest overall economic growth."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "in Asia, which is the poorest region of the world with a steady overall economic growth."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "in Asia, which is the poorest region of the world with the lowest overall economic growth."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "in Africa, which is the poorest region of the world with a steady overall economic growth."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id95"
+  },
+  {
+    "input": {
+      "text": "The global HIV/AIDS death rate is highest for which of these age groups?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Under 5"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "14-May"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "15-49"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "over 50"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id96"
+  },
+  {
+    "input": {
+      "text": "As of 2015, agriculture made up about what percentage of total US GDP?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "3%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "9%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id97"
+  },
+  {
+    "input": {
+      "text": "As of 2017, what percentage of Indians live in urban areas?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "19%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "34%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "49%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "64%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id98"
+  },
+  {
+    "input": {
+      "text": "Consider the following statements: (1) As countries get richer, the population tends to report higher average life satisfaction. (2) Important life events such as marriage or divorce do affect our happiness, but have surprisingly little long-term impact. Which of these statements is True/False, as of 2020?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "True, True"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "True, False"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "False, True"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "False, False"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id99"
+  },
+  {
+    "input": {
+      "text": "At its peak, what was the approximate difference in approval of school desegration from the South and the rest of the U.S.?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "40%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "-40%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "-80%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id100"
+  },
+  {
+    "input": {
+      "text": "As of 2013, share of people in the United States who think political parties are corrupt is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "36%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "56%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "76%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "96%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id101"
+  },
+  {
+    "input": {
+      "text": "Which of the following countries invested the largest fraction of its GDP in renewable energy in 2015?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "China"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Japan"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Chile"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "India"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id102"
+  },
+  {
+    "input": {
+      "text": "As of 2020, about how much do you need to make annually to be among the richest one percent in the world?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "$150,000 "
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "$75,000 "
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "$35,000 "
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "$15,000 "
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id103"
+  },
+  {
+    "input": {
+      "text": "In 1943 how many Americans believed in the Holocaust?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "30%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "70%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "90%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id104"
+  },
+  {
+    "input": {
+      "text": "Which of the following countries emitted the most CO2 in 2017?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Canada"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Russia"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Iran"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Japan"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id105"
+  },
+  {
+    "input": {
+      "text": "At the time of independence, there were already hundreds of thousands of university graduates in ____, but hardly any at all in ____."
+    },
+    "references": [
+      {
+        "output": {
+          "text": "India, Congo"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "India, South Korea"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Congo, South Korea"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "South Korea, India"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id106"
+  },
+  {
+    "input": {
+      "text": "As of 2013, share of people in the India who think political parties are corrupt is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "26%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "46%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "66%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "86%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id107"
+  },
+  {
+    "input": {
+      "text": "As of 2019, about what percentage of French people say God plays an important role in their life?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "11%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "31%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "51%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "71%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id108"
+  },
+  {
+    "input": {
+      "text": "As of 2017, the share of GDP spent on the military by the United States is about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "6%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id109"
+  },
+  {
+    "input": {
+      "text": "As of 2017, the share of global deaths by suicide is about"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.70%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.40%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "2.80%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "5.60%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id110"
+  },
+  {
+    "input": {
+      "text": "Many countries that became independent after World War II found that the legacy of colonialism hindered their economic development. The list of hindrances included"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "artificial political boundaries that covered diverse ethnic groups with little in common"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "inadequate access to higher education and training for nationals under the colonial administration"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "control of domestic commerce by foreign minority groups which had been brought in by the colonial power"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "all of the above"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id111"
+  },
+  {
+    "input": {
+      "text": "Which of the following mental disorders is most prevalent in the world?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Bipolar disorder"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Schizophrenia"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Alcohol use disorders"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Anxiety disorders"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id112"
+  },
+  {
+    "input": {
+      "text": "As of 2017, how many people in the world have some access to electricity?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "60%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "70%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "80%"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "90%"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id113"
+  },
+  {
+    "input": {
+      "text": "Before Nixon resigned how many believed he should be removed from office?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "79%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "98%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "33%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "57%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id114"
+  }
+]

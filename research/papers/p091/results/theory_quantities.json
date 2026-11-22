@@ -1,0 +1,87 @@
+{
+ "A1_support": {
+  "n_items": 3605,
+  "frac_negative_slope": 0.8033287101248267,
+  "median_slope": -0.652934426364935,
+  "note": "modal distractor chosen by >=3 models; slope of logit P(choose it) on standardised ability"
+ },
+ "confound": {
+  "eta_hat": 0.14676645772897895,
+  "eta_star_median": 0.1518886250802045,
+  "eta_star_min": 0.06615244277108384,
+  "eta_star_max": 0.7227165900048118,
+  "frac_theta_grid_where_eta_hat_exceeds": 0.48,
+  "PA_at_min": 0.35141618844363753,
+  "PA_at_max": 0.07782200905530354,
+  "PB_at_min": 0.07388059320432451,
+  "PB_at_max": 0.831487116234493
+ },
+ "per_model_ucb": {
+  "n_items": 88,
+  "median_ucb": 0.17168123828604617,
+  "top10_ucb": [
+   {
+    "model": "anthropic_claude-3-5-sonnet-20241022",
+    "k": 5,
+    "n": 88,
+    "ucb95": 0.11575480943633486
+   },
+   {
+    "model": "google_gemini-1.5-pro-002",
+    "k": 7,
+    "n": 88,
+    "ucb95": 0.14421830025218477
+   },
+   {
+    "model": "deepseek-ai_deepseek-v3",
+    "k": 8,
+    "n": 88,
+    "ucb95": 0.15805433990866904
+   },
+   {
+    "model": "anthropic_claude-3-5-sonnet-20240620",
+    "k": 5,
+    "n": 88,
+    "ucb95": 0.11575480943633486
+   },
+   {
+    "model": "openai_gpt-4-1106-preview",
+    "k": 5,
+    "n": 76,
+    "ucb95": 0.1333596359045467
+   },
+   {
+    "model": "mistralai_mistral-large-2402",
+    "k": 2,
+    "n": 62,
+    "ucb95": 0.09808368159210062
+   },
+   {
+    "model": "meta_llama-3.1-405b-instruct-turbo",
+    "k": 4,
+    "n": 88,
+    "ucb95": 0.10100034887264545
+   },
+   {
+    "model": "openai_gpt-4o-2024-08-06",
+    "k": 6,
+    "n": 87,
+    "ucb95": 0.1315802745206473
+   },
+   {
+    "model": "anthropic_claude-3-opus-20240229",
+    "k": 9,
+    "n": 88,
+    "ucb95": 0.17168123828604617
+   },
+   {
+    "model": "google_gemini-1.5-pro-001",
+    "k": 9,
+    "n": 88,
+    "ucb95": 0.17168123828604617
+   }
+  ],
+  "max_ucb_top20": 0.18512709333168276,
+  "min_ucb_top20": 0.08671366186700107
+ }
+}

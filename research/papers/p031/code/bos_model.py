@@ -90,14 +90,13 @@ def chain_exact(n, p: Params):
         pa_acc = (1 - m_new) * (1 - honest_prob * p.f)
         pm_acc = m_new * (1 - honest_prob * d)
         pflag = 1 - pa_acc - pm_acc
-        if R >= 10**8:
-            tot = 1 - pflag
-            return pa_acc / tot, pm_acc / tot, 0.0
-        geo = (1 - pflag ** R) / (1 - pflag)
-        return pa_acc * geo, pm_acc * geo, pflag ** R
+        return _step_outcome(pa_acc, pm_acc, R)
 
     A_from_good = step(m, 1.0)
-    A_from_bad = step(m_bad, 1 - p.kappa)
+    # a misaligned parent's honesty is fixed for the whole step (as in simulate()):
+    # silent with prob kappa, honest otherwise
+    sil, hon = step(m_bad, 0.0), step(m_bad, 1.0)
+    A_from_bad = tuple(p.kappa * a + (1 - p.kappa) * b for a, b in zip(sil, hon))
     v = np.array([1.0, 0.0])  # P(parent aligned), P(parent misaligned)
     abort = 0.0
     for _ in range(n):
@@ -145,13 +144,17 @@ def anchored_comonotone_exact(n, p: Params):
 
 
 # ---------------------------------------------------------------- Monte Carlo (general)
-def simulate(n, p: Params, policy="anchored", reps=200_000, seed=0, max_attempts=50):
-    """Monte Carlo of the BOS process. Returns (S, F, A) frequencies."""
+def simulate(n, p: Params, policy="anchored", reps=200_000, seed=0, max_attempts=None):
+    """Monte Carlo of the BOS process. Returns (S, F, A) frequencies.
+    R is respected exactly; R >= 10**8 means unlimited retries (loop until every
+    replication has accepted a model). `max_attempts` is only a safety cap; if it
+    is hit, a RuntimeError is raised rather than silently counting aborts."""
     rng = np.random.default_rng(seed)
     delta = p.G / n
     m = mu(delta, p)
     m_bad = m + (1 - m) * p.gamma
-    R = min(p.R, max_attempts)
+    unlimited = p.R >= 10**8
+    R = p.R if not unlimited else (max_attempts or 10**6)
     aligned = np.zeros((reps, n + 1), dtype=bool)
     aligned[:, 0] = True
     alive = np.ones(reps, dtype=bool)
@@ -174,7 +177,8 @@ def simulate(n, p: Params, policy="anchored", reps=200_000, seed=0, max_attempts
         miss_com = np.min(np.where(honest, 1 - dj, 1.0), axis=1)
         p_miss = p.rho * miss_com + (1 - p.rho) * miss_ind
         p_nofp = np.where(nh > 0, p.rho * (1 - p.f) + (1 - p.rho) * (1 - p.f) ** nh, 1.0)
-        for att in range(R):
+        att = 0
+        while att < R:
             idx = np.flatnonzero(todo)
             if idx.size == 0:
                 break
@@ -185,9 +189,127 @@ def simulate(n, p: Params, policy="anchored", reps=200_000, seed=0, max_attempts
             accepted[acc] = True
             new_al[acc] = is_al[~flagged]
             todo[acc] = False
+            att += 1
+        if unlimited and todo.any():
+            raise RuntimeError("safety cap on attempts reached with R=inf")
         alive &= accepted
         aligned[:, i + 1] = new_al & alive
     S = np.mean(alive & aligned[:, n])
     F = np.mean(alive & ~aligned[:, n])
     A = 1 - S - F
     return S, F, A
+
+
+# ---------------------------------------------------------------- exact DP (anchored, any rho, kappa=1, gamma=1)
+def _step_outcome(pa, pm, R):
+    pflag = 1 - pa - pm
+    if R >= 10**8:
+        tot = pa + pm
+        return pa / tot, pm / tot, 0.0
+    geo = R if pflag >= 1 else (1 - pflag ** R) / (1 - pflag)
+    return pa * geo, pm * geo, pflag ** R
+
+
+def anchored_exact(n, p: Params):
+    """Exact (S,F,A) for anchored oversight with ANY rho in the mixture copula,
+    kappa=1 (misaligned overseers always silent), gamma=1 (persistence).
+    With gamma=1 the aligned models form a prefix M_0..M_j; state = j.
+    Honest overseers = M_0..M_j, deficits (i+1-j')Delta, j'=0..j."""
+    assert p.kappa == 1.0 and p.gamma == 1.0
+    delta = p.G / n
+    m = mu(delta, p)
+    # log(1-d(l*delta)) for l = 1..n
+    l = np.arange(1, n + 1)
+    lq = np.log1p(-det(l * delta, p))
+    cum = np.concatenate([[0.0], np.cumsum(lq)])   # cum[L] = sum_{l=1}^{L}
+    v = np.zeros(n + 1); v[0] = 1.0                # v[j] = P(last aligned index = j)
+    abort = 0.0
+    for i in range(n):
+        nv = np.zeros(n + 1)
+        for j in range(i + 1):
+            if v[j] == 0:
+                continue
+            lo, hi = i + 1 - j, i + 1               # deficits lo*delta .. hi*delta
+            prod_miss = np.exp(cum[hi] - cum[lo - 1])
+            min_miss = np.exp(lq[lo - 1])
+            miss = p.rho * min_miss + (1 - p.rho) * prod_miss
+            nofp = p.rho * (1 - p.f) + (1 - p.rho) * (1 - p.f) ** (j + 1)
+            if j == i:
+                pa, pm = (1 - m) * nofp, m * miss
+            else:
+                pa, pm = 0.0, miss
+            ga, gm, ab = _step_outcome(pa, pm, p.R)
+            nv[i + 1] += v[j] * ga
+            nv[j] += v[j] * gm
+            abort += v[j] * ab
+        v = nv
+    return v[n], v[:n].sum(), abort
+
+
+def anchored_beta(n, p: Params):
+    """Per-step joint-miss probabilities beta_i on an aligned lineage (anchored, rho-mixture)."""
+    delta = p.G / n
+    out = []
+    for i in range(n):
+        dj = det((i + 1 - np.arange(i + 1)) * delta, p)
+        out.append(p.rho * np.min(1 - dj) + (1 - p.rho) * np.prod(1 - dj))
+    return np.array(out)
+
+
+# ---------------------------------------------------------------- brute-force enumeration (small n, general)
+def brute_force(n, p: Params, policy="anchored"):
+    """Exact (S,F,A) by enumerating every alignment history and every honesty
+    pattern of misaligned overseers (honesty fixed within a step, as in simulate()).
+    Exponential in n; intended for n <= 6 to validate simulate() for any
+    (rho, kappa, gamma, f, R)."""
+    from itertools import product
+    delta = p.G / n
+    m = mu(delta, p)
+    m_bad = m + (1 - m) * p.gamma
+    states = {(True,): 1.0}
+    abort = 0.0
+    for i in range(n):
+        js = [i] if policy == "chain" else list(range(i + 1))
+        dj = {j: det((i + 1 - j) * delta, p) for j in js}
+        new = {}
+        for hist, pr in states.items():
+            mis = [j for j in js if not hist[j]]
+            mn = m if hist[i] else m_bad
+            for pat in product([False, True], repeat=len(mis)):
+                ph = 1.0
+                for h in pat:
+                    ph *= (1 - p.kappa) if h else p.kappa
+                if ph == 0:
+                    continue
+                H = [j for j in js if hist[j]] + [j for j, h in zip(mis, pat) if h]
+                if H:
+                    q = np.array([1 - dj[j] for j in H])
+                    miss = p.rho * q.min() + (1 - p.rho) * q.prod()
+                    nofp = p.rho * (1 - p.f) + (1 - p.rho) * (1 - p.f) ** len(H)
+                else:
+                    miss, nofp = 1.0, 1.0
+                ga, gm, ab = _step_outcome((1 - mn) * nofp, mn * miss, p.R)
+                w = pr * ph
+                for al, g in ((True, ga), (False, gm)):
+                    if g > 0:
+                        key = hist + (al,)
+                        new[key] = new.get(key, 0.0) + w * g
+                abort += w * ab
+        states = new
+    S = sum(v for k, v in states.items() if k[-1])
+    F = sum(v for k, v in states.items() if not k[-1])
+    return S, F, abort
+
+
+# ---------------------------------------------------------------- two-state closed form (chain, kappa=1, f=0, R=inf)
+def chain_two_state(n, p: Params, gamma_delta=None):
+    """P(S) = pi + (1-pi)(1-alpha-eps)^n for chain oversight, kappa=1, f=0, R=inf,
+    with persistence gamma possibly depending on the step size."""
+    delta = p.G / n
+    g = p.gamma if gamma_delta is None else gamma_delta(delta)
+    e = eps_step(delta, p)
+    a = (1 - mu(delta, p)) * (1 - g)
+    if a + e == 0:
+        return 1.0
+    pi = a / (a + e)
+    return pi + (1 - pi) * (1 - a - e) ** n

@@ -1,0 +1,43 @@
+conversations 16
+cons designer_swap median 0.409 [0.275,0.539] sample_swap median 0.414 [0.264,0.522]
+cons ratio median 1.011 min 0.854 max 1.140; n(designer>sample)=10
+cons spearman(n, ratio) SignificanceResult(statistic=np.float64(0.95), pvalue=np.float64(1.834617266858828e-08))
+cons spearman(n, sample_swap) SignificanceResult(statistic=np.float64(-0.08529411764705883), pvalue=np.float64(0.7534650694747835))
+cons spearman(votes per stmt, sample_swap) SignificanceResult(statistic=np.float64(-0.2764705882352941), pvalue=np.float64(0.29994212849237334))
+cons wilcoxon designer vs sample WilcoxonResult(statistic=np.float64(66.0), pvalue=np.float64(0.93988037109375))
+cons variance shares median designer 0.249 sample 0.203 inter 0.542
+full designer_swap median 0.441 [0.323,0.568] sample_swap median 0.408 [0.273,0.514]
+full ratio median 1.112 min 0.888 max 1.241; n(designer>sample)=12
+full spearman(n, ratio) SignificanceResult(statistic=np.float64(0.9294117647058824), pvalue=np.float64(1.9401189481036708e-07))
+full spearman(n, sample_swap) SignificanceResult(statistic=np.float64(-0.07352941176470588), pvalue=np.float64(0.7866792491258566))
+full spearman(votes per stmt, sample_swap) SignificanceResult(statistic=np.float64(-0.2647058823529412), pvalue=np.float64(0.3218043958686153))
+full wilcoxon designer vs sample WilcoxonResult(statistic=np.float64(18.0), pvalue=np.float64(0.00762939453125))
+full variance shares median designer 0.314 sample 0.172 inter 0.511
+                                     conversation     n    m   k  density  cons_designer_swap  cons_sample_swap  full_designer_swap  full_sample_swap  jr_viol_consensus  jr_viol_majoritarian  jr_viol_proportional  jr_viol_hybrid  owner_share_pool  owner_share_constitution
+0                 american-assembly.bowling-green  1579  607  58    0.234               0.379             0.336               0.411             0.331              0.000                 0.000                   0.0             0.0             0.147                     0.116
+1           austria-climate.2vkxcncppn.2022-07-07  1439  515  58    0.162               0.532             0.505               0.561             0.486              0.653                 0.333                   0.0             0.0             0.082                     0.105
+2           austria-climate.5twd2jsnkf.2022-08-08   900  277  55    0.216               0.422             0.408               0.455             0.395              0.653                 0.333                   0.0             0.0             0.108                     0.129
+3           austria-climate.5tzfrp5eaa.2022-07-07  2660  903  58    0.112               0.462             0.432               0.499             0.422              0.972                 1.000                   0.0             0.0             0.054                     0.039
+4           austria-climate.7z7ejpbmv5.2022-08-08  1261  315  58    0.185               0.453             0.428               0.490             0.413              0.778                 0.333                   0.0             0.0             0.092                     0.067
+5           austria-climate.9xnndurbfm.2022-07-07  2957  801  58    0.106               0.539             0.472               0.568             0.460              0.903                 1.000                   0.0             0.0             0.046                     0.113
+6                                brexit-consensus   189   49  10    0.567               0.336             0.389               0.361             0.382              0.000                 0.000                   0.0             0.0             0.633                     0.763
+7                       canadian-electoral-reform   281  151  30    0.270               0.472             0.522               0.501             0.514              0.000                 0.000                   0.0             0.0             0.291                     0.370
+8                            football-concussions   592   44  10    0.445               0.397             0.413               0.420             0.412              0.000                 0.000                   0.0             0.0             0.000                     0.000
+9               scoop-hivemind.affordable-housing   295  119  24    0.416               0.406             0.400               0.434             0.388              0.000                 0.000                   0.0             0.0             0.420                     0.382
+10                    scoop-hivemind.biodiversity   441  154  31    0.427               0.411             0.411               0.441             0.399              0.000                 0.000                   0.0             0.0             0.396                     0.540
+11                      scoop-hivemind.freshwater   100   51  10    0.767               0.370             0.433               0.378             0.425              0.000                 0.000                   0.0             0.0             0.941                     0.984
+12                           scoop-hivemind.taxes   293   91  18    0.645               0.403             0.414               0.445             0.404              0.000                 0.000                   0.0             0.0             0.462                     0.345
+13                             scoop-hivemind.ubi   174   52  10    0.776               0.429             0.475               0.441             0.470              0.000                 0.000                   0.0             0.0             1.000                     1.000
+14  ssis.land-bank-farmland.2rumnecbeh.2021-08-01   354  186  37    0.505               0.390             0.387               0.407             0.371              0.000                 0.000                   0.0             0.0             0.339                     0.404
+15                                  vtaiwan.uberx  1218   99  20    0.396               0.275             0.264               0.323             0.273              0.000                 0.000                   0.0             0.0             0.444                     0.401
+JR any violation conversations: consensus 5 majoritarian 5 prop 0 hybrid 0
+owner ratio median 1.0457555379746837 15
+votes per statement median 191.75520688697586
+spearman(ratio,m) 0.876 p=8.44e-06
+spearman(ratio,kfrac) -0.576 p=0.0194
+spearman(ratio,density) -0.862 p=1.78e-05
+spearman(ratio,agree_share) -0.124 p=0.649
+spearman(n,m) 0.8117647058823528
+spearman(n, cons_designer_swap) SignificanceResult(statistic=np.float64(0.38823529411764707), pvalue=np.float64(0.1372816236727813))
+OLS log r ~ log n + log m coefs [-0.4916  0.0587  0.0222]
+se [0.0615 0.0178 0.0178] t [-8.    3.3   1.25]

@@ -1,0 +1,33 @@
+{
+  "n_models": 20,
+  "n_models_interior": 20,
+  "se_ratio_family_over_naive_median": 4.4799274652545025,
+  "se_ratio_min": 3.125496048335399,
+  "se_ratio_max": 5.885194873094699,
+  "deff_median": 20.07187720571743,
+  "n_runs_median": 1034.0,
+  "n_eff_median": 53.002116916218824,
+  "n_families_median": 78.5,
+  "margin95_naive_median": 0.021049848247912506,
+  "margin95_family_median": 0.09767096964886778
+}
+Claude 3 Opus (Inspect)                  p=0.426 naive=0.0155 task=0.0306 fam=0.0863 deff=30.8 neff=34/1034
+Claude 3.5 Sonnet (New) (Inspect)        p=0.565 naive=0.0152 task=0.0297 fam=0.0697 deff=21.1 neff=48/1013
+Claude 3.5 Sonnet (Old) (Inspect)        p=0.517 naive=0.0155 task=0.0309 fam=0.0786 deff=25.6 neff=39/1005
+Claude 3.7 Sonnet (Inspect)              p=0.658 naive=0.0142 task=0.0296 fam=0.0644 deff=20.6 neff=51/1043
+Claude 4 Opus (Inspect)                  p=0.707 naive=0.0121 task=0.0282 fam=0.0549 deff=20.5 neff=67/1368
+Claude 4.1 Opus (Inspect)                p=0.709 naive=0.0135 task=0.0283 fam=0.0537 deff=15.9 neff=66/1043
+Claude Opus 4.5 (Inspect)                p=0.802 naive=0.0116 task=0.0250 fam=0.0412 deff=12.6 neff=82/1033
+Claude Opus 4.6 (Inspect)                p=0.841 naive=0.0100 task=0.0225 fam=0.0346 deff=11.9 neff=115/1373
+GPT-4 0314                               p=0.504 naive=0.0148 task=0.0334 fam=0.0859 deff=33.9 neff=31/1037
+GPT-4 1106 (Inspect)                     p=0.420 naive=0.0157 task=0.0308 fam=0.0845 deff=28.9 neff=35/1012
+GPT-4 Turbo (Inspect)                    p=0.403 naive=0.0156 task=0.0314 fam=0.0880 deff=31.7 neff=32/1023
+GPT-4o (Inspect)                         p=0.459 naive=0.0155 task=0.0296 fam=0.0794 deff=26.4 neff=39/1043
+GPT-5 (Inspect)                          p=0.790 naive=0.0117 task=0.0255 fam=0.0440 deff=14.2 neff=71/1005
+GPT-5.1-Codex-Max (Inspect)              p=0.837 naive=0.0097 task=0.0232 fam=0.0381 deff=15.6 neff=80/1244
+GPT-5.2                                  p=0.883 naive=0.0100 task=0.0209 fam=0.0312 deff=9.8 neff=88/864
+GPT-5.3-Codex                            p=0.846 naive=0.0092 task=0.0222 fam=0.0337 deff=13.5 neff=111/1497
+Gemini 3 Pro                             p=0.786 naive=0.0119 task=0.0253 fam=0.0458 deff=14.7 neff=70/1032
+o1 (Inspect)                             p=0.639 naive=0.0144 task=0.0288 fam=0.0639 deff=19.7 neff=53/1034
+o1-preview                               p=0.590 naive=0.0121 task=0.0300 fam=0.0713 deff=34.6 neff=46/1601
+o3 (Inspect)                             p=0.784 naive=0.0115 task=0.0263 fam=0.0479 deff=17.5 neff=53/932

@@ -169,3 +169,226 @@ def leading_order_target_failure(q, n):
     k = len(q)
     m = np.arange(1, k + 1)
     return np.prod(q) + max(n - k, 0) * np.prod(q ** m)
+
+
+# =============================================================================
+# Revision 1 extensions (fast vectorised DP + robustness axes)
+# =============================================================================
+#   r      : number of same-generation copies of each overseer generation
+#            (copies of a compromised generation are all compromised).
+#   rho_s  : correlation between copies of the same generation (rho_s >= rho);
+#            Y = sqrt(rho) Z + sqrt(rho_s - rho) V_gen + sqrt(1 - rho_s) eps.
+#   t      : threshold aggregation; a level is flagged iff >= min(t, #overseer
+#            instances) instances detect (t = 1 is OR).
+#   c      : correction probability; a flagged level becomes trusted w.p. c and
+#            otherwise stays compromised (c = 1 is the original model).
+from math import comb
+
+_NZ, _NV = 48, 24
+_ZX, _ZW = np.polynomial.hermite_e.hermegauss(_NZ); _ZW = _ZW / _ZW.sum()
+_VX, _VW = np.polynomial.hermite_e.hermegauss(_NV); _VW = _VW / _VW.sum()
+
+
+@dataclass
+class RDesign:
+    n: int
+    k: int = 1
+    anchor: bool = False
+    r: int = 1
+    rho: float = 0.0
+    rho_s: float = None      # defaults to rho
+    gamma: float = 0.0
+    t: int = 1
+    c: float = 1.0
+    full: bool = False       # every earlier level oversees (overrides k)
+
+    def __post_init__(self):
+        if self.rho_s is None:
+            self.rho_s = self.rho
+        assert self.rho_s >= self.rho - 1e-12
+
+    def overseers(self, j):
+        if self.full:
+            return list(range(j))
+        s = list(range(max(0, j - self.k), j))
+        if self.anchor and 0 not in s:
+            s = [0] + s
+        return s
+
+    def cost(self):
+        return self.r * sum(len(self.overseers(j)) for j in range(1, self.n + 1))
+
+    def family(self):
+        cross = self.full or self.k > 1 or self.anchor
+        if not cross:
+            return "chain" if self.r == 1 else "chain-r"
+        return "graph" if self.r == 1 else "hybrid"
+
+
+def flag_prob(P, r=1, rho=0.0, rho_s=None, t=1):
+    """P: array (..., g) of per-instance detection marginals for g overseer
+    generations, each fielding r copies. Returns P(#detecting instances >=
+    min(t, g*r)) under the nested Gaussian copula, vectorised over leading dims."""
+    P = np.clip(np.asarray(P, dtype=float), 0.0, 1.0)
+    if rho_s is None:
+        rho_s = rho
+    g = P.shape[-1]
+    if g == 0:
+        return np.zeros(P.shape[:-1])
+    if rho_s >= 1 - 1e-12:      # copies are identical: behave as one instance
+        r = 1
+        rho_s_eff = rho
+    else:
+        rho_s_eff = rho_s
+    teff = int(min(t, g * r))
+    if rho >= 1 - 1e-12:        # all instances share one latent: flag iff the t-th
+        s = np.sort(P, axis=-1)[..., ::-1]   # best... with ties of copies
+        s = np.repeat(s, r, axis=-1)
+        return s[..., teff - 1]
+    thr = norm.ppf(np.clip(P, 1e-300, 1 - 1e-16))
+    thr = np.where(P <= 0, -np.inf, thr)
+    a = np.sqrt(max(rho, 0.0))
+    bv = np.sqrt(max(rho_s_eff - rho, 0.0))
+    e = np.sqrt(max(1 - rho_s_eff, 1e-300))
+    zx = _ZX if a > 0 else np.array([0.0]); zw = _ZW if a > 0 else np.array([1.0])
+    vx = _VX if bv > 0 else np.array([0.0]); vw = _VW if bv > 0 else np.array([1.0])
+    # pd shape (..., g, nz, nv)
+    pd = norm.cdf((thr[..., None, None] - a * zx[:, None] - bv * vx[None, :]) / e)
+    if teff == 1:
+        miss = np.tensordot((1 - pd) ** r, vw, axes=([-1], [0]))  # (..., g, nz)
+        allmiss = np.prod(miss, axis=-2)                            # (..., nz)
+        return 1.0 - allmiss @ zw
+    # truncated count pmf (counts 0..teff-1) per generation, convolved
+    pm = np.stack([comb(r, cc) * pd ** cc * (1 - pd) ** (r - cc) if cc <= r else np.zeros_like(pd)
+                   for cc in range(teff)], axis=-1)                 # (..., g, nz, nv, teff)
+    pm = np.einsum('...gzvc,v->...gzc', pm, vw)                     # (..., g, nz, teff)
+    tot = pm[..., 0, :, :]
+    for gi in range(1, g):
+        nxt = pm[..., gi, :, :]
+        conv = np.zeros_like(tot)
+        for c1 in range(teff):
+            conv[..., c1:] += tot[..., c1:c1 + 1] * nxt[..., :teff - c1]
+        tot = conv
+    below = tot.sum(axis=-1)                                        # (..., nz)
+    return 1.0 - below @ zw
+
+
+def dp_fast(game, d: RDesign, Delta, return_trace=False):
+    """Exact (target, strict) success by DP over the trust bits of the last k
+    levels, vectorised over the 2^k states. Supports r, rho_s, t, c, gamma and
+    anchor. Not for the full topology with large n (use monte_carlo_r)."""
+    n = d.n
+    k = n if d.full else d.k
+    x = np.arange(n + 1) * Delta / n
+    S = 1 << k
+    states = np.arange(S)
+    dist = np.zeros(S); dist[S - 1] = 1.0  # all window bits trusted initially
+    strict = 1.0
+    trace = []
+    for j in range(1, n + 1):
+        O = d.overseers(j)
+        base = np.array([game.p(x[i], x[j]) for i in O])
+        stat = np.ones((S, len(O)))
+        for col, i in enumerate(O):
+            if i == 0:
+                continue
+            pos = i - (j - k)          # bit position in window (0 = oldest)
+            stat[:, col] = (states >> pos) & 1
+        peff = base[None, :] * (stat + d.gamma * (1 - stat))
+        uniq, inv = np.unique(np.round(peff, 13), axis=0, return_inverse=True)
+        f = flag_prob(uniq, d.r, d.rho, d.rho_s, d.t)[np.ravel(inv)]
+        pT = d.c * f
+        strict *= d.c * float(flag_prob(base[None, :], d.r, d.rho, d.rho_s, d.t)[0])
+        new = np.zeros(S)
+        nxt = states >> 1
+        np.add.at(new, nxt | (1 << (k - 1)), dist * pT)
+        np.add.at(new, nxt, dist * (1 - pT))
+        dist = new
+        trace.append(dist[(states >> (k - 1)) & 1 == 1].sum())
+    if return_trace:
+        return trace[-1], strict, np.array(trace)
+    return trace[-1], strict
+
+
+def false_alarms(d: RDesign, phi):
+    """Benign model; each overseer instance false-flags independently w.p. phi.
+    Returns (expected number of flagged levels, P(at least one flagged level))."""
+    from scipy.stats import binom
+    pf = []
+    for j in range(1, d.n + 1):
+        s = d.r * len(d.overseers(j))
+        te = min(d.t, s)
+        pf.append(binom.sf(te - 1, s, phi))
+    pf = np.array(pf)
+    return float(pf.sum()), float(1 - np.prod(1 - pf))
+
+
+def monte_carlo_r(game, d: RDesign, Delta, n_runs=200_000, seed=0, corr_fn=None):
+    """Direct simulation of the extended generative model. corr_fn(levels) may
+    return a correlation matrix over overseer generations (r must be 1), which
+    replaces the one-factor structure (used for distance-dependent correlation)."""
+    rng = np.random.default_rng(seed)
+    n = d.n
+    x = np.arange(n + 1) * Delta / n
+    status = np.zeros((n_runs, n + 1), dtype=bool); status[:, 0] = True
+    for j in range(1, n + 1):
+        O = d.overseers(j); g = len(O)
+        if corr_fn is not None:
+            R = corr_fn(O)
+            L = np.linalg.cholesky(R + 1e-12 * np.eye(g))
+            Y = (rng.standard_normal((n_runs, g)) @ L.T)[:, :, None]   # r = 1
+        else:
+            Z = rng.standard_normal((n_runs, 1, 1))
+            V = rng.standard_normal((n_runs, g, 1))
+            E = rng.standard_normal((n_runs, g, d.r))
+            Y = (np.sqrt(d.rho) * Z + np.sqrt(max(d.rho_s - d.rho, 0)) * V
+                 + np.sqrt(max(1 - d.rho_s, 0)) * E)
+        base = np.array([game.p(x[i], x[j]) for i in O])
+        peff = np.where(status[:, O], base[None, :], d.gamma * base[None, :])
+        thr = norm.ppf(np.clip(peff, 1e-300, 1 - 1e-16)); thr = np.where(peff <= 0, -np.inf, thr)
+        cnt = (Y < thr[:, :, None]).sum(axis=(1, 2))
+        flagged = cnt >= min(d.t, g * Y.shape[2])
+        corrected = rng.random(n_runs) < d.c
+        status[:, j] = flagged & corrected
+    return {"target": status[:, n].mean(), "strict": status[:, 1:].all(axis=1).mean(),
+            "target_se": status[:, n].std() / np.sqrt(n_runs)}
+
+
+def window_transition(qfun, k, rho, c=1.0):
+    """Substochastic transition matrix of the stationary window-k chain (gamma=0,
+    no anchor) on the 2^k - 1 non-absorbed window states; qfun(m) = miss prob of
+    a trusted overseer at distance m. Bit k-1 = newest level."""
+    S = 1 << k
+    keep = [s for s in range(S) if s != 0]
+    idx = {s: i for i, s in enumerate(keep)}
+    M = np.zeros((len(keep), len(keep)))
+    for s in keep:
+        ps = []
+        for pos in range(k):           # pos k-1 newest -> distance 1
+            if (s >> pos) & 1:
+                ps.append(1 - qfun(k - pos))
+        f = float(flag_prob(np.array([ps]), 1, rho, rho, 1)[0]) if ps else 0.0
+        pT = c * f
+        for nb, w in ((1, pT), (0, 1 - pT)):
+            ns = (s >> 1) | (nb << (k - 1))
+            if ns != 0 and w > 0:
+                M[idx[s], idx[ns]] += w
+    return M
+
+
+def qs_hazard(qfun, k, rho, c=1.0):
+    """Quasi-stationary per-level hazard of entering the absorbing all-compromised
+    window: 1 - Perron eigenvalue of the substochastic matrix."""
+    M = window_transition(qfun, k, rho, c)
+    ev = np.linalg.eigvals(M)
+    return float(1 - np.max(ev.real))
+
+
+def R_k(q, rho):
+    """Lower-bound rate of Theorem 3: prod_i P(all trusted overseers at distances
+    i..k miss) under the one-factor copula."""
+    q = np.asarray(q, float); k = len(q)
+    out = 1.0
+    for i in range(k):
+        out *= 1 - float(flag_prob(np.array([1 - q[i:]]), 1, rho, rho, 1)[0])
+    return out

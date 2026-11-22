@@ -5,7 +5,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from dataclasses import replace, asdict
-from bos_model import (Params, chain_exact, anchored_comonotone_exact, simulate,
+from bos_model import (Params, chain_exact, anchored_comonotone_exact, anchored_exact, simulate,
                        optimal_rate, linearized_rate, floor_rate, h_rate, mu, det)
 
 OUT = "../results/"
@@ -106,10 +106,13 @@ retry = []
 for R in Rs:
     p = replace(pG, R=R)
     ch = chain_exact(n0, p); an = anchored_comonotone_exact(n0, p)
-    an_ind = simulate(n0, replace(p, rho=0.0), "anchored", reps=200_000, seed=R % 1000)
-    an_toy = simulate(n0, replace(p, rho=0.44), "anchored", reps=200_000, seed=R % 1000 + 1)
+    an_ind = anchored_exact(n0, replace(p, rho=0.0))
+    an_toy = anchored_exact(n0, replace(p, rho=0.44))
+    an_ind_mc = simulate(n0, replace(p, rho=0.0), "anchored", reps=200_000, seed=R % 1000)
+    an_toy_mc = simulate(n0, replace(p, rho=0.44), "anchored", reps=200_000, seed=R % 1000 + 1)
     retry.append(dict(R=("inf" if R == R_INF else R), chain=list(map(float, ch)), anchored_comono=list(map(float, an)),
-                      anchored_indep=list(map(float, an_ind)), anchored_rho044=list(map(float, an_toy))))
+                      anchored_indep=list(map(float, an_ind)), anchored_rho044=list(map(float, an_toy)),
+                      anchored_indep_mc=list(map(float, an_ind_mc)), anchored_rho044_mc=list(map(float, an_toy_mc))))
 res["retry_sweep"] = dict(n=n0, G=G, f=0.02, rows=retry)
 fig, ax = plt.subplots(1, 3, figsize=(7.4, 2.6), sharey=True)
 xs = np.arange(len(Rs)); lab = [str(r["R"]) for r in retry]
@@ -129,17 +132,17 @@ dep = []
 for rho in rhos:
     for R in [3, R_INF]:
         p = replace(pG, rho=rho, R=R)
-        s = simulate(n0, p, "anchored", reps=200_000, seed=int(rho * 100) + (R % 7))
+        s = anchored_exact(n0, p)
         dep.append(dict(rho=rho, R=("inf" if R == R_INF else R), S=float(s[0]), F=float(s[1]), A=float(s[2])))
     p = replace(pG, rho=rho, R=R_INF, f=0.0)
-    s = simulate(n0, p, "anchored", reps=200_000, seed=int(rho * 100) + 11)
+    s = anchored_exact(n0, p)
     dep.append(dict(rho=rho, R="inf_nofp", S=float(s[0]), F=float(s[1]), A=float(s[2])))
 res["rho_sweep"] = dep
 fig, ax = plt.subplots(figsize=(3.6, 2.8))
 for c, R in zip([C[0], C[1], C[3]], [3, "inf", "inf_nofp"]):
     rr = [d for d in dep if d["R"] == R]
     ax.plot([d["rho"] for d in rr], [d["F"] for d in rr], "o-", c=c, label=f"F, R={R}")
-ax.axvline(0.44, ls=":", c="gray"); ax.text(0.45, ax.get_ylim()[1] * 0.9, "toy rho_hat", fontsize=6.5)
+ax.axvline(0.44, ls=":", c="gray"); ax.text(0.45, ax.get_ylim()[1] * 0.9, "input-level toy rho_hat", fontsize=6.5)
 ax.set_xlabel("overseer error dependence rho"); ax.set_ylabel("P(silent failure)")
 ax.legend(frameon=False, fontsize=7); fig.tight_layout(); fig.savefig(OUT + "fig4_rho.png", dpi=200); plt.close(fig)
 
@@ -175,8 +178,9 @@ gk = []
 for gamma in [1.0, 0.9, 0.5, 0.0]:
     for kappa in [1.0, 0.5]:
         p = replace(base, gamma=gamma, kappa=kappa)
-        n_s, P_s, _ = best_n(p, nmax=150)
-        gk.append(dict(gamma=gamma, kappa=kappa, n_star=n_s, S=float(P_s), F=float(chain_exact(n_s, p)[1])))
+        n_s, P_s, _ = best_n(p, nmax=3000)
+        gk.append(dict(gamma=gamma, kappa=kappa, n_star=n_s, at_cap=bool(n_s == 3000), S=float(P_s),
+                       F=float(chain_exact(n_s, p)[1]), S_n150=float(chain_exact(150, p)[0])))
 res["gamma_kappa"] = gk
 
 json.dump(res, open(OUT + "theory_results.json", "w"), indent=1, default=float)

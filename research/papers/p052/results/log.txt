@@ -1,0 +1,24 @@
+A done 0.3 0.7061305547847311 {'alpha_over_scale': 0.15000000000000002, 'd_report': 0.5015082359313965, 'd_logit': -4.513574123382568, 'slope': -9.0, 'rho': 1.0} {'alpha_over_scale': 0.15000000000000002, 'd_report': 0.5016706585884094, 'd_logit': -4.515036106109619, 'slope': -9.0, 'rho': 1.0}
+WinMLP 1 eps=0.0010 ind none/one=0.306/0.694 avoid lag30=0.000 rho probe=0.278 grad=0.008 L1 rho probe=0.583 grad=0.245 t=6s
+WinMLP 2 eps=0.0009 ind none/one=0.304/0.690 avoid lag30=0.000 rho probe=0.068 grad=0.010 L1 rho probe=0.492 grad=0.195 t=10s
+WinMLP 3 eps=0.0011 ind none/one=0.306/0.695 avoid lag30=0.000 rho probe=0.132 grad=0.006 L1 rho probe=0.463 grad=0.128 t=15s
+WinMLP 4 eps=0.0008 ind none/one=0.305/0.699 avoid lag30=0.000 rho probe=0.190 grad=0.022 L1 rho probe=0.516 grad=0.004 t=19s
+WinMLP 5 eps=0.0009 ind none/one=0.302/0.692 avoid lag30=0.000 rho probe=0.116 grad=0.002 L1 rho probe=0.400 grad=0.146 t=23s
+SplitMLP 1 eps=0.0021 ind none/one=0.304/0.694 avoid lag30=0.000 rho probe=0.071 grad=-0.000 L1 rho probe=0.400 grad=-0.000 t=30s
+SplitMLP 2 eps=0.0018 ind none/one=0.294/0.697 avoid lag30=0.000 rho probe=0.057 grad=-0.000 L1 rho probe=0.349 grad=-0.000 t=37s
+SplitMLP 3 eps=0.0012 ind none/one=0.305/0.693 avoid lag30=0.000 rho probe=0.199 grad=-0.000 L1 rho probe=0.662 grad=-0.000 t=43s
+SplitMLP 4 eps=0.0016 ind none/one=0.306/0.687 avoid lag30=0.000 rho probe=0.054 grad=-0.000 L1 rho probe=0.334 grad=-0.000 t=50s
+SplitMLP 5 eps=0.0012 ind none/one=0.305/0.688 avoid lag30=0.000 rho probe=0.076 grad=-0.000 L1 rho probe=0.517 grad=-0.000 t=57s
+GRU 1 eps=0.0004 ind none/one=0.301/0.702 avoid lag30=0.166 rho probe=0.168 grad=0.005 L1 rho probe=0.695 grad=0.025 t=68s
+GRU 2 eps=0.0004 ind none/one=0.310/0.704 avoid lag30=0.178 rho probe=0.193 grad=0.006 L1 rho probe=0.761 grad=-0.036 t=79s
+GRU 3 eps=0.0005 ind none/one=0.307/0.698 avoid lag30=0.170 rho probe=0.153 grad=-0.009 L1 rho probe=0.581 grad=-0.060 t=90s
+GRU 4 eps=0.0003 ind none/one=0.301/0.693 avoid lag30=0.161 rho probe=0.214 grad=0.020 L1 rho probe=0.627 grad=0.146 t=101s
+GRU 5 eps=0.0004 ind none/one=0.303/0.697 avoid lag30=0.192 rho probe=0.089 grad=-0.024 L1 rho probe=0.833 grad=0.088 t=113s
+suppress WinMLP 1 0.9996632096808753 -> 0.045857723098363515 probeR2 0.9954781096211093 -> 0.9464655836130351 avoid 0.7252623438835144 -> 0.7280296683311462
+suppress WinMLP 2 0.9995944837087948 -> 0.09624969955919437 probeR2 0.9953599892330314 -> 0.9585756973971838 avoid 0.7230393290519714 -> 0.7245022654533386
+suppress WinMLP 3 0.9997060533216641 -> 0.09312640281924059 probeR2 0.9958029916377718 -> 0.9584035576614587 avoid 0.7182582020759583 -> 0.7323980331420898
+suppress GRU 1 0.9996792741628439 -> 0.09936084719549394 probeR2 0.9954604479516294 -> 0.9567813907951765 avoid 0.7570497393608093 -> 0.7643429636955261
+suppress GRU 2 0.9995765429064409 -> 0.14045164371610916 probeR2 0.9957222750001015 -> 0.9460539284840725 avoid 0.7410311102867126 -> 0.7480254769325256
+suppress GRU 3 0.9995317157290726 -> 0.12467499611802663 probeR2 0.9946024919523269 -> 0.9674654492065596 avoid 0.7626333236694336 -> 0.7663787007331848
+coverage GRU 12 [0.161, 0.181, 0.184] [0.0017, 0.0014, 0.0014] t=402s
+coverage GRU 24 [0.184, 0.173, 0.163] [0.001, 0.0008, 0.0009] t=1075s

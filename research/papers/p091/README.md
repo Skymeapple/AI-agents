@@ -6,7 +6,7 @@ Paper: `paper.md`. All numbers in the paper come from `results/*.json` produced 
 * HELM MMLU per-instance predictions, public GCS bucket `crfm-helm-public` (`mmlu/benchmark_output/runs/v1.*`).
   80 models with all 57 subjects (latest HELM release per model/subject).
 * MMLU-Redux annotations: CSVs from https://github.com/aryopg/mmlu-redux (folder `mmlu_redux/`, commit in `data/mmlu_redux/COMMIT`), copied to `data/mmlu_redux/`.
-* `data/author_adjudication.csv`: author's re-adjudication of the 23 flagged items on which the 25 strongest models most often choose the original key (W_top25 > 0.2).
+* `data/author_adjudication.csv`: author re-adjudication (single, unblinded reviewer) of the 23 flagged items on which the 25 strongest models most often choose the original key (W_top25 > 0.2).
 
 ## Run (CPU only, ~15 min total on 4 cores)
 ```
@@ -22,5 +22,6 @@ python3 06_saturation.py            # ceiling, discriminability, IRT information
 python3 07_verify_items.py          # numerical checks of computational items
 python3 08_theory_quantities.py     # A1 support, confound threshold, per-model bounds
 python3 09_figures.py               # figures -> results/fig*.png
+python3 10_extra.py                 # adjudication AUC, per-model Clopper-Pearson bounds -> results/extra_quantities.json
 ```
 `data/helm_raw/` can be deleted after step 3.

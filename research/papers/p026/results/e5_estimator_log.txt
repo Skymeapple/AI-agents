@@ -1,0 +1,18 @@
+=== scenario bimodal
+true mean F(t): {5: 0.85, 20: 0.674, 50: 0.573, 200: 0.438, 1000: 0.284}
+A naive aggregate exp fit            t=5: bias=-0.000 rmse=0.004  t=20: bias=+0.030 rmse=0.044  t=50: bias=+0.101 rmse=0.114  t=200: bias=+0.234 rmse=0.241  t=1000: bias=+0.388 rmse=0.393
+B aggregate exp, floor=cold-start    t=5: bias=-0.006 rmse=0.007  t=20: bias=-0.139 rmse=0.140  t=50: bias=-0.287 rmse=0.287  t=200: bias=-0.249 rmse=0.250  t=1000: bias=-0.095 rmse=0.096
+C per-fact plug-in MLE               t=5: bias=+0.001 rmse=0.004  t=20: bias=+0.015 rmse=0.016  t=50: bias=+0.030 rmse=0.031  t=200: bias=+0.097 rmse=0.098  t=1000: bias=+0.241 rmse=0.242
+D per-fact empirical Bayes (NPMLE)   t=5: bias=-0.000 rmse=0.004  t=20: bias=+0.001 rmse=0.007  t=50: bias=+0.002 rmse=0.011  t=200: bias=+0.005 rmse=0.030  t=1000: bias=+0.033 rmse=0.066
+=== scenario lognormal
+true mean F(t): {5: 0.907, 20: 0.765, 50: 0.624, 200: 0.398, 1000: 0.235}
+A naive aggregate exp fit            t=5: bias=+0.000 rmse=0.004  t=20: bias=+0.052 rmse=0.063  t=50: bias=+0.166 rmse=0.179  t=200: bias=+0.387 rmse=0.395  t=1000: bias=+0.550 rmse=0.555
+B aggregate exp, floor=cold-start    t=5: bias=-0.005 rmse=0.007  t=20: bias=-0.090 rmse=0.093  t=50: bias=-0.209 rmse=0.211  t=200: bias=-0.208 rmse=0.209  t=1000: bias=-0.052 rmse=0.052
+C per-fact plug-in MLE               t=5: bias=+0.000 rmse=0.004  t=20: bias=+0.013 rmse=0.016  t=50: bias=+0.044 rmse=0.046  t=200: bias=+0.153 rmse=0.154  t=1000: bias=+0.297 rmse=0.298
+D per-fact empirical Bayes (NPMLE)   t=5: bias=-0.000 rmse=0.004  t=20: bias=-0.000 rmse=0.009  t=50: bias=-0.001 rmse=0.014  t=200: bias=-0.001 rmse=0.028  t=1000: bias=+0.030 rmse=0.054
+=== scenario subresolution
+true mean F(t): {5: 0.883, 20: 0.753, 50: 0.694, 200: 0.656, 1000: 0.585}
+A naive aggregate exp fit            t=5: bias=+0.000 rmse=0.003  t=20: bias=+0.022 rmse=0.037  t=50: bias=+0.059 rmse=0.077  t=200: bias=+0.096 rmse=0.109  t=1000: bias=+0.168 rmse=0.176
+B aggregate exp, floor=cold-start    t=5: bias=-0.005 rmse=0.006  t=20: bias=-0.141 rmse=0.141  t=50: bias=-0.345 rmse=0.345  t=200: bias=-0.468 rmse=0.468  t=1000: bias=-0.398 rmse=0.398
+C per-fact plug-in MLE               t=5: bias=+0.001 rmse=0.003  t=20: bias=+0.011 rmse=0.012  t=50: bias=+0.015 rmse=0.016  t=200: bias=+0.025 rmse=0.026  t=1000: bias=+0.093 rmse=0.094
+D per-fact empirical Bayes (NPMLE)   t=5: bias=+0.000 rmse=0.003  t=20: bias=+0.001 rmse=0.005  t=50: bias=+0.001 rmse=0.005  t=200: bias=-0.001 rmse=0.013  t=1000: bias=+0.005 rmse=0.045

@@ -1,0 +1,62 @@
+{
+ "workspace": {
+  "confirmations_per_task_mean": 0.5,
+  "confirmations_per_task_max": 3,
+  "tasks_needing_any_confirmation": 0.35,
+  "s_tool_LP": 0.033928571428571426,
+  "s_arg_realizable": 0.014285714285714285,
+  "s_arg_oracle": 0.0,
+  "risk": {
+   "1": 0.006487462946551855,
+   "2": 0.004272561360510509,
+   "2.8": 0.003528656801704742,
+   "4": 0.0029393255381980595,
+   "inf": 0.0014285714285714281
+  }
+ },
+ "travel": {
+  "confirmations_per_task_mean": 0.0,
+  "confirmations_per_task_max": 0,
+  "tasks_needing_any_confirmation": 0.0,
+  "s_tool_LP": 0.18571428571428572,
+  "s_arg_realizable": 0.17142857142857143,
+  "s_arg_oracle": 0.17142857142857143,
+  "risk": {
+   "1": 0.17142857142857143,
+   "2": 0.17142857142857143,
+   "2.8": 0.17142857142857143,
+   "4": 0.17142857142857143,
+   "inf": 0.17142857142857143
+  }
+ },
+ "banking": {
+  "confirmations_per_task_mean": 1.0,
+  "confirmations_per_task_max": 2,
+  "tasks_needing_any_confirmation": 0.6875,
+  "s_tool_LP": 0.2916666666666667,
+  "s_arg_realizable": 0.041666666666666664,
+  "s_arg_oracle": 0.0,
+  "risk": {
+   "1": 0.027871187622737575,
+   "2": 0.01892176692744291,
+   "2.8": 0.015416666666666665,
+   "4": 0.012461637301488984,
+   "inf": 0.004166666666666666
+  }
+ },
+ "slack": {
+  "confirmations_per_task_mean": 1.7142857142857142,
+  "confirmations_per_task_max": 6,
+  "tasks_needing_any_confirmation": 0.9047619047619048,
+  "s_tool_LP": 0.18095238095238095,
+  "s_arg_realizable": 0.10476190476190476,
+  "s_arg_oracle": 0.02857142857142857,
+  "risk": {
+   "1": 0.09241271764318802,
+   "2": 0.0756620524869139,
+   "2.8": 0.0675572755837959,
+   "4": 0.060091797959775234,
+   "inf": 0.03619047619047619
+  }
+ }
+}

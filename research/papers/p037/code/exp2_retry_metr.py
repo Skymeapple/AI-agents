@@ -41,9 +41,9 @@ def one_split(tasks, m, Ks):
     lo, hi = pmf_confidence_box(counts, fams, m, ALPHA, rng, B=BOOT)
     rows = []
     for K in Ks:
-        Lp, Up = lp_bounds(pm, pm, m, K)
-        Lc, Uc = lp_bounds(lo, hi, m, K)
-        rows.append(dict(K=K, truth=float(np.mean(truth[K])),
+        Lp, Up, sp = lp_bounds(pm, pm, m, K, return_slack=True)
+        Lc, Uc, sc = lp_bounds(lo, hi, m, K, return_slack=True)
+        rows.append(dict(K=K, slack_point=sp, slack_ci=sc, truth=float(np.mean(truth[K])),
                          plugin_task=float(np.mean(1 - (1 - counts / m) ** K)),
                          homogeneous=float(1 - (1 - pbar) ** K),
                          beta_binomial=float(beta_pass_at_k(a, b, K)),
@@ -65,7 +65,8 @@ def part_a(data):
                     out.append(r)
         print("done config", m, Ks, nmin, flush=True)
     keys = ["model", "m", "nmin", "n_tasks", "split", "K", "truth", "plugin_task", "homogeneous",
-            "beta_binomial", "lp_point_L", "lp_point_U", "lp_ci_L", "lp_ci_U", "pass_at_m"]
+            "beta_binomial", "lp_point_L", "lp_point_U", "lp_ci_L", "lp_ci_U", "pass_at_m",
+            "slack_point", "slack_ci"]
     with open(os.path.join(RESULTS, "exp2_validation.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader()
@@ -92,7 +93,8 @@ def part_a(data):
                 row[f"{meth}_mean_err"] = float(np.mean(errs))
                 row[f"{meth}_frac_models_biased_low"] = float(np.mean(np.array(errs) < 0))
                 row[f"{meth}_undercover_rate"] = float(np.mean(under))
-            row["lp_point_feasible_rate"] = float(np.mean([not np.isnan(r["lp_point_U"]) for r in rs]))
+            row["lp_point_exact_feasible_rate"] = float(np.mean([r["slack_point"] == 0 for r in rs]))
+            row["lp_ci_exact_feasible_rate"] = float(np.mean([r["slack_ci"] == 0 for r in rs]))
             row["lp_ci_width_mean"] = float(np.nanmean([r["lp_ci_U"] - r["lp_ci_L"] for r in rs]))
             row["lp_ci_contains_truth"] = float(np.nanmean(
                 [(r["lp_ci_L"] <= r["truth"] <= r["lp_ci_U"]) for r in rs if not np.isnan(r["lp_ci_U"])]))
@@ -115,9 +117,9 @@ def part_b(data):
         a, b = fit_beta_binomial(counts, m)
         lo, hi = pmf_confidence_box(counts, fams, m, ALPHA, rng, B=1000)
         for K in Ks:
-            Lc, Uc = lp_bounds(lo, hi, m, K)
-            Lp, Up = lp_bounds(pm, pm, m, K)
-            out.append(dict(model=model, n_tasks=len(tasks), K=K,
+            Lc, Uc, sc = lp_bounds(lo, hi, m, K, return_slack=True)
+            Lp, Up, sp = lp_bounds(pm, pm, m, K, return_slack=True)
+            out.append(dict(model=model, n_tasks=len(tasks), K=K, slack_point=sp, slack_ci=sc,
                             frac_zero=float(pm[0]),
                             beta_binomial=float(beta_pass_at_k(a, b, K)),
                             lp_point_L=Lp, lp_point_U=Up, lp_ci_L=Lc, lp_ci_U=Uc))

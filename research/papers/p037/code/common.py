@@ -85,39 +85,79 @@ def default_grid(J=600, pmin=1e-7):
     return np.unique(g)
 
 
-def lp_bounds(lo, hi, m, K, pgrid=None):
+def lp_bounds(lo, hi, m, K, pgrid=None, pmin=None, relax=True, return_slack=False):
     """Sharp bounds on E_G[1-(1-p)^K] over all mixing distributions G on [0,1]
     whose induced Binomial(m) count pmf lies in the box [lo, hi] (elementwise).
 
-    Returns (L, U). If lo == hi (exact pmf) this is the identified set.
-    Discretised on pgrid; the grid includes p=0 and p down to 1e-7, so for
-    K <= 1e5 the discretisation error in U is < 1%.
+    pmin: optional 'resolution floor' assumption, support(G) in {0} U [pmin, 1].
+    relax: if the box is infeasible (the empirical pmf lies outside the binomial-
+      mixture moment space, which happens through sampling noise), enlarge the box
+      uniformly by the smallest slack s* that restores feasibility (computed by an
+      auxiliary LP) and report s*. Returns (L, U) or (L, U, s*).
+    Discretised on pgrid (includes p=0 and p down to 1e-7).
     """
     if pgrid is None:
         pgrid = default_grid()
+    if pmin is not None:
+        pgrid = pgrid[(pgrid == 0) | (pgrid >= pmin)]
+    lo = np.asarray(lo, float)
+    hi = np.asarray(hi, float)
     A = binom_pmf_matrix(m, pgrid)
     f = 1.0 - (1.0 - pgrid) ** K
     J = len(pgrid)
-    A_ub = np.vstack([A, -A])
-    b_ub = np.concatenate([hi, -np.asarray(lo)])
     A_eq = np.ones((1, J))
     b_eq = np.array([1.0])
-    res_min = linprog(f, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq,
-                      bounds=(0, None), method="highs")
-    res_max = linprog(-f, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq,
-                      bounds=(0, None), method="highs")
+
+    def solve(c, slack):
+        A_ub = np.vstack([A, -A])
+        b_ub = np.concatenate([hi + slack, -(lo - slack)])
+        return linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq,
+                       bounds=(0, None), method="highs")
+
+    slack = 0.0
+    r0 = solve(np.zeros(J), 0.0)
+    if r0.status != 0:
+        if not relax:
+            return (np.nan, np.nan, np.nan) if return_slack else (np.nan, np.nan)
+        # min s  s.t. lo - s <= A g <= hi + s, sum g = 1, g >= 0, s >= 0
+        Ab = np.vstack([np.hstack([A, -np.ones((m + 1, 1))]),
+                        np.hstack([-A, -np.ones((m + 1, 1))])])
+        bb = np.concatenate([hi, -lo])
+        rs = linprog(np.r_[np.zeros(J), 1.0], A_ub=Ab, b_ub=bb,
+                     A_eq=np.hstack([A_eq, [[0.0]]]), b_eq=b_eq,
+                     bounds=(0, None), method="highs")
+        slack = float(rs.x[-1]) * (1 + 1e-6) + 1e-12
+    res_min = solve(f, slack)
+    res_max = solve(-f, slack)
     if res_min.status != 0 or res_max.status != 0:
-        return np.nan, np.nan
-    return float(res_min.fun), float(-res_max.fun)
+        out = (np.nan, np.nan)
+    else:
+        out = (float(res_min.fun), float(-res_max.fun))
+    return (out[0], out[1], slack) if return_slack else out
 
 
 def count_pmf(counts, m):
     return np.bincount(counts, minlength=m + 1)[: m + 1] / len(counts)
 
 
-def pmf_confidence_box(counts, clusters, m, alpha, rng, B=2000):
-    """Simultaneous (Bonferroni over m+1 cells) cluster-bootstrap percentile box
-    for the count pmf. counts: per-task success counts out of m; clusters: labels."""
+def clopper_pearson(x, n, a):
+    """Exact two-sided (1-a) Clopper-Pearson interval; x may be non-integer (effective counts)."""
+    from scipy.stats import beta as _beta
+    lo = 0.0 if x <= 0 else _beta.ppf(a / 2, x, n - x + 1)
+    hi = 1.0 if x >= n else _beta.ppf(1 - a / 2, x + 1, n - x)
+    return float(lo), float(hi)
+
+
+def pmf_confidence_box(counts, clusters, m, alpha, rng, B=2000, method="hybrid"):
+    """Simultaneous (Bonferroni over m+1 cells) box for the count pmf.
+
+    method="bootstrap": cluster-bootstrap percentile box (resample clusters).
+    method="hybrid" (default): elementwise hull of the bootstrap box and an exact
+      Clopper-Pearson box computed with the number of clusters as the sample size
+      (x = phat * n_clusters). The exact part repairs the percentile bootstrap's
+      degeneracy at the boundary: if no task ever succeeds, every bootstrap
+      replicate has P(C=0)=1 and the bootstrap box collapses to a point.
+    counts: per-task success counts out of m; clusters: labels."""
     counts = np.asarray(counts)
     clusters = np.asarray(clusters)
     labs = np.unique(clusters)
@@ -130,24 +170,33 @@ def pmf_confidence_box(counts, clusters, m, alpha, rng, B=2000):
     a = alpha / (m + 1)
     lo = np.quantile(boots, a / 2, axis=0)
     hi = np.quantile(boots, 1 - a / 2, axis=0)
-    return lo, hi
+    if method == "bootstrap":
+        return lo, hi
+    ph = count_pmf(counts, m)
+    nc = len(labs)
+    cp = np.array([clopper_pearson(ph[c] * nc, nc, a) for c in range(m + 1)])
+    return np.minimum(lo, cp[:, 0]), np.maximum(hi, cp[:, 1])
 
 
 # ----------------------------------------------------------------------------
 # Beta-binomial (parametric) extrapolation
 # ----------------------------------------------------------------------------
-def fit_beta_binomial(counts, m):
+def fit_beta_binomial(counts, m, lo=1e-3, hi=1e4):
+    """MLE of Beta(a,b) mixing distribution from Binomial(m) counts.
+    a, b are box-constrained to [lo, hi] (log scale, L-BFGS-B); without the box the
+    MLE can run off to a,b -> 0 or infinity for small m (e.g. m = 2), where the
+    likelihood is flat and pass@K becomes numerically meaningless."""
     counts = np.asarray(counts)
 
     def nll(theta):
         a, b = np.exp(theta)
         return -np.sum(betaln(counts + a, m - counts + b) - betaln(a, b))
 
+    bnds = [(np.log(lo), np.log(hi))] * 2
     best = None
     for a0 in (0.2, 1.0, 3.0):
         for b0 in (0.2, 1.0, 3.0):
-            r = minimize(nll, np.log([a0, b0]), method="Nelder-Mead",
-                         options={"xatol": 1e-6, "fatol": 1e-9, "maxiter": 4000})
+            r = minimize(nll, np.log([a0, b0]), method="L-BFGS-B", bounds=bnds)
             if best is None or r.fun < best.fun:
                 best = r
     a, b = np.exp(best.x)
@@ -155,7 +204,9 @@ def fit_beta_binomial(counts, m):
 
 
 def beta_pass_at_k(a, b, K):
-    return 1.0 - np.exp(betaln(a, b + K) - betaln(a, b))
+    """E[1-(1-p)^K] for p ~ Beta(a,b):  1 - B(a, b+K)/B(a, b), computed stably."""
+    log_ratio = gammaln(b + K) - gammaln(b) + gammaln(a + b) - gammaln(a + b + K)
+    return float(np.clip(1.0 - np.exp(log_ratio), 0.0, 1.0))
 
 
 # ----------------------------------------------------------------------------

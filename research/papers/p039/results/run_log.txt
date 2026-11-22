@@ -1,0 +1,476 @@
+{
+ "inputs": {
+  "VSL": 13700000.0,
+  "N": 8200000000.0,
+  "discount_factor": 0.3976003446391714,
+  "L_base": 4.466642271676451e+16,
+  "L_low": 4466642271676451.0,
+  "L_high": 1.1234e+17,
+  "annuity": 17.413147691278027,
+  "S_cur_PV": 3291084913.651547,
+  "k0": 1000000000.0,
+  "beta0": 0.3
+ },
+ "E0_verification": {
+  "n": 300,
+  "max_rel_cost_err": 3.858573422497091e-15,
+  "all_closed_form_at_least_as_good": true
+ },
+ "E1_spend_vs_belief": {
+  "0.1": {
+   "S_sf_PV": 7001299760491.226,
+   "S_ex_PV": 45813421369113.57,
+   "S_gmean_PV": 212232880481736.25,
+   "ratio_ex_over_sf": 6.543559472719849,
+   "belief_ratio": 7.894736842105263,
+   "p_threshold": 2.2388181976003038e-07,
+   "elasticity_theory": 0.9090909090909091,
+   "elasticity_numeric": 0.9091494674163642,
+   "residual_risk_sf": 0.0015676876128840008,
+   "residual_risk_ex": 0.010257016027369972
+  },
+  "0.3": {
+   "S_sf_PV": 4174241073454.1816,
+   "S_ex_PV": 20460680223161.04,
+   "S_gmean_PV": 74871288626545.69,
+   "ratio_ex_over_sf": 4.901652746718301,
+   "belief_ratio": 7.894736842105263,
+   "p_threshold": 7.462727325334346e-08,
+   "elasticity_theory": 0.7692307692307692,
+   "elasticity_numeric": 0.7693230464153422,
+   "residual_risk_sf": 0.0003115868564872487,
+   "residual_risk_ex": 0.0015269994012363747
+  },
+  "1.0": {
+   "S_sf_PV": 410985929764.2398,
+   "S_ex_PV": 1156580529165.4377,
+   "S_gmean_PV": 2688974066811.0264,
+   "ratio_ex_over_sf": 2.8141608882545075,
+   "belief_ratio": 7.894736842105263,
+   "p_threshold": 2.238818197600304e-08,
+   "elasticity_theory": 0.5,
+   "elasticity_numeric": 0.5007579017547303,
+   "residual_risk_sf": 9.223615967114608e-06,
+   "residual_risk_ex": 2.591612353883372e-05
+  }
+ },
+ "belief_fit": {
+  "grace_mu": -2.9444389791664403,
+  "grace_sigma": 2.4143995853675615,
+  "grace_q10": 0.002378904416988301,
+  "grace_q90": 0.5373939299120445,
+  "grace_share_ge_10pct": 0.3784772639030588
+ },
+ "E2_pooling": {
+  "AI-authors (logit-normal fit)": {
+   "pooled_p": {
+    "linear": 0.161999941329753,
+    "log_odds": 0.05000000000000007,
+    "median": 0.05003594599925523,
+    "geometric_p": 0.04045010804609433
+   },
+   "by_beta": {
+    "0.1": {
+     "linear": 212232810606234.6,
+     "log_odds": 72891507015495.48,
+     "median": 72939145350078.88,
+     "geometric_p": 60116481682829.32,
+     "mean_of_individual_optima": 197626439730292.66,
+     "ratio_linear_over_logodds": 2.911626049398561,
+     "belief_ratio_linear_over_logodds": 3.2399988265950554
+    },
+    "0.3": {
+     "linear": 74871267768160.83,
+     "log_odds": 30309575166148.594,
+     "median": 30326335990130.316,
+     "geometric_p": 25749534041582.938,
+     "mean_of_individual_optima": 63554217966152.84,
+     "ratio_linear_over_logodds": 2.470218317404237,
+     "belief_ratio_linear_over_logodds": 3.2399988265950554
+    },
+    "1.0": {
+     "linear": 2688973579707.763,
+     "log_odds": 1493430037117.2378,
+     "median": 1493967128413.1758,
+     "geometric_p": 1343158333279.8435,
+     "mean_of_individual_optima": 2062830911534.3994,
+     "ratio_linear_over_logodds": 1.800535353432611,
+     "belief_ratio_linear_over_logodds": 3.2399988265950554
+    }
+   }
+  },
+  "XPT two-group mixture": {
+   "pooled_p": {
+    "linear": 0.0776458122615124,
+    "log_odds": 0.010744880658728943,
+    "median": 0.010746040579598413,
+    "geometric_p": 0.009684548053546713
+   },
+   "by_beta": {
+    "0.1": {
+     "linear": 108755150385081.02,
+     "log_odds": 18013437179967.73,
+     "median": 18015205059420.28,
+     "geometric_p": 16389812486889.041,
+     "mean_of_individual_optima": 97513707217440.23,
+     "ratio_linear_over_logodds": 6.037445785528636,
+     "belief_ratio_linear_over_logodds": 7.226307553116877
+    },
+    "0.3": {
+     "linear": 42522707884531.305,
+     "log_odds": 9287084787833.893,
+     "median": 9287856053814.705,
+     "geometric_p": 8573657019426.919,
+     "mean_of_individual_optima": 33076135652232.555,
+     "ratio_linear_over_logodds": 4.578692760535165,
+     "belief_ratio_linear_over_logodds": 7.226307553116877
+    },
+    "1.0": {
+     "linear": 1861299834253.1338,
+     "log_odds": 691773687104.2188,
+     "median": 691811078909.5739,
+     "geometric_p": 656703669733.2139,
+     "mean_of_individual_optima": 1239241106153.424,
+     "ratio_linear_over_logodds": 2.690619589832304,
+     "belief_ratio_linear_over_logodds": 7.226307553116877
+    }
+   }
+  },
+  "XPT two-point (medians)": {
+   "pooled_p": {
+    "linear": 0.0169,
+    "log_odds": 0.010744880658728926,
+    "median": 0.0038,
+    "geometric_p": 0.01067707825203131
+   },
+   "by_beta": {
+    "0.1": {
+     "linear": 27190010157688.855,
+     "log_odds": 18013437179967.707,
+     "median": 7001299760491.226,
+     "geometric_p": 17910066740425.82,
+     "mean_of_individual_optima": 26407360564802.4,
+     "ratio_linear_over_logodds": 1.5094293157957763,
+     "belief_ratio_linear_over_logodds": 1.572842038619645
+    },
+    "0.3": {
+     "linear": 13157985503779.863,
+     "log_odds": 9287084787833.88,
+     "median": 4174241073454.1816,
+     "geometric_p": 9241967472604.623,
+     "mean_of_individual_optima": 12317460648307.61,
+     "ratio_linear_over_logodds": 1.4168047136833377,
+     "belief_ratio_linear_over_logodds": 1.572842038619645
+    },
+    "1.0": {
+     "linear": 867828259159.0355,
+     "log_odds": 691773687104.2181,
+     "median": 410985929764.2398,
+     "geometric_p": 689584455794.6577,
+     "mean_of_individual_optima": 783783229464.8387,
+     "ratio_linear_over_logodds": 1.2544973527278642,
+     "belief_ratio_linear_over_logodds": 1.572842038619645
+    }
+   }
+  }
+ },
+ "E3_robust": {
+  "XPT medians [0.0038,0.03]": {
+   "0.1": {
+    "S_low": 7001299760491.226,
+    "S_midpoint_linear": 27190010157688.855,
+    "S_minimax_regret": 23905615291806.516,
+    "max_regret": 8882406248392.938,
+    "S_maxmin": 45813421369113.57,
+    "regret_of_low_at_high": 55856803686391.44,
+    "regret_of_high_at_low": 26820724404587.312
+   },
+   "0.3": {
+    "S_low": 4174241073454.1816,
+    "S_midpoint_linear": 13157985503779.863,
+    "S_minimax_regret": 11634872471371.557,
+    "max_regret": 3776682091667.3477,
+    "S_maxmin": 20460680223161.04,
+    "regret_of_low_at_high": 25382725197322.656,
+    "regret_of_high_at_low": 11008344999083.145
+   },
+   "1.0": {
+    "S_low": 410985929764.2398,
+    "S_midpoint_linear": 867828259159.0355,
+    "S_minimax_regret": 784262456091.5221,
+    "max_regret": 177437955967.58142,
+    "S_maxmin": 1156580529165.4377,
+    "regret_of_low_at_high": 1349345369572.099,
+    "regret_of_high_at_low": 480235536664.5802
+   }
+  },
+  "AI-authors 10-90% [q10,q90]": {
+   "0.1": {
+    "S_low": 4573310112547.118,
+    "S_midpoint_linear": 337542129360714.25,
+    "S_minimax_regret": 250879721708418.06,
+    "max_regret": 231211966520012.12,
+    "S_maxmin": 631318241013847.8,
+    "regret_of_low_at_high": 3393418091248666.0,
+    "regret_of_high_at_low": 608948705380162.2
+   },
+   "0.3": {
+    "S_low": 2911158024976.758,
+    "S_midpoint_linear": 110873947307446.77,
+    "S_minimax_regret": 81681145983154.22,
+    "max_regret": 72633220428540.05,
+    "S_maxmin": 188328941522521.06,
+    "regret_of_low_at_high": 1379668379488015.5,
+    "regret_of_high_at_low": 178489550447530.2
+   },
+   "1.0": {
+    "S_low": 324971088122.82367,
+    "S_midpoint_linear": 3471011059110.172,
+    "S_minimax_regret": 2618254940381.1445,
+    "max_regret": 2007880464764.3315,
+    "S_maxmin": 4898333060619.036,
+    "regret_of_low_at_high": 64164094588639.055,
+    "regret_of_high_at_low": 4269078969052.9287
+   }
+  }
+ },
+ "E4_voi": {
+  "AI-authors (logit-normal fit)": {
+   "0.1": {
+    "EVPI_PV": 160670079635361.5,
+    "EVPI_annualised": 9226940613145.93,
+    "expected_cost_no_info": 2334570916668580.5,
+    "S_at_pbar": 212232810606234.6,
+    "EVPI_over_S": 0.7570463736328695,
+    "EVPI_over_cost": 0.06882210280621366,
+    "lognormal_formula_share": 0.21406502040258446
+   },
+   "0.3": {
+    "EVPI_PV": 49040549142034.66,
+    "EVPI_annualised": 2816294331816.7744,
+    "expected_cost_no_info": 324445493662030.3,
+    "S_at_pbar": 74871267768160.83,
+    "EVPI_over_S": 0.65499824704303,
+    "EVPI_over_cost": 0.15115188868401858,
+    "lognormal_formula_share": 0.4039291492105521
+   },
+   "1.0": {
+    "EVPI_PV": 1252285336346.7275,
+    "EVPI_annualised": 71916080799.91061,
+    "expected_cost_no_info": 5378947159415.526,
+    "S_at_pbar": 2688973579707.763,
+    "EVPI_over_S": 0.4657112832186419,
+    "EVPI_over_cost": 0.23281235141986414,
+    "lognormal_formula_share": 0.5174475549606747
+   }
+  },
+  "XPT two-group mixture": {
+   "0.1": {
+    "EVPI_PV": 123655874844048.25,
+    "EVPI_annualised": 7101293633774.526,
+    "expected_cost_no_info": 1196316654235891.0,
+    "S_at_pbar": 108755150385081.02,
+    "EVPI_over_S": 1.137011667090769,
+    "EVPI_over_cost": 0.10336383298369234,
+    "lognormal_formula_share": 0.21406502040258446
+   },
+   "0.3": {
+    "EVPI_PV": 40935146339961.28,
+    "EVPI_annualised": 2350818304979.1196,
+    "expected_cost_no_info": 184268400832969.03,
+    "S_at_pbar": 42522707884531.305,
+    "EVPI_over_S": 0.9626655586262055,
+    "EVPI_over_cost": 0.22214957179265446,
+    "lognormal_formula_share": 0.4039291492105521
+   },
+   "1.0": {
+    "EVPI_PV": 1244117456199.4194,
+    "EVPI_annualised": 71447016832.14795,
+    "expected_cost_no_info": 3723599668506.2676,
+    "S_at_pbar": 1861299834253.1338,
+    "EVPI_over_S": 0.6684132418131519,
+    "EVPI_over_cost": 0.3341168672674473,
+    "lognormal_formula_share": 0.5174475549606747
+   }
+  },
+  "XPT two-point (medians)": {
+   "0.1": {
+    "EVPI_PV": 8609145521751.0,
+    "EVPI_annualised": 494404898780.2008,
+    "expected_cost_no_info": 299100111734577.4,
+    "S_at_pbar": 27190010157688.855,
+    "EVPI_over_S": 0.31662899248003723,
+    "EVPI_over_cost": 0.028783491493278978,
+    "lognormal_formula_share": 0.21406502040258446
+   },
+   "0.3": {
+    "EVPI_PV": 3642274373713.086,
+    "EVPI_annualised": 209168063022.71497,
+    "expected_cost_no_info": 57021270516379.41,
+    "S_at_pbar": 13157985503779.863,
+    "EVPI_over_S": 0.27681094288079117,
+    "EVPI_over_cost": 0.06387571411034834,
+    "lognormal_formula_share": 0.4039291492105521
+   },
+   "1.0": {
+    "EVPI_PV": 168090059388.39355,
+    "EVPI_annualised": 9653054253.515993,
+    "expected_cost_no_info": 1736656518318.071,
+    "S_at_pbar": 867828259159.0355,
+    "EVPI_over_S": 0.19369046538226395,
+    "EVPI_over_cost": 0.0967894673560357,
+    "lognormal_formula_share": 0.5174475549606747
+   }
+  }
+ },
+ "E5_sobol": {
+  "n": 131072,
+  "var_log10S": 0.8550179823720034,
+  "S1": {
+   "belief p": 0.5999081462691301,
+   "scale k": 0.03993679045804895,
+   "elasticity \u03b2": 0.1372956672175655,
+   "reducible share m": 0.050182507165279104,
+   "stakes L": 0.11867120091141108
+  },
+  "ST": {
+   "belief p": 0.6338262599653071,
+   "scale k": 0.06476505107272466,
+   "elasticity \u03b2": 0.18411489102867817,
+   "reducible share m": 0.05463659947823221,
+   "stakes L": 0.13119844622771712
+  },
+  "ST_ci95": {
+   "belief p": [
+    0.6284924225505208,
+    0.6382842506261539
+   ],
+   "scale k": [
+    0.0633996058868825,
+    0.06628071483515813
+   ],
+   "elasticity \u03b2": [
+    0.18175652478702978,
+    0.1874969909072356
+   ],
+   "reducible share m": [
+    0.05335851543896395,
+    0.05607932568860106
+   ],
+   "stakes L": [
+    0.12965467391574548,
+    0.13314255466215474
+   ]
+  },
+  "share_zero_spend": 0.00067901611328125
+ },
+ "E6_consensus": {
+  "n_param_draws": 20000,
+  "S_cur_PV": 3291084913.651547,
+  "median_share_forecasters_above_current": 1.0000000000000004,
+  "p10_share_forecasters_above_current": 0.9985000000000004,
+  "prob_majority_above_current": 1.0,
+  "prob_majority_above_5x_current": 1.0,
+  "superforecaster_median_prob_S_above_current": 1.0,
+  "superforecaster_median_prob_S_above_10x_current": 0.9998,
+  "superforecaster_median_S_annual_quantiles": {
+   "10": 18772531961.752777,
+   "25": 38891991722.43305,
+   "50": 85920564234.19435,
+   "75": 189021099772.2452,
+   "90": 360750554814.5709
+  }
+ },
+ "E7_marginal_test": {
+  "absolute_risk_reduction_per_$1B_breakeven": {
+   "L_low": 2.238818197600304e-07,
+   "L_base": 2.238818197600304e-08,
+   "L_high": 8.901548869503293e-09
+  },
+  "relative_reduction_per_$1B_breakeven": {
+   "L_low": {
+    "0.0038": 5.891626835790274e-05,
+    "0.03": 7.462727325334347e-06,
+    "0.05": 4.477636395200608e-06,
+    "0.162": 1.3819865417285826e-06
+   },
+   "L_base": {
+    "0.0038": 5.891626835790274e-06,
+    "0.03": 7.462727325334347e-07,
+    "0.05": 4.4776363952006076e-07,
+    "0.162": 1.3819865417285827e-07
+   },
+   "L_high": {
+    "0.0038": 2.3425128603956034e-06,
+    "0.03": 2.967182956501098e-07,
+    "0.05": 1.7803097739006588e-07,
+    "0.162": 5.494783252779811e-08
+   }
+  },
+  "value_of_one_basis_point_PV": {
+   "L_low": 446664227167.64514,
+   "L_base": 4466642271676.451,
+   "L_high": 11234000000000.0
+  },
+  "share_of_logk_logbeta_box_where_more_spending_optimal": {
+   "XPT superforecasters 0.38%|base": 0.6598444444444445,
+   "XPT superforecasters 0.38%|low": 0.5445666666666666,
+   "XPT experts 3%|base": 0.761,
+   "XPT experts 3%|low": 0.6481777777777777,
+   "AI-author mean 16.2%|base": 0.8411222222222222,
+   "AI-author mean 16.2%|low": 0.7309555555555556
+  },
+  "box": "k in [1e7,1e16], beta in [1e-3,3], log-uniform, m=1"
+ },
+ "E8_sobol_variants": {
+  "grace_baseline": {
+   "belief p": 0.6325187881268797,
+   "scale k": 0.06562764145653838,
+   "elasticity \u03b2": 0.18241140339088363,
+   "reducible share m": 0.05468461609195337,
+   "stakes L": 0.1284485665415243
+  },
+  "grace_wide_tractability(k 1e7-1e13, beta 0.01-3)": {
+   "belief p": 0.6154435348057244,
+   "scale k": 0.40693881648346863,
+   "elasticity \u03b2": 0.43449186451672134,
+   "reducible share m": 0.09104846344782101,
+   "stakes L": 0.17454697051814533
+  },
+  "xpt_between_group_baseline": {
+   "belief p": 0.32485720747435004,
+   "scale k": 0.11742781654016357,
+   "elasticity \u03b2": 0.24018458011789168,
+   "reducible share m": 0.10557435503958011,
+   "stakes L": 0.26494378960631143
+  },
+  "xpt_between_group_wide_tractability": {
+   "belief p": 0.3060693122877562,
+   "scale k": 0.6167848933784932,
+   "elasticity \u03b2": 0.5991979633099548,
+   "reducible share m": 0.16789357460673127,
+   "stakes L": 0.28873210520370013
+  }
+ },
+ "runtime_sec": 9.97815752029419
+}
+{
+ "p=0.0038|L_base": {
+  "k_max_at_beta_0_3": 50896197176947.26
+ },
+ "p=0.0038|L_low": {
+  "k_max_at_beta_0_3": 5085519416256.022
+ },
+ "p=0.03|L_base": {
+  "k_max_at_beta_0_3": 401911290442311.06
+ },
+ "p=0.03|L_low": {
+  "k_max_at_beta_0_3": 40158750251043.42
+ },
+ "p=0.162|L_base": {
+  "k_max_at_beta_0_3": 2169535787137841.8
+ },
+ "p=0.162|L_low": {
+  "k_max_at_beta_0_3": 216778796486373.5
+ }
+}

@@ -19,7 +19,8 @@ The experiments are CPU-scale toy experiments with 2-layer transformers. E1 has 
 **Code rerun.** I copied `code/` to a scratch directory and reran the whole pipeline: `verify_theory.py`, `exp1_tradeoff.py`, `exp3_adaptive.py`, `forgery_stats.py` and `analyze.py`.
 
 - `verify_theory.py` reproduces `theory_checks.json` exactly: T1 min slack 0.01337, T2 max error 3.16e-14, T3 max error 3.16e-15, 300 instances.
-- E1 and E3: see Section 2a below (filled after the rerun).
+- E1 (36 models, about 17.5 min on this machine) reproduces `e1_tradeoff.json` bit-for-bit. The maximum |ΔU|, |ΔASR| over all 36 models is 0.0. All E1 summary statistics are identical: median |gap| 0.00065, min z −1.79, max gap +0.0805, 0 models below 2 SE.
+- E3 (4 systems × 3 seeds) reproduces `e3_adaptive.json` exactly. The maximum difference over all scalar fields is 0, and `e3_forgery_stats.json` is identical.
 - Tables 1 and 2, the E1 bullets and the forgery statistics (56/90 = 62%, 0/90, 0/42, 95% structural for OOB) all match the stored `results/summary.json` and `results/e3_forgery_stats.json`.
 
 **Derivations checked line by line.**

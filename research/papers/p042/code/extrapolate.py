@@ -1,85 +1,114 @@
-"""Analytic long-tail coverage model (Section 4) and sensitivity analysis.
-All quantities are model-derived; the only external numbers are the Gao et al. (2024) fit
-coefficients (beta_n=-0.017, gamma=-0.042) and token-to-convergence exponents (0.60, 0.65),
-which are quoted, not re-estimated.
-Usage: python3 extrapolate.py [mstar]  (default mstar read from results/summary.json if present)"""
+"""Analytic coverage model (Section 4) and sensitivity analysis. Pure computation; no fitted
+external data except numbers quoted (with citation) in the paper:
+  Templeton et al. 2024: 34M-latent SAE with ~12M alive latents; L0 < 300.
+  Gao et al. 2024: tokens-to-convergence ~ n^0.60 (GPT-2 small), n^0.65 (GPT-4).
+Usage: python3 extrapolate.py [mstar]   (mstar default: toy estimate from results/summary.json)"""
 import os, sys, json
 import numpy as np
-from scipy.special import zeta
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = os.path.join(os.path.dirname(__file__), "..", "results")
+HERE = os.path.dirname(os.path.abspath(__file__)); R = os.path.join(HERE, "..", "results")
 out = {}
 
 
-def coverage_requirements(alpha, U, L0=100.0, mstar=1e3, rho=1.0):
-    """Infinite Zipf p_i = C i^-alpha with sum p = L0. Smallest rank cutoff R such that
-    the unrecovered activation mass fraction <= U, and the width/tokens/compute it implies.
-    Tail mass fraction ~ R^(1-alpha) / ((alpha-1) zeta(alpha)) (integral approximation)."""
-    z = zeta(alpha)
-    C = L0 / z
-    Rk = (U * (alpha - 1) * z) ** (1 / (1 - alpha))
-    pmin = C * Rk ** (-alpha)
-    T = mstar / pmin
-    M = Rk / rho
-    return dict(R=Rk, pmin=pmin, tokens=T, width=M, MT=M * T)
+def H(N, a):
+    """generalized harmonic number sum_{i<=N} i^-a, exact for N<=1e6, Euler-Maclaurin beyond."""
+    N = float(N)
+    if N <= 1e6:
+        return float((np.arange(1, int(N) + 1, dtype=float) ** -a).sum())
+    n0 = 1_000_000; s = float((np.arange(1, n0 + 1, dtype=float) ** -a).sum())
+    if abs(a - 1) < 1e-12:
+        tail = np.log(N / n0)
+    else:
+        tail = (N ** (1 - a) - n0 ** (1 - a)) / (1 - a)
+    return s + tail + 0.5 * (N ** -a - n0 ** -a)
 
 
-# --- Table: cost of reaching unrecovered mass U for several alpha ---
-alphas = [1.1, 1.2, 1.3, 1.5, 2.0]
-Us = [0.3, 0.1, 0.03, 0.01]
-mstar = float(sys.argv[1]) if len(sys.argv) > 1 else None
-if mstar is None:
-    try:
-        s = json.load(open(os.path.join(R, "summary.json")))
-        mstar = float(s["E1"]["1.5"]["pooled"]["mstar"])
-    except Exception:
-        mstar = 1e3
-out["mstar_used"] = mstar
-tab = []
+def unrec_mass(Rk, N, a):
+    """fraction of feature-activation mass carried by features of rank > Rk (equal magnitudes)."""
+    Rk = min(Rk, N)
+    return 1 - H(Rk, a) / H(N, a)
+
+
+def rank_for_U(U, N, a):
+    lo, hi = 1.0, float(N)
+    for _ in range(200):
+        mid = np.sqrt(lo * hi)
+        lo, hi = (mid, hi) if unrec_mass(mid, N, a) > U else (lo, mid)
+    return hi
+
+
+try:
+    s = json.load(open(os.path.join(R, "summary.json")))
+    toy_m = [v["seed0"]["mstar_occ"] for v in s["E1"].values()]
+    mstar_default = float(np.exp(np.mean(np.log(toy_m))))
+except Exception:
+    mstar_default = 300.0
+mstar = float(sys.argv[1]) if len(sys.argv) > 1 else mstar_default
+out["mstar_toy_geomean"] = mstar_default
+
+# ---- Table A: coverage of a 12M-alive-latent dictionary if it captured the top-12M features (capacity limit)
+alphas = [1.0, 1.1, 1.2, 1.5]; Ns = [1e8, 1e9, 1e10, 1e12]
+tabA = []
 for a in alphas:
-    for U in Us:
-        r = coverage_requirements(a, U, mstar=mstar)
-        tab.append(dict(alpha=a, U=U, **{k: float(v) for k, v in r.items()}))
-out["coverage_table_L0_100"] = tab
-# L0 sensitivity
-out["L0_sensitivity_alpha1.2_U0.03"] = {L0: {k: float(v) for k, v in coverage_requirements(1.2, 0.03, L0=L0, mstar=mstar).items()}
-                                        for L0 in (30, 100, 300)}
+    for N in Ns:
+        tabA.append(dict(alpha=a, N=N, U_at_12M=unrec_mass(1.2e7, N, a),
+                         R_for_U10=rank_for_U(0.10, N, a), R_for_U01=rank_for_U(0.01, N, a)))
+out["tableA_capacity"] = tabA
 
-# --- Exponents: compute-optimal coverage ---
-# Balanced allocation: (C T / m*)^(1/a) = rho M  ->  T ∝ M^a ; compute ∝ M T ∝ M^(1+a) ; U ∝ M^(1-a)
-# => U ∝ compute^(-(a-1)/(a+1)),  compute ∝ U^(-(a+1)/(a-1))
-out["compute_exponent_for_U"] = {a: float((a + 1) / (a - 1)) for a in alphas}
+# ---- Table B: multipliers to go from U=10% to U=1% unrecovered mass (unit-free; no m* transfer needed).
+# data-limited requirement for rank R: T*(R) ∝ p_R^(-1/beta) ∝ R^(alpha/beta); width ∝ R; compute ∝ width*tokens
+tabB = []
+for a in alphas:
+    for N in (1e9, 1e10, 1e12):
+        R10, R01 = rank_for_U(0.10, N, a), rank_for_U(0.01, N, a)
+        for beta in (1.0, 1.4):
+            wm = R01 / R10; tm = wm ** (a / beta)
+            tabB.append(dict(alpha=a, N=N, beta=beta, R_U10=R10, R_U01=R01, width_mult=wm, token_mult=tm, compute_mult=wm * tm))
+out["tableB_multipliers"] = tabB
+# illustrative absolute token requirement (beta = 1 only, m* in {1e2,1e3,1e4}, L0 = 100)
+tabB2 = []
+for a in alphas:
+    for N in (1e10,):
+        C = 100.0 / H(N, a)
+        for U in (0.10, 0.01):
+            Rk = rank_for_U(U, N, a); pR = C * Rk ** -a
+            tabB2.append(dict(alpha=a, N=N, U=U, R=Rk, p_R=pR, **{f"tokens_mstar{int(m)}": m / pR for m in (1e2, 1e3, 1e4)}))
+out["tableB2_absolute_beta1"] = tabB2
 
-# --- Consistency check against Gao et al. (2024) published fits (quoted) ---
-beta_n, gamma = -0.017, -0.042
-gao = {}
-for k in (16, 32, 64, 128, 256):
-    slope = beta_n + gamma * np.log(k)        # d log L_reducible / d log n at fixed k
-    alpha_from_L = 1 - slope                  # model: L_red ∝ n^(1-alpha)
-    gao[k] = dict(n_exponent=float(slope), implied_alpha=float(alpha_from_L),
-                  implied_Tconv_exponent=float(alpha_from_L))
-out["gao_consistency"] = dict(per_k=gao, reported_Tconv_exponents={"GPT-2 small": 0.60, "GPT-4": 0.65},
-                              note="model predicts T_conv ∝ n^alpha if convergence requires recovering the rank-n feature")
+# ---- Exponents under balanced allocation rho*M = R_T, with T*(R) ∝ R^(alpha/beta)
+out["exponents"] = {f"alpha={a},beta={b}": dict(U_vs_T=-b * (a - 1) / a, U_vs_M=-(a - 1), T_opt_vs_M=a / b,
+                                                U_vs_compute=-(a - 1) / (1 + a / b), tokens_per_latent_vs_M=a / b - 1)
+                    for a in (1.1, 1.2, 1.5, 2.0) for b in (1.0, 1.4)}
 
-# --- Figure: compute vs target U ---
+# ---- Gao et al. convergence budget T_conv ∝ n^g vs requirement T*(rank n) ∝ n^(alpha/beta):
+# fraction of latents (relative to a width n0 where the budget just suffices) whose feature is learnable
+tabC = []
+for g in (0.60, 0.65):
+    for a in (1.0, 1.2, 1.5):
+        for b in (1.0, 1.4):
+            e = g * b / a - 1
+            tabC.append(dict(gamma=g, alpha=a, beta=b, exponent=e, **{f"frac_at_{k}x": min(1.0, k ** e) for k in (10, 100, 1000)}))
+out["tableC_gao_budget"] = tabC
+out["gao_consistency_alpha_over_beta"] = "full tail learnable within T_conv ∝ n^g iff alpha/beta <= g"
+
+# ---- Figure: unrecovered mass vs width under capacity limit, several alpha (N = 1e10)
 fig, ax = plt.subplots(1, 2, figsize=(11, 4))
-Ug = np.geomspace(0.005, 0.5, 60)
+Ms = np.geomspace(1e4, 1e10, 40)
 for a in alphas:
-    MT = [coverage_requirements(a, u, mstar=mstar)["MT"] for u in Ug]
-    ax[0].loglog(Ug, MT, label=f"alpha={a}")
-    W = [coverage_requirements(a, u, mstar=mstar)["width"] for u in Ug]
-    ax[1].loglog(Ug, W, label=f"alpha={a}")
-for a_ in ax:
-    a_.invert_xaxis(); a_.set_xlabel("target unrecovered activation mass U"); a_.legend(fontsize=7)
-    a_.axhline(3.4e7 if a_ is ax[1] else 1, ls=":", c="gray")
-ax[0].set_ylabel("width x tokens (relative SAE compute / d)")
-ax[1].set_ylabel("dictionary width needed (rho=1)")
-ax[1].text(0.4, 4.2e7, "34M latents (Templeton et al. 2024)", fontsize=7, color="gray")
-ax[0].set_title(f"compute to reach coverage (L0=100, m*={mstar:.0f})")
-ax[1].set_title("width to reach coverage")
-fig.savefig(os.path.join(R, "fig4_extrapolation.png"), dpi=130, bbox_inches="tight")
+    ax[0].loglog(Ms, [unrec_mass(m, 1e10, a) for m in Ms], label=f"α={a}")
+ax[0].axvline(1.2e7, ls=":", c="gray"); ax[0].text(1.4e7, 2e-3, "~12M alive latents\n(Templeton et al. 2024)", fontsize=7, color="gray")
+ax[0].set_xlabel("features captured R (≈ ρ·alive width)"); ax[0].set_ylabel("unrecovered activation mass U")
+ax[0].set_title("capacity limit, N = 1e10 true features", fontsize=10); ax[0].legend(fontsize=7)
+n = np.geomspace(1, 1e4, 50)
+for g in (0.60,):
+    for a in (1.0, 1.2, 1.5):
+        for b in (1.0, 1.4):
+            ax[1].loglog(n, np.minimum(1, n ** (g * b / a - 1)), ls="-" if b == 1 else "--", label=f"γ={g}, α={a}, β={b}")
+ax[1].set_xlabel("width relative to reference n/n0"); ax[1].set_ylabel("fraction of latents whose feature gets ≥ m* exposures")
+ax[1].set_title("budget T ∝ n^γ vs requirement T* ∝ n^(α/β)", fontsize=10); ax[1].legend(fontsize=6)
+fig.savefig(os.path.join(R, "fig5_extrapolation.png"), dpi=130, bbox_inches="tight")
 json.dump(out, open(os.path.join(R, "extrapolation.json"), "w"), indent=1)
-print(json.dumps(out, indent=1))
+print(json.dumps(out, indent=1)[:5000])

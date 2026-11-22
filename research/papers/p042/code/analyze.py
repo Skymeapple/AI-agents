@@ -1,4 +1,5 @@
-"""Analysis of results/raw/*.npz -> results/*.json, results/fig*.png"""
+"""Analysis of ../results/raw/*.npz  ->  ../results/summary.json and figures.
+Usage: python3 analyze.py   (deterministic; bootstrap seeds fixed)"""
 import os, glob, json
 import numpy as np
 from scipy.optimize import minimize
@@ -6,182 +7,174 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = os.path.join(os.path.dirname(__file__), "..", "results")
-RAW = os.path.join(R, "raw")
-THR = 0.9
-TMIN = 20_000  # ignore checkpoints before this many tokens (initial transient)
-summary = {}
+HERE = os.path.dirname(os.path.abspath(__file__))
+R = os.path.join(HERE, "..", "results"); RAW = os.path.join(R, "raw")
+THR = float(os.environ.get("THR", 0.9))
+TMIN = int(os.environ.get("TMIN", 100_000))
+SUF = os.environ.get("SUF", "")
+rng = np.random.default_rng(0)
+S = {"THR": THR, "TMIN": TMIN}
 
 
 def load(name):
     z = np.load(os.path.join(RAW, name + ".npz"))
-    return {k: z[k] for k in z.files}
+    d = {k: z[k] for k in z.files}; d["cfg"] = json.loads(str(d["cfg"])); return d
 
 
-def fit_logistic(x, y):
-    """P(y=1) = sigmoid((x - x0)/s). Returns x0, s, mean log-loss."""
-    def nll(th):
-        x0, ls = th
-        q = 1 / (1 + np.exp(-(x - x0) / np.exp(ls)))
-        q = np.clip(q, 1e-9, 1 - 1e-9)
-        return -(y * np.log(q) + (1 - y) * np.log(1 - q)).mean()
+def sig(z): return 1 / (1 + np.exp(-z))
+
+
+def nll_beta(th, lp, lT, y):
+    """P(rec) = q * sigmoid((lp + b*lT - c)/s);  b=1: occurrence-count threshold; b=0: frequency threshold."""
+    b, c, ls, lq = th
+    P = sig(lq) * sig((lp + b * lT - c) / np.exp(ls))
+    P = np.clip(P, 1e-9, 1 - 1e-9)
+    return -(y * np.log(P) + (1 - y) * np.log(1 - P)).mean()
+
+
+def fit_beta(lp, lT, y, fix_b=None):
     best = None
-    for x0 in np.linspace(x.min(), x.max(), 15):
-        r = minimize(nll, [x0, np.log(0.5)], method="Nelder-Mead")
-        if best is None or r.fun < best.fun:
-            best = r
-    return float(best.x[0]), float(np.exp(best.x[1])), float(best.fun)
+    for b0 in ([fix_b] if fix_b is not None else [0.0, 0.5, 1.0, 1.5]):
+        for c0 in np.linspace(-1, 4, 6):
+            f = (lambda th: nll_beta([fix_b, *th], lp, lT, y)) if fix_b is not None else (lambda th: nll_beta(th, lp, lT, y))
+            x0 = [c0, np.log(0.3), 3.0] if fix_b is not None else [b0, c0, np.log(0.3), 3.0]
+            r = minimize(f, x0, method="Nelder-Mead", options=dict(maxiter=4000, xatol=1e-5, fatol=1e-8))
+            if best is None or r.fun < best.fun:
+                best = r
+    th = [fix_b, *best.x] if fix_b is not None else list(best.x)
+    return dict(beta=float(th[0]), log10_mstar=float(th[1]), width=float(np.exp(th[2])), ceiling=float(sig(th[3])),
+                nll=float(best.fun), n=int(len(y)))
 
 
-def checkpoint_table(d):
-    rows = []
+def stack(d, tmin=TMIN, tmax=np.inf, xcount=None):
+    lp, lT, y = [], [], []
     for j, T in enumerate(d["T"]):
-        rec = (d["maxcos"][j] >= THR).astype(float)
-        rows.append((int(T), d["p"] * T, rec, d["p"]))
-    return rows
+        if T < tmin or T > tmax: continue
+        lp.append(np.log10(d["p"] if xcount is None else xcount)); lT.append(np.full(len(d["p"]), np.log10(T)))
+        y.append((d["maxcos"][j] >= THR).astype(float))
+    return map(np.concatenate, (lp, lT, y))
 
 
-# ---------------- E1: occurrence-count collapse ----------------
+def boot_beta(lp, lT, y, nf, B=40):
+    """bootstrap over features (resample feature indices, keep all their checkpoints)."""
+    nck = len(y) // nf; bs = []
+    for _ in range(B):
+        idx = rng.integers(0, nf, nf)
+        sel = (np.arange(nck)[:, None] * nf + idx[None, :]).ravel()
+        bs.append(fit_beta(lp[sel], lT[sel], y[sel])["beta"])
+    return [float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))]
+
+
+# ---------------------------------------------------------------- E1: collapse test
 E1 = {}
-alphas = [1.2, 1.5, 1.8]
-fig, axes = plt.subplots(2, 3, figsize=(13, 7.5))
-for ai, a in enumerate(alphas):
-    res = {"per_ck": [], "pooled": {}}
-    xs_m, xs_p, ys, Tl = [], [], [], []
-    for seed in (0, 1):
-        f = f"E1_a{a}_s{seed}"
-        if not os.path.exists(os.path.join(RAW, f + ".npz")):
-            continue
-        d = load(f)
-        for (T, m, rec, p) in checkpoint_table(d):
-            if T < TMIN:
-                continue
-            xs_m.append(np.log10(np.maximum(m, 1e-3))); xs_p.append(np.log10(p)); ys.append(rec)
-            Tl.append(np.full(len(rec), T))
-            if seed == 0:
-                # binned curves
-                bins = np.linspace(-1, 4, 26)
-                lm = np.log10(np.maximum(m, 1e-3)); lp = np.log10(p)
-                for ax, lx, bb in ((axes[0, ai], lm, bins), (axes[1, ai], lp, np.linspace(-5, 0, 26))):
+fig, axes = plt.subplots(2, 3, figsize=(13, 7.2))
+for ai, a in enumerate((1.2, 1.5, 1.8)):
+    res = {}
+    for s in (0, 1):
+        n = f"E1_a{a}_s{s}"
+        if not os.path.exists(os.path.join(RAW, n + ".npz")): continue
+        d = load(n); lp, lT, y = stack(d)
+        free = fit_beta(lp, lT, y)
+        m1 = fit_beta(lp, lT, y, fix_b=1.0); m0 = fit_beta(lp, lT, y, fix_b=0.0)
+        ci = boot_beta(lp, lT, y, len(d["p"])) if s == 0 else None
+        res[f"seed{s}"] = dict(free=free, beta_CI95=ci, occ_model=m1, freq_model=m0,
+                               final_rec=float((d["maxcos"][-1] >= THR).mean()), final_fvu=float(d["fvu"][-1]),
+                               final_dead=int(d["dead"][-1]),
+                               mstar_occ=10 ** m1["log10_mstar"])
+        if s == 0:
+            cm = plt.cm.viridis
+            for j, T in enumerate(d["T"]):
+                if T < TMIN: continue
+                rec = (d["maxcos"][j] >= THR).astype(float); col = cm(np.log(T / TMIN) / np.log(d["T"][-1] / TMIN))
+                for ax, lx, bb in ((axes[0, ai], np.log10(d["p"] * T), np.linspace(0, 6, 25)),
+                                   (axes[1, ai], np.log10(d["p"]), np.linspace(-5, 0, 25))):
                     idx = np.digitize(lx, bb)
-                    cx = [lx[idx == b].mean() for b in range(1, len(bb)) if (idx == b).sum() >= 3]
-                    cy = [rec[idx == b].mean() for b in range(1, len(bb)) if (idx == b).sum() >= 3]
-                    ax.plot(cx, cy, "-", color=plt.cm.viridis(np.log(T / TMIN) / np.log(3.1e6 / TMIN)), lw=1.3)
-            if (rec.mean() < 1) and (rec.mean() > 0):
-                x0, s, _ = fit_logistic(np.log10(np.maximum(m, 1e-3)), rec)
-                res["per_ck"].append(dict(seed=seed, T=T, log10_mstar=x0, width=s, frac_rec=float(rec.mean())))
-    if not ys:
-        continue
-    xm, xp, y, Tc = map(np.concatenate, (xs_m, xs_p, ys, Tl))
-    x0m, sm, llm = fit_logistic(xm, y)
-    x0p, sp_, llp = fit_logistic(xp, y)
-    res["pooled"] = dict(log10_mstar=x0m, mstar=10 ** x0m, width_decades=sm, logloss_vs_m=llm,
-                         log10_pstar=x0p, logloss_vs_p=llp, n_points=int(len(y)))
-    pc = [r["log10_mstar"] for r in res["per_ck"]]
-    Ts = [r["T"] for r in res["per_ck"]]
-    if len(pc) > 2:
-        res["mstar_vs_T_slope"] = float(np.polyfit(np.log10(Ts), pc, 1)[0])
-        res["mstar_range_log10"] = [float(min(pc)), float(max(pc))]
-        res["T_range"] = [int(min(Ts)), int(max(Ts))]
-    E1[a] = res
-    axes[0, ai].set_title(f"alpha={a}: recovery vs expected occurrences m=pT")
-    axes[0, ai].set_xlabel("log10 m (expected occurrences seen)"); axes[0, ai].set_ylabel(f"P(max cos >= {THR})")
-    axes[0, ai].axvline(x0m, ls="--", c="r", lw=0.8)
-    axes[1, ai].set_title(f"alpha={a}: same data vs feature frequency p")
-    axes[1, ai].set_xlabel("log10 p (per-token activation prob.)"); axes[1, ai].set_ylabel("P(recovered)")
-sm_ = plt.cm.ScalarMappable(cmap="viridis", norm=matplotlib.colors.LogNorm(TMIN, 3.1e6))
-fig.colorbar(sm_, ax=axes, label="training tokens T", shrink=0.6)
-fig.savefig(os.path.join(R, "fig1_collapse.png"), dpi=130, bbox_inches="tight")
-summary["E1"] = E1
+                    cx = [lx[idx == b].mean() for b in range(1, len(bb)) if (idx == b).sum() >= 4]
+                    cy = [rec[idx == b].mean() for b in range(1, len(bb)) if (idx == b).sum() >= 4]
+                    ax.plot(cx, cy, "-", color=col, lw=1.3)
+            axes[0, ai].axvline(m1["log10_mstar"], ls="--", c="r", lw=0.8)
+    # cross-seed prediction: fit on seed0, predict seed1 recovered fraction & unrecovered activation mass at every ckpt
+    if "seed0" in res and "seed1" in res:
+        th = res["seed0"]["free"]; d1 = load(f"E1_a{a}_s1"); rows = []
+        for j, T in enumerate(d1["T"]):
+            if T < TMIN: continue
+            P = th["ceiling"] * sig((np.log10(d1["p"]) + th["beta"] * np.log10(T) - th["log10_mstar"]) / th["width"])
+            rec = d1["maxcos"][j] >= THR; p = d1["p"]
+            rows.append(dict(T=int(T), obs_frac=float(rec.mean()), pred_frac=float(P.mean()),
+                             obs_unrec_mass=float((p * ~rec).sum() / p.sum()), pred_unrec_mass=float((p * (1 - P)).sum() / p.sum())))
+        res["cross_seed_prediction"] = rows
+        res["cross_seed_MAE_frac"] = float(np.mean([abs(r["obs_frac"] - r["pred_frac"]) for r in rows]))
+        res["cross_seed_MAE_mass"] = float(np.mean([abs(r["obs_unrec_mass"] - r["pred_unrec_mass"]) for r in rows]))
+    E1[str(a)] = res
+    axes[0, ai].set_title(f"α={a}: vs expected occurrences m = pT", fontsize=10)
+    axes[0, ai].set_xlabel("log10 m"); axes[0, ai].set_ylabel(f"P(max cos ≥ {THR})")
+    axes[1, ai].set_title(f"α={a}: same data vs frequency p", fontsize=10)
+    axes[1, ai].set_xlabel("log10 p"); axes[1, ai].set_ylabel(f"P(max cos ≥ {THR})")
+fig.colorbar(plt.cm.ScalarMappable(cmap="viridis", norm=matplotlib.colors.LogNorm(TMIN, 3e6)), ax=axes, label="training tokens T", shrink=0.6)
+fig.savefig(os.path.join(R, f"fig1_collapse{SUF}.png"), dpi=130, bbox_inches="tight"); plt.close(fig)
+S["E1"] = E1
 
-# ---------------- E3: tokens vs steps, lr ----------------
+# ---------------------------------------------------------------- E3: what sets m*?
 E3 = {}
-for f in sorted(glob.glob(os.path.join(RAW, "E3_*.npz"))) + [os.path.join(RAW, "E1_a1.5_s0.npz")]:
-    name = os.path.basename(f)[:-4]
-    if not os.path.exists(f):
-        continue
-    d = load(name)
-    cfg = json.loads(str(d["cfg"]))
-    xs, ys, steps_x = [], [], []
-    for (T, m, rec, p) in checkpoint_table(d):
-        if T < TMIN:
-            continue
-        xs.append(np.log10(np.maximum(m, 1e-3))); ys.append(rec)
-        steps_x.append(np.log10(np.maximum(m / cfg.get("batch", 256), 1e-5)))
-    x, y, xs_steps = map(np.concatenate, (xs, ys, steps_x))
-    x0, s, ll = fit_logistic(x, y)
-    E3[name] = dict(batch=cfg.get("batch", 256), lr=cfg.get("lr", 1e-3), log10_mstar_tokens=x0, mstar_tokens=10 ** x0,
-                    width=s, mstar_in_steps=10 ** x0 / cfg.get("batch", 256),
-                    final_frac_rec=float((d["maxcos"][-1] >= THR).mean()), final_fvu=float(d["fvu"][-1]))
-summary["E3"] = E3
+names = ["E1_a1.5_s0"] + sorted(os.path.basename(f)[:-4] for f in glob.glob(os.path.join(RAW, "E3_*.npz")) + glob.glob(os.path.join(RAW, "E5_*.npz")))
+for n in names:
+    d = load(n); c = d["cfg"]; lp, lT, y = stack(d)
+    free = fit_beta(lp, lT, y); m1 = fit_beta(lp, lT, y, fix_b=1.0)
+    E3[n] = dict(opt=c.get("opt", "adam"), beta2=c.get("beta2", 0.999), beta_CI95=boot_beta(lp, lT, y, len(d["p"]), B=20), lr=c["lr"], batch=c["batch"], D=c["D"], L0=c["L0"], K=c["K"], beta=free["beta"],
+                 log10_mstar_tokens=m1["log10_mstar"], mstar_tokens=10 ** m1["log10_mstar"],
+                 mstar_steps_equiv=10 ** m1["log10_mstar"] / c["batch"],
+                 width=m1["width"], ceiling=m1["ceiling"], final_rec=float((d["maxcos"][-1] >= THR).mean()),
+                 final_fvu=float(d["fvu"][-1]), superposition_ratio=c["N"] / c["D"])
+S["E3"] = E3
 
-# ---------------- E2: width-limited regime ----------------
+# ---------------------------------------------------------------- E2: width-limited
 E2 = {}
-fig, axes = plt.subplots(1, 3, figsize=(14, 4))
-for ai, a in enumerate(alphas):
-    E2[a] = {}
-    for M in (64, 128, 256, 512, 1024):
-        f = f"E2_a{a}_M{M}"
-        if not os.path.exists(os.path.join(RAW, f + ".npz")):
-            continue
-        d = load(f)
-        rec = (d["maxcos"][-1] >= THR).astype(float)
-        rank = np.arange(1, len(rec) + 1)
-        p = d["p"]; T = int(d["T"][-1])
-        x0r, sr, _ = fit_logistic(np.log10(rank), 1 - rec) if 0 < rec.mean() < 1 else (np.nan, np.nan, np.nan)
-        # frequency at the 50% point
-        pstar = float(np.interp(x0r, np.log10(rank), p)) if np.isfinite(x0r) else np.nan
-        # mass-weighted coverage: fraction of feature activations that belong to recovered features
-        cov = float((p * rec).sum() / p.sum())
-        E2[a][M] = dict(n_recovered=int(rec.sum()), rank50=float(10 ** x0r) if np.isfinite(x0r) else None,
-                        rank50_over_M=float(10 ** x0r / M) if np.isfinite(x0r) else None,
-                        pstar=pstar, pstar_times_M=pstar * M if np.isfinite(pstar) else None,
-                        mstar_at_pstar=pstar * T if np.isfinite(pstar) else None,
-                        mass_coverage=cov, fvu=float(d["fvu"][-1]), T=T,
-                        dead=int(d["dead"][-1]))
-        w = 32
-        sm_rec = np.convolve(rec, np.ones(w) / w, mode="valid")
-        axes[ai].plot(rank[w // 2: w // 2 + len(sm_rec)], sm_rec, label=f"M={M}")
-    axes[ai].set_xscale("log"); axes[ai].set_title(f"alpha={a}: recovery vs frequency rank (T=3.07M)")
-    axes[ai].set_xlabel("feature frequency rank"); axes[ai].set_ylabel("P(recovered), running mean")
-    axes[ai].legend(fontsize=7)
-fig.savefig(os.path.join(R, "fig2_width.png"), dpi=130, bbox_inches="tight")
-summary["E2"] = E2
-
-# ---------------- Prediction check: unrecovered activation mass vs T ----------------
 fig, axes = plt.subplots(1, 2, figsize=(11, 4))
-pred = {}
-for ai, a in enumerate(alphas):
-    f = f"E1_a{a}_s0"
-    if a not in E1 or not os.path.exists(os.path.join(RAW, f + ".npz")):
-        continue
-    d = load(f)
-    ms = E1[a]["pooled"]["mstar"]
-    obs, prd, Ts, fv = [], [], [], []
-    for j, T in enumerate(d["T"]):
-        rec = d["maxcos"][j] >= THR
-        p = d["p"]
-        obs.append((p * ~rec).sum() / p.sum())
-        prd.append((p * (p * T < ms)).sum() / p.sum())
-        Ts.append(T); fv.append(d["fvu"][j])
-    Ts = np.array(Ts); obs = np.array(obs); prd = np.array(prd); fv = np.array(fv)
-    c = plt.cm.tab10(ai)
-    axes[0].loglog(Ts, obs, "o", c=c, ms=4, label=f"observed a={a}")
-    axes[0].loglog(Ts, np.maximum(prd, 1e-6), "-", c=c, label=f"threshold model a={a}")
-    axes[1].loglog(Ts, fv, "o-", c=c, ms=3, label=f"a={a}")
-    sel = (Ts >= TMIN) & (obs > 0)
-    slope = float(np.polyfit(np.log(Ts[sel]), np.log(obs[sel]), 1)[0]) if sel.sum() > 3 else None
-    # theoretical slope for an infinite Zipf tail: -(a-1)/a
-    pred[a] = dict(observed_unrec_mass_slope=slope, infinite_zipf_slope=-(a - 1) / a,
-                   corr_log_obs_pred=float(np.corrcoef(np.log(obs[sel] + 1e-6), np.log(prd[sel] + 1e-6))[0, 1]) if sel.sum() > 3 else None,
-                   mean_abs_err=float(np.abs(obs[sel] - prd[sel]).mean()) if sel.sum() else None,
-                   fvu_final=float(fv[-1]))
-axes[0].set_xlabel("training tokens T"); axes[0].set_ylabel("unrecovered activation mass")
-axes[0].legend(fontsize=7); axes[0].set_title("threshold model vs observed")
-axes[1].set_xlabel("training tokens T"); axes[1].set_ylabel("FVU"); axes[1].legend(fontsize=7)
-axes[1].set_title("reconstruction FVU")
-fig.savefig(os.path.join(R, "fig3_mass.png"), dpi=130, bbox_inches="tight")
-summary["prediction_check"] = pred
+for ai, a in enumerate((1.2, 1.5)):
+    E2[str(a)] = {}
+    Ms = [64, 128, 256, 512] + ([768] if os.path.exists(os.path.join(RAW, f"E1_a{a}_s0.npz")) else [])
+    for M in Ms:
+        n = f"E2_a{a}_M{M}" if M != 768 else f"E1_a{a}_s0"
+        if not os.path.exists(os.path.join(RAW, n + ".npz")): continue
+        d = load(n); rec = (d["maxcos"][-1] >= THR).astype(float); p = d["p"]; T = int(d["T"][-1])
+        rank = np.arange(1, len(p) + 1)
+        # recovered features among those that pass the data threshold (m >= 10 * m*_base)
+        E2[str(a)][M] = dict(n_rec=int(rec.sum()), n_rec_over_M=float(rec.sum() / M),
+                             mass_cov=float((p * rec).sum() / p.sum()), fvu=float(d["fvu"][-1]),
+                             median_rank_recovered=float(np.median(rank[rec > 0])) if rec.sum() else None,
+                             rank90_recovered=float(np.percentile(rank[rec > 0], 90)) if rec.sum() else None)
+        w = 24; sm = np.convolve(rec, np.ones(w) / w, mode="valid")
+        axes[ai].plot(rank[w // 2: w // 2 + len(sm)], sm, label=f"M={M}")
+    axes[ai].set_xscale("log"); axes[ai].set_xlabel("feature frequency rank"); axes[ai].set_ylabel("P(recovered), running mean")
+    axes[ai].set_title(f"α={a}, T=3M: recovery vs rank, by width M", fontsize=10); axes[ai].legend(fontsize=7)
+fig.savefig(os.path.join(R, f"fig2_width{SUF}.png"), dpi=130, bbox_inches="tight"); plt.close(fig)
+S["E2"] = E2
 
-json.dump(summary, open(os.path.join(R, "summary.json"), "w"), indent=1, default=float)
-print(json.dumps(summary, indent=1, default=float))
+# ---------------------------------------------------------------- E4: replay buffer
+E4 = {}
+base = load("E1_a1.5_s0")
+Ys, LE, LU = [], [], []
+for n in ["E1_a1.5_s0"] + sorted(os.path.basename(f)[:-4] for f in glob.glob(os.path.join(RAW, "E4_*.npz"))):
+    d = load(n); U = d["cfg"]["buffer"]
+    for j, T in enumerate(d["T"]):
+        if T < TMIN: continue
+        y = (d["maxcos"][j] >= THR).astype(float)
+        uniq = d["uniq_counts"] * 1.0 if U else d["p"] * T
+        uniq_seen = np.minimum(uniq, d["p"] * T) if U else uniq
+        Ys.append(y); LE.append(np.log10(np.maximum(d["p"] * T, 1e-3))); LU.append(np.log10(np.maximum(uniq_seen, 0.5)))
+    E4[n] = dict(buffer=U, final_rec=float((d["maxcos"][-1] >= THR).mean()), final_fvu=float(d["fvu"][-1]),
+                 epochs=float(d["T"][-1] / U) if U else 1.0,
+                 rec_at_ck=[float((d["maxcos"][j] >= THR).mean()) for j in range(len(d["T"]))], T=d["T"].tolist())
+y, le, lu = map(np.concatenate, (Ys, LE, LU)); z = np.zeros_like(le)
+fe = fit_beta(le, z, y, fix_b=0.0); fu = fit_beta(lu, z, y, fix_b=0.0)
+S["E4"] = dict(runs=E4, fit_on_exposures=fe, fit_on_unique_occurrences=fu,
+               delta_nll_unique_minus_exposure=fu["nll"] - fe["nll"])
+fig, ax = plt.subplots(figsize=(5.5, 4))
+for n, v in E4.items():
+    ax.semilogx(v["T"], v["rec_at_ck"], "o-", ms=3, label=(f"buffer {v['buffer']:,} unique tokens" if v["buffer"] else "fresh data (no replay)"))
+ax.set_xlabel("total training tokens (incl. repeats)"); ax.set_ylabel(f"fraction recovered (cos ≥ {THR})")
+ax.set_title("α=1.5: fresh data vs replayed buffer", fontsize=10); ax.legend(fontsize=7)
+fig.savefig(os.path.join(R, f"fig3_replay{SUF}.png"), dpi=130, bbox_inches="tight"); plt.close(fig)
+
+json.dump(S, open(os.path.join(R, f"summary{SUF}.json"), "w"), indent=1, default=float)
+print(json.dumps({k: (v if k != "E1" else {a: {s: (x["free"] if isinstance(x, dict) and "free" in x else x) for s, x in r.items() if s != "cross_seed_prediction"} for a, r in v.items()}) for k, v in S.items()}, indent=1, default=float)[:6000])

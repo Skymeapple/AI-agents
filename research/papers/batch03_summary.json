@@ -1,0 +1,77 @@
+{
+ "batch": 3,
+ "status": "incomplete-run1",
+ "run_id": "wf_dbdb1ce2-f67",
+ "blocked_by": "Account usage limit ('You've hit your 5-hour limit · resets 10:10am UTC') hit during run 1. Research for p023-p030 and review round 1 for p021/p022 failed with that error. p021 and p022 have full drafts, but neither has been reviewed yet. p023 and p024 have partial code/results only. Resuming the workflow from the cache after the limit reset.",
+ "workflow_return_value": [
+  {
+   "id": 21,
+   "question": "智能体在真实环境中的可靠性如何达到可部署水平？",
+   "dir": "papers/p021",
+   "title": "Reliability Ceilings in Agent Evaluations: Lapse Rates, Task-Level Failure Correlation, and What Time-Horizon Data Can Certify",
+   "contribution_type": "mixed",
+   "summary": "The paper asks how close agents are to deployable reliability, using METR's time-horizon methodology as the test case. It adds a psychophysics-style lapse rate λ (success ceiling 1−λ) to the two-parameter logistic (2PL) used for time horizons, and proves four things. (1) A q-horizon does not exist when λ > 1−q. (2) A 2PL fit always reports a finite q-horizon, so it can never reveal a ceiling. (3) The intra-task failure correlation (ICC) determines how much retries help and how fast pass^k decays, and it bounds the mass of tasks that are never solved. (4) When failures are task-level, any valid confidence certificate needs distinct tasks, about ln(1/δ)/ε of them, and extra runs per task cannot substitute (the rule of three counted in tasks). All of this was applied to METR's public Time Horizon 1.1 run data: 20 agents, 228 tasks, 23,235 runs, with a family-cluster bootstrap and a boundary-corrected likelihood-ratio test. Main findings: (i) GPT-5.3-Codex has λ̂ = 3.5% (CI 2.1–4.6%, p = 1.3e-5, the only one surviving a Bonferroni correction) and Claude Opus 4.6 has λ̂ = 2.3% (CI 0.5–4.2%, p = 0.0075). For both, the 99% horizon is undefined in most bootstrap replicates, yet the 2PL still reports 0.2–0.7 minutes, and the 2PL also inflates Opus 4.6's 50% horizon by 32%. (ii) On tasks under 15 minutes, frontier agents fail 2–6% of runs. These failures are mostly task-level (median ICC 0.76), and two 10-minute tasks failed by every frontier agent account for 18–80% of each agent's failures. (iii) The 50% horizon doubled every 4.1 months across these agents, while the short-task failure rate halved only every 8.8 months, with no detectable trend among the agents released since April 2025. A paired test finds a short-task reliability regression from GPT-5.1-Codex-Max to GPT-5.3-Codex. (iv) At the measured ICC, certifying a 1% failure rate needs 240–1,065 distinct short tasks, against 119 in the suite. A simulation calibrated to the data shows the current design detects a 1–2% ceiling only 31–56% of the time, adding tasks helps more than adding runs, and run-level binomial confidence intervals cover the true rate only 73–85% of the time. The paper ends with a reporting protocol and falsifiable predictions. Limitations: a single software-domain suite, few short tasks, possible task defects that cannot be audited, and no new agent runs.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 22,
+   "question": "如何为长时间自主运行的智能体做错误恢复？",
+   "dir": "papers/p022",
+   "title": "Verification Blind Spots Bound Error Recovery in Long-Running Agents: Interval Invariance, a Correctness Ceiling, and Power-Law Returns to Re-Verification",
+   "contribution_type": "mixed",
+   "summary": "The paper is aimed at NeurIPS. It adapts classical checkpoint/silent-error theory (Young, Daly, Benoit and Robert) to long-running agents, which have no guaranteed verifier and whose error rate can grow with context age. The model is a verify-checkpoint-rollback (VCR) model with silent persistent errors, per-error heterogeneous detectability d (blind-spot mass rho at d=0), false alarms, costs, and a hazard that grows linearly with context age, under fresh-context or snapshot resumption. Four main results are proved. (1) Interval invariance: with constant hazard, P(final state clean) = ((1-p)/(1-p+p mu_m))^N exactly, where mu_m = E[(1-d)^m]; it does not depend on checkpoint interval, false-alarm rate or any cost, so checkpointing buys time, not correctness. (2) Blind-spot ceiling: no verifier-driven policy (adaptive intervals, deep rollback, any number of re-checks) exceeds ((1-p)/(1-p+p rho))^N ≈ e^{-Np rho}, where rho is the joint blind spot of all verifiers used; the bound is tight. (3) Power-law returns: if detectability has density ~d^{a-1} near 0, re-verification lowers the miss rate only as m^{-a}, while false alarms make the time cost geometric in m. (4) With age-dependent hazard, the optimal interval moves from a c^{1/2} toward a c^{1/3} law, snapshot restoration loses correctness super-exponentially with task length, and fresh-context resumption becomes faster beyond a crossover horizon. An independent step-level simulator matches the closed forms in 96 configurations x 3000 runs (largest makespan error 0.32%; 93.8% and 95.8% of configurations within 2 SE). As a toy, non-synthetic error population, detectability was measured on 102 AST mutants of 8 functions; 6 equivalent mutants were excluded by manual inspection. A typical-input test pool leaves an 11.5% blind spot; adding an edge-case pool removes the joint blind spot, and simulated 1000-step correctness rises from 0.49 to 0.99 with 8 calls, versus 0.65 from repeating the single pool 8 times. No LLM experiments were run; a pre-registered five-prediction protocol for LLM agents is included. arxiv.org could not be fetched from this session, so references were checked through web search results rather than the papers themselves. Three 2026 arXiv references (2609.18304, 2611.13254, 2608.29381) are cited by title and ID because their author lists could not be found. Limitations covered: independence assumptions, binary persistent errors, rollback assumed side-effect free, an idealized re-orientation cost, the toy scale of the mutation study, and first-order asymptotics.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 23,
+   "status": "research-failed"
+  },
+  {
+   "id": 24,
+   "status": "research-failed"
+  },
+  {
+   "id": 25,
+   "status": "research-failed"
+  },
+  {
+   "id": 26,
+   "status": "research-failed"
+  },
+  {
+   "id": 27,
+   "status": "research-failed"
+  },
+  {
+   "id": 28,
+   "status": "research-failed"
+  },
+  {
+   "id": 29,
+   "status": "research-failed"
+  },
+  {
+   "id": 30,
+   "status": "research-failed"
+  }
+ ],
+ "logs": [
+  "Batch of 10 projects: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30",
+  "[research:p024] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p025] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p026] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p027] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p028] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p029] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p030] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[review:p021:r1] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[review:p022:r1] failed: You've hit your 5-hour limit · resets 10:10am (UTC)",
+  "[research:p023] failed: You've hit your 5-hour limit · resets 10:10am (UTC)"
+ ]
+}

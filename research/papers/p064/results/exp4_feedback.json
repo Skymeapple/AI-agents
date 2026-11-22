@@ -1,0 +1,590 @@
+{
+ "series": [
+  {
+   "rule": "reactive",
+   "kappa": 1.0,
+   "max_abs_G": 0.09507147071813027,
+   "amp_40_80": 0.09501299515798489,
+   "amp_80_120": 0.09486102076101488,
+   "tau_c": Infinity
+  },
+  {
+   "rule": "reactive",
+   "kappa": 4.0,
+   "max_abs_G": 0.06355275063836119,
+   "amp_40_80": 0.046222322183859355,
+   "amp_80_120": 0.0392570898880652,
+   "tau_c": 8.935533241890498
+  },
+  {
+   "rule": "reactive",
+   "kappa": 10.0,
+   "max_abs_G": 0.42370603301468956,
+   "amp_40_80": 0.4236723374310769,
+   "amp_80_120": 0.42370603301468956,
+   "tau_c": 3.187244237920277
+  },
+  {
+   "rule": "anticipatory",
+   "max_abs_G": 0.00040410148227243425,
+   "amp_80_120": 0.00040410148227243425
+  },
+  {
+   "rule": "anticipatory_start5",
+   "peak": 0.04402301022046762,
+   "t_back_below_1pct": 10.25,
+   "integrated_pos": 0.12395859177613225,
+   "integrated_neg": 0.039962339330805154
+  },
+  {
+   "rule": "reactive4_start5",
+   "peak": 0.06357492387130048,
+   "integrated_pos": 4.383589532923717,
+   "integrated_neg": 0.0
+  }
+ ],
+ "grid": [
+  {
+   "kappa": 0.5,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 6.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 8.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 10.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 0.5,
+   "tau": 12.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 6.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 8.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 10.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 1.5,
+   "tau": 12.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 6.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 8.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 10.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 2.0,
+   "tau": 12.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 6.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 8.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 10.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 3.0,
+   "tau": 12.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 6.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 8.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 4.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 4.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 6.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 6.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 6.0,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 6.0,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 6.0,
+   "tau": 5.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 6.0,
+   "tau": 6.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 6.0,
+   "tau": 8.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 6.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 6.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 8.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 8.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 8.0,
+   "tau": 3.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 8.0,
+   "tau": 4.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 8.0,
+   "tau": 5.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 8.0,
+   "tau": 6.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 8.0,
+   "tau": 8.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 8.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 8.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 12.0,
+   "tau": 2.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 12.0,
+   "tau": 3.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 4.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 5.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 6.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 8.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 12.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 16.0,
+   "tau": 2.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 3.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 4.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 5.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 6.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 8.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 16.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 1.0,
+   "stable_sim": true,
+   "stable_theory": true
+  },
+  {
+   "kappa": 24.0,
+   "tau": 2.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 3.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 4.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 5.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 6.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 8.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 10.0,
+   "stable_sim": false,
+   "stable_theory": false
+  },
+  {
+   "kappa": 24.0,
+   "tau": 12.0,
+   "stable_sim": false,
+   "stable_theory": false
+  }
+ ],
+ "agreement": 1.0,
+ "lam": 0.05269071427420079
+}

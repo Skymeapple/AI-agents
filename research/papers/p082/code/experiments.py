@@ -58,7 +58,36 @@ def jobs_E6():
                                             [0.0, 0.001, 0.0025, 0.005, 0.01, 0.02, 0.05]):
         yield dict(exp="E6", site=s, mix=an, allow=al, phi=1.0, v=0.0, max_curtail_frac=f)
 
+def jobs_E7():
+    # fine VoLC grid for renewable-only (no firm) 100% and 99% CFE campuses, to locate the VoLC at which
+    # flexibility makes renewables+storage cost-competitive with the firm (SMR) option
+    for s, phi, v in itertools.product(SITES, [0.99, 1.0], [300, 350, 400, 600, 800]):
+        yield dict(exp="E7", site=s, mix="nofirm", allow=NOFIRM, phi=phi, v=v)
+
+def module_availability(M, seed=0, T=8784, refuel_days=30, cycle_years=2.0, efor=0.02, mean_forced_days=7.0):
+    """Hourly fraction of firm fleet capacity available when the fleet is M identical modules.
+    Each module: one refuelling outage of refuel_days every cycle_years (staggered start dates),
+    plus forced outages from a two-state Markov chain with steady-state unavailability efor and mean duration mean_forced_days."""
+    rng = np.random.default_rng(seed); up = np.ones((M, T))
+    for m in range(M):
+        start = int(((m / M) * cycle_years * 8760 + rng.integers(0, 24 * 7)) % (cycle_years * 8760))
+        if start < T: up[m, start:min(T, start + refuel_days * 24)] = 0
+        p_rep = 1.0 / (mean_forced_days * 24); p_fail = p_rep * efor / (1 - efor); state = 1
+        for t in range(T):
+            state = (0 if rng.random() < p_fail else 1) if state == 1 else (1 if rng.random() < p_rep else 0)
+            if state == 0: up[m, t] = 0
+    return up.mean(0)
+
+def jobs_E8():
+    # lumpy firm availability: fleet of M modules with refuelling + forced outages (replaces constant 93% availability)
+    for s, phi, v, M in itertools.product(["abilene_tx", "loudoun_va"], [0.95, 1.0], [500, 1000, 2000, 10000], [1, 4]):
+        yield dict(exp="E8", site=s, mix="all", allow=ALL, phi=phi, v=v, modules=M)
+
 def run_scaled(job):
+    if "modules" in job:
+        cs, _ = cf(job["site"]); a = module_availability(job["modules"], seed=1, T=len(cs))
+        P = model.params(); P["firm_avail_series"] = a
+        job = dict(job, pkw={"overrides": {"firm_avail_series": a}}, mean_avail=float(a.mean()), min_avail=float(a.min()))
     if "scale" in job:
         k, m = job["scale"]; P = model.params(**job.get("pkw", {}))
         ov = {"bat_p": P["bat_p"] * m, "bat_e": P["bat_e"] * m} if k == "bat" else {k: P[k] * m}

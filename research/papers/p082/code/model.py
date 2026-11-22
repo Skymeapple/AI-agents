@@ -66,8 +66,13 @@ def solve(cs, cw, P, phi=0.0, v=1000.0, L=1.0, allow=("pv", "wind", "bat", "ct",
     rows += [r + ar, r + ar]; cols += [np.full(T, iS), np.full(T, iW)]; vals += [-cs, -cw]
     rhs_ub.append(np.full(T, -L)); r += T
     # capacity limits
-    for blk, cap, coef in [(0, iCT, 1.0), (1, iCC, 1.0), (2, iPb, 1.0), (3, iPb, 1.0), (4, iEb, 1.0), (6, iN, P["firm_avail"])]:
-        rows += [r + ar, r + ar]; cols += [H(blk), np.full(T, cap)]; vals += [np.ones(T), np.full(T, -coef)]
+    fa = P.get("firm_avail_series")  # optional hourly availability of the firm fleet (lumpy module outages)
+    if fa is not None:
+        fa = np.asarray(fa, float); fa = fa[: len(fa) // dt * dt].reshape(-1, dt).mean(1) if dt > 1 else fa
+    else:
+        fa = np.full(T, P["firm_avail"])
+    for blk, cap, coef in [(0, iCT, 1.0), (1, iCC, 1.0), (2, iPb, 1.0), (3, iPb, 1.0), (4, iEb, 1.0), (6, iN, fa)]:
+        rows += [r + ar, r + ar]; cols += [H(blk), np.full(T, cap)]; vals += [np.ones(T), -np.broadcast_to(coef, (T,)).astype(float)]
         rhs_ub.append(np.zeros(T)); r += T
     # CFE share: sum g + (1-phi) sum u <= (1-phi) T L
     rows += [np.full(T, r), np.full(T, r), np.full(T, r)]; cols += [H(0), H(1), H(5)]

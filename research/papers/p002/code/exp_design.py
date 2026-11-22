@@ -46,10 +46,12 @@ REFS = {
 
 
 def chi2_lower(g, n, M, m=1200):
-    """Le Cam / chi-square two-point bound.  For a reference law F0 with count law Q, maximise
-    |E_F g - E_F0 g| over F whose count law P satisfies |P_x - Q_x| <= sqrt(Q_x/(8M(n+1))), so
-    chi2(P||Q) <= 1/(8M), hence H^2(P^M,Q^M) <= 1/8 and TV(P^M,Q^M) <= 0.354.  Any procedure
-    giving 95% coverage under both laws then has E_P[width] >= (0.95-0.354-0.05)*Delta = 0.546*Delta.
+    """Le Cam / chi-square two-point bound (superseded in revision r1 by exp_minimax.py, which uses the
+    Hellinger modulus with both laws free).  For a reference law F0 with count law Q, maximise
+    |E_F g - E_F0 g| over F whose count law P satisfies the chi-square SUM constraint
+    sum_x (P_x - Q_x)^2 / Q_x <= 1/(8M)  (i.e. chi2(P||Q) <= 1/(8M)), hence H^2(P^M,Q^M) <= M*chi2 <= 1/8
+    and TV(P^M,Q^M) <= 0.354.  Any procedure giving 95% coverage under both laws then has
+    E_P[width] >= (0.95-0.354-0.05)*Delta = 0.546*Delta.
     Returns max over references of 0.546*Delta/2 (a lower bound on the expected half-width)."""
     p = cheb_grid(m)
     B = bernstein_matrix(n, p).T

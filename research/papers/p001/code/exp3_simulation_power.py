@@ -34,7 +34,7 @@ def obj_brk(q, lN, lD, lC, lL, lCb):
     lp = logsumexp(T, axis=0); w = np.exp(T - lp); r = lp - lL
     g = np.array([(r * w[0]).sum(), (r * w[1]).sum(), (r * w[2]).sum(),
                   -(r * w[0] * lN).sum(), -(r * w[1] * lD).sum(), (r * (w[0] + w[1]) * h).sum()])
-    return 0.5 * (r ** 2).sum(), g
+    return SCALE * 0.5 * (r ** 2).sum(), SCALE * g
 
 
 def design(W, K=12, M=20):
@@ -59,9 +59,9 @@ def run_one(W, delta, sigma, K=12, M=20):
     lL = simulate(lN, lD, lC, delta, sigma, lCb)
     n = len(lL)
     # base fit (least squares)
-    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, BIG), method="BFGS", jac=True)
+    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, BIG), method="BFGS", jac=True, options=OPT)
               for x0 in [ptrue, ptrue + np.array([0.5, -0.5, 0.05, 0.02, -0.02])]), key=lambda r: r.fun)
-    f1 = min((minimize(obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True)
+    f1 = min((minimize(obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True, options=OPT)
               for d0 in [0.0, 0.05]), key=lambda r: r.fun)
     rss0, rss1 = 2 * f0.fun, 2 * f1.fun
     lr = n * np.log(rss0 / max(rss1, 1e-300))

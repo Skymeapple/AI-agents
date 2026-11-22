@@ -18,3 +18,9 @@ Note on Exp B: the machine was shared with other jobs during the run, so the swe
 seven runs; the remainder actually executed is `run_train_rest.sh` (d_k = 64 dropped for gla/delta/gdelta,
 value-dimension sweep reduced to d_v in {32, 128}). Each run: `python3 train_mqar.py --arch A --dk K --dv V --steps 1200`.
 Seeds are fixed (seed 0 for training, 1234 for evaluation).
+The sweep was completed in a later session by `run_train_final.sh` (Gated DeltaNet at d_k in {8,16,32};
+linear/delta at d_k=16, d_v in {32,128}) and `run_train_wide.sh` (token width d=512 control for the
+d_v=128 plateau: linear/delta d_v=128 and linear d_v=64; outputs `*_d512.json`). After all runs,
+`python3 analyze.py` also writes results/eta_vs_sim.json (efficiency vs simulated ideal memory) and
+results/fig_dvsweep.png; its console output is saved in results/log_analyze.txt.
+Each training run takes ~2.5-6 min on one CPU core.

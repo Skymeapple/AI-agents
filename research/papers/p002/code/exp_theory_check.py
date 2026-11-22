@@ -16,11 +16,22 @@ d["ratio"] = d.E / d.rho
 d["half_erfc"] = 0.5 * erfc(d.n / np.sqrt(d.k))
 d["sv_bound"] = 2 * np.exp(-d.n ** 2 / d.k)
 big = d[d.E > 1e-5]  # below ~1e-6 the LP solver's tolerance dominates
+tol = 1e-4  # LP solver tolerance on E_n (relative); the upper sandwich is checked up to this tolerance
+bg16 = big[big.n >= 16]
 out = dict(n_rows=len(big), ratio_min=float(big.ratio.min()), ratio_max=float(big.ratio.max()),
-           lower_const=1 / (4 * np.e), sandwich_holds=bool((big.ratio >= 1 / (4 * np.e) - 1e-6).all() and (big.ratio <= 1 + 1e-6).all()),
+           lower_const=1 / (4 * np.e),
+           sandwich_holds_exactly=bool((big.ratio >= 1 / (4 * np.e)).all() and (big.ratio <= 1).all()),
+           n_cells_ratio_above_1=int((big.ratio > 1).sum()),
+           sandwich_holds_within_lp_tol=bool((big.ratio >= 1 / (4 * np.e)).all() and (big.ratio <= 1 + tol).all()),
            sv_bound_holds=bool((big.E <= big.sv_bound + 1e-9).all()),
-           max_abs_dev_from_half_erfc_for_n_ge_16=float(np.abs(big[big.n >= 16].E - big[big.n >= 16].half_erfc).max()),
-           max_rel_dev_from_half_erfc_n_ge_16_x_ge_0p25=float((np.abs(big.E - big.half_erfc) / big.E)[(big.n >= 16) & (big.x >= 0.25)].max()))
+           # width = 2E_n is compared with erfc(n/sqrt k); equivalently E_n with erfc/2
+           max_abs_dev_width_2E_vs_erfc_n_ge_16=float(np.abs(2 * bg16.E - 2 * bg16.half_erfc).max()),
+           argmax_abs_dev_width=dict(zip(["n", "k"], [int(v) for v in bg16.loc[np.abs(bg16.E - bg16.half_erfc).idxmax(), ["n", "k"]]])),
+           max_abs_dev_E_vs_half_erfc_n_ge_16=float(np.abs(bg16.E - bg16.half_erfc).max()),
+           max_rel_dev_n_ge_16=float((np.abs(bg16.E - bg16.half_erfc) / bg16.E).max()),
+           max_rel_dev_n_ge_16_x_ge_0p25=float((np.abs(big.E - big.half_erfc) / big.E)[(big.n >= 16) & (big.x >= 0.25)].max()),
+           max_rel_dev_n_ge_16_x_ge_1=float((np.abs(big.E - big.half_erfc) / big.E)[(big.n >= 16) & (big.x >= 1)].max()),
+           max_rel_dev_n_ge_16_x_le_1=float((np.abs(big.E - big.half_erfc) / big.E)[(big.n >= 16) & (big.x <= 1)].max()))
 c = df[df.family == "ceiling"].copy(); c = c[c.E > 1e-5]
 out["ceiling_max_rel_err_vs_closed_form"] = float((np.abs(c.E - c.closed) / c.closed).max())
 print(out)

@@ -10,6 +10,11 @@ DATA = os.path.join(ROOT, "data", "chinchilla.csv")
 RES = os.path.join(ROOT, "results")
 os.makedirs(RES, exist_ok=True)
 
+# Revision 1: objectives are multiplied by SCALE so that BFGS gradient tolerances are meaningful at small
+# noise (v0 used unscaled objectives of order 1e-6..1e-3, and BFGS could stop near its starting point).
+SCALE = 1e6
+OPT = dict(gtol=1e-7, maxiter=5000)
+
 
 def load_chinchilla():
     rows = list(csv.DictReader(open(DATA)))
@@ -41,7 +46,7 @@ def obj_base(p, lN, lD, lL, delta=1e-3):
     hp = np.clip(r, -delta, delta)
     g = np.array([(hp * w[0]).sum(), (hp * w[1]).sum(), (hp * w[2]).sum(),
                   -(hp * w[0] * lN).sum(), -(hp * w[1] * lD).sum()])
-    return huber(r, delta).sum(), g
+    return SCALE * huber(r, delta).sum(), SCALE * g
 
 
 INIT_GRID = list(itertools.product([0, 5, 10, 15, 20, 25], [0, 5, 10, 15, 20, 25],
@@ -53,7 +58,7 @@ def fit_base(N, D, L, grid=INIT_GRID, delta=1e-3, init=None):
     inits = [init] if init is not None else grid
     best = None
     for x0 in inits:
-        r = minimize(obj_base, np.array(x0, float), args=(lN, lD, lL, delta), method="BFGS", jac=True)
+        r = minimize(obj_base, np.array(x0, float), args=(lN, lD, lL, delta), method="BFGS", jac=True, options=OPT)
         if best is None or r.fun < best.fun:
             best = r
     a, b, e, al, be = best.x

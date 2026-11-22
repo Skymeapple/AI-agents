@@ -25,6 +25,7 @@ p.add_argument("--K", type=int, default=4096); p.add_argument("--V", type=int, d
 p.add_argument("--Q", type=int, default=32); p.add_argument("--bs", type=int, default=64)
 p.add_argument("--Nmax", type=int, default=256); p.add_argument("--seed", type=int, default=0)
 p.add_argument("--threads", type=int, default=2)
+p.add_argument("--d", type=int, default=128)  # token embedding width; the value half (d/2) caps the effective value dimension
 a = p.parse_args()
 torch.manual_seed(a.seed); np.random.seed(a.seed); torch.set_num_threads(a.threads)
 RES = os.path.join(os.path.dirname(__file__), "..", "results", "train"); os.makedirs(RES, exist_ok=True)
@@ -83,7 +84,7 @@ class Mixer(nn.Module):
         return s.Wo(s.ln(o[:, N:]))
 
 
-m = Mixer(a.arch, a.dk, a.dv)
+m = Mixer(a.arch, a.dk, a.dv, d=a.d)
 opt = torch.optim.AdamW(m.parameters(), lr=3e-3, weight_decay=0.0)
 sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=3e-3, total_steps=a.steps, pct_start=0.1)
 gen = torch.Generator().manual_seed(a.seed)
@@ -113,5 +114,5 @@ with torch.no_grad():  # learned write strength beta and decay a on pair tokens 
              "decay_min": torch.sigmoid(m.Wa(xp)).min().item()}
 res = {"args": vars(a), "acc": acc, "gates_on_pair_tokens": gates, "train_time_s": time.time() - t0, "final_loss": float(np.mean(losses[-100:])),
        "state_size": a.dk * a.dv}
-json.dump(res, open(os.path.join(RES, f"{a.arch}_dk{a.dk}_dv{a.dv}.json"), "w"), indent=1)
+json.dump(res, open(os.path.join(RES, f"{a.arch}_dk{a.dk}_dv{a.dv}" + (f"_d{a.d}" if a.d != 128 else "") + ".json"), "w"), indent=1)
 print(res)

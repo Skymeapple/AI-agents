@@ -31,14 +31,14 @@ def obj_break(q, lN, lD, lC, lL, lCb, delta_h=1e-3):
     hp = np.clip(r, -delta_h, delta_h)
     g = np.array([(hp * w[0]).sum(), (hp * w[1]).sum(), (hp * w[2]).sum(),
                   -(hp * w[0] * lN).sum(), -(hp * w[1] * lD).sum(), (hp * (w[0] + w[1]) * h).sum()])
-    return huber(r, delta_h).sum(), g
+    return SCALE * huber(r, delta_h).sum(), SCALE * g
 
 
 def fit_break(lN, lD, lC, lL, lCb, init):
     best = None
     for dl0 in [0.0, 0.05, -0.05]:
         x0 = np.r_[init, dl0]
-        r = minimize(obj_break, x0, args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True)
+        r = minimize(obj_break, x0, args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True, options=OPT)
         if best is None or r.fun < best.fun:
             best = r
     return best
@@ -48,7 +48,7 @@ Cb_grid = np.log(np.quantile(C, [0.3, 0.4, 0.5, 0.6, 0.7]))
 
 
 def profile(idx, init):
-    fb = minimize(obj_base, init, args=(lN[idx], lD[idx], lL[idx]), method="BFGS", jac=True)
+    fb = minimize(obj_base, init, args=(lN[idx], lD[idx], lL[idx]), method="BFGS", jac=True, options=OPT)
     out = []
     for lCb in Cb_grid:
         r = fit_break(lN[idx], lD[idx], lC[idx], lL[idx], lCb, fb.x)
@@ -92,7 +92,7 @@ for qs in [0.5, 0.6, 0.7, 0.8]:
     mr = []
     for i in range(200):
         ii = np.where(tr)[0][rng.integers(0, tr.sum(), tr.sum())]
-        fb = minimize(obj_base, f["raw"], args=(lN[ii], lD[ii], lL[ii]), method="BFGS", jac=True)
+        fb = minimize(obj_base, f["raw"], args=(lN[ii], lD[ii], lL[ii]), method="BFGS", jac=True, options=OPT)
         mr.append(np.mean(lL[te] - pred_log_base(fb.x, lN[te], lD[te])))
     bt.append(dict(split_quantile=qs, C_split=float(Cs_), n_train=int(tr.sum()), n_test=int(te.sum()),
                    mean_log_resid=float(r.mean()), median_log_resid=float(np.median(r)),

@@ -9,7 +9,7 @@ from scipy.optimize import minimize
 from scipy.special import logsumexp
 from scipy import stats
 import exp3_simulation_power as S          # reuses design/simulate/objectives (no main run on import)
-from common import RES, obj_base, frontier, gamma
+from common import RES, obj_base, frontier, gamma, SCALE, OPT
 import exp4_data_wall as W4                # noqa: F401 (constants), re-run cheap
 
 rng = np.random.default_rng(3)
@@ -24,7 +24,7 @@ for d in [0.0, 0.01, 0.02, 0.04]:
         lN, lD, lC = S.design(4)
         lCb = 0.5 * (lC.min() + lC.max())
         lL = S.simulate(lN, lD, lC, d, S.SIG0, lCb)
-        f0 = minimize(obj_base, S.ptrue, args=(lN, lD, lL, BIG), method="BFGS", jac=True)
+        f0 = minimize(obj_base, S.ptrue, args=(lN, lD, lL, BIG), method="BFGS", jac=True, options=OPT)
         q = dict(A=np.exp(f0.x[0]), B=np.exp(f0.x[1]), E=np.exp(f0.x[2]), alpha=f0.x[3], beta=f0.x[4])
         Cx = np.exp(lC.max()) * 100
         # true frontier with break: E + (reducible frontier) * (Cx/Cb)^d
@@ -48,12 +48,12 @@ def wall_one(m, sigma, Wd=3.0, K=12, M=20):
     L = W4.loss(np.exp(lN), np.exp(lD), U)
     lL = np.log(L) + sigma * rng.standard_normal(L.shape)
     n = len(lL)
-    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, BIG), method="BFGS", jac=True)
+    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, BIG), method="BFGS", jac=True, options=OPT)
               for x0 in [p_mu, p_mu + np.array([0.3, -0.3, 0.02, 0.02, -0.02])]), key=lambda r: r.fun)
     ps = []
     for qq in [0.3, 0.4, 0.5, 0.6, 0.7]:
         lCb = np.quantile(lC, qq)
-        f1 = min((minimize(S.obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True)
+        f1 = min((minimize(S.obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True, options=OPT)
                   for d0 in [0.0, 0.05]), key=lambda r: r.fun)
         lr = n * np.log((2 * f0.fun) / max(2 * f1.fun, 1e-300))
         ps.append(0.5 * stats.chi2.sf(lr, 1) if f1.x[5] > 0 else 1.0)

@@ -26,5 +26,33 @@
    "between": 0.7971980742922619,
    "share_between": 0.5167300649017613
   }
+ },
+ "1-0": {
+  "n_boot": 60,
+  "n_infinite": 0,
+  "within_def_var": 2.6357161922192165,
+  "between_def_var": 1.0600327468607016,
+  "share_between": 0.2868248802432462,
+  "pooled50_bootstrap_90": [
+   2027.8342883226865,
+   2029.601810241662
+  ],
+  "range_point_estimates": [
+   2027.9539305592934,
+   2032.7965960812917
+  ],
+  "argmin": "pmean+1|0.5",
+  "argmax": "minfam|0.5",
+  "p50_vs_p80_gap_years": 0.9081567166319928,
+  "aggregator_only_q0.5": {
+   "within": 2.937261593178986,
+   "between": 1.6565603401632685,
+   "share_between": 0.3606061280128965
+  },
+  "threshold_only_pooled": {
+   "within": 1.3912993069308224,
+   "between": 0.2908843341516349,
+   "share_between": 0.17292067705786013
+  }
  }
 }

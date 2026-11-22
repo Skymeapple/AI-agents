@@ -11,7 +11,7 @@ from scipy.optimize import minimize
 from scipy import stats
 import exp3_simulation_power as S
 import exp4_data_wall as W4
-from common import RES, obj_base, frontier
+from common import RES, obj_base, frontier, SCALE, OPT
 
 t0 = time.time()
 rng = np.random.default_rng(7)
@@ -25,9 +25,9 @@ def run_window(Cend, delta, sigma, Wd=3.0, K=12, M=20):
     lCb = 0.5 * (lC.min() + lC.max())
     lL = S.simulate(lN, lD, lC, delta, sigma, lCb)
     n = len(lL)
-    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, S.BIG), method="BFGS", jac=True)
+    f0 = min((minimize(obj_base, x0, args=(lN, lD, lL, S.BIG), method="BFGS", jac=True, options=OPT)
               for x0 in [S.ptrue, S.ptrue + np.array([0.5, -0.5, 0.02, 0.02, -0.02])]), key=lambda r: r.fun)
-    f1 = min((minimize(S.obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True)
+    f1 = min((minimize(S.obj_brk, np.r_[f0.x, d0], args=(lN, lD, lC, lL, lCb), method="BFGS", jac=True, options=OPT)
               for d0 in [0.0, 0.05, 0.15]), key=lambda r: r.fun)
     lr = n * np.log((2 * f0.fun) / max(2 * f1.fun, 1e-300))
     return 0.5 * stats.chi2.sf(lr, 1) if f1.x[5] > 0 else 1.0

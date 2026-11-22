@@ -1,0 +1,258 @@
+excluded (no WB GNI/pop data since 2020): ERI
+{
+ "validation": {
+  "n": 16,
+  "spearman": 0.2058823529411765,
+  "spearman_p": 0.4442846410521442,
+  "pearson_log": 0.793484656355363,
+  "median_ratio_udhr_over_flores": 0.9578968253968254,
+  "pairs": {
+   "Hausa": [
+    1.35,
+    2.1492
+   ],
+   "Sesotho": [
+    1.4,
+    1.8255
+   ],
+   "Igbo": [
+    1.42,
+    1.7814
+   ],
+   "Lingala": [
+    1.48,
+    1.5771
+   ],
+   "Wolof": [
+    1.52,
+    1.8349
+   ],
+   "Swahili": [
+    1.54,
+    1.4923
+   ],
+   "Akan/Twi": [
+    1.57,
+    2.1378
+   ],
+   "Yoruba": [
+    1.85,
+    4.1626
+   ],
+   "Kinyarwanda": [
+    1.88,
+    1.5136
+   ],
+   "Luganda": [
+    2.07,
+    1.7521
+   ],
+   "Shona": [
+    2.15,
+    2.0
+   ],
+   "Xhosa": [
+    2.22,
+    1.7119
+   ],
+   "Zulu": [
+    2.26,
+    1.6202
+   ],
+   "Amharic": [
+    7.36,
+    5.409
+   ],
+   "Tigrinya": [
+    6.79,
+    5.9405
+   ],
+   "Bambara": [
+    1.98,
+    1.8746
+   ]
+  },
+  "spearman_excl_yoruba": 0.19999999999999998
+ },
+ "variant_noise": {
+  "pairs": [
+   [
+    "pes_1",
+    "pes_2",
+    0.0050288926913669195
+   ],
+   [
+    "ron_1953",
+    "ron_1993",
+    0.00934586241823782
+   ],
+   [
+    "hau_NE",
+    "hau_NG",
+    0.00644669811478946
+   ],
+   [
+    "hat_kreyol",
+    "hat_popular",
+    0.21667394477861113
+   ],
+   [
+    "nya_chechewa",
+    "nya_chinyanja",
+    0.04104857560795428
+   ],
+   [
+    "aka_asante",
+    "aka_akuapem",
+    0.13447901816469304
+   ],
+   [
+    "por_BR",
+    "por_PT",
+    0.04502105798343795
+   ]
+  ],
+  "median_abs_log_diff": 0.04104857560795428
+ },
+ "n_countries": 79,
+ "gni_years": [
+  "2025"
+ ],
+ "decomposition_summary": {
+  "median_lang_share_o200k_LIC_LMIC": 0.12497567412535512,
+  "median_lang_share_cl100k_LIC_LMIC": 0.20458238558923741,
+  "median_lang_share_best_LIC_LMIC": 0.11427284472721155,
+  "top5_lang_share_o200k": [
+   [
+    0.378,
+    "Lao PDR",
+    "lao"
+   ],
+   [
+    0.278,
+    "Ethiopia",
+    "amh"
+   ],
+   [
+    0.253,
+    "Cambodia",
+    "khm"
+   ],
+   [
+    0.252,
+    "Myanmar",
+    "mya"
+   ],
+   [
+    0.216,
+    "Togo",
+    "ewe"
+   ]
+  ],
+  "max_lang_share": [
+   0.3782046929143185,
+   "Lao PDR"
+  ],
+  "n_LIC_LMIC": 34,
+  "median_income_lag_years": {
+   "2x/yr (frontier-tier, slow)": 5.958365651874962,
+   "9x/yr (Epoch lower bound)": 1.8796550862130528,
+   "50x/yr (Epoch median)": 1.0557259879636995
+  },
+  "median_lang_lag_years_o200k": {
+   "2x/yr (frontier-tier, slow)": 0.8105246467533402,
+   "9x/yr (Epoch lower bound)": 0.2556920578198387,
+   "50x/yr (Epoch median)": 0.14361185322578043
+  },
+  "median_log_gain_switch_o200k_to_best": 0.0,
+  "median_log_gain_switch_worst_to_best_current": 0.24494548025184937,
+  "median_log_gain_cl100k_to_best": 0.29488730343273895
+ },
+ "affordability": {
+  "bundle_$1": {
+   "eng": 0.006860385742969673,
+   "cl100k": 0.373036596596693,
+   "o200k": 0.06625386886873207,
+   "best": 0.06518016320506215
+  },
+  "bundle_$2": {
+   "eng": 0.06809116292824811,
+   "cl100k": 0.4080267240709756,
+   "o200k": 0.16443506601507665,
+   "best": 0.16039582363749577
+  },
+  "bundle_$5": {
+   "eng": 0.40706901830917397,
+   "cl100k": 0.5466453263374271,
+   "o200k": 0.44419182151159553,
+   "best": 0.4418490047652785
+  },
+  "bundle_$10": {
+   "eng": 0.534771862220554,
+   "cl100k": 0.5748868238266089,
+   "o200k": 0.5586224511011652,
+   "best": 0.5586224511011652
+  },
+  "bundle_$20": {
+   "eng": 0.5996467830399972,
+   "cl100k": 0.8610054480036209,
+   "o200k": 0.7140781784720869,
+   "best": 0.6352830781172326
+  },
+  "total_pop_billion": 7.33259241
+ }
+}
+p50k_base      slope=-0.101 [-0.198,-0.013] popw=-0.310 gm=3.34 LIC/LMIC=5.98 HIC=2.07 >2:0.85 pop>2:0.88
+claude_legacy  slope=-0.120 [-0.199,-0.047] popw=-0.337 gm=2.78 LIC/LMIC=4.72 HIC=1.66 >2:0.77 pop>2:0.63
+mistral_v1     slope=-0.122 [-0.193,-0.058] popw=-0.320 gm=2.42 LIC/LMIC=4.08 HIC=1.50 >2:0.62 pop>2:0.56
+cl100k_base    slope=-0.129 [-0.207,-0.059] popw=-0.318 gm=2.58 LIC/LMIC=4.34 HIC=1.58 >2:0.70 pop>2:0.56
+llama3         slope=-0.143 [-0.217,-0.081] popw=-0.281 gm=2.20 LIC/LMIC=3.01 HIC=1.36 >2:0.53 pop>2:0.44
+gemma1         slope=-0.131 [-0.174,-0.093] popw=-0.206 gm=1.75 LIC/LMIC=2.07 HIC=1.20 >2:0.29 pop>2:0.32
+tekken         slope=-0.159 [-0.220,-0.110] popw=-0.197 gm=1.86 LIC/LMIC=2.12 HIC=1.25 >2:0.32 pop>2:0.13
+o200k_base     slope=-0.107 [-0.158,-0.064] popw=-0.152 gm=1.65 LIC/LMIC=1.82 HIC=1.26 >2:0.13 pop>2:0.08
+deepseek_v3    slope=-0.143 [-0.199,-0.095] popw=-0.294 gm=2.02 LIC/LMIC=2.75 HIC=1.31 >2:0.53 pop>2:0.46
+llama4         slope=-0.128 [-0.164,-0.095] popw=-0.193 gm=1.69 LIC/LMIC=1.91 HIC=1.17 >2:0.27 pop>2:0.12
+gemma3         slope=-0.102 [-0.134,-0.070] popw=-0.138 gm=1.65 LIC/LMIC=1.59 HIC=1.20 >2:0.28 pop>2:0.11
+p50k_base->cl100k_base {'developer': 'OpenAI', 'mean_dlog': -0.263, 'spearman_income_vs_change': -0.361, 'spearman_p': 0.003, 'beta_income': -0.053, 'beta_income_ci': [-0.07976619427739966, -0.031339859019476606], 'beta_initial': -0.191, 'beta_initial_ci': [-0.2888918143773377, -0.117760438101407], 'sd_log_before': 0.623, 'sd_log_after': 0.545, 'n_languages': 65, 'n_worse': 1}
+cl100k_base->o200k_base {'developer': 'OpenAI', 'mean_dlog': -0.47, 'spearman_income_vs_change': -0.064, 'spearman_p': 0.612, 'beta_income': -0.057, 'beta_income_ci': [-0.08865758350969564, -0.02775948510140606], 'beta_initial': -0.616, 'beta_initial_ci': [-0.8174344088928349, -0.38933317417105123], 'sd_log_before': 0.545, 'sd_log_after': 0.347, 'n_languages': 65, 'n_worse': 0}
+llama3->llama4 {'developer': 'Meta', 'mean_dlog': -0.302, 'spearman_income_vs_change': -0.187, 'spearman_p': 0.137, 'beta_income': -0.063, 'beta_income_ci': [-0.08842925275202655, -0.039222251252423214], 'beta_initial': -0.551, 'beta_initial_ci': [-0.6615362694087824, -0.41785072980801763], 'sd_log_before': 0.55, 'sd_log_after': 0.325, 'n_languages': 65, 'n_worse': 0}
+gemma1->gemma3 {'developer': 'Google', 'mean_dlog': -0.078, 'spearman_income_vs_change': 0.289, 'spearman_p': 0.019, 'beta_income': -0.018, 'beta_income_ci': [-0.03888028658588262, 0.006040735858053266], 'beta_initial': -0.406, 'beta_initial_ci': [-0.5156480899549523, -0.216800682596366], 'sd_log_before': 0.36, 'sd_log_after': 0.267, 'n_languages': 65, 'n_worse': 19}
+mistral_v1->tekken {'developer': 'Mistral', 'mean_dlog': -0.243, 'spearman_income_vs_change': -0.459, 'spearman_p': 0.0, 'beta_income': -0.087, 'beta_income_ci': [-0.12135770610935137, -0.057019005505967134], 'beta_initial': -0.375, 'beta_initial_ci': [-0.7128227548690327, -0.09726057941667585], 'sd_log_before': 0.465, 'sd_log_after': 0.479, 'n_languages': 65, 'n_worse': 7}
+{
+"amh": {
+"r=0": 5.409,
+"r=1": 3.2045,
+"r=3": 2.1022499999999997,
+"r=10": 1.4008181818181817
+},
+"mya": {
+"r=0": 4.122,
+"r=1": 2.561,
+"r=3": 1.7805,
+"r=10": 1.2838181818181817
+},
+"hin": {
+"r=0": 1.6738,
+"r=1": 1.3369,
+"r=3": 1.16845,
+"r=10": 1.0612545454545455
+},
+"swh": {
+"r=0": 1.4923,
+"r=1": 1.24615,
+"r=3": 1.123075,
+"r=10": 1.0447545454545455
+},
+"yor": {
+"r=0": 4.1626,
+"r=1": 2.5813,
+"r=3": 1.79065,
+"r=10": 1.287509090909091
+},
+"khm": {
+"r=0": 3.2494,
+"r=1": 2.1247,
+"r=3": 1.56235,
+"r=10": 1.204490909090909
+}
+}

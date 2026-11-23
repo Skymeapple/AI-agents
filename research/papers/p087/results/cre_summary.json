@@ -1,0 +1,1124 @@
+{
+ "n_records_used": 110,
+ "n_nvidia_dc": 39,
+ "nvidia_frontier_growth": {
+  "bf16_flops": {
+   "g_oom_per_yr": 0.1774239702774977,
+   "g_ci95": [
+    0.16386357765137302,
+    0.2187914786365575
+   ],
+   "doubling_yrs": 1.6966703833374885,
+   "n_record_setters": 9
+  },
+  "bf16_flops_per_w": {
+   "g_oom_per_yr": 0.10736832151527026,
+   "g_ci95": [
+    0.09261952304143242,
+    0.13684483029081965
+   ],
+   "doubling_yrs": 2.803713343149988,
+   "n_record_setters": 9
+  },
+  "mem_bw": {
+   "g_oom_per_yr": 0.13988796818225904,
+   "g_ci95": [
+    0.11422256489454026,
+    0.15899601360966314
+   ],
+   "doubling_yrs": 2.151936292846654,
+   "n_record_setters": 17
+  },
+  "mem_cap": {
+   "g_oom_per_yr": 0.12717404235465493,
+   "g_ci95": [
+    0.10405411955062042,
+    0.14683768343623202
+   ],
+   "doubling_yrs": 2.3670710633266476,
+   "n_record_setters": 9
+  },
+  "mem_bw_per_w": {
+   "g_oom_per_yr": 0.08008561683142436,
+   "g_ci95": [
+    0.06581109930151156,
+    0.10235721592223844
+   ],
+   "doubling_yrs": 3.758852183128365,
+   "n_record_setters": 9
+  },
+  "fp8_flops": {
+   "g_oom_per_yr": 0.22974964138170492,
+   "g_ci95": [
+    0.16547180231434885,
+    0.33553542118862867
+   ],
+   "doubling_yrs": 1.3102522983435323,
+   "n_record_setters": 4
+  }
+ },
+ "group_stats": {
+  "bf16_flops": {
+   "hyperscaler_asic": {
+    "n": 17,
+    "median_CRE_F0_ci": [
+     0.4404,
+     0.19909044972208187,
+     0.9228
+    ],
+    "median_CRE_F12_ci": [
+     0.2668,
+     0.19201616978271854,
+     0.4423076923076923
+    ],
+    "share_CRE_F0_ge1": 0.11764705882352941,
+    "share_CRE_F12_ge1": 0.058823529411764705,
+    "median_lead_years_F0": -2.007353849331912,
+    "median_lead_years_F12": -3.234141214730016,
+    "by_period": {
+     "2015-2019": {
+      "n": 1,
+      "median_CRE_F0": 0.984
+     },
+     "2020-2022": {
+      "n": 4,
+      "median_CRE_F0": 0.971474358974359
+     },
+     "2023-2026": {
+      "n": 12,
+      "median_CRE_F0": 0.28242222222222224
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.05649614088636705,
+     -0.10687796041208021,
+     0.053704504778328895
+    ]
+   },
+   "merchant_gpu": {
+    "n": 10,
+    "median_CRE_F0_ci": [
+     1.274418736476594,
+     0.96524,
+     1.5085396664982313
+    ],
+    "median_CRE_F12_ci": [
+     0.6261333333333333,
+     0.45477513895907024,
+     0.9910055583628095
+    ],
+    "share_CRE_F0_ge1": 0.7,
+    "share_CRE_F12_ge1": 0.2,
+    "median_lead_years_F0": 0.5919066677100018,
+    "median_lead_years_F12": -1.1523868196085623,
+    "by_period": {
+     "2020-2022": {
+      "n": 2,
+      "median_CRE_F0": 1.3349358974358974
+     },
+     "2023-2026": {
+      "n": 8,
+      "median_CRE_F0": 1.1639566851945427
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.01911924369226445,
+     -0.04079877367582926,
+     0.08597956135544473
+    ]
+   },
+   "china_domestic": {
+    "n": 4,
+    "median_CRE_F0_ci": [
+     0.5842445679636179,
+     0.10106114199090449,
+     3.282051282051282
+    ],
+    "median_CRE_F12_ci": [
+     0.2725,
+     0.044444444444444446,
+     1.0348660939868621
+    ],
+    "share_CRE_F0_ge1": 0.25,
+    "share_CRE_F12_ge1": 0.25,
+    "median_lead_years_F0": -1.5105718521145248,
+    "median_lead_years_F12": -3.2201610125778295,
+    "by_period": {
+     "2020-2022": {
+      "n": 1,
+      "median_CRE_F0": 3.282051282051282
+     },
+     "2023-2026": {
+      "n": 3,
+      "median_CRE_F0": 0.36
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.23540695476947043,
+     -1.139940543864183,
+     1.0946545296867207
+    ]
+   }
+  },
+  "bf16_flops_per_w": {
+   "hyperscaler_asic": {
+    "n": 14,
+    "median_CRE_F0_ci": [
+     0.7592278364337187,
+     0.4863492063492063,
+     0.9481481481481482
+    ],
+    "median_CRE_F12_ci": [
+     0.7346764346764347,
+     0.42603174603174604,
+     0.8740740740740741
+    ],
+    "share_CRE_F0_ge1": 0.21428571428571427,
+    "share_CRE_F12_ge1": 0.14285714285714285,
+    "median_lead_years_F0": -1.115381742145027,
+    "median_lead_years_F12": -1.2492271149136105,
+    "by_period": {
+     "2015-2019": {
+      "n": 1,
+      "median_CRE_F0": 0.5466666666666666
+     },
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 0.8701923076923077
+     },
+     "2023-2026": {
+      "n": 10,
+      "median_CRE_F0": 0.6668148148148147
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.0261243978176882,
+     -0.08513555021839364,
+     0.017733130928017975
+    ]
+   },
+   "merchant_gpu": {
+    "n": 9,
+    "median_CRE_F0_ci": [
+     0.7365384615384616,
+     0.5973440545808967,
+     0.8631687242798354
+    ],
+    "median_CRE_F12_ci": [
+     0.5973440545808967,
+     0.35462962962962963,
+     0.8286419753086419
+    ],
+    "share_CRE_F0_ge1": 0.1111111111111111,
+    "share_CRE_F12_ge1": 0.1111111111111111,
+    "median_lead_years_F0": -1.23690645240541,
+    "median_lead_years_F12": -2.0841850870299465,
+    "by_period": {
+     "2020-2022": {
+      "n": 2,
+      "median_CRE_F0": 0.7288461538461539
+     },
+     "2023-2026": {
+      "n": 7,
+      "median_CRE_F0": 0.7989206349206349
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.026126682448623904,
+     -0.026286788793278698,
+     0.10704227881319521
+    ]
+   },
+   "china_domestic": {
+    "n": 3,
+    "median_CRE_F0_ci": [
+     0.5291005291005291,
+     0.102880658436214,
+     1.7902097902097902
+    ],
+    "median_CRE_F12_ci": [
+     0.5079365079365079,
+     0.09876543209876544,
+     0.861952861952862
+    ],
+    "share_CRE_F0_ge1": 0.3333333333333333,
+    "share_CRE_F12_ge1": 0.0,
+    "median_lead_years_F0": -2.5748917396824993,
+    "median_lead_years_F12": -2.7400127615093157,
+    "by_period": {
+     "2020-2022": {
+      "n": 1,
+      "median_CRE_F0": 1.7902097902097902
+     },
+     "2023-2026": {
+      "n": 2,
+      "median_CRE_F0": 0.3159905937683715
+     }
+    }
+   }
+  },
+  "mem_bw": {
+   "hyperscaler_asic": {
+    "n": 17,
+    "median_CRE_F0_ci": [
+     0.5642857142857143,
+     0.24477611940298508,
+     0.8875
+    ],
+    "median_CRE_F12_ci": [
+     0.35909090909090907,
+     0.1673469387755102,
+     0.44796875
+    ],
+    "share_CRE_F0_ge1": 0.17647058823529413,
+    "share_CRE_F12_ge1": 0.11764705882352941,
+    "median_lead_years_F0": -1.7764282919888184,
+    "median_lead_years_F12": -3.1796558010782157,
+    "by_period": {
+     "2015-2019": {
+      "n": 2,
+      "median_CRE_F0": 0.9108377048392464
+     },
+     "2020-2022": {
+      "n": 4,
+      "median_CRE_F0": 0.5659433090140491
+     },
+     "2023-2026": {
+      "n": 11,
+      "median_CRE_F0": 0.37662337662337664
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.02049852818986114,
+     -0.08287400780506399,
+     0.05538543661161516
+    ]
+   },
+   "merchant_gpu": {
+    "n": 15,
+    "median_CRE_F0_ci": [
+     1.0816326530612246,
+     0.9791044776119403,
+     1.6086316821971556
+    ],
+    "median_CRE_F12_ci": [
+     0.75,
+     0.5020408163265306,
+     1.0816326530612246
+    ],
+    "share_CRE_F0_ge1": 0.6666666666666666,
+    "share_CRE_F12_ge1": 0.4,
+    "median_lead_years_F0": 0.2436220213583566,
+    "median_lead_years_F12": -0.8931342575904608,
+    "by_period": {
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 1.2015693967631191
+     },
+     "2023-2026": {
+      "n": 12,
+      "median_CRE_F0": 1.0408163265306123
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.05520105865632476,
+     -0.048783647692945784,
+     0.15804273017164533
+    ]
+   },
+   "china_domestic": {
+    "n": 30,
+    "median_CRE_F0_ci": [
+     0.3772107618258126,
+     0.18832761157430114,
+     0.6022560078469839
+    ],
+    "median_CRE_F12_ci": [
+     0.22965686274509806,
+     0.11462686567164179,
+     0.4265486725663717
+    ],
+    "share_CRE_F0_ge1": 0.23333333333333334,
+    "share_CRE_F12_ge1": 0.06666666666666667,
+    "median_lead_years_F0": -3.0909538271925032,
+    "median_lead_years_F12": -4.580813705707218,
+    "by_period": {
+     "2015-2019": {
+      "n": 9,
+      "median_CRE_F0": 1.4342984409799555
+     },
+     "2020-2022": {
+      "n": 15,
+      "median_CRE_F0": 0.2511034820990682
+     },
+     "2023-2026": {
+      "n": 6,
+      "median_CRE_F0": 0.5765306122448979
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.016322831259359672,
+     -0.10079185325946406,
+     0.1274378658768856
+    ]
+   }
+  },
+  "mem_cap": {
+   "hyperscaler_asic": {
+    "n": 16,
+    "median_CRE_F0_ci": [
+     0.4666666666666667,
+     0.325,
+     0.8697916666666667
+    ],
+    "median_CRE_F12_ci": [
+     0.4,
+     0.17204301075268819,
+     0.6666666666666666
+    ],
+    "share_CRE_F0_ge1": 0.1875,
+    "share_CRE_F12_ge1": 0.125,
+    "median_lead_years_F0": -2.637886113837196,
+    "median_lead_years_F12": -3.1290977412063987,
+    "by_period": {
+     "2015-2019": {
+      "n": 2,
+      "median_CRE_F0": 1.0
+     },
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 0.4
+     },
+     "2023-2026": {
+      "n": 11,
+      "median_CRE_F0": 0.5333333333333333
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.02083741910095505,
+     -0.12904372478326656,
+     0.15323954671531845
+    ]
+   },
+   "merchant_gpu": {
+    "n": 15,
+    "median_CRE_F0_ci": [
+     1.5483870967741935,
+     1.3333333333333333,
+     1.6
+    ],
+    "median_CRE_F12_ci": [
+     1.0666666666666667,
+     0.8888888888888888,
+     1.3333333333333333
+    ],
+    "share_CRE_F0_ge1": 0.8666666666666667,
+    "share_CRE_F12_ge1": 0.7333333333333333,
+    "median_lead_years_F0": 1.493068396865065,
+    "median_lead_years_F12": 0.22039657685865485,
+    "by_period": {
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 1.2
+     },
+     "2023-2026": {
+      "n": 12,
+      "median_CRE_F0": 1.5741935483870968
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.05447484971538495,
+     0.0027133737158634734,
+     0.1550463186361592
+    ]
+   },
+   "china_domestic": {
+    "n": 26,
+    "median_CRE_F0_ci": [
+     0.45,
+     0.4,
+     0.6
+    ],
+    "median_CRE_F12_ci": [
+     0.4,
+     0.3333333333333333,
+     0.5
+    ],
+    "share_CRE_F0_ge1": 0.15384615384615385,
+    "share_CRE_F12_ge1": 0.0,
+    "median_lead_years_F0": -2.748084402266523,
+    "median_lead_years_F12": -3.1290977412063987,
+    "by_period": {
+     "2015-2019": {
+      "n": 5,
+      "median_CRE_F0": 1.0
+     },
+     "2020-2022": {
+      "n": 16,
+      "median_CRE_F0": 0.4
+     },
+     "2023-2026": {
+      "n": 5,
+      "median_CRE_F0": 0.8
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.005733564656281301,
+     -0.09485368123956306,
+     0.07339791048826208
+    ]
+   }
+  },
+  "mem_bw_per_w": {
+   "hyperscaler_asic": {
+    "n": 14,
+    "median_CRE_F0_ci": [
+     0.7470751063331642,
+     0.5457853244390539,
+     0.9436718640258464
+    ],
+    "median_CRE_F12_ci": [
+     0.5886144290492117,
+     0.5425625920471281,
+     0.9394097222222222
+    ],
+    "share_CRE_F0_ge1": 0.21428571428571427,
+    "share_CRE_F12_ge1": 0.21428571428571427,
+    "median_lead_years_F0": -1.5824105428740003,
+    "median_lead_years_F12": -2.874618689251493,
+    "by_period": {
+     "2015-2019": {
+      "n": 2,
+      "median_CRE_F0": 0.6445319067790951
+     },
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 0.7762326169405815
+     },
+     "2023-2026": {
+      "n": 9,
+      "median_CRE_F0": 0.7625
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.0007158153712001831,
+     -0.07403764538153004,
+     0.028764655035011653
+    ]
+   },
+   "merchant_gpu": {
+    "n": 14,
+    "median_CRE_F0_ci": [
+     0.7044673539518901,
+     0.5714285714285714,
+     0.8605498281786941
+    ],
+    "median_CRE_F12_ci": [
+     0.5857142857142856,
+     0.5262027491408935,
+     0.7533333333333334
+    ],
+    "share_CRE_F0_ge1": 0.21428571428571427,
+    "share_CRE_F12_ge1": 0.14285714285714285,
+    "median_lead_years_F0": -1.8997060140074478,
+    "median_lead_years_F12": -2.902436271928897,
+    "by_period": {
+     "2020-2022": {
+      "n": 3,
+      "median_CRE_F0": 0.6314432989690721
+     },
+     "2023-2026": {
+      "n": 11,
+      "median_CRE_F0": 0.7044673539518901
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.029498639913280764,
+     -0.09280995524099124,
+     0.04590066108128728
+    ]
+   },
+   "china_domestic": {
+    "n": 27,
+    "median_CRE_F0_ci": [
+     0.5425625920471281,
+     0.4747422680412371,
+     0.7551622418879056
+    ],
+    "median_CRE_F12_ci": [
+     0.5278350515463918,
+     0.41237113402061853,
+     0.5425625920471281
+    ],
+    "share_CRE_F0_ge1": 0.2222222222222222,
+    "share_CRE_F12_ge1": 0.1111111111111111,
+    "median_lead_years_F0": -3.3158282755648654,
+    "median_lead_years_F12": -3.465063818819545,
+    "by_period": {
+     "2015-2019": {
+      "n": 7,
+      "median_CRE_F0": 1.1579818031430935
+     },
+     "2020-2022": {
+      "n": 15,
+      "median_CRE_F0": 0.5278350515463918
+     },
+     "2023-2026": {
+      "n": 5,
+      "median_CRE_F0": 0.507533703409992
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     -0.015536393051636104,
+     -0.11409034958185599,
+     0.10694461622864815
+    ]
+   }
+  },
+  "fp8_flops": {
+   "hyperscaler_asic": {
+    "n": 8,
+    "median_CRE_F0_ci": [
+     0.4836353208691258,
+     0.24,
+     1.0144
+    ],
+    "median_CRE_F12_ci": [
+     0.2217,
+     0.09600808489135927,
+     0.28982857142857144
+    ],
+    "share_CRE_F0_ge1": 0.25,
+    "share_CRE_F12_ge1": 0.0,
+    "median_lead_years_F0": -1.3747353379832343,
+    "median_lead_years_F12": -2.875930879479053,
+    "by_period": {
+     "2023-2026": {
+      "n": 8,
+      "median_CRE_F0": 0.4836353208691258
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.2816893585760152,
+     -0.0005921034269500949,
+     0.4837564662680277
+    ]
+   },
+   "merchant_gpu": {
+    "n": 4,
+    "median_CRE_F0_ci": [
+     0.96332,
+     0.8479029813036887,
+     4.02
+    ],
+    "median_CRE_F12_ci": [
+     0.96332,
+     0.3356,
+     1.1485714285714286
+    ],
+    "share_CRE_F0_ge1": 0.5,
+    "share_CRE_F12_ge1": 0.5,
+    "median_lead_years_F0": -0.07255286419258394,
+    "median_lead_years_F12": -0.07255286419258394,
+    "by_period": {
+     "2023-2026": {
+      "n": 4,
+      "median_CRE_F0": 0.96332
+     }
+    },
+    "trend_log10CRE_per_yr": [
+     0.39480670310226107,
+     0.049707805132190225,
+     0.5759336562400081
+    ]
+   }
+  }
+ },
+ "hyperscaler_bf16": [
+  {
+   "name": "Google TPU v8i",
+   "date": "2026-08-02",
+   "CRE_F0": 0.4404,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.27525,
+   "lead_years_F0": -2.007353849331912
+  },
+  {
+   "name": "Meta MTIA 300",
+   "date": "2026-03-11",
+   "CRE_F0": 0.24,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.15,
+   "lead_years_F0": -3.4932639446576537
+  },
+  {
+   "name": "Amazon Trainium3",
+   "date": "2025-12-02",
+   "CRE_F0": 0.2684,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.16775,
+   "lead_years_F0": -3.2195057274935284
+  },
+  {
+   "name": "Google TPU v7 Ironwood",
+   "date": "2025-11-06",
+   "CRE_F0": 0.9228,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.57675,
+   "lead_years_F0": -0.1966612183030913
+  },
+  {
+   "name": "Amazon Trainium2",
+   "date": "2024-12-03",
+   "CRE_F0": 0.29644444444444445,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 0.2668,
+   "lead_years_F0": -2.976242067906118
+  },
+  {
+   "name": "Maia 100 (M100)",
+   "date": "2024-08-27",
+   "CRE_F0": 0.8084891359272359,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.32,
+   "lead_years_F0": -0.5203683099080159
+  },
+  {
+   "name": "Google TPU v6e Trillium",
+   "date": "2024-05-14",
+   "CRE_F0": 0.9277412834765033,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.3672,
+   "lead_years_F0": -0.18358915816294186
+  },
+  {
+   "name": "Meta MTIA v2 (MTIA 200)",
+   "date": "2024-04-10",
+   "CRE_F0": 0.17887822132390097,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.0708,
+   "lead_years_F0": -4.212748316992233
+  },
+  {
+   "name": "Google TPU v5p",
+   "date": "2023-12-06",
+   "CRE_F0": 0.46387064173825165,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.204,
+   "lead_years_F0": -1.8802595415004304
+  },
+  {
+   "name": "Google TPU v5e",
+   "date": "2023-08-29",
+   "CRE_F0": 0.19909044972208187,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.19909044972208187,
+   "lead_years_F0": -3.950703905929457
+  },
+  {
+   "name": "Meta MTIA v1 (MTIA 100)",
+   "date": "2023-05-18",
+   "CRE_F0": 0.0517433046993431,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.0517433046993431,
+   "lead_years_F0": -7.248997052399427
+  },
+  {
+   "name": "AWS Inferentia2",
+   "date": "2023-04-13",
+   "CRE_F0": 0.19201616978271854,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.19201616978271854,
+   "lead_years_F0": -4.039263671468403
+  },
+  {
+   "name": "Amazon Trainium1",
+   "date": "2022-10-15",
+   "CRE_F0": 0.19201616978271854,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.19201616978271854,
+   "lead_years_F0": -4.039263671468403
+  },
+  {
+   "name": "Tesla D1 Dojo",
+   "date": "2021-08-21",
+   "CRE_F0": 1.1602564102564104,
+   "nv_frontier_chip_F0": "NVIDIA A100 SXM4 80 GB",
+   "CRE_F12": 1.1602564102564104,
+   "lead_years_F0": 0.36384022076474853
+  },
+  {
+   "name": "Google TPU v4",
+   "date": "2021-05-20",
+   "CRE_F0": 0.8814102564102564,
+   "nv_frontier_chip_F0": "NVIDIA A100 SXM4 80 GB",
+   "CRE_F12": 0.8814102564102564,
+   "lead_years_F0": -0.3089881265898664
+  },
+  {
+   "name": "Google TPU v4i",
+   "date": "2020-01-01",
+   "CRE_F0": 1.0615384615384615,
+   "nv_frontier_chip_F0": "NVIDIA Tesla V100S PCIe 32 GB",
+   "CRE_F12": 0.4423076923076923,
+   "lead_years_F0": 0.1461794257778996
+  },
+  {
+   "name": "Google TPU v3",
+   "date": "2018-05-18",
+   "CRE_F0": 0.984,
+   "nv_frontier_chip_F0": "NVIDIA V100",
+   "CRE_F12": 0.984,
+   "lead_years_F0": -0.03948114540387391
+  }
+ ],
+ "hyperscaler_bf16_per_w": [
+  {
+   "name": "Meta MTIA 300",
+   "date": "2026-03-11",
+   "CRE_F0": 0.3333333333333333,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 0.3333333333333333,
+   "lead_years_F0": -4.443780511664279
+  },
+  {
+   "name": "Amazon Trainium3",
+   "date": "2025-12-02",
+   "CRE_F0": 0.42603174603174604,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 0.42603174603174604,
+   "lead_years_F0": -3.4512790432690643
+  },
+  {
+   "name": "Google TPU v7 Ironwood",
+   "date": "2025-11-06",
+   "CRE_F0": 1.0680555555555555,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 1.0680555555555555,
+   "lead_years_F0": 0.2663154547507373
+  },
+  {
+   "name": "Amazon Trainium2",
+   "date": "2024-12-03",
+   "CRE_F0": 0.5928888888888889,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 0.5928888888888889,
+   "lead_years_F0": -2.1144662161692063
+  },
+  {
+   "name": "Maia 100 (M100)",
+   "date": "2024-08-27",
+   "CRE_F0": 0.7407407407407407,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 0.7111111111111111,
+   "lead_years_F0": -1.2138940672223293
+  },
+  {
+   "name": "Google TPU v6e Trillium",
+   "date": "2024-05-14",
+   "CRE_F0": 1.118421052631579,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 1.0736842105263158,
+   "lead_years_F0": 0.4526971526381605
+  },
+  {
+   "name": "Meta MTIA v2 (MTIA 200)",
+   "date": "2024-04-10",
+   "CRE_F0": 0.9104938271604939,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 0.8740740740740741,
+   "lead_years_F0": -0.379283141002231
+  },
+  {
+   "name": "Google TPU v5p",
+   "date": "2023-12-06",
+   "CRE_F0": 0.39351851851851855,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 0.37777777777777777,
+   "lead_years_F0": -3.7723866753289315
+  },
+  {
+   "name": "Google TPU v5e",
+   "date": "2023-08-29",
+   "CRE_F0": 0.4053497942386831,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 0.4053497942386831,
+   "lead_years_F0": -3.6525675130808932
+  },
+  {
+   "name": "Meta MTIA v1 (MTIA 100)",
+   "date": "2023-05-18",
+   "CRE_F0": 0.9481481481481482,
+   "nv_frontier_chip_F0": "NVIDIA H100 PCIe",
+   "CRE_F12": 0.9481481481481482,
+   "lead_years_F0": -0.2153689144134473
+  },
+  {
+   "name": "Tesla D1 Dojo",
+   "date": "2021-08-21",
+   "CRE_F0": 0.8701923076923077,
+   "nv_frontier_chip_F0": "NVIDIA A100 PCIe",
+   "CRE_F12": 0.8701923076923077,
+   "lead_years_F0": -0.5624076006905716
+  },
+  {
+   "name": "Google TPU v4",
+   "date": "2021-05-20",
+   "CRE_F0": 0.7777149321266967,
+   "nv_frontier_chip_F0": "NVIDIA A100 PCIe",
+   "CRE_F12": 0.7777149321266967,
+   "lead_years_F0": -1.0168694170677244
+  },
+  {
+   "name": "Google TPU v4i",
+   "date": "2020-01-01",
+   "CRE_F0": 1.5164835164835164,
+   "nv_frontier_chip_F0": "NVIDIA Tesla V100S PCIe 32 GB",
+   "CRE_F12": 0.7582417582417582,
+   "lead_years_F0": 1.6842742023719126
+  },
+  {
+   "name": "Google TPU v3",
+   "date": "2018-05-18",
+   "CRE_F0": 0.5466666666666666,
+   "nv_frontier_chip_F0": "NVIDIA Tesla V100 DGXS 32 GB",
+   "CRE_F12": 0.5466666666666666,
+   "lead_years_F0": -2.4427820326376497
+  }
+ ],
+ "hyperscaler_mem_bw": [
+  {
+   "name": "Google TPU v8i",
+   "date": "2026-08-02",
+   "CRE_F0": 1.075125,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.44796875
+  },
+  {
+   "name": "Meta MTIA 300",
+   "date": "2026-03-11",
+   "CRE_F0": 0.7625,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.3177083333333333
+  },
+  {
+   "name": "Microsoft Maia 200",
+   "date": "2026-01-26",
+   "CRE_F0": 0.8875,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.3697916666666667
+  },
+  {
+   "name": "Google TPU v7 Ironwood",
+   "date": "2025-11-06",
+   "CRE_F0": 0.92125,
+   "nv_frontier_chip_F0": "NVIDIA GB300 (Blackwell Ultra)",
+   "CRE_F12": 0.38385416666666666
+  },
+  {
+   "name": "Amazon Trainium2",
+   "date": "2024-12-03",
+   "CRE_F0": 0.37662337662337664,
+   "nv_frontier_chip_F0": "NVIDIA B200",
+   "CRE_F12": 0.3625
+  },
+  {
+   "name": "Google TPU v6e Trillium",
+   "date": "2024-05-14",
+   "CRE_F0": 0.3346938775510204,
+   "nv_frontier_chip_F0": "NVIDIA GH200",
+   "CRE_F12": 0.205
+  },
+  {
+   "name": "Meta MTIA v2 (MTIA 200)",
+   "date": "2024-04-10",
+   "CRE_F0": 0.20408163265306123,
+   "nv_frontier_chip_F0": "NVIDIA GH200",
+   "CRE_F12": 0.125
+  },
+  {
+   "name": "Google TPU v5p",
+   "date": "2023-12-06",
+   "CRE_F0": 0.5642857142857143,
+   "nv_frontier_chip_F0": "NVIDIA GH200",
+   "CRE_F12": 0.35909090909090907
+  },
+  {
+   "name": "Google TPU v5e",
+   "date": "2023-08-29",
+   "CRE_F0": 0.16714285714285715,
+   "nv_frontier_chip_F0": "NVIDIA GH200",
+   "CRE_F12": 0.16714285714285715
+  },
+  {
+   "name": "Meta MTIA v1 (MTIA 100)",
+   "date": "2023-05-18",
+   "CRE_F0": 0.23809523809523808,
+   "nv_frontier_chip_F0": "NVIDIA H800 SXM5",
+   "CRE_F12": 0.16326530612244897
+  },
+  {
+   "name": "AWS Inferentia2",
+   "date": "2023-04-13",
+   "CRE_F0": 0.24404761904761904,
+   "nv_frontier_chip_F0": "NVIDIA H800 SXM5",
+   "CRE_F12": 0.1673469387755102
+  },
+  {
+   "name": "Amazon Trainium1",
+   "date": "2022-10-15",
+   "CRE_F0": 0.24477611940298508,
+   "nv_frontier_chip_F0": "NVIDIA H100 SXM5 80GB",
+   "CRE_F12": 0.1673469387755102
+  },
+  {
+   "name": "Tesla D1 Dojo",
+   "date": "2021-08-21",
+   "CRE_F0": 4.904364884747425,
+   "nv_frontier_chip_F0": "NVIDIA A100 SXM4 80 GB",
+   "CRE_F12": 4.901960784313726
+  },
+  {
+   "name": "Google TPU v4",
+   "date": "2021-05-20",
+   "CRE_F0": 0.588523786169691,
+   "nv_frontier_chip_F0": "NVIDIA A100 SXM4 80 GB",
+   "CRE_F12": 0.588523786169691
+  },
+  {
+   "name": "Google TPU v4i",
+   "date": "2020-01-01",
+   "CRE_F0": 0.5433628318584071,
+   "nv_frontier_chip_F0": "NVIDIA Tesla V100S PCIe 32 GB",
+   "CRE_F12": 0.3011280039234919
+  },
+  {
+   "name": "Google TPU v3",
+   "date": "2018-05-18",
+   "CRE_F0": 1.0022271714922049,
+   "nv_frontier_chip_F0": "NVIDIA Tesla V100 SXM3 32 GB",
+   "CRE_F12": 1.0022271714922049
+  },
+  {
+   "name": "Google TPU v2",
+   "date": "2017-05-01",
+   "CRE_F0": 0.8194482381862879,
+   "nv_frontier_chip_F0": "NVIDIA Tesla P100 PCIe 16GB",
+   "CRE_F12": 0.6681514476614699
+  }
+ ],
+ "price_performance_records": [
+  {
+   "name": "Google TPU v8i",
+   "group": "hyperscaler_asic",
+   "date": "2026-08-02",
+   "price": 17500.0,
+   "bf16_flops_per_usd": 62914285714.28571
+  },
+  {
+   "name": "Google TPU v7 Ironwood",
+   "group": "hyperscaler_asic",
+   "date": "2025-11-06",
+   "price": 12000.0,
+   "bf16_flops_per_usd": 192250000000.0
+  },
+  {
+   "name": "NVIDIA GB300 (Blackwell Ultra)",
+   "group": "nvidia",
+   "date": "2025-08-22",
+   "price": 43000.0,
+   "bf16_flops_per_usd": 58139534883.72093
+  },
+  {
+   "name": "AMD Instinct MI355X",
+   "group": "merchant_gpu",
+   "date": "2025-06-12",
+   "price": 30000.0,
+   "bf16_flops_per_usd": 83886666666.66667
+  },
+  {
+   "name": "AMD Instinct MI350X",
+   "group": "merchant_gpu",
+   "date": "2025-06-12",
+   "price": 25000.0,
+   "bf16_flops_per_usd": 92384000000.0
+  },
+  {
+   "name": "NVIDIA GB200",
+   "group": "nvidia",
+   "date": "2025-02-15",
+   "price": 37000.0,
+   "bf16_flops_per_usd": 67567567567.567566
+  },
+  {
+   "name": "NVIDIA H200 SXM",
+   "group": "nvidia",
+   "date": "2024-11-18",
+   "price": 30000.0,
+   "bf16_flops_per_usd": 32983333333.333332
+  },
+  {
+   "name": "AMD Instinct MI300X",
+   "group": "merchant_gpu",
+   "date": "2023-12-06",
+   "price": 15000.0,
+   "bf16_flops_per_usd": 87160000000.0
+  },
+  {
+   "name": "NVIDIA HGX H20",
+   "group": "nvidia",
+   "date": "2023-11-09",
+   "price": 12000.0,
+   "bf16_flops_per_usd": 12333333333.333334
+  },
+  {
+   "name": "NVIDIA H100 SXM5 80GB",
+   "group": "nvidia",
+   "date": "2022-09-20",
+   "price": 33600.0,
+   "bf16_flops_per_usd": 29449404761.904762
+  },
+  {
+   "name": "AMD Radeon Instinct MI250X",
+   "group": "merchant_gpu",
+   "date": "2021-11-08",
+   "price": 14500.0,
+   "bf16_flops_per_usd": 26413793103.448277
+  },
+  {
+   "name": "NVIDIA A100 SXM4 40 GB",
+   "group": "nvidia",
+   "date": "2020-05-14",
+   "price": 15000.0,
+   "bf16_flops_per_usd": 20800000000.0
+  },
+  {
+   "name": "NVIDIA Tesla V100 PCIe 32 GB",
+   "group": "nvidia",
+   "date": "2018-03-27",
+   "price": 11458.0,
+   "bf16_flops_per_usd": 9774829813.23093
+  },
+  {
+   "name": "NVIDIA Tesla V100 SXM2 32 GB",
+   "group": "nvidia",
+   "date": "2018-03-27",
+   "price": 11458.0,
+   "bf16_flops_per_usd": 10909408273.695234
+  },
+  {
+   "name": "NVIDIA Tesla V100 SXM2",
+   "group": "nvidia",
+   "date": "2017-07-01",
+   "price": 11500.0,
+   "bf16_flops_per_usd": 10869565217.391304
+  },
+  {
+   "name": "NVIDIA Tesla V100 PCIe 16 GB",
+   "group": "nvidia",
+   "date": "2017-06-21",
+   "price": 10664.0,
+   "bf16_flops_per_usd": 10502625656.414104
+  }
+ ]
+}

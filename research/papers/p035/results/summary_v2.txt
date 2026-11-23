@@ -1,0 +1,105 @@
+== Round-0 runs: lower-bound validity with and without the +0.01 slack
+  rho=0.0 vis=1 subtle=0 kappa=0.0: no-slack 0.4  slack 0.5  worst LB-theta +0.0395
+  rho=0.0 vis=1 subtle=0 kappa=2.0: no-slack 0.7  slack 1.0  worst LB-theta +0.0080
+  rho=0.0 vis=1 subtle=0 kappa=4.0: no-slack 0.8  slack 1.0  worst LB-theta +0.0020
+  rho=0.0 vis=1 subtle=0 kappa=8.0: no-slack 0.8  slack 1.0  worst LB-theta +0.0076
+  rho=0.0 vis=1 subtle=1 kappa=4.0: no-slack 0.7  slack 0.9  worst LB-theta +0.0196
+  rho=0.25 vis=0 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.0217
+  rho=0.25 vis=1 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.0284
+  rho=0.5 vis=0 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.1315
+  rho=0.5 vis=1 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.1321
+  rho=0.75 vis=0 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.4723
+  rho=0.75 vis=1 subtle=0 kappa=4.0: no-slack 1.0  slack 1.0  worst LB-theta -0.3220
+== Round-0: D1 vs |bias| within visible, rho>0 (n=30): Spearman 0.49 p=0.006
+  cell (0.0, True) {'D1': -0.22, 'D2': -0.09, 'D2_range': [0.898, 0.956]}
+  cell (0.25, False) {'D1': -0.04, 'D2': -0.12, 'D2_range': [0.892, 0.967]}
+  cell (0.25, True) {'D1': 0.41, 'D2': 0.45, 'D2_range': [0.924, 0.973]}
+  cell (0.5, False) {'D1': -0.07, 'D2': -0.41, 'D2_range': [0.967, 0.982]}
+  cell (0.5, True) {'D1': -0.09, 'D2': -0.05, 'D2_range': [0.952, 0.984]}
+  cell (0.75, False) {'D1': -0.55, 'D2': -0.54, 'D2_range': [0.979, 0.989]}
+  cell (0.75, True) {'D1': 0.09, 'D2': 0.1, 'D2_range': [0.981, 0.99]}
+
+== Round-1 grid: theta_D, naive, bias of estimators (mean over seeds; SE of mean in brackets for full)
+regime rho vis n | theta_D theta_E(naive) | full rs_l1_benign rs_l1_risky rs_l2_risky meanmatch_l1 meanmatch_pre mrde
+sat                0.00 1 15 | 0.942 0.135 | -0.006 +0.000 -0.004 -0.003 -0.026 -0.001 +0.018  (full SE 0.003)
+sat                0.25 1 15 | 0.940 0.104 | -0.059 -0.029 -0.032 -0.040 -0.118 -0.001 +0.023  (full SE 0.007)
+sat                0.25 0 15 | 0.941 0.124 | -0.055 -0.029 -0.034 -0.038 -0.105 -0.002 +0.006  (full SE 0.006)
+sat                0.50 1 15 | 0.942 0.153 | -0.210 -0.107 -0.108 -0.154 -0.297 -0.001 -0.010  (full SE 0.019)
+sat                0.50 0 15 | 0.939 0.123 | -0.248 -0.127 -0.128 -0.198 -0.244 -0.001 -0.008  (full SE 0.026)
+sat                0.75 1 15 | 0.940 0.182 | -0.469 -0.353 -0.346 -0.411 -0.458 +0.000 -0.193  (full SE 0.025)
+sat                0.75 0 15 | 0.935 0.149 | -0.532 -0.358 -0.367 -0.470 -0.450 -0.001 -0.241  (full SE 0.020)
+sat-kappa0         0.00 1 10 | 0.773 0.770 | -0.004 -0.020 -0.031 -0.002 -0.020 -0.002 -0.014  (full SE 0.005)
+unsat              0.00 1 15 | 0.682 0.154 | -0.000 +0.009 +0.007 +0.021 -0.083 -0.004 +0.082  (full SE 0.006)
+unsat              0.25 1 15 | 0.648 0.136 | -0.138 -0.100 -0.110 -0.108 -0.191 -0.003 +0.013  (full SE 0.010)
+unsat              0.25 0 15 | 0.665 0.130 | -0.155 -0.072 -0.091 -0.103 -0.159 -0.009 +0.009  (full SE 0.008)
+unsat              0.50 1 15 | 0.657 0.127 | -0.307 -0.190 -0.193 -0.228 -0.224 -0.008 -0.102  (full SE 0.012)
+unsat              0.50 0 15 | 0.648 0.122 | -0.303 -0.190 -0.212 -0.262 -0.227 -0.009 -0.132  (full SE 0.010)
+unsat              0.75 1 15 | 0.693 0.165 | -0.416 -0.311 -0.307 -0.355 -0.260 -0.011 -0.258  (full SE 0.010)
+unsat              0.75 0 15 | 0.661 0.148 | -0.414 -0.325 -0.329 -0.343 -0.300 -0.013 -0.255  (full SE 0.009)
+unsat-interaction  0.00 1 10 | 0.627 0.123 | -0.022 -0.012 -0.009 +0.019 -0.067 -0.006 +0.118  (full SE 0.007)
+unsat-interaction  0.50 1 10 | 0.680 0.155 | -0.117 -0.043 -0.036 -0.092 -0.167 -0.007 +0.090  (full SE 0.008)
+unsat-kappa0       0.00 1 10 | 0.330 0.321 | -0.002 -0.047 -0.060 -0.004 -0.045 -0.001 +0.001  (full SE 0.004)
+unsat-tent         0.00 1 10 | 0.251 0.123 | +0.009 -0.053 -0.060 +0.022 -0.067 -0.000 +0.025  (full SE 0.007)
+unsat-tent         0.25 1 10 | 0.262 0.126 | +0.083 +0.008 -0.002 +0.087 -0.077 +0.001 +0.167  (full SE 0.009)
+unsat-tent         0.50 1 10 | 0.319 0.173 | +0.092 -0.031 -0.046 +0.132 -0.102 +0.004 +0.282  (full SE 0.008)
+
+== Stress test of Prop. 2: fraction of runs with LB <= theta_D (NO slack) | mean bias | A3-check flag rate (t<-3, layer 1)
+regime rho vis | perfect | partial | overshoot_mild | overshoot_full | task_sanitise | task_intensify
+sat                0.00 1 | 1.00 -0.005 f0.0 | 1.00 -0.160 f0.0 | 0.40 +0.007 f1.0 | 0.33 +0.006 f1.0 | 1.00 -0.229 f0.0 | 0.00 +0.040 f0.0
+sat                0.25 1 | 1.00 -0.061 f0.0 | 1.00 -0.338 f0.0 | 0.53 +0.007 f0.8 | 0.33 +0.011 f1.0 | 1.00 -0.271 f0.0 | 0.73 -0.012 f0.0
+sat                0.25 0 | 1.00 -0.056 f0.0 | 1.00 -0.306 f0.0 | 0.53 +0.002 f0.6 | 0.47 +0.005 f1.0 | 1.00 -0.286 f0.0 | 0.60 +0.000 f0.0
+sat                0.50 1 | 1.00 -0.209 f0.0 | 1.00 -0.459 f0.0 | 1.00 -0.054 f0.0 | 0.93 -0.026 f0.0 | 1.00 -0.403 f0.0 | 1.00 -0.152 f0.0
+sat                0.50 0 | 1.00 -0.246 f0.0 | 1.00 -0.501 f0.0 | 1.00 -0.082 f0.0 | 1.00 -0.044 f0.0 | 1.00 -0.442 f0.0 | 1.00 -0.193 f0.0
+sat                0.75 1 | 1.00 -0.470 f0.0 | 1.00 -0.611 f0.0 | 1.00 -0.318 f0.0 | 1.00 -0.267 f0.0 | 1.00 -0.597 f0.0 | 1.00 -0.431 f0.0
+sat                0.75 0 | 1.00 -0.531 f0.0 | 1.00 -0.660 f0.0 | 1.00 -0.379 f0.0 | 1.00 -0.335 f0.0 | 1.00 -0.637 f0.0 | 1.00 -0.504 f0.0
+sat-kappa0         0.00 1 | 0.70 -0.003 f0.0 | 0.80 -0.002 f0.0 | 0.80 -0.002 f0.3 | 0.60 -0.002 f0.4 | 1.00 -0.190 f0.0 | 0.20 +0.033 f0.0
+unsat              0.00 1 | 0.53 +0.002 f0.0 | 1.00 -0.221 f0.0 | 0.00 +0.146 f0.8 | 0.00 +0.178 f0.9 | 1.00 -0.173 f0.0 | 0.20 +0.038 f0.0
+unsat              0.25 1 | 1.00 -0.138 f0.0 | 1.00 -0.318 f0.0 | 0.27 +0.031 f0.5 | 0.00 +0.077 f0.9 | 1.00 -0.272 f0.0 | 1.00 -0.118 f0.0
+unsat              0.25 0 | 1.00 -0.151 f0.0 | 1.00 -0.331 f0.0 | 0.47 +0.012 f0.5 | 0.13 +0.061 f0.8 | 1.00 -0.290 f0.0 | 1.00 -0.126 f0.0
+unsat              0.50 1 | 1.00 -0.307 f0.0 | 1.00 -0.412 f0.0 | 1.00 -0.195 f0.0 | 1.00 -0.159 f0.0 | 1.00 -0.393 f0.0 | 1.00 -0.298 f0.0
+unsat              0.50 0 | 1.00 -0.301 f0.0 | 1.00 -0.408 f0.0 | 1.00 -0.193 f0.0 | 1.00 -0.151 f0.1 | 1.00 -0.386 f0.0 | 1.00 -0.291 f0.0
+unsat              0.75 1 | 1.00 -0.418 f0.0 | 1.00 -0.465 f0.0 | 1.00 -0.367 f0.0 | 1.00 -0.347 f0.0 | 1.00 -0.491 f0.0 | 1.00 -0.398 f0.0
+unsat              0.75 0 | 1.00 -0.412 f0.0 | 1.00 -0.457 f0.0 | 1.00 -0.370 f0.0 | 1.00 -0.355 f0.1 | 1.00 -0.478 f0.0 | 1.00 -0.399 f0.0
+unsat-interaction  0.00 1 | 0.90 -0.023 f0.0 | 1.00 -0.240 f0.0 | 0.00 +0.172 f0.9 | 0.00 +0.228 f1.0 | 1.00 -0.192 f0.0 | 0.70 +0.006 f0.0
+unsat-interaction  0.50 1 | 1.00 -0.117 f0.0 | 1.00 -0.314 f0.0 | 0.20 +0.059 f0.2 | 0.10 +0.105 f0.6 | 1.00 -0.268 f0.0 | 1.00 -0.084 f0.0
+unsat-kappa0       0.00 1 | 0.70 -0.003 f0.0 | 0.80 -0.004 f0.0 | 0.50 +0.001 f0.5 | 0.50 -0.003 f0.5 | 1.00 -0.087 f0.0 | 0.50 +0.013 f0.1
+unsat-tent         0.00 1 | 0.40 +0.009 f0.0 | 0.00 +0.052 f0.0 | 1.00 -0.123 f1.0 | 1.00 -0.155 f1.0 | 1.00 -0.064 f0.0 | 0.20 +0.027 f0.0
+unsat-tent         0.25 1 | 0.00 +0.085 f0.0 | 0.20 +0.037 f0.0 | 0.20 +0.021 f0.1 | 0.70 -0.011 f0.7 | 0.70 -0.009 f0.0 | 0.00 +0.106 f0.0
+unsat-tent         0.50 1 | 0.00 +0.093 f0.0 | 0.40 +0.001 f0.0 | 0.00 +0.133 f0.0 | 0.00 +0.139 f0.0 | 0.70 -0.031 f0.0 | 0.00 +0.140 f0.0
+
+== A3 check (layer-1 probe projection on benign traffic, t<-3) vs LB invalid, monotone-g runs, kappa>0, all rewriters: {'n': 1380, 'flag_and_invalid': 133, 'flag_and_valid': 43, 'noflag_and_invalid': 81, 'noflag_and_valid': 1123}
+   with violation defined as estimate > theta_D + 0.02: {'flag_and_big': 95, 'noflag_and_big': 64, 'flag_and_notbig': 81}
+
+== Diagnostics vs (theta_D - full rewrite), regime=sat: pooled Spearman | cell-mean Spearman (7 cells) | within-cell mean Spearman [min,max], stratified-permutation p | within-cell slope, R2
+  D1 auditor resid AUC           pooled -0.25 | cells -0.32 (p=0.48) | within +0.08 [-0.31,+0.55] p=0.215 | slope -1.32 R2 0.02
+  D2 probe resid AUC (L1)        pooled +0.87 | cells +0.93 (p=0.00) | within +0.22 [-0.12,+0.72] p=0.018 | slope +0.15 R2 0.00
+  D2 probe resid AUC (L2)        pooled +0.84 | cells +0.96 (p=0.00) | within +0.12 [-0.11,+0.71] p=0.113 | slope +0.03 R2 0.00
+  D6 probe projection gap (L1)   pooled +0.86 | cells +1.00 (p=0.00) | within +0.08 [-0.40,+0.50] p=0.200 | slope +0.01 R2 0.00
+  D6 probe projection gap (L2)   pooled +0.84 | cells +0.96 (p=0.00) | within +0.04 [-0.20,+0.20] p=0.340 | slope +0.00 R2 0.00
+  D3 steer(benign,L1) - full     pooled +0.61 | cells +0.96 (p=0.00) | within +0.23 [-0.26,+0.69] p=0.008 | slope +0.06 R2 0.01
+  D3b steer(risky,L2) - full     pooled +0.55 | cells +0.96 (p=0.00) | within +0.22 [-0.09,+0.56] p=0.015 | slope +0.08 R2 0.00
+  D4 MRDE - full                 pooled +0.91 | cells +1.00 (p=0.00) | within +0.56 [+0.24,+0.88] p=0.000 | slope +0.61 R2 0.31
+  D5 meanmatch(L1) - full        pooled +0.18 | cells +0.64 (p=0.12) | within +0.03 [-0.43,+0.44] p=0.363 | slope +0.00 R2 0.00
+  D5p meanmatch(pre) - full      pooled +1.00 | cells +1.00 (p=0.00) | within +0.96 [+0.83,+0.99] p=0.000 | slope +1.00 R2 1.00
+
+== Diagnostics vs (theta_D - full rewrite), regime=unsat: pooled Spearman | cell-mean Spearman (7 cells) | within-cell mean Spearman [min,max], stratified-permutation p | within-cell slope, R2
+  D1 auditor resid AUC           pooled -0.22 | cells -0.29 (p=0.53) | within -0.01 [-0.32,+0.26] p=0.548 | slope +0.19 R2 0.00
+  D2 probe resid AUC (L1)        pooled +0.83 | cells +0.93 (p=0.00) | within +0.07 [-0.38,+0.44] p=0.246 | slope +0.18 R2 0.01
+  D2 probe resid AUC (L2)        pooled +0.81 | cells +0.96 (p=0.00) | within +0.18 [-0.12,+0.58] p=0.038 | slope +0.24 R2 0.03
+  D6 probe projection gap (L1)   pooled +0.85 | cells +0.96 (p=0.00) | within +0.00 [-0.35,+0.40] p=0.493 | slope +0.00 R2 0.00
+  D6 probe projection gap (L2)   pooled +0.86 | cells +0.96 (p=0.00) | within +0.14 [-0.19,+0.56] p=0.091 | slope +0.02 R2 0.01
+  D3 steer(benign,L1) - full     pooled +0.39 | cells +0.71 (p=0.07) | within +0.26 [+0.14,+0.56] p=0.007 | slope +0.12 R2 0.07
+  D3b steer(risky,L2) - full     pooled +0.22 | cells +0.82 (p=0.02) | within -0.06 [-0.25,+0.24] p=0.715 | slope +0.03 R2 0.00
+  D4 MRDE - full                 pooled +0.16 | cells +0.43 (p=0.34) | within +0.03 [-0.29,+0.32] p=0.362 | slope +0.03 R2 0.01
+  D5 meanmatch(L1) - full        pooled +0.65 | cells +1.00 (p=0.00) | within +0.22 [+0.02,+0.38] p=0.018 | slope +0.08 R2 0.06
+  D5p meanmatch(pre) - full      pooled +1.00 | cells +1.00 (p=0.00) | within +0.96 [+0.91,+0.99] p=0.000 | slope +1.05 R2 0.96
+
+== MAE of estimators (mean |estimate - theta_D|) by regime and rho, visible+latent pooled
+  sat   rho=0.00: naive 0.807 full 0.008 rs_l1_benign 0.008 rs_l1_risky 0.010 rs_l2_risky 0.007 meanmatch_l1 0.026 meanmatch_pre 0.004 mrde 0.021
+  sat   rho=0.25: naive 0.826 full 0.057 rs_l1_benign 0.036 rs_l1_risky 0.039 rs_l2_risky 0.040 meanmatch_l1 0.111 meanmatch_pre 0.003 mrde 0.023
+  sat   rho=0.50: naive 0.803 full 0.229 rs_l1_benign 0.118 rs_l1_risky 0.118 rs_l2_risky 0.176 meanmatch_l1 0.271 meanmatch_pre 0.003 mrde 0.032
+  sat   rho=0.75: naive 0.772 full 0.500 rs_l1_benign 0.355 rs_l1_risky 0.356 rs_l2_risky 0.441 meanmatch_l1 0.454 meanmatch_pre 0.003 mrde 0.217
+  unsat rho=0.00: naive 0.528 full 0.021 rs_l1_benign 0.040 rs_l1_risky 0.043 rs_l2_risky 0.033 meanmatch_l1 0.083 meanmatch_pre 0.005 mrde 0.098
+  unsat rho=0.25: naive 0.524 full 0.146 rs_l1_benign 0.090 rs_l1_risky 0.103 rs_l2_risky 0.108 meanmatch_l1 0.175 meanmatch_pre 0.008 mrde 0.060
+  unsat rho=0.50: naive 0.528 full 0.305 rs_l1_benign 0.190 rs_l1_risky 0.203 rs_l2_risky 0.245 meanmatch_l1 0.225 meanmatch_pre 0.010 mrde 0.124
+  unsat rho=0.75: naive 0.521 full 0.415 rs_l1_benign 0.318 rs_l1_risky 0.318 rs_l2_risky 0.349 meanmatch_l1 0.280 meanmatch_pre 0.012 mrde 0.261

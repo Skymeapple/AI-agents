@@ -1,0 +1,37 @@
+H by length stratum, pooled over agents (strata with 0.03<Pbar<0.97, >=8 tasks)
+        n_agent_strata    H_mean  H_median  frac_H_gt_half  H_len_mean
+bin                                                                   
+<1m                NaN       NaN       NaN             NaN         NaN
+1-4m              17.0  0.594126  0.666209        0.705882    0.007898
+4-15m             20.0  0.720164  0.720171        1.000000    0.010730
+15-60m            19.0  0.462521  0.471288        0.421053    0.026773
+1-4h              18.0  0.594511  0.679760        0.777778    0.015101
+4-16h             15.0  0.616405  0.673048        0.733333    0.015363
+>16h               NaN       NaN       NaN             NaN         NaN
+
+Agent-level H over all strata (includes between-length variation, upper bound)
+                            alias   m     Pbar        H       lo       hi
+          Claude 3 Opus (Inspect) 228 0.425804 0.792929 0.735461 0.852836
+Claude 3.5 Sonnet (New) (Inspect) 225 0.567037 0.778944 0.717918 0.838885
+Claude 3.5 Sonnet (Old) (Inspect) 223 0.516816 0.804803 0.754594 0.853369
+      Claude 3.7 Sonnet (Inspect) 228 0.658260 0.849537 0.787507 0.901923
+          Claude 4 Opus (Inspect) 228 0.707054 0.779631 0.715086 0.839743
+        Claude 4.1 Opus (Inspect) 228 0.709430 0.838966 0.780519 0.895345
+        Claude Opus 4.5 (Inspect) 228 0.802266 0.869866 0.806811 0.926825
+        Claude Opus 4.6 (Inspect) 228 0.842001 0.808781 0.736695 0.869050
+                       GPT-4 0314 213 0.431142 0.815745 0.761207 0.868483
+             GPT-4 1106 (Inspect) 228 0.417763 0.828014 0.766829 0.880696
+            GPT-4 Turbo (Inspect) 227 0.403451 0.844963 0.791204 0.895856
+                 GPT-4o (Inspect) 228 0.459430 0.770814 0.710667 0.828598
+                  GPT-5 (Inspect) 228 0.775538 0.814773 0.753513 0.877404
+      GPT-5.1-Codex-Max (Inspect) 228 0.791667 0.809565 0.742313 0.871625
+                          GPT-5.2 228 0.826206 0.853541 0.777857 0.917893
+                    GPT-5.3-Codex 228 0.815607 0.809907 0.741736 0.875218
+                     Gemini 3 Pro 228 0.786915 0.815889 0.741898 0.880366
+                     o1 (Inspect) 228 0.636696 0.769777 0.708467 0.831047
+                       o1-preview 213 0.587330 0.748192 0.697236 0.797959
+                     o3 (Inspect) 228 0.736988 0.825815 0.755780 0.883546
+
+Overall strata-level H: median 0.610, IQR [0.488, 0.750], n=89 agent-strata
+Fraction of agent-strata whose 95% CI excludes 0: 0.809
+pass@2 gain over pass@1, summed over agent-strata: empirical 5.708 vs homogeneous prediction 14.174 (ratio 0.403)

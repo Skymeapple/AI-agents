@@ -1,0 +1,19 @@
+trained RMs [6s]
+{'in_dist_corr_with_gold': {'RM1 (optimised; data A, seed 0)': 0.9567844576414135, 'H1: same data A, new init seed': 0.9578632968979947, 'H2: fresh draw of data A': 0.9580123409909347, 'H3: quadratic ridge on data A': 0.951729515770785, 'H4: decorrelated data B': 0.9502520268894342}, 'exploit_gold_mean': -1.314259228302466, 'genuine_gold_mean': -0.001516036163031543}
+single RM {'lam_star': 2.6, 'gold_star': 1.5256640615118453, 'pi_at_peak': 0.10360501643619005, 'kl_at_peak': 2.440258529924864, 'gold_at_lammax': -3.1139717412873646, 'pi_at_lammax': 0.9993881401146578} qhat@peak {'H1: same data A, new init seed': 0.9416537812378392, 'H2: fresh draw of data A': 0.878050967470527, 'H3: quadratic ridge on data A': 1.027172838938411, 'H4: decorrelated data B': 0.41752214529424214}
+H1: same data A, new init seed|gap-alarm(proxy-only) {'mean_lam': 3.122, 'regret': 0.142, 'p10_gold': 1.328, 'frac_overshoot': 1.0, 'se': 0.008}
+H1: same data A, new init seed|cov-disagree m=20 {'mean_lam': 2.56, 'regret': 0.047, 'p10_gold': 1.402, 'frac_overshoot': 0.44, 'se': 0.006}
+H2: fresh draw of data A|gap-alarm(proxy-only) {'mean_lam': 3.028, 'regret': 0.091, 'p10_gold': 1.328, 'frac_overshoot': 1.0, 'se': 0.005}
+H2: fresh draw of data A|cov-disagree m=20 {'mean_lam': 2.547, 'regret': 0.045, 'p10_gold': 1.402, 'frac_overshoot': 0.42, 'se': 0.005}
+H3: quadratic ridge on data A|gap-alarm(proxy-only) {'mean_lam': 2.223, 'regret': 0.06, 'p10_gold': 1.402, 'frac_overshoot': 0.013, 'se': 0.003}
+H3: quadratic ridge on data A|cov-disagree m=20 {'mean_lam': 2.592, 'regret': 0.039, 'p10_gold': 1.402, 'frac_overshoot': 0.5, 'se': 0.004}
+H4: decorrelated data B|gap-alarm(proxy-only) {'mean_lam': 2.577, 'regret': 0.009, 'p10_gold': 1.517, 'frac_overshoot': 0.387, 'se': 0.001}
+H4: decorrelated data B|cov-disagree m=20 {'mean_lam': 2.452, 'regret': 0.057, 'p10_gold': 1.402, 'frac_overshoot': 0.367, 'se': 0.006}
+(any)|cov-uniform m=20 {'mean_lam': 2.413, 'regret': 0.065, 'p10_gold': 1.325, 'frac_overshoot': 0.313, 'se': 0.008}
+(any)|cov-leverage m=20 {'mean_lam': 2.525, 'regret': 0.043, 'p10_gold': 1.402, 'frac_overshoot': 0.373, 'se': 0.006}
+(any)|firsthack m=20 {'mean_lam': 0.787, 'regret': 0.905, 'p10_gold': -0.015, 'frac_overshoot': 0.0, 'se': 0.039}
+done in 94s
+
+real	1m35.616s
+user	2m34.612s
+sys	0m0.504s

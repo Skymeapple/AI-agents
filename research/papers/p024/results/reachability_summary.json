@@ -1,0 +1,266 @@
+{
+ "n_pairs": 949,
+ "by_suite": {
+  "workspace": {
+   "n_pairs": 560,
+   "STATIC|strict": 1.0,
+   "TOOL|strict": 0.033928571428571426,
+   "TOOL+R|strict": 0.02857142857142857,
+   "DEST|strict": 0.0035714285714285713,
+   "DEST+R|strict": 0.0035714285714285713,
+   "BIND|strict": 0.0,
+   "BIND+R|strict": 0.0,
+   "STATIC|sink": 1.0,
+   "TOOL|sink": 0.04642857142857143,
+   "TOOL+R|sink": 0.04642857142857143,
+   "DEST|sink": 0.0035714285714285713,
+   "DEST+R|sink": 0.0035714285714285713,
+   "BIND|sink": 0.0,
+   "BIND+R|sink": 0.0,
+   "privilege_surplus_mean": 15.670000000000002
+  },
+  "travel": {
+   "n_pairs": 140,
+   "STATIC|strict": 1.0,
+   "TOOL|strict": 0.18571428571428572,
+   "TOOL+R|strict": 0.18571428571428572,
+   "DEST|strict": 0.17142857142857143,
+   "DEST+R|strict": 0.17142857142857143,
+   "BIND|strict": 0.17142857142857143,
+   "BIND+R|strict": 0.17142857142857143,
+   "STATIC|sink": 1.0,
+   "TOOL|sink": 0.20714285714285716,
+   "TOOL+R|sink": 0.20714285714285716,
+   "DEST|sink": 0.17857142857142858,
+   "DEST+R|sink": 0.17857142857142858,
+   "BIND|sink": 0.17857142857142858,
+   "BIND+R|sink": 0.17857142857142858,
+   "privilege_surplus_mean": 6.066666666666666
+  },
+  "banking": {
+   "n_pairs": 144,
+   "STATIC|strict": 1.0,
+   "TOOL|strict": 0.2916666666666667,
+   "TOOL+R|strict": 0.2777777777777778,
+   "DEST|strict": 0.006944444444444444,
+   "DEST+R|strict": 0.006944444444444444,
+   "BIND|strict": 0.0,
+   "BIND+R|strict": 0.0,
+   "STATIC|sink": 1.0,
+   "TOOL|sink": 0.3263888888888889,
+   "TOOL+R|sink": 0.3194444444444444,
+   "DEST|sink": 0.006944444444444444,
+   "DEST+R|sink": 0.006944444444444444,
+   "BIND|sink": 0.0,
+   "BIND+R|sink": 0.0,
+   "privilege_surplus_mean": 6.439583333333333
+  },
+  "slack": {
+   "n_pairs": 105,
+   "STATIC|strict": 1.0,
+   "TOOL|strict": 0.18095238095238095,
+   "TOOL+R|strict": 0.10476190476190476,
+   "DEST|strict": 0.02857142857142857,
+   "DEST+R|strict": 0.02857142857142857,
+   "BIND|strict": 0.02857142857142857,
+   "BIND+R|strict": 0.02857142857142857,
+   "STATIC|sink": 1.0,
+   "TOOL|sink": 0.2,
+   "TOOL+R|sink": 0.12380952380952381,
+   "DEST|sink": 0.02857142857142857,
+   "DEST+R|sink": 0.02857142857142857,
+   "BIND|sink": 0.02857142857142857,
+   "BIND+R|sink": 0.02857142857142857,
+   "privilege_surplus_mean": 4.181746031746032
+  }
+ },
+ "overall": {
+  "STATIC|strict": 1.0,
+  "TOOL|strict": 0.11169652265542676,
+  "TOOL+R|strict": 0.09799789251844046,
+  "DEST|strict": 0.03161222339304531,
+  "DEST+R|strict": 0.03161222339304531,
+  "BIND|strict": 0.02845100105374078,
+  "BIND+R|strict": 0.02845100105374078,
+  "STATIC|sink": 1.0,
+  "TOOL|sink": 0.12961011591148577,
+  "TOOL+R|sink": 0.12012644889357219,
+  "DEST|sink": 0.032665964172813484,
+  "DEST+R|sink": 0.032665964172813484,
+  "BIND|sink": 0.029504741833508957,
+  "BIND+R|sink": 0.029504741833508957
+ },
+ "overall_macro": {
+  "STATIC|strict": 1.0,
+  "TOOL|strict": 0.1730654761904762,
+  "TOOL+R|strict": 0.1492063492063492,
+  "DEST|strict": 0.052628968253968254,
+  "DEST+R|strict": 0.052628968253968254,
+  "BIND|strict": 0.05,
+  "BIND+R|strict": 0.05,
+  "STATIC|sink": 1.0,
+  "TOOL|sink": 0.19499007936507934,
+  "TOOL+R|sink": 0.1742063492063492,
+  "DEST|sink": 0.05441468253968254,
+  "DEST+R|sink": 0.05441468253968254,
+  "BIND|sink": 0.05178571428571429,
+  "BIND+R|sink": 0.05178571428571429
+ },
+ "no_tool_attack_frac": 0.02107481559536354,
+ "overall_ci95_cluster_bootstrap": {
+  "STATIC|strict": [
+   1.0,
+   1.0
+  ],
+  "TOOL|strict": [
+   0.08055281465396609,
+   0.14810910910910913
+  ],
+  "TOOL+R|strict": [
+   0.0686856420594541,
+   0.13390057287772192
+  ],
+  "DEST|strict": [
+   0.020104679116715225,
+   0.04467526926359002
+  ],
+  "DEST+R|strict": [
+   0.02052695783856545,
+   0.04463574540034562
+  ],
+  "BIND|strict": [
+   0.017142713133640554,
+   0.04115854417485204
+  ],
+  "BIND+R|strict": [
+   0.01749263638435974,
+   0.04086369462238942
+  ],
+  "STATIC|sink": [
+   1.0,
+   1.0
+  ],
+  "TOOL|sink": [
+   0.09420017534645572,
+   0.1724137931034483
+  ],
+  "TOOL+R|sink": [
+   0.08439447040498443,
+   0.16059727002595114
+  ],
+  "DEST|sink": [
+   0.021148952095808384,
+   0.04626900947671754
+  ],
+  "DEST+R|sink": [
+   0.02155947041101424,
+   0.04603870190545293
+  ],
+  "BIND|sink": [
+   0.018439339676133617,
+   0.04257874833975136
+  ],
+  "BIND+R|sink": [
+   0.0181789199111197,
+   0.04291857940909951
+  ]
+ },
+ "class_stats": {
+  "workspace": {
+   "n_user": 40,
+   "n_inj": 14,
+   "user_frac": {
+    "U": 1.0,
+    "P": 1.0,
+    "E": 0.375,
+    "UPE": 0.375,
+    "E_after_taint": 0.375,
+    "side_after_taint": 0.55
+   },
+   "inj_frac": {
+    "P": 0.7857142857142857,
+    "E": 0.9285714285714286,
+    "W": 0.6428571428571429,
+    "none": 0.0
+   },
+   "untrusted_ingress_tools": [
+    "add_calendar_event_participants",
+    "delete_file",
+    "get_day_calendar_events",
+    "get_unread_emails",
+    "list_files",
+    "search_calendar_events",
+    "search_emails",
+    "search_files",
+    "search_files_by_filename"
+   ]
+  },
+  "travel": {
+   "n_user": 20,
+   "n_inj": 7,
+   "user_frac": {
+    "U": 1.0,
+    "P": 0.0,
+    "E": 0.25,
+    "UPE": 0.0,
+    "E_after_taint": 0.25,
+    "side_after_taint": 0.3
+   },
+   "inj_frac": {
+    "P": 0.2857142857142857,
+    "E": 0.5714285714285714,
+    "W": 0.2857142857142857,
+    "none": 0.14285714285714285
+   },
+   "untrusted_ingress_tools": [
+    "get_rating_reviews_for_car_rental",
+    "get_rating_reviews_for_hotels",
+    "get_rating_reviews_for_restaurants"
+   ]
+  },
+  "banking": {
+   "n_user": 16,
+   "n_inj": 9,
+   "user_frac": {
+    "U": 1.0,
+    "P": 1.0,
+    "E": 0.625,
+    "UPE": 0.625,
+    "E_after_taint": 0.625,
+    "side_after_taint": 0.75
+   },
+   "inj_frac": {
+    "P": 0.1111111111111111,
+    "E": 0.8888888888888888,
+    "W": 0.1111111111111111,
+    "none": 0.0
+   },
+   "untrusted_ingress_tools": [
+    "get_most_recent_transactions",
+    "read_file"
+   ]
+  },
+  "slack": {
+   "n_user": 21,
+   "n_inj": 5,
+   "user_frac": {
+    "U": 1.0,
+    "P": 0.7619047619047619,
+    "E": 0.8571428571428571,
+    "UPE": 0.6190476190476191,
+    "E_after_taint": 0.8095238095238095,
+    "side_after_taint": 0.9523809523809523
+   },
+   "inj_frac": {
+    "P": 0.4,
+    "E": 1.0,
+    "W": 0.2,
+    "none": 0.0
+   },
+   "untrusted_ingress_tools": [
+    "get_channels",
+    "get_webpage"
+   ]
+  }
+ }
+}

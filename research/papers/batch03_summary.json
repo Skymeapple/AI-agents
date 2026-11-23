@@ -1,0 +1,119 @@
+{
+ "batch": 3,
+ "status": "incomplete-run2",
+ "run_id": "wf_dbdb1ce2-f67",
+ "blocked_by": "The account usage limit was hit again during resume run 2 ('You've hit your 5-hour limit · resets 3:10pm UTC'). Drafts exist for p021-p026 (paper.md), but no review round has completed for any project: review r1 failed for p021-p026 on the usage limit. Research for p027-p030 failed on the usage limit; p027 and p028 have partial code/data only. Stopped as the coordinating session asked; resume with resumeFromRunId wf_dbdb1ce2-f67 when told to.",
+ "papers_drafted": [
+  21,
+  22,
+  23,
+  24,
+  25,
+  26
+ ],
+ "reviews_completed": 0,
+ "workflow_return_value": [
+  {
+   "id": 21,
+   "question": "智能体在真实环境中的可靠性如何达到可部署水平？",
+   "dir": "papers/p021",
+   "title": "Reliability Ceilings in Agent Evaluations: Lapse Rates, Task-Level Failure Correlation, and What Time-Horizon Data Can Certify",
+   "contribution_type": "mixed",
+   "summary": "The paper asks how close agents are to deployable reliability, using METR's time-horizon methodology as the test case. It adds a psychophysics-style lapse rate λ (success ceiling 1−λ) to the two-parameter logistic (2PL) used for time horizons, and proves four things. (1) A q-horizon does not exist when λ > 1−q. (2) A 2PL fit always reports a finite q-horizon, so it can never reveal a ceiling. (3) The intra-task failure correlation (ICC) determines how much retries help and how fast pass^k decays, and it bounds the mass of tasks that are never solved. (4) When failures are task-level, any valid confidence certificate needs distinct tasks, about ln(1/δ)/ε of them, and extra runs per task cannot substitute (the rule of three counted in tasks). All of this was applied to METR's public Time Horizon 1.1 run data: 20 agents, 228 tasks, 23,235 runs, with a family-cluster bootstrap and a boundary-corrected likelihood-ratio test. Main findings: (i) GPT-5.3-Codex has λ̂ = 3.5% (CI 2.1–4.6%, p = 1.3e-5, the only one surviving a Bonferroni correction) and Claude Opus 4.6 has λ̂ = 2.3% (CI 0.5–4.2%, p = 0.0075). For both, the 99% horizon is undefined in most bootstrap replicates, yet the 2PL still reports 0.2–0.7 minutes, and the 2PL also inflates Opus 4.6's 50% horizon by 32%. (ii) On tasks under 15 minutes, frontier agents fail 2–6% of runs. These failures are mostly task-level (median ICC 0.76), and two 10-minute tasks failed by every frontier agent account for 18–80% of each agent's failures. (iii) The 50% horizon doubled every 4.1 months across these agents, while the short-task failure rate halved only every 8.8 months, with no detectable trend among the agents released since April 2025. A paired test finds a short-task reliability regression from GPT-5.1-Codex-Max to GPT-5.3-Codex. (iv) At the measured ICC, certifying a 1% failure rate needs 240–1,065 distinct short tasks, against 119 in the suite. A simulation calibrated to the data shows the current design detects a 1–2% ceiling only 31–56% of the time, adding tasks helps more than adding runs, and run-level binomial confidence intervals cover the true rate only 73–85% of the time. The paper ends with a reporting protocol and falsifiable predictions. Limitations: a single software-domain suite, few short tasks, possible task defects that cannot be audited, and no new agent runs.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 22,
+   "question": "如何为长时间自主运行的智能体做错误恢复？",
+   "dir": "papers/p022",
+   "title": "Verification Blind Spots Bound Error Recovery in Long-Running Agents: Interval Invariance, a Correctness Ceiling, and Power-Law Returns to Re-Verification",
+   "contribution_type": "mixed",
+   "summary": "The paper is aimed at NeurIPS. It adapts classical checkpoint/silent-error theory (Young, Daly, Benoit and Robert) to long-running agents, which have no guaranteed verifier and whose error rate can grow with context age. The model is a verify-checkpoint-rollback (VCR) model with silent persistent errors, per-error heterogeneous detectability d (blind-spot mass rho at d=0), false alarms, costs, and a hazard that grows linearly with context age, under fresh-context or snapshot resumption. Four main results are proved. (1) Interval invariance: with constant hazard, P(final state clean) = ((1-p)/(1-p+p mu_m))^N exactly, where mu_m = E[(1-d)^m]; it does not depend on checkpoint interval, false-alarm rate or any cost, so checkpointing buys time, not correctness. (2) Blind-spot ceiling: no verifier-driven policy (adaptive intervals, deep rollback, any number of re-checks) exceeds ((1-p)/(1-p+p rho))^N ≈ e^{-Np rho}, where rho is the joint blind spot of all verifiers used; the bound is tight. (3) Power-law returns: if detectability has density ~d^{a-1} near 0, re-verification lowers the miss rate only as m^{-a}, while false alarms make the time cost geometric in m. (4) With age-dependent hazard, the optimal interval moves from a c^{1/2} toward a c^{1/3} law, snapshot restoration loses correctness super-exponentially with task length, and fresh-context resumption becomes faster beyond a crossover horizon. An independent step-level simulator matches the closed forms in 96 configurations x 3000 runs (largest makespan error 0.32%; 93.8% and 95.8% of configurations within 2 SE). As a toy, non-synthetic error population, detectability was measured on 102 AST mutants of 8 functions; 6 equivalent mutants were excluded by manual inspection. A typical-input test pool leaves an 11.5% blind spot; adding an edge-case pool removes the joint blind spot, and simulated 1000-step correctness rises from 0.49 to 0.99 with 8 calls, versus 0.65 from repeating the single pool 8 times. No LLM experiments were run; a pre-registered five-prediction protocol for LLM agents is included. arxiv.org could not be fetched from this session, so references were checked through web search results rather than the papers themselves. Three 2026 arXiv references (2609.18304, 2611.13254, 2608.29381) are cited by title and ID because their author lists could not be found. Limitations covered: independence assumptions, binary persistent errors, rollback assumed side-effect free, an idealized re-orientation cost, the toy scale of the mutation study, and first-order asymptotics.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 23,
+   "question": "多智能体协作：分工、通信、冲突如何处理？",
+   "dir": "papers/p023",
+   "title": "Redundancy or Division of Labor? Correlated Errors Set the Hand-off Budget of Multi-Agent Teams",
+   "contribution_type": "mixed",
+   "summary": "The paper targets NeurIPS and builds a budgeted reliability model of multi-agent collaboration that covers division of labor, communication and conflict resolution together. Generalists either solve a K-part task redundantly and settle conflicts by plurality vote, or specialists split the task and pay for K−1 lossy hand-offs (error ε). Item difficulty is a latent Beta variable, so errors have intra-item correlation ρ. Proved results: (1) the infinite-team voting ceiling is P(θ>1/m), not 1. (2) For m=2 and odd n, the gap to the ceiling is f′(1/2)/(8n)+o(1/n) rather than exponential. This constant matched exact computation to 3–4 digits, and its sign condition, sign(p−1/2), says when adding voters lowers accuracy. The proof is a sketch: the Berry–Esseen step is not written out in full. (3) Tuple voting and coordinate-wise voting share the same infinite-team limit, but tuple voting is much worse at finite n. (4) Division beats redundancy at large budgets if and only if ε < ε* = 1−(Γ_G/Γ_S)^{1/(K−1)}. A corollary: with independent errors and generalists better than chance, ε*→0. So correlated errors are what keep division of labor worthwhile at large budgets. Example (exact, K=4, p_G=0.6, p_S=0.7, 100 calls per subtask): the tolerable hand-off error rises from 2.9% at ρ=0 to 23.6% at ρ=0.1. Finite-budget phase diagrams and the optimal interface-check share were also computed. The check share turned out not to be monotone in ρ, an expected result that did not hold and is reported as negative. Validation (all run here, CPU only): (a) 3,075 small MLP agents over 5 seeds and 3 data-diversity conditions. A two-parameter fit from an 8-agent pilot predicted held-out vote curves with mean absolute error (MAE) 0.009–0.013, against 0.059–0.098 for the independent-error model. It predicted the observed break-even ε*(n) with r=0.83 and MAE 0.009. The main miss was a tail misfit in the independent-data condition (ε* over-predicted by about 0.01 there). (b) Released answers of 46 LLMs on 11,429 MMLU-Pro items. Errors are strongly correlated (mean ρ 0.34), and when two models are both wrong they pick the same wrong option 3.1× more often than chance. The m=2 and m=10 versions of the model bracket every observed voting curve. Routing each subject to its best models gives a break-even hand-off error below 0.5%. A pre-registered five-prediction protocol for LLM agent teams is included; no LLM agents were run. All 26 references were checked by web search. The p023 folder already held a data build and analyses of the MMLU-Pro matrix from an earlier, interrupted run of this project. I reused that matrix and re-ran its correlation analysis, which reproduced the earlier output exactly. I did not re-download the source data.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 24,
+   "question": "智能体应被授予多大权限？如何设计权限边界？",
+   "dir": "papers/p024",
+   "title": "How Much Authority Should an Agent Hold? Structural Attack Ceilings, the Provenance Gap, and an Attention Budget for Permission Boundaries",
+   "contribution_type": "mixed",
+   "summary": "Target venue: ICLR 2027. The paper turns \"how much authority should an agent hold?\" into quantities a designer can compute, using no LLM and therefore no single model's injection susceptibility. (1) It defines the structural attack ceiling of a permission policy: the fraction of (benign task, injected goal) pairs in which every action the attacker needs is still permitted. Because enforcement sits outside the model, this ceiling upper-bounds attack success for any model. Computed exactly on all 949 AgentDojo v1.2.2 security cases: full suite toolset 100%; suite union / read-only split about 60%; per-task tool allowlist 11.2% (cluster-bootstrap 95% CI 8.1-14.8%); per-task destination pinning 3.2%; pinning all binding arguments 2.8% (1.7-4.1%). Two independent implementations agree exactly on the 106/949 and 27/949 counts. (2) Propositions 1-2 show that this floor consists of in-channel attacks (a legitimate action on a legitimate target with only the content changed, or no tool at all), which permissions cannot remove. All 27 residual cases fit this description. (3) A provenance gap: 44 of 61 consequential tasks have a data-derived target value, so a policy written before the agent reads any data reaches 5.2% rather than 2.8%. The confirmation load needed to close the gap averages 0-1.7 per task by suite. (4) Taint-triggered revocation is nearly inert (11.2% to 9.8%) because the first untrusted read is step 1 in 93-94% of workspace and banking tasks. (5) An attention-budget theorem with proof: under exponential approval fatigue d0*exp(-n/n0), the optimal number of approval prompts per task satisfies n* < n0 + w_max for arbitrary harms and needs. Corollaries give a harm-to-need standing-grant rule and conditions under which escalating everything is worse than granting everything. The theorem held in 300/300 exhaustively solved random instances. Fatigue-blind design has a median 58% excess loss at n0 of about 2.8, a value loosely calibrated from clinical alert-fatigue data (Ancker et al. 2017). The fatigue model is assumed, not measured. The paper also gives falsifiable predictions and a pre-registered protocol for agent and human-subject tests, which were not run. It builds on and extends a partial earlier checkpoint in the same directory: the original scripts were kept and re-run, and their outputs reproduced unchanged.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 25,
+   "question": "计算机操作（computer use）何时能像人一样流畅？",
+   "dir": "papers/p025",
+   "title": "Success Is Not Fluency: A Time-Budgeted Model of When Computer-Use Agents Match Human Speed and Reliability",
+   "contribution_type": "mixed",
+   "summary": "The paper (target venue: NeurIPS 2027 Datasets & Benchmarks track) restates \"when will computer use be as fluent as a human's?\" as a measurable question. By late 2026, success-rate parity on OSWorld-Verified has already arrived (above 72.36%), so the paper defines fluency parity on time-budgeted success S(tau): finishing correctly within tau times the human time on the same task, with S_agent(1) >= S_human(1) as the parity condition.\n\n**Human time reference.** The Keystroke-Level Model (Card, Moran & Newell, 1980) is applied to the public OSWorld-Human action trajectories for all 339 feasible OSWorld tasks. The median expert time is 25.6 s, or 3.45 s per action. That is about 4.7x below the reported ~2-minute human median (3.9–5.2x across the sensitivity analysis). Expert time grows almost linearly with the number of actions (log-log slope 0.82).\n\n**Theory.** Four propositions are proved for a step-level agent timing model:\n- With context growth gamma > 0, time parity holds only up to a finite horizon n*, roughly proportional to 1/gamma.\n- Action execution sets a floor: parity requires kappa*(l0+a) <= h, so model speed alone cannot close an expert-level gap when agents take many extra steps.\n- On long tasks, finishing on time becomes a sharp threshold in per-action speed (law of large numbers plus Cramér's theorem).\n- The best verification breadth (number of candidates checked per step) under a deadline is no larger than the unconstrained optimum, and it does not decrease as the budget grows (Topkis).\n\n**Calibrated results.** Archetype agents are calibrated to published measurements from OSWorld-Human, CADWorld and OSWorld 2.0. Against a typical-human reference, 2026-like agents are close to parity on short tasks (S(1) of 0.32–0.49 vs 0.36 for humans). Against the expert reference they need 4.0–5.6x the human time and have S(1) < 0.01. Ranking agents by S(1) gives a different order than ranking by raw success or by a step-based efficiency score.\n\n**Timeline.** A Monte Carlo scenario analysis uses explicit, wide priors on improvement rates; the dates are conditional on those assumptions, not forecasts. It puts expert-level parity at a median of 2028.9–2029.6 (10–90% range 2028.2–2031.5) for tasks of 2 minutes to 1.6 hours. The main drivers are per-step latency and step inflation. Long-horizon parity against typical humans is driven mainly by how fast the per-step failure hazard falls. A pessimistic scenario pushes expert parity to 2042–2052.\n\nThe paper ends with five falsifiable predictions and a pre-registered test protocol. No large model was run; every number comes either from code run here (results/) or from a cited source verified by web search.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 26,
+   "question": "智能体的记忆、身份与状态如何持久化？",
+   "dir": "papers/p026",
+   "title": "Identity Half-Life: Why Agent State Persistence Needs a Non-Contracting Channel",
+   "contribution_type": "mixed",
+   "summary": "The paper targets NeurIPS 2027 and models how an LLM agent's memory and identity persist when they are repeatedly consolidated (summarized, rewritten, reflected on, evicted). Each consolidation step is treated as a Markov kernel. Theorem 1 uses Dobrushin and strong-data-processing contraction to show that identity recoverability decays geometrically: Bayes accuracy is at most 1/Q+(1-1/Q)·∏δ_t. This gives a half-life law and a necessary condition for unbounded persistence, Σ(1-δ_t)<∞. In other words, anything that is regeneratively rewritten has a finite half-life. Proposition 1 shows that without rehearsal the long-run fidelity of an identity fact equals the memoryless model's prior probability of that fact. Default-matching identities therefore look stable while idiosyncratic ones erode, a \"survivorship illusion\". Theorem 2 is a redundancy ceiling. With R self-reconciled replicas, the half-life grows exponentially in R when errors are independent, but is capped at ⌈ln2/(-ln(1-γ))⌉ for every R when a fraction γ of errors is common-mode. This links to the cited evidence of correlated LLM errors. Theorem 3 and Corollary 2 give closed-form, horizon-independent fidelity for reconciling against a hash-verified verbatim anchor, and show that an anchor the agent regenerates itself gives no benefit. Proposition 4 (a mean-field result) shows that recency-decayed salience evicts identity at an age logarithmic in salience. All of these were checked by exact computation and CPU Monte Carlo. Bounds were never violated, and simulated half-lives of 139/69/35/14 matched the ceilings of 138.3/69.0/34.3/13.5. The paper also proposes a measurement method: a per-fact empirical-Bayes (NPMLE) estimator that predicts population fidelity at t=1000 from 5-step probe chains plus cold-start probes with RMSE 0.045-0.066. Naive aggregate fits have RMSE 0.10-0.55. No LLM experiments were run, because there was no GPU and HuggingFace was blocked. The paper gives a pre-registered protocol with five falsifiable predictions for LLM agents instead. All 29 references were checked by web search. One reference, SSGM (arXiv:2603.11768), is cited only for its reconciliation design; a drift bound attributed to it in a search summary could not be confirmed and is not cited.",
+   "final_score": null,
+   "final_decision": null,
+   "accepted": false,
+   "history": []
+  },
+  {
+   "id": 27,
+   "status": "research-failed"
+  },
+  {
+   "id": 28,
+   "status": "research-failed"
+  },
+  {
+   "id": 29,
+   "status": "research-failed"
+  },
+  {
+   "id": 30,
+   "status": "research-failed"
+  }
+ ],
+ "logs": [
+  "Batch of 10 projects: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30",
+  "Resume: 2 of the journal's 2 saved results served from cache. Call 13 and every call after it run fresh, not from cache: it has no saved result (it or a call before it changed through a script edit, a reorder or different args, an earlier resume re-ran it without finishing, or the earlier run never started it).",
+  "[research:p028] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[research:p029] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[research:p030] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p021:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p022:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p024:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p023:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p025:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[review:p026:r1] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)",
+  "[research:p027] failed: You've hit your 5-hour limit · resets 3:10pm (UTC)"
+ ]
+}

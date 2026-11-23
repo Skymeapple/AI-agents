@@ -1,0 +1,96 @@
+{
+ "feedback": {
+  "min_mean_rel_skill": 0.6477935166485587,
+  "max_frac_low": 0.8742,
+  "max_bimodality_coef": 0.9615777434071833,
+  "t_at_max_bc": 583.0,
+  "eps_at_max_bc": 0.5181250000000001,
+  "eps_at_hyst_check": [
+   0.30062500000000003,
+   0.30062500000000003
+  ],
+  "mean_rel_skill_down_vs_up": [
+   0.853195624327274,
+   0.6611214331118025
+  ],
+  "frac_low_down_vs_up": [
+   0.3442,
+   0.8468
+  ],
+  "final_mean_rel_skill": 0.9957333810273463
+ },
+ "no_feedback": {
+  "min_mean_rel_skill": 0.6493925399739462,
+  "max_frac_low": 0.872,
+  "max_bimodality_coef": 0.7473641385608264,
+  "t_at_max_bc": 463.0,
+  "eps_at_max_bc": 0.2931250000000001,
+  "eps_at_hyst_check": [
+   0.30062500000000003,
+   0.30062500000000003
+  ],
+  "mean_rel_skill_down_vs_up": [
+   0.9608981550037718,
+   0.9495628515436118
+  ],
+  "frac_low_down_vs_up": [
+   0.0522,
+   0.0796
+  ],
+  "final_mean_rel_skill": 0.9999126707474345
+ },
+ "floor30": {
+  "min_mean_rel_skill": 0.8736820622560503,
+  "max_frac_low": 0.0788,
+  "max_bimodality_coef": 0.8581761499559217,
+  "t_at_max_bc": 516.0,
+  "eps_at_max_bc": 0.39250000000000007,
+  "eps_at_hyst_check": [
+   0.30062500000000003,
+   0.30062500000000003
+  ],
+  "mean_rel_skill_down_vs_up": [
+   0.9352957774720697,
+   0.8990253277877073
+  ],
+  "frac_low_down_vs_up": [
+   0.0556,
+   0.0708
+  ],
+  "final_mean_rel_skill": 0.9999126270771238
+ },
+ "engage+0.3": {
+  "min_mean_rel_skill": 0.8937103037726225,
+  "max_frac_low": 0.0428,
+  "max_bimodality_coef": 0.8054766648819011,
+  "t_at_max_bc": 500.0,
+  "eps_at_max_bc": 0.36250000000000004,
+  "eps_at_hyst_check": [
+   0.30062500000000003,
+   0.30062500000000003
+  ],
+  "mean_rel_skill_down_vs_up": [
+   0.9588486018000849,
+   0.9396135061763358
+  ],
+  "frac_low_down_vs_up": [
+   0.0268,
+   0.0378
+  ],
+  "final_mean_rel_skill": 0.9999127149045031
+ },
+ "withdrawal_at_300": {
+  "mean_rel_skill_before": 0.649179035904479,
+  "months_to_recover_90pct": 3.0
+ },
+ "ews": {
+  "n_runs": 200,
+  "median_collapse_month": 413.0,
+  "median_tau_var_ramp": 0.16277295827869115,
+  "median_tau_var_ctrl": -0.046596439331021915,
+  "median_tau_ac1_ramp": 0.16173572908427356,
+  "median_tau_ac1_ctrl": 0.0022051517889623636,
+  "auc_var": 0.639725,
+  "auc_ac1": 0.562575
+ }
+}

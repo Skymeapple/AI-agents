@@ -1,0 +1,27 @@
+{
+  "cases": 675,
+  "lemma1_violations": 0,
+  "lemma1_counterexample": null,
+  "prop1_max_abs_error": 6.752376435770202e-13,
+  "prop2_cases_T_le_L": 271,
+  "prop2_violations": 0,
+  "cases_T_gt_L": 404,
+  "cases_T_gt_L_nonmonotone": 97,
+  "corollary": [
+    {
+      "n": 0.1,
+      "closed_form": 1.0227011240717327,
+      "numerical": 1.0227011240717327
+    },
+    {
+      "n": 0.3,
+      "closed_form": 1.1302210956332366,
+      "numerical": 1.1302210956332366
+    },
+    {
+      "n": 0.65,
+      "closed_form": 1.3400360320460771,
+      "numerical": 1.340036032046077
+    }
+  ]
+}

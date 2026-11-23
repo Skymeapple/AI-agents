@@ -1,0 +1,986 @@
+{
+ "cells": [
+  {
+   "prior": "Beta(0.6,1.2) [orig]",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.2906,
+   "mean pass@1": {
+    "spearman": 0.6501208714748021,
+    "bal_acc": 0.7885315392106509,
+    "discordance": 0.26112
+   },
+   "mean pass@10": {
+    "spearman": 0.9463881297424701,
+    "bal_acc": 0.9827526475171384,
+    "discordance": 0.08787
+   },
+   "min pass@1": {
+    "spearman": 0.9730655908695851,
+    "bal_acc": 0.9350426220232835,
+    "discordance": 0.074
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9628706061416763,
+    "bal_acc": 0.9424970861255336,
+    "discordance": 0.08154
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9730655908695851,
+    "bal_acc": 0.9350426220232835,
+    "discordance": 0.074
+   }
+  },
+  {
+   "prior": "Beta(0.6,1.2) [orig]",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.686,
+   "mean pass@1": {
+    "spearman": 0.6107045909067613,
+    "bal_acc": 0.6772135150693581,
+    "discordance": 0.27797
+   },
+   "mean pass@10": {
+    "spearman": 0.9269497043233742,
+    "bal_acc": 0.8619013574492582,
+    "discordance": 0.1033
+   },
+   "min pass@1": {
+    "spearman": 0.9849717859426492,
+    "bal_acc": 0.9566651501364878,
+    "discordance": 0.05371
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9439448169468619,
+    "bal_acc": 0.8830360624686635,
+    "discordance": 0.10119
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9849717859426492,
+    "bal_acc": 0.9566651501364878,
+    "discordance": 0.05371
+   }
+  },
+  {
+   "prior": "Beta(0.6,1.2) [orig]",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.03155,
+   "mean pass@1": {
+    "spearman": 0.7188786733456964,
+    "bal_acc": 0.9699497350603293,
+    "discordance": 0.23071
+   },
+   "mean pass@10": {
+    "spearman": 0.9651278722913196,
+    "bal_acc": 0.9723123091377657,
+    "discordance": 0.07482
+   },
+   "min pass@1": {
+    "spearman": 0.9437913922104635,
+    "bal_acc": 0.9656398271978546,
+    "discordance": 0.1067
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9866328417005821,
+    "bal_acc": 0.9956373586659095,
+    "discordance": 0.04895
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9437913922104635,
+    "bal_acc": 0.9656398271978546,
+    "discordance": 0.1067
+   }
+  },
+  {
+   "prior": "Beta(0.6,1.2) [orig]",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.3511,
+   "mean pass@1": {
+    "spearman": 0.5624865663022163,
+    "bal_acc": 0.7148773647088237,
+    "discordance": 0.29999
+   },
+   "mean pass@10": {
+    "spearman": 0.7825099896497749,
+    "bal_acc": 0.8027108645926618,
+    "discordance": 0.21
+   },
+   "min pass@1": {
+    "spearman": 0.80049520866214,
+    "bal_acc": 0.7829723583222297,
+    "discordance": 0.19991
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.8121254928248136,
+    "bal_acc": 0.8007115562523945,
+    "discordance": 0.19191
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.977346482581366,
+    "bal_acc": 0.9437147737123126,
+    "discordance": 0.06608
+   }
+  },
+  {
+   "prior": "Beta(0.6,1.2) [orig]",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.1051,
+   "mean pass@1": {
+    "spearman": 0.6918318054660795,
+    "bal_acc": 0.8513075309192093,
+    "discordance": 0.24569
+   },
+   "mean pass@10": {
+    "spearman": 0.9555539152418847,
+    "bal_acc": 0.9540397488718979,
+    "discordance": 0.08982
+   },
+   "min pass@1": {
+    "spearman": 0.9255103140689999,
+    "bal_acc": 0.937622316714049,
+    "discordance": 0.12034
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9643145359952862,
+    "bal_acc": 0.9447937296440055,
+    "discordance": 0.08069
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.945677291391193,
+    "bal_acc": 0.9699933516908745,
+    "discordance": 0.10177
+   }
+  },
+  {
+   "prior": "Uniform(0,1)",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.71935,
+   "mean pass@1": {
+    "spearman": 0.7933246895163116,
+    "bal_acc": 0.7649647546021459,
+    "discordance": 0.18984
+   },
+   "mean pass@10": {
+    "spearman": 0.9860766628221915,
+    "bal_acc": 0.9783935098087926,
+    "discordance": 0.0508
+   },
+   "min pass@1": {
+    "spearman": 0.9682677996560031,
+    "bal_acc": 0.9280853098582538,
+    "discordance": 0.07616
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.971578861936947,
+    "bal_acc": 0.9166725951486059,
+    "discordance": 0.06805
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9682677996560031,
+    "bal_acc": 0.9280853098582538,
+    "discordance": 0.07616
+   }
+  },
+  {
+   "prior": "Uniform(0,1)",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.95155,
+   "mean pass@1": {
+    "spearman": 0.7774523849936308,
+    "bal_acc": 0.7104260502892489,
+    "discordance": 0.19797
+   },
+   "mean pass@10": {
+    "spearman": 0.9875472595723681,
+    "bal_acc": 0.9652598478860113,
+    "discordance": 0.04803
+   },
+   "min pass@1": {
+    "spearman": 0.9740607036406072,
+    "bal_acc": 0.9804813329661088,
+    "discordance": 0.06723
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9642931676027328,
+    "bal_acc": 0.9285767195655299,
+    "discordance": 0.0768
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9740607036406072,
+    "bal_acc": 0.9804813329661088,
+    "discordance": 0.06723
+   }
+  },
+  {
+   "prior": "Uniform(0,1)",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.2215,
+   "mean pass@1": {
+    "spearman": 0.8324962764607405,
+    "bal_acc": 0.9051643274167054,
+    "discordance": 0.16968
+   },
+   "mean pass@10": {
+    "spearman": 0.9768654438076635,
+    "bal_acc": 0.9334752686114265,
+    "discordance": 0.06408
+   },
+   "min pass@1": {
+    "spearman": 0.949438725524535,
+    "bal_acc": 0.9198036682802925,
+    "discordance": 0.09664
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9865183510472958,
+    "bal_acc": 0.9756172879778355,
+    "discordance": 0.04719
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.949438725524535,
+    "bal_acc": 0.9198036682802925,
+    "discordance": 0.09664
+   }
+  },
+  {
+   "prior": "Uniform(0,1)",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.71205,
+   "mean pass@1": {
+    "spearman": 0.6143871123989676,
+    "bal_acc": 0.7169457967250656,
+    "discordance": 0.28261
+   },
+   "mean pass@10": {
+    "spearman": 0.7126833972387085,
+    "bal_acc": 0.7867885145203218,
+    "discordance": 0.23815
+   },
+   "min pass@1": {
+    "spearman": 0.6940171114881171,
+    "bal_acc": 0.7802277379282412,
+    "discordance": 0.24529
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.7261630086229074,
+    "bal_acc": 0.783296424354505,
+    "discordance": 0.23326
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9776614466046535,
+    "bal_acc": 0.9342576898440862,
+    "discordance": 0.06432
+   }
+  },
+  {
+   "prior": "Uniform(0,1)",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.41765,
+   "mean pass@1": {
+    "spearman": 0.7533631615479077,
+    "bal_acc": 0.7935179955642967,
+    "discordance": 0.21667
+   },
+   "mean pass@10": {
+    "spearman": 0.970544844087862,
+    "bal_acc": 0.9288420582683732,
+    "discordance": 0.07287
+   },
+   "min pass@1": {
+    "spearman": 0.9505624102358677,
+    "bal_acc": 0.9131516899245453,
+    "discordance": 0.09347
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9369688248984219,
+    "bal_acc": 0.8914754482417973,
+    "discordance": 0.10638
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9771453492878633,
+    "bal_acc": 0.943782586378537,
+    "discordance": 0.06253
+   }
+  },
+  {
+   "prior": "Beta(2,2)",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.9273,
+   "mean pass@1": {
+    "spearman": 0.8681673389174182,
+    "bal_acc": 0.7998937472251976,
+    "discordance": 0.15111
+   },
+   "mean pass@10": {
+    "spearman": 0.9665171072967926,
+    "bal_acc": 0.9848737760646007,
+    "discordance": 0.07764
+   },
+   "min pass@1": {
+    "spearman": 0.9350415794331037,
+    "bal_acc": 0.9378235847932892,
+    "discordance": 0.11114
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.97715208645388,
+    "bal_acc": 0.9274753240056954,
+    "discordance": 0.06234
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9350415794331037,
+    "bal_acc": 0.9378235847932892,
+    "discordance": 0.11114
+   }
+  },
+  {
+   "prior": "Beta(2,2)",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.999,
+   "mean pass@1": {
+    "spearman": 0.8581445824863614,
+    "bal_acc": 0.784034034034034,
+    "discordance": 0.15714
+   },
+   "mean pass@10": {
+    "spearman": 0.9707716080254288,
+    "bal_acc": 0.9954954954954955,
+    "discordance": 0.07189
+   },
+   "min pass@1": {
+    "spearman": 0.9413042506287606,
+    "bal_acc": 0.997997997997998,
+    "discordance": 0.10493
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.972376810727442,
+    "bal_acc": 0.9742242242242243,
+    "discordance": 0.06855
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9413042506287606,
+    "bal_acc": 0.997997997997998,
+    "discordance": 0.10493
+   }
+  },
+  {
+   "prior": "Beta(2,2)",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.26235,
+   "mean pass@1": {
+    "spearman": 0.8954201935805504,
+    "bal_acc": 0.9143714391006595,
+    "discordance": 0.13369
+   },
+   "mean pass@10": {
+    "spearman": 0.9513810446484524,
+    "bal_acc": 0.9019468487840128,
+    "discordance": 0.095
+   },
+   "min pass@1": {
+    "spearman": 0.9146050482290125,
+    "bal_acc": 0.8794310534289227,
+    "discordance": 0.1286
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9884144154770359,
+    "bal_acc": 0.9745708415189135,
+    "discordance": 0.04456
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9146050482290125,
+    "bal_acc": 0.8794310534289227,
+    "discordance": 0.1286
+   }
+  },
+  {
+   "prior": "Beta(2,2)",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.85335,
+   "mean pass@1": {
+    "spearman": 0.5294505777711264,
+    "bal_acc": 0.7250326629304442,
+    "discordance": 0.31794
+   },
+   "mean pass@10": {
+    "spearman": 0.5363718654344296,
+    "bal_acc": 0.7811006723846098,
+    "discordance": 0.31453
+   },
+   "min pass@1": {
+    "spearman": 0.5124827828042069,
+    "bal_acc": 0.7718478152059938,
+    "discordance": 0.32269
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.5726613667686533,
+    "bal_acc": 0.7773719612227623,
+    "discordance": 0.30127
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9648196755060491,
+    "bal_acc": 0.9278563710448967,
+    "discordance": 0.08167
+   }
+  },
+  {
+   "prior": "Beta(2,2)",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.63095,
+   "mean pass@1": {
+    "spearman": 0.780794897898487,
+    "bal_acc": 0.7801778498044236,
+    "discordance": 0.20477
+   },
+   "mean pass@10": {
+    "spearman": 0.9469718784394294,
+    "bal_acc": 0.9025065739422854,
+    "discordance": 0.09932
+   },
+   "min pass@1": {
+    "spearman": 0.9235405102728511,
+    "bal_acc": 0.8803793307036885,
+    "discordance": 0.12088
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9073853086669631,
+    "bal_acc": 0.8656704230461141,
+    "discordance": 0.13092
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9719033951052584,
+    "bal_acc": 0.9210883799318149,
+    "discordance": 0.07149
+   }
+  },
+  {
+   "prior": "Beta(0.3,0.3)",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.3085,
+   "mean pass@1": {
+    "spearman": 0.675016431288041,
+    "bal_acc": 0.7976464618409935,
+    "discordance": 0.24427
+   },
+   "mean pass@10": {
+    "spearman": 0.9229215315293762,
+    "bal_acc": 0.9916173587355607,
+    "discordance": 0.09964
+   },
+   "min pass@1": {
+    "spearman": 0.9811288513129498,
+    "bal_acc": 0.9706607555744623,
+    "discordance": 0.06695
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9746935546822337,
+    "bal_acc": 0.9516084991286882,
+    "discordance": 0.06469
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9811288513129498,
+    "bal_acc": 0.9706607555744623,
+    "discordance": 0.06695
+   }
+  },
+  {
+   "prior": "Beta(0.3,0.3)",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.51565,
+   "mean pass@1": {
+    "spearman": 0.6398035282715087,
+    "bal_acc": 0.7164705740566977,
+    "discordance": 0.25851
+   },
+   "mean pass@10": {
+    "spearman": 0.8986213167142433,
+    "bal_acc": 0.9234210713894295,
+    "discordance": 0.11526
+   },
+   "min pass@1": {
+    "spearman": 0.9910448438222166,
+    "bal_acc": 0.9766779966665542,
+    "discordance": 0.04923
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9590938715572345,
+    "bal_acc": 0.9115837244590153,
+    "discordance": 0.08167
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9910448438222166,
+    "bal_acc": 0.9766779966665542,
+    "discordance": 0.04923
+   }
+  },
+  {
+   "prior": "Beta(0.3,0.3)",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.14355,
+   "mean pass@1": {
+    "spearman": 0.7284216707355541,
+    "bal_acc": 0.9057614195996169,
+    "discordance": 0.22117
+   },
+   "mean pass@10": {
+    "spearman": 0.9483888078524272,
+    "bal_acc": 0.9789958322080696,
+    "discordance": 0.08278
+   },
+   "min pass@1": {
+    "spearman": 0.9624039860842101,
+    "bal_acc": 0.9756701147778188,
+    "discordance": 0.09164
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9906829069802071,
+    "bal_acc": 0.9846305390250827,
+    "discordance": 0.03967
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9624039860842101,
+    "bal_acc": 0.9756701147778188,
+    "discordance": 0.09164
+   }
+  },
+  {
+   "prior": "Beta(0.3,0.3)",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.346,
+   "mean pass@1": {
+    "spearman": 0.6336080994750201,
+    "bal_acc": 0.76124250941295,
+    "discordance": 0.26655
+   },
+   "mean pass@10": {
+    "spearman": 0.8570248209779938,
+    "bal_acc": 0.8849145321807994,
+    "discordance": 0.16329
+   },
+   "min pass@1": {
+    "spearman": 0.9192987756587245,
+    "bal_acc": 0.8732477771296248,
+    "discordance": 0.1387
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9138406141441014,
+    "bal_acc": 0.8770483109720528,
+    "discordance": 0.12763
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9853833453979581,
+    "bal_acc": 0.9721942337947005,
+    "discordance": 0.04782
+   }
+  },
+  {
+   "prior": "Beta(0.3,0.3)",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.18515,
+   "mean pass@1": {
+    "spearman": 0.7137237399278092,
+    "bal_acc": 0.8455039472778714,
+    "discordance": 0.23046
+   },
+   "mean pass@10": {
+    "spearman": 0.9487948624191601,
+    "bal_acc": 0.9708324783586528,
+    "discordance": 0.08616
+   },
+   "min pass@1": {
+    "spearman": 0.9535347262075775,
+    "bal_acc": 0.9646963796901862,
+    "discordance": 0.09978
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9817457508153643,
+    "bal_acc": 0.9516432921297815,
+    "discordance": 0.05826
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9602135941808705,
+    "bal_acc": 0.9883596319209099,
+    "discordance": 0.07839
+   }
+  },
+  {
+   "prior": "Beta(1,4)",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.1246,
+   "mean pass@1": {
+    "spearman": 0.699438034006095,
+    "bal_acc": 0.8779354615601545,
+    "discordance": 0.23869
+   },
+   "mean pass@10": {
+    "spearman": 0.9488359102535896,
+    "bal_acc": 0.9838168912280779,
+    "discordance": 0.08491
+   },
+   "min pass@1": {
+    "spearman": 0.9469762683469876,
+    "bal_acc": 0.927454214005723,
+    "discordance": 0.10044
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9625469661603673,
+    "bal_acc": 0.9686919549916368,
+    "discordance": 0.08031
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9469762683469876,
+    "bal_acc": 0.927454214005723,
+    "discordance": 0.10044
+   }
+  },
+  {
+   "prior": "Beta(1,4)",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.76025,
+   "mean pass@1": {
+    "spearman": 0.6514677932156694,
+    "bal_acc": 0.6952684188526701,
+    "discordance": 0.25937
+   },
+   "mean pass@10": {
+    "spearman": 0.9239928194864819,
+    "bal_acc": 0.8221355414136794,
+    "discordance": 0.10557
+   },
+   "min pass@1": {
+    "spearman": 0.9675393041555813,
+    "bal_acc": 0.9388203073806398,
+    "discordance": 0.07704
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9386424089166059,
+    "bal_acc": 0.8780964976739514,
+    "discordance": 0.10321
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9675393041555813,
+    "bal_acc": 0.9388203073806398,
+    "discordance": 0.07704
+   }
+  },
+  {
+   "prior": "Beta(1,4)",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.0003,
+   "mean pass@1": {
+    "spearman": 0.7741995955594989,
+    "bal_acc": 0.9988996699009702,
+    "discordance": 0.20349
+   },
+   "mean pass@10": {
+    "spearman": 0.9727021052087551,
+    "bal_acc": 0.9976492947884366,
+    "discordance": 0.06299
+   },
+   "min pass@1": {
+    "spearman": 0.903243542025626,
+    "bal_acc": 0.9963989196759028,
+    "discordance": 0.13642
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9889843923979609,
+    "bal_acc": 0.9988996699009702,
+    "discordance": 0.04317
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.903243542025626,
+    "bal_acc": 0.9963989196759028,
+    "discordance": 0.13642
+   }
+  },
+  {
+   "prior": "Beta(1,4)",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.2353,
+   "mean pass@1": {
+    "spearman": 0.510443631869609,
+    "bal_acc": 0.6895973916200676,
+    "discordance": 0.32133
+   },
+   "mean pass@10": {
+    "spearman": 0.6698275161680687,
+    "bal_acc": 0.7391503080214286,
+    "discordance": 0.26167
+   },
+   "min pass@1": {
+    "spearman": 0.6638372987371103,
+    "bal_acc": 0.7168539270891184,
+    "discordance": 0.2627
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.6912527808586318,
+    "bal_acc": 0.7410294702093674,
+    "discordance": 0.25035
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9541409929428523,
+    "bal_acc": 0.9291804974393099,
+    "discordance": 0.0964
+   }
+  },
+  {
+   "prior": "Beta(1,4)",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.0141,
+   "mean pass@1": {
+    "spearman": 0.7496214520550535,
+    "bal_acc": 0.9449079539233691,
+    "discordance": 0.21927
+   },
+   "mean pass@10": {
+    "spearman": 0.9399220040573049,
+    "bal_acc": 0.975453899989857,
+    "discordance": 0.10623
+   },
+   "min pass@1": {
+    "spearman": 0.8569627626404538,
+    "bal_acc": 0.9592682353093512,
+    "discordance": 0.16482
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.950078042301695,
+    "bal_acc": 0.9729181458565778,
+    "discordance": 0.09679
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.8975772558059429,
+    "bal_acc": 0.9845358562828075,
+    "discordance": 0.13946
+   }
+  },
+  {
+   "prior": "logit-N(-1.5,1.5), corr 0.6",
+   "h_scheme": "common h=0.05 [orig]",
+   "frac_supercritical": 0.36515,
+   "mean pass@1": {
+    "spearman": 0.967043714198609,
+    "bal_acc": 0.9333495161038158,
+    "discordance": 0.07295
+   },
+   "mean pass@10": {
+    "spearman": 0.9955775378359436,
+    "bal_acc": 0.9848287686054094,
+    "discordance": 0.0272
+   },
+   "min pass@1": {
+    "spearman": 0.9713942644934854,
+    "bal_acc": 0.9301484248393208,
+    "discordance": 0.07381
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9941007467172517,
+    "bal_acc": 0.9729071099232363,
+    "discordance": 0.0302
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9713942644934854,
+    "bal_acc": 0.9301484248393208,
+    "discordance": 0.07381
+   }
+  },
+  {
+   "prior": "logit-N(-1.5,1.5), corr 0.6",
+   "h_scheme": "common h=0.01",
+   "frac_supercritical": 0.8222,
+   "mean pass@1": {
+    "spearman": 0.9589134651182836,
+    "bal_acc": 0.9099026207226407,
+    "discordance": 0.08138
+   },
+   "mean pass@10": {
+    "spearman": 0.9929966800034915,
+    "bal_acc": 0.9448270285844529,
+    "discordance": 0.03267
+   },
+   "min pass@1": {
+    "spearman": 0.9780281200470701,
+    "bal_acc": 0.9481703454667291,
+    "discordance": 0.06522
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9900637811326594,
+    "bal_acc": 0.9569142734560272,
+    "discordance": 0.03899
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9780281200470701,
+    "bal_acc": 0.9481703454667291,
+    "discordance": 0.06522
+   }
+  },
+  {
+   "prior": "logit-N(-1.5,1.5), corr 0.6",
+   "h_scheme": "common h=0.2",
+   "frac_supercritical": 0.075,
+   "mean pass@1": {
+    "spearman": 0.9779841968909604,
+    "bal_acc": 0.9854054054054053,
+    "discordance": 0.05923
+   },
+   "mean pass@10": {
+    "spearman": 0.9961195636517989,
+    "bal_acc": 0.9694594594594594,
+    "discordance": 0.02584
+   },
+   "min pass@1": {
+    "spearman": 0.9594400901866,
+    "bal_acc": 0.9600900900900902,
+    "discordance": 0.08677
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9982566426956414,
+    "bal_acc": 0.9952252252252252,
+    "discordance": 0.01612
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9594400901866,
+    "bal_acc": 0.9600900900900902,
+    "discordance": 0.08677
+   }
+  },
+  {
+   "prior": "logit-N(-1.5,1.5), corr 0.6",
+   "h_scheme": "heterog. h_k ~ logU[0.003,0.3]",
+   "frac_supercritical": 0.40035,
+   "mean pass@1": {
+    "spearman": 0.821569683895924,
+    "bal_acc": 0.8138659076459936,
+    "discordance": 0.18772
+   },
+   "mean pass@10": {
+    "spearman": 0.8367617507664044,
+    "bal_acc": 0.818024071970462,
+    "discordance": 0.18027
+   },
+   "min pass@1": {
+    "spearman": 0.810573666641934,
+    "bal_acc": 0.8009657573553767,
+    "discordance": 0.19292
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.8392243283800607,
+    "bal_acc": 0.8195842947851715,
+    "discordance": 0.17811
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9698833347367081,
+    "bal_acc": 0.9312403271001795,
+    "discordance": 0.07587
+   }
+  },
+  {
+   "prior": "logit-N(-1.5,1.5), corr 0.6",
+   "h_scheme": "heterog., harder stages louder",
+   "frac_supercritical": 0.1803,
+   "mean pass@1": {
+    "spearman": 0.9614729840406823,
+    "bal_acc": 0.9378673365815491,
+    "discordance": 0.08335
+   },
+   "mean pass@10": {
+    "spearman": 0.9844843763217108,
+    "bal_acc": 0.9593756180564958,
+    "discordance": 0.05338
+   },
+   "min pass@1": {
+    "spearman": 0.9474667662601669,
+    "bal_acc": 0.942467554550178,
+    "discordance": 0.09711
+   },
+   "geo-mean pass@1": {
+    "spearman": 0.9828813565952034,
+    "bal_acc": 0.9592064613008926,
+    "discordance": 0.05538
+   },
+   "min stage odds (needs h)": {
+    "spearman": 0.9599122650657805,
+    "bal_acc": 0.9631021413824343,
+    "discordance": 0.08314
+   }
+  }
+ ],
+ "summary": {
+  "mean pass@1 | common h": {
+   "spearman_min": 0.6107045909067613,
+   "spearman_median": 0.7758259902765648,
+   "bal_acc_min": 0.6772135150693581,
+   "bal_acc_median": 0.8389146043926761,
+   "discordance_median": 0.20073000000000002,
+   "discordance_max": 0.27797
+  },
+  "mean pass@1 | heterogeneous h": {
+   "spearman_min": 0.510443631869609,
+   "spearman_median": 0.7027777726969444,
+   "bal_acc_min": 0.6895973916200676,
+   "bal_acc_median": 0.7868479226843601,
+   "discordance_median": 0.23807499999999998,
+   "discordance_max": 0.32133
+  },
+  "mean pass@10 | common h": {
+   "spearman_min": 0.8986213167142433,
+   "spearman_median": 0.9658224897940562,
+   "bal_acc_min": 0.8221355414136794,
+   "bal_acc_median": 0.9753529094732791,
+   "discordance_median": 0.07622999999999999,
+   "discordance_max": 0.11526
+  },
+  "mean pass@10 | heterogeneous h": {
+   "spearman_min": 0.5363718654344296,
+   "spearman_median": 0.8984734125176493,
+   "bal_acc_min": 0.7391503080214286,
+   "bal_acc_median": 0.8937105530615423,
+   "discordance_median": 0.13476,
+   "discordance_max": 0.31453
+  },
+  "min pass@1 | common h": {
+   "spearman_min": 0.903243542025626,
+   "spearman_median": 0.9649716451198957,
+   "bal_acc_min": 0.8794310534289227,
+   "bal_acc_median": 0.9524177478016085,
+   "discordance_median": 0.081905,
+   "discordance_max": 0.13642
+  },
+  "min pass@1 | heterogeneous h": {
+   "spearman_min": 0.5124827828042069,
+   "spearman_median": 0.8881307691495892,
+   "bal_acc_min": 0.7168539270891184,
+   "bal_acc_median": 0.8768135539166566,
+   "discordance_median": 0.15176,
+   "discordance_max": 0.32269
+  },
+  "geo-mean pass@1 | common h": {
+   "spearman_min": 0.9386424089166059,
+   "spearman_median": 0.9759228205680568,
+   "bal_acc_min": 0.8780964976739514,
+   "bal_acc_median": 0.962803114223832,
+   "discordance_median": 0.063515,
+   "discordance_max": 0.10321
+  },
+  "geo-mean pass@1 | heterogeneous h": {
+   "spearman_min": 0.5726613667686533,
+   "spearman_median": 0.9106129614055323,
+   "bal_acc_min": 0.7410294702093674,
+   "bal_acc_median": 0.8713593670090835,
+   "discordance_median": 0.129275,
+   "discordance_max": 0.30127
+  },
+  "min stage odds (needs h) | common h": {
+   "spearman_min": 0.903243542025626,
+   "spearman_median": 0.9649716451198957,
+   "bal_acc_min": 0.8794310534289227,
+   "bal_acc_median": 0.9524177478016085,
+   "discordance_median": 0.081905,
+   "discordance_max": 0.13642
+  },
+  "min stage odds (needs h) | heterogeneous h": {
+   "spearman_min": 0.8975772558059429,
+   "spearman_median": 0.9673515051213786,
+   "bal_acc_min": 0.9210883799318149,
+   "bal_acc_median": 0.9437486800454248,
+   "discordance_median": 0.07713,
+   "discordance_max": 0.13946
+  }
+ }
+}

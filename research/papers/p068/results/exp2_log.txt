@@ -1,0 +1,78 @@
+statics: N0 at sigma=0.3: 480.49722433728476 q0: 0.6639043092373069
+a= 8 Kbar= 1.75 Tnash= [0.102 0.    0.    0.    0.    0.    0.    0.    0.    0.   ]
+a= 20 Kbar= 4.39 Tnash= [0.332 0.175 0.083 0.02  0.    0.    0.    0.    0.    0.   ]
+a= 40 Kbar= 8.77 Tnash= [0.537 0.384 0.27  0.192 0.134 0.088 0.051 0.021 0.    0.   ]
+{
+ "no_AI_benchmark": {
+  "T": 0.0,
+  "data_share": 0.0,
+  "N": 600.0,
+  "q": 0.0,
+  "creator_surplus": 180.0,
+  "industry_profit": 0.0,
+  "per_firm_profit": 0.0,
+  "welfare": 180.0,
+  "note": "AI trained on no human works (q=H(0)=0)"
+ },
+ "fair_use": {
+  "T": 0.0,
+  "data_share": 1.0,
+  "N": 480.49722433728476,
+  "q": 0.6639043092373069,
+  "creator_surplus": 115.43879129791748,
+  "industry_profit": 4780.11102650861,
+  "per_firm_profit": 956.022205301722,
+  "welfare": 4895.549817806527
+ },
+ "voluntary_K5": {
+  "T": 3.1628678495654765e-07,
+  "data_share": 1.0,
+  "N": 480.49752395437537,
+  "q": 0.6639044018467197,
+  "creator_surplus": 115.43893526314278,
+  "industry_profit": 4780.111541321366,
+  "per_firm_profit": 956.0223082642731,
+  "welfare": 4895.550476584508
+ },
+ "industry_levy_TJ": {
+  "T": 0.3316507318225969,
+  "data_share": 1.0,
+  "N": 799.4597873251727,
+  "q": 0.7343941360968018,
+  "creator_surplus": 319.56797577500504,
+  "industry_profit": 5022.496356367842,
+  "per_firm_profit": 1004.4992712735684,
+  "welfare": 5342.064332142848
+ },
+ "welfare_levy_TW": {
+  "T": 0.5371689268714973,
+  "data_share": 1.0,
+  "N": 999.9999332707316,
+  "q": 0.7620499644486987,
+  "creator_surplus": 499.9999332707338,
+  "industry_profit": 4949.590853004022,
+  "per_firm_profit": 989.9181706008045,
+  "welfare": 5449.590786274756
+ },
+ "individual_optout_30pct": {
+  "T": 0.0,
+  "data_share": 0.7,
+  "N": 489.891169097999,
+  "q": 0.6117157272334044,
+  "creator_surplus": 119.99667878009635,
+  "industry_profit": 4404.353236080512,
+  "per_firm_profit": 880.8706472161024,
+  "welfare": 4524.349914860613
+ },
+ "collective_bargain": {
+  "T": 0.5371689950298066,
+  "data_share": 1.0,
+  "N": 1000.0,
+  "q": 0.7620499723878147,
+  "creator_surplus": 500.0,
+  "industry_profit": 4949.590806162459,
+  "per_firm_profit": 989.9181612324917,
+  "welfare": 5449.590806162459
+ }
+}
+bargaining {'N_pd': 25.0, 'q_disagree': 0.1772246880701892, 'feasible_T_min': np.float64(0.09289388635853799), 'feasible_T_max': np.float64(0.5371689950298066), 'T_nash_bargain': np.float64(0.5371689950298066)} pareto {'T_min': np.float64(0.0013462882080947534), 'T_max': np.float64(0.5371689950298066)}

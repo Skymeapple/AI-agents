@@ -1,0 +1,1502 @@
+[
+  {
+    "instance_id": "id16",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Whitebox",
+    "stats": {
+      "num_prompt_tokens": 382.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6494300365447998,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id17",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "True, True",
+    "stats": {
+      "num_prompt_tokens": 467.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5416786670684814,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id18",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "When a client connects to a server, the server compares the ticket\u2019s expiration time to the server\u2019s current clock, and refuses to authenticate the user if the ticket expiration time is in the past.",
+    "stats": {
+      "num_prompt_tokens": 534.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5476937294006348,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id19",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Receiver",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5685663223266602,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id20",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "DaCryptic",
+    "stats": {
+      "num_prompt_tokens": 369.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.580268383026123,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id21",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Buffer-overrun",
+    "stats": {
+      "num_prompt_tokens": 389.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.4981203079223633,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id22",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "all instructions that modify segment state",
+    "stats": {
+      "num_prompt_tokens": 519.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.8690090179443359,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id23",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Freenet",
+    "stats": {
+      "num_prompt_tokens": 375.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7602066993713379,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id24",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "No string boundary checks in predefined functions",
+    "stats": {
+      "num_prompt_tokens": 385.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.637843132019043,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id25",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Authenticated",
+    "stats": {
+      "num_prompt_tokens": 374.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6356065273284912,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id26",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "an integer expression's result \"wraps around\"; instead of creating a very large number, a very small (or negative) number ends up getting created",
+    "stats": {
+      "num_prompt_tokens": 416.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5252962112426758,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id27",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Given H(k \\| m)H(k\u2225m) anyone can compute H(k \\| m \\| \\text{PB} \\| w)H(k\u2225m\u2225PB\u2225w) for any ww",
+    "stats": {
+      "num_prompt_tokens": 574.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7137997150421143,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id28",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Forward secrecy",
+    "stats": {
+      "num_prompt_tokens": 431.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6154108047485352,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id29",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Privacy",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5702199935913086,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id30",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Authentication",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6258633136749268,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id31",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Access Point",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6001265048980713,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id32",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "128",
+    "stats": {
+      "num_prompt_tokens": 362.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5192844867706299,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id33",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "It is a scanner which works by injecting packets to a range of addresses, and inferring what hosts and services might be at those addresses, based on the responses",
+    "stats": {
+      "num_prompt_tokens": 421.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.49448680877685547,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id34",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Escape queries",
+    "stats": {
+      "num_prompt_tokens": 365.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.4958198070526123,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id35",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "Taking care to avoid activities during a penetration test that might attract attention, e.g., by operators or IDS services",
+    "stats": {
+      "num_prompt_tokens": 416.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7602541446685791,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id36",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Mishandling of undefined, poorly defined variables",
+    "stats": {
+      "num_prompt_tokens": 394.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5758607387542725,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id37",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Blinding randomizes the ciphertext being decrypted, thus obscuring the correlation between an adversary\u2019s input and the timing differences.",
+    "stats": {
+      "num_prompt_tokens": 483.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5143568515777588,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id38",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "True, False",
+    "stats": {
+      "num_prompt_tokens": 460.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7700643539428711,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id39",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Key exchange",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5958526134490967,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id40",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Silk Road",
+    "stats": {
+      "num_prompt_tokens": 389.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6891741752624512,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id41",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Dark web",
+    "stats": {
+      "num_prompt_tokens": 387.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6469800472259521,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id42",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Assume that the query is not satisfiable and stop executing the path",
+    "stats": {
+      "num_prompt_tokens": 422.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6686367988586426,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id43",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Sender\u2019s Public key",
+    "stats": {
+      "num_prompt_tokens": 379.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.46842193603515625,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id44",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Compiling the program with address sanitizer (ASAN) will make the source of a memory error easier to find",
+    "stats": {
+      "num_prompt_tokens": 452.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.9166908264160156,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id45",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Valid DV certificates provide more confidence to a user that she is connecting to the intended party than valid EV certificates.",
+    "stats": {
+      "num_prompt_tokens": 472.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.47508931159973145,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id46",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "IP Network Browser",
+    "stats": {
+      "num_prompt_tokens": 367.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5411031246185303,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id47",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "WPA3",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5201280117034912,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id48",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "True, True",
+    "stats": {
+      "num_prompt_tokens": 441.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5023283958435059,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id49",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Session layer",
+    "stats": {
+      "num_prompt_tokens": 383.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5964841842651367,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id50",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "All of the above",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7107210159301758,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id51",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "when a pointer is used to access memory not allocated to it",
+    "stats": {
+      "num_prompt_tokens": 404.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.4890279769897461,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id52",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Public-key system",
+    "stats": {
+      "num_prompt_tokens": 367.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7663571834564209,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id53",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "Network or transport layer",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7727053165435791,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id54",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "No, an attacker can simply guess the tag for messages",
+    "stats": {
+      "num_prompt_tokens": 430.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7338554859161377,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id55",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Snort",
+    "stats": {
+      "num_prompt_tokens": 379.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.49982237815856934,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id56",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Condentiality",
+    "stats": {
+      "num_prompt_tokens": 372.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5787346363067627,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id57",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "4-way handshake",
+    "stats": {
+      "num_prompt_tokens": 392.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7948625087738037,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id58",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Message Condentiality",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5187444686889648,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id59",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "SQL queries based on user input",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6511280536651611,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id60",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "True, True",
+    "stats": {
+      "num_prompt_tokens": 478.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.79378342628479,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id61",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "Wireshark",
+    "stats": {
+      "num_prompt_tokens": 372.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5796196460723877,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id62",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "backdoor",
+    "stats": {
+      "num_prompt_tokens": 383.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5798189640045166,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id63",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "CBF",
+    "stats": {
+      "num_prompt_tokens": 366.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5451326370239258,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id64",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "A piece of software that intercepts and possibly modifies requests (and responses) between a web browser and web server",
+    "stats": {
+      "num_prompt_tokens": 422.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.039764165878296,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id65",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "boundary checks",
+    "stats": {
+      "num_prompt_tokens": 373.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5674188137054443,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id66",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "C, C++",
+    "stats": {
+      "num_prompt_tokens": 378.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.518303632736206,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id67",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Authentication",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5692324638366699,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id68",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "IM \u2013 Trojans",
+    "stats": {
+      "num_prompt_tokens": 387.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5652847290039062,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id69",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "48",
+    "stats": {
+      "num_prompt_tokens": 363.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.3232288360595703,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id70",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "It generates each different input by modifying a prior input",
+    "stats": {
+      "num_prompt_tokens": 409.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.8861987590789795,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id71",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Network, vulnerability, and port ",
+    "stats": {
+      "num_prompt_tokens": 380.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5683915615081787,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id72",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Message Nonrepudiation",
+    "stats": {
+      "num_prompt_tokens": 380.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.4505739212036133,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id73",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Application layer",
+    "stats": {
+      "num_prompt_tokens": 364.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.047637701034546,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id74",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Secure IP Protocol",
+    "stats": {
+      "num_prompt_tokens": 377.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5227770805358887,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id75",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "Tor browser",
+    "stats": {
+      "num_prompt_tokens": 387.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.060438871383667,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id76",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "By overwriting the return address to point to the location of that code",
+    "stats": {
+      "num_prompt_tokens": 414.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6779935359954834,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id77",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Modication detection code (MDC)",
+    "stats": {
+      "num_prompt_tokens": 375.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5035769939422607,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id78",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Yes, whenever F is a secure PRF",
+    "stats": {
+      "num_prompt_tokens": 504.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.49960970878601074,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id79",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "UNIX",
+    "stats": {
+      "num_prompt_tokens": 374.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.630826473236084,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id80",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "The attacker resends a captured message, and the site accept its and responds in the attacker's favor",
+    "stats": {
+      "num_prompt_tokens": 412.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.4600143432617188,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id81",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "True, False",
+    "stats": {
+      "num_prompt_tokens": 433.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5780608654022217,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id82",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Wireless security",
+    "stats": {
+      "num_prompt_tokens": 377.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5298752784729004,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id83",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Results are often reproducible",
+    "stats": {
+      "num_prompt_tokens": 397.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5889863967895508,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id84",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Metasploit",
+    "stats": {
+      "num_prompt_tokens": 371.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6542568206787109,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id85",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Yes, the key is k = m xor c.",
+    "stats": {
+      "num_prompt_tokens": 414.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5608227252960205,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id86",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "True, False",
+    "stats": {
+      "num_prompt_tokens": 457.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6330046653747559,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id87",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Message Integrity",
+    "stats": {
+      "num_prompt_tokens": 376.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6302993297576904,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id88",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "A direct leak comes via the software system's intended interaction mechanism, where as a side channel leak comes from measurements of other system features, like timing, power usage, or space usage",
+    "stats": {
+      "num_prompt_tokens": 439.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6022040843963623,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id89",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Only once",
+    "stats": {
+      "num_prompt_tokens": 365.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.49480128288269043,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id90",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "It is a sequence of nops preceding injected shellcode, useful when the return address is unknown",
+    "stats": {
+      "num_prompt_tokens": 408.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6379711627960205,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id91",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "SYN stealth scan",
+    "stats": {
+      "num_prompt_tokens": 372.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6373374462127686,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id92",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "B and C",
+    "stats": {
+      "num_prompt_tokens": 456.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.698047399520874,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id93",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Buffer-overflow",
+    "stats": {
+      "num_prompt_tokens": 390.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.310267448425293,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id94",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Snort",
+    "stats": {
+      "num_prompt_tokens": 375.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5841329097747803,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id95",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Base Transceiver Station",
+    "stats": {
+      "num_prompt_tokens": 394.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5996339321136475,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id96",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "buffer",
+    "stats": {
+      "num_prompt_tokens": 380.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6191005706787109,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id97",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "TKIP",
+    "stats": {
+      "num_prompt_tokens": 364.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6371769905090332,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id98",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "buffer",
+    "stats": {
+      "num_prompt_tokens": 394.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6110610961914062,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id99",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "WPS",
+    "stats": {
+      "num_prompt_tokens": 381.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.3106818199157715,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id100",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Open, filtered, unfiltered",
+    "stats": {
+      "num_prompt_tokens": 382.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5451831817626953,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id101",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "WEP",
+    "stats": {
+      "num_prompt_tokens": 369.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5501925945281982,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id102",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "As a stack-allocated variable, it could have different addresses depending on when its containing function is called",
+    "stats": {
+      "num_prompt_tokens": 420.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.7677338123321533,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id103",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Local variables",
+    "stats": {
+      "num_prompt_tokens": 363.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.1422805786132812,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id104",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "No, since the key is shorter than the message",
+    "stats": {
+      "num_prompt_tokens": 393.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5848751068115234,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id105",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Restrict what operations/data the user can access",
+    "stats": {
+      "num_prompt_tokens": 389.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5614316463470459,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id106",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Receiver site",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.469771146774292,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id107",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "backdoor",
+    "stats": {
+      "num_prompt_tokens": 393.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5317533016204834,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id108",
+    "train_trial_index": 0,
+    "predicted_text": "B",
+    "base64_images": [],
+    "mapped_output": "Comparing the TTL values of the actual and spoofed addresses",
+    "stats": {
+      "num_prompt_tokens": 401.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.652935266494751,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id109",
+    "train_trial_index": 0,
+    "predicted_text": "D",
+    "base64_images": [],
+    "mapped_output": "Weak or non-existent authentication mechanisms",
+    "stats": {
+      "num_prompt_tokens": 408.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5361306667327881,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id110",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "True, True",
+    "stats": {
+      "num_prompt_tokens": 438.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5562970638275146,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  },
+  {
+    "instance_id": "id111",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "To identify live systems",
+    "stats": {
+      "num_prompt_tokens": 371.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5524027347564697,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id112",
+    "train_trial_index": 0,
+    "predicted_text": "A",
+    "base64_images": [],
+    "mapped_output": "Confidentiality, Integrity, Non repudiation and Authentication",
+    "stats": {
+      "num_prompt_tokens": 404.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.5642228126525879,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id113",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Morris Worm",
+    "stats": {
+      "num_prompt_tokens": 365.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6214370727539062,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id114",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "SMS Trojan",
+    "stats": {
+      "num_prompt_tokens": 383.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 0.6129651069641113,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 1.0
+    }
+  },
+  {
+    "instance_id": "id115",
+    "train_trial_index": 0,
+    "predicted_text": "C",
+    "base64_images": [],
+    "mapped_output": "Correctness",
+    "stats": {
+      "num_prompt_tokens": 370.0,
+      "num_output_tokens": 1.0,
+      "inference_runtime": 1.3457310199737549,
+      "num_train_instances": 5.0,
+      "prompt_truncated": 0.0,
+      "exact_match": 0.0
+    }
+  }
+]

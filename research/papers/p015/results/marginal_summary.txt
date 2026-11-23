@@ -1,0 +1,53 @@
+Mean per-task NLL across agents (equal task weights)
+                       nll_per_task  cv_nll_per_task  cv_wins
+family                                                       
+CM mixture (NPMLE)         0.315660         0.325158       11
+Lomax (gamma frailty)      0.325971         0.333914        3
+Weibull                    0.325701         0.332655        3
+exponential                0.374222         0.381670        0
+log-logistic (METR)        0.324110         0.331174        3
+log-normal                 0.324328         0.331671        0
+
+Extrapolation (train T<120min, test T>=240min)
+                       mean_test_nll  mean_abs_err  mean_signed_err  n_agents
+family                                                                       
+CM mixture (NPMLE)          0.598668      0.183325         0.179752      17.0
+Lomax (gamma frailty)       0.777374      0.325893         0.325893      17.0
+Weibull                     0.568603      0.162959         0.152287      17.0
+exponential                 0.703616      0.131314        -0.131314      17.0
+log-logistic (METR)         0.595728      0.202876         0.202876      17.0
+log-normal                  0.638198      0.235903         0.235903      17.0
+
+Fitted shape parameters per agent
+family                             Lomax (gamma frailty)   Weibull  log-logistic (METR)
+alias                                                                                  
+Claude 3 Opus (Inspect)                         0.565309  0.486394             0.796201
+Claude 3.5 Sonnet (New) (Inspect)               0.387823  0.460900             0.665662
+Claude 3.5 Sonnet (Old) (Inspect)               0.496330  0.477649             0.749633
+Claude 3.7 Sonnet (Inspect)                     0.832094  0.616140             0.814498
+Claude 4 Opus (Inspect)                         0.717306  0.631090             0.818694
+Claude 4.1 Opus (Inspect)                       1.030417  0.696063             0.903707
+Claude Opus 4.5 (Inspect)                       0.435185  0.635455             0.761339
+Claude Opus 4.6 (Inspect)                       0.161412  0.507720             0.560188
+GPT-4 0314                                      0.868481  0.616679             0.948857
+GPT-4 1106 (Inspect)                            0.708955  0.564017             0.870912
+GPT-4 Turbo (Inspect)                           0.896925  0.603297             1.006451
+GPT-4o (Inspect)                                0.655277  0.484044             0.854233
+GPT-5 (Inspect)                                 0.539541  0.660613             0.828534
+GPT-5.1-Codex-Max (Inspect)                     0.752761  0.764617             0.944112
+GPT-5.2                                         0.539598  0.697973             0.822903
+GPT-5.3-Codex                                   0.343074  0.588807             0.662915
+Gemini 3 Pro                                    0.800291  0.737392             0.943870
+o1 (Inspect)                                    0.776478  0.602006             0.814754
+o1-preview                                      0.924687  0.603415             0.911727
+o3 (Inspect)                                    1.356660  0.781715             1.041169
+
+Median ratios h80/h50 and h99/h50 by family
+                            r80       r99
+family                                   
+CM mixture (NPMLE)     0.214801  0.002864
+Lomax (gamma frailty)  0.223586  0.008637
+Weibull                0.155864  0.000967
+exponential            0.321928  0.014500
+log-logistic (METR)    0.186580  0.003830
+log-normal             0.162336  0.006569

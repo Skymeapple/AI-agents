@@ -1,0 +1,105 @@
+{
+  "boundary": [
+    {
+      "suffix_p": 0.05,
+      "h0": 0.001000000000000001,
+      "policy": "factorised",
+      "J_star": 0.041796875
+    },
+    {
+      "suffix_p": 0.05,
+      "h0": 0.001000000000000001,
+      "policy": "AR1",
+      "J_star": 0.041796875
+    },
+    {
+      "suffix_p": 0.08,
+      "h0": 0.0025599999999999998,
+      "policy": "factorised",
+      "J_star": 0.11445312500000002
+    },
+    {
+      "suffix_p": 0.08,
+      "h0": 0.0025599999999999998,
+      "policy": "AR1",
+      "J_star": 0.099921875
+    },
+    {
+      "suffix_p": 0.12,
+      "h0": 0.0057599999999999995,
+      "policy": "factorised",
+      "J_star": 0.230703125
+    },
+    {
+      "suffix_p": 0.12,
+      "h0": 0.0057599999999999995,
+      "policy": "AR1",
+      "J_star": 0.18710937500000002
+    },
+    {
+      "suffix_p": 0.16,
+      "h0": 0.01024,
+      "policy": "factorised",
+      "J_star": 0.376015625
+    },
+    {
+      "suffix_p": 0.16,
+      "h0": 0.01024,
+      "policy": "AR1",
+      "J_star": 0.28882812500000005
+    },
+    {
+      "suffix_p": 0.2,
+      "h0": 0.016,
+      "policy": "factorised",
+      "J_star": 0.506796875
+    },
+    {
+      "suffix_p": 0.2,
+      "h0": 0.016,
+      "policy": "AR1",
+      "J_star": 0.390546875
+    },
+    {
+      "suffix_p": 0.25,
+      "h0": 0.02499999999999999,
+      "policy": "factorised",
+      "J_star": 0.623046875
+    },
+    {
+      "suffix_p": 0.25,
+      "h0": 0.02499999999999999,
+      "policy": "AR1",
+      "J_star": 0.5213281250000001
+    },
+    {
+      "suffix_p": 0.3,
+      "h0": 0.036,
+      "policy": "factorised",
+      "J_star": 0.7247656250000001
+    },
+    {
+      "suffix_p": 0.3,
+      "h0": 0.036,
+      "policy": "AR1",
+      "J_star": 0.652109375
+    }
+  ],
+  "early_warning": {
+    "n_runs": 60,
+    "collapse_rate": 0.5,
+    "AUC_slope_first100": 0.9844444444444445,
+    "AUC_offline_false_accept_share_step0": 0.7666666666666667,
+    "accuracy_rule_slope_gt_0": 0.9
+  },
+  "powerlaw_factorised": {
+    "exponent": 0.8000038681374486,
+    "prefactor": 12.621512753869316,
+    "n": 7
+  },
+  "powerlaw_AR1": {
+    "exponent": 0.7615333867281991,
+    "prefactor": 8.89131159362064,
+    "n": 7
+  }
+}

@@ -1,0 +1,1526 @@
+[
+ {
+  "id": 1196,
+  "statement_true_for_all_connected_n<=10": "tri <= 3*m - 3",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "complete": 6,
+   "csplit": 28,
+   "gnp": 774,
+   "lollipop": 6,
+   "cocktail": 2,
+   "multipartite": 2
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 1947,
+  "statement_true_for_all_connected_n<=10": "n >= 1/2*omega*rad + 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "lollipop": 25
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 1979,
+  "statement_true_for_all_connected_n<=10": "n >= 1/2*chi*rad + 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "lollipop": 25
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 9000,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*(Delta+res) - 3",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 8
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 1028,
+  "statement_true_for_all_connected_n<=10": "res <= 3*Delta - 2",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 1,
+   "cycle": 4
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 8148,
+  "statement_true_for_all_connected_n<=10": "nu <= (Delta+gamma) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 5,
+   "circulant": 41,
+   "regular": 90,
+   "tree": 1,
+   "ladder": 2,
+   "prism": 2,
+   "gnp": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 8166,
+  "statement_true_for_all_connected_n<=10": "nu <= (Delta+res) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "prism": 3,
+   "circulant": 62,
+   "regular": 119,
+   "path": 2,
+   "lollipop": 2,
+   "ladder": 2,
+   "gnp": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 8190,
+  "statement_true_for_all_connected_n<=10": "nu <= (alpha+chi) - 2",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "circulant": 34,
+   "regular": 60,
+   "multipartite": 11,
+   "gnp": 207
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9812,
+  "statement_true_for_all_connected_n<=10": "rad <= (Delta+gamma) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "tree": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9830,
+  "statement_true_for_all_connected_n<=10": "rad <= (Delta+res) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11040,
+  "statement_true_for_all_connected_n<=10": "res <= Delta^2 + 0",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 1,
+   "cycle": 4
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 12626,
+  "statement_true_for_all_connected_n<=10": "tri <= 1/2*m*omega - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "multipartite": 12,
+   "cocktail": 1
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 12630,
+  "statement_true_for_all_connected_n<=10": "tri <= 1/2*m*chi - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "multipartite": 12,
+   "cocktail": 1
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 664,
+  "statement_true_for_all_connected_n<=10": "gamma <= 3*Delta - 2",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "corona": 1
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 698,
+  "statement_true_for_all_connected_n<=10": "gamma <= 2*diam - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 1440,
+  "statement_true_for_all_connected_n<=10": "n <= 2*(Delta+nu) - 2",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "tree": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 3978,
+  "statement_true_for_all_connected_n<=10": "Delta <= 2*(alpha+chi) - 5",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "gnp": 4,
+   "multipartite": 4
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6694,
+  "statement_true_for_all_connected_n<=10": "chi <= (diam+tri) + 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6712,
+  "statement_true_for_all_connected_n<=10": "chi <= (rad+tri) + 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7414,
+  "statement_true_for_all_connected_n<=10": "gamma <= 2*(omega+diam) - 5",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7528,
+  "statement_true_for_all_connected_n<=10": "gamma <= 2*(diam+tri) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7712,
+  "statement_true_for_all_connected_n<=10": "gamma <= Delta^2 + 0",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7800,
+  "statement_true_for_all_connected_n<=10": "gamma <= omega*diam - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7328,
+  "statement_true_for_all_connected_n<=10": "gamma <= (Delta+rad) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "corona": 2,
+   "tree": 5
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7734,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*Delta*rad + 0.5",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "corona": 1,
+   "tree": 5
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 1715,
+  "statement_true_for_all_connected_n<=10": "n >= (rad+ann) + 0",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 15,
+  "witness_families_large_sample": {
+   "lollipop": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 3140,
+  "statement_true_for_all_connected_n<=10": "delta <= 2*(alpha+omega) - 5",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 15,
+  "witness_families_large_sample": {
+   "multipartite": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 3146,
+  "statement_true_for_all_connected_n<=10": "delta <= 2*(alpha+chi) - 5",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 15,
+  "witness_families_large_sample": {
+   "multipartite": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11496,
+  "statement_true_for_all_connected_n<=10": "ann <= 2*(Delta+rad) - 3",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 15,
+  "witness_families_large_sample": {
+   "tree": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11458,
+  "statement_true_for_all_connected_n<=10": "ann <= (Delta+alpha) - 1",
+  "record_age_at_k10": 8,
+  "first_refuting_order": 16,
+  "witness_families_large_sample": {
+   "tree": 1,
+   "corona": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6722,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*(res+tri) + 2",
+  "record_age_at_k10": 7,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9178,
+  "statement_true_for_all_connected_n<=10": "diam <= (nu+res) + 0",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 8
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9196,
+  "statement_true_for_all_connected_n<=10": "diam <= (rad+res) + 0",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 9,
+   "tree": 9
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 585,
+  "statement_true_for_all_connected_n<=10": "chi <= 3/2*omega + 0",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 586,
+  "statement_true_for_all_connected_n<=10": "chi <= 2*omega - 1",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 587,
+  "statement_true_for_all_connected_n<=10": "chi <= 3*omega - 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 633,
+  "statement_true_for_all_connected_n<=10": "chi <= tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 634,
+  "statement_true_for_all_connected_n<=10": "chi <= 3/2*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 635,
+  "statement_true_for_all_connected_n<=10": "chi <= 2*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 636,
+  "statement_true_for_all_connected_n<=10": "chi <= 3*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 6602,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*(omega+tri) + 2",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6604,
+  "statement_true_for_all_connected_n<=10": "chi <= (omega+tri) + 1",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6606,
+  "statement_true_for_all_connected_n<=10": "chi <= 2*(omega+tri) - 1",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 6782,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*n*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6784,
+  "statement_true_for_all_connected_n<=10": "chi <= n*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6830,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*m*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6832,
+  "statement_true_for_all_connected_n<=10": "chi <= m*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6874,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*delta*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6876,
+  "statement_true_for_all_connected_n<=10": "chi <= delta*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6914,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*Delta*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6916,
+  "statement_true_for_all_connected_n<=10": "chi <= Delta*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6950,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*alpha*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6952,
+  "statement_true_for_all_connected_n<=10": "chi <= alpha*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6954,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*omega^2 + 1",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6956,
+  "statement_true_for_all_connected_n<=10": "chi <= omega^2 - 1",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6982,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*omega*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 6984,
+  "statement_true_for_all_connected_n<=10": "chi <= omega*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7010,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*gamma*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7012,
+  "statement_true_for_all_connected_n<=10": "chi <= gamma*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7034,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*nu*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7036,
+  "statement_true_for_all_connected_n<=10": "chi <= nu*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7054,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*diam*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7056,
+  "statement_true_for_all_connected_n<=10": "chi <= diam*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7070,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*rad*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7072,
+  "statement_true_for_all_connected_n<=10": "chi <= rad*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7082,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*res*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7084,
+  "statement_true_for_all_connected_n<=10": "chi <= res*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7090,
+  "statement_true_for_all_connected_n<=10": "chi <= 1/2*ann*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7092,
+  "statement_true_for_all_connected_n<=10": "chi <= ann*tri + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7096,
+  "statement_true_for_all_connected_n<=10": "chi <= tri^2 + 3",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 12391,
+  "statement_true_for_all_connected_n<=10": "tri >= 1/2*(omega+chi) - 2.5",
+  "record_age_at_k10": 5,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 962,
+  "statement_true_for_all_connected_n<=10": "rad <= gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 11,
+   "tree": 7
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 983,
+  "statement_true_for_all_connected_n<=10": "rad <= res + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 8558,
+  "statement_true_for_all_connected_n<=10": "nu <= 1/2*Delta*gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "circulant": 2,
+   "regular": 19,
+   "tree": 1,
+   "prism": 1
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 8570,
+  "statement_true_for_all_connected_n<=10": "nu <= 1/2*Delta*res + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "prism": 2,
+   "circulant": 6,
+   "regular": 39,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 9028,
+  "statement_true_for_all_connected_n<=10": "diam <= (alpha+gamma) + 0",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "lollipop": 11,
+   "tree": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9160,
+  "statement_true_for_all_connected_n<=10": "diam <= (gamma+ann) + 0",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "lollipop": 5,
+   "tree": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9758,
+  "statement_true_for_all_connected_n<=10": "rad <= (delta+gamma) + 0",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "lollipop": 11,
+   "tree": 7
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9858,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(alpha+gamma) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 3,
+   "cycle": 4,
+   "lollipop": 9,
+   "tree": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9876,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(alpha+res) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9902,
+  "statement_true_for_all_connected_n<=10": "rad <= (omega+gamma) - 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "tree": 7
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9920,
+  "statement_true_for_all_connected_n<=10": "rad <= (omega+res) - 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9938,
+  "statement_true_for_all_connected_n<=10": "rad <= (chi+gamma) - 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 3,
+   "lollipop": 4,
+   "tree": 7
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9956,
+  "statement_true_for_all_connected_n<=10": "rad <= (chi+res) - 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 3,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9972,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(gamma+nu) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 6,
+   "tree": 7
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9978,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(gamma+diam) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9984,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(gamma+res) + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 11,
+   "tree": 4
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9990,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(gamma+ann) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 3,
+   "cycle": 4,
+   "lollipop": 3,
+   "tree": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9998,
+  "statement_true_for_all_connected_n<=10": "rad <= (gamma+tri) + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "tree": 7
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10008,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(nu+res) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10026,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(diam+res) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10044,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*(res+ann) + 0.5",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10052,
+  "statement_true_for_all_connected_n<=10": "rad <= (res+tri) + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10184,
+  "statement_true_for_all_connected_n<=10": "rad <= delta*gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "lollipop": 11,
+   "tree": 7
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10222,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*Delta*gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "tree": 1
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10234,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*Delta*res + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10290,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*omega*gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 4,
+   "lollipop": 4,
+   "tree": 7
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10302,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*omega*res + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 4,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10318,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*chi*gamma + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "cycle": 3,
+   "lollipop": 4,
+   "tree": 7
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 10330,
+  "statement_true_for_all_connected_n<=10": "rad <= 1/2*chi*res + 1",
+  "record_age_at_k10": 4,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "cycle": 3,
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 4071,
+  "statement_true_for_all_connected_n<=10": "Delta >= 1/2*(chi+gamma) - 1",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "cycle": 5,
+   "path": 4,
+   "lollipop": 4,
+   "corona": 2,
+   "tree": 12
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 4095,
+  "statement_true_for_all_connected_n<=10": "Delta >= 1/2*(chi+res) - 1",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "cycle": 5,
+   "path": 5,
+   "lollipop": 7,
+   "tree": 14,
+   "corona": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11295,
+  "statement_true_for_all_connected_n<=10": "ann >= 1/2*(n+gamma) - 2",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "cycle": 5,
+   "circulant": 19,
+   "regular": 28,
+   "path": 2,
+   "lollipop": 4,
+   "ladder": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11319,
+  "statement_true_for_all_connected_n<=10": "ann >= 1/2*(n+res) - 2",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "cycle": 5,
+   "path": 4,
+   "csplit": 16,
+   "lollipop": 8,
+   "tree": 7,
+   "ladder": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11657,
+  "statement_true_for_all_connected_n<=10": "ann >= (gamma+res) - 3",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "tree": 24,
+   "cycle": 2,
+   "corona": 2,
+   "path": 1,
+   "lollipop": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7338,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*(Delta+ann) + 0.5",
+  "record_age_at_k10": 3,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "cycle": 2,
+   "corona": 2,
+   "path": 1,
+   "lollipop": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 894,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*res + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 9,
+   "tree": 9
+  },
+  "kind": "lin"
+ },
+ {
+  "id": 1476,
+  "statement_true_for_all_connected_n<=10": "n <= 2*(alpha+omega) - 2",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "circulant": 64,
+   "regular": 12,
+   "gnp": 63,
+   "multipartite": 4
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 1524,
+  "statement_true_for_all_connected_n<=10": "n <= 2*(alpha+tri) + 2",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "circulant": 36
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 1892,
+  "statement_true_for_all_connected_n<=10": "n <= alpha*omega + 2",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "circulant": 36
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 8946,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*(delta+res) - 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 9,
+   "tree": 9
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9090,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*(omega+res) - 3",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 9
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9126,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*(chi+res) - 3",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 9
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9154,
+  "statement_true_for_all_connected_n<=10": "diam <= (gamma+res) + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 6,
+   "lollipop": 16,
+   "tree": 13
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9222,
+  "statement_true_for_all_connected_n<=10": "diam <= 2*(res+tri) + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 9
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9404,
+  "statement_true_for_all_connected_n<=10": "diam <= Delta*res + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 8
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 9472,
+  "statement_true_for_all_connected_n<=10": "diam <= omega*res + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 9
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 9500,
+  "statement_true_for_all_connected_n<=10": "diam <= chi*res + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 11,
+  "witness_families_large_sample": {
+   "path": 5,
+   "lollipop": 5,
+   "tree": 9
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7464,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*(chi+ann) + 0.5",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "tree": 41,
+   "corona": 3,
+   "path": 1,
+   "cycle": 1,
+   "lollipop": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 8184,
+  "statement_true_for_all_connected_n<=10": "nu <= (alpha+omega) - 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "circulant": 22,
+   "gnp": 13,
+   "multipartite": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 8226,
+  "statement_true_for_all_connected_n<=10": "nu <= (alpha+tri) + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "circulant": 15
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 8586,
+  "statement_true_for_all_connected_n<=10": "nu <= 1/2*alpha*omega + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "circulant": 15
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 11499,
+  "statement_true_for_all_connected_n<=10": "ann >= 1/2*(Delta+res) - 1.5",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "csplit": 16
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 11681,
+  "statement_true_for_all_connected_n<=10": "ann >= (nu+res) - 4",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 12,
+  "witness_families_large_sample": {
+   "path": 4,
+   "csplit": 23,
+   "lollipop": 9,
+   "tree": 32,
+   "cycle": 4,
+   "ladder": 1
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7412,
+  "statement_true_for_all_connected_n<=10": "gamma <= (omega+diam) - 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7512,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*(diam+res) + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7526,
+  "statement_true_for_all_connected_n<=10": "gamma <= (diam+tri) + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 7798,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*omega*diam + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 7870,
+  "statement_true_for_all_connected_n<=10": "gamma <= 1/2*diam^2 + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "prod"
+ },
+ {
+  "id": 9147,
+  "statement_true_for_all_connected_n<=10": "diam >= 1/2*(gamma+rad) - 0.5",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 13,
+  "witness_families_large_sample": {
+   "circulant": 3
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9046,
+  "statement_true_for_all_connected_n<=10": "diam <= (alpha+res) + 0",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9214,
+  "statement_true_for_all_connected_n<=10": "diam <= (res+ann) + 0",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 9776,
+  "statement_true_for_all_connected_n<=10": "rad <= (delta+res) + 0",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "sum"
+ },
+ {
+  "id": 10196,
+  "statement_true_for_all_connected_n<=10": "rad <= delta*res + 1",
+  "record_age_at_k10": 2,
+  "first_refuting_order": 14,
+  "witness_families_large_sample": {
+   "path": 2,
+   "lollipop": 2
+  },
+  "kind": "prod"
+ }
+]

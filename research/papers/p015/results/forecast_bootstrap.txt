@@ -1,0 +1,19 @@
+Family-cluster bootstrap (2000 draws) of the mean-over-agents forecast error (pred - obs)
+train < 60 min, target [C,4C): 18 tasks in 14 families
+   pred_logistic: mean error +0.197, 95% family-bootstrap CI [+0.095, +0.307], leave-one-family-out range [+0.178, +0.240]
+   pred_npmle: mean error +0.151, 95% family-bootstrap CI [+0.050, +0.261], leave-one-family-out range [+0.132, +0.193]
+train < 60 min, target >=C: 73 tasks in 48 families
+   pred_logistic: mean error +0.213, 95% family-bootstrap CI [+0.156, +0.272], leave-one-family-out range [+0.203, +0.224]
+   pred_npmle: mean error +0.122, 95% family-bootstrap CI [+0.063, +0.179], leave-one-family-out range [+0.111, +0.133]
+train < 120 min, target [C,4C): 31 tasks in 24 families
+   pred_logistic: mean error +0.186, 95% family-bootstrap CI [+0.084, +0.283], leave-one-family-out range [+0.169, +0.215]
+   pred_npmle: mean error +0.140, 95% family-bootstrap CI [+0.038, +0.237], leave-one-family-out range [+0.123, +0.169]
+train < 120 min, target >=C: 62 tasks in 41 families
+   pred_logistic: mean error +0.202, 95% family-bootstrap CI [+0.134, +0.265], leave-one-family-out range [+0.191, +0.216]
+   pred_npmle: mean error +0.154, 95% family-bootstrap CI [+0.087, +0.217], leave-one-family-out range [+0.143, +0.168]
+train < 240 min, target [C,4C): 50 tasks in 35 families
+   pred_logistic: mean error +0.009, 95% family-bootstrap CI [-0.059, +0.080], leave-one-family-out range [-0.000, +0.026]
+   pred_npmle: mean error +0.009, 95% family-bootstrap CI [-0.061, +0.079], leave-one-family-out range [-0.001, +0.025]
+train < 240 min, target >=C: 55 tasks in 37 families
+   pred_logistic: mean error +0.017, 95% family-bootstrap CI [-0.049, +0.083], leave-one-family-out range [+0.006, +0.032]
+   pred_npmle: mean error +0.022, 95% family-bootstrap CI [-0.047, +0.091], leave-one-family-out range [+0.010, +0.038]

@@ -1,0 +1,53 @@
+{
+ "regime": "obs_p09",
+ "featset": "m2",
+ "seed": 0,
+ "n_train": 200000,
+ "gen_time_s": 66.08929133415222,
+ "final_train_loss": 0.15095776319503784,
+ "iid": {
+  "iid_acc": 0.9275,
+  "iid_acc_identified": 0.9650388457269701,
+  "iid_acc_unidentified": 0.8967242948134668
+ },
+ "twins_matched": {
+  "twin_acc": 0.49666666666666665,
+  "twin_acc_ci": [
+   0.493,
+   0.5
+  ],
+  "causal_surplus": -0.00666666666666671,
+  "pair_both_correct": 0.006,
+  "oracle_ceiling": 0.5,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5631659030914307,
+  "mean_p_yes_on_B": 0.5673794746398926,
+  "mean_abs_p_diff_within_pair": 0.03511571139097214,
+  "kappa": null,
+  "kappa_ci": null
+ },
+ "twins_laplace": {
+  "twin_acc": 0.497,
+  "twin_acc_ci": [
+   0.49333333333333335,
+   0.5003333333333333
+  ],
+  "causal_surplus": -0.006000000000000005,
+  "pair_both_correct": 0.007333333333333333,
+  "oracle_ceiling": 0.9983333333333333,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5509236454963684,
+  "mean_p_yes_on_B": 0.5495873093605042,
+  "mean_abs_p_diff_within_pair": 0.03660900890827179,
+  "kappa": -0.006020066889632113,
+  "kappa_ci": [
+   -0.01338688085676035,
+   0.0013368983957220005
+  ]
+ },
+ "cue_removed_random_labels": {
+  "iid_acc": 0.64975,
+  "iid_acc_unidentified": 0.5245535714285714
+ },
+ "total_time_s": 169.11383652687073
+}

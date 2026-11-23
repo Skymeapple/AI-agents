@@ -16,7 +16,9 @@ The four `obs_p*` seed-0 runs were produced in a first pass with identical code 
 ## Revision round 1
 
 ```
-bash rev_runs.sh          # retrains informative-evidence regimes (+ new seeds); adds rev_* probes, saves weights
+bash rev_runs.sh          # only its first wave was run (laplace s0, int32 s0, int128 s0/s1); obs_p05 s1 and obs_p09 s2 were dropped
+bash rev_runs2.sh         # remaining revision runs: laplace s1, int32 s1/s2, int128 s2, obs_p09 s1, obs_p1 s2
+bash strong_runs.sh       # pooled-moment amortized models (m2/m4 features) -> results/strong/
 python3 bayes_oracle.py   # exact Bayes-optimal observational baselines -> results/bayes_oracles.json
 python3 rev_checks.py     # generalised refit exactness, out-of-prior fractions -> results/rev_checks.json
 python3 rev_baselines.py  # prior-agnostic LiNGAM / CI-test reasoners on twins -> results/rev_baselines.json
@@ -25,3 +27,5 @@ python3 summarize.py      # tables + figures 1-4
 ```
 All original JSON fields of retrained runs are bit-identical to `results/backup_r0/` (new probes use separate RNG streams).
 `summarize.py` now globs `*_s[0-9].json` and no longer references the never-run `int8_p0` regime.
+
+`results/network_check.txt` records that model hubs (Hugging Face and mirrors, Ollama registry, GitHub release assets) were unreachable, which is why no LLM / AVICI checkpoint was evaluated.

@@ -88,7 +88,7 @@ print("\n".join(lines))
 ps = [("obs_p0", 0.0), ("obs_p05", 0.5), ("obs_p09", 0.9), ("obs_p1", 1.0)]
 ps = [(nm, p) for nm, p in ps if nm in runs]
 if ps:
-    fig, ax = plt.subplots(figsize=(5.2, 3.4))
+    fig, ax = plt.subplots(figsize=(6.0, 3.8))
     x = np.arange(len(ps)); w = 0.36
     for off, key, col, lab in [(-w/2, ["iid", "iid_acc"], BLUE, "i.i.d. test accuracy"),
                                (w/2, ["twins_matched", "twin_acc"], ORANGE, "twin accuracy")]:
@@ -103,12 +103,20 @@ if ps:
     ax.plot(x - w/2, bf, "D:", color=AQUA, ms=5, lw=1.2, label="Bayes bound, label-free (population corr.)")
     bm = [BO[nm]["mec_free"]["acc"] for nm, _ in ps]
     ax.plot(x - w/2, bm, "v:", color="#7a5cc2", ms=5, lw=1.0, label="Bayes, knows MEC only")
+    sp = []
+    for k, (nm, _) in enumerate(ps):
+        fs = sorted(glob.glob(os.path.join(R, "strong", f"{nm}_m2_s[0-9].json")))
+        if fs:
+            sp.append((k, np.mean([json.load(open(f))["iid"]["iid_acc"] for f in fs])))
+    if sp:
+        ax.plot([x[k] - w/2 for k, _ in sp], [v for _, v in sp], "*", color=INK, ms=8,
+                label="pooled-moment model, i.i.d. (Sec. 5.5)")
     ax.axhline(0.5, color=INK, lw=1, ls=":")
     ax.text(-0.55, 0.47, "twin bound 1/2", ha="left", va="top", fontsize=8)
     ax.set_xticks(x, [f"p = {p}" for _, p in ps])
     ax.set_xlabel("probability that variable labels follow causal order (training & i.i.d. test)")
-    ax.set_ylabel("accuracy"); ax.set_ylim(0, 1.35)
-    ax.legend(loc="upper left", fontsize=8, frameon=False)
+    ax.set_ylabel("accuracy"); ax.set_ylim(0, 1.62); ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
+    ax.legend(loc="upper left", fontsize=7, frameon=False, ncol=2)
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig1_iid_vs_twin.png"), dpi=200); plt.close(fig)
 
 # ---------------------------------------------------------------- Figure 2
@@ -244,18 +252,27 @@ cats = [("laplace_p0", "Laplace"), ("int32_p0", "32 int."), ("int128_p0", "128 i
 probes = [("twins_matched", "covered, original (query u→v)"), ("rev_cov_all", "covered, direction-balanced"),
           ("rev_cov_inprior", "covered, balanced, in-prior twin"), ("rev_mec_inprior", "any MEC twin, balanced, in-prior")]
 if any(pr in d for nm, _ in cats for d in runs.get(nm, []) for pr, _ in probes[1:]):
-    fig, ax = plt.subplots(figsize=(6.4, 3.4))
+    fig, axs = plt.subplots(1, 2, figsize=(9.6, 3.5), sharey=True)
     cols = [BLUE, AQUA, ORANGE, "#7a5cc2"]
     wbar = 0.2
-    for pi, (pr, lab) in enumerate(probes):
-        ms, ss = [], []
-        for nm, _ in cats:
-            ks = agg_k.get((nm, pr), [])
-            ms.append(np.mean(ks) if ks else np.nan); ss.append(np.std(ks) if len(ks) > 1 else 0)
-        ax.bar(np.arange(len(cats)) + (pi - 1.5) * wbar, ms, wbar - 0.02, yerr=ss, color=cols[pi], label=lab, capsize=2)
-    ax.axhline(0, color=INK, lw=0.8)
-    ax.set_xticks(np.arange(len(cats)), [c for _, c in cats])
-    ax.set_ylabel("ceiling capture κ"); ax.set_ylim(0, 1.25)
-    ax.legend(loc="upper left", fontsize=7, frameon=False, ncol=2)
+    sk = collections.defaultdict(list)
+    for f in sorted(glob.glob(os.path.join(R, "strong", "*.json"))):
+        d = json.load(open(f))
+        if (d["regime"], d["featset"]) in [("laplace_p0", "m4"), ("int32_p0", "m2"), ("int128_p0", "m2")]:
+            for pr, _ in probes:
+                r = d[pr]; sk[(d["regime"], pr)].append((2 * r["twin_acc"] - 1) / (2 * r["oracle_ceiling"] - 1))
+    for ax, src, title in [(axs[0], agg_k, "DeepSets test subject (2-3 seeds)"),
+                           (axs[1], sk, "pooled-moment model (2 seeds; m4 for Laplace)")]:
+        for pi, (pr, lab) in enumerate(probes):
+            ms_, ss_ = [], []
+            for nm, _ in cats:
+                ks = src.get((nm, pr), [])
+                ms_.append(np.mean(ks) if ks else np.nan); ss_.append(np.std(ks) if len(ks) > 1 else 0)
+            ax.bar(np.arange(len(cats)) + (pi - 1.5) * wbar, ms_, wbar - 0.02, yerr=ss_, color=cols[pi],
+                   label=lab, capsize=2)
+        ax.axhline(0, color=INK, lw=0.8)
+        ax.set_xticks(np.arange(len(cats)), [c for _, c in cats]); ax.set_title(title, fontsize=9)
+    axs[0].set_ylabel("ceiling capture κ"); axs[0].set_ylim(0, 1.3)
+    axs[0].legend(loc="upper left", fontsize=7, frameon=False, ncol=2)
     fig.tight_layout(); fig.savefig(os.path.join(R, "fig4_inprior_ablation.png"), dpi=200); plt.close(fig)
     print("fig4 written")

@@ -16,8 +16,8 @@ os.makedirs(RES, exist_ok=True)
 
 T_REF = 60.0  # reference length (minutes) for centring log T
 
-# Release dates for models missing from METR's yaml at the pinned commit.
-# Each is a public launch date; see paper Sec. 6.5 for sources.
+# Release dates for models missing from METR's yaml at the pinned commit (none needed at
+# the pinned commit; kept as an empty hook).
 EXTRA_DATES = {}
 
 

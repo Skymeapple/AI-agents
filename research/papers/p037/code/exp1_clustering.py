@@ -39,8 +39,22 @@ def main():
             ii = np.concatenate([fidx[i] for i in pick])
             bf[b] = tmeans[ii].mean()
         se_task, se_fam = bt.std(ddof=1), bf.std(ddof=1)
+        # (b) runs-as-replicates SE for the task-weighted estimand (tasks fixed,
+        #     only within-task Bernoulli noise): sqrt(sum_t p_t(1-p_t)/r_t)/n
+        se_within = np.sqrt(np.sum(tmeans * (1 - tmeans) / np.maximum(nruns - 1, 1))) / len(tids)
+        # (c') analytic cluster-robust (CR1) SEs of the task-weighted mean, task and family level
+        resid = tmeans - est
+        nT = len(tids)
+        se_task_cr = np.sqrt(np.sum(resid ** 2) / (nT * (nT - 1)))
+        fsum = np.array([resid[i].sum() for i in fidx])
+        G = len(ufam)
+        se_fam_cr = np.sqrt(G / (G - 1) * np.sum(fsum ** 2)) / nT
         out.append(dict(model=model, n_tasks=len(tids), n_families=len(ufam), n_runs=int(N),
-                        mean_success=est, se_naive=se_naive, se_task=se_task, se_family=se_fam,
+                        mean_success=est, se_naive=se_naive, se_within=se_within,
+                        se_task=se_task, se_family=se_fam,
+                        se_task_cr1=se_task_cr, se_family_cr1=se_fam_cr,
+                        deff_family_vs_task=(se_fam / se_task) ** 2,
+                        deff_family_vs_task_cr1=(se_fam_cr / se_task_cr) ** 2,
                         deff_family=(se_fam / se_naive) ** 2,
                         n_eff_family=N * (se_naive / se_fam) ** 2))
     keys = list(out[0].keys())
@@ -60,7 +74,23 @@ def main():
                 n_eff_median=float(np.median([r["n_eff_family"] for r in sel])),
                 n_families_median=float(np.median([r["n_families"] for r in sel])),
                 margin95_naive_median=float(np.median([1.645 * r["se_naive"] for r in sel])),
-                margin95_family_median=float(np.median([1.645 * r["se_family"] for r in sel])))
+                margin95_family_median=float(np.median([1.645 * r["se_family"] for r in sel])),
+                margin95_task_median=float(np.median([1.645 * r["se_task"] for r in sel])),
+                # headline (between-family clustering only): family vs task resampling
+                deff_family_vs_task_median=float(np.median([r["deff_family_vs_task"] for r in sel])),
+                deff_family_vs_task_min=float(np.min([r["deff_family_vs_task"] for r in sel])),
+                deff_family_vs_task_max=float(np.max([r["deff_family_vs_task"] for r in sel])),
+                se_ratio_family_over_task_median=float(np.median([r["se_family"] / r["se_task"] for r in sel])),
+                deff_family_vs_task_cr1_median=float(np.median([r["deff_family_vs_task_cr1"] for r in sel])),
+                n_tasks_median=float(np.median([r["n_tasks"] for r in sel])),
+                n_eff_tasks_family_median=float(np.median([r["n_tasks"] / r["deff_family_vs_task"] for r in sel])),
+                # decomposition of the naive->family ratio
+                se_ratio_within_over_naive_median=float(np.median([r["se_within"] / r["se_naive"] for r in sel])),
+                se_ratio_task_over_within_median=float(np.median([r["se_task"] / r["se_within"] for r in sel])),
+                se_naive_median=float(np.median([r["se_naive"] for r in sel])),
+                se_within_median=float(np.median([r["se_within"] for r in sel])),
+                se_task_median=float(np.median([r["se_task"] for r in sel])),
+                se_family_median=float(np.median([r["se_family"] for r in sel])))
     with open(os.path.join(RESULTS, "exp1_summary.json"), "w") as f:
         json.dump(summ, f, indent=2)
     print(json.dumps(summ, indent=2))

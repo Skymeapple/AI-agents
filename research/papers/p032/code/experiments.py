@@ -105,11 +105,13 @@ def e3_accumulation():
                       r_k_pred=r_k, prod_q=float(np.prod(q)),
                       leading_order_n60=float(lo[-1]))
         ax.semilogy(ns, fail, color=C[k - 1], label=f"k={k} (exact DP)")
-        ax.semilogy(ns, np.minimum(lo, 1), color=C[k - 1], ls=":", lw=1.5)
+        valid = lo <= 0.5   # leading-order formula only meaningful where small
+        if k > 1 and valid.any():
+            ax.semilogy(ns[valid], lo[valid], color=C[k - 1], ls=":", lw=1.5)
     ax.set_xlabel("number of levels n (fixed step δ=100 Elo)")
     ax.set_ylabel("P(target compromised)")
     ax.set_title("Full collusion (γ=0), independent overseers (ρ=0)\n"
-                 "dotted: leading-order formula", fontsize=9)
+                 "dotted: leading-order heuristic, drawn only where ≤ 0.5", fontsize=9)
     ax.legend(frameon=False, fontsize=8)
     fig.tight_layout()
     fig.savefig(os.path.join(OUT, "fig_e3_accumulation.png"), dpi=160)

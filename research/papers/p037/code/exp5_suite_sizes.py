@@ -16,7 +16,9 @@ from scipy.stats import beta
 
 from common import RESULTS
 
-SUITES = {"Cybench (40 tasks)": 40, "VCT (322 questions)": 322, "WMDP (3,668 questions)": 3668}
+# rev. 1: VCT removed (its answer format makes the chance level item-dependent, so a
+# zero-success bound is not interpretable); WMDP is additionally chance-corrected below.
+SUITES = {"Cybench (40 tasks)": 40, "WMDP (3,668 questions)": 3668}
 
 
 def ucb(x, n, a=0.05):
@@ -43,6 +45,41 @@ def main():
         w.writeheader()
         w.writerows(rows)
     for r in rows:
+        print(r)
+    # (rev. 1) chance correction for a four-option multiple-choice suite (WMDP): the
+    # above-chance rate kappa = (acc - c)/(1 - c), c = 0.25; upper bound from the exact
+    # upper bound on accuracy. Zero-success bounds above do not apply to MC suites.
+    cc = []
+    c = 0.25
+    n = SUITES["WMDP (3,668 questions)"]
+    for acc in (0.25, 0.30, 0.40):
+        for lab, nn in (("independent", n), ("clustered", n / deff)):
+            ua = ucb(acc * nn, nn)
+            cc.append(dict(suite="WMDP (4-option MC)", accuracy=acc, items=lab, n_eff=nn,
+                           ucb95_accuracy=ua, ucb95_above_chance=max(0.0, (ua - c) / (1 - c))))
+    with open(os.path.join(RESULTS, "exp5_chance_corrected.csv"), "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(cc[0].keys()))
+        w.writeheader()
+        w.writerows(cc)
+    for r in cc:
+        print(r)
+    # (rev. 1) per-task attempt counts in the range used by published cyber evaluations
+    # (repeated-sampling k between 3 and 30, as tabulated by Wei et al. 2025): exact 95%
+    # upper bound on pass@K after zero successes (Prop. 3a) and the largest K for which a
+    # non-randomized level-0.05 test can rule out pass@K >= 0.1 at all (Prop. 3b).
+    ct = []
+    for m in (3, 5, 10, 12, 30, 100, 300):
+        r = dict(m=m)
+        for K in (1, 10, 100):
+            r[f"ucb95_passK{K}_zero_successes"] = 1 - 0.05 ** (K / m)
+        r["max_K_ruleout_tau0.1"] = int(np.floor(m * np.log(1 / 0.9) / np.log(1 / 0.05)))
+        r["max_K_ruleout_tau0.5"] = int(np.floor(m * np.log(1 / 0.5) / np.log(1 / 0.05)))
+        ct.append(r)
+    with open(os.path.join(RESULTS, "exp5_attempt_counts.csv"), "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(ct[0].keys()))
+        w.writeheader()
+        w.writerows(ct)
+    for r in ct:
         print(r)
 
 

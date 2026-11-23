@@ -74,7 +74,7 @@ def main():
     # required N to cap deployment defection at 1% (and 10%) vs d', no honeypots
     req = {}
     for cap in [0.01, 0.1]:
-        for dp in [1.0, 1.35, 1.99, 2.5, 3.0, 4.0, 5.0]:
+        for dp in [1.0, 1.35, 1.99, 2.0, 2.5, 3.0, 4.0, 5.0]:
             req[f"cap{cap}_dp{dp}"] = n_required(dp, cap, 0.1)
         for rho in [0.01, 0.1]:
             for Delta in [0.0, 0.5, 1.0, 1.5]:
@@ -83,6 +83,20 @@ def main():
     # marginal value: d ln N_req / d d' at d'=2 (numerical), vs d ln N_req / d Delta
     eps = 1e-3
     out["dlnN_ddprime_at2"] = float((np.log(n_required(2 + eps, 0.01, 0.1)) - np.log(n_required(2 - eps, 0.01, 0.1))) / (2 * eps))
+    # decomposition of ln N_req at cap b (revision): x = d' - Phi^-1(b);
+    # ln N_req ~ x^2/2 + ln x + ln(c sqrt(2 pi)), and x^2/2 = d'^2/2 + d'|z_b| + z_b^2/2
+    dec = {}
+    c = -np.log(0.9)
+    for cap in [0.01, 0.1]:
+        zb = norm.ppf(cap)
+        for dp in [1.0, 2.0, 3.0, 4.0]:
+            x = dp - zb
+            dec[f"cap{cap}_dp{dp}"] = dict(lnN_exact=float(np.log(n_required(dp, cap, 0.1))),
+                                           asymptotic=float(x * x / 2 + np.log(x) + np.log(c * np.sqrt(2 * np.pi))),
+                                           dp2_over_2=dp * dp / 2, cross=float(dp * abs(zb)),
+                                           zb2_over_2=float(zb * zb / 2), lnx=float(np.log(x)),
+                                           local_slope_x_plus_1_over_x=float(x + 1 / x))
+    out["lnN_decomposition"] = dec
     json.dump(out, open(os.path.join(RESULTS, "exp3_scaling.json"), "w"), indent=1)
     print(json.dumps(head["delta0.1_N1000"], indent=1))
     print(json.dumps(req, indent=1)); print("dlnN/dd'", out["dlnN_ddprime_at2"])

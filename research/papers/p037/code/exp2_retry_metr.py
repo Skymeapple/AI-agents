@@ -107,7 +107,9 @@ def part_a(data):
 def part_b(data):
     """Extrapolate from m=4 runs (tasks with >=4 runs, first 4 runs in random order)."""
     m = 4
-    Ks = [1, 4, 10, 30, 100, 1000]
+    # finer K grid (rev. 1); the LP does not consume random numbers, so values at the
+    # original K in {1,4,10,30,100,1000} are unchanged.
+    Ks = [1, 2, 3, 4, 6, 10, 18, 30, 56, 100, 178, 316, 562, 1000]
     out = []
     for model, tdict in sorted(data.items()):
         tasks = [t for t in tdict.values() if len(t["y"]) >= m]
@@ -136,6 +138,9 @@ def part_b(data):
 
 
 if __name__ == "__main__":
+    import sys
     data = by_model_task(load_runs())
     part_b(data)
+    if len(sys.argv) > 1 and sys.argv[1] == "b":  # rev. 1: regenerate Part B only
+        sys.exit(0)
     part_a(data)

@@ -1,19 +1,27 @@
-# p035 — Bounding deployment behaviour of evaluation-aware models
+# p035 — Bounding deployment behaviour of evaluation-aware models (revision 1)
 
-Reproduce all numbers and figures (CPU only, ~4 min on 4 cores):
+Reproduce all numbers and figures (CPU only; fixed seeds):
 
 ```
 cd /home/user/AI-agents/research/papers/p035
-python3 -W ignore code/run_experiments.py results/raw.json   # 110 model-organism runs (11 configs x 10 seeds)
-python3 code/analyze.py                                      # -> results/summary.{txt,json}
-python3 -W ignore code/analyze2.py                           # -> results/diagnostics.json, fig1-3
+# round 0 (110 MLP organisms, ~4 min on 4 cores)
+python3 -W ignore code/run_experiments.py results/raw.json
+python3 code/analyze.py                       # -> results/summary.{txt,json}
+python3 -W ignore code/analyze2.py            # -> results/diagnostics.json, fig1-3
+# revision 1 (280 MLP organisms, ~21 min on 4 shared cores; 18 transformer organisms, ~6 min)
+python3 -W ignore code/run_v2.py results/raw_v2.json
+python3 -W ignore code/run_token.py results/raw_token.json
+python3 -W ignore code/analyze_v2.py          # -> results/summary_v2.txt, analysis_v2.json, fig4, fig5
+python3 code/analyze_token.py                 # -> results/summary_token.{txt,json}
 ```
 
 Files
-- `code/organism.py`   world generator, model organism (2x32 MLP), estimators and diagnostics
-- `code/run_experiments.py`  configuration grid (rho, visibility of non-rewritable cue, subtle cues, kappa)
-- `code/analyze.py`, `code/analyze2.py`  summaries, Spearman diagnostics, partial-rewrite budgets, policy-level curve, figures
-- `results/raw.json`  per-run outputs; `results/summary.txt` main table; `results/diagnostics.json`
-- `results/fig1_bias_vs_rho.png`, `fig2_diagnostics.png`, `fig3_partial_budget.png`
+- `code/organism.py` round-0 world, MLP organism, estimators, diagnostics
+- `code/organism_v2.py` revision: saturation regimes, interaction detector, tent (A2-violating) policy,
+  six rewriters (perfect/partial/overshoot/task-altering), A3 check on benign traffic, stronger
+  white-box baselines (risky-target steering at L1/L2, mean matching, MRDE), within-config diagnostics
+- `code/token_organism.py` 2-layer transformer organisms on token sequences (order-dependent cues)
+- `code/analyze_v2.py` stratified (within-configuration) diagnostic analysis, LB validity without slack,
+  and re-analysis of round-0 raw.json
 
-Dependencies: numpy 2.5, scipy, scikit-learn 1.9, matplotlib. Seeds are fixed (seed = 1000*config_index + s).
+Dependencies: numpy, scipy, scikit-learn 1.9, matplotlib, torch (CPU).

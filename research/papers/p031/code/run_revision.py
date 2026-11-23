@@ -56,6 +56,15 @@ res["validation_bruteforce"] = dict(
     max_abs_chain_exact=max([v.get("chain_exact_maxabs", 0) for v in val]),
     max_abs_anchored_exact=max([v.get("anchored_exact_maxabs", 0) for v in val]),
     n_anchored_exact_checked=sum("anchored_exact_maxabs" in v for v in val), rows=val)
+# direct check of the any-rho anchored DP (kappa=gamma=1) against enumeration on 60 random configs
+ax_err = []
+for t in range(60):
+    p = Params(G=float(rng.uniform(100, 3000)), mu0=float(10 ** rng.uniform(-3, -1)), d0=float(rng.uniform(0.5, 0.97)),
+               k=float(rng.uniform(0.3, 2)), rho=float(rng.uniform(0, 1)), f=float(rng.choice([0.0, 0.02, 0.1])),
+               R=int(rng.choice([1, 2, 4, R_INF])), lam=float(10 ** rng.uniform(-4, -2.5)))
+    n = int(rng.integers(2, 8))
+    ax_err.append(max(abs(a - b) for a, b in zip(brute_force(n, p, "anchored"), anchored_exact(n, p))))
+res["validation_bruteforce"]["anchored_exact_vs_bruteforce"] = dict(configs=60, max_abs=float(max(ax_err)))
 print("A", {k: v for k, v in res["validation_bruteforce"].items() if k != "rows"}, flush=True)
 
 # ---------------------------------------------------------------- B. ensemble floor property tests

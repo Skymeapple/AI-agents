@@ -159,7 +159,8 @@ def run_stop(n_ho, rule, m, rng, tau=None):
 def regret(lst):
     lst = np.array(lst); gi = np.array([tilt_w(r1, l) @ Gpool for l in lst])
     return dict(mean_lam=float(lst.mean()), regret=float(C["gold"][i_s] - gi.mean()), p10_gold=float(np.percentile(gi, 10)),
-                frac_overshoot=float(np.mean(lst > lam_s + 1e-9)))
+                frac_overshoot=float(np.mean(lst > lam_s + 1e-9)),
+                se=float(gi.std(ddof=1) / np.sqrt(len(gi))))
 
 stop = {}
 # tune proxy-only gap alarm on the held-out RM that shares the least (lowest qhat at peak), then apply to all

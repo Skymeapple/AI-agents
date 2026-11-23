@@ -181,9 +181,40 @@ export const GRADE_ORDER = { 'committed+remote': 0, committed: 1, 'at-risk': 2, 
 // ---------------------------------------------------------------------------
 
 /** Scan agent files in a project. Returns { files, findings }. */
-export function scan(root, { depth = 4, staged = false } = {}) {
+// User-level agent configs: never in a project, but often hold pasted API keys and
+// get committed through dotfiles repos or harvested by stealer malware.
+export function homeFiles(home = os.homedir()) {
+  const appData = process.env.APPDATA || path.join(home, 'AppData', 'Roaming');
+  const candidates = [
+    ['.claude.json', 'claude', 'json'],
+    ['.claude/settings.json', 'claude', 'json'],
+    ['.claude/settings.local.json', 'claude', 'json'],
+    ['Library/Application Support/Claude/claude_desktop_config.json', 'claude-desktop', 'json'],
+    ['.config/Claude/claude_desktop_config.json', 'claude-desktop', 'json'],
+    [path.relative(home, path.join(appData, 'Claude', 'claude_desktop_config.json')), 'claude-desktop', 'json'],
+    ['.cursor/mcp.json', 'cursor', 'json'],
+    ['.codeium/windsurf/mcp_config.json', 'windsurf', 'json'],
+    ['.gemini/settings.json', 'gemini', 'json'],
+    ['.codex/config.toml', 'codex', 'text'],
+    ['.aider.conf.yml', 'aider', 'text'],
+  ];
+  const seen = new Set();
+  return candidates
+    .map(([rel, agent, kind]) => ({ abs: path.join(home, rel), agent, kind }))
+    .filter((f) => !seen.has(f.abs) && seen.add(f.abs) && isFile(f.abs));
+}
+
+function displayPath(root, abs) {
+  const home = os.homedir();
+  const rel = path.relative(root, abs);
+  if (!rel.startsWith('..')) return rel || abs;
+  return abs.startsWith(home + path.sep) ? '~/' + path.relative(home, abs).split(path.sep).join('/') : abs;
+}
+
+export function scan(root, { depth = 4, staged = false, home = false, homeDir } = {}) {
   root = path.resolve(root);
   let files = discover(root, { depth });
+  if (home) for (const f of homeFiles(homeDir)) if (!files.some((x) => x.abs === f.abs)) files.push(f);
   const readers = new Map();
   if (staged) {
     // pre-commit: scan what is about to be committed, from the index
@@ -207,10 +238,10 @@ export function scan(root, { depth = 4, staged = false } = {}) {
     const hits = f.kind === 'json' ? scanJSON(f, raw) : scanText(f, raw);
     if (!hits.length) continue;
     const exp = exposure(f.abs);
-    for (const h of hits) findings.push({ file: path.relative(root, f.abs) || f.abs, abs: f.abs, agent: f.agent, grade: exp.grade, ...h });
+    for (const h of hits) findings.push({ file: displayPath(root, f.abs), abs: f.abs, agent: f.agent, grade: exp.grade, ...h });
   }
   findings.sort((a, b) => GRADE_ORDER[a.grade] - GRADE_ORDER[b.grade] || a.file.localeCompare(b.file) || a.line - b.line);
-  return { root, files: files.map((f) => ({ file: path.relative(root, f.abs), agent: f.agent })), findings };
+  return { root, files: files.map((f) => ({ file: displayPath(root, f.abs), agent: f.agent })), findings };
 }
 
 /**

@@ -1,4 +1,4 @@
-import { test } from 'node:test';
+import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -14,8 +14,12 @@ const GH = 'gh' + 'p_' + 'A1b2C3d4'.repeat(5);
 const PW = 'Tr0ub4dor' + '&3xyz';
 const JWT = 'eyJ' + 'hbGciOiJIUzI1NiJ9' + '.eyJ' + 'yb2xlIjoic2VydmljZV9yb2xlIn0' + '.' + 'c2lnbmF0dXJlLXZhbHVl';
 
+const created = [];
+const mkdtemp = (prefix) => { const d = fs.mkdtempSync(path.join(os.tmpdir(), prefix)); created.push(d); return d; };
+after(() => { for (const d of created) fs.rmSync(d, { recursive: true, force: true }); });
+
 function repo(files, { git = true } = {}) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agentscrub-'));
+  const dir = mkdtemp('agentscrub-');
   for (const [rel, content] of Object.entries(files)) {
     const p = path.join(dir, rel);
     fs.mkdirSync(path.dirname(p), { recursive: true });
@@ -132,7 +136,7 @@ test('hook blocks git commit when tracked agent files hold secrets, allows other
 });
 
 test('session transcripts: JSONL scanned, values masked', async () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agentscrub-s-'));
+  const dir = mkdtemp('agentscrub-s-');
   fs.mkdirSync(path.join(dir, 'proj'));
   fs.writeFileSync(path.join(dir, 'proj', 's.jsonl'), [
     JSON.stringify({ type: 'user', message: { content: 'hi' } }),
@@ -161,4 +165,16 @@ test('CLI: exit codes, json output, init', () => {
   assert.match(fs.readFileSync(path.join(clean, '.git/hooks/pre-commit'), 'utf8'), /agentscrub --staged/);
   spawnSync('node', [BIN, 'init', clean]);
   assert.equal(JSON.parse(fs.readFileSync(path.join(clean, '.claude/settings.json'), 'utf8')).hooks.PreToolUse.length, 1, 'init is idempotent');
+});
+
+test('--home scans user-level agent configs (claude.json, Claude Desktop, cursor)', () => {
+  const home = mkdtemp('agentscrub-home-');
+  const w = (rel, obj) => { const p = path.join(home, rel); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, JSON.stringify(obj, null, 2)); };
+  w('.claude.json', { projects: { '/x': { mcpServers: { gh: { env: { GITHUB_PERSONAL_ACCESS_TOKEN: GH } } } } } });
+  w('.config/Claude/claude_desktop_config.json', { mcpServers: { db: { args: ['postgres://u:' + PW + '@db.example.com/app'] } } });
+  w('.cursor/mcp.json', { mcpServers: { ok: { env: { API_KEY: '${env:API_KEY}' } } } });
+  const project = repo({});
+  const res = scan(project, { home: true, homeDir: home });
+  assert.deepEqual(res.findings.map((f) => f.file).sort(), ['~/.claude.json', '~/.config/Claude/claude_desktop_config.json'].map((f) => path.join(home, f.slice(2)).startsWith(os.homedir()) ? f : path.join(home, f.slice(2))).sort());
+  assert.equal(scan(project).findings.length, 0, 'home files are opt-in');
 });

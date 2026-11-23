@@ -16,6 +16,8 @@ Usage:
   agentscrub --fix              remove leaked permission entries, git-ignore
                                 .claude/settings.local.json
   agentscrub --staged           pre-commit mode: scan staged agent files only
+  agentscrub --home             also scan user-level configs (~/.claude.json,
+                                Claude Desktop, ~/.cursor, Windsurf, ~/.gemini)
   agentscrub --sessions [dir]   also scan session transcripts
                                 (~/.claude/projects, ~/.codex/sessions)
   agentscrub init               add the Claude Code guard hook to
@@ -66,6 +68,7 @@ function parse(argv) {
     else if (a === '--fix') o.fix = true;
     else if (a === '--scrub') o.scrub = true;
     else if (a === '--staged') o.staged = true;
+    else if (a === '--home') o.home = true;
     else if (a === '--sessions') { o.sessions = []; if (argv[i + 1] && !argv[i + 1].startsWith('-')) o.sessions.push(argv[++i]); }
     else if (a === '--format') o.format = next();
     else if (a === '--depth') o.depth = Number(next());
@@ -197,12 +200,12 @@ if (o.cmd === 'hook') await hook(o);
 else if (o.cmd === 'init') init(o);
 else {
   if (!fs.existsSync(o.dir)) die(`no such directory: ${o.dir}`);
-  let res = scan(o.dir, { depth: o.depth, staged: o.staged });
+  let res = scan(o.dir, { depth: o.depth, staged: o.staged, home: o.home });
   let actions = [];
   if (o.fix) {
     actions = fix(res);
     for (const a of actions) process.stdout.write(`${a.todo ? c('33', 'todo ') : c('32', 'fixed')} ${a.file}: ${a.action}\n`);
-    res = scan(o.dir, { depth: o.depth });
+    res = scan(o.dir, { depth: o.depth, home: o.home });
   }
   let findings = res.findings;
   let sessionFiles = 0;

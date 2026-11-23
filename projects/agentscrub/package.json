@@ -1,16 +1,52 @@
 {
   "name": "agentscrub",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Find and remove secrets that AI coding agents save to disk: Claude Code \"don't ask again\" allowlists (.claude/settings.local.json), MCP configs, session transcripts. Hook + pre-commit guard.",
   "type": "module",
-  "bin": { "agentscrub": "bin/agentscrub.js" },
+  "bin": {
+    "agentscrub": "bin/agentscrub.js"
+  },
   "main": "src/scan.js",
-  "exports": { ".": "./src/scan.js", "./detect": "./src/detect.js" },
-  "files": ["bin", "src", "action.yml", "README.md", "LICENSE", "CHANGELOG.md"],
-  "engines": { "node": ">=18" },
-  "scripts": { "test": "node --test" },
-  "keywords": ["claude-code", "settings.local.json", "secrets", "secret-scanning", "security", "mcp", "ai-agents", "coding-agent", "cursor", "codex", "gemini-cli", "pre-commit", "hooks", "credentials", "leak"],
-  "repository": { "type": "git", "url": "git+https://github.com/Skymeapple/AI-agents.git", "directory": "projects/agentscrub" },
+  "exports": {
+    ".": "./src/scan.js",
+    "./detect": "./src/detect.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "action.yml",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "claude-code",
+    "settings.local.json",
+    "secrets",
+    "secret-scanning",
+    "security",
+    "mcp",
+    "ai-agents",
+    "coding-agent",
+    "cursor",
+    "codex",
+    "gemini-cli",
+    "pre-commit",
+    "hooks",
+    "credentials",
+    "leak"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skymeapple/AI-agents.git",
+    "directory": "projects/agentscrub"
+  },
   "homepage": "https://github.com/Skymeapple/AI-agents/tree/research-lab/projects/agentscrub#readme",
   "bugs": "https://github.com/Skymeapple/AI-agents/issues",
   "license": "MIT"

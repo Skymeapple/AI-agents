@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 (2026-11-23)
+
+* `--home`: also scan user-level agent configs: `~/.claude.json` (per-project MCP servers), `~/.claude/settings*.json`, Claude Desktop `claude_desktop_config.json` (macOS, Linux, Windows), `~/.cursor/mcp.json`, Windsurf `mcp_config.json`, `~/.gemini/settings.json`, `~/.codex/config.toml` and `~/.aider.conf.yml`. People paste API keys into these, dotfiles repos commit them, and credential stealers harvest them.
+* Files outside the project are shown as `~/…`.
+* Tests clean up their temporary fixtures.
+
 ## 0.1.0 (2026-11-20)
 
 First release.

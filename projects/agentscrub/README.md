@@ -6,6 +6,7 @@
 npx agentscrub          # scan this project
 npx agentscrub --fix    # remove leaked entries, git-ignore the local settings file
 npx agentscrub init     # install the guard hook + pre-commit check for the whole team
+npx agentscrub --home   # also check ~/.claude.json, Claude Desktop, Cursor, Windsurf, Gemini user configs
 ```
 
 It has zero dependencies, needs Node ≥ 18, makes no network calls, and never prints a secret value.
@@ -97,6 +98,7 @@ Or in any CI: `npx -y agentscrub --format github`.
 | MCP (any client) | `.mcp.json`, `.cursor/mcp.json`, `.vscode/mcp.json`, `.roo/mcp.json`, `.kiro/settings/mcp.json`, `.amazonq/mcp.json` |
 | Gemini CLI / Codex | `.gemini/`, `.codex/` |
 | SpecStory / aider | `.specstory/`, `.aider.chat.history.md`, `.aider.input.history` |
+| User-level configs (`--home`) | `~/.claude.json`, `~/.claude/settings*.json`, Claude Desktop `claude_desktop_config.json`, `~/.cursor/mcp.json`, Windsurf `mcp_config.json`, `~/.gemini/settings.json`, `~/.codex/config.toml` |
 | Session transcripts (`--sessions`) | `~/.claude/projects/**/*.jsonl`, `~/.codex/sessions/**` |
 
 Nested projects (monorepos) are found up to `--depth 4`.

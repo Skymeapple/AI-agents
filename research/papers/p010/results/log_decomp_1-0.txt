@@ -1,0 +1,57 @@
+                               config                                                                            menu  within  between  share  share_robust  share_lo  share_hi  n_defs  n_capped
+0                                task                                                                           all24   3.262    1.515  0.317         0.273       0.0     0.818      24        40
+1                                task                                            defensible18 (drop p=+1, min-family)   1.499    0.271  0.153         0.143       0.0     0.642      18         1
+2                                task                                                          defensible_q<=0.8 (12)   0.979    0.223  0.186         0.174       0.0     0.638      12         0
+3                                task                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   0.963    0.172  0.151         0.133       0.0     0.582       8         0
+4                                task                                             aggregator_only q=.5 (defensible 6)   0.640    0.173  0.213         0.207       0.0     0.683       6         0
+5                                task                                                   threshold_only pooled q=.5,.8   1.068    0.253  0.191         0.160       0.0     0.659       2         0
+6                                task                                               threshold_only pooled q=.5,.8,.95   2.228    0.395  0.151         0.138       0.0     0.626       3         1
+7                                task  support_menu (<=50% of frontier points >2 doublings outside family task range)   6.468    2.476  0.277         0.221       0.0     0.798       4        16
+8                           task+time                                                                           all24   4.560    2.129  0.318         0.288       0.0     0.828      24        94
+9                           task+time                                            defensible18 (drop p=+1, min-family)   2.351    0.491  0.173         0.181       0.0     0.642      18         3
+10                          task+time                                                          defensible_q<=0.8 (12)   1.533    0.415  0.213         0.225       0.0     0.667      12         0
+11                          task+time                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   1.393    0.316  0.185         0.185       0.0     0.621       8         0
+12                          task+time                                             aggregator_only q=.5 (defensible 6)   1.007    0.344  0.255         0.255       0.0     0.693       6         0
+13                          task+time                                                   threshold_only pooled q=.5,.8   1.123    0.330  0.227         0.202       0.0     0.675       2         0
+14                          task+time                                               threshold_only pooled q=.5,.8,.95   2.705    0.564  0.173         0.151       0.0     0.641       3         0
+15                          task+time  support_menu (<=50% of frontier points >2 doublings outside family task range)   7.793    3.189  0.290         0.234       0.0     0.810       4        32
+16                          task+loso                                                                           all24   3.256    1.483  0.313         0.266       0.0     0.818      24        40
+17                          task+loso                                            defensible18 (drop p=+1, min-family)   1.476    0.267  0.153         0.146       0.0     0.628      18         0
+18                          task+loso                                                          defensible_q<=0.8 (12)   0.983    0.221  0.183         0.177       0.0     0.623      12         0
+19                          task+loso                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   0.970    0.170  0.149         0.140       0.0     0.586       8         0
+20                          task+loso                                             aggregator_only q=.5 (defensible 6)   0.648    0.171  0.208         0.211       0.0     0.643       6         0
+21                          task+loso                                                   threshold_only pooled q=.5,.8   1.092    0.255  0.189         0.176       0.0     0.664       2         0
+22                          task+loso                                               threshold_only pooled q=.5,.8,.95   2.154    0.391  0.154         0.148       0.0     0.655       3         0
+23                          task+loso  support_menu (<=50% of frontier points >2 doublings outside family task range)   6.388    2.428  0.275         0.216       0.0     0.794       4        15
+24                         task+dates                                                                           all24   3.346    1.550  0.317         0.263       0.0     0.805      24        40
+25                         task+dates                                            defensible18 (drop p=+1, min-family)   1.546    0.291  0.159         0.144       0.0     0.631      18         1
+26                         task+dates                                                          defensible_q<=0.8 (12)   1.011    0.232  0.187         0.171       0.0     0.639      12         0
+27                         task+dates                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   0.997    0.180  0.153         0.131       0.0     0.583       8         0
+28                         task+dates                                             aggregator_only q=.5 (defensible 6)   0.678    0.180  0.210         0.198       0.0     0.650       6         0
+29                         task+dates                                                   threshold_only pooled q=.5,.8   1.126    0.265  0.190         0.157       0.0     0.650       2         0
+30                         task+dates                                               threshold_only pooled q=.5,.8,.95   2.294    0.433  0.159         0.134       0.0     0.660       3         1
+31                         task+dates  support_menu (<=50% of frontier points >2 doublings outside family task range)   6.552    2.494  0.276         0.222       0.0     0.782       4        17
+32                        task+window                                                                           all24   3.535    1.371  0.279         0.230       0.0     0.811      24        53
+33                        task+window                                            defensible18 (drop p=+1, min-family)   1.635    0.211  0.114         0.101       0.0     0.595      18         8
+34                        task+window                                                          defensible_q<=0.8 (12)   0.963    0.159  0.142         0.126       0.0     0.569      12         0
+35                        task+window                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   0.976    0.126  0.114         0.096       0.0     0.516       8         0
+36                        task+window                                             aggregator_only q=.5 (defensible 6)   0.676    0.123  0.154         0.150       0.0     0.564       6         0
+37                        task+window                                                   threshold_only pooled q=.5,.8   1.059    0.247  0.189         0.160       0.0     0.629       2         0
+38                        task+window                                               threshold_only pooled q=.5,.8,.95   2.789    0.435  0.135         0.135       0.0     0.632       3         4
+39                        task+window  support_menu (<=50% of frontier points >2 doublings outside family task range)   6.668    2.090  0.239         0.202       0.0     0.781       4        14
+40                          task+form                                                                           all24   3.377    1.481  0.305         0.270       0.0     0.806      24        42
+41                          task+form                                            defensible18 (drop p=+1, min-family)   1.726    0.316  0.155         0.149       0.0     0.648      18         4
+42                          task+form                                                          defensible_q<=0.8 (12)   1.018    0.235  0.188         0.174       0.0     0.638      12         0
+43                          task+form                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   1.034    0.186  0.152         0.135       0.0     0.575       8         0
+44                          task+form                                             aggregator_only q=.5 (defensible 6)   0.658    0.167  0.202         0.185       0.0     0.671       6         0
+45                          task+form                                                   threshold_only pooled q=.5,.8   1.098    0.278  0.202         0.184       0.0     0.636       2         0
+46                          task+form                                               threshold_only pooled q=.5,.8,.95   2.340    0.454  0.162         0.150       0.0     0.634       3         1
+47                          task+form  support_menu (<=50% of frontier points >2 doublings outside family task range)   6.386    2.346  0.269         0.223       0.0     0.799       4        15
+48  all (time+loso+dates+window+form)                                                                           all24   4.514    1.564  0.257         0.247       0.0     0.823      24        83
+49  all (time+loso+dates+window+form)                                            defensible18 (drop p=+1, min-family)   2.579    0.356  0.121         0.125       0.0     0.565      18        12
+50  all (time+loso+dates+window+form)                                                          defensible_q<=0.8 (12)   1.563    0.289  0.156         0.160       0.0     0.581      12         2
+51  all (time+loso+dates+window+form)                                     recommended8 (pooled,geo,q25,q10 x q=.5,.8)   1.522    0.221  0.127         0.116       0.0     0.557       8         1
+52  all (time+loso+dates+window+form)                                             aggregator_only q=.5 (defensible 6)   0.968    0.236  0.196         0.193       0.0     0.631       6         0
+53  all (time+loso+dates+window+form)                                                   threshold_only pooled q=.5,.8   1.144    0.292  0.204         0.204       0.0     0.636       2         0
+54  all (time+loso+dates+window+form)                                               threshold_only pooled q=.5,.8,.95   3.300    0.528  0.138         0.150       0.0     0.623       3         4
+55  all (time+loso+dates+window+form)  support_menu (<=50% of frontier points >2 doublings outside family task range)   7.172    2.269  0.240         0.220       0.0     0.788       4        23

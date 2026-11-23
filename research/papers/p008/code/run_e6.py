@@ -3,7 +3,8 @@ All runs use world seed 0 (the world the trained teacher was trained on); seeds 
 Methods: hard (sampled labels), soft (oracle Bayes probabilities), soft_teacher (trained h=256 teacher's probabilities).
 Unlimited data (fresh samples every step). K is also logged at intermediate checkpoints (under the cosine schedule).
 Usage: python3 run_e6.py A   (main grid: h in {32,48}, 100k steps, 5 seeds, 3 methods)
-       python3 run_e6.py B   (30k-step budget, h=128, teacher-distilled small students, extra h=16 seeds)
+       python3 run_e6.py C   (250k-step h=48 hard/teacher-distilled, 200k-step h=128 hard)
+       python3 run_e6.py B   (h=128 at 40k steps, teacher-distilled small students, h=16 with 5 seeds)
 Outputs ../results/e6_runs_{A,B}.json and final weights in ../results/e6_models/."""
 import sys, json, os, time, itertools
 import numpy as np, torch, torch.nn.functional as F
@@ -49,23 +50,33 @@ def cfgA():
             for h, m, s in itertools.product([32, 48], ['hard', 'soft', 'soft_teacher'], range(5))]
 
 def cfgB():
-    C = [dict(exp='E6', tag='B', h=h, method=m, seed=s, steps=30000)
-         for h, m, s in itertools.product([32, 48], ['hard', 'soft'], range(5))]
-    C += [dict(exp='E6', tag='B', h=128, method=m, seed=s, steps=60000)
-          for m, s in itertools.product(['hard', 'soft', 'soft_teacher'], range(2))]
+    # trimmed for compute (shared 4-core machine): no 30k-step h=32/48 grid; h=128 at 40k steps
+    C = [dict(exp='E6', tag='B', h=128, method=m, seed=s, steps=40000)
+         for m, s in itertools.product(['hard', 'soft'], range(2))]
     C += [dict(exp='E6', tag='B', h=h, method='soft_teacher', seed=s, steps=45000)
           for h, s in itertools.product([8, 16, 24], range(2))]
     C += [dict(exp='E6', tag='B', h=16, method=m, seed=s, steps=45000)
           for m, s in itertools.product(['hard', 'soft'], range(5))]
     return C
 
+def cfgC():
+    # extra-long runs: does the hard-vs-distilled gap close with 2.5x more steps (h=48) / 5x more (h=128)?
+    C = [dict(exp='E6', tag='C', h=48, method=m, seed=s, steps=250000)
+         for m, s in itertools.product(['hard', 'soft_teacher'], range(2))]
+    C += [dict(exp='E6', tag='C', h=128, method='hard', seed=s, steps=200000) for s in range(2)]
+    return C
+
 if __name__ == '__main__':
     which = sys.argv[1]
-    cfgs = cfgA() if which == 'A' else cfgB()
+    cfgs = {'A': cfgA, 'B': cfgB, 'C': cfgC}[which]()
     cfgs.sort(key=lambda c: -c['steps'] * (1 + c['h'] / 64) * (1.4 if c['method'] == 'soft_teacher' else 1))
-    t0 = time.time(); res = []
+    fp = os.path.join(OUT, f'e6_runs_{which}.json')
+    res = json.load(open(fp)) if os.path.exists(fp) else []          # resume: skip configs already finished
+    done = {(r['h'], r['method'], r['seed'], r['steps']) for r in res}
+    cfgs = [c for c in cfgs if (c['h'], c['method'], c['seed'], c['steps']) not in done]
+    t0 = time.time()
     with Pool(4) as p:
         for i, r in enumerate(p.imap_unordered(job, cfgs)):
-            res.append(r); print(f"{i+1}/{len(cfgs)} {r['h']} {r['method']} s{r['seed']} {r['steps']} K={r['learned']} A={r['wscore']:.4f} {time.time()-t0:.0f}s", flush=True)
+            res.append(r); print(f"{len(res)}/{len(cfgs)+len(done)} {r['h']} {r['method']} s{r['seed']} {r['steps']} K={r['learned']} A={r['wscore']:.4f} {time.time()-t0:.0f}s", flush=True)
             json.dump(res, open(os.path.join(OUT, f'e6_runs_{which}.json'), 'w'))
     print('done', round(time.time() - t0))

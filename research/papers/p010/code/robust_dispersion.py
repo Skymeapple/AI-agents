@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from core import load_runs
 
-R = "/home/user/AI-agents/research/papers/p010/results"
+R = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 ap = argparse.ArgumentParser(); ap.add_argument("--version", default="1-1"); A = ap.parse_args()
 df = load_runs(A.version); df = df[df.release >= pd.Timestamp("2023-01-01")]
 P = pd.read_csv(f"{R}/profiles_{A.version}_delta.csv", index_col=0)

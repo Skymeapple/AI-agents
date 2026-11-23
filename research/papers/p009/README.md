@@ -24,3 +24,19 @@ d_v=128 plateau: linear/delta d_v=128 and linear d_v=64; outputs `*_d512.json`).
 `python3 analyze.py` also writes results/eta_vs_sim.json (efficiency vs simulated ideal memory) and
 results/fig_dvsweep.png; its console output is saved in results/log_analyze.txt.
 Each training run takes ~2.5-6 min on one CPU core.
+
+## Revision round 1 (new code and outputs)
+
+```
+cd code
+python3 capacity_ci.py          # Exp A rev: Monte Carlo CIs, fine N grid, closed-form decomposition, V=41,509 check (~10 min) -> results/sim_capacity_ci.json
+./run_train_seeds.sh            # Exp B rev: 3 seeds x {linear,gla,delta,gdelta} x d_k in {8,16,32}, dense eval grid -> results/train_seeds/
+                                #   + Exp B' overwrite task (d_k=16, seeds 0,1)                                    -> results/train_overwrite/
+                                #   (seed-0 overwrite runs were launched separately with the same command line)
+python3 recall_demand_v2.py     # Exp C rev: held-out criteria D0-D4, 2-fold doc split, doc-level bootstrap, BPE, no-KJV (~6 min) -> results/demand_v2.json
+python3 replay_memory.py        # Exp D' : real token streams replayed through ideal fixed-state memories (~10 min) -> results/replay_memory.json
+python3 analyze_v2.py           # tables for the revision -> results/analysis_v2.json, results/fig_revision.png
+```
+The byte-level BPE (vocab 8192) is trained on the corpus inside recall_demand_v2.py with HuggingFace `tokenizers`.
+`train_mqar.py` gained `--task overwrite --rep R`, `--dense_eval 1` and `--outdir`; default behaviour is unchanged,
+and seed-0 runs reproduce the first-version models exactly (only the evaluation grid differs).

@@ -23,7 +23,10 @@ for r in R:
         KS = r['learned']; rr = KT / KS; obs = (1 - r['wscore']) / ET
         rows.append(dict(h=r['h'], seed=r['seed'], K_S=KS, r=rr, obs=obs, asym=rr ** .5,
                          finiteM=finiteM(rr, KT / T, .5), topK_exact=Etop(KS, .5) / Etop(KT, .5)))
-S['prop2_vs_teacher'] = dict(K_T=KT, E_T=ET, max_learned_index_teacher=int(np.where(LT)[0].max() + 1), rows=rows)
+S['prop2_vs_teacher'] = dict(K_T=KT, E_T=ET, max_learned_index_teacher=int(np.where(LT)[0].max() + 1), rows=rows,
+    teacher_frac_of_topKT_learned=float(LT[:KT].mean()), teacher_E_if_exact_prefix=float(Etop(KT, .5)),
+    student_prefixness=[float((np.array(r['score_t']) > 0.75)[:r['learned']].mean()) for r in R
+                        if r['exp'] == 'E1' and r['family'] == 'random' and r['learned'] > 0])
 # all ordered pairs of capacity-regime students with K_S < K_T (same alpha)
 pts = []
 for r in R:
@@ -127,7 +130,7 @@ if os.path.exists(pq):
 
 # ======== 5. E6 long training ========
 E6 = []
-for fn in ['e6_runs_A.json', 'e6_runs_B.json']:
+for fn in ['e6_runs_A.json', 'e6_runs_B.json', 'e6_runs_C.json']:
     fp = os.path.join(RES, fn)
     if os.path.exists(fp): E6 += json.load(open(fp))
 E5 = json.load(open(os.path.join(RES, 'e5_runs.json')))
@@ -148,9 +151,9 @@ if E6:
     from scipy.stats import ttest_ind, mannwhitneyu
     cmp = {}
     for (h, st) in sorted({(k[0], k[1]) for k in d6}):
-        H = [r['learned'] for r in d6[(h, st, 'hard')]]
+        H = [r['learned'] for r in d6.get((h, st, 'hard'), [])]
         for m in ['soft', 'soft_teacher']:
-            O = [r['learned'] for r in d6[(h, st, m)]]
+            O = [r['learned'] for r in d6.get((h, st, m), [])]
             if len(H) >= 2 and len(O) >= 2:
                 diff = np.mean(O) - np.mean(H)
                 bd = [np.mean(rng.choice(O, len(O))) - np.mean(rng.choice(H, len(H))) for _ in range(10000)]
@@ -169,11 +172,19 @@ if E6:
                             err_ratio=(1 - r['wscore']) / ET, retained=float((sm & LT).sum() / KT), outside_teacher=int((sm & ~LT).sum()),
                             pred_asym=(KT / KS) ** .5 if KS else None, pred_finiteM=finiteM(KT / KS, KT / T, .5) if KS else None))
     S['E6_teacher_table'] = tab
+    # long-training capacity estimates -> params per skill and revised D* (n_hard from the E2 fit, Z for alpha=0.5)
+    nh = 188.0; dstar = {}
+    for (h, st, m), v in sorted(d6.items()):
+        if m in ('hard', 'soft') and len(v) >= 2:
+            Kc = max(np.mean([r['learned'] for r in d6.get((h, st, mm))]) for mm in ('hard', 'soft') if d6.get((h, st, mm)))
+            dstar[f'h={h},steps={st}'] = dict(K_cap=float(Kc), params=v[0]['params'], params_per_skill=float(v[0]['params'] / Kc),
+                                             D_star=float(nh * Z * Kc ** 1.5))
+    S['E6_capacity_Dstar'] = dstar
     # figure
-    fig, ax = plt.subplots(1, 3, figsize=(11, 3.3))
-    for i, h in enumerate([16, 32, 48]):
+    fig, ax = plt.subplots(1, 4, figsize=(14, 3.3))
+    for i, h in enumerate([16, 32, 48, 128]):
         for m, c, off in [('hard', 'C1', -0.03), ('soft', 'C0', 0), ('soft_teacher', 'C2', 0.03)]:
-            sts = sorted({k[1] for k in d6 if k[0] == h and k[2] == m})
+            sts = sorted({k[1] for k in d6 if k[0] == h and k[2] == m and d6[k]})
             # include 10k-step E2 unlimited (world seed = train seed) for reference
             xs, ys, lo, hi = [], [], [], []
             for st in sts:
@@ -195,14 +206,17 @@ if mods:
         name = os.path.basename(fp); h = int(name.split('_h')[1].split('_')[0]); meth = name.split(f'_h{h}_')[1].rsplit('_s', 1)[0]
         sd = torch.load(fp); m = SK.MLP(w.code, w.d, w.C, h); m.load_state_dict(sd)
         K0 = int((SK.evaluate(w, m)['score_t'] > 0.75).sum()); row = dict(h=h, method=meth, K_full=K0, params=SK.n_params(m))
-        for b in [2, 3, 4, 5, 6, 8]:
+        BITS = [4, 5, 6, 7, 8, 10, 12]
+        for b in BITS:   # symmetric uniform quantisation with one scale per output row (per-channel)
             q = {}
             for k, v in sd.items():
                 if k == 'code': q[k] = v; continue
-                s = v.abs().max() / (2 ** (b - 1) - 1); q[k] = torch.round(v / s) * s
+                vv = v if v.dim() > 1 else v.unsqueeze(1)
+                s = vv.abs().amax(1, keepdim=True).clamp_min(1e-12) / (2 ** (b - 1) - 1)
+                q[k] = (torch.round(vv / s) * s).reshape(v.shape)
             m.load_state_dict(q); row[f'K_{b}bit'] = int((SK.evaluate(w, m)['score_t'] > 0.75).sum())
-        bmin = next((b for b in [2, 3, 4, 5, 6, 8] if row[f'K_{b}bit'] >= 0.95 * K0), None)
-        row['b_min95'] = bmin; row['bits_per_learned_skill'] = bmin * row['params'] / K0 if bmin else None
+        bmin = next((b for b in BITS if row[f'K_{b}bit'] >= 0.9 * K0), None)
+        row['b_min90'] = bmin; row['bits_per_learned_skill'] = bmin * row['params'] / K0 if bmin else None
         qres[(h, meth)].append(row)
     S['quantisation'] = {f'h={h},{m}': v for (h, m), v in qres.items()}
     allb = [r['bits_per_learned_skill'] for v in qres.values() for r in v if r['bits_per_learned_skill']]

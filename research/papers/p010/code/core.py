@@ -9,7 +9,10 @@ import numpy as np
 import pandas as pd
 import yaml
 
-DATA = "/home/user/AI-agents/research/papers/p010/data"
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+DATA = str(ROOT / "data")
+RESULTS = str(ROOT / "results")
 
 
 def load_runs(version="1-1"):
@@ -45,23 +48,35 @@ def irls(X, y, w, pen, iters=60, tol=1e-9):
     return beta
 
 
-def fit_model(df, lam=None, tiny=1e-3):
+def fit_model(df, lam=None, tiny=1e-3, return_hessian=False):
     """Fit one AI system. lam=None -> pooled model. Returns dict with a, b, and family offsets."""
-    x = df.x.values
-    y = df.y.values
-    w = df.w.values
+    # Collapse runs sharing (family, task length): the weighted Bernoulli log-likelihood depends on the data
+    # only through sum(w) and sum(w*y) per covariate pattern, so this is exact and ~5x faster.
+    keys = df.fam_key.values if lam is not None else np.zeros(len(df), int)
+    g = pd.DataFrame({"k": keys, "x": df.x.values, "wy": df.w.values * df.y.values, "w": df.w.values})
+    g = g.groupby(["k", "x"], sort=True, as_index=False)[["wy", "w"]].sum()
+    x = g.x.values
+    w = g.w.values
+    y = np.divide(g.wy.values, w, out=np.zeros_like(w), where=w > 0)
     if lam is None:
         X = np.column_stack([np.ones_like(x), x])
         beta = irls(X, y, w, np.array([tiny, tiny]))
         return dict(a=beta[0], b=beta[1], fam=None, delta=None)
-    fams, idx = np.unique(df.fam_key.values, return_inverse=True)
+    fams, idx = np.unique(g.k.values, return_inverse=True)
     F = len(fams)
     Z = np.zeros((len(x), F))
     Z[np.arange(len(x)), idx] = 1.0
     X = np.column_stack([np.ones_like(x), x, Z])
     pen = np.concatenate([[tiny, tiny], np.full(F, lam)])
     beta = irls(X, y, w, pen)
-    return dict(a=beta[0], b=beta[1], fam=fams, delta=beta[2:])
+    out = dict(a=beta[0], b=beta[1], fam=fams, delta=beta[2:])
+    if return_hessian:  # quantities for a Laplace approximation of the marginal likelihood
+        eta = X @ beta
+        p = 1 / (1 + np.exp(-np.clip(eta, -30, 30)))
+        ll = float(np.sum(w * (y * np.log(np.clip(p, 1e-300, 1)) + (1 - y) * np.log(np.clip(1 - p, 1e-300, 1)))))
+        H = (X * (w * p * (1 - p))[:, None]).T @ X + np.diag(pen)
+        out.update(loglik=ll, H=H, F=F)
+    return out
 
 
 def logit(q):

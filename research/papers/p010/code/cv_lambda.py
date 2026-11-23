@@ -7,9 +7,9 @@ import numpy as np
 import pandas as pd
 from core import load_runs, fit_model
 
-OUT = "/home/user/AI-agents/research/papers/p010/results"
+OUT = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 ap = argparse.ArgumentParser(); ap.add_argument("--version", default="1-1"); ap.add_argument("--K", type=int, default=5)
-ap.add_argument("--reps", type=int, default=3)
+ap.add_argument("--reps", type=int, default=2)
 A = ap.parse_args()
 df = load_runs(A.version)
 df = df[df.release >= pd.Timestamp("2023-01-01")].reset_index(drop=True)

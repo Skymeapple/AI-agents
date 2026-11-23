@@ -25,14 +25,30 @@ p.add_argument("--K", type=int, default=4096); p.add_argument("--V", type=int, d
 p.add_argument("--Q", type=int, default=32); p.add_argument("--bs", type=int, default=64)
 p.add_argument("--Nmax", type=int, default=256); p.add_argument("--seed", type=int, default=0)
 p.add_argument("--threads", type=int, default=2)
+p.add_argument("--task", default="distinct")  # distinct | overwrite (each of N live keys written --rep times; target = latest value)
+p.add_argument("--rep", type=int, default=3)
+p.add_argument("--dense_eval", type=int, default=0)  # 1: evaluate on a 2^(1/4)-spaced N grid (revision runs)
+p.add_argument("--outdir", default="train")
 p.add_argument("--d", type=int, default=128)  # token embedding width; the value half (d/2) caps the effective value dimension
 a = p.parse_args()
 torch.manual_seed(a.seed); np.random.seed(a.seed); torch.set_num_threads(a.threads)
-RES = os.path.join(os.path.dirname(__file__), "..", "results", "train"); os.makedirs(RES, exist_ok=True)
+RES = os.path.join(os.path.dirname(__file__), "..", "results", a.outdir); os.makedirs(RES, exist_ok=True)
 NS = [4, 8, 16, 32, 64, 128, 256]
 
 
 def batch(N, bs, gen):
+    if a.task == "overwrite":
+        live = torch.stack([torch.randperm(a.K, generator=gen)[:N] for _ in range(bs)])          # N live keys
+        order = torch.stack([torch.randperm(N * a.rep, generator=gen) % N for _ in range(bs)])  # each written rep times
+        keys = torch.gather(live, 1, order)
+        vals = torch.randint(0, a.V, (bs, N * a.rep), generator=gen)
+        qi = torch.randint(0, N, (bs, a.Q), generator=gen)
+        pos = torch.arange(N * a.rep).expand(bs, -1)
+        # last write position of each live key index
+        last = torch.full((bs, N), -1, dtype=torch.long).scatter_reduce(1, order, pos, reduce="amax")
+        lp = torch.gather(last, 1, qi)
+        qk = torch.gather(live, 1, qi); qv = torch.gather(vals, 1, lp)
+        return keys, vals, qk, qv
     keys = torch.stack([torch.randperm(a.K, generator=gen)[:N] for _ in range(bs)])
     vals = torch.randint(0, a.V, (bs, N), generator=gen)
     qi = torch.randint(0, N, (bs, a.Q), generator=gen)
@@ -89,6 +105,8 @@ opt = torch.optim.AdamW(m.parameters(), lr=3e-3, weight_decay=0.0)
 sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=3e-3, total_steps=a.steps, pct_start=0.1)
 gen = torch.Generator().manual_seed(a.seed)
 train_Ns = [n for n in NS if n <= a.Nmax]
+EVAL_NS = sorted(set(int(round(2 ** (e / 4))) for e in range(8, 4 * int(math.log2(a.Nmax)) + 1))) if a.dense_eval else NS
+EVAL_NS = [n for n in EVAL_NS if n <= a.Nmax]
 t0 = time.time(); losses = []
 for step in range(a.steps):
     N = int(np.random.choice(train_Ns))
@@ -101,9 +119,9 @@ for step in range(a.steps):
 
 m.eval(); evalgen = torch.Generator().manual_seed(1234); acc = {}
 with torch.no_grad():
-    for N in NS:
+    for N in EVAL_NS:
         c = 0; n = 0
-        for _ in range(8):
+        for _ in range(4 if a.dense_eval else 8):
             keys, vals, qk, qv = batch(N, 128, evalgen)
             c += (m(keys, vals, qk).argmax(-1) == qv).sum().item(); n += qv.numel()
         acc[N] = c / n
@@ -114,5 +132,6 @@ with torch.no_grad():  # learned write strength beta and decay a on pair tokens 
              "decay_min": torch.sigmoid(m.Wa(xp)).min().item()}
 res = {"args": vars(a), "acc": acc, "gates_on_pair_tokens": gates, "train_time_s": time.time() - t0, "final_loss": float(np.mean(losses[-100:])),
        "state_size": a.dk * a.dv}
-json.dump(res, open(os.path.join(RES, f"{a.arch}_dk{a.dk}_dv{a.dv}" + (f"_d{a.d}" if a.d != 128 else "") + ".json"), "w"), indent=1)
+json.dump(res, open(os.path.join(RES, f"{a.arch}_dk{a.dk}_dv{a.dv}" + (f"_d{a.d}" if a.d != 128 else "")
+                    + (f"_{a.task}{a.rep}" if a.task != "distinct" else "") + (f"_s{a.seed}" if a.outdir != "train" else "") + ".json"), "w"), indent=1)
 print(res)

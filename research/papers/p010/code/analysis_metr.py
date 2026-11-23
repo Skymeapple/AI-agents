@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 from core import load_runs, fit_model, log2_horizon, power_mean_log2
 
-OUT = "/home/user/AI-agents/research/papers/p010/results"
+OUT = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 QS = [0.5, 0.8, 0.95]
 AGGS = [("pooled", None), ("pmean+1", 1.0), ("geo(p=0)", 0.0), ("pmean-1", -1.0),
         ("q50fam", "q50"), ("q25fam", "q25"), ("q10fam", "q10"), ("minfam", -np.inf)]

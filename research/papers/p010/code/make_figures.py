@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from analysis_metr import trend, TARGETS
 
-R = "/home/user/AI-agents/research/papers/p010/results"
+R = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 L167 = TARGETS["1 work-month (167h)"]
 out = {}
 

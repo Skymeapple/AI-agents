@@ -8,7 +8,7 @@ import pandas as pd
 from core import load_runs, fit_model, log2_horizon
 from analysis_metr import trend, TARGETS, frontier_mask
 
-R = "/home/user/AI-agents/research/papers/p010/results"
+R = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 df = load_runs("1-1"); df = df[df.release >= pd.Timestamp("2023-01-01")]
 rows = []
 for m, g in df.groupby("alias"):

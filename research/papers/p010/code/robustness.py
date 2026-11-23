@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-R = "/home/user/AI-agents/research/papers/p010/results"
+R = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 K = "1 work-month (167h)"
 TAGS = ["metr_1-1_lam1", "metr_1-1_lam0.25", "metr_1-1_lam4", "metr_1-0_lam1"]
 PORDER = ["pmean+1", "geo(p=0)", "pmean-1", "minfam"]  # Prop. 1: arrival non-decreasing along this list

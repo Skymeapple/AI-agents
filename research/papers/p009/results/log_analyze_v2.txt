@@ -1,0 +1,106 @@
+delta 8 [44.8 42.7 43.5] eta_sim 1.038 [0.04585207253694534, 0.09156504273414612, 0.08751705288887024] None
+delta 16 [94.1 94.2 91.2] eta_sim 1.059 [0.06386014819145203, 0.10296367108821869, 0.11502470076084137] None
+delta 32 [185.6 183.2 177.8] eta_sim 1.005 [0.12670528888702393, 0.15367983281612396, 0.16774442791938782] None
+gdelta 8 [44.  43.9 43.8] eta_sim 1.044 [0.02549852803349495, 0.0251703392714262, 0.0262264683842659] [0.9999293684959412, 0.9999300241470337, 0.9999216198921204]
+gdelta 16 [93.6 95.8 93.6] eta_sim 1.073 [0.03612083941698074, 0.0354444645345211, 0.03721360117197037] [0.9999248385429382, 0.9999291300773621, 0.9999176263809204]
+gdelta 32 [193.  192.7 192.1] eta_sim 1.063 [0.053131457418203354, 0.05252133309841156, 0.05540148913860321] [0.9999220371246338, 0.9999282956123352, 0.9999125003814697]
+gla 8 [44.2 44.1 43.2] eta_sim 1.042 None [0.9993488192558289, 0.9992963671684265, 0.9992811679840088]
+gla 16 [92.9 94.3 92.9] eta_sim 1.062 None [0.9994890093803406, 0.999495804309845, 0.9994497299194336]
+gla 32 [191.1 192.7 188.7] eta_sim 1.053 None [0.9996010065078735, 0.9996047019958496, 0.9995652437210083]
+linear 8 [44.1 43.9 43.8] eta_sim 1.044 None None
+linear 16 [93.1 94.6 94. ] eta_sim 1.068 None None
+linear 32 [193.3 193.5 192.7] eta_sim 1.066 None None
+{
+ "8": {
+  "eta_sim_grand_mean": 1.0420737196297207,
+  "family_means": [
+   1.044162779337381,
+   1.042358830435309,
+   1.038017774490454,
+   1.0437554942557388
+  ],
+  "sd_between_family_means": 0.0028121471926325363,
+  "sd_within_family_seeds": 0.014610744643765477,
+  "anova_F": 0.11113545988811717,
+  "anova_p": 0.9511584622105635
+ },
+ "16": {
+  "eta_sim_grand_mean": 1.0654505431025993,
+  "family_means": [
+   1.0677518877258263,
+   1.0618867946805393,
+   1.0593527371504632,
+   1.0728107528535686
+  ],
+  "sd_between_family_means": 0.006037450204039284,
+  "sd_within_family_seeds": 0.013747224271443304,
+  "anova_F": 0.5786265307542644,
+  "anova_p": 0.6452358832387418
+ },
+ "32": {
+  "eta_sim_grand_mean": 1.0466033540305912,
+  "family_means": [
+   1.0656658230926992,
+   1.0529407628911875,
+   1.0051787832244075,
+   1.0626280469140708
+  ],
+  "sd_between_family_means": 0.028144427075927247,
+  "sd_within_family_seeds": 0.012447321880705558,
+  "anova_F": 15.337488100508832,
+  "anova_p": 0.0011118791332823093
+ }
+}
+ideal overwrite additive {4: 0.375, 8: 0.304, 16: 0.296, 32: 0.243, 64: 0.139, 128: 0.058}
+ideal overwrite delta_beta1 {4: 0.983, 8: 0.925, 16: 0.771, 32: 0.449, 64: 0.232, 128: 0.113}
+ideal overwrite delta_beta0.5 {4: 1.0, 8: 0.979, 16: 0.871, 32: 0.64, 64: 0.365, 128: 0.197}
+ideal overwrite decay_0.9 {4: 0.9, 8: 0.804, 16: 0.59, 32: 0.361, 64: 0.188, 128: 0.104}
+ideal overwrite decay_0.97 {4: 0.6, 8: 0.675, 16: 0.717, 32: 0.559, 64: 0.345, 128: 0.194}
+prose {'T': 1024, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.5365960261666088, 'mean_n_ctx': 57.8, 'S_half_measured': 53077.257859125246, 'S_req_predicted_eq4': 21756.47971566075, 'ratio_measured_over_predicted': 2.4396068919605214, 'mean_abs_err_theory': 0.02251009603060518}
+prose {'T': 1024, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.8496857012712742, 'mean_n_ctx': 57.8, 'S_half_measured': 1582.1150454862525, 'S_req_predicted_eq4': 1229.2517376003825, 'ratio_measured_over_predicted': 1.2870553663602649, 'mean_abs_err_theory': 0.06440886792822498}
+prose {'T': 1024, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.48454215886951585, 'mean_n_ctx': 37.2, 'S_half_measured': None, 'S_req_predicted_eq4': 21756.47971566075, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.016735438337978442}
+prose {'T': 1024, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.8552109793089843, 'mean_n_ctx': 37.2, 'S_half_measured': None, 'S_req_predicted_eq4': 791.1447169331182, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.07347828841205556}
+prose {'T': 1024, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.9849906191369605, 'mean_n_ctx': 57.8, 'S_half_measured': 15818.654592315965, 'S_req_predicted_eq4': 21756.47971566075, 'ratio_measured_over_predicted': 0.7270778544623366, 'mean_abs_err_theory': 0.017213821633125913}
+prose {'T': 1024, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 1.0, 'mean_n_ctx': 57.8, 'S_half_measured': 2157.340130079337, 'S_req_predicted_eq4': 1229.2517376003825, 'ratio_measured_over_predicted': 1.7550027094455627, 'mean_abs_err_theory': 0.027858842278184234}
+prose {'T': 1024, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.974651567944251, 'mean_n_ctx': 37.2, 'S_half_measured': 18710.119126562207, 'S_req_predicted_eq4': 21756.47971566075, 'ratio_measured_over_predicted': 0.8599791589029124, 'mean_abs_err_theory': 0.01643628857072461}
+prose {'T': 1024, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 1.0, 'mean_n_ctx': 37.2, 'S_half_measured': 1638.3881558885066, 'S_req_predicted_eq4': 791.1447169331182, 'ratio_measured_over_predicted': 2.070908293794513, 'mean_abs_err_theory': 0.030851023274408595}
+prose {'T': 4096, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.31199999999999994, 'mean_n_ctx': 321.6, 'S_half_measured': None, 'S_req_predicted_eq4': 87089.72085594406, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.03043145442662264}
+prose {'T': 4096, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.475, 'mean_n_ctx': 321.6, 'S_half_measured': None, 'S_req_predicted_eq4': 6839.573681873409, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.029615143760418537}
+prose {'T': 4096, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.2607094915287686, 'mean_n_ctx': 190.6, 'S_half_measured': None, 'S_req_predicted_eq4': 87089.72085594406, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.02050632343573044}
+prose {'T': 4096, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.47600770650168245, 'mean_n_ctx': 190.6, 'S_half_measured': None, 'S_req_predicted_eq4': 4053.553307727213, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.029137185981949445}
+prose {'T': 4096, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.744, 'mean_n_ctx': 321.6, 'S_half_measured': 173571.72365681236, 'S_req_predicted_eq4': 87089.72085594406, 'ratio_measured_over_predicted': 1.9930219313013875, 'mean_abs_err_theory': 0.0352182283181565}
+prose {'T': 4096, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.953, 'mean_n_ctx': 321.6, 'S_half_measured': 16032.92466524487, 'S_req_predicted_eq4': 6839.573681873409, 'ratio_measured_over_predicted': 2.3441409378681235, 'mean_abs_err_theory': 0.013671071632806992}
+prose {'T': 4096, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.6593895187630128, 'mean_n_ctx': 190.6, 'S_half_measured': 318603.72175741295, 'S_req_predicted_eq4': 87089.72085594406, 'ratio_measured_over_predicted': 3.6583389936961495, 'mean_abs_err_theory': 0.023959734973144842}
+prose {'T': 4096, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.9436286966046001, 'mean_n_ctx': 190.6, 'S_half_measured': 12305.854297489637, 'S_req_predicted_eq4': 4053.553307727213, 'ratio_measured_over_predicted': 3.0358190366045554, 'mean_abs_err_theory': 0.016919857232498406}
+prose {'T': 16384, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.157, 'mean_n_ctx': 1642.4, 'S_half_measured': None, 'S_req_predicted_eq4': 348422.6854170773, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.015406032114864505}
+prose {'T': 16384, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.27199999999999996, 'mean_n_ctx': 1642.4, 'S_half_measured': None, 'S_req_predicted_eq4': 34929.46459921917, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.015576731267637004}
+prose {'T': 16384, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.092, 'mean_n_ctx': 993.0, 'S_half_measured': None, 'S_req_predicted_eq4': 348422.6854170773, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.006351028075350636}
+prose {'T': 16384, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.258, 'mean_n_ctx': 993.0, 'S_half_measured': None, 'S_req_predicted_eq4': 21118.45978265017, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.012320983966112385}
+prose {'T': 16384, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.329, 'mean_n_ctx': 1642.4, 'S_half_measured': None, 'S_req_predicted_eq4': 348422.6854170773, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.04573903836847737}
+prose {'T': 16384, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.8119999999999999, 'mean_n_ctx': 1642.4, 'S_half_measured': 126502.42019948782, 'S_req_predicted_eq4': 34929.46459921917, 'ratio_measured_over_predicted': 3.621653571017396, 'mean_abs_err_theory': 0.012629170962884505}
+prose {'T': 16384, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.2, 'mean_n_ctx': 993.0, 'S_half_measured': None, 'S_req_predicted_eq4': 348422.6854170773, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.03252898369095872}
+prose {'T': 16384, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.7929999999999999, 'mean_n_ctx': 993.0, 'S_half_measured': 130256.06206844168, 'S_req_predicted_eq4': 21118.45978265017, 'ratio_measured_over_predicted': 6.167876985775889, 'mean_abs_err_theory': 0.006931569307853074}
+code {'T': 1024, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.4096049382716049, 'mean_n_ctx': 116.6, 'S_half_measured': None, 'S_req_predicted_eq4': 24375.347129745296, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.04485287696746284}
+code {'T': 1024, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.4934814814814815, 'mean_n_ctx': 116.6, 'S_half_measured': None, 'S_req_predicted_eq4': 2778.2653717774206, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.03502247968641039}
+code {'T': 1024, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.2541826432452561, 'mean_n_ctx': 64.8, 'S_half_measured': None, 'S_req_predicted_eq4': 24375.347129745296, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.022739303807012837}
+code {'T': 1024, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.39525106989627357, 'mean_n_ctx': 64.8, 'S_half_measured': None, 'S_req_predicted_eq4': 1544.0102580718426, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.021975643493241766}
+code {'T': 1024, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.7530123456790123, 'mean_n_ctx': 116.6, 'S_half_measured': 109330.12013549631, 'S_req_predicted_eq4': 24375.347129745296, 'ratio_measured_over_predicted': 4.485274386188351, 'mean_abs_err_theory': 0.05789046520580073}
+code {'T': 1024, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 1.0, 'mean_n_ctx': 116.6, 'S_half_measured': 9771.869310906777, 'S_req_predicted_eq4': 2778.2653717774206, 'ratio_measured_over_predicted': 3.51725555455314, 'mean_abs_err_theory': 0.020714726841751366}
+code {'T': 1024, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.6603888502759987, 'mean_n_ctx': 64.8, 'S_half_measured': 339995.8448576605, 'S_req_predicted_eq4': 24375.347129745296, 'ratio_measured_over_predicted': 13.948348839830992, 'mean_abs_err_theory': 0.04572515411611309}
+code {'T': 1024, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 1.0, 'mean_n_ctx': 64.8, 'S_half_measured': 13482.707004126429, 'S_req_predicted_eq4': 1544.0102580718426, 'ratio_measured_over_predicted': 8.732265173525214, 'mean_abs_err_theory': 0.021706910676102694}
+code {'T': 4096, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.272, 'mean_n_ctx': 397.0, 'S_half_measured': None, 'S_req_predicted_eq4': 97572.87047537339, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.035326544229911265}
+code {'T': 4096, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.38800000000000007, 'mean_n_ctx': 397.0, 'S_half_measured': None, 'S_req_predicted_eq4': 9459.445562569777, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.03614404056090107}
+code {'T': 4096, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.14200000000000002, 'mean_n_ctx': 237.0, 'S_half_measured': None, 'S_req_predicted_eq4': 97572.87047537339, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.015220883092250155}
+code {'T': 4096, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.334, 'mean_n_ctx': 237.0, 'S_half_measured': None, 'S_req_predicted_eq4': 5647.074554984981, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.028943876311820046}
+code {'T': 4096, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.41000000000000003, 'mean_n_ctx': 397.0, 'S_half_measured': None, 'S_req_predicted_eq4': 97572.87047537339, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.06364238626969633}
+code {'T': 4096, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.9559999999999998, 'mean_n_ctx': 397.0, 'S_half_measured': 31822.211486329936, 'S_req_predicted_eq4': 9459.445562569777, 'ratio_measured_over_predicted': 3.364067299276791, 'mean_abs_err_theory': 0.02300862070514824}
+code {'T': 4096, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.322, 'mean_n_ctx': 237.0, 'S_half_measured': None, 'S_req_predicted_eq4': 97572.87047537339, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.04462366571820862}
+code {'T': 4096, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.932, 'mean_n_ctx': 237.0, 'S_half_measured': 30249.32616172232, 'S_req_predicted_eq4': 5647.074554984981, 'ratio_measured_over_predicted': 5.356636585401478, 'mean_abs_err_theory': 0.021990123789497117}
+code {'T': 16384, 'shape': 'dv64', 'def': 'D0', 'policy': 'every', 'acc_max': 0.05, 'mean_n_ctx': 1303.2, 'S_half_measured': None, 'S_req_predicted_eq4': 390362.9638578858, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.015138164025880923}
+code {'T': 16384, 'shape': 'dv64', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.278, 'mean_n_ctx': 1303.2, 'S_half_measured': None, 'S_req_predicted_eq4': 31051.761856778172, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.016349830190098516}
+code {'T': 16384, 'shape': 'dv64', 'def': 'D3', 'policy': 'every', 'acc_max': 0.044, 'mean_n_ctx': 954.2, 'S_half_measured': None, 'S_req_predicted_eq4': 390362.9638578858, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.019158227871146575}
+code {'T': 16384, 'shape': 'dv64', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.296, 'mean_n_ctx': 954.2, 'S_half_measured': None, 'S_req_predicted_eq4': 22736.027596483833, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.02676761195791291}
+code {'T': 16384, 'shape': 'square', 'def': 'D0', 'policy': 'every', 'acc_max': 0.10800000000000001, 'mean_n_ctx': 1303.2, 'S_half_measured': None, 'S_req_predicted_eq4': 390362.9638578858, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.012940598020340843}
+code {'T': 16384, 'shape': 'square', 'def': 'D0', 'policy': 'oracle', 'acc_max': 0.6, 'mean_n_ctx': 1303.2, 'S_half_measured': 426237.7071420539, 'S_req_predicted_eq4': 31051.761856778172, 'ratio_measured_over_predicted': 13.726683500537414, 'mean_abs_err_theory': 0.01707700632291556}
+code {'T': 16384, 'shape': 'square', 'def': 'D3', 'policy': 'every', 'acc_max': 0.06, 'mean_n_ctx': 954.2, 'S_half_measured': None, 'S_req_predicted_eq4': 390362.9638578858, 'ratio_measured_over_predicted': None, 'mean_abs_err_theory': 0.01501794379294788}
+code {'T': 16384, 'shape': 'square', 'def': 'D3', 'policy': 'oracle', 'acc_max': 0.624, 'mean_n_ctx': 954.2, 'S_half_measured': 323043.71090649825, 'S_req_predicted_eq4': 22736.027596483833, 'ratio_measured_over_predicted': 14.208449982549174, 'mean_abs_err_theory': 0.022791196423556717}

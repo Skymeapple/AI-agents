@@ -1,4 +1,4 @@
-"""(i) Numerical checks of Propositions 1 and 4; (ii) re-analysis of the published CHC domain scores.
+"""(i) Numerical checks of Propositions 2 and 4; (ii) re-analysis of the published CHC domain scores.
 
 CHC scores: Hendrycks et al. (2025), arXiv:2510.18212, table of ten domains (each out of 10 points).
 Order: K, RW, M, R, WM, MS, MR, V, A, S.
@@ -10,11 +10,11 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from core import power_mean_log2
 
-OUT = "/home/user/AI-agents/research/papers/p010/results"
+OUT = str(__import__("pathlib").Path(__file__).resolve().parents[1] / "results")
 rng = np.random.default_rng(1)
 res = {}
 
-# ---------- Proposition 1: asymptotic growth rate of power means of exponentially growing horizons
+# ---------- Proposition 2: asymptotic growth rate of power means of exponentially growing horizons
 n = 10
 a = rng.normal(0, 2, n)          # log2 horizon offsets
 s = rng.uniform(0.8, 2.4, n)     # log2 units per year (doubling times 5-15 months)
@@ -31,9 +31,9 @@ for v, lab in [(s.max(), "max s_i"), (s.mean(), "mean s_i"), (s.min(), "min s_i"
     ax[0].axhline(12 / v, ls=":", c="k", lw=0.8)
     ax[0].text(30.3, 12 / v, lab, fontsize=7, va="center")
 ax[0].set_xlabel("years"); ax[0].set_ylabel("doubling time of aggregate (months)")
-ax[0].set_title("Prop. 1: aggregate doubling time converges\nto fastest / mean / slowest domain")
+ax[0].set_title("Prop. 2: aggregate doubling time converges\nto fastest / mean / slowest domain")
 ax[0].legend(fontsize=7, ncol=2)
-res["prop1"] = dict(s_max=s.max(), s_mean=s.mean(), s_min=s.min(),
+res["prop2"] = dict(s_max=s.max(), s_mean=s.mean(), s_min=s.min(),
                     rate_at_T30={str(p): rates[p][-1] for p in ps})
 
 # ---------- Proposition 4: downward bias of min under noise; compare with sigma*sqrt(2 ln n)

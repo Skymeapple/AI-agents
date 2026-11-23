@@ -1,273 +1,333 @@
-# Familiar Is Not Known: Two Identifiability Failures in Machine Self-Knowledge, with Closed-Form Predictions and a Controlled Test
+# Familiar Is Not Known: Exposure-Matched and Within-Stratum Tests of Machine Self-Knowledge Signals in Controlled Knowledge Worlds
 
-**Target venue:** ICLR 2027 (main track; theory + controlled empirical study)
+**Target venue:** ICLR 2027 (main track; controlled empirical study with elementary theory). **Revision R1.** The changes made in response to review are listed in `reviews/response_r1.md`.
 
 ---
 
 ## Abstract
 
-A model "knows that it does not know" when it can compute a signal that separates the queries it would answer wrongly from the queries it would answer correctly. Two families of such signals are in common use: the model's own predictive distribution (maximum probability, entropy, verbalized confidence), and probes trained on hidden states to predict correctness. We formalize two structural reasons these signals can fail, and test both in a controlled setting. **(i) Ambiguity confound.** Suppose a fraction α of the queries the model knows are genuinely ambiguous (aleatoric), and their predictive distributions lie within total-variation distance δ of those produced by ignorance. Then every detector that is a function of the predictive distribution alone has AUROC at most 1 − α(1−δ)²/2, and the bound is tight (Proposition 1). **(ii) Familiarity shortcut.** Consider a Gaussian model of hidden states that encode both entity familiarity F and fact-specific knowledge K. A correctness probe trained on data where F and K agree with probability π mislabels familiar-but-unknown queries as "known" at a rate we derive in closed form. This rate increases in π and tends to a value above ½ exactly when familiarity is the more salient direction (Proposition 2). In-distribution accuracy stays high, so ordinary validation cannot detect the failure. Monte Carlo simulation matches both closed forms to within 0.004. We then train ensembles of small embedding MLPs on CPU in a synthetic knowledge world where familiarity, fact exposure, latent type structure and aleatoric ambiguity are controlled independently: 3 worlds with 5 models each. The measured results support the qualitative predictions, but not all the quantitative ones. A hidden-state correctness probe trained on natural data reaches AUROC 0.930 on natural items and 0.245 on dissociated items, labelling 89% of familiar-but-wrong answers as "known". Proposition 2, evaluated on the estimated hidden-state geometry, predicts the direction of this failure but underestimates its size (0.64 predicted vs 0.89 observed). Maximum-probability confidence falls from AUROC 0.816 to 0.169 as α goes from 0 to 1, because the networks are more confident when ignorant than on known coin-flip facts. A trained detector on the predictive distribution recovers most of this loss (0.954 at α = 1), so in our networks Proposition 1 is not binding (estimated δ ≈ 0.83). Only ensemble mutual information is reliable on every subset tested (AUROC 0.95–0.97). The Good–Turing singleton fraction (0.038) matches the mass of never-seen facts (0.038), which carry 99.9% of the errors. We give a pre-registered protocol for testing the same predictions on LLMs, and argue that self-knowledge evaluations should report results per familiarity × knowledge cell. We ran no LLM experiments.
+A model "knows that it does not know" when it can compute a signal that separates the queries it would answer wrongly from the queries it would answer correctly. We study two ways such signals fail and test them in controlled synthetic knowledge worlds, where entity familiarity, fact exposure, type structure and aleatoric ambiguity are set independently. We train small embedding-MLP ensembles on CPU in 7 regimes: 2 world families plus a compositional-name variant, and memorization ranging from perfect to strongly imperfect. There are 3–5 worlds per regime and 5 models per world. We draw three conclusions.
+
+**(1) Ambiguity.** A detector that sees only a label-invariant statistic T(q) of the predictive distribution cannot beat AUROC 1 − α(1−δ_T)²/2. Here α is the aleatoric share of the queries the model knows, and δ_T is the total-variation distance between the laws of T(q) under ignorance and under known ambiguity. This is an elementary corollary of the Youden/TV inequality. The useful addition is that δ_T is invariant to any order-preserving injective recalibration, such as temperature scaling. We find that calibration is not what makes the bound bind; *shape matching* is. A perfectly calibrated Bayes-reference learner has δ_T = 1 in our original world. In a world built so that ignorance and known ambiguity produce the same sorted predictive distribution, the same learner has δ_T = 0, and the best trained q-only detector sits exactly at the ceiling (0.752 vs 0.75 at α = ½; 0.500 vs 0.5 at α = 1). No trained MLP reaches that regime: δ̂_T ranges from 0.51 to 0.97. Early stopping lowers both the calibration error and δ̂_T. Label smoothing lowers the calibration error but raises δ̂_T.
+
+**(2) Familiarity.** The original ambiguity test was confounded by entity familiarity, as the reviewer noted: a −log entity-count baseline reaches AUROC 0.992. After matching on exposure, the count baseline falls to 0.50–0.56. Ensemble mutual information (MI) then stays at 0.96–0.98, but so does a fact-exposure count (1.000). In our worlds MI is a fact-exposure detector. A hidden-state correctness probe trained on natural data has high natural-cell AUROC (0.66–0.93 in 6 of 7 regimes) and labels most familiar-but-wrong answers "known" (false-"knows" rate 0.62–0.90 in 6 of 7 regimes). The striking below-chance dissociated AUROC (0.24) appears only under perfect memorization. Elsewhere it is about 0.50–0.57.
+
+**(3) Within-stratum evaluation.** Within a familiarity stratum, the hidden-state probe has essentially no fact-specific signal in any regime: AUROC 0.45–0.52 on familiar entities' never-seen facts, and 0.50–0.57 on rare entities' seen facts. Output-distribution signals keep real signal. In imperfect-memorization regimes, maximum probability matches ensemble MI on seen-fact strata, with AUROC 0.78–0.98.
+
+A Gaussian two-direction model of the probe (Proposition 2, an instance of the standard core/spurious-feature model) gets the direction right but fits magnitudes poorly (r = 0.36, MAE 0.15 over 69 runs). LDA fitted to the actual hidden-state covariance reproduces the probe almost exactly (r = 0.97, MAE 0.03). The shortcut is therefore linear-discriminant behaviour on a geometry that two cell-mean vectors do not summarize. All results come from CPU-scale synthetic experiments. We could not run an LLM pilot: model-weight hosts are unreachable from our environment. We give a protocol for one instead.
 
 ## 中文摘要
 
-如果模型能计算出一个信号，把它会答错的问题和会答对的问题区分开，我们就说模型"知道自己不知道"。常用的信号有两类：一是模型自身的预测分布（最大概率、熵、口头置信度），二是在隐藏状态上训练、用来预测回答是否正确的探针。本文形式化了这两类信号失效的两个结构性原因，并在可控环境中加以检验。**（一）歧义混淆：** 设模型"知道"的问题中有比例 α 本身就有歧义（偶然不确定性），且它们的预测分布与"无知"时的预测分布之间的全变差距离不超过 δ，那么任何只依赖预测分布的检测器，AUROC 都不超过 1 − α(1−δ)²/2（命题1，界是紧的）。**（二）熟悉度捷径：** 在一个隐藏状态同时编码实体熟悉度 F 与具体事实知识 K 的高斯模型中，若训练数据里 F 与 K 一致的概率为 π，则正确性探针会把"熟悉但不知道"的问题误判为"知道"，我们给出这一误判率的闭式解。它随 π 递增；当熟悉度方向更显著时，其极限超过 1/2（命题2）。而探针在训练分布上的准确率始终很高，因此常规验证发现不了这一失效。蒙特卡洛模拟与两个闭式解的误差在 0.004 以内。随后，我们在一个合成知识世界中用 CPU 训练了小型嵌入 MLP 集成（3 个世界 × 每个世界 5 个模型）；该世界中熟悉度、事实曝光、潜在类型结构与偶然歧义彼此独立可控。实测结果支持定性预测，但并非所有定量预测都成立。在"自然"数据上训练的隐藏状态探针，在自然样本上 AUROC 为 0.930，在分离样本上仅为 0.245，并把 89% 的"熟悉但答错"判为"知道"。用估计出的隐藏状态几何代入命题2，能预测失效的方向，但低估了幅度（预测 0.64，实测 0.89）。当 α 从 0 增至 1 时，最大概率置信度的 AUROC 从 0.816 降至 0.169，因为网络在无知时反而比面对已知的"抛硬币"式事实时更自信。在预测分布上训练的检测器能挽回大部分损失（α = 1 时为 0.954），因此在我们的网络中命题1并不起约束作用（估计 δ ≈ 0.83）。在所有检验过的子集上都可靠的信号只有集成互信息（AUROC 0.95–0.97）。Good–Turing 单例比例（0.038）与从未见过的事实所占比例（0.038）吻合，而 99.9% 的错误都落在这些事实上。我们给出在大语言模型上检验同一组预测的预注册方案，并主张自我知识评测应按"熟悉度 × 知识"单元分别报告结果。本文没有做任何大语言模型实验。
+如果模型能计算出一个信号，把它会答错的问题与会答对的问题区分开，我们就说它"知道自己不知道"。本文研究这类信号失效的两种方式，并在受控的合成知识世界中检验；在这些世界里，实体熟悉度、事实曝光、类型结构与偶然歧义彼此独立设定。我们在 7 种设定下（两类世界加一个"组合式名字"变体，记忆程度从完美到明显不完美；每种设定 3–5 个世界，每个世界 5 个模型）用 CPU 训练小型嵌入 MLP 集成，得到三点结论。
+
+**（1）歧义。** 只看预测分布某个标签无关统计量 T(q) 的检测器，AUROC 不超过 1 − α(1−δ_T)²/2。其中 α 是模型"知道"的问题中有歧义者所占的比例，δ_T 是"无知"与"已知歧义"两种情形下 T(q) 分布之间的全变差距离。这是 Youden/TV 不等式的直接推论；有用的补充在于：δ_T 在任何保序单射重校准（例如温度缩放）下不变。我们发现，让这个界起约束作用的不是校准，而是"形状匹配"。一个完美校准的贝叶斯参照学习器在原始世界里 δ_T = 1；在另一个世界里，我们特意让"无知"与"已知歧义"产生相同的排序后预测分布，同一学习器的 δ_T = 0，最优的已训练 q-only 检测器恰好落在上限上（α = ½ 时为 0.752，上限 0.75；α = 1 时为 0.500，上限 0.5）。训练出的 MLP 都没有进入这一区域：δ̂_T 在 0.51 到 0.97 之间。早停同时降低校准误差和 δ̂_T；标签平滑降低校准误差，却使 δ̂_T 升高。
+
+**（2）熟悉度。** 正如审稿人指出的，原来的歧义实验受实体熟悉度混淆：−log 实体计数基线的 AUROC 达到 0.992。按曝光匹配后，计数基线降到 0.50–0.56；集成互信息（MI）仍保持在 0.96–0.98，但事实曝光计数同样如此（1.000）。在我们的世界里，MI 实际上是在检测事实曝光。用自然数据训练的隐藏状态正确性探针，在 7 种设定中有 6 种的自然单元 AUROC 较高（0.66–0.93），并把大多数"熟悉但答错"的回答判为"知道"（同样 6/7 种设定下误判率为 0.62–0.90）。分离单元上那个引人注目的低于随机水平的 AUROC（0.24）只在完美记忆时出现；其他设定下约为 0.50–0.57。
+
+**（3）层内评测。** 在同一熟悉度层内，隐藏状态探针在任何设定下都几乎没有针对具体事实的信号：对熟悉实体的未见事实，AUROC 为 0.45–0.52；对稀有实体的已见事实，为 0.50–0.57。基于输出分布的信号仍保有真实信号；在记忆不完美的设定下，最大概率在已见事实层上与集成 MI 相当（AUROC 0.78–0.98）。
+
+探针的高斯双方向模型（命题2，是标准"核心/伪特征"模型的一个实例）方向正确，但幅度拟合差（69 次运行上 r = 0.36，平均绝对误差 0.15）；而按隐藏状态实际协方差拟合的 LDA 几乎完全复现了探针（r = 0.97，平均绝对误差 0.03）。所以这一捷径是线性判别作用在一个无法用两个单元均值向量概括的几何结构上的结果。所有结果都来自 CPU 规模的合成实验。我们没能做大语言模型的小规模实验，因为本环境无法访问模型权重的托管站点；文中给出了相应的实验方案。
 
 ---
 
 ## 1 Introduction
 
-Asking how to make a model reliably know that it does not know is, operationally, asking for a *signal* s(x) that the model can compute and that ranks queries by the probability that the model's answer is wrong. Such a signal is useful for abstention, retrieval triggering, or hedged answers. Two families of signals dominate current practice. The first reads the model's predictive distribution q(·|x): softmax response for selective classification [Geifman & El-Yaniv 2017], token- or sequence-level probability and calibration [Guo et al. 2017; Kadavath et al. 2022], and semantic entropy over sampled answers [Farquhar et al. 2024]. The second trains a probe on hidden activations to predict whether the model will be right. Examples are P(IK) heads [Kadavath et al. 2022], truthfulness and error probes [Azaria & Mitchell 2023; Orgad et al. 2025], fine-tuned uncertainty heads [Kapoor et al. 2024], and pre-generation knowledge estimators that read the subject representation [Gottesman & Geva 2024]. Mechanistic work finds "known entity" directions that causally gate refusal [Ferrando et al. 2025].
+Asking how to make a model reliably know that it does not know is, operationally, asking for a *signal* s(x) that the model can compute and that ranks queries by the probability that its answer is wrong. Such a signal is useful for abstention, retrieval triggering, or hedged answers. Two families of signals dominate current practice. The first reads the predictive distribution q(·|x): softmax response [Geifman & El-Yaniv 2017], sequence probability and calibration [Guo et al. 2017; Kadavath et al. 2022], and semantic entropy [Farquhar et al. 2024]. The second trains a probe on hidden activations to predict correctness: P(IK) heads [Kadavath et al. 2022], truthfulness and error probes [Azaria & Mitchell 2023; Orgad et al. 2025], fine-tuned uncertainty heads [Kapoor et al. 2024], and pre-generation estimators that read the subject representation [Gottesman & Geva 2024]. Mechanistic work finds "known entity" directions that causally gate refusal [Ferrando et al. 2025].
 
-These methods work well in-distribution, but two empirical warnings recur. Error probes do not transfer across datasets [Orgad et al. 2025]. Hidden-state representations reportedly fail to separate hallucinations produced by spurious *associations* from correct recall [Cheang et al. 2025]. Cognitive psychology offers a precise, decades-old diagnosis of the same pattern in people: the initial feeling of knowing is driven by *familiarity with the question's terms*, not by access to the answer [Reder & Ritter 1992], and it is computed from whatever information is accessible, right or wrong [Koriat 1993]. Our thesis is that the machine case has the same structure. We make this structure precise enough to give quantitative, falsifiable predictions.
+Two warnings recur in the LLM literature. Error probes do not transfer across datasets [Orgad et al. 2025]. Internal states mainly reflect *knowledge recall* rather than truthfulness, so hallucinations associated with a known subject look like correct recall [Cheang et al. 2026]. Separately, confidence and accuracy both rise with entity popularity, and overconfidence concentrates on popular knowledge [Ni et al. 2025; see also Mallen et al. 2023]. Cognitive psychology has a long-standing account of the same pattern in people: the initial feeling of knowing tracks familiarity with the question's terms rather than access to the answer [Reder & Ritter 1992; Koriat 1993].
 
-We isolate two **identifiability failures**:
-
-1. **The ambiguity confound.** A model that knows a question is a coin flip outputs a spread distribution. So does a model that simply does not know a deterministic answer. Any detector that sees only q cannot tell these apart. This has long been argued qualitatively in the uncertainty-decomposition literature [Hüllermeier & Waegeman 2021; Wimmer et al. 2023]. We give the exact ceiling it implies for abstention AUROC.
-
-2. **The familiarity shortcut.** Many queries about popular entities are answered correctly, and queries about never-seen entities are answered wrongly. Benchmarks for "does the model know" are therefore dominated by items where familiarity F and knowledge K agree. A probe trained on such data can reach high validation accuracy by reading F. It then fails exactly on the items that matter: facts never seen about familiar entities (confident hallucination), and facts seen once about obscure entities (needless abstention). This is a shortcut in the sense of Geirhos et al. [2020]. We derive its magnitude in closed form.
+These observations are made on LLMs, where the relevant variables cannot be controlled: pre-training exposure of each fact, entity familiarity, and whether an answer distribution is genuinely ambiguous. This paper takes the complementary route. We build synthetic knowledge worlds in which these variables are set independently, train small networks in several memorization regimes, and ask which self-knowledge signals survive *evaluation designs that remove the confounds*. Our contribution is mainly methodological and empirical. The theory is elementary, and we present it as such.
 
 **Contributions.**
 
-- **C1 (theory, ambiguity).** Proposition 1: a tight upper bound, 1 − α(1−δ)²/2, on the AUROC of any detector that is a function of the predictive distribution, where α is the aleatoric share of known items and δ is the TV distance between the predictive-distribution laws of aleatoric-known and unknown items. The proof uses a Youden-index bound on ROC curves.
-- **C2 (theory, familiarity).** Proposition 2: for a whitened Gaussian hidden-state model with familiarity salience a and knowledge salience b, a closed form for the false-"knows" rate of the population LDA correctness probe on familiar-unknown items, as a function of the training co-occurrence π = P(F=K). The rate is monotone increasing in π. Its π→1 limit is Φ((a²−b²)/(2σ√(a²+b²))), which exceeds ½ iff a > b, while in-distribution accuracy remains high. A general (non-orthogonal) version is used for estimation.
-- **C3 (controlled test).** A synthetic knowledge world in which familiarity, fact exposure, type-based inferability and aleatoric ambiguity are set independently. We train ensembles of small MLPs and measure four things. (a) Confidence and accuracy by familiarity cell. (b) The AUROC of q-only and ensemble signals as α varies, together with an estimate of δ and the best trained q-only detector, which tests whether Proposition 1 binds. (c) Correctness probes trained with varying shares of dissociated items, compared with Proposition 2 evaluated on the *estimated* hidden-state geometry. (d) A Good–Turing estimate of unknown-fact mass. We report where the predictions fail: Proposition 2 underestimates the shortcut by about 0.23, and Proposition 1 is not binding in our networks.
-- **C4 (protocol).** A pre-registered protocol that turns the propositions into tests on LLMs. It uses entity popularity, fact-level exposure proxies, and a 2×2 familiarity × knowledge evaluation design that reports dissociated cells separately.
-
-The contribution is diagnostic. We do not propose a new state-of-the-art detector. We show *why* two families of detectors must fail on specific, predictable subsets of queries, and we say which evaluation design exposes the failure.
+- **C1 (evaluation design).** Two controls that any self-knowledge evaluation can adopt. (a) *Exposure-matched* positives and negatives, with a −log entity-count baseline reported in every table. (b) *Within-familiarity-stratum* AUROC, for example correct vs wrong among never-seen facts about familiar entities, which removes the threshold artefacts of pooled "dissociated" cells. We show that each control changes conclusions that the uncontrolled design supported (Sections 6.3–6.4).
+- **C2 (ambiguity, theory + test).** The Youden/TV ceiling for q-only detectors, stated for any label-invariant statistic T(q), with two additions. The ceiling is invariant to order-preserving injective recalibration (Corollary 1). And it binds under *shape matching*, not under calibration as such. We construct a world in which a calibrated reference learner attains the ceiling exactly, and we show that no trained MLP in 7 regimes reaches that regime (Section 6.3).
+- **C3 (familiarity, test across regimes).** Hidden-state correctness probes trained on natural data inherit a familiarity shortcut in 6 of 7 regimes. Within familiarity strata they carry essentially no fact-specific signal in any regime. We also show where the Gaussian two-direction model of this shortcut (an instance of the standard spurious-feature model) fails: the problem is the two-vector summary of the geometry, not the linear-discriminant mechanism (Section 6.5).
+- **C4 (scope conditions).** Several first-round findings hold only under perfect memorization and are now reported as such: the below-chance dissociated AUROC, the claim that "only ensemble MI is reliable", and the Good–Turing abstention budget.
 
 ## 2 Related Work
 
-**Self-knowledge in language models.** Kadavath et al. [2022] showed that large LMs are reasonably calibrated on formatted multiple-choice questions, and that a P(IK) head partially generalizes across tasks but is poorly calibrated on new ones. Yin et al. [2023] built SelfAware, a benchmark of unanswerable questions, and reported a substantial gap to human self-knowledge. Kapoor et al. [2024] found that prompting alone does not yield good uncertainty, whereas fine-tuning on roughly a thousand graded examples does. Azaria & Mitchell [2023] trained truthfulness classifiers on hidden states. Orgad et al. [2025] found that error detectors fail to generalize across datasets and called truthfulness encoding "multifaceted". Gottesman & Geva [2024] (KEEN) estimate entity-level knowledge from subject representations before any generation. Ferrando et al. [2025] used sparse autoencoders to find entity-recognition directions that can steer models to refuse questions about known entities, or to hallucinate about unknown ones. Cheang et al. [2025] argue that hidden states do not separate associative hallucinations from factual associations. Our Proposition 2 gives a mechanism-agnostic account of why familiarity-type features dominate correctness probes, and predicts when they will.
+**Self-knowledge in language models.** Kadavath et al. [2022] found large LMs reasonably calibrated on formatted multiple-choice questions, with a P(IK) head that partially generalizes. Yin et al. [2023] built SelfAware and reported a substantial gap to human self-knowledge. Kapoor et al. [2024] found that fine-tuning on roughly a thousand graded examples yields useful uncertainty where prompting does not. Azaria & Mitchell [2023] trained truthfulness classifiers on hidden states. Orgad et al. [2025] found that error detectors fail to generalize across datasets. Gottesman & Geva [2024] (KEEN) estimate entity-level knowledge from subject representations before generation. Ferrando et al. [2025] found SAE entity-recognition directions that steer refusal and hallucination. Cheang et al. [2026] report that LLM hidden states mainly reflect knowledge recall. In their study, hallucinations associated with the subject cannot be separated from correct recall, while unassociated ones can. Ni et al. [2025] report that LLM accuracy and confidence both rise with knowledge popularity, and that overconfidence is tied to popularity. **These papers already establish the familiarity/popularity confound empirically in LLMs.** We do not claim to discover it. What we add is a controlled setting in which exposure, familiarity and ambiguity can be separated, together with evaluation designs (exposure matching, within-stratum AUROC) that test whether a signal measures knowledge beyond familiarity.
 
-**Why models hallucinate.** Kalai & Vempala [2024] proved that a calibrated LM must hallucinate at a rate close to the Good–Turing missing mass, the fraction of facts seen exactly once, for arbitrary facts. Kalai et al. [2025] argue that binary-graded evaluations reward guessing over abstaining. Long-tail studies show that accuracy depends strongly on entity popularity and pre-training document counts [Mallen et al. 2023; Kandpal et al. 2023]. Fine-tuning on new knowledge increases hallucination on previously known facts [Gekhman et al. 2024]. Synthetic-biography studies show that knowledge can be stored without being extractable [Allen-Zhu & Li 2024]. Our synthetic world borrows this controlled-corpus methodology. Our E4 uses the Good–Turing quantity as an abstention budget rather than a hallucination lower bound.
+**Spurious correlations and shortcuts.** Proposition 2 below is an instance of the Gaussian "core vs spurious feature" model analysed in Sagawa et al. [2020], Nagarajan et al. [2021] and Rosenfeld et al. [2021]. We relabel the spurious feature as entity familiarity and the core feature as fact-specific knowledge. Its only new element is a closed form for the error on the familiar-unknown cell as a function of the training co-occurrence π. It instantiates shortcut learning [Geirhos et al. 2020].
 
-**Aleatoric vs epistemic uncertainty.** Hüllermeier & Waegeman [2021] survey the distinction. Wimmer et al. [2023] criticize the entropy and mutual-information decomposition. Bengs et al. [2022] show that second-order predictors trained by loss minimisation do not faithfully represent epistemic uncertainty. Deep ensembles [Lakshminarayanan et al. 2017] are the standard practical source of a non-q-only signal. Semantic entropy [Farquhar et al. 2024] targets "confabulations" by sampling, but it is still a function of the model's output distribution, so Proposition 1 applies to it. Proposition 1 turns the qualitative concern into a ceiling that holds for any q-only detector.
+**Why models hallucinate.** Kalai & Vempala [2024] relate the hallucination rate of calibrated LMs to the Good–Turing missing mass. Kalai et al. [2025] argue that binary grading rewards guessing. Long-tail studies link accuracy to popularity and pre-training counts [Mallen et al. 2023; Kandpal et al. 2023]. Fine-tuning on new knowledge increases hallucination [Gekhman et al. 2024]. Knowledge can be stored without being extractable [Allen-Zhu & Li 2024]. Our synthetic worlds follow this controlled-corpus methodology.
 
-**Selective prediction.** Chow [1970] derived the optimal reject rule when posteriors are known. Geifman & El-Yaniv [2017] gave risk-controlled selective classifiers based on softmax response. Guo et al. [2017] documented miscalibration in modern networks. Our results say *which* items a softmax-response selector will misrank, and why.
+**Aleatoric vs epistemic uncertainty.** The qualitative point that q alone cannot separate ambiguity from ignorance is standard [Hüllermeier & Waegeman 2021]. Wimmer et al. [2023] criticize the entropy/MI decomposition. Bengs et al. [2022] show that second-order loss minimisation does not deliver faithful epistemic uncertainty. Deep ensembles [Lakshminarayanan et al. 2017] are the usual non-q-only signal. Proposition 1 makes the qualitative point quantitative by applying the textbook inequality TPR − FPR ≤ TV. Corollary 1 and the shape-matching experiment are what we add.
 
-**Feeling of knowing and shortcut learning.** Reder & Ritter [1992] showed experimentally that the initial feeling of knowing tracks exposure to the problem's *parts*, not knowledge of the answer. Koriat's [1993] accessibility model holds that feeling-of-knowing judgments are computed from accessible information, correct or not. Geirhos et al. [2020] describe shortcut learning as a general failure mode in which decision rules exploit features that are predictive in-distribution but do not transfer. Proposition 2 is, in effect, a quantitative cue-familiarity model for machine metacognition.
+**Selective prediction.** Chow [1970] gave the optimal reject rule. Geifman & El-Yaniv [2017] gave risk-controlled selective classifiers. Guo et al. [2017] documented miscalibration.
 
 ## 3 Setting and Definitions
 
-A query x = (e, r) asks for the value of relation r for entity e. The world has a conditional p*(·|x) over a finite value set V. For a *deterministic* fact p* is a point mass. For an *aleatoric* fact p* is spread out (e.g., "which of three venues will host…"). A trained model outputs q(·|x).
+A query x = (e, r) asks for the value of relation r for entity e. The world has a conditional p*(·|x) over a finite value set V. This is a point mass for *deterministic* facts and spread out for *aleatoric* facts. A trained model outputs q(·|x).
 
-**Knowing.** We use two operational targets. (a) *Correctness*: K(x) = 1[argmax q = argmax p*]. (b) *Epistemic gap*: G(x) = 1[TV(q, p*) > τ], with τ = 0.5. G separates "the model is wrong about the world" from "the world is random". For an aleatoric fact that the model has learned, G = 0 even though q is high-entropy.
+**Knowing.** We use (a) *correctness* K(x) = 1[argmax q = argmax p*], and (b) *epistemic gap* G(x) = 1[TV(q, p*) > 0.5]. For an aleatoric fact the model has learned, G = 0 even though q is spread out. In the synthetic world we also know each fact's training exposure c(e, r), and we call a fact *seen* if c ≥ 1.
 
-**Familiarity.** F(x) is a function of the entity's exposure n_e (its total training count). It is distinct from the fact's exposure c(e,r). We call the four combinations of (familiar vs unfamiliar entity) × (fact known vs not) the *F×K cells*. Items with F = K are *natural*. Items with F ≠ K are *dissociated*: familiar-unknown (FU) and unfamiliar-known (UK).
+**Familiarity.** F(x) is a function of the entity's total training count n_e: familiar if n_e ≥ 50, rare if 1 ≤ n_e ≤ 10. The five deterministic *strata* are familiar-seen (FS), familiar-unseen-fact (FU), rare-seen (RS), rare-unseen-fact (RU) and unseen entity (UE). The *natural* pool is FS ∪ UE, and the *dissociated* pool is FU ∪ RS.
 
-**Detectors.** A *q-only* detector is any measurable s(q(·|x)). This covers maximum softmax probability, entropy, temperature-scaled versions of these, and verbalized confidence that is a deterministic function of q. A *probe* is a function of a hidden representation z(x) fitted to predict K on a labelled set.
+**Detectors.** A *q-only* detector is a measurable function of q. A *label-invariant* q-only detector factors through T(q) = the sorted probability vector. This covers maximum probability (MSP), entropy, temperature-scaled versions of these, top-k features, and in practice verbalized confidence and semantic entropy (see Remark 3). A *probe* is a function of a hidden representation fitted to predict K.
 
 ## 4 Theory
 
-### 4.1 Proposition 1 (ambiguity ceiling)
+### 4.1 Proposition 1 (ambiguity ceiling): an elementary corollary
 
-Let "positives" be queries the model does not know (G = 1), with q distributed as P₀. Let "negatives" be known queries (G = 0), a mixture: with probability 1−α a deterministic known item (q ~ P_det), and with probability α an aleatoric known item (q ~ P_alea). Let δ = TV(P₀, P_alea).
+Let positives (G = 1) have q ~ P₀. Let negatives be a mixture: with probability 1−α a deterministic known item (q ~ P_det), and with probability α an aleatoric known item (q ~ P_alea). For a statistic T, let δ_T = TV(T#P₀, T#P_alea).
 
-**Proposition 1.** For every q-only detector s,
+**Proposition 1.** For every detector s = h∘T,
 
-  AUROC(s) ≤ (1−α) + α·[1 − (1−δ)²/2] = 1 − α(1−δ)²/2.
+  AUROC(s) ≤ (1−α)·A(s; P₀, P_det) + α·[1 − (1−δ_T)²/2] ≤ 1 − α(1−δ_T)²/2,
 
-For any α and δ there exist P₀, P_alea and P_det for which equality holds.
+and for every α and δ there are laws attaining equality.
 
-*Proof.* AUROC is P(s(X⁺) > s(X⁻)) + ½P(tie), with X⁺ ~ P₀ and X⁻ from the negative mixture. This is linear in the negative law, so AUROC(s) = (1−α)·A(s; P₀, P_det) + α·A(s; P₀, P_alea), where A(s; P, Q) is the AUROC of s for positives P against negatives Q. The first term is at most 1. For the second, every ROC curve (FPR f, TPR t) generated by thresholding any statistic of q satisfies t − f ≤ sup_B [P₀(B) − P_alea(B)] = δ. (The difference of the two probabilities of any event is at most TV.) The ROC curve therefore lies below min(1, f + δ), and
+*Proof.* AUROC is linear in the negative law, so it splits into the two mixture components. Every threshold on s defines an event in the σ-algebra generated by T, so its (FPR f, TPR t) satisfies t − f ≤ δ_T, which is the Youden/TV inequality. The ROC curve therefore lies below min(1, f + δ_T), and ∫₀¹ min(1, f+δ) df = 1 − (1−δ)²/2. Tightness: take P_det disjoint from P₀. Take T#P_alea equal to T#P₀ except for a δ-mass of P₀ that is disjoint from it, and rank by likelihood ratio. ∎
 
-  A ≤ ∫₀¹ min(1, f+δ) df = δ(1−δ) + (1−δ)²/2 + δ = 1 − (1−δ)²/2.
+This is a direct consequence of standard facts: the ROC/TV relation and the linearity of AUROC in the negative mixture. We state it because the *detector-specific* first form is what the experiments test. The dotted reference line in `fig_aleatoric.png` uses the measured A(s; P₀, P_det) of MSP (0.816). The detector-agnostic second form starts at 1 when α = 0. Table 2 reports the measured curves, not the bound.
 
-For tightness, take P_det disjoint from P₀. Take P₀ and P_alea on a common space with densities chosen so that the likelihood-ratio ROC is exactly min(1, f+δ): a δ-mass of P₀ disjoint from P_alea, and the remainder identical. Ranking by likelihood ratio attains both bounds at once. ∎
+**Corollary 1 (recalibration invariance).** Let g map the simplex into itself, let it be injective, and let it preserve the order of coordinates. Temperature scaling q ↦ softmax(log q / τ) for fixed τ > 0 is an example. Then sort(g(q)) is an injective function of sort(q), so δ_T is unchanged. No post-hoc, order-preserving recalibration can move the ceiling. *Proof.* TV is invariant under injective measurable maps. ∎
 
-**Remarks.** (1) With δ = 0, which is what happens when a calibrated model outputs the same spread distribution for "I know it's 50/30/20" and "I have no idea", the ceiling is 1 − α/2. Because the result holds for every s, no recalibration, temperature, or entropy variant of q can escape it. (2) The bound does *not* apply to signals that are not functions of q, such as disagreement across ensemble members or samples from different parameter draws (mutual information), or exposure counts. Those signals can in principle reach AUROC 1. (3) Semantic entropy clusters samples from one model's q, so it is q-only in our sense, and it is subject to the bound once the aleatoric spread is semantic rather than lexical.
+**Remarks.** (1) *Calibration is not sufficient for δ_T → 0.* δ_T measures whether ignorance and known ambiguity produce different *shapes* of sorted predictive distribution. A perfectly calibrated learner can output a type-prior shape under ignorance (e.g. 0.61 on one value, with the rest flat) and a (0.5, 0.3, 0.2) shape for a known coin-flip. These two shapes differ, so δ_T = 1. The ceiling binds when the two shapes coincide, which we call *shape matching*. Section 6.3 builds a world in which this holds. (2) The bound does not apply to signals that are not functions of q, such as ensemble disagreement or exposure counts. (3) Semantic entropy is computed from M samples of q. Its value is therefore a randomized function of q, and Proposition 1 applies to its expectation over sampling noise: the extra randomness cannot increase δ, by data processing. Whether it is label-invariant depends on whether the clustering uses answer identity. We do not test semantic entropy.
 
-### 4.2 Proposition 2 (familiarity shortcut)
+### 4.2 Proposition 2 (familiarity shortcut): an instance of the spurious-feature model
 
-Model the (whitened) hidden representation of a query as
+Whitened hidden state z = a·F·u + b·K·v + ε, with ε ~ N(0, σ²I) and u ⊥ v. Here F is the "spurious" feature (familiarity) and K the "core" feature (knowledge). This is the Gaussian model of Sagawa et al. [2020] and Nagarajan et al. [2021]. A probe is trained on data with P(K=1) = ½ and P(F = K) = π.
 
-  z = a·F·u + b·K·v + ε,  ε ~ N(0, σ² I),  u ⊥ v unit vectors,
+**Proposition 2.** Let κ(π) = (2π−1)σ²/(σ² + a²π(1−π)). The population LDA probe labels a familiar-unknown item "knows" with probability FK(π) = Φ((a²κ − b²)/(2σ√(a²κ² + b²))). (i) FK is increasing on π ∈ [½, 1). (ii) FK(½) = Φ(−b/2σ). (iii) As π → 1, FK → Φ((a²−b²)/(2σ√(a²+b²))), which exceeds ½ iff a > b. (iv) In-distribution accuracy stays at least π·Φ(√(a²+b²)/2σ). The proof is unchanged from R0: LDA with Σ_W = σ²I + a²π(1−π)uuᵀ, and a direct differentiation of g(κ).
 
-where F, K ∈ {0,1}. Here a is the salience of familiarity and b the salience of knowledge. A probe is trained on a distribution with P(K=1) = ½ and P(F = K) = π. We analyse the population LDA rule. It is Bayes-optimal among linear rules for the training distribution when class-conditional covariances are equal, and logistic regression approximates it in our regime.
+**Domain (corrected).** The statements "monotone" and "cannot fall below Φ(−b/2σ)" hold on π ∈ [½, 1]. For π < ½ (anti-correlated training data), FK can fall below Φ(−b/2σ).
 
-**Proposition 2.** Let κ(π) = (2π−1)σ² / (σ² + a²π(1−π)). The probe's probability of labelling a familiar-unknown item (F=1, K=0) as "knows" is
-
-  FK(π) = Φ( (a²κ(π) − b²) / (2σ √(a²κ(π)² + b²)) ).
-
-(i) FK is strictly increasing in π on [½, 1). (ii) FK(½) = Φ(−b/(2σ)), the error of a probe that reads knowledge only. (iii) lim_{π→1} FK(π) = Φ((a² − b²)/(2σ√(a²+b²))), which exceeds ½ iff a > b. (iv) Over the same limit, in-distribution accuracy is at least π·Φ(√(a²+b²)/(2σ)). Validation on the training distribution therefore cannot detect the failure. By symmetry, the missed-knowledge rate on unfamiliar-known items is 1 − Φ((b² − a²κ)/(2σ√(a²κ²+b²))).
-
-*Proof.* Within class K, F is Bernoulli with parameter π or 1−π, so the within-class covariance is Σ_W = σ²I + a²π(1−π)uuᵀ. The class means are μ₁ = aπu + bv and μ₀ = a(1−π)u. Hence μ₁ − μ₀ = a(2π−1)u + bv, and since u is an eigenvector of Σ_W, w = Σ_W⁻¹(μ₁−μ₀) = [a(2π−1)/(σ²+a²π(1−π))]u + (b/σ²)v = (1/σ²)(aκu + bv). The midpoint threshold is c = w·(μ₁+μ₀)/2 = w·(au + bv)/2. For z from the cell (F=1, K=0), w·z − c ~ N((a²κ − b²)/(2σ²), ‖w‖²σ²) with ‖w‖ = √(a²κ² + b²)/σ². Standardizing gives the formula. For (i): with g(κ) = (a²κ − b²)/√(a²κ²+b²), we have g′(κ) = a²b²(1+κ)/(a²κ²+b²)^{3/2} > 0 for κ > −1, and κ(π) is increasing on [½,1) because its numerator increases and its denominator decreases there. (ii) and (iii) follow by substituting κ(½) = 0 and κ(1) = 1. For (iv), the natural cells (weight π) are correctly classified with probability Φ(√(a²+b²)/(2σ)) at κ = 1. ∎
-
-For estimation we use the general version, in which a and b are arbitrary vectors in whitened space (not necessarily orthogonal) and w, c and FK are computed numerically (`code/theory.py: lda_rates`).
-
-**Predictions.** P1: probes trained on natural benchmarks (π near 1) inherit FK > ½ whenever familiarity is more linearly salient than fact-specific knowledge. P2: mixing dissociated items into probe training (lowering π) lowers FK monotonically, but cannot push it below Φ(−b/2σ). If knowledge is weakly encoded (small b), no linear probe will do well on dissociated cells. P3: q-only confidence rises with familiarity even for never-seen facts, whenever the network maps familiar-entity representations to sharp outputs.
+**Unbalanced classes.** `theory.lda_rates_general` drops the P(K=1) = ½ assumption. It uses the actual P(K=1) = p₁, P(F=1|K=1) = π₁ and P(F=0|K=0) = π₀, a pooled covariance, and the Bayes threshold log(p₀/p₁). We use it in Section 6.5 to test whether class imbalance explains the R0 misfit. It does not.
 
 ## 5 Controlled Experimental Setup
 
-All numbers below were produced by code in `code/` and saved in `results/` (seeds fixed; total runtime about 10 minutes on 4 CPU cores).
+All numbers come from code in `code/` with outputs in `results/` (R0: `run_all.py`, `e1_qonly.py`; R1: `train_cache.py`, `analysis_r1.py`, `aggregate_r1.py` → `results/r1/`). Seeds are fixed.
 
-**World** (`world.py`). 4,000 entities, 8 relations (6 deterministic, 2 aleatoric), 32 values, 8 latent entity types. For each (type, relation) there is a default value. A fact takes the default with probability ρ = 0.6, and a uniformly random value otherwise. Aleatoric facts put probabilities (0.5, 0.3, 0.2) on three values; the mode follows the same default rule. Each entity–relation pair is documented with probability 0.75. Undocumented pairs never appear in training. 10% of entities never appear at all. Entity popularity follows Zipf(1.0) over the remaining entities. The training corpus has 150,000 (entity, relation, value) samples: an entity is drawn by popularity, then a documented relation uniformly, and the value is drawn from p*. Aleatoric facts are therefore observed with their true spread.
+**Original world** (`world.py`). 4,000 entities, 8 relations (6 deterministic, 2 aleatoric), 32 values, 8 latent types. A deterministic fact takes its type's default value with probability ρ = 0.6, otherwise a uniform value. Aleatoric facts put (0.5, 0.3, 0.2) on three values. 75% of entity–relation pairs are documented, 10% of entities never appear, popularity is Zipf(1), and there are 150,000 training samples.
 
-**Model** (`mlp.py`). An embedding MLP: [entity embedding (32) ; relation embedding (32)] → ReLU(256) → softmax over 32 values. It is trained with Adam (lr 2e-3, batch 512, 30 epochs) with decoupled weight decay 1e-4 on dense weights only. Embeddings of unseen entities keep their random initialization, a stand-in for an unfamiliar name. Each world gets a 5-member ensemble with different seeds. Member 0 is "the model"; the ensemble supplies mutual information (MI).
+**Shape-matched world** (new; `matched=True`). Each (type, relation) has three candidate values with prior (0.5, 0.3, 0.2). A deterministic fact's value is drawn once from this prior. An aleatoric fact's p* *is* this prior. A learner that knows the generative structure therefore outputs the same sorted q for "unseen deterministic fact" and "known aleatoric fact", so δ_T = 0.
 
-**Cells.** Familiar: n_e ≥ 50. Rare: 1 ≤ n_e ≤ 10. "Seen fact": c(e,r) ≥ 1. The five deterministic cells are familiar-seen, familiar-unseen-fact, rare-seen, rare-unseen-fact, and unseen-entity.
+**Compositional-name world** (new; `comp_names=True`). Each entity name is a pair of sub-tokens drawn from 2 × 300. The first sub-token is tied to the entity's type with probability 0.8. An unseen name is composed of *trained* sub-tokens and carries type information, in the way LLMs compose new names. This addresses the reviewer's point that random embeddings make unseen entities trivially out-of-distribution.
 
-**E1 (ambiguity).** Positives: deterministic items with G = 1. Negatives: a pool of known items, a fraction α of which are aleatoric facts with c ≥ 20 and G = 0, the rest deterministic known items. We report AUROC averaged over 20 resamples per α and over 3 worlds.
+**Model and regimes** (`mlp.py`, `train_cache.py`). Embedding MLP: [entity (32); relation (32)] → ReLU(256) → softmax(32), trained with Adam and 5 ensemble members per world. Member 0 is "the model". Seven regimes:
 
-**E1b (is Prop. 1 binding?).** We retrain member 0 with the same seed (`e1_qonly.py`; its unseen-entity accuracy matches Table 1) and estimate δ in two steps. First, we fit a cross-fitted logistic classifier on q-features (top-5 sorted log-probabilities and entropy) to separate unknown items from known-aleatoric items. Second, we take the Youden index of that classifier on held-out entities, which is a lower bound on TV. We also train the same q-only detector on the full E1 task at each α.
+| regime | world | training | memorization of seen facts (FS / RS accuracy) |
+|---|---|---|---|
+| base | original | 30 epochs | 1.000 / 1.000 |
+| early | original | 3 epochs | 0.909 / 0.554 |
+| small | original | width 32, emb 16, 10 epochs | 0.910 / 0.755 |
+| comp | compositional names | 20 epochs | 0.997 / 0.622 |
+| matched | shape-matched | 30 epochs | 1.000 / 1.000 |
+| matched_early | shape-matched | 3 epochs | 0.985 / 0.689 |
+| matched_ls | shape-matched | label smoothing 0.2, 10 epochs | 1.000 / 0.992 |
 
-**E2 (cells).** Accuracy, mean MSP and ensemble MI per familiarity × fact-exposure cell, and as a function of entity training count.
+*Table 0. Measured (`results/r1/summary_r1.txt`, T-G). base uses 5 worlds; the others use 3.*
 
-**E3 (probes).** Labels: K = correctness. Entities are split in half; probes are trained on one half and evaluated on the other. The *natural* pool is familiar-seen ∪ unseen-entity. The *dissociated* pool is familiar-unseen-fact ∪ rare-seen. A probe is trained on 1,500 items, a share π_d of them drawn from the dissociated pool, π_d ∈ {0, .02, .05, .1, .25, .5}, with 5 resamples each. Features: hidden layer (256-d); hidden plus output features (top-5 sorted log-probabilities and entropy); output features alone. The probe is L2-regularized logistic regression. We record the effective co-occurrence π_eff = P(F=K) of each training set. We also estimate the familiarity and knowledge vectors (a, b) from cell means of whitened hidden states (pooled within-cell covariance with 30% shrinkage), and evaluate the general Proposition 2 at each π_eff.
+The *base* regime reproduces R0's networks exactly: same seeds. Per-world probe false-"knows" rates match R0 to within 0.002, the residual coming from float16 caching of hidden states. Worlds 3 and 4 are new. A **Bayes reference learner** (`analysis_r1.bayes_reference`) gives the exact predictive distribution of the generative model given the training counts, with oracle entity types. It is perfectly calibrated (deterministic ECE 0.002) and needs no training.
 
-**E4 (Good–Turing).** We draw 200,000 fresh queries from the training-generating distribution and compare the singleton fraction N₁/N with the actual mass of never-seen facts, and break down error by fact exposure.
+**Designs.**
+- *E1 original* (R0): positives are deterministic items with G = 1, and negatives are a mix of deterministic G = 0 items and aleatoric items with c ≥ 20 and G = 0. About 27% of positives come from never-seen entities.
+- *E1 exposure-matched* (new): everything is restricted to familiar entities (n_e ≥ 50). Positives are never-seen deterministic facts answered wrongly (FU-wrong). Negatives are seen-and-correct deterministic facts or known aleatoric facts (c ≥ 20, G = 0), resampled to match the positives' histogram over 7 entity-count bins. We report −log entity count (should be ≈ 0.5 if matching works) and −log fact count (an exposure oracle).
+- *δ̂_T* (revised): a cross-fitted logistic classifier on T-features (top-5 sorted log-probabilities and entropy) separates positives from known-aleatoric items. Its threshold is fixed by Youden's J on the *training* fold and applied to the held-out fold, which addresses the optimism the reviewer pointed out. We give 90% bootstrap intervals over held-out items. The best trained q-only detector is the same logistic model trained on the full E1 task.
+- *Probes* (E3): L2-logistic probes on hidden (256-d), hidden+output, or output-only features. They are trained on 1,500 items from held-out-entity halves, with a share π_d ∈ {0, 0.1, 0.5} from the dissociated pool, 5 resamples each. Ablations: L2 strength λ ∈ {0.01, 1, 100}, and threshold 0.5 vs a Youden threshold fixed on the training set.
+- *Within-stratum AUROC* (new): AUROC for detecting wrong answers inside a single stratum (FU, RU, UE, and FS/RS where memorization is imperfect), on held-out entities.
+
+**Statistics.** Values are means over worlds. ± values are now **95% t-intervals across worlds** (n = 5 for base, n = 3 otherwise). With n = 3 these intervals are wide (t = 4.30), and we interpret only differences that clear them.
+
+**Compute.** R1 training took 43.2 CPU-minutes (19.7 min wall-clock on 4 cores, single-threaded BLAS per process; `results/rev_train_log.txt`), and R1 analyses took about 5 CPU-minutes. The reviewer measured about 3.2 h per world for R0's `run_all.py`, run concurrently with multithreaded BLAS on a 4-core machine. With `OMP_NUM_THREADS=1`, one base world (5 members) takes 216–269 s.
 
 ## 6 Results
 
-Every number in this section comes from `results/summary.txt`, `results/main_results.json`, `results/e1_qonly_w*.json` or `results/theory_check.json`, all produced by the code in `code/`. Values are means ± standard deviations over the 3 synthetic worlds unless stated otherwise. Three worlds is a small number of replicates; the ± values describe variation between worlds, not confidence intervals.
+### 6.1 The algebra matches simulation (unchanged from R0)
 
-### 6.1 The theory matches simulation
+The Monte Carlo LDA probe matches Proposition 2's closed form at all 20 (a, b, π) settings, with maximum error 0.0034. A δ = 0 construction attains 1 − α/2 to within 0.0015 (`results/theory_check.json`, `fig_theory.png`). This checks the algebra only.
 
-For Proposition 2, the sample-based LDA probe (200,000 training points, 20-dimensional noise) agrees with the closed form at all 20 settings (a, b) ∈ {(2,1), (1,2), (1.5,1.5), (3,1)} × π ∈ {0.5, 0.7, 0.9, 0.97, 0.995}. The maximum absolute error is 0.0034. With a = 2, b = 1, the false-"knows" rate rises from 0.309 at π = 0.5 to 0.745 at π = 0.995. With a = 1, b = 2 it stays below 0.25. Both match predictions (i) and (iii). For Proposition 1, a one-dimensional construction with δ = 0 attains the ceiling 1 − α/2 to within 0.0015 at α ∈ {0, .25, .5, .75, 1} (Figure `fig_theory.png`). These checks confirm the algebra and nothing more. Whether the assumptions describe trained networks is tested next.
+### 6.2 Memorization regimes and where errors live
 
-### 6.2 E2: what confidence looks like on never-seen facts
+| regime | FU acc / MSP | RU acc / MSP | UE acc / MSP | ECE (det.) | singleton frac. | missing mass | det. error rate | share of errors on c = 0 |
+|---|---|---|---|---|---|---|---|---|
+| base | 0.286 / 0.865 | 0.270 / 0.852 | 0.062 / 0.762 | 0.267 | 0.038 | 0.038 | 0.028 | 0.998 |
+| early | 0.358 / 0.598 | 0.258 / 0.457 | 0.079 / 0.426 | 0.067 | 0.038 | 0.038 | 0.119 | 0.234 |
+| small | 0.229 / 0.682 | 0.229 / 0.616 | 0.080 / 0.544 | 0.139 | 0.038 | 0.038 | 0.095 | 0.311 |
+| comp | 0.353 / 0.709 | 0.301 / 0.687 | 0.285 / 0.691 | 0.158 | 0.038 | 0.038 | 0.070 | 0.383 |
+| matched | 0.394 / 0.885 | 0.322 / 0.871 | 0.086 / 0.800 | 0.261 | 0.038 | 0.038 | 0.026 | 1.000 |
+| matched_early | 0.388 / 0.709 | 0.305 / 0.564 | 0.087 / 0.517 | 0.093 | 0.038 | 0.038 | 0.072 | 0.366 |
+| matched_ls | 0.378 / 0.426 | 0.378 / 0.437 | 0.083 / 0.291 | 0.117 | 0.038 | 0.038 | 0.025 | 0.949 |
+| Bayes ref. (orig.) | 0.619 / 0.612 | 0.613 / 0.612 | 0.144 / 0.138 | 0.002 | — | — | — | — |
 
-| cell (deterministic relations) | n per world | accuracy | mean MSP | MSP − acc | ensemble MI |
+*Table 1. Measured (T-G in `summary_r1.txt`). Per-regime 95% intervals are in the summary file.*
+
+The base regime is the degenerate one the reviewer described. Errors fall essentially only on never-seen facts (99.8%), and never-seen facts receive confident answers (MSP 0.86) that are right 27–29% of the time. A type-default predictor would be right about 62% of the time, and the Bayes reference is. The other regimes break this in different ways. With early stopping or small capacity, 23–31% of errors fall on never-seen facts and the rest on imperfectly memorized seen facts. In the compositional world, unseen entities are answered at 29% (vs 6%), because the name carries type information.
+
+**Good–Turing (reviewer m5).** The R0 claim that the singleton fraction is "an accurate, label-free abstention budget" holds only under (near-)perfect memorization. In the four imperfect-memorization regimes (early, small, comp, matched_early), the deterministic error rate (0.070–0.119) is 1.8–3.1× the singleton fraction (0.038), and only 23–38% of errors fall on never-seen facts. We withdraw the general claim.
+
+### 6.3 Ambiguity: the confound, exposure matching, and when Proposition 1 binds
+
+**The R0 design was confounded (reviewer M2).** Table 2 adds the count baselines that R0 computed but omitted.
+
+| detector (base, 5 worlds) | α = 0 | 0.25 | 0.5 | 0.75 | 1.0 |
 |---|---|---|---|---|---|
-| familiar, fact seen | 1,629 | 1.000 ± 0.000 | 0.997 ± 0.000 | −0.003 | 0.004 |
-| familiar, fact never seen (FU) | 467 | 0.295 ± 0.010 | 0.866 ± 0.007 | 0.570 | 0.827 |
-| rare, fact seen (UK) | 5,622 | 1.000 ± 0.000 | 0.991 ± 0.001 | −0.009 | 0.011 |
-| rare, fact never seen | 5,718 | 0.272 ± 0.006 | 0.853 ± 0.003 | 0.581 | 0.815 |
-| entity never seen | 2,412 | 0.060 ± 0.003 | 0.757 ± 0.004 | 0.698 | 1.335 |
+| MSP (1 − max q) | 0.816 | 0.652 | 0.494 | 0.331 | 0.169 |
+| entropy of q | 0.814 | 0.657 | 0.504 | 0.347 | 0.191 |
+| entropy of ensemble mean | 0.949 | 0.909 | 0.872 | 0.832 | 0.794 |
+| ensemble MI | 0.950 | 0.954 | 0.960 | 0.965 | 0.970 |
+| **−log entity count** | 0.748 | 0.804 | 0.869 | 0.929 | **0.992** |
+| **−log fact count (exposure oracle)** | 0.924 | 0.941 | 0.963 | 0.980 | **1.000** |
 
-*Table 1. Measured in the synthetic world (code: `run_all.py`). n is the mean count per world.*
+*Table 2. Original E1 design, AUROC for G = 1, measured. 95% intervals ≤ ±0.012.*
 
-Three findings stand out. First, every documented fact the model saw, even once, is answered correctly (accuracy 1.000). The networks memorize their training set. Second, facts the model never saw receive a mean MSP of 0.85–0.87 while being right only 27–30% of the time. The overconfidence gap is about 0.57 whatever the entity's familiarity. Third, prediction P3 (confidence rises with familiarity for never-seen facts) is only **weakly** borne out. Across entity-count bins from [1,3) to [100,300), MSP on never-seen facts rises from 0.825 to 0.873, but accuracy also rises, from 0.190 to 0.286, so the gap does not grow (Figure `fig_familiarity.png`). In this world, the danger of familiarity is not that it inflates confidence relative to rare entities. The danger is that high confidence on never-seen facts is *already* the default, and familiarity does nothing to lower it. Notably, a predictor that output the default value of the entity's latent type would be right about 62% of the time on these cells (column `prior_acc` in `summary.txt`). The networks do not exploit type structure well for unseen facts: accuracy is 0.27–0.30.
+At high α the R0 task is largely a familiarity task: aleatoric negatives with c ≥ 20 sit on heavily trained entities, while many positives sit on never-seen ones. R0's statement that MI is flat in α "because it separates ignorance from ambiguity" was not supported by that design.
 
-Ensemble mutual information separates seen from never-seen facts by two orders of magnitude (≈0.01 vs ≈0.8) at every familiarity level. Unlike MSP, it does not shift with familiarity in a way that matters (Figure `fig_familiarity.png`, right).
+**Exposure-matched E1.** Restricting to familiar entities and matching entity-count histograms brings the familiarity baseline down to 0.50–0.56 (Table 3).
 
-### 6.3 E1: the ambiguity confound in a trained network
+| base regime, exposure-matched | α = 0 | α = 0.5 | α = 1 |
+|---|---|---|---|
+| MSP | 0.835 ± 0.022 | 0.478 ± 0.025 | 0.118 ± 0.031 |
+| best trained q-only detector (T-features) | 0.833 ± 0.022 | 0.738 ± 0.036 | 0.947 ± 0.014 |
+| ensemble MI | 0.984 ± 0.008 | 0.973 ± 0.012 | 0.962 ± 0.018 |
+| entropy of ensemble mean | 0.982 ± 0.008 | 0.845 ± 0.024 | 0.708 ± 0.044 |
+| −log entity count | 0.497 ± 0.002 | 0.525 ± 0.030 | 0.555 ± 0.057 |
+| −log fact count | 1.000 | 1.000 | 1.000 |
 
-| α (aleatoric share of known items) | 0 | 0.2 | 0.4 | 0.5 | 0.6 | 0.8 | 1.0 |
-|---|---|---|---|---|---|---|---|
-| MSP (1 − max q) | 0.816 | 0.685 | 0.556 | 0.491 | 0.428 | 0.298 | 0.169 |
-| entropy of q | 0.814 | 0.687 | 0.563 | 0.500 | 0.439 | 0.314 | 0.189 |
-| entropy of ensemble mean | 0.947 | 0.917 | 0.888 | 0.870 | 0.856 | 0.823 | 0.791 |
-| ensemble MI | 0.948 | 0.953 | 0.959 | 0.959 | 0.963 | 0.966 | 0.970 |
-| Prop. 1 ceiling at δ = 0 | 1.000 | 0.900 | 0.800 | 0.750 | 0.700 | 0.600 | 0.500 |
+*Table 3. Measured (T-B). About 330 positives, 1,630 deterministic negatives and 220 aleatoric negatives per world.*
 
-*Table 2. AUROC for detecting the epistemic gap G = 1, averaged over 20 resamples and 3 worlds (measured; `run_all.py`). Standard deviations over worlds at α = 1 are at most 0.013.*
+MI keeps its separation once familiarity is controlled (0.96–0.98), so the R0 result was not purely a familiarity artefact. The fact-exposure oracle, however, is perfect. In these worlds "knowing" and "having seen the fact" nearly coincide, and MI is best read as a **fact-exposure detector**. The reviewer's M1 point stands: this world cannot distinguish "MI tracks knowledge" from "MI tracks exposure". The same pattern (MI ≥ 0.93, entity count ≤ 0.59, fact count 1.000) holds in all seven regimes (T-B).
 
-Single-model confidence loses discrimination linearly in α and falls **below chance** at α ≥ 0.5. This is worse than Proposition 1's δ = 0 ceiling, and the reason is instructive. Known aleatoric items have mean MSP 0.555 ± 0.011, while unknown deterministic items have mean MSP 0.806 ± 0.003. The model is *more* confident when it is ignorant than when it correctly represents a coin flip. Ranking by MSP therefore inverts the correct order on the aleatoric component. Ensemble MI is unaffected by α (0.948 → 0.970), consistent with Remark 2. Entropy of the ensemble mean, a total-uncertainty measure that mixes both sources, degrades in between (0.947 → 0.791).
+**Is Proposition 1 ever binding? (reviewer M3.)** Table 4 gives δ̂_T (with the threshold fixed on the training fold), the best trained q-only detector at α = 1 in the exposure-matched design, and calibration error.
 
-Is Proposition 1 *binding* here? It bounds the best q-only detector, not MSP. E1b (`e1_qonly.py`) answers this by training a cross-fitted logistic detector on q-features (top-5 sorted log-probabilities and entropy).
-The detector is trained per α on one half of the entities and tested on the other, with 10 resamples per α. Results (measured; `results/e1_qonly_summary.txt`):
+| learner / regime | ECE (det.) | δ̂_T [90% boot.] | q-only AUROC, pos vs aleatoric | best q-only, α = 1 | ceiling at α = 1 from δ̂_T |
+|---|---|---|---|---|---|
+| Bayes ref., original world | 0.002 | 1.000 [1.00, 1.00] | 1.000 | 1.000 | 1.000 |
+| **Bayes ref., shape-matched world** | 0.003 | **0.000 [0.00, 0.00]** | **0.500** | **0.500** | **0.500** |
+| MLP base | 0.267 | 0.785 [0.74, 0.83] | 0.951 | 0.947 | 0.977 |
+| MLP early | 0.067 | 0.513 [0.44, 0.58] | 0.840 | 0.890 | 0.878 |
+| MLP small | 0.139 | 0.603 [0.53, 0.67] | 0.881 | 0.924 | 0.921 |
+| MLP comp | 0.158 | 0.630 [0.58, 0.68] | 0.898 | 0.874 | 0.931 |
+| MLP matched | 0.261 | 0.906 [0.88, 0.93] | 0.980 | 0.977 | 0.996 |
+| MLP matched_early | 0.093 | 0.704 [0.65, 0.76] | 0.934 | 0.918 | 0.956 |
+| MLP matched_ls | 0.117 | 0.973 [0.96, 0.99] | 1.000 | 0.999 | 1.000 |
 
-| α | 0 | 0.2 | 0.4 | 0.5 | 0.6 | 0.8 | 1.0 |
-|---|---|---|---|---|---|---|---|
-| best trained q-only detector | 0.815 | 0.732 | 0.731 | 0.746 | 0.773 | 0.824 | 0.954 |
-| MSP (same splits) | 0.819 | 0.683 | 0.555 | 0.493 | 0.428 | 0.302 | 0.173 |
-| Prop. 1 ceiling at δ̂ | 1.000 | 0.997 | 0.994 | 0.993 | 0.991 | 0.988 | 0.985 |
+*Table 4. Measured (T-C). Bracketed: mean per-world 90% bootstrap interval over held-out items. For early and small, the best q-only value slightly exceeds the ceiling computed from δ̂_T, which is expected because δ̂_T is a classifier-based lower bound on δ_T; the two agree within their across-world intervals (±0.05–0.12).*
 
-*Table 2b. Means over 3 worlds; standard deviations ≤ 0.015.*
+Four findings follow.
 
-The cross-fitted Youden lower bound on TV(P₀, P_alea) is δ̂ = 0.829 ± 0.024. A q-only classifier separates unknown items from known-aleatoric items with AUROC 0.960. In this world, therefore, **Proposition 1 is not binding**. The model's outputs on aleatoric facts have a recognizable shape (mass near 0.5/0.3/0.2) that differs from its outputs under ignorance (a single overconfident peak). A *trained* q-only detector exploits this shape, recovering 0.954 at α = 1. It dips to about 0.73 at intermediate α, because one linear rule must reject two differently shaped negative populations at once. Two lessons follow. (a) The failure of MSP and entropy under ambiguity is not, in this world, an information-theoretic necessity. It comes from the *monotone* scoring rule, which assumes that ignorance looks spread out. (b) Proposition 1 becomes binding exactly when the model's output under ignorance resembles its output under genuine ambiguity (δ → 0). This is the regime a well-calibrated model approaches, since calibration pushes outputs on unknown facts toward spread distributions. Our toy networks are far from calibrated, so they do not test that regime. Section 7 states a test for it.
+1. **Proposition 1 is tight on a calibrated learner under shape matching.** In the shape-matched world the Bayes reference has δ_T = 0, and the best q-only detector gives 1.000, 0.752 ± 0.019 and 0.500 at α = 0, ½, 1. The ceiling (1 − α)·1 + α/2 gives 1.0, 0.75 and 0.5 (`fig_r1_prop1_strata.png`, left). In the same world the fact-exposure signal stays at 1.000. Information about ignorance exists, but none of it is in q.
+2. **Calibration alone does not make it bind.** The same perfectly calibrated learner in the original world has δ_T = 1, because ignorance gives a type-prior shape and known ambiguity gives a (0.5, 0.3, 0.2) shape. R0's conjecture that "calibration pushes δ → 0" is false as stated.
+3. **Trained networks never reach the binding regime.** δ̂_T ranges from 0.51 to 0.97, and the best q-only detector recovers 0.87–1.00 at α = 1. Early stopping, which lowers ECE, also lowers δ̂_T (base 0.785 → early 0.513; matched 0.906 → matched_early 0.704). Label smoothing, which also lowers ECE (0.261 → 0.117), *raises* δ̂_T to 0.973, because it gives seen-aleatoric outputs a distinctive smoothed shape. Across the six MLP regimes without label smoothing, ECE and δ̂_T are rank-correlated (Spearman ρ = 0.77, n = 6). That is too few points to call it a law.
+4. **Fixed monotone scores still fail.** MSP is below 0.5 at α = 1 in four of seven regimes (base 0.169, matched 0.087, small 0.474, comp 0.448; T-A). It inverts because these networks are more confident under ignorance than on known coin-flips. This is a property of a fixed score, not an information limit: a trained q-only detector avoids it.
 
-### 6.4 E3: correctness probes learn familiarity
+### 6.4 Familiarity: pooled vs within-stratum evaluation of probes
 
-The natural pool has co-occurrence π = P(F = K) = 0.964 ± 0.002. Estimated in whitened hidden space, familiarity is more salient than knowledge: ‖a‖ = 1.03, 1.05, 1.00 and ‖b‖ = 0.41, 0.39, 0.43 in the three worlds, with cosines between the two directions of 0.20, 0.24 and 0.03. Proposition 2 therefore predicts FK > ½ for a probe trained on natural data.
+| regime | hidden probe, natural | hidden probe, dissociated (pooled) | hidden probe, **within FU** | hidden probe, **within RS** | false-"knows" (FU-wrong) | output probe, within FU | MSP, within FU | ens. MI, within FU | type-default disagreement, within FU | −log entity count, dissociated |
+|---|---|---|---|---|---|---|---|---|---|---|
+| base | 0.929 | **0.239** | 0.480 | n/a | 0.899 | 0.678 | 0.678 | 0.738 | 0.879 | 0.012 |
+| early | 0.783 | 0.541 | 0.484 | 0.566 | 0.711 | 0.660 | 0.669 | 0.657 | 0.845 | 0.516 |
+| small | 0.662 | 0.514 | 0.517 | 0.553 | 0.492 | 0.664 | 0.666 | 0.675 | 0.893 | 0.387 |
+| comp | 0.516 | 0.502 | 0.516 | 0.504 | 0.632 | 0.666 | 0.663 | 0.681 | 0.836 | 0.511 |
+| matched | 0.875 | 0.574 | 0.521 | n/a | 0.826 | 0.567 | 0.563 | 0.582 | 0.628 | 0.015 |
+| matched_early | 0.847 | 0.508 | 0.451 | 0.555 | 0.838 | 0.548 | 0.568 | 0.569 | 0.639 | 0.487 |
+| matched_ls | 0.703 | 0.550 | 0.496 | 0.539 | 0.625 | 0.556 | 0.570 | 0.546 | 0.647 | 0.075 |
 
-| probe features | π_d | AUROC natural | AUROC dissociated | false-"knows" (familiar & wrong) | missed-"knows" (rare & right) | Prop. 2 predicted FK |
-|---|---|---|---|---|---|---|
-| hidden | 0 | 0.930 | **0.245** | **0.889 ± 0.052** | 0.419 | 0.644 |
-| hidden | 0.1 | 0.917 | 0.263 | 0.845 | 0.456 | 0.630 |
-| hidden | 0.5 | 0.811 | 0.353 | 0.760 | 0.427 | 0.488 |
-| hidden + output | 0 | 0.941 | 0.386 | 0.815 | 0.304 | 0.644 |
-| hidden + output | 0.5 | 0.895 | 0.651 | 0.523 | 0.204 | 0.488 |
-| output only | 0 | 0.913 | 0.786 | 0.298 | 0.197 | — |
-| output only | 0.5 | 0.906 | 0.806 | 0.413 | 0.052 | — |
-| *baseline:* MSP | — | 0.909 | 0.809 | — | — | — |
-| *baseline:* ensemble MI | — | 0.960 | **0.970** | — | — | — |
-| *baseline:* −log entity count | — | 0.955 | 0.014 | — | — | — |
+*Table 5. AUROC for detecting wrong answers on held-out entities. The probe is trained on natural data (π_d = 0, λ = 1). Measured (T-D); 95% intervals across worlds are in `summary_r1.txt`. Within FU, the per-world n is about 230 items with about 150 wrong, so intervals are wide: ±0.02–0.17. "n/a": no wrong answers in that stratum (perfect memorization).*
 
-*Table 3. Probe results on held-out entities (measured; `run_all.py`, 5 resamples × 3 worlds). AUROC is for detecting wrong answers.*
+The table supports three conclusions.
 
-The hidden-state probe trained on natural data is the clearest instance of the familiarity shortcut. Its natural-cell AUROC is 0.930, comparable to strong published probes, yet its AUROC on dissociated cells is 0.245, well **below chance**. It labels 89% of familiar-and-wrong items as "knows". Pure familiarity (−log entity count) behaves the same way in caricature: 0.955 on natural cells, 0.014 on dissociated cells. In-distribution validation would rate both detectors as excellent.
+**(a) The pooled dissociated AUROC is largely an artefact of the thresholds, as the reviewer argued (M5).** The striking below-chance value (0.239) occurs only in the base regime. There the dissociated pool is "RS = 100% correct" plus "FU ≈ 70% wrong", and the cells are defined by entity-count thresholds. A familiarity score must then invert, as the count baseline does (0.012). Wherever seen facts are imperfectly memorized, the pooled dissociated AUROC of the hidden probe is about 0.50–0.57.
 
-The quantitative predictions of Proposition 2 are only partly right. **Direction:** correct. ‖a‖ > ‖b‖ and the observed FK exceeds ½ at every π. **Ordering:** the observed and predicted FK correlate at r = 0.57 across the 90 (world, π_d, resample) runs. **Magnitude:** wrong. The Gaussian-LDA model under-predicts FK by 0.23 on average (0.889 observed vs 0.644 predicted at π_d = 0). It also predicts a much steeper benefit from mixing in dissociated data than occurs (predicted 0.488 at π_d = 0.5, observed 0.760). We attribute the miss to two violated assumptions. Hidden states are ReLU features, far from Gaussian with shared covariance. And the "knowledge" signal b is estimated from cell means, while what distinguishes a correct from an incorrect never-seen fact is mostly the luck of a type-default guess, which is not linearly encoded. The proposition should be read as a lower-bound-style diagnostic for this regime, not as a calibrated forecaster.
+**(b) Within strata, the hidden-state probe has essentially no fact-specific signal in any regime.** Within FU it scores 0.45–0.52. Within RS, where it can be measured, it scores 0.50–0.57. Within FS it scores 0.65–0.72 (early, small, matched_early; T-D), against 0.94–0.98 for MSP and MI. Output-distribution signals keep real signal in every regime. Within FU, MSP scores 0.56–0.68. Within the seen-fact strata of imperfect regimes, MSP scores 0.78–0.98 and matches ensemble MI: early FS 0.956 vs 0.948, RS 0.828 vs 0.806; small RS 0.912 vs 0.921. The probe's high natural-cell AUROC therefore comes almost entirely from reading *which stratum* an item is in.
 
-Two remedies behave differently. Adding output features to the hidden state and mixing in dissociated training items do help: dissociated AUROC rises from 0.386 to 0.651 for hidden+output, consistent with P2. But neither reaches what the output distribution alone gives (0.786–0.806), and none reaches ensemble MI (0.970). In this world the richest representation is the worst place to look for self-knowledge, because familiarity is its dominant linear direction.
+**(c) Correctness within never-seen facts is largely luck that the type prior can predict.** A single bit, whether the model's answer differs from the entity type's default value, reaches 0.84–0.89 within FU in the original-world regimes. No learned signal comes close. This confirms the reviewer's point that the correctness label mixes "knows" with "lucky guess". Any self-knowledge evaluation built on correctness labels should report how much of its AUROC a prior-agreement feature like this explains.
 
-### 6.5 E4: the Good–Turing budget
+**The familiarity shortcut itself is robust.** In 6 of 7 regimes the natural-data probe labels most familiar-and-wrong items "known" (false-"knows" rate 0.62–0.90). The exception is small (0.49). Mixing dissociated items into probe training lowers this rate monotonically in 6 of 7 regimes (base 0.90 → 0.85 → 0.75 at π_d = 0, 0.1, 0.5). It does not in matched_ls (0.62 → 0.63 → 0.65). Mixing never raises the hidden-state probe's within-FU AUROC above about 0.53 (T-D, π_d = 0.5 rows). Adding output features does help (base hidden+output within FU: 0.557 at π_d = 0 vs 0.612 at π_d = 0.5).
 
-On 200,000 fresh queries from the training distribution, the singleton fraction N₁/N is 0.038 ± 0.000 and the realized mass of never-seen facts is 0.038 ± 0.001. Of all errors on deterministic relations, 99.9% ± 0.1% fall on never-seen facts. The error rate is 0.741 on never-seen facts and 0.000 on facts seen once or more. The overall deterministic error rate is 0.028 ± 0.002. Here the Good–Turing quantity is an accurate, label-free estimate of how often a well-designed system should abstain. Note the contrast with Kalai & Vempala's [2024] lower bound: that bound concerns *calibrated* models and singleton facts. Our networks are *not* calibrated (Table 1) and memorize singletons perfectly, so their errors concentrate entirely on the missing mass instead.
+**Comp is a partial exception for the hidden probe.** In the compositional world the hidden-state probe is near chance even on natural cells (0.516), while output features reach 0.80. With composed names, hidden features do not linearly separate unseen entities from seen ones. This is one way the base world's random-embedding shortcut does not transfer.
 
-## 7 Pre-registered Protocol for Language Models
+### 6.5 Where Proposition 2's misfit comes from (reviewer M3, m2)
 
-We ran no LLM experiments. The following protocol states, before any such experiment is run, what our account predicts and what would falsify it.
+For the hidden-state probe, we compare four quantities: the observed false-"knows" rate; LDA fitted to the whitened hidden states of the *same* training set; Proposition 2 evaluated on the two estimated vectors (a, b) with balanced classes (R0); and Proposition 2 with the actual class prior and conditional co-occurrences (`lda_rates_general`).
 
-**Items.** Build (subject, relation, object) questions from a knowledge base with popularity metadata (e.g., Wikidata subjects with page-view counts, as in PopQA [Mallen et al. 2023]). Familiarity F is subject popularity, or better, the subject's document count in the pre-training corpus where it is available [Kandpal et al. 2023]. Fact exposure is proxied by co-occurrence counts of subject and object in that corpus.
+| regime (π_d = 0) | observed (logistic) | empirical LDA | Prop. 2, balanced | Prop. 2, class-prior corrected | ‖a‖ / ‖b‖ |
+|---|---|---|---|---|---|
+| base | 0.899 | 0.870 | 0.647 | 0.581 | 1.04 / 0.42 |
+| early | 0.711 | 0.642 | 0.701 | 0.609 | 1.46 / 0.47 |
+| small | 0.492 | 0.456 | 0.555 | 0.339 | 0.53 / 0.27 |
+| comp | 0.632 | 0.648 | 0.553 | 0.786 | 0.81 / 0.46 |
+| matched | 0.826 | 0.734 | 0.539 | 0.315 | 0.53 / 0.39 |
+| matched_early | 0.838 | 0.805 | 0.773 | 0.729 | 1.68 / 0.43 |
+| matched_ls | 0.625 | 0.601 | 0.545 | 0.358 | 0.63 / 0.46 |
 
-**Cells.** Report four cells separately. (i) Popular subject, high co-occurrence. (ii) Popular subject, low or zero co-occurrence: the familiar-unknown cell. Obscure relations of famous people are the canonical case. (iii) Obscure subject, high co-occurrence. (iv) Fabricated subjects, as in fictitious-entity benchmarks. Correctness is labelled per model by exact or judged match.
+*Table 6. Measured (T-E; `fig_r1_prop2_gap.png`). Pooled over 69 (regime, world, π_d) runs: the balanced closed form has r = 0.36 and MAE 0.15, biased low by 0.12. The class-prior-corrected form has r = 0.45 and MAE 0.18. Empirical LDA has r = 0.97 and MAE 0.03.*
 
-**Detectors.** MSP / sequence probability; verbalized confidence; semantic entropy [Farquhar et al. 2024]; a hidden-state correctness probe trained on a natural mix (cells i and iv); the same probe trained with a stated share of cells ii and iii; an entity-recognition direction [Ferrando et al. 2025] or KEEN [Gottesman & Geva 2024]; and, where affordable, disagreement across independently fine-tuned checkpoints.
+The diagnosis is now specific. The *mechanism* in Proposition 2 explains the probe almost exactly: a linear discriminant trained where F and K co-occur. Empirical LDA reproduces the logistic probe to MAE 0.03 across regimes. What fails is the *two-vector Gaussian summary* of hidden-state geometry. Familiar and unfamiliar items do not differ by a single mean shift under shared isotropic noise. Correcting the class prior, as reviewer m2 suggested, does not close the gap; it widens it. We therefore drop the R0 description of Proposition 2 as a "lower-bound-style diagnostic". It is a qualitative model: it predicts the sign of the shortcut, which holds in 6 of 7 regimes, and the direction of the remedy, which holds in 6 of 7. It is not a quantitative forecaster.
 
-**Predictions.**
-- H1 (familiarity shortcut). Probes trained on the natural mix will have AUROC in cell (ii) significantly lower than on the natural cells, and will label most wrong answers in cell (ii) as known. This holds most strongly at layers where an entity-recognition direction is most linearly decodable. *Falsified if* cell-(ii) AUROC is within 0.05 of natural-cell AUROC for probes with natural-cell AUROC above 0.85.
-- H2 (monotonicity). Increasing the share of dissociated training items monotonically reduces the cell-(ii) false-"knows" rate. Following Section 6.4, we expect the reduction to be smaller than a Gaussian-LDA fit predicts.
-- H3 (ambiguity). On a set of questions whose answer distribution is genuinely spread (e.g., "name a city in X"), all q-only detectors, including semantic entropy, lose AUROC as the share of such questions in the "known" class grows. The best q-only AUROC stays below 1 − α(1−δ̂)²/2 with δ̂ estimated as in E1b. Cross-checkpoint disagreement does not lose AUROC.
-- H4 (Good–Turing). The singleton fraction of (subject, object) co-occurrences in the corpus predicts the fraction of factual questions answered wrongly to within a factor of two on a uniformly sampled question set.
+### 6.6 Probe hyperparameters (reviewer M6)
 
-**Reporting.** Always report per-cell AUROC and per-cell false-"knows" / missed-"knows" rates, plus π = P(F = K) for every training and evaluation set. An aggregate AUROC alone is not interpretable: it can be dominated by the natural cells, as Table 3 shows.
+Across λ ∈ {0.01, 1, 100} and both threshold rules, the base-regime natural-data probe keeps natural AUROC at 0.90–0.93, dissociated AUROC at 0.24–0.28, and a false-"knows" rate of 0.78–0.90. The only movement is FK@0.5 dropping to 0.775 at λ = 100. With λ ≤ 1, choosing the threshold by Youden's J on the training set instead of using 0.5 changes FK by at most 0.12 in every regime. At λ = 100 the two rules can differ by up to 0.24 (small, π_d = 0.5), because strong shrinkage pulls probe outputs toward the base rate and makes the fixed 0.5 threshold arbitrary (T-F). In the base regime, the shortcut is not an artefact of the fixed 0.5 threshold or of the regularization strength. Elsewhere, threshold-dependent rates should be read together with the threshold-free AUROCs in Table 5.
+
+## 7 Protocol for Language Models (not run)
+
+We did not run an LLM pilot. The reviewer's suggestion of a 7–8B model needs a GPU, and none is available. A CPU pilot with a sub-1B model also failed: model-weight hosts (huggingface.co and its CDN) are blocked by this environment's network policy. Only the PopQA question file was reachable. The protocol below incorporates the R1 controls.
+
+**Items.** PopQA-style (subject, relation, object) questions [Mallen et al. 2023]. F is subject popularity, or the pre-training document count where available [Kandpal et al. 2023]. Fact exposure is proxied by subject–object co-occurrence counts.
+
+**Controls (new in R1).** (i) Report the −log popularity and −log co-occurrence baselines in every table. (ii) For any ambiguity test, match positives and negatives on popularity histograms. (iii) Report *within-popularity-stratum* AUROC (e.g. correct vs wrong among popular subjects with low co-occurrence), not only pooled "dissociated" AUROC. (iv) Report how much AUROC a prior-agreement feature explains: whether the answer equals the most frequent object for that relation.
+
+**Predictions** (falsifiable; derived from the synthetic results, not established for LLMs). H1: a natural-mix hidden-state probe has within-popular-stratum AUROC much closer to 0.5 than its natural-cell AUROC. *Falsified if* the within-stratum AUROC exceeds 0.75 while the natural-cell AUROC exceeds 0.85. H2: output-probability signals have higher within-stratum AUROC than hidden-state probes trained on the natural mix. H3: on genuinely open-ended questions (e.g. "name a city in X"), label-invariant q-only detectors lose AUROC as α grows, and the best one stays below 1 − α(1−δ̂_T)²/2. Cross-checkpoint disagreement does not lose AUROC. H4: the singleton co-occurrence fraction is *not* a reliable abstention budget unless measured error concentrates on zero-co-occurrence facts.
 
 ## 8 Discussion
 
-**What "knowing that you don't know" requires.** The two propositions point to two requirements. A signal must be able to separate "I lack the answer" from "the answer is random": that is the ambiguity confound. And it must reflect the fact-specific trace rather than the entity's familiarity: that is the familiarity shortcut. A model's own predictive distribution fails the first requirement in principle. Probes on representations fail the second whenever familiarity is more linearly salient than knowledge, and nothing in standard training makes it otherwise. The one signal that met both requirements in our setting is parameter disagreement (ensemble MI). This agrees with the uncertainty-decomposition literature's argument that epistemic uncertainty is a property of the learner's *state of information*, not of the predictive distribution [Hüllermeier & Waegeman 2021]. It sits in tension with the observation that second-order loss minimisation does not deliver faithful epistemic uncertainty [Bengs et al. 2022]: ensembles get disagreement from independent training runs, not from a loss that rewards it. For LLMs, full ensembles are expensive, so a practical question raised by our results is which cheap proxies (checkpoint diversity, LoRA ensembles, sampled-prompt disagreement) preserve the property that matters: agreement on seen facts, disagreement on unseen ones.
+**What the controls change.** Without exposure matching, R0's ambiguity test credited ensemble MI with separating ignorance from ambiguity, but a familiarity count did as well. With matching, MI still separates the two, and so does a fact-exposure count. Without within-stratum evaluation, R0 found a dramatic inversion of hidden-state probes. With it, the robust finding is weaker but more general: across seven regimes, hidden-state probes trained on natural data carry almost no fact-specific signal once familiarity is held fixed. Output-distribution signals carry some. We consider these two controls the main portable contribution.
 
-**Evaluation design is the immediate lever.** The results suggest a change to evaluation that costs nothing. Most self-knowledge benchmarks mix answerable questions about well-known entities with unanswerable questions about fabricated or obscure ones [Yin et al. 2023]. In our terms, π is near 1. An abstention method can score well on such a benchmark by reading familiarity. Reporting the dissociated cells separately, and stating π, would expose this. Our −log-entity-count baseline (AUROC 0.955 natural, 0.014 dissociated) is a useful sanity check to include: any self-knowledge method that cannot beat it on the dissociated cells has not shown that it measures knowledge.
+**When the predictive distribution is enough.** R0 said q "fails in principle" to separate ignorance from ambiguity. That overreached, and E1b already showed it. The correct statement is conditional. A label-invariant q-only detector is limited exactly by δ_T, the shape difference between ignorance and known ambiguity. Post-hoc recalibration cannot change δ_T (Corollary 1). Calibration does not imply δ_T → 0. Under shape matching, though, even a perfectly calibrated learner is capped at 1 − α/2. Whether LLMs are near the shape-matched regime is an open empirical question. Their outputs on unknown facts are often confident single answers, and in our networks that confidence kept δ_T large. That makes q-only detection *easier* than the worst case, but only for detectors trained to use the shape, not for fixed monotone scores.
 
-**Connection to human metacognition.** The familiarity shortcut is the machine analogue of the cue-familiarity account of the feeling of knowing [Reder & Ritter 1992]. Our finding that output-distribution features generalize better than hidden-state features (Table 3) loosely echoes the accessibility account [Koriat 1993]: a signal computed from what is actually retrieved, here the answer distribution, carries some fact-specific information that the cue representation does not. We do not claim more than an analogy.
+**Ensembles.** MI was the most robust signal we tested. In our worlds it detects fact exposure, and under imperfect memorization it was no better than MSP on seen-fact strata. We no longer claim that "only parameter disagreement remains reliable".
 
-**Relation to concurrent findings on LLMs.** Cheang et al. [2025] report that LLM hidden states cannot separate hallucinations associated with a known subject from correct recall, but can separate unassociated ones. Orgad et al. [2025] report that error probes fail to transfer across datasets. Both observations are what Proposition 2 predicts if subject familiarity dominates the probed representation and the training sets differ in π. Our synthetic results are consistent with that reading but do not establish it for LLMs. Section 7 states how to test it.
+**Relation to LLM findings.** The synthetic results are consistent with Cheang et al. [2026] (internal states track recall, not truth) and Ni et al. [2025] (popularity-driven overconfidence). They do not test those claims; Section 7 states how to.
 
 ## 9 Limitations
 
-- **Toy models and toy world.** The networks are two-layer embedding MLPs on a synthetic relational world, not transformers on text. An unseen entity is represented by an untrained random embedding, which is a crude stand-in for an unfamiliar name: real models compose representations of new names from known sub-tokens. Our familiar/rare thresholds (≥50 and ≤10 training occurrences) are arbitrary.
-- **Few replicates.** Three worlds, five ensemble members, one architecture, one training length (30 epochs, which gives perfect memorization of seen facts). We did not vary capacity, regularization or training time, and memorization regime probably matters a great deal (Section 6.5).
-- **Proposition 2 is quantitatively inaccurate in our setting.** It predicts direction and ordering but under-predicts the false-"knows" rate by about 0.23 and over-predicts the benefit of mixing in dissociated data. Its Gaussian, shared-covariance, population-LDA assumptions are violated by ReLU features and finite logistic-regression probes.
-- **Proposition 1 is not binding in our experiments.** In our world δ̂ ≈ 0.83, so the ceiling is about 0.99. The observed failure of MSP is a sign inversion caused by overconfidence on unknowns, and a trained q-only detector largely avoids it (Table 2b). We have not exhibited a trained network in the δ ≈ 0 regime where the ceiling bites. We argue only that calibration pushes toward that regime.
-- **Correctness as the "knows" label.** Labelling by correctness counts lucky guesses on never-seen facts as "known". About 30% of familiar-unseen items are correct by chance through type defaults. This blurs the knowledge variable that Proposition 2 assumes is binary.
-- **No LLM experiments.** All claims about LLMs are hypotheses stated in Section 7. The analogies to Cheang et al. [2025], Orgad et al. [2025] and Ferrando et al. [2025] are interpretive.
-- **Ensembles are expensive.** The one detector that worked uniformly, ensemble MI, costs five training runs here and is impractical for frontier models without cheaper approximations, which we did not test.
+- **No LLM evidence.** Every result is from small MLPs on synthetic worlds. We could not run even a small-model pilot (Section 7). The compositional-name and imperfect-memorization regimes remove two specific degeneracies of R0, but they are not language models: no attention, no text, no pre-training corpus.
+- **K ≈ "fact seen" in all our worlds.** Within never-seen facts, correctness is mostly type-prior luck. Within seen facts, it is memorization quality. Our worlds therefore cannot separate "MI tracks knowledge" from "MI tracks exposure", and the fact-count oracle is perfect in every exposure-matched test.
+- **Few replicates.** There are 5 worlds for base and 3 for each other regime, so 95% intervals across worlds are wide, and several within-FU differences (n ≈ 230 items per world) are not resolved. We report intervals rather than make claims at that resolution.
+- **Proposition 2 is quantitatively poor** (MAE 0.15 across regimes). It earns its place only as a qualitative model. Its mechanism is validated through the empirical-LDA comparison, not through the closed form.
+- **Proposition 1 binds only for a constructed learner.** We exhibit tightness for the Bayes reference in a world designed for shape matching. No trained network we built approaches δ_T = 0, and we have no evidence about where LLMs sit.
+- **Arbitrary choices.** The familiar/rare thresholds (50/10), the τ = 0.5 epistemic-gap threshold, the matching bins, and c ≥ 20 for "known aleatoric" are fixed choices. We did not sweep them.
+- **Theory novelty is low.** Proposition 1 is a corollary of standard ROC/TV facts. Proposition 2 is a relabelled instance of the spurious-feature model.
 
 ## 10 Conclusion
 
-"Knowing that you don't know" is a detection problem, and two structural confounds make it harder than in-distribution metrics suggest. A detector that sees only the predictive distribution cannot tell ignorance from genuine ambiguity, and we give the AUROC ceiling this implies. A correctness probe trained where familiarity and knowledge co-occur learns familiarity, and we give its false-"knows" rate in closed form for a Gaussian model. In a controlled synthetic world, both failures appear. The quantitative fit of the shortcut model is loose, but the qualitative predictions hold: probes that look excellent in-distribution invert on dissociated cells, single-model confidence inverts under ambiguity, and only parameter disagreement remains reliable. The most actionable consequence is for evaluation: report self-knowledge results per familiarity × knowledge cell, and state the co-occurrence π of every training and evaluation set.
+Whether a signal shows that a model "knows that it does not know" depends on what the evaluation holds fixed. In controlled worlds, two confounds change the picture. Entity familiarity explains much of what pooled evaluations credit to self-knowledge signals. Ambiguity-vs-ignorance is limited, for q-only detectors, by a shape difference that recalibration cannot change and calibration does not remove. Exposure matching and within-stratum AUROC change our own first-round conclusions, and both cost nothing to adopt. The strongest claim we can support is this: hidden-state correctness probes trained on natural data mostly read familiarity, and within a familiarity stratum they have almost no fact-specific signal, across every regime we built. Testing this on LLMs is the next step.
 
 ## Reproducibility
 
-`README.md` lists the commands. `theory_check.py` takes about 10 s. `run_all.py` took about 6 minutes per world on a 4-core CPU in our run. `e1_qonly.py` retrains member 0 of each ensemble (same seeds) for E1b; in our session the three worlds took about 35 minutes wall-clock in parallel on a loaded machine. `make_figures.py` regenerates `summary.txt` and all figures. Seeds are fixed.
+`README.md` lists the commands. R0: `theory_check.py`, `run_all.py`, `e1_qonly.py` and `make_figures.py`. These are unchanged, and their outputs are in `results/` (`summary.txt`, `fig_*.png`). R1: `train_cache.py <variant> <world>` caches ensemble predictions in `cache/`, which is not committed (about 600 MB). `analysis_r1.py <variant> <world>` writes `results/r1/<variant>_w<world>.json`. `aggregate_r1.py` writes `results/r1/summary_r1.txt`, `fig_r1_prop1_strata.png` and `fig_r1_prop2_gap.png`. Total compute is about 48 CPU-minutes, or about 22 min on 4 cores with `OMP_NUM_THREADS=1`. Seeds are fixed. Every number in Sections 5–6 is taken from `results/r1/summary_r1.txt`, except Section 6.1, which uses `results/theory_check.json`.
 
 ## References
 
-- Allen-Zhu, Z., & Li, Y. (2024). Physics of Language Models: Part 3.1, Knowledge Storage and Extraction. *Proceedings of the 41st International Conference on Machine Learning (ICML)*, PMLR 235:1067–1077. arXiv:2309.14316.
-- Azaria, A., & Mitchell, T. (2023). The Internal State of an LLM Knows When It's Lying. *Findings of the Association for Computational Linguistics: EMNLP 2023*, 967–976. arXiv:2304.13734.
-- Bengs, V., Hüllermeier, E., & Waegeman, W. (2022). Pitfalls of Epistemic Uncertainty Quantification through Loss Minimisation. *Advances in Neural Information Processing Systems 35 (NeurIPS 2022)*. arXiv:2203.06102.
-- Cheang, C. S., Chan, H. P., Zhang, W., & Deng, Y. (2025). Large Language Models Do NOT Really Know What They Don't Know. arXiv:2510.09033. (Later version in *Findings of ACL 2026*.)
+- Allen-Zhu, Z., & Li, Y. (2024). Physics of Language Models: Part 3.1, Knowledge Storage and Extraction. *ICML 2024*, PMLR 235:1067–1077. arXiv:2309.14316.
+- Azaria, A., & Mitchell, T. (2023). The Internal State of an LLM Knows When It's Lying. *Findings of EMNLP 2023*, 967–976. arXiv:2304.13734.
+- Bengs, V., Hüllermeier, E., & Waegeman, W. (2022). Pitfalls of Epistemic Uncertainty Quantification through Loss Minimisation. *NeurIPS 2022*. arXiv:2203.06102.
+- Cheang, C. S., Chan, H. P., Zhang, W., & Deng, Y. (2026). Do LLMs Really Know What They Don't Know? Internal States Mainly Reflect Knowledge Recall Rather Than Truthfulness. *Findings of ACL 2026*, 713–730. (arXiv:2510.09033; v1 titled "Large Language Models Do NOT Really Know What They Don't Know".)
 - Chow, C. K. (1970). On optimum recognition error and reject tradeoff. *IEEE Transactions on Information Theory*, 16(1), 41–46.
 - Farquhar, S., Kossen, J., Kuhn, L., & Gal, Y. (2024). Detecting hallucinations in large language models using semantic entropy. *Nature*, 630(8017), 625–630.
-- Ferrando, J., Obeso, O., Rajamanoharan, S., & Nanda, N. (2025). Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models. *International Conference on Learning Representations (ICLR 2025)*. arXiv:2411.14257.
-- Geifman, Y., & El-Yaniv, R. (2017). Selective Classification for Deep Neural Networks. *Advances in Neural Information Processing Systems 30 (NIPS 2017)*, 4878–4887. arXiv:1705.08500.
+- Ferrando, J., Obeso, O., Rajamanoharan, S., & Nanda, N. (2025). Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models. *ICLR 2025*. arXiv:2411.14257.
+- Geifman, Y., & El-Yaniv, R. (2017). Selective Classification for Deep Neural Networks. *NIPS 2017*, 4878–4887. arXiv:1705.08500.
 - Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., & Wichmann, F. A. (2020). Shortcut learning in deep neural networks. *Nature Machine Intelligence*, 2(11), 665–673.
-- Gekhman, Z., Yona, G., Aharoni, R., Eyal, M., Feder, A., Reichart, R., & Herzig, J. (2024). Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations? *Proceedings of EMNLP 2024*, 7765–7784. arXiv:2405.05904.
-- Gottesman, D., & Geva, M. (2024). Estimating Knowledge in Large Language Models Without Generating a Single Token. *Proceedings of EMNLP 2024*. arXiv:2406.12673.
-- Guo, C., Pleiss, G., Sun, Y., & Weinberger, K. Q. (2017). On Calibration of Modern Neural Networks. *Proceedings of the 34th International Conference on Machine Learning (ICML)*, PMLR 70:1321–1330.
+- Gekhman, Z., Yona, G., Aharoni, R., Eyal, M., Feder, A., Reichart, R., & Herzig, J. (2024). Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations? *EMNLP 2024*, 7765–7784. arXiv:2405.05904.
+- Gottesman, D., & Geva, M. (2024). Estimating Knowledge in Large Language Models Without Generating a Single Token. *EMNLP 2024*. arXiv:2406.12673.
+- Guo, C., Pleiss, G., Sun, Y., & Weinberger, K. Q. (2017). On Calibration of Modern Neural Networks. *ICML 2017*, PMLR 70:1321–1330.
 - Hüllermeier, E., & Waegeman, W. (2021). Aleatoric and epistemic uncertainty in machine learning: an introduction to concepts and methods. *Machine Learning*, 110(3), 457–506.
 - Kadavath, S., Conerly, T., Askell, A., et al. (2022). Language Models (Mostly) Know What They Know. arXiv:2207.05221.
 - Kalai, A. T., Nachum, O., Vempala, S. S., & Zhang, E. (2025). Why Language Models Hallucinate. arXiv:2509.04664.
-- Kalai, A. T., & Vempala, S. S. (2024). Calibrated Language Models Must Hallucinate. *Proceedings of the 56th Annual ACM Symposium on Theory of Computing (STOC 2024)*. arXiv:2311.14648.
-- Kandpal, N., Deng, H., Roberts, A., Wallace, E., & Raffel, C. (2023). Large Language Models Struggle to Learn Long-Tail Knowledge. *Proceedings of the 40th International Conference on Machine Learning (ICML)*, PMLR 202:15696–15707.
-- Kapoor, S., Gruver, N., Roberts, M., et al. (2024). Large Language Models Must Be Taught to Know What They Don't Know. *Advances in Neural Information Processing Systems 37 (NeurIPS 2024)*. arXiv:2406.08391.
+- Kalai, A. T., & Vempala, S. S. (2024). Calibrated Language Models Must Hallucinate. *STOC 2024*. arXiv:2311.14648.
+- Kandpal, N., Deng, H., Roberts, A., Wallace, E., & Raffel, C. (2023). Large Language Models Struggle to Learn Long-Tail Knowledge. *ICML 2023*, PMLR 202:15696–15707.
+- Kapoor, S., Gruver, N., Roberts, M., et al. (2024). Large Language Models Must Be Taught to Know What They Don't Know. *NeurIPS 2024*. arXiv:2406.08391.
 - Koriat, A. (1993). How do we know that we know? The accessibility model of the feeling of knowing. *Psychological Review*, 100(4), 609–639.
-- Lakshminarayanan, B., Pritzel, A., & Blundell, C. (2017). Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. *Advances in Neural Information Processing Systems 30 (NIPS 2017)*, 6402–6413.
-- Mallen, A., Asai, A., Zhong, V., Das, R., Khashabi, D., & Hajishirzi, H. (2023). When Not to Trust Language Models: Investigating Effectiveness of Parametric and Non-Parametric Memories. *Proceedings of ACL 2023 (Long Papers)*, 9802–9822.
-- Orgad, H., Toker, M., Gekhman, Z., Reichart, R., Szpektor, I., Kotek, H., & Belinkov, Y. (2025). LLMs Know More Than They Show: On the Intrinsic Representation of LLM Hallucinations. *International Conference on Learning Representations (ICLR 2025)*. arXiv:2410.02707.
+- Lakshminarayanan, B., Pritzel, A., & Blundell, C. (2017). Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. *NIPS 2017*, 6402–6413.
+- Mallen, A., Asai, A., Zhong, V., Das, R., Khashabi, D., & Hajishirzi, H. (2023). When Not to Trust Language Models: Investigating Effectiveness of Parametric and Non-Parametric Memories. *ACL 2023*, 9802–9822.
+- Nagarajan, V., Andreassen, A., & Neyshabur, B. (2021). Understanding the Failure Modes of Out-of-Distribution Generalization. *ICLR 2021*. arXiv:2010.15775.
+- Ni, S., Bi, K., Guo, J., & Cheng, X. (2025). How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception. arXiv:2505.17537. (A later arXiv version is titled "Popular but Wrong: Understanding and Mitigating LLM Overconfidence through Knowledge Popularity".)
+- Orgad, H., Toker, M., Gekhman, Z., Reichart, R., Szpektor, I., Kotek, H., & Belinkov, Y. (2025). LLMs Know More Than They Show: On the Intrinsic Representation of LLM Hallucinations. *ICLR 2025*. arXiv:2410.02707.
 - Reder, L. M., & Ritter, F. E. (1992). What determines initial feeling of knowing? Familiarity with question terms, not with the answer. *Journal of Experimental Psychology: Learning, Memory, and Cognition*, 18, 435–451.
-- Wimmer, L., Sale, Y., Hofman, P., Bischl, B., & Hüllermeier, E. (2023). Quantifying aleatoric and epistemic uncertainty in machine learning: Are conditional entropy and mutual information appropriate measures? *Proceedings of the 39th Conference on Uncertainty in Artificial Intelligence (UAI)*, PMLR 216:2282–2292.
-- Yin, Z., Sun, Q., Guo, Q., Wu, J., Qiu, X., & Huang, X. (2023). Do Large Language Models Know What They Don't Know? *Findings of the Association for Computational Linguistics: ACL 2023*, 8653–8665.
-
+- Rosenfeld, E., Ravikumar, P., & Risteski, A. (2021). The Risks of Invariant Risk Minimization. *ICLR 2021*. arXiv:2010.05761.
+- Sagawa, S., Raghunathan, A., Koh, P. W., & Liang, P. (2020). An Investigation of Why Overparameterization Exacerbates Spurious Correlations. *ICML 2020*, PMLR 119:8346–8356. arXiv:2005.04345.
+- Wimmer, L., Sale, Y., Hofman, P., Bischl, B., & Hüllermeier, E. (2023). Quantifying aleatoric and epistemic uncertainty in machine learning: Are conditional entropy and mutual information appropriate measures? *UAI 2023*, PMLR 216:2282–2292.
+- Yin, Z., Sun, Q., Guo, Q., Wu, J., Qiu, X., & Huang, X. (2023). Do Large Language Models Know What They Don't Know? *Findings of ACL 2023*, 8653–8665.

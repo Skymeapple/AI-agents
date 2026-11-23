@@ -29,3 +29,16 @@ def fk_closed_form(a, b, pi, sigma=1.0):
     """Orthogonal case, scalar saliences a,b (Eq. in Prop. 2)."""
     kappa = (2 * pi - 1) * sigma**2 / (sigma**2 + a**2 * pi * (1 - pi))
     return norm.cdf((a**2 * kappa - b**2) / (2 * sigma * np.sqrt(a**2 * kappa**2 + b**2)))
+
+def lda_rates_general(a_vec, b_vec, pi1, pi0, p1):
+    """Prop. 2 without the balanced-class assumption (revision R1, reviewer m2).
+    Training law: P(K=1)=p1, P(F=1|K=1)=pi1, P(F=0|K=0)=pi0; z = F a + K b + N(0,I) (whitened).
+    Population LDA (pooled within-class covariance, Bayes threshold incl. log prior ratio).
+    Returns (false-knowing rate on F=1,K=0; missed-knowing rate on F=0,K=1)."""
+    a = np.asarray(a_vec, float); b = np.asarray(b_vec, float); p0 = 1 - p1
+    mu1 = pi1 * a + b; mu0 = (1 - pi0) * a
+    S = np.eye(len(a)) + (p1 * pi1 * (1 - pi1) + p0 * pi0 * (1 - pi0)) * np.outer(a, a)
+    w = np.linalg.solve(S, mu1 - mu0)
+    c = w @ (mu1 + mu0) / 2 + np.log(p0 / p1)
+    s = np.sqrt(w @ w)   # noise is N(0, I) in whitened space
+    return float(norm.cdf((w @ a - c) / s)), float(1 - norm.cdf((w @ b - c) / s))

@@ -25,3 +25,27 @@ Outputs (in `results/`): `final_table.md|json`, `summary.json`, `fig1_final_vs_e
 `ckpt_disagree_by_regime.json`, `crosstest_by_regime.json`, per-run histories in `runs/`.
 (`pilot.py` is an early exploratory script, not used for any reported number.)
 All seeds are fixed (model init = seed, data split = seed, batch sampling = seed+1000, evaluation seeds fixed).
+
+## Round 2 (revision in response to review r1)
+
+- `sweep_r2_spec.json` : analysis plan written before the round-2 sweep was launched (with one compute amendment,
+                         recorded in the file); `results/sweep_r2_spec.sha256` holds the hash/time of the original.
+- `run_r2.py`          : trains one free model, logs tests every 250 steps, saves weights at given steps (`results/runs_r2/`).
+- `jobs_r2a.txt`       : regime (eta=0, delta=0.3), seeds 100-103, 16000 steps (weights at 4k/8k/16k).
+- `jobs_r2b.txt`       : regime (0, 0.3) seeds 104-109 and regime (0.2, 0) seeds 100-109, 8000 steps (weights at 4k/8k).
+  (`jobs_r2.txt` is the original 40-run plan; only its first four lines were run, = jobs_r2a.txt.)
+- `r2_analyze.py`      : per-model behavioural tests, path cuts, removal formats, presence-gating tests (embedding
+                         interpolation, activation patching), interchange interventions for Definition 3 (D).
+- `r2_trainsupport.py` : behavioural tests on training vs held-out triples.
+- `r2_bound.py`        : exact training-distribution answer cross-entropy and the Prop. 3(a,b) bounds.
+- `r2_stats.py`        : run-level statistics with Clopper-Pearson / cluster-bootstrap intervals, Eq. 2 vs trivial
+                         baseline, symmetric test-vs-reference comparison, figures fig5/fig6. Output `results/r2_stats.json`.
+
+Reproduce round 2 (~1 h wall-clock on this machine, about 2 effective cores):
+
+    cd code
+    cat jobs_r2a.txt jobs_r2b.txt | xargs -P 4 -L 1 sh -c 'python3 run_r2.py $0 "$@" >> ../results/sweep_r2_log.txt 2>&1'
+    python3 r2_analyze.py old; python3 r2_analyze.py new
+    python3 r2_trainsupport.py > ../results/r2_trainsupport_log.txt
+    python3 r2_bound.py > ../results/r2_bound_log.txt
+    python3 r2_stats.py > ../results/r2_stats_log.txt

@@ -1,278 +1,312 @@
-# Observational Twins: An Information-Theoretic Test for Separating Causal Inference from Correlational Shortcuts in Learned Reasoners
+# Observational Twins: Calibrated Tests of Whether Learned Causal Reasoners Use Causal Evidence, with Exact Bayes Baselines under the Benchmark Prior
 
 **Target venue:** NeurIPS 2027 (Datasets & Benchmarks / Evaluation track)
+
+**Revision note (round 1).** This version responds to the round-1 review (`reviews/response_r1.md`). The main changes are: (i) we no longer present the Gaussian twin accuracy of 50% as a finding, since it is a theorem; it is now reported as a unit test of the generator; (ii) we replace the "MEC-uniform oracle" with exact Bayes-optimal observational baselines under the training prior, and we retract the claim that the label-order models exceed "what any reasoner could achieve from observational data" overall; (iii) we add twin probes that are direction-balanced, restricted to in-prior twins, and that include non-adjacent queries, plus prior-agnostic classical reference reasoners; (iv) we cite Montagna et al. and the R²-sortability work and reposition the contribution; (v) we narrow the scope: no LLM or pretrained amortized model was evaluated (see Section 9 for why), and we call the LLM protocol "pre-specified", not "pre-registered".
 
 ---
 
 ## Abstract
 
-Whether a learned model "really" reasons causally or merely exploits correlations is usually argued from benchmark accuracy. We show that accuracy on i.i.d. causal-query benchmarks cannot settle this question, and we propose a test that can. The test is built from *observational twins*: pairs of structural causal models (SCMs) that induce exactly the same observational distribution but give opposite answers to a causal query. We prove that on a twin pair, any reasoner whose input is a function of observational samples plus side information shared by both twins (variable names, prompt wording, label order) has pair-averaged accuracy exactly 1/2, and that with any additional evidence (interventional samples, non-Gaussian noise) the achievable accuracy is bounded by (1 + TV)/2, where TV is the total-variation distance between the two evidence distributions; the likelihood-ratio test attains the bound. We call 2·acc − 1 the *causal surplus*: it is zero for pure correlational reasoning and its ceiling is fixed by the evidence, so a model's surplus relative to the ceiling measures how much of the available causal information it actually uses. For linear-Gaussian SCMs we give a constructive twin generator (covered-edge reversal with population refit) and verify exhaustively on all 543 DAGs over four variables that it reaches every Markov-equivalence-unidentified ancestral query. We then train small amortized causal-query networks (DeepSets over samples) on CPU under eight information regimes. A model trained where variable labels partly follow the causal order reaches up to 92% i.i.d. accuracy, above the 81% ceiling of an oracle that knows the true Markov equivalence class, yet its twin accuracy is 50.0% (paired-bootstrap 95% CI 49.6–50.3): high benchmark accuracy here is entirely shortcut. Models given interventional samples or non-Gaussian noise do obtain a non-zero surplus, and the twin test reports what fraction of the information-theoretic ceiling they capture. We release the generator, the bound, and a pre-registered protocol for applying the test to large language models.
+Claims that a learned model "reasons causally" usually rest on benchmark accuracy. We study when accuracy can support such claims, using *observational twins*: pairs of structural causal models (SCMs) that induce the same observational distribution but give opposite answers to a causal query. Three known facts make twins an evaluation instrument. Any reasoner whose input is a function of observational samples plus side information shared within the pair scores exactly 1/2 on the pair (a restatement of non-identifiability). With additional evidence, accuracy is bounded by (1 + TV)/2 and the likelihood-ratio (LR) test attains the bound (Le Cam). For linear-Gaussian SCMs, refitting on any Markov-equivalent DAG produces an exact twin (a corollary of Chickering, 1995). We use these to build two calibrated statistics: *ceiling capture* κ = (2·acc − 1)/(2·acc_LR − 1) on twin pairs, and exact *Bayes-optimal observational baselines* under the benchmark's own prior. Applied to small amortized causal-query networks (DeepSets, four-variable linear SCMs, CPU), the baselines change the picture. An oracle that knows the true Markov equivalence class (MEC) and the prior reaches 86.3%. A label-free Bayes reasoner that sees the population correlation matrix reaches 90.2–91.4%. One that sees the unstandardized covariance reaches 98.8%, because the simulation prior (weights bounded away from zero, bounded noise scales) nearly identifies causal direction inside the MEC. A model trained where labels follow the causal order reaches 92.5% i.i.d. accuracy. That is only 1–2 points above the label-free bound overall, but about 9 points above it on MEC-unidentified queries (92.1% vs ≤ 83.4%). The weaker-cue model (p = 0.9) does not exceed the overall bound. Removing the label cue at test time cuts the label-order models' accuracy by §CUE§. Under informative evidence (Laplace noise, interventional samples), networks capture κ = §KLAP§ (Laplace) and §KINT§ (interventions) of the LR ceiling. This surplus persists on twins whose second member also lies inside the training prior and whose answer direction is balanced (§KINP§), so it is not explained by detecting out-of-prior parameterizations. Prior-agnostic classical reasoners given the common parents reach κ = 0.94–1.00. We evaluate no large language model; we give a pre-specified protocol for doing so.
 
 ## 中文摘要
 
-模型究竟是在进行真正的因果推理，还是仅仅利用相关性？这一问题通常依据基准测试的准确率来争论。本文证明，独立同分布（i.i.d.）因果查询基准上的准确率无法回答这一问题，并提出一种能够回答它的检验方法——"观测孪生体"（observational twins）：一对结构因果模型，它们产生完全相同的观测分布，但对同一因果查询给出相反的答案。我们证明：对于任何输入仅为观测样本与两个孪生体共享的辅助信息（变量名、提示措辞、标签顺序）之函数的推理器，其在孪生对上的平均准确率严格等于 1/2；若存在额外证据（干预样本、非高斯噪声），可达准确率的上界为 (1+TV)/2，其中 TV 为两种证据分布之间的总变差距离，且似然比检验可达到该上界。我们将 2·acc−1 定义为"因果盈余"：纯相关性推理的盈余为零，其上限由证据决定，因此模型盈余相对上限的比例度量了它实际利用了多少可用的因果信息。针对线性高斯 SCM，我们给出构造性孪生体生成器（覆盖边反转加总体重拟合），并在四变量全部 543 个 DAG 上穷举验证它能覆盖所有在马尔可夫等价类下不可识别的祖先查询。随后，我们在 CPU 上于八种信息条件下训练小型摊销式因果查询网络。在变量标签部分遵循因果顺序的数据上训练的模型，其 i.i.d. 准确率最高达 92%，超过了知晓真实马尔可夫等价类的预言机上限（81%），但其孪生准确率仅为 50.0%（配对自助法 95% 置信区间 49.6–50.3）：此处的高基准准确率完全来自捷径。获得干预样本或非高斯噪声的模型确实获得了非零盈余，孪生检验报告了它们捕获信息论上限的比例。我们公开了生成器、界和一份将该检验应用于大语言模型的预注册协议。
+关于学习模型能否"进行因果推理"的论断通常依赖基准准确率。本文借助"观测孪生体"——一对产生相同观测分布、但对同一因果查询给出相反答案的结构因果模型——研究准确率何时能够支撑此类论断。三个已知事实使孪生体成为评测工具：任何仅以观测样本及孪生对共享的辅助信息为输入的推理器在孪生对上的准确率恰为 1/2（不可识别性的重述）；存在额外证据时准确率上界为 (1+TV)/2，似然比检验可达该上界（Le Cam）；对线性高斯 SCM，在任一马尔可夫等价 DAG 上重拟合即可得到精确孪生体（Chickering 1995 的推论）。据此我们构造两个经过校准的统计量：孪生对上的"上限捕获率" κ，以及在基准自身先验下精确计算的贝叶斯最优观测基线。在 CPU 上训练的小型摊销式因果查询网络上，这些基线改变了结论：知晓真实马尔可夫等价类与先验的预言机准确率为 86.3%；看到总体相关矩阵、不使用标签的贝叶斯推理器为 90.2–91.4%；看到未标准化协方差者达 98.8%，因为仿真先验（权重远离零、噪声尺度有界）几乎在等价类内部识别了因果方向。标签遵循因果顺序训练的模型 i.i.d. 准确率为 92.5%，整体仅比无标签贝叶斯上界高 1–2 个百分点，但在等价类不可识别的查询上高约 9 个百分点（92.1% 对 ≤83.4%）；较弱线索（p=0.9）的模型整体并未超过该上界。在信息充分的证据下（拉普拉斯噪声、干预样本），网络捕获了似然比上限的相当比例，且在第二个孪生体同样位于训练先验内、答案方向平衡的孪生对上依然存在，因此不能用"检测先验外参数"来解释。本文未评测任何大语言模型，仅给出预先设定的评测协议。
 
 ---
 
 ## 1 Introduction
 
-The question "can models perform genuine causal reasoning, rather than correlational inference?" has generated two largely disconnected literatures. One evaluates large language models (LLMs) on causal questions posed in text: CLadder (Jin et al., 2023), Corr2Cause (Jin et al., 2024), interventional-reasoning probes (Kasetty et al., 2024), and broad evaluations of causal-argument generation (Kıcıman et al., 2023). The other trains networks to map datasets to causal structures, e.g. AVICI (Lorch et al., 2022) and CSIvA (Ke et al., 2023). A recurring worry runs through both: high accuracy may come from cues that correlate with the right answer in the benchmark but have nothing to do with causal inference. Zečević et al. (2023) argue that LLMs are "causal parrots" that repeat correlations among causal facts seen in training text; Yu and Zhou (2026) show that replacing semantic variable names with placeholders opens a gap on CLadder-style benchmarks; and in classical causal discovery, Reisach et al. (2021) showed that simulated benchmarks can be "gamed" by sorting variables by marginal variance.
+The question "can models perform genuine causal reasoning, rather than correlational inference?" has produced two largely separate literatures. One evaluates large language models (LLMs) on causal questions posed in text: CLadder (Jin et al., 2023), Corr2Cause (Jin et al., 2024), interventional-reasoning probes (Kasetty et al., 2024) and broad evaluations (Kıcıman et al., 2023). The other trains networks to map datasets to causal structures, such as AVICI (Lorch et al., 2022) and CSIvA (Ke et al., 2023). Both share a worry: high accuracy may come from cues that correlate with the answer in the benchmark but have nothing to do with causal inference. Examples include "causal parrot" repetition of causal facts (Zečević et al., 2023), lexical anchors in variable names (Yu & Zhou, 2026), and simulator artefacts such as varsortability and R²-sortability (Reisach et al., 2021, 2023). Montagna et al. (2024) show, for CSIvA, that constraints on the training distribution act as an implicit prior on test data, and that amortized models fail on causal-model classes unseen in training.
 
-These critiques share one structure. A model is shown to depend on a particular shortcut, and a perturbation is designed to remove that shortcut. But each perturbation targets a cue someone thought of. What is missing is a test that is *complete* against shortcuts: one that any non-causal strategy fails, whatever cue it exploits, together with a quantitative statement of what a perfect causal reasoner could achieve on the same input.
+This paper makes one point precise and quantitative. **To interpret a causal-query accuracy, it must be compared with what an optimal reasoner could reach on the same input under the same prior, and the comparison must separate three sources of accuracy:** queries identified by the evidence's structure, queries identified only by the prior over parameters, and queries answered from side cues. Two instruments do this.
 
-Pearl's ladder of causation (Pearl, 2009) separates association, intervention and counterfactuals, and the causal hierarchy theorem (Bareinboim et al., 2022) states that interventional (rung-2) queries are in general not determined by observational (rung-1) information. We turn this impossibility result into an evaluation instrument. An *observational twin pair* consists of two SCMs that induce the same observational distribution but disagree on a causal query. On such a pair, a reasoner that uses only observational information, however sophisticated and however many correlational shortcuts it has learned, must give the same answer distribution to both twins and therefore scores exactly 1/2 averaged over the pair. Any surplus above 1/2 must come from evidence that distinguishes the twins, and that surplus is capped by the total-variation distance between the two evidence distributions. The test therefore has a floor that does not depend on which shortcuts are present and a ceiling we can compute.
+*Twin pairs* hold every rung-1 cue fixed and flip only the rung-2 answer. Every function of observational data scores exactly 1/2 on them, so any surplus must come from evidence that separates the twins, and the LR test fixes the ceiling. These facts are known: non-identifiability and the causal hierarchy theorem (Bareinboim et al., 2022), Le Cam's two-point bound, and Chickering's (1995) covered-edge characterization. We restate them only in the form needed for evaluation and claim no theoretical novelty for them. On Gaussian twins the score is 1/2 *by theorem* for every reasoner, trained or untrained. That number is a check on the generator, not evidence about any model. Twins become informative only when the evidence can separate them (non-Gaussian noise, interventions), and we report what fraction κ of the LR ceiling a model captures.
+
+*Exact Bayes baselines under the benchmark prior* calibrate i.i.d. accuracy. They show that the commonly used reference (the majority answer over the MEC) is far from the observational limit. Under a standard simulation prior, the unstandardized covariance plus the parameter prior nearly identifies the full DAG (98.8%), and the correlation matrix still carries substantial prior-driven direction information (90–91% vs 86% from the MEC alone).
 
 **Contributions.**
 
-1. **A formal criterion.** We define observational twins and the *causal surplus* 2·acc − 1 on twin pairs. We prove (Proposition 1) that the surplus is exactly zero for every reasoner whose input is a function of observational samples and of side information shared within the pair, and (Proposition 2) that in general it is bounded by the total-variation distance between the twins' evidence distributions, with equality attained by the likelihood-ratio test. This yields a normalized score, *ceiling capture*, that compares models evaluated under different evidence regimes.
-2. **A complete constructive generator for linear-Gaussian SCMs.** Reversing a covered edge and refitting by population regression preserves the Gaussian joint law exactly and flips the ancestral relation of the reversed pair (Proposition 3). Building on Chickering's (1995) transformational characterization, we show that repeated covered reversals reach a twin for every ancestral query not identified by the Markov equivalence class, and we verify this exhaustively for all 543 DAGs (185 equivalence classes, 4,008 unidentified DAG–query pairs) on four nodes.
-3. **A controlled demonstration that i.i.d. accuracy and causal surplus come apart.** We train amortized causal-query networks on CPU under eight information regimes. A label-order shortcut lifts i.i.d. accuracy from 75% to 92%, past the 81% ceiling of an oracle that knows the true equivalence class, while twin accuracy stays at 50.0%. Interventional data and non-Gaussian noise produce genuine, measurable surplus, and the test reports what fraction of the ceiling each model captures. Cross-regime probes show that a model trained on Gaussian data captures none of the large surplus that non-Gaussian data makes available (LR ceiling 99.9%).
-4. **A pre-registered protocol for LLMs.** We specify how to render twin pairs as natural-language and tabular prompts, which statistics to report, and which outcomes would count as evidence for and against causal reasoning (Section 7). We did not run it here (no LLM access in our environment) and present it as a protocol, not a result.
+1. **An evaluation framework with a provable floor and a computable ceiling** (Section 3). It is assembled from known results (stated as Propositions 1–3 with attribution), extended in one small way: refit on *any* member of the MEC, not only a single covered reversal, which lets us test non-adjacent and deeper unidentified queries. It is verified numerically (covariance error ≤ 1.4 × 10⁻¹³ over 78,481 refits).
+2. **Exact Bayes-optimal observational baselines for a standard linear-SCM benchmark prior** (Section 5.2). Closed-form densities over DAGs within an MEC come from the regression parameterization and its Jacobian, with diagonal scales integrated out for standardized data. The reference levels are 86.3% (MEC only), 90.2–91.4% (correlation matrix, label-free) and 98.8% (covariance). We check that the posteriors are calibrated. This quantifies "identification by the prior" in amortized causal benchmarks, complementing Reisach et al. (2021, 2023) and Montagna et al. (2024).
+3. **A corrected shortcut accounting** (Section 5.2). The label-order model at p = 1 exceeds the label-free bound by 1–2 points overall and by about 9 points on MEC-unidentified queries; the p = 0.9 model does not exceed the overall bound. A cue-removal probe confirms that label-order reliance drives these models.
+4. **A surplus analysis with controls** (Section 5.3). Networks trained with Laplace noise or interventional samples earn surplus. We test whether this surplus survives (a) balancing the answer direction, so that "yes" is not tied to the in-prior twin; (b) restricting to twins whose refit member lies inside the training prior; and (c) non-adjacent queries. We compare against prior-agnostic classical reasoners. The surplus survives all three controls.
+5. **A pre-specified LLM protocol** (Section 7). It is not run here and not registered with any registry.
 
-Our position is deliberately modest. We do not claim to settle whether any particular large model reasons causally. We claim that the question has a crisp operational form, that i.i.d. benchmark accuracy is the wrong statistic for it, and that the twin surplus is a statistic with a provable floor and a computable ceiling.
+Scope. We do not answer the question for LLMs. Our empirical results concern a small amortized network class on four-variable linear SCMs. What transfers to other model classes is the method: the twin construction, the Bayes-calibrated baselines and the accounting.
 
 ## 2 Related Work
 
-**Causal reasoning benchmarks for LLMs.** CLadder (Jin et al., 2023) generates questions on all three rungs of Pearl's hierarchy from an oracle causal-inference engine and renders them in natural language. Corr2Cause (Jin et al., 2024) asks models to infer causal relations from stated correlations and reports near-chance performance, with fine-tuned models failing to generalize under paraphrase. Kasetty et al. (2024) build interventional-reasoning tests designed to separate reasoning from memorized facts. Kıcıman et al. (2023) find strong performance on causal-argument tasks but note that LLMs ignore the actual data. Zečević et al. (2023) formalize the "causal parrot" hypothesis via meta-SCMs. Yu and Zhou (2026) show that placeholder variable names remove much of the reported accuracy. Our test is complementary: rather than removing one cue, it builds instances in which *every* rung-1 cue is held fixed and only rung-2 truth changes.
+**Causal reasoning benchmarks for LLMs.** CLadder (Jin et al., 2023) generates questions on all three rungs from an oracle inference engine. Corr2Cause (Jin et al., 2024) asks whether a causal relation follows from stated (in)dependencies. Its labels are derived from MEC reasoning (a hypothesis is valid only if it holds in every member of the MEC), which is closely related to our restriction to identified versus unidentified queries. Kasetty et al. (2024) separate interventional reasoning from memorized facts. Zečević et al. (2023) formalize "causal parrots". Yu and Zhou (2026) show that placeholder variable names remove much of the reported accuracy. Twin pairs complement cue-removal perturbations by holding *all* rung-1 cues fixed. They are not a replacement for Corr2Cause-style MEC labelling, which they resemble in spirit.
 
-**Amortized causal discovery.** AVICI (Lorch et al., 2022) and CSIvA (Ke et al., 2023) train networks on simulated SCMs to predict graphs from observational and interventional data. They are evaluated by structural metrics on i.i.d. draws from a simulator. Reisach et al. (2021) showed that such simulators can leak the causal order through marginal variances ("varsortability"); our label-order shortcut is a controlled analogue. The twin test is an evaluation that is immune to any leak of this kind, because the leak is shared within each pair.
+**Amortized causal discovery and its identifiability.** AVICI (Lorch et al., 2022) and CSIvA (Ke et al., 2023) learn dataset-to-graph maps on simulated SCMs. Reisach et al. (2021) showed that marginal-variance order ("varsortability") leaks the causal order in common simulators. Reisach et al. (2023) showed that a scale-invariant analogue, R²-sortability, survives standardization. Montagna et al. (2024) analyse CSIvA through identifiability theory. They find that the training distribution acts as an implicit prior on test data, that models fail on noise types unseen in training, and that training on mixtures of identifiable models helps. Our cross-regime result (Gaussian-trained models capture none of the Laplace surplus) is an instance of their finding, and we do not claim it as new. Our Bayes baselines make their "implicit prior" point quantitative for one standard prior: the prior alone raises the attainable accuracy on MEC-unidentified queries from 75% to 83% (standardized data) and to 98% (raw covariance).
 
-**Identifiability.** Two DAGs are observationally equivalent iff they share skeleton and v-structures (Verma & Pearl, 1990); equivalence classes are represented by essential graphs (Andersson et al., 1997), and members of a class are connected by covered-edge reversals (Chickering, 1995). Interventions refine equivalence classes (Hauser & Bühlmann, 2012; Eberhardt et al., 2005); non-Gaussian noise makes linear models fully identifiable (Shimizu et al., 2006). These results tell us *which* queries the evidence determines; our bound turns them into a finite-sample ceiling for evaluation.
+**Identifiability.** Markov equivalence (Verma & Pearl, 1990), essential graphs (Andersson et al., 1997) and covered-edge transformations (Chickering, 1995) characterize what observational Gaussian data determine. Interventions refine equivalence classes (Eberhardt et al., 2005; Hauser & Bühlmann, 2012), and non-Gaussian noise identifies linear models (Shimizu et al., 2006). Our classical reference reasoners use the pairwise LiNGAM likelihood ratio (Hyvärinen & Smith, 2013) with the maximum-entropy approximation of Hyvärinen (1998).
 
-**Contrast sets and counterfactual data.** Contrast sets (Gardner et al., 2020) and counterfactually-augmented data (Kaushik et al., 2020) evaluate models on minimally edited inputs whose gold label flips. Observational twins are the causal-inference analogue with a stronger property: the "edit" is invisible in the input distribution itself, so the floor of 1/2 is a theorem rather than an empirical expectation.
+**Contrast sets, shortcut learning and causal world models.** Contrast sets (Gardner et al., 2020) and counterfactually-augmented data (Kaushik et al., 2020) evaluate on minimally edited inputs whose label flips; twins are the causal-inference analogue in which the edit is invisible in the input distribution. On shortcut learning see Geirhos et al. (2020). Richens and Everitt (2024) show that agents with low regret under many distribution shifts must have learned approximate causal models.
 
-**Shortcut learning and causal world models.** Geirhos et al. (2020) describe shortcut learning as decision rules that succeed on benchmarks but fail under harder test conditions. Richens and Everitt (2024) prove that agents satisfying regret bounds under many distribution shifts must have learned approximate causal models. Our result is in the same spirit but in the reverse direction and at the level of evaluation: we give the distribution shift (from an i.i.d. test to a twin test) under which correlational strategies provably fail.
-
-## 3 Theory
+## 3 Framework (known results, restated for evaluation)
 
 ### 3.1 Setup
 
-A *causal-query task* draws an SCM M from a prior Π, an evidence object E ~ P_M^E (e.g. N i.i.d. observational samples, possibly mixed with interventional samples), side information S (variable names, textual descriptions, prompt wording, the ordering of variables), and a binary query q (e.g. "is X_i an ancestor of X_j?", equivalently "does do(X_i) change the distribution of X_j?" under faithfulness) with answer y = q(M) ∈ {0,1}. A *reasoner* is a (possibly randomized) map f(E, S, q) ∈ {0,1}. All learned networks and all prompted LLMs are reasoners in this sense.
+A *causal-query task* draws an SCM M from a prior Π, evidence E ~ P_M^E, side information S (names, wording, variable order), and a binary query q with answer y = q(M). A *reasoner* is a possibly randomized map f(E, S, q) ∈ {0,1}.
 
-**Definition 1 (observational twins).** SCMs M, M′ over the same variables are *observational twins for q* if P_M(V) = P_{M′}(V) and q(M) ≠ q(M′).
+**Definition 1 (observational twins).** M, M′ are *observational twins for q* if P_M(V) = P_{M′}(V) and q(M) ≠ q(M′).
 
-**Definition 2 (twin test, causal surplus).** Given twin pairs (M_k, M′_k, q_k) with shared side information S_k, the *twin accuracy* of f is acc_tw = (1/2K) Σ_k [Pr(f(E_k,S_k,q_k)=q_k(M_k)) + Pr(f(E′_k,S_k,q_k)=q_k(M′_k))], with E_k ~ P^E_{M_k}, E′_k ~ P^E_{M′_k}. The *causal surplus* is Δ = 2·acc_tw − 1 ∈ [−1, 1].
+**Definition 2 (twin accuracy, surplus, ceiling capture).** For pairs (M_k, M′_k, q_k) with shared S_k, acc_tw is the pair-averaged accuracy. The surplus is Δ = 2·acc_tw − 1, and ceiling capture is κ = Δ/Δ_LR, where Δ_LR is the surplus of the likelihood-ratio rule that knows both SCMs.
 
-### 3.2 The floor and the ceiling
+### 3.2 Floor and ceiling
 
-**Proposition 1 (zero surplus for observational reasoners).** If the evidence consists only of observational samples, then for every reasoner f, every twin pair has pair-averaged accuracy exactly 1/2, so Δ = 0.
+**Proposition 1 (floor; restatement of non-identifiability).** If E is observational, every reasoner has pair-averaged accuracy exactly 1/2 on every twin pair.
+*Proof.* E and E′ have the same law and S, q are shared, so f(E,S,q) and f(E′,S,q) have the same law a; accuracy is (a + 1 − a)/2. ∎
 
-*Proof.* Since P_M(V) = P_{M′}(V), E and E′ have the same law, and S, q are shared, so f(E,S,q) and f(E′,S,q) have the same law. Writing a = Pr(f = 1), and assuming w.l.o.g. q(M) = 1, q(M′) = 0, the pair-averaged accuracy is (a + (1 − a))/2 = 1/2. ∎
+This is the observational-equivalence half of the causal hierarchy theorem (Bareinboim et al., 2022) written as a symmetry. We state it because it fixes how the test must be built (side information identical within a pair), not because it is new. **Consequence for reporting:** on Gaussian observational twins, every reasoner's accuracy is 1/2 up to sampling noise, including an untrained network and the Bayes-optimal reasoner. Such numbers verify the generator and say nothing about the model.
 
-The statement is elementary, which is the point: it holds for *every* f, including ones that exploit label order, variable names, marginal variances, or memorized facts, so long as these cues are shared by the twins. It turns a cue-by-cue debate into a single invariance requirement on the test construction.
+**Proposition 2 (ceiling; Le Cam's two-point bound).** With evidence laws P, Q for the twins, pair-averaged accuracy ≤ (1 + TV(P,Q))/2, with equality for the LR rule (Tsybakov, 2009, Ch. 2). ∎
 
-**Proposition 2 (ceiling).** Let P = P^E_M and Q = P^E_{M′} be the evidence laws of a twin pair. For every reasoner f, pair-averaged accuracy ≤ (1 + TV(P,Q))/2, with equality for the likelihood-ratio rule f(E) = 1[p(E) > q(E)]. Hence Δ ≤ TV(P,Q).
-
-*Proof.* Let A be the (randomized) acceptance region. Pair accuracy is (P(A) + 1 − Q(A))/2 ≤ (1 + sup_A |P(A) − Q(A)|)/2 = (1 + TV)/2; the supremum is attained by A = {p > q}. This is Le Cam's two-point bound (cf. Tsybakov, 2009, Ch. 2). ∎
-
-For i.i.d. samples TV(P^N, Q^N) → 1 whenever P ≠ Q, so the ceiling depends on N and on how strongly the evidence separates the twins; we estimate it per pair by evaluating the exact likelihood ratio under the two known SCMs. We report *ceiling capture* κ = Δ / Δ_LR, where Δ_LR is the surplus of the likelihood-ratio oracle on the same pairs: κ = 0 means no causal information is used, κ = 1 means all of it is.
-
-**Remark (what the test does and does not certify).** Δ > 0 certifies that f's answer depends on features of the evidence that distinguish the twins, i.e. on rung-2-relevant information. It does not certify that f has an explicit causal model; an f that uses interventional samples correctly, by any mechanism, earns surplus. Conversely, Δ ≈ 0 when Δ_LR ≈ 0 is uninformative: the test discriminates only where the ceiling is high.
+**Remark (what Δ > 0 does and does not certify).** Δ > 0 shows that the answer depends on evidence features that separate the twins. If one twin lies outside the training prior, those features may include "this parameterization looks unlike training data" rather than a causal-direction cue. Section 5.3 controls for this with in-prior twins and direction-balanced queries.
 
 ### 3.3 Constructing twins for linear-Gaussian SCMs
 
-A linear SCM is X_j = Σ_i W_ij X_i + s_j ε_j with independent standardized noise ε. An edge u → v is *covered* if pa(v) = pa(u) ∪ {u} (Chickering, 1995).
+A linear SCM is X_j = Σ_i W_ij X_i + s_j ε_j. An edge u → v is *covered* if pa(v) = pa(u) ∪ {u}.
 
-**Proposition 3 (covered-edge twins).** Let M be a linear SCM with Gaussian noise and DAG G containing covered edge u → v. Let G′ be G with u → v reversed and let M′ have, for every node j, coefficients and noise scale given by the population regression of X_j on pa_{G′}(j) under Σ_M = Cov_M(X). Then (i) P_{M′} = P_M, and (ii) u is an ancestor of v in G but not in G′.
+**Proposition 3 (MEC refit; corollary of Chickering, 1995).** Let M have Gaussian noise and DAG G, and let G′ be any DAG Markov equivalent to G. Define M′ by population regression of each X_j on pa_{G′}(j) under Σ_M. Then P_{M′} = P_M. For any query whose ancestral answer differs between G and G′, (M, M′) are observational twins.
+*Proof sketch.* Σ_M satisfies the Markov property of G′ (same conditional independences), and regression on G′-parents reproduces any covariance that is Markov with respect to G′. Zero-mean Gaussians are determined by their covariance. ∎
 
-*Proof sketch.* (i) G′ is Markov equivalent to G (Chickering, 1995, Lemma 1), so Σ_M satisfies the Markov property of G′; population regression on G′-parents yields an SCM whose implied covariance equals Σ_M, and zero-mean Gaussians are determined by their covariance. (ii) In G′, v → u, so u is not an ancestor of v by acyclicity. In G, u → v directly. ∎
+The original single-covered-reversal construction is the special case where G′ differs from G by one covered edge. By Chickering's (1995) theorem that covered reversals connect every MEC, every MEC-unidentified ancestral query has a twin. We re-verify this on all 543 four-node DAGs (Section 5.1) only as a check of our implementation: it confirms a known theorem.
 
-Two observations make this useful for evaluation. First, the same query (u, v) receives answer 1 on M and 0 on M′, and nothing about variable identity changes: side information is shared by construction. Second, the construction is *complete* for the observationally unidentified fragment. Every pair of Markov-equivalent DAGs is connected by a sequence of covered-edge reversals (Chickering, 1995, Theorem 2), so for any ancestral query whose answer varies within the equivalence class of G there is a chain of reversals, each preserving the Gaussian law, ending at a DAG with the opposite answer. We verified this exhaustively for n = 4 (Section 5.1).
+With Laplace noise the same pair no longer has equal laws (Shimizu et al., 2006). Mixing in samples under do(X_t) separates the twins when t is one of the queried variables. In both cases the pair becomes a probe with a high ceiling.
 
-When the noise is non-Gaussian (we use Laplace), the same pair M, M′ (with M′ refit as above but sampled with Laplace noise) no longer has equal joint laws, since linear non-Gaussian models are identifiable (Shimizu et al., 2006). The pair then becomes a *probe* with a high ceiling: the evidence permits causal discrimination, and the question is whether a model uses it. Similarly, mixing in samples drawn under do(X_t ~ N(0,1)) separates the twins when t ∈ {u, v} and leaves them equal otherwise.
+**Out-of-prior twins.** Under our prior (|w| ∈ [0.5, 2], s ∈ [0.5, 1.5]), refit twins usually leave the prior's support. This happens for 88.5% of covered-reversal twins and 94.2% of refits on other MEC members (`results/rev_checks.json`, 20,000 sampled SCMs; the reviewer independently found 88.3%). This does not affect Proposition 1. It does matter for informative-evidence probes, and for the Bayes baselines, where it signals that the prior carries direction information (Section 5.2).
 
 ## 4 Experimental Design
 
-All experiments are CPU-scale and fully reproducible from `code/run_all.sh`; every number reported in Sections 5–6 is read from JSON files in `results/` produced by that script (seeds 0 and 1 where stated).
+All experiments are CPU-scale. Every number in Sections 5–6 is read from files in `results/` produced by code in `code/` (Reproducibility section).
 
 ### 4.1 Task distribution
 
-SCMs have n = 4 variables. A DAG is drawn by including each edge of a random total order with probability 0.5; nonzero weights are ±U(0.5, 2); noise scales are U(0.5, 1.5). Each dataset has N = 256 samples. Every variable is standardized per dataset before encoding, which removes marginal-variance ("varsortability") cues (Reisach et al., 2021). The query is "is X_i an ancestor of X_j?", balanced between positive and negative answers. Variables are relabelled by a uniformly random permutation, except that with probability p_order the labels follow the causal order. This *label-order shortcut* is a controlled stand-in for any side cue that correlates with causal direction in a training distribution: variable naming conventions in text, the order in which a story mentions events, or simulator artefacts.
+There are n = 4 variables. A DAG includes each edge of a random total order with probability 0.5. Nonzero weights are ±U(0.5, 2) and noise scales U(0.5, 1.5). Each dataset has N = 256 samples, and every variable is standardized per dataset. This removes marginal-variance cues but not the scale-invariant ones (R²-sortability; Reisach et al., 2023), and Section 5.2 measures how much the latter is worth. The query is "is X_i an ancestor of X_j?", balanced between positives and negatives. Labels are a random permutation, except that with probability p_order they follow the causal order (a controlled stand-in for any side cue correlated with causal direction).
 
-### 4.2 Information regimes
+### 4.2 Regimes, model, training
 
-We train one model per regime:
+Regimes: obs_p0/p05/p09/p1 (Gaussian, p_order 0/0.5/0.9/1); laplace_p0 (unit-variance Laplace noise); int32_p0 and int128_p0 (the last 32 or 128 of 256 samples drawn under do(X_t ~ N(0,1)) for a uniformly random target t, with indicators); graph_p0 (an adjacency "description" of the true DAG). The model is a DeepSets network. Per-sample features are the four standardized values, the 10 pairwise products and the 4 intervention indicators, with the queried pair placed first. The encoder φ is an MLP (width 128, 3 layers) followed by mean pooling. The head ρ is an MLP that also receives the label-order bit 1[i < j] and, in the graph regime, the description. Training: binary cross-entropy, Adam (lr 10⁻³, cosine decay), 4,000 steps of 64 fresh items. The network is small and untuned. We report it as a *test subject* for the instruments, not as a strong causal-discovery model.
 
-| Regime | Evidence | Side information |
-|---|---|---|
-| obs_p0 / p05 / p09 / p1 | 256 observational samples, Gaussian noise | label order follows causal order w.p. 0 / 0.5 / 0.9 / 1 |
-| laplace_p0 | 256 observational samples, Laplace noise (unit variance) | random labels |
-| int32_p0, int128_p0 | 256 samples, the last 32 or 128 drawn under do(X_t ~ N(0,1)) for a uniformly random target t; intervention indicators given | random labels |
-| graph_p0 | 256 observational samples | a "textual" adjacency matrix of the true DAG |
+Seeds: obs_p0 (2), obs_p05 (2), obs_p09 (3), obs_p1 (3), laplace_p0 (2), int32_p0 (3), int128_p0 (3), graph_p0 (1). The seeds added in this revision are obs_p05 s1, obs_p09 s1–2, obs_p1 s2, int32 s2 and int128 s1–2. Retraining with the revised code reproduces all round-0 fields bit-for-bit (training and evaluation RNG streams are unchanged; new probes use separate streams).
 
-The graph regime models a reasoner that is told the causal story in words (as in CLadder-style prompts) in addition to seeing data.
+### 4.3 Evaluation
 
-### 4.3 Model
+*i.i.d. test.* 4,000 fresh items per run, split by whether the query is identified by the true MEC.
 
-Each (dataset, query) item is encoded by reordering variables so that the queried pair comes first, then forming per-sample features (4 standardized values, 10 pairwise products, 4 intervention indicators). A DeepSets network (three-layer MLP φ of width 128, mean pooling over samples, three-layer MLP ρ) outputs the logit of "yes". ρ also receives the label-order bit 1[i < j] (the only way variable identity enters) and, in the graph regime, the flattened 4×4 description. Training uses binary cross-entropy, Adam (lr 10⁻³, cosine decay), 4,000 steps of 64 freshly sampled items. The architecture is permutation-invariant over samples and therefore can compute any symmetric statistic of the empirical distribution, including higher moments needed to exploit non-Gaussianity.
+*Bayes-optimal observational baselines (new).* For each i.i.d. item we compute the posterior-optimal answer of reasoners that know the query and either (a) the population MEC, (b) the population correlation matrix R, or (c) the population covariance Σ. Each is computed label-free (prior with uniformly random labels, the optimal permutation-equivariant rule) or label-aware (the regime's p_order mixture, labels fully observed). The posterior over DAGs G in the MEC is
 
-### 4.4 Evaluation
+P(G | Σ, q) ∝ Π(G) · P(q | G) · π(θ_G(Σ)) / Π_j [2 s_j det Σ_{pa(j),pa(j)}].
 
-*i.i.d. test.* 4,000 fresh items from the training distribution. We also split accuracy by whether the query is identified by the Markov equivalence class (MEC) of the true DAG, and report two oracles: an *MEC-uniform* oracle that knows the population MEC and answers with the majority answer over its member DAGs, and an *MEC + label-order* oracle that additionally orients the skeleton by label order when that orientation lies in the MEC. These are reference points for what observational data plus label cues can support.
+Here Π(G) ∝ (number of linear extensions of G) under random labels. P(q | G) is the balanced query-sampling probability. θ_G(Σ) gives the regression coefficients and noise scales of Σ on G, and π is the parameter prior. The denominator is the Jacobian of θ ↦ (Σ_ii, Σ_ij for adjacent i, j), a chart shared by all members of an MEC. For R, the diagonal scales D are integrated out: Σ = DRD, the integrand reduces to Π_{k→j}(d_j/d_k) times prior indicators over a box, and we integrate with scrambled Sobol points (4,096; 2¹⁸ in the rare cases where the coarse grid misses the support). Standardized samples depend on the model only through R, and raw samples only through Σ. By data processing, (b)-label-free therefore upper-bounds the accuracy of **every** permutation-equivariant reasoner that sees standardized Gaussian samples. This holds on any subset of items defined through R, such as "MEC-unidentified". The posteriors are calibrated on held-out items: binned predicted P(yes) matches the empirical frequency to within 0.02 in each bin with n > 50 (Section 5.2).
 
-*Twin test.* 1,500 twin pairs per probe. For each pair we draw an SCM with random labels, choose a covered edge u → v uniformly, build M′ by Proposition 3, sample a fresh dataset from each, and query (u, v) on both (answers 1 and 0). We report twin accuracy, a paired bootstrap 95% CI over pairs (2,000 resamples), the fraction of pairs on which the model answers *both* twins correctly, and the likelihood-ratio ceiling computed from the exact log-likelihoods of the sampled data under M and M′ (ties scored 1/2).
+*Twin probes.* We use 1,500 pairs per probe, each with a paired bootstrap over pairs (2,000 resamples) for accuracy and κ. The probes are:
+- `twins_matched` (round 0): covered reversal, query (u, v), so the in-prior member M is always the "yes" item;
+- `rev_cov_all` (new): the same, but the queried direction (u, v) or (v, u) is drawn at random, so "yes" is no longer tied to the in-prior member;
+- `rev_cov_inprior` (new): as `rev_cov_all`, but pairs whose refit twin leaves the prior's support are rejected, so both members are plausible training draws;
+- `rev_mec_all` and `rev_mec_inprior` (new): any MEC-unidentified query, adjacent or not, with a direction-balanced answer, using a uniformly drawn MEC member with the opposite answer refit by Proposition 3 (about 20% of pairs are non-adjacent);
+- `rev_matched_redraw` (new): an independent redraw of `twins_matched`, used for κ confidence intervals.
 
-*Cross-regime probes.* Gaussian-trained models are tested on Laplace twins (high ceiling), the Laplace-trained model on Gaussian twins (zero ceiling), and the graph model on twins whose description has 25% of edges reversed and on a *conflict* probe where each twin's dataset is paired with the *other* twin's description.
+*Prior-agnostic classical reasoners (new).* These run on `rev_cov_*`-style twins. They know the common parents of the queried pair (oracle skeleton information) but nothing about the parameter prior. For Laplace data the reasoner is the pairwise LiNGAM likelihood ratio (Hyvärinen & Smith, 2013) on residuals after regressing out the common parents. For interventional data it is a Fisher-z partial-correlation test (α = 0.05) on the interventional rows: do(u) makes u and v dependent given the common parents iff u → v.
 
-### 4.5 Exhaustive checks of the theory
-
-`code/verify_theory.py` enumerates all DAGs on four labelled nodes, groups them into MECs by skeleton and v-structures, runs breadth-first search over covered-edge reversals inside each MEC (checking that it reaches every member), and for every DAG and every ordered pair (i, j) whose ancestral answer varies within the MEC records the minimum number of reversals needed to reach a twin. It also draws 20,000 SCMs from the training prior, constructs a twin whenever a covered edge exists, and checks the maximum absolute difference between implied covariance matrices.
+*Cue-removal probe (new).* Saved label-order models are evaluated on i.i.d. items with random labels and with labels in reverse causal order.
 
 ## 5 Results
 
-Unless stated otherwise, numbers are means over the available seeds (two seeds for obs_p0, obs_p1, laplace_p0, int32_p0; one seed for obs_p05, obs_p09, graph_p0, int128_p0), with ± the between-seed standard deviation. Source files: `results/summary_table.md`, `results/theory_checks.json`, and the per-run JSONs.
+### 5.1 Unit tests of the generator (not findings)
 
-### 5.1 The twin generator is exact and complete on four nodes
+These checks confirm known theory and our implementation (`results/theory_checks.json`, `results/rev_checks.json`):
+- the exhaustive enumeration finds 543 DAGs and 185 MECs on four nodes;
+- covered-reversal BFS spans every MEC;
+- all 4,008 MEC-unidentified (DAG, ordered pair) combinations have a twin; the minimum reversal depth is 1 for 2,280, 2 for 1,248, 3 for 432 and 4 for 48;
+- refit on every MEC member reproduces Σ to within 1.4 × 10⁻¹³ (78,481 refits);
+- 28.8% of MEC-unidentified ordered pairs under the prior are non-adjacent.
 
-The exhaustive enumeration (`results/theory_checks.json`) finds 543 DAGs on four labelled nodes in 185 Markov equivalence classes. Breadth-first search over covered-edge reversals reaches every member of every class. There are 4,008 (DAG, ordered pair) combinations whose ancestral answer is not identified by the class, and **every one of them (0 exceptions) has an observational twin** reachable by covered reversals. The minimum number of reversals is 1 for 2,280 combinations (56.9%), 2 for 1,248, 3 for 432 and 4 for 48. Under the training prior, 84.6% of sampled SCMs contain at least one covered edge, and over 20,000 sampled SCMs the largest absolute difference between the implied covariances of an SCM and its constructed twin is 7.1 × 10⁻¹⁴, i.e. floating-point error. The likelihood-ratio oracle confirms this on sampled data: on Gaussian observational twins its accuracy is 50.0% in every run (all likelihood ratios tie to within 10⁻⁷ relative error).
+As Proposition 1 requires, every Gaussian-observational model scores 49.2–50.2% on Gaussian twins (Table 1, last column), as does the LR rule. We report these numbers only as a check that the encoding shares all side information within a pair. They carry no information about what the models learned.
 
-### 5.2 A shortcut raises i.i.d. accuracy past the observational limit; twin accuracy does not move
+### 5.2 Calibrated baselines change the i.i.d. picture
 
-Figure 1 and Table 1 show the four Gaussian observational regimes.
+**Table 1.** i.i.d. accuracy of the Gaussian observational models against exact Bayes baselines (%). Network: mean ± s.d. over seeds. Bayes values are computed on the seed-0 evaluation items; values on the seed-1 and seed-2 items differ by ≤ 1.3 points (`results/bayes_oracles.json`, `per_seed_items`).
 
-**Table 1.** i.i.d. accuracy, oracle references, and twin performance (%, Gaussian observational data).
-
-| Regime (p_order) | i.i.d. acc | MEC-uniform oracle | MEC + label-order oracle | Twin acc | Twin LR ceiling | Pairs with both twins correct |
-|---|---|---|---|---|---|---|
-| obs_p0 (0) | 74.6 ± 0.5 | 80.6 | 79.0 | 50.2 ± 0.0 | 50.0 | 2.0 |
-| obs_p05 (0.5) | 77.1 | 79.7 | 89.2 | 49.2 | 50.0 | 3.9 |
-| obs_p09 (0.9) | 89.5 | 80.6 | 97.8 | 49.9 | 50.0 | 1.5 |
-| obs_p1 (1) | 92.5 ± 0.2 | 81.2 | 100.0 | 50.0 ± 0.1 | 50.0 | 1.1 |
+| Regime | Network i.i.d. | Network, unidentified queries | Bayes: MEC only | Bayes: R, label-free | Bayes: R, label-free, unidentified | Bayes: R, with labels | Bayes: Σ, label-free | Gaussian twin acc (unit test) |
+|---|---|---|---|---|---|---|---|---|
+| obs_p0 | §T1_P0§ | §T1U_P0§ | 86.3 | 90.6 | 83.2 | 90.6 | 98.9 | 50.2 |
+| obs_p05 | §T1_P05§ | §T1U_P05§ | 85.9 | 90.1 | 82.4 | 93.5 | 98.6 | 49.2 |
+| obs_p09 | §T1_P09§ | §T1U_P09§ | 86.5 | 90.2 | 82.2 | 98.3 | 98.8 | 49.9 |
+| obs_p1 | §T1_P1§ | §T1U_P1§ | 86.4 | 90.6 | 82.8 | 100.0 | 98.7 | 50.0 |
 
 ![Figure 1](results/fig1_iid_vs_twin.png)
 
-*Figure 1. i.i.d. accuracy (blue) rises with the strength of the label-order cue and passes the observational limit (MEC-uniform oracle, green); twin accuracy (orange) stays at the provable bound of 1/2. Error bars: between-seed s.d. where two seeds exist.*
+*Figure 1. i.i.d. accuracy of the label-order models (blue) against the label-free Bayes bound for standardized data (green diamonds), the MEC-only Bayes rule (purple) and the MEC + label-order reference (grey). Twin accuracy (orange) is 1/2 by Proposition 1 and is shown only as a unit test.*
 
-Three facts stand out.
+Four observations.
 
-1. *I.i.d. accuracy exceeds what observational data can support.* The MEC-uniform oracle, which knows the exact population equivalence class and nothing else, reaches 80–81%. With p_order ≥ 0.9 the trained models exceed it (89.5% and 92.5%). The excess can only come from the label-order cue, as the MEC + label-order oracle (97.8–100%) confirms is possible.
-2. *Twin accuracy is at chance in every regime.* For obs_p1, twin accuracy is 50.0% with paired-bootstrap 95% CI [49.6, 50.3] (seed 0). Across all four regimes and six runs, the causal surplus lies between −0.015 and +0.005.
-3. *The model gives the same answer to both twins.* Mean P(yes) on M and on M′ agree to within 0.003 in every regime, the mean absolute within-pair difference in P(yes) is 0.02–0.06, and only 1–4% of pairs have both twins answered correctly. The twin test identifies not just that the model is at chance, but why: its output does not depend on the features that distinguish the twins, as Proposition 1 requires.
+1. **The MEC is not the observational limit.** The reviewer computed the Bayes rule that knows only the MEC and the prior at 86.4%; we obtain 86.3% (round 0 used a uniform-within-MEC majority, 80.6%). A reasoner that sees the correlation matrix and knows the parameter prior reaches 90.2–91.4%. One that sees the raw covariance reaches 98.8%, of which 97.7–98.4% is on MEC-unidentified queries. **The simulation prior nearly identifies causal direction within the MEC.** Bounded-away-from-zero weights and bounded noise scales make most Markov-equivalent reparameterizations implausible. Standardization removes much of this signal but not all of it (83% vs 75% on unidentified queries). This is a quantitative instance of the "implicit prior" effect of Montagna et al. (2024) and of the sortability artefacts of Reisach et al. (2021, 2023). For benchmark design, accuracy above the MEC rate on "unidentified" queries is not evidence of a shortcut; it can be legitimate Bayesian use of the benchmark prior.
 
-Note that the obs_p0 model (74.6%) does not reach the MEC-uniform oracle (80.6%), so it is also not an optimal *observational* reasoner. The twin test is silent on this, by design: it measures causal surplus, not observational efficiency.
+2. **The round-0 shortcut claim is retracted overall and survives only on unidentified queries.** Overall, the p = 0.9 model (§P09ALL§) does **not** exceed the label-free bound (90.2–91.4%). The p = 1 model exceeds it by 1–2 points in each seed on the same items (paired: s0 92.3 vs 90.6; s1 92.7 vs 91.4; §P1S2§). On MEC-unidentified queries, where the bound is 82.2–84.4%, both models exceed it clearly: p = 1 reaches 91.8–92.4% (+8 to +9 points) and p = 0.9 reaches §P09UNID§. By the data-processing argument, no label-free reasoner on standardized data can reach these accuracies on these items, so the excess must come from the label cue. The models fall short of the Bayes rule on *identified* queries (93% vs 100%), which is why the overall excess is small.
 
-### 5.3 Informative evidence produces measurable surplus
+3. **The label-order models rely on the cue.** §CUEPAR§
 
-When the evidence can distinguish the twins, the models do earn surplus (Table 2, Figure 2).
+4. **The p = 0 model is a weak observational reasoner.** At 74.6% it is 16 points below the label-free bound and below even the MEC-only rule. The instruments make this visible; round 0 understated it.
 
-**Table 2.** Twin performance under informative evidence. κ = Δ / Δ_LR is ceiling capture (per-seed values in `results/summary_table.md`).
+Calibration check of the Bayes computation (1,500 held-out items, p_order = 0). In each predicted-probability bin, predicted P(yes) and the empirical frequency agree:
+- MEC rule: 0.21/0.21, 0.35/0.34, 0.57/0.55, 0.79/0.80, 0.97/0.97;
+- R rule: 0.19/0.17, 0.41/0.40, 0.61/0.61, 0.82/0.84 (bins with n ≥ 88).
 
-| Regime | i.i.d. acc | Twin acc | LR ceiling | Surplus Δ | κ |
-|---|---|---|---|---|---|
-| laplace_p0 (Laplace noise) | 91.9 ± 0.2 | 92.9 ± 0.4 | 99.8 | 0.857 | 0.86 (0.868, 0.852) |
-| int32_p0 (32 interventional samples) | 82.5 ± 0.5 | 65.3 ± 2.0 | 74.8 | 0.305 | 0.62 (0.705, 0.527) |
-| int128_p0 (128 interventional samples) | 85.8 | 71.2 | 74.9 | 0.423 | 0.85 |
+### 5.3 Informative evidence: surplus survives in-prior and direction-balanced controls
 
-![Figure 2](results/fig2_interventions.png)
+**Table 2.** Ceiling capture κ under informative evidence. Per-probe values are the mean ± s.d. over seeds; full per-seed values with bootstrap CIs are in `results/summary_table.md`. Twin acc / LR ceiling are pooled means (%).
 
-*Figure 2. Twin accuracy of models trained with interventional samples versus the likelihood-ratio ceiling.*
+§TABLE2§
 
-The interventional ceiling is close to 75%, not 100%, for a reason the theory predicts: the intervention target is uniform over four variables, and only interventions on u or v separate a covered-edge twin pair (interventions on other variables leave the conditional law of (X_u, X_v) given their common parents unchanged in both twins). With probability 1/2 the evidence is uninformative and the best achievable accuracy is 1/2; with probability 1/2 it is nearly decisive, so the ceiling is ≈ 0.5·1 + 0.5·0.5 = 0.75. Raising the number of interventional samples from 32 to 128 increases twin accuracy from 65.3% to 71.2% and κ from 0.62 to 0.85 while the ceiling barely moves, i.e. the extra samples help the learned model, not the oracle. The between-seed spread at 32 samples (κ = 0.705 vs 0.527) is large, so we read this as a trend, not a precise estimate.
+![Figure 4](results/fig4_inprior_ablation.png)
 
-The Laplace-trained model attains 92.9% twin accuracy against a 99.8% ceiling (κ = 0.86). This is the regime in which linear causal direction is identifiable from observational data alone (Shimizu et al., 2006), and the twin test shows the network has learned to exploit it.
+*Figure 4. Ceiling capture κ for the original probe and the three controls (direction-balanced, in-prior twin, any-MEC in-prior twin including non-adjacent queries).*
 
-### 5.4 Surplus does not transfer across evidence types; text overrides data
+§SEC53TEXT§
 
-![Figure 3](results/fig3_regimes.png)
+**Prior-agnostic reference reasoners** (`results/rev_baselines.json`, 1,500 pairs each, direction-balanced):
 
-*Figure 3. Twin accuracy across evidence types and probes (blue) against the data-only likelihood-ratio ceiling (orange ticks). For the graph-text rows the description is itself evidence, so the data-only ceiling does not bound them (Section 5.4).*
+| Evidence | All twins: acc / ceiling / κ [95% CI] | In-prior twins: acc / ceiling / κ [95% CI] |
+|---|---|---|
+| Laplace, pairwise LiNGAM | 99.3 / 99.9 / 0.989 [0.984, 0.995] | 99.9 / 100.0 / 0.998 [0.995, 1.000] |
+| 32 interventional, CI test | 71.6 / 73.9 / 0.904 [0.878, 0.929] | 73.2 / 74.5 / 0.948 [0.930, 0.966] |
+| 128 interventional, CI test | 73.9 / 75.2 / 0.948 [0.932, 0.964] | 73.0 / 74.5 / 0.941 [0.924, 0.958] |
 
-Cross-regime probes (Figure 3) show that surplus is specific to the evidence type seen in training.
+These reasoners know nothing about the parameter prior, yet nearly reach the LR ceiling. The information that separates the twins is therefore available as a causal-direction signal (non-Gaussianity, or dependence induced by do(u)), not only as prior-support information. They are given the common parents, which the networks must infer, so they are reference points rather than fair competitors.
 
-- Gaussian-trained models evaluated on *Laplace* twins (ceiling 99.8–100%) score 48.7–50.0% (κ between −0.027 and +0.002 across the four regimes). The information is in the data; the models do not use it.
-- The Laplace-trained model on *Gaussian* twins scores 49.5% against a ceiling of 50.0%, as Proposition 1 requires.
-- The graph-description model scores 100% on twins when given the true graph. This is not a violation of Proposition 1: the description *differs* between the twins, so it is evidence, not shared side information, and the relevant ceiling is 100%, not the data-only 50%. With 25% of edges reversed in the description, twin accuracy is 75.0%, which matches the probability (0.75) that the queried edge itself is described correctly. When each dataset is paired with the *other* twin's description, accuracy is 0.0%: the model follows the description in 100% of cases.
+The interventional ceiling is about 0.75 because only interventions on u or v separate a covered-edge twin pair, and the target is uniform over four variables.
 
-On Gaussian twins, following the description is optimal, since the data are uninformative. The conflict probe becomes a test of *data-grounded* causal reasoning only when the data carry causal information as well (protocol item P4, Section 7).
+### 5.4 Cross-regime and text probes
 
-## 6 Why i.i.d. Accuracy Overstates Causal Ability: A Decomposition
+Gaussian-trained models score 48.7–50.0% on Laplace twins whose LR ceiling is 99.8–100% (κ between −0.027 and +0.002). The Laplace-trained model scores 49.5% on Gaussian twins (ceiling 50%). The first result is an instance of the non-transfer across noise types reported by Montagna et al. (2024) for CSIvA, and we include it for completeness. The graph-description model scores 100% on twins given the true description (the description differs between twins, so it is evidence, not shared side information). It scores 75.0% with 25% of edges reversed, and 0.0% when each dataset is paired with the other twin's description. On Gaussian twins, following the description is optimal; the conflict probe becomes diagnostic only when the data also carry causal information (protocol P4).
 
-The results admit a simple accounting that applies to any benchmark. Let Acc_iid be accuracy on queries drawn from the benchmark prior, and partition queries into those identified from the available evidence (fraction π_id) and those not identified. For identified queries, causal surplus is possible and accuracy can approach 1 without shortcuts. For unidentified queries, any accuracy above the posterior-majority rate under the prior restricted to the evidence-equivalence class (what our MEC-uniform oracle computes, up to the prior's non-uniformity within classes) must come from side information correlated with the answer.
+## 6 Accounting for i.i.d. Accuracy
 
-In our setting, about 44–46% of benchmark queries are identified by the MEC (`results/summary_table.md`; 53.8% of all ordered pairs under the prior, `theory_checks.json`, before balancing positives and negatives). On the unidentified remainder, accuracy rises from 66.0% (p_order = 0) to 92.1% (p_order = 1) while accuracy on identified queries rises much less (85.5% to 93.0%). Of the 17.9-point i.i.d. gain, roughly 14.4 points come from the unidentified queries (26.1-point rise, weighted by their ≈55% share) and only ≈3.4 from identified ones; the former can only be shortcut. The twin test is the limiting case of this decomposition: it consists *only* of unidentified queries, constructed in pairs so that the prior-majority rate is exactly 1/2 and every side cue is held fixed.
+The Bayes baselines give a three-way decomposition of what an i.i.d. causal-query accuracy can contain under a benchmark prior:
 
-Two consequences follow for causal-reasoning benchmarks in text. First, a benchmark can only measure causal surplus on the fraction of its items whose answers are not determined by information the model could have absorbed correlationally (names, phrasing, world knowledge). Second, this fraction can be made exactly 1 by construction, by building items in twin pairs, without having to anticipate which shortcuts a model uses.
+| Source | Attainable i.i.d. accuracy (label-free, standardized Gaussian data) | Removed by twin pairs? |
+|---|---|---|
+| Structural identification (MEC) | 86.3% overall (100% on identified, 75% on unidentified queries) | n/a (twins contain only unidentified queries) |
+| + identification by the parameter prior | 90.2–91.4% (82–84% on unidentified) | Yes: prior information is a function of the observational law, so it scores 1/2 on twins |
+| + side cues (label order) | up to 100% | Yes: shared within the pair |
 
-## 7 A Pre-registered Protocol for Large Language Models
+Twin pairs remove both the prior-driven and the cue-driven components, *including legitimate Bayesian use of the benchmark prior*. This is a feature when the goal is to test use of evidence that does not depend on the benchmark's parameter prior, since a real-world prior will differ. It is a limitation when the prior is genuinely known. A Bayes-optimal reasoner and an untrained network score the same on Gaussian twins. Twins measure *evidence use*, not *inference quality*, and must be paired with calibrated baselines such as those in Table 1 to say anything about the latter.
 
-We could not run LLMs in our environment (no GPU, no API access). We therefore state a protocol in advance, so that its results can be read as confirmatory, not exploratory.
+## 7 A Pre-specified (not pre-registered) Protocol for Large Language Models
 
-**Instances.** Generate twin pairs with the generator in `code/scm.py` on n ∈ {3, 4, 5} variables. For each pair, render each twin in three formats: (F1) a table of N ∈ {20, 100} rows of sampled values with abstract variable names (A, B, C, D); (F2) a verbal summary of the observational statistics (correlations and partial correlations), which is identical for both twins by construction; (F3) F1 plus K rows drawn under an announced intervention on u or v (ceiling > 1/2). Ask "If we intervened to set A, would the distribution of B change?" with the queried pair mapped to the reversed edge. Randomize variable names, row order and the position of the queried variables in the prompt, independently per pair but *identically within a pair*.
+We could not run LLMs or pretrained amortized discovery models here. The environment has no GPU and no API access, and downloads from the model hub hosting open-weight LLMs and the AVICI checkpoints were blocked by the sandbox's network policy. We therefore specify, but have not registered with any registry, the following protocol.
 
-**Primary statistics.** Twin accuracy and causal surplus Δ with paired bootstrap CIs; the within-pair agreement rate (fraction of pairs given the same answer); the LR ceiling for F3; ceiling capture κ.
+**Instances.** Use `code/scm.py` (Proposition 3 refit; balanced direction; optionally in-prior twins) with n ∈ {3, 4, 5}. Render each twin in three formats:
+- (F1) a table of N ∈ {20, 100} rows with abstract names;
+- (F2) a verbal summary of observational statistics, which is identical within a pair by construction;
+- (F3) F1 plus K interventional rows on u or v.
 
-**Predictions and decision rule.** (P1) On F1 and F2, Δ must lie within its CI of 0 for any model; a significantly nonzero Δ on F2 would indicate a bug in rendering (the two prompts are not identical), and on F1 a leak through sampling, not causal ability. (P2) Reported accuracy on i.i.d. versions of the same questions (random graphs, not twins) will exceed 1/2 for models that exploit name or order cues; the gap between i.i.d. accuracy and the MEC-uniform oracle is an upper bound on shortcut use. (P3) The informative test is F3: a model reasoning causally from data should have κ substantially above 0 and increasing in K. We will regard κ < 0.1 at K large enough that the LR ceiling exceeds 0.95 as evidence that the model does not use interventional evidence. (P4) Adding a fluent but *conflicting* causal narrative (the other twin's graph in words) to F3 measures how far text overrides data; we predict a strong pull toward the narrative, which we measure as the drop in κ.
+Randomize names, row order and variable position *identically within a pair*.
 
-**What would falsify our framing.** If models achieved κ near 1 on F3 while also matching the MEC-uniform oracle on i.i.d. observational queries (no shortcut excess), we would conclude that, on this task family, they perform the causal inference the data supports. If i.i.d. accuracy exceeded the observational oracle while F1 surplus is zero, as in our small-model experiments, the i.i.d. score would be shown to be shortcut-driven.
+**Statistics.**
+- Twin accuracy and Δ, with paired bootstrap CIs.
+- The within-pair agreement rate.
+- κ for F3.
+- For i.i.d. versions of the same questions, the Bayes baselines of Section 4.3 recomputed for the instance prior, *not* the MEC-majority rate.
+
+**Predictions.**
+- (P1) Δ ≈ 0 on F1/F2 for every model; a nonzero Δ indicates a rendering bug.
+- (P2) i.i.d. accuracy above the label-free Bayes bound on unidentified queries indicates cue use.
+- (P3) κ ≥ 0.1 on F3 at an LR ceiling ≥ 0.95 is the minimum evidence for use of interventional data.
+- (P4) A conflicting narrative added to F3 measures text-over-data dominance as a drop in κ.
+
+**Note on world knowledge.** Round 0 claimed that an LLM that memorized "smoking causes cancer" would score at chance on smoking/cancer twins. That holds only if the reversed twin is shown under the same names. This conflicts with world knowledge and is not part of the protocol (which uses abstract names), so we withdraw the example.
 
 ## 8 Discussion
 
-**Accuracy is the wrong statistic.** The central empirical message is the dissociation in Figure 1: as the label-order cue strengthens, i.i.d. accuracy rises past what any reasoner could achieve from observational data without side information (the MEC-uniform oracle), while twin accuracy stays at chance. Reported against i.i.d. benchmarks, the p = 1 model would look like the best of our observational-data reasoners; under the twin test it has zero causal surplus. Nothing in the i.i.d. score distinguishes "learned to read off the label order" from "learned causal inference", and Proposition 1 explains why the twin score does.
+**What the evidence supports.** On our task family, the data support three conclusions. (1) i.i.d. accuracy is uninterpretable without a Bayes baseline under the benchmark prior. The common MEC-majority reference understated the attainable accuracy by 10 points (standardized data) to 18 points (raw data). (2) Label-order cue use is detectable as accuracy above the label-free bound on MEC-unidentified queries, and the cue-removal probe confirms it. (3) Networks given non-Gaussian or interventional evidence use it: their surplus survives controls for prior-support detection and answer direction, and extends to non-adjacent queries. They capture less of the ceiling than prior-agnostic classical reasoners given the common parents.
 
-**What "genuine" can mean operationally.** The question of whether a model "really" reasons causally is often posed as a question about internal mechanism. The twin surplus offers a behavioural criterion: a reasoner is using causal information exactly to the extent that its answers differ between inputs that are rung-1-identical but rung-2-different. This is falsifiable, computable per instance, and comes with a calibrated ceiling. It deliberately says nothing about *how* the information is used. An LLM that has memorized that "smoking causes cancer" will score at chance on twin pairs about smoking and cancer, because in one twin the arrow is reversed and memory cannot tell which twin it was shown. That is the intended behaviour of the test.
+**What "genuine causal reasoning" can mean operationally.** The twin surplus is a behavioural criterion. A reasoner uses causal evidence to the extent that its answers differ between inputs that are rung-1-identical but rung-2-different. It says nothing about mechanism. It also gives zero credit to correct Bayesian use of a known parameter prior, which is not "correlational" in any pejorative sense. Whether that should count as causal reasoning depends on whether the prior is trusted, so we report it separately (Section 6) rather than folding it into either category.
 
-**Causal ability is regime-specific.** Our cross-regime probes show that surplus does not transfer automatically. The Gaussian-trained model sees Laplace twins whose evidence separates them almost perfectly (LR ceiling 99.9%), yet captures none of that information, because nothing in its training rewarded it. A claim that a model "can reason causally" should therefore be indexed by evidence type: from observational Gaussian data (impossible beyond the MEC), from non-Gaussian data, from interventions, from text.
-
-**Text versus data.** The graph-description regime illustrates the "causal parrot" concern in miniature. When given an accurate description, the model answers twin queries perfectly, but the conflict probe shows that its answers follow the description, not the data. On observational Gaussian twins this is the optimal policy, since the data carry no causal information; the conflict probe becomes diagnostic only when combined with evidence that does carry it (protocol P4).
+**Relation to the research question.** For the question "can models do genuine causal reasoning rather than correlational inference?", our answer is narrow. Small amortized networks can learn to use causal evidence when their training rewards it (κ ≈ §KSUM§ of the information-theoretic ceiling here). The same networks also learn label shortcuts when available, and they do not transfer across evidence types. Whether LLMs do either remains open; Section 7 says how to test it.
 
 ## 9 Limitations
 
-- **Scale and model class.** Our models are small DeepSets networks on four-variable linear SCMs, trained for 4,000 steps on CPU. The experiments isolate the mechanism (shortcut versus surplus) but say nothing directly about LLMs, which we did not evaluate. Section 7 is a protocol, not evidence.
-- **Query and SCM family.** We study only ancestral queries in linear SCMs without hidden confounders. Twin constructions for nonlinear SCMs, for confounded models (where observational twins are far more common), and for counterfactual (rung-3) queries require other generators; Proposition 1 and Proposition 2 still apply, but Proposition 3 does not.
-- **Single covered reversals.** Our twin test samples one covered reversal per pair, i.e. the subset of unidentified queries at reversal distance 1 (56.9% of unidentified DAG–query pairs on four nodes; Section 5.1). Deeper twins are guaranteed to exist but are not sampled in the training-run evaluations.
-- **Few seeds.** Most regimes have one or two training seeds. Within-run CIs are tight, but between-seed variance of i.i.d. accuracy and ceiling capture is estimated from at most two runs.
-- **Untuned models.** We did not tune architecture or training length per regime. Ceiling capture below 1 for the interventional and Laplace models may partly reflect undertraining or the limited feature encoding, not a fundamental limit of amortized inference.
-- **The floor holds only if side information is truly shared.** In natural-language renderings, any rendering choice that differs between twins (e.g. listing parents first) breaks Proposition 1. Test construction must enforce identical side information; we provide this for our synthetic encoding but it must be re-checked for each new rendering.
+- **No LLM or pretrained amortized model was evaluated.** Model-hub downloads were blocked in our environment. This is the main gap with respect to the research question; the LLM protocol is unexecuted and unregistered.
+- **Small, untuned test subject.** DeepSets with 4,000 training steps, four variables, linear SCMs, no hidden confounders. The p = 0 model is far from Bayes-optimal (74.6% vs ≤ 91%), so the networks' κ values are lower bounds on what amortized models can achieve, not estimates of it. We ran no architecture or feature ablations; for example, the per-sample features include second-order products but no explicit higher moments.
+- **Bayes baselines are population-level.** They upper-bound finite-sample reasoners (by data processing) but are not attainable at N = 256. We did not compute the finite-sample Bayes rule, so the gap between networks and the bound mixes learning inefficiency with finite-sample loss.
+- **Prior-specific numbers.** The 98.8% (Σ) and 90–91% (R) levels depend on our prior, in particular the support |w| ≥ 0.5. Different priors give different baselines; the method, not the numbers, is what transfers.
+- **Seeds.** 2–3 seeds for most regimes and 1 for graph_p0. κ CIs are within-run bootstrap CIs and do not include training variability, which is reported separately as the s.d. across seeds.
+- **Classical references use oracle common parents.** Their κ is an optimistic reference.
+- **Coverage.** About 20% of pairs in the MEC probes are non-adjacent. We test ancestral queries only, with no rung-3 queries, in linear models only.
+- **Side information must truly be shared.** Any rendering difference within a pair breaks Proposition 1; each new rendering (especially text) must be checked.
 
 ## 10 Conclusion
 
-We have argued that "does the model reason causally or only correlationally?" has a precise behavioural form: does the model's answer change between observational twins? Every reasoner restricted to correlational information scores exactly 1/2 on twin pairs regardless of what shortcuts it uses, and the achievable surplus beyond 1/2 is fixed by a total-variation ceiling. In a controlled experiment, a strong correlational shortcut raised i.i.d. accuracy above the observational-identifiability limit while leaving twin accuracy at chance, and genuine evidence (interventions, non-Gaussian noise) produced measurable surplus whose share of the ceiling the test reports directly. We hope the twin test, its generator, and the pre-registered LLM protocol will be used to replace accuracy-based claims about causal reasoning with surplus-based ones.
+Observational twins give a floor (1/2) and a ceiling (LR) for any causal-query reasoner. Exact Bayes baselines under the benchmark prior say how much i.i.d. accuracy is attainable without side cues. Together they separate three things: accuracy explained by structural identifiability, accuracy explained by the benchmark's parameter prior (large in a standard linear-SCM prior: 86% → 91% → 99%), and accuracy from side cues. On small amortized networks this corrects an earlier overclaim: the label-order shortcut exceeds the observational bound mainly on unidentified queries, not overall. It also shows that learned surplus under informative evidence is a real causal-direction signal, not detection of out-of-prior parameterizations. We release the generator, the Bayes-baseline code and the protocol.
 
 ## Reproducibility
 
-`bash code/run_all.sh` regenerates every result (Python 3, numpy, torch CPU; each training run takes about 10 minutes on one CPU core; with four in parallel the full set of twelve runs takes about 30–35 minutes on 4 cores). `code/verify_theory.py` produces `results/theory_checks.json`; `code/twins.py` produces `results/<regime>_s<seed>.json`; `code/summarize.py` produces `results/summary_table.md` and the three figures.
+`bash code/run_all.sh` runs the round-0 runs and `bash code/rev_runs.sh` the revision runs. Each training run takes about 10 minutes on one core when the machine is idle. Revision-only scripts:
+- `code/bayes_oracle.py` → `results/bayes_oracles.json` (about 1 minute);
+- `code/rev_checks.py` → `results/rev_checks.json`;
+- `code/rev_baselines.py` → `results/rev_baselines.json` (10 s);
+- `code/eval_saved.py` → `results/cue_removal.json`;
+- `code/summarize.py` → `results/summary_table.md` and Figures 1–4.
+
+Model weights and per-pair predictions of the revision runs are in `results/models/`. Round-0 JSONs are preserved in `results/backup_r0/`; every round-0 field of the retrained runs is bit-identical to them.
+
+**Provenance of numbers.** All numbers are produced by the code above in this environment, except the reviewer's independent 86.4% and 88.3% figures, which we quote only for comparison. No number is taken from external sources.
 
 ## References
 
 Andersson, S. A., Madigan, D., & Perlman, M. D. (1997). A characterization of Markov equivalence classes for acyclic digraphs. *Annals of Statistics*, 25(2), 505–541.
 
-Bareinboim, E., Correa, J. D., Ibeling, D., & Icard, T. (2022). On Pearl's hierarchy and the foundations of causal inference. In H. Geffner, R. Dechter, & J. Y. Halpern (Eds.), *Probabilistic and Causal Inference: The Works of Judea Pearl* (Chapter 27). ACM. doi:10.1145/3501714.3501743.
+Bareinboim, E., Correa, J. D., Ibeling, D., & Icard, T. (2022). On Pearl's hierarchy and the foundations of causal inference. In *Probabilistic and Causal Inference: The Works of Judea Pearl* (Chapter 27). ACM. doi:10.1145/3501714.3501743.
 
 Chickering, D. M. (1995). A transformational characterization of equivalent Bayesian network structures. In *Proceedings of the 11th Conference on Uncertainty in Artificial Intelligence (UAI)*, 87–98.
 
-Eberhardt, F., Glymour, C., & Scheines, R. (2005). On the number of experiments sufficient and in the worst case necessary to identify all causal relations among N variables. In *Proceedings of the 21st Conference on Uncertainty in Artificial Intelligence (UAI)*. arXiv:1207.1389.
+Eberhardt, F., Glymour, C., & Scheines, R. (2005). On the number of experiments sufficient and in the worst case necessary to identify all causal relations among N variables. In *Proceedings of UAI 2005*. arXiv:1207.1389.
 
-Gardner, M., Artzi, Y., et al. (2020). Evaluating models' local decision boundaries via contrast sets. In *Findings of the Association for Computational Linguistics: EMNLP 2020*, 1307–1323.
+Gardner, M., Artzi, Y., et al. (2020). Evaluating models' local decision boundaries via contrast sets. In *Findings of EMNLP 2020*, 1307–1323.
 
 Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., & Wichmann, F. A. (2020). Shortcut learning in deep neural networks. *Nature Machine Intelligence*, 2(11), 665–673.
 
 Hauser, A., & Bühlmann, P. (2012). Characterization and greedy learning of interventional Markov equivalence classes of directed acyclic graphs. *Journal of Machine Learning Research*, 13, 2409–2464.
 
-Jin, Z., Chen, Y., Leeb, F., Gresele, L., Kamal, O., Lyu, Z., Blin, K., Gonzalez Adauto, F., Kleiman-Weiner, M., Sachan, M., & Schölkopf, B. (2023). CLadder: Assessing causal reasoning in language models. In *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*, 31038–31065.
+Hyvärinen, A. (1998). New approximations of differential entropy for independent component analysis and projection pursuit. In *Advances in Neural Information Processing Systems 10* (NIPS 1997), 273–279.
 
-Jin, Z., Liu, J., Lyu, Z., et al. (2024). Can large language models infer causation from correlation? In *International Conference on Learning Representations (ICLR 2024)*.
+Hyvärinen, A., & Smith, S. M. (2013). Pairwise likelihood ratios for estimation of non-Gaussian structural equation models. *Journal of Machine Learning Research*, 14, 111–152.
 
-Kasetty, T., Mahajan, D., Dziugaite, G. K., Drouin, A., & Sridhar, D. (2024). Evaluating interventional reasoning capabilities of large language models. arXiv:2404.05545 (NeurIPS 2024 Workshop on Causality and Large Models).
+Jin, Z., Chen, Y., Leeb, F., Gresele, L., Kamal, O., Lyu, Z., Blin, K., Gonzalez Adauto, F., Kleiman-Weiner, M., Sachan, M., & Schölkopf, B. (2023). CLadder: Assessing causal reasoning in language models. In *NeurIPS 36*, 31038–31065.
 
-Kaushik, D., Hovy, E., & Lipton, Z. C. (2020). Learning the difference that makes a difference with counterfactually-augmented data. In *International Conference on Learning Representations (ICLR 2020)*.
+Jin, Z., Liu, J., Lyu, Z., et al. (2024). Can large language models infer causation from correlation? In *ICLR 2024*.
 
-Ke, N. R., Chiappa, S., Wang, J., Goyal, A., Bornschein, J., Rey, M., Weber, T., Botvinick, M., Mozer, M., & Rezende, D. J. (2023). Learning to induce causal structure. In *International Conference on Learning Representations (ICLR 2023)*.
+Kasetty, T., Mahajan, D., Dziugaite, G. K., Drouin, A., & Sridhar, D. (2024). Evaluating interventional reasoning capabilities of large language models. arXiv:2404.05545.
 
-Kıcıman, E., Ness, R., Sharma, A., & Tan, C. (2023). Causal reasoning and large language models: Opening a new frontier for causality. *Transactions on Machine Learning Research*. arXiv:2305.00050.
+Kaushik, D., Hovy, E., & Lipton, Z. C. (2020). Learning the difference that makes a difference with counterfactually-augmented data. In *ICLR 2020*.
 
-Lorch, L., Sussex, S., Rothfuss, J., Krause, A., & Schölkopf, B. (2022). Amortized inference for causal structure learning. In *Advances in Neural Information Processing Systems 35 (NeurIPS 2022)*.
+Ke, N. R., Chiappa, S., Wang, J., Goyal, A., Bornschein, J., Rey, M., Weber, T., Botvinick, M., Mozer, M., & Rezende, D. J. (2023). Learning to induce causal structure. In *ICLR 2023*.
+
+Kıcıman, E., Ness, R., Sharma, A., & Tan, C. (2023). Causal reasoning and large language models: Opening a new frontier for causality. arXiv:2305.00050.
+
+Lorch, L., Sussex, S., Rothfuss, J., Krause, A., & Schölkopf, B. (2022). Amortized inference for causal structure learning. In *NeurIPS 35*.
+
+Montagna, F., Cairney-Leeming, M., Sridhar, D., & Locatello, F. (2024). Demystifying amortized causal discovery with transformers. arXiv:2405.16924 (published in *Transactions on Machine Learning Research*, 2025).
 
 Pearl, J. (2009). *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge University Press.
 
-Reisach, A. G., Seiler, C., & Weichwald, S. (2021). Beware of the simulated DAG! Causal discovery benchmarks may be easy to game. In *Advances in Neural Information Processing Systems 34 (NeurIPS 2021)*.
+Reisach, A. G., Seiler, C., & Weichwald, S. (2021). Beware of the simulated DAG! Causal discovery benchmarks may be easy to game. In *NeurIPS 34*.
 
-Richens, J., & Everitt, T. (2024). Robust agents learn causal world models. In *International Conference on Learning Representations (ICLR 2024)*.
+Reisach, A. G., Tami, M., Seiler, C., Chambaz, A., & Weichwald, S. (2023). A scale-invariant sorting criterion to find a causal order in additive noise models. In *NeurIPS 36*. arXiv:2303.18211.
+
+Richens, J., & Everitt, T. (2024). Robust agents learn causal world models. In *ICLR 2024*.
 
 Shimizu, S., Hoyer, P. O., Hyvärinen, A., & Kerminen, A. (2006). A linear non-Gaussian acyclic model for causal discovery. *Journal of Machine Learning Research*, 7, 2003–2030.
 
-Tsybakov, A. B. (2009). *Introduction to Nonparametric Estimation*. Springer Series in Statistics. Springer.
+Tsybakov, A. B. (2009). *Introduction to Nonparametric Estimation*. Springer.
 
-Verma, T., & Pearl, J. (1990). Equivalence and synthesis of causal models. In *Proceedings of the 6th Conference on Uncertainty in Artificial Intelligence (UAI)*. (Reprinted as arXiv:1304.1108, "On the equivalence of causal models".)
+Verma, T., & Pearl, J. (1990). Equivalence and synthesis of causal models. In *Proceedings of UAI 1990*. (arXiv:1304.1108.)
 
 Yu, Z., & Zhou, S. (2026). Caliper: Probing lexical anchors versus causal structure in LLMs. arXiv:2606.04915.
 

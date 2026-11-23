@@ -181,3 +181,46 @@ def loglik(X, I, scm, family="gauss"):
     lp_int = -0.5 * X ** 2 - 0.5 * np.log(2 * np.pi)
     lp = np.where(I > 0, lp_int, lp)
     return lp.sum()
+
+
+# ----------------------------------------------------------------------------
+# Revision additions: general Markov-equivalent refit, prior-support check
+# ----------------------------------------------------------------------------
+W_LO, W_HI, S_LO, S_HI = 0.5, 2.0, 0.5, 1.5
+
+
+def refit_on(scm, A2):
+    """Population regression of Cov_M on the parents of an arbitrary DAG A2.
+    If A2 is Markov equivalent to scm['A'], the result has the same covariance
+    (generalises Prop. 3 beyond a single covered reversal)."""
+    Sigma = implied_cov(scm["W"], scm["s"])
+    n = A2.shape[0]
+    W2 = np.zeros((n, n)); s2 = np.zeros(n)
+    for j in range(n):
+        pa = np.nonzero(A2[:, j])[0]
+        if len(pa):
+            b = np.linalg.solve(Sigma[np.ix_(pa, pa)], Sigma[pa, j])
+            W2[pa, j] = b
+            s2[j] = np.sqrt(Sigma[j, j] - Sigma[pa, j] @ b)
+        else:
+            s2[j] = np.sqrt(Sigma[j, j])
+    return {"W": W2, "s": s2, "A": A2.copy()}
+
+
+def in_prior(scm):
+    """True iff every edge weight and noise scale lies in the training prior's support."""
+    w = np.abs(scm["W"][scm["A"] > 0])
+    s = scm["s"]
+    return bool(np.all((w >= W_LO) & (w <= W_HI)) and np.all((s >= S_LO) & (s <= S_HI)))
+
+
+_MEC_MEMBERS = None
+
+
+def mec_members(A):
+    global _MEC_MEMBERS
+    if _MEC_MEMBERS is None:
+        _MEC_MEMBERS = {}
+        for B in all_dags(A.shape[0]):
+            _MEC_MEMBERS.setdefault(mec_key(B), []).append(B)
+    return _MEC_MEMBERS[mec_key(A)]

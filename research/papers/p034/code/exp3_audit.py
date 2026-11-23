@@ -83,7 +83,9 @@ def run_exp3(rng, OUT):
                     errs[DNAME[d]].append(est - c)
             for k, e in errs.items():
                 e = np.array(e)
-                rmse[f"q={q}|lam={lam:.3f}|{k}"] = dict(bias=float(e.mean()), rmse=float(np.sqrt(np.mean(e ** 2))))
+                rmse[f"q={q}|lam={lam:.3f}|{k}"] = dict(bias=float(e.mean()), rmse=float(np.sqrt(np.mean(e ** 2))),
+                                                       bias_se=float(e.std(ddof=1) / np.sqrt(len(e))),
+                                                       rmse_se=float(np.std(e ** 2, ddof=1) / np.sqrt(len(e)) / (2 * np.sqrt(np.mean(e ** 2)))))
     res["exp3b_rmse_m20"] = rmse
 
     # (c) sequential stopping
@@ -92,16 +94,17 @@ def run_exp3(rng, OUT):
     for q in [0.0, 0.5, 0.9, 1.0]:
         Q = Params(q=q)
         lam_s, g_s, _ = gold_peak(Q)
-        def summarize(lst):
+        def summarize(lst, m_=0):
             lst = np.array(lst); gs = closed_form(Q, lst)["gold"]
             return dict(mean_lam_stop=float(lst.mean()), mean_gold=float(gs.mean()), regret=float(g_s - gs.mean()),
-                        frac_overshoot=float(np.mean(lst > lam_s + 1e-9)), p10_gold=float(np.percentile(gs, 10)))
+                        frac_overshoot=float(np.mean(lst > lam_s + 1e-9)), p10_gold=float(np.percentile(gs, 10)),
+                        se_regret=float(gs.std(ddof=1) / np.sqrt(len(gs))), labels_mean=float(m_ * (np.round(lst / 0.05) + 1).mean()) if m_ else 0.0)
         for m in [5, 20]:
             for d in DESIGNS:
                 for z in [0.0, 1.0]:
-                    stop[f"q={q}|{DNAME[d]}|z={z}|m={m}"] = summarize([stop_cov(Q, d[0], d[1], m, z, rng) for _ in range(REPS)])
+                    stop[f"q={q}|{DNAME[d]}|z={z}|m={m}"] = summarize([stop_cov(Q, d[0], d[1], m, z, rng) for _ in range(REPS)], m)
             for s in ["random", "topproxy"]:
-                stop[f"q={q}|first-hack-{s}|m={m}"] = summarize([stop_first_hack(Q, m, s, rng) for _ in range(REPS)])
+                stop[f"q={q}|first-hack-{s}|m={m}"] = summarize([stop_first_hack(Q, m, s, rng) for _ in range(REPS)], m)
         trajs = [gap_traj(Q, rng) for _ in range(REPS)]
         stop[f"_gaptraj_q={q}"] = trajs
         print("q", q, "done")
@@ -116,7 +119,8 @@ def run_exp3(rng, OUT):
         gs = closed_form(Q, lst)["gold"]
         stop[f"q={q}|gap-alarm(proxy-only)"] = dict(mean_lam_stop=float(lst.mean()), mean_gold=float(gs.mean()),
                                                     regret=float(g_s - gs.mean()), frac_overshoot=float(np.mean(lst > lam_s + 1e-9)),
-                                                    p10_gold=float(np.percentile(gs, 10)), tau=tau_star)
+                                                    p10_gold=float(np.percentile(gs, 10)), tau=tau_star,
+                                                    se_regret=float(gs.std(ddof=1) / np.sqrt(len(gs))))
     res["exp3c_stopping"] = stop
     P = Params()
     res["exp3c_reference"] = dict(lam_star=float(gold_peak(P)[0]), gold_star=float(gold_peak(P)[1]),

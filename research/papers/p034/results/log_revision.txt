@@ -1,0 +1,32 @@
+tuned {'gap': 0.26, 'ens': 0.10550505050505052, 'hackrate': 0.05} [4s]
+R1 q 0.0 [12s]
+R1 q 0.5 [20s]
+R1 q 0.9 [28s]
+R1 q 1.0 [37s]
+R3 q 0.5 [40s]
+R3 q 1.0 [43s]
+R4 noise=0 [47s]
+R4 noise=0.5 [52s]
+R4 noise=1 [56s]
+R4 noise=2 [59s]
+R4 bias=0.25 [63s]
+R4 bias=0.5 [68s]
+R4 bias=0.75 [73s]
+R5 default [79s]
+R5 mu=4 [82s]
+R5 mu=8 [85s]
+R5 delta=1 [88s]
+R5 delta=4 [91s]
+R5 p=5e-4 [93s]
+R5 p=1e-2 [96s]
+R5 rho=0 [99s]
+R5 rho=0.9 [102s]
+R5 N=500 [104s]
+R5 N=8000 [112s]
+R5 step=0.025 [118s]
+R5 step=0.1 [119s]
+done in 119s
+
+real	1m59.914s
+user	3m32.950s
+sys	0m0.238s

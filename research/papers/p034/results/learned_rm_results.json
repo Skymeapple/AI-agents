@@ -70,67 +70,78 @@
    "mean_lam": 3.1216666666666666,
    "regret": 0.14153950417919225,
    "p10_gold": 1.3281927421591446,
-   "frac_overshoot": 1.0
+   "frac_overshoot": 1.0,
+   "se": 0.008068316104814186
   },
   "H1: same data A, new init seed|cov-disagree m=20": {
    "mean_lam": 2.56,
    "regret": 0.04691300031234036,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.44
+   "frac_overshoot": 0.44,
+   "se": 0.005736703541931233
   },
   "H2: fresh draw of data A|gap-alarm(proxy-only)": {
    "mean_lam": 3.0283333333333333,
    "regret": 0.09095721162715642,
    "p10_gold": 1.3281927421591446,
-   "frac_overshoot": 1.0
+   "frac_overshoot": 1.0,
+   "se": 0.004874597152483212
   },
   "H2: fresh draw of data A|cov-disagree m=20": {
    "mean_lam": 2.546666666666667,
    "regret": 0.04456893868054834,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.42
+   "frac_overshoot": 0.42,
+   "se": 0.0050155657267239645
   },
   "H3: quadratic ridge on data A|gap-alarm(proxy-only)": {
    "mean_lam": 2.223333333333333,
    "regret": 0.060433524765020064,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.013333333333333334
+   "frac_overshoot": 0.013333333333333334,
+   "se": 0.0033545938074165888
   },
   "H3: quadratic ridge on data A|cov-disagree m=20": {
    "mean_lam": 2.591666666666667,
    "regret": 0.03914821821019632,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.5
+   "frac_overshoot": 0.5,
+   "se": 0.0041245350266146796
   },
   "H4: decorrelated data B|gap-alarm(proxy-only)": {
    "mean_lam": 2.5766666666666667,
    "regret": 0.009370546070844643,
    "p10_gold": 1.517247355604293,
-   "frac_overshoot": 0.38666666666666666
+   "frac_overshoot": 0.38666666666666666,
+   "se": 0.0009021383862787809
   },
   "H4: decorrelated data B|cov-disagree m=20": {
    "mean_lam": 2.4516666666666667,
    "regret": 0.0570602349645275,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.36666666666666664
+   "frac_overshoot": 0.36666666666666664,
+   "se": 0.0061037463521115875
   },
   "(any)|cov-uniform m=20": {
    "mean_lam": 2.4133333333333336,
    "regret": 0.06496914285442967,
    "p10_gold": 1.3250670864691134,
-   "frac_overshoot": 0.31333333333333335
+   "frac_overshoot": 0.31333333333333335,
+   "se": 0.008430752916338123
   },
   "(any)|cov-leverage m=20": {
    "mean_lam": 2.525,
    "regret": 0.0427405017634237,
    "p10_gold": 1.4022761472316438,
-   "frac_overshoot": 0.37333333333333335
+   "frac_overshoot": 0.37333333333333335,
+   "se": 0.005913396253571156
   },
   "(any)|firsthack m=20": {
    "mean_lam": 0.7866666666666666,
    "regret": 0.9050453894351314,
    "p10_gold": -0.014643468084425886,
-   "frac_overshoot": 0.0
+   "frac_overshoot": 0.0,
+   "se": 0.03929870123625163
   }
  }
 }

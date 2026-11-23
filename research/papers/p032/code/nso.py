@@ -235,7 +235,8 @@ def flag_prob(P, r=1, rho=0.0, rho_s=None, t=1):
     g = P.shape[-1]
     if g == 0:
         return np.zeros(P.shape[:-1])
-    if rho_s >= 1 - 1e-12:      # copies are identical: behave as one instance
+    if rho_s >= 1 - 1e-12:      # copies are identical: a generation contributes
+        t = -(-int(t) // r)     # r detections or none, so need ceil(t/r) generations
         r = 1
         rho_s_eff = rho
     else:

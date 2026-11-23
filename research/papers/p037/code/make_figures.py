@@ -73,10 +73,17 @@ def fig3():
         rr = [r for r in rows if r["tau"] == tau]
         ax.plot([int(r["K"]) for r in rr], [int(r["m_required"]) for r in rr], color=C[i], marker="o",
                 ms=4, label=f"rule out pass@K > {tau}")
+    # rev. 1: randomized tests with power beta < 1 at p = 0 (Prop. 3b, general form)
+    pw = [r for r in read("exp3a_power_requirements.csv") if r["tau"] == "0.1" and r["power_at_p0"] == "0.5"]
+    if pw:
+        ratio = float(pw[0]["m_over_K_exact"])
+        Ks = np.array([1, 10, 100, 1000, 10000])
+        ax.plot(Ks, np.ceil(ratio * Ks), color=C[1], ls="--", lw=1.3,
+                label="pass@K > 0.1, power 0.5 at p=0")
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xlabel("attacker attempts K")
-    ax.set_ylabel("evaluator attempts m needed\n(zero successes, 95%)")
+    ax.set_ylabel("evaluator attempts m needed\n(level 0.05)")
     ax.legend(frameon=False, fontsize=8)
     fig.tight_layout()
     fig.savefig(os.path.join(RESULTS, "fig3_required_attempts.png"), dpi=180)
@@ -115,7 +122,31 @@ def fig5():
     fig.savefig(os.path.join(RESULTS, "fig5_floor.png"), dpi=180)
 
 
+def fig6():
+    import json
+    summ = json.load(open(os.path.join(RESULTS, "exp6_summary.json")))
+    structs = list(dict.fromkeys(d["structure"] for d in summ))
+    fig, axs = plt.subplots(1, len(structs), figsize=(3.6 * len(structs), 3.1), sharey=True)
+    meths = [("boot", "percentile cluster bootstrap", C[1]), ("hyb_nc", "hybrid box (n = families)", C[0]),
+             ("hyb_kish", "hybrid box (Kish n_eff)", C[2])]
+    for ax, st in zip(axs, structs):
+        rr = [d for d in summ if d["structure"] == st]
+        x = np.arange(len(rr))
+        for j, (k, lab, col) in enumerate(meths):
+            ax.bar(x + (j - 1) * 0.27, [d[f"cov_pop_{k}_K100"] for d in rr], width=0.27, color=col, label=lab)
+        ax.axhline(0.9, color=INK, lw=1, ls="--")
+        ax.set_xticks(x)
+        ax.set_xticklabels([d["scenario"].split("_")[0] for d in rr])
+        ax.set_title(f"{st.replace('_', '-')}", fontsize=9)
+        ax.set_xlabel("scenario")
+    axs[0].set_ylabel("coverage of 90% upper bound\non population pass@100")
+    h, l = axs[0].get_legend_handles_labels()
+    fig.legend(h, l, frameon=False, fontsize=8, loc="upper center", ncol=3)
+    fig.tight_layout(rect=(0, 0, 1, 0.9))
+    fig.savefig(os.path.join(RESULTS, "fig6_clustered_coverage.png"), dpi=180)
+
+
 if __name__ == "__main__":
-    for f in (fig1, fig2, fig3, fig4, fig5):
+    for f in (fig1, fig2, fig3, fig4, fig5, fig6):
         f()
     print("figures written")

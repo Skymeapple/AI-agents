@@ -1,0 +1,53 @@
+BoN claude-3-5-sonnet-20240620 15
+BoN claude-3-5-sonnet-20240620 30
+/home/user/AI-agents/research/papers/p002/code/exp_local.py:74: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver="CLARABEL")
+BoN claude-3-opus-20240229 15
+/home/user/AI-agents/research/papers/p002/code/exp_baselines.py:49: RuntimeWarning: divide by zero encountered in log1p
+  llc = logsumexp(comp, 1) + np.log1p(-pi0) if zi else logsumexp(comp, 1)
+/usr/local/lib/python3.13/site-packages/scipy/optimize/_numdiff.py:710: RuntimeWarning: invalid value encountered in subtract
+  df = [f_eval - f0 for f_eval in f_evals]
+/home/user/AI-agents/research/papers/p002/code/exp_local.py:74: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver="CLARABEL")
+BoN claude-3-5-sonnet-20240620 60
+/home/user/AI-agents/research/papers/p002/code/exp_baselines.py:49: RuntimeWarning: divide by zero encountered in log1p
+  llc = logsumexp(comp, 1) + np.log1p(-pi0) if zi else logsumexp(comp, 1)
+/usr/local/lib/python3.13/site-packages/scipy/optimize/_numdiff.py:710: RuntimeWarning: invalid value encountered in subtract
+  df = [f_eval - f0 for f_eval in f_evals]
+BoN claude-3-opus-20240229 30
+/home/user/AI-agents/research/papers/p002/code/exp_baselines.py:48: RuntimeWarning: divide by zero encountered in log
+  comp = np.stack([_comp_ll(x, n, a, b) for a, b in ab], 1) + np.log(w)[None, :]
+BoN gemini-1.5-flash-001 15
+BoN claude-3-opus-20240229 60
+BoN gemini-1.5-flash-001 30
+BoN gemini-1.5-pro-001 15
+BoN gemini-1.5-flash-001 60
+BoN gemini-1.5-pro-001 30
+BoN gpt-4o 15
+BoN gemini-1.5-pro-001 60
+BoN gpt-4o 30
+BoN gpt-4o-mini 15
+BoN gpt-4o 60
+BoN gpt-4o-mini 30
+BoN meta-llama-Meta-Llama-3-8B-Instruct 15
+BoN gpt-4o-mini 60
+BoN meta-llama-Meta-Llama-3-8B-Instruct 30
+BoN meta-llama-Meta-Llama-3-8B-Instruct 60
+BoN done 139.86101460456848
+/home/user/AI-agents/research/papers/p002/code/exp_local.py:74: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver="CLARABEL")
+/home/user/AI-agents/research/papers/p002/code/exp_local.py:74: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver="CLARABEL")
+Pythia 70M 16
+Pythia 70M 32
+Pythia 70M 64
+Pythia 160M 16
+Pythia 160M 32
+Pythia 160M 64
+Pythia 70M 128
+Pythia 410M 16
+Pythia 410M 32
+Pythia 410M 64
+Pythia 160M 128
+Pythia 1B 16
+Pythia 1B 32

@@ -9,7 +9,7 @@
  },
  "steps": 4000,
  "seed": 0,
- "train_time_s": 483.38615369796753,
+ "train_time_s": 702.0740835666656,
  "loss_curve": [
   [
    0,
@@ -132,5 +132,170 @@
   "mean_p_yes_on_B": 0.5935415029525757,
   "mean_abs_p_diff_within_pair": 0.2685146927833557
  },
- "total_time_s": 490.37881565093994
+ "rev_cov_all": {
+  "twin_acc": 0.9233333333333333,
+  "twin_acc_ci": [
+   0.9133333333333333,
+   0.9326666666666666
+  ],
+  "causal_surplus": 0.8466666666666667,
+  "pair_both_correct": 0.8513333333333334,
+  "oracle_ceiling": 0.9993333333333333,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5032671093940735,
+  "mean_p_yes_on_B": 0.4977887272834778,
+  "mean_abs_p_diff_within_pair": 0.7875040173530579,
+  "kappa": 0.8477970627503338,
+  "kappa_ci": [
+   0.8291054739652872,
+   0.8663123930570589
+  ],
+  "adjacent": {
+   "n_pairs": 1500,
+   "twin_acc": 0.9233333333333333,
+   "oracle_ceiling": 0.9993333333333333
+  },
+  "inprior_is_yes": {
+   "n_pairs": 766,
+   "twin_acc": 0.9203655352480418,
+   "oracle_ceiling": 0.9993472584856397
+  },
+  "inprior_is_no": {
+   "n_pairs": 734,
+   "twin_acc": 0.9264305177111717,
+   "oracle_ceiling": 0.9993188010899182
+  }
+ },
+ "rev_cov_inprior": {
+  "twin_acc": 0.987,
+  "twin_acc_ci": [
+   0.9829916666666667,
+   0.991
+  ],
+  "causal_surplus": 0.974,
+  "pair_both_correct": 0.9746666666666667,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.48163607716560364,
+  "mean_p_yes_on_B": 0.5263961553573608,
+  "mean_abs_p_diff_within_pair": 0.929263174533844,
+  "kappa": 0.974,
+  "kappa_ci": [
+   0.966,
+   0.982
+  ],
+  "adjacent": {
+   "n_pairs": 1500,
+   "twin_acc": 0.987,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 712,
+   "twin_acc": 0.9894662921348315,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 788,
+   "twin_acc": 0.9847715736040609,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_mec_all": {
+  "twin_acc": 0.9003333333333333,
+  "twin_acc_ci": [
+   0.89,
+   0.911
+  ],
+  "causal_surplus": 0.8006666666666666,
+  "pair_both_correct": 0.808,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.521511971950531,
+  "mean_p_yes_on_B": 0.48232799768447876,
+  "mean_abs_p_diff_within_pair": 0.7433327436447144,
+  "kappa": 0.8006666666666666,
+  "kappa_ci": [
+   0.7799833333333334,
+   0.8220000000000001
+  ],
+  "adjacent": {
+   "n_pairs": 1209,
+   "twin_acc": 0.9185277088502894,
+   "oracle_ceiling": 1.0
+  },
+  "nonadjacent": {
+   "n_pairs": 291,
+   "twin_acc": 0.8247422680412371,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 747,
+   "twin_acc": 0.9263721552878179,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 753,
+   "twin_acc": 0.8745019920318725,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_mec_inprior": {
+  "twin_acc": 0.973,
+  "twin_acc_ci": [
+   0.967,
+   0.9786666666666667
+  ],
+  "causal_surplus": 0.946,
+  "pair_both_correct": 0.948,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5299620628356934,
+  "mean_p_yes_on_B": 0.48900020122528076,
+  "mean_abs_p_diff_within_pair": 0.8885911703109741,
+  "kappa": 0.946,
+  "kappa_ci": [
+   0.9333333333333333,
+   0.9566833333333333
+  ],
+  "adjacent": {
+   "n_pairs": 1209,
+   "twin_acc": 0.989247311827957,
+   "oracle_ceiling": 1.0
+  },
+  "nonadjacent": {
+   "n_pairs": 291,
+   "twin_acc": 0.9054982817869416,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 764,
+   "twin_acc": 0.981675392670157,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 736,
+   "twin_acc": 0.9639945652173914,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_matched_redraw": {
+  "twin_acc": 0.9366666666666666,
+  "twin_acc_ci": [
+   0.9273333333333333,
+   0.9453333333333334
+  ],
+  "causal_surplus": 0.8733333333333333,
+  "pair_both_correct": 0.8813333333333333,
+  "oracle_ceiling": 0.9993333333333333,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.8959137201309204,
+  "mean_p_yes_on_B": 0.09850350022315979,
+  "mean_abs_p_diff_within_pair": 0.8080704212188721,
+  "kappa": 0.8744993324432577,
+  "kappa_ci": [
+   0.8553309206137425,
+   0.8923796791443849
+  ]
+ },
+ "total_time_s": 756.61647772789
 }

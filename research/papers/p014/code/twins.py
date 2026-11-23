@@ -119,6 +119,75 @@ def make_twin_pairs(rng, K, family, n_int, graph, corrupt=0.0, conflict=False):
     return F, G, O, Y, np.array(oracle)
 
 
+def make_general_twins(rng, K, family, n_int, inprior, kind):
+    """Revision probe. kind='cov': covered-edge twins as in make_twin_pairs, but the
+    queried direction is randomised ((u,v) or (v,u)) so that 'answer 1' is not tied to
+    the in-prior member. kind='mec': any MEC-unidentified query (adjacent or not) and
+    a uniformly chosen Markov-equivalent DAG with the opposite answer, refit by
+    population regression. inprior=True rejects pairs whose refit twin leaves the
+    training prior's support (so prior-support detection cannot separate them).
+    Item order per pair: (data from M, answer y_M), (data from M', answer 1-y_M)."""
+    items, oracle, adj, ys = [], [], [], []
+    k = 0
+    while k < K:
+        m = S.random_scm(rng, p_order=0.0)
+        if kind == "cov":
+            ce = S.covered_edges(m["A"])
+            if not ce:
+                continue
+            u, v = ce[rng.integers(len(ce))]
+            m2 = S.twin_by_reversal(m, u, v)
+            qi, qj = (u, v) if rng.random() < 0.5 else (v, u)
+        else:
+            R = S.ancestors_matrix(m["A"])
+            mem = S.mec_members(m["A"])
+            Rs = np.stack([S.ancestors_matrix(B) for B in mem])
+            frac = Rs.mean(0)
+            want = int(rng.random() < 0.5)
+            cand = [(a, b) for a in range(n) for b in range(n)
+                    if a != b and 0 < frac[a, b] < 1 and R[a, b] == want]
+            if not cand:
+                continue
+            qi, qj = cand[rng.integers(len(cand))]
+            opp = [B for B, RB in zip(mem, Rs) if RB[qi, qj] != want]
+            m2 = S.refit_on(m, opp[rng.integers(len(opp))])
+        if inprior and not S.in_prior(m2):
+            continue
+        yM = int(S.ancestors_matrix(m["A"])[qi, qj])
+        assert yM != int(S.ancestors_matrix(m2["A"])[qi, qj])
+        tgt = int(rng.integers(n))
+        for model, other, y in ((m, m2, yM), (m2, m, 1 - yM)):
+            X, I = S.sample(rng, model, N, family, n_int, tgt)
+            f, g, o = encode(X, I, np.zeros((n, n), int), qi, qj)
+            items.append((f, g, o, y))
+            l_true, l_other = S.loglik(X, I, model, family), S.loglik(X, I, other, family)
+            oracle.append(0.5 if abs(l_true - l_other) <= 1e-7 * abs(l_true) else float(l_true > l_other))
+        adj.append(int(m["A"][qi, qj] or m["A"][qj, qi])); ys.append(yM)
+        k += 1
+    F = torch.tensor(np.stack([it[0] for it in items]))
+    G = torch.tensor(np.stack([it[1] for it in items]))
+    O = torch.tensor(np.array([it[2] for it in items]))[:, None]
+    Y = np.array([it[3] for it in items])
+    return F, G, O, Y, np.array(oracle), np.array(adj), np.array(ys)
+
+
+def kappa_ci(p, Y, oracle, B=2000, seed=321):
+    """Paired bootstrap (over twin pairs) for twin acc, LR ceiling and kappa."""
+    corr = ((p > 0.5).astype(int) == Y).reshape(-1, 2).mean(1)
+    orc = oracle.reshape(-1, 2).mean(1)
+    rng = np.random.default_rng(seed)
+    ks = []
+    for _ in range(B):
+        idx = rng.integers(len(corr), size=len(corr))
+        a, c = corr[idx].mean(), orc[idx].mean()
+        ks.append((2 * a - 1) / (2 * c - 1) if c > 0.5 + 1e-9 else np.nan)
+    ks = np.array(ks)
+    c0 = orc.mean()
+    k0 = (2 * corr.mean() - 1) / (2 * c0 - 1) if c0 > 0.5 + 1e-9 else None
+    return {"kappa": k0, "kappa_ci": [float(np.nanpercentile(ks, 2.5)), float(np.nanpercentile(ks, 97.5))]
+            if k0 is not None else None}
+
+
 @torch.no_grad()
 def predict(net, F, G, O, bs=500):
     out = []
@@ -230,7 +299,36 @@ def main():
             # under conflict, the description is of the *other* twin: report how
             # often the model follows the description instead of the data.
             res[k]["follows_description"] = float(1 - res[k]["twin_acc"])
+    # ---- revision probes (separate RNG: earlier fields stay bit-identical)
+    preds = {}
+    if a.family == "laplace" or a.n_int > 0:
+        rrng = np.random.default_rng(20_000 + a.seed)
+        for kname, kind, inp in [("rev_cov_all", "cov", False), ("rev_cov_inprior", "cov", True),
+                                 ("rev_mec_all", "mec", False), ("rev_mec_inprior", "mec", True)]:
+            F, G, O, Y, orc, adj, ys = make_general_twins(rrng, a.twin_pairs, a.family, a.n_int, inp, kind)
+            p = predict(net, F, G, O)
+            r = twin_metrics(p, Y, orc); r.update(kappa_ci(p, Y, orc))
+            pc = ((p > 0.5).astype(int) == Y).reshape(-1, 2).mean(1)
+            oc = orc.reshape(-1, 2).mean(1)
+            for lab, msk in [("adjacent", adj == 1), ("nonadjacent", adj == 0),
+                             ("inprior_is_yes", ys == 1), ("inprior_is_no", ys == 0)]:
+                if msk.any():
+                    r[lab] = {"n_pairs": int(msk.sum()), "twin_acc": float(pc[msk].mean()),
+                              "oracle_ceiling": float(oc[msk].mean())}
+            res[kname] = r
+            preds[kname] = dict(p=p, Y=Y, orc=orc, adj=adj, ys=ys)
+        # kappa CI for the original matched probe (re-evaluated on an independent draw)
+        F, G, O, Y, orc = make_twin_pairs(np.random.default_rng(30_000 + a.seed), a.twin_pairs,
+                                          a.family, a.n_int, a.graph)
+        p = predict(net, F, G, O)
+        r = twin_metrics(p, Y, orc); r.update(kappa_ci(p, Y, orc))
+        res["rev_matched_redraw"] = r
     res["total_time_s"] = time.time() - t0
+    mdir = os.path.join(RESULTS, "models"); os.makedirs(mdir, exist_ok=True)
+    torch.save(net.state_dict(), os.path.join(mdir, f"{a.name}_s{a.seed}.pt"))
+    if preds:
+        np.savez_compressed(os.path.join(mdir, f"{a.name}_s{a.seed}_revpreds.npz"),
+                            **{f"{k}_{f}": v for k, d in preds.items() for f, v in d.items()})
     os.makedirs(RESULTS, exist_ok=True)
     with open(os.path.join(RESULTS, f"{a.name}_s{a.seed}.json"), "w") as fh:
         json.dump(res, fh, indent=1)

@@ -35,9 +35,9 @@ I copied `code/` and `data_cache/` to a scratch directory, regenerated the token
 | `exp_powerlaw.py` | `powerlaw_results.json` and `figE1` byte-identical |
 | `exp_gap.py` | `gap_results.json` byte-identical |
 | `exp_threshold_fine.py` (d = 64 and `TF_SCALE=4`, d = 256) | both JSONs and `figG` byte-identical |
-| `exp_crossover.py` | REPRO_CROSSOVER |
-| `exp_random_design.py` | REPRO_RANDOM |
-| `exp_transformer.py` (3 workers, as in README) | REPRO_TRANSFORMER |
+| `exp_crossover.py` | `crossover_results.json` byte-identical (10 reps; slopes 0.567 / 0.750) |
+| `exp_random_design.py` | `random_design_results.json` byte-identical |
+| `exp_transformer.py` (3 workers, as in README) | 10 of the 56 runs completed in my review window (seed 0, D = 25k, d_model 16–64 cells, plus one more). All 10 are bit-identical to the shipped `transformer_runs.jsonl` (per-modality-stop test loss, joint-checkpoint test loss, stop steps). I verified the remaining runs only through the shipped JSONL → `analyze_transformer.py` → summary chain. |
 | `exp_mlp2.py` | not re-run (about 1 CPU-hour); every number in the Sec. 5.7 table was checked against the shipped `mlp2_summary.json` instead |
 
 **Paper vs. JSON.** I checked every number in the abstract, in the error-summary table, and in Secs. 5.1–5.8 against the JSON files. That covers:
@@ -101,7 +101,7 @@ The genuinely new pieces are the closed-form capacity tax (R, κ), the 1/n align
 My search found closely related recent work that is not cited. A NeurIPS 2027 submission must discuss it:
 - **Han, Tong, Fan, Chen, Torr, Kokkinos & Lewis (arXiv:2608.05000, Aug. 2026), "Towards Physics of Multimodal Pretraining: Knowledge Flow, Modality Synergy, Early Unification, and Recipes."**
   - It is a controlled empirical study of exactly the competition/synergy question in unified models, at up to 13.5B-parameter MoE scale.
-  - It reports that synergy or competition depends on data/task complexity ("complex tasks induce capacity competition that outweighs synergy").
+  - According to its abstract and summaries, whether modalities help or hurt each other depends on data/task complexity, with competition for capacity dominating for complex tasks. (I could read only abstracts and summaries, because arxiv.org was not reachable from my environment.)
   - It reports that shared attention plus modality-specific FFNs promotes synergy.
   - This is the real-scale evidence most relevant to P1, P4 and P6, and it largely pre-empts the paper's architectural discussion.
 - **Uni-X (Hao et al., ICLR 2026).** It measures gradient conflict between modalities in shared autoregressive transformers. The conflict is concentrated in the shallow and deep layers, and the remedy is modality-specific ends around a shared core. This is close to the model's "shared core + modality-specific heads", and to its head-interference term.

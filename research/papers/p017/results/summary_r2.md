@@ -89,3 +89,45 @@ Per-seed (probe acc / k_eff / CRA probe / CRA random / next-obs / landmark recal
 
 Independent runs (n = 40; each a separately trained GRU): Pearson r(probe acc, CRA gain) = 0.880, 95% bootstrap CI [0.805, 0.928], Spearman ρ = 0.902. Runs with probe < 0.4: 3, of which gain ≤ 0: 2. Runs with probe ≥ 0.75: 29, of which gain ≥ 0.17: 29; min gain among them: 0.175.
 CRA(probe) range over runs with k_eff ≥ 12: 0.534–0.927; CRA(random) over the same runs: 0.207–0.452
+
+## 3. Untrained reservoir sweep, d = 512 (review M1). Mean over 3 seeds.
+
+| world | λ | W | leak | input gain | next-obs | linear probe | k_eff (lin) | MLP probe | k_eff (MLP) | δ(8) | trunc acc k=8 / Acc*_8 | CRA probe | CRA random | CRA full |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| balanced2 | 0.99 | norm | 1.0 | 1.0 | 0.714 | 0.168 ± 0.004 | 2,2,2 | 0.164 ± 0.003 | 2,2,2 | 1.2e-06 | 0.168 / 0.861 | 0.511 | 0.474 | 0.560 |
+| landmark | 0.99 | norm | 1.0 | 1.0 | 0.913 | 0.148 ± 0.018 | 2,2,2 | 0.141 ± 0.016 | 2,2,2 | 1.2e-06 | 0.150 / 0.432 | 0.528 | 0.488 | 0.547 |
+
+Sweep truncation cells: n = 342, max excess over exact Acc*_k = +0.0039
+Best single untrained reservoir per world/probe (acc, k_eff, λ, gain, orth, leak, seed): ('balanced2', 'lin'): (0.333, 4, 1.0, 1.0, 'orth', 0); ('balanced2', 'mlp'): (0.593, 5, 0.99, 0.1, 'orth', 0); ('landmark', 'lin'): (0.243, 4, 1.0, 1.0, 'orth', 1); ('landmark', 'mlp'): (0.425, 7, 1.0, 0.1, 'orth', 1)
+
+## 4. Learned window decoders vs exact ceiling (calibration for Othello)
+
+| world | seed | k=1 | k=2 | k=3 | k=4 | k=6 | k=8 | k=12 | k=16 |
+|---|---|---|---|---|---|---|---|---|---|
+| balanced2 | 0 | 0.091/0.090 | 0.175/0.181 | 0.293/0.310 | 0.454/0.474 | 0.559/0.713 | 0.575/0.857 | 0.551/0.972 | 0.630/0.996 |
+| balanced2 | 1 | 0.092/0.090 | 0.180/0.180 | 0.294/0.307 | 0.459/0.482 | 0.538/0.743 | 0.513/0.884 | 0.453/0.982 | 0.496/0.998 |
+| balanced2 | 2 | 0.092/0.090 | 0.179/0.181 | 0.302/0.312 | 0.452/0.481 | 0.576/0.732 | 0.588/0.874 | 0.549/0.980 | 0.589/0.998 |
+| landmark | 0 | 0.091/0.090 | 0.137/0.138 | 0.175/0.176 | 0.208/0.222 | 0.264/0.323 | 0.290/0.438 | 0.350/0.704 | 0.487/0.892 |
+| landmark | 1 | 0.095/0.091 | 0.176/0.177 | 0.235/0.240 | 0.295/0.301 | 0.377/0.407 | 0.397/0.506 | 0.397/0.714 | 0.500/0.879 |
+| landmark | 2 | 0.088/0.088 | 0.147/0.149 | 0.191/0.197 | 0.238/0.246 | 0.305/0.336 | 0.322/0.427 | 0.345/0.642 | 0.493/0.842 |
+
+(decoder/exact). Exact − decoder: mean +0.1426, max +0.5283, min -0.0037
+
+## 5. Transformers (3 seeds): attention-window truncation (Corollary 2)
+
+| world | seed | model | probe acc | k_eff | next-obs (own head) | w=1 | w=2 | w=4 | w=8 | w=16 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| balanced2 | 0 | tf_trained | 0.777 | 7 | 0.975 | 0.046/0.090 | 0.086/0.181 | 0.113/0.474 | 0.078/0.857 | 0.076/0.996 |
+| balanced2 | 0 | tf_random | 0.057 | 1 | 0.483 | 0.044/0.090 | 0.080/0.181 | 0.120/0.474 | 0.084/0.857 | 0.065/0.996 |
+| balanced2 | 1 | tf_trained | 0.598 | 5 | 0.903 | 0.047/0.090 | 0.091/0.180 | 0.117/0.482 | 0.095/0.884 | 0.097/0.998 |
+| balanced2 | 1 | tf_random | 0.064 | 1 | 0.488 | 0.046/0.090 | 0.086/0.180 | 0.123/0.482 | 0.085/0.884 | 0.072/0.998 |
+| balanced2 | 2 | tf_trained | 0.732 | 6 | 0.944 | 0.046/0.090 | 0.089/0.181 | 0.107/0.481 | 0.075/0.874 | 0.078/0.998 |
+| balanced2 | 2 | tf_random | 0.055 | 1 | 0.491 | 0.045/0.090 | 0.085/0.181 | 0.123/0.481 | 0.083/0.874 | 0.061/0.998 |
+| landmark | 0 | tf_trained | 0.519 | 10 | 0.984 | 0.046/0.090 | 0.091/0.138 | 0.077/0.222 | 0.066/0.438 | 0.076/0.892 |
+| landmark | 0 | tf_random | 0.060 | 1 | 0.220 | 0.044/0.090 | 0.087/0.138 | 0.085/0.222 | 0.071/0.438 | 0.066/0.892 |
+| landmark | 1 | tf_trained | 0.549 | 9 | 0.992 | 0.048/0.091 | 0.092/0.177 | 0.107/0.301 | 0.079/0.506 | 0.082/0.879 |
+| landmark | 1 | tf_random | 0.065 | 1 | 0.332 | 0.046/0.091 | 0.092/0.177 | 0.106/0.301 | 0.084/0.506 | 0.071/0.879 |
+| landmark | 2 | tf_trained | 0.492 | 10 | 0.984 | 0.046/0.088 | 0.086/0.149 | 0.111/0.246 | 0.090/0.427 | 0.085/0.842 |
+| landmark | 2 | tf_random | 0.067 | 1 | 0.156 | 0.045/0.088 | 0.083/0.149 | 0.102/0.246 | 0.087/0.427 | 0.071/0.842 |
+
+(cells: refitted-probe accuracy of the windowed model / exact Acc*_k for k = ceil(receptive field/2)). Max over all 96 cells of (windowed accuracy − Acc*_k), same or refitted probe: -0.0414

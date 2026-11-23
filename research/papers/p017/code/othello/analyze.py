@@ -56,7 +56,7 @@ if __name__ == "__main__":
     ytr, yte, ate = ptr[1][vtr], pte[1][vte], pte[2][vte]
     res = {}
     torch.manual_seed(0); twin = GPT()                      # exact initialisation of the trained model
-    trained = GPT(); s = torch.load(os.path.join(OUT, "gpt.pt")); trained.load_state_dict(s["model"]); res["train_steps"] = s["step"]
+    trained = GPT(); s = torch.load(os.path.join(OUT, os.environ.get("CKPT", "gpt_6k.pt"))); trained.load_state_dict(s["model"]); res["train_steps"] = s["step"]
     for name, m in [("trained", trained), ("untrained_twin", twin)]:
         m.eval(); t0 = time.time()
         lg_te, R_te = resid(m, pte[0]); _, R_tr = resid(m, ptr[0])
@@ -82,4 +82,4 @@ if __name__ == "__main__":
             print("  window", w, "rf", r["window"][w]["receptive_field"], "same", round(same.mean(), 4), "refit", round(refit.mean(), 4),
                   "legal", round(r["window"][w]["legal_top1"], 4), flush=True)
         res[name] = r
-        json.dump(res, open(os.path.join(OUT, "analysis.json"), "w"), indent=1)
+        json.dump(res, open(os.path.join(OUT, os.environ.get("AOUT", "analysis_6k.json")), "w"), indent=1)

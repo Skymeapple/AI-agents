@@ -6,7 +6,7 @@ from gpt import GPT, PAD
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "othello")
 ap = argparse.ArgumentParser(); ap.add_argument("--minutes", type=float, default=28)
 ap.add_argument("--total_steps", type=int, default=12000); ap.add_argument("--bs", type=int, default=128)
-ap.add_argument("--lr", type=float, default=1e-3); ap.add_argument("--threads", type=int, default=4)
+ap.add_argument("--lr", type=float, default=1e-3); ap.add_argument("--init", default=""); ap.add_argument("--ckpt", default="gpt.pt"); ap.add_argument("--pct_start", type=float, default=0.05); ap.add_argument("--threads", type=int, default=4)
 a = ap.parse_args()
 torch.set_num_threads(a.threads)
 toks = np.concatenate([np.load(os.path.join(OUT, f"data_lm{i}.npz"))["toks"] for i in range(1, 5)]).astype(np.int64)
@@ -15,13 +15,16 @@ X = torch.as_tensor(toks)
 torch.manual_seed(0)
 m = GPT()
 opt = torch.optim.AdamW(m.parameters(), lr=a.lr, weight_decay=0.01, betas=(0.9, 0.98))
-sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.total_steps, pct_start=0.05)
-ck = os.path.join(OUT, "gpt.pt")
+sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.total_steps, pct_start=a.pct_start)
+ck = os.path.join(OUT, a.ckpt)
 step = 0
+if a.init and not os.path.exists(ck):
+    m.load_state_dict(torch.load(os.path.join(OUT, a.init))["model"])
 if os.path.exists(ck):
     s = torch.load(ck); m.load_state_dict(s["model"]); opt.load_state_dict(s["opt"]); sched.load_state_dict(s["sched"]); step = s["step"]
+    sched.total_steps = a.total_steps  # allows shortening a schedule on resume (used once: continuation phase 8000 -> 4000 at step %d)
 g = torch.Generator().manual_seed(1234 + step)
-log = open(os.path.join(OUT, "train_log.txt"), "a")
+log = open(os.path.join(OUT, a.ckpt.replace(".pt", "") + "_log.txt"), "a")
 t0 = time.time(); run = 0.0
 m.train()
 while step < a.total_steps and time.time() - t0 < a.minutes * 60:

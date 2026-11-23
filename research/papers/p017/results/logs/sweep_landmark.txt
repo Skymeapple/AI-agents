@@ -2,3 +2,19 @@ landmark 0 0.99 1.0 norm obs=0.909 lin=0.127(k2) mlp=0.122(k2) delta8=1.16e-06 {
 landmark 0 0.99 0.1 radius obs=0.879 lin=0.124(k2) mlp=0.296(k6) delta8=1.25 {'none': 0.5, 'probe_subspace': 0.51, 'random_subspace': 0.5, 'full_swap': 0.5, '_rank': 24.0} 283s
 landmark 0 0.99 1.0 radius obs=0.909 lin=0.159(k3) mlp=0.171(k3) delta8=0.00562 {'none': 0.47, 'probe_subspace': 0.51, 'random_subspace': 0.47, 'full_swap': 0.53, '_rank': 24.0} 272s
 landmark 0 0.99 0.1 orth obs=0.879 lin=0.111(k2) mlp=0.346(k7) delta8=1.84 {'none': 0.5, 'probe_subspace': 0.51, 'random_subspace': 0.5, 'full_swap': 0.5, '_rank': 24.0} 218s
+landmark 0 0.99 0.3 orth obs=0.901 lin=0.159(k3) mlp=0.253(k5) delta8=0.465 {'none': 0.48, 'probe_subspace': 0.52, 'random_subspace': 0.49, 'full_swap': 0.52, '_rank': 24.0} 386s
+landmark 0 0.99 1.0 orth obs=0.910 lin=0.162(k3) mlp=0.168(k3) delta8=0.00637 {'none': 0.47, 'probe_subspace': 0.51, 'random_subspace': 0.48, 'full_swap': 0.54, '_rank': 24.0} 475s
+landmark 0 1.0 0.1 orth obs=0.878 lin=0.107(k2) mlp=0.356(k7) delta8=2.1 {'none': 0.5, 'probe_subspace': 0.51, 'random_subspace': 0.5, 'full_swap': 0.5, '_rank': 24.0} 393s
+landmark 0 1.0 0.3 orth obs=0.900 lin=0.158(k3) mlp=0.254(k5) delta8=0.524 {'none': 0.48, 'probe_subspace': 0.52, 'random_subspace': 0.49, 'full_swap': 0.52, '_rank': 24.0} 437s
+landmark 0 1.0 1.0 orth obs=0.910 lin=0.164(k3) mlp=0.172(k3) delta8=0.00733 {'none': 0.47, 'probe_subspace': 0.51, 'random_subspace': 0.48, 'full_swap': 0.54, '_rank': 24.0} 413s
+landmark 1 0.99 1.0 norm obs=0.910 lin=0.171(k2) mlp=0.161(k2) delta8=1.22e-06 {'none': 0.47, 'probe_subspace': 0.53, 'random_subspace': 0.48, 'full_swap': 0.55, '_rank': 24.0} 322s
+landmark 1 0.99 0.1 radius obs=0.879 lin=0.159(k2) mlp=0.359(k6) delta8=1.3 {'none': 0.5, 'probe_subspace': 0.53, 'random_subspace': 0.48, 'full_swap': 0.51, '_rank': 24.0} 343s
+landmark 1 0.99 1.0 radius obs=0.919 lin=0.241(k4) mlp=0.243(k4) delta8=0.00511 {'none': 0.45, 'probe_subspace': 0.53, 'random_subspace': 0.47, 'full_swap': 0.57, '_rank': 24.0} 359s
+landmark 1 0.99 0.1 orth obs=0.875 lin=0.132(k2) mlp=0.416(k7) delta8=1.84 {'none': 0.5, 'probe_subspace': 0.54, 'random_subspace': 0.49, 'full_swap': 0.51, '_rank': 24.0} 347s
+landmark 1 0.99 0.3 orth obs=0.894 lin=0.227(k3) mlp=0.351(k5) delta8=0.473 {'none': 0.48, 'probe_subspace': 0.54, 'random_subspace': 0.48, 'full_swap': 0.53, '_rank': 24.0} 466s
+landmark 1 0.99 1.0 orth obs=0.918 lin=0.242(k4) mlp=0.248(k4) delta8=0.00726 {'none': 0.45, 'probe_subspace': 0.53, 'random_subspace': 0.47, 'full_swap': 0.57, '_rank': 24.0} 351s
+landmark 1 1.0 0.1 orth obs=0.875 lin=0.127(k2) mlp=0.425(k7) delta8=2.1 {'none': 0.5, 'probe_subspace': 0.54, 'random_subspace': 0.5, 'full_swap': 0.51, '_rank': 24.0} 268s
+landmark 1 1.0 0.3 orth obs=0.893 lin=0.225(k3) mlp=0.349(k5) delta8=0.532 {'none': 0.49, 'probe_subspace': 0.54, 'random_subspace': 0.48, 'full_swap': 0.53, '_rank': 24.0} 326s
+landmark 1 1.0 1.0 orth obs=0.918 lin=0.243(k4) mlp=0.252(k4) delta8=0.00832 {'none': 0.45, 'probe_subspace': 0.53, 'random_subspace': 0.47, 'full_swap': 0.57, '_rank': 24.0} 446s
+landmark 2 0.99 1.0 norm obs=0.922 lin=0.146(k2) mlp=0.139(k2) delta8=1.19e-06 {'none': 0.45, 'probe_subspace': 0.54, 'random_subspace': 0.5, 'full_swap': 0.56, '_rank': 24.0} 656s
+Terminated

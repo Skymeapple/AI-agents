@@ -22,3 +22,26 @@ All randomness is seeded (world colouring: seed+1000; data: numpy default_rng(se
 
 Note: the progress line in results/log_*.txt is labelled `k=1,4,8,16,40` but prints Acc*_k at k = 1, 4, 8, 16, 24 (T = 24); the label is a leftover from an earlier configuration.
 - `training_dynamics.py`  GRU trained 40 epochs (constant lr 3e-3), checkpoints at epochs 1,2,5,10,20,30,40.
+
+## Round 2 (revision) — additional runs
+
+```
+python3 recompute_exact.py                       # exact finite-time ceilings for all round-1 runs -> results/exact_ceiling.json
+for m in balanced2 landmark; do for e in 10 30; do NTHREADS=1 python3 gru_seeds.py --mode $m --epochs $e --seeds 0 1 2 3 4 5 6 7 8 9; done; done   # 40 GRUs -> results/seeds/
+for m in balanced2 landmark; do for s in 0 1 2; do python3 reservoir_sweep.py --mode $m --seed $s; done; done   # results/sweep/
+for m in balanced2 landmark; do python3 tf_window.py --mode $m --seeds 0 1 2; done                               # results/tf/
+python3 calibrate_window_decoder.py              # learned window decoders vs exact ceiling -> results/calib_window.json
+python3 aggregate_r2.py                          # results/summary_r2.md, fig6
+# Othello (code/othello/)
+for i in 1 2 3 4; do python3 gen_data.py lm$i 40000 10$i 0; python3 gen_data.py lab$i 10000 20$i 1; done
+./run_train.sh 2                                 # 6000 steps -> results/othello/gpt.pt (copied to gpt_6k.pt)
+./run_train_long.sh                              # continuation, 4000 steps -> gpt_long.pt
+CKPT=gpt_6k.pt AOUT=analysis_6k.json python3 analyze.py ; CKPT=gpt_long.pt AOUT=analysis_long.json python3 analyze.py
+CKPT=gpt_6k.pt python3 mlp_probe.py ; CKPT=gpt_long.pt python3 mlp_probe.py
+python3 window_decoders.py ; python3 placement_decoders.py 0 ; python3 placement_decoders.py 8
+python3 aggregate_othello.py                     # results/summary_othello.md, fig7
+```
+Notes. `results/othello/data_*.npz` (generated games) are deterministic from their seeds and are not committed.
+The reservoir sweep replaced an earlier configuration list after we found that a Gaussian matrix scaled to
+spectral norm 0.99 has spectral radius ~0.5 (see paper Sec. 5.1); the first, partial sweep was discarded.
+`placement_decoders.py 0` was run first (output renamed placement_k0.json); the k=8 run writes placement.json.

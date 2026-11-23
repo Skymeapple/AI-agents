@@ -103,10 +103,11 @@ for p, (scen, rho) in enumerate([("perm", 0.1), ("perm", 0.3), ("split", 0.1), (
                         k = np.where(L2 <= q)[0]
                         if len(k): y[i] = runmax[k[0]]
                     curves.append(y)
+        if not curves: continue
         C = np.array(curves); ok = ~np.isnan(C).any(0)
         ax[p].plot(grid[ok], C[:, ok].mean(0), ls="--" if "GD" in t else ("-." if "Adam" in t else "-"), label=t)
     ax[p].set_xscale("log"); ax[p].invert_xaxis(); ax[p].set_xlabel("new-task progress L2/L2(0)")
-    ax[p].set_ylabel("forgetting so far: max L1 − L1(0)"); ax[p].set_title(f"{scen}, ρ={rho} (mean of 8 seeds)")
+    ax[p].set_ylabel("forgetting so far: max L1 − L1(0)"); ax[p].set_title(f"{scen}, ρ={rho} (mean of {len(curves)} seeds)")
     ax[p].legend(fontsize=6)
 plt.tight_layout(); plt.savefig(os.path.join(R, "fig6_mlp_pareto.png"), dpi=150); plt.close()
 

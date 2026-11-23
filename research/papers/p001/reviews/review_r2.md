@@ -22,7 +22,37 @@ The revision repositions the paper as a measurement paper with four contribution
 
 **Rerun.** I copied `code/` and `data/` to a scratch directory and reran Exps. 1, 2, 4, 5, 9, 9b, 10, 11 and 12 with the documented single-thread BLAS settings. I also reran the first cells of Exp. 8, which are seeded per cell, so a cell-by-cell comparison is valid.
 
-RERUN_RESULTS_PLACEHOLDER
+- **Byte-identical outputs.** Every regenerated JSON is byte-identical to the shipped file: `exp1_fit`, `exp2_break_real`, `exp4_data_wall`, `exp5_wall_sensitivity`, `exp9_real_inference`, `exp9b_two_break`, `exp10_wall_generalised`, `exp11_competing_mechanisms` and `exp12_noise_budget`.
+- **Exp. 8.** All 28 power cells of Table 3 reproduce exactly, including the main, grouped and small-design rows: for example 0.82 / 0.22 at $\sigma_w=10^{-3}$, and 0.13 / 0.10 for $\sigma_b=10^{-3}$. I stopped the run before the fitted-null size check, which takes about 10 minutes.
+- **Numbers in the text.** I checked the following against the regenerated outputs, and all match to the stated rounding:
+  - support counts;
+  - noise decomposition (94 levels, quantisation SD 0.0017, rough SD 0.0039 / 0.0035, total 0.0075);
+  - wide-grid profile ($+0.0235$ to $-0.0401$);
+  - Table 6 ($p=1/301$ under all three nulls; the null $\hat\delta$ ranges);
+  - all fixed-$C_b$ cluster intervals;
+  - profiled cluster CIs $[-0.076,0.044]$ and $[-0.084,0.043]$;
+  - power on the actual design (0.25 / 0.63 / 0.99 / 1.00 and 0.16 / 0.46 / 0.95 / 1.00);
+  - all-245 sensitivity ($-0.096$; range $+0.040$ to $-0.104$);
+  - two-break model (0.187 / 0.166 / 0.175; $\hat\delta_2$ CI $[-0.075,0.015]$; 66%);
+  - Table 7, every entry;
+  - $\tau=2.057$ $[1.975,2.177]$ and the 0.32–5.2 factor;
+  - economics (1.04 / 1.53 / 4.5; months of growth);
+  - calendar years;
+  - Table 8, and the Exp. 11 powers and $\hat E$ medians;
+  - the Exp. 12 noise budget.
+- **One wording point.** "Size-group clusters give similar intervals" is slightly generous. At $C_b=9.9\times10^{20}$, the size-group interval is $[-0.077,0.015]$ and includes zero, while the compute-bin interval excludes it.
+
+I found no number that lacks code or a source behind it.
+
+**Additional reviewer experiment (Weakness 2).** I used the authors' own `exp8.one` with the same 240 runs, $\sigma_w=10^{-4}$, $\sigma_b=10^{-3}$, a window ending at $10^{26}$ and $\delta=0.02$, with 150 null and 80 alternative replicates. I changed only how the runs are split across budgets:
+
+| budgets × runs per budget | power at $\delta=0.02$ | Wilson 95% interval |
+|---|---|---|
+| 12 × 20 (paper's design) | 0.075 | [0.03, 0.15] (paper: 0.13) |
+| 48 × 5 | 0.43 | [0.32, 0.53] |
+| 120 × 2 | 0.38 | [0.28, 0.48] |
+
+Spreading the same runs over more budgets raises the power more than fivefold. The paper's headline that correlated noise "destroys" power is therefore largely a property of putting 20 runs on each of only 12 budgets. Script: `/tmp/claude-0/-home-user-AI-agents/6bf1b808-c21b-510f-a222-0286a315a58b/scratchpad/rerun/extra/k_budgets.py`.
 
 **Derivations checked.**
 
@@ -121,7 +151,7 @@ Two gaps remain:
 2. **The new "correlated noise is binding" conclusion rests on an assumed $\sigma_b$.** The per-budget offset of $10^{-3}$ is described as "small by the standards of separately tuned runs", but no citation or measurement supports that magnitude. The conclusion is also close to definitional. Model (2) makes the break a function of $C$ alone. A per-budget offset is also a function of $C$ alone, so it is perfectly confounded with the break signal, and the test effectively has $K=12$ observations. The paper should:
    - (a) say this explicitly;
    - (b) anchor $\sigma_b$ empirically, for example from published re-tuning studies (Porian et al. 2024 report loss differences from tuning), PolyPythias seed spreads, or the size of the Chinchilla per-budget residual structure itself;
-   - (c) show power as a function of $K$ at fixed total runs. More budgets is the obvious remedy.
+   - (c) show power as a function of $K$ at fixed total runs. My rerun (§2) finds that moving from 12×20 to 48×5 raises the power at $\delta=0.02$ from 0.075 to 0.43, so the design choice, not the correlated noise as such, drives most of the effect. §5.3, §6 and Recommendation (4) should be revised accordingly.
 
 3. **The detection design is not one any lab would run at the frontier.** A 240-run sweep covering $10^{25}$–$10^{28}$ FLOP, with 20 runs per budget at $10^{28}$, costs on the order of $10^{29}$–$10^{30}$ FLOP, which is more than the frontier run it is meant to diagnose. The realistic protocol is to fit a small-scale sweep and test the forecast residuals of one or a few frontier runs. That is a different test, with different power and much stronger dependence on the extrapolation of $E$; Exp. 6a shows that $\hat E$ absorbs breaks. Without this design, P5 and the claim that labs "can detect small breaks" do not carry over to practice. The 48-run small design does not fix this, because it still places 8 runs at each of 6 budgets up to $10^{28}$.
 
@@ -133,7 +163,7 @@ Two gaps remain:
 
 5. **"Next growth point" remains mostly outside the analysis.** RL scaling, inference-time compute, synthetic data and algorithmic-efficiency drift, which are the levers practitioners actually debate, are excluded by scope. Algorithmic-efficiency drift is dismissed as "observationally equivalent to rescaled $C$". That is true for the loss curve, but it is the central quantity for "where does growth come from". The title and research question promise more than §5.6 delivers.
 
-6. **The Table 7 extrapolations and the calendar.** The calendar compares dates across laws whose $C_{\rm wall}$ differ ("a rough comparison"), and it uses a growth rate of 3–5×/yr while Epoch now reports Grok 4 at about $5\times10^{26}$, roughly flat since Grok-3. If included at all, the calendar should be in an appendix with stronger caveats.
+6. **The Table 7 extrapolations and the calendar.** The calendar compares dates across laws whose $C_{\rm wall}$ differ ("a rough comparison"), and it assumes sustained 3–5×/yr growth from a 2025 anchor, although Epoch currently lists Grok 4 at only about $5\times10^{26}$ as the largest known run. If included at all, the calendar should be in an appendix with stronger caveats.
 
 ## 6. Minor issues
 
@@ -161,7 +191,7 @@ Two gaps remain:
 | Significance | 4 |
 | Clarity | 7 |
 | Reproducibility | 9 |
-| **Overall** | **5.5 → 6 (borderline)** |
+| **Overall** | **6 (borderline)** |
 
 ## 9. Decision
 

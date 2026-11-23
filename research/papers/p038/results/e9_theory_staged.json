@@ -1,0 +1,276 @@
+{
+ "E9a": {
+  "n_settings": 2000,
+  "a_range": [
+   0,
+   150
+  ],
+  "n_supercritical_limit": 982,
+  "n_settings_with_q_increase": 0,
+  "max_increase_in_q": 5.17585974080248e-13,
+  "max_err_closed_form_unlimited_survival": 5.378822387491766e-13,
+  "max_err_fastPGF_vs_DP": 8.881784197001252e-16,
+  "mc_unlimited": [
+   {
+    "P": 0.1,
+    "h_s": 0.2,
+    "h_f": 0.03,
+    "sigma": 0.9,
+    "R_inf": 1.914893617021277,
+    "u_closed": 0.5972222222222223,
+    "one_minus_inv_R": 0.47777777777777786,
+    "mc": 0.583,
+    "se": 0.009002055320869784
+   },
+   {
+    "P": 0.05,
+    "h_s": 0.0,
+    "h_f": 0.02,
+    "sigma": 1.0,
+    "R_inf": 2.6315789473684212,
+    "u_closed": 0.6200000000000001,
+    "one_minus_inv_R": 0.6200000000000001,
+    "mc": 0.6323333333333333,
+    "se": 0.008803179139547427
+   },
+   {
+    "P": 0.3,
+    "h_s": 0.4,
+    "h_f": 0.1,
+    "sigma": 0.8,
+    "R_inf": 1.263157894736842,
+    "u_closed": 0.3472222222222221,
+    "one_minus_inv_R": 0.20833333333333326,
+    "mc": 0.351,
+    "se": 0.008713954326251659
+   }
+  ]
+ },
+ "E9b": [
+  {
+   "profile": "S1 p=(.3,.5,.6,.2) h=.05",
+   "p": [
+    0.3,
+    0.5,
+    0.6,
+    0.2
+   ],
+   "h": [
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "R_ck_theory": 2.2031284423881896,
+   "R_atomic_theory": 0.3665987780040733,
+   "surv_ck_theory": 0.5460999999999996,
+   "surv_atomic_theory": 0.0,
+   "checkpoint_mc_mean": 2.21105,
+   "checkpoint_mc_se": 0.018662807797193863,
+   "checkpoint_geom_chi2_p": 0.7771975008729136,
+   "checkpoint_mc_surv": 0.5613333333333334,
+   "checkpoint_mc_surv_se": 0.012812447651202903,
+   "atomic_mc_mean": 0.36225,
+   "atomic_mc_se": 0.01089753340784051,
+   "atomic_geom_chi2_p": 0.8517666254613132,
+   "atomic_mc_surv": 0.0,
+   "atomic_mc_surv_se": 4.08248290463863e-08
+  },
+  {
+   "profile": "S2 illustrative E4 p, h=.003",
+   "p": [
+    0.01,
+    0.2,
+    0.5,
+    0.1
+   ],
+   "h": [
+    0.003,
+    0.003,
+    0.003,
+    0.003
+   ],
+   "R_ck_theory": 2.840527897843093,
+   "R_atomic_theory": 0.033336667000033335,
+   "surv_ck_theory": 0.6479527623160001,
+   "surv_atomic_theory": 0.0,
+   "checkpoint_mc_mean": 2.7967,
+   "checkpoint_mc_se": 0.0231400833079745,
+   "checkpoint_geom_chi2_p": 0.5040758677801853,
+   "checkpoint_mc_surv": 0.6573333333333333,
+   "checkpoint_mc_surv_se": 0.012254148201655966,
+   "atomic_mc_mean": 0.03425,
+   "atomic_mc_se": 0.0030032040182112175,
+   "atomic_geom_chi2_p": 0.8611062808706096,
+   "atomic_mc_surv": 0.0,
+   "atomic_mc_surv_se": 4.08248290463863e-08
+  },
+  {
+   "profile": "S3 p=.12x4, h=(.01,.05,.02,.1)",
+   "p": [
+    0.12,
+    0.12,
+    0.12,
+    0.12
+   ],
+   "h": [
+    0.01,
+    0.05,
+    0.02,
+    0.1
+   ],
+   "R_ck_theory": 0.5220505920388856,
+   "R_atomic_theory": 0.014315000706913614,
+   "surv_ck_theory": 0.0,
+   "surv_atomic_theory": 0.0,
+   "checkpoint_mc_mean": 0.5216,
+   "checkpoint_mc_se": 0.006374297765244418,
+   "checkpoint_geom_chi2_p": 0.04770301622878154,
+   "checkpoint_mc_surv": 0.0,
+   "checkpoint_mc_surv_se": 2.5819888974716113e-08,
+   "atomic_mc_mean": 0.01625,
+   "atomic_mc_se": 0.001999120900546038,
+   "atomic_geom_chi2_p": 0.2518689064831075,
+   "atomic_mc_surv": 0.0,
+   "atomic_mc_surv_se": 4.08248290463863e-08
+  },
+  {
+   "profile": "S4 profile D p=.12x4, h=.05",
+   "p": [
+    0.12,
+    0.12,
+    0.12,
+    0.12
+   ],
+   "h": [
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "R_ck_theory": 0.4018333522674563,
+   "R_atomic_theory": 0.004148060141750993,
+   "surv_ck_theory": 0.0,
+   "surv_atomic_theory": 0.0,
+   "checkpoint_mc_mean": 0.40395,
+   "checkpoint_mc_se": 0.0053933959501412465,
+   "checkpoint_geom_chi2_p": 0.685382663713225,
+   "checkpoint_mc_surv": 0.0,
+   "checkpoint_mc_surv_se": 2.5819888974716113e-08,
+   "atomic_mc_mean": 0.0045,
+   "atomic_mc_se": 0.0010582709955394229,
+   "atomic_geom_chi2_p": 0.7159088968706413,
+   "atomic_mc_surv": 0.0,
+   "atomic_mc_surv_se": 4.08248290463863e-08
+  },
+  {
+   "profile": "S5 p=(.3,.5,.6,.2), h=(.01,.1,.05,.02)",
+   "p": [
+    0.3,
+    0.5,
+    0.6,
+    0.2
+   ],
+   "h": [
+    0.01,
+    0.1,
+    0.05,
+    0.02
+   ],
+   "R_ck_theory": 3.9025304007118153,
+   "R_atomic_theory": 0.680786686838124,
+   "surv_ck_theory": 0.7437559999999996,
+   "surv_atomic_theory": 0.0,
+   "checkpoint_mc_mean": 3.86195,
+   "checkpoint_mc_se": 0.030491795779766726,
+   "checkpoint_geom_chi2_p": 0.13166602041562203,
+   "checkpoint_mc_surv": 0.744,
+   "checkpoint_mc_surv_se": 0.011268362791461766,
+   "atomic_mc_mean": 0.69,
+   "atomic_mc_se": 0.01701396485243813,
+   "atomic_geom_chi2_p": 0.172840432944102,
+   "atomic_mc_surv": 0.0,
+   "atomic_mc_surv_se": 4.08248290463863e-08
+  }
+ ],
+ "E9c": {
+  "profile": "S1",
+  "R_ck": 2.2031284423881896,
+  "surv_unlimited_theory": 0.5460999999999996,
+  "note": "progress kept across epochs; no background detection (delta=0)",
+  "rows": [
+   {
+    "budget": "5",
+    "surv": 0.53,
+    "se": 0.014407752542757436
+   },
+   {
+    "budget": "10",
+    "surv": 0.5675,
+    "se": 0.01430162432499656
+   },
+   {
+    "budget": "20",
+    "surv": 0.5291666666666667,
+    "se": 0.014409178369924369
+   },
+   {
+    "budget": "40",
+    "surv": 0.5566666666666666,
+    "se": 0.014340760349695808
+   },
+   {
+    "budget": "80",
+    "surv": 0.5433333333333333,
+    "se": 0.01437944778211314
+   },
+   {
+    "budget": "160",
+    "surv": 0.5391666666666667,
+    "se": 0.01438940502077316
+   },
+   {
+    "budget": "inf",
+    "surv": 0.5375,
+    "se": 0.014393104541179896
+   }
+  ],
+  "rows_delta0.1": [
+   {
+    "budget": "5",
+    "surv": 0.24333333333333335,
+    "se": 0.012386895704137707
+   },
+   {
+    "budget": "10",
+    "surv": 0.44,
+    "se": 0.014329456840136453
+   },
+   {
+    "budget": "20",
+    "surv": 0.515,
+    "se": 0.014427260077136383
+   },
+   {
+    "budget": "40",
+    "surv": 0.5408333333333334,
+    "se": 0.014385543637302718
+   },
+   {
+    "budget": "80",
+    "surv": 0.5475,
+    "se": 0.014368476780786473
+   },
+   {
+    "budget": "160",
+    "surv": 0.5325,
+    "se": 0.014403233143985415
+   },
+   {
+    "budget": "inf",
+    "surv": 0.5466666666666666,
+    "se": 0.014370752190421993
+   }
+  ]
+ }
+}

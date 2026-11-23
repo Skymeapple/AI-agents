@@ -1,0 +1,166 @@
+{
+  "batch": 4,
+  "status": "paused-incomplete",
+  "workflow_run_id": "wf_4149ad50-fe9",
+  "blocked_by": [
+    "Hit the 5-hour usage limit three times (runs ended 2026-11-22 ~10:10, ~15:10, ~20:10 UTC); resumed from cache each time.",
+    "Stopped 2026-11-23 ~04:18 UTC: the user told the coordinator session to concentrate effort on the ~10 most promising papers (p032, p035, p040 from this batch are included) and relax the round cap; the coordinator now iterates on those directly."
+  ],
+  "note": "The workflow never returned a final value; this file is a status snapshot built from files on disk. Scores are parsed from review markdown and may be imperfect; see each reviews/review_r*.md. The workflow can resume from cache with resumeFromRunId wf_4149ad50-fe9.",
+  "papers": [
+    {
+      "id": 31,
+      "dir": "papers/p031",
+      "title": "When Does Bootstrapped Oversight Keep Stronger Models Aligned? Common-Mode Blind Spots, Recovering Lineages, and the Resampling Trap",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 32,
+      "dir": "papers/p032",
+      "title": "Beyond the Chain: Propagation Blocking, Correlated Errors, and Collusion in Nested Scalable Oversight",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 33,
+      "dir": "papers/p033",
+      "title": "What Behavioural Evaluations Can and Cannot Certify About Conditional Defection: A Neyman–Pearson Analysis of Evaluation Budgets, Honeypots and Evaluation Awareness",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 34,
+      "dir": "papers/p034",
+      "title": "Proxy-Only Detectors Cannot See Shared Exploits: Non-Identifiability, and On-Policy Covariance Audits for Deciding When to Stop",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 35,
+      "dir": "papers/p035",
+      "title": "What Can Evaluations Tell Us About Deployment? Partial Identification of the Evaluation–Deployment Gap for Evaluation-Aware Models",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 36,
+      "dir": "papers/p036",
+      "title": "Only Unforgeable Bits Count: Minimax Limits of Content-Based Prompt-Injection Defenses under Full and Partial Mimicry",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 37,
+      "dir": "papers/p037",
+      "title": "What Can a Finite Evaluation Rule Out? Partial Identification of Attacker Success in Dangerous-Capability Evaluations",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [
+        "response_r1.md"
+      ],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 38,
+      "dir": "papers/p038",
+      "title": "Odds, Not Scores: A Branching-Process Theory Linking Component Replication Evaluations to the Population-Level Risk of Autonomous AI Self-Replication and Self-Improvement",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 39,
+      "dir": "papers/p039",
+      "title": "Disagreeing About p(doom), Agreeing About the Budget? Belief Pooling, Tractability, and the Value of Information in Loss-of-Control Mitigation Spending",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [],
+      "review_scores_parsed": {
+        "review_r1.md": "5"
+      },
+      "accepted": false
+    },
+    {
+      "id": 40,
+      "dir": "papers/p040",
+      "title": "Who Writes the Constitution? An Authorship Audit of Public-Input AI Constitutions, with Evidence from Collective Constitutional AI",
+      "paper_exists": true,
+      "reviews": [
+        "review_r1.md"
+      ],
+      "responses": [],
+      "review_scores_parsed": {
+        "review_r1.md": "5.5"
+      },
+      "accepted": false
+    }
+  ]
+}

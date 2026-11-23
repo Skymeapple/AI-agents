@@ -1,0 +1,751 @@
+{
+ "CCAI": {
+  "seed_pool": 0.07636363636363637,
+  "n_seeds": 21,
+  "seed_exposure_ratio": 3.7105660669500513,
+  "av_rate": {
+   "seed_share": 0.10344827586206896,
+   "mean_seen": 147.9655172413793,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.1157684630738523
+  },
+  "pav_count": {
+   "seed_share": 0.3103448275862069,
+   "mean_seen": 282.17241379310343,
+   "jaccard_to_av_rate": 0.3181818181818182,
+   "jr_ratio_observed": 0.05788423153692615
+  },
+  "cc_count": {
+   "seed_share": 0.3620689655172414,
+   "mean_seen": 277.2758620689655,
+   "jaccard_to_av_rate": 0.22105263157894736,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.10344827586206896,
+   "mean_seen": 145.27586206896552,
+   "jaccard_to_av_rate": 0.9661016949152542,
+   "jr_ratio_observed": 0.1157684630738523
+  },
+  "cc_imputed": {
+   "seed_share": 0.05172413793103448,
+   "mean_seen": 122.13793103448276,
+   "jaccard_to_av_rate": 0.46835443037974683,
+   "jr_ratio_observed": 0.1157684630738523
+  },
+  "pav_ipw": {
+   "seed_share": 0.13793103448275862,
+   "mean_seen": 140.31034482758622,
+   "jaccard_to_av_rate": 0.43209876543209874,
+   "jr_ratio_observed": 0.0
+  }
+ },
+ "american-assembly.bowling-green": {
+  "seed_pool": 0.047775947281713346,
+  "n_seeds": 29,
+  "seed_exposure_ratio": 2.550037282453288,
+  "av_rate": {
+   "seed_share": 0.034482758620689655,
+   "mean_seen": 495.91379310344826,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.40405319822672575
+  },
+  "pav_count": {
+   "seed_share": 0.27586206896551724,
+   "mean_seen": 862.6034482758621,
+   "jaccard_to_av_rate": 0.27472527472527475,
+   "jr_ratio_observed": 0.07346421785940468
+  },
+  "cc_count": {
+   "seed_share": 0.3620689655172414,
+   "mean_seen": 813.3103448275862,
+   "jaccard_to_av_rate": 0.1262135922330097,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.017241379310344827,
+   "mean_seen": 485.3103448275862,
+   "jaccard_to_av_rate": 0.9333333333333333,
+   "jr_ratio_observed": 0.4407853071564281
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 339.55172413793105,
+   "jaccard_to_av_rate": 0.45,
+   "jr_ratio_observed": 2.3875870804306523
+  },
+  "pav_ipw": {
+   "seed_share": 0.1724137931034483,
+   "mean_seen": 728.051724137931,
+   "jaccard_to_av_rate": 0.4146341463414634,
+   "jr_ratio_observed": 0.07346421785940468
+  }
+ },
+ "austria-climate.2vkxcncppn.2022-07-07": {
+  "seed_pool": 0.011650485436893204,
+  "n_seeds": 6,
+  "seed_exposure_ratio": 2.7725745551366585,
+  "av_rate": {
+   "seed_share": 0.034482758620689655,
+   "mean_seen": 351.6551724137931,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.4030576789437109
+  },
+  "pav_count": {
+   "seed_share": 0.06896551724137931,
+   "mean_seen": 706.1551724137931,
+   "jaccard_to_av_rate": 0.22105263157894736,
+   "jr_ratio_observed": 0.12091730368311328
+  },
+  "cc_count": {
+   "seed_share": 0.10344827586206896,
+   "mean_seen": 652.6724137931035,
+   "jaccard_to_av_rate": 0.1262135922330097,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.034482758620689655,
+   "mean_seen": 328.3448275862069,
+   "jaccard_to_av_rate": 0.9333333333333333,
+   "jr_ratio_observed": 0.5239749826268242
+  },
+  "cc_imputed": {
+   "seed_share": 0.017241379310344827,
+   "mean_seen": 150.56896551724137,
+   "jaccard_to_av_rate": 0.3181818181818182,
+   "jr_ratio_observed": 4.79638637943016
+  },
+  "pav_ipw": {
+   "seed_share": 0.08620689655172414,
+   "mean_seen": 581.8275862068965,
+   "jaccard_to_av_rate": 0.36470588235294116,
+   "jr_ratio_observed": 0.04030576789437109
+  }
+ },
+ "austria-climate.5twd2jsnkf.2022-08-08": {
+  "seed_pool": 0.01444043321299639,
+  "n_seeds": 4,
+  "seed_exposure_ratio": 3.091988950276243,
+  "av_rate": {
+   "seed_share": 0.01818181818181818,
+   "mean_seen": 237.36363636363637,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.55
+  },
+  "pav_count": {
+   "seed_share": 0.07272727272727272,
+   "mean_seen": 448.8727272727273,
+   "jaccard_to_av_rate": 0.26436781609195403,
+   "jr_ratio_observed": 0.12222222222222222
+  },
+  "cc_count": {
+   "seed_share": 0.07272727272727272,
+   "mean_seen": 418.3272727272727,
+   "jaccard_to_av_rate": 0.1702127659574468,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.01818181818181818,
+   "mean_seen": 225.14545454545456,
+   "jaccard_to_av_rate": 0.9298245614035088,
+   "jr_ratio_observed": 0.55
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 146.34545454545454,
+   "jaccard_to_av_rate": 0.5068493150684932,
+   "jr_ratio_observed": 3.6666666666666665
+  },
+  "pav_ipw": {
+   "seed_share": 0.07272727272727272,
+   "mean_seen": 374.4727272727273,
+   "jaccard_to_av_rate": 0.34146341463414637,
+   "jr_ratio_observed": 0.06111111111111111
+  }
+ },
+ "austria-climate.5tzfrp5eaa.2022-07-07": {
+  "seed_pool": 0.0011074197120708748,
+  "n_seeds": 1,
+  "seed_exposure_ratio": 5.751708155789788,
+  "av_rate": {
+   "seed_share": 0.0,
+   "mean_seen": 428.0344827586207,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 1.155639097744361
+  },
+  "pav_count": {
+   "seed_share": 0.017241379310344827,
+   "mean_seen": 1222.948275862069,
+   "jaccard_to_av_rate": 0.13725490196078433,
+   "jr_ratio_observed": 0.06541353383458647
+  },
+  "cc_count": {
+   "seed_share": 0.017241379310344827,
+   "mean_seen": 1078.603448275862,
+   "jaccard_to_av_rate": 0.06422018348623854,
+   "jr_ratio_observed": 0.02180451127819549
+  },
+  "pav_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 428.0344827586207,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 1.155639097744361
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 267.7931034482759,
+   "jaccard_to_av_rate": 0.5675675675675675,
+   "jr_ratio_observed": 2.6601503759398497
+  },
+  "pav_ipw": {
+   "seed_share": 0.017241379310344827,
+   "mean_seen": 831.4137931034483,
+   "jaccard_to_av_rate": 0.2608695652173913,
+   "jr_ratio_observed": 0.10902255639097745
+  }
+ },
+ "austria-climate.7z7ejpbmv5.2022-08-08": {
+  "seed_pool": 0.044444444444444446,
+  "n_seeds": 14,
+  "seed_exposure_ratio": 2.9287493232268544,
+  "av_rate": {
+   "seed_share": 0.06896551724137931,
+   "mean_seen": 260.12068965517244,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.4599524187153053
+  },
+  "pav_count": {
+   "seed_share": 0.1896551724137931,
+   "mean_seen": 639.1379310344828,
+   "jaccard_to_av_rate": 0.13725490196078433,
+   "jr_ratio_observed": 0.09199048374306106
+  },
+  "cc_count": {
+   "seed_share": 0.2413793103448276,
+   "mean_seen": 563.5689655172414,
+   "jaccard_to_av_rate": 0.13725490196078433,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.06896551724137931,
+   "mean_seen": 260.12068965517244,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.4599524187153053
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 88.06896551724138,
+   "jaccard_to_av_rate": 0.23404255319148937,
+   "jr_ratio_observed": 13.06264869151467
+  },
+  "pav_ipw": {
+   "seed_share": 0.15517241379310345,
+   "mean_seen": 491.7241379310345,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.09199048374306106
+  }
+ },
+ "austria-climate.9xnndurbfm.2022-07-07": {
+  "seed_pool": 0.0,
+  "n_seeds": 0,
+  "seed_exposure_ratio": null,
+  "av_rate": {
+   "seed_share": 0.0,
+   "mean_seen": 529.7931034482758,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 1.137639499492729
+  },
+  "pav_count": {
+   "seed_share": 0.0,
+   "mean_seen": 1295.3103448275863,
+   "jaccard_to_av_rate": 0.16,
+   "jr_ratio_observed": 0.05884342238755495
+  },
+  "cc_count": {
+   "seed_share": 0.0,
+   "mean_seen": 1121.103448275862,
+   "jaccard_to_av_rate": 0.1485148514851485,
+   "jr_ratio_observed": 0.019614474129184982
+  },
+  "pav_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 511.8448275862069,
+   "jaccard_to_av_rate": 0.9661016949152542,
+   "jr_ratio_observed": 1.2553263442678388
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 117.8103448275862,
+   "jaccard_to_av_rate": 0.16,
+   "jr_ratio_observed": 10.846804193439295
+  },
+  "pav_ipw": {
+   "seed_share": 0.0,
+   "mean_seen": 866.2586206896551,
+   "jaccard_to_av_rate": 0.27472527472527475,
+   "jr_ratio_observed": 0.07845789651673993
+  }
+ },
+ "brexit-consensus": {
+  "seed_pool": 0.3673469387755102,
+  "n_seeds": 18,
+  "seed_exposure_ratio": 2.244702615811778,
+  "av_rate": {
+   "seed_share": 0.4,
+   "mean_seen": 99.6,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.10582010582010583
+  },
+  "pav_count": {
+   "seed_share": 0.7,
+   "mean_seen": 152.3,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.052910052910052914
+  },
+  "cc_count": {
+   "seed_share": 0.7,
+   "mean_seen": 147.5,
+   "jaccard_to_av_rate": 0.25,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.4,
+   "mean_seen": 99.6,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.10582010582010583
+  },
+  "cc_imputed": {
+   "seed_share": 0.5,
+   "mean_seen": 129.4,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_ipw": {
+   "seed_share": 0.6,
+   "mean_seen": 132.6,
+   "jaccard_to_av_rate": 0.5384615384615384,
+   "jr_ratio_observed": 0.052910052910052914
+  }
+ },
+ "canadian-electoral-reform": {
+  "seed_pool": 0.1986754966887417,
+  "n_seeds": 30,
+  "seed_exposure_ratio": 2.1269405174713256,
+  "av_rate": {
+   "seed_share": 0.3,
+   "mean_seen": 72.2,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.4270462633451957
+  },
+  "pav_count": {
+   "seed_share": 0.5333333333333333,
+   "mean_seen": 122.5,
+   "jaccard_to_av_rate": 0.30434782608695654,
+   "jr_ratio_observed": 0.10676156583629892
+  },
+  "cc_count": {
+   "seed_share": 0.7333333333333333,
+   "mean_seen": 124.6,
+   "jaccard_to_av_rate": 0.17647058823529413,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.3,
+   "mean_seen": 72.2,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.4270462633451957
+  },
+  "cc_imputed": {
+   "seed_share": 0.9666666666666667,
+   "mean_seen": 127.76666666666667,
+   "jaccard_to_av_rate": 0.2,
+   "jr_ratio_observed": 0.4270462633451957
+  },
+  "pav_ipw": {
+   "seed_share": 0.4,
+   "mean_seen": 100.36666666666666,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.10676156583629892
+  }
+ },
+ "football-concussions": {
+  "seed_pool": 0.0,
+  "n_seeds": 0,
+  "seed_exposure_ratio": null,
+  "av_rate": {
+   "seed_share": 0.0,
+   "mean_seen": 262.8,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.33783783783783783
+  },
+  "pav_count": {
+   "seed_share": 0.0,
+   "mean_seen": 306.7,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.11824324324324324
+  },
+  "cc_count": {
+   "seed_share": 0.0,
+   "mean_seen": 304.2,
+   "jaccard_to_av_rate": 0.25,
+   "jr_ratio_observed": 0.10135135135135134
+  },
+  "pav_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 256.2,
+   "jaccard_to_av_rate": 0.8181818181818182,
+   "jr_ratio_observed": 0.43918918918918914
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 233.6,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.5067567567567567
+  },
+  "pav_ipw": {
+   "seed_share": 0.0,
+   "mean_seen": 297.6,
+   "jaccard_to_av_rate": 0.42857142857142855,
+   "jr_ratio_observed": 0.16891891891891891
+  }
+ },
+ "march-on.operation-marchin-orders": {
+  "seed_pool": 0.20642201834862386,
+  "n_seeds": 45,
+  "seed_exposure_ratio": 2.535703716184329,
+  "av_rate": {
+   "seed_share": 0.22727272727272727,
+   "mean_seen": 2268.6363636363635,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 2.054094108929233
+  },
+  "pav_count": {
+   "seed_share": 0.75,
+   "mean_seen": 3658.6363636363635,
+   "jaccard_to_av_rate": 0.2222222222222222,
+   "jr_ratio_observed": 0.03260466839570211
+  },
+  "cc_count": {
+   "seed_share": 0.5681818181818182,
+   "mean_seen": 3493.1136363636365,
+   "jaccard_to_av_rate": 0.1282051282051282,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.20454545454545456,
+   "mean_seen": 2209.0454545454545,
+   "jaccard_to_av_rate": 0.9555555555555556,
+   "jr_ratio_observed": 2.127454612819563
+  },
+  "cc_imputed": {
+   "seed_share": 0.045454545454545456,
+   "mean_seen": 1710.340909090909,
+   "jaccard_to_av_rate": 0.6,
+   "jr_ratio_observed": 2.689885142645424
+  },
+  "pav_ipw": {
+   "seed_share": 0.5909090909090909,
+   "mean_seen": 3155.0,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.06520933679140423
+  }
+ },
+ "scoop-hivemind.affordable-housing": {
+  "seed_pool": 0.3277310924369748,
+  "n_seeds": 39,
+  "seed_exposure_ratio": 2.463393426468031,
+  "av_rate": {
+   "seed_share": 0.25,
+   "mean_seen": 105.125,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.32542372881355935
+  },
+  "pav_count": {
+   "seed_share": 0.6666666666666666,
+   "mean_seen": 183.41666666666666,
+   "jaccard_to_av_rate": 0.2631578947368421,
+   "jr_ratio_observed": 0.2440677966101695
+  },
+  "cc_count": {
+   "seed_share": 0.7916666666666666,
+   "mean_seen": 184.41666666666666,
+   "jaccard_to_av_rate": 0.2,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.25,
+   "mean_seen": 105.125,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.32542372881355935
+  },
+  "cc_imputed": {
+   "seed_share": 0.9583333333333334,
+   "mean_seen": 198.16666666666666,
+   "jaccard_to_av_rate": 0.17073170731707318,
+   "jr_ratio_observed": 0.2440677966101695
+  },
+  "pav_ipw": {
+   "seed_share": 0.5,
+   "mean_seen": 157.0,
+   "jaccard_to_av_rate": 0.4117647058823529,
+   "jr_ratio_observed": 0.16271186440677968
+  }
+ },
+ "scoop-hivemind.biodiversity": {
+  "seed_pool": 0.2727272727272727,
+  "n_seeds": 42,
+  "seed_exposure_ratio": 2.1912001842893347,
+  "av_rate": {
+   "seed_share": 0.25806451612903225,
+   "mean_seen": 171.19354838709677,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.5623582766439909
+  },
+  "pav_count": {
+   "seed_share": 0.8064516129032258,
+   "mean_seen": 330.0,
+   "jaccard_to_av_rate": 0.19230769230769232,
+   "jr_ratio_observed": 0.1405895691609977
+  },
+  "cc_count": {
+   "seed_share": 0.8709677419354839,
+   "mean_seen": 288.258064516129,
+   "jaccard_to_av_rate": 0.16981132075471697,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.25806451612903225,
+   "mean_seen": 167.8709677419355,
+   "jaccard_to_av_rate": 0.9375,
+   "jr_ratio_observed": 0.5623582766439909
+  },
+  "cc_imputed": {
+   "seed_share": 0.967741935483871,
+   "mean_seen": 299.83870967741933,
+   "jaccard_to_av_rate": 0.08771929824561403,
+   "jr_ratio_observed": 0.1405895691609977
+  },
+  "pav_ipw": {
+   "seed_share": 0.5483870967741935,
+   "mean_seen": 265.3225806451613,
+   "jaccard_to_av_rate": 0.4090909090909091,
+   "jr_ratio_observed": 0.07029478458049886
+  }
+ },
+ "scoop-hivemind.freshwater": {
+  "seed_pool": 0.9215686274509803,
+  "n_seeds": 47,
+  "seed_exposure_ratio": 2.7865003668378576,
+  "av_rate": {
+   "seed_share": 0.9,
+   "mean_seen": 79.6,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_count": {
+   "seed_share": 1.0,
+   "mean_seen": 89.3,
+   "jaccard_to_av_rate": 0.6666666666666666,
+   "jr_ratio_observed": 0.0
+  },
+  "cc_count": {
+   "seed_share": 1.0,
+   "mean_seen": 90.3,
+   "jaccard_to_av_rate": 0.25,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.9,
+   "mean_seen": 79.6,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.0
+  },
+  "cc_imputed": {
+   "seed_share": 0.7,
+   "mean_seen": 72.4,
+   "jaccard_to_av_rate": 0.25,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_ipw": {
+   "seed_share": 1.0,
+   "mean_seen": 85.3,
+   "jaccard_to_av_rate": 0.6666666666666666,
+   "jr_ratio_observed": 0.0
+  }
+ },
+ "scoop-hivemind.taxes": {
+  "seed_pool": 0.45054945054945056,
+  "n_seeds": 41,
+  "seed_exposure_ratio": 2.0897120387594215,
+  "av_rate": {
+   "seed_share": 0.3333333333333333,
+   "mean_seen": 145.94444444444446,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.552901023890785
+  },
+  "pav_count": {
+   "seed_share": 0.8888888888888888,
+   "mean_seen": 257.3888888888889,
+   "jaccard_to_av_rate": 0.2857142857142857,
+   "jr_ratio_observed": 0.06143344709897611
+  },
+  "cc_count": {
+   "seed_share": 1.0,
+   "mean_seen": 278.6666666666667,
+   "jaccard_to_av_rate": 0.02857142857142857,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.2777777777777778,
+   "mean_seen": 134.33333333333334,
+   "jaccard_to_av_rate": 0.8947368421052632,
+   "jr_ratio_observed": 0.49146757679180886
+  },
+  "cc_imputed": {
+   "seed_share": 0.2222222222222222,
+   "mean_seen": 119.16666666666667,
+   "jaccard_to_av_rate": 0.7142857142857143,
+   "jr_ratio_observed": 0.614334470989761
+  },
+  "pav_ipw": {
+   "seed_share": 0.5555555555555556,
+   "mean_seen": 201.0,
+   "jaccard_to_av_rate": 0.5652173913043478,
+   "jr_ratio_observed": 0.12286689419795221
+  }
+ },
+ "scoop-hivemind.ubi": {
+  "seed_pool": 0.0,
+  "n_seeds": 0,
+  "seed_exposure_ratio": null,
+  "av_rate": {
+   "seed_share": 0.0,
+   "mean_seen": 144.8,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.1149425287356322
+  },
+  "pav_count": {
+   "seed_share": 0.0,
+   "mean_seen": 154.8,
+   "jaccard_to_av_rate": 0.6666666666666666,
+   "jr_ratio_observed": 0.1149425287356322
+  },
+  "cc_count": {
+   "seed_share": 0.0,
+   "mean_seen": 154.6,
+   "jaccard_to_av_rate": 0.1111111111111111,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 134.6,
+   "jaccard_to_av_rate": 0.6666666666666666,
+   "jr_ratio_observed": 0.1149425287356322
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 155.1,
+   "jaccard_to_av_rate": 0.5384615384615384,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_ipw": {
+   "seed_share": 0.0,
+   "mean_seen": 144.8,
+   "jaccard_to_av_rate": 0.6666666666666666,
+   "jr_ratio_observed": 0.1149425287356322
+  }
+ },
+ "ssis.land-bank-farmland.2rumnecbeh.2021-08-01": {
+  "seed_pool": 0.3064516129032258,
+  "n_seeds": 57,
+  "seed_exposure_ratio": 1.6811792871761209,
+  "av_rate": {
+   "seed_share": 0.43243243243243246,
+   "mean_seen": 221.51351351351352,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.20903954802259886
+  },
+  "pav_count": {
+   "seed_share": 0.5135135135135135,
+   "mean_seen": 261.7837837837838,
+   "jaccard_to_av_rate": 0.6086956521739131,
+   "jr_ratio_observed": 0.10451977401129943
+  },
+  "cc_count": {
+   "seed_share": 0.972972972972973,
+   "mean_seen": 259.2162162162162,
+   "jaccard_to_av_rate": 0.1935483870967742,
+   "jr_ratio_observed": 0.0
+  },
+  "pav_imputed": {
+   "seed_share": 0.40540540540540543,
+   "mean_seen": 209.6216216216216,
+   "jaccard_to_av_rate": 0.8974358974358975,
+   "jr_ratio_observed": 0.20903954802259886
+  },
+  "cc_imputed": {
+   "seed_share": 0.05405405405405406,
+   "mean_seen": 93.75675675675676,
+   "jaccard_to_av_rate": 0.1746031746031746,
+   "jr_ratio_observed": 2.5084745762711864
+  },
+  "pav_ipw": {
+   "seed_share": 0.5135135135135135,
+   "mean_seen": 239.24324324324326,
+   "jaccard_to_av_rate": 0.6818181818181818,
+   "jr_ratio_observed": 0.10451977401129943
+  }
+ },
+ "vtaiwan.uberx": {
+  "seed_pool": 0.08080808080808081,
+  "n_seeds": 8,
+  "seed_exposure_ratio": 1.6177693117389536,
+  "av_rate": {
+   "seed_share": 0.05,
+   "mean_seen": 514.75,
+   "jaccard_to_av_rate": 1.0,
+   "jr_ratio_observed": 0.16420361247947454
+  },
+  "pav_count": {
+   "seed_share": 0.25,
+   "mean_seen": 676.1,
+   "jaccard_to_av_rate": 0.3333333333333333,
+   "jr_ratio_observed": 0.11494252873563218
+  },
+  "cc_count": {
+   "seed_share": 0.15,
+   "mean_seen": 586.7,
+   "jaccard_to_av_rate": 0.21212121212121213,
+   "jr_ratio_observed": 0.03284072249589491
+  },
+  "pav_imputed": {
+   "seed_share": 0.05,
+   "mean_seen": 467.7,
+   "jaccard_to_av_rate": 0.8181818181818182,
+   "jr_ratio_observed": 0.1477832512315271
+  },
+  "cc_imputed": {
+   "seed_share": 0.0,
+   "mean_seen": 322.2,
+   "jaccard_to_av_rate": 0.21212121212121213,
+   "jr_ratio_observed": 1.477832512315271
+  },
+  "pav_ipw": {
+   "seed_share": 0.15,
+   "mean_seen": 522.35,
+   "jaccard_to_av_rate": 0.42857142857142855,
+   "jr_ratio_observed": 0.13136288998357964
+  }
+ },
+ "summary_overrep_ratio_median": {
+  "av_rate": 1.0888888888888888,
+  "pav_count": 3.0937499999999996,
+  "cc_count": 3.1935483870967745,
+  "pav_imputed": 0.990909090909091,
+  "cc_imputed": 0.49322493224932246,
+  "pav_ipw": 2.010752688172043
+ },
+ "wilcoxon_pav_count_vs_imputed": 6.103515625e-05,
+ "wilcoxon_cc_count_vs_imputed": 0.01507568359375,
+ "n_conversations_with_seeds": 15
+}

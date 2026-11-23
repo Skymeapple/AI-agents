@@ -115,7 +115,7 @@ def llm_job(args):
 
 # ----------------------------------------------------------------------------- Best-of-N jailbreaking
 def bon_load():
-    d = pd.read_csv(os.path.join(DATA, "bon_jailbreak_text_attempts.csv"), dtype={"first60": str})
+    d = pd.read_csv(os.path.join(DATA, "bon_text_first_success.csv"), dtype={"first60": str})
     return d
 
 

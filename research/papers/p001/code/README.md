@@ -1,4 +1,4 @@
-# Code for "Deceleration Without a Break" (p001)
+# Code for "How Much Slowdown Can a Loss Curve Hide? A Compute-Equivalent Audit Ceiling for Pretraining Scaling Laws" (p001)
 
 Requirements: Python 3, numpy, scipy, matplotlib. No GPU. Revision 1 added Exps. 8-12; a full rerun takes roughly an hour of wall-clock time on 4 cores (see `../results/run_logs/run_all_r1.sh` and `timing.txt`). Exps. 8, 9 and 11 use `multiprocessing`.
 
@@ -29,3 +29,19 @@ Run the scripts in this order from this directory. Each one writes JSON, figures
 `breaktest.py` holds the break test used identically on real and simulated data (rev. 1).
 `common.py` holds the shared loading, fitting (closed-form gradient, BFGS) and frontier code.
 All random seeds are fixed.
+
+## Revision 2 (run after Exps. 1-12; all use 4 cores at most)
+
+| script | what it does | runtime |
+|---|---|---|
+| `horizon.py` | Utilities: frontier, delta-method forecast SD, minimum detectable penalty (Theorem 1), designs. | - |
+| `exp13_chinchilla_horizon.py` | Forecast SD s(C) of the public Chinchilla law (iid/cluster bootstraps, delta method), P_min, horizon. Fig. 8. | ~15 s |
+| `exp14_design_law_and_validation.py` | Design law (delta method) and Monte Carlo validation of the closed-form forecast-residual test (400 reps/cell). Fig. 9. | ~30 s |
+| `exp15_gadre_forecast_test.py` | Gadre et al. (2024) suite: out-of-sample forecasts of 1.4B/6.9B runs, bootstrap/jackknife, correlated-noise anchors. | ~7 min |
+| `exp16_audit_ceiling.py` | Theorem 1 checks, public Chinchilla ceilings and nonlinear certification bounds, design law over K. Fig. 10. | ~1.5 min |
+| `exp17_insweep_design.py` | In-sweep test: power vs number of budgets, fitted-null calibration, Huber threshold. | ~46 min |
+| `exp18_ladder_test.py` | E-free ladder test (Prop. 4): closed form vs Monte Carlo, delta_min, size robustness. | ~1 min |
+| `exp19_gadre_specification.py` | Specification sensitivity of Gadre forecasts in compute-equivalent units. | ~27 min |
+| `exp20_translation_numbers.py` | Small analytic quantities quoted in the text. | <1 s |
+
+Exp. 12 is also run by `../results/run_logs/run_all_r1.sh` from revision 2 on (it was missing). Exp. 1 reproduces byte-identically (checked by the round-2 reviewer).

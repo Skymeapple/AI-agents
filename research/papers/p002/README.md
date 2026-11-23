@@ -1,4 +1,4 @@
-# p002 — How far can a fixed-rollout evaluation see? (test-time-compute extrapolation limits)
+# p002 — Depth is linear, breadth is logarithmic: how far can a test-time-compute evaluation see?
 
 Paper: `paper.md`.  All numbers in the paper come from the scripts below; outputs are in `results/`.
 
@@ -23,6 +23,22 @@ Python 3 with numpy, scipy, pandas, matplotlib, plus `python-sat` (exact SAT lab
     python3 exp_efficiency.py      # coverage split (two-sided vs pass@inf), box vs CLT, bootstrap coverage by M
     python3 exp_llm.py             # Large Language Monkeys (MATH, Pythia) analysis; ~20 min
 
+    # revision r2 (set OMP_NUM_THREADS=1):
+    python3 exp_theorem5.py        # checks of Theorem 5 (Markov constant, extremal pair, explicit converse horizon)
+    python3 exp_horizon_law.py 8 16 32 64; python3 exp_horizon_law.py 128; python3 exp_horizon_law.py merge
+                                   # bracket on k = s*n grid, M up to 1e8 (~1.5 h on a shared 4-core machine)
+    python3 exp_block_law.py       # block-estimator (Theorem 5a) achievable horizons, n <= 1024, M <= 1e12
+    python3 build_bon.py /path/to/best_of_n_jailbreaking   # BoN table from raw logs (see below)
+    python3 exp_realdata.py bon; python3 exp_realdata.py math   # BoN + MATH: box/block intervals, local lower bounds
+    python3 exp_bon_boot.py; python3 exp_llm_boot.py           # prompt/problem-level bootstraps
+    python3 exp_capped_fair.py     # budget-matched capped-design comparison
+    python3 analyze_r2.py          # summaries (r2_summary.json, horizon_law_table.csv, ...) and fig_horizon/fig_bon
+
+BoN data: `data/bon_text_first_success.csv` is built by `build_bon.py` from
+`data/raw_data/best_of_n_jailbreaking/*_text_t1.0_n10000.jsonl` of the same Schaeffer et al. repository (commit cd078ae),
+which redistributes the text-modality runs of Hughes et al. (2024).  `oracle_cheb.py` is an unsuccessful
+re-conditioning attempt for the oracle LPs (reported in the paper); `exp_local.py` provides the local lower bound.
+
 LLM data: `results/llm_monkeys_math_pythia_counts.csv` (7 Pythia models x 128 MATH problems, number of correct samples out
 of 10,000) was extracted from `data/processed_data/large_language_monkeys_original_pass_at_k.parquet` (rows with
 Scaling Parameter == 1) of github.com/RylanSchaeffer/KoyejoLab-Large-How-Do-Language-Monkey-Power-Get-Their-Power
@@ -37,3 +53,4 @@ the run matrices themselves are stored in `results/walksat_*.npz`.
   estimator (`LinearCertificate`), simultaneous Clopper-Pearson box interval (`box_interval`), beta-binomial and
   power-law baselines.  (`split_bounds*` are exploratory sample-splitting variants that were inferior and are not used in the paper.)
 - `code/walksat.c` — minimal WalkSAT/SKC generator.
+- `code/block.py` — the block estimator of Theorem 5(a) (design, rigorous bias, exact range, intervals).

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Reproduce every number and figure in paper.md (~60 min on 4 CPU cores; 08 needs PyTorch).
+# Reproduce every number and figure in paper.md (~3 h on 4 CPU cores; 08 and 10 need PyTorch, 12 needs CVXPY + Clarabel).
 set -euo pipefail
 cd "$(dirname "$0")"
 [ -f ../data/runs_th11.jsonl ] || bash fetch_data.sh
@@ -14,3 +14,9 @@ python3 08_crossed_model.py            # task-validity audit + crossed agent x t
 python3 09_misspecification_sim.py     # misspecification simulation, exact pooled matching, mechanical-corr check
 python3 10_passk_baselines.py          # held-out pass@m vs beta-binomial/IRT-style baselines; H-brackets
 python3 11_profile_ci.py               # profile-likelihood intervals for per-agent k
+python3 12_duality.py 2                # replicate-length duality: NPMLE k, moment k_j, short->long forecasts, LR bounds
+python3 13_hazard_map.py 2             # piecewise hazard-length map; within-family elasticity
+python3 15_forecast_bootstrap.py 2     # family-cluster bootstrap of forecast errors
+python3 17_forecast_subsets.py         # forecast errors without never-solved / estimated-length targets
+python3 16_npmle_sim.py 2              # NPMLE estimator and forecast test under known truths
+python3 14_duality_figures.py          # fig_duality.png

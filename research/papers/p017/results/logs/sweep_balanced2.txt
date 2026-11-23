@@ -1,0 +1,4 @@
+balanced2 0 0.99 1.0 norm obs=0.732 lin=0.167(k2) mlp=0.167(k2) delta8=1.17e-06 {'none': 0.43, 'probe_subspace': 0.53, 'random_subspace': 0.47, 'full_swap': 0.57, '_rank': 24.0} 272s
+balanced2 0 0.99 0.1 radius obs=0.694 lin=0.207(k3) mlp=0.569(k5) delta8=1.36 {'none': 0.43, 'probe_subspace': 0.56, 'random_subspace': 0.46, 'full_swap': 0.57, '_rank': 24.0} 281s
+balanced2 0 0.99 1.0 radius obs=0.754 lin=0.312(k4) mlp=0.348(k4) delta8=0.00553 {'none': 0.4, 'probe_subspace': 0.52, 'random_subspace': 0.46, 'full_swap': 0.59, '_rank': 24.0} 267s
+balanced2 0 0.99 0.1 orth obs=0.677 lin=0.164(k2) mlp=0.593(k5) delta8=1.82 {'none': 0.44, 'probe_subspace': 0.57, 'random_subspace': 0.46, 'full_swap': 0.57, '_rank': 24.0} 213s

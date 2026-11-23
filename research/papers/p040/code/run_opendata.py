@@ -11,7 +11,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OD = os.path.join(HERE, '..', 'data', 'openData')
 RES = os.path.join(HERE, '..', 'results')
 B = int(os.environ.get('B', 20))
-MAXN = int(os.environ.get('MAXN', 4000))
+MAXN = int(os.environ.get('MAXN', 6000))
+os.makedirs(os.path.join(RES, 'opendata_inclusion'), exist_ok=True)
 rng = np.random.default_rng(7)
 rows = []
 t0 = time.time()
@@ -33,7 +34,8 @@ for d in sorted(glob.glob(os.path.join(OD, '*'))):
         Vb = V[rng.integers(0, n, n)]
         cache = {}
         for i, dd in enumerate(D):
-            I[i, b, run_design(Vb, dd, k, cache, seed=b)] = 1
+            I[i, b, run_design(Vb, dd, k, cache, seed=0)] = 1   # k-means seed decoupled from b
+    np.save(os.path.join(RES, 'opendata_inclusion', name + '.npy'), I)
     dec_full, dec_cons = decompose(I), decompose(I[cons])
     sw_full, sw_cons = swap_distances(I), swap_distances(I[cons])
     auth = cm['author-id'].to_numpy()

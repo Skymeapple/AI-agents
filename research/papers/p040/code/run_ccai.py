@@ -15,6 +15,7 @@ os.makedirs(RES, exist_ok=True)
 K_SEATS = 58          # size of Anthropic's 2023 constitution, the stated size target of CCAI
 B = int(os.environ.get('B', 40))
 SEED = 20261122
+KSEED = 0   # k-means seed held fixed across bootstrap draws (decoupled from b)
 t0 = time.time()
 out = {}
 
@@ -61,17 +62,26 @@ from sklearn.cluster import KMeans
 pid = pd.read_csv(os.path.join(DATA, 'clean_votes.csv'))['participant'].to_numpy()
 out['clean_votes_rows_sorted_by_participant'] = bool((np.diff(pid) > 0).all())
 srt = np.argsort(pid, kind='stable')
-aris_pos, aris_cor = [], []
-for rs in range(5):
-    Xs = np.nan_to_num(V[srt], nan=0.0)
-    coords = PCA(2).fit(Xs.T).components_.T
+# Deterministic PCA (full SVD; the sklearn 'auto' solver picks an unseeded randomized
+# SVD on this matrix, which made round-1 numbers non-reproducible). Only k-means
+# initialisation remains random; we report the distribution over NSEED seeds.
+NSEED = int(os.environ.get('NSEED', 50))
+Xs = np.nan_to_num(V[srt], nan=0.0)
+coords = PCA(2, svd_solver='full').fit(Xs.T).components_.T
+aris_pos, aris_cor, replica_corr = [], [], []
+for rs in range(NSEED):
     k100 = KMeans(100, random_state=rs, n_init=10).fit(coords)
     lab2 = KMeans(2, random_state=rs, n_init=10).fit(k100.cluster_centers_).labels_[k100.labels_]
     corr = np.empty_like(lab2); corr[srt] = lab2
     aris_pos.append(adjusted_rand_score(released_groups, lab2))
     aris_cor.append(adjusted_rand_score(released_groups, corr))
-    if rs == 0:
-        corrected_groups = corr
+    # orient so that label 0 is the larger group (as in the release)
+    if (corr == 0).sum() < (corr == 1).sum():
+        corr = 1 - corr
+    replica_corr.append(corr)
+corrected_groups = replica_corr[0]
+np.save(os.path.join(RES, 'ccai_realigned_groups.npy'), corrected_groups)
+out['n_kmeans_seeds'] = NSEED
 out['ARI_released_vs_positional_replica'] = [float(x) for x in aris_pos]
 out['ARI_released_vs_correctly_aligned_replica'] = [float(x) for x in aris_cor]
 def grp_agree(g):
@@ -129,6 +139,20 @@ ex = [dict(id=cm['comment-id'][i], text=cm['comment-body'][i],
            agree_corrected=[float(x) for x in group_scores(V, corrected_groups, 'seen')[:, i]])
       for i in sorted(ref - cor)]
 pd.DataFrame(ex).to_csv(os.path.join(RES, 'ccai_misalignment_examples.csv'), index=False)
+# distribution of the re-alignment consequences over k-means seeds
+per_seed = []
+overall_set = overall072
+for cg in replica_corr:
+    cs_ = set(np.where(group_scores(V, cg, 'seen').min(0) > 0.72)[0])
+    Wc = rule_consmin(V, cg, 'seen', K_SEATS)
+    per_seed.append(dict(size=len(cs_), drop=len(ref - cs_), enter=len(cs_ - ref), union=len(ref | cs_),
+                         changes=len(ref ^ cs_), jac=len(ref & cs_) / len(ref | cs_),
+                         top58_jac=jaccard(W_rel, Wc), vs_overall=len(cs_ & overall_set) / len(cs_ | overall_set),
+                         sep=sep(cg)))
+psd = pd.DataFrame(per_seed)
+psd.to_csv(os.path.join(RES, 'ccai_realignment_by_seed.csv'), index=False)
+out['realignment_by_seed_summary'] = {c: dict(min=float(psd[c].min()), median=float(psd[c].median()),
+                                               max=float(psd[c].max())) for c in psd.columns}
 out['tau072_reference_size'] = len(ref)
 out['tau072_union_size'] = len(set.union(*sets72.values()))
 out['tau072_intersection_size'] = len(set.intersection(*sets72.values()))
@@ -201,6 +225,15 @@ out['prop3_uncovered_after_core'] = int(U)
 out['prop3_bound'] = float((K_SEATS - k0 + 1) * n / K_SEATS)
 out['prop3_condition_holds'] = bool(U < (K_SEATS - k0 + 1) * n / K_SEATS)
 
+# algorithmic noise floor: same data, same design, different k-means seeds
+floor_d = []
+for i in cons_idx:
+    Ws = []
+    for sd in range(5):
+        Ws.append(run_design(V, D[i], K_SEATS, {}, seed=sd))
+    floor_d.append(np.mean([1 - jaccard(Ws[a], Ws[b]) for a in range(5) for b in range(a + 1, 5)]))
+out['kmeans_seed_noise_floor_consensus'] = dict(mean=float(np.mean(floor_d)), max=float(np.max(floor_d)))
+
 # ---------------------------------------------------------------- bootstrap x multiverse
 rng = np.random.default_rng(SEED)
 
@@ -210,7 +243,7 @@ def boot_inclusion(Vsub_fn, designs, Bn, kseats):
         Vb = Vsub_fn(b)
         cache = {}
         for i, d in enumerate(designs):
-            W = run_design(Vb, d, kseats, cache, seed=b)
+            W = run_design(Vb, d, kseats, cache, seed=KSEED)
             I[i, b, W] = 1
     return I
 

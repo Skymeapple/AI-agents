@@ -87,3 +87,47 @@ class TorusWorld:
         for j in range(r):
             cells[:, j + 1] = self.next_cell[cells[:, j], moves_future[:, j]]
         return self.colors[cells]
+
+
+def marginal_from_start(world, steps, start=0):
+    """Exact distribution of pos_steps for a uniform random walk started at `start`."""
+    p = np.zeros(world.S)
+    p[start] = 1.0
+    for _ in range(steps):
+        q = np.zeros(world.S)
+        for a in range(4):
+            np.add.at(q, world.next_cell[:, a], p / 4)
+        p = q
+    return p
+
+
+def suffix_bayes_exact(world, moves, obs, t, k, start=0):
+    """Exact posterior P(pos_t | obs_{t-k}, m_{t-k+1}, ..., obs_{t-1}, m_t) under the TRUE
+    data distribution (known start cell, uniform random moves): the prior at time t-k is the
+    exact finite-time marginal of the walk, not the stationary distribution.  At k = t the
+    window is the full history and the posterior is a point mass."""
+    N = moves.shape[0]
+    prior = marginal_from_start(world, t - k, start)
+    p = np.tile(prior, (N, 1))
+    if k == 0:
+        return p
+    p = p * (world.colors[None, :] == obs[:, t - k][:, None])
+    for j in range(t - k + 1, t + 1):
+        a = moves[:, j - 1]
+        q = np.zeros_like(p)
+        dest = world.next_cell[:, a].T
+        np.put_along_axis(q, dest, p, axis=1)
+        p = q
+        if j < t:
+            p = p * (world.colors[None, :] == obs[:, j][:, None])
+    return p / p.sum(1, keepdims=True)
+
+
+def exact_curve(world, mv, ob, ts, kmax=24):
+    """Acc*_k averaged over ts, with the exact finite-time prior (Definition 1 of the paper).
+    For k > t the window is truncated at the start of the sequence (full history)."""
+    out = []
+    for k in range(kmax + 1):
+        out.append(float(np.mean([suffix_bayes_exact(world, mv, ob, t, min(k, t)).max(1).mean()
+                                  for t in ts])))
+    return out

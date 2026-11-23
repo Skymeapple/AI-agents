@@ -1,21 +1,22 @@
-"""Revision r2 (reviewer W4): problem-level bootstrap for the sign of the beta-binomial and power-law forecast
-error at k = 10^4 from n = 16 on the Large Language Monkeys MATH/Pythia data.
-For each bootstrap replicate we resample the 128 problems with replacement (same resample for the n = 16
-counts and for the 10,000-sample truth), refit on each of the first 3 counterfactual subsets, and record the
-mean error.  Output: results/llm_boot.csv (percentile 95% intervals per model)."""
+"""Revision r2 (reviewer W4): problem-level bootstrap for the sign of the beta-binomial (BB) and power-law forecast
+errors at k = 10^4 from n = 16 on the Large Language Monkeys MATH/Pythia data.
+Point estimate = mean error over the 10 counterfactual subsets of exp_llm.py (same BB fitter, exp_baselines.fit).
+Each bootstrap replicate resamples the 128 problems with replacement (the same resample for the n = 16 counts and for
+the 10,000-sample truth) and refits on all 10 subsets.  Output: results/llm_boot.csv (percentile 95% intervals)."""
 import os, sys
 import numpy as np, pandas as pd
 from multiprocessing import Pool
 sys.path.insert(0, os.path.dirname(__file__))
-from ttc import betabinom_fit, betabinom_passk, powerlaw_passk
+from ttc import powerlaw_passk
+from exp_baselines import fit, predict
 from exp_llm import subsets, unbiased, N
 RES = os.path.join(os.path.dirname(__file__), "..", "results")
-NB, NSUBB, K, n = 200, 3, 10000, 16
+NB, K, n = 200, 10000, 16
 
 
 def job(args):
     m, c, mi = args
-    subs = subsets(c, n, 1000 * mi + n)[:NSUBB]
+    subs = subsets(c, n, 1000 * mi + n)
     rng = np.random.default_rng(7 + mi)
     errs = []
     for b in range(NB + 1):
@@ -23,12 +24,13 @@ def job(args):
         tr = unbiased(c[idx], N, K)
         eb, ep = [], []
         for X in subs:
-            a_, b_ = betabinom_fit(X[idx], n, init=(0.3, 2.0) if b > 0 else None)
-            eb.append(betabinom_passk(a_, b_, K) - tr)
+            th, _, _ = fit(X[idx], np.full(len(idx), n), 1, False, np.random.default_rng(b))
+            eb.append(float(predict(th, 1, False, K)) - tr)
             ep.append(float(powerlaw_passk(X[idx], n, [K])[0]) - tr)
         errs.append((b, np.mean(eb), np.mean(ep)))
     e = np.array(errs)
     return dict(model=m, err_BB=e[0, 1], BB_lo=np.percentile(e[1:, 1], 2.5), BB_hi=np.percentile(e[1:, 1], 97.5),
+                frac_BB_pos=float(np.mean(e[1:, 1] > 0)),
                 err_PL=e[0, 2], PL_lo=np.percentile(e[1:, 2], 2.5), PL_hi=np.percentile(e[1:, 2], 97.5))
 
 

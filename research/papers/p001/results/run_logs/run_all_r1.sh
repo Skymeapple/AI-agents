@@ -7,4 +7,5 @@ chainA() { for s in exp2_break_test_real exp3_simulation_power exp4_data_wall ex
 chainB() { for s in exp9_real_inference exp9b_two_break fig7_real_profile exp8_detectability_realistic exp10_wall_generalised exp11_competing_mechanisms; do
   t0=$(date +%s); python3 $s.py > ../results/run_logs/$s.out 2>&1; echo "$s exit=$? $(( $(date +%s)-t0 ))s" >> ../results/run_logs/timing.txt; done; }
 chainA & chainB & wait
+python3 exp12_noise_budget.py > ../results/run_logs/exp12_noise_budget.out 2>&1
 echo ALLDONE

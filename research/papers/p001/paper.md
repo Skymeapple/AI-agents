@@ -1,403 +1,413 @@
-# Is Pretraining Scaling Slowing Down? Mechanical Deceleration, Noise-Limited Detectability, and How to Tell a Data Wall from Other Breaks
+# How Much Slowdown Can a Loss Curve Hide? A Compute-Equivalent Audit Ceiling for Pretraining Scaling Laws
 
 **Target venue:** NeurIPS (main track). Fallback: TMLR.
 
-**Revision 1.** This version answers the round-1 review. The main changes are these. The real-data analysis now uses a wider breakpoint grid, calibrated tests and cluster bootstraps, and the earlier claim of "no slowdown, $\delta\le0.02$ up to $10^{22}$ FLOP" is withdrawn. The detectability study now uses the exact procedure applied to the real data, at per-run noise from $10^{-4}$ to $7.5\times10^{-3}$, and the claim that "loss curves cannot settle the debate" is withdrawn. The data-wall constants are no longer called universal: we generalise self-similarity to $\alpha\neq\beta$ and recompute the milestones under the 2026 functional forms of Lovelace et al. We also model two competing break mechanisms. Point-by-point changes are listed in `reviews/response_r1.md`.
+**Revision 2.** This version answers the round-2 review (`reviews/review_r2.md`; point-by-point in `reviews/response_r2.md`). The paper is re-scoped. Its central object is now the *compute-equivalent resolution* of a loss-based scaling claim. That gives a closed-form theorem (Theorem 1), which we validate by Monte Carlo and apply to two public run suites. It also gives a design law for sweeps, empirical anchors for the correlated-noise level, and a second, $E$-free test (Proposition 4) that runs on frontier-scale model ladders. The round-1 material (the calibrated Chinchilla break analysis and the data-wall audit) is shortened and moved after the new results.
 
 ---
 
 ## Abstract
 
-People often ask whether the scaling laws for pretraining are "slowing down", but the question is usually left undefined. We make it precise, test it on public data, and ask what kind of evidence could settle it.
+Whether pretraining scaling is "slowing down" is usually argued from loss curves: a frontier model's loss is compared with a law fitted to smaller runs. We ask how large a slowdown such a comparison can detect, and give a closed-form answer.
 
-1. **Definitions (standard facts, collected).** Under a saturating law $L^*(C)=E+GC^{-\gamma}$, the raw log–log slope falls as $\gamma(1-E/L^*)$ and each decade of compute buys $10^{-\gamma}$ times the loss reduction of the previous one. These are textbook consequences of the irreducible term $E$, and we use them only to fix terms. A *genuine* slowdown is a fall in the exponent of the reducible loss, $\delta>0$ in the nested model $L=E+(AN^{-\alpha}+BD^{-\beta})\max(1,C/C_b)^{\delta}$.
-2. **The Chinchilla runs reject the constant-exponent law, but not in the way a slowdown would.** We use Epoch AI's reconstruction of 240 Hoffmann et al. runs, whose support is effectively $10^{18.8}$–$10^{21}$ FLOP (only 23 runs at or above $10^{21}$ and 4 at or above $3\times10^{21}$). A profiled break test calibrated by parametric and wild-cluster bootstraps rejects $\delta=0$ ($p\le0.003$, the smallest attainable with 300 replicates). The departure is non-monotone. The fitted $\hat\delta$ is positive for breakpoints below about $5\times10^{19}$ FLOP and negative above about $10^{20}$. A two-break fit gives local exponents of 0.187, 0.166 and 0.175 over the three segments. For the top segment ($\ge2.8\times10^{20}$ FLOP, 72 runs), the change in exponent has a 95% cluster-bootstrap interval of $[-0.075,0.015]$. The data therefore show a misspecified curve, not a slowdown that grows with scale. They cannot bound a top-end slowdown more tightly than about 8% of $\gamma=0.178$.
-3. **Whether loss curves can detect a slowdown at frontier scale depends on the noise, mostly on the correlated part.** We simulate the exact real-data procedure (Huber loss, profiled breakpoint, bootstrap-calibrated sup statistic) on 240 runs spread over 3 decades. With independent per-run noise $\sigma\le3\times10^{-4}$ in log-loss, a break of $\delta=0.02$ (11% of $\gamma$) is detected with power 1.00 even for a window ending at $10^{28}$ FLOP. For that window the power falls to 0.22 at $\sigma=10^{-3}$ and to 0.09 at $\sigma=2.5\times10^{-3}$. A shared offset of only $10^{-3}$ per compute budget, for example from re-tuning the recipe, cuts the power at $\delta=0.02$ to 0.10–0.13, even when the per-run noise is $10^{-4}$. Labs with careful, matched sweeps can therefore detect small breaks in loss; public, heterogeneous loss data cannot. The reducible fraction $\rho=(L^*-E)/L^*$ falls from 0.15 at $10^{22}$ to 0.015 at $10^{28}$ FLOP, which is why the noise requirement tightens with scale.
-4. **"Where is the next growth point?" depends on which break occurs, and a cheap matched experiment can tell.** We compare three break mechanisms with the same onset: a cap on unique data (Muennighoff et al., 2023), a falling quality of the marginal token, and a break in the exponent that has nothing to do with data. A frontier loss-curve test detects the non-data break readily, the data cap only at low noise, and the quality decline poorly. A rejection does not say which mechanism caused it. Matched data-doubling runs can tell the three apart. Their loss gap grows without bound for the cap, saturates near $5\times10^{-4}$ for quality decline, and is exactly zero for the non-data break. The compute-equivalent value of doubling the data lever is likewise unbounded, about $1.5\times$, or $1\times$.
-5. **The data wall is self-similar, but its constants depend on the functional form.** Under the Muennighoff et al. law, every milestone scales as $U^{(\alpha+\beta)/\alpha}$ in compute, where $U$ is the number of unique tokens. This holds for $\alpha\neq\beta$ once the excess-parameter threshold is defined consistently (Prop. 3′). With the Muennighoff et al. constants, compute efficiency falls to 50% at about $70$–$75\times$ the onset of repetition. Under the 2026 additive-penalty laws of Lovelace et al., which fit repeated-data runs better in their range, the same milestone lies at $28$–$33\times$ for $U\ge10^{10}$. Their effective-data refit puts it at $1{,}000$–$7{,}800\times$. The wall's timing is therefore model-dependent by more than two orders of magnitude in compute.
+**Theory.** Express any deviation from the law (a data wall, falling data quality, an exponent break, a worse recipe) as a compute penalty $P$: the run at compute $C$ reaches the loss the law assigns to $C/P$. Suppose a loss comparison has total log-scale uncertainty $s$, made up of forecast and measurement error. **Theorem 1** shows that the effective compute it can certify is $C_{\rm cert}(C)=\big(G/((1+k)R(C)+kE)\big)^{1/\gamma}$, with $k=e^{zs}-1$. This is strictly bounded by an *audit ceiling* $C^\dagger=(G/kE)^{1/\gamma}$, the compute at which the reducible loss equals $kE$. Beyond $C^\dagger$, the undetectable penalty grows in proportion to $C$. For forecast-based comparisons, $s$ cannot fall below the sweep's standard error of $\ln\hat E$, however precisely the frontier run is measured. The ceiling moves by a factor $10^{1/\gamma}$ (about $4\times10^5$ at the Chinchilla exponent) for each 10× change in $s$. Monte Carlo replications confirm the closed form wherever the noise is independent, and they show where it fails, namely when the correlated noise is estimated from few budgets.
 
-We state five revised, falsifiable predictions and a small-scale protocol. All numbers are computed by our CPU code from public data or simulation, or quoted from cited sources.
+**Public data.**
+- For the law fitted to the 240 public Chinchilla runs, $\mathrm{sd}(\ln\hat E)$ is 0.014–0.020 depending on how the bootstrap resamples. The resulting audit ceiling at 50% power is $1.3\times10^{26}$–$7.6\times10^{26}$ FLOP, which spans the largest known training runs.
+- Suppose a $5\times10^{26}$ FLOP run lands *exactly* on this law's forecast. A nonparametric bootstrap then certifies only $1.3\times10^{25}$–$3.8\times10^{25}$ FLOP of effective compute at 95% confidence, so a 13–40× compute shortfall would go unseen.
+- On a second public suite (Gadre et al., 2024), Chinchilla-form fits to runs of at most 412M parameters miss the held-out 6.9B runs by up to 8% in loss. That error amounts to compute-equivalent factors of 0.47–4.5 with the default fit. Across five reasonable fitting choices, the factors run from "below the fitted irreducible loss" up to 6.3.
+
+**Design and an alternative test.**
+- In a sweep, $\mathrm{sd}(\ln\hat E)$ scales as $\sigma_b^{1.00}K^{-0.38}$, where $\sigma_b$ is the per-budget correlated noise and $K$ the number of budgets. The *reach* of the ceiling beyond the top of the sweep is exactly $\gamma^{-1}\log_{10}(R(C_{\rm hi})/kE)$ decades.
+- Public anchors put $\sigma_b$ between about $4\times10^{-4}$ (Chinchilla, between compute bins) and $2$–$8\times10^{-3}$ (Gadre et al., re-tuning warm-up or head count).
+- At a fixed 240 runs, spreading them over 48 budgets rather than 12 raises the power of the in-sweep break test at $\delta=0.02$ from 0.09 to 0.43.
+- Proposition 4 gives an $E$-free alternative. Three runs at $C_0$, $10C_0$ and $100C_0$ share one recipe. The test is the gap statistic $g_2-10^{-\hat\gamma}g_1$, which is invariant to $E$ and to any constant penalty. At the top of a $5\times10^{24}$–$5\times10^{26}$ ladder it resolves an exponent loss of $\delta=0.017$ (50% power) when the per-run noise is $10^{-4}$. It resolves only $\delta=0.043$ at $3\times10^{-4}$ and nothing below $\gamma/2$ at $10^{-3}$.
+
+**Answer to the research question.** Public loss data cannot answer whether pretraining scaling has slowed at the frontier. This is not because the data show no slowdown. It is because, against the best public law, slowdowns worth tens of times in compute are invisible at $5\times10^{26}$ FLOP. Matched contrasts that cancel $E$ (A/B runs at one scale, or one-recipe ladders) avoid the ceiling, but they need per-run noise near $10^{-4}$. The same arithmetic governs the "next growth point": the levers people debate are compute multipliers, and a 2× lever moves frontier log-loss by only 0.0033. The growth points can therefore be measured only by matched contrasts, not by comparing frontier loss with a law. All numbers come from our CPU code or from cited sources.
 
 ## 中文摘要
 
-"预训练扩展定律是否正在放缓"常被提出，却很少被精确定义。本文给出定义、在公开数据上检验，并分析什么样的证据才能回答这一问题。（1）在饱和幂律 $L^*=E+GC^{-\gamma}$ 下，原始对数斜率按 $\gamma(1-E/L^*)$ 下降、每个数量级的收益按 $10^{-\gamma}$ 递减——这是不可约项的教科书推论，我们只用它统一术语；真正的放缓定义为可约损失指数下降，即嵌套模型中 $\delta>0$。（2）在 Epoch AI 重建的 240 个 Chinchilla 训练点上（有效覆盖约 $10^{18.8}$–$10^{21}$ FLOP，$\ge10^{21}$ 仅 23 个点），经参数自助法与簇野自助法校准的断点检验拒绝了"指数恒定"（$p\le0.003$），但偏离是非单调的：两断点拟合的三段局部指数为 0.187、0.166、0.175；高算力段（$\ge2.8\times10^{20}$）指数变化的 95% 簇自助区间为 $[-0.075,0.015]$。因此数据显示的是函数形式的误设，而不是随规模加剧的放缓；我们撤回了初稿中"$10^{22}$ FLOP 以内无放缓、$\delta\le0.02$"的说法。（3）用与真实数据完全相同的检验流程做模拟：若每次训练的独立噪声 $\sigma\le3\times10^{-4}$，即使窗口止于 $10^{28}$ FLOP，也能以 1.00 的功效检出 $\delta=0.02$；$\sigma=10^{-3}$ 时降至 0.22；而每个算力预算仅 $10^{-3}$ 的共享偏移（如重新调参）就把功效压到 0.10–0.13。结论是：精心匹配的实验室扫描可以从损失曲线中检出小的断点，异质的公开数据则不能；我们撤回了"损失曲线无法回答放缓之争"的说法。（4）"下一个增长点"取决于发生哪种断点：唯一数据上限、边际数据质量下降、与数据无关的指数断点三者在前沿损失曲线上难以区分，但配对的"数据翻倍"实验可以区分——三者的损失差分别无界增长、饱和于约 $5\times10^{-4}$、恒为零。（5）数据墙在 $C\propto U^{(\alpha+\beta)/\alpha}$ 意义下自相似（推广到 $\alpha\neq\beta$），但里程碑常数依赖函数形式：Muennighoff 形式下 50% 算力效率点约在 70–75 倍墙点算力处，Lovelace 等（2026）的加性惩罚形式下为 28–33 倍，其有效数据重拟合下为 1000–7800 倍。所有数字均来自本文 CPU 代码或所引文献。
+"预训练扩展是否在放缓"通常靠损失曲线来论证：把前沿模型的损失与小规模拟合的定律作比较。本文问：这样的比较究竟能检测多大的放缓？我们给出闭式答案。**理论**：把任何偏离（数据墙、数据质量下降、指数断点、配方变差）统一表示为"算力惩罚" $P$，即在算力 $C$ 下只达到定律在 $C/P$ 处的损失。若一次损失比较的总对数不确定度为 $s$（预测误差加测量误差），定理 1 给出其可认证的有效算力 $C_{\rm cert}(C)=\big(G/((1+k)R(C)+kE)\big)^{1/\gamma}$（$k=e^{zs}-1$），它严格小于"审计上限" $C^\dagger=(G/kE)^{1/\gamma}$，即可约损失降到 $kE$ 时的算力。超过 $C^\dagger$ 后，不可检测的惩罚与 $C$ 成正比增长。对基于预测的比较，$s$ 不可能低于扫描实验对 $\ln\hat E$ 的标准误，前沿测量再精确也无济于事；$s$ 每变化 10 倍，上限移动 $10^{1/\gamma}$ 倍（Chinchilla 指数下约 $4\times10^5$ 倍）。蒙特卡洛验证了独立噪声下的闭式结果，并指出了它失效的情形（只用少数预算估计相关噪声时）。**公开数据**：对 240 个公开 Chinchilla 训练点拟合的定律，$\mathrm{sd}(\ln\hat E)=0.014$–$0.020$（取决于自助法的重抽样方式），50% 功效的审计上限为 $1.3\times10^{26}$–$7.6\times10^{26}$ FLOP，恰好覆盖当前最大的训练规模。一个 $5\times10^{26}$ FLOP 的训练即使损失恰好落在预测值上，非参数自助法在 95% 置信度下也只能认证 $1.3\times10^{25}$–$3.8\times10^{25}$ FLOP 的有效算力，即 13–40 倍的算力亏损都看不出来。在第二个公开实验集（Gadre 等，2024）上，用不超过 412M 参数的训练点拟合 Chinchilla 形式，对留出的 6.9B 模型损失的预测误差最高达 8%，默认拟合下相当于 0.47–4.5 倍的算力当量；在五种合理的拟合选择下，从"低于拟合的不可约损失"一直到 6.3 倍。**设计与替代检验**：扫描实验中 $\mathrm{sd}(\ln\hat E)\propto\sigma_b^{1.00}K^{-0.38}$（$\sigma_b$ 为每个预算的相关噪声，$K$ 为预算数）；上限超出扫描顶端的"射程"恰为 $\gamma^{-1}\log_{10}(R(C_{\rm hi})/kE)$ 个数量级。公开数据给出的 $\sigma_b$ 锚点约为 $4\times10^{-4}$（Chinchilla 计算区间之间）到 $2$–$8\times10^{-3}$（Gadre 等，重调 warm-up 或注意力头数）。在固定 240 个训练点时，把预算数从 12 增加到 48，可把扫描内断点检验对 $\delta=0.02$ 的功效从 0.09 提高到 0.43。命题 4 给出与 $E$ 无关的"阶梯检验"：用同一配方在 $C_0$、$10C_0$、$100C_0$ 训练三个模型，统计量 $g_2-10^{-\hat\gamma}g_1$ 对 $E$ 和任何常数惩罚不变。在 $5\times10^{24}$–$5\times10^{26}$ 的阶梯顶端，单次训练噪声为 $10^{-4}$ 时可分辨（50% 功效）$\delta=0.017$ 的指数损失；噪声为 $3\times10^{-4}$ 时只能分辨 $\delta=0.043$；噪声为 $10^{-3}$ 时在 $\gamma/2$ 以下什么也分辨不了。**对研究问题的回答**：公开损失数据无法回答前沿的预训练扩展是否放缓。原因不是数据显示没有放缓，而是相对于最好的公开定律，价值数十倍算力的放缓在 $5\times10^{26}$ FLOP 处根本不可见。抵消 $E$ 的配对对比（同规模 A/B 实验或同配方阶梯）可以绕过这一上限，但需要约 $10^{-4}$ 的单次训练噪声。同样的算术也决定了"下一个增长点"：人们争论的各种杠杆都是算力乘数，而一个 2 倍的杠杆只让前沿对数损失变化 0.0033。因此增长点只能靠配对对比来测量，而不能靠把前沿损失与定律比较。文中所有数字均来自本文 CPU 代码或所引文献。
 
 ---
 
 ## 1 Introduction
 
-Since 2024, practitioners and commentators have repeatedly claimed that "pretraining scaling is hitting a wall". The claims rest on a mix of benchmark plateaus, reports of disappointing large runs, and the observation that labs are moving compute into reinforcement learning and inference-time scaling (Snell et al., 2024; DeepSeek-AI, 2025). The empirical literature describes pretraining loss with saturating power laws whose exponents do not change (Kaplan et al., 2020; Hoffmann et al., 2022; Besiroglu et al., 2024; Porian et al., 2024). The two views are hard to reconcile, partly because "slowing down" is rarely defined and partly because it is unclear what data could tell them apart.
+Since 2024, claims that "pretraining scaling is hitting a wall" have rested on benchmark plateaus, reports of disappointing large runs, and the shift of compute toward reinforcement learning and inference-time scaling (Snell et al., 2024; DeepSeek-AI, 2025). The measurement literature, meanwhile, describes pretraining loss with saturating power laws whose exponents do not change (Kaplan et al., 2020; Hoffmann et al., 2022; Besiroglu et al., 2024; Porian et al., 2024). The usual way to settle the disagreement is a forecast check: fit a law on small runs, extrapolate, and ask whether the big run lands on the curve (for example Gadre et al., 2024). A run that lands on the curve is read as "scaling continues", and one that lands above it as "scaling is slowing".
 
-This paper is a measurement paper. Its theory is elementary and we say so. Its contribution is to make the slowdown question testable, to show what the best public data do and do not support, to quantify what kind of loss data could answer the question at frontier scale, and to show which experiment would identify the next growth lever. We ask four questions:
+This paper asks a simple question about that check: **how large a slowdown can it see?** The answer is less reassuring than the practice suggests, and it has a clean form.
 
-- **(Q1) Definition.** What is a genuine slowdown, as opposed to the diminishing returns built into a saturating law?
-- **(Q2) Evidence.** What does the best public suite of runs say about genuine deceleration, once the test is calibrated and the clustered structure of the data is respected?
-- **(Q3) Detectability.** Under which noise conditions can a frontier loss curve detect a break of a given size?
-- **(Q4) Mechanism.** If a break occurs, how can we tell whether data, data quality or something else causes it? And what does each mechanism imply about the next lever?
+Near the irreducible loss $E$, a large loss in *compute* produces only a tiny change in *loss*. At the Chinchilla exponent, a run that wastes half its compute at $5\times10^{26}$ FLOP has a log-loss 0.0033 higher than forecast **[computed, Exp. 20]**. The forecast, however, has an uncertainty of its own, and as $C\to\infty$ that uncertainty tends to the uncertainty of $\ln\hat E$. Neither more frontier compute nor more precise frontier evaluation removes it. The two facts combine into a hard ceiling on the effective compute that any forecast check can certify.
 
 **Contributions.**
 
-1. **A testable definition** (§3). We collect the standard facts about saturating laws (Prop. 1, Lemma 1) only to separate *mechanical* deceleration from a *genuine* fall in the reducible-loss exponent, $\delta>0$ in the nested model (2). Prop. 2 (signal shrinkage) is a first-order expansion that explains why detection becomes harder near the irreducible loss.
-2. **A calibrated re-analysis of the Chinchilla runs** (§5.2). We use a profiled break test calibrated by parametric and wild-cluster bootstraps, cluster bootstraps over compute bins and size groups, a two-break model and a noise decomposition. The constant-exponent law is rejected, but the departure is non-monotone and located mainly at the low-compute end. The data support neither a slowdown at the top of their range nor a tight bound against one. This corrects our earlier claim.
-3. **A noise-resolved detectability map** (§5.3). We give the size and power of the exact real-data procedure across per-run noise from $10^{-4}$ to $7.5\times10^{-3}$, windows ending from $10^{22}$ to $10^{28}$ FLOP, correlated per-budget noise and a small design, all with Monte Carlo intervals. The finding is conditional: independent evaluation noise at frontier levels is not the binding constraint, but correlated per-budget noise is.
-4. **Discriminating break mechanisms** (§5.6). We model three mechanisms (unique-data cap, falling marginal-token quality, non-data exponent break). A frontier loss-curve test does not tell them apart; matched data-doubling comparisons do.
-5. **A robustness audit of the data-wall model** (§5.5). Self-similarity generalises to $\alpha\neq\beta$ (Prop. 3′). The milestone constants change by more than two orders of magnitude across published functional forms, including the 2026 additive-penalty laws.
+1. **Compute-equivalent resolution and the audit ceiling (§3, Theorem 1).** Every deviation from the law can be written as a compute penalty $P(C)$. We give the minimum detectable penalty in closed form, prove that the certifiable effective compute is bounded by $C^\dagger$ (where $R(C^\dagger)=kE$), and show that the undetectable penalty grows in proportion to $C$ beyond $C^\dagger$. The ceiling has elasticity $-1/\gamma\approx-5.6$ in $s$. For forecast checks, $s$ is bounded below by $\mathrm{sd}(\ln\hat E)$. As a corollary, at matched compute efficiency every break mechanism is *exactly* equally detectable by a residual check. Monte Carlo replications validate the closed form and show where it breaks down (§5.1).
+2. **The audit ceiling of public scaling laws (§5.2–5.3).** For the public Chinchilla law, $C^\dagger$ is $1.3$–$7.6\times10^{26}$ FLOP. A nonparametric certification bound shows that a $5\times10^{26}$ FLOP run landing on the forecast certifies only 1/13 to 1/40 of its compute. Real out-of-sample forecasts on the Gadre et al. (2024) suite show that loss errors of a few per cent at about one decade of extrapolation are multi-× errors in compute.
+3. **A design law with empirical noise anchors (§5.4).** We derive how $\mathrm{sd}(\ln\hat E)$, and hence the reach of the ceiling, depends on the number of budgets, the correlated per-budget noise and the independent noise. We anchor the correlated noise using public data. We also confirm and extend the reviewer's finding that, for the in-sweep test, the number of budgets matters more than the runs per budget.
+4. **An $E$-free ladder test (§3.4, §5.5).** We give a three-run statistic that is invariant to $E$ and to constant penalties and has a closed-form resolution, validated by Monte Carlo. It moves the bottleneck from the sweep's knowledge of $E$ to frontier per-run noise.
+5. **Retained, condensed results.** These are the calibrated, cluster-robust re-analysis of the Chinchilla runs (§5.6) and the audit of data-wall milestones across 2023–2026 functional forms (§5.7).
 
-We trained no neural networks. Every number below is either computed by our code from public data or simulation (**[computed]**) or quoted from a cited source (**[cited]**).
+We trained no neural networks. Every number is either computed by our code from public data or simulation (**[computed]**, with the experiment number) or quoted from a cited source (**[cited]**).
 
 ## 2 Related Work
 
-**Scaling laws for pretraining.** Hestness et al. (2017) documented power-law generalisation across domains. Kaplan et al. (2020) fitted power laws in parameters, data and compute for language models. Hoffmann et al. (2022) proposed the parametric form $L(N,D)=E+AN^{-\alpha}+BD^{-\beta}$ and the "Chinchilla" policy. Two papers reconcile Kaplan and Chinchilla: Pearce & Song (2024), through embedding-parameter accounting at small scale, and Porian et al. (2024), through last-layer compute, warmup and optimiser tuning. Besiroglu et al. (2024) reconstructed the Chinchilla data from the original figure and showed that the original Approach-3 fit and its confidence intervals were unreliable. Their refit is $E=1.8172$, $A=482.01$, $B=2085.43$, $\alpha=0.3478$, $\beta=0.3658$ **[cited]**. We build on their released data.
+**Scaling laws.** Kaplan et al. (2020) and Hoffmann et al. (2022) established power laws in parameters, data and compute, and Hoffmann et al. introduced the form $L=E+AN^{-\alpha}+BD^{-\beta}$. Besiroglu et al. (2024) reconstructed the Chinchilla data from the published figure and showed that the original confidence intervals were implausibly narrow; we use their released data. Pearce & Song (2024) and Porian et al. (2024) reconcile Kaplan and Chinchilla through accounting and tuning choices at small scale. Caballero et al. (2023) propose broken power laws for extrapolating across regimes.
 
-**Reliability of scaling-law estimation.** Choshen et al. (2025) analyse nearly 500 models and show that scaling-law estimates are noisy and sensitive to single badly behaved runs. This is consistent with the fragility we find when the five excluded Chinchilla runs are added back (§5.2). Ruan et al. (2024) build observational scaling laws from about 100 public models rather than from controlled sweeps. Our detectability results (§5.3) suggest why heterogeneous collections of this kind have little power to detect a small change in the pretraining-loss exponent, even when they predict capabilities well. van der Wal et al. (2025) find that pretraining is largely stable across seeds in the Pythia suite up to 410M parameters. We do not use their numbers, because seed variance at frontier scale is not public; we treat noise as a parameter instead.
+**Forecasting large runs from small ones.** Gadre et al. (2024) build a 104-model testbed (0.011B–6.9B parameters) and predict the loss of over-trained and larger runs from experiments that use about 300× less compute, with their own scaling-law form; their models and losses are public, and we reuse them (§5.3). Choshen et al. (2025) analyse nearly 500 models and show that scaling-law estimates are noisy and sensitive to individual runs. Ruan et al. (2024) fit observational laws across public model families. None of these works expresses forecast uncertainty in compute-equivalent terms, or derives the ceiling that the uncertainty of $E$ imposes. Our Theorem 1 is elementary, but we have not found it, or the audit-ceiling consequence, stated in the scaling-law literature.
 
-**Breaks and functional forms.** Caballero et al. (2023) introduced broken neural scaling laws (BNSL) for extrapolating across regimes. Our break model is a minimal nested special case, built for *testing* $\delta=0$ rather than for flexible extrapolation. Lu (2026) argues that diminishing returns under a constant exponent imply that continued scaling requires repeated efficiency doublings. This is the economic counterpart of the mechanical deceleration we use to fix terms.
+**Compute-equivalent accounting.** It is common to measure algorithmic and data improvements as "effective compute" multipliers, as in the economic argument of Lu (2026) that sustained progress requires repeated efficiency doublings. We turn the multiplier view into a statement about *measurability*: how large a multiplier a given loss comparison can resolve.
 
-**Data constraints.** Hernandez et al. (2022) show that repeating a small fraction of the data many times can badly degrade a model. Xue et al. (2023) study multi-epoch degradation under a "token crisis". Muennighoff et al. (2023) trained about 400 models (up to 9B parameters and 900B tokens) and fitted a law in which repeated tokens and excess parameters decay in value, with half-lives $R_D^*=15.4$ and $R_N^*=5.3$ **[cited]**. Several 2025–26 papers revise that form:
+**Data constraints.** Muennighoff et al. (2023) fitted a law for repeated data, with decaying value of repeated tokens and excess parameters. Hernandez et al. (2022) and Xue et al. (2023) document the costs of repetition. Several 2025–26 papers revise that law:
 
-- Lovelace et al. (2026) replace effective data with an *additive overfitting penalty* fitted to runs of 15M–1B parameters on 50M–6B unique tokens. They find that strong weight decay cuts the penalty coefficient by about 70%, and they release their fitted parameters, which we use in §5.5.
-- Bryant & Liu (2026) study how to convert compute into performance when data must be repeated.
-- Qin et al. (2026) introduce a token-effectiveness function for repeated and paraphrased tokens and report that it depends on model size and tokens per parameter.
-- Kim et al. (2025) study pretraining with fixed data and unbounded compute, and find large gains from much stronger regularisation and from ensembling.
+- Lovelace et al. (2026) propose additive overfitting penalties and release their fits.
+- Xu et al. (2026) argue that additive Chinchilla-style laws are misspecified in the data-constrained regime and propose a coupled law, SoftQ.
+- Bryant & Liu (2026) study compute-to-performance conversion under data constraints.
+- Qin et al. (2026) introduce a token-effectiveness function.
+- Kim et al. (2025) and *Improving Data-Constrained Scaling with Hyperparameter Transfer and Ensembling* (arXiv:2610.37842) find large gains from regularisation, ensembling and hyperparameter transfer.
 
-These works mean that the form of the repetition penalty at frontier scale is unsettled. We therefore report the data-wall milestones as conditional on the functional form (§5.5).
+Villalobos et al. (2024) estimate the stock of public text, and Sevilla et al. (2024) assess whether runs of $2\times10^{29}$ FLOP are feasible by 2030.
 
-**Data stock and feasibility.** Villalobos et al. (2024) estimate the effective stock of public human text at about 300T tokens (90% CI 100T–1000T), with exhaustion projected between 2026 and 2032 **[cited]**. Sevilla et al. (2024) conclude that runs of $2\times10^{29}$ FLOP are likely feasible by 2030, with data as one of four constraints **[cited]**. Sorscher et al. (2022) show that data pruning can beat power-law scaling in data. Shumailov et al. (2024) document model collapse under recursive training on synthetic data.
-
-**Beyond pretraining loss.** Sardana & Frankle (2024) show that inference cost justifies over-training. Snell et al. (2024) and DeepSeek-AI (2025) show large gains from test-time compute and reinforcement learning. We do not model these axes quantitatively (§7).
-
-**What is new here.** Each ingredient above is known. What we add is:
-
-- a calibrated, cluster-robust re-analysis of the public Chinchilla runs for a change in the reducible-loss exponent;
-- a noise-resolved size and power map for the exact procedure, which separates independent from correlated noise;
-- a comparison of break mechanisms by their observable signatures;
-- an audit of how far the data-wall milestones move across published functional forms.
+**Noise in training runs.** van der Wal et al. (2025) find pretraining largely stable across seeds up to 410M parameters in PolyPythias. Seed variance at frontier scale is not public, so we treat noise as a parameter and anchor its correlated part with public sweeps (§5.4).
 
 ## 3 Theory
 
-### 3.1 Setup
+### 3.1 Setup and definitions
 
-We use $L(N,D)=E+AN^{-\alpha}+BD^{-\beta}$ with $C=6ND$. Minimising over $N$ at fixed $C$ gives
+We use $L(N,D)=E+AN^{-\alpha}+BD^{-\beta}$ with $C=6ND$. The compute-optimal frontier is $L^*(C)=E+R(C)$ with $R(C)=GC^{-\gamma}$ and $\gamma=\alpha\beta/(\alpha+\beta)$. We write $\rho(C)=R/L^*$ for the reducible fraction.
 
-$$L^*(C)=E+G\,C^{-\gamma},\qquad \gamma=\frac{\alpha\beta}{\alpha+\beta}, \tag{1}$$
+That each decade of compute buys $10^{-\gamma}$ times the previous decade's absolute loss reduction is a textbook consequence of $E>0$. We call it *mechanical deceleration* and do not treat it as a finding. It is $0.663\times$ per decade on the Chinchilla refit (Exp. 1; Table A1 in the appendix). A *genuine* slowdown is any departure of the realised frontier from $L^*$. Our earlier versions defined it through an exponent break, $L=E+(AN^{-\alpha}+BD^{-\beta})\max(1,C/C_b)^{\delta}$ (model (2)). Here we use a more general currency.
 
-with $N^*\propto C^{\beta/(\alpha+\beta)}$ and $D^*\propto C^{\alpha/(\alpha+\beta)}$. We write $R(C)=L^*(C)-E$ for the reducible loss and $\rho(C)=R/L^*$ for the reducible fraction.
+**Definition 1 (compute penalty).** A run at compute $C$ with loss $L_{\rm obs}$ has compute penalty $P$, defined by $L^*(C/P)=L_{\rm obs}$. Its effective compute is $C/P$ and its compute efficiency is $\eta=1/P$.
 
-### 3.2 Mechanical deceleration (standard facts)
+Every mechanism we consider maps into $P(C)$. An exponent break from $C_b$ gives $P=(C/C_b)^{\delta/\gamma}$. For example, $\delta=0.02$ over two decades gives $P=1.68$, and $\delta=\gamma/2$ over two decades gives $P=10$ **[computed, Exp. 20]**. A unique-data cap or a decline in data quality gives $P=1/\eta(C)$ from the data-constrained law (§5.7). A worse recipe gives a constant $P$.
 
-The following facts are elementary consequences of including $E$ and are the reason $E$ is in the Chinchilla form. We state them only to fix terminology.
+**Lemma 1 (signal of a penalty; exact).** $\ln L^*(C/P)-\ln L^*(C)=\ln\big(1+\rho(C)(P^{\gamma}-1)\big)$.
 
-**Proposition 1.** Under (1) with $E>0$:
+*Proof.* $R(C/P)=P^\gamma R(C)$, so $L^*(C/P)/L^*(C)=(E+P^\gamma R)/(E+R)=1+\rho(P^\gamma-1)$. ∎
 
-- (a) $s(C):=-d\ln L^*/d\ln C=\gamma\rho(C)$, which decreases strictly to 0;
-- (b) $\Delta_{10}(10C)/\Delta_{10}(C)=10^{-\gamma}$, where $\Delta_{10}(C)=L^*(C)-L^*(10C)$;
-- (c) a fixed absolute gain $\epsilon<R(C)$ costs a compute multiplier of $(1-\epsilon/R(C))^{-1/\gamma}$.
+### 3.2 Resolution of a loss comparison
 
-**Lemma 1.** $\ell(x)=\ln L^*(e^x)$ has $\ell''(x)=\gamma^2EGe^{-\gamma x}/(E+Ge^{-\gamma x})^2>0$.
+A *loss comparison* at compute $C$ is a one-sided test of $P=1$ against $P>1$. It is based on the difference $\Delta=\ln L_{\rm obs}-\ln\hat L(C)$ between an observed and a reference log-loss, with total standard deviation $s$ under the null. Write $z=z_{1-a}+z_{\pi}$ for level $a$ and power $\pi$ (Gaussian approximation; $z=1.645$ for 5% and 50%), and set $k=e^{zs}-1$. Three cases matter:
 
-*Proofs* are by direct substitution. A test that declares a slowdown when $\ln L$ is convex in $\ln C$ therefore rejects with probability tending to one under the unchanged law. We know of no peer-reviewed scaling-law paper that uses such a test. We include one in simulation (§5.4) only to show the size of the effect for informal "the curve is bending" arguments, and we make no claim about published practice.
+- In a **forecast check**, the reference is a law fitted to a sweep, and $s^2(C)=\mathrm{Var}[\ln\hat L^*(C)]+\sigma_f^2$, where $\sigma_f$ is the frontier run's own noise (its seed, evaluation and recipe offset).
+- In a **matched A/B contrast** at one scale, the reference is a sibling run, and $s$ is the difference noise.
+- In a **ladder** (§3.4), the reference is the run's own smaller siblings.
 
-**Definition (genuine deceleration).** We embed the law in
+**Theorem 1 (compute-equivalent resolution and audit ceiling).** Assume the frontier form $L^*=E+GC^{-\gamma}$ with $E,G>0$ and the Gaussian test above.
 
-$$L(N,D,C)=E+\big(AN^{-\alpha}+BD^{-\beta}\big)\max(1,C/C_b)^{\delta}. \tag{2}$$
+- **(i) Minimum detectable penalty.** $P_{\min}(C)=\big[1+k/\rho(C)\big]^{1/\gamma}$.
+- **(ii) Certifiable effective compute.** $C_{\rm cert}(C):=C/P_{\min}(C)=\Big(\dfrac{G}{(1+k)R(C)+kE}\Big)^{1/\gamma}$. It is strictly increasing in $C$, and $C_{\rm cert}(C)<C^\dagger:=\big(G/(kE)\big)^{1/\gamma}$, with $C_{\rm cert}\to C^\dagger$ as $C\to\infty$.
+- **(iii) Characterisation.** $R(C^\dagger)=kE$. For any reference compute $C_0$, $\log_{10}(C^\dagger/C_0)=\gamma^{-1}\log_{10}\big(R(C_0)/(kE)\big)$.
+- **(iv) Linear growth.** $P_{\min}(C)/C\to1/C^\dagger$ as $C\to\infty$.
+- **(v) Elasticity.** $\dfrac{d\ln C^\dagger}{d\ln s}=-\dfrac{1}{\gamma}\cdot\dfrac{zs\,e^{zs}}{e^{zs}-1}\to-\dfrac1\gamma$ as $s\to0$.
 
-Along the frontier the reducible loss scales as $C^{-\gamma}$ below $C_b$ and as $C^{-(\gamma-\delta)}$ above it. The multiplier depends only on $C$, so $N^*(C)$ is unchanged.
+*Proof.*
 
-### 3.3 Signal shrinkage
+- (i) By Lemma 1, detection at power $\pi$ requires $\ln(1+\rho(P^\gamma-1))\ge zs$, that is, $P^\gamma\ge1+k/\rho$.
+- (ii) Using $\rho=R/(E+R)$, $1+k/\rho=(R+kE+kR)/R$. Since $CR(C)^{1/\gamma}=G^{1/\gamma}$, we get $C/P_{\min}=CR^{1/\gamma}/((1+k)R+kE)^{1/\gamma}=(G/((1+k)R+kE))^{1/\gamma}$. This increases in $C$ because $R$ decreases, and it tends to $(G/kE)^{1/\gamma}$ as $R\to0$.
+- (iii) Substitute $C^\dagger$ into $R=GC^{-\gamma}$, and divide $C^\dagger$ by $C_0=(G/R(C_0))^{1/\gamma}$.
+- (iv) Follows from (ii).
+- (v) Follows from $\ln C^\dagger=\gamma^{-1}(\ln G-\ln E-\ln k)$. ∎
 
-**Proposition 2.** For $C>C_b$ along the frontier,
+**Corollary 1 (the sweep sets the ceiling of a forecast check).** As $C\to\infty$, $\ln\hat L^*(C)\to\ln\hat E$, so $s(C)\to s_\infty=\sqrt{\mathrm{Var}(\ln\hat E)+\sigma_f^2}$. No reduction of the frontier noise $\sigma_f$ lowers $s_\infty$ below $\mathrm{sd}(\ln\hat E)$. A forecast check therefore cannot certify more than $C^\dagger(s_\infty)$ of effective compute, however large or carefully measured the run. (At finite $C$, $s(C)$ can be somewhat below $s_\infty$, because forecast errors in $\hat E$ and $\hat G$ partly cancel. We use the full $s(C)$ for finite-$C$ statements.)
 
-$$\ln L_{\delta}(C)-\ln L_0(C)=\ln\big(1+\rho(C)[(C/C_b)^{\delta}-1]\big)\approx\rho(C)\,\delta\,\ln(C/C_b).$$
+**Corollary 2 (mechanism-agnostic detectability).** For any mechanism whose effect at $C$ is a compute efficiency $\eta(C)$, the signal in a single-run loss comparison is $\ln(1+\rho(C)(\eta^{-\gamma}-1))$. At matched $\eta$ and $C$, a unique-data cap, a decline in data quality and a non-data exponent break are therefore *exactly* equally detectable by a residual check. This answers the reviewer's matched-$\eta$ question for the forecast design. Differences between mechanisms appear only in tests that use the *shape* of $P(C)$ across several budgets, such as the in-sweep test of §5.6, or that vary the data, such as matched data-doubling (§5.7).
 
-This identity is exact. The heuristic consequence (not a theorem) is that, for a fixed design and $\delta$, the signal-to-noise ratio of a test on log-loss scales roughly as $\rho\sqrt{n}/\sigma_{\rm eff}$, where $\sigma_{\rm eff}$ is the effective per-run noise. Correlated noise inflates $\sigma_{\rm eff}$ well above the per-run $\sigma$. Because $\rho\propto C^{-\gamma}$ asymptotically, keeping power fixed requires $\sigma_{\rm eff}$ to fall by about $10^{\gamma}\approx1.5\times$ per decade. §5.3 measures how far this heuristic holds.
+**Corollary 3 (matched contrasts).** In an A/B contrast at one scale, $E$ cancels and $s$ is the difference noise. At $5\times10^{26}$ FLOP on the Chinchilla refit, a difference noise of $10^{-3}$ resolves $P_{\min}=1.43$ at 50% power (1.70 at 80%), and $3\times10^{-3}$ resolves 2.74 (4.31) **[computed, Exp. 20]**. Matched contrasts are therefore the natural instrument for measuring growth levers; forecast checks are not.
 
-### 3.4 Self-similarity of the data wall, generalised to $\alpha\neq\beta$
+### 3.3 Where the theorem is approximate
 
-We take the data-constrained law of Muennighoff et al. (2023) **[cited]**:
+The theorem uses a Gaussian approximation for $\Delta$ and a known $s$. In practice $s$ is estimated: by bootstrap or the delta method for the sweep part, and from replicate runs for the frontier part. §5.1 measures the consequences. When the correlated per-budget noise is estimated from only 12 budgets, the plug-in test is anti-conservative.
 
-$$L=E+\frac{A}{N'^{\alpha}}+\frac{B}{D'^{\beta}},\quad D'=U_D\big(1+R_D^*(1-e^{-R_D/R_D^*})\big),\quad N'=U_N\big(1+R_N^*(1-e^{-R_N/R_N^*})\big),$$
+### 3.4 An $E$-free ladder test
 
-with $U_D=\min(D,U)$ and $R_D=D/U_D-1$. In their paper, $U_N$ is the compute-optimal model size for $U_D$ unique tokens, capped at $N$: $U_N=\min(N,\,c\,U_D^{\beta/\alpha})$ with $c=(\alpha A/\beta B)^{1/\alpha}$, and $R_N=N/U_N-1$. When $\alpha=\beta$, this reduces to $U_N=\min(N,k_NU_D)$ with a constant $k_N$. Our v0 analysis used this linear rule even when $\alpha\neq\beta$, which the reviewer correctly identified as inconsistent.
+**Proposition 4.** Consider three compute-optimal runs with one recipe at $C_0$, $10C_0$ and $100C_0$, with gaps $g_1=L_1-L_2$ and $g_2=L_2-L_3$, and let $r=10^{-\gamma}$.
 
-**Proposition 3′ (self-similarity).** Let $\tau=(\alpha+\beta)/\alpha$. Then $L^*_U(C)-E=U^{-\beta}\,\Psi(C/U^{\tau})$ for a function $\Psi$ that does not depend on $U$. Compute efficiency $\eta$, the effective exponent $\gamma_{\rm eff}$ and the shadow price of data $\kappa$ (defined below) therefore depend on $(C,U)$ only through $C/U^{\tau}$. Every milestone has the form $C_x=c_x\,U^{\tau}$. For $\alpha=\beta$, $\tau=2$ (Prop. 3 of v0).
+- **(a) Invariance.** Under the constant-exponent law, $g_2=r\,g_1$ for every value of $E$ and for every constant penalty $P$ shared by the three runs.
+- **(b) Signal.** If the exponent falls by $\delta$ from $C_0$ on, then $g_2-rg_1=R(C_0)\,r\,(1-r10^{\delta})(10^{\delta}-1)$, up to the common factor $P^\gamma$. This is positive for $0<\delta<\gamma$. It vanishes again as $\delta\to\gamma$, because the gaps themselves vanish, so we search $\delta\le\gamma/2$.
+- **(c) Statistic and variance.** We use $T=g_2-10^{-\hat\gamma}g_1$, with $\hat\gamma$ from the sweep (standard deviation $\mathrm{sd}_\gamma$). With independent log-scale noise $\sigma$ per run, the delta-method variance of $T$ is $\sigma^2\big[L_2^2(1+r)^2+L_1^2r^2+L_3^2\big]+(g_1r\ln10\,\mathrm{sd}_\gamma)^2$.
 
-*Proof.* Write $N=U^{\beta/\alpha}n$ and $D=Ud$. Then:
+*Proof.* With $P$ shared, $g_i=P^\gamma G C_i^{-\gamma}(1-r)$, so $g_2/g_1=r$. Part (b) follows by substituting $R(C)(C/C_0)^\delta$. Part (c) is the delta method. ∎
 
-- $U_D/U=\min(d,1)$ and $R_D=d/\min(d,1)-1$, so $D'=U\phi_D(d)$;
-- $U_N=U^{\beta/\alpha}\min(n,c\min(d,1)^{\beta/\alpha})$ and $R_N$ depends only on $(n,d)$, so $N'=U^{\beta/\alpha}\phi_N(n,d)$.
+The ladder test does not need $\hat E$. Its resolution is limited by frontier per-run noise and by $\mathrm{sd}_\gamma$. Rungs that do not share a recipe add their offsets to $\sigma$.
 
-Hence $A N'^{-\alpha}+BD'^{-\beta}=U^{-\beta}[A\phi_N^{-\alpha}+B\phi_D^{-\beta}]$. The budget is $C=6U^{\tau}nd$. Minimising over $n$ at fixed $nd=C/(6U^\tau)$ gives $U^{-\beta}\Psi(C/U^\tau)$. The uncapped frontier is $GC^{-\alpha\beta/(\alpha+\beta)}=U^{-\beta}G\,(C/U^{\tau})^{-\alpha\beta/(\alpha+\beta)}$, which has the same form. Each diagnostic equates or differentiates functions of the form $U^{-\beta}f(C/U^\tau)$, and $U\mapsto2U$ changes only constants. ∎
+### 3.5 Self-similarity of the data wall (retained)
 
-The diagnostics are defined as follows:
-
-- $\eta$ is defined by $L^*_\infty(\eta C)=L^*_U(C)$;
-- $\gamma_{\rm eff}=-d\ln(L^*_U-E)/d\ln C$;
-- $\kappa$ is defined by $L^*_U(\kappa C)=L^*_{2U}(C)$, with $\kappa=\infty$ if no amount of compute suffices.
-
-The onset of repetition is $C_{\rm wall}$, where $D^*(C)=U$.
-
-**Corollary 1.**
-
-- (i) A factor $k$ in effective unique data postpones every milestone by $k^{\tau}$ in compute. That is $k^2$ when $\alpha=\beta$, and $k^{2.06}$ for our refit.
-- (ii) Over-training at $r$ tokens per parameter moves the onset to $C=6U^2/r$ (for $\alpha=\beta$), earlier by $r/r^*$.
-
-**What Prop. 3′ does not give.** It does not cover penalty forms that are not homogeneous under this rescaling. The additive penalty $P\,R_D\,N/U_D$ of Lovelace et al. (2026) is an example: it is not invariant when $N$ scales as $U^{\beta/\alpha}$ with $\beta\neq\alpha$. Such forms are self-similar only asymptotically, if at all (§5.5). The transfer exponent $\tau$ must also be known. Its uncertainty enters any small-to-large transfer as a factor of $10^{\Delta\tau\cdot\Delta\log_{10}U}$.
+Under the repeated-data law of Muennighoff et al. (2023), with the excess-parameter threshold defined consistently ($U_N=\min(N,cU_D^{\beta/\alpha})$, $c=(\alpha A/\beta B)^{1/\alpha}$), $L^*_U(C)-E=U^{-\beta}\Psi(C/U^{\tau})$ with $\tau=(\alpha+\beta)/\alpha$ (**Proposition 3′**; the proof is unchanged from revision 1 and was checked line by line by the reviewer). Every milestone of compute efficiency therefore scales as $U^{\tau}$. Additive-penalty forms (Lovelace et al., 2026) are not homogeneous under this rescaling.
 
 ## 4 Data and Methods
 
-**Data.** We use Epoch AI's reconstruction of the 245 Hoffmann et al. (2022, Fig. 4) runs **[cited]** (`svg_extracted_data.csv` from the `analyzing-chinchilla` repository). Following Epoch, we drop the five highest-loss runs, leaving 240. The nominal span is $1.4\times10^{18}$–$1.3\times10^{22}$ FLOP, but the effective support is much narrower. The 10th, 50th and 90th compute percentiles are $10^{18.83}$, $10^{19.92}$ and $10^{21.00}$. There are 104 runs at or above $10^{20}$, 23 at or above $10^{21}$, 4 at or above $3\times10^{21}$, and 1 at or above $10^{22}$ **[computed]**.
+**Chinchilla runs.** We use Epoch AI's reconstruction of the 245 runs in Hoffmann et al. (2022, Fig. 4) **[cited]** and drop the five highest-loss runs, as Epoch does, leaving 240. Their effective support is $10^{18.8}$–$10^{21}$ FLOP: 23 runs at or above $10^{21}$, and 4 at or above $3\times10^{21}$ **[computed, Exp. 9]**. The fit minimises a Huber loss ($\delta_H=10^{-3}$) on log-loss with BFGS from the 4,500-point grid of Hoffmann et al. The objective is scaled by $10^6$ (Exp. 1).
 
-**Base fit.** We minimise the summed Huber loss ($\delta_H=10^{-3}$) on log-loss in the log-sum-exp parametrisation, using BFGS with an analytic gradient from the 4,500-point grid of Hoffmann et al. The objective is multiplied by $10^6$ and BFGS is run with gtol $10^{-7}$. Revision 1 added this scaling so that convergence is not declared prematurely at small noise. It changes the real-data estimates only in the sixth significant figure. The fit uses 300 nonparametric bootstrap resamples.
+**Gadre et al. (2024) suite.** We take the models and evaluation losses from the authors' repository (github.com/mlfoundations/scaling, `exp_data/models`; extracted to `data/gadre2024/models.csv`, 104 models). For each of three training distributions (C4, RedPajama, RefinedWeb), we evaluate in distribution (`c4_val`, `paloma_redpajama`, `paloma_falcon-refinedweb`). We fit on the 31–32 small runs (10.6M–412M parameters, token multipliers $M=0.25$–$32$, $C\le6.5\times10^{20}$ FLOP). We forecast the held-out 1.4B runs (at $M=1$, plus one over-trained run per dataset) and the 6.9B run at $M=1$ ($C=5.7\times10^{21}$). The 6.9B runs use a different learning rate and weight decay ($3\times10^{-4}$ and 0.33) from the small runs ($3\times10^{-3}$ and 0.033), according to `models.csv`. We fit the five-parameter Chinchilla form, *not* the law of Gadre et al., so our residuals do not assess their forecasts. The grid file `grid.json` provides the warm-up and head-count sweeps that we use as correlated-noise anchors.
 
-**The break test (used identically on real and simulated data; `code/breaktest.py`).**
+**Forecast uncertainty (Exps. 13, 16).** For the forecast standard deviation $s(C)$ and $\mathrm{sd}(\ln\hat E)$ we use 300 pairs bootstraps, resampling runs (iid), 0.1-dex compute bins (36 clusters) or model-size groups, on 240 and 245 runs. The *nonlinear certification bound* uses no Gaussian or delta approximation. For a run that lands exactly on the point forecast $\hat L^*(C)$, we compute under each bootstrap law $b$ the effective compute $C_b=L_b^{*-1}(\hat L^*(C))$ (infinite when $\hat L^*(C)\le E_b$), and report its 5% quantile.
 
-1. Fit the base law and, for each $C_b$ on a grid of 9 compute quantiles (10th–90th percentile), fit (2).
-2. The one-sided statistic is $T_1=\max_{C_b:\hat\delta(C_b)>0}[f_0-f_1(C_b)]$, where $f$ is the summed Huber loss; $T_1=0$ if no grid point has $\hat\delta>0$. The two-sided statistic $T_2$ maximises over all grid points.
-3. Calibrate by parametric bootstrap from the null at the same design. On real data the null is the fitted base law, and the noise is either (i) Gaussian with the residual SD, (ii) a wild cluster bootstrap of residuals with Rademacher signs shared within 0.1-dex compute bins, or (iii) the same with clusters defined by model-size groups. We use 300 null replicates.
-4. Get confidence intervals for $\hat\delta$ from a cluster (pairs) bootstrap over 0.1-dex compute bins (36 clusters) or size groups (36 clusters), with 200 resamples.
+**Design law (Exp. 16c).** For 3-decade iso-FLOP sweeps of $n=240$ runs ($K$ budgets of $M=240/K$ sizes, tokens per parameter log-uniform in $[2,200]$), we compute the covariance of the estimator: the OLS sandwich and the GLS (Cramér–Rao) bound under independent noise $\sigma_w$ plus a per-budget offset $\sigma_b$. The frontier run carries its own $\sigma_b$ and $\sigma_w$.
 
-The v0 analysis profiled $C_b$ over the 30th–70th percentiles only, used an iid bootstrap and read percentile bounds as confidence bounds. We report it for comparison (Exp. 2) but no longer rely on it.
+**Monte Carlo validation (Exps. 14, 18).**
+- Exp. 14 draws a sweep over $10^{20}$–$10^{23}$ FLOP ($K=12$, $M=20$) and fits it by least squares, with a plug-in delta-method $s$ and the noise components estimated by one-way random-effects moments. One or three frontier runs at $10^{25}$, $10^{26}$ or $10^{27}$ FLOP carry a penalty $P\in\{1,2,5,10\}$ or a break $\delta\in\{0.02,0.05\}$ from $10^{23}$. There are 400 replicates per cell.
+- Exp. 18 uses 20,000 replicates per ladder cell.
 
-**Detectability simulations (Exp. 8).**
+**In-sweep break test (Exps. 8, 9, 17).** This is unchanged from revision 1: a profiled breakpoint over the 10th–90th compute percentiles, a one-sided sup statistic, and parametric or wild-cluster bootstrap calibration (`code/breaktest.py`). Exp. 17 adds three things: power as a function of $K$ at fixed $n$, fitted-null calibration, and a scaled Huber threshold.
 
-- *Truth:* the refit law with a break $\delta\in\{0,0.02,0.05,0.10\}$ at the geometric midpoint of the window.
-- *Design:* 12 iso-FLOP budgets over 3 decades ending at $C_{\rm end}\in\{10^{22},10^{24},10^{26},10^{28}\}$, with 20 model sizes per budget at tokens-per-parameter ratios log-uniform in $[2,200]$ (240 runs). A small design uses 6 budgets of 8 runs.
-- *Noise:* independent Gaussian on log-loss with $\sigma_w\in\{10^{-4},3\times10^{-4},10^{-3},2.5\times10^{-3},7.5\times10^{-3}\}$, plus optionally a shared offset per budget with SD $\sigma_b\in\{10^{-3},3\times10^{-3}\}$.
-- *Test:* the procedure above. The critical value is the 95th percentile of $T_1$ over 200 null replicates at the same design and noise (oracle calibration). Power is estimated from 100 replicates per $\delta$. We report Wilson 95% Monte Carlo intervals.
-- *Fitted-null check:* in two cells we also calibrate each dataset by simulating from its own fitted null (60 replicates each, 20 datasets).
-
-**Earlier simulations, kept for reference.** Exp. 3 compares a naive curvature test with a least-squares break test with $C_b$ fixed at the truth, using 100 replicates. Exp. 6a measures absorption of breaks into $\hat E$. Exp. 7 is the v0 version of the detectability table (fixed $C_b$, 60 replicates). Exp. 3 and Exp. 7 use a test that is more powerful than the one applied to real data (M2). Exp. 8 supersedes them.
-
-**Data-wall model (Exps. 4, 5, 10).** For each $C$ we compute $L^*_U(C)$ by grid search over $\ln N$ (3,000–6,000 points). Exp. 10 imposes free disposal, $\tilde L_U(C)=\min_{C'\le C}L^*_U(C')$, which matters only for forms that can predict rising loss with more compute. We consider these laws:
-
-- (a) Muennighoff et al. with their constants, with $\beta=0.35$ or their reported 0.353;
-- (b) Muennighoff-style repetition on our refit base law ($\alpha\neq\beta$), with the linear $k_N$ rule (v0) or the consistent rule;
-- (c) the Lovelace et al. (2026) laws (effective-data "Muennighoff-D", additive 1-parameter, additive 4-parameter) for their standard arm and their weight-decay-1.0 arm. The parameters are taken from their public repository (`dcscaling/data/fits/{standard,wd_sweep/wd1.0}`), and we checked our implementation of the forms against their `laws.py`.
-
-**Competing mechanisms (Exp. 11).** All three mechanisms share the Muennighoff base law and the onset $C_x=C_{\rm wall}(U=10^{14})$. M1 is the unique-data cap with $U=10^{14}$. In M2, the $q$-th token beyond the best $Q=10^{14}$ has value $(q/Q)^{-\theta}$ with $\theta=0.5$, so that $D_{\rm eff}=Q[1+((D/Q)^{1-\theta}-1)/(1-\theta)]$ for $D>Q$. M3 is a non-data exponent break, $\max(1,C/C_x)^{0.05}$. For each mechanism we compute $\eta$, the compute value of doubling its data lever, the log-loss excess and the matched data-doubling gap. We also compute the power of the break test on a 240-run, 3-decade window ending at $10$ or $100\,C_x$, with $\sigma_w\in\{3\times10^{-4},10^{-3}\}$, 150 null and 100 alternative replicates.
-
-**Reproducibility.** The code is in `code/`, with the run order in `code/README.md`. All seeds are fixed, and the raw outputs are in `results/`. The full revision-1 rerun took about 95 minutes of wall-clock time on 4 CPU cores (`results/run_logs/timing.txt`).
+**Reproducibility.** The code is in `code/` with its run order (`code/README.md`). Seeds are fixed, raw outputs are in `results/`, and all experiments run on 4 CPU cores. The new revision-2 experiments (13–20) take about 85 minutes in total.
 
 ## 5 Results
 
-### 5.1 Refit and mechanical deceleration (Exp. 1)
+### 5.1 Theorem 1 holds numerically and in Monte Carlo, except when correlated noise is estimated from few budgets (Exps. 14, 16a)
 
-The 240-run fit gives $E=1.8172$, $A=477.8$, $B=2143.4$, $\alpha=0.3473$ and $\beta=0.3672$ **[computed]**. This matches Epoch's refit to three significant figures in $E$, $\alpha$ and $\beta$ **[cited above]**. The 80% bootstrap intervals are $E\in[1.788,1.853]$, $\alpha\in[0.326,0.364]$, $\beta\in[0.348,0.399]$ and $\gamma\in[0.173,0.186]$, with $\gamma=0.1785$. The residual SD is 0.0075 in log-loss. Fitting all 245 runs moves the estimates to $E=1.891$ and $\beta=0.453$.
+**Identity and bound.** On the Chinchilla refit and for $s\in\{10^{-3},3\times10^{-3},10^{-2},2\times10^{-2}\}$, the closed form (ii) agrees with $C/P_{\min}(C)$ computed from (i) to a relative error below $10^{-14}$ over $10^{18}$–$10^{45}$ FLOP. The curve is monotone, and its supremum on the grid reaches 95–99.8% of $C^\dagger$ (the grid ends at $10^{45}$). At $C=10^{40}$, $P_{\min}C^\dagger/C$ equals 1.02–1.43, approaching 1 as (iv) predicts. The numerical elasticity of $C^\dagger$ is $-5.60$, $-5.61$ and $-5.67$ at $s=10^{-4}$, $10^{-3}$ and $10^{-2}$, against $-1/\gamma=-5.60$ **[computed, Exp. 16a]**.
 
-**Table 1.** Frontier implied by the refit law **[computed]**. Rows at $10^{23}$ FLOP and above are extrapolations.
+**Table 2.** Ceiling and resolution for selected $s$ (50% power, 5% one-sided) **[computed, Exp. 16a]**.
 
-| $C$ (FLOP) | $L^*$ | $R=L^*-E$ | $s$ [80% CI] | gain from next $10\times$ |
-|---|---|---|---|---|
-| $10^{21}$ | 2.304 | 0.487 | 0.0377 [0.0366, 0.0386] | 0.164 |
-| $10^{23}$ | 2.031 | 0.214 | 0.0188 [0.0176, 0.0198] | 0.072 |
-| $10^{25}$ | 1.911 | 0.094 | 0.0088 [0.0079, 0.0095] | 0.032 |
-| $10^{27}$ | 1.859 | 0.041 | 0.0040 [0.0034, 0.0044] | 0.014 |
-| $10^{29}$ | 1.835 | 0.018 | 0.0018 [0.0015, 0.0020] | 0.006 |
-
-Each decade returns $10^{-0.178}=0.663$ times the loss reduction of the previous one, so the same absolute gain costs $1.51\times$ more compute per decade (Fig. 1). This is the "trivial" slowdown. We include it only because informal slowdown arguments often describe exactly this.
-
-![Fig. 1](results/fig1_mechanical_slowdown.png)
-*Figure 1. Left: Chinchilla runs and the fitted frontier. Middle: the raw exponent declines while the reducible-loss exponent is constant. Right: the absolute gain per additional decade.*
-
-### 5.2 What the Chinchilla runs say (Exps. 2, 9, 9b)
-
-**The v0 analysis and its problems.** With $C_b$ profiled over the 30th–70th percentiles ($2.8\times10^{19}$–$2.8\times10^{20}$), the fit selects the *upper edge*, $C_b=2.8\times10^{20}$, with $\hat\delta=-0.039$. The iid-bootstrap 95% percentile interval is $[-0.072,0.020]$ **[computed, Exp. 2]**. The reviewer correctly pointed out three problems. A percentile bound is not a valid confidence bound when the profiled nuisance parameter sits at a grid edge. The iid bootstrap ignores clustering. And the fixed-$C_b$ intervals exclude zero in opposite directions. We no longer use this analysis to bound $\delta$. (The v0 statement that "17% of bootstrap replicates have $\hat\delta>0$" was not a p-value and has been removed.)
-
-**Wide grid and calibrated tests.** Over the 10th–90th percentile grid ($6.8\times10^{18}$–$9.9\times10^{20}$), $\hat\delta(C_b)$ falls steadily from $+0.024$ at the lower edge to $-0.040$ at the upper edge, crossing zero between $5\times10^{19}$ and $8\times10^{19}$ (Fig. 7, left). The profiled optimum is now at the *lower* edge, with $\hat\delta=+0.024$. Table 6 reports the calibrated tests.
-
-**Table 6.** Calibrated tests of the constant-exponent law on the 240 runs, 300 null replicates each **[computed, Exp. 9]**.
-
-| null noise model | one-sided $p$ | two-sided $p$ | null 95% range of $\hat\delta$ |
+| $s$ | $C^\dagger$ (FLOP) | $C_{\rm cert}(5\times10^{26})$ | $P_{\min}(5\times10^{26})$ |
 |---|---|---|---|
-| Gaussian, $\sigma=$ residual SD | 0.0033 | 0.0033 | $[-0.037,0.026]$ |
-| wild cluster, compute bins | 0.0033 | 0.0033 | $[-0.034,0.030]$ |
-| wild cluster, size groups | 0.0033 | 0.0033 | $[-0.038,0.033]$ |
+| $10^{-3}$ | $2.5\times10^{33}$ | $3.5\times10^{26}$ | 1.43 |
+| $3\times10^{-3}$ | $5.2\times10^{30}$ | $1.8\times10^{26}$ | 2.74 |
+| $10^{-2}$ | $5.9\times10^{27}$ | $2.9\times10^{25}$ | 17.1 |
+| $2\times10^{-2}$ | $1.2\times10^{26}$ | $4.4\times10^{24}$ | 115 |
 
-($p=1/301$ is the smallest value attainable with 300 replicates.)
+**Monte Carlo (forecast check).** We fit sweeps over $10^{20}$–$10^{23}$ FLOP and test frontier runs, with 30 cells of 400 replicates each. When the per-budget noise is zero ($\sigma_w\in\{3\times10^{-4},10^{-3},3\times10^{-3}\}$, 18 cells), three checks pass:
+- the empirical standard deviation of the forecast error matches the delta method within 5%;
+- the size of the plug-in test lies between 0.033 and 0.068;
+- the empirical power matches the closed-form power, with a median absolute difference of 0.003 over all 180 test cells.
 
-The constant-exponent law is therefore rejected. Formally, the one-sided test "detects a deceleration" above about $7\times10^{18}$ FLOP. But the departure is not a slowdown that grows with scale:
+When $\sigma_b=10^{-3}$ is estimated from 12 budgets, the test is anti-conservative. Its size is 0.06–0.105, and its power exceeds the prediction by up to 0.12 **[computed, Exp. 14]**. The reason is that the random-effects estimate of $\sigma_b$ from 12 budgets is noisy and biased low. Practitioners should calibrate with a cluster bootstrap or use many budgets (§5.4). The closed form is correct when $s$ is correct; the hard part in practice is estimating $s$.
 
-- **Fixed-breakpoint cluster-bootstrap intervals** (compute bins) are $[0.010,0.044]$ at $C_b=6.8\times10^{18}$, $[0.0005,0.026]$ at $2.8\times10^{19}$, $[-0.023,0.010]$ at $8.4\times10^{19}$, $[-0.067,-0.008]$ at $2.8\times10^{20}$ and $[-0.104,-0.010]$ at $9.9\times10^{20}$. Size-group clusters give similar intervals. The profiled $\hat\delta$ has cluster-bootstrap 95% intervals of $[-0.076,0.044]$ (compute bins) and $[-0.084,0.043]$ (size groups), so its sign is not identified.
-- **Two-break model (Exp. 9b).** With breaks at the 10th and 70th percentiles ($6.8\times10^{18}$ and $2.8\times10^{20}$), we get $\hat\delta_1=0.021$ (95% cluster CI $[-0.008,0.044]$) and $\hat\delta_2=-0.009$ ($[-0.075,0.015]$). The pointwise local exponents of the reducible loss are 0.187, 0.166 and 0.175 over the three segments. In 66% of resamples $\hat\delta_2<0$, that is, the exponent recovers in the top segment.
-- **Noise decomposition.** The loss values in the reconstruction take only 94 distinct levels, with a median spacing of 0.0045 in log-loss. That corresponds to a quantisation SD of 0.0017. Nearest neighbours in $(\log N,\log C)$ give a run-level ("rough") SD of 0.0039, or 0.0035 after removing quantisation, against a total residual SD of 0.0075. About 73% of the residual variance is therefore *smooth* structure that the five-parameter law does not capture. This is misspecification, not noise.
-- **All 245 runs.** Adding back the five excluded runs moves the profile to $\hat\delta=-0.096$ at $2.8\times10^{20}$, with $\hat\delta(C_b)$ ranging from $+0.040$ to $-0.104$. The sign pattern is the same, but the magnitude is roughly doubled, so $\hat\delta$ is not robust to this choice (M4).
-- **Power on the actual design.** With wild-cluster noise, the calibrated test detects a true break at $8.4\times10^{19}$ with power 0.25, 0.63, 0.99 and 1.00 for $\delta=0.01$, 0.02, 0.04 and 0.08. At $2.8\times10^{20}$ the corresponding powers are 0.16, 0.46, 0.95 and 1.00 (Wilson intervals in `results/exp9_real_inference.json`).
+![Fig. 10](results/fig10_audit_ceiling.png)
+*Figure 10. Left: certifiable effective compute $C/P_{\min}$ against actual compute; it saturates at $C^\dagger$ (dotted). Middle: nonlinear 95% certification bound for a run landing exactly on the public Chinchilla forecast. Right: design law, reach $\log_{10}(C^\dagger/C_{\rm hi})$ against the number of budgets at fixed $n=240$.*
 
-**Interpretation.** The public Chinchilla data reject the constant-exponent law. The departure is concentrated at the low-compute end: the local exponent is higher below about $10^{19}$ FLOP than above it. It does not grow at the top of the range. This pattern is what one would expect from small-scale effects such as embedding-parameter accounting (Pearce & Song, 2024) or warmup and tuning choices (Porian et al., 2024), or from digitisation artefacts, rather than from a slowdown. We have not tested these explanations. For the question that matters for forecasting, a slowdown at the top, the best statement is this: relative to the middle segment, the exponent change above $2.8\times10^{20}$ FLOP, supported mainly by runs up to about $3\times10^{21}$ FLOP, lies in $[-0.075,0.015]$ at 95%. A slowdown of up to about 8% of $\gamma$ is not excluded, and nothing beyond about $3\times10^{21}$ FLOP is informative. This replaces our v0 claim of "no slowdown, $\delta\le0.02$, up to $10^{22}$ FLOP".
+### 5.2 The audit ceiling of the public Chinchilla law (Exps. 13, 16b)
 
-**Backtest (Exp. 2, unchanged).** Fitting on low-compute runs and forecasting higher-compute runs gives mean log-residuals of $-0.0020$, $-0.0030$, $-0.0073$ and $-0.0031$ for splits at the 50th–80th percentiles. High-compute runs did as well as or slightly better than forecast. The bands ignore test-set noise and clustering and are too narrow. This backtest is consistent with the two-break picture.
+**Table 3.** Audit of the law fitted to the public Chinchilla runs **[computed, Exp. 16b]**. $P_{\min}$ uses the bootstrap $s(C)$ at $5\times10^{26}$ FLOP. The certification bound is the nonparametric 95% lower bound on the effective compute of a $5\times10^{26}$ FLOP run whose loss equals the point forecast. The limit is that bound as $C\to\infty$.
 
-![Fig. 7](results/fig7_real_profile.png)
-*Figure 7. Left: $\hat\delta$ against the assumed breakpoint, with compute-bin cluster-bootstrap 95% intervals. Right: the distribution of the 240 runs in compute.*
+| runs: resampling | $\mathrm{sd}(\ln\hat E)$ | $C^\dagger$ 50% / 80% power | $P_{\min}(5\times10^{26})$ 50% / 80% | certified at $5\times10^{26}$ | certification limit |
+|---|---|---|---|---|---|
+| 240: runs (iid) | 0.0144 | $7.6\times10^{26}$ / $7.3\times10^{25}$ | 21 / 64 | $3.8\times10^{25}$ | $3.7\times10^{27}$ |
+| 240: compute bins | 0.0197 | $1.3\times10^{26}$ / $1.2\times10^{25}$ | 40 / 142 | $1.3\times10^{25}$ | $2.4\times10^{26}$ |
+| 240: size groups | 0.0151 | $5.8\times10^{26}$ / $5.5\times10^{25}$ | 25 / 79 | $3.2\times10^{25}$ | $2.6\times10^{27}$ |
+| 245: runs (iid) | 0.0232 | $6.6\times10^{24}$ / $7.8\times10^{23}$ | 224 / 1,000 | $4.3\times10^{24}$ | $2.7\times10^{25}$ |
+| 245: compute bins | 0.0391 | $4.4\times10^{23}$ / $4.9\times10^{22}$ | 1,270 / 7,000 | $1.1\times10^{24}$ | $3.6\times10^{24}$ |
+| 245: size groups | 0.0185 | $2.1\times10^{25}$ / $2.5\times10^{24}$ | 113 / 455 | $9.0\times10^{24}$ | $1.0\times10^{26}$ |
 
-### 5.3 Detectability depends on noise, mainly correlated noise (Exp. 8)
+**Reading Table 3.** Epoch AI estimates the largest known runs at about $4.6\times10^{26}$ FLOP (Grok-3) and lists Grok 4 at about $5\times10^{26}$ **[cited]**. The public Chinchilla law's audit ceiling at 50% power, $1.3$–$7.6\times10^{26}$, sits on top of that scale. At 80% power it lies one order of magnitude lower.
 
-**Table 3 (revised).** Power of the exact real-data procedure (Huber loss, profiled $C_b$, calibrated $T_1$), 240 runs over 3 decades, at the 5% level. Each cell uses 200 null and 100 alternative replicates **[computed]**. Wilson 95% MC intervals are about ±0.1 at power 0.5 and $[0.96,1]$ at power 1.00.
+The nonparametric statement needs no Gaussian approximation. A $5\times10^{26}$ FLOP run that lands exactly on the forecast certifies at 95% confidence only $1.3$–$3.8\times10^{25}$ FLOP of effective compute, so a slowdown worth 13–40× in compute is consistent with "landing on the curve". By Corollary 2, that statement holds for every mechanism. Through the mapping $P=(C/C_b)^{\delta/\gamma}$ it also bounds what can be said about exponent breaks: a 40× penalty over two decades corresponds to $\delta\approx0.14$, which is 80% of $\gamma$.
 
-| $\sigma_w$ | window ends at | $\delta=0.02$ | 0.05 | 0.10 |
-|---|---|---|---|---|
-| $10^{-4}$ | $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ | 1.00 / 1.00 / 1.00 / 1.00 | 1.00 (all) | 1.00 (all) |
-| $3\times10^{-4}$ | $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ | 1.00 / 1.00 / 1.00 / 1.00 | 1.00 (all) | 1.00 (all) |
-| $10^{-3}$ | $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ | 1.00 / 1.00 / 0.82 / 0.22 | 1.00 / 1.00 / 1.00 / 0.96 | 1.00 (all) |
-| $2.5\times10^{-3}$ | $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ | 1.00 / 0.66 / 0.17 / 0.09 | 1.00 / 1.00 / 0.87 / 0.30 | 1.00 / 1.00 / 1.00 / 0.87 |
-| $7.5\times10^{-3}$ | $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ | 0.23 / 0.03 / 0.12 / 0.08 | 0.95 / 0.44 / 0.18 / 0.11 | 1.00 / 1.00 / 0.67 / 0.16 |
-| $10^{-4}$ + per-budget $\sigma_b=10^{-3}$ | $10^{26}$ / $10^{28}$ | 0.13 / 0.10 | 0.69 / 0.17 | 1.00 / 0.71 |
-| $10^{-4}$ + per-budget $\sigma_b=3\times10^{-3}$ | $10^{26}$ / $10^{28}$ | 0.06 / 0.05 | 0.16 / 0.11 | 0.36 / 0.13 |
-| small design (48 runs), $3\times10^{-4}$ | $10^{26}$ / $10^{28}$ | 1.00 / 0.70 | 1.00 / 1.00 | 1.00 / 1.00 |
-| small design (48 runs), $10^{-3}$ | $10^{26}$ / $10^{28}$ | 0.34 / 0.12 | 0.97 / 0.47 | 1.00 / 1.00 |
+No run, however large, certifies more than $2.4\times10^{26}$–$3.7\times10^{27}$ FLOP against this law. Restoring the five excluded runs, which is a defensible choice, lowers every ceiling by one to three orders of magnitude. That gap measures how fragile the irreducible-loss estimate is to single runs, in line with Choshen et al. (2025).
 
-**Size.** Under the oracle calibration the size is 5% by construction. When each dataset is calibrated from its own fitted null, the test rejected 0 of 20 null datasets in each of two cells ($\sigma_w=3\times10^{-4}$ and $2.5\times10^{-3}$ at $10^{26}$; Wilson 95% interval $[0,0.16]$). The fitted-null test is therefore not anti-conservative at this resolution, but we cannot claim that its size is exactly nominal.
+**What would raise the ceiling.** By Theorem 1(v), halving $\mathrm{sd}(\ln\hat E)$ raises $C^\dagger$ by $2^{5.6}\approx49\times$. Better frontier evaluation does not help, because the frontier noise ($\le10^{-3}$) is already an order of magnitude below $\mathrm{sd}(\ln\hat E)$. Adding a frontier evaluation noise of $10^{-3}$ to the compute-bin bootstrap moves the horizon $C_H$ of Exp. 13 (defined there by $P_{\min}=2^{1/\gamma}$) from $7.07\times10^{26}$ to $6.99\times10^{26}$ (Exp. 13). The ceiling is a property of the sweep.
 
-**What this changes.** The reviewer's re-run, with fixed $C_b$ and least squares, found power 1.00 at $\sigma\le3\times10^{-4}$ and 0.63 at $\sigma=10^{-3}$ for $\delta=0.02$ at $10^{28}$. Our exact procedure gives 1.00 and 0.22. At $\sigma=10^{-3}$ profiling costs power relative to the reviewer's fixed-$C_b$ test, but the reversal is confirmed. *If* a lab's per-run noise is independent and below about $3\times10^{-4}$ in log-loss, a 240-run, 3-decade sweep can detect an exponent loss of 11% of $\gamma$ even at $10^{28}$ FLOP. Above about $10^{-3}$, detection of $\delta=0.02$ at $10^{28}$ fails, while $\delta=0.05$ is still detected (0.96). One cell is mildly non-monotone in $C_{\rm end}$ ($\sigma_w=7.5\times10^{-3}$, $\delta=0.02$: 0.03 at $10^{24}$ against 0.12 at $10^{26}$), which is within MC error of the low-power regime.
+### 5.3 Real out-of-sample forecasts in compute-equivalent units (Exps. 15, 19)
 
-**A numerical correction to v0.** In v0 the objectives were unscaled (of order $10^{-6}$–$10^{-3}$) and BFGS used its default tolerance. Near the irreducible loss, where the break signal is tiny, BFGS could stop before the fit had converged. Revision 1 scales the objectives by $10^6$ and tightens the tolerance (§4). This changed the high-compute simulation cells materially, in both directions. In the v0 fixed-$C_b$ table (Exp. 7), the power at $10^{28}$ and $\sigma=2.5\times10^{-3}$ rises from 0.10 to 0.20 ($\delta=0.02$) and from 0.40 to 0.62 ($\delta=0.05$). In a preliminary Exp. 8 run with the unscaled objective (archived in `results/v0_unscaled_optimizer/`), individual cells differed by up to 0.27: 0.76 against 1.00 at $\sigma=3\times10^{-4}$, $10^{28}$; 0.55 against 0.82 at $10^{-3}$, $10^{26}$; and 0.39 against 0.22 at $10^{-3}$, $10^{28}$. Only the corrected numbers are reported here. The real-data estimates were unaffected: they changed only in the sixth significant figure.
+**Table 4.** Held-out large runs of the Gadre et al. (2024) suite, forecast by a Chinchilla-form fit to the small runs **[computed]**. "Default" fits all 31–32 small runs (Exp. 15). The bootstrap $z$ uses 300 pairs replicates. "Spec. range" is the range over five selection rules (all runs; $M\ge0.5$; $M\ge1$; without the 11M model; $M\ge1$ and without the 11M model) (Exp. 19).
 
-**Which noise is realistic?** Evaluation noise is not the limit. Under stated assumptions (per-token loss SD of 2–3 nats, a within-document design effect of 1–10, mean loss of about 2 nats), the standard error of held-out log-loss is $3\times10^{-5}$–$1.5\times10^{-4}$ for $10^9$ evaluation tokens and $1$–$4.7\times10^{-4}$ for $10^8$ **[computed, Exp. 12; assumption-driven]**. The binding terms are run-to-run (seed and data-order) variation and recipe variation shared across a budget. Our grouped-noise rows show that a per-budget offset of $10^{-3}$, small by the standards of separately tuned runs, cuts the power at $\delta=0.02$ from 1.00 to 0.13 at $10^{26}$. Labs that run matched sweeps, with one recipe and matched seeds and data order, can therefore detect small breaks in loss. Public data assembled from different papers, recipes and tokenisers, as in observational analyses, cannot. Frontier-scale seed and recipe variance is not public, so we do not claim which regime frontier labs are in.
-
-**Revised claim (replaces v0's "loss curves cannot settle the debate").** Whether loss curves can settle the slowdown question is an empirical question about the correlated part of the noise. Holding the design fixed, the noise requirement tightens by roughly $1.5\times$ per decade (Prop. 2). Public loss data do not meet it; matched internal sweeps may.
-
-![Fig. 6](results/fig6_detectability_noise.png)
-*Figure 6. Power of the profiled break test against the end of the 3-decade window, for five levels of independent per-run noise.*
-
-### 5.4 Two supporting simulations (Exps. 3, 6a)
-
-**Raw-curvature arguments (Exp. 3).** As Lemma 1 implies, a quadratic-curvature test on per-budget minimum log-loss, without $E$, rejects in 81%–100% of datasets drawn from the unchanged law. We report this only to quantify informal "the curve is bending" arguments, not as a baseline from the literature. Under the same design, the fixed-$C_b$ least-squares break test has rejection rates of 0.02–0.09 at $\delta=0$ over 8 cells of 100 replicates. Pooling these cells gives 44/800 = 0.055 (Wilson 95% interval [0.041, 0.073]). Its power at $\delta=0.02$ and $\sigma_0=0.0075$ is 0.74–0.87 in designs that start at $10^{18}$. This is the source of the v0 abstract's "about 0.8". The profiled test applied to real data has lower power: 0.23 for a window ending at $10^{22}$ at the same $\sigma$ (Table 3).
-
-**An unmodelled break raises $\hat E$ (Exp. 6a).** Fitting the no-break law to data with a break gives mean $\hat E$ of 1.816, 1.860, 1.905 and 1.988 for $\delta=0$, 0.01, 0.02 and 0.04 (truth 1.817; 60 replicates; $W=4$, $\sigma_0$). Two decades beyond the design, the mean log-errors of the frontier forecast are -0.0002, +0.0071, +0.0144 and +0.0253 **[computed]**. A genuine slowdown can therefore appear as a "higher entropy floor".
-
-### 5.5 The data wall: what is robust and what is not (Exps. 4, 5, 10)
-
-**Muennighoff et al. law, as in v0 (Table 4).** With $\alpha=\beta=0.35$, thresholds in multiples of $C_{\rm wall}$ agree to grid precision across $U\in\{3\times10^{13},\dots,10^{15}\}$, and $C_{\rm wall}/U^2=0.299$. The multiples are 64 for $\kappa>2$, 75 for $\eta<0.5$, 128 for $\gamma_{\rm eff}<\gamma/2$, 161 for $\kappa=\infty$ and 942 for $\eta<0.1$ **[computed, Exp. 4]**. Exp. 10, with a different grid and free disposal, reproduces these as 65, 74, 128, 158 and 912. The two differ by grid resolution only.
-
-**Self-similarity with $\alpha\neq\beta$ (Prop. 3′, Exp. 10a).** On our refit base law, the v0 linear rule makes the 50%-efficiency multiple drift from 124 at $U=10^8$ to 36 at $U=10^{15}$. That is a factor of 3.4 over 7 decades, confirming the reviewer's concern about transfer. With the consistent rule, every milestone multiple is *identical* across $U=10^8$–$10^{15}$: $\eta<0.5$ at 69, $\kappa>2$ at 59, $\kappa=\infty$ at 149, $\gamma_{\rm eff}<\gamma/2$ at 124 and $\eta<0.1$ at 884 times $C_{\rm wall}$ **[computed]**. Using Muennighoff et al.'s reported $\beta=0.353$ instead of the rounded 0.35, the linear rule drifts from 63 to 52 between $U=10^8$ and $10^{14}$, while the consistent rule gives 71 at both. The v0 rounding of $\beta$ to 0.35 is what made the v0 self-similarity exact (M9); the consistent rule makes rounding unnecessary.
-
-**Transfer exponent.** Small-to-large transfer requires $\tau=(\alpha+\beta)/\alpha$. Its point estimate is 2.06 (80% bootstrap interval $[1.98,2.18]$). Over a 6-decade transfer in $U$ (from $10^8$ to $10^{14}$), this uncertainty alone corresponds to a factor of 0.32–5.2 in the predicted compute of any milestone **[computed]**. P1 must therefore estimate $\tau$ from the same sweep. The v0 claim that $\alpha\neq\beta$ effects are bounded by $1.4\times$ was valid only over the 1.5 decades actually tested and has been withdrawn.
-
-**Functional form (Exp. 10c).** Table 7 recomputes the milestones under the Lovelace et al. (2026) laws.
-
-**Table 7.** Multiples of $C_{\rm wall}$ for selected milestones under alternative data-constrained laws **[computed]**. The Lovelace parameters come from their repository; their fits cover 50M–6B unique tokens, so $U\ge10^{10}$ is extrapolation.
-
-| law (arm) | $U$ | $\eta<0.5$ | $\kappa>2$ | $\kappa=\infty$ | $\eta$ at $10\,C_{\rm wall}$ | $\eta$ at $100\,C_{\rm wall}$ |
+| dataset: held-out run | $C$ (FLOP) | default log-residual | bootstrap $z$ | default $\hat P$ | spec. range of log-residual | spec. range of $\hat P$ |
 |---|---|---|---|---|---|---|
-| Muennighoff et al. (consistent $U_N$) | any | 71 | 63 | 154 | — | — |
-| refit base + Muennighoff repetition (consistent) | any | 69 | 59 | 149 | — | — |
-| Lovelace Muennighoff-D (standard) | any | 1,000 | 2,222 | 19,055 | 0.95 | 0.78 |
-| Lovelace Muennighoff-D (wd 1.0) | any | 7,822 | 21,544 | 41,052 | 0.98 | 0.89 |
-| Lovelace additive 1p (standard) | $10^8$ / $10^9$ / $\ge10^{10}$ | 437 / 91 / 28 | 244 / 48 / 16–17 | 244 / 163 / 352 | 0.99 / 0.96 / 0.72–0.77 | 0.89 / 0.45 / 0.27 |
-| Lovelace additive 4p (standard) | $10^8$ / $10^9$ / $\ge10^{10}$ | 651 / 100 / 28–30 | 341 / 52 / 17 | 341 / 149 / 352 | 1.00 / 0.99 / 0.72–0.80 | 0.97 / 0.49 / 0.27 |
-| Lovelace additive 1p (wd 1.0) | $10^8$ / $10^9$ / $\ge10^{10}$ | 970 / 91 / 33 | 525 / 48 / 19 | 525 / 321 / 423 | 1.00 / 0.96 / 0.74 | 0.96 / 0.45 / 0.30 |
-| Lovelace additive 4p (wd 1.0) | $10^8$ / $10^9$ / $\ge10^{10}$ | 970 / 132 / 33–36 | 494 / 67 / 19 | 494 / 179 / 411–423 | 1.00 / 0.99 / 0.74–0.84 | 0.98 / 0.63 / 0.30 |
+| C4: 1.4B, $M=1$ | $2.5\times10^{20}$ | $+0.021$ | 0.94 | 1.41 | $[-0.043,+0.038]$ | 0.11–1.85 |
+| C4: 1.4B, $M=4$ | $1.0\times10^{21}$ | $+0.004$ | 0.17 | 1.07 | $[-0.081,+0.017]$ | floor–1.34 |
+| C4: 6.9B, $M=1$ | $5.7\times10^{21}$ | $+0.082$ | 1.68 | 4.53 | $[-0.103,+0.100]$ | floor–6.3 |
+| RedPajama: 1.4B, $M=1$ | $2.5\times10^{20}$ | $+0.001$ | 0.01 | 1.01 | $[-0.036,+0.023]$ | 0.28–1.48 |
+| RedPajama: 1.4B, $M=32$ | $8.0\times10^{21}$ | $-0.095$ | $-1.61$ | 0.06 | $[-0.158,-0.092]$ | floor–0.10 |
+| RedPajama: 6.9B, $M=1$ | $5.7\times10^{21}$ | $-0.025$ | $-0.29$ | 0.47 | $[-0.127,+0.003]$ | floor–1.08 |
+| RefinedWeb: 1.4B, $M=1$ | $2.5\times10^{20}$ | $+0.008$ | 0.57 | 1.14 | $[-0.048,+0.013]$ | 0.06–1.24 |
+| RefinedWeb: 1.4B, $M=16$ | $4.0\times10^{21}$ | $+0.036$ | 2.19 | 1.84 | $[-0.055,+0.036]$ | floor–1.84 |
+| RefinedWeb: 6.9B, $M=1$ | $5.7\times10^{21}$ | $+0.061$ | 1.90 | 2.92 | $[-0.115,+0.061]$ | floor–2.99 |
 
-There are three findings:
+"floor" means that under at least one specification the observed loss lies *below* the fitted irreducible loss $\hat E$, so no finite effective compute reproduces it.
 
-- **The 50%-efficiency milestone spans more than two orders of magnitude across forms**, from 28 to 7,822 times $C_{\rm wall}$. The forms that differ most here, effective-data versus additive penalty, fit the same 2026 runs. The v0 description of "$75\times$" as a universal constant overstated what is known. It is a property of one functional form.
-- **The additive forms are not self-similar at small $U$.** Their milestones move by more than $10\times$ between $U=10^8$ and $10^{10}$ before settling. At large $U$ the penalty $P\,R_D\,N/U_D$ grows with $N/U_D$, so the optimal policy stops repeating altogether: the wall becomes "hard", and the milestones settle at the hard-wall values. A small-scale P1 experiment in the regime of Lovelace et al. therefore cannot validate frontier constants without a model of how the penalty scales.
-- **Weight decay matters.** Strong weight decay (the wd 1.0 arm) moves the effective-data milestones about $8\times$ later. This is consistent with Lovelace et al.'s finding that weight decay cuts the overfitting coefficient, and with Kim et al. (2025). Regularisation is itself a lever on the wall.
+Three findings follow.
 
-**Sensitivity to half-lives (Table 5, unchanged).** Under the Muennighoff form, the 50%-efficiency point ranges from $20\times$ ($R_D^*=5$, $R_N^*=2$) to $246\times$ ($R_D^*=40$, $R_N^*=10$) at $U=10^{14}$ **[computed]**.
+1. **Errors of a few per cent in loss are multi-× errors in compute.** For the 6.9B runs, which lie about one decade beyond the largest fitted run, default log-residuals of $+0.082$ (C4), $-0.025$ (RedPajama) and $+0.061$ (RefinedWeb) correspond to compute-equivalent factors of 4.5, 0.47 and 2.9 **[computed, Exp. 15]**.
+2. **Specification, not sampling, dominates.** The bootstrap standard deviations of the forecast are 0.03–0.09. Leaving one model size out moves the 6.9B residuals over ranges about 0.2–0.3 wide, for example $[-0.10,+0.19]$ on C4 **[computed, Exp. 15]**. Across the five selection rules, the 6.9B residuals span about 0.13–0.20 in log-loss. The implied factors run from "below the fitted floor" to 6.3 on C4, to 1.08 on RedPajama and to 2.99 on RefinedWeb (Exp. 19). The irreducible loss is not identified by this four-size sweep. Across specifications $\hat E$ ranges over 1.14–2.54 (C4), 1.44–2.03 (RedPajama) and 0.97–2.76 (RefinedWeb). In pairs bootstraps, $\mathrm{sd}(\ln\hat E)$ exceeds 4, because $\hat E$ is driven toward zero or toward the observed losses. In the language of Theorem 1, the audit ceiling of this sweep lies at or below its own compute range: the reach is zero.
+3. **The frontier run's recipe differs.** The 6.9B runs were trained with a 10× smaller learning rate and 10× larger weight decay than the sweep. This is a real instance of the frontier offset $\sigma_f$ in Corollary 1, and a residual check cannot separate it from a slowdown.
 
-| $R_D^*$ \ $R_N^*$ | 2 | 5.3 | 10 |
-|---|---|---|---|
-| 5 | 20 | 36 | 55 |
-| 10 | 28 | 57 | 94 |
-| 15.4 | 33 | 75 | 133 |
-| 25 | 41 | 98 | 181 |
-| 40 | 47 | 119 | 246 |
+We do not claim that these runs show a slowdown: the signs differ across datasets. We claim that this suite, analysed with the standard functional form, cannot resolve compute penalties smaller than several times at about one decade of extrapolation.
 
-**Is the efficiency loss "large"? (W7).** Under the Muennighoff form with $U=10^{14}$, $\eta=0.96$ at $10^{28}$ FLOP, 0.65 at $10^{29}$ and 0.22 at $10^{30}$. The corresponding compute penalties are $1.04\times$, $1.53\times$ and $4.5\times$. At 4–5× annual compute growth, these equal 0.3–0.4, 3.2–3.7 and 11–13 months of growth **[computed]**. Near $10^{29}$ FLOP the penalty is a few months of growth, not a crisis. It becomes about a year's growth only around $10^{30}$ FLOP. In v0 we called the $10^{29}$ figure "large" without this framing; we have removed the word.
+### 5.4 Design law and empirical anchors for correlated noise (Exps. 16c, 15, 17a)
 
-**Calendar illustration (not a forecast; M8).** Epoch AI estimates Grok-3 at about $4.6\times10^{26}$ FLOP and identifies it as the first model above $10^{26}$ **[cited]**. Taking $C_0=4.6\times10^{26}$ in 2025 and growth of $3$–$5\times$ per year (Epoch: 4–5× per year through May 2024 **[cited]**), the Muennighoff-form wall for $U=10^{14}$ arrives in 2026.2–2026.7 and 50% efficiency in 2028.8–2030.6. For $U=3\times10^{14}$ the dates are 2027.5–2028.7 and 2030.2–2032.6 **[computed]**. At this anchor the onset of repetition for $U=10^{14}$ is already in the past. These dates are about a year earlier than v0's, which anchored at $10^{26}$. Under the additive-penalty forms, 50% efficiency arrives about $\log_g(75/30)\approx0.6$–$0.8$ years earlier still. Under the Lovelace effective-data refits it arrives roughly 1.6–4.2 years later (a rough comparison, because the base laws, and hence $C_{\rm wall}$, differ). The spread across functional forms is larger than the spread across growth rates.
+**Reach is exact given $\mathrm{sd}(\ln\hat E)$.** By Theorem 1(iii), the reach of a forecast check, $\log_{10}(C^\dagger/C_{\rm hi})$, equals $\gamma^{-1}\log_{10}(R(C_{\rm hi})/kE)$. The design-law computation reproduces this identity to two decimals in every row (Exp. 16c). The only design-dependent quantity is therefore $s_\infty$.
 
-### 5.6 Which mechanism? Discriminating breaks (Exp. 11)
+**Table 5.** Reach $\log_{10}(C^\dagger/C_{\rm hi})$ in decades, for a sweep over $10^{20}$–$10^{23}$ FLOP with $n=240$ runs, $\sigma_w=3\times10^{-4}$, OLS fit, one frontier run with its own offset **[computed, Exp. 16c]**.
 
-**Table 8.** Three break mechanisms with the same onset $C_x$ (Muennighoff base law) **[computed]**. $\eta$ is compute efficiency relative to the no-break law. "Value of 2× lever" is the compute multiple that matches doubling $U$ (M1, M3) or $Q$ (M2); ∞ means no amount of compute suffices. The gap is the matched data-doubling log-loss gap at the compute-optimal $(N,D)$.
+| $\sigma_b$ \ $K\times M$ | 6×40 | 12×20 | 24×10 | 48×5 | 120×2 |
+|---|---|---|---|---|---|
+| 0 | 12.5 | 12.3 | 12.3 | 12.3 | 12.0 |
+| $3\times10^{-4}$ | 8.9 | 9.5 | 10.1 | 10.8 | 10.8 |
+| $10^{-3}$ | 6.0 | 6.6 | 7.4 | 8.2 | 8.3 |
+| $3\times10^{-3}$ | 3.3 | 4.0 | 4.7 | 5.6 | 5.7 |
 
-| $C/C_x$ | M1 cap: $\eta$ / value / gap | M2 quality: $\eta$ / value / gap | M3 non-data: $\eta$ / value / gap |
-|---|---|---|---|
-| 3 | 0.97 / 1.04 / $9.4\times10^{-5}$ | 0.96 / 1.05 / $8.1\times10^{-5}$ | 0.73 / 1.00 / 0 |
-| 10 | 0.85 / 1.18 / $3.2\times10^{-4}$ | 0.84 / 1.18 / $3.0\times10^{-4}$ | 0.52 / 1.00 / 0 |
-| 30 | 0.67 / 1.48 / $5.4\times10^{-4}$ | 0.70 / 1.32 / $4.4\times10^{-4}$ | 0.38 / 1.00 / 0 |
-| 100 | 0.44 / 2.96 / $8.2\times10^{-4}$ | 0.54 / 1.46 / $4.9\times10^{-4}$ | 0.27 / 1.00 / 0 |
-| 1000 | 0.09 / ∞ / $1.5\times10^{-3}$ | 0.30 / 1.69 / $4.6\times10^{-4}$ | 0.14 / 1.00 / 0 |
+Across the OLS rows at $\sigma_w=10^{-4}$ and $C_{\rm hi}=10^{23}$, $\mathrm{sd}(\ln\hat E)\propto\sigma_b^{1.00}K^{-0.38}$ **[computed, Exp. 16c]**. Correlated noise therefore enters one-for-one. Splitting the same runs over more budgets helps up to about 48 budgets and then saturates.
 
-**Loss-curve test.** For a window ending at $10\,C_x$, the break test's power is 1.00, 0.76 and 1.00 for M1, M2 and M3 at $\sigma_w=3\times10^{-4}$, and 0.61, 0.09 and 0.85 at $10^{-3}$. For a window ending at $100\,C_x$ it is 0.92, 0.23 and 1.00 at $3\times10^{-4}$, and 0.18, 0.06 and 0.75 at $10^{-3}$ **[computed; Wilson intervals in `results/exp11_competing_mechanisms.json`]**. The test is built for M3, which is exactly model (2), so it detects M3 best. The data mechanisms bend the frontier in ways the compute-only break model fits poorly. The quality decline in particular is mostly absorbed into the base law: all three mechanisms raise the median $\hat E$ above the null (1.870), to 1.873–1.876 for M2, 1.875–1.880 for M1 and 1.880–1.882 for M3. A loss-curve test can therefore indicate, given low noise, that *something* broke, but not *what*. A data-type break may also be missed even when it is costly: under M2 at $100\,C_x$, $\eta=0.54$ while the power is 0.23 at $\sigma_w=3\times10^{-4}$.
+**Empirical anchors for $\sigma_b$** **[computed, Exp. 15]**:
 
-**Matched data-doubling separates them.** The gap grows without bound under M1, saturates at about $5\times10^{-4}$ under M2, and is exactly zero under M3. For M1 versus M2 the curves part only beyond about $30\,C_x$. With matched seeds and data order, the per-pair noise that matters is the *difference* noise, which can be much smaller than the per-run noise. The v0 pair counts (1,428, 120, 44 and 19 pairs at $C/C_{\rm wall}=3$, 10, 30 and 100) assumed independent noise of $10^{-3}$ per run and are conservative for matched pairs (M6).
+- *Chinchilla, between compute bins.* A one-way random-effects decomposition of the 240 residuals over 0.1-dex compute bins gives a between-bin SD of $3.9\times10^{-4}$ and a within-bin SD of $7.5\times10^{-3}$. These runs share one training setup within a paper, so this is our anchor for a fixed-recipe sweep. The data are digitised, so it is approximate.
+- *Gadre et al., warm-up.* For 126 configurations of architecture and tokens, the log-loss gap between the best and the second-best warm-up setting has median $2.4\times10^{-3}$ (IQR $1.2$–$4.3\times10^{-3}$).
+- *Gadre et al., head count.* At fixed width, depth and tokens, the SD across attention-head counts (each at its best warm-up) has median $8.1\times10^{-3}$ (IQR $3.4\times10^{-3}$–$1.3\times10^{-2}$; 45 groups).
+- *Gadre et al., shared misfit.* Per-configuration residuals of the three datasets' fits correlate at 0.87, with a shared SD of 0.030. Most of the misfit is therefore structural and common to the configuration, not noise.
 
-**Consequence for the "next growth point".** The answer is not fixed by our model; it depends on which mechanism holds:
+These anchors suggest $\sigma_b$ of a few $10^{-4}$ for a fixed recipe and $10^{-3}$–$10^{-2}$ if the recipe is re-tuned per budget. In Table 5, that is the difference between a reach of 9–11 decades and one of 3–7 decades.
 
-- Under M1 the lever is new unique data or repetition tolerance, and its value rises without bound.
-- Under M2 the lever is quality (filtering and better sources), with a bounded value of about 1.2–1.7× compute per doubling of $Q$.
-- Under M3 data is worth nothing at the margin and the lever is algorithmic.
+**The in-sweep test depends on $K$ too (reviewer's experiment, extended).** For the profiled in-sweep break test with $\sigma_w=10^{-4}$, $\sigma_b=10^{-3}$, a window ending at $10^{26}$ and $n=240$, Table 6 gives the power **[computed, Exp. 17a; 150 null and 100 alternative replicates]**.
 
-The v0 statement that "the next growth point is data" was true by construction and has been withdrawn. Matched data-doubling experiments are the cheapest way to decide between these. By Prop. 3′ they can be run at reduced $U$ for the Muennighoff-type forms. For additive-penalty forms they must be run near the target $U$.
+**Table 6.** Power of the in-sweep test against the number of budgets.
+
+| $K\times M$ | 6×40 | 12×20 | 24×10 | 48×5 | 120×2 |
+|---|---|---|---|---|---|
+| $\delta=0.02$ | 0.09 | 0.09 | 0.17 | 0.43 | 0.20 |
+| $\delta=0.05$ | 0.35 | 0.54 | 0.88 | 1.00 | 0.96 |
+
+This reproduces the reviewer's numbers (0.075 at 12×20 and 0.43 at 48×5) within Monte Carlo error. At 120×2 we obtain 0.20, against the reviewer's 0.38; the two Wilson intervals, $[0.13,0.29]$ and $[0.28,0.48]$, barely overlap. Power peaks near 48 budgets. We have not established why it falls at 120×2. One possibility is that with two runs per budget the fit locates each budget's optimum poorly. Revision 1 attributed the loss of power to correlated noise "as such"; that was wrong. Under model (2), a per-budget offset is a function of $C$ alone, as the break is, so the test has effectively $K$ observations of the break signal. The correct recommendation is to measure $\sigma_b$ and to use many budgets.
+
+### 5.5 The ladder test moves the bottleneck to per-run noise (Exp. 18)
+
+The compute-bin bootstrap gives $\mathrm{sd}_\gamma=0.0073$. Across 80 cells, the closed-form power of Proposition 4 agrees with Monte Carlo (20,000 replicates per cell) to within 0.005, and the size is 0.045–0.052 **[computed, Exp. 18]**.
+
+**Table 7.** Smallest exponent loss $\delta$ resolved at 50% (80%) power by the ladder test at the top rung $C_{\rm top}$ (rungs at $C_{\rm top}/100$, $C_{\rm top}/10$ and $C_{\rm top}$), using the sweep's $\mathrm{sd}_\gamma$; "–" means not resolved for $\delta\le\gamma/2$ **[computed, Exp. 18]**.
+
+| $\sigma$ per run \ $C_{\rm top}$ | $10^{25}$ | $10^{26}$ | $5\times10^{26}$ | $10^{27}$ | $10^{28}$ |
+|---|---|---|---|---|---|
+| $3\times10^{-5}$ | 0.012 (0.018) | 0.012 (0.018) | 0.012 (0.019) | 0.013 (0.019) | 0.013 (0.020) |
+| $10^{-4}$ | 0.013 (0.020) | 0.015 (0.023) | 0.017 (0.026) | 0.018 (0.028) | 0.024 (0.039) |
+| $3\times10^{-4}$ | 0.023 (0.036) | 0.032 (0.054) | 0.043 (0.086) | 0.050 (–) | – |
+| $10^{-3}$ | – | – | – | – | – |
+
+Three points stand out.
+
+- **The floor is set by $\gamma$.** With noiseless runs, uncertainty in the sweep's $\hat\gamma$ alone limits resolution to about $\delta=0.012$. With $\gamma$ known, $\sigma=3\times10^{-5}$ resolves $\delta=0.002$–$0.006$.
+- **Invariance holds.** A constant penalty $P=5$ on all rungs leaves the size at 0.051–0.053. Independent per-rung recipe offsets of $10^{-3}$, however, inflate the size to 0.31–0.41. The rungs must therefore share one recipe.
+- **The comparison with the forecast check favours the ladder.** At $5\times10^{26}$ FLOP, the forecast check with the public Chinchilla $s(C)$ has power 0.07–0.08 against $\delta=0.02$ and 0.27–0.38 against $\delta=0.1$ (break at $5\times10^{24}$). A ladder with $\sigma=10^{-4}$ has power 0.61 and 1.00 against $\delta=0.02$ and $0.1$.
+
+The ladder costs about 1.11 times the top run. It is the decisive test for an exponent slowdown, *if* per-run noise at frontier scale is about $10^{-4}$. Whether it is, is not public. Evaluation noise alone is $3\times10^{-5}$–$1.5\times10^{-4}$ for $10^9$ evaluation tokens under our assumptions (Exp. 12); seed and data-order variance must be added to that.
+
+### 5.6 What the Chinchilla runs say inside their range (Exps. 2, 8, 9, 9b, 17; condensed from revision 1)
+
+The calibrated in-sweep test rejects the five-parameter constant-exponent form on the 240 runs ($p=1/301$ under Gaussian and wild-cluster nulls; Exp. 9). About 73% of the residual variance is smooth structure that the form does not capture, so the rejection concerns the functional form as a whole, not specifically the exponent. The departure is non-monotone. A two-break fit, with breakpoints at the 10th and 70th compute percentiles *chosen after inspecting the one-break profile*, gives local reducible-loss exponents of 0.187, 0.166 and 0.175. The top-segment change ($\ge2.8\times10^{20}$ FLOP) is $\hat\delta_2=-0.009$, with a 95% compute-bin cluster CI of $[-0.075,0.015]$ (Exp. 9b; this CI does not account for the breakpoint selection).
+
+At the fixed breakpoint $9.9\times10^{20}$, the compute-bin interval excludes zero ($[-0.104,-0.010]$) but the size-group interval does not ($[-0.077,0.015]$). The data therefore show no slowdown at the top of their range and cannot bound one below about 8% of $\gamma$.
+
+In simulation, the profiled test detects $\delta=0.02$ at a $10^{28}$ window end with power 1.00 when $\sigma_w\le3\times10^{-4}$ and 0.22 when $\sigma_w=10^{-3}$ (Exp. 8, oracle calibration). Exp. 17 adds two checks:
+
+- **Fitted-null calibration.** This is the procedure used on the real data. At $\sigma_w=10^{-3}$ and a $10^{26}$ window end it rejects 2 of 40 null datasets (0.05, Wilson $[0.01,0.17]$) and detects $\delta=0.02$ in 39 of 40 (0.975, $[0.87,1.00]$), against an oracle power of 0.82. We therefore find no evidence that the oracle-calibrated powers overstate the power of the procedure used on real data.
+- **Huber threshold.** Scaling $\delta_H$ with the noise at $\sigma_w=2.5\times10^{-3}$ changes the power at $\delta=0.02$ / $0.05$ from 0.12 / 0.81 ($\delta_H=10^{-3}$; Exp. 8 gave 0.17 / 0.87 for this cell with other seeds) to 0.23 / 0.86 ($2.5\times10^{-3}$) and 0.22 / 0.93 ($5\times10^{-3}$).
+
+### 5.7 Data-wall milestones and mechanisms (Exps. 4, 10, 11; condensed)
+
+**The form matters more than the constants.** Under the Muennighoff et al. law with consistent $U_N$, compute efficiency falls to 50% at $71\times C_{\rm wall}$ (where repetition starts), identically for every $U$ (Prop. 3′). In revision 1, Table 4 / Exp. 4 gave 74–75×. That figure used the linear threshold $k_N=0.051$, rounded, whereas the consistent constant is $c=(\alpha A/\beta B)^{1/\alpha}=0.050$; the two agree once the rounding is removed.
+
+Under the additive-penalty laws of Lovelace et al. (2026), computed from their released fits, the same milestone settles at 28–36× for $U\ge10^{10}$. Their effective-data refit puts it at 1,000× (standard arm) or 7,822× (weight decay 1.0) **[computed, Exp. 10]**.
+
+All values at $U\ge10^{10}$ extrapolate fits made on 50M–6B unique tokens by 2–6 decades. The "hard-wall" values of the additive forms are a consequence of extrapolating a penalty that is linear in $N/U_D$; they are not established properties at scale.
+
+Xu et al. (2026) argue that additive Chinchilla-style forms are misspecified in exactly this compute-rich, data-constrained regime and propose a coupled law, SoftQ. We have not implemented SoftQ, because it would require its fitted parameters and a check of our implementation against theirs. Its milestones are therefore not in our table. Its existence widens, rather than narrows, the model uncertainty we report.
+
+**Mechanisms.** By Corollary 2, a unique-data cap, a decline in data quality and a non-data exponent break are equally detectable by a residual check at matched efficiency. Revision 1's comparison of in-sweep power across the three mechanisms did not match their magnitudes ($\eta=0.73$ for the exponent break against 0.97 and 0.96 for the data mechanisms at $3C_x$), so it is withdrawn. What separates them is the response to the data lever itself. The matched data-doubling gap grows without bound under a cap, saturates near $5\times10^{-4}$ under quality decline, and is zero under a non-data break (Exp. 11). This experiment is what Muennighoff et al. (2023), Lovelace et al. (2026) and Kim et al. (2025) already run in other forms; we claim no novelty for it.
 
 ## 6 Discussion
 
-**Is pretraining scaling slowing down?** In the trivial sense, yes, and it always has been: each decade buys 0.66× the previous one at the Chinchilla exponent. In the sense that matters, the best public data do not settle it. The constant-exponent law is rejected on the Chinchilla reconstruction, but the misfit is non-monotone and sits at the low-compute end, and the data cannot bound a slowdown at the top of their range more tightly than about 8% of $\gamma$. We find no public evidence of a genuine slowdown. We also find that public data could not show one if it were small.
+**Is pretraining scaling slowing down?** In the mechanical sense, yes, by construction, at 0.66× per decade. In the genuine sense, the public evidence is uninformative at the frontier, and Theorem 1 says how uninformative. Against the best public law, a $5\times10^{26}$ FLOP run that lands on the curve certifies at most 1/13 to 1/40 of its compute (Table 3).
 
-**Can loss curves settle it?** They can under some conditions. With independent per-run noise of about $3\times10^{-4}$ or less, and matched recipes, a 240-run sweep detects an 11% exponent loss even at $10^{28}$ FLOP. Correlated per-budget noise of $10^{-3}$ destroys that power. The practical question is therefore how much the recipe varies across budgets in a sweep, and labs can measure that internally.
+"Frontier models land on the scaling curve" is therefore weak evidence that scaling continues, and "frontier models land somewhat above the curve" is weak evidence that it is slowing. Neither statement can be made at a resolution better than an order of magnitude in compute, unless the sweep pins down $E$ far better than any public sweep does.
 
-**Where is the next growth point?** Our models do not answer this by assumption any more. A loss-curve break can come from a unique-data cap, a decline in data quality or a non-data limit, and the next lever is different in each case. Matched data-doubling experiments discriminate between them. Among data-cap models, the timing of the wall depends on the functional form by more than two orders of magnitude in compute, and regularisation (weight decay, ensembling) shifts it substantially. Outside pretraining, the shift of compute toward RL and inference (Snell et al., 2024; DeepSeek-AI, 2025) is compatible with any of the three mechanisms. We make no quantitative claim about those axes.
+**Why this matters beyond our data.** The ceiling is structural. It exists because loss saturates at $E$, and its location depends only on how well $E$ is known. With $\gamma\approx0.18$, every 10× improvement in $\mathrm{sd}(\ln\hat E)$ moves the ceiling by 5.6 decades. Conversely, a lab whose internal sweep has $\mathrm{sd}(\ln\hat E)\approx10^{-3}$, which needs a fixed recipe and many budgets (Table 5), can audit far beyond today's frontier. This is a concrete, measurable target. We recommend that forecast checks report $C^\dagger$, or the certification bound, alongside the residual.
 
-**Recommendations for people who measure scaling.**
+**Where is the next growth point?** The levers debated as successors to pretraining scale (data quality, repetition and regularisation, synthetic data, algorithmic efficiency, RL and inference-time compute) are compute multipliers. At $5\times10^{26}$ FLOP a 2× multiplier moves pretraining log-loss by 0.0033, and its signal shrinks by about $10^{-\gamma}$ per decade (0.0020 at $10^{28}$; Exp. 20).
 
-- (1) Test slowdown on the reducible-loss exponent with a calibrated, cluster-robust nested test, and report power. Do not read a non-rejection as evidence against data-type breaks, to which compute-only break tests have low power (Exp. 11).
-- (2) Report the support of the data, not its nominal range.
-- (3) Treat a rising $\hat E$ as a possible symptom of a break.
-- (4) Control and report per-budget recipe variation; it, not evaluation noise, sets detectability.
-- (5) Use matched data-doubling runs to identify the mechanism.
+Two consequences follow:
 
-### 6.1 Falsifiable predictions (revised)
+- Frontier pretraining loss compared with a law cannot rank these levers, because they lie below its resolution.
+- Matched contrasts, such as A/B runs at one scale, data-doubling pairs and one-recipe ladders, can rank them, because they cancel $E$ (Corollary 3, Proposition 4).
 
-- **P1 (data collapse with $\tau$).** In a Muennighoff-type sweep, $\eta$, $\gamma_{\rm eff}$ and $\kappa$ plotted against $C/U^{\tau}$, with $\tau=(\alpha+\beta)/\alpha$ estimated from the same sweep, coincide across $U$. *Protocol:* $U\in\{10^8,10^9,10^{10}\}$; $C/U^\tau$ at 6–8 values spanning 3 decades; 5 sizes per budget; 2 seeds. *Falsified* if the milestones differ by more than $2\times$ across $U$ after rescaling by the fitted $\tau$. A drift that settles at large $U$, as in the additive forms (Table 7), would support additive-penalty forms over effective-data forms.
-- **P2 (form discrimination).** In the same sweep, the 50%-efficiency multiple lies near 30× (additive penalty) or above 1,000× (effective-data form with strong weight decay), and not in both regimes. *Falsified* if it lies outside $[20,10^4]\times C_{\rm wall}$. (This range is deliberately wide; it is set by Table 7.)
-- **P3 (mechanism signature).** Matched data-doubling gaps are zero within noise below $C_{\rm wall}$. Above it they grow monotonically (cap), plateau (quality) or stay at zero (non-data break). *Falsified* by a significant gap below $C_{\rm wall}$ with a quality-matched distribution.
-- **P4 (absorption).** Refitting the no-break law to suites with more repeated data gives higher $\hat E$ than suites with fresh data at the same compute.
-- **P5 (detectability, revised).** For a 240-run, 3-decade sweep ending at $10^{26}$ FLOP, the profiled test detects $\delta=0.02$ with power at least 0.8 if the independent per-run noise is at most $3\times10^{-4}$ and the per-budget noise is negligible. It detects it with power at most 0.2 if the per-budget offsets are at least $10^{-3}$. *Falsified* by a powered study that finds otherwise at the stated noise levels.
+Our analysis does not say which lever wins. It says how the question has to be measured, and that conclusions drawn from frontier loss alone, in either direction, are at present below the resolution of the available public data. For data-constrained levers, the timing of the wall differs by more than two orders of magnitude across published functional forms (§5.7). Resolving that is a small-scale research target.
+
+**Recommendations.**
+
+- (1) Report the compute-equivalent resolution ($P_{\min}$ or the certification bound) of every forecast check, not only the loss residual.
+- (2) Treat $\mathrm{sd}(\ln\hat E)$ as the key output of a sweep. Use a fixed recipe and many budgets, and calibrate with cluster bootstraps.
+- (3) For exponent slowdowns at the frontier, use one-recipe ladders and measure per-run noise.
+- (4) For growth levers, use matched contrasts at the target scale.
+- (5) Report the support of the data and the sensitivity to excluded runs.
+
+### 6.1 Falsifiable predictions
+
+- **P1 (ceiling scaling).** In any controlled sweep, the empirical forecast error at $C\gg C_{\rm hi}$ approaches $\mathrm{sd}(\ln\hat E)$, and the reach follows Theorem 1(iii). *Falsified* if held-out runs far beyond the sweep consistently show forecast errors much smaller than $\mathrm{sd}(\ln\hat E)$, which would indicate that the bootstrap overstates $E$-uncertainty.
+- **P2 (budget allocation).** At fixed run count, $\mathrm{sd}(\ln\hat E)$ falls roughly as $K^{-0.38}$ up to about 48 budgets when per-budget offsets dominate. *Falsified* by a re-split of a public sweep, or a new one, that shows no gain.
+- **P3 (ladder invariance).** For one-recipe ladders, $g_2/g_1$ is independent of recipe quality (constant penalties) to within noise. A sustained $g_2/g_1>10^{-\gamma}$ across generations would be direct evidence of an exponent slowdown.
+- **P4 (absorption).** Refitting the no-break law to data with a break raises $\hat E$ (Exp. 6a). Suites with more repeated data therefore give higher $\hat E$ at equal compute.
+- **P5 (data-wall self-similarity).** Under Muennighoff-type laws, efficiency milestones collapse against $C/U^{\tau}$ with $\tau$ estimated in the sweep. Additive forms drift at small $U$.
 
 ## 7 Limitations
 
-- **Data provenance and support.** The Chinchilla runs were digitised from a figure with 94 colour levels. The effective support ends near $3\times10^{21}$ FLOP. Results depend on the five excluded runs ($\hat\delta$ roughly doubles in magnitude with them). Our rejection of the constant-exponent law could reflect digitisation or small-model effects rather than training dynamics; we did not test these explanations.
-- **Break model.** Model (2) is compute-only and multiplicative. Breaks that depend on $N$ or $D$ separately are detected with lower power. The oracle critical values in Exp. 8 assume a known null; the fitted-null check covers only 2 cells with 20 datasets each.
-- **Noise model.** The simulations use Gaussian noise with independent and per-budget components. Real seed and recipe variance at frontier scale is not public. The evaluation-noise budget (Exp. 12) rests on assumed per-token loss variability.
-- **Extrapolating data-constrained laws.** The Muennighoff law was fitted up to 9B parameters and the Lovelace laws up to 1B parameters and 6B unique tokens. Our milestones at $U\ge10^{10}$ are extrapolations. Table 7 shows that the extrapolations disagree by more than two orders of magnitude. The mechanism models M2 and M3 are stylised: $\theta=0.5$ and $\delta=0.05$ were chosen for illustration and are not estimated.
-- **What "unique tokens" means.** The mapping from Villalobos et al.'s effective stock to $U$ is uncertain by at least $3\times$, and synthetic or multimodal data change $U$ in ways that we model only through the $k^{\tau}$ rule. The calendar is an illustration.
-- **Scope.** We study pretraining cross-entropy only. Capabilities, RL and inference-time scaling are outside our quantitative scope.
-- **No new training runs.** P1–P5 are pre-registered predictions, not results.
+- **Functional form.** Theorem 1 assumes the frontier is $E+GC^{-\gamma}$. If the true curve does not saturate at a constant $E$ (for example, if the law changes form), the ceiling is a statement about the fitted law, not about nature. That is exactly the situation a forecast check is used in, but it is still an assumption.
+- **Gaussian approximation and estimated $s$.** The closed form is validated under independent noise. With per-budget noise estimated from 12 budgets, plug-in tests over-reject (size up to 0.105). Our nonparametric certification bounds avoid the Gaussian approximation, but they inherit the bootstrap's assumptions, including exchangeability of runs or clusters.
+- **Public data.** The Chinchilla runs are digitised from a figure with 94 colour levels, and their ceiling moves by up to three orders of magnitude when five runs are restored. The Gadre suite has only four small model sizes, and its 6.9B runs used a different recipe. We fit the Chinchilla form to it, not the authors' law. Neither suite reaches $10^{22}$ FLOP.
+- **Noise anchors.** The correlated-noise anchors come from hyper-parameter sweeps and residual decompositions at small scale. They indicate magnitudes but are not frontier measurements. Frontier seed and recipe variance is not public, so the ladder test's feasibility is conditional on it.
+- **Ladder test.** Proposition 4 assumes compute-optimal rungs with a shared recipe. Over-trained ladders follow the compute-optimal form only approximately, and per-rung recipe changes inflate the size sharply (0.31–0.41 at offsets of $10^{-3}$).
+- **Scope.** We study pretraining cross-entropy on a fixed evaluation distribution. Downstream capabilities, RL and inference-time scaling are outside our quantitative scope. Our statement about them is only that loss-based measurement of their compute-equivalent value is limited in the way described.
+- **No new training runs.** P1–P5 are predictions, not results.
 
 ## 8 Conclusion
 
-"Is pretraining scaling slowing down?" has a trivial answer and a hard one. The trivial answer is that diminishing absolute returns are built into saturating laws. On the hard question, a change in the reducible-loss exponent, the best public data reject a constant exponent but show no slowdown at the top of their range, and they cannot exclude a small one. Whether loss curves can answer the question at frontier scale depends on correlated per-budget noise more than on evaluation noise. Matched sweeps could answer it, but public data cannot. What the next growth lever is depends on why a break happens. A unique-data cap, a decline in data quality and a non-data limit look alike in loss curves but differ sharply in matched data-doubling experiments, which can be run cheaply. For data caps, the timing of the wall depends on the functional form by more than two orders of magnitude, and resolving that is a concrete, small-scale research target.
+A loss curve can hide a large slowdown. The amount follows from a short theorem. The certifiable effective compute of a loss comparison saturates at the compute where the reducible loss equals $(e^{zs}-1)E$. For forecast checks, $s$ cannot fall below the sweep's uncertainty in $\ln\hat E$. For the best public scaling law, this ceiling lies at about $10^{26}$–$10^{27}$ FLOP, right at today's frontier, and a run landing on the forecast there certifies only 1/13 to 1/40 of its compute. Public data therefore cannot say whether pretraining scaling has slowed. Matched contrasts that cancel $E$ can, given per-run noise near $10^{-4}$, and the same contrasts are the right instrument for measuring the next growth levers.
+
+## Appendix A: Retained details
+
+**Table A1.** Frontier implied by the refit law **[computed, Exp. 1]**. The fit is $E=1.8172$, $A=477.8$, $B=2143.4$, $\alpha=0.3473$, $\beta=0.3672$ and $\gamma=0.1785$. The 80% bootstrap interval for $\gamma$ is $[0.173,0.186]$. Rows at $10^{23}$ FLOP and above are extrapolations.
+
+| $C$ (FLOP) | $L^*$ | $R=L^*-E$ | $\rho$ | gain from next 10× |
+|---|---|---|---|---|
+| $10^{21}$ | 2.304 | 0.487 | 0.211 | 0.164 |
+| $10^{23}$ | 2.031 | 0.214 | 0.105 | 0.072 |
+| $10^{25}$ | 1.911 | 0.094 | 0.049 | 0.032 |
+| $10^{27}$ | 1.859 | 0.041 | 0.022 | 0.014 |
+
+**Detectability of the in-sweep test (Exp. 8, revision 1).** These are powers at $\delta=0.02$ for a 240-run, 12-budget, 3-decade window ending at $10^{22}$ / $10^{24}$ / $10^{26}$ / $10^{28}$ FLOP:
+
+| $\sigma_w$ | power at $\delta=0.02$ |
+|---|---|
+| $\le3\times10^{-4}$ | 1.00 / 1.00 / 1.00 / 1.00 |
+| $10^{-3}$ | 1.00 / 1.00 / 0.82 / 0.22 |
+| $2.5\times10^{-3}$ | 1.00 / 0.66 / 0.17 / 0.09 |
+| $7.5\times10^{-3}$ | 0.23 / 0.03 / 0.12 / 0.08 |
+
+A per-budget offset of $10^{-3}$ gives 0.13 / 0.10 at $10^{26}$ / $10^{28}$ with 12 budgets. Table 6 shows that this is largely a design effect.
+
+**Calendar illustration (not a forecast).** Revision 1 converted data-wall milestones into calendar years. It took the Grok-3 anchor ($4.6\times10^{26}$ FLOP in 2025) and assumed 3–5× annual growth. That gave 50% efficiency under the Muennighoff form at $U=10^{14}$ in 2028.8–2030.6. The functional-form spread (§5.7) shifts this by years in either direction, and sustained growth from the anchor is an assumption. We keep the numbers only for traceability (`results/exp10_log.txt`).
+
+**Corrections relative to revision 1.**
+- (a) The claim that "correlated noise destroys power" is replaced by the design statement of §5.4.
+- (b) The mechanism power comparison is withdrawn (§5.7).
+- (c) 71× versus 74–75× is explained (§5.7).
+- (d) The two-break breakpoints are identified as post hoc.
+- (e) The abstract no longer says "rejects $\delta=0$"; it now says the five-parameter form is rejected.
 
 ## References
 
-All entries were checked to exist via web search in November 2026. Parameter values attributed to Lovelace et al. were read from their public repository.
+All entries were checked to exist by web search in November 2026.
 
 1. Besiroglu, T., Erdil, E., Barnett, M., & You, J. (2024). *Chinchilla Scaling: A replication attempt.* arXiv:2404.10102. Data: github.com/epoch-research/analyzing-chinchilla.
 2. Bryant, C. M., & Liu, H. (2026). *Practical Scaling Laws: Converting Compute into Performance in a Data-Constrained World.* arXiv:2605.09189.
 3. Caballero, E., Gupta, K., Rish, I., & Krueger, D. (2023). *Broken Neural Scaling Laws.* ICLR 2023. arXiv:2210.14891.
 4. Choshen, L., Zhang, Y., & Andreas, J. (2025). *A Hitchhiker's Guide to Scaling Law Estimation.* ICML 2025 (PMLR 267). arXiv:2410.11840.
 5. DeepSeek-AI (2025). *DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning.* Nature. doi:10.1038/s41586-025-09422-z. (arXiv:2501.12948.)
-6. Epoch AI (2024). *Training compute of frontier AI models grows by 4–5x per year.* epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year.
-7. Epoch AI (2025). *How many AI models will exceed compute thresholds?* epoch.ai/publications/model-counts-compute-thresholds; and Epoch AI, *Models over 1e25 FLOP* (data insight), epoch.ai/data-insights/models-over-1e25-flop (Grok-3 at about 4.6e26 FLOP).
+6. Epoch AI (2025). *Models over 1e25 FLOP* (data insight), epoch.ai/data-insights/models-over-1e25-flop (Grok-3 at about 4.6e26 FLOP; Grok 4 at about 5e26 FLOP).
+7. Gadre, S. Y., Smyrnis, G., Shankar, V., et al. (2025). *Language models scale reliably with over-training and on downstream tasks.* ICLR 2025. arXiv:2403.08540. Data: github.com/mlfoundations/scaling.
 8. Hernandez, D., et al. (2022). *Scaling Laws and Interpretability of Learning from Repeated Data.* arXiv:2205.10487.
-9. Hestness, J., Narang, S., Ardalani, N., et al. (2017). *Deep Learning Scaling is Predictable, Empirically.* arXiv:1712.00409.
-10. Hoffmann, J., Borgeaud, S., Mensch, A., et al. (2022). *Training Compute-Optimal Large Language Models.* NeurIPS 2022. arXiv:2203.15556.
+9. Hoffmann, J., Borgeaud, S., Mensch, A., et al. (2022). *Training Compute-Optimal Large Language Models.* NeurIPS 2022. arXiv:2203.15556.
+10. *Improving Data-Constrained Scaling with Hyperparameter Transfer and Ensembling* (2026). arXiv:2610.37842.
 11. Kaplan, J., McCandlish, S., Henighan, T., et al. (2020). *Scaling Laws for Neural Language Models.* arXiv:2001.08361.
 12. Kim, K., Kotha, S., Liang, P., & Hashimoto, T. (2025). *Pre-training under infinite compute.* arXiv:2509.14786 (ICLR 2026).
-13. Lovelace, J., Belardi, C., Kundurthy, S., Sudhakar, S., & Weinberger, K. Q. (2026). *Prescriptive Scaling Laws for Data Constrained Training.* arXiv:2605.01640 (COLM 2026). Code and fits: github.com/justinlovelace/data-constrained-scaling.
-14. Lu, C.-P. (2026). *Continued AI Scaling Requires Repeated Efficiency Doublings* (v1 title: *The Unreasonable Effectiveness of Scaling Laws in AI*). arXiv:2603.28507.
+13. Lovelace, J., Belardi, C., Kundurthy, S., Sudhakar, S., & Weinberger, K. Q. (2026). *Prescriptive Scaling Laws for Data Constrained Training.* arXiv:2605.01640. Code and fits: github.com/justinlovelace/data-constrained-scaling.
+14. Lu, C.-P. (2026). *Continued AI Scaling Requires Repeated Efficiency Doublings.* arXiv:2603.28507.
 15. Muennighoff, N., Rush, A. M., Barak, B., et al. (2023). *Scaling Data-Constrained Language Models.* NeurIPS 2023. arXiv:2305.16264.
 16. Pearce, T., & Song, J. (2024). *Reconciling Kaplan and Chinchilla Scaling Laws.* arXiv:2406.12907.
 17. Porian, T., Wortsman, M., Jitsev, J., Schmidt, L., & Carmon, Y. (2024). *Resolving Discrepancies in Compute-Optimal Scaling of Language Models.* NeurIPS 2024. arXiv:2406.19146.
-18. Qin, T., Hamidieh, K., & Alvarez-Melis, D. (2026). *Bridging Compute- and Data-Optimal Pretraining.* arXiv:2607.25271 (NeurIPS 2026).
+18. Qin, T., Hamidieh, K., & Alvarez-Melis, D. (2026). *Bridging Compute- and Data-Optimal Pretraining.* arXiv:2607.25271.
 19. Ruan, Y., Maddison, C. J., & Hashimoto, T. (2024). *Observational Scaling Laws and the Predictability of Language Model Performance.* NeurIPS 2024. arXiv:2405.10938.
-20. Sardana, N., & Frankle, J. (2024). *Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws.* arXiv:2401.00448.
-21. Sevilla, J., Besiroglu, T., Cottier, B., et al. (2024). *Can AI Scaling Continue Through 2030?* Epoch AI.
-22. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data.* Nature 631, 755–759.
-23. Snell, C., Lee, J., Xu, K., & Kumar, A. (2024). *Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters.* arXiv:2408.03314.
-24. Sorscher, B., Geirhos, R., Shekhar, S., Ganguli, S., & Morcos, A. S. (2022). *Beyond neural scaling laws: beating power law scaling via data pruning.* NeurIPS 2022. arXiv:2206.14486.
-25. van der Wal, O., Lesci, P., Müller-Eberstein, M., et al. (2025). *PolyPythias: Stability and Outliers across Fifty Language Model Pre-Training Runs.* ICLR 2025. arXiv:2503.09543.
-26. Villalobos, P., Ho, A., Sevilla, J., Besiroglu, T., Heim, L., & Hobbhahn, M. (2024). *Will we run out of data? Limits of LLM scaling based on human-generated data.* arXiv:2211.04325.
-27. Xue, F., Fu, Y., Zhou, W., Zheng, Z., & You, Y. (2023). *To Repeat or Not To Repeat: Insights from Scaling LLM under Token-Crisis.* NeurIPS 2023. arXiv:2305.13230.
+20. Sevilla, J., Besiroglu, T., Cottier, B., et al. (2024). *Can AI Scaling Continue Through 2030?* Epoch AI.
+21. Snell, C., Lee, J., Xu, K., & Kumar, A. (2024). *Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters.* arXiv:2408.03314.
+22. van der Wal, O., Lesci, P., Müller-Eberstein, M., et al. (2025). *PolyPythias: Stability and Outliers across Fifty Language Model Pre-Training Runs.* ICLR 2025. arXiv:2503.09543.
+23. Villalobos, P., Ho, A., Sevilla, J., Besiroglu, T., Heim, L., & Hobbhahn, M. (2024). *Will we run out of data? Limits of LLM scaling based on human-generated data.* arXiv:2211.04325.
+24. Xu, Z., Wu, S., Cho, H., Hu, W., & Wang, Y. (2026). *Data-Constrained Language Model Pretraining: Improved Regularization and Scaling Laws.* arXiv:2606.06888.
+25. Xue, F., Fu, Y., Zhou, W., Zheng, Z., & You, Y. (2023). *To Repeat or Not To Repeat: Insights from Scaling LLM under Token-Crisis.* NeurIPS 2023. arXiv:2305.13230.

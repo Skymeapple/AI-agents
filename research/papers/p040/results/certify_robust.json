@@ -1,0 +1,168 @@
+{
+ "all18": {
+  "ols_contested_per_seat": {
+   "coef": {
+    "const": 1.6186,
+    "n": 0.079,
+    "m_median": -0.4135
+   },
+   "t": {
+    "const": 3.55,
+    "n": 1.13,
+    "m_median": -4.31
+   },
+   "n": 18,
+   "r2": 0.5818243590373305
+  },
+  "ols_contested_per_seat_with_agree": {
+   "coef": {
+    "const": 1.2651,
+    "n": 0.0614,
+    "m_median": -0.3963,
+    "dis": -0.4265
+   },
+   "t": {
+    "const": 2.57,
+    "n": 0.91,
+    "m_median": -4.29,
+    "dis": -1.55
+   },
+   "n": 18,
+   "r2": 0.6430158998916964
+  },
+  "spearman_contested_vs_m": -0.5736441002877772,
+  "spearman_contested_vs_n": -0.07131791517091284,
+  "spearman_contested_vs_m_p": 0.012806377597723458,
+  "spearman_contested_vs_n_p": 0.7785479487982708
+ },
+ "no_marchon": {
+  "ols_contested_per_seat": {
+   "coef": {
+    "const": 1.0523,
+    "n": 0.0833,
+    "m_median": -0.3052
+   },
+   "t": {
+    "const": 1.51,
+    "n": 1.2,
+    "m_median": -2.2
+   },
+   "n": 17,
+   "r2": 0.2658665917459829
+  },
+  "ols_contested_per_seat_with_agree": {
+   "coef": {
+    "const": -0.0096,
+    "n": 0.0595,
+    "m_median": -0.1811,
+    "dis": -0.6684
+   },
+   "t": {
+    "const": -0.01,
+    "n": 0.99,
+    "m_median": -1.41,
+    "dis": -2.49
+   },
+   "n": 17,
+   "r2": 0.5027249763858859
+  },
+  "spearman_contested_vs_m": -0.49355516477177,
+  "spearman_contested_vs_n": 0.10313092995231017,
+  "spearman_contested_vs_m_p": 0.044073233230084816,
+  "spearman_contested_vs_n_p": 0.6936667449808595
+ },
+ "one_austria": {
+  "ols_contested_per_seat": {
+   "coef": {
+    "const": 1.6243,
+    "n": 0.0865,
+    "m_median": -0.4226
+   },
+   "t": {
+    "const": 3.04,
+    "n": 0.86,
+    "m_median": -3.32
+   },
+   "n": 14,
+   "r2": 0.5682752772892967
+  },
+  "ols_contested_per_seat_with_agree": {
+   "coef": {
+    "const": 1.2209,
+    "n": 0.028,
+    "m_median": -0.3654,
+    "dis": -0.5179
+   },
+   "t": {
+    "const": 2.11,
+    "n": 0.27,
+    "m_median": -2.87,
+    "dis": -1.47
+   },
+   "n": 14,
+   "r2": 0.6447079208422775
+  },
+  "spearman_contested_vs_m": -0.6035256931204398,
+  "spearman_contested_vs_n": -0.3237893317106009,
+  "spearman_contested_vs_m_p": 0.022300434814474378,
+  "spearman_contested_vs_n_p": 0.25876371378813134
+ },
+ "no_ccai": {
+  "ols_contested_per_seat": {
+   "coef": {
+    "const": 1.519,
+    "n": 0.0524,
+    "m_median": -0.3651
+   },
+   "t": {
+    "const": 3.36,
+    "n": 0.74,
+    "m_median": -3.62
+   },
+   "n": 17,
+   "r2": 0.5383554345905358
+  },
+  "ols_contested_per_seat_with_agree": {
+   "coef": {
+    "const": 1.3025,
+    "n": 0.057,
+    "m_median": -0.3855,
+    "dis": -0.3465
+   },
+   "t": {
+    "const": 2.45,
+    "n": 0.79,
+    "m_median": -3.66,
+    "dis": -0.8
+   },
+   "n": 17,
+   "r2": 0.5600935866511758
+  },
+  "spearman_contested_vs_m": -0.49355516477177,
+  "spearman_contested_vs_n": -0.12400266577599198,
+  "spearman_contested_vs_m_p": 0.044073233230084816,
+  "spearman_contested_vs_n_p": 0.6353789892489444
+ },
+ "partial_spearman_contested_m_given_n": -0.6006262573031761,
+ "partial_spearman_contested_n_given_m": 0.2281893910470575,
+ "loglog_M_on_n_all18": [
+  0.681,
+  0.738
+ ],
+ "designer_disagreement_consensus": {
+  "share_on_contested": 0.8942868709961659,
+  "share_on_stable_in": 0.03961563192112596,
+  "share_on_stable_out": 0.06609749708270818
+ },
+ "designer_disagreement_all": {
+  "share_on_contested": 0.841712204007286,
+  "share_on_stable_in": 0.041074681238615664,
+  "share_on_stable_out": 0.11721311475409835
+ },
+ "contested_band_size": 111,
+ "union_consensus_designs": 136,
+ "union_consensus_in_contested": 103,
+ "stable_in_av": 15,
+ "stable_in_av_included_by_all_consensus": 7,
+ "stable_in_av_excluded_by_some_design": 10
+}

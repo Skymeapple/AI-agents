@@ -21,10 +21,12 @@ n, m = V.shape
 pid = pd.read_csv(os.path.join(DATA, 'clean_votes.csv'))['participant'].to_numpy()
 srt = np.argsort(pid, kind='stable')
 Xs = np.nan_to_num(V[srt], nan=0.0)
-coords = PCA(2).fit(Xs.T).components_.T
+coords = PCA(2, svd_solver='full').fit(Xs.T).components_.T
 k100 = KMeans(100, random_state=0, n_init=10).fit(coords)
 lab = KMeans(2, random_state=0, n_init=10).fit(k100.cluster_centers_).labels_[k100.labels_]
 corrected = np.empty_like(lab); corrected[srt] = lab
+if (corrected == 0).sum() < (corrected == 1).sum():
+    corrected = 1 - corrected
 stmt2 = polis_groups(V, 2, 'zero', seed=0, center='stmt')
 add = {}
 

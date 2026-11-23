@@ -1,0 +1,153 @@
+{
+ "eb_prior": [
+  8.312502712201923,
+  2.190024016503799
+ ],
+ "base_budget": 34563,
+ "summary": [
+  {
+   "arm": "cutoff",
+   "mult": 1,
+   "rep": 1.5,
+   "budget": 34563.0,
+   "cert_in": 4.25,
+   "cert_in_wrong": 1.5,
+   "cert_out": 34.0,
+   "cert_out_wrong": 0.0,
+   "stable_in": 29.75,
+   "contested": 66.25
+  },
+  {
+   "arm": "cutoff",
+   "mult": 2,
+   "rep": 1.5,
+   "budget": 69126.0,
+   "cert_in": 4.25,
+   "cert_in_wrong": 0.75,
+   "cert_out": 39.0,
+   "cert_out_wrong": 0.0,
+   "stable_in": 41.75,
+   "contested": 38.25
+  },
+  {
+   "arm": "cutoff",
+   "mult": 4,
+   "rep": 1.5,
+   "budget": 138252.0,
+   "cert_in": 4.25,
+   "cert_in_wrong": 1.5,
+   "cert_out": 37.5,
+   "cert_out_wrong": 0.0,
+   "stable_in": 49.25,
+   "contested": 20.25
+  },
+  {
+   "arm": "cutoff",
+   "mult": 8,
+   "rep": 1.5,
+   "budget": 276504.0,
+   "cert_in": 5.25,
+   "cert_in_wrong": 0.75,
+   "cert_out": 36.75,
+   "cert_out_wrong": 0.0,
+   "stable_in": 53.5,
+   "contested": 9.0
+  },
+  {
+   "arm": "routed",
+   "mult": 1,
+   "rep": 1.5,
+   "budget": 34563.0,
+   "cert_in": 0.0,
+   "cert_in_wrong": 0.0,
+   "cert_out": 75.5,
+   "cert_out_wrong": 0.0,
+   "stable_in": 16.75,
+   "contested": 95.75
+  },
+  {
+   "arm": "routed",
+   "mult": 2,
+   "rep": 1.5,
+   "budget": 69126.0,
+   "cert_in": 2.25,
+   "cert_in_wrong": 0.0,
+   "cert_out": 102.5,
+   "cert_out_wrong": 0.0,
+   "stable_in": 24.0,
+   "contested": 75.0
+  },
+  {
+   "arm": "routed",
+   "mult": 4,
+   "rep": 1.5,
+   "budget": 138252.0,
+   "cert_in": 7.5,
+   "cert_in_wrong": 0.0,
+   "cert_out": 132.25,
+   "cert_out_wrong": 0.0,
+   "stable_in": 34.25,
+   "contested": 50.5
+  },
+  {
+   "arm": "routed",
+   "mult": 8,
+   "rep": 1.5,
+   "budget": 276504.0,
+   "cert_in": 19.5,
+   "cert_in_wrong": 0.0,
+   "cert_out": 168.0,
+   "cert_out_wrong": 0.0,
+   "stable_in": 40.5,
+   "contested": 34.0
+  },
+  {
+   "arm": "uniform",
+   "mult": 1,
+   "rep": 1.5,
+   "budget": 34375.0,
+   "cert_in": 0.0,
+   "cert_in_wrong": 0.0,
+   "cert_out": 67.25,
+   "cert_out_wrong": 0.0,
+   "stable_in": 17.25,
+   "contested": 98.0
+  },
+  {
+   "arm": "uniform",
+   "mult": 2,
+   "rep": 1.5,
+   "budget": 69025.0,
+   "cert_in": 0.25,
+   "cert_in_wrong": 0.0,
+   "cert_out": 89.75,
+   "cert_out_wrong": 0.0,
+   "stable_in": 24.0,
+   "contested": 80.75
+  },
+  {
+   "arm": "uniform",
+   "mult": 4,
+   "rep": 1.5,
+   "budget": 138050.0,
+   "cert_in": 3.25,
+   "cert_in_wrong": 0.0,
+   "cert_out": 115.75,
+   "cert_out_wrong": 0.0,
+   "stable_in": 29.75,
+   "contested": 62.25
+  },
+  {
+   "arm": "uniform",
+   "mult": 8,
+   "rep": 1.5,
+   "budget": 276375.0,
+   "cert_in": 10.5,
+   "cert_in_wrong": 0.0,
+   "cert_out": 141.5,
+   "cert_out_wrong": 0.0,
+   "stable_in": 36.75,
+   "contested": 42.75
+  }
+ ]
+}

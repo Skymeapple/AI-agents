@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 
 R = os.path.join(os.path.dirname(__file__), "..", "results")
 runs = [json.loads(l) for l in open(os.path.join(R, "transformer_runs.jsonl"))]
@@ -85,6 +86,7 @@ for ax, m in zip(axs[:2], ["image", "audio"]):
         if xs:
             ax.errorbar(xs, ys, yerr=es, fmt="o-", color=c, ms=4, label=f"D={D // 1000}k tokens/modality")
     ax.axhline(0, color="k", lw=.8, ls="--"); ax.set_xscale("log")
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     ax.set_xlabel("parameters"); ax.set_ylabel("L_unified - L_specialist (nats/token)")
     ax.set_title(f"{m} (unified = image+audio)", fontsize=9); ax.legend(fontsize=7)
 ax = axs[2]

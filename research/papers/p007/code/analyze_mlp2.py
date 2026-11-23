@@ -58,7 +58,7 @@ for n in sorted(set(r["n"] for r in runs)):
             crossover_ci95=np.nanpercentile(bc, [2.5, 97.5]).tolist() if np.any(~np.isnan(bc)) else None,
             ratio_at_h_eq_ks=float(fixed[list(hs).index(ks)]) if ks in hs else None,
             ks_plus_Mkp=ks + M * kp, gamma_formula=gamma(M), gamma_d_inf=1 - ks / (ks + kp) * (1 - 1 / M),
-            lr_u_choice_frac_3e-3=float(np.mean([np.array(r["lr_u"]) == 3e-3 for r in rr])))
+            lr_u_frac_3e3=float(np.mean([np.array(r["lr_u"]) == 3e-3 for r in rr])))
 json.dump(out, open(os.path.join(R, "mlp2_summary.json"), "w"), indent=1, default=float)
 for k, v in out.items():
     print(k, {a: (np.round(b, 3).tolist() if isinstance(b, (list, float)) else b) for a, b in v.items()})

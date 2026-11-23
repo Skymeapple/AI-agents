@@ -172,6 +172,8 @@ if __name__ == "__main__":
     which = sys.argv[1]
     part, nparts = (int(sys.argv[2]), int(sys.argv[3])) if len(sys.argv) > 3 else (0, 1)
     J = jobs(which)[part::nparts]
+    if len(sys.argv) > 4 and sys.argv[4] == "rev":  # extra helper worker: same jobs, reverse order
+        J = jobs(which)[::-1]
     for mods, D, dm, seed in J:
         if (tuple(mods), D, dm, seed) in done_keys():
             continue

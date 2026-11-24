@@ -1,348 +1,592 @@
-# Human Frontier Mission: the challenges, their limits, and routes past them
+# Human Frontier Mission: all 54 challenges, where they are stuck, and how to get past it
 
-*Research note, 24 November 2026 (HFM's launch day).*
+*Research note, 24 November 2026, the day HFM launched. The data comes from HFM's
+public live API, which was read the same day.*
 
-## 1. What the Human Frontier Mission is
+## 0. Summary
 
-The **Human Frontier Mission (HFM)** was announced by the **Human Frontier
-Mission Committee** in a press release from Seattle dated 21 November 2026. It
-launched globally on 24 November 2026. Its site is `hf-mission.com` and it posts
-as `@HFMission` on X.
+The **Human Frontier Mission (HFM)** is run by the **Human Frontier Mission
+Committee** and launched publicly on 24 November 2026. In it, domain experts
+define research challenges with fixed evaluators, and autonomous AI research
+agents propose, run and score experiments against them.
 
-It is **not** the Human Frontier Science Program (HFSPO, Strasbourg, founded
-1989). That is an older life-sciences funder with a similar name.
+All 54 challenges were read from the public API on launch day. The snapshot
+is in [`hfm-challenges-2026-11-24.csv`](hfm-challenges-2026-11-24.csv). It
+shows **2,307 agent proposals and about $112k of compute spent**.
 
-How it works, as described:
+Three findings drive the recommendations:
 
-- **Domain experts** define each challenge and the criteria for judging progress.
-- **Autonomous AI research agents** build and test candidate approaches.
-- **Results are published for public review.** The record is meant to show where
-  an approach gained ground, where it fell short, and what someone could try next.
-- Outside researchers can propose questions, contribute evidence or evaluation
-  methods, and help assess results.
+1. **The agents are hill-climbing, not exploring.**
+   - 1,923 of the 2,307 proposals (83%) are explicit edits of an earlier
+     winning proposal ("keep p4053 unchanged, but…").
+   - Across the 450 accepted improvements, the median gain is **0.15%**. 44%
+     are below 0.1%, and 16% are below 0.01%.
+   - In the most mature tracks, the median of the last five accepted gains
+     is 2–8×10⁻⁵ relative. That holds for weather, Rayleigh–Bénard
+     forecasting, photometric redshift, order-book ranking and S&P activity
+     ranking. Lung-atlas annotation and both steel tracks are at about
+     10⁻⁴.
+2. **Big gains came only where the starting point was weak.** Examples are
+   agent harnesses (ARC 12%→79%, Dafny 32%→83%, tables 37%→88%), crystal
+   generation (13.6%→43.9% stable-novel-unique), regulatory DNA (Spearman
+   0.45→0.71) and photometric redshift (−33% NRMSE). Where the starter was
+   already strong, the agents improved it at the margin. The clearest case is
+   the 24 h weather track: **−0.75% total, and nothing beyond post-processing.**
+   The one attempt to fine-tune the model itself was worse than the baseline
+   and was never revisited.
+3. **The breakthroughs are in moves that the search loop structurally
+   avoids.** These are changing the model class, adding a new data source or
+   physical structure, or changing the objective so it matches what the
+   challenge is really about. Each such move costs more than one experiment
+   budget to set up, and it usually scores *worse* at first. A
+   greedy loop that accepts only immediate improvements will never take one.
 
-Reported scale at the launch snapshot: **2,391 experiments, 54 challenges, 12
-fields, 23 studies running.** The homepage lists committee affiliations with
-Novix Lab, Google, Microsoft, HKU, CMU, Tsinghua, Johns Hopkins and Stanford.
-
-### What this note could and could not verify
-
-| Claim | Status |
-| --- | --- |
-| Launch date, structure, headline counts | From the press release and its reprints. That is one source repeated, not independent confirmation. |
-| 2,391 experiments | **Unverified.** AI Weekly reported that the landing page's challenge counter was still empty when it checked. |
-| Committee membership | The release names no individuals, labs or models. The homepage lists affiliations. These could not be cross-checked. |
-| Funding | Not disclosed. |
-| The full list of 54 challenges and 12 fields | **Not obtained.** This environment's network policy blocks `hf-mission.com` and the press-release hosts, and search engines index only the examples quoted in coverage. |
-
-The aicell.io lab newsletter for 24 November ("The Verification Turn") calls HFM
-"one to watch sceptically". The newsletter likes the model but withholds
-judgement on this instance of it, and argues that *production is solved;
-verification is the bottleneck*. Section 7 builds on that point.
-
-**This note therefore covers the five challenges that public coverage names.**
-The method in Section 7 is meant to apply unchanged to the other 49 once their
-definitions can be read.
-
-| # | Challenge (as described publicly) | Field |
-| --- | --- | --- |
-| 1 | Improving global weather forecasts | Earth system science |
-| 2 | Coordinating road traffic signals | Transportation |
-| 3 | Predicting how steel responds to repeated loads it did not see in development | Structural materials |
-| 4 | Scheduling wind power against energy storage | Energy systems |
-| 5 | Identifying lung cell types | Biomedicine / single-cell biology |
-
-For each challenge the note gives: where the frontier actually is, **what limit
-is binding**, and the routes most likely to get past it. A route counts only if
-it attacks the binding limit, not if it shaves a decimal off a saturated
-leaderboard.
+Sections 2–13 go through all 54 challenges, grouped by HFM's 12 fields. Each
+entry gives the task, the score so far, what the agents have tried, the
+**limit that binds**, and **the route most likely to give a step change**,
+with a test that would confirm it. Section 14 covers changes to the research
+process itself, which would help every track at once.
 
 ---
 
-## 2. Global weather forecasting
+## 1. Sources, method and caveats
 
-### Where the frontier is
+- **Data.** The directory, per-track overviews and summaries come from
+  `https://hf-mission.com/api/discovery/live/snapshot` (sections `directory`,
+  `overview`, `summary`), fetched 24 Nov 2026, about 13:50 UTC.
+  - "Best" is the best `metricValue` among proposals whose `scoreAudit`
+    passed, in the metric's own direction.
+  - Baselines are HFM's own. A baseline of `0.0` on a "skill" or "instance
+    score" metric means the score is normalised so that the reference method
+    scores 0.
+  - `None` means HFM publishes no baseline.
+- **Status.** 22 tracks are active, 31 paused and 1 ended. Paused tracks
+  keep their published history.
+- **What is not verified.**
+  - HFM's own claims (2,391 experiments, 12 fields, the committee
+    affiliations listed on its homepage) come from its press release and site.
+  - The API counts differ slightly: 2,307 proposals appear in the summaries.
+  - The press release names no individuals and discloses no funding.
+  - The aicell.io lab newsletter calls HFM "one to watch sceptically" and
+    argues that *verification, not production, is the bottleneck*. The data
+    below supports that view.
+- **Scores were taken as published.** Scores were not re-run, and some
+  tracks report scores on a practice set, not a hidden set. Section 14.2
+  covers what that means.
+- **Background facts not re-verified this session** (for example published
+  behaviour of particular methods) are written as general
+  knowledge and should be checked before citing.
 
-Machine-learned medium-range models now match or beat the best physics-based
-systems on most standard scores. GenCast, a diffusion-based 15-day ensemble at
-0.25°, was reported to outperform ECMWF's ENS on 97.2% of the variable × lead
-time × level targets tested. A single forecast takes about 8 minutes on one
-TPUv5. WeatherBench 2 is the shared yardstick for global 1–15 day skill. Google
-released WeatherNext code and weights in August 2026, and WeatherNext 3 is now
-its operational product.
+## 2. Earth science (1)
 
-### The binding limits
+### 2.1 24-Hour Global Near-Surface Weather Forecasting with ArchesWeather
 
-1. **These models depend on the analysis they start from.** Almost every leading
-   ML model starts from an analysis produced by conventional data assimilation
-   (ECMWF's 4D-Var). The expensive, slow, physics-dependent part of the forecast
-   chain has not been replaced, only the cheap part after it.
-2. **Extremes are underdispersed and smoothed.** Models trained against
-   reanalysis regress toward the conditional mean. Ensemble spread and
-   tail intensity (peak gusts, tropical-cyclone intensity, record heat) lag behind
-   the headline RMSE gains.
-3. **Behaviour outside the training climate is unknown.** Training on 1979–2018
-   reanalysis says little about behaviour in a warming climate whose extremes
-   lie outside that record.
-4. **The benchmark is saturating.** Small gains on global mean RMSE/CRPS for Z500
-   and T850 no longer track what forecast users value.
+- **Task:** 24 h forecasts of 2 m temperature, 10 m wind and mean sea-level
+  pressure on the WeatherBench2 1.5° ERA5 grid. ArchesWeather is the
+  starter, and 2022 is held out.
+- **Score:** area-weighted normalised RMSE 0.098226 → **0.097486 (−0.75%)**.
+  36 proposals, about $3.6k.
+- **What the agents did:** a stack of causal bias corrections on the frozen
+  model's output: geographic "innovation slopes", decay memories and
+  winsorised residual updates. The last accepted gains are +2×10⁻⁷ to
+  +3×10⁻⁶. One fine-tuning attempt (0.09837) did worse and was dropped.
+- **Binding limit:** output post-processing cannot fix errors in the model's
+  dynamics. At 24 h most of the remaining error is in the forecast itself,
+  not a stationary bias.
+- **Routes to a step change:**
+  1. **Fine-tune properly, with a budget class above one experiment.** Use
+     the full public 1979–2021 record, weight the loss toward surface
+     variables, and train autoregressively over 4 × 6 h steps so that
+     24 h is optimised directly. The single failed attempt used only
+     2000–2009.
+  2. **Ensemble across model families:** ArchesWeather plus a second open
+     model (GraphCast-class or a diffusion model) with learned per-variable
+     weights. Cross-family ensembles typically beat any single
+     model's bias correction.
+  3. **Residual diffusion or flow-matching correction** conditioned on the
+     forecast and the static fields (orography, land-sea mask). It learns
+     error *structure*, not a slope.
+- **Confirming test:** beat 0.0975 on 2022 by more than seed-to-seed
+  variation (≥1% relative), and report each variable separately.
 
-### Routes past them
+## 3. Astronomy (1)
 
-| Route | Limit it attacks | Why it could be a step change |
-| --- | --- | --- |
-| **End-to-end learned assimilation from raw observations** (Aardvark-, GraphDOP-style), trained on satellite radiances, radiosondes and surface stations directly | 1 | Removes the dependency on NWP analyses. That makes forecasting possible wherever observations exist, at a fraction of the compute, and lets the model exploit observations that 4D-Var under-uses. |
-| **Train on proper scoring rules for the full distribution** (fair CRPS on ensembles, threshold-weighted CRPS for tails) instead of MSE | 2 | Directly penalises the smoothing that kills extremes. It also produces calibrated spread without post-hoc inflation. |
-| **Hybrid models with a dynamical core** (NeuralGCM-style: learned physics plus a differentiable solver) | 3 | Conservation laws and dynamics carry the model where data does not. That is the only credible route to stability under climate shift. |
-| **Evaluation that reflects what users need** | 4 | Score extreme events, cyclone track and intensity, and economic-value curves on years held out *after* every model's training cut-off. |
+### 3.1 Galaxy Photometric Redshift Prediction Across Disjoint Sky Regions
 
-**What an HFM agent should actually be asked to do.** Pick one regional,
-extreme-weighted target, such as 24–72 h heavy-precipitation CRPS over a
-held-out 2025–26 season. Require a beat over both IFS ENS and the best open ML
-ensemble on it. Require that the agent does not lose global CRPS while doing so.
-Global-mean leaderboard gains alone should not count as a breakthrough.
+- **Task:** predict spectroscopic redshift from Legacy Survey g/r/z cutouts
+  and catalogue photometry. Evaluation is on held-out *sky regions*.
+- **Score:** NRMSE 0.0364 → **0.0243 (−33%)**. The last gains are about
+  10⁻⁶–10⁻⁷.
+- **What the agents did:** readouts on AION-1 embeddings blended with
+  gradient-boosted trees. The recent edits tune tree depth and blend weight.
+- **Binding limit:** spatial covariate shift. Region-to-region differences
+  in depth, extinction and seeing change the photometry–redshift relation,
+  and point regression cannot express catastrophic-outlier modes.
+- **Routes:**
+  1. **Predict a full redshift PDF** (classification over redshift bins or
+     a mixture density) and take its mode or median. This idea is on the
+     agents' list but was not pursued.
+  2. **Train with region-level augmentation:** perturb depth, PSF and
+     Galactic-extinction (E(B−V)) values to mimic unseen regions, and
+     feed the extinction and depth maps in as inputs.
+  3. **Fine-tune the image encoder end to end on 152² cutouts** with
+     region-grouped cross-validation, not a frozen embedding.
+- **Test:** NRMSE plus outlier fraction (|Δz|/(1+z) > 0.15) on held-out
+  regions. PDF calibration should be checked with PIT histograms.
 
----
+## 4. Biology (2)
 
-## 3. Coordinating road traffic signals
+### 4.1 Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA
 
-### Where the frontier is
+- **Task:** predict lentiMPRA activity (log₂ RNA/DNA) of 200 bp inserts in
+  HepG2, K562 and WTC11 cells.
+- **Score:** assay macro-Spearman 0.447 → **0.708 (+58%)**. 65 proposals.
+- **What the agents did:** supervised CNN ensembles with many seeds, ranking
+  losses, and blending with a ridge readout on frozen Evo 2 features. The
+  last gains are about +5×10⁻⁴.
+- **Binding limit:** each cell line is learned largely on its own, and
+  frozen Evo 2 features are only a ridge input.
+- **Routes:**
+  1. **One multi-task model across all three cell types** with shared
+     sequence features and cell-specific heads. It exploits the shared
+     transcription-factor grammar and lets HepG2/K562 data inform WTC11.
+  2. **Parameter-efficient fine-tuning of Evo 2** (LoRA) on the MPRA
+     objective, not ridge on frozen embeddings.
+  3. **Reverse-complement-equivariant architecture plus test-time augmentation
+     by shifting the insert inside the adapters.** These are well-established
+     wins for MPRA models.
+- **Test:** macro-Spearman with a per-cell breakdown. The gain on WTC11, the
+  smallest assay, shows whether transfer works.
 
-Reinforcement learning for signal control has a decade of papers and almost no
-field deployments. The RESCO benchmark found that methods claiming the state of
-the art struggled on realistic scenarios. A well-tuned, decentralised deep
-Q-learning baseline often beat them. 2025–26 work is still about generalising to
-unseen demand (Vissim-validated MARL, CityLight's city-scale model) and about
-corridor deployments calibrated to real traffic (PNNL's A2C work in Aimsun Next).
-What is operational at scale is simpler: adaptive schedule-driven control and
-offset/timing recommendations mined from probe-vehicle data.
+### 4.2 Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas
 
-### The binding limits
+- **Task:** annotate cells from *unseen studies* in the full Human Lung Cell
+  Atlas (about 2.3M cells, 35 studies). Splits are by study, with no donor
+  in more than one split.
+- **Score:** study macro-F1 0.781 → **0.854 (+9%)**. The last gains run from
+  5×10⁻⁸ to 1×10⁻⁴.
+- **What the agents did:** pseudo-labelling students on frozen UCE embeddings,
+  donor-stratified selection quotas and temperature matching.
+- **Binding limit:** a frozen general embedding plus a shallow head. Studies
+  disagree on labels, and rare types dominate macro-F1.
+- **Routes:**
+  1. **Predict over the Cell Ontology hierarchy with abstention.** Back off
+     to the parent term when uncertain. Ontology-aware loss and decoding
+     reduce near-miss errors such as "AT1 vs AT2-like".
+  2. **A second view of raw counts:** a highly-variable-gene model
+     (scVI/scANVI-style) ensembled with UCE. Independent benchmarks show
+     simple count-based models often match or beat frozen foundation-model
+     embeddings across studies.
+  3. **Fine-tune UCE's last layers with study-adversarial or group-DRO
+     training**, so that the representation itself becomes study-invariant.
+- **Test:** macro-F1 on held-out studies, F1 on the rarest decile of types,
+  and calibration.
 
-1. **Policies learned in simulation do not transfer.** They overfit to the
-   simulator's demand profile, driver model and detector layout.
-2. **Real controllers see little.** Loop detectors give occupancy at a point, not
-   queues. The rich simulated state that RL policies learn on is not available
-   on the street.
-3. **Safety and acceptability come first.** Agencies need guaranteed minimum
-   greens, pedestrian phases, cyclic or predictable phase order, and a fallback.
-   An unconstrained policy cannot be deployed.
-4. **Baselines are weak in many papers.** Gains reported against fixed-time
-   plans disappear against tuned actuated control or max-pressure.
+## 5. Medicine (1)
 
-### Routes past them
+### 5.1 Patient-level lung cancer histology classification with Phikon-v2
 
-| Route | Limit it attacks | Mechanism |
-| --- | --- | --- |
-| **Residual RL on top of max-pressure** | 3, 4 | Max-pressure has throughput-optimality guarantees. Learning only a bounded correction keeps those guarantees and safety constraints, and the gain over a strong baseline is measured directly. |
-| **Train across a demand distribution, not on one scenario.** Randomise origin–destination matrices, incidents, sensor dropout and driver parameters, calibrated to real detector and probe data | 1 | Turns "it works on the network it was trained on" into a robustness claim that can be tested. |
-| **Use connected-vehicle trajectories and probe data as the state**, with a detector-only fallback | 2 | Probe penetration is now high enough in many cities to estimate queues and delay. It is also where the deployed, scaled systems get their signal. |
-| **Offline RL from historical controller logs, with conservative policy improvement** | 1, 3 | Learns from the real system's own data and bounds how far the policy can drift from behaviour already proven safe. |
-| **Graph neural policies with shared parameters** | 1 | One policy for any intersection topology, so it can be tested zero-shot on networks it has never seen. |
+- **Task:** adenocarcinoma vs squamous cell carcinoma from H&E slides.
+  Training is on TCGA, development on CPTAC, and held-out evaluation on NLST.
+- **Score:** patient AUROC 0.910 → **0.978**. 71 proposals.
+- **What the agents did:** density and redundancy weighting of slides and
+  patches on frozen Phikon-v2 features. Recent gains are about 10⁻⁴.
+- **Binding limit:** AUROC is near its ceiling. What remains is the
+  cohort-shift tail (NLST scanners and staining) and ambiguous cases.
+- **Routes:**
+  1. **Stain and scanner augmentation at the feature level,** plus a
+     second foundation model (UNI- or Virchow-class) as an ensemble view.
+     This attacks the cohort shift directly.
+  2. **Attention-based multiple-instance learning with an explicit
+     "uncertain" class and calibrated abstention.** At about 0.98 AUROC,
+     the useful gain is knowing which cases to send to a pathologist.
+- **Test:** report sensitivity at fixed high specificity, and accuracy on the
+  cases the model keeps after abstaining. Beyond about 0.98, AUROC alone
+  cannot separate methods.
 
-**Breakthrough criterion.** The policy should cut network delay and stops on
-**held-out cities and incident scenarios** while beating tuned actuated control
-*and* max-pressure. It should hold every phase and safety constraint at all
-times. A result on a single training grid is not a result.
+## 6. Materials (1)
 
----
+### 6.1 Crystal Generation for Unseen Chemical Systems (MatterGen + MatterSim)
 
-## 4. Steel under repeated loads it has not seen
+- **Task:** for unseen 2–3-element systems, propose up to 64 structures.
+  A structure counts if it is stable, novel and unique after MatterSim
+  relaxation.
+- **Score:** 0.136 → **0.439 (+222%)**. Gains are still large: +0.006 to
+  +0.021 per step.
+- **What the agents did:** deterministic exploration of more reduced
+  formulas per parent ("try the 7th and 8th unused formula"). Coverage
+  expansion is the winning lever.
+- **Binding limit:** the 64-structure budget is spent on *generation*, not
+  on *selection*.
+- **Routes:**
+  1. **Generate thousands of candidates and pre-screen cheaply.** Use a fast
+     MatterSim single-point energy, symmetry and duplicate filters, and an
+     energy-above-hull proxy, then spend the 64-structure budget only on
+     the top candidates. This idea is on the agents' list but not done.
+  2. **Choose compositions from phase-diagram logic:** enumerate
+     charge-balanced stoichiometries, rank them by distance to the
+     known hull, and seed generation from prototype substitution.
+- **Test:** the stable-novel-unique fraction on unseen systems, and
+  separately the hit rate against DFT for a sample, to guard against
+  exploiting MatterSim's errors.
 
-This is the challenge whose framing is most precise. It asks for
-**extrapolation**: predict fatigue under loading histories outside the
-development data.
+## 7. Physics and engineering (10)
 
-### Where the frontier is
+These tracks share a pattern. A reusable *method* is scored by a normalised
+skill (reference = 0) on withheld conditions, and the agents have converged on
+hand-tuned physical sub-models adjusted one coefficient at a time.
 
-Recent ML-for-fatigue work adds physics in three ways. It builds Basquin-model
-features and boundary-enforcing losses (validated on titanium and carbon steel,
-but constant-amplitude only). It adds physics-informed losses for irradiated
-steels (low-cycle, strain-controlled). And a 2025 physics-guided network is
-built on a crack-closure model. That last one is **trained only on
-constant-amplitude data and predicts lives under multiple overloads**, which is
-the closest existing work to this challenge. Engineering practice still rests
-on rainflow counting plus Palmgren–Miner linear damage. Miner's rule's
-critical damage sum scatters over roughly an order of magnitude because it
-ignores load-sequence effects.
+### 7.1 Battery Voltage Model for Cold Operating Conditions
 
-### The binding limits
+- **Task:** predict terminal voltage under current and temperature profiles.
+  Calibration data is warmer than the test drive cycles.
+- **Score:** skill 0 → **0.599**. 100 proposals, about $9k, 41
+  improvements, each now about +10⁻⁴.
+- **What the agents did:** fit equivalent-circuit sub-models (RC
+  polarisation, OCV, thermal ratios) for each cell chemistry, one at a time.
+- **Binding limit:** extrapolating to colder temperatures. Ad hoc thermal
+  slopes have no physical basis outside the calibrated range.
+- **Routes:**
+  1. **Arrhenius-parameterised kinetics** (charge-transfer resistance and
+     diffusivity ∝ exp(Eₐ/RT)) with a Butler–Volmer overpotential. One
+     activation energy per process, identified from the temperature span
+     available. Physical form is what extrapolates.
+  2. **A reduced electrochemical model** (SPMe-class) with the same
+     Arrhenius laws, plus a small learned residual that is bounded to
+     vanish outside the calibrated range.
+- **Test:** skill on the coldest held-out cycles specifically, reported by
+  temperature bin.
 
-1. **Load sequence matters, and black-box models cannot extrapolate it.**
-   Overloads retard crack growth and underloads accelerate it. A network
-   trained on life versus summary statistics learns the training spectra, not
-   the mechanism.
-2. **Data is scarce and noisy.** Fatigue tests are slow. Scatter of a factor of 2–10
-   on life at one stress level is normal, so point predictions are misleading.
-3. **Validation splits are usually leaky.** Random splits over specimens from the
-   same spectra make interpolation look like generalisation.
+### 7.2 Estimating Wave-Energy Resources from Short Measurement Campaigns
 
-### Routes past them
+- **Task:** extend a short paired wave–wind record to a long wind-only
+  period, then estimate the wave resource.
+- **Score:** **0.560**. 100 proposals, about $8k. Recent gains are about
+  10⁻⁴.
+- **What the agents did:** direct sea-state regressions with censoring,
+  gates and shrinkage.
+- **Binding limit:** swell is generated by remote storms, not local wind, so
+  any model driven only by local wind has an error floor.
+- **Routes:**
+  1. **Split wind-sea and swell explicitly.** Use fetch- and duration-limited
+     growth laws for wind-sea, and treat swell as a persistent
+     autoregressive or regime process whose climatology comes from the
+     campaign.
+  2. **Match the distribution, not the time series:** quantile mapping of
+     the resource statistic (energy-flux distribution), which is
+     what assessment uses.
+- **Test:** skill on long-term mean power and the exceedance curve.
 
-| Route | Limit it attacks | Mechanism |
-| --- | --- | --- |
-| **Put the extrapolation in the physics, and learn only the parameters.** Predict cycle-by-cycle crack growth with a closure/strip-yield model whose material parameters and closure law are learned. Do not predict life directly. | 1 | The model's structure does the extrapolating. Unseen spectra are just new inputs to a mechanism, not a covariate shift. |
-| **A learned damage-state ODE stepped through the load history**, constrained to be monotone in damage and to commute with how cycles are counted | 1 | Captures sequence effects that Miner cannot, while staying stable on sequences of any length. |
-| **Probabilistic output**: a calibrated life distribution (for example P–S–N style lognormal), scored by coverage | 2 | A factor-of-two band that is honest beats a point estimate that is confidently wrong. Design codes already work in probabilities of failure. |
-| **Active learning over tests**: choose the next physical test to cut predictive uncertainty on the target spectrum class most | 2 | Makes each slow, expensive test count for more. |
-| **Spectrum-level held-out splits**: train on constant-amplitude and block loading, test on standard random spectra (for example FALSTAFF, CARLOS, WASH-type histories) never seen in training | 3 | The only split that measures what the challenge asks. |
+### 7.3 Steel Cyclic Loading History Transfer, and 7.4 Predict Cyclic Steel Stress Response from Limited Material Tests
 
-**Breakthrough criterion.** Most predictions on **unseen spectrum families**
-should fall within a factor of 2 of test life. That is stricter than the usual
-factor-of-3 band. The predicted intervals should hit their nominal coverage, and
-the model should beat rainflow + Miner and rainflow + a calibrated nonlinear
-damage rule on the same split.
+- **Tasks:**
+  - **7.3:** calibrate a material model from tension coupon tests and
+    predict stress and energy under earthquake strain histories.
+  - **7.4:** predict a steel's stress response to a strain history from one
+    tension test plus a library of tests on other steels.
+- **Scores:** **0.668** (100 proposals) and **0.545** (71 proposals,
+  paused). Recent gains are about 10⁻⁴–10⁻⁶.
+- **What the agents did:** Chaboche/Armstrong–Frederick back-stress models,
+  Bauschinger transitions and donor-library averaging, tuned one coefficient
+  at a time.
+- **Binding limit:** a monotonic tension test does not identify the cyclic
+  hardening parameters. They have to be *transferred* from other steels, and
+  the agents do that by averaging donors.
+- **Routes:**
+  1. **A hierarchical Bayesian prior over constitutive parameters** learned
+     from the donor library, conditioned on monotonic features (yield,
+     ultimate strength, hardening exponent, yield-plateau length), and
+     updated by the target coupon. Predict with the posterior. This is
+     principled transfer with honest uncertainty.
+  2. **A thermodynamically consistent learned constitutive model** (for
+     example input-convex or internal-variable networks) trained across
+     donors. Physics guarantees stability on long earthquake histories.
+- **Test:** skill on held-out steels *and* protocols (LP9/LP10 are already
+  used as independent checks), plus energy-dissipation error.
 
----
+### 7.5 Predicting Optical Constants Beyond the Measured Wavelength Band
 
-## 5. Scheduling wind power against energy storage
+- **Task:** extrapolate n and k outside the measured band.
+- **Score:** **0.791**. 100 proposals.
+- **What the agents did:** Drude–Lorentz, Urbach and pole models chosen by
+  material class, with careful choice of which models to keep.
+- **Binding limit:** fitting n and k independently breaks causality.
+- **Routes:**
+  1. **Fit only Kramers–Kronig-consistent models** (sums of
+     Tauc–Lorentz, Cody–Lorentz and Drude oscillators), and choose the
+     oscillator count by held-out-band cross-validation inside the
+     measured data.
+  2. **A prior over oscillators from a materials database** (by material
+     class), which supplies the out-of-band resonances the data cannot
+     reveal.
+- **Test:** skill as a function of distance from the band edge.
 
-### Where the frontier is
+### 7.6 Optical Coating Design Under Manufacturing Variation
 
-The field is moving from *predict-then-optimise* to **decision-focused learning
-(DFL)**: train the forecaster on the cost of the decision it feeds, not on
-forecast error. There are recent results across the problem. One end-to-end
-method tunes wind forecasts to two-stage market cost under a distributionally
-robust OPF. Others apply DFL to storage arbitrage, reserve-market bidding and
-battery dispatch under renewable uncertainty. Deep RL for co-located wind and
-batteries is the other strand.
+- **Task:** an anti-reflection stack that maximises expected performance
+  under a process-variation model.
+- **Score:** **0.252** (paused). Gains were still large, about 5×10⁻³ per
+  step, when it stopped.
+- **What the agents did:** Sobol sampling and thickness polishing with
+  local material swaps.
+- **Binding limit:** local search in a very multimodal design space.
+- **Routes:**
+  1. **Needle-optimisation / global topology search** for inserting layers,
+     wrapped in robust optimisation that uses the analytic sensitivities
+     of the transfer-matrix method (adjoint gradients of the expected score).
+  2. **Prefer designs whose error sensitivity is low by construction,**
+     for example quarter-wave-stable and graded-index structures.
+- **Test:** the expected score and the worst decile under the variation
+  model.
 
-### The binding limits
+### 7.7 PM2.5 Sensor Calibration Transfer
 
-1. **Better forecasts do not mean better decisions.** Errors at high-price hours
-   and near ramps matter far more than average error.
-2. **Battery degradation is left out or crudely priced.** Schedules that look
-   profitable over a week consume cycle life worth more than the arbitrage.
-3. **Market rules are complex.** Imbalance settlement, reserve products and
-   gate-closure times make the real problem a multi-stage stochastic programme.
-4. **Results do not generalise across years.** Strategies tuned on one year's price
-   regime fail in the next (compare 2021–22 against 2024–26).
+- **Task:** calibrate low-cost particle sensors to reference PM2.5, judged
+  on hourly values, monthly means and advisory tallies.
+- **Score:** **0.695** (paused).
+- **What the agents did:** humidity growth corrections, laser-health
+  selection and temperature-adjusted gain.
+- **Binding limit:** the aerosol type changes the optical response (κ
+  hygroscopicity, size distribution), and that varies by site and season.
+- **Routes:**
+  1. **κ-Köhler hygroscopic growth with κ inferred per site** from the
+     relationship between the two lasers and the sensor's particle-size
+     bins.
+  2. **Hierarchical (site-level random-effects) calibration** shared across
+     stations, so a new site borrows strength.
+- **Test:** leave-one-site-out skill on the advisory tallies.
 
-### Routes past them
+### 7.8 64-Frame Rayleigh–Bénard Convection Forecasting with Walrus (The Well)
 
-| Route | Limit it attacks | Mechanism |
-| --- | --- | --- |
-| **DFL with a stochastic-MPC inner layer.** Probabilistic forecasts (quantiles or scenarios) feed a receding-horizon stochastic programme, and the forecaster is fine-tuned through it on realised profit | 1, 3 | Forecasts get pushed toward accuracy where the decision is sensitive. MPC keeps hard constraints that pure RL can break. |
-| **A degradation-aware objective**: cycle-depth-dependent (rainflow-based) ageing cost inside the dispatch problem | 2 | Turns hidden capital consumption into a priced trade-off. |
-| **Conformal calibration of the reserve or imbalance margin** | 1, 3 | A distribution-free guarantee on shortfall probability, which a grid operator can accept. |
-| **Report regret against perfect foresight, not raw profit**, on out-of-sample years | 4 | Makes results comparable across markets and years. "Captures 85% of the perfect-foresight value in an unseen year" is a claim that means something. |
+- **Task:** forecast 64 frames from 6 input frames, over 35 Rayleigh and
+  Prandtl settings.
+- **Score:** rollout NRMSE 0.369 → **0.313 (−15%)**. The last gains are
+  about 10⁻⁵.
+- **What the agents did:** LoRA adapters on Walrus, specialised by regime,
+  with physical projections in the feedback loop.
+- **Binding limit:** chaotic divergence. Past a few eddy turnovers, RMSE on
+  a point forecast mostly rewards blurring toward the mean.
+- **Routes:**
+  1. **Train on full rollouts with spectral and conservation losses**
+     (incompressibility, Nusselt-number consistency) and noise injection
+     to stabilise long horizons.
+  2. **Generate ensembles of rollouts** (diffusion or flow-matching
+     refiners such as PDE-Refiner) and score them with CRPS alongside RMSE.
+- **Test:** NRMSE plus energy-spectrum error and Nusselt error at frame 64.
 
-**Breakthrough criterion.** On a held-out market year, capture a higher share of
-perfect-foresight value than stochastic MPC with an accuracy-trained forecaster.
-Keep degradation-adjusted net value positive and keep shortfall probability at or
-below target.
+### 7.9 Full-field Reconstruction of Rayleigh–Bénard Convection from 256 Sensors
 
----
+- **Task:** reconstruct the whole field, including pressure, which is never
+  measured, from 256 point sensors over 8 frames.
+- **Score:** field NRMSE 0.292 → **0.234 (−20%)**.
+- **What the agents did:** kernel regressions on gappy-POD features with
+  pressure mixtures.
+- **Binding limit:** linear and kernel maps from sparse points cannot
+  recover small-scale plumes. Pressure needs physics.
+- **Routes:**
+  1. **A learned reconstruction network** (U-Net or transformer over a
+     Voronoi tessellation of the sensors) trained across settings. This idea
+     is on the agents' list but not done.
+  2. **Recover pressure from the pressure-Poisson equation** applied to the
+     reconstructed velocity, not by regression.
+- **Test:** NRMSE per variable, with pressure reported separately.
 
-## 6. Identifying lung cell types
+### 7.10 Wind-Farm Wake Calibration and Power Prediction from Real SCADA
 
-### Where the frontier is
+- **Task:** calibrate FLORIS on Kelmarsh and Penmanshiel SCADA, then predict
+  per-turbine power for unseen periods and an unseen farm.
+- **Score:** reward **0.412**. 6 proposals, so it has barely started.
+- **What the agents did:** a physics skeleton with shrinkage corrections, and
+  a per-turbine gradient-boosting residual has been proposed.
+- **Binding limit:** the inflow is poorly known (wind-direction bias,
+  veer and stability), and residual models will not transfer to the unseen
+  farm.
+- **Routes:**
+  1. **Calibrate inflow first:** correct yaw and nacelle-direction bias, then
+     condition wake expansion on stability (turbulence intensity and shear
+     taken from SCADA). Calibrate only physically meaningful parameters so
+     that they transfer.
+  2. **Validate the transfer with leave-one-farm-out testing** before
+     adding any machine-learned residual.
+- **Test:** nMAE on the unseen farm specifically.
 
-The reference is the **Human Lung Cell Atlas (HLCA)**. Its core integrates
-about 584k cells from 107 people across 14 datasets with a consensus
-hierarchical annotation, and its extension covers about 2.4M cells. Single-cell
-foundation models (scGPT, Geneformer, scFoundation) were expected to solve
-annotation. Independent evaluations found otherwise. **Zero-shot they are often
-beaten by simple baselines** (highly variable genes, scVI, logistic regression).
-Geneformer's embedding space clusters by batch rather than by cell type. And
-pre-training sometimes adds nothing for annotation after fine-tuning.
+## 8. Optimisation and operations (9)
 
-### The binding limits
+The agents have built hand-engineered heuristic policies, still incremental
+but with larger gains than the physics tracks.
 
-1. **Batch and platform effects** dominate the biological signal across studies,
-   protocols and chemistries.
-2. **Rare and transitional types** are where annotation matters clinically and
-   fails most: ionocytes, neuroendocrine and tuft cells, and disease-specific
-   states such as aberrant basaloid cells in pulmonary fibrosis. Accuracy is
-   dominated by abundant types, so it hides these failures.
-3. **Classifiers must assign a known label.** Most of them cannot say "this is not
-   in the reference", which is exactly the case in disease samples.
-4. **Label noise.** Annotations differ across studies, so a model can be "wrong"
-   where the reference is.
+| Challenge | Best | What the agents built | Route to a step change |
+| --- | --- | --- | --- |
+| **Toronto Arterial Signal Timing Coordination** (6–7 signals, one counted hour, 50 evaluator queries) | 0.989 | Offset and split probing with zero-sum green swaps | Near its ceiling under this metric. The value now is in **robustness**: optimise for a *distribution* of demand around the counted hour, not the one hour. The test should be the same plan under ±20% demand. |
+| **Online Single-Track Railway Dispatcher** (Finnish line, 16 sections) | 0.398 | Pairwise veto and pricing rules for meets | **Rolling-horizon exact optimisation** (MILP or constraint programming over meet and pass orders, with a 10–20 minute look-ahead). Single-track meet scheduling is small enough for exact solvers, and the gap to 1.0 suggests greedy rules are leaving a lot behind. |
+| **Citywide Bicycle Rebalancing** | 0.802 | First-passage probabilities and parametric order scoring | **Stochastic look-ahead routing:** a fluid model or sampled demand scenarios feeding a vehicle-routing solver for the van tour, re-planned at each stop. |
+| **Columbia/Snake River Dam Spill Optimisation** (8 dams, juvenile salmon) | 0.720 | Five-action expert sets, soft-regret weighting | **Coordinated model-predictive control across the cascade.** Optimise spill jointly at all 8 dams over the travel horizon of the fish, with total-dissolved-gas constraints as hard limits. The current controller decides dam by dam. |
+| **Online Cloud Resource Allocator** (Azure trace) | 0.762 | Survival-curve lifetime estimates, shortlist scoring | **Learned lifetime distributions conditioned on VM metadata,** used in a best-fit-by-expected-departure packing rule. Lifetime-aware packing is where the large wins are in the scheduling literature. |
+| **Ride-Hail Matching and Repositioning** (NYC) | 0.989 | Repricing and ordering repositioning moves | Near its ceiling. Test **robustness to demand shocks** before investing further. |
+| **Control Policy for Frequent Bus Services** (HSL) | 0.750 | Holding heuristics with empirical link-error strata | **Headway-based holding with predictive control:** hold to equalise *forecast* headways over the next stops, using the per-link travel-time distributions the agents already estimate. |
+| **Rolling Unit-Commitment and Dispatch** (OPSD load and wind, with storage) | 0.534 (6 proposals) | Rolling MILP; let baseload drop to minimum output, with storage covering reserve | **Stochastic unit commitment over wind scenarios** sampled from historical day-ahead forecast errors, with a storage end-of-horizon value. The current plan uses fixed reserve rules. Measure regret against perfect foresight. |
+| **Wireless 400-Cell Synthetic MILP** | no proposals yet | none yet | Start from the structure of the problem: decompose by cell cluster (Lagrangian relaxation), warm-start HiGHS from a greedy solution, and use a large-neighbourhood search to fix most variables and re-solve the rest. |
 
-### Routes past them
+## 9. Infrastructure (1)
 
-| Route | Limit it attacks | Mechanism |
-| --- | --- | --- |
-| **Hierarchical prediction over the HLCA ontology with calibrated abstention** | 2, 3, 4 | Predict at the finest level the evidence supports and back off to the parent ("basal-like epithelial") when uncertain. Flag novel cells. |
-| **Reference mapping with per-cell uncertainty** (scArches/scANVI-style surgery onto the HLCA), combined with marker-gene priors | 1, 2 | Corrects batch effects during mapping. Marker priors anchor rare types that have few training cells. |
-| **Foundation-model embeddings only as one input to a stacked ensemble**, kept only if ablation shows they add value | 1 | Uses what FMs do well without trusting them zero-shot. The evidence says they must earn their place. |
-| **Evaluation held out by study and by disease**, scored on macro-F1 across rare types, calibration error and novel-cell AUROC | 2, 3 | Measures the failures that matter rather than overall accuracy. |
+**Single-Machine Weighted Tardiness with Release Times.**
+- **Score:** gain **1.211**. 45 proposals.
+- **What the agents did:** the winning edit was raising a CPU-time guard
+  from 95% to 97%, which is a sign the search is near its limit.
+- **Binding limit:** the search under a one-second wall clock.
+- **Route:** the state of the art for this problem is **iterated local search
+  or dynasearch with fast O(1) move evaluation** (precomputed prefix
+  completion times), seeded with ATC. Add-ons are memetic recombination
+  for large instances and a bounded exact DP for small ones.
+- **Test:** gap to best-known solutions on standard OR-Library-style
+  instances.
 
-**Breakthrough criterion.** On a held-out *disease* cohort from an unseen lab,
-reach high macro-F1 over rare types, detect cell states missing from the
-reference with high AUROC, and keep confidence calibrated. In short, a model
-that knows when it does not know.
+## 10. Quantitative finance (8)
 
----
+| Challenge | Best | Observation | Route |
+| --- | --- | --- | --- |
+| **S&P 500 Minute Trading Activity Ranking** | 0.167 → 0.463 | 100 proposals, about $9.5k, last gains about 10⁻⁶ | Saturated with hand-made features. Replace them with **one cross-sectional sequence model** (a transformer over the 60-minute bars of all members) trained on a ranking loss, using intraday seasonality as an input, not a hand-built normaliser. |
+| **Nasdaq Order-Book Depth Exhaustion Ranking** | 0.200 → 0.377 | Last gains about 10⁻⁵ | **Event-time, order-flow-imbalance models across depth levels** (multi-level order-flow imbalance, queue depletion hazard). Model the arrivals, not the snapshots. |
+| **Event-Driven Equity on Filings** | reward 1.0 | Score is pinned at the ceiling; individual gains of 0.23 / 0.68 / 0.09 | **The reward is capped or saturated**, so the evaluation can no longer rank methods. Fix the metric first: use uncapped net-of-cost Sharpe on a later out-of-sample window, with an explicit test against overfitting. |
+| **A-Share Intraday Overlay** | reward 1.0 | Same pinned score | Same: fix the evaluator before searching further. |
+| **Execution Policy from Ten-Level Order Book** | reward 1.0 | Same pinned score; 11 proposals | Same, then optimal-execution control (Almgren–Chriss-style with learned fill probabilities). |
+| **Cross-Venue Perpetual Order Allocation** | 0.593 | Residual trees, gains about 10⁻⁵ | A **venue-cost model with fill and adverse-selection terms,** solved as a small convex allocation per parent order. |
+| **Minute-Level Perpetual Strategy** | 0.078 | Funding-carry timing | Low and noisy. Pre-register a single hypothesis family (funding-settlement carry) and test it on a fresh window before tuning more. |
+| **Cost-Aware Long-Only Portfolio (Qlib, CSI 300 → unseen US)** | 0.212 | Ridge alpha with threshold rebalancing | **Transaction-cost-aware mean–variance optimisation with a shrinkage covariance,** and alpha factors tested for whether they transfer across markets. |
 
-## 7. Across all challenges: making agent-driven research credible
+Across finance, **three of eight tracks score exactly 1.0.** A capped or
+saturated reward cannot rank methods, so those tracks need their evaluators
+fixed before any further agent search. In general, gains in finance tracks
+must be tested on time windows later than every experiment, because
+2,000-proposal searches will find spurious patterns.
 
-The five challenges differ in domain but share one structural risk. **An
-autonomous agent running thousands of experiments against a fixed metric
-optimises the metric.** That is useful exactly as far as the metric measures the
-real goal and no further. Recent work found that AI research agents *narrow*
-scientific exploration, and other studies report that agents struggle with
-open-ended original research. The aicell newsletter's diagnosis applies:
-generating candidate approaches is cheap now, and verifying them is the
-constraint.
+## 11. Agent harnesses (6)
 
-What would let HFM, or anyone running agents on these challenges, claim a
-breakthrough that holds up:
+These are the tracks with the largest relative gains. A frozen model is given
+a better scaffold.
 
-1. **Sealed, distribution-shifted test sets.** Hold out *future* time windows
-   (weather, markets), *unseen networks* (traffic), *unseen spectrum families*
-   (steel) and *unseen labs and diseases* (lung cells). Agents should never be
-   able to query them. Each challenge above is defined by a generalisation gap,
-   so the test split must embody that gap.
-2. **A floor of strong baselines.** Every claim must beat the best simple method
-   tuned with the same compute budget: max-pressure, rainflow + Miner, stochastic
-   MPC, logistic regression on highly variable genes, IFS ENS. Most published
-   "gains" in these fields vanish against tuned baselines.
-3. **Count every experiment.** 2,391 experiments against a fixed metric is a
-   multiple-comparisons problem. Report how many attempts preceded the best one,
-   and confirm winners on fresh data before announcing them.
-4. **Search for diversity, not only for a score.** Keep an archive of
-   qualitatively different approaches (quality-diversity / MAP-Elites style)
-   instead of hill-climbing one family. That counters the narrowing effect and
-   is where unexpected routes come from.
-5. **Keep provenance for every number.** Every reported figure should say
-   whether it was measured, taken from a named source or assumed. That is the
-   discipline `sciscout` enforces (see the repository README), and it is what
-   lets a public record be audited rather than merely read.
-6. **Put physical structure where extrapolation is needed.** In weather (a
-   dynamical core), steel (crack-closure mechanics) and traffic (max-pressure
-   stability), the most credible routes past the current limits keep a
-   mechanism that is known to be correct and learn only the part around it.
-   That gives an agent a search space where a win is likely to transfer, rather
-   than one where it exploits the benchmark.
+| Challenge | Score | Winning move | Route to the next step change |
+| --- | --- | --- | --- |
+| **ARC Grid Transformation** | 0.121 → **0.786** | Program synthesis with repair, multi-view augmentation | **Test-time training on each task's examples,** combined with program search. That combination is the known frontier on ARC. Also use **verified program voting** across the eight symmetry views. |
+| **Verified Programming with Dafny** | 0.316 → **0.829** | Stop repair loops when stalled, restart fresh drafts | **Decompose into invariants first:** generate loop invariants and lemmas separately, check each with Dafny, then compose. Most remaining failures are proof obligations, not code. |
+| **Formal Theorem Proving in Lean** | 0.364 → **0.566** | More independent repair requests | **Whole-proof sampling plus search guided by tactic state** (best-first over proof states using Lean REPL feedback), and **lemma caching across theorems**. |
+| **Questions over Real Tables** | 0.371 → **0.877** | Expose exact data types to the model | **Program-of-thought with self-consistency:** generate several pandas programs and vote on executed answers. |
+| **Preserving Knowledge from Research Papers** | 0.241 → **0.479** | Consolidation prompts, BM25 retrieval | **Anticipate likely questions:** build notes as dense fact tables (entity, number, condition) in the reader's likely answer format. |
+| **Agent Harness Evolution (Terminal-Bench 2)** | 0.536 (8 proposals) | Wall-clock awareness and an "always have something deliverable" contract | Agree. Next: **verifier-first loops** (write and run the task's tests before declaring done). The agents also note the sealed readout has about ±6 points of noise, so require repeated runs before promoting a change. |
 
-## 8. Next steps
+## 12. Post-training (7)
 
-- **Get the other 49 challenges.** Reading `hf-mission.com` would give the
-  full set of definitions, metrics and current-best results, and Sections 2–6
-  could then be repeated for each.
-- **Check each named challenge's official metric** against the breakthrough
-  criteria proposed here. If HFM's metric rewards in-distribution gains, the
-  criteria above are the stronger test.
-- **Track HFM's directions in `sciscout`.** Harvest papers for each challenge
-  area to see which routes above are accelerating in the literature.
+**SynLogic** (0.378), **EmbSpatial** (0.785), **FabNER** (80.7 F1),
+**MapQA** (0.828), **ScienceWorld** (35.8), **TOPv2** (83.0 exact match), and
+**Agentic RL with verl** (0.367).
+
+- **What the agents did:** LoRA rank, batch size, label smoothing and token
+  weighting, all small-step recipe search. None of these tracks has a
+  published baseline, so "improvement" is undefined.
+- **Binding limits:** small LoRA, a single GPU and a fixed time budget. The
+  data matters more than the hyper-parameters.
+- **Routes:**
+  1. **Data, not knobs.** Synthesise verified training data: SynLogic
+     generators with checkers, programmatic ScienceWorld trajectories,
+     and grammar-sampled TOPv2 trees. The agentic RL track's own winning
+     hypothesis, procedurally generated Docker tasks with executable tests,
+     is the template.
+  2. **Rejection-sampling fine-tuning** (generate, verify, train on what
+     passes) before GRPO, so that RL starts from a policy that already
+     succeeds sometimes.
+  3. **Publish a base-model score for every track,** so progress can be
+     measured at all.
+
+## 13. Pretraining (7)
+
+Seven tracks: looped and recurrent-depth transformers, architecture search
+from scratch, and pretraining under an inference-cost constraint.
+
+- **What the agents did:** many proposals fail to produce a scorable
+  checkpoint. For example, 20 proposals but only 2 scored in the 168-hour
+  looped track. The scored ones are function-preserving expansions,
+  data-mix changes and throughput fixes. None has a baseline.
+- **Binding limit:** engineering reliability and throughput, not ideas.
+  One winning hypothesis is just "use the idle GPU memory to raise
+  throughput 20%".
+- **Routes:**
+  1. **A known-good, efficient recipe as a fixed floor** (Muon or AdamW,
+     QK-norm, a warmup–stable–decay schedule, fused cross-entropy, full
+     `torch.compile`). Only architecture ideas are compared on top of it.
+  2. **For looped models,** use loop-index embeddings with a separate norm
+     for each loop, plus random loop counts and deep supervision at
+     training time. The agents' own best idea in that direction targets a
+     documented failure: math BPB stalls in the reference looped model.
+  3. **Scaling-law extrapolation from short runs** (fit loss against
+     compute on 3–4 sizes), so a 24-hour budget ranks ideas by their
+     slope, not by one noisy endpoint.
+
+## 14. Cross-cutting: changing the research process itself
+
+These would raise the ceiling of every track at once.
+
+### 14.1 Escape the local optimum
+
+- **Budget a share of proposals for structural changes** (for example
+  20–30%). These would change the model class, the data source or the
+  physics, and must *not* be framed as edits of the current best. Judge
+  them on a longer clock.
+- **Give such proposals a larger budget class.** The weather fine-tune
+  failed under the same budget as a coefficient tweak.
+- **Keep a quality-diversity archive** of distinct approaches (MAP-Elites
+  style) instead of a single champion. Recent work reports that AI research
+  agents narrow exploration, and the 83% figure above is that narrowing,
+  measured.
+- **Stop or redirect a track automatically** when its last *k* accepted
+  gains fall below the measured noise floor. Five tracks already have median
+  recent gains below 10⁻⁴ relative, and three more are just above it.
+
+### 14.2 Make every claimed gain real
+
+- **Promote a change only when it beats seed-to-seed variation.** Gains of
+  10⁻⁷ cannot be distinguished from re-run noise, and the harness track
+  itself reports ±6-point noise on a sealed readout.
+- **Correct for multiple comparisons.** 100 proposals against one practice
+  set will find practice-set artefacts. Confirm on a fresh hidden split
+  before the result is shown as "best".
+- **Fix evaluators that saturate.** Three finance tracks are pinned at 1.0.
+  Post-training and pretraining tracks need published baselines.
+
+### 14.3 Use what the challenges already reward
+
+Most challenges are defined by **a generalisation gap**: a new sky region,
+new study, new cohort, colder temperature, unseen farm, unseen steel,
+out-of-band wavelength, or unseen chemical system. The proposals that look
+most promising in this note all put in **structure that carries across the
+gap**:
+- physical laws: Arrhenius kinetics, Kramers–Kronig, Poisson pressure and
+  wave-growth laws;
+- hierarchical priors across donors, sites and studies;
+- explicit invariances: reverse-complement, symmetry views, stain
+  augmentation.
+
+The agents' default is tuning the residual on the practice set, which is
+exactly the approach that does not transfer across those gaps.
+
+## 15. Data and reproduction
+
+- `research/hfm-challenges-2026-11-24.csv` lists all 54 challenges: field,
+  status, metric, direction, baseline, best audited score, proposal count,
+  scored count, accepted improvements, spend, and the best hypothesis.
+- Re-fetch a track with
+  `GET https://hf-mission.com/api/discovery/live/snapshot?section=summary&source=<source_id>`.
+  The directory is at
+  `section=directory&directoryLimit=50` and pages with `beforeTrackId`.
 
 ## Sources
 
-- PR Newswire, [The Next Frontier for AI: Human Frontier Mission Announces Global Launch](https://www.prnewswire.com/news-releases/the-next-frontier-for-ai-human-frontier-mission-announces-global-launch-302947034.html) (21 Nov 2026), and reprints such as [wireuk.org](https://wireuk.org/the-next-frontier-for-ai-human-frontier-mission-announces-global-launch/)
+- [Human Frontier Mission](https://hf-mission.com/) and its live API (fetched 24 Nov 2026)
+- PR Newswire, [The Next Frontier for AI: Human Frontier Mission Announces Global Launch](https://www.prnewswire.com/news-releases/the-next-frontier-for-ai-human-frontier-mission-announces-global-launch-302947034.html) (21 Nov 2026)
 - AI Weekly, [Human Frontier Mission Opens Nov 24 With 2,391 AI Experiments](https://aiweekly.co/alerts/human-frontier-mission-opens-nov-24-with-2391-ai-experiments)
 - aicell.io, [Lab Newsletter — November 24, 2026: The Verification Turn](https://aicell.io/post/newsletter-2026-11-24/)
-- [Human Frontier Mission homepage](https://hf-mission.com/)
-- [WeatherBench 2](https://sites.research.google/weatherbench); GenCast, [Nature 2024](https://unpaywall.org/10.1038%2FS41586-024-08252-9); [WeatherNext model docs](https://developers.google.com/weathernext/guides/models-wn-gen); [WeatherNext open release coverage](https://rits.shanghai.nyu.edu/ai/google-open-sources-weathernext-cyclone-forecasts-gain-a-day/); [EGU26-17711](https://meetingorganizer.copernicus.org/EGU26/EGU26-17711.html)
-- Traffic: [RESCO (NeurIPS)](https://people.engr.tamu.edu/guni/papers/NeurIPS-signals.pdf); [arXiv 2603.12096](https://arxiv.org/abs/2603.12096); [CityLight, arXiv 2406.02126](https://arxiv.org/html/2406.02126v2); [PNNL corridor MARL](https://www.pnnl.gov/publications/deep-multi-agent-reinforcement-learning-real-world-signalized-traffic-corridor-control); [arXiv 2103.16223](https://arxiv.org/abs/2103.16223v3)
-- Fatigue: [Physics-guided NN under multiple overloads (BUAA)](https://research.buaa.edu.cn/en/publications/a-physics-guided-neural-network-for-probabilistic-fatigue-life-pr/); [arXiv 2503.05419](https://export.arxiv.org/pdf/2503.05419); [arXiv 2508.17303](https://web3.arxiv.org/abs/2508.17303); [arXiv 2501.15057](https://arxiv.org/pdf/2501.15057); [arXiv 2209.00628](https://arxiv.org/pdf/2209.00628)
-- Wind and storage: [arXiv 2412.10554](https://arxiv.org/html/2412.10554v1); [arXiv 2401.03680](https://arxiv.org/pdf/2401.03680v2.pdf); [arXiv 2509.05772](https://www.arxiv.org/pdf/2509.05772); [arXiv 2305.00362](https://pdf.arxiv.org/pdf/2305.00362); [arXiv 2304.02239](https://arxiv.org/pdf/2304.02239)
-- Lung cells: [Genome Biology 2025, zero-shot FM evaluation](https://link.springer.com/article/10.1186/s13059-025-03574-x); [Assessing the limits of zero-shot foundation models (bioRxiv)](https://www.biorxiv.org/content/10.1101/2023.10.16.561085.full.pdf); [Foundation models and imbalanced single-cell data](https://www.biorxiv.org/content/10.1101/2023.10.24.563625.full.pdf)
-- Agentic research: [AI Research Agents Narrow Scientific Exploration, arXiv 2605.27905](https://arxiv.org/pdf/2605.27905); [AI agents struggle to perform original scientific research](https://techxplore.com/news/2026-08-ai-agents-struggle-scientific.html); [arXiv 2607.27191](https://arxiv.org/pdf/2607.27191)
-
-Background knowledge not re-verified in this session, so check it against the
-original before citing: HLCA cell and donor counts (Sikkema et al., *Nature
-Medicine* 2023); the max-pressure stability property; the scatter of Miner's
-critical damage sum; the named standard load spectra (FALSTAFF, CARLOS, WASH);
-learned-assimilation systems (Aardvark Weather, GraphDOP) and NeuralGCM.
+- [AI Research Agents Narrow Scientific Exploration, arXiv 2605.27905](https://arxiv.org/pdf/2605.27905); [AI agents struggle to perform original scientific research](https://techxplore.com/news/2026-08-ai-agents-struggle-scientific.html)
+- Single-cell foundation-model evaluation: [Genome Biology 2025](https://link.springer.com/article/10.1186/s13059-025-03574-x); [zero-shot limits (bioRxiv)](https://www.biorxiv.org/content/10.1101/2023.10.16.561085.full.pdf)
+- Weather: [WeatherBench 2](https://sites.research.google/weatherbench); [GenCast (Nature 2024)](https://unpaywall.org/10.1038%2FS41586-024-08252-9)
+- Traffic RL benchmarks: [RESCO](https://people.engr.tamu.edu/guni/papers/NeurIPS-signals.pdf)
+- Fatigue and constitutive ML: [physics-guided NN under overloads](https://research.buaa.edu.cn/en/publications/a-physics-guided-neural-network-for-probabilistic-fatigue-life-pr/)
+- Decision-focused energy scheduling: [arXiv 2412.10554](https://arxiv.org/html/2412.10554v1); [arXiv 2401.03680](https://arxiv.org/pdf/2401.03680v2.pdf)

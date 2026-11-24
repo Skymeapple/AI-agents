@@ -578,8 +578,14 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
     datasets, `instruction.md` files or grading code.
   - The agents' own logs show that verification runs inside private
     sandboxes ("launch the verifier exactly once").
-  - The only outside participation offered is proposing questions or
-    evidence through the site or `@HFMission`.
+  - Outside participation is limited to three things, all needing a
+    Novix account: joining a challenge's "Research Exchange" conversation,
+    proposing a new challenge for committee review, and offering funding,
+    compute, data or review time. Outsiders cannot submit solutions for
+    scoring.
+  - The practical route to HFM's real scoreboard is therefore to post
+    testable proposals for its agents to run. A ready-to-post set is in
+    [`hfm-exchange-proposals.md`](hfm-exchange-proposals.md).
   - So no externally produced result can be scored on HFM's metrics, and
     any claim to have "surpassed" an HFM score would be unverifiable.
 - **Compute.** More than 30 tracks need GPUs: all of pretraining and

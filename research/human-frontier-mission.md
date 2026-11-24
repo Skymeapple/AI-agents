@@ -597,7 +597,7 @@ public reproduction of a fully specified task. That was done for
 eleven tracks where the task can be rebuilt from public material:
 
 **Weighted tardiness with release times**
-([`hfm-experiments/tardiness.py`](hfm-experiments/tardiness.py)).
+([`hfm-projects/infrastructure/weighted-tardiness/tardiness.py`](hfm-projects/infrastructure/weighted-tardiness/tardiness.py)).
 - **Setup:** 60 generated instances (n = 40 and 100, three tardiness and
   due-date-range settings, 10 seeds each), with the same one-second
   budget as HFM.
@@ -611,7 +611,7 @@ eleven tracks where the task can be rebuilt from public material:
   instances with an undisclosed normalisation.
 
 **Optical constants beyond the measured band**
-([`hfm-experiments/optical_extrapolation.py`](hfm-experiments/optical_extrapolation.py)).
+([`hfm-projects/physics/optical-constants/optical_extrapolation.py`](hfm-projects/physics/optical-constants/optical_extrapolation.py)).
 - **Setup:** 620 tabulated (n, k) records from the public
   refractiveindex.info database. The middle of each record's wavelength
   range is treated as measured, and both ends are withheld. Settings are
@@ -643,7 +643,7 @@ eleven tracks where the task can be rebuilt from public material:
   and scoring.
 
 **Photometric redshift across disjoint sky regions**
-([`hfm-experiments/photoz_regions.py`](hfm-experiments/photoz_regions.py)).
+([`hfm-projects/astronomy/photometric-redshift/photoz_regions.py`](hfm-projects/astronomy/photometric-redshift/photoz_regions.py)).
 - **Setup:** 198,350 galaxies with measured redshifts from the public SDSS
   DR17 catalogue, in 42 sky regions. Five-fold cross-validation with whole
   regions held out, so every galaxy is predicted by a model that never saw
@@ -669,7 +669,7 @@ eleven tracks where the task can be rebuilt from public material:
     metric. It would help only if the metric rewarded core scatter.
 
 **Wave-energy resource from a short campaign**
-([`hfm-experiments/wave_resource.py`](hfm-experiments/wave_resource.py)).
+([`hfm-projects/physics/wave-energy-resource/wave_resource.py`](hfm-projects/physics/wave-energy-resource/wave_resource.py)).
 - **Setup:** 16 NOAA buoys (Pacific, Atlantic, Gulf of Mexico, Hawaii),
   2021–2023. A 60-day campaign has wind and waves, and the next 365 days
   have wind only. 200 campaign instances. The reference assumes the
@@ -692,7 +692,7 @@ eleven tracks where the task can be rebuilt from public material:
   public wave hindcast. That is a change of data source, not of model.
 
 **Day-ahead unit commitment under wind uncertainty**
-([`hfm-experiments/unit_commitment.py`](hfm-experiments/unit_commitment.py)).
+([`hfm-projects/optimization/unit-commitment/unit_commitment.py`](hfm-projects/optimization/unit-commitment/unit_commitment.py)).
 - **Setup:** German hourly load, the official day-ahead load forecast and
   actual wind from Open Power System Data. A German-scale invented fleet
   (17 slow thermal units, a fast peaker, storage) is committed each
@@ -727,7 +727,7 @@ eleven tracks where the task can be rebuilt from public material:
     is the finding.
 
 **Cyclic steel response from a tension test**
-([`hfm-experiments/steel_cyclic_transfer.py`](hfm-experiments/steel_cyclic_transfer.py)).
+([`hfm-projects/physics/steel-cyclic-from-tension/steel_cyclic_transfer.py`](hfm-projects/physics/steel-cyclic-from-tension/steel_cyclic_transfer.py)).
 - **Setup:** the public Hartloper et al. coupon-test database (Zenodo
   6965147), which uses the LP1–LP10 loading protocols named in HFM's logs
   and is very likely the data behind both steel tracks. 38 steels from 21
@@ -758,7 +758,7 @@ eleven tracks where the task can be rebuilt from public material:
     single load reversal), not from a better prior.
 
 **Anti-reflection coatings under manufacturing variation**
-([`hfm-experiments/robust_ar_coating.py`](hfm-experiments/robust_ar_coating.py)).
+([`hfm-projects/physics/robust-ar-coating/robust_ar_coating.py`](hfm-projects/physics/robust-ar-coating/robust_ar_coating.py)).
 - **Setup:** standard thin-film reflectance calculation, six
   specifications (three substrates, two wavelength bands), a shared pool
   of candidate designs with 4, 6 or 8 layers, and thickness and index
@@ -778,7 +778,7 @@ eleven tracks where the task can be rebuilt from public material:
   supported on the selection point.
 
 **Online VM placement on the Azure packing trace**
-([`hfm-experiments/cloud_placement.py`](hfm-experiments/cloud_placement.py)).
+([`hfm-projects/optimization/cloud-vm-placement/cloud_placement.py`](hfm-projects/optimization/cloud-vm-placement/cloud_placement.py)).
 - **Setup:** Microsoft's public Azure Packing Trace 2020. Four disjoint
   tenant samples of about 100,000 VMs each are replayed over 14 days.
   Cost is server-days. There are no evictions, unlike HFM's objective.
@@ -799,7 +799,7 @@ eleven tracks where the task can be rebuilt from public material:
   estimates.
 
 **Wind-farm wake calibration and power prediction**
-([`hfm-experiments/wind_wake.py`](hfm-experiments/wind_wake.py)).
+([`hfm-projects/physics/wind-farm-wakes/wind_wake.py`](hfm-projects/physics/wind-farm-wakes/wind_wake.py)).
 - **Setup:** the same two farms HFM uses, Kelmarsh and Penmanshiel, 2017
   10-minute SCADA from Zenodo. A simple Jensen wake model stands in for
   FLORIS. Each farm gets a 60-day calibration window and is tested on the
@@ -830,7 +830,7 @@ eleven tracks where the task can be rebuilt from public material:
     undersold here.
 
 **Regulatory DNA activity in three cell lines**
-([`hfm-experiments/mpra_multitask.py`](hfm-experiments/mpra_multitask.py)).
+([`hfm-projects/biology/regulatory-dna-mpra/mpra_multitask.py`](hfm-projects/biology/regulatory-dna-mpra/mpra_multitask.py)).
 - **Setup:** the public lentiMPRA tables of Agarwal et al. (Zenodo
   10558183), the same assay and cell lines as HFM's task. A small CNN
   trained from scratch on CPU, at most 40,000 training sequences per cell
@@ -854,7 +854,7 @@ eleven tracks where the task can be rebuilt from public material:
   0.708, because this model is small and uses no Evo 2 features.
 
 **Perpetual-futures strategies on a later period**
-([`hfm-experiments/perp_funding_carry.py`](hfm-experiments/perp_funding_carry.py)).
+([`hfm-projects/quant-finance/perpetual-futures-strategy/perp_funding_carry.py`](hfm-projects/quant-finance/perpetual-futures-strategy/perp_funding_carry.py)).
 - **Setup:** Binance's public archive, 24 large USD-margined perpetual
   contracts, 2022–2025, 8-hour rebalancing. 36 market-neutral settings
   from three signal families (funding carry, taker-flow reversal, price
@@ -919,6 +919,9 @@ What would allow verified attempts on HFM's actual leaderboard:
    evaluation.
 
 ## 16. Data and reproduction
+
+- [`hfm-projects/`](hfm-projects/README.md) has one self-contained project folder for each of the 54
+  challenges, with the experiment code inside the project it belongs to.
 
 - `research/hfm-challenges-2026-11-24.csv` lists all 54 challenges: field,
   status, metric, direction, baseline, best audited score, proposal count,

@@ -1,0 +1,67 @@
+# Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA
+
+- **Field:** biology
+- **HFM track:** `discovery_live_ai4x_genomics_mpra` (active on HFM)
+- **Project status:** Tested on public data
+
+## The challenge
+
+Prediction of human regulatory DNA activity uses Evo 2 7B with lentiviral massively parallel reporter assays (lentiMPRA) in HepG2, K562, and WTC11 cells. Each 230 bp construct contains a 200 bp insert plus fixed adapters; activity is the mean log2 RNA/DNA ratio across replicates.
+
+- **Metric:** `assay_macro_spearman` (maximize)
+- **HFM baseline:** 0.4465
+- **HFM best so far:** 0.7076
+- **HFM effort:** 65 proposals, 61 scored, 32 accepted improvements, about $5,220 of compute
+- **HFM's current best idea:** Widening the mean-driven channel gates from 16 to 32 hidden units only in four-block ranking members with seeds 17 and 29 improves held-out human assay_macro_spearman over the unchanged audit-passed p3900 ensemble.
+
+## Existing theory and methods
+
+Sequence-to-activity CNNs (MPRA-DragoNN, MPRALegNet), multi-task heads across cell types, reverse-complement equivariance and test-time averaging, and fine-tuning of DNA language models (Enformer, Borzoi, Evo 2).
+
+## Public data
+
+Agarwal et al. lentiMPRA tables, Zenodo 10558183 (CC-BY 4.0), with the authors' ten folds. Evo 2 weights are public but the 7B model needs a GPU.
+
+## What limits progress
+
+Each cell line is learned mostly on its own, and Evo 2 enters only as frozen features.
+
+## Route to a step change
+
+One multi-task model with a head per cell line, reverse-complement averaging, then parameter-efficient fine-tuning of Evo 2.
+
+## Experiment and results
+
+Code: [`mpra_multitask.py`](mpra_multitask.py) in this folder. Run instructions are in its header.
+
+- **Setup:** the public lentiMPRA tables of Agarwal et al. (Zenodo
+  10558183), the same assay and cell lines as HFM's task. A small CNN
+  trained from scratch on CPU, at most 40,000 training sequences per cell
+  line, the authors' fold 10 as the test set, two seeds. Sequences in any
+  cell line's test fold are removed from all training sets, because the
+  libraries overlap and their folds differ.
+- **Result (Spearman on the test fold):**
+
+  | Model | HepG2 | K562 | WTC11 | Macro |
+  | --- | --- | --- | --- | --- |
+  | One model per cell line | 0.549 | 0.554 | 0.504 | 0.535 |
+  | + reverse-complement averaging | 0.566 | 0.571 | 0.519 | 0.552 |
+  | One multi-task model | 0.595 | 0.589 | 0.549 | 0.578 |
+  | Multi-task + reverse-complement averaging | 0.610 | 0.604 | 0.563 | **0.593** |
+
+- **What this shows:** both ideas from Section 4.1 hold. Multi-task
+  training adds 0.042 and reverse-complement averaging adds 0.015. Each
+  gain appears in every cell line and both seeds (seed-to-seed spread is
+  about 0.005 to 0.010). The largest multi-task gain is on WTC11, the
+  smallest dataset, as predicted. Absolute scores are far below HFM's
+  0.708, because this model is small and uses no Evo 2 features.
+
+These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
+
+## How far this can go
+
+Replicate-to-replicate reproducibility of the assay bounds Spearman (the source paper reports replicate correlations around 0.76 to 0.98 depending on cell line). HFM's 0.708 is already near the low end of that range for WTC11-like noise.
+
+## Next steps
+
+Run the multi-task head on Evo 2 embeddings on a GPU. Add shift augmentation. Measure the replicate ceiling per cell line from the non-averaged tables.

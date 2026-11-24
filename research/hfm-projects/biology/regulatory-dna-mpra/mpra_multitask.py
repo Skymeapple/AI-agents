@@ -38,8 +38,9 @@ from scipy.stats import spearmanr
 
 CELLS = ["HepG2", "K562", "WTC11"]
 ADAPT = 15
-MAX_TRAIN = 40000
-EPOCHS = 3
+MAX_TRAIN = int(os.environ.get("MPRA_MAX_TRAIN", 40000))   # sequences per cell line
+EPOCHS = int(os.environ.get("MPRA_EPOCHS", 3))
+SEEDS = tuple(range(int(os.environ.get("MPRA_SEEDS", 2))))
 LUT = np.full(256, 4, np.int64)
 for i, ch in enumerate("ACGT"):
     LUT[ord(ch)] = i
@@ -140,7 +141,7 @@ def main():
     print(f"multi-task training sequences: {len(allseq)} (labels per cell line: {Mm.sum(0).int().tolist()})", flush=True)
 
     rows = []
-    for seed in (0, 1):
+    for seed in SEEDS:
         t0 = time.time()
         multi = train(Xm, Ym, Mm, 3, seed)
         print(f"  seed {seed}: multi-task trained in {time.time() - t0:.0f}s", flush=True)
@@ -158,7 +159,7 @@ def main():
     tab = r.pivot_table(index=["model", "rc"], columns="cell", values="rho")
     tab["macro"] = tab[CELLS].mean(axis=1)
     per_seed = r.pivot_table(index=["model", "rc"], columns="seed", values="rho")
-    print("\nSpearman correlation on the test fold (mean of two seeds); rc = reverse-complement averaging")
+    print("\nSpearman correlation on the test fold (mean over seeds); rc = reverse-complement averaging")
     print(tab.round(4).to_string())
     print("\nmacro Spearman by seed")
     print(per_seed.round(4).to_string())

@@ -593,7 +593,7 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
   UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
 
 What *can* be tested locally is whether a proposed route works on a
-public reproduction of a fully specified task. That was done for two
+public reproduction of a fully specified task. That was done for five
 tracks where the task can be rebuilt from public material:
 
 **Weighted tardiness with release times**
@@ -641,6 +641,108 @@ tracks where the task can be rebuilt from public material:
   7.5's ordering of the two routes should be read with that in mind.
   The result is not comparable to HFM's 0.791, which uses private samples
   and scoring.
+
+**Photometric redshift across disjoint sky regions**
+([`hfm-experiments/photoz_regions.py`](hfm-experiments/photoz_regions.py)).
+- **Setup:** 198,350 galaxies with measured redshifts from the public SDSS
+  DR17 catalogue, in 42 sky regions. Five-fold cross-validation with whole
+  regions held out, so every galaxy is predicted by a model that never saw
+  its region. Catalogue brightness only, no images, so errors are larger
+  than HFM's.
+- **Result:**
+
+  | Method | NRMSE | Change | Core scatter (NMAD) | Outliers | Folds improved |
+  | --- | --- | --- | --- | --- | --- |
+  | Boosted-tree regression (base) | 0.04280 | — | 0.02342 | 1.22% | — |
+  | Same, different random seed | 0.04285 | +0.10% | 0.02344 | 1.22% | 2/5 |
+  | + Galactic extinction as an input | 0.04225 | **−1.29%** | 0.02251 | 1.21% | **5/5** |
+  | Redshift distribution, mean | 0.04380 | +2.33% | 0.02226 | 1.37% | 0/5 |
+  | Redshift distribution, median | 0.04506 | +5.27% | 0.02236 | 1.32% | 0/5 |
+  | Blend of regression and distribution | 0.04238 | −0.99% | 0.02209 | 1.24% | 4/5 |
+
+- **What this shows:**
+  - **Extinction as an input is a real gain:** −1.29%, in every fold,
+    against seed noise of 0.10%. It is small, but about 13 times the noise.
+  - **Predicting a distribution does not lower NRMSE.** It tightens the
+    core scatter by about 5% and makes the outliers worse, so on an RMSE
+    metric it loses. Route 1 in Section 3.1 is not supported for HFM's
+    metric. It would help only if the metric rewarded core scatter.
+
+**Wave-energy resource from a short campaign**
+([`hfm-experiments/wave_resource.py`](hfm-experiments/wave_resource.py)).
+- **Setup:** 16 NOAA buoys (Pacific, Atlantic, Gulf of Mexico, Hawaii),
+  2021–2023. A 60-day campaign has wind and waves, and the next 365 days
+  have wind only. 200 campaign instances. The reference assumes the
+  campaign's mean wave power holds for the year. No settings were tuned.
+- **Result:**
+
+  | Method | Error in annual mean power | Skill, annual mean | Skill, hourly | Stations improved |
+  | --- | --- | --- | --- | --- |
+  | Reference | 38.5% | 0 | 0 | — |
+  | Log-regression on wind | 29.3% | **+0.216** | +0.128 | 14/16 |
+  | Boosted trees on wind | 29.6% | +0.221 | +0.094 | 14/16 |
+  | Additive swell + wind-sea model | 30.9% | +0.182 | +0.124 | 14/16 |
+
+- **What this shows:** using the wind record cuts the error in the annual
+  resource by about a fifth, at 14 of 16 sites. The physically structured
+  swell-plus-wind-sea model from Section 7.2 does **no better** than a
+  plain regression. With local wind as the only long-term input, swell
+  can only enter as a constant, so the structure adds nothing. A real
+  step change would need a swell input from outside the site, such as a
+  public wave hindcast. That is a change of data source, not of model.
+
+**Day-ahead unit commitment under wind uncertainty**
+([`hfm-experiments/unit_commitment.py`](hfm-experiments/unit_commitment.py)).
+- **Setup:** German hourly load, the official day-ahead load forecast and
+  actual wind from Open Power System Data. A German-scale invented fleet
+  (17 slow thermal units, a fast peaker, storage) is committed each
+  midnight on forecasts, then dispatched against what really happened.
+  The reserve rule is tuned on 28 days of 2018. Results are for 42 days
+  in six weeks of 2019. Regret is cost above perfect foresight
+  (1,016 million EUR).
+- **Result:**
+
+  | Controller | Regret, million EUR | Versus tuned rule | Weeks cheaper |
+  | --- | --- | --- | --- |
+  | Reserve rule, no wind reserve | 370.2 | +644% | 1/6 |
+  | Reserve rule, tuned on 2018 | 49.7 | — | — |
+  | Stochastic, 10 scenarios **spread** from worst to best past error | 38.2 | **−23%** | 5/6 |
+  | Stochastic, 20 spread scenarios | 37.6 | **−24%** | 5/6 |
+  | Stochastic, 10 **random** scenarios, four draws | 23.0 / 38.6 / 265.0 / 339.9 | −54% / −22% / +433% / +583% | — |
+  | Stochastic, 20 random scenarios | 190.6 | +283% | 3/6 |
+
+- **What this shows:**
+  - **Stochastic commitment beats a tuned reserve rule by about a
+    quarter of the regret,** but only when the scenarios always include
+    the extreme low-wind cases.
+  - **With randomly drawn scenarios the method is dangerous.** Two of
+    four draws were four to six times worse than the simple rule,
+    because a draw that misses the bad-wind tail leaves the system short
+    and it pays the load-shedding price.
+  - A single run of the random version would have reported either a 54%
+    gain or a 583% loss. This is the same lesson as Section 14.2: one
+    scored run is not evidence.
+  - The fleet and the wind forecast are invented, so the size of the
+    gain will not carry over to HFM's task. The ordering of the methods
+    is the finding.
+
+**Summary of the five public-data tests**
+
+| Challenge | Idea tested | Verdict |
+| --- | --- | --- |
+| Weighted tardiness | Iterated local search on top of the dispatch rule | **Supported:** 12.5% less tardiness than the starting rule, never worse |
+| Grid unit commitment | Commit against wind scenarios instead of a reserve rule | **Supported with a condition:** −23% regret with spread scenarios; random scenarios can be far worse |
+| Photometric redshift | Extinction as an input | **Supported, small:** −1.3% error in every fold |
+| Photometric redshift | Predict a redshift distribution | **Not supported** for an RMSE metric: +2.3% error |
+| Wave energy | Separate swell and wind-sea model | **Not supported:** no better than plain regression on wind |
+| Optical constants | Causality-consistent (Kramers–Kronig) fit | **Weak:** +0.02 to +0.11 skill, fragile |
+
+Three of six ideas held up, and three did not. The ideas that failed all
+tried to add structure where the *data* was the limit (no swell
+information, no out-of-band resonances). The ideas that worked changed
+the search or decision procedure, or added a missing input. For the
+remaining challenges that suggests asking first what information is
+missing, before asking what model to use.
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

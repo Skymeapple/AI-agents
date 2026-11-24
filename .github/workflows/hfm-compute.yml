@@ -9,6 +9,7 @@ on:
     paths: ['research/compute/jobs/*.sh']
 permissions:
   contents: write
+  models: read      # lets jobs call GitHub Models' free, rate-limited inference API
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -40,6 +41,7 @@ jobs:
       - name: Run job
         env:
           JOB: ${{ matrix.job }}
+          GH_MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export OUT="$GITHUB_WORKSPACE/research/compute/results/$JOB"
           export DATA="$RUNNER_TEMP/data"

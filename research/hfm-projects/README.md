@@ -74,7 +74,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Battery Voltage Model for Cold Operating Conditions](physics/cold-battery-voltage/README.md) | Blocked | The public datasets HFM appears to use (Panasonic 18650PF and LG HG2, Mendeley Data) could not be downloaded from this environment. | 0 → 0.5991 |
+| [Battery Voltage Model for Cold Operating Conditions](physics/cold-battery-voltage/README.md) | Tested on public data | Arrhenius-form resistances: skill +0.34 against +0.15 for fitted slopes, better on all 35 cold drive cycles. | 0 → 0.5991 |
 | [Estimating Wave-Energy Resources from Short Measurement Campaigns](physics/wave-energy-resource/README.md) | Tested on public data | Wind cuts annual-resource error by a fifth; swell/wind-sea structure adds nothing. | 0 → 0.5602 |
 | [Steel Cyclic Loading History Transfer](physics/steel-history-transfer/README.md) | Tested on public data | Shares the steel experiment: donor library cuts error 73%; 40% headroom needs a new measurement. | 0 → 0.6677 |
 | [Predicting Optical Constants Beyond the Measured Wavelength Band](physics/optical-constants/README.md) | Tested on public data | Causality-only fit: +0.02 to +0.11 skill, fragile. | 0 → 0.7907 |

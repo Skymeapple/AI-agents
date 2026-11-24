@@ -587,8 +587,8 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
   UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
 
 What *can* be tested locally is whether a proposed route works on a
-public reproduction of a fully specified task. That was done for the one
-track whose problem statement is complete:
+public reproduction of a fully specified task. That was done for two
+tracks where the task can be rebuilt from public material:
 
 **Weighted tardiness with release times**
 ([`hfm-experiments/tardiness.py`](hfm-experiments/tardiness.py)).
@@ -603,6 +603,38 @@ track whose problem statement is complete:
   recommended in Section 9. It does **not** beat HFM's incumbent (gain
   1.211), which already includes local search and is scored on private
   instances with an undisclosed normalisation.
+
+**Optical constants beyond the measured band**
+([`hfm-experiments/optical_extrapolation.py`](hfm-experiments/optical_extrapolation.py)).
+- **Setup:** 620 tabulated (n, k) records from the public
+  refractiveindex.info database. The middle of each record's wavelength
+  range is treated as measured, and both ends are withheld. Settings are
+  chosen on one half of the materials and results reported on the other
+  half. Skill is 1 − error ÷ the error of holding the last measured value.
+- **Method tested:** the Kramers–Kronig-consistent fit from Section 7.5,
+  blended part-way toward the hold-last reference.
+- **Result: a modest and fragile gain.**
+
+  | Settings search | Skill on the tuning half | Mean skill, held-out | Median, held-out | Materials improved |
+  | --- | --- | --- | --- | --- |
+  | First search | +0.25 | **+0.11** | +0.18 | 77% |
+  | Wider search | +0.31 | **+0.02** | +0.13 | 65% |
+
+  - Naive linear extension scored −0.20, and the unblended fit scored
+    about −0.06.
+  - The wider search did better on the tuning half and *worse* on the
+    held-out half. That is the practice-set overfitting described in
+    Section 14.2, reproduced at small scale.
+  - The held-out half was looked at twice, so even +0.11 is slightly
+    optimistic.
+- **What this shows:** causality alone helps the typical material but
+  fails badly on a minority, mainly where a resonance lies outside the
+  band and nothing inside the band reveals it. Route 2 in Section 7.5
+  (a prior over oscillators by material class) is therefore the part
+  that matters, and it is what HFM's agents have built by hand. Section
+  7.5's ordering of the two routes should be read with that in mind.
+  The result is not comparable to HFM's 0.791, which uses private samples
+  and scoring.
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

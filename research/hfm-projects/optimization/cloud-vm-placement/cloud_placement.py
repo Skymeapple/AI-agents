@@ -22,6 +22,13 @@ Policies:
                    already-finished VMs of the same tenant and type (falling back
                    to tenant, then to all VMs)
   oracle           the same rule with true lifetimes (upper bound for the rule)
+  class-aware      a coarser use of the same prediction: sort VMs into three
+                   lifetime classes (under an hour, under a day, longer) and keep
+                   classes on separate servers, then best fit
+  class oracle     the class rule with true lifetimes
+  noisy x          the lifetime-aware rule fed true lifetimes multiplied by
+                   lognormal noise of log-scale spread x, to show how accurate a
+                   predictor has to be
 
 A random sample of tenants is replayed on one machine type so the run fits a small
 container. HFM's replay, constraints and score are private; numbers are NOT
@@ -78,9 +85,11 @@ def replay(vms, policy):
     count = np.zeros(64, int)           # VMs on each server
     exit_at = np.zeros(64)              # predicted (or true) time the server empties
     opened = np.zeros(64)
+    srv_class = np.zeros(64, int)       # longest lifetime class placed on the server since it opened
     n_srv, busy, seq = 0, 0.0, 0
     ends = []                           # (end time, tie-break, server, demand, tenant, type, start)
     pred = Predictor()
+    noise, log_err = np.random.default_rng(0), []
     for start, end, tenant, vtype, dem in vms:
         while ends and ends[0][0] <= start:
             t, _, s, d, ten, ty, st = heapq.heappop(ends)
@@ -90,8 +99,15 @@ def replay(vms, policy):
             if count[s] == 0:
                 busy += t - opened[s]
                 cap[s] = 0
-        life = (end - start) if policy == "oracle" else pred.predict(tenant, vtype)
+        if policy in ("oracle", "class oracle"):
+            life = end - start
+        elif policy.startswith("noisy"):      # true lifetime times lognormal noise of the given log-scale spread
+            life = (end - start) * float(np.exp(float(policy.split()[1]) * noise.standard_normal()))
+        else:
+            life = pred.predict(tenant, vtype)
+            log_err.append(np.log(max(life, 1e-4) / max(end - start, 1e-4)))
         leave = start + life
+        klass = 0 if life < 1 / 24 else (1 if life < 1.0 else 2)   # under an hour, under a day, longer
         fits = np.flatnonzero((cap[:n_srv] + dem <= 1.0 + 1e-9).all(axis=1) & (count[:n_srv] > 0))
         if len(fits) == 0:
             empties = np.flatnonzero(count[:n_srv] == 0)
@@ -100,11 +116,12 @@ def replay(vms, policy):
             else:
                 if n_srv == len(cap):
                     cap = np.vstack([cap, np.zeros_like(cap)])
-                    count, exit_at, opened = (np.concatenate([a, np.zeros_like(a)]) for a in (count, exit_at, opened))
+                    count, exit_at, opened, srv_class = (np.concatenate([a, np.zeros_like(a)]) for a in (count, exit_at, opened, srv_class))
                 s = n_srv
                 n_srv += 1
             opened[s] = start
             exit_at[s] = leave
+            srv_class[s] = klass
         else:
             if policy == "first fit":
                 s = fits[0]
@@ -112,11 +129,15 @@ def replay(vms, policy):
                 slack = (1.0 - cap[fits] - dem).sum(axis=1)
                 if policy == "best fit":
                     s = fits[np.argmin(slack)]
+                elif policy in ("class-aware", "class oracle"):
+                    # keep short-lived and long-lived VMs on different servers, then best fit
+                    s = fits[np.lexsort((slack, np.abs(srv_class[fits] - klass)))[0]]
                 else:
                     # how much this VM would push back the server's emptying time; overdue servers count as "now"
                     extend = np.maximum(leave - np.maximum(exit_at[fits], start), 0.0)
                     s = fits[np.lexsort((slack, np.round(extend, 3)))[0]]
             exit_at[s] = max(exit_at[s], leave)
+            srv_class[s] = max(srv_class[s], klass)
         cap[s] += dem
         count[s] += 1
         seq += 1
@@ -126,26 +147,29 @@ def replay(vms, policy):
         count[s] -= 1
         if count[s] == 0:
             busy += t - opened[s]
+    if policy == "lifetime-aware":
+        replay.pred_spread = float(np.std(log_err))
     return busy
 
 
 def main():
     path = sys.argv[1]
     modulus = int(sys.argv[2]) if len(sys.argv) > 2 else 12
-    print(f"{'tenant sample':>13} {'VMs':>8} | {'first fit':>10} {'best fit':>10} {'lifetime-aware':>15} {'oracle':>10} |"
-          f" {'lifetime-aware vs best fit':>27} {'oracle vs best fit':>19}")
-    gains, oracle_gains = [], []
+    pols = ("first fit", "best fit", "lifetime-aware", "oracle", "noisy 0.5", "noisy 1.0", "noisy 2.0", "class-aware", "class oracle")
+    print(f"{'sample':>6} {'VMs':>8} | " + " ".join(f"{p:>15}" for p in pols) + " | lower bound")
+    rel = {p: [] for p in pols}
     for residue in range(4):  # four disjoint tenant samples
         vms = load(path, modulus, residue)
         lower = sum((e - s) * d.max() for s, e, _, _, d in vms)  # no packing can use fewer server-days than this
-        r = {p: replay(vms, p) for p in ("first fit", "best fit", "lifetime-aware", "oracle")}
-        gains.append(r["lifetime-aware"] / r["best fit"] - 1)
-        oracle_gains.append(r["oracle"] / r["best fit"] - 1)
-        print(f"{residue:>13} {len(vms):>8} | {r['first fit']:>10.0f} {r['best fit']:>10.0f} {r['lifetime-aware']:>15.0f} {r['oracle']:>10.0f} |"
-              f" {gains[-1]:>+27.1%} {oracle_gains[-1]:>+19.1%}   (bound {lower:.0f} server-days)", flush=True)
-    print(f"\nserver-days, lifetime-aware vs best fit: mean {np.mean(gains):+.1%} (better in {sum(g < 0 for g in gains)}/4 samples); "
-          f"with true lifetimes: {np.mean(oracle_gains):+.1%}")
-
+        r = {p: replay(vms, p) for p in pols}
+        for p in pols:
+            rel[p].append(r[p] / r["best fit"] - 1)
+        print(f"{residue:>6} {len(vms):>8} | " + " ".join(f"{r[p]:>15.0f}" for p in pols) + f" | {lower:.0f}", flush=True)
+    print("\nserver-days versus best fit (mean over four samples; samples better than best fit):")
+    for p in pols:
+        print(f"  {p:<16} {np.mean(rel[p]):>+7.1%}   {sum(g < 0 for g in rel[p])}/4")
+    print(f"\nlog-scale error of the median predictor (last sample): {replay.pred_spread:.2f}; "
+          "'noisy x' is the lifetime-aware rule fed true lifetimes with log-scale error x")
 
 if __name__ == "__main__":
     main()

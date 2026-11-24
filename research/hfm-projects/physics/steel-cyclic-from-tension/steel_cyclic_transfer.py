@@ -152,6 +152,53 @@ def err(theta, rec):
     return float(np.mean([np.sqrt(np.mean((predict(theta, e, rec["E"], rec["fy"]) - s) ** 2)) / rec["fy"] for _, e, s in rec["cyclic"]]))
 
 
+def first_cycle(e, s, n_reversals=2):
+    """The start of a cyclic test up to its n-th strain reversal (one load-unload-reload excursion)."""
+    de = np.diff(e)
+    sign = np.sign(de)
+    sign[sign == 0] = 1
+    turns = np.flatnonzero(sign[1:] != sign[:-1]) + 1
+    # ignore tiny wiggles: keep reversals where strain moved by at least 0.1% since the previous one
+    keep, last = [], 0
+    for t in turns:
+        if abs(e[t] - e[last]) >= 1e-3:
+            keep.append(t)
+            last = t
+    end = keep[n_reversals - 1] + 1 if len(keep) >= n_reversals else len(e)
+    return e[:end], s[:end]
+
+
+def extra_measurement(mats, own, width):
+    """How much does one extra load reversal on the target steel help?
+
+    The first cyclic test of each steel donates its first excursion (to the second
+    strain reversal). All methods are then scored on the steel's *other* cyclic tests.
+    """
+    rows = []
+    for m in sorted(mats):
+        rec = mats[m]
+        if len(rec["cyclic"]) < 3:
+            continue
+        donors = [d for d in mats if mats[d]["top"] != rec["top"]]
+        med = np.median(np.array([own[d] for d in donors]), axis=0)
+        _, e0, s0 = rec["cyclic"][0]
+        rest = dict(rec, cyclic=rec["cyclic"][1:])
+        ten = [rec["tension"]]
+        res = {"donor median": med}
+        for n in (1, 2, 4):
+            cyc = first_cycle(e0, s0, n)
+            res[f"donor prior + tension + {n} reversal(s)"] = fit(ten + [cyc], rec["E"], rec["fy"], med, prior=med, width=width)
+        res["oracle (own cyclic tests)"] = own[m]
+        rows.append({"campaign": rec["top"], **{k: err(v, rest) for k, v in res.items()}})
+    r = pd.DataFrame(rows).groupby("campaign").mean()
+    base, orc = r["donor median"], r["oracle (own cyclic tests)"]
+    print(f"\nextra measurement on the target steel; scored on its other cyclic tests; {len(r)} campaigns")
+    print(f"{'method':<42} {'error':>7} {'vs donor median':>16} {'share of oracle gap closed':>27} {'campaigns better':>17}")
+    for k in r.columns:
+        closed = (base.mean() - r[k].mean()) / (base.mean() - orc.mean())
+        print(f"{k:<42} {r[k].mean():7.3f} {r[k].mean() / base.mean() - 1:>+16.1%} {closed:>27.0%} {int((r[k] < base - 1e-9).sum()):>13}/{len(r)}")
+
+
 def main():
     mats = load(sys.argv[1])
     names = sorted(mats)
@@ -195,6 +242,7 @@ def main():
     print(f"{'method':<38} {'error':>7} {'skill vs reference':>19} {'vs donor median':>16} {'campaigns better than donor median':>35}")
     for k in by_c.columns:
         print(f"{k:<38} {by_c[k].mean():7.3f} {(1 - by_c[k] / ref).mean():>+19.3f} {by_c[k].mean() / base.mean() - 1:>+16.1%} {int((by_c[k] < base - 1e-9).sum()):>29}/{len(by_c)}")
+    extra_measurement(mats, own, width)
 
 
 if __name__ == "__main__":

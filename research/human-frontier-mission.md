@@ -754,8 +754,8 @@ eleven tracks where the task can be rebuilt from public material:
     campaigns, which is not distinguishable from chance.
   - **40% of the error is still there to remove,** and a tension test
     does not carry the information to remove it. The step change would
-    come from one cheap extra measurement per steel (for example a
-    single load reversal), not from a better prior.
+    come from an extra measurement per steel, not from a better prior.
+    The follow-up below shows it has to be several load cycles.
 
 **Anti-reflection coatings under manufacturing variation**
 ([`hfm-projects/physics/robust-ar-coating/robust_ar_coating.py`](hfm-projects/physics/robust-ar-coating/robust_ar_coating.py)).
@@ -876,6 +876,21 @@ eleven tracks where the task can be rebuilt from public material:
   is the rule Section 10 proposes. It is a study of evaluation, not a
   trading result.
 
+**Follow-up experiments inside three projects**
+
+- **Steel** ([project](hfm-projects/physics/steel-cyclic-from-tension/README.md)):
+  one extra load reversal on the target steel closes only 8% of the gap
+  to the oracle, and four reversals close 30%. The earlier suggestion
+  that one cheap reversal would be enough was too optimistic.
+- **Cloud placement** ([project](hfm-projects/optimization/cloud-vm-placement/README.md)):
+  lifetime predictions within about a factor of 3 would save about 8% of
+  server time. The simple predictor is off by about a factor of 10.
+  Coarse lifetime classes do not help even with true lifetimes.
+- **Weighted tardiness** ([project](hfm-projects/infrastructure/weighted-tardiness/README.md)):
+  with a compiled search, 40-job instances are very likely solved (two
+  independent methods agree on all 18 instances), and 100-job instances
+  gain under one point from ten times more search.
+
 **Summary of the eleven public-data tests**
 
 | Challenge | Idea tested | Verdict |
@@ -909,7 +924,9 @@ could not make well, and five did not hold. The pattern is consistent:
   hybrid beat both pure physics and pure learning.
 - **Where the oracle gap is large** (steel 40%, cloud 14%), the next
   step is a new measurement or a better forecast, not a better model
-  of the existing inputs.
+  of the existing inputs. The follow-ups put numbers on that: steel
+  needs several load cycles, and cloud needs lifetimes right within
+  about a factor of 3.
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

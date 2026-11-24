@@ -60,8 +60,27 @@ Code: [`steel_cyclic_transfer.py`](steel_cyclic_transfer.py) in this folder. Run
     campaigns, which is not distinguishable from chance.
   - **40% of the error is still there to remove,** and a tension test
     does not carry the information to remove it. The step change would
-    come from one cheap extra measurement per steel (for example a
-    single load reversal), not from a better prior.
+    come from an extra measurement per steel, not from a better prior.
+    The follow-up below shows it has to be several load cycles.
+
+### Follow-up: does an extra measurement close the gap?
+
+The first cyclic test of each steel donates its first few load reversals to
+the fit. All methods are scored on that steel's other cyclic tests.
+
+| Data on the target steel | Error | Versus donor median | Share of oracle gap closed | Campaigns improved |
+| --- | --- | --- | --- | --- |
+| Donor median only | 0.147 | — | 0% | — |
+| Tension test + 1 reversal | 0.142 | −3.2% | 8% | 10/21 |
+| Tension test + 2 reversals | 0.137 | −6.8% | 16% | 11/21 |
+| Tension test + 4 reversals | 0.128 | −12.6% | 30% | 14/21 |
+| Oracle (all own cyclic tests) | 0.086 | −41.3% | 100% | 21/21 |
+
+- **One extra reversal is not enough.** It closes 8% of the gap. Four
+  reversals close 30%.
+- **Cyclic hardening shows itself over many cycles,** so the earlier
+  suggestion of "one cheap load reversal" was too optimistic. A short
+  multi-cycle test is the smallest measurement that helps materially.
 
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
@@ -71,4 +90,4 @@ Oracle error is 0.087 of yield stress against 0.145 for the donor median: 40% he
 
 ## Next steps
 
-Simulate adding one reversal cycle to the target's data and measure the error. Try a richer model (yield plateau, strain-range memory) to lower the oracle.
+Find the shortest multi-cycle protocol that closes most of the gap (four reversals close 30%). Try a richer model (yield plateau, strain-range memory) to lower the oracle error itself.

@@ -53,6 +53,30 @@ Code: [`cloud_placement.py`](cloud_placement.py) in this folder. Run instruction
   with what HFM's agents are doing, which is building survival-curve
   estimates.
 
+### Follow-up: how accurate must the lifetime prediction be?
+
+The lifetime-aware rule was fed true lifetimes multiplied by random noise
+of increasing size, and a coarser rule (three lifetime classes kept on
+separate servers) was tried.
+
+| Policy | Server-days versus best fit | Samples better |
+| --- | --- | --- |
+| Lifetime-aware, true lifetimes | −13.8% | 4/4 |
+| Lifetime-aware, lifetimes within about a factor of 1.6 (log error 0.5) | −12.2% | 4/4 |
+| Lifetime-aware, within about a factor of 2.7 (log error 1.0) | −8.2% | 4/4 |
+| Lifetime-aware, within about a factor of 7 (log error 2.0) | −3.0% | 4/4 |
+| Lifetime-aware, median predictor (measured log error 2.25) | +1.3% | 1/4 |
+| Lifetime classes, predicted | +6.1% | 0/4 |
+| Lifetime classes, true | +0.7% | 2/4 |
+
+- **The target is now concrete.** A predictor that is right within a
+  factor of about 3 would save about 8% of server time. The simple median
+  predictor is off by about a factor of 10 and saves nothing.
+- **Coarse classes do not work,** even with true lifetimes. The gain
+  comes from aligning exit times, not from separating short and long VMs.
+- The noise test is slightly kinder than a real predictor, because its
+  errors are unbiased and independent.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -61,4 +85,4 @@ With true lifetimes the rule saves 13.8% of server-days and lands within about 4
 
 ## Next steps
 
-Replace the median predictor with a survival model on tenant, type, hour and age. Add evictions and failures to match HFM's objective.
+Build a lifetime model (survival model on tenant, type, hour and age) and measure its log error against the factor-of-3 target. Add evictions and failures to match HFM's objective.

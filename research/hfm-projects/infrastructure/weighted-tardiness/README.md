@@ -46,6 +46,26 @@ Code: [`tardiness.py`](tardiness.py) in this folder. Run instructions are in its
   1.211), which already includes local search and is scored on private
   instances with an undisclosed normalisation.
 
+### Follow-up: where does the search plateau?
+
+Code: [`tardiness_fast.py`](tardiness_fast.py). The same search compiled
+with numba, run at three budgets, with an independent random multi-start
+descent as a cross-check. Six seeds per setting.
+
+| Jobs | Reduction vs tuned ATC at 30 / 300 / 3,000 rounds | Multi-start finds better |
+| --- | --- | --- |
+| 40 | 7.1% / 8.7% / 8.7% (average of three settings) | 0 of 18 instances |
+| 100 | 7.1% / 10.7% / 11.5% (average of three settings) | 1 of 18 instances |
+
+- **40-job instances are very likely solved.** Ten times more search
+  changes nothing, and an unrelated method lands on the same value in all
+  18 instances.
+- **100-job instances are close to flat.** Ten times more search adds
+  under one percentage point.
+- Across both sizes the compiled search is 10.1% below tuned ATC, against
+  6.8% for the pure-Python version at one second. The remaining gain at
+  this size comes from implementation speed, not from a new idea.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -54,4 +74,4 @@ Pure-Python local search gains 6.8% over tuned ATC here. A compiled implementati
 
 ## Next steps
 
-Compute exact optima for n = 40 with a time-indexed MILP to measure the remaining gap. Port the search to compiled code.
+Confirm the 40-job optima with an exact method. For 100 or more jobs, test dynasearch or a memetic search against the compiled search at equal time.

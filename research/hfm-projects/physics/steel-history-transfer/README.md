@@ -40,4 +40,4 @@ See the shared experiment: the model class reaches 0.087 error when fitted to th
 
 ## Next steps
 
-Quantify how much one reversal cycle closes the 40% gap.
+One reversal closes 8% of the gap and four close 30% (see the shared experiment). Find the shortest multi-cycle protocol that closes most of it.

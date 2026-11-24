@@ -42,7 +42,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Single-Machine Weighted Tardiness Scheduling with Release Times](infrastructure/weighted-tardiness/README.md) | Tested on public data | Iterated local search: 12.5% less tardiness than the starting rule. | not published → 1.211 |
+| [Single-Machine Weighted Tardiness Scheduling with Release Times](infrastructure/weighted-tardiness/README.md) | Tested on public data | Iterated local search: 12.5% less tardiness than the starting rule; 40-job instances very likely solved. | not published → 1.211 |
 
 ## materials
 
@@ -65,7 +65,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Open | Needs a replay simulator on public bike-share trips; not yet built. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |
-| [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes, no gain with a simple predictor. | 0 → 0.7615 |
+| [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes; predictions must be within a factor of 3 to save 8%. | 0 → 0.7615 |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Open | Needs a replay simulator on NYC trip records; not yet built. | 0 → 0.9895 |
 | [Control Policy for Frequent Bus Services](optimization/bus-holding/README.md) | Open | Needs a replay on HSL vehicle positions; not yet built. | 0 → 0.7505 |
 | [Rolling Unit-Commitment and Dispatch Controller under Real OPSD Load and Wind Sequences](optimization/unit-commitment/README.md) | Tested on public data | Spread-scenario commitment: −23% regret against a tuned reserve rule; random scenarios are unsafe. | not published → 0.5338 |
@@ -78,7 +78,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Estimating Wave-Energy Resources from Short Measurement Campaigns](physics/wave-energy-resource/README.md) | Tested on public data | Wind cuts annual-resource error by a fifth; swell/wind-sea structure adds nothing. | 0 → 0.5602 |
 | [Steel Cyclic Loading History Transfer](physics/steel-history-transfer/README.md) | Tested on public data | Shares the steel experiment: donor library cuts error 73%; 40% headroom needs a new measurement. | 0 → 0.6677 |
 | [Predicting Optical Constants Beyond the Measured Wavelength Band](physics/optical-constants/README.md) | Tested on public data | Causality-only fit: +0.02 to +0.11 skill, fragile. | 0 → 0.7907 |
-| [Predict Cyclic Steel Stress Response from Limited Material Tests](physics/steel-cyclic-from-tension/README.md) | Tested on public data | Donor median cuts error 73%; conditioned prior not reliably better; oracle gap 40%. | 0 → 0.5453 |
+| [Predict Cyclic Steel Stress Response from Limited Material Tests](physics/steel-cyclic-from-tension/README.md) | Tested on public data | Donor median cuts error 73%; oracle gap 40%; four extra load reversals close 30% of it. | 0 → 0.5453 |
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. The Well dataset is hundreds of GB and Walrus is a large model. | 0.3693 → 0.3129 |
 | [Optical Coating Design Under Manufacturing Variation](physics/robust-ar-coating/README.md) | Tested on public data | Selecting designs by robust score: −14.5% expected reflectance. | 0 → 0.2523 |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | Open | Needs a multi-site co-location dataset; candidates are large (SensEURCity is 5.7 GB) and were not processed. | 0 → 0.6945 |

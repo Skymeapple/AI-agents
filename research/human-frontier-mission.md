@@ -593,8 +593,8 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
   UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
 
 What *can* be tested locally is whether a proposed route works on a
-public reproduction of a fully specified task. That was done for eight
-tracks where the task can be rebuilt from public material:
+public reproduction of a fully specified task. That was done for
+eleven tracks where the task can be rebuilt from public material:
 
 **Weighted tardiness with release times**
 ([`hfm-experiments/tardiness.py`](hfm-experiments/tardiness.py)).
@@ -798,29 +798,115 @@ tracks where the task can be rebuilt from public material:
   with what HFM's agents are doing, which is building survival-curve
   estimates.
 
-**Summary of the eight public-data tests**
+**Wind-farm wake calibration and power prediction**
+([`hfm-experiments/wind_wake.py`](hfm-experiments/wind_wake.py)).
+- **Setup:** the same two farms HFM uses, Kelmarsh and Penmanshiel, 2017
+  10-minute SCADA from Zenodo. A simple Jensen wake model stands in for
+  FLORIS. Each farm gets a 60-day calibration window and is tested on the
+  rest of the year. All choices were made on Kelmarsh; Penmanshiel is the
+  unseen farm. Error is mean absolute power error as a share of rated
+  power.
+- **Result:**
+
+  | Method | Kelmarsh, vs no-wake | Penmanshiel (unseen), vs no-wake | Penmanshiel, new wind directions |
+  | --- | --- | --- | --- |
+  | Wake model, default settings | −27.3% | −1.4% | 0.0810 |
+  | Wake model, direction offset and decay calibrated | −27.3% | **−11.9%** | 0.0620 |
+  | + per-turbine sector factors | −31.6% | −19.8% | 0.0560 |
+  | Boosted trees per turbine (no physics) | −36.0% | −29.3% | 0.0567 |
+  | Calibrated wake model + boosted-tree residual | −35.7% | **−29.8%** | **0.0523** |
+
+- **What this shows:**
+  - **Calibrating the wind direction matters most for the physics
+    model.** At the unseen farm a 9° direction offset turned a 1.4% gain
+    into 11.9%. This supports the first half of Section 7.10.
+  - **The second half of Section 7.10 is wrong.** It predicted that
+    machine-learned residuals would not carry to unseen conditions. In
+    fact trees trained on each farm's own calibration window beat the
+    physics model on both farms, and physics plus a learned residual was
+    best, including in wind directions the calibration window barely
+    covered.
+  - The Jensen model is cruder than FLORIS, so physics may be
+    undersold here.
+
+**Regulatory DNA activity in three cell lines**
+([`hfm-experiments/mpra_multitask.py`](hfm-experiments/mpra_multitask.py)).
+- **Setup:** the public lentiMPRA tables of Agarwal et al. (Zenodo
+  10558183), the same assay and cell lines as HFM's task. A small CNN
+  trained from scratch on CPU, at most 40,000 training sequences per cell
+  line, the authors' fold 10 as the test set, two seeds. Sequences in any
+  cell line's test fold are removed from all training sets, because the
+  libraries overlap and their folds differ.
+- **Result (Spearman on the test fold):**
+
+  | Model | HepG2 | K562 | WTC11 | Macro |
+  | --- | --- | --- | --- | --- |
+  | One model per cell line | 0.549 | 0.554 | 0.504 | 0.535 |
+  | + reverse-complement averaging | 0.566 | 0.571 | 0.519 | 0.552 |
+  | One multi-task model | 0.595 | 0.589 | 0.549 | 0.578 |
+  | Multi-task + reverse-complement averaging | 0.610 | 0.604 | 0.563 | **0.593** |
+
+- **What this shows:** both ideas from Section 4.1 hold. Multi-task
+  training adds 0.042 and reverse-complement averaging adds 0.015. Each
+  gain appears in every cell line and both seeds (seed-to-seed spread is
+  about 0.005 to 0.010). The largest multi-task gain is on WTC11, the
+  smallest dataset, as predicted. Absolute scores are far below HFM's
+  0.708, because this model is small and uses no Evo 2 features.
+
+**Perpetual-futures strategies on a later period**
+([`hfm-experiments/perp_funding_carry.py`](hfm-experiments/perp_funding_carry.py)).
+- **Setup:** Binance's public archive, 24 large USD-margined perpetual
+  contracts, 2022–2025, 8-hour rebalancing. 36 market-neutral settings
+  from three signal families (funding carry, taker-flow reversal, price
+  reversal) are ranked on 2022–2023 and then scored on 2024–2025, net of
+  4 basis points per unit of turnover.
+- **Result:**
+  - **Families persist.** Funding carry is the only family with
+    profitable settings in either period. Flow and price reversal lose
+    heavily in both, because trading costs exceed the signal.
+  - **6 of the 8 settings that were profitable in 2022–2023 stayed
+    profitable in 2024–2025.** The rank correlation between the two
+    periods is +0.91 across all settings and +0.63 inside the
+    funding-carry family.
+  - **The single best setting is not reliable.** The best on development
+    went from a Sharpe ratio of 0.79 to 0.63. The second best went from
+    0.62 to −0.04.
+- **What this shows:** on this small, pre-declared grid the
+  later-period check confirms the family and not the fine tuning. That
+  is the rule Section 10 proposes. It is a study of evaluation, not a
+  trading result.
+
+**Summary of the eleven public-data tests**
 
 | Challenge | Idea tested | Verdict |
 | --- | --- | --- |
 | Weighted tardiness | Iterated local search on top of the dispatch rule | **Supported:** 12.5% less tardiness than the starting rule, never worse |
 | Grid unit commitment | Commit against wind scenarios instead of a reserve rule | **Supported with a condition:** −23% regret with spread scenarios; random scenarios can be far worse |
 | Optical coating design | Select designs by score under variation | **Supported:** −14.5% expected reflectance; polishing adds nothing more |
+| Regulatory DNA | One multi-task model for all cell lines | **Supported:** +0.042 Spearman, every cell line and seed |
+| Regulatory DNA | Reverse-complement averaging | **Supported:** +0.015 Spearman |
 | Photometric redshift | Extinction as an input | **Supported, small:** −1.3% error in every fold |
+| Wind-farm wakes | Calibrate wind direction before anything else | **Supported:** −1.4% becomes −11.9% at the unseen farm |
+| Wind-farm wakes | Avoid machine-learned residuals | **Refuted:** physics plus learned residual is best (−29.8%) |
+| Perpetual futures | Judge tuned settings on a later period | **Supported as a rule:** families persist, fine tuning does not |
 | Photometric redshift | Predict a redshift distribution | **Not supported** for an RMSE metric: +2.3% error |
 | Cyclic steel response | Prior conditioned on tension-test features | **Not supported:** no reliable gain over the donor median |
 | Cloud VM placement | Lifetime-aware packing | **Conditional:** −13.8% with true lifetimes, no gain with a simple predictor |
 | Wave energy | Separate swell and wind-sea model | **Not supported:** no better than plain regression on wind |
 | Optical constants | Causality-consistent (Kramers–Kronig) fit | **Weak:** +0.02 to +0.11 skill, fragile |
 
-Four of nine ideas held up, one depends on a prediction the test could
-not make well, and four did not hold. The pattern is consistent:
+Eight of fourteen ideas held up, one depends on a prediction the test
+could not make well, and five did not hold. The pattern is consistent:
 - **Ideas that failed added modelling structure where information was
   the limit.** Local wind says nothing about swell. A tension test says
   little about cyclic hardening. In-band data says nothing about
   out-of-band resonances.
 - **Ideas that worked changed the decision procedure or the selection
-  rule,** or added a missing input: local search, scenario planning,
-  choosing designs by robust score, extinction.
+  rule,** shared data across related tasks, or added a missing input:
+  local search, scenario planning, choosing designs by robust score,
+  multi-task training, extinction, direction calibration.
+- **Physics and learning work best together.** In the wind test the
+  hybrid beat both pure physics and pure learning.
 - **Where the oracle gap is large** (steel 40%, cloud 14%), the next
   step is a new measurement or a better forecast, not a better model
   of the existing inputs.

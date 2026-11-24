@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2026-11-24)
+
+* **Renamed from `agentscrub` to `agent-commit-guard`** before the first publish. An established PyPI project already uses the name `agentscrub` for local agent-log redaction ([ppravdin/agentscrub](https://github.com/ppravdin/agentscrub)), and the lab doesn't publish under another project's name.
+* Repositioned around what this tool does that others don't: blocking agent-saved secrets from reaching git (allowlist auto-fix, agent hook, pre-commit, CI).
+
 ## 0.2.0 (2026-11-23)
 
 * `--home`: also scan user-level agent configs: `~/.claude.json` (per-project MCP servers), `~/.claude/settings*.json`, Claude Desktop `claude_desktop_config.json` (macOS, Linux, Windows), `~/.cursor/mcp.json`, Windsurf `mcp_config.json`, `~/.gemini/settings.json`, `~/.codex/config.toml` and `~/.aider.conf.yml`. People paste API keys into these, dotfiles repos commit them, and credential stealers harvest them.

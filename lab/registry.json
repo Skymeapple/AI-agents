@@ -34,16 +34,16 @@
     {
       "id": "2026-11-20-agentscrub",
       "date": "2026-11-20",
-      "name": "agentscrub",
-      "path": "projects/agentscrub",
-      "tagline": "Find and remove secrets AI coding agents save to disk (Claude Code \"don't ask again\" allowlists, MCP configs, transcripts); hook + pre-commit guard blocks commits that would leak them.",
+      "name": "agent-commit-guard",
+      "path": "projects/agent-commit-guard",
+      "tagline": "Keep the secrets your AI coding agent saves out of git: finds passwords and keys in Claude Code allowlists, MCP configs and agent files, auto-fixes them, and blocks commits (agent hook + pre-commit + CI) while any remain.",
       "pain_point": "Claude Code's \"don't ask again\" saves full approved commands, passwords included, to .claude/settings.local.json; Apiiro found 1,122 public copies holding 1,379 secrets (Nov 2026). MCP configs and session transcripts leak the same way, and generic scanners miss passwords inside commands.",
       "audience": "Developers and teams using Claude Code, Cursor, Codex, Gemini CLI or MCP servers",
-      "install": "npx agentscrub",
+      "install": "npx agent-commit-guard",
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "agentscrub"
+          "name": "agent-commit-guard"
         }
       ],
       "category": "agent-secret-leaks",
@@ -62,6 +62,10 @@
         {
           "version": "0.2.0",
           "date": "2026-11-23"
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-11-24"
         }
       ],
       "evidence": [
@@ -70,7 +74,9 @@
         "https://www.darkreading.com/cyber-risk/ai-coding-agents-leak-secrets-github",
         "https://www.backslash.security/blog/secrets-in-ai-agent-session-history"
       ],
-      "status": "active"
+      "status": "active",
+      "renamed_from": "agentscrub",
+      "rename_reason": "2026-11-24: an established PyPI project (ppravdin/agentscrub, 44 releases since 2026-05-07) already uses the name for local agent-log redaction. Renamed before first publish; README credits it."
     },
     {
       "id": "2026-11-21-pthscan",

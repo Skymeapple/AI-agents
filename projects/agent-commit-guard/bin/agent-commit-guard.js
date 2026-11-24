@@ -5,24 +5,24 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { scan, fix, scanSessions, sessionDirs } from '../src/scan.js';
 
-const HELP = `agentscrub - find and remove secrets that AI coding agents save to disk
+const HELP = `agent-commit-guard - find and remove secrets that AI coding agents save to disk
 
 Coding agents store approved shell commands ("Yes, and don't ask again"),
 MCP server env blocks and session transcripts in plain files. Passwords and
 API keys typed into those commands end up there, and then in git.
 
 Usage:
-  agentscrub [dir]              scan agent files in a project (default: .)
-  agentscrub --fix              remove leaked permission entries, git-ignore
+  agent-commit-guard [dir]              scan agent files in a project (default: .)
+  agent-commit-guard --fix              remove leaked permission entries, git-ignore
                                 .claude/settings.local.json
-  agentscrub --staged           pre-commit mode: scan staged agent files only
-  agentscrub --home             also scan user-level configs (~/.claude.json,
+  agent-commit-guard --staged           pre-commit mode: scan staged agent files only
+  agent-commit-guard --home             also scan user-level configs (~/.claude.json,
                                 Claude Desktop, ~/.cursor, Windsurf, ~/.gemini)
-  agentscrub --sessions [dir]   also scan session transcripts
+  agent-commit-guard --sessions [dir]   also scan session transcripts
                                 (~/.claude/projects, ~/.codex/sessions)
-  agentscrub init               add the Claude Code guard hook to
+  agent-commit-guard init               add the Claude Code guard hook to
                                 .claude/settings.json and a git pre-commit hook
-  agentscrub hook [--scrub]     run as a Claude Code hook (reads JSON on stdin)
+  agent-commit-guard hook [--scrub]     run as a Claude Code hook (reads JSON on stdin)
 
 Options:
   --format text|json|github     output format (default text)
@@ -54,7 +54,7 @@ const GRADE_HELP = {
   session: 'agent session transcript on this machine',
 };
 
-function die(msg) { process.stderr.write(`agentscrub: ${msg}\n`); process.exit(2); }
+function die(msg) { process.stderr.write(`agent-commit-guard: ${msg}\n`); process.exit(2); }
 
 function parse(argv) {
   const o = { cmd: 'scan', dir: '.', format: 'text', depth: 4 };
@@ -92,7 +92,7 @@ function report(findings, extra, o) {
   if (o.format === 'github') {
     for (const f of findings) {
       const lvl = ['committed+remote', 'committed', 'at-risk'].includes(f.grade) ? 'error' : 'warning';
-      process.stdout.write(`::${lvl} file=${f.file},line=${f.line},title=agentscrub ${f.rule}::${f.label} ${f.masked} (${f.grade})${f.location ? ` at ${f.location}` : ''}\n`);
+      process.stdout.write(`::${lvl} file=${f.file},line=${f.line},title=agent-commit-guard ${f.rule}::${f.label} ${f.masked} (${f.grade})${f.location ? ` at ${f.location}` : ''}\n`);
     }
   }
   if (!findings.length) {
@@ -111,7 +111,7 @@ function report(findings, extra, o) {
   }
   const fixable = findings.filter((f) => f.fixable).length;
   process.stdout.write(`\n${c('1', `${findings.length} secret(s)`)} in ${new Set(findings.map((f) => f.file)).size} file(s).`);
-  if (fixable && !o.fix) process.stdout.write(` ${fixable} can be removed with ${c('1', 'agentscrub --fix')}.`);
+  if (fixable && !o.fix) process.stdout.write(` ${fixable} can be removed with ${c('1', 'agent-commit-guard --fix')}.`);
   process.stdout.write('\nRotate any credential that was ever committed: removing it does not un-leak it.\n');
 }
 
@@ -139,18 +139,18 @@ async function hook(o) {
       if (!risky.length) process.exit(0);
       const lines = risky.slice(0, 8).map((f) => `  - ${describe(f)} [${f.grade}]`).join('\n');
       process.stderr.write(
-        `agentscrub blocked this git command: ${risky.length} secret(s) in agent files that git would publish.\n${lines}\n` +
-        `Fix: run \`npx -y agentscrub --fix\` (removes leaked permission entries and git-ignores .claude/settings.local.json), ` +
+        `agent-commit-guard blocked this git command: ${risky.length} secret(s) in agent files that git would publish.\n${lines}\n` +
+        `Fix: run \`npx -y agent-commit-guard --fix\` (removes leaked permission entries and git-ignores .claude/settings.local.json), ` +
         `move other secrets to environment variables, ask the user to rotate any credential that was committed, then retry.\n`);
       process.exit(2);
     }
     if (o.scrub && ['Stop', 'SubagentStop', 'SessionEnd'].includes(event)) {
       const res = scan(cwd, { depth: o.depth });
       const actions = fix(res);
-      if (actions.length) process.stderr.write(`agentscrub: ${actions.map((a) => `${a.file}: ${a.action}`).join('; ')}\n`);
+      if (actions.length) process.stderr.write(`agent-commit-guard: ${actions.map((a) => `${a.file}: ${a.action}`).join('; ')}\n`);
     }
   } catch (e) {
-    process.stderr.write(`agentscrub: hook error (${e.message}); not blocking\n`);
+    process.stderr.write(`agent-commit-guard: hook error (${e.message}); not blocking\n`);
   }
   process.exit(0);
 }
@@ -168,9 +168,9 @@ function init(o) {
   }
   settings.hooks ??= {};
   settings.hooks.PreToolUse ??= [];
-  const has = JSON.stringify(settings.hooks).includes('agentscrub hook');
+  const has = JSON.stringify(settings.hooks).includes('agent-commit-guard hook');
   if (!has) {
-    settings.hooks.PreToolUse.push({ matcher: 'Bash', hooks: [{ type: 'command', command: 'npx -y agentscrub hook' }] });
+    settings.hooks.PreToolUse.push({ matcher: 'Bash', hooks: [{ type: 'command', command: 'npx -y agent-commit-guard hook' }] });
     fs.mkdirSync(path.dirname(settingsPath), { recursive: true });
     fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2) + '\n');
     done.push(`.claude/settings.json: PreToolUse hook blocks git commit/push/add while agent files hold secrets`);
@@ -180,9 +180,9 @@ function init(o) {
   try { gitDir = execFileSync('git', ['rev-parse', '--git-path', 'hooks'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { /* not a repo */ }
   if (gitDir) {
     const hp = path.resolve(root, gitDir, 'pre-commit');
-    const line = 'npx -y agentscrub --staged || exit 1';
+    const line = 'npx -y agent-commit-guard --staged || exit 1';
     const cur = fs.existsSync(hp) ? fs.readFileSync(hp, 'utf8') : '#!/bin/sh\n';
-    if (!cur.includes('agentscrub')) {
+    if (!cur.includes('agent-commit-guard')) {
       fs.mkdirSync(path.dirname(hp), { recursive: true });
       fs.writeFileSync(hp, cur + (cur.endsWith('\n') ? '' : '\n') + line + '\n');
       fs.chmodSync(hp, 0o755);

@@ -1,12 +1,12 @@
-# agentscrub
+# agent-commit-guard
 
-**Find and remove the secrets your AI coding agent saved to disk, and stop it from committing them.**
+**Keep the secrets your AI coding agent saves out of git.** It finds passwords and keys in Claude Code allowlists, MCP configs and other agent files, removes them, and blocks the commit (by the agent or by you) while any remain.
 
 ```bash
-npx agentscrub          # scan this project
-npx agentscrub --fix    # remove leaked entries, git-ignore the local settings file
-npx agentscrub init     # install the guard hook + pre-commit check for the whole team
-npx agentscrub --home   # also check ~/.claude.json, Claude Desktop, Cursor, Windsurf, Gemini user configs
+npx agent-commit-guard          # scan this project
+npx agent-commit-guard --fix    # remove leaked entries, git-ignore the local settings file
+npx agent-commit-guard init     # install the guard hook + pre-commit check for the whole team
+npx agent-commit-guard --home   # also check ~/.claude.json, Claude Desktop, Cursor, Windsurf, Gemini user configs
 ```
 
 It has zero dependencies, needs Node ≥ 18, makes no network calls, and never prints a secret value.
@@ -23,16 +23,16 @@ When you answer **"Yes, and don't ask again"**, Claude Code saves the *entire ap
 ## What it looks like
 
 ```
-$ npx agentscrub
+$ npx agent-commit-guard
 
 COMMITTED  in git history: rotate, then purge history before any push
   .claude/settings.local.json:5 permissions.allow[1]  Password in URL hu…(20 chars)  url-credentials
   .claude/settings.local.json:6 permissions.allow[2]  Authorization header hu…(40 chars)  auth-header
   .mcp.json:10 mcpServers.postgres.env.DATABASE_PASSWORD  Literal value for DATABASE_PASSWORD hu…(20 chars)  named-secret
 
-3 secret(s) in 2 file(s). 2 can be removed with agentscrub --fix.
+3 secret(s) in 2 file(s). 2 can be removed with agent-commit-guard --fix.
 
-$ npx agentscrub --fix
+$ npx agent-commit-guard --fix
 fixed .claude/settings.local.json: removed 2 permission entries holding secrets
 fixed .gitignore: added .claude/settings.local.json
 todo  .claude/settings.local.json: still tracked by git: run `git rm --cached .claude/settings.local.json`, then rotate any secret it ever held
@@ -51,7 +51,7 @@ Tested on real projects that commit agent configs, with **zero false positives**
 
 ## Stop it happening again (runs automatically)
 
-`npx agentscrub init` sets up two guards. Commit `.claude/settings.json` so they run for everyone on the project.
+`npx agent-commit-guard init` sets up two guards. Commit `.claude/settings.json` so they run for everyone on the project.
 
 **1. Claude Code hook.** Blocks the agent's `git commit` / `git push` / `git add` while a file git would publish holds a secret. The agent is told why it was stopped and how to fix it.
 
@@ -59,7 +59,7 @@ Tested on real projects that commit agent configs, with **zero false positives**
 {
   "hooks": {
     "PreToolUse": [
-      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "npx -y agentscrub hook" }] }
+      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "npx -y agent-commit-guard hook" }] }
     ]
   }
 }
@@ -68,7 +68,7 @@ Tested on real projects that commit agent configs, with **zero false positives**
 To also scrub leaked allowlist entries automatically at the end of every turn, add a `Stop` hook:
 
 ```json
-"Stop": [{ "hooks": [{ "type": "command", "command": "npx -y agentscrub hook --scrub" }] }]
+"Stop": [{ "hooks": [{ "type": "command", "command": "npx -y agent-commit-guard hook --scrub" }] }]
 ```
 
 The hook fails open on internal errors. If you want it to fail closed, set `"onFailure": "block"` on it (Claude Code ≥ 2.1.295).
@@ -76,7 +76,7 @@ The hook fails open on internal errors. If you want it to fail closed, set `"onF
 **2. git pre-commit.** Works for every agent (Cursor, Codex, Gemini CLI, aider) and for humans:
 
 ```sh
-npx -y agentscrub --staged || exit 1
+npx -y agent-commit-guard --staged || exit 1
 ```
 
 `--staged` checks what's actually being committed (the git index), not your working copy.
@@ -85,10 +85,10 @@ npx -y agentscrub --staged || exit 1
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: Skymeapple/AI-agents/projects/agentscrub@research-lab
+- uses: Skymeapple/AI-agents/projects/agent-commit-guard@research-lab
 ```
 
-Or in any CI: `npx -y agentscrub --format github`.
+Or in any CI: `npx -y agent-commit-guard --format github`.
 
 ## What it scans
 
@@ -113,9 +113,9 @@ Nested projects (monorepos) are found up to `--depth 4`.
 ## Options
 
 ```
-agentscrub [dir] [--fix] [--staged] [--sessions [dir]] [--format text|json|github] [--depth 4]
-agentscrub init [dir]
-agentscrub hook [--scrub]
+agent-commit-guard [dir] [--fix] [--staged] [--sessions [dir]] [--format text|json|github] [--depth 4]
+agent-commit-guard init [dir]
+agent-commit-guard hook [--scrub]
 ```
 
 Exit codes: `0` clean, `1` secrets found, `2` usage error. In hook mode, `2` blocks the tool call.
@@ -123,22 +123,24 @@ Exit codes: `0` clean, `1` secrets found, `2` usage error. In hook mode, `2` blo
 ## If it finds something
 
 1. **Rotate the credential first.** Removing it doesn't un-leak a secret that was pushed, cloned or scraped.
-2. Run `agentscrub --fix` and `git rm --cached` any agent file that shouldn't be tracked.
+2. Run `agent-commit-guard --fix` and `git rm --cached` any agent file that shouldn't be tracked.
 3. If it was ever pushed, purge it from history (`git filter-repo`) *after* rotating.
 4. From now on, pass secrets as environment variables (`$PGPASSWORD`), so the saved command holds a reference rather than the value.
 
 ## How it compares
 
-| | agentscrub | [claude-settings-leak-check](https://www.npmjs.com/package/claude-settings-leak-check) | gitleaks / secretlint |
-|---|:-:|:-:|:-:|
-| Claude Code allowlists | ✓ | ✓ | partly (key formats only) |
-| Passwords inside commands | ✓ | ✓ | ✗ mostly |
-| MCP configs, Gemini, Codex, SpecStory, aider | ✓ | ✗ | if configured |
-| Session transcripts | ✓ | ✗ | ✗ |
-| Auto-fix (`--fix`) | ✓ | ✗ | ✗ |
-| Agent hook that blocks the commit | ✓ | ✗ | ✗ |
-| pre-commit `--staged` mode | ✓ | ✗ | ✓ |
-| Exposure grading using git | ✓ | ✓ | ✗ |
+| | agent-commit-guard | [claude-settings-leak-check](https://www.npmjs.com/package/claude-settings-leak-check) | [agentscrub](https://github.com/ppravdin/agentscrub) (PyPI) | gitleaks / secretlint |
+|---|:-:|:-:|:-:|:-:|
+| Claude Code project allowlists (`.claude/settings*.json`) | ✓ | ✓ | ✗ | partly (key formats only) |
+| Passwords inside commands | ✓ | ✓ | ✓ | ✗ mostly |
+| Project MCP configs (`.mcp.json`, `.cursor/`, `.vscode/`) | ✓ | ✗ | ✗ | if configured |
+| Local agent logs, histories, caches | basic (`--sessions`, `--home`) | ✗ | **✓ thorough, with backups and scheduled redaction** | ✗ |
+| Auto-fix of leaked allowlist entries | ✓ | ✗ | ✗ | ✗ |
+| Agent hook that blocks the commit | ✓ | ✗ | ✗ | ✗ |
+| pre-commit `--staged` mode | ✓ | ✗ | ✗ | ✓ |
+| Exposure grading using git | ✓ | ✓ | ✗ | ✗ |
+
+**Use both.** agent-commit-guard keeps agent secrets out of your *repository*. To redact the secrets that pile up in your agents' *local* logs and transcripts, use [agentscrub](https://github.com/ppravdin/agentscrub) (`pipx install agentscrub`), which covers far more agents and log formats than our `--sessions` / `--home` checks.
 
 Pattern matching can't catch everything, so a clean scan isn't proof that no secrets exist. Treat findings as leads to check.
 

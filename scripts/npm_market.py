@@ -3,7 +3,8 @@
 
 Usage:
   python3 scripts/npm_market.py "agents.md lint" "cursorrules" [--size 15] [--min 0]
-  python3 scripts/npm_market.py --name ctxlint          # exact + scoped name collisions
+  python3 scripts/npm_market.py --name ctxlint          # npm exact + scoped, and PyPI exact
+  (also search GitHub for the name: a same-purpose project can exist in any ecosystem)
 
 Uses the npm registry search API (registry.npmjs.org, reachable from the lab sandbox),
 which reports weekly/monthly downloads per package. Standard library only.
@@ -58,10 +59,15 @@ def main() -> int:
             exact = True
         except Exception:
             exact = False
-        print(f"exact '{a.name}' taken: {exact}")
+        try:
+            urllib.request.urlopen(urllib.request.Request(f"https://pypi.org/pypi/{a.name}/json", headers=UA), timeout=30)
+            pypi = True
+        except Exception:
+            pypi = False
+        print(f"exact '{a.name}' taken on npm: {exact}; on PyPI: {pypi}")
         for p in hits:
             print(f"  collision: {p['name']:<36} {p['weekly']:>9}/wk  {p['description'][:70]}")
-        if exact or any(p["weekly"] >= 100 for p in hits):
+        if exact or pypi or any(p["weekly"] >= 100 for p in hits):
             print("=> pick another name")
             return 1
         print("=> name looks free")

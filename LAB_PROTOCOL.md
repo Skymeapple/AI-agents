@@ -71,7 +71,7 @@ Pick the highest total; break ties with Reach. Don't rebuild an existing lab pro
 
 ## Phase 2: Build (~2–3 h)
 
-* Location: `projects/<name>/`. Name check: `python3 scripts/npm_market.py --name <name>` must say the name looks free. On PyPI, `https://pypi.org/pypi/<name>/json` must return 404.
+* Location: `projects/<name>/`. Name check: `python3 scripts/npm_market.py --name <name>` checks npm (exact and `@scope/<name>`) **and PyPI**, and must say the name looks free. Also search GitHub for `<name>`. **A name is taken if any ecosystem has a project with that name and a similar purpose**, even if your own registry is free. (`agentscrub` was free on npm but used on PyPI by a 44-release tool for agent-log redaction; caught and renamed on 2026-11-24, before publishing.)
 * **Distribution first.** Downloads come from package registries, so every project must be installable in one command:
   * JS/TS CLI → npm package with a `bin`, runnable as `npx <name>`. Node ≥ 18, ESM, zero runtime dependencies where possible.
   * Python → PyPI package with a console script, runnable as `pipx run <name>` or `uvx <name>`. Standard library only where possible.

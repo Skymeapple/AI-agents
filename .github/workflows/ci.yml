@@ -28,8 +28,8 @@ jobs:
           done
       - name: Dogfood ctxlint on the lab itself
         run: node projects/ctxlint/bin/ctxlint.js . --format github
-      - name: Dogfood agentscrub on the lab itself
-        run: node projects/agentscrub/bin/agentscrub.js . --format github
+      - name: Dogfood agent-commit-guard on the lab itself
+        run: node projects/agent-commit-guard/bin/agent-commit-guard.js . --format github
       - name: Dogfood pthscan on the runner's Python
         run: PYTHONPATH=projects/pthscan/src python3 -S -m pthscan --format github
       - name: Dashboard builds

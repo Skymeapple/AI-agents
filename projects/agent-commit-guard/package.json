@@ -1,10 +1,10 @@
 {
-  "name": "agentscrub",
-  "version": "0.2.0",
-  "description": "Find and remove secrets that AI coding agents save to disk: Claude Code \"don't ask again\" allowlists (.claude/settings.local.json), MCP configs, session transcripts. Hook + pre-commit guard.",
+  "name": "agent-commit-guard",
+  "version": "0.3.0",
+  "description": "Keep the secrets your AI coding agent saves out of git: Claude Code \"don't ask again\" allowlists (.claude/settings.local.json), MCP configs, agent files. Agent hook + pre-commit guard + auto-fix.",
   "type": "module",
   "bin": {
-    "agentscrub": "bin/agentscrub.js"
+    "agent-commit-guard": "bin/agent-commit-guard.js"
   },
   "main": "src/scan.js",
   "exports": {
@@ -45,9 +45,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Skymeapple/AI-agents.git",
-    "directory": "projects/agentscrub"
+    "directory": "projects/agent-commit-guard"
   },
-  "homepage": "https://github.com/Skymeapple/AI-agents/tree/research-lab/projects/agentscrub#readme",
+  "homepage": "https://github.com/Skymeapple/AI-agents/tree/research-lab/projects/agent-commit-guard#readme",
   "bugs": "https://github.com/Skymeapple/AI-agents/issues",
   "license": "MIT"
 }

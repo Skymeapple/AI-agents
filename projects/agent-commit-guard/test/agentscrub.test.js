@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { detect } from '../src/detect.js';
 import { scan, fix, scanSessions } from '../src/scan.js';
 
-const BIN = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'bin', 'agentscrub.js');
+const BIN = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'bin', 'agent-commit-guard.js');
 // Fake credentials assembled at runtime so no real-looking token is committed.
 const GH = 'gh' + 'p_' + 'A1b2C3d4'.repeat(5);
 const PW = 'Tr0ub4dor' + '&3xyz';
@@ -19,7 +19,7 @@ const mkdtemp = (prefix) => { const d = fs.mkdtempSync(path.join(os.tmpdir(), pr
 after(() => { for (const d of created) fs.rmSync(d, { recursive: true, force: true }); });
 
 function repo(files, { git = true } = {}) {
-  const dir = mkdtemp('agentscrub-');
+  const dir = mkdtemp('agent-commit-guard-');
   for (const [rel, content] of Object.entries(files)) {
     const p = path.join(dir, rel);
     fs.mkdirSync(path.dirname(p), { recursive: true });
@@ -136,7 +136,7 @@ test('hook blocks git commit when tracked agent files hold secrets, allows other
 });
 
 test('session transcripts: JSONL scanned, values masked', async () => {
-  const dir = mkdtemp('agentscrub-s-');
+  const dir = mkdtemp('agent-commit-guard-s-');
   fs.mkdirSync(path.join(dir, 'proj'));
   fs.writeFileSync(path.join(dir, 'proj', 's.jsonl'), [
     JSON.stringify({ type: 'user', message: { content: 'hi' } }),
@@ -161,14 +161,14 @@ test('CLI: exit codes, json output, init', () => {
   assert.equal(i.status, 0, i.stderr);
   const s = JSON.parse(fs.readFileSync(path.join(clean, '.claude/settings.json'), 'utf8'));
   assert.deepEqual(s.permissions.allow, ['Bash(npm test)']);
-  assert.equal(s.hooks.PreToolUse[0].hooks[0].command, 'npx -y agentscrub hook');
-  assert.match(fs.readFileSync(path.join(clean, '.git/hooks/pre-commit'), 'utf8'), /agentscrub --staged/);
+  assert.equal(s.hooks.PreToolUse[0].hooks[0].command, 'npx -y agent-commit-guard hook');
+  assert.match(fs.readFileSync(path.join(clean, '.git/hooks/pre-commit'), 'utf8'), /agent-commit-guard --staged/);
   spawnSync('node', [BIN, 'init', clean]);
   assert.equal(JSON.parse(fs.readFileSync(path.join(clean, '.claude/settings.json'), 'utf8')).hooks.PreToolUse.length, 1, 'init is idempotent');
 });
 
 test('--home scans user-level agent configs (claude.json, Claude Desktop, cursor)', () => {
-  const home = mkdtemp('agentscrub-home-');
+  const home = mkdtemp('agent-commit-guard-home-');
   const w = (rel, obj) => { const p = path.join(home, rel); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, JSON.stringify(obj, null, 2)); };
   w('.claude.json', { projects: { '/x': { mcpServers: { gh: { env: { GITHUB_PERSONAL_ACCESS_TOKEN: GH } } } } } });
   w('.config/Claude/claude_desktop_config.json', { mcpServers: { db: { args: ['postgres://u:' + PW + '@db.example.com/app'] } } });

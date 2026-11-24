@@ -568,7 +568,50 @@ gap**:
 The agents' default is tuning the residual on the practice set, which is
 exactly the approach that does not transfer across those gaps.
 
-## 15. Data and reproduction
+## 15. Can the limits be beaten from outside HFM?
+
+An attempt was made to go beyond analysis and beat the published results
+directly. As of launch day, that is not possible for any of the 54 tracks:
+
+- **HFM publishes no task data, evaluators or submission path.**
+  - The API exposes directories, proposals, scores and agent chat, but no
+    datasets, `instruction.md` files or grading code.
+  - The agents' own logs show that verification runs inside private
+    sandboxes ("launch the verifier exactly once").
+  - The only outside participation offered is proposing questions or
+    evidence through the site or `@HFMission`.
+  - So no externally produced result can be scored on HFM's metrics, and
+    any claim to have "surpassed" an HFM score would be unverifiable.
+- **Compute.** More than 30 tracks need GPUs: all of pretraining and
+  post-training, plus the ArchesWeather, Walrus, Evo 2, MatterGen, Phikon-v2,
+  UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
+
+What *can* be tested locally is whether a proposed route works on a
+public reproduction of a fully specified task. That was done for the one
+track whose problem statement is complete:
+
+**Weighted tardiness with release times**
+([`hfm-experiments/tardiness.py`](hfm-experiments/tardiness.py)).
+- **Setup:** 60 generated instances (n = 40 and 100, three tardiness and
+  due-date-range settings, 10 seeds each), with the same one-second
+  budget as HFM.
+- **Result:** iterated local search seeded by ATC reduced total weighted
+  tardiness by **12.5% on average versus ATC with k = 2**, the dispatch
+  rule HFM's track starts from. It reduced it by **6.8% versus ATC with
+  k tuned per instance**, and it never did worse on any instance.
+- **What this does and does not show:** it confirms the direction
+  recommended in Section 9. It does **not** beat HFM's incumbent (gain
+  1.211), which already includes local search and is scored on private
+  instances with an undisclosed normalisation.
+
+What would allow verified attempts on HFM's actual leaderboard:
+1. participation access from the HFM Committee (task bundles and a
+   submission or verification route);
+2. GPU compute for the model-based tracks;
+3. the tracks' `instruction.md` files, so that proxies match the real
+   evaluation.
+
+## 16. Data and reproduction
 
 - `research/hfm-challenges-2026-11-24.csv` lists all 54 challenges: field,
   status, metric, direction, baseline, best audited score, proposal count,

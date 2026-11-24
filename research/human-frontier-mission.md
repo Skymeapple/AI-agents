@@ -593,7 +593,7 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
   UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
 
 What *can* be tested locally is whether a proposed route works on a
-public reproduction of a fully specified task. That was done for five
+public reproduction of a fully specified task. That was done for eight
 tracks where the task can be rebuilt from public material:
 
 **Weighted tardiness with release times**
@@ -726,23 +726,104 @@ tracks where the task can be rebuilt from public material:
     gain will not carry over to HFM's task. The ordering of the methods
     is the finding.
 
-**Summary of the five public-data tests**
+**Cyclic steel response from a tension test**
+([`hfm-experiments/steel_cyclic_transfer.py`](hfm-experiments/steel_cyclic_transfer.py)).
+- **Setup:** the public Hartloper et al. coupon-test database (Zenodo
+  6965147), which uses the LP1–LP10 loading protocols named in HFM's logs
+  and is very likely the data behind both steel tracks. 38 steels from 21
+  test campaigns. For each target steel only its tension test is known;
+  steels from other campaigns are the donor library. Error is the RMS
+  stress error on the target's cyclic tests as a share of yield stress.
+- **Result:**
+
+  | Method | Error | Versus donor median | Campaigns better than donor median |
+  | --- | --- | --- | --- |
+  | Tension test alone (reference) | 0.545 | +275% | 1/21 |
+  | Donor median | 0.145 | — | — |
+  | Donor median, refined on the tension test | 0.146 | +0.6% | 8/21 |
+  | Prior conditioned on tension-test features | 0.169 | +16% | 7/21 |
+  | Conditioned prior, refined on the tension test | 0.138 | −5.2% | 10/21 |
+  | Oracle (fitted to the target's own cyclic tests) | 0.087 | −40% | 21/21 |
+
+- **What this shows:**
+  - **The donor library does almost all the work.** Borrowing the median
+    cyclic parameters of other steels cuts the error by 73% against using
+    the tension test alone.
+  - **The conditioned prior proposed in Section 7.3 is not supported.**
+    Its best variant is 5% better on average but wins in only 10 of 21
+    campaigns, which is not distinguishable from chance.
+  - **40% of the error is still there to remove,** and a tension test
+    does not carry the information to remove it. The step change would
+    come from one cheap extra measurement per steel (for example a
+    single load reversal), not from a better prior.
+
+**Anti-reflection coatings under manufacturing variation**
+([`hfm-experiments/robust_ar_coating.py`](hfm-experiments/robust_ar_coating.py)).
+- **Setup:** standard thin-film reflectance calculation, six
+  specifications (three substrates, two wavelength bands), a shared pool
+  of candidate designs with 4, 6 or 8 layers, and thickness and index
+  errors on every layer. Final designs are scored on 4,000 fresh
+  variation samples.
+- **Result:** against the usual practice of picking the design with the
+  lowest nominal reflectance:
+  - **Choosing among the same candidates by their score under
+    variation** cut expected reflectance by **14.5% on average**. It cut
+    it by 33–50% in two specifications and 5% in a third, and changed it
+    by under 0.5% in the other three.
+  - **Re-optimising thicknesses on the robust score added nothing more**
+    (−13.8% on average). It cut the 90th-percentile reflectance by 18%.
+- **What this shows:** the gain comes from picking a less sensitive
+  design, usually one with fewer layers, not from polishing thicknesses.
+  HFM's agents spend most of their effort on polishing. Section 7.6 is
+  supported on the selection point.
+
+**Online VM placement on the Azure packing trace**
+([`hfm-experiments/cloud_placement.py`](hfm-experiments/cloud_placement.py)).
+- **Setup:** Microsoft's public Azure Packing Trace 2020. Four disjoint
+  tenant samples of about 100,000 VMs each are replayed over 14 days.
+  Cost is server-days. There are no evictions, unlike HFM's objective.
+- **Result:**
+
+  | Policy | Server-days versus best fit |
+  | --- | --- |
+  | First fit | about −3% (better in all four samples) |
+  | Lifetime-aware, lifetimes predicted from finished VMs | **+1.3%** (better in 1/4) |
+  | Lifetime-aware, true lifetimes | **−13.8%** (better in 4/4) |
+
+- **What this shows:** packing VMs that leave together is worth about
+  14% of server time, and it gets within a few percent of the lower
+  bound, **but only if lifetimes are known**. With a simple predictor
+  (median lifetime of the same tenant and VM type) the gain disappears.
+  The limit is lifetime prediction, not the packing rule. This agrees
+  with what HFM's agents are doing, which is building survival-curve
+  estimates.
+
+**Summary of the eight public-data tests**
 
 | Challenge | Idea tested | Verdict |
 | --- | --- | --- |
 | Weighted tardiness | Iterated local search on top of the dispatch rule | **Supported:** 12.5% less tardiness than the starting rule, never worse |
 | Grid unit commitment | Commit against wind scenarios instead of a reserve rule | **Supported with a condition:** −23% regret with spread scenarios; random scenarios can be far worse |
+| Optical coating design | Select designs by score under variation | **Supported:** −14.5% expected reflectance; polishing adds nothing more |
 | Photometric redshift | Extinction as an input | **Supported, small:** −1.3% error in every fold |
 | Photometric redshift | Predict a redshift distribution | **Not supported** for an RMSE metric: +2.3% error |
+| Cyclic steel response | Prior conditioned on tension-test features | **Not supported:** no reliable gain over the donor median |
+| Cloud VM placement | Lifetime-aware packing | **Conditional:** −13.8% with true lifetimes, no gain with a simple predictor |
 | Wave energy | Separate swell and wind-sea model | **Not supported:** no better than plain regression on wind |
 | Optical constants | Causality-consistent (Kramers–Kronig) fit | **Weak:** +0.02 to +0.11 skill, fragile |
 
-Three of six ideas held up, and three did not. The ideas that failed all
-tried to add structure where the *data* was the limit (no swell
-information, no out-of-band resonances). The ideas that worked changed
-the search or decision procedure, or added a missing input. For the
-remaining challenges that suggests asking first what information is
-missing, before asking what model to use.
+Four of nine ideas held up, one depends on a prediction the test could
+not make well, and four did not hold. The pattern is consistent:
+- **Ideas that failed added modelling structure where information was
+  the limit.** Local wind says nothing about swell. A tension test says
+  little about cyclic hardening. In-band data says nothing about
+  out-of-band resonances.
+- **Ideas that worked changed the decision procedure or the selection
+  rule,** or added a missing input: local search, scenario planning,
+  choosing designs by robust score, extinction.
+- **Where the oracle gap is large** (steel 40%, cloud 14%), the next
+  step is a new measurement or a better forecast, not a better model
+  of the existing inputs.
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

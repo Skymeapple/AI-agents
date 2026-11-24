@@ -1,20 +1,33 @@
 job: models-probe
-started: 2026-11-24T23:58:50Z
+started: 2026-11-24T23:59:28Z
 cores: 4, memory: 15 GB
 token present: yes
 == catalogue
 http 200, 4 bytes, text/plain
 not JSON: Expecting value: line 1 column 1 (char 0) | first bytes: b'OK\r\n'
 == openai/gpt-4o-mini
-http 200, 4 bytes, 0.147693s
+http 200, 4 bytes, 0.133509s
 OK
 
 == openai/gpt-4.1-mini
-http 200, 4 bytes, 0.147924s
+http 200, 4 bytes, 0.133537s
 OK
 
 == meta/llama-3.3-70b-instruct
-http 200, 4 bytes, 0.132314s
+http 200, 4 bytes, 0.130406s
 OK
 
-finished: 2026-11-24T23:58:51Z, exit code 0
+== older endpoint
+curl: (6) Could not resolve host: models.inference.ai.azure.com
+http 000, 0 bytes, 0.007267s
+OK
+
+== GitHub API route
+{
+  "message": "Not Found",
+  "documentation_url": "https://docs.github.com/rest",
+  "status": "404"
+}
+http 404
+
+finished: 2026-11-24T23:59:29Z, exit code 0

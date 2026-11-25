@@ -66,6 +66,24 @@ Code: [`photoz_regions.py`](photoz_regions.py) in this folder. Run instructions 
     metric it loses. Route 1 in Section 3.1 is not supported for HFM's
     metric. It would help only if the metric rewarded core scatter.
 
+### Follow-up: every extra input the catalogue offers
+
+Code: [`photoz_features.py`](photoz_features.py). The first experiment found that one added input, extinction, helped in every held-out region. This one adds the other things an image carries that five magnitudes do not, all taken from the public SDSS catalogue. Same protocol: 198,350 galaxies, 42 sky regions, whole regions held out.
+
+| Inputs | NRMSE | Change | Core scatter (NMAD) | Outliers | Folds improved |
+| --- | --- | --- | --- | --- | --- |
+| Magnitudes and colours (base) | 0.04286 | — | 0.02337 | 1.22% | — |
+| + extinction | 0.04224 | −1.4% | 0.02247 | 1.22% | 4/5 |
+| + size and shape (radii, concentration, profile, axis ratio) | 0.04207 | −1.8% | 0.02309 | 1.12% | 5/5 |
+| + per-band point-source and fibre magnitudes | 0.04195 | −2.1% | 0.02275 | 1.17% | 5/5 |
+| + magnitude errors | 0.04253 | −0.8% | 0.02349 | 1.19% | 4/5 |
+| All of the above | **0.04037** | **−5.8%** | 0.02148 | 1.05% | 5/5 |
+
+- **The gains add up.** Each group of inputs is worth 1–2% alone and 5.8% together, in all five folds. That is more than four times the gain from extinction alone.
+- **Both parts of the error improve:** the core scatter by 8% and the outlier rate from 1.22% to 1.05%.
+- **This is the same pattern as elsewhere in this programme:** telling the model something it was not being told beats changing how it predicts (the redshift-distribution idea made things worse).
+- HFM's version feeds images to a foundation model, which should capture size and shape already. Extinction, survey depth and measurement errors are not in the pixels, so those remain the candidates there.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -74,4 +92,4 @@ On catalogue data, seed noise is 0.1% of NRMSE and the extinction gain is 1.3%. 
 
 ## Next steps
 
-Repeat with Legacy Survey images on a GPU. Test depth maps as inputs. Attack the outlier tail directly, since it dominates RMSE.
+Repeat with Legacy Survey images on a GPU, adding extinction, depth and error inputs that the pixels do not carry. Use the published DR9 photometric redshifts as one more input or blend member. Attack the outlier tail directly, since it dominates RMSE.

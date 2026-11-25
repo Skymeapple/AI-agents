@@ -25,7 +25,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Galaxy Photometric Redshift Prediction Across Disjoint Sky Regions](astronomy/photometric-redshift/README.md) | Tested on public data | Extinction input: −1.3% error in every held-out sky region. Redshift distributions: worse on RMSE. | 0.0364 → 0.02434 |
+| [Galaxy Photometric Redshift Prediction Across Disjoint Sky Regions](astronomy/photometric-redshift/README.md) | Tested on public data | Adding extinction, size, shape, aperture and error inputs: −5.8% error in every held-out fold. Redshift distributions: worse on RMSE. | 0.0364 → 0.02434 |
 
 ## biology
 

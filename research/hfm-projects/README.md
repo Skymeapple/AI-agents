@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 23 projects (22 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 30 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Tested on public data or in a model study:** 24 projects (23 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 2 projects where public data exist and the experiment still has to be built.
+- **Blocked:** 28 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
 
@@ -122,4 +122,4 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Cross-Venue Allocation of Perpetual Orders](quant-finance/cross-venue-routing/README.md) | Tested on public data | Replay on public trade prints: routing to the venue with the cheaper last trade saves 0.7 basis points per small order (bound 0.77), before fees and with an optimistic fill proxy. | 0 → 0.5927 |
 | [Minute-Level Perpetual Trading Strategy from Price, Flow, and Funding Data](quant-finance/perpetual-futures-strategy/README.md) | Tested on public data | Signal families persist to a later period; fine-tuned settings do not. | 0 → 0.0776 |
 | [Execution Policy Development from Ten-Level Order Book Data](quant-finance/order-book-execution/README.md) | Blocked | Nasdaq order-book data is licensed, and the reward is pinned at 1.0. | 0 → 1 |
-| [Cost-aware long-only portfolio construction under trading frictions on Qlib](quant-finance/portfolio-with-frictions/README.md) | Open | Public data exist (Qlib daily data) but the backtest with price limits and halts was not built. | not published → 0.2119 |
+| [Cost-aware long-only portfolio construction under trading frictions on Qlib](quant-finance/portfolio-with-frictions/README.md) | Tested on public data | On 49 US industry portfolios, 2000–2026: trading part-way lifts a fast signal from 0.50 to 0.60 return per unit of risk at 10 bp costs; HFM's drift-trigger idea was the weakest cost-aware rule; a slow signal gained nothing over monthly rebalancing. | not published → 0.2119 |

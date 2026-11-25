@@ -2,10 +2,11 @@
 
 Where each project stands, and what it still needs before research can proceed. Data access was checked from free GitHub Actions compute on 2026-11-25; the raw report is in [`../compute/results/data-access-probe/run.log`](../compute/results/data-access-probe/run.log).
 
-## Runs today on CPU (23)
+## Runs today on CPU (24)
 
 | Project | Still missing |
 | --- | --- |
+| [Cost-aware long-only portfolio construction under trading frictions on Qlib](quant-finance/portfolio-with-frictions/README.md) | Single-stock data with a clear licence, price limits and halts. |
 | [Cross-Venue Allocation of Perpetual Orders](quant-finance/cross-venue-routing/README.md) | Order-book data for a faithful replay. |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | Nothing. |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Toronto's real counts in place of generated volumes. |
@@ -30,13 +31,12 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Wind-Farm Wake Calibration and Power Prediction from Real SCADA Data](physics/wind-farm-wakes/README.md) | Nothing. |
 | [Minute-Level Perpetual Trading Strategy from Price, Flow, and Funding Data](quant-finance/perpetual-futures-strategy/README.md) | Nothing. |
 
-## Data verified; pipeline or simulator still to build (3)
+## Data verified; pipeline or simulator still to build (2)
 
 | Project | Still missing |
 | --- | --- |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | A reduced fish-passage and dissolved-gas model built from DART data. |
 | [Event-Driven Equity Strategy Based on Financial Filing Events](quant-finance/filing-event-strategy/README.md) | Your decision on a contact address to send to the SEC, then the event-study pipeline. |
-| [Cost-aware long-only portfolio construction under trading frictions on Qlib](quant-finance/portfolio-with-frictions/README.md) | The backtester with price limits, halts and costs. |
 
 ## Ready to run once a free GPU account is connected (17)
 
@@ -90,5 +90,5 @@ Where each project stands, and what it still needs before research can proceed. 
 
 - **A free GPU account (Kaggle):** the 17 GPU projects, plus image and foundation-model versions of four CPU projects.
 - **A language-model key:** the 6 agent-harness projects.
-- **Build work only, no outside dependency:** the 3 projects with verified data.
+- **Build work only, no outside dependency:** the 2 projects with verified data.
 - **Licensed market data:** 4 finance projects. No free legal substitute was found.

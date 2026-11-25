@@ -1,0 +1,112 @@
+job: cpu-route-probe
+started: 2026-11-25T14:11:15Z
+cores: 4, memory: 15 GB
+200 datasets MahmoodLab/UNI2-h-features: gated=auto private=False files=47 total=887.2 GB
+      .gitattributes  0.0 MB
+      CPTAC/cptac_brca.tar.gz  15970.6 MB
+      CPTAC/cptac_ccrcc.tar.gz  24679.3 MB
+      CPTAC/cptac_coad.tar.gz  15588.8 MB
+      CPTAC/cptac_gbm.tar.gz  11002.7 MB
+      CPTAC/cptac_hnsc.tar.gz  12080.9 MB
+      CPTAC/cptac_lscc.tar.gz  45183.2 MB
+      CPTAC/cptac_luad_part1.tar.gz  20881.9 MB
+      CPTAC/cptac_luad_part2.tar.gz  33878.8 MB
+      CPTAC/cptac_ov.tar.gz  8674.7 MB
+      CPTAC/cptac_pda.tar.gz  9310.8 MB
+      CPTAC/cptac_ucec.tar.gz  2358.8 MB
+200 datasets MahmoodLab/Patho-Bench: gated=False private=False files=384 total=0.0 GB
+      Patho-Bench.py  0.0 MB
+      README.md  0.0 MB
+      available_splits.yaml  0.0 MB
+      bc_therapy/er_status/config.yaml  0.0 MB
+      bc_therapy/er_status/k=all.tsv  0.1 MB
+      bc_therapy/er_status/viz/folds.png  0.1 MB
+      bc_therapy/er_status/viz/labels.png  0.0 MB
+      bc_therapy/grade/config.yaml  0.0 MB
+      bc_therapy/grade/k=all.tsv  0.1 MB
+      bc_therapy/grade/viz/folds.png  0.1 MB
+      bc_therapy/grade/viz/labels.png  0.0 MB
+      bc_therapy/her2_status/config.yaml  0.0 MB
+200 datasets owkin/camelyon16-features: gated=False private=False files=9 total=1.2 GB
+      .gitattributes  0.0 MB
+      README.md  0.0 MB
+      data/Phikon_test-00000-of-00001-f7f5c26c8b3c993c.parquet  401.5 MB
+      data/Phikon_train-00000-of-00002-8a8b4d843ef2994a.parquet  417.1 MB
+      data/Phikon_train-00001-of-00002-d9e9ef91efa8af1d.parquet  392.3 MB
+      scripts/data.py  0.0 MB
+      scripts/module.py  0.0 MB
+      scripts/trainer.py  0.0 MB
+      scripts/utils.py  0.0 MB
+401 datasets bioptimus/H-optimus-0-TCGA-features: gated=None private=None files=0 total=0.0 GB
+401 datasets prov-gigapath/prov-gigapath-tcga-embeddings: gated=None private=None files=0 total=0.0 GB
+200 models MahmoodLab/UNI: gated=auto private=False files=6 total=1.2 GB
+      .gitattributes  0.0 MB
+      README.md  0.0 MB
+      config.json  0.0 MB
+      pytorch_model.bin  1213.5 MB
+      requesting_access.png  0.0 MB
+      uni.jpg  1.2 MB
+200 models MahmoodLab/TITAN: gated=auto private=False files=20 total=2.0 GB
+      .gitattributes  0.0 MB
+      README.md  0.0 MB
+      TCGA_TITAN_features.pkl  36.5 MB
+      TCGA_demo_features/TCGA-PC-A5DK-01Z-00-DX1.C2D3BC09-411F-46CF-811B-FDBA7C2A295B.h5  14.3 MB
+      TCGA_demo_features/TCGA-QR-A6H0-01Z-00-DX1.87FE37CE-7A75-4480-BA6B-ED98B7B25D49.h5  11.4 MB
+      TCGA_demo_features/TCGA-RM-A68W-01Z-00-DX1.4E62E4F4-415C-46EB-A6C8-45BA14E82708.h5  8.5 MB
+      TCGA_demo_features/TCGA-WB-A81G-01Z-00-DX1.70672250-BF2D-4E3F-8242-3638C0362D2D.h5  23.1 MB
+      conch_tokenizer.py  0.0 MB
+      conch_v1_5.py  0.0 MB
+      conch_v1_5_pytorch_model.bin  1224.5 MB
+      config.json  0.0 MB
+      configuration_titan.py  0.0 MB
+401 datasets microsoft/mattergen: gated=None private=None files=0 total=0.0 GB
+200 datasets fairchem/OMAT24: gated=False private=False files=5 total=0.0 GB
+      .gitattributes  0.0 MB
+      README.md  0.0 MB
+      references/README.md  0.0 MB
+      references/element-references.yaml  0.0 MB
+      references/omat-elemental-reference-compounds.json.gz  0.0 MB
+200 datasets nimashoghi/mptrj: gated=False private=False files=12 total=1.7 GB
+      .gitattributes  0.0 MB
+      README.md  0.0 MB
+      data/test-00000-of-00001.parquet  11.3 MB
+      data/train-00000-of-00008.parquet  215.4 MB
+      data/train-00001-of-00008.parquet  216.4 MB
+      data/train-00002-of-00008.parquet  215.8 MB
+      data/train-00003-of-00008.parquet  216.3 MB
+      data/train-00004-of-00008.parquet  214.8 MB
+      data/train-00005-of-00008.parquet  215.5 MB
+      data/train-00006-of-00008.parquet  215.9 MB
+      data/train-00007-of-00008.parquet  215.4 MB
+      data/val-00000-of-00001.parquet  11.4 MB
+200 datasets chaitjo/MP20_ADiT: gated=False private=False files=12 total=0.6 GB
+      .gitattributes  0.0 MB
+      .gitignore  0.0 MB
+      README.md  0.0 MB
+      num_nodes_bincount.pt  0.0 MB
+      processed/.gitkeep  0.0 MB
+      processed/mp20.pt  44.8 MB
+      processed/pre_filter.pt  0.0 MB
+      processed/pre_transform.pt  0.0 MB
+      raw/.gitkeep  0.0 MB
+      raw/all.csv  134.6 MB
+      raw/all.pt  409.2 MB
+      spacegroups_bincount.pt  0.0 MB
+200 datasets roneneldan/TinyStories: gated=False private=False files=14 total=7.6 GB
+      .gitattributes  0.0 MB
+      Evaluation prompts.yaml  0.0 MB
+      MLP_input_output.npy  819.2 MB
+      README.md  0.0 MB
+      TinyStories-train.txt  1924.3 MB
+      TinyStories-valid.txt  19.4 MB
+      TinyStoriesV2-GPT4-train.txt  2227.8 MB
+      TinyStoriesV2-GPT4-valid.txt  22.5 MB
+      TinyStories_all_data.tar.gz  1608.0 MB
+      data/train-00000-of-00004-2d5a1467fff1081b.parquet  248.7 MB
+      data/train-00001-of-00004-5852b56a2bd28fd9.parquet  248.2 MB
+      data/train-00002-of-00004-a26307300439e943.parquet  245.9 MB
+200 matgen_baselines repo None 58027 MIT
+200 matgen_baselines tree b'{"sha":"770129797a9919955d84f3c3e59cc389e3b04315","url":"https://api.github.com/repos/Bartel-Group/matgen_baselines/git/trees/770129797a9919955d84f3c3'
+200 mattersim repo MatterSim: A deep learning atomistic model across elements, temperatures and pressures. 79185 MIT
+200 HLCA full embedding (Zenodo) [('HLCA_surgery_models.zip', 181), ('HLCA_reference_model_gene_order_ids_and_symbols.csv', 0), ('HLCA_reference_model.zip', 11), ('HLCA_full_v1.1_emb.h5ad', 2369)]
+finished: 2026-11-25T14:11:18Z, exit code 0

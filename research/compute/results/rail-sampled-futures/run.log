@@ -1,0 +1,21 @@
+job: rail-sampled-futures
+started: 2026-11-25T12:49:02Z
+cores: 4, memory: 15 GB
+60 days in /home/runner/work/_temp/data/rail
+57 days, 49 trains a day on the corridor
+entry delays on the five learning days: mean 13.4 min, 90th percentile 30.6 min
+
+real days, real entry delays (52 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       1724.5                  +2.4%            15/52     27
+  priority                         1683.6                  +0.0%             0/52      0
+  look-ahead (rollout)             1519.5                  -9.7%            38/52     14
+  look-ahead, 4 sampled futures     1535.3                  -8.8%            39/52     13
+
+disrupted days (extra entry delays on 30% of trains) (52 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       2126.3                  +3.2%            13/52     28
+  priority                         2059.6                  +0.0%             0/52      0
+  look-ahead (rollout)             1940.6                  -5.8%            31/52     21
+  look-ahead, 4 sampled futures     1958.3                  -4.9%            33/52     19
+finished: 2026-11-25T14:37:32Z, exit code 0

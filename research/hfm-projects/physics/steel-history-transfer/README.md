@@ -48,4 +48,4 @@ See the shared experiment: the model class reaches 0.087 error when fitted to th
 
 ## Next steps
 
-One reversal closes 8% of the gap and four close 30% (see the shared experiment). Find the shortest multi-cycle protocol that closes most of it.
+One extra constant-amplitude cyclic test at ±2% strain closes 71% of the gap (see the shared experiment). Find the shortest version that keeps most of that.

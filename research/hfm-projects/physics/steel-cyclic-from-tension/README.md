@@ -90,6 +90,26 @@ the fit. All methods are scored on that steel's other cyclic tests.
   suggestion of "one cheap load reversal" was too optimistic. A short
   multi-cycle test is the smallest measurement that helps materially.
 
+### Follow-up: which single extra test is worth most?
+
+For each steel, one of its cyclic tests was added in full to the tension test, and the model was scored on the steel's other cyclic tests. Results are grouped by loading protocol.
+
+| Protocol added | Steels | Peak strain | Reversals | Error (donor median → with the test) | Gap to oracle closed | Steels improved |
+| --- | --- | --- | --- | --- | --- | --- |
+| LP5 (constant amplitude) | 39 | 2.0% | 101 | 0.143 → 0.104 | **71%** | 92% |
+| LP10 | 27 | 12.3% | 28 | 0.137 → 0.100 | 69% | 81% |
+| LP9 (random history) | 44 | 3.0% | 17 | 0.143 → 0.105 | 66% | 77% |
+| LP6 | 38 | 4.8% | 25 | 0.141 → 0.108 | 62% | 84% |
+| LP7 | 30 | 5.0% | 12 | 0.140 → 0.108 | 61% | 83% |
+| LP8 | 33 | 6.0% | 8 | 0.143 → 0.115 | 50% | 64% |
+| LP4 (constant amplitude) | 27 | 1.0% | 101 | 0.146 → 0.123 | 38% | 48% |
+| LP3 | 28 | 12.3% | 4 | 0.133 → 0.125 | 16% | 50% |
+| LP2 | 30 | 12.3% | 4 | 0.143 → 0.136 | 13% | 57% |
+
+- **One well-chosen cyclic test removes most of the remaining error.** A constant-amplitude test at ±2% strain cuts the error by 27% and closes 71% of the gap, improving 92% of steels.
+- **The choice of test matters more than its length.** A random history with only 17 reversals closes 66%. A few very large reversals (LP2, LP3) close 13–16%, and a small-amplitude test (LP4) closes 38%. Moderate amplitude with repeated cycling is what identifies the hardening parameters.
+- **This is the route past the limit for both steel tracks.** It changes the measurement, not the model. Under HFM's rule that only a tension test is available, the donor median remains the practical ceiling.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -98,4 +118,4 @@ Oracle error is 0.087 of yield stress against 0.145 for the donor median: 40% he
 
 ## Next steps
 
-Find the shortest multi-cycle protocol that closes most of the gap (four reversals close 30%). Try a richer model (yield plateau, strain-range memory) to lower the oracle error itself.
+Find the shortest version of a ±2% constant-amplitude test that keeps most of its benefit (the full test closes 71% of the gap; the first four reversals of a mixed test close 30%). Try a richer model (yield plateau, strain-range memory) to lower the oracle error itself.

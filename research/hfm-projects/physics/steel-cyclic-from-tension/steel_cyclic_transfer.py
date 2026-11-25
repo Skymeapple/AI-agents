@@ -199,6 +199,38 @@ def extra_measurement(mats, own, width):
         print(f"{k:<42} {r[k].mean():7.3f} {r[k].mean() / base.mean() - 1:>+16.1%} {closed:>27.0%} {int((r[k] < base - 1e-9).sum()):>13}/{len(r)}")
 
 
+def best_extra_test(mats, own, width):
+    """Which single cyclic test, added to the tension test, helps most?
+
+    For each steel and each of its cyclic tests in turn, that one test is added in full
+    to the fit and the model is scored on the steel's other cyclic tests. Results are
+    grouped by loading protocol.
+    """
+    rows = []
+    for m in sorted(mats):
+        rec = mats[m]
+        if len(rec["cyclic"]) < 3:
+            continue
+        donors = [d for d in mats if mats[d]["top"] != rec["top"]]
+        med = np.median(np.array([own[d] for d in donors]), axis=0)
+        for j, (lp, e0, s0) in enumerate(rec["cyclic"]):
+            rest = dict(rec, cyclic=[c for i, c in enumerate(rec["cyclic"]) if i != j])
+            theta = fit([rec["tension"], (e0, s0)], rec["E"], rec["fy"], med, prior=med, width=width)
+            base, orc, got = err(med, rest), err(own[m], rest), err(theta, rest)
+            rows.append(dict(protocol=lp, campaign=rec["top"], base=base, oracle=orc, got=got,
+                             amplitude=float(np.abs(e0).max()), reversals=int((np.diff(np.sign(np.diff(e0))) != 0).sum())))
+    r = pd.DataFrame(rows)
+    g = r.groupby("protocol").agg(steels=("got", "size"), amplitude=("amplitude", "median"), reversals=("reversals", "median"),
+                                  base=("base", "mean"), got=("got", "mean"), oracle=("oracle", "mean"))
+    g["gap closed"] = (g.base - g.got) / (g.base - g.oracle)
+    g["better"] = r.assign(b=r.got < r.base).groupby("protocol").b.mean()
+    g = g.sort_values("gap closed", ascending=False)
+    print("\none extra cyclic test added to the tension test; scored on the steel's other cyclic tests")
+    print(f"{'protocol':<9} {'steels':>6} {'peak strain':>12} {'reversals':>10} {'donor median':>13} {'with test':>10} {'oracle':>7} {'gap closed':>11} {'steels improved':>16}")
+    for lp, x in g.iterrows():
+        print(f"{lp:<9} {int(x.steels):>6} {x.amplitude:>12.1%} {int(x.reversals):>10} {x.base:>13.3f} {x.got:>10.3f} {x.oracle:>7.3f} {x['gap closed']:>11.0%} {x.better:>16.0%}")
+
+
 def main():
     mats = load(sys.argv[1])
     names = sorted(mats)
@@ -243,6 +275,7 @@ def main():
     for k in by_c.columns:
         print(f"{k:<38} {by_c[k].mean():7.3f} {(1 - by_c[k] / ref).mean():>+19.3f} {by_c[k].mean() / base.mean() - 1:>+16.1%} {int((by_c[k] < base - 1e-9).sum()):>29}/{len(by_c)}")
     extra_measurement(mats, own, width)
+    best_extra_test(mats, own, width)
 
 
 if __name__ == "__main__":

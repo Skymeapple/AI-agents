@@ -305,6 +305,35 @@ The round also tested the review's own central claim. Of the nine projects that
 moved, seven moved by adding information or data, one by theory (convection) and
 one by more reasoning (bikes).
 
+### Third round
+
+A third round built the remaining experiments that needed only public data and
+CPU, and revisited two earlier results.
+
+| Project | What was tested | Result |
+| --- | --- | --- |
+| Lung cell annotation | Non-linear classifier heads on the full 35-study atlas | Macro-F1 0.684 → 0.786, better in 35 of 35 studies. This reverses the "did not move" entry above: the limit on the 11-study core was the small benchmark, not the embedding. |
+| Air-quality sensors | Boosted trees for calibration transfer | Skill +0.10 across cities, +0.29 across sites. The humidity growth law did not help. |
+| Ride-hail dispatch | Forecast-driven repositioning | Requests served 83% → 92%. |
+| Arterial signals | Tuning to a range of days (model study) | Delay on other days −17.5%. |
+| Cross-venue routing | Route to the cheaper last print | 0.70 of 0.77 basis points available, on trade prints only and before fees. |
+| Portfolio under costs | Five trading rules | Part-way trading rescues a fast signal (0.50 → 0.60) but only to the level of holding everything. HFM's drift trigger was the weakest rule. |
+| Dam spill | Gas model and joint spill planning | Joint planning worth 1.4% at most. A linear gas model beat the saturating physics form. |
+| Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
+
+Three points for the conclusions of this review:
+
+- **A null result on a small benchmark can hide a large effect.** The lung-atlas
+  gain appeared only with 35 studies and more training cells. Section 6's warning
+  about evaluating on too little data applies to negative results too.
+- **Two more "obvious" coordination ideas failed** (joint dam planning,
+  drift-triggered rebalancing). Together with bus holding and cloud placement,
+  four of the operations projects show that a more global optimiser does not
+  help when the simple rule is already near what the information allows.
+- **HFM's agents' own ideas were testable cheaply and two did not hold:** the
+  loop index and the drift trigger. A toy-scale or public-data check before
+  spending GPU budget would have filtered them.
+
 ## 9. How confident to be
 
 - **Most confident:** the starting-point pattern, the local-search trap, and

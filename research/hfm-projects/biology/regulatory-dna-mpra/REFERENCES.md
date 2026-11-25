@@ -11,7 +11,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 - **MPRA-LegNet (autosome-ru, 2023).** Code for the lentiMPRA model of Agarwal et al. https://github.com/autosome-ru/human_legnet
   - The published supervised baseline on this exact data, with the authors' 10-fold scheme. README states training needs 7 GB of GPU memory.
 - **Avsec, Agarwal, Visentin et al. (2021).** Effective gene expression prediction from sequence by integrating long-range interactions (Enformer). https://github.com/google-deepmind/deepmind-research/tree/master/enformer ; preprint https://www.biorxiv.org/content/early/2021/04/08/2021.04.07.438649
-  - Supervised sequence-to-function model; a source of cell-type-specific features for HepG2 and K562 that a DNA language model does not have.
+  - Supervised sequence-to-function model named in this project's README; a candidate source of features learned from functional genomics tracks, which a DNA language model does not see.
 - **Kundaje lab (2019).** MPRA-DragoNN: Deciphering regulatory DNA sequences and noncoding genetic variants using neural network models of massively parallel reporter assays. PLoS ONE, DOI 10.1371/journal.pone.0218073. https://github.com/kundajelab/MPRA-DragoNN
   - Early CNN for MPRA prediction named in this project's README.
 - **Hu, Shen, Wallis et al. (2021).** LoRA: Low-Rank Adaptation of Large Language Models. https://arxiv.org/abs/2106.09685
@@ -20,7 +20,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 ## Recent advances and breakthroughs (2023-2026)
 
 - **Arc Institute (2026).** Genome modeling and design across all domains of life with Evo 2. Nature, DOI 10.1038/s41586-026-10176-5. https://github.com/ArcInstitute/evo2
-  - The model named in the task. README: the 7B models run in bfloat16 on any supported GPU without FP8 hardware; a 1B model also exists; intermediate-layer embeddings work better than final-layer ones.
+  - The model named in the task. README: the 7B models run in bfloat16 on any supported GPU; the 1B, 20B and 40B models need FP8 on an Nvidia Hopper GPU, so 7B is the most portable size; intermediate-layer embeddings work better than final-layer ones. A hosted API exists for the 40B model (https://build.nvidia.com/arc/evo2-40b).
 - **Calico (2023/2025).** Borzoi: Predicting RNA-seq from DNA Sequence. Nature Genetics, DOI 10.1038/s41588-024-02053-6; preprint https://www.biorxiv.org/content/10.1101/2023.08.30.555582v1. https://github.com/calico/borzoi
   - Supervised model trained on ENCODE and GTEx tracks; a second feature view alongside Evo 2.
 - **borzoi-pytorch and Flashzoi (2025).** PyTorch Borzoi and a faster variant (Bioinformatics, DOI 10.1093/bioinformatics/btaf467). https://github.com/johahi/borzoi-pytorch
@@ -34,9 +34,9 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 - **Benegas, Ye, Albors et al. (2024).** Genomic Language Models: Opportunities and Challenges. https://arxiv.org/abs/2407.11435
   - Review; use it to judge when a language model should help on short regulatory sequences.
 - **Zhou, Ji, Li et al. (2023).** DNABERT-2: Efficient Foundation Model and Benchmark For Multi-Species Genome. ICLR 2024. https://arxiv.org/abs/2306.15006
-  - Small DNA language model that can be fine-tuned end to end on modest hardware.
+  - Efficient DNA language model; a cheaper model on which to test a fine-tuning recipe.
 - **Nguyen, Poli, Faizi et al. (2023).** HyenaDNA: Long-Range Genomic Sequence Modeling at Single Nucleotide Resolution. NeurIPS 2023. https://arxiv.org/abs/2306.15794
-  - Single-nucleotide predecessor in the Evo line; small checkpoints are a cheap stand-in for testing a fine-tuning recipe.
+  - Single-nucleotide DNA language model; another cheaper stand-in for testing a fine-tuning recipe.
 - **Google DeepMind (2025).** AlphaGenome. Nature, https://www.nature.com/articles/s41586-025-10014-0 ; weights https://github.com/google-deepmind/alphagenome_research
   - Newer supervised sequence-to-function model with downloadable weights (non-commercial terms). A candidate second view; whether it helps on lentiMPRA was not confirmed.
 
@@ -47,7 +47,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 - **de Boer lab (2023).** Random Promoter DREAM Challenge 2022. Preprint https://www.biorxiv.org/content/10.1101/2023.04.26.538471v2 ; data https://zenodo.org/records/10633252 ; code https://github.com/de-Boer-Lab/random-promoter-dream-challenge-2022
   - Community benchmark for short-sequence expression models; the README says the winning models also beat prior models on human datasets. A source of training tricks.
 - **CODA / Malinois (2023).** Computational Optimization of DNA Activity. Preprint https://www.biorxiv.org/content/10.1101/2023.08.08.552077v1 ; code https://github.com/sjgosai/boda2
-  - A second large human MPRA set (public file at https://storage.googleapis.com/tewhey-public-data/CODA_resources/Table_S2__MPRA_dataset.txt) for pretraining a reporter-assay head before fine-tuning on lentiMPRA.
+  - Another public MPRA training set (https://storage.googleapis.com/tewhey-public-data/CODA_resources/Table_S2__MPRA_dataset.txt) and the Malinois model trained on it. A candidate for pretraining a reporter-assay head before fine-tuning on lentiMPRA; check cell-type overlap first.
 
 ## Open-source code and tools
 
@@ -63,7 +63,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 ## Breakthroughs in related fields that could transfer
 
 - **Stark, Jing, Wang et al. (2024).** Dirichlet Flow Matching with Applications to DNA Sequence Design. ICML 2024. https://arxiv.org/abs/2402.05841
-  - Generative design of regulatory sequences scored by activity predictors; designed sequences can serve as hard augmentation examples.
+  - Generative modelling of DNA sequences; a possible source of synthetic sequences for augmentation. Not tested for this use.
 
 ## Published results to beat
 
@@ -73,8 +73,8 @@ Checked 2026-11-25. Each entry was confirmed in this session by the arXiv record
 ## Cheapest credible way to run experiments
 
 - CPU only: continue with the small multi-task CNN in this folder. Next CPU steps are the joint library (`final_joint_dump.zip`) for multi-task training, shift augmentation, and the replicate ceiling from the per-replicate tables.
-- GPU once: embed all sequences with Evo 2 (1B or 7B; the README supports saving intermediate-layer embeddings), store them, and train every head on CPU.
-- Low-GPU fine-tuning test: try the LoRA recipe on a small model (DNABERT-2 or a small HyenaDNA) before spending on Evo 2 7B.
+- GPU once: embed all sequences with Evo 2 7B (the README shows how to save intermediate-layer embeddings), store them, and train every head on CPU.
+- Low-GPU fine-tuning test: try the LoRA recipe on a smaller model (DNABERT-2 or HyenaDNA) before spending on Evo 2 7B.
 
 ## Unverified leads
 

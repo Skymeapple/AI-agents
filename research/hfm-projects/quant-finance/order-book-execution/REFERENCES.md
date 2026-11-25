@@ -20,6 +20,10 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
   - Uses order-book imbalance to decide when to keep or cancel a passive order; directly relevant to the "pre-sweep marketable order" idea HFM reports.
 - **Huang, Lehalle, Rosenbaum (2015).** Simulating and analyzing order book data: The queue-reactive model. JASA 110(509), 107-122. https://arxiv.org/abs/1312.0563 `[S][P]`
   - State-dependent book simulator used for transaction-cost analysis of execution tactics.
+- **Bailey, López de Prado (2014).** The Deflated Sharpe Ratio. Journal of Portfolio Management 40(5). https://papers.ssrn.com/abstract=2460551 `[S]`
+  - Correct any reported saving for the number of policies tried; HFM's reward is pinned at 1.0, so it cannot rank policies at all.
+- **Bailey, Borwein, López de Prado, Zhu (2017).** The Probability of Backtest Overfitting. Journal of Computational Finance. https://papers.ssrn.com/abstract=2326253 `[S]`
+  - Applies to selecting among execution policies on a fixed set of replayed parent orders.
 
 ## Recent advances and breakthroughs (2023-2026)
 
@@ -63,8 +67,9 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
   - Paper: Amrouni, Moulin, Vann, Vyetrenko, Balch, Veloso (2021), ABIDES-Gym. https://arxiv.org/abs/2110.14771 `[S][P]`
 - **nkaz001/hftbacktest (repo, MIT).** Replay backtester that models feed and order latency and queue position from L2/L3 feeds. https://github.com/nkaz001/hftbacktest `[P]`
   - Queue-position fill simulation is the piece most replay evaluators lack.
-- **microsoft/qlib (repo, MIT).** Includes a nested decision framework and RL order execution examples. https://github.com/microsoft/qlib `[P]`
-  - Paper for the execution method: Fang, Ren, Liu, Zhou, Zhang, Bian, Yu, Liu (2021), Universal Trading for Order Execution with Oracle Policy Distillation. https://arxiv.org/abs/2103.10860 `[P]`
+- **microsoft/qlib (repo, MIT).** README lists order execution in the platform's scope, with a nested decision framework and reinforcement-learning support. https://github.com/microsoft/qlib `[P]`
+- **Fang, Ren, Liu, Zhou, Zhang, Bian, Yu, Liu (2021).** Universal Trading for Order Execution with Oracle Policy Distillation. arXiv:2103.10860. https://arxiv.org/abs/2103.10860 `[P]`
+  - Distils an execution policy from an oracle teacher with perfect information; a way to use hindsight-optimal actions on replayed data.
 - **Pardo, Auth, Dascalu (2022).** A Modular Framework for Reinforcement Learning Optimal Execution. arXiv:2208.06244. https://arxiv.org/abs/2208.06244 `[S][P]`
   - Reward defined as improvement over TWAP on replayed LOB snapshots; a template for the evaluator.
 
@@ -85,13 +90,6 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
   - A throughput baseline, not a cost baseline.
 - **de Witt, Pakkanen (source: arXiv abstract).** 8-10% improvement for regime specialists over a PPO baseline within their niches. https://arxiv.org/abs/2601.22113
 - **TWAP / Almgren-Chriss** remain the reference policies in every paper above; no paper found in this session reports a transferable implementation-shortfall number on public Nasdaq ten-level data. A search summary noted that no 2024-2025 paper was found that trains and evaluates purely on real LOB data against TWAP.
-
-## Evaluating results honestly
-
-- **Bailey, López de Prado (2014).** The Deflated Sharpe Ratio. Journal of Portfolio Management 40(5). https://papers.ssrn.com/abstract=2460551 `[S]`
-  - Correct any reported saving for the number of policies tried; HFM's reward is pinned at 1.0, so it cannot rank policies at all.
-- **Bailey, Borwein, López de Prado, Zhu (2017).** The Probability of Backtest Overfitting. Journal of Computational Finance. https://papers.ssrn.com/abstract=2326253 `[S]`
-  - Applies to selecting among execution policies on a fixed set of replayed parent orders.
 
 ## Unverified leads
 

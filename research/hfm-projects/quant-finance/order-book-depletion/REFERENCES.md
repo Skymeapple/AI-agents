@@ -7,7 +7,7 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
 - **Cont, Kukanov, Stoikov (2014).** The Price Impact of Order Book Events. Journal of Financial Econometrics 12(1), 47-88. https://arxiv.org/abs/1011.6402 `[S][P]`
   - Defines order-flow imbalance (OFI) and shows short-horizon price change is linear in OFI with slope inversely proportional to depth; depth exhaustion is the same mechanism seen from the queue side.
 - **Cont, de Larrard (2013).** Price dynamics in a Markovian limit order market. SIAM Journal on Financial Mathematics 4(1), 1-25. https://arxiv.org/abs/1104.4596 `[P]`
-  - Models the best queues as a Markov queueing system; gives closed forms for the probability that a queue empties before the other, which is a direct baseline for a depletion score.
+  - Models the best queues as a Markovian queueing system and gives analytical expressions for the probability of an upward price move conditional on the state of the book. In this model a price move happens when a best queue is exhausted, so it is a direct analytical baseline for a depletion score.
 - **Huang, Lehalle, Rosenbaum (2015).** Simulating and analyzing order book data: The queue-reactive model. Journal of the American Statistical Association 110(509), 107-122. https://arxiv.org/abs/1312.0563 `[S][P]`
   - Arrival, cancel and trade intensities depend on current queue sizes; estimating these per level is the event-time model the README names as the route to a step change.
 - **Wu, Rambaldi, Muzy, Bacry (2019).** Queue-reactive Hawkes models for the order flow. arXiv:1901.08938. https://arxiv.org/abs/1901.08938 `[S][P]`
@@ -15,11 +15,15 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
 - **Bacry, Mastromatteo, Muzy (2015).** Hawkes processes in finance. arXiv:1502.04592. https://arxiv.org/abs/1502.04592 `[P]`
   - Review of Hawkes models for order flow, including estimation; reference for kernels and calibration.
 - **Gould, Bonart (2015).** Queue Imbalance as a One-Tick-Ahead Price Predictor in a Limit Order Book. arXiv:1512.03492. https://arxiv.org/abs/1512.03492 `[P]`
-  - Shows that a single snapshot feature (queue imbalance) predicts which side is consumed next; the natural snapshot baseline.
+  - Logistic regressions on 10 liquid Nasdaq stocks show that bid/ask queue imbalance predicts the direction of the next mid-price move; the natural snapshot baseline.
 - **Gould, Porter, Williams, McDonald, Fenn, Howison (2010).** Limit Order Books. arXiv:1012.0349. https://arxiv.org/abs/1012.0349 `[P]`
   - Survey of LOB mechanics and stylised facts.
 - **Cont, Cucuringu, Zhang (2021).** Cross-Impact of Order Flow Imbalance in Equity Markets. arXiv:2112.13213. https://arxiv.org/abs/2112.13213 `[P]`
   - Combines OFI across the top levels into one integrated variable; reports that lagged cross-asset OFI improves short-horizon forecasts, which supports a cross-sectional (79-stock) model.
+- **Bailey, López de Prado (2014).** The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting and Non-Normality. Journal of Portfolio Management 40(5). https://papers.ssrn.com/abstract=2460551 `[S]`
+  - HFM ran 58 proposals on one frozen evaluator; the same selection-bias logic applies to a ranking score, so gains of one part in 100,000 are within selection noise.
+- **Bailey, Borwein, López de Prado, Zhu (2017).** The Probability of Backtest Overfitting. Journal of Computational Finance. https://papers.ssrn.com/abstract=2326253 `[S]`
+  - Combinatorially symmetric cross-validation gives a direct estimate of how often the best configuration in-sample is below median out-of-sample.
 
 ## Recent advances and breakthroughs (2023-2026)
 
@@ -83,13 +87,6 @@ Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search r
   - These are mid-price trend numbers, not depletion ranking; no published benchmark for ten-level depth-exhaustion ranking was found.
 - **LOBCAST (source: arXiv abstract).** All fifteen models show a significant drop on unseen data. https://arxiv.org/abs/2308.01915
   - The honest target is out-of-sample stability across days and stocks, not a higher in-sample score.
-
-## Evaluating results honestly
-
-- **Bailey, López de Prado (2014).** The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting and Non-Normality. Journal of Portfolio Management 40(5). https://papers.ssrn.com/abstract=2460551 `[S]`
-  - HFM ran 58 proposals on one frozen evaluator; the same selection-bias logic applies to a ranking score, so gains of one part in 100,000 are within selection noise.
-- **Bailey, Borwein, López de Prado, Zhu (2017).** The Probability of Backtest Overfitting. Journal of Computational Finance. https://papers.ssrn.com/abstract=2326253 `[S]`
-  - Combinatorially symmetric cross-validation gives a direct estimate of how often the best configuration in-sample is below median out-of-sample.
 
 ## Unverified leads
 

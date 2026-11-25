@@ -16,7 +16,7 @@ NeuralGCM, FuXi and Keisler's model, for the year 2020.
 Protocol
   * Variables: 2 m temperature, 10 m wind (u, v), mean sea-level pressure; 24 h lead;
     truth is ERA5, as in the challenge.
-  * Forecasts started at 00 UTC every second day of 2020. Alternating two-week
+  * Forecasts started at 00 UTC every second day of the chosen year (2020 by default). Alternating two-week
     blocks are used for fitting and for testing, so both cover all seasons.
   * Score: latitude-weighted RMSE per variable, divided by that variable's
     standard deviation over the test targets, averaged over the four variables
@@ -31,7 +31,9 @@ Methods
 
 Numbers are NOT comparable to HFM's score (different model, year and normalisation).
 
-Usage: python blend_forecasts.py [step-in-days]
+Usage: python blend_forecasts.py [year] [step-in-days] [discover]
+  With a year other than 2020, or a third argument, the script lists the bucket and
+  uses every stored forecast set on this grid that has the variables and dates.
 """
 from __future__ import annotations
 
@@ -61,6 +63,31 @@ def open_zarr(path):
     return xr.open_zarr(path, storage_options={"token": "anon"}, chunks=None)
 
 
+def discover():
+    """Every stored forecast set on the 240 x 121 grid with poles, by listing the public bucket."""
+    import gcsfs
+    fs = gcsfs.GCSFileSystem(token="anon")
+    found = {}
+    for folder in fs.ls("weatherbench2/datasets"):
+        name = folder.split("/")[-1]
+        if name.startswith("era5") or name in ("ens", "ifs_ens", "ifs_extended_range", "hres_t0"):
+            continue
+        try:
+            subs = fs.ls(folder)
+        except Exception:
+            continue
+        for sub in list(subs):
+            if not sub.endswith(".zarr"):            # one level of year folders
+                try:
+                    subs += fs.ls(sub)
+                except Exception:
+                    pass
+        for path in subs:
+            if path.endswith(".zarr") and "240x121" in path and "with_poles" in path:
+                found[f"{name}:{path.split('/')[-1][:28]}"] = "gs://" + path
+    return found
+
+
 def to_grid(a):
     """Put fields on (time, latitude ascending, longitude)."""
     a = a.transpose("time", "latitude", "longitude")
@@ -68,8 +95,11 @@ def to_grid(a):
 
 
 def main():
-    step = int(sys.argv[1]) if len(sys.argv) > 1 else 2
-    inits = np.arange(np.datetime64("2020-01-01T00"), np.datetime64("2020-12-30T00"), np.timedelta64(24 * step, "h")).astype("datetime64[ns]")
+    year = int(sys.argv[1]) if len(sys.argv) > 1 else 2020
+    step = int(sys.argv[2]) if len(sys.argv) > 2 else 2
+    models = MODELS if year == 2020 and len(sys.argv) < 4 else discover()
+    print(f"year {year}; candidate forecast sets: {list(models)}", flush=True)
+    inits = np.arange(np.datetime64(f"{year}-01-01T00"), np.datetime64(f"{year}-12-30T00"), np.timedelta64(24 * step, "h")).astype("datetime64[ns]")
     valid = inits + LEAD
     t0 = time.time()
     era = open_zarr(ERA5)
@@ -78,10 +108,14 @@ def main():
     print(f"ERA5 targets loaded: {len(inits)} dates, grid {truth[VARS[0]].shape[1:]}, {time.time() - t0:.0f}s", flush=True)
 
     fc = {}
-    for name, path in MODELS.items():
+    for name, path in models.items():
         t1 = time.time()
         try:
             ds = open_zarr(path)
+            extra = [d for d in ds[VARS[0]].dims if d not in ("time", "prediction_timedelta", "latitude", "longitude")] if VARS[0] in ds else []
+            if extra:
+                print(f"{name}: skipped, has extra dimensions {extra}", flush=True)
+                continue
             missing = [v for v in VARS if v not in ds]
             if missing:
                 print(f"{name}: skipped, missing {missing}; has {[v for v in ds.data_vars][:12]}", flush=True)

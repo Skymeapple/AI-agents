@@ -27,7 +27,7 @@ None of these can be created or used on your behalf without you signing up.
 | Google Colab (free tier) | One T4 GPU, sessions that disconnect when idle | No, browser only | A Google account |
 | Amazon SageMaker Studio Lab | One T4 GPU, 4-hour sessions | No, browser only | An approved Studio Lab account |
 | Lightning AI | Monthly free GPU credits | Partly, through its CLI | An account |
-| GitHub Models | Rate-limited calls to hosted language models | Yes, from the workflow here | Nothing extra if the probe in `jobs/models-probe.sh` succeeds |
+| GitHub Models | Rate-limited calls to hosted language models | **Not from here.** The probe in `jobs/models-probe.sh` got only a stub reply with the workflow's built-in token | A personal token with model access, stored as a repository secret |
 | Research allocations (NSF ACCESS, EuroHPC, national centres) | Large GPU and CPU allocations | Yes, through batch schedulers | An application; days to weeks |
 
 Kaggle is the practical route to a free GPU for the blocked projects (weather,
@@ -40,7 +40,7 @@ scripts can push a notebook to Kaggle and collect its output.
 - **GitHub Actions (CPU):** every project whose experiment is CPU-bound or needs
   data this container cannot reach. It already unblocked the cold-battery project
   by finding a working download for the Mendeley battery datasets.
-- **GitHub Models:** small-scale tests for the six agent-harness projects.
+- **A language-model key** (GitHub Models with a personal token, or any provider's free tier): small-scale tests for the six agent-harness projects. The workflow's built-in token did not work for this.
 - **A free GPU (Kaggle):** the 20 or so projects that need model inference or
   training. Budgets of 30 GPU-hours a week are enough for fine-tuning small models
   and for inference with the published science models, not for pretraining.

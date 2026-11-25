@@ -62,12 +62,12 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | --- | --- | --- | --- |
 | [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Blocked | HFM has not published the instance format or the reward, and no proposals have run. | not published → not published |
 | [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Open | Needs a replay simulator built on Finnish open rail data (Digitraffic); not yet built. | 0 → 0.3984 |
-| [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Open | Needs a replay simulator on public bike-share trips; not yet built. | 0 → 0.8019 |
+| [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. A perfect forecast would add 11%; single-scenario look-ahead adds nothing. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |
 | [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes; predictions must be within a factor of 3 to save 8%. | 0 → 0.7615 |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Open | Needs a replay simulator on NYC trip records; not yet built. | 0 → 0.9895 |
-| [Control Policy for Frequent Bus Services](optimization/bus-holding/README.md) | Open | Needs a replay on HSL vehicle positions; not yet built. | 0 → 0.7505 |
+| [Control Policy for Frequent Bus Services](optimization/bus-holding/README.md) | Tested on public data | Headway-based holding raises passenger cost by 4–12% in this model; even perfect foresight gains under 1%. | 0 → 0.7505 |
 | [Rolling Unit-Commitment and Dispatch Controller under Real OPSD Load and Wind Sequences](optimization/unit-commitment/README.md) | Tested on public data | Spread-scenario commitment: −23% regret against a tuned reserve rule; random scenarios are unsafe. | not published → 0.5338 |
 
 ## physics

@@ -1,0 +1,10 @@
+job: data-access-probe
+started: 2026-11-25T00:33:02Z
+cores: 4, memory: 15 GB
+project | http | size | resource | url
+weather-24h                  | 200  |     0.0 MB | WeatherBench 2 bucket listing | https://storage.googleapis.com/storage/v1/b/weatherbench2/o?prefix=datasets/&delimiter=/&maxResults=200
+   WB2 dataset folders: ['aurora', 'ens', 'era5-daily-climatology', 'era5-forecasts', 'era5-hourly-climatology', 'era5', 'era5_biweekly', 'era5_daily', 'era5_weekly', 'fgn', 'fuxi', 'gencast', 'graphcast', 'graphcast_hres_init', 'graphcast_hres_init_v2', 'graphcast_v2', 'hres', 'hres_t0', 'ifs_ens', 'ifs_extended_range', 'keisler', 'metar', 'neuralgcm_deterministic', 'neuralgcm_ens', 'pangu', 'pangu_hres_init', 'sphericalcnn']
+Traceback (most recent call last):
+  File "<stdin>", line 37, in <module>
+ValueError: too many values to unpack (expected 2)
+finished: 2026-11-25T00:33:04Z, exit code 1

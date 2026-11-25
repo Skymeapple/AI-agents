@@ -974,6 +974,8 @@ What would allow verified attempts on HFM's actual leaderboard:
 - [`hfm-projects/`](hfm-projects/README.md) has one self-contained project folder for each of the 54
   challenges, with the experiment code inside the project it belongs to. Each folder
   has a `REFERENCES.md` with the literature, data and code for that problem.
+- [`hfm-projects/SYNTHESIS.md`](hfm-projects/SYNTHESIS.md) reviews all 54 projects: what drove progress, what
+  blocks it, and which projects suit AI.
 - [`hfm-projects/READINESS.md`](hfm-projects/READINESS.md) says what each project still needs.
 - [`hfm-projects/LITERATURE-FINDINGS.md`](hfm-projects/LITERATURE-FINDINGS.md) lists what the literature pass changed.
 

@@ -1,0 +1,33 @@
+job: layout-probe
+started: 2026-11-25T00:41:51Z
+cores: 4, memory: 15 GB
+== The Well: rayleigh_benard file sizes
+  test: 35 files, 37.9 GB total, 1.08-1.08 GB each
+  train: 35 files, 294.2 GB total, 8.41-8.41 GB each
+  valid: 35 files, 37.9 GB total, 1.08-1.08 GB each
+  smallest test file: ('data/test/rayleigh_benard_Rayleigh_1e10_Prandtl_1.hdf5', 1082130432)
+    boundary_conditions/x_periodic/mask: shape (512,), bool, chunks None
+    boundary_conditions/y_wall_dirichlet/mask: shape (128,), bool, chunks None
+    dimensions/time: shape (200,), float32, chunks None
+    dimensions/x: shape (512,), float32, chunks None
+    dimensions/y: shape (128,), float32, chunks None
+    scalars/Prandtl: shape (), float32, chunks None
+    scalars/Rayleigh: shape (), float32, chunks None
+    t0_fields/buoyancy: shape (5, 200, 512, 128), float32, chunks None
+    t0_fields/pressure: shape (5, 200, 512, 128), float32, chunks None
+    t1_fields/velocity: shape (5, 200, 512, 128, 2), float32, chunks None
+    root attrs: {'Prandtl': np.float64(1.0), 'Rayleigh': np.float64(10000000000.0), 'dataset_name': 'rayleigh_benard', 'grid_type': 'cartesian', 'n_spatial_dims': np.int64(2), 'n_trajectories': np.int64(5), 'simulation_parameters': array(['Rayleigh', 'Prandtl'], dtype=object)}
+== Human Lung Cell Atlas on CELLxGENE
+  An integrated cell atlas of the human lung in health and disease (full): 2282447 cells; H5AD 21.9 GB
+  An integrated cell atlas of the human lung in health and disease (core): 584944 cells; H5AD 5.9 GB
+  opening core file remotely: https://datasets.cellxgene.cziscience.com/688185ad-11c2-4172-a53a-f4f1f4076860.h5ad
+    top level: ['X', 'layers', 'obs', 'obsm', 'obsp', 'raw', 'uns', 'var', 'varm', 'varp']
+    obsm: {'X_scanvi_emb': (584944, 30), 'X_umap': (584944, 2)}
+    obs columns: ['BMI', '_index', 'age_or_mean_of_age_range', 'age_range', 'anatomical_region_ccf_score', 'ann_coarse_for_GWAS_and_modeling', 'ann_finest_level', 'ann_level_1', 'ann_level_2', 'ann_level_3', 'ann_level_4', 'ann_level_5', 'assay', 'assay_ontology_term_id', 'cause_of_death', 'cell_type', 'cell_type_ontology_term_id', 'dataset', 'development_stage', 'development_stage_ontology_term_id', 'disease', 'disease_ontology_term_id', 'donor_id', 'entropy_dataset_leiden_3', 'entropy_original_ann_level_1_leiden_3', 'entropy_original_ann_level_2_clean_leiden_3', 'entropy_original_ann_level_3_clean_leiden_3', 'entropy_subject_ID_leiden_3', 'fresh_or_frozen', 'is_primary_data', 'leiden_1', 'leiden_2', 'leiden_3', 'leiden_4', 'leiden_5', 'log10_total_counts', 'lung_condition', 'mixed_ancestry', 'n_genes_detected', 'observation_joinid', 'original_ann_highest_res', 'original_ann_level_1', 'original_ann_level_2', 'original_ann_level_3', 'original_ann_level_4', 'original_ann_level_5', 'original_ann_nonharmonized', 'reannotation_type', 'reference_genome', 'sample', 'scanvi_label', 'self_reported_ethnicity', 'self_reported_ethnicity_ontology_term_id', 'sequencing_platform', 'sex', 'sex_ontology_term_id', 'size_factors', 'smoking_status', 'study', 'subject_type', 'suspension_type', 'tissue', 'tissue_dissociation_protocol', 'tissue_level_2', 'tissue_level_3', 'tissue_ontology_term_id', 'tissue_sampling_method', 'tissue_type']
+    X: {'encoding-type': 'csr_matrix', 'encoding-version': '0.1.0', 'shape': array([584944,  27402])} ['data', 'indices', 'indptr']
+    obs[study]: 11 categories
+    obs[dataset]: 14 categories
+    obs[ann_finest_level]: 61 categories
+    obs[cell_type]: 50 categories
+    obs[donor_id]: 107 categories
+finished: 2026-11-25T00:42:03Z, exit code 0

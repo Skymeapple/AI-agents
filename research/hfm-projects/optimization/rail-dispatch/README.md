@@ -73,6 +73,20 @@ Code: [`rail_sim.py`](rail_sim.py) and [`fetch_days.py`](fetch_days.py) in this 
     online dispatcher has, and part is that the bound is a relaxation
     stopped after 60 seconds per day, so the true optimum lies above it.
 
+### Follow-up: how much of the gap is information?
+
+The look-ahead was given the real entry times of trains that had not yet appeared (not available to a real dispatcher). 19 days.
+
+| Policy | Weighted delay versus priority rule | Days better |
+| --- | --- | --- |
+| Look-ahead, unseen trains assumed on time | −8.7% | 18/19 |
+| Look-ahead, real entry times known | **−18.3%** | 19/19 |
+| Hindsight bound (whole-day optimisation) | about −35% | |
+
+- **Knowing which trains will be late is worth about ten points,** as much again as the look-ahead itself.
+- **The other half of the gap is search.** One-step look-ahead with full knowledge reaches −18%, while whole-day optimisation with the same knowledge reaches up to −35% (an optimistic bound).
+- So two separate routes remain: forecast entry delays, and replace one-step look-ahead with optimisation over a rolling window.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

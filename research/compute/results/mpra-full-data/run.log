@@ -1,0 +1,36 @@
+job: mpra-full-data
+started: 2026-11-24T23:39:25Z
+cores: 4, memory: 15 GB
+HepG2: train 96728, test 12298
+K562: train 155284, test 19670
+WTC11: train 35854, test 4622
+multi-task training sequences: 272706 (labels per cell line: [96728, 155284, 35854])
+  seed 0: multi-task trained in 677s
+  seed 0: HepG2 single-task trained in 254s
+  seed 0: K562 single-task trained in 411s
+  seed 0: WTC11 single-task trained in 95s
+  seed 1: multi-task trained in 685s
+  seed 1: HepG2 single-task trained in 253s
+  seed 1: K562 single-task trained in 420s
+  seed 1: WTC11 single-task trained in 96s
+  seed 2: multi-task trained in 672s
+  seed 2: HepG2 single-task trained in 255s
+  seed 2: K562 single-task trained in 421s
+  seed 2: WTC11 single-task trained in 97s
+
+Spearman correlation on the test fold (mean over seeds); rc = reverse-complement averaging
+cell                HepG2    K562   WTC11   macro
+model       rc                                   
+multi-task  False  0.6621  0.6674  0.5890  0.6395
+            True   0.6821  0.6861  0.6040  0.6574
+single-task False  0.6309  0.6575  0.5077  0.5987
+            True   0.6528  0.6761  0.5279  0.6189
+
+macro Spearman by seed
+seed                    0       1       2
+model       rc                           
+multi-task  False  0.6399  0.6406  0.6380
+            True   0.6579  0.6581  0.6563
+single-task False  0.5981  0.6000  0.5980
+            True   0.6190  0.6192  0.6186
+finished: 2026-11-25T00:52:24Z, exit code 0

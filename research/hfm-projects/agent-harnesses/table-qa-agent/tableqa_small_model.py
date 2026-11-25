@@ -10,6 +10,9 @@ the same model is the point.
 
 Harnesses
   direct   the table (up to 40 rows) is put in the prompt and the model answers
+  code-notebook  the same as "code" below, but if the code ends with a bare expression
+           its value is printed, as a notebook would (added after the first run showed
+           the model almost never calls print)
   code     the model sees the column names and five rows, writes pandas code, the
            code is run on the full table and its printed output is the answer;
            on an error the model is shown the error and tries again (up to 2 retries)
@@ -17,8 +20,8 @@ Harnesses
 Per-question outputs are written to a JSON-lines file so that combinations (use the
 code answer when it ran, else the direct answer) can be scored afterwards.
 
-Usage: python tableqa_small_model.py <model.gguf> <WikiTableQuestions dir> <direct|code> <questions> <out.jsonl>
-       python tableqa_small_model.py score <direct.jsonl> <code.jsonl>
+Usage: python tableqa_small_model.py <model.gguf> <WikiTableQuestions dir> <direct|code|code-notebook> <questions> <out.jsonl>
+       python tableqa_small_model.py score <direct.jsonl> <code.jsonl> [label]
 """
 from __future__ import annotations
 
@@ -60,7 +63,25 @@ def show(rows, n, width=40):
     return "\n".join(" | ".join(c.replace("\n", " ")[:width] for c in r) for r in rows[: n + 1])
 
 
-def run_code(code, table_path):
+def print_last(code):
+    """As a notebook does: if the code ends with a bare expression, print its value."""
+    import ast
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return code
+    if tree.body and isinstance(tree.body[-1], ast.Expr):
+        last = tree.body[-1]
+        call = ast.Expr(ast.Call(ast.Name("print", ast.Load()), [last.value], []))
+        if not (isinstance(last.value, ast.Call) and getattr(last.value.func, "id", "") == "print"):
+            tree.body[-1] = ast.copy_location(call, last)
+            return ast.unparse(ast.fix_missing_locations(tree))
+    return code
+
+
+def run_code(code, table_path, notebook=False):
+    if notebook:
+        code = print_last(code)
     with tempfile.TemporaryDirectory() as d:
         src = os.path.join(d, "run.py")
         with open(src, "w") as f:
@@ -79,7 +100,8 @@ def extract_code(text):
     return (m.group(1) if m else text).replace("pd.read_csv(", "(lambda *a, **k: df)(")
 
 
-def score(direct_path, code_path):
+def score(direct_path, code_path, label="code"):
+    print(f"--- {label}")
     load = lambda p: {r["id"]: r for r in map(json.loads, open(p))}
     d, c = load(direct_path), load(code_path)
     ids = sorted(set(d) & set(c))
@@ -101,7 +123,7 @@ def score(direct_path, code_path):
 
 def main():
     if sys.argv[1] == "score":
-        return score(sys.argv[2], sys.argv[3])
+        return score(*sys.argv[2:5])
     model_path, root, mode, n, out = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4]), sys.argv[5]
     from llama_cpp import Llama
     llm = Llama(model_path=model_path, n_ctx=6144, n_threads=os.cpu_count(), verbose=False)
@@ -134,7 +156,7 @@ def main():
                         {"role": "user", "content": f"Columns: {rows[0]}\nFirst rows:\n{show(rows, 5)}\nNumber of rows: {len(rows) - 1}\n\nQuestion: {q['utterance']}"}]
                 for attempt in range(3):
                     reply = ask(msgs, 220)
-                    ans, err = run_code(extract_code(reply), os.path.abspath(path))
+                    ans, err = run_code(extract_code(reply), os.path.abspath(path), notebook=mode == "code-notebook")
                     if attempt == 0:
                         rec.update(ran_first=err is None, ok_first=err is None and correct(ans, q["targetValue"]))
                     if err is None:

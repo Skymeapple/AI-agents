@@ -71,7 +71,7 @@ def discover():
     for folder in fs.ls("weatherbench2/datasets"):
         folder = folder.rstrip("/")
         name = folder.split("/")[-1]
-        if name.startswith("era5") or name in ("ens", "ifs_ens", "ifs_extended_range", "hres_t0"):
+        if name.startswith("era5") or name in ("datasets", "ens", "ifs_ens", "ifs_extended_range", "hres_t0"):
             continue
         try:
             subs = fs.ls(folder)
@@ -87,7 +87,11 @@ def discover():
             path = path.rstrip("/")
             if path.endswith(".zarr") and "240x121" in path and "with_poles" in path:
                 found[f"{name}:{path.split('/')[-1][:28]}"] = "gs://" + path
-    return found
+    unique = {}
+    for k, v in found.items():                      # one entry per stored path
+        if v not in unique.values():
+            unique[k] = v
+    return unique
 
 
 def to_grid(a):

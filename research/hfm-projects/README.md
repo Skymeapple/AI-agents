@@ -2,8 +2,8 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data:** 19 projects (18 experiments; the two steel tracks share one). Four use simulators built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 5 projects where public data exist and the experiment still has to be built.
+- **Tested on public data:** 20 projects (19 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 4 projects where public data exist and the experiment still has to be built.
 - **Blocked:** 30 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
@@ -68,7 +68,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |
 | [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes; five policies without that knowledge do not beat first fit (−3.2%). | 0 → 0.7615 |
-| [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Open | Needs a replay simulator on NYC trip records; not yet built. | 0 → 0.9895 |
+| [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Tested on public data | Repositioning idle drivers on a demand forecast halves lost requests (83% → 92% served, 14 of 14 days); better matching alone gives 0.6%. | 0 → 0.9895 |
 | [Control Policy for Frequent Bus Services](optimization/bus-holding/README.md) | Tested on public data | Headway-based holding raises passenger cost by 4–12% in this model; even perfect foresight gains under 1%. | 0 → 0.7505 |
 | [Rolling Unit-Commitment and Dispatch Controller under Real OPSD Load and Wind Sequences](optimization/unit-commitment/README.md) | Tested on public data | Spread-scenario commitment: −23% regret against a tuned reserve rule; random scenarios are unsafe. | not published → 0.5338 |
 

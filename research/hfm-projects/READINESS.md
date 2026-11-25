@@ -2,10 +2,11 @@
 
 Where each project stands, and what it still needs before research can proceed. Data access was checked from free GitHub Actions compute on 2026-11-25; the raw report is in [`../compute/results/data-access-probe/run.log`](../compute/results/data-access-probe/run.log).
 
-## Runs today on CPU (19)
+## Runs today on CPU (20)
 
 | Project | Still missing |
 | --- | --- |
+| [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Nothing. |
 | [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Nothing for the linear methods. A GPU for learned decoders. |
 | [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | A free GPU account for UCE embeddings. The CPU route on stored embeddings runs now. |
 | [Galaxy Photometric Redshift Prediction Across Disjoint Sky Regions](astronomy/photometric-redshift/README.md) | A free GPU account for the image-based version. |
@@ -26,13 +27,12 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Wind-Farm Wake Calibration and Power Prediction from Real SCADA Data](physics/wind-farm-wakes/README.md) | Nothing. |
 | [Minute-Level Perpetual Trading Strategy from Price, Flow, and Funding Data](quant-finance/perpetual-futures-strategy/README.md) | Nothing. |
 
-## Data verified; pipeline or simulator still to build (7)
+## Data verified; pipeline or simulator still to build (6)
 
 | Project | Still missing |
 | --- | --- |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | A corridor delay model calibrated to the counts. Low priority: HFM's score is already 0.989. |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | A reduced fish-passage and dissolved-gas model built from DART data. |
-| [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | A matching and repositioning replay on the shared simulation core. Low priority: HFM's score is already 0.989. |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | The multi-site calibration pipeline. |
 | [Cross-Venue Allocation of Perpetual Orders](quant-finance/cross-venue-routing/README.md) | The three-venue replay and cost model. |
 | [Event-Driven Equity Strategy Based on Financial Filing Events](quant-finance/filing-event-strategy/README.md) | Your decision on a contact address to send to the SEC, then the event-study pipeline. |
@@ -43,7 +43,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | Project | Still missing |
 | --- | --- |
 | [Crystal Generation for Unseen Chemical Systems with MatterGen and MatterSim](materials/crystal-generation/README.md) | A free GPU account. |
-| [Patient-level lung cancer histology classification from H&E slides with Phikon-v2](medicine/lung-histology/README.md) | A free GPU account, and an NLST data request for the held-out cohort (CPTAC can stand in until then). |
+| [Patient-level lung cancer histology classification from H&E slides with Phikon-v2](medicine/lung-histology/README.md) | A free GPU account, and an NLST data request for the held-out cohort (CPTAC can stand in until then). A CPU route also exists: pre-extracted slide features for TCGA and CPTAC are on Hugging Face behind an access form, which needs a free Hugging Face account token. |
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | A free GPU account. |
 | [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | A free GPU account. |
 | [Training Recipes for Qwen2-VL-2B on EmbSpatial-Bench Embodied Spatial Understanding](post-training/embspatial-training/README.md) | A free GPU account. |
@@ -90,5 +90,5 @@ Where each project stands, and what it still needs before research can proceed. 
 
 - **A free GPU account (Kaggle):** the 17 GPU projects, plus image and foundation-model versions of four CPU projects.
 - **A language-model key:** the 6 agent-harness projects.
-- **Build work only, no outside dependency:** the 7 projects with verified data.
+- **Build work only, no outside dependency:** the 6 projects with verified data.
 - **Licensed market data:** 4 finance projects. No free legal substitute was found.

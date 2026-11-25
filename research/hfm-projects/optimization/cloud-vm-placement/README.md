@@ -85,6 +85,22 @@ separate servers) was tried.
 - The noise test is slightly kinder than a real predictor, because its
   errors are unbiased and independent.
 
+### Follow-up: three attempts to capture the lifetime gain without knowing lifetimes
+
+| Policy | Server-days versus best fit | Samples better |
+| --- | --- | --- |
+| First fit | −3.2% | 4/4 |
+| Lifetime-aware, median predictor | +1.3% | 1/4 |
+| Lifetime-aware, re-predicting remaining life as VMs age (the LAVA idea) | −0.6% | 3/4 |
+| Tenant affinity (keep a tenant's VMs together) | −3.1% | 4/4 |
+| Batch affinity (keep VMs launched together in the same minute together) | −3.2% | 4/4 |
+| Lifetime-aware, true lifetimes | −13.8% | 4/4 |
+
+- **Re-prediction helps a little** (from +1.3% to −0.6%) but stays behind plain first fit. The estimate at arrival is still off by about a factor of 9.
+- **Batch affinity equals first fit.** Two thirds of VMs arrive in same-tenant batches and 69% of batch-mates stop within five minutes of each other, but first fit already places consecutive arrivals together.
+- **Why prediction is hard here:** within one tenant, lifetimes vary by a factor of about 2.6, which would be good enough. But the trace is 14 days and most tenants have little history when their VMs arrive, so the online estimate is far worse than that.
+- **Conclusion:** on this trace, with tenant, VM type and arrival time as the only inputs, no tested policy beats first fit. The 13.8% is real but needs information the trace does not carry early enough, such as a longer tenant history or a lifetime hint from the user.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

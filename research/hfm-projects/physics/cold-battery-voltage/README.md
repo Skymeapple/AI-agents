@@ -75,12 +75,31 @@ Code: [`cold_voltage.py`](cold_voltage.py) in this folder. Run instructions are 
     quadruples by −20 °C, so its trend cannot be learned from warm data
     at all.
 
+### Follow-up: an independent cell, and two refinements
+
+The same script was run unchanged on a second cell from the same laboratory, the Samsung INR21700 30T (doi:10.17632/9xyvy2njj3.2), with the same temperature plan and 36 cold drive cycles. Two refinements were also tested on both cells.
+
+| Method | LG HG2: error (mV) | LG HG2: skill | Samsung 30T: error (mV) | Samsung 30T: skill |
+| --- | --- | --- | --- | --- |
+| Hold 10 °C values | 183.3 | 0 | 150.6 | 0 |
+| Linear slope | 156.3 | +0.147 | 126.1 | +0.163 |
+| Arrhenius form | 120.1 | +0.344 | 96.7 | **+0.358** |
+| Arrhenius fitted to 25 and 10 °C only ("cold edge") | 89.6 | **+0.511** | 97.3 | +0.354 |
+| Arrhenius with charge-dependent resistances | 125.5 | +0.315 | 90.5 | +0.399 |
+| Oracle (fitted at each cold temperature) | 82.4 | +0.550 | 102.4 | +0.320 |
+| Oracle with charge-dependent resistances | 68.2 | +0.628 | 93.9 | +0.376 |
+
+- **The main finding replicates.** On the independent cell the Arrhenius form again more than doubles the skill of a fitted slope, and is better on 36 of 36 cycles.
+- **Temperature extrapolation is now at the limit of this model on both cells.** On the Samsung cell the Arrhenius model beats the oracle, because it follows the cell's self-heating during the cycle while the oracle uses one resistance per test. On the LG cell the cold-edge fit is within 9% of the oracle.
+- **The two refinements do not generalise.** The cold-edge fit helps the LG cell a great deal and does nothing for the Samsung cell. Charge-dependent resistances help the Samsung cell and hurt the LG cell at −20 °C. Neither should be adopted on the evidence of one cell.
+- **What remains is model structure, not extrapolation:** 80–100 mV even with parameters fitted in the cold.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
 The oracle shows where the limits are.
-- **Limit of temperature extrapolation:** 120 mV (Arrhenius) against 82 mV (oracle). About a third of the remaining error is extrapolation error, concentrated in the fast RC pair.
+- **Limit of temperature extrapolation:** reached on two cells for this model structure (see the follow-up). Arrhenius-form parameters match or come within 9% of parameters fitted in the cold.
 - **Limit of this model structure:** 82 mV on average and 114 mV at −20 °C even with resistances fitted at that temperature. Constant resistances across state of charge, no capacity loss in the cold and no hysteresis are the likely causes.
 - **Measurement floor:** a few millivolts. The structure, not the sensor, is the floor here.
 

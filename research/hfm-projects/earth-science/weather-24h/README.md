@@ -97,6 +97,11 @@ Log: [`research/compute/results/weather-blend-2022/`](../../../compute/results/w
 - **Bias correction alone gains 0.4–0.5%** for GraphCast and Pangu, again the size of HFM's whole gain so far.
 - HFM's ArchesWeather score of 0.0975 uses its own normalisation, so it cannot be placed in this table. The ArchesWeather paper itself reports GraphCast ahead of ArchesWeather at 24 hours on wind.
 
+### Follow-up: stability of the blend
+
+- **Swapping the halves gives the same answer.** With weights fitted on the test blocks and scored on the fitting blocks, the blend beats the best single model by 3.3% (temperature), 8.1% (u wind), 8.1% (v wind) and 11.6% (pressure).
+- **Letting weights vary by latitude band adds nothing:** 8.5% against 8.4%. The gain comes from combining models, not from where they are combined.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

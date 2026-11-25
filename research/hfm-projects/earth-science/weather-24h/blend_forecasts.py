@@ -69,6 +69,7 @@ def discover():
     fs = gcsfs.GCSFileSystem(token="anon")
     found = {}
     for folder in fs.ls("weatherbench2/datasets"):
+        folder = folder.rstrip("/")
         name = folder.split("/")[-1]
         if name.startswith("era5") or name in ("ens", "ifs_ens", "ifs_extended_range", "hres_t0"):
             continue
@@ -77,12 +78,13 @@ def discover():
         except Exception:
             continue
         for sub in list(subs):
-            if not sub.endswith(".zarr"):            # one level of year folders
+            if not sub.rstrip("/").endswith(".zarr"):            # one level of year folders
                 try:
                     subs += fs.ls(sub)
                 except Exception:
                     pass
         for path in subs:
+            path = path.rstrip("/")
             if path.endswith(".zarr") and "240x121" in path and "with_poles" in path:
                 found[f"{name}:{path.split('/')[-1][:28]}"] = "gs://" + path
     return found
@@ -103,6 +105,11 @@ def main():
     valid = inits + LEAD
     t0 = time.time()
     era = open_zarr(ERA5)
+    if not np.isin(valid, era.time.values).all():        # the 1959-2022 file stops before the end of 2022
+        import gcsfs
+        later = [p for p in gcsfs.GCSFileSystem(token="anon").ls("weatherbench2/datasets/era5") if "-6h-240x121" in p and "with_poles" in p and "2023" in p]
+        print("ERA5 file does not cover all dates; using", later[:1], flush=True)
+        era = open_zarr("gs://" + later[0].rstrip("/"))
     truth = {v: to_grid(era[v].sel(time=valid)).values.astype(np.float32) for v in VARS}
     lat = np.sort(era.latitude.values)
     print(f"ERA5 targets loaded: {len(inits)} dates, grid {truth[VARS[0]].shape[1:]}, {time.time() - t0:.0f}s", flush=True)

@@ -100,6 +100,18 @@ A train's delay at the stations it passes before reaching the corridor is in the
 - **Real, available information adds a third to the look-ahead's gain,** on every day tested, and recovers about 40% of what a perfect delay forecast would give.
 - The rest of the information gap is delay that builds between the last upstream station and the corridor entry.
 
+### Follow-up: sampling delays at random does not help
+
+A look-ahead that scores each option on four futures, with unseen trains given delays drawn at random from earlier days, was run on 52 days on free compute ([log](../../../compute/results/rail-sampled-futures/run.log)).
+
+| Policy | Real days | Days better / worse | Disrupted days | Days better / worse |
+| --- | --- | --- | --- | --- |
+| Look-ahead, unseen trains on time | −9.7% | 38 / 14 | −5.8% | 31 / 21 |
+| Look-ahead, four sampled futures | −8.8% | 39 / 13 | −4.9% | 33 / 19 |
+
+- **Generic uncertainty is not information.** Knowing that trains are sometimes late does not help decide about this train. Knowing this train's delay upstream does (−14.3% above).
+- This is four times the computation for a slightly worse result.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

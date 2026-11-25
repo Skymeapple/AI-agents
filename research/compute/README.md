@@ -27,6 +27,7 @@ None of these can be created or used on your behalf without you signing up.
 | Google Colab (free tier) | One T4 GPU, sessions that disconnect when idle | No, browser only | A Google account |
 | Amazon SageMaker Studio Lab | One T4 GPU, 4-hour sessions | No, browser only | An approved Studio Lab account |
 | Lightning AI | Monthly free GPU credits | Partly, through its CLI | An account |
+| A small open model on the CPU runner | Qwen2.5-3B (4-bit) with llama.cpp: about 13–26 seconds per question, 250 questions in under two hours | **Works.** Used for the table-QA harness study | Nothing |
 | GitHub Models | Rate-limited calls to hosted language models | **Not from here.** The probe in `jobs/models-probe.sh` got only a stub reply with the workflow's built-in token | A personal token with model access, stored as a repository secret |
 | Research allocations (NSF ACCESS, EuroHPC, national centres) | Large GPU and CPU allocations | Yes, through batch schedulers | An application; days to weeks |
 

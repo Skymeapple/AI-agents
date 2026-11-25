@@ -66,9 +66,10 @@ Gains are relative to the best practical method without that ingredient.
 | Job scheduling | Local search on top of the dispatch rule | Lateness −10% |
 | Rail | Look-ahead instead of a priority rule | Delay −9.9% |
 | Cloud placement | First fit instead of best fit | Server time −3.2% |
+| Table questions (small open model) | Use code when it runs, otherwise answer directly | Correct answers 28.4% → 33.2%; one harness detail was worth 26 points on the code route |
 | Lung cells | A small network averaged with nearest neighbours, instead of a linear classifier | Macro-F1 0.684 → 0.786, in 35 of 35 studies |
 
-- **Seven of thirteen attempts worked,** counting part-way trading of a fast
+- **Eight of fourteen attempts worked,** counting part-way trading of a fast
   portfolio signal (return per unit of risk 0.50 → 0.60). Failures: joint
   spill planning across eight dams (1.4% at best), drift-triggered portfolio
   rebalancing, headway-based bus holding (worse by 4–12%), random-scenario scheduling (unstable), lifetime classes for cloud
@@ -134,7 +135,7 @@ Gains are relative to the best practical method without that ingredient.
 | --- | --- | --- | --- |
 | New information | 7 of 9 | 6–34% | Needs a data source or a measurement |
 | More data of the same kind | 5 of 5 | 6–73% | Needs the data to exist |
-| A better algorithm | 7 of 13 | 3–23% | Engineering time |
+| A better algorithm | 8 of 14 | 3–23% | Engineering time |
 | Theory from another field | 4 of 11 | 3–36% | Nearly free once known |
 | More reasoning per decision | 3 of 8 | 0–10%, falling fast | Compute |
 

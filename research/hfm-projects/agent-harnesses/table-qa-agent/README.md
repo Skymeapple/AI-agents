@@ -2,11 +2,11 @@
 
 - **Field:** agent-harnesses
 - **HFM track:** `discovery_live_live_harness_table_analysis` (paused on HFM)
-- **Project status:** Blocked
+- **Project status:** Tested on public data
 
 ## Readiness
 
-- **State:** Ready to run once a language-model key is connected.
+- **State:** A small-scale study with an open model has run on CPU. HFM's frozen model still needs a key.
 - **Data access:** DataBench on Hugging Face: Verified reachable from the free compute on 2026-11-25.
 - **Compute:** CPU for the harness; the model runs behind an API or on a GPU.
 - **Still missing:** A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token.
@@ -28,7 +28,7 @@ Program-of-thought (generate pandas code), self-consistency voting, schema profi
 
 ## Public data
 
-DataBench is public on Hugging Face.
+WikiTableQuestions is public (GitHub release). An open 3B model was downloaded from Hugging Face on the free compute.
 
 ## What limits progress
 
@@ -40,14 +40,29 @@ Several programs per question with voting on executed answers.
 
 ## Experiment and results
 
-No experiment has been run for this project.
+A small-scale harness comparison without any paid key. A small open model (Qwen2.5-3B-Instruct, 4-bit, run with llama.cpp on a free 4-core runner) stands in for HFM's frozen model, on 250 WikiTableQuestions test questions over tables unseen in training. Script: [`tableqa_small_model.py`](tableqa_small_model.py); logs and per-question outputs: [`tableqa-direct`](../../../compute/results/tableqa-direct/), [`tableqa-code`](../../../compute/results/tableqa-code/), [`tableqa-code-notebook`](../../../compute/results/tableqa-code-notebook/).
 
-- **Why:** Needs paid access to a language-model API to run the frozen model.
+| Harness, same model | Correct |
+| --- | --- |
+| Table in the prompt, model answers directly | 28.4% |
+| Model writes pandas code; answer is what the code prints | 1.6% |
+| The same, but the value of the last expression is printed, as in a notebook | 27.6% |
+| Notebook-style code when it ran, otherwise the direct answer | 33.2% |
+| Either harness right (the most a perfect selector could reach) | 45.6% |
+
+- **One harness detail moved the code route from 1.6% to 27.6%.** The model writes code that ends in a bare expression and does not call `print`. Telling it "the code printed nothing" did not fix this within two retries. Printing the last value did.
+- **The two routes are right on different questions.** Both right on 26, code only on 43, direct only on 45. A simple fallback gains about 5 points over either alone; a perfect selector would gain 17.
+- **Code is better on long tables** (35.5% against 25.8% on the 31 tables over 40 rows) and twice as fast (13 against 26 seconds per question).
+- **Retries on errors help modestly:** 23.6% on the first attempt, 27.6% after up to two retries. Code still fails to run on 28% of questions.
+- **Uncertainty:** with 250 questions, differences under about 5 points are within noise. The 1.6 to 27.6 jump and the complementarity are not.
+
+These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-HFM is at 0.877. Label noise in the benchmark probably caps accuracy in the low 0.9s.
+HFM's harness work took its frozen model from 0.37 to 0.88. On this much weaker stand-in, the best simple combination reaches 33% and a perfect choice between two routes 46%. The pattern matches HFM's: most of the gain is in how the model is used, and the remaining headroom is in choosing the route per question and getting code to run.
 
 ## Next steps
 
-Audit a sample of failures for label errors to estimate the ceiling.
+- Build a selector between the two routes (for example, agreement between two code attempts) and test whether it captures part of the 12-point gap between fallback and perfect selection.
+- Repeat on HFM's frozen model once a language-model key is available.

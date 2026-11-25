@@ -1,0 +1,23 @@
+job: hlca-cross-study
+started: 2026-11-25T00:43:16Z
+cores: 4, memory: 15 GB
+584944 cells, 11 studies, 61 finest-level cell types
+  held out Banovich_Kropski_2020                   40000 cells, 56 types: flat 0.747, class-balanced 0.744, hierarchy-aware 0.749, nearest neighbours 0.761
+  held out Barbry_Leroy_2020                       40000 cells, 48 types: flat 0.737, class-balanced 0.767, hierarchy-aware 0.761, nearest neighbours 0.697
+  held out Jain_Misharin_2021                      40000 cells, 35 types: flat 0.680, class-balanced 0.682, hierarchy-aware 0.692, nearest neighbours 0.677
+  held out Krasnow_2020                            40000 cells, 57 types: flat 0.749, class-balanced 0.740, hierarchy-aware 0.736, nearest neighbours 0.744
+  held out Lafyatis_Rojas_2019                     24181 cells, 52 types: flat 0.737, class-balanced 0.744, hierarchy-aware 0.750, nearest neighbours 0.747
+  held out Meyer_2019                              35554 cells, 47 types: flat 0.763, class-balanced 0.734, hierarchy-aware 0.743, nearest neighbours 0.776
+  held out Misharin_2021                           40000 cells, 54 types: flat 0.758, class-balanced 0.741, hierarchy-aware 0.739, nearest neighbours 0.705
+  held out Misharin_Budinger_2018                  40000 cells, 50 types: flat 0.705, class-balanced 0.718, hierarchy-aware 0.734, nearest neighbours 0.722
+  held out Nawijn_2021                             40000 cells, 53 types: flat 0.715, class-balanced 0.720, hierarchy-aware 0.710, nearest neighbours 0.654
+  held out Seibold_2020                            33593 cells, 32 types: flat 0.491, class-balanced 0.459, hierarchy-aware 0.488, nearest neighbours 0.544
+  held out Teichmann_Meyer_2019                    12231 cells, 49 types: flat 0.780, class-balanced 0.741, hierarchy-aware 0.750, nearest neighbours 0.770
+
+study macro-F1, leave-one-study-out over 11 studies
+  method                macro-F1   vs flat  studies better  rare-type F1
+  flat                    0.7146   +0.0000           0/11        0.6471
+  class-balanced          0.7083   -0.0063           5/11        0.6353
+  hierarchy-aware         0.7137   -0.0009           5/11        0.6436
+  nearest neighbours      0.7089   -0.0058           5/11        0.6529
+finished: 2026-11-25T01:02:32Z, exit code 0

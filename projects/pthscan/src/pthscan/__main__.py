@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .scanner import Finding, default_targets, find_venvs, interpreter_site_dirs, scan, venv_site_dirs
+from .scanner import Finding, default_customize_dirs, default_targets, find_venvs, interpreter_site_dirs, interpreter_stdlib_dirs, scan, venv_site_dirs
 
 INSTALL_CMD = re.compile(r"\b(?:pip3?|uv|poetry|pdm|conda|mamba|pipx|rye|hatch)\b[^;&|\n]*\b(?:install|add|sync|update|upgrade)\b|python3?\s+-m\s+pip\s+install")
 
@@ -59,7 +59,7 @@ def report(findings: list[Finding], sites: int, args) -> None:
             print(f"           - {r}")
         for ln in f.lines[:3]:
             print(f"           > {ln}")
-    hooks = sum(1 for f in findings if f.file.endswith((".pth", ".start")))
+    hooks = sum(1 for f in findings if f.file.endswith((".pth", ".start", "customize.py")))
     crit = sum(1 for f in findings if f.severity == "critical")
     warn = sum(1 for f in findings if f.severity == "warning")
     summary = f"{sites} site-packages dir(s), {hooks} startup file(s): {crit} critical, {warn} warning"
@@ -84,7 +84,7 @@ def hook() -> int:
         return 0
     try:
         cwd = Path(data.get("cwd") or os.getcwd())
-        findings = [f for f in scan(default_targets(cwd)) if f.severity == "critical"]
+        findings = [f for f in scan(default_targets(cwd), default_customize_dirs()) if f.severity == "critical"]
     except Exception as e:  # never break the agent loop on our own bug
         print(f"pthscan: hook error ({e}); not blocking", file=sys.stderr)
         return 0
@@ -111,7 +111,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("-V", "--version", action="version", version=__version__)
     args = ap.parse_args(argv)
     dirs = targets_from(args)
-    findings = scan(dirs)
+    extra = [] if args.paths else (default_customize_dirs() if not args.python else [d for py in args.python for d in interpreter_stdlib_dirs(py)])
+    findings = scan(dirs, extra)
     report(findings, len({d.resolve() for d in dirs}), args)
     if any(f.severity == "critical" for f in findings):
         return 1

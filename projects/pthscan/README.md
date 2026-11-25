@@ -1,6 +1,6 @@
 # pthscan
 
-**Check whether a Python package planted code that runs every time Python starts, without running it.**
+**Check whether a Python package planted code that runs every time Python starts (`.pth`, `.start`, `sitecustomize.py`), without running it.**
 
 ```bash
 pipx run pthscan            # python on PATH + every virtualenv under the current folder
@@ -26,6 +26,7 @@ The usual advice is to run `find … -name "*.pth" | xargs grep import` by hand.
 * **Follows the import.** `import af_runtime_diag` looks harmless, but the stealer was in `af_runtime_diag.py`. pthscan reads the imported module and checks it for base64 decoding, `exec`, subprocesses, network calls, credential-store access (`/proc/*/environ`, `ACTIONS_ID_TOKEN_REQUEST`, cloud metadata) and encoded blobs.
 * **Knows who installed what.** Each hook is mapped to its distribution through `RECORD`. A hook that no installed package claims is flagged: it was left behind after an uninstall, or something else dropped it.
 * **Knows the incidents.** Flags installed known-compromised releases (`agent-framework` 1.26.1/1.26.2, `litellm` 1.82.7/1.82.8) and the incidents' file names.
+* **Checks `sitecustomize.py` and `usercustomize.py`**, the other modules Python imports at every start. Empty files and Debian/Ubuntu's apport hook are recognised; package-internal copies (ddtrace, OpenTelemetry) that only run when you opt in are ignored.
 * **Handles PEP 829 `.start` files**, the newer startup entry points, which already appear in the wild (`autowrapt-init.start`).
 
 ```

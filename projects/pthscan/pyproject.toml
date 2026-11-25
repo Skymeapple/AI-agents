@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pthscan"
-version = "0.1.0"
+version = "0.2.0"
 description = "Audit Python startup hooks (.pth / .start files) for credential stealers like the LiteLLM and Microsoft agent-framework PyPI compromises - without running them."
 readme = "README.md"
 license = "MIT"

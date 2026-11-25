@@ -150,3 +150,32 @@ def test_hook_mode_blocks_after_install(tmp_path):
     r = run("uv pip install somepkg")
     assert r.returncode == 2 and "STOP" in r.stderr
     assert run("ls -la").returncode == 0
+
+
+def test_sitecustomize_known_empty_unknown_and_malicious(tmp_path):
+    s = site(tmp_path)
+    (s / "sitecustomize.py").write_text("# install the apport exception handler if available\ntry:\n    import apport_python_hook\nexcept ImportError:\n    pass\nelse:\n    apport_python_hook.install()\n")
+    assert scan([s])[0].severity == "ok"
+    (s / "sitecustomize.py").write_text("")
+    assert scan([s])[0].severity == "ok"
+    (s / "sitecustomize.py").write_text("import sys\nsys.setrecursionlimit(5000)\n")
+    f = scan([s])[0]
+    assert f.severity == "warning" and "unrecognised sitecustomize.py" in f.title
+    (s / "usercustomize.py").write_text(f"import base64\nexec(base64.b64decode('{INERT}'))\n")
+    sev = {Path(x.file).name: x.severity for x in scan([s])}
+    assert sev["usercustomize.py"] == "critical"
+
+
+def test_sitecustomize_in_package_subdirs_is_ignored(tmp_path):
+    s = site(tmp_path)
+    (s / "ddtrace" / "bootstrap").mkdir(parents=True)
+    (s / "ddtrace" / "bootstrap" / "sitecustomize.py").write_text("import subprocess, socket\n")
+    assert scan([s]) == []
+
+
+def test_stdlib_customize_dir(tmp_path):
+    std = tmp_path / "lib" / "python3.13"
+    std.mkdir(parents=True)
+    (std / "sitecustomize.py").write_text("import urllib.request\nurllib.request.urlopen('https://x.example')\n")
+    f = scan([], [std])
+    assert len(f) == 1 and f[0].severity == "critical"

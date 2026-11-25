@@ -68,3 +68,10 @@ INDICATORS = [
     ("hides imports", re.compile(r"__import__\(\s*['\"](?:os|subprocess|socket|base64|urllib|zlib|marshal)['\"]|getattr\(__import__")),
     ("contains an encoded blob", re.compile(r"[A-Za-z0-9+/]{240,}={0,2}")),
 ]
+
+# sitecustomize.py / usercustomize.py run at every start too (site module).
+# Matched on normalized content: comments and blank lines removed, whitespace collapsed.
+KNOWN_GOOD_CUSTOMIZE = [
+    ("Debian/Ubuntu apport crash handler",
+     "try: import apport_python_hook except ImportError: pass else: apport_python_hook.install()"),
+]

@@ -11,7 +11,7 @@ import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from .known import COMPROMISED, INDICATORS, KNOWN_GOOD_RE, MALICIOUS_FILE_PATTERNS, MALICIOUS_FILES
+from .known import COMPROMISED, INDICATORS, KNOWN_GOOD_CUSTOMIZE, KNOWN_GOOD_RE, MALICIOUS_FILE_PATTERNS, MALICIOUS_FILES
 
 MAX_MODULE_BYTES = 2 * 1024 * 1024
 SEVERITY_ORDER = {"critical": 0, "warning": 1, "ok": 2}
@@ -61,6 +61,16 @@ def find_venvs(root: Path, depth: int = 3) -> list[Path]:
 
     walk(root, 0)
     return found
+
+
+def interpreter_stdlib_dirs(python: str) -> list[Path]:
+    """The stdlib dir, where distros put sitecustomize.py (queried with -I -S: no hooks run)."""
+    code = "import sysconfig,json;print(json.dumps([sysconfig.get_paths()['stdlib']]))"
+    try:
+        out = subprocess.run([python, "-I", "-S", "-c", code], capture_output=True, text=True, timeout=20, check=True).stdout
+        return [Path(p) for p in json.loads(out) if Path(p).is_dir()]
+    except (OSError, subprocess.SubprocessError, ValueError):
+        return []
 
 
 def interpreter_site_dirs(python: str) -> list[Path]:
@@ -248,6 +258,44 @@ def _planted_module_reasons(lines: list[str], path: Path, site: Path, owners: di
     return out
 
 
+CUSTOMIZE_NAMES = ("sitecustomize.py", "usercustomize.py")
+
+
+def _normalize(text: str) -> str:
+    lines = [ln.split("#", 1)[0] for ln in text.splitlines()]
+    return " ".join(" ".join(lines).split())
+
+
+def judge_customize(path: Path, site: Path, owners: dict[str, str]) -> Finding:
+    """sitecustomize.py / usercustomize.py: imported by the site module at every start."""
+    owner = owners.get(path.name)
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace") if path.stat().st_size <= MAX_MODULE_BYTES else ""
+    except OSError as e:
+        return Finding("warning", str(path), str(site), owner, f"unreadable {path.name}", [str(e)])
+    norm = _normalize(text)
+    if not norm:
+        return Finding("ok", str(path), str(site), owner, f"empty {path.name}")
+    known = next((label for label, sig in KNOWN_GOOD_CUSTOMIZE if norm == sig), None)
+    if known:
+        return Finding("ok", str(path), str(site), owner, f"known {path.name}: {known}")
+    hits = indicator_hits(text)
+    reasons = [f"runs at every interpreter start ({len(text.splitlines())} lines)"]
+    if not owner:
+        reasons.append("no installed package claims this file")
+    if hits:
+        reasons.append(", ".join(hits))
+    critical = bool(STRONG & set(hits)) or len(hits) >= 3
+    sev = "critical" if critical else "warning"
+    title = f"malicious-looking {path.name}" if critical else f"unrecognised {path.name}"
+    return Finding(sev, str(path), str(site), owner, title, reasons)
+
+
+def scan_customize_dir(d: Path) -> list[Finding]:
+    owners, _ = dist_index(d)
+    return [judge_customize(d / n, d, owners) for n in CUSTOMIZE_NAMES if (d / n).is_file()]
+
+
 def scan_site(site: Path) -> list[Finding]:
     owners, dists = dist_index(site)
     findings = []
@@ -259,6 +307,9 @@ def scan_site(site: Path) -> list[Finding]:
                                     [f"{name} {version} shipped a credential stealer ({bad}). Treat every secret on this host or runner as stolen."]))
     for f in sorted(list(site.glob("*.pth")) + list(site.glob("*.start"))):
         findings.append(judge_hook(f, site, owners))
+    for n in CUSTOMIZE_NAMES:
+        if (site / n).is_file():
+            findings.append(judge_customize(site / n, site, owners))
     for name, why in MALICIOUS_FILES.items():
         p = site / name
         if p.suffix == ".py" and p.is_file():
@@ -266,7 +317,7 @@ def scan_site(site: Path) -> list[Finding]:
     return findings
 
 
-def scan(site_dirs: list[Path]) -> list[Finding]:
+def scan(site_dirs: list[Path], customize_dirs: list[Path] | None = None) -> list[Finding]:
     seen: set[Path] = set()
     out: list[Finding] = []
     for s in site_dirs:
@@ -275,8 +326,23 @@ def scan(site_dirs: list[Path]) -> list[Finding]:
             continue
         seen.add(r)
         out += scan_site(r)
+    seen_files = {Path(f.file).resolve() for f in out}
+    for d in customize_dirs or []:
+        r = d.resolve()
+        if r in seen or not r.is_dir():
+            continue
+        seen.add(r)
+        out += [f for f in scan_customize_dir(r) if Path(f.file).resolve() not in seen_files]
     out.sort(key=lambda f: (SEVERITY_ORDER[f.severity], f.file))
     return out
+
+
+def default_customize_dirs() -> list[Path]:
+    import shutil
+    dirs: list[Path] = []
+    for exe in dict.fromkeys(filter(None, [shutil.which("python3"), shutil.which("python"), sys.executable])):
+        dirs += interpreter_stdlib_dirs(exe)
+    return dirs
 
 
 def default_targets(root: Path, include_current: bool = True) -> list[Path]:

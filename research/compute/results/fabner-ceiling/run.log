@@ -1,0 +1,32 @@
+job: fabner-ceiling
+started: 2026-11-25T18:07:06Z
+cores: 4, memory: 15 GB
+{'fabner': ['test', 'train', 'validation'], 'fabner_bio': ['test', 'train', 'validation'], 'fabner_simple': ['test', 'train', 'validation'], 'text2tech': ['test', 'train', 'validation']}
+config: fabner_bio
+['O', 'B-MATE', 'I-MATE', 'B-MANP', 'I-MANP', 'B-MACEQ', 'I-MACEQ', 'B-APPL', 'I-APPL', 'B-FEAT', 'I-FEAT', 'B-PRO', 'I-PRO', 'B-CHAR', 'I-CHAR', 'B-PARA', 'I-PARA', 'B-ENAT', 'I-ENAT', 'B-CONPRI', 'I-CONPRI', 'B-MANS', 'I-MANS', 'B-BIOP', 'I-BIOP']
+total 1248
+drwxr-xr-x 2 runner runner   4096 Nov 25 18:07 .
+drwxr-xr-x 3 runner runner   4096 Nov 25 18:07 ..
+-rw-r--r-- 1 runner runner    249 Nov 25 18:07 labels.json
+-rw-r--r-- 1 runner runner 186509 Nov 25 18:07 test.parquet
+-rw-r--r-- 1 runner runner 882323 Nov 25 18:07 train.parquet
+-rw-r--r-- 1 runner runner 189840 Nov 25 18:07 validation.parquet
+sentences: train 9435, validation 2183, test 2064; entities: 45416, 9735, 9633; types: ['APPL', 'BIOP', 'CHAR', 'CONPRI', 'ENAT', 'FEAT', 'MACEQ', 'MANP', 'MANS', 'MATE', 'PARA', 'PRO']
+
+1. Entity-level micro F1 on the test set (precision, recall)
+   dictionary of training entities:  83.4  (81.3, 85.5)
+   conditional random field:         82.8  (84.7, 81.0)   [setting chosen on validation, F1 there 86.4]
+   HFM's fine-tuned language model:  80.7 (HFM's own evaluation; shown for scale, not directly comparable)
+
+2. Label consistency in the training set, phrases that are an entity at least once and appear 5+ times (1428 phrases, 66125 appearances)
+   appearances labelled like the phrase's most common label: 75.0%
+   disagreeing, unlabelled or inside a longer span: 16.2%
+   disagreeing, labelled, majority unlabelled: 8.7%
+
+   test entities: 9633. Phrase seen in training with the same majority label 77.0%, seen but majority label differs 9.2%, never seen as an entity 13.8%
+
+   share of test entities the CRF finds exactly (recall), by how the phrase is labelled in training
+   consistent phrases (90%+ agreement)      98.2%  of 2706
+   inconsistent phrases (under 70%)         94.2%  of 2465
+   phrases never seen as an entity          7.2%  of 1325
+finished: 2026-11-25T18:10:09Z, exit code 0

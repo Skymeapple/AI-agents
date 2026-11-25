@@ -72,12 +72,27 @@ Code: [`optical_extrapolation.py`](optical_extrapolation.py) in this folder. Run
   The result is not comparable to HFM's 0.791, which uses private samples
   and scoring.
 
+### Follow-up: borrow from a reference library
+
+Code: [`donor_extrapolation.py`](donor_extrapolation.py). The idea that worked for steel was applied here: find library records whose n and k inside the band are closest to the target's, and continue the target's curve with the change those donors show beyond the band edge. Same data, split and scoring as above (265 held-out records).
+
+| Library allowed | Mean skill | Median skill | Records with a donor | Better / worse than holding the last value |
+| --- | --- | --- | --- | --- |
+| Causality-consistent fit (first experiment) | +0.02 to +0.11 | +0.13 to +0.18 | — | — |
+| Other materials only | +0.093 | 0.000 | 193 | 129 / 64 |
+| Any other record, including other measurements of the same material | **+0.348** | **+0.473** | 233 | 186 / 47 |
+
+- **Analogy with other materials is no better than the physics-only fit.** A different material that looks alike inside the band does not behave alike outside it.
+- **A second measurement of the same material carries most of the missing information.** Skill triples, and the typical record improves by about half. The donor is matched purely by its in-band curve, with no material label used.
+- **This is the route past the limit:** a reference library keyed by in-band behaviour. It is the same lesson as steel. The gain comes from information, here a prior measurement, and not from a better extrapolation formula.
+- Whether HFM's task permits such a library is not known. Its agents use hand-built models per material class, which is a weaker form of the same thing.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-Causality-only fitting gives +0.02 to +0.11 skill on held-out materials and is fragile. HFM's 0.79 uses material-class models, which is where the information is.
+Causality-only fitting gives +0.02 to +0.11 skill. A library containing another measurement of the same material gives +0.35 (median +0.47). The remaining error is how much two samples of one material differ, which a library cannot remove.
 
 ## Next steps
 
-Build class priors (metals, semiconductors, dielectrics) from the database and re-test.
+Combine the library with the causality-consistent fit for records that have no donor. Test how the gain falls as the donor's sample differs more from the target (doping, temperature, deposition method).

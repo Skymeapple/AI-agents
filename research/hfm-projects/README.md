@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data:** 12 projects (11 experiments; the two steel tracks share one).
-- **Open:** 10 projects where public data exist and the experiment still has to be built.
-- **Blocked:** 32 projects that need a GPU, a paid model API, licensed data, or details HFM has not published.
+- **Tested on public data:** 16 projects (15 experiments; the two steel tracks share one). Four of them use simulators built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 7 projects where public data exist and the experiment still has to be built.
+- **Blocked:** 31 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. Free compute options are in [`../compute/README.md`](../compute/README.md).
 
 No result here is scored on HFM's private evaluators. The overview and cross-project conclusions are in [`../human-frontier-mission.md`](../human-frontier-mission.md).
 
@@ -61,7 +61,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Blocked | HFM has not published the instance format or the reward, and no proposals have run. | not published → not published |
-| [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Open | Needs a replay simulator built on Finnish open rail data (Digitraffic); not yet built. | 0 → 0.3984 |
+| [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 11% less weighted delay than the priority rule on real days (19 of 19); bound is 35% below. | 0 → 0.3984 |
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. A perfect forecast would add 11%; single-scenario look-ahead adds nothing. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |

@@ -590,7 +590,8 @@ directly. As of launch day, that is not possible for any of the 54 tracks:
     any claim to have "surpassed" an HFM score would be unverifiable.
 - **Compute.** More than 30 tracks need GPUs: all of pretraining and
   post-training, plus the ArchesWeather, Walrus, Evo 2, MatterGen, Phikon-v2,
-  UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU.
+  UCE and AION-1 tracks. This analysis ran on a 4-CPU container with no GPU,
+  later extended with free CPU machines on GitHub Actions (see below).
 
 What *can* be tested locally is whether a proposed route works on a
 public reproduction of a fully specified task. That was done for
@@ -927,6 +928,36 @@ could not make well, and five did not hold. The pattern is consistent:
   of the existing inputs. The follow-ups put numbers on that: steel
   needs several load cycles, and cloud needs lifetimes right within
   about a factor of 3.
+
+**Simulators and free compute (added later)**
+
+- **Shared simulation core:**
+  [`hfm-projects/_sim/core.py`](hfm-projects/_sim/core.py) is a small
+  event-driven replay framework. It gives every operations project the
+  same pieces: a policy hook, look-ahead by simulating a decision forward
+  ("rollout") using only what is known at that moment, and paired
+  comparison of policies on identical instances.
+- **Simulators built on it:** rail dispatching on the real
+  Lielahti–Pohjois-Louko line, bike rebalancing on Helsinki trips, and
+  bus holding on the five HSL trunk routes. Their results are in the
+  project folders and in the table below.
+- **Free compute:** this repository is public, so GitHub Actions gives
+  free 4-core machines with open internet. A workflow runs job scripts
+  from [`compute/jobs/`](compute/jobs) and commits logs to
+  [`compute/results/`](compute/results). Details and the options that
+  need an account (free GPUs on Kaggle, and others) are in
+  [`compute/README.md`](compute/README.md).
+- **What the free compute already did:** it found a working download for
+  the public battery datasets that the research container could not
+  reach, and it ran the full-month bike experiment.
+
+| Challenge | Idea tested | Verdict |
+| --- | --- | --- |
+| Cold battery voltage | Arrhenius-form resistances instead of fitted temperature slopes | **Supported:** skill +0.34 against +0.15, better on all 35 cold drive cycles |
+| Bike rebalancing | Dispatch on forecast stock instead of current stock | **Supported:** 16% fewer failed trips; a perfect forecast would add 11% more |
+| Bike rebalancing | Look-ahead on one past day's demand | **Not supported:** +0.8% over 17 days, after a two-day trial had suggested −2% |
+| Bus holding | Hold buses to even out headways | **Refuted in this model:** headway rules raise passenger cost by 4–12%; perfect foresight gains under 1% |
+| Rail dispatching | Look-ahead instead of greedy priority rules | **Supported:** 11% less weighted delay on real days (19 of 19), 7% on disrupted days; an optimistic bound is 29–35% below |
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

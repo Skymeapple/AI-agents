@@ -209,7 +209,7 @@ def make_sim(trains):
     return sim
 
 
-def hindsight(trains, time_limit=60.0, window=240.0):
+def hindsight(trains, time_limit=float(os.environ.get("RAIL_BOUND_SECONDS", 60)), window=240.0):
     """Whole-day mixed-integer programme with real entry times known."""
     idx, legs = {}, []
     for i, t in enumerate(trains):

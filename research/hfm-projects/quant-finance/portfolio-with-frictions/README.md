@@ -28,7 +28,7 @@ Mean-variance optimisation with transaction costs, shrinkage covariance (Ledoit-
 
 ## Public data
 
-Qlib public daily data for CSI 300 and US stocks.
+Qlib daily data for CSI 300 and US stocks. The literature pass found that Qlib's official dataset is currently disabled and its README points to a community source (`chenditc/investment_data`) with no stated data licence; check that before building on it.
 
 ## What limits progress
 

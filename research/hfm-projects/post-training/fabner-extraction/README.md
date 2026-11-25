@@ -46,8 +46,8 @@ No experiment has been run for this project.
 
 ## How far this can go
 
-Best is 80.7 F1. Published FabNER results for encoder models are in the high 80s, so about 8 points of headroom exists.
+Best is 80.7 F1. The highest published FabNER figure found in the literature pass is 85.4 (GNER), with UniNER-7B at 81.9, so confirmed headroom is about 5 points. An earlier note here said encoder models reach the high 80s; that was not supported by the tables found (BERT-base is reported at 64.2). See `REFERENCES.md`.
 
 ## Next steps
 
-Compare against a fine-tuned encoder baseline.
+Try keeping non-entity instances in training with a longest-common-subsequence matcher (the GNER recipe behind the best published figure).

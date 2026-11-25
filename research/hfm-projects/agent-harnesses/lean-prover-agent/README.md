@@ -36,7 +36,7 @@ Sampling budget and no reuse of proved lemmas across theorems.
 
 ## Route to a step change
 
-Tactic-state search guided by the model, with a lemma cache.
+Reflective sub-goal decomposition with a lemma store and compiler-guided repair (the design behind the 95.9% result), in place of more independent whole-proof samples.
 
 ## Experiment and results
 
@@ -46,7 +46,7 @@ No experiment has been run for this project.
 
 ## How far this can go
 
-HFM is at 0.566. Specialised provers exceed this on miniF2F, so headroom is real.
+HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 2507.15225) reports 95.9% on miniF2F-test using sub-goal decomposition and repair, so headroom is large. HFM's problem set may differ from miniF2F-test.
 
 ## Next steps
 

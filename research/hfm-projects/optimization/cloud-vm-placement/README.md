@@ -93,4 +93,4 @@ With true lifetimes the rule saves 13.8% of server-days and lands within about 4
 
 ## Next steps
 
-Build a lifetime model (survival model on tenant, type, hour and age) and measure its log error against the factor-of-3 target. Add evictions and failures to match HFM's objective.
+Build a lifetime model that re-predicts remaining lifetime as a VM survives, as in Google's LAVA (arXiv 2412.09840), and measure its log error against the factor-of-3 target. One-shot prediction is what failed here. Add evictions and failures to match HFM's objective.

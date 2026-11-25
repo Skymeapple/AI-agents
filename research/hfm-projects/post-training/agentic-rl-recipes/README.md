@@ -36,7 +36,7 @@ Training-stack reliability; only 2 of 4 proposals scored.
 
 ## Route to a step change
 
-Procedural terminal tasks with tests.
+Procedural terminal tasks with tests. Note that this is already published (Endless Terminals, arXiv 2601.16443): it lifted a held-out set from 10.7% to 53.3% for a 7B model but Terminal-Bench 2.0 only from 2.2% to 3.4%, so test transfer early.
 
 ## Experiment and results
 

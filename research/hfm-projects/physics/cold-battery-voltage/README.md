@@ -87,5 +87,5 @@ The oracle shows where the limits are.
 ## Next steps
 
 - Make the resistances depend on state of charge and let usable capacity shrink with temperature, to lower the 82 mV oracle error.
-- Use a prior activation energy from other cells of the same chemistry for the fast pair, since warm data cannot identify it. The Panasonic 18650PF dataset (doi:10.17632/wykht8y7tg.1) is the natural donor.
+- Use a prior activation energy from other cells of the same chemistry for the fast pair, since warm data cannot identify it. The Panasonic 18650PF dataset (doi:10.17632/wykht8y7tg.1) and the Samsung INR21700 30T dataset (Mendeley 9xyvy2njj3), which covers the same six temperatures, are natural donors.
 - Calibrate on the pulse (HPPC) tests instead of drive cycles, which is closer to HFM's setup.

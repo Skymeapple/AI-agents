@@ -28,7 +28,7 @@ Funding-rate carry, cross-sectional momentum and reversal, transaction-cost mode
 
 ## Public data
 
-Binance public data archive: hourly bars with taker flow, and funding rates, 24 contracts, 2022-2025.
+Binance public data archive: hourly bars with taker flow, and funding rates, 24 contracts, 2022-2025. Binance's dataset terms (updated 2026-08-26) license the data CC BY-NC-SA 4.0: research and personal backtesting are allowed, commercial use is not, and redistributed derivatives must keep the licence. No Binance data is stored in this repository.
 
 ## What limits progress
 

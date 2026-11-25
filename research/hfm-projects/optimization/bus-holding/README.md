@@ -81,6 +81,6 @@ Under the assumptions here the ceiling is about 1% below no holding, reached onl
 
 ## Next steps
 
-- Replace the assumed variability and demand with HSL's recorded vehicle positions (HFP data) and stop-level boardings, which is what HFM replays. That is the only way to check whether the real lines bunch more than this model does.
+- Replace the assumed variability and demand with HSL's recorded vehicle positions (HFP data) and stop-level boardings, which is what HFM replays. No official bulk download of past HFP data was found; the live feed would have to be recorded, or an extract requested from HSL. That is the only way to check whether the real lines bunch more than this model does.
 - Test the same policies at 4 to 5 minute headways to find where holding starts to pay.
 - Test weighting waiting time at twice in-vehicle time, a common convention that favours holding.

@@ -29,7 +29,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA](biology/regulatory-dna-mpra/README.md) | Tested on public data | Multi-task model +0.042 Spearman; reverse-complement averaging +0.015. | 0.4465 → 0.7076 |
+| [Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA](biology/regulatory-dna-mpra/README.md) | Tested on public data | Multi-task model +0.039 Spearman on full data (three seeds agree within 0.002); reverse-complement averaging +0.02. | 0.4465 → 0.7076 |
 | [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | Blocked | The full Human Lung Cell Atlas (2.3 million cells) and the UCE model need a GPU and tens of GB of memory. | 0.7812 → 0.8536 |
 
 ## earth-science

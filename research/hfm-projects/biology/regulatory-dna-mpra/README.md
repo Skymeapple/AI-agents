@@ -64,6 +64,22 @@ Code: [`mpra_multitask.py`](mpra_multitask.py) in this folder. Run instructions 
   smallest dataset, as predicted. Absolute scores are far below HFM's
   0.708, because this model is small and uses no Evo 2 features.
 
+### Follow-up: all training data, three seeds
+
+Run on free GitHub Actions compute; log in [`research/compute/results/mpra-full-data/`](../../../compute/results/mpra-full-data/run.log). All training sequences per cell line (not 40,000), four epochs, three seeds.
+
+| Model | HepG2 | K562 | WTC11 | Macro |
+| --- | --- | --- | --- | --- |
+| One model per cell line | 0.631 | 0.658 | 0.508 | 0.599 |
+| + reverse-complement averaging | 0.653 | 0.676 | 0.528 | 0.619 |
+| One multi-task model | 0.662 | 0.667 | 0.589 | 0.640 |
+| Multi-task + reverse-complement averaging | 0.682 | 0.686 | 0.604 | **0.657** |
+
+- **Both gains hold with full data:** multi-task +0.039 macro, reverse-complement averaging +0.018 to +0.020.
+- **Seeds agree to within 0.002,** so the gains are about 20 times the seed noise.
+- **WTC11 gains most (+0.076),** as it has the least data of its own.
+- A small CNN trained from scratch on CPU reaches 0.657 on the authors' test fold. HFM's baseline and best are 0.447 and 0.708 on its own split, which is not the same split.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

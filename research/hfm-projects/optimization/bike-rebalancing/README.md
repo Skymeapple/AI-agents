@@ -68,6 +68,20 @@ Code: [`bike_sim.py`](bike_sim.py) in this folder, built on the shared simulatio
   - **A perfect forecast would be worth a further 11%,** on every day.
     The limit is the demand forecast, not the dispatch rule.
 
+### Follow-up: look-ahead over several past days
+
+The single-day look-ahead failed because one remembered day is a poor stand-in for today. The look-ahead was changed to score each move on four past weekdays and average. Same 17 test days, run on free compute.
+
+| Policy | Failures per day | Versus forecast policy | Days better / worse |
+| --- | --- | --- | --- |
+| Forecast | 5,232 | — | — |
+| Look-ahead on one past day | 5,269 | +0.7% | 7 / 10 |
+| Look-ahead averaged over four past days | 5,093 | **−2.7%** | 13 / 4 |
+| Look-ahead with the real future (not available) | 4,641 | −11.3% | 17 / 0 |
+
+- **Sampling several futures turns a failed idea into a working one.** The gain is modest, about a quarter of what a perfect forecast would give, but it holds on 13 of 17 days.
+- **The remaining 8.6 points are forecast quality,** not dispatch logic.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -78,7 +92,7 @@ These numbers come from public data and are not comparable to HFM's score, which
 
 ## Next steps
 
-- Replace the single-scenario look-ahead with several sampled days and average the outcome.
+- Use more and better-matched scenario days (same weather, same weekday) in the look-ahead; four past days already give −2.7%.
 - Add weather and weekday effects to the demand rates.
 - Obtain real dock counts and bike counts (HSL publishes station capacities) to remove the main assumption.
 - Compute a hindsight bound with a pickup-and-delivery routing solver.

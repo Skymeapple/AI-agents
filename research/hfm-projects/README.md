@@ -36,7 +36,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [24-Hour Global Near-Surface Weather Forecasting with ArchesWeather](earth-science/weather-24h/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. ArchesWeather inference and fine-tuning on ERA5 are not feasible on CPU. | 0.09823 → 0.09749 |
+| [24-Hour Global Near-Surface Weather Forecasting with ArchesWeather](earth-science/weather-24h/README.md) | Tested on public data | Blending three model families: 4.6% lower error than the best bias-corrected single model; bias correction alone gains 0.3–0.6%. | 0.09823 → 0.09749 |
 
 ## infrastructure
 
@@ -61,7 +61,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Blocked | HFM has not published the instance format or the reward, and no proposals have run. | not published → not published |
-| [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 11% less weighted delay than the priority rule on real days (19 of 19); bound is 35% below. | 0 → 0.3984 |
+| [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 10% less weighted delay than the priority rule on real days (better on 43 of 57); bound is 35% below. | 0 → 0.3984 |
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. A perfect forecast would add 11%; single-scenario look-ahead adds nothing. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |

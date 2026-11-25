@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_physics_rb_sparse` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** The Well rayleigh_benard dataset: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU is enough for gappy POD and a small network on a subset of files; a GPU for larger networks.
+- **Still missing:** The reconstruction pipeline on a data subset. No external blocker.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Full-field reconstruction of two-dimensional Rayleigh–Bénard convection on a 512 × 128 grid uses 256 fixed point sensors measuring buoyancy and both velocity components, but not pressure, over the last eight frames, starting from gappy POD. Data are The Well rayleigh_benard simulations across 35 Rayleigh-number (10⁶–10¹⁰) and Prandtl-number (0.1–10) settings.

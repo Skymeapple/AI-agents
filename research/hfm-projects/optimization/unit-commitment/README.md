@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_rsi_grid_dispatch_mpc_seedevo` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Open Power System Data.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work implements a day-by-day rolling decision for unit commitment, dispatch, and storage under real OPSD load and wind sequences with day-ahead forecasts. A verifier runs a real-time balancing LP using actual values of the day, accumulating real costs over one week. The unit and storage models and real-time balancing rules are frozen; the evolving component is the Controller in methods/main. The problem formulation, constraints, and delivery format follow the instruction.md in the harbor task.

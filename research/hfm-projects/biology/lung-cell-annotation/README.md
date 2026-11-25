@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_singlecell_hlca` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** Human Lung Cell Atlas on CELLxGENE and UCE weights: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** A machine with 16 GB RAM can process the atlas in chunks; UCE embedding needs a GPU. The atlas file already carries scANVI embeddings, which gives a CPU-only route.
+- **Still missing:** The loading and cross-study split pipeline. No external blocker for the CPU route.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work examines automatic cell-type annotation for single-cell RNA-seq from previously unseen studies, using UCE with the Human Lung Cell Atlas full release: about 2.3 million cells from 35 studies annotated to Cell Ontology terms. Entire studies are split across training, development, and held-out evaluation, with no donor appearing in more than one.

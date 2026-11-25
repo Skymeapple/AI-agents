@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_optical_extrapolation` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** refractiveindex.info database on GitHub.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable method for predicting a material sample's refractive index n and extinction coefficient k outside the wavelength band supplied to the method. The method is evaluated by agreement with withheld measurements from the same sample. The representation, model family, and estimation procedure are chosen freely; no dispersion formula or fitting strategy is prescribed.

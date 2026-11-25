@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_cross_venue_routing` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** Binance archive used elsewhere here. Bybit public archive and OKX market-data API: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** The three-venue replay and cost model.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable router for execution replay across Binance, Bybit, and OKX. It uses historical and current observations to reduce net cost across parent orders, with representations, estimators, and allocation procedure chosen within a fixed single-decision interface.

@@ -957,7 +957,8 @@ could not make well, and five did not hold. The pattern is consistent:
 | Bike rebalancing | Dispatch on forecast stock instead of current stock | **Supported:** 16% fewer failed trips; a perfect forecast would add 11% more |
 | Bike rebalancing | Look-ahead on one past day's demand | **Not supported:** +0.8% over 17 days, after a two-day trial had suggested −2% |
 | Bus holding | Hold buses to even out headways | **Refuted in this model:** headway rules raise passenger cost by 4–12%; perfect foresight gains under 1% |
-| Rail dispatching | Look-ahead instead of greedy priority rules | **Supported:** 11% less weighted delay on real days (19 of 19), 7% on disrupted days; an optimistic bound is 29–35% below |
+| Rail dispatching | Look-ahead instead of greedy priority rules | **Supported:** 10% less weighted delay on real days (better on 43 of 57), 7% on disrupted days; an optimistic bound is 29–35% below |
+| 24-hour weather | Blend model families instead of post-processing one model | **Supported:** 4.6% lower error than the best corrected single model; bias correction alone gains 0.3–0.6% |
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a

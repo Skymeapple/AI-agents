@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_sp500_activity_rank_auto` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Blocked on licensed data.
+- **Data access:** No free legal source of one-minute consolidated bars for S&P 500 members was found.
+- **Compute:** CPU.
+- **Still missing:** Licensed minute bars.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Every minute, consolidated tape files a 1-minute bar for each S&P 500 member. This task ranks members by how much more they will trade over the next thirty minutes than over the last thirty—a forward activity surprise.

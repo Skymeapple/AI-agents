@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_cold_cell_voltage` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** LG HG2 and Panasonic 18650PF datasets on Mendeley Data.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable model for a cell's terminal-voltage trajectory under a supplied current and temperature profile. Calibration data covers warmer conditions than the assessment drive cycles. The task is to maximize a fixed prediction score by choosing the model structure, parameterization, and fitting procedure.

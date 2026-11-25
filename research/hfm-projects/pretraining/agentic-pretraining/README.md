@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_exp_agentic_pretrain` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** FineWeb-Edu and DCLM on Hugging Face: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** HFM's budgets are 4 to 8 GPUs for 24 to 168 hours. A free GPU supports only scaled-down studies (small models, hours not days).
+- **Still missing:** A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work designs and pretrains a model architecture from scratch using a frozen corpus pool and tokenizer, with a compute budget of 4 GPUs over 24 hours. The evaluation compares the resulting model against a reference architecture on a frozen held-out suite.

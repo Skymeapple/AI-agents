@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_steel_cyclic_transfer` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Hartloper et al. database on Zenodo.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable model that predicts a steel coupon's stress response to a specified strain history using only an acceptance tension test for the target steel, supplemented by a reference library of tests on other steels. The model and inference procedure are chosen to maximize a fixed evaluation score, without prescribing a specific constitutive law, fitting method, or transfer rule.

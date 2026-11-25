@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_steel_cyclic_transfer_auto` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Hartloper et al. database on Zenodo (shared experiment).
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 A nonlinear response-history analysis of a steel frame uses a characterized material model from an acceptance tension coupon qualification campaign. The model defines stress and energy absorption as strain cycles through earthquake-imposed history.

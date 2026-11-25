@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_filing_event_strategy` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** SEC financial-statement data sets exist but returned 403 to an anonymous client. The SEC asks automated clients to identify themselves with a contact address.
+- **Compute:** CPU.
+- **Still missing:** Your decision on a contact address to send to the SEC, then the event-study pipeline.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable event-driven equity policy that uses structured filing events, reported financial values, and market histories. It focuses on extracting information from structured records and XBRL values to generate event positions under fixed execution and risk rules, without access to full report text.

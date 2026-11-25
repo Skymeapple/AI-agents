@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_exp_looped_pretrain_research_v2` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** FineWeb-Edu and DCLM on Hugging Face: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** HFM's budgets are 4 to 8 GPUs for 24 to 168 hours. A free GPU supports only scaled-down studies (small models, hours not days).
+- **Still missing:** A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work uses English for all agent-authored plans, experiment notes, progress reports, code comments, and delivery summaries. Supplied dataset text remains in its original language.

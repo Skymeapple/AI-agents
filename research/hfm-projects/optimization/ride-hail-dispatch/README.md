@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_ridehail_dispatch` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** NYC TLC for-hire trip records (473 MB per month): Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** A matching and repositioning replay on the shared simulation core. Low priority: HFM's score is already 0.989.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a dispatch policy for a New York City ride-hail replay. The policy determines how to match available drivers to ride requests and where to reposition idle drivers. Optimization is performed through a fixed objective, subject to constraints including rider patience, driver shifts, and travel rules. The approach selects matching, prediction, and repositioning methods while the replay provides future requests.

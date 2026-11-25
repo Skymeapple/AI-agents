@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_nasdaq_depth_depletion_auto` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Blocked on licensed data.
+- **Data access:** Only LOBSTER's free sample day: Verified reachable from the free compute on 2026-11-25. One day is enough to build and test code, not to draw conclusions.
+- **Compute:** CPU.
+- **Still missing:** Licensed order-book history.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 For 79 S&P 500 stocks, Databento's mbp-10 feed records the ten best price levels from Nasdaq TotalView-ITCH, with price, size, and order count per book event. One seeded 20-minute window per sampled weekday is reduced to ten-second buckets, capturing the book at bucket end.

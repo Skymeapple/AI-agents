@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_pm_calibration_transfer_auto` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** SensEURCity on Zenodo (5.7 GB): Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU on free compute.
+- **Still missing:** The multi-site calibration pipeline.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 An air agency calibrates low-cost particle sensors to report hourly PM2.5 mass (µg/m³), monthly mean for standard comparison, and concentration tallies for advisories and exposure studies.

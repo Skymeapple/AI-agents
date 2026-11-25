@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_nasdaq_depth_execution` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Blocked on licensed data.
+- **Data access:** Only LOBSTER's free sample day: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** Licensed order-book history.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable execution policy using Nasdaq order book snapshots and trade-flow records. The policy is optimized for net execution cost across replayed parent orders, with open research choices for representations, forecasting methods, and decision logic under fixed market rules.

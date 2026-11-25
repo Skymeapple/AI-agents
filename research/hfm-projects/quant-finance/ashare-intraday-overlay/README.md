@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_ashare_intraday` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Blocked on licensed data.
+- **Data access:** No free legal source of five-minute A-share bars was found. Daily data are public.
+- **Compute:** CPU.
+- **Still missing:** Licensed intraday data, or a redefinition on daily data.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable intraday overlay using five-minute and daily records. It explores signal discovery, decision formation, and effort allocation across a stock book to maximize a fixed net-of-cost objective, subject to base holdings, market rules, and end-of-day requirements.

@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_pathology_lung` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** TCGA-LUAD/LUSC diagnostic slides through the GDC API and Phikon-v2 weights: Verified reachable from the free compute on 2026-11-25. NLST pathology images need a data-access request to the US National Cancer Institute.
+- **Compute:** A GPU and tens to hundreds of GB of disk for slides; tile sampling keeps it within free limits.
+- **Still missing:** A free GPU account, and an NLST data request for the held-out cohort (CPTAC can stand in until then).
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Patient-level classification distinguishes primary non-small-cell lung cancer as adenocarcinoma (ICD-O 8140/3) or squamous cell carcinoma (8070/3) from H&E whole-slide images using Phikon-v2. Training uses TCGA-LUAD/LUSC patients, development uses CPTAC-LUAD/LSCC, and held-out evaluation uses NLST patients.

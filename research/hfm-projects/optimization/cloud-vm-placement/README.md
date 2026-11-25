@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_cloud_placement` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Azure Packing Trace 2020 on GitHub.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops an online placement policy for an Azure trace replay. Each VM request is assigned without knowledge of its future lifetime, while respecting constraints on cores, memory, HDD, SSD, network, and machine compatibility. The allocation algorithm and internal representation are chosen to optimize weighted server-hours and specified failure and eviction costs.

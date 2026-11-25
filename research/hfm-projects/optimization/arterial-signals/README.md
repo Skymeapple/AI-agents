@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_arterial_signals_auto` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** City of Toronto open data, traffic volumes at intersections: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** A corridor delay model calibrated to the counts. Low priority: HFM's score is already 0.989.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 A signal-timing engineer selects a coordinated plan for six or seven consecutive signalized intersections on a Toronto arterial, based on one counted hour of data.

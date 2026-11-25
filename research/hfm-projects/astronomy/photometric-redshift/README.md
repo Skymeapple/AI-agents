@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_astro_photoz` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** SDSS catalogue used by the experiment. Legacy Survey cutout service and AION-1 weights: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU for the catalogue experiment. A GPU for the image model.
+- **Still missing:** A free GPU account for the image-based version.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Photometric redshift estimation predicts a galaxy's spectroscopic redshift from g, r, z images and catalogue photometry, using SDSS, BOSS, and eBOSS labels with Legacy Survey DR9 north cutouts. Held-out galaxies occupy sky regions absent from public galaxies, so evaluation tests transfer across disjoint sky areas rather than interpolation among neighboring galaxies.

@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_rsi_portfolio_frictions` (active on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** Community Qlib data release on GitHub: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** The backtester with price limits, halts and costs.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work builds long-only portfolio strategies on Qlib using real daily data and a backtester that incorporates trading costs, price-limit moves, trading halts, and position-weight and turnover constraints. The backtest period covers CSI 300 and an unseen US market, with the backtester, cost rules, and benchmarks held fixed. The evolving component is the Strategy in methods/main, which combines alpha signals, a risk model, and cost-aware portfolio construction. Evaluation follows the task specification in the harbor task's instruction.md.

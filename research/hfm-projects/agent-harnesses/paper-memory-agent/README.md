@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_harness_paper_memory` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a language-model key is connected.
+- **Data access:** QASPER on Hugging Face: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU for the harness; the model runs behind an API or on a GPU.
+- **Still missing:** A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work describes the development of a reusable system that converts NLP research papers, ranging from 4,000 to 86,000 characters in length, into concise notes of at most 3,000 characters. The system uses a frozen model with an 8,000-character input limit per call, and the notes are intended for a later reader who uses the same frozen model with an undisclosed fixed prompt.

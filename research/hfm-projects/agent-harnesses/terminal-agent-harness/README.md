@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_rsi_agent_harness_opus5` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a language-model key is connected.
+- **Data access:** Terminal-Bench on GitHub: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU for the harness; the model runs behind an API or on a GPU.
+- **Still missing:** A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work examines the evolution of a terminal agent harness under a frozen API model, with the default configuration using openai:kimi-k2.6. The harness is evaluated solely on terminal-bench-2 and includes components such as prompts, planning, memory/notes, tool sets, sub-agents, retry/verification loops, context management, and dependencies on langgraph.json. The evaluation considers configurations that achieve a higher macro-average across four member benchmarks—terminal_bench_2, gaia, simpleqa, and hle_search—on a sealed assessment list. The scope and constraints follow the instruction.md of the harbor task.

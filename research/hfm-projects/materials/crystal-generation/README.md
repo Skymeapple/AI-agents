@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_materials_gen` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** MatterGen weights: Verified reachable from the free compute on 2026-11-25. MatterSim weights are not on Hugging Face (401) and come from its GitHub release.
+- **Compute:** A GPU for sampling and relaxation.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Crystal generation targets thermodynamically stable materials in chemical systems unseen by the starting model, each containing two or three elements (e.g., Cd-Fe-P). Up to 64 structures per system are allowed; a structure counts only when stable, novel, and unique after relaxation by the frozen MatterSim potential.

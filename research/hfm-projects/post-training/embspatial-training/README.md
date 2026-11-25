@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_embspatial` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** EmbSpatial-Bench and Qwen2-VL-2B: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** One GPU. A 16 GB free GPU fits LoRA training of the 2B model directly and the 7B model with 4-bit loading.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work explores training recipes to improve Qwen2-VL-2B performance on EmbSpatial-Bench, which evaluates embodied egocentric spatial understanding through four-choice questions covering six spatial relation categories, under a frozen evaluation protocol.

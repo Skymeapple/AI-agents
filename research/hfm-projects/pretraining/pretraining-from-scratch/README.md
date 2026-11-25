@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_exp_agentic_pretrain_research` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** FineWeb-Edu and DCLM on Hugging Face: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** HFM's budgets are 4 to 8 GPUs for 24 to 168 hours. A free GPU supports only scaled-down studies (small models, hours not days).
+- **Still missing:** A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops and trains new architectures from scratch using a frozen public training pool and tokenizer. The research is conducted on eight H20 GPUs in a single container over 168 hours. The session involves proposing, selecting, and iterating on multiple research ideas, with flexibility to revise, pause, or discard experiments.

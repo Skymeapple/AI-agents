@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_harness_formal_proofs` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a language-model key is connected.
+- **Data access:** miniF2F on GitHub: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU for the harness; the model runs behind an API or on a GPU.
+- **Still missing:** A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Build a reusable harness that produces accepted Lean proofs for competition-mathematics theorems using a frozen model and Lean 4 with Mathlib. Maximize the fraction of verified theorems under shared budgets. The architecture and effort allocation are free; no specific search breadth, prompt family, or repair schedule is required.

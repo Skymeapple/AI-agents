@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_debug_tardiness` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Generated instances; no external data.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 A single machine processes a batch of jobs. Each job j becomes available at its release time r[j], requires continuous processing time p[j], has a due date d[j], and incurs a penalty w[j] per unit time of tardiness. The machine processes one job at a time and must wait idle if the next job has not yet arrived.

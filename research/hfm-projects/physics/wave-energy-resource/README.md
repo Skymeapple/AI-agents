@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_wave_resource` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** NOAA NDBC buoy archive.
+- **Compute:** CPU.
+- **Still missing:** Nothing. A swell hindcast (ERA5 waves) would need a free Copernicus account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable method for estimating a site's wave-energy resource beyond the period covered by its wave measurements. A short campaign provides paired wave and wind observations, while a longer assessment period provides wind observations only. The method selects a model, representation, and estimation procedure to maximize a fixed evaluation score.

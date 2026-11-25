@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_cascade_spill_auto` (paused on HFM)
 - **Project status:** Open: public data exist, experiment not yet built
 
+## Readiness
+
+- **State:** Data verified; pipeline or simulator still to build.
+- **Data access:** Columbia Basin Research DART query service: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** A reduced fish-passage and dissolved-gas model built from DART data.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work optimizes spill operations at eight federal dams on the Snake and Columbia rivers to safely pass juvenile salmon and steelhead during spring migration. Spillway passage is safer than turbine passage.

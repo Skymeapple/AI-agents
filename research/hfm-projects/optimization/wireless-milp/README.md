@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_wireless_milp_400_live_v8` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Blocked on unpublished task details.
+- **Data access:** None published by HFM.
+- **Compute:** CPU.
+- **Still missing:** The instance format and reward, which HFM has not published.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 A self-contained Python program processes one wireless 400-cell synthetic MILP case from stdin and writes one answer JSON object to stdout. NumPy 2.3.2 and SciPy 1.16.1, including HiGHS, are installed; no network is available, and any installed solver or algorithm may be used.

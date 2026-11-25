@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_post_topv2_fixed_auto` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** Qwen2.5-7B; the TOPv2 repository address tried returned 404, so its download location still has to be confirmed: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** One GPU. A 16 GB free GPU fits LoRA training of the 2B model directly and the 7B model with 4-bit loading.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Post-train Qwen2.5-7B-Instruct on TOPv2 compositional semantic parsing. Choose recipe, curriculum, hyperparameters, and efficiency tradeoffs within original task rules. Produce a LoRA adapter from this exact base checkpoint. Read frozen tests, task context, and templates first.

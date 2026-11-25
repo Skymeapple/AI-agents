@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_exp_looped_pretrain_research_v1` (end on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** FineWeb-Edu and DCLM on Hugging Face: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** HFM's budgets are 4 to 8 GPUs for 24 to 168 hours. A free GPU supports only scaled-down studies (small models, hours not days).
+- **Still missing:** A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work explores language models that reuse computation and refine internal state through looped or recurrent-depth architectures. The research campaign uses eight H20 GPUs over 168 hours to design and train a model from random initialization, selecting one final checkpoint. The investigation covers architectures including partial sharing, adapters, mixture of experts, hybrids, nested loops, learned exits, and dynamic computation.

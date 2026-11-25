@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_genomics_mpra` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** lentiMPRA tables on Zenodo used by the experiment. Evo 2 7B weights: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU for the CNN experiment (full-data run on free compute). A GPU for Evo 2.
+- **Still missing:** A free GPU account for Evo 2 features; the 7B model may exceed a 16 GB GPU, so the smaller Evo 2 checkpoints are the realistic start.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Prediction of human regulatory DNA activity uses Evo 2 7B with lentiviral massively parallel reporter assays (lentiMPRA) in HepG2, K562, and WTC11 cells. Each 230 bp construct contains a 200 bp insert plus fixed adapters; activity is the mean log2 RNA/DNA ratio across replicates.

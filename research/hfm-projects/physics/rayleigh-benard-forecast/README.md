@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_ai4x_physics_rb` (active on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** The Well rayleigh_benard dataset and Walrus weights: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** A GPU for Walrus. Files are several GB each.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 The work forecasts two-dimensional Rayleigh–Bénard convection from six consecutive frames of buoyancy, pressure, horizontal velocity, and vertical velocity. Simulations cover 35 Rayleigh number (1e6–1e10) and Prandtl number (0.1–10) combinations on a 512 × 128 grid, periodic in x with walls at y = 0 and 1; predictions span 64 frames.

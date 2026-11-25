@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_bike_rebalancing` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Helsinki trips used by the simulator. Station list with dock counts: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** CPU.
+- **Still missing:** Nothing. Next step is to replace assumed dock counts with the published ones.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a dispatching policy for a replay of a station-based nextbike system. When a crew completes a stop, the policy determines the van's next destination and the number of bicycles to load or unload, subject to fixed constraints on van capacity, crew shifts, return-to-depot requirements, and bicycle conservation. The policy observes station state and past events but has no access to future rider requests or the return destinations of bicycles still in use.

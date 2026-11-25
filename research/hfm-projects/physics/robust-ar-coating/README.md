@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_physics_robust_ar_coating` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** No external data.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable design procedure for anti-reflection coatings. Given a catalog specification, substrate, measured optical constants, and a process-variation model, the procedure returns a layer stack that maximizes the fixed score under that model.

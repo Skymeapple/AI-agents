@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_quant_perpetual_minute_strategy` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Binance public archive.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops a reusable trading policy using minute-level price bars, signed taker flow, and funding records. The research method and portfolio decision process are chosen to maximize a fixed net-of-cost score, without prescribing a specific trading style.

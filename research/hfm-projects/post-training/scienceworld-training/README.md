@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_post_scienceworld_auto` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** ScienceWorld on GitHub and Qwen2.5-7B: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** One GPU. A 16 GB free GPU fits LoRA training of the 2B model directly and the 7B model with 4-bit loading.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 Post-train the Qwen2.5-7B-Instruct model to improve ScienceWorld performance using a single GPU and a LoRA adapter. The total experiment budget is 140 minutes, with 110 minutes for baseline measurement.

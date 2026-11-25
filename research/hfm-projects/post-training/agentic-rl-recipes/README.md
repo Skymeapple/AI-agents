@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_exp_agentic_rl_k3` (paused on HFM)
 - **Project status:** Blocked
 
+## Readiness
+
+- **State:** Ready to run once a free GPU account is connected.
+- **Data access:** verl and Terminal-Bench on GitHub: Verified reachable from the free compute on 2026-11-25.
+- **Compute:** One GPU. A 16 GB free GPU fits LoRA training of the 2B model directly and the 7B model with 4-bit loading.
+- **Still missing:** A free GPU account.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work explores training recipes for agentic reinforcement learning using a working stack that combines the verl training framework with the agent-harness environment, a fork of deepagents. The stack trains a policy with verl, solves real terminal tasks in e2b sandboxes via agent-harness, and uses a gateway to convert every model call into training data. The focus is on debugging and refining the training setup for the kimi-k3 model.

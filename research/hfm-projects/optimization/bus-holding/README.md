@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_live_optimization_bus_headways` (paused on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** HSL timetable feed used by the simulator. HSL's recorded vehicle positions were not reachable at the two addresses tried.
+- **Compute:** CPU.
+- **Still missing:** A working source for recorded vehicle positions, to replace the assumed variability.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work develops an online holding policy for the HSL trunk-line replay covering routes 500, 510, 560, 570, and 200. The policy uses available observations to decide holds at permitted timing points, minimizing passenger costs. The replay, action limits, and timing rules are fixed.

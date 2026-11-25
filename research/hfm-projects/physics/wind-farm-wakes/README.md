@@ -4,6 +4,14 @@
 - **HFM track:** `discovery_live_rsi_wind_wake_calibration_opus5` (active on HFM)
 - **Project status:** Tested on public data
 
+## Readiness
+
+- **State:** Runs today on CPU.
+- **Data access:** Kelmarsh and Penmanshiel SCADA on Zenodo.
+- **Compute:** CPU.
+- **Still missing:** Nothing.
+- **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
+
 ## The challenge
 
 This work calibrates a wake model using real SCADA data from the Kelmarsh and Penmanshiel wind farms at 10-minute resolution, then predicts per-turbine power for unseen time periods and unseen wind farms. The data, the FLORIS wake engine, and the evaluation protocol are frozen; only the calibration and prediction method evolves.

@@ -1,0 +1,38 @@
+job: topv2-classical
+started: 2026-11-25T20:23:06Z
+cores: 4, memory: 15 GB
+WillHeld/top_v2 200 {"default":{"eval":["https://huggingface.co/api/datasets/WillHeld/top_v2/parquet/default/eval/0.parquet"],"test":["https://huggingface.co/api/datasets/WillHeld/top_v2/parquet/default/test/0.parquet"],"train":["https://huggingface.co/api/datasets/WillHeld/top_v2/parquet/default/train/0.parquet"]}}
+{'eval': 1, 'test': 1, 'train': 1}
+eval (17160, 3)
+test (38785, 3)
+train (124597, 3)
+total 8800
+drwxr-xr-x 2 runner runner    4096 Nov 25 20:23 .
+drwxr-xr-x 3 runner runner    4096 Nov 25 20:23 ..
+-rw-r--r-- 1 runner runner  889281 Nov 25 20:23 eval.parquet
+-rw-r--r-- 1 runner runner 1887891 Nov 25 20:23 test.parquet
+-rw-r--r-- 1 runner runner 6218096 Nov 25 20:23 train.parquet
+columns: ['domain', 'utterance', 'semantic_parse'] train 124597 test 38785
+example: [IN:CREATE_ALARM Set the alarm [SL:DATE_TIME for tonight ] . ]
+tag encoding reproduces the gold tree for 100.0% of test parses (the rest cannot be scored as correct)
+
+training examples: 12288   (1693 distinct frames, 1271 distinct tags, fit 70s, 8000 test parses)
+  test parses whose frame was seen in training:        90.0%
+  identical utterance in training with the same parse: 4.3%
+  classical parser, exact match:                       38.5%   (frame right 40.7%)
+     on seen frames   42.5% of 7202
+     on unseen frames 2.4% of 798
+     flat (one intent and its slots)    42.0% of 6809
+     nested (an intent inside a slot)   18.6% of 1191
+
+training examples: 30000   (2953 distinct frames, 1701 distinct tags, fit 403s, 8000 test parses)
+  test parses whose frame was seen in training:        93.1%
+  identical utterance in training with the same parse: 6.4%
+  classical parser, exact match:                       43.9%   (frame right 45.5%)
+     on seen frames   47.0% of 7450
+     on unseen frames 1.8% of 550
+     flat (one intent and its slots)    47.9% of 6809
+     nested (an intent inside a slot)   21.4% of 1191
+
+For scale: HFM's fine-tuned 7B language model reaches 83% exact match on HFM's own frozen test with 12,288 training rows; not directly comparable.
+finished: 2026-11-25T20:31:26Z, exit code 0

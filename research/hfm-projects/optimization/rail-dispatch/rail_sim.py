@@ -28,6 +28,10 @@ Policies
   look-ahead,      the same, but each option is scored on four futures: one on
   sampled futures  plan and three in which unseen trains get delays drawn from
                    the first five days (those days are then left out of the test)
+  look-ahead,      the look-ahead told each approaching train's delay as recorded at
+  upstream delays  the stations before the corridor, which a dispatcher can see
+  look-ahead, real the look-ahead told the real entry times (not available; shows
+  future known     what a perfect delay forecast would be worth)
   hindsight bound  mixed-integer programme over the whole day with all real entry
                    times known (HiGHS, time-limited), which no online policy can beat
 
@@ -48,7 +52,7 @@ from scipy.optimize import Bounds, LinearConstraint, milp
 from scipy.sparse import lil_matrix
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "_sim"))
-from core import RolloutPolicy, Simulator, compare  # noqa: E402
+from core import RolloutPolicy, Simulator, compare, run  # noqa: E402
 
 CORRIDOR = ["LLH", "YLÖ", "LAK", "MJJ", "KRR", "STÖ", "VJR", "PKK", "PKO", "LMK", "KIS", "RLÄ", "MD", "YLV", "JAL", "PSJ", "PLU"]
 POS = {c: i for i, c in enumerate(CORRIDOR)}
@@ -68,6 +72,13 @@ def load_day(path):
         rows = [r for r in t["timeTableRows"] if r["stationShortCode"] in POS and not r.get("cancelled")]
         if len(rows) < 2:
             continue
+        # what is known before the train reaches the corridor: its recorded delay at each earlier station
+        upstream = []
+        for r in t["timeTableRows"]:
+            if r["stationShortCode"] in POS:
+                break
+            if r.get("actualTime") and not r.get("cancelled"):
+                upstream.append((minutes(r["actualTime"], day0), minutes(r["actualTime"], day0) - minutes(r["scheduledTime"], day0)))
         stops = []  # per station: [pos, planned arrival, planned departure, actual arrival or departure, commercial]
         for r in rows:
             p = POS[r["stationShortCode"]]
@@ -94,7 +105,8 @@ def load_day(path):
         actual_in = first[3] if first[3] is not None else plan_in
         last = stops[-1]
         trains.append(dict(id=t["trainNumber"], w=3.0 if t["trainCategory"] in ("Long-distance", "Commuter") else 1.0,
-                           legs=legs, plan_in=plan_in, actual_in=max(actual_in, plan_in - 30), plan_out=last[1] if last[1] is not None else last[2]))
+                           legs=legs, plan_in=plan_in, actual_in=max(actual_in, plan_in - 30), plan_out=last[1] if last[1] is not None else last[2],
+                           upstream=upstream))
     return sorted(trains, key=lambda x: x["actual_in"])
 
 
@@ -129,6 +141,7 @@ class RailSim(Simulator):
         return c
 
     delay_pool = None    # entry delays (minutes late) seen on earlier days; set per instance
+    use_upstream = False # use each train's recorded delay at stations before the corridor
 
     def belief(self, k=0):
         """What a dispatcher can assume about trains that have not entered yet.
@@ -141,6 +154,10 @@ class RailSim(Simulator):
         for i, t in enumerate(self.trains):
             if self.leg[i] == 0 and not self.running[i] and t["actual_in"] > self.now:
                 late = float(rng.choice(self.delay_pool)) if rng is not None else 0.0
+                if self.use_upstream:
+                    seen = [d for when, d in t.get("upstream", ()) if when <= self.now]
+                    if seen:                      # latest delay recorded before the corridor
+                        late = max(seen[-1], 0.0)
                 c.ready[i] = c.wait_since[i] = max(t["plan_in"] + late, t["legs"][0][2], self.now + 1e-6)
         return c
 
@@ -202,6 +219,18 @@ class RailSim(Simulator):
         return sum(t["w"] * max(0.0, (f if f is not None else self.now + 600) - t["plan_out"]) for t, f in zip(self.trains, self.finish))
 
 
+class UpstreamSim(RailSim):
+    """Look-ahead copies use the delay each approaching train has already shown upstream."""
+    use_upstream = True
+
+
+class KnownSim(RailSim):
+    """Look-ahead copies know the real entry times (not available to a dispatcher)."""
+
+    def belief(self, k=0):
+        return self.clone()
+
+
 def first_come(sim, sec, options):
     return options[0]
 
@@ -211,8 +240,8 @@ def priority(sim, sec, options):
     return max(cands, key=lambda i: (sim.trains[i]["w"], sim.now - sim.trains[i]["plan_in"] - sum(l[1] for l in sim.trains[i]["legs"][:sim.leg[i]])))
 
 
-def make_sim(trains):
-    sim = RailSim(trains)
+def make_sim(trains, cls=RailSim):
+    sim = cls(trains)
     # first departure also respects the planned time at a commercial stop
     sim.ready = [max(t["actual_in"], t["legs"][0][2]) for t in trains]
     sim.wait_since = list(sim.ready)
@@ -276,12 +305,17 @@ def main():
     print(f"entry delays on the five learning days: mean {pool.mean():.1f} min, 90th percentile {np.quantile(pool, 0.9):.1f} min")
     test = days[5:]
     bound = None if os.environ.get("RAIL_NO_BOUND") else hindsight
-    policies = {"first come": first_come, "priority": priority, "look-ahead (rollout)": RolloutPolicy(priority),
-                "look-ahead, 4 sampled futures": RolloutPolicy(priority, scenarios=4)}
-    compare(test, make_sim, policies, "priority", bound=bound, label="real days, real entry delays")
-    disrupted = [disrupt(d, seed=k) for k, d in enumerate(test)]
-    compare(disrupted, make_sim, policies, "priority", bound=bound, label="disrupted days (extra entry delays on 30% of trains)")
-
+    policies = {"first come": first_come, "priority": priority, "look-ahead (rollout)": RolloutPolicy(priority)}
+    if not os.environ.get("RAIL_FAST"):
+        policies["look-ahead, 4 sampled futures"] = RolloutPolicy(priority, scenarios=4)
+    for label, insts in (("real days, real entry delays", test),
+                         ("disrupted days (extra entry delays on 30% of trains)", [disrupt(d, seed=k) for k, d in enumerate(test)])):
+        costs = compare(insts, make_sim, policies, "priority", bound=bound, label=label)
+        ref = costs["priority"]
+        for name, cls in (("look-ahead, upstream delays used", UpstreamSim), ("look-ahead, real future known", KnownSim)):
+            c = [run(make_sim(d, cls), RolloutPolicy(priority)) for d in insts]
+            print(f"  {name:<28} {np.mean(c):>10.1f} {np.mean(c) / np.mean(ref) - 1:>+22.1%} {sum(a < b - 1e-9 for a, b in zip(c, ref)):>13}/{len(c)} "
+                  f"{sum(a > b + 1e-9 for a, b in zip(c, ref)):>6}", flush=True)
 
 if __name__ == "__main__":
     main()

@@ -87,6 +87,19 @@ The look-ahead was given the real entry times of trains that had not yet appeare
 - **The other half of the gap is search.** One-step look-ahead with full knowledge reaches −18%, while whole-day optimisation with the same knowledge reaches up to −35% (an optimistic bound).
 - So two separate routes remain: forecast entry delays, and replace one-step look-ahead with optimisation over a rolling window.
 
+### Follow-up: use the delays that are already visible
+
+A train's delay at the stations it passes before reaching the corridor is in the same open data and is known to a dispatcher in real time. The look-ahead was changed to assume each approaching train enters with the delay it last showed upstream. 18 real days (a 60-day run is queued on free compute).
+
+| Policy | Weighted delay versus priority rule | Days better |
+| --- | --- | --- |
+| Look-ahead, unseen trains assumed on time | −10.9% | 18/18 |
+| Look-ahead, upstream delays used | **−14.3%** | 18/18 |
+| Look-ahead, real entry times known (not available) | −19.4% | 18/18 |
+
+- **Real, available information adds a third to the look-ahead's gain,** on every day tested, and recovers about 40% of what a perfect delay forecast would give.
+- The rest of the information gap is delay that builds between the last upstream station and the corridor entry.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -101,4 +114,4 @@ These numbers come from public data and are not comparable to HFM's score, which
 - Make the look-ahead robust to late trains it cannot see yet, for example by sampling entry delays instead of assuming none.
 - Replace one-step rollout with rolling-horizon exact optimisation over the next 60–90 minutes.
 - Add loop capacity and block signalling so that deadlocks and following moves are modelled.
-- Use the delay causes in the open data to forecast entry delays of trains not yet on the line.
+- Improve the entry-delay forecast beyond the last upstream delay, using the delay causes and typical delay growth in the open data.

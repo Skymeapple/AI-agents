@@ -50,11 +50,13 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
+from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
 
 URL = "https://datasets.cellxgene.cziscience.com/688185ad-11c2-4172-a53a-f4f1f4076860.h5ad"
 LEVELS = ["ann_level_1", "ann_level_2", "ann_level_3"]
 PER_STUDY_TRAIN, PER_STUDY_TEST = 25000, 40000
+HEADS = False        # set by the third command-line argument: compare non-linear classifier heads
 
 
 def cat(h, col):
@@ -76,12 +78,13 @@ def full_atlas_url():
 
 
 def main():
-    global PER_STUDY_TRAIN, PER_STUDY_TEST
+    global PER_STUDY_TRAIN, PER_STUDY_TEST, HEADS
+    HEADS = len(sys.argv) > 2 and sys.argv[2] == "heads"
     full = len(sys.argv) > 1 and sys.argv[1] == "full"
     url = full_atlas_url() if full else (sys.argv[1] if len(sys.argv) > 1 else URL)
     label = "cell_type" if full else "ann_finest_level"     # the full atlas is labelled with Cell Ontology terms
     if full:
-        PER_STUDY_TRAIN, PER_STUDY_TEST = 6000, 30000
+        PER_STUDY_TRAIN, PER_STUDY_TEST = (12000, 30000) if HEADS else (6000, 30000)
     with fsspec.open(url, "rb", block_size=8 * 2**20) as fh, h5py.File(fh, "r") as h:
         print("obsm:", list(h["obsm"].keys()), flush=True)
         X = h["obsm"]["X_scanvi_emb"][:].astype(np.float32)
@@ -103,7 +106,11 @@ def main():
             anc[li, c] = np.bincount(lv[m]).argmax() if m.any() else 0
 
     rng = np.random.default_rng(0)
-    scores = {k: [] for k in ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours", "smoothed over neighbours", "centred study", "self-training", "self-training + smoothing")}
+    names = ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours", "smoothed over neighbours", "centred study", "self-training", "self-training + smoothing")
+    if HEADS:
+        names = ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours", "linear + neighbours averaged", "nearest neighbours, k=5",
+                 "nearest neighbours, k=50", "neural network head", "network + neighbours averaged")
+    scores = {k: [] for k in names}
     rare = {k: [] for k in scores}
     for s in range(len(study_names)):
         if (study == s).sum() < 2000:
@@ -136,6 +143,22 @@ def main():
         record("hierarchy-aware", total.argmax(axis=1) if levels else logp.argmax(axis=1))
         knn = KNeighborsClassifier(n_neighbors=15, weights="distance", n_jobs=4).fit(A, y)
         record("nearest neighbours", knn.predict(B))
+        if HEADS:                                      # further non-linear heads (full-atlas follow-up)
+            pk = np.zeros((len(B), len(fine_names)))
+            pk[:, knn.classes_] = knn.predict_proba(B)
+            pl = np.zeros_like(pk)
+            pl[:, flat.classes_] = flat.predict_proba(B)
+            record("linear + neighbours averaged", (pk + pl).argmax(axis=1))
+            for kk in (5, 50):
+                m = KNeighborsClassifier(n_neighbors=kk, weights="distance", n_jobs=4).fit(A, y)
+                record(f"nearest neighbours, k={kk}", m.predict(B))
+            mlp = MLPClassifier(hidden_layer_sizes=(256, 128), early_stopping=True, max_iter=40, random_state=0).fit(A, y)
+            record("neural network head", mlp.predict(B))
+            pm = np.zeros_like(pk)
+            pm[:, mlp.classes_] = mlp.predict_proba(B)
+            record("network + neighbours averaged", (pk + pm).argmax(axis=1))
+            print(f"  held out {study_names[s][:30]:<30} {len(te):>6} cells: " + ", ".join(f"{v[-1]:.3f}" for v in scores.values() if len(v)), flush=True)
+            continue
         # --- methods that use the held-out study's own unlabelled cells ---
         pf = np.zeros((len(B), len(fine_names)))
         pf[:, flat.classes_] = flat.predict_proba(B)
@@ -157,10 +180,10 @@ def main():
 
     base = np.array(scores["flat"])
     print(f"\nstudy macro-F1, leave-one-study-out over {len(base)} studies")
-    print(f"  {'method':<26} {'macro-F1':>9} {'vs flat':>9} {'studies better':>15} {'rare-type F1':>13}")
+    print(f"  {'method':<30} {'macro-F1':>9} {'vs flat':>9} {'studies better':>15} {'rare-type F1':>13}")
     for k, v in scores.items():
         v = np.array(v)
-        print(f"  {k:<26} {v.mean():>9.4f} {v.mean() - base.mean():>+9.4f} {int((v > base + 1e-9).sum()):>11}/{len(v)} {np.nanmean(rare[k]):>13.4f}")
+        print(f"  {k:<30} {v.mean():>9.4f} {v.mean() - base.mean():>+9.4f} {int((v > base + 1e-9).sum()):>11}/{len(v)} {np.nanmean(rare[k]):>13.4f}")
 
 
 if __name__ == "__main__":

@@ -87,6 +87,24 @@ HFM's agents use pseudo-labels on the unseen study, so four such methods were te
 - **Smoothing and re-centring are harmful.** Rare types are overwritten by their common neighbours, and a study's mean differs for real biological reasons.
 - Eight methods have now been tried on this embedding and none moves the score by more than 0.006. The representation is the limit.
 
+### Follow-up: the full atlas, HFM's setting
+
+The same experiment on the full release: 2.3 million cells, 35 studies, Cell Ontology labels, read remotely ([log](../../../compute/results/hlca-full-atlas/run.log)). Each study with at least 2,000 cells is held out in turn.
+
+| Method | Study macro-F1 | Versus flat | Studies better |
+| --- | --- | --- | --- |
+| Flat logistic regression | 0.683 | — | — |
+| Nearest neighbours (15) | **0.717** | **+0.034** | 30/35 |
+| Class-balanced logistic regression | 0.648 | −0.035 | 9/35 |
+| Self-training | 0.682 | −0.000 | 21/35 |
+| Shift the study's embedding to the training mean | 0.609 | −0.074 | 1/35 |
+| Smooth predictions over neighbouring cells | 0.555 | −0.128 | 0/35 |
+
+- **On the full atlas the classifier head does matter.** Nearest neighbours beat the linear head by 0.034 on 30 of 35 held-out studies. On the 11-study core the two were level. With 35 studies there are more cell states near each new cell, and a local method uses them where a linear boundary cannot.
+- **This is the first change that moves this project,** and it matches an idea on HFM's own list ("replace the linear head") that its record shows was not taken far.
+- The other methods behave as on the core: class balancing, re-centring and smoothing hurt, self-training is neutral.
+- A follow-up comparing more non-linear heads is queued.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

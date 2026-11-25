@@ -79,18 +79,35 @@ Code: [`blend_forecasts.py`](blend_forecasts.py) in this folder. It ran on free 
   - One year and one split; the blend weights were fitted on half the
     dates. The size of the gain should be confirmed on a second year.
 
+### Follow-up: 2022, HFM's held-out year
+
+Log: [`research/compute/results/weather-blend-2022/`](../../../compute/results/weather-blend-2022/run.log). Same protocol, with every forecast set stored for 2022 on this grid: GraphCast (v2), FGN (ensemble mean), Pangu-Weather, Pangu-Weather started from operational analyses, and IFS HRES.
+
+| Method | 2 m temp. | u wind | v wind | Pressure | Mean | Versus best corrected single model |
+| --- | --- | --- | --- | --- | --- | --- |
+| GraphCast v2, bias-corrected (best single) | 0.0234 | 0.1155 | 0.1411 | 0.0336 | 0.0784 | — |
+| FGN, bias-corrected | 0.0334 | 0.1176 | 0.1441 | 0.0330 | 0.0820 | +4.6% |
+| Pangu-Weather, bias-corrected | 0.0267 | 0.1298 | 0.1584 | 0.0389 | 0.0884 | +12.8% |
+| Pangu-Weather (operational start), bias-corrected | 0.0332 | 0.1379 | 0.1684 | 0.0416 | 0.0953 | +21.5% |
+| IFS HRES, bias-corrected | 0.0372 | 0.1520 | 0.1850 | 0.0417 | 0.1040 | +32.7% |
+| Equal blend of the five | 0.0260 | 0.1122 | 0.1370 | 0.0310 | 0.0766 | −2.3% |
+| Weighted blend of the five | 0.0226 | 0.1060 | 0.1296 | 0.0291 | **0.0718** | **−8.4%** |
+
+- **The blending gain is confirmed on a second year and is larger: 8.4%.** Most of it comes from combining GraphCast with FGN, which get nearly equal weight for wind and pressure.
+- **Bias correction alone gains 0.4–0.5%** for GraphCast and Pangu, again the size of HFM's whole gain so far.
+- HFM's ArchesWeather score of 0.0975 uses its own normalisation, so it cannot be placed in this table. The ArchesWeather paper itself reports GraphCast ahead of ArchesWeather at 24 hours on wind.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
 - **Post-processing one model:** under 1%, here and in HFM's own record.
-- **Blending three families:** 4.6% here. Adding ArchesWeather and newer models (FuXi, Aurora, GenCast means) should add more, with diminishing returns as models become correlated.
+- **Blending model families:** 4.6% with three sets in 2020 and 8.4% with five in 2022. Returns diminish as added models become correlated.
 - **Fine-tuning the model itself:** untested. Published 24-hour surface scores of the best models differ by a few percent, so a few percent is the plausible range.
 - **Floor:** ERA5 is itself an analysis with error, and 24-hour forecasts are already close to it for pressure (0.03 of the variable's spread).
 
 ## Next steps
 
 - Produce ArchesWeather forecasts for 2020 on a free GPU and add them to the blend. This is the direct test of whether HFM's 0.0975 can be beaten by blending.
-- Repeat on a second year (Pangu and IFS HRES cover 2018–2022) to confirm the gain.
 - Let blend weights vary by region and season.
 - Add FuXi (its stored dates did not match and it was skipped) and ensemble-mean forecasts.

@@ -958,7 +958,9 @@ could not make well, and five did not hold. The pattern is consistent:
 | Bike rebalancing | Look-ahead on one past day's demand | **Not supported:** +0.8% over 17 days, after a two-day trial had suggested −2% |
 | Bus holding | Hold buses to even out headways | **Refuted in this model:** headway rules raise passenger cost by 4–12%; perfect foresight gains under 1% |
 | Rail dispatching | Look-ahead instead of greedy priority rules | **Supported:** 10% less weighted delay on real days (better on 43 of 57), 7% on disrupted days; an optimistic bound is 29–35% below |
-| 24-hour weather | Blend model families instead of post-processing one model | **Supported:** 4.6% lower error than the best corrected single model; bias correction alone gains 0.3–0.6% |
+| 24-hour weather | Blend model families instead of post-processing one model | **Supported:** 4.6% (2020) and 8.4% (2022) lower error than the best corrected single model; bias correction alone gains about 0.5% |
+| Lung cell annotation | Hierarchy-aware decoding and class balancing | **Not supported:** four classifier designs within 0.006 macro-F1 across 11 held-out studies |
+| Regulatory DNA (full data) | Multi-task model, three seeds | **Confirmed:** +0.039 Spearman, seeds agree within 0.002 |
 
 What would allow verified attempts on HFM's actual leaderboard:
 1. participation access from the HFM Committee (task bundles and a
@@ -970,7 +972,10 @@ What would allow verified attempts on HFM's actual leaderboard:
 ## 16. Data and reproduction
 
 - [`hfm-projects/`](hfm-projects/README.md) has one self-contained project folder for each of the 54
-  challenges, with the experiment code inside the project it belongs to.
+  challenges, with the experiment code inside the project it belongs to. Each folder
+  has a `REFERENCES.md` with the literature, data and code for that problem.
+- [`hfm-projects/READINESS.md`](hfm-projects/READINESS.md) says what each project still needs.
+- [`hfm-projects/LITERATURE-FINDINGS.md`](hfm-projects/LITERATURE-FINDINGS.md) lists what the literature pass changed.
 
 - `research/hfm-challenges-2026-11-24.csv` lists all 54 challenges: field,
   status, metric, direction, baseline, best audited score, proposal count,

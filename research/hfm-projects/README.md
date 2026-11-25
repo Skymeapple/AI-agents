@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data:** 16 projects (15 experiments; the two steel tracks share one). Four of them use simulators built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 7 projects where public data exist and the experiment still has to be built.
-- **Blocked:** 31 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. Free compute options are in [`../compute/README.md`](../compute/README.md).
+- **Tested on public data:** 18 projects (17 experiments; the two steel tracks share one). Four use simulators built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 6 projects where public data exist and the experiment still has to be built.
+- **Blocked:** 30 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 No result here is scored on HFM's private evaluators. The overview and cross-project conclusions are in [`../human-frontier-mission.md`](../human-frontier-mission.md).
 
@@ -30,13 +30,13 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA](biology/regulatory-dna-mpra/README.md) | Tested on public data | Multi-task model +0.039 Spearman on full data (three seeds agree within 0.002); reverse-complement averaging +0.02. | 0.4465 → 0.7076 |
-| [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | Blocked | The full Human Lung Cell Atlas (2.3 million cells) and the UCE model need a GPU and tens of GB of memory. | 0.7812 → 0.8536 |
+| [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | Tested on public data | Leave-one-study-out on the atlas core: four classifier designs within 0.006 macro-F1; hierarchy-aware decoding does not help. | 0.7812 → 0.8536 |
 
 ## earth-science
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [24-Hour Global Near-Surface Weather Forecasting with ArchesWeather](earth-science/weather-24h/README.md) | Tested on public data | Blending three model families: 4.6% lower error than the best bias-corrected single model; bias correction alone gains 0.3–0.6%. | 0.09823 → 0.09749 |
+| [24-Hour Global Near-Surface Weather Forecasting with ArchesWeather](earth-science/weather-24h/README.md) | Tested on public data | Blending stored forecasts of several model families: 4.6% (2020) and 8.4% (2022) lower error than the best corrected single model; bias correction alone gains about 0.5%. | 0.09823 → 0.09749 |
 
 ## infrastructure
 

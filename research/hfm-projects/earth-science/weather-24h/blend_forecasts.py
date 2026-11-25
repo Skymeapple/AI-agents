@@ -185,6 +185,30 @@ def main():
         wt.append(score(np.tensordot(coef, stack, axes=1), v))
     rows["equal blend of bias-corrected models"] = eq
     rows["weighted blend of bias-corrected models"] = wt
+    # weights that differ by latitude band (12 bands) and, separately, by land/sea-like local variance are a
+    # natural next step; bands are the simplest version
+    bands = np.array_split(np.arange(len(lat)), 12)
+    bw = []
+    for v in VARS:
+        stack = np.stack([corrected[n][v] for n in names])
+        pred = np.empty_like(stack[0])
+        for idx in bands:
+            A = np.stack([stack[i][fit][:, idx, ::2].ravel() for i in range(len(names))], axis=1)
+            coef, _ = nnls(A.astype(np.float64), truth[v][fit][:, idx, ::2].ravel().astype(np.float64))
+            pred[:, idx, :] = np.tensordot(coef, stack[:, :, idx, :], axes=1)
+        bw.append(score(pred, v))
+    rows["weighted blend, weights by latitude band"] = bw
+    # stability check: fit the global weights on the test blocks and score on the fitted blocks
+    sw = []
+    for v in VARS:
+        stack = np.stack([corrected[n][v] for n in names])
+        A = np.stack([(stack[i][test][sub] * np.sqrt(w[:, ::3])).ravel() for i in range(len(names))], axis=1)
+        coef, _ = nnls(A.astype(np.float64), (truth[v][test][sub] * np.sqrt(w[:, ::3])).ravel().astype(np.float64))
+        err = np.tensordot(coef, stack, axes=1)[fit] - truth[v][fit]
+        single = corrected[min(names, key=lambda n: np.sqrt((w * (corrected[n][v][fit] - truth[v][fit]) ** 2).mean()))][v][fit] - truth[v][fit]
+        sw.append(float(np.sqrt((w * err ** 2).mean()) / np.sqrt((w * single ** 2).mean()) - 1))
+    print("swapped halves (weights fitted on test blocks, scored on fitted blocks), blend vs best single model per variable: "
+          + ", ".join(f"{x:+.1%}" for x in sw), flush=True)
 
     best_single = min((np.mean(r), k) for k, r in rows.items() if "bias-corrected" in k and "blend" not in k)
     print(f"\nnormalised RMSE at 24 h on test blocks ({int(test.sum())} forecasts); lower is better")

@@ -1,28 +1,43 @@
 job: weather-blend-2020
-started: 2026-11-25T00:36:08Z
+started: 2026-11-25T00:37:16Z
 cores: 4, memory: 15 GB
+era5 {'time': 92040, 'longitude': 240, 'latitude': 121, 'level': 13} ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_speed', '2m_temperature', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'geopotential', 'geopotential_at_surface']
+  dims ('time', 'longitude', 'latitude') chunks (8, 240, 121)
+pangu {'time': 3652, 'prediction_timedelta': 40, 'longitude': 240, 'latitude': 121, 'level': 13} ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_speed', '2m_temperature', 'geopotential', 'mean_sea_level_pressure', 'specific_humidity', 'temperature']
+  dims ('time', 'prediction_timedelta', 'longitude', 'latitude') chunks (1, 8, 240, 121)
+graphcast/2020 ['LICENSE', 'date_range_2019-11-16_2021-02-01_12_hours-240x121_equiangular_with_poles_conservative.zarr', 'date_range_2019-11-16_2021-02-01_12_hours-64x32_equiangular_conservative.zarr', 'date_range_2019-11-16_2021-02-01_12_hours.zarr', 'date_range_2019-11-16_2021-02-01_12_hours_derived.zarr']
+neuralgcm_deterministic ['2020-240x121_equiangular_with_poles_conservative.zarr', '2020-512x256.zarr', '2020-64x32_equiangular_conservative.zarr']
+fuxi ['2020-1440x721.zarr', '2020-240x121_equiangular_with_poles_conservative.zarr', '2020-64x32_equiangular_conservative.zarr', 'fuxi_raw.zarr']
+keisler ['keisler', '2020-240x121_equiangular_with_poles_conservative.zarr', '2020-360x181.zarr', '2020-64x32_equiangular_conservative.zarr', '2020-64x32_equiangular_with_poles_conservative.zarr']
 Traceback (most recent call last):
-  File "<stdin>", line 4, in <module>
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1677, in open_zarr
-    ds = open_dataset(
-         ^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/api.py", line 619, in open_dataset
-    backend_ds = backend.open_dataset(
-                 ^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1747, in open_dataset
-    store = ZarrStore.open_group(
-            ^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 797, in open_group
-    ) = _get_open_params(
-        ^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1919, in _get_open_params
-    zarr_root_group = zarr.open_consolidated(store, **open_kwargs)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/zarr/convenience.py", line 1366, in open_consolidated
-    return open(store=meta_store, chunk_store=chunk_store, mode=mode, path=path, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/zarr/convenience.py", line 137, in open
-    return open_group(_store, mode=mode, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: open_group() got an unexpected keyword argument 'zarr_format'
-finished: 2026-11-25T00:36:40Z, exit code 1
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/weakref.py", line 666, in _exitfunc
+    f()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/gcsfs/core.py", line 512, in close_session
+    asyn.sync(asyn.loop[0], session.close, timeout=0.1)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py", line 106, in sync
+    raise return_result
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py", line 59, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/client.py", line 1593, in close
+    await self._connector.close()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py", line 1083, in close
+    await super().close(abort_ssl=abort_ssl or self._ssl_shutdown_timeout == 0)
+RuntimeError: Task <Task pending name='Task-98' coro=<_runner() running at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py:59> cb=[_chain_future.<locals>._call_set_state() at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/futures.py:396]> got Future <Task pending name='Task-99' coro=<_wait_for_close() running at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py:124> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>> attached to a different loop
+Task was destroyed but it is pending!
+task: <Task pending name='Task-99' coro=<_wait_for_close() done, defined at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py:122> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>>
+ERA5 targets loaded: 182 dates, grid (121, 240), 11s
+pangu: failed (KeyError: "not all values found in index 'prediction_timedelta'. Try setting the `method` keyword argument (example: method='nearest').")
+ifs-hres: failed (KeyError: "not all values found in index 'prediction_timedelta'. Try setting the `method` keyword argument (example: method='nearest').")
+graphcast: failed (KeyError: "not all values found in index 'prediction_timedelta'. Try setting the `method` keyword argument (example: method='nearest').")
+neuralgcm: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['P_minus_E_cumulative', 'geopotential', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+fuxi: failed (KeyError: "not all values found in index 'prediction_timedelta'. Try setting the `method` keyword argument (example: method='nearest').")
+keisler: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+fewer than two models available; nothing to blend
+finished: 2026-11-25T00:37:59Z, exit code 0

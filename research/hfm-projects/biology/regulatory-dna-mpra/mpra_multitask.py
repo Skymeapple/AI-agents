@@ -140,7 +140,7 @@ def main():
     Mm = torch.tensor(allseq[CELLS].notna().values, dtype=torch.float32)
     print(f"multi-task training sequences: {len(allseq)} (labels per cell line: {Mm.sum(0).int().tolist()})", flush=True)
 
-    rows = []
+    rows, ens, truth = [], {}, {}
     for seed in SEEDS:
         t0 = time.time()
         multi = train(Xm, Ym, Mm, 3, seed)
@@ -153,7 +153,11 @@ def main():
             Xt, yt = encode(test_t[c].seq.tolist()), test_t[c].z.values
             for name, net, col in (("single-task", single, 0), ("multi-task", multi, j)):
                 for rc in (False, True):
-                    rows.append(dict(seed=seed, cell=c, model=name, rc=rc, rho=spearmanr(predict(net, Xt, rc)[:, col], yt)[0]))
+                    pred = predict(net, Xt, rc)[:, col]
+                    rows.append(dict(seed=seed, cell=c, model=name, rc=rc, rho=spearmanr(pred, yt)[0]))
+                    if rc:
+                        ens.setdefault((name, c), []).append(pred)
+                        truth[c] = yt
             print(f"  seed {seed}: {c} single-task trained in {time.time() - t0:.0f}s", flush=True)
     r = pd.DataFrame(rows)
     tab = r.pivot_table(index=["model", "rc"], columns="cell", values="rho")
@@ -161,6 +165,11 @@ def main():
     per_seed = r.pivot_table(index=["model", "rc"], columns="seed", values="rho")
     print("\nSpearman correlation on the test fold (mean over seeds); rc = reverse-complement averaging")
     print(tab.round(4).to_string())
+    if len(SEEDS) > 1:
+        print("\nensemble of all seeds (predictions averaged, with reverse-complement averaging)")
+        for name in ("single-task", "multi-task"):
+            rho = [spearmanr(np.mean(ens[(name, c)], axis=0), truth[c])[0] for c in CELLS]
+            print(f"  {name:<12} " + "  ".join(f"{c} {r:.4f}" for c, r in zip(CELLS, rho)) + f"  macro {np.mean(rho):.4f}")
     print("\nmacro Spearman by seed")
     print(per_seed.round(4).to_string())
 

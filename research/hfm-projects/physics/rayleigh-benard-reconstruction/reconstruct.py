@@ -25,6 +25,8 @@ Methods
                        pressure equation of the Boussinesq flow, computed from the
                        reconstructed buoyancy and velocity
                        (research/human-frontier-mission.md, section 7.9)
+  combined             velocity from gappy POD, buoyancy from the history map,
+                       pressure from the equation; scored on a subset of frames
 The Poisson solver is first checked on the true fields; that error is printed.
 
 Usage: python reconstruct.py <fit-file.hdf5> <test-file.hdf5> [more pairs ...]
@@ -39,19 +41,25 @@ import numpy as np
 N_SENSORS, HISTORY, MODES, SKIP = 256, 8, int(__import__("os").environ.get("RB_MODES", 150)), 20
 
 
-def load(path):
+def load(path, max_runs=None):
     with h5py.File(path, "r") as h:
-        b = h["t0_fields/buoyancy"][:].astype(np.float32)          # (runs, time, x, y)
-        p = h["t0_fields/pressure"][:].astype(np.float32)
-        v = h["t1_fields/velocity"][:].astype(np.float32)          # (..., 2): x and y components
+        b = h["t0_fields/buoyancy"][:max_runs].astype(np.float32)          # (runs, time, x, y)
+        p = h["t0_fields/pressure"][:max_runs].astype(np.float32)
+        v = h["t1_fields/velocity"][:max_runs].astype(np.float32)          # (..., 2): x and y components
         y = h["dimensions/y"][:].astype(np.float64)
         x = h["dimensions/x"][:].astype(np.float64)
+        ra, pr = float(h.attrs.get("Rayleigh", 0) or 0), float(h.attrs.get("Prandtl", 0) or 0)
     fields = np.stack([b, v[..., 0], v[..., 1], p], axis=2)       # (runs, time, 4, x, y)
-    return fields[:, SKIP:], x, y
+    nu = (pr / ra) ** 0.5 if ra > 0 else 0.0                      # viscosity in the dataset's units
+    return fields[:, SKIP:], x, y, nu
 
 
-def poisson_pressure(b, u, v, x, y):
-    """Pressure of the Boussinesq flow: lap(p) = db/dy - div(u . grad u), with dp/dy = b at the walls."""
+def poisson_pressure(b, u, v, x, y, nu=0.0):
+    """Pressure of the Boussinesq flow: lap(p) = db/dy - div(u . grad u).
+
+    Wall condition from the vertical momentum equation with no flow through the wall:
+    dp/dy = b + nu * d2v/dy2.
+    """
     nx, ny = b.shape
     lx = (x[1] - x[0]) * nx
     kx = 2 * np.pi * np.fft.rfftfreq(nx, d=lx / nx)
@@ -68,12 +76,13 @@ def poisson_pressure(b, u, v, x, y):
     D2 = D1 @ D1
     rh = np.fft.rfft(rhs, axis=0)
     bh = np.fft.rfft(b, axis=0)
+    vyy = np.fft.rfft(ddy(ddy(v)), axis=0)
     ph = np.zeros_like(rh)
     for i, k in enumerate(kx):
         A = D2 - (k ** 2) * np.eye(ny)
         r = rh[i].copy()
         A[0], A[-1] = D1[0], D1[-1]                 # wall condition dp/dy = b
-        r[0], r[-1] = bh[i, 0], bh[i, -1]
+        r[0], r[-1] = bh[i, 0] + nu * vyy[i, 0], bh[i, -1] + nu * vyy[i, -1]
         if i == 0:                                  # mean pressure is arbitrary: pin one value
             A[ny // 2] = 0.0; A[ny // 2, ny // 2] = 1.0; r[ny // 2] = 0.0
         ph[i] = np.linalg.solve(A, r)
@@ -93,8 +102,11 @@ def nrmse(pred, true, scale):
 
 
 def run_pair(fit_path, test_path, rng):
-    F, x, y = load(fit_path)
-    T, _, _ = load(test_path)
+    F, x, y, nu = load(fit_path, int(__import__("os").environ.get("RB_FIT_RUNS", 0)) or None)
+    T, _, _, _ = load(test_path)
+    stride = int(__import__("os").environ.get("RB_FIT_STRIDE", 1))
+    spacing = np.diff(y)
+    print(f"  y grid: {len(y)} points, spacing min {spacing.min():.5f} max {spacing.max():.5f}; viscosity {nu:.2e}; fitting runs {F.shape[0]}", flush=True)
     nx, ny = F.shape[3], F.shape[4]
     scale = np.array([T[:, :, c].std() for c in range(3)] + [(T[:, :, 3] - T[:, :, 3].mean(axis=(2, 3), keepdims=True)).std()])
     fscale = np.array([F[:, :, c].std() for c in range(4)])
@@ -109,6 +121,8 @@ def run_pair(fit_path, test_path, rng):
         return tgt, hist, hist[:, -3 * N_SENSORS:]
 
     Yf, Hf, Lf = samples(F)
+    if stride > 1:
+        Yf, Hf, Lf = Yf[::stride], Hf[::stride], Lf[::stride]
     Yt, Ht, Lt = samples(T)
     n = len(Yf)
     X = (Yf / fscale[None, :, None, None]).reshape(n, -1)
@@ -116,7 +130,7 @@ def run_pair(fit_path, test_path, rng):
     Xc = X - mean
     w, V = np.linalg.eigh(Xc @ Xc.T)
     order = np.argsort(w)[::-1][:MODES]
-    basis = (Xc.T @ V[:, order]) / np.sqrt(np.maximum(w[order], 1e-9))                     # (features, modes)
+    basis = ((Xc.T @ V[:, order].astype(np.float32)) / np.sqrt(np.maximum(w[order], 1e-9)).astype(np.float32))   # (features, modes)
     coef_fit = Xc @ basis
     energy = w[order].sum() / w.sum()
 
@@ -146,13 +160,20 @@ def run_pair(fit_path, test_path, rng):
     res = {k: nrmse(v, Yt, scale) for k, v in recon.items()}
     # pressure from the flow equations, checked on the true fields first
     sub = np.arange(0, len(Yt), max(len(Yt) // 60, 1))
-    true_p = np.stack([poisson_pressure(Yt[i, 0].astype(np.float64), Yt[i, 1].astype(np.float64), Yt[i, 2].astype(np.float64), x, y) for i in sub])
-    chk = nrmse(np.concatenate([Yt[sub, :3], true_p[:, None].astype(np.float32)], axis=1), Yt[sub], scale)[3]
-    best = min(("sensor-history map (ridge)", "sensor-history map (kernel)"), key=lambda k: np.mean(res[k]))
-    R = recon[best][sub]
-    pp = np.stack([poisson_pressure(R[i, 0].astype(np.float64), R[i, 1].astype(np.float64), R[i, 2].astype(np.float64), x, y) for i in range(len(sub))])
-    direct = nrmse(R, Yt[sub], scale)[3]
-    viapoisson = nrmse(np.concatenate([R[:, :3], pp[:, None].astype(np.float32)], axis=1), Yt[sub], scale)[3]
+    solve = lambda Fld: np.stack([poisson_pressure(Fld[i, 0].astype(np.float64), Fld[i, 1].astype(np.float64), Fld[i, 2].astype(np.float64), x, y, nu) for i in range(len(Fld))])
+    with_p = lambda Fld, P: np.concatenate([Fld[:, :3], P[:, None].astype(np.float32)], axis=1)
+    chk = nrmse(with_p(Yt[sub], solve(Yt[sub])), Yt[sub], scale)[3]
+    best = "gappy POD (final frame)"
+    G = recon[best][sub]
+    direct = nrmse(G, Yt[sub], scale)[3]
+    viapoisson = nrmse(with_p(G, solve(G)), Yt[sub], scale)[3]
+    # combination: buoyancy from the history map if it is better there, velocity from gappy POD, pressure from the equation
+    H = recon["sensor-history map (ridge)"][sub]
+    combo = G.copy()
+    combo[:, 0] = H[:, 0]
+    combo = with_p(combo, solve(combo))
+    res["combined (subset of frames)"] = nrmse(combo, Yt[sub], scale)
+    res["gappy POD (same subset)"] = nrmse(G, Yt[sub], scale)
     return res, energy, chk, best, direct, viapoisson, len(Yt)
 
 
@@ -172,10 +193,10 @@ def main():
         print(f"  pressure from {best}: direct {direct:.3f}, from the pressure equation {viap:.3f}", flush=True)
         agg.setdefault("_poisson", []).append((direct, viap, chk))
     print("\nmean field NRMSE over settings:")
-    base = np.mean(agg["gappy POD (final frame)"])
     for k, v in agg.items():
         if not k.startswith("_"):
-            print(f"  {k:<38} {np.mean(v):.3f}  ({np.mean(v) / base - 1:+.1%} vs gappy POD; better in {sum(a < b for a, b in zip(v, agg['gappy POD (final frame)']))}/{len(v)} settings)")
+            ref = agg["gappy POD (same subset)"] if "subset" in k else agg["gappy POD (final frame)"]
+            print(f"  {k:<38} {np.mean(v):.3f}  ({np.mean(v) / np.mean(ref) - 1:+.1%} vs gappy POD; better in {sum(a < b for a, b in zip(v, ref))}/{len(v)} settings)")
     d, p, c = map(np.mean, zip(*agg["_poisson"]))
     print(f"  pressure NRMSE: direct {d:.3f}, from the pressure equation {p:.3f}; solver check on true fields {c:.3f}")
 

@@ -2,8 +2,8 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data:** 20 projects (19 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 4 projects where public data exist and the experiment still has to be built.
+- **Tested on public data or in a model study:** 21 projects (20 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 3 projects where public data exist and the experiment still has to be built.
 - **Blocked:** 30 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
@@ -66,7 +66,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 10% less weighted delay than the priority rule (57 days); 14% when it also uses delays visible upstream (18 days); bound is 35% below. | 0 → 0.3984 |
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. Look-ahead over four past days adds 2.7%; a perfect forecast would add 11%. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
-| [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Open | Needs a traffic model calibrated to Toronto counts; not yet built. | 0 → 0.9892 |
+| [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Tested on public data | Model study: a plan tuned to a range of days has 17.5% less delay on other days than one tuned to the counted hour (6 of 8 corridors). | 0 → 0.9892 |
 | [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes; five policies without that knowledge do not beat first fit (−3.2%). | 0 → 0.7615 |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Tested on public data | Repositioning idle drivers on a demand forecast halves lost requests (83% → 92% served, 14 of 14 days); better matching alone gives 0.6%. | 0 → 0.9895 |
 | [Control Policy for Frequent Bus Services](optimization/bus-holding/README.md) | Tested on public data | Headway-based holding raises passenger cost by 4–12% in this model; even perfect foresight gains under 1%. | 0 → 0.7505 |

@@ -2,10 +2,11 @@
 
 Where each project stands, and what it still needs before research can proceed. Data access was checked from free GitHub Actions compute on 2026-11-25; the raw report is in [`../compute/results/data-access-probe/run.log`](../compute/results/data-access-probe/run.log).
 
-## Runs today on CPU (20)
+## Runs today on CPU (21)
 
 | Project | Still missing |
 | --- | --- |
+| [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Toronto's real counts in place of generated volumes. |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Nothing. |
 | [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Nothing for the linear methods. A GPU for learned decoders. |
 | [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | A free GPU account for UCE embeddings. The CPU route on stored embeddings runs now. |
@@ -27,11 +28,10 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Wind-Farm Wake Calibration and Power Prediction from Real SCADA Data](physics/wind-farm-wakes/README.md) | Nothing. |
 | [Minute-Level Perpetual Trading Strategy from Price, Flow, and Funding Data](quant-finance/perpetual-futures-strategy/README.md) | Nothing. |
 
-## Data verified; pipeline or simulator still to build (6)
+## Data verified; pipeline or simulator still to build (5)
 
 | Project | Still missing |
 | --- | --- |
-| [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | A corridor delay model calibrated to the counts. Low priority: HFM's score is already 0.989. |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | A reduced fish-passage and dissolved-gas model built from DART data. |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | The multi-site calibration pipeline. |
 | [Cross-Venue Allocation of Perpetual Orders](quant-finance/cross-venue-routing/README.md) | The three-venue replay and cost model. |
@@ -90,5 +90,5 @@ Where each project stands, and what it still needs before research can proceed. 
 
 - **A free GPU account (Kaggle):** the 17 GPU projects, plus image and foundation-model versions of four CPU projects.
 - **A language-model key:** the 6 agent-harness projects.
-- **Build work only, no outside dependency:** the 6 projects with verified data.
+- **Build work only, no outside dependency:** the 5 projects with verified data.
 - **Licensed market data:** 4 finance projects. No free legal substitute was found.

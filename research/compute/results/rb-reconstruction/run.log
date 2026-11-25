@@ -1,15 +1,7 @@
 job: rb-reconstruction
-started: 2026-11-25T12:51:04Z
+started: 2026-11-25T12:55:20Z
 cores: 4, memory: 15 GB
-total 6340640
-drwxr-xr-x 2 runner runner       4096 Nov 25 12:52 .
-drwxr-xr-x 5 runner runner       4096 Nov 25 12:51 ..
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:52 test_rayleigh_benard_Rayleigh_1e10_Prandtl_1.hdf5
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:51 test_rayleigh_benard_Rayleigh_1e6_Prandtl_1.hdf5
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:52 test_rayleigh_benard_Rayleigh_1e8_Prandtl_1.hdf5
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:52 valid_rayleigh_benard_Rayleigh_1e10_Prandtl_1.hdf5
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:51 valid_rayleigh_benard_Rayleigh_1e6_Prandtl_1.hdf5
--rw-r--r-- 1 runner runner 1082130432 Nov 25 12:51 valid_rayleigh_benard_Rayleigh_1e8_Prandtl_1.hdf5
+  y grid: 128 points, spacing min 0.00787 max 0.00787; viscosity 1.00e-03; fitting runs 5
 
 Rayleigh_1e6_Prandtl_1: 865 test frames; 150 POD modes hold 99.8% of the fitting variance
   method                                  buoyancy       u       v  pressure    mean
@@ -17,8 +9,11 @@ Rayleigh_1e6_Prandtl_1: 865 test frames; 150 POD modes hold 99.8% of the fitting
   sensor-history map (ridge)                 0.318   0.374   0.437     0.222   0.338
   sensor-history map (kernel)                0.306   0.487   0.543     0.205   0.385
   best possible with these POD modes         0.270   0.197   0.201     0.166   0.208
+  combined (subset of frames)                0.315   0.211   0.239     0.242   0.252
+  gappy POD (same subset)                    0.310   0.211   0.239     0.234   0.248
   pressure solver check on true fields: NRMSE 0.222 (should be near 0 if the equation and wall condition are right)
-  pressure from sensor-history map (ridge): direct 0.219, from the pressure equation 0.266
+  pressure from gappy POD (final frame): direct 0.234, from the pressure equation 0.241
+  y grid: 128 points, spacing min 0.00787 max 0.00787; viscosity 1.00e-04; fitting runs 5
 
 Rayleigh_1e8_Prandtl_1: 865 test frames; 150 POD modes hold 97.2% of the fitting variance
   method                                  buoyancy       u       v  pressure    mean
@@ -26,8 +21,11 @@ Rayleigh_1e8_Prandtl_1: 865 test frames; 150 POD modes hold 97.2% of the fitting
   sensor-history map (ridge)                 0.382   0.562   0.496     0.407   0.462
   sensor-history map (kernel)                0.369   0.725   0.659     0.334   0.522
   best possible with these POD modes         0.381   0.370   0.324     0.294   0.342
+  combined (subset of frames)                0.388   0.408   0.363     0.258   0.354
+  gappy POD (same subset)                    0.418   0.408   0.363     0.455   0.411
   pressure solver check on true fields: NRMSE 0.212 (should be near 0 if the equation and wall condition are right)
-  pressure from sensor-history map (ridge): direct 0.405, from the pressure equation 0.318
+  pressure from gappy POD (final frame): direct 0.455, from the pressure equation 0.262
+  y grid: 128 points, spacing min 0.00787 max 0.00787; viscosity 1.00e-05; fitting runs 5
 
 Rayleigh_1e10_Prandtl_1: 865 test frames; 150 POD modes hold 92.0% of the fitting variance
   method                                  buoyancy       u       v  pressure    mean
@@ -35,13 +33,40 @@ Rayleigh_1e10_Prandtl_1: 865 test frames; 150 POD modes hold 92.0% of the fittin
   sensor-history map (ridge)                 0.355   0.629   0.645     0.504   0.533
   sensor-history map (kernel)                0.363   0.695   0.703     0.431   0.548
   best possible with these POD modes         0.357   0.451   0.437     0.396   0.410
+  combined (subset of frames)                0.352   0.508   0.503     0.293   0.414
+  gappy POD (same subset)                    0.371   0.508   0.503     0.555   0.484
   pressure solver check on true fields: NRMSE 0.210 (should be near 0 if the equation and wall condition are right)
-  pressure from sensor-history map (ridge): direct 0.500, from the pressure equation 0.361
+  pressure from gappy POD (final frame): direct 0.555, from the pressure equation 0.293
 
 mean field NRMSE over settings:
   gappy POD (final frame)                0.381  (+0.0% vs gappy POD; better in 0/3 settings)
   sensor-history map (ridge)             0.444  (+16.7% vs gappy POD; better in 0/3 settings)
   sensor-history map (kernel)            0.485  (+27.4% vs gappy POD; better in 0/3 settings)
   best possible with these POD modes     0.320  (-15.9% vs gappy POD; better in 3/3 settings)
-  pressure NRMSE: direct 0.375, from the pressure equation 0.315; solver check on true fields 0.214
-finished: 2026-11-25T12:53:17Z, exit code 0
+  combined (subset of frames)            0.340  (-10.8% vs gappy POD; better in 2/3 settings)
+  gappy POD (same subset)                0.381  (+0.0% vs gappy POD; better in 0/3 settings)
+  pressure NRMSE: direct 0.415, from the pressure equation 0.265; solver check on true fields 0.214
+
+===== more fitting data: Rayleigh 1e8, 10 runs from the train split, 300 modes =====
+  y grid: 128 points, spacing min 0.00787 max 0.00787; viscosity 1.00e-04; fitting runs 10
+
+Rayleigh_1e8_Prandtl_1: 865 test frames; 300 POD modes hold 97.4% of the fitting variance
+  method                                  buoyancy       u       v  pressure    mean
+  gappy POD (final frame)                    0.406   0.330   0.320     0.354   0.352
+  sensor-history map (ridge)                 0.369   0.446   0.422     0.305   0.385
+  sensor-history map (kernel)                0.542   0.659   0.673     0.413   0.571
+  best possible with these POD modes         0.325   0.243   0.229     0.150   0.237
+  combined (subset of frames)                0.374   0.334   0.324     0.244   0.319
+  gappy POD (same subset)                    0.407   0.334   0.324     0.347   0.353
+  pressure solver check on true fields: NRMSE 0.212 (should be near 0 if the equation and wall condition are right)
+  pressure from gappy POD (final frame): direct 0.347, from the pressure equation 0.250
+
+mean field NRMSE over settings:
+  gappy POD (final frame)                0.352  (+0.0% vs gappy POD; better in 0/1 settings)
+  sensor-history map (ridge)             0.385  (+9.4% vs gappy POD; better in 0/1 settings)
+  sensor-history map (kernel)            0.571  (+62.1% vs gappy POD; better in 0/1 settings)
+  best possible with these POD modes     0.237  (-32.8% vs gappy POD; better in 1/1 settings)
+  combined (subset of frames)            0.319  (-9.6% vs gappy POD; better in 1/1 settings)
+  gappy POD (same subset)                0.353  (+0.0% vs gappy POD; better in 0/1 settings)
+  pressure NRMSE: direct 0.347, from the pressure equation 0.250; solver check on true fields 0.212
+finished: 2026-11-25T12:59:03Z, exit code 0

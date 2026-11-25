@@ -1,0 +1,28 @@
+job: weather-blend-2020
+started: 2026-11-25T00:36:08Z
+cores: 4, memory: 15 GB
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1677, in open_zarr
+    ds = open_dataset(
+         ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/api.py", line 619, in open_dataset
+    backend_ds = backend.open_dataset(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1747, in open_dataset
+    store = ZarrStore.open_group(
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 797, in open_group
+    ) = _get_open_params(
+        ^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/xarray/backends/zarr.py", line 1919, in _get_open_params
+    zarr_root_group = zarr.open_consolidated(store, **open_kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/zarr/convenience.py", line 1366, in open_consolidated
+    return open(store=meta_store, chunk_store=chunk_store, mode=mode, path=path, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/zarr/convenience.py", line 137, in open
+    return open_group(_store, mode=mode, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: open_group() got an unexpected keyword argument 'zarr_format'
+finished: 2026-11-25T00:36:40Z, exit code 1

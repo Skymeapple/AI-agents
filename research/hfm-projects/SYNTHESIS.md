@@ -263,7 +263,49 @@ Several projects also fail criterion 6 on access (GPU, model key or licensed
 data) regardless of the group above. Those are listed in
 [`READINESS.md`](READINESS.md).
 
-## 8. How confident to be
+## 8. Update after a further round of experiments
+
+A second round targeted the projects that had not moved. The detailed breakdown by
+ingredient is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
+
+**Projects that moved past their earlier limit**
+
+| Project | Earlier limit | What moved it | New result |
+| --- | --- | --- | --- |
+| Wave energy | 29% error with wind alone | A neighbouring buoy's wave record | 19% error |
+| Optical constants | Skill +0.02 to +0.11 | A library with another measurement of the same material | Skill +0.35 |
+| Steel | Donor median, 40% short of the best possible | One extra cyclic test at ±2% strain | 71% of that gap closed |
+| Galaxy redshift | −1.3% from extinction | All extra catalogue inputs together | −5.8% |
+| Rail | −10% from look-ahead | Delays already visible upstream | −14% (18 days; 60-day run queued) |
+| Bike sharing | Look-ahead gave nothing | Look-ahead averaged over four past days | −2.7% |
+| Cold battery | Skill +0.34 on one cell | Independent second cell | Replicated: +0.36 |
+| Convection reconstruction | Not started | Pressure computed from the flow equation | −10.8% against HFM's starting method |
+| Weather | −4.6% on 2020 | Five model families on 2022 | −8.4%, stable when halves are swapped |
+
+**Projects that were pushed and did not move**
+
+| Project | What was tried | Result |
+| --- | --- | --- |
+| Cloud placement | Re-predicting lifetimes; tenant and batch affinity | None beats first fit. The 13.8% needs lifetime knowledge the trace does not carry. |
+| Lung cell annotation | Eight classifier and adaptation methods | All within 0.006. The embedding is the limit. |
+| Cold battery | Two refinements beyond the Arrhenius form | Each helped one cell and not the other. |
+| Bus holding | Look-ahead with perfect foresight | Under 1%. |
+
+**What this changes in the sorting of section 7**
+
+- Steel, wave energy and optical constants were listed as "bounded by missing
+  information". That diagnosis was right, and supplying the information moved all
+  three. They now belong with the projects that fit, on the condition that the task
+  allows the extra source.
+- Convection reconstruction is confirmed as a strong fit.
+- Cloud placement moves the other way: it is bounded by information that could not
+  be obtained from the public trace.
+
+The round also tested the review's own central claim. Of the nine projects that
+moved, seven moved by adding information or data, one by theory (convection) and
+one by more reasoning (bikes).
+
+## 9. How confident to be
 
 - **Most confident:** the starting-point pattern, the local-search trap, and
   the missing-information bound. Each rests on many tracks or on repeated

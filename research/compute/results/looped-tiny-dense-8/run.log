@@ -1,0 +1,14 @@
+job: looped-tiny-dense-8
+started: 2026-11-25T14:10:44Z
+cores: 4, memory: 15 GB
+-rw-r--r-- 1 runner runner 150000001 Nov 25 14:11 train.txt
+-rw-r--r-- 1 runner runner  22502601 Nov 25 14:11 valid.txt
+  dense-8 seed 0 step 1500: held-out 1.3729 bits/byte, 1133s
+  dense-8 seed 0 step 3000: held-out 1.1911 bits/byte, 2266s
+  dense-8 seed 0 step 4500: held-out 1.0909 bits/byte, 3412s
+RESULT dense-8 seed 0: parameters 3.67M, steps 6000, bytes seen 25M, held-out 1.0692 bits/byte, train time 4565s
+  dense-8 seed 1 step 1500: held-out 1.3773 bits/byte, 1145s
+  dense-8 seed 1 step 3000: held-out 1.1943 bits/byte, 2283s
+  dense-8 seed 1 step 4500: held-out 1.0952 bits/byte, 3418s
+RESULT dense-8 seed 1: parameters 3.67M, steps 6000, bytes seen 25M, held-out 1.0721 bits/byte, train time 4561s
+finished: 2026-11-25T16:43:18Z, exit code 0

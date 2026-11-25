@@ -49,3 +49,17 @@ Verification: the shared web-search budget ran out before this project was searc
 - Vepsalainen, Morton (1987), apparent tardiness cost (ATC) rule, and Morton, Rachamadugu X-RM rule for release dates: not confirmed in session.
 - Pessoa, Uchoa, Poggi de Aragão, Rodrigues (2010), exact branch-cut-and-price over arc-time-indexed formulations: not confirmed in session.
 - Ding, Lü et al., breakout dynasearch for single-machine weighted tardiness: not confirmed in session.
+
+## Second pass (confirmed by web search, 25 November 2026)
+
+- **Congram, Potts, van de Velde (2002). An Iterated Dynasearch Algorithm for the Single-Machine Total Weighted Tardiness Scheduling Problem. INFORMS Journal on Computing 14(1).** https://pubsonline.informs.org/doi/fpi/10.1287/ijoc.14.1.52.7712
+  - Searches an exponentially large neighbourhood of swaps in polynomial time by dynamic programming; the method to test against this project's compiled local search at equal time on 100-job instances.
+- **Lourenco, Martin, Stutzle. Iterated Local Search (arXiv math/0102188).** https://arxiv.org/pdf/math/0102188
+  - The reference description of the search scheme used in this project, including the backtracking restart rule.
+- **Geiger (2009). The Single Machine Total Weighted Tardiness Problem - Is it (for Metaheuristics) a Solved Problem? (arXiv 0907.2990).** https://arxiv.org/pdf/0907.2990
+  - Asks whether standard benchmarks are solved by metaheuristics, which matches this project's finding that 40-job instances are very likely solved.
+- **Ding et al. (2016). Breakout dynasearch for the single-machine total weighted tardiness problem.** https://research.polyu.edu.hk/en/publications/breakout-dynasearch-for-the-single-machine-total-weighted-tardine/
+  - Combines dynasearch with adaptive perturbation; a stronger candidate than plain iterated dynasearch.
+- **Wei Jing (2009). Master's thesis on the weighted tardiness problem with release dates, McMaster University.** https://macsphere.mcmaster.ca/bitstream/11375/9504/1/fulltext.pdf
+  - One of the few sources found on the release-date variant that this project addresses; contents not read.
+

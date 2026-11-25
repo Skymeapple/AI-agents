@@ -33,3 +33,15 @@ Status: the shared web-search budget ran out before this project was searched. T
 - UNVERIFIED: SMARTEOLE wake-steering field campaign data (open SCADA with documented wake cases) as a third farm for testing transfer.
 - UNVERIFIED: 2023-2026 papers on Bayesian or machine-learning calibration of engineering wake models from SCADA, and graph neural network farm-flow surrogates.
 - UNVERIFIED: ERA5 or other reanalysis wind direction as an independent inflow reference for the direction-offset calibration.
+
+## Second pass (confirmed by web search, 25 November 2026)
+
+- **van Binsbergen et al. (2024). Calibration of analytical wake models using four years of offshore SCADA data. Wind Energy Science 9, 1507.** https://wes.copernicus.org/articles/9/1507/2024/
+  - A robust calibration method for analytical wake models on long SCADA records; the method to adopt when moving from the Jensen model used here to FLORIS.
+- **Wake steering field campaign paper (Wind Energy Science, wes-2021-32).** https://wes.copernicus.org/preprints/wes-2021-32/wes-2021-32-manuscript-version3.pdf
+  - Reports absolute wind directions offset by about +9 degrees from FLORIS's expectation when first compared with SCADA, the same size of offset this project found at Penmanshiel.
+- **Robust energy production optimization of a wind farm using wake steering by calibrating the FLORIS model on SCADA data (TU Delft; Energies 14, 1293).** https://repository.tudelft.nl/record/uuid:35db50c3-bd72-4471-ba57-308deb36f8e7
+  - Calibrates FLORIS on Lillgrund SCADA and finds a remaining bias that atmospheric stability could reduce, which points to turbulence intensity as the next input here.
+- **Time-series SCADA calibration of wake models (Wind Energy Science preprint wes-2026-120).** https://wes.copernicus.org/preprints/wes-2026-120/
+  - Proposes estimating wake parameters per timestamp instead of per wind-speed and direction bin; a 2026 alternative to the binned calibration used in most earlier work.
+

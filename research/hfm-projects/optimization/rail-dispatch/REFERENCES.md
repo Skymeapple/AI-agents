@@ -46,3 +46,15 @@ Verification: the shared web-search budget ran out before this project was searc
 - DISPLIB 2025 train dispatching competition and instance library (SINTEF and partners): believed to exist, not confirmed in session.
 - INFORMS Railway Applications Section problem-solving competition data sets (single-track dispatching instances): not confirmed in session.
 - Li et al. (2021), "Scalable Rail Planning and Replanning: Winning the 2020 Flatland Challenge", ICAPS: not confirmed in session.
+
+## Second pass (confirmed by web search, 25 November 2026)
+
+- **D'Ariano et al. (2008). Reordering and local rerouting strategies to reduce train delays in real-time (ROMA dispatching system). Networks and Spatial Economics.** https://link.springer.com/article/10.1007/s11067-008-9088-1
+  - The alternative-graph dispatching system that is the standard reference for real-time meet-and-pass decisions; the model to follow for the rolling-window optimiser this project still lacks.
+- **Rolling-horizon framework for integrated freight train rescheduling and track assignment under disruptions in large-scale networks (TU Dresden).** https://fis.tu-dresden.de/portal/en/publications/a-rollinghorizon-framework-for-integrated-freight-train-rescheduling-and-track-assignment-under-disruptions-in-largescale-networks(f8968e6d-8c8c-4766-bf27-929ad0d2e525).html
+  - Executes only a committed subset of decisions and re-optimises the rest; the design to copy for replacing one-step look-ahead.
+- **MILP with heuristic improvements for single-track train rescheduling (Applied Sciences 13(2), 696).** https://www.mdpi.com/2076-3417/13/2/696/htm
+  - Addresses exactly the single-track conflict-resolution setting of this project.
+- **Gholami, Tornquist Krasemann. A heuristic approach to solving the train traffic re-scheduling problem in real time (Algorithms 11(4), 55).** https://mdpi.com/1999-4893/11/4/55/xml
+  - Discusses decomposition in space and in time (rolling horizon) for real-time rescheduling.
+

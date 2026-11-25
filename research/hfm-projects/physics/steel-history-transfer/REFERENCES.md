@@ -35,3 +35,13 @@ Status: the shared web-search budget ran out before this project was searched. T
 - UNVERIFIED: OpenSees uniaxial materials for the updated Voce-Chaboche model, for response-history checks at frame level.
 - UNVERIFIED: optimal experiment design studies on the shortest cyclic protocol that identifies kinematic hardening.
 - UNVERIFIED: EPFL theses and reports listed in `Database_References_v1-0-0.bib` in the Zenodo record (Suzuki 2018, Garcia 2020, Ozden 2021, El Jisr 2022, Skiadopoulos 2022).
+
+## Second pass (confirmed by web search, 25 November 2026)
+
+- **Hartloper, de Castro e Sousa, Lignos (2021). Constitutive Modeling of Structural Steels: Nonlinear Isotropic/Kinematic Hardening Material Model and Its Calibration. Journal of Structural Engineering.** https://ascelibrary.com/doi/10.1061/%28ASCE%29ST.1943-541X.0002964
+  - Defines the updated Voce-Chaboche model, its parameter constraints and calibration, with parameters for nine steels; the natural richer model to lower this project's oracle error (it adds the yield plateau).
+- **de Castro e Sousa, Suzuki, Lignos (2020). Consistency in Solving the Inverse Problem of the Voce-Chaboche Constitutive Model for Plastic Straining.** https://infoscience.epfl.ch/record/278992?ln=en
+  - Shows how to calibrate the model consistently across cyclic load histories, and reports that the classic model underestimates initial yield stress by 10-30% when fitted for overall error.
+- **Hartloper, Ozden, de Castro e Sousa, Lignos (2023). Uniaxial Cyclic and Tensile Tests on Structural Metallic Materials. Journal of Structural Engineering 149(5). Listed on the RESSLab publication page.** https://epfl.ch/labs/resslab/publications
+  - The paper describing the coupon database used here; the search confirmed the citation only, not its contents.
+

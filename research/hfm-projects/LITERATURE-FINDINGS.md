@@ -39,7 +39,9 @@ Every project folder now has a `REFERENCES.md` with theory, recent work, dataset
 
 ## Where the collection is thin
 
-These files rest on few confirmed entries and need a second search pass:
+A second search pass on 25 November added confirmed entries to the steel, wave-energy, wind-farm, rail and scheduling files. The most useful additions: a 2025 paper doing this project's wave task with ERA5 as the reference (https://www.mdpi.com/2077-1312/13/6/1194), a field campaign reporting the same 9-degree wind-direction offset found here (https://wes.copernicus.org/preprints/wes-2021-32/wes-2021-32-manuscript-version3.pdf), and the rolling-horizon and dynasearch methods that the rail and scheduling projects should test next.
+
+Before that pass, these files rested on few confirmed entries:
 - physics: `steel-cyclic-from-tension`, `steel-history-transfer`, `wind-farm-wakes`, and `wave-energy-resource` (no confirmed entries, leads only);
 - optimization: `rail-dispatch`, and `weighted-tardiness` in infrastructure;
 - classic journal papers in the finance, unit-commitment and ride-hail files are mostly under "Unverified leads".

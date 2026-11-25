@@ -6,13 +6,13 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton, Dean (2017).** Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer. arXiv. https://arxiv.org/abs/1701.06538
   - Origin of sparsely gated MoE layers: more parameters at roughly constant compute per token.
 - **Fedus, Zoph, Shazeer (2021).** Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. arXiv. https://arxiv.org/abs/2101.03961
-  - Top-1 routing MoE recipe that most later MoE language models start from.
+  - Simplified sparse-expert recipe for transformers; a standard starting point for MoE language models.
 - **Su, Lu, Pan, Murtadha, Wen, Liu (2021).** RoFormer: Enhanced Transformer with Rotary Position Embedding. arXiv. https://arxiv.org/abs/2104.09864
   - Defines RoPE, the position encoding used in the long-context axis of this track.
 - **Hoffmann, Borgeaud, Mensch, et al. (2022).** Training Compute-Optimal Large Language Models. arXiv. https://arxiv.org/abs/2203.15556
   - Sets the model-size versus tokens split for a fixed budget; with 4 GPUs for 24 hours the token count is fixed by throughput, so this decides the model size.
 - **Henry, Dachapally, Pawar, Chen (2020).** Query-Key Normalization for Transformers. arXiv. https://arxiv.org/abs/2010.04245
-  - Source of QK-norm, a low-cost attention stabiliser used in fast small-scale recipes.
+  - Source of QK-norm (normalising queries and keys before the attention dot product), a low-cost change often used in small fast recipes.
 
 ## Recent advances and breakthroughs (2023-2026)
 - **Krajewski, Ludziejewski, Adamczewski, Pióro, Krutul, et al. (2024).** Scaling Laws for Fine-Grained Mixture of Experts. ICLR 2024. https://arxiv.org/abs/2402.07871
@@ -33,7 +33,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
   - The 8k-sequence axis changed the RoPE base; this paper explains why RoPE frequency choice matters when sequence length changes.
 
 ## Datasets and benchmarks
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - Defines DCLM-Pool (240T tokens), DCLM-Baseline and 53 evaluations; project page https://www.datacomp.ai/dclm/.

@@ -4,7 +4,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 
 ## Theory and established methods
 - **Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser (2018).** Universal Transformers. ICLR 2019. https://arxiv.org/abs/1807.03819
-  - The original depth-recurrent transformer: one block applied repeatedly, with a per-step (timestep) signal and optional ACT halting.
+  - The original depth-recurrent transformer: one block applied repeatedly over all positions, with an optional adaptive computation time (halting) mechanism.
 - **Lan, Chen, Goodman, Gimpel, Sharma, Soricut (2019).** ALBERT: A Lite BERT for Self-supervised Learning of Language Representations. ICLR 2020. https://arxiv.org/abs/1909.11942
   - Standard reference for cross-layer weight sharing; code at https://github.com/google-research/ALBERT.
 - **Xu, Sato (2024).** On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding. ICML 2025. https://arxiv.org/abs/2410.01405
@@ -39,7 +39,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 ## Datasets and benchmarks
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - Source of the hidden evaluation distribution.
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source of the main training data.
 
 ## Open-source code and tools

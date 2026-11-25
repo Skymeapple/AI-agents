@@ -9,13 +9,13 @@ Checked 2026-11-25. Each entry was confirmed in this session by a web search res
 - **Vannitsem, Bremnes, Demaeyer et al. (2020).** Statistical Postprocessing for Weather Forecasts: Review, Challenges and Avenues in a Big Data World. BAMS. https://arxiv.org/abs/2004.06582
   - Survey of post-processing methods; use it to pick methods HFM has not tried.
 - **Rasp, Lerch (2018).** Neural networks for post-processing ensemble weather forecasts. Monthly Weather Review 146:3885-3900. https://arxiv.org/abs/1805.09091
-  - Small neural network with station/grid embeddings beats EMOS; code at https://github.com/slerch/ppnn. Runs on CPU.
+  - Neural-network alternative to EMOS, with code at https://github.com/slerch/ppnn. A template for a learned correction of a frozen model's output.
 - **Bi, Xie, Zhang et al. (2022/2023).** Pangu-Weather: A 3D High-Resolution Model for Fast and Accurate Global Weather Forecast. arXiv; Nature 619:533-538. https://arxiv.org/abs/2211.02556
   - The model ArchesWeather modifies, and the second model family whose stored 2022 forecasts are public (see Datasets).
 - **Lam, Sanchez-Gonzalez, Willson et al. (2022/2023).** GraphCast: Learning skillful medium-range global weather forecasting. arXiv; Science. https://arxiv.org/abs/2212.12794
-  - Introduces fine-tuning on multi-step autoregressive rollouts, the method named in this project's route to a step change.
+  - Lowest 24 h surface RMSE among the models in the ArchesWeather comparison table. Read it for rollout training, the method named in this project's route to a step change (training details not checked against the text in this session).
 - **Keisler (2022).** Forecasting Global Weather with Graph Neural Networks. https://arxiv.org/abs/2202.07575
-  - Early graph model at about 1 degree; its forecasts are also stored in WeatherBench 2.
+  - Early graph model; its 2020 forecasts are stored in WeatherBench 2.
 
 ## Recent advances and breakthroughs (2023-2026)
 
@@ -24,7 +24,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by a web search res
 - **Couairon, Singh, Charantonis et al. (2024).** ArchesWeather & ArchesWeatherGen: a deterministic and generative model for efficient ML weather forecasting. arXiv; the geoarches README also links a Science Advances version. https://arxiv.org/abs/2412.12971
   - Trained at 1.5° for about 9 V100-days; ArchesWeatherGen samples an ensemble on top of the deterministic model, so an ensemble mean is available from the same code.
 - **Price, Sanchez-Gonzalez, Alet et al. (2023/2024).** GenCast: Diffusion-based ensemble forecasting for medium-range weather. arXiv; Nature (DOI 10.1038/s41586-024-08252-9). https://arxiv.org/abs/2312.15796
-  - Ensemble means lower RMSE; stored GenCast forecasts exist in WeatherBench 2 for 2020 only.
+  - Diffusion ensemble at 0.25°. Stored GenCast forecasts, including an ensemble mean, exist in WeatherBench 2 for 2020 only.
 - **Kochkov, Yuval, Langmore et al. (2023/2024).** Neural General Circulation Models for Weather and Climate. Nature 632:1060-1066. https://arxiv.org/abs/2311.07222
   - Hybrid physics/ML model, a different error structure from pure transformers; code at https://github.com/neuralgcm/neuralgcm.
 - **Chen, Zhong, Zhang et al. (2023).** FuXi: A cascade machine learning forecasting system for 15-day global weather forecast. npj Climate and Atmospheric Science. https://arxiv.org/abs/2306.12873
@@ -36,7 +36,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by a web search res
 - **Alet, Price, El-Kadi et al. (2025).** Skillful joint probabilistic weather forecasting from marginals (FGN). https://arxiv.org/abs/2506.10772
   - Stored 2022 FGN forecasts, including an ensemble mean on the 240x121 grid, are in the WeatherBench 2 bucket.
 - **Nguyen, Shah, Bansal et al. (2023).** Scaling transformer neural networks for skillful and reliable medium-range weather forecasting (Stormer). NeurIPS 2024. https://arxiv.org/abs/2312.03876
-  - Averages forecasts made at several time steps to the same lead time; this can be done with a frozen model.
+  - Trains one model to forecast over varying time intervals (abstract). ArchesWeather's Table 1 lists it as a 1.4° competitor with better 24 h wind scores.
 - **Chakraborty, Maulik, Harrington et al. (2025).** MoWE: A Mixture of Weather Experts. https://arxiv.org/abs/2509.09052
   - A gating network blends stored forecasts from several ML models per grid point; abstract reports up to 10% lower RMSE than the best single model at 2 days, and better than a plain average.
 - **Trotta, Johnson, de Burgh-Day et al. (2025).** Statistical post-processing yields accurate probabilistic forecasts from Artificial Intelligence weather models. AIES. https://arxiv.org/abs/2504.12672
@@ -44,7 +44,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by a web search res
 - **Sop Nkuiate, Evans, Ferro et al. (2026).** Value of Adding AI Weather Model Ensembles to a Multi-model Probabilistic Blend. https://arxiv.org/abs/2610.42130
   - Blend gain depends on member skill and on how different the members' errors are; argues for blending models from different families.
 - **Agrawal, Carver, Gazen et al. (2023).** A Machine Learning Outlook: Post-processing of Global Medium-range Forecasts. https://arxiv.org/abs/2303.16301
-  - Neural post-processing on the global grid; warns that RMSE rewards smoothing, which matters for this RMSE-only metric.
+  - Neural post-processing on the global grid; abstract reports up to 12% lower RMSE (850 hPa temperature, day 7) and discusses the limits of RMSE as the only metric.
 
 ## Datasets and benchmarks
 
@@ -78,7 +78,7 @@ Checked 2026-11-25. Each entry was confirmed in this session by a web search res
 ## Breakthroughs in related fields that could transfer
 
 - **Brenowitz, Cohen, Pathak et al. (2024).** A Practical Probabilistic Benchmark for AI Weather Models. GRL 52, e2024GL113656. https://arxiv.org/abs/2401.15305
-  - Lagged ensembles: average forecasts started at earlier times that verify at the same time. Needs only stored forecasts, so it is a CPU experiment.
+  - Lagged ensembles: build an ensemble from a library of deterministic forecasts started at different times. Needs only stored forecasts, so it is a CPU experiment.
 
 ## Published results to beat
 

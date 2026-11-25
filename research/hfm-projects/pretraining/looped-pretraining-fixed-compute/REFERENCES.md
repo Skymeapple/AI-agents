@@ -4,7 +4,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 
 ## Theory and established methods
 - **Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser (2018).** Universal Transformers. ICLR 2019. https://arxiv.org/abs/1807.03819
-  - The reference design family; the original already adds a per-step timestep signal, the same idea as the loop-index embedding proposed in the README.
+  - The reference design family for this track: shared blocks applied repeatedly, with optional halting.
 - **Lan, Chen, Goodman, Gimpel, Sharma, Soricut (2019).** ALBERT: A Lite BERT for Self-supervised Learning of Language Representations. ICLR 2020. https://arxiv.org/abs/1909.11942
   - Standard reference for cross-layer weight sharing; code at https://github.com/google-research/ALBERT.
 - **Xu, Sato (2024).** On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding. ICML 2025. https://arxiv.org/abs/2410.01405
@@ -16,7 +16,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 
 ## Recent advances and breakthroughs (2023-2026)
 - **Schwethelm, Rueckert, Kaissis (2026).** How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models. NeurIPS 2026 (spotlight). https://arxiv.org/abs/2604.21106
-  - Most useful diagnostic for this track: a loop is worth unique-parameters^0.46, so the 8x3 reference pays training cost for depth it only partly uses; hyperconnections raised the exponent to 0.65.
+  - Most useful diagnostic for this track: a block looped r times counts as about r^0.46 blocks of unique parameters, so the 8x3 reference pays training cost for depth it only partly uses; hyperconnections raised the exponent to 0.65.
 - **Ekbote, Pagnoni, Sachan, Bhosale, Lewis, et al. (2026).** How to Loop Your Transformer: Loop Scaling, Specialization, and Parallel Inference. arXiv. https://arxiv.org/abs/2610.40325
   - Tests exactly the design space of this track (what is looped, how many loops, what is passed between loops); loop-specific low-rank adapters are the tested alternative to per-loop norms.
 - **Bae, Fisch, Harutyunyan, Ji, Kim, Schuster (2024).** Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA. ICLR 2025. https://arxiv.org/abs/2410.20672
@@ -39,7 +39,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
   - Reports that math-heavy cooldown mixtures drive reasoning gains, a data-side explanation for the stalled math shard (the recipe is frozen here, so this is context, not an action).
 
 ## Datasets and benchmarks
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - Defines DCLM-Pool (240T tokens), DCLM-Baseline and 53 evaluations; project page https://www.datacomp.ai/dclm/.
@@ -56,7 +56,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Jolicoeur-Martineau (2025).** Less is More: Recursive Reasoning with Tiny Networks. arXiv. https://arxiv.org/abs/2510.04871
   - Deep supervision at every recursion drove the gains in small recursive reasoners; a per-loop loss is a loop-aware training pass that adds no inference cost.
 - **Bai, Kolter, Koltun (2019).** Deep Equilibrium Models. arXiv. https://arxiv.org/abs/1909.01377
-  - Fixed-point view of a weight-tied network with implicit differentiation, giving constant training memory in effective depth.
+  - Treats a weight-tied network as a fixed-point problem; the starting point for later fixed-point and attractor language models.
 
 ## Published results to beat
 - HFM best so far on this track: -0.7786 neg_cost_adjusted_bpb (project README). The looped reference (8 blocks x 3 loops) has no published score.

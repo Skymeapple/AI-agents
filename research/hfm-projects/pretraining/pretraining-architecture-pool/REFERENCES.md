@@ -16,7 +16,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 
 ## Recent advances and breakthroughs (2023-2026)
 - **Du, Luo, Qiu, Huang, Shen, Cheng, Guo, Fu (2024).** Stacking Your Transformers: A Closer Look at Model Growth for Efficient LLM Pre-Training. NeurIPS 2024 (spotlight). https://arxiv.org/abs/2405.15319
-  - Strongest published result for growth during pretraining; note that it copies layers (not function-preserving) and still wins.
+  - Strongest published result found for growth during pretraining: depthwise stacking of trained layers, tested up to 7B parameters.
 - **Ren, Wang, Tan, Kong, Fang, et al. (2026).** Rethinking Normalization Placement for LLMs: Post-Norm under Curriculum Depth Growing. arXiv. https://arxiv.org/abs/2608.13156
   - Normalisation placement matters under depth growth even though it does not under joint training.
 - **Kapl, Angelis, Maile, von Oswald, Bauer (2026).** From Growing to Looping: A Unified View of Iterative Computation in LLMs. arXiv. https://arxiv.org/abs/2602.16490
@@ -39,7 +39,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
   - Constant-plus-cooldown schedules let a single run be branched at several lengths, which makes short-run ranking cheaper.
 
 ## Datasets and benchmarks
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 - **Ben Allal, Lozhkov, Bakouch, Martín Blázquez, Penedo, et al. (2025).** SmolLM2: When Smol Goes Big -- Data-Centric Training of a Small Language Model. arXiv. https://arxiv.org/abs/2502.02737
   - Source paper for FineMath and for a code set (Stack-Edu), with a documented web/code/math multi-stage mixture.
@@ -51,7 +51,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Karpathy (2025).** nanochat. GitHub. https://github.com/karpathy/nanochat
   - Compact full pipeline (tokeniser, pretraining, evaluation); secondary sources put the depth-20 run at about 4 hours on 8 H100 (about $100). Walkthrough: https://github.com/karpathy/nanochat/discussions/1.
 - **Jordan et al. (2024-2026).** modded-nanogpt (NanoGPT speedrun). GitHub. https://github.com/KellerJordan/modded-nanogpt
-  - Community record of recipe changes (Muon, QK-norm, ReLU-squared MLPs, value embeddings, sliding-window attention, YaRN) for reaching 3.28 validation loss on FineWeb with 8 H100s.
+  - Community record of recipe changes (search results list Muon, an FP8 output head, paired-head attention, value embeddings, sliding-window attention, ReLU-squared MLPs and YaRN) for reaching 3.28 validation loss on FineWeb with 8 H100s.
 
 ## Breakthroughs in related fields that could transfer
 - **Liew, Kato, Takase (2025).** Scaling Laws for Upcycling Mixture-of-Experts Language Models. ICML 2025. https://arxiv.org/abs/2502.03009

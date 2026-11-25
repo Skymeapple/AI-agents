@@ -11,7 +11,7 @@ Verification: every entry was confirmed in this session, either by a web search 
 - **Freund, Henderson, O'Mahony, Shmoys (2019).** Analytics and Bikes: Riding Tandem with Motivate to Improve Mobility. Interfaces 49(5), 310-323. https://pubsonline.informs.org/stoken/default+domain/EC-25/full/10.1287/inte.2019.1005
   - Describes the Citi Bike practice, including de-censoring demand at empty and full stations; trip files undercount demand exactly when stations fail.
 - **Brinkmann, Ulmer, Mattfeld (2019).** Dynamic Lookahead Policies for Stochastic-Dynamic Inventory Routing in Bike Sharing Systems. Computers & Operations Research 106, 260-279. https://dblp.uni-trier.de/rec/journals/cor/BrinkmannUM19.html
-  - The closest published match to this task: an MDP for one van with look-ahead horizons tuned by time of day.
+  - The closest published match to this task: a single-vehicle Markov decision process solved with look-ahead policies and value function approximation.
 - **Brinkmann, Ulmer, Mattfeld (2020).** The multi-vehicle stochastic-dynamic inventory routing problem for bike sharing systems. Business Research. https://link.springer.com/article/10.1007/s40685-019-0100-z
   - Extends the look-ahead to several vans and moves anticipation to an analytical offline step to keep decisions fast.
 - **Lin (2018).** A Comprehensive Framework for Dynamic Bike Rebalancing in a Large Bike Sharing Network. arXiv:1806.02890. https://arxiv.org/abs/1806.02890

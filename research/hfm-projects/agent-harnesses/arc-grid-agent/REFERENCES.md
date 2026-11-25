@@ -32,7 +32,7 @@
 - **Jolicoeur-Martineau (2025).** Less is More: Recursive Reasoning with Tiny Networks (TRM). arXiv:2510.04871. https://arxiv.org/abs/2510.04871 [A]
   - A 7M-parameter network reaches 45% on ARC-AGI-1 and 8% on ARC-AGI-2; small enough to run locally as a second voter beside the frozen model.
 - **Liao, Gu (2025).** ARC-AGI Without Pretraining (CompressARC). arXiv:2512.06104. https://arxiv.org/abs/2512.06104 [A]
-  - Solves puzzles by compression at test time with no training set; another cheap local voter.
+  - Solves 20% of evaluation puzzles by minimising description length at inference time, with no pretraining and no training set; another cheap local voter.
 
 ## Datasets and benchmarks
 - **ARC Prize Foundation.** ARC-AGI-2 repository (1,000 public training tasks, 120 public evaluation tasks, JSON). https://github.com/arcprize/ARC-AGI-2 [S]

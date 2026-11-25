@@ -4,19 +4,19 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 
 ## Theory and established methods
 - **Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser (2018).** Universal Transformers. ICLR 2019. https://arxiv.org/abs/1807.03819
-  - The original depth-recurrent transformer: one block applied repeatedly, with a per-step (timestep) signal and optional ACT halting.
+  - The original depth-recurrent transformer: one block applied repeatedly over all positions, with an optional adaptive computation time (halting) mechanism.
 - **Graves (2016).** Adaptive Computation Time for Recurrent Neural Networks. arXiv. https://arxiv.org/abs/1603.08983
   - Baseline for learned exits; its sensitivity to the ponder-cost weight is a known source of failed runs.
 - **Banino, Balaguer, Blundell (2021).** PonderNet: Learning to Ponder. ICML 2021 AutoML workshop. https://arxiv.org/abs/2107.05407
-  - Probabilistic halting that is easier to tune than ACT; a baseline for learned exits.
+  - Learns the number of computation steps end to end and reports large gains over earlier adaptive-computation methods; a baseline for learned exits.
 - **Lan, Chen, Goodman, Gimpel, Sharma, Soricut (2019).** ALBERT: A Lite BERT for Self-supervised Learning of Language Representations. ICLR 2020. https://arxiv.org/abs/1909.11942
   - Standard reference for cross-layer weight sharing; code at https://github.com/google-research/ALBERT.
 - **Bai, Kolter, Koltun (2019).** Deep Equilibrium Models. arXiv. https://arxiv.org/abs/1909.01377
-  - Fixed-point view of a weight-tied network with implicit differentiation, giving constant training memory in effective depth.
+  - Treats a weight-tied network as a fixed-point problem; the starting point for later fixed-point and attractor language models.
 
 ## Recent advances and breakthroughs (2023-2026)
 - **Geiping, McLeish, Jain, Kirchenbauer, Singh, Bartoldson, Kailkhura, Bhatele, Goldstein (2025).** Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach. NeurIPS 2025. https://arxiv.org/abs/2502.05171
-  - Reference for training a model that must run at several loop counts: the iteration count is sampled per step, which bears on the README's 1/2/4-loop schedule.
+  - Large-scale reference for a model that runs at several loop counts, which bears on the README's 1/2/4-loop schedule.
 - **Zhu et al. (2025).** Scaling Latent Reasoning via Looped Language Models (Ouro). arXiv. https://arxiv.org/abs/2510.25741
   - Looped LMs at 1.4B and 2.6B with learned exit gates, pretrained on 7.7T tokens; project page https://ouro-llm.github.io.
 - **Marchenko, Bezrukov, Kashurin, Fedorova, Bocharov, et al. (2026).** Closing the Loop: Practical Training Recipes for Looped Language Models. arXiv. https://arxiv.org/abs/2610.00673
@@ -45,7 +45,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 ## Datasets and benchmarks
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - The hidden metric is bits-per-byte on DCLM text; this is the source paper and public pool.
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 
 ## Open-source code and tools

@@ -8,9 +8,9 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Porian, Wortsman, Jitsev, Schmidt, Carmon (2024).** Resolving Discrepancies in Compute-Optimal Scaling of Language Models. NeurIPS 2024 (spotlight). https://arxiv.org/abs/2406.19146
   - Small-scale scaling fits are distorted by warmup length and untuned optimisers; fix these before ranking ideas on short runs.
 - **Geiping, Goldstein (2022).** Cramming: Training a Language Model on a Single GPU in One Day. ICML 2023. https://arxiv.org/abs/2212.14034
-  - Closest published analogue of staged search under a small budget; reports that most architecture changes matter less than throughput and recipe.
+  - Closest published analogue of a small fixed budget (one GPU, one day); reports that performance still follows the scaling laws seen at large compute.
 - **Henry, Dachapally, Pawar, Chen (2020).** Query-Key Normalization for Transformers. arXiv. https://arxiv.org/abs/2010.04245
-  - Source of QK-norm, a low-cost attention stabiliser used in fast small-scale recipes.
+  - Source of QK-norm (normalising queries and keys before the attention dot product), a low-cost change often used in small fast recipes.
 - **Bernstein, Newhouse (2024).** Old Optimizer, New Norm: An Anthology. arXiv. https://arxiv.org/abs/2409.20325
   - Steepest-descent-under-a-norm view that motivates Muon-style updates for matrix parameters.
 
@@ -37,7 +37,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
   - An alternative to restarting from scratch at each stage: grow the stable 45M-token candidate in depth.
 
 ## Datasets and benchmarks
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - Defines DCLM-Pool (240T tokens), DCLM-Baseline and 53 evaluations; project page https://www.datacomp.ai/dclm/.
@@ -46,7 +46,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Hu, Mueller, Ross, Williams, Linzen, et al. (2024).** Findings of the Second BabyLM Challenge: Sample-Efficient Pretraining on Developmentally Plausible Corpora. arXiv. https://arxiv.org/abs/2412.05149
   - A fixed 10M/100M-word benchmark for fast, comparable architecture tests.
 - **Eldan, Li (2023).** TinyStories: How Small Can Language Models Be and Still Speak Coherent English? arXiv. https://arxiv.org/abs/2305.07759
-  - Small synthetic corpus on which models of a few million parameters train in minutes; useful for smoke tests, not for ranking.
+  - Small synthetic story corpus built to study very small language models; useful for smoke tests of code, not for ranking ideas for web text.
 
 ## Open-source code and tools
 - **Jordan et al. (2024-2026).** modded-nanogpt (NanoGPT speedrun). GitHub. https://github.com/KellerJordan/modded-nanogpt

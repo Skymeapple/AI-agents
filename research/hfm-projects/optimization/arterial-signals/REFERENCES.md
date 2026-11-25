@@ -15,7 +15,7 @@ Verification: every entry was confirmed in this session, either by a web search 
 - **Daganzo (1994).** The Cell Transmission Model: A Dynamic Representation of Highway Traffic Consistent with the Hydrodynamic Theory. Transportation Research Part B 28(4), 269-287. https://doi.org/10.1016/0191-2615(94)90002-7
   - The queue-and-spillback model named in the README; Part II (network traffic, 1995, Transportation Research Part B 29(2), 79-93) is listed at https://its.berkeley.edu/publications/cell-transmission-model-part-ii-network-traffic.
 - **Ouyang, Zhang, Lavaei, Varaiya (2019).** Large-Scale Traffic Signal Offset Optimization. arXiv:1911.08368; IEEE Transactions on Control of Network Systems 2020. https://arxiv.org/abs/1911.08368
-  - Offset optimisation posed as a tractable optimisation problem at network scale; an alternative to query-limited local offset search.
+  - Offset optimisation as a continuous problem (sinusoidal flow model) solved by convex relaxation and randomised rounding, with a proven bound of at least 0.785 of the global optimum; an alternative to query-limited local offset search.
 - **Arizona State University research record (year not captured).** Robust signal timing for arterials under day-to-day demand variations. https://asu.elsevierpure.com/en/publications/robust-signal-timing-for-arterials-under-day-to-day-demand-variat/
   - Scenario-based stochastic programme for pretimed arterial signals with probability-weighted demand scenarios; this is the README's "optimise for a distribution of demand" route, already formulated.
 - **Caltrans research report (2010).** Robust signal timing report, f0017242 PRR-2010-07. https://dot.ca.gov/-/media/dot-media/programs/research-innovation-system-information/documents/f0017242-prr-2010-07-final-report.pdf
@@ -43,7 +43,7 @@ Verification: every entry was confirmed in this session, either by a web search 
 ## Datasets and benchmarks
 
 - **City of Toronto Open Data.** Traffic Volumes - Multimodal Intersection Turning Movement Counts. https://open.toronto.ca/dataset/traffic-volumes-at-intersections-for-all-modes/
-  - The counts behind the task: vehicles, pedestrians and cyclists per movement over 8- or 14-hour count days, 1984 to present; many intersections have repeat counts, which gives an empirical demand distribution around the counted hour.
+  - The counts behind the task: vehicles, pedestrians and cyclists per movement over 8- or 14-hour count days, 1984 to present; check which of the task intersections have repeat counts, since those would give an empirical demand distribution around the counted hour.
 - **City of Toronto (2025).** News release on new transportation datasets. https://www.toronto.ca/news/city-of-toronto-publishes-new-transportation-datasets-that-highlight-travel-trends-and-support-traffic-management-actions/
   - Confirms the January 2025 refresh of the count data and the companion speed, volume and classification counts (one-day to one-week counts since 1993), which can calibrate link speeds.
 
@@ -52,9 +52,9 @@ Verification: every entry was confirmed in this session, either by a web search 
 - **Mei, Lei, Da, Shi et al. (2022).** LibSignal: An Open Library for Traffic Signal Control. arXiv:2211.10649. https://arxiv.org/abs/2211.10649
   - Runs the same controller on SUMO and CityFlow with published baseline results; a ready evaluation harness.
 - **RESCO.** Reinforcement Learning Benchmarks for Traffic Signal Control (SUMO). https://github.com/UnivOfAlabama-BittleResearchGroup/RESCO
-  - Ships fixed-time, greedy and max-pressure baselines on SUMO networks, including arterial corridors.
+  - Ships fixed-time, greedy and max-pressure baselines on SUMO networks.
 - **Zhang, Feng, Liu, Ding et al. (2019).** CityFlow: A Multi-Agent Reinforcement Learning Environment for Large Scale City Traffic Scenario. arXiv:1905.05217. https://arxiv.org/abs/1905.05217
-  - Fast mesoscopic simulator suitable for thousands of plan evaluations under sampled demand.
+  - Simulator built for large-scale scenarios; a candidate for many plan evaluations under sampled demand.
 
 ## Breakthroughs in related fields that could transfer
 

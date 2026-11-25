@@ -6,7 +6,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
 - **Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton, Dean (2017).** Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer. arXiv. https://arxiv.org/abs/1701.06538
   - MoE raises capacity at about constant compute per token, the basic lever when inference cost is capped.
 - **Fedus, Zoph, Shazeer (2021).** Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. arXiv. https://arxiv.org/abs/2101.03961
-  - Top-1 routing MoE recipe that most later MoE language models start from.
+  - Simplified sparse-expert recipe for transformers; a standard starting point for MoE language models.
 - **Hoffmann, Borgeaud, Mensch, et al. (2022).** Training Compute-Optimal Large Language Models. arXiv. https://arxiv.org/abs/2203.15556
   - With inference cost capped, model size is nearly fixed, so the remaining lever is tokens seen: this is why throughput is the README's first priority.
 - **Porian, Wortsman, Jitsev, Schmidt, Carmon (2024).** Resolving Discrepancies in Compute-Optimal Scaling of Language Models. NeurIPS 2024 (spotlight). https://arxiv.org/abs/2406.19146
@@ -35,7 +35,7 @@ Every entry below was confirmed on 2026-11-25 by a web search result or by its a
   - Reports higher throughput and lower perplexity at equal training FLOPs through per-token depth; the cost model of the scorer decides whether this counts.
 
 ## Datasets and benchmarks
-- **Penedo, Kydlíček, Ben Allal, Lozhkov, et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
+- **Penedo et al. (2024).** The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale. NeurIPS 2024 Datasets and Benchmarks. https://arxiv.org/abs/2406.17557
   - Source paper for FineWeb (15T tokens) and FineWeb-Edu (1.3T tokens); dataset at https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu.
 - **Li, Fang, Smyrnis, Ivgi, Jordan, et al. (2024).** DataComp-LM: In search of the next generation of training sets for language models. arXiv. https://arxiv.org/abs/2406.11794
   - Defines DCLM-Pool (240T tokens), DCLM-Baseline and 53 evaluations; project page https://www.datacomp.ai/dclm/.

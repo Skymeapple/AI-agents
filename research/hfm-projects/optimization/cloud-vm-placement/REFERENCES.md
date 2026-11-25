@@ -7,7 +7,7 @@ Verification: every entry was confirmed in this session, either by a web search 
 - **Hadary, Marshall, Menache, Pan, Greeff, Dion, Dorminey, Joshi, Chen, Russinovich, Moscibroda (2020).** Protean: VM Allocation Service at Scale. OSDI 2020, 845-861. https://www.usenix.org/conference/osdi20/presentation/hadary
   - Describes Azure's production allocator and its rule-based packing; the packing trace used here was released with this paper.
 - **Cortez, Bonde, Muzio, Russinovich, Fontoura, Bianchini (2017).** Resource Central: Understanding and Predicting Workloads for Improved Resource Management in Large Cloud Platforms. SOSP 2017, 153-167. https://doi.org/10.1145/3132747.3132772
-  - Shows VM lifetime is predictable from subscription history and VM metadata, with predictions served online; the feature set a lifetime predictor should start from.
+  - Characterises Azure VM workloads and describes a system that learns VM behaviour (including lifetime) offline and serves predictions online to resource managers; the starting point for a lifetime predictor.
 - **Buchbinder, Fairstein, Mellou, Menache, Naor (2021).** Online Virtual Machine Allocation with Lifetime and Load Predictions. SIGMETRICS 2021 (arXiv:2011.06250, "Online Virtual Machine Allocation with Predictions"). https://arxiv.org/abs/2011.06250
   - Models placement as dynamic bin packing minimising total machine usage time, and studies what predictions of lifetime and of future load are worth; gives algorithms with guarantees to compare with.
 - **Barbalho et al. (2023).** Virtual Machine Allocation with Lifetime Predictions. MLSys 2023 (Outstanding Paper). https://proceedings.mlsys.org/paper_files/paper/2023/hash/48eb2c79643df5cb7d125945238bd7d0-Abstract-mlsys2023.html
@@ -27,7 +27,7 @@ Verification: every entry was confirmed in this session, either by a web search 
 ## Datasets and benchmarks
 
 - **Microsoft Azure.** AzurePublicDataset (GitHub). https://www.github.com/Azure/AzurePublicDataset
-  - Holds AzureTracesForPacking2020 (VM requests with priority and lifetime, used here) plus the 2017 and 2019 VM workload traces (the 2019 trace covers about 2.6 million VMs and 1.9 billion utilisation readings); the 2017 and 2019 traces give more lifetime training data with subscription and VM-type fields.
+  - Holds AzureTracesForPacking2020 (VM requests with priority and lifetime, used here) plus the 2017 and 2019 VM workload traces (the 2019 trace covers about 2.6 million VMs and 1.9 billion utilisation readings); the 2017 and 2019 traces give more lifetime training data.
 - **Google.** cluster-data, ClusterData2019 (Borg trace v3). https://github.com/google/cluster-data/blob/master/ClusterData2019.md
   - Eight Borg cells over May 2019, about 2.4 TiB compressed, available through BigQuery under CC-BY; a second provider for checking that a lifetime model generalises.
 - **Alibaba.** clusterdata, cluster-trace-v2018. https://github.com/alibaba/clusterdata/blob/master/cluster-trace-v2018/trace_2018.md

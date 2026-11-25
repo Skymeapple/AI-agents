@@ -20,7 +20,7 @@ Harnesses
 Per-question outputs are written to a JSON-lines file so that combinations (use the
 code answer when it ran, else the direct answer) can be scored afterwards.
 
-Usage: python tableqa_small_model.py <model.gguf> <WikiTableQuestions dir> <direct|code|code-notebook> <questions> <out.jsonl>
+Usage: python tableqa_small_model.py <model.gguf> <WikiTableQuestions dir> <direct|code|code-notebook> <questions> <out.jsonl> [questions to skip]
        python tableqa_small_model.py score <direct.jsonl> <code.jsonl> [label]
 """
 from __future__ import annotations
@@ -100,6 +100,12 @@ def extract_code(text):
     return (m.group(1) if m else text).replace("pd.read_csv(", "(lambda *a, **k: df)(")
 
 
+def clean(a):
+    """A code answer that looks like an answer: short, one line, not empty, zero, a truth value or a printed table."""
+    a = str(a)
+    return not ("\n" in a or "dtype" in a or len(a) > 60 or a in ("", "nan", "None", "[]", "0", "False", "True") or a.startswith("Empty"))
+
+
 def score(direct_path, code_path, label="code"):
     print(f"--- {label}")
     load = lambda p: {r["id"]: r for r in map(json.loads, open(p))}
@@ -111,6 +117,7 @@ def score(direct_path, code_path, label="code"):
     print(f"  code, first attempt                               {acc(lambda i: c[i]['ok_first']):.1f}%   (code ran: {acc(lambda i: c[i]['ran_first']):.1f}%)")
     print(f"  code, with up to two retries on errors            {acc(lambda i: c[i]['ok']):.1f}%   (code ran: {acc(lambda i: c[i]['ran']):.1f}%)")
     print(f"  code when it ran, otherwise the direct answer     {acc(lambda i: c[i]['ok'] if c[i]['ran'] else d[i]['ok']):.1f}%")
+    print(f"  code when its answer looks clean, else direct     {acc(lambda i: c[i]['ok'] if (c[i]['ran'] and clean(c[i]['answer'])) else d[i]['ok']):.1f}%")
     print(f"  either harness right (upper bound of a selector)  {acc(lambda i: c[i]['ok'] or d[i]['ok']):.1f}%")
     both = sum(c[i]["ok"] and d[i]["ok"] for i in ids); only_c = sum(c[i]["ok"] and not d[i]["ok"] for i in ids); only_d = sum(d[i]["ok"] and not c[i]["ok"] for i in ids)
     print(f"  right in both {both}, code only {only_c}, direct only {only_d}")
@@ -136,6 +143,8 @@ def main():
         qs = list(csv.DictReader(f, delimiter="\t", quoting=csv.QUOTE_NONE))
     import random
     random.Random(0).shuffle(qs)
+    skip = int(sys.argv[6]) if len(sys.argv) > 6 else 0      # a fresh set of questions, to check a rule chosen on the first set
+    seen = 0
     done, n_ok = 0, 0
     with open(out, "w") as fo:
         for q in qs:
@@ -144,6 +153,9 @@ def main():
             path = os.path.join(root, q["context"])
             rows = read_table(path)
             if len(rows) < 2 or len(show(rows, 40)) > 9000:
+                continue
+            seen += 1
+            if seen <= skip:
                 continue
             t0 = time.time()
             rec = dict(id=q["id"], question=q["utterance"], target=q["targetValue"], rows=len(rows) - 1)

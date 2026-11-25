@@ -2,10 +2,11 @@
 
 Where each project stands, and what it still needs before research can proceed. Data access was checked from free GitHub Actions compute on 2026-11-25; the raw report is in [`../compute/results/data-access-probe/run.log`](../compute/results/data-access-probe/run.log).
 
-## Runs today on CPU (18)
+## Runs today on CPU (19)
 
 | Project | Still missing |
 | --- | --- |
+| [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Nothing for the linear methods. A GPU for learned decoders. |
 | [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | A free GPU account for UCE embeddings. The CPU route on stored embeddings runs now. |
 | [Galaxy Photometric Redshift Prediction Across Disjoint Sky Regions](astronomy/photometric-redshift/README.md) | A free GPU account for the image-based version. |
 | [Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA](biology/regulatory-dna-mpra/README.md) | A free GPU account for Evo 2 features; the 7B model may exceed a 16 GB GPU, so the smaller Evo 2 checkpoints are the realistic start. |
@@ -25,7 +26,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Wind-Farm Wake Calibration and Power Prediction from Real SCADA Data](physics/wind-farm-wakes/README.md) | Nothing. |
 | [Minute-Level Perpetual Trading Strategy from Price, Flow, and Funding Data](quant-finance/perpetual-futures-strategy/README.md) | Nothing. |
 
-## Data verified; pipeline or simulator still to build (8)
+## Data verified; pipeline or simulator still to build (7)
 
 | Project | Still missing |
 | --- | --- |
@@ -33,7 +34,6 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | A reduced fish-passage and dissolved-gas model built from DART data. |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | A matching and repositioning replay on the shared simulation core. Low priority: HFM's score is already 0.989. |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | The multi-site calibration pipeline. |
-| [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | The reconstruction pipeline on a data subset. No external blocker. |
 | [Cross-Venue Allocation of Perpetual Orders](quant-finance/cross-venue-routing/README.md) | The three-venue replay and cost model. |
 | [Event-Driven Equity Strategy Based on Financial Filing Events](quant-finance/filing-event-strategy/README.md) | Your decision on a contact address to send to the SEC, then the event-study pipeline. |
 | [Cost-aware long-only portfolio construction under trading frictions on Qlib](quant-finance/portfolio-with-frictions/README.md) | The backtester with price limits, halts and costs. |
@@ -90,5 +90,5 @@ Where each project stands, and what it still needs before research can proceed. 
 
 - **A free GPU account (Kaggle):** the 17 GPU projects, plus image and foundation-model versions of four CPU projects.
 - **A language-model key:** the 6 agent-harness projects.
-- **Build work only, no outside dependency:** the 8 projects with verified data.
+- **Build work only, no outside dependency:** the 7 projects with verified data.
 - **Licensed market data:** 4 finance projects. No free legal substitute was found.

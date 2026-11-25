@@ -2,8 +2,8 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data:** 18 projects (17 experiments; the two steel tracks share one). Four use simulators built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 6 projects where public data exist and the experiment still has to be built.
+- **Tested on public data:** 19 projects (18 experiments; the two steel tracks share one). Four use simulators built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 5 projects where public data exist and the experiment still has to be built.
 - **Blocked:** 30 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md).
@@ -84,7 +84,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. The Well dataset is hundreds of GB and Walrus is a large model. | 0.3693 → 0.3129 |
 | [Optical Coating Design Under Manufacturing Variation](physics/robust-ar-coating/README.md) | Tested on public data | Selecting designs by robust score: −14.5% expected reflectance. | 0 → 0.2523 |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | Open | Needs a multi-site co-location dataset; candidates are large (SensEURCity is 5.7 GB) and were not processed. | 0 → 0.6945 |
-| [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. The Well dataset is hundreds of GB. | 0.2918 → 0.2342 |
+| [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Tested on public data | Pressure from the flow equation cuts pressure error 36% and total field error 10.8% against gappy POD; sensor-history regressions are worse. | 0.2918 → 0.2342 |
 | [Wind-Farm Wake Calibration and Power Prediction from Real SCADA Data](physics/wind-farm-wakes/README.md) | Tested on public data | Direction calibration: −1.4% becomes −11.9% at the unseen farm; physics + learned residual best at −29.8%. | not published → 0.4124 |
 
 ## post-training

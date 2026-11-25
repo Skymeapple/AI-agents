@@ -1,0 +1,25 @@
+job: pm25-transfer
+started: 2026-11-25T14:02:24Z
+cores: 4, memory: 15 GB
+
+308866 sensor-hours with reference; cities: {'Antwerp': 174394, 'Oslo': 73421, 'Zagreb': 61051}; reference sites: 36
+
+transfer across cities: fitted on two cities, tested on the third
+  sensor   test                     hours            raw         linear    linear + RH    hygroscopic  boosted trees   (RMSE in ug/m3)
+Traceback (most recent call last):
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 132, in <module>
+    main()
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 127, in main
+    evaluate(city_splits, "transfer across cities: fitted on two cities, tested on the third")
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 102, in evaluate
+    rm = {m: float(np.sqrt(np.mean((fit_predict(tr, te, m) - te.ref.values) ** 2))) for m in METHODS}
+                                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 89, in fit_predict
+    m = lgb.LGBMRegressor(n_estimators=300, learning_rate=0.05, num_leaves=31, min_child_samples=50, subsample=0.8, subsample_freq=1, verbose=-1, n_jobs=4, random_state=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/lightgbm/sklearn.py", line 1478, in __init__
+    super().__init__(
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/lightgbm/sklearn.py", line 721, in __init__
+    raise LightGBMError(
+lightgbm.basic.LightGBMError: scikit-learn is required for lightgbm.sklearn. You must install scikit-learn and restart your session to use this module.
+finished: 2026-11-25T14:38:08Z, exit code 0

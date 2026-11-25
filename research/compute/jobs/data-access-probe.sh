@@ -37,7 +37,7 @@ try:
 except Exception as e:
     print("   could not parse listing", e)
 for model in ("era5", "graphcast", "pangu", "hres", "neuralgcm_deterministic", "fuxi", "keisler", "sphericalcnn"):
-    s, body = get(f"https://storage.googleapis.com/storage/v1/b/weatherbench2/o?prefix=datasets/{model}/&delimiter=/&maxResults=100", n=200000)
+    s, _, body = get(f"https://storage.googleapis.com/storage/v1/b/weatherbench2/o?prefix=datasets/{model}/&delimiter=/&maxResults=100", n=200000)
     try:
         print(f"   {model}:", [p.split('/')[-2] for p in json.loads(body).get("prefixes", [])][:25])
     except Exception:

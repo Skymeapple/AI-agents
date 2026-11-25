@@ -72,6 +72,21 @@ Code: [`cross_study_annotation.py`](cross_study_annotation.py) in this folder. I
     0.49 with every method. What limits the score is how a study differs
     from the rest, which a classifier head cannot fix.
 
+### Follow-up: using the held-out study's own unlabelled cells
+
+HFM's agents use pseudo-labels on the unseen study, so four such methods were tested on the same 11 studies.
+
+| Method | Study macro-F1 | Versus flat | Studies better |
+| --- | --- | --- | --- |
+| Flat logistic regression | 0.715 | — | — |
+| Self-training (add confident held-out cells, refit) | 0.718 | +0.003 | 8/11 |
+| Shift the study's embedding to the training mean | 0.614 | −0.100 | 0/11 |
+| Smooth predictions over neighbouring cells | 0.586 | −0.129 | 0/11 |
+
+- **Self-training gives a small, fairly consistent gain** (+0.003, 8 of 11 studies), the same order as HFM's agents report per step.
+- **Smoothing and re-centring are harmful.** Rare types are overwritten by their common neighbours, and a study's mean differs for real biological reasons.
+- Eight methods have now been tried on this embedding and none moves the score by more than 0.006. The representation is the limit.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

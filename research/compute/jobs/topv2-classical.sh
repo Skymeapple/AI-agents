@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# TOPv2: structure coverage and a classical tagger-parser on CPU.
+# TOPv2: structure coverage and a classical tagger-parser on CPU (linear tagger; rerun).
 set -euo pipefail
-pip install -q pandas pyarrow sklearn-crfsuite requests numpy
+pip install -q pandas pyarrow scikit-learn requests numpy
 mkdir -p "$DATA/topv2" && cd "$DATA/topv2"
 python - <<'PY'
 import requests
@@ -18,4 +18,4 @@ for ds in ("WillHeld/top_v2", "tasksource/top_v2", "facebook/top_v2"):
 PY
 ls -la
 cd "$GITHUB_WORKSPACE"
-python -u research/hfm-projects/post-training/topv2-parsing/topv2_classical.py "$DATA/topv2/train.parquet" "$DATA/topv2/test.parquet" 12288 50000
+timeout 240m python -u research/hfm-projects/post-training/topv2-parsing/topv2_classical.py "$DATA/topv2/train.parquet" "$DATA/topv2/test.parquet" 12288 30000

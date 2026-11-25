@@ -9,8 +9,10 @@ the public dataset (TOPv2, Chen et al. 2020), two things can be measured:
      example [IN:GET_WEATHER [SL:LOCATION ] ]. What share of test parses use a frame
      already present in training?
   2. A classical parser. Each word is tagged with its full path in the tree and a
-     conditional random field predicts the tags; the tree is rebuilt from them.
-     Exact match = the whole tree is right.
+     linear classifier predicts each word's tag from the words around it and the
+     words of the whole utterance; the tree is rebuilt from the tags. Exact match =
+     the whole tree is right. (A conditional random field over the same tags was
+     tried first; with thousands of distinct tags it did not finish in two hours.)
 
 Results are split by whether the frame was seen in training, which is the
 "compositional" part of the task.
@@ -25,7 +27,8 @@ from collections import Counter
 
 import numpy as np
 import pandas as pd
-import sklearn_crfsuite
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.linear_model import SGDClassifier
 
 
 def to_tags(parse):
@@ -113,14 +116,26 @@ def main():
         for p in sub:
             memo.setdefault(" ".join(to_tags(p)[0]).lower(), p)
         exact_memo = np.array([memo.get(" ".join(w).lower()) == p for w, p in zip(te_w, te_p)])
-        X, Y = zip(*[(feats(w), t) for w, t in (to_tags(p) for p in sub) if w])
+        pairs = [(w, t) for w, t in (to_tags(p) for p in sub) if w]
+        Y = [t for _, ts in pairs for t in ts]
         t0 = time.time()
-        crf = sklearn_crfsuite.CRF(algorithm="lbfgs", c1=0.02, c2=0.02, max_iterations=120, all_possible_transitions=False)
-        crf.fit(X, Y)
-        pred = crf.predict([feats(w) for w in te_w])
+        vec = DictVectorizer(dtype=np.float32)
+
+        def matrix(rows, fit=False):
+            m = (vec.fit_transform(rows) if fit else vec.transform(rows)).tocsr()
+            m.indices, m.indptr = m.indices.astype(np.int32), m.indptr.astype(np.int32)
+            return m
+
+        X = matrix([f for w, _ in pairs for f in feats(w)], fit=True)
+        clf = SGDClassifier(loss="modified_huber", alpha=2e-6, max_iter=12, tol=None, n_jobs=-1, random_state=0).fit(X, Y)
+        flat = clf.predict(matrix([f for w in te_w for f in feats(w)]))
+        pred, k = [], 0
+        for w in te_w:
+            pred.append(list(flat[k:k + len(w)]))
+            k += len(w)
         ok = np.array([to_parse(w, t) == p for w, t, p in zip(te_w, pred, te_p)])
         fr_ok = np.array([frame(to_parse(w, t)) == frame(p) for w, t, p in zip(te_w, pred, te_p)])
-        print(f"\ntraining examples: {n}   ({len(frames)} distinct frames, {len(set(t for y in Y for t in y))} distinct tags, fit {time.time() - t0:.0f}s, {len(te_p)} test parses)")
+        print(f"\ntraining examples: {n}   ({len(frames)} distinct frames, {len(set(Y))} distinct tags, fit {time.time() - t0:.0f}s, {len(te_p)} test parses)")
         print(f"  test parses whose frame was seen in training:        {100 * seen.mean():.1f}%")
         print(f"  identical utterance in training with the same parse: {100 * exact_memo.mean():.1f}%")
         print(f"  classical parser, exact match:                       {100 * ok.mean():.1f}%   (frame right {100 * fr_ok.mean():.1f}%)")

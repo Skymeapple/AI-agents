@@ -116,6 +116,7 @@ Gains are relative to the best practical method without that ingredient.
 | Job scheduling | Ten times more search rounds, twice | 7.1% → 9.7% → 10.1% |
 | Grid scheduling | 20 scenarios instead of 10 | 23% → 24% |
 | Weather | Blend weights by latitude band | 8.4% → 8.5% |
+| Looped transformer (toy scale) | Apply two shared layers three times: twice the compute, same parameters | Closes 63% of the gap to a model twice as deep; loses to it at equal compute |
 | HFM's agents | Hundreds of further tuning experiments | Median gain per accepted step 0.15% |
 
 - **Returns fall fast.** The first step of look-ahead or search is worth

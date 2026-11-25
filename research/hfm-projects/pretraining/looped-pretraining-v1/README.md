@@ -44,6 +44,8 @@ No experiment has been run for this project.
 
 - **Why:** Needs a GPU. This analysis ran on a 4-CPU container. The track has ended.
 
+- **Toy-scale evidence:** a CPU test in [`../looped-pretraining-fixed-compute/`](../looped-pretraining-fixed-compute/README.md) found that looping closes 63% of the gap between a 4-layer and an 8-layer model at equal parameters, loses at equal compute, and that a loop-index embedding adds nothing beyond seed noise. It says nothing about HFM's scale.
+
 ## How far this can go
 
 Not estimable.

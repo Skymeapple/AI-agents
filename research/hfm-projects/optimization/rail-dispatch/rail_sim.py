@@ -25,6 +25,9 @@ Policies
   look-ahead       rollout on top of "priority": try each option (including
                    waiting), finish the day with "priority", keep the cheapest.
                    Trains that have not yet entered are assumed to be on plan.
+  look-ahead,      the same, but each option is scored on four futures: one on
+  sampled futures  plan and three in which unseen trains get delays drawn from
+                   the first five days (those days are then left out of the test)
   hindsight bound  mixed-integer programme over the whole day with all real entry
                    times known (HiGHS, time-limited), which no online policy can beat
 
@@ -125,12 +128,20 @@ class RailSim(Simulator):
         c.free_at, c.now, c.held = dict(self.free_at), self.now, set(self.held)
         return c
 
-    def belief(self):
-        """Trains that have not entered yet are assumed to enter on plan (or now, if already overdue)."""
+    delay_pool = None    # entry delays (minutes late) seen on earlier days; set per instance
+
+    def belief(self, k=0):
+        """What a dispatcher can assume about trains that have not entered yet.
+
+        k = 0: they enter on plan (or now, if already overdue). k > 0: each is given a
+        delay drawn from delays seen on earlier days, a different draw for each k.
+        """
         c = self.clone()
+        rng = np.random.default_rng(1000 * k + int(self.now)) if k and self.delay_pool is not None else None
         for i, t in enumerate(self.trains):
             if self.leg[i] == 0 and not self.running[i] and t["actual_in"] > self.now:
-                c.ready[i] = c.wait_since[i] = max(t["plan_in"], self.now + 1e-6)
+                late = float(rng.choice(self.delay_pool)) if rng is not None else 0.0
+                c.ready[i] = c.wait_since[i] = max(t["plan_in"] + late, t["legs"][0][2], self.now + 1e-6)
         return c
 
     def done(self):
@@ -259,10 +270,17 @@ def main():
         files = files[: int(sys.argv[2])]
     days = [d for d in (load_day(f) for f in files) if len(d) >= 20]
     print(f"{len(days)} days, {np.mean([len(d) for d in days]):.0f} trains a day on the corridor")
-    policies = {"first come": first_come, "priority": priority, "look-ahead (rollout)": RolloutPolicy(priority)}
-    compare(days, make_sim, policies, "priority", bound=hindsight, label="real days, real entry delays")
-    disrupted = [disrupt(d, seed=k) for k, d in enumerate(days)]
-    compare(disrupted, make_sim, policies, "priority", bound=hindsight, label="disrupted days (extra entry delays on 30% of trains)")
+    # delays a dispatcher could have learned from: the first five days, which are then left out of the test
+    pool = np.array([max(t["actual_in"] - t["plan_in"], 0.0) for d in days[:5] for t in d])
+    RailSim.delay_pool = pool
+    print(f"entry delays on the five learning days: mean {pool.mean():.1f} min, 90th percentile {np.quantile(pool, 0.9):.1f} min")
+    test = days[5:]
+    bound = None if os.environ.get("RAIL_NO_BOUND") else hindsight
+    policies = {"first come": first_come, "priority": priority, "look-ahead (rollout)": RolloutPolicy(priority),
+                "look-ahead, 4 sampled futures": RolloutPolicy(priority, scenarios=4)}
+    compare(test, make_sim, policies, "priority", bound=bound, label="real days, real entry delays")
+    disrupted = [disrupt(d, seed=k) for k, d in enumerate(test)]
+    compare(disrupted, make_sim, policies, "priority", bound=bound, label="disrupted days (extra entry delays on 30% of trains)")
 
 
 if __name__ == "__main__":

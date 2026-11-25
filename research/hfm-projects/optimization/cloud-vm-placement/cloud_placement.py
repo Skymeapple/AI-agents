@@ -21,6 +21,14 @@ Policies:
                    Lifetimes are predicted causally: the median lifetime of
                    already-finished VMs of the same tenant and type (falling back
                    to tenant, then to all VMs)
+  re-predicting    the lifetime-aware rule with estimates that are revised as
+                   VMs age: remaining life given age, re-estimated for a server
+                   when a VM leaves it or when it outlives its estimate
+  tenant affinity  no lifetime estimate at all: prefer a server that already holds
+                   this tenant's VMs, then first fit
+  batch affinity   prefer a server holding this tenant's VMs launched in the same
+                   minute, then the tenant's other VMs, then first fit. Two thirds
+                   of VMs arrive in such batches and most batch-mates stop together
   oracle           the same rule with true lifetimes (upper bound for the rule)
   class-aware      a coarser use of the same prediction: sort VMs into three
                    lifetime classes (under an hour, under a day, longer) and keep
@@ -38,7 +46,9 @@ Usage: python research/hfm-experiments/cloud_placement.py <packing_trace_zone_a_
 """
 from __future__ import annotations
 
+import bisect
 import heapq
+import random
 import sqlite3
 import statistics
 import sys
@@ -80,6 +90,37 @@ class Predictor:
         return 0.05
 
 
+class SurvivalPredictor:
+    """Remaining lifetime given age, from finished VMs of the same tenant and type.
+
+    The estimate is the median remaining life among past VMs that lived longer than
+    the current age. A VM that has outlived every finished VM in its group is assumed
+    to have about as long left as it has already lived (lifetimes are heavy-tailed).
+    This follows the re-prediction idea of Google's LAVA scheduler (arXiv 2412.09840).
+    """
+
+    def __init__(self):
+        self.groups = defaultdict(list)          # sorted lifetimes per group
+        self.rng = random.Random(0)
+
+    def learn(self, tenant, vtype, life):
+        for key in ((tenant, vtype), tenant, None):
+            lst = self.groups[key]
+            bisect.insort(lst, life)
+            if len(lst) > 300:
+                del lst[self.rng.randrange(len(lst))]
+
+    def remaining(self, tenant, vtype, age):
+        for key in ((tenant, vtype), tenant, None):
+            lst = self.groups.get(key)
+            if lst:
+                i = bisect.bisect_right(lst, age)
+                n = len(lst) - i
+                if n >= 3:
+                    return lst[i + n // 2] - age
+        return max(age, 0.02)
+
+
 def replay(vms, policy):
     cap = np.zeros((64, 4))             # used capacity per server
     count = np.zeros(64, int)           # VMs on each server
@@ -89,13 +130,26 @@ def replay(vms, policy):
     n_srv, busy, seq = 0, 0.0, 0
     ends = []                           # (end time, tie-break, server, demand, tenant, type, start)
     pred = Predictor()
+    surv = SurvivalPredictor()
+    residents = defaultdict(dict)       # server -> {vm sequence number: (start, tenant, type)}
+    repredict = policy == "re-predicting"
+    affinity = policy in ("batch affinity", "tenant affinity")
+    tenant_on, batch_on = defaultdict(dict), defaultdict(dict)   # server -> counts of a tenant's (and a batch's) VMs
     noise, log_err = np.random.default_rng(0), []
     for start, end, tenant, vtype, dem in vms:
         while ends and ends[0][0] <= start:
-            t, _, s, d, ten, ty, st = heapq.heappop(ends)
+            t, q, s, d, ten, ty, st = heapq.heappop(ends)
             cap[s] -= d
             count[s] -= 1
             pred.learn(ten, ty, t - st)
+            if affinity:
+                tenant_on[s][ten] -= 1
+                batch_on[s][(ten, int(st * 1440))] -= 1
+            if repredict:
+                surv.learn(ten, ty, t - st)
+                residents[s].pop(q, None)
+                # the server's emptying time is re-estimated from the VMs still on it
+                exit_at[s] = t + max((surv.remaining(a, b, t - c) for c, a, b in residents[s].values()), default=0.0)
             if count[s] == 0:
                 busy += t - opened[s]
                 cap[s] = 0
@@ -103,12 +157,18 @@ def replay(vms, policy):
             life = end - start
         elif policy.startswith("noisy"):      # true lifetime times lognormal noise of the given log-scale spread
             life = (end - start) * float(np.exp(float(policy.split()[1]) * noise.standard_normal()))
+        elif repredict:
+            life = surv.remaining(tenant, vtype, 0.0)
+            log_err.append(np.log(max(life, 1e-4) / max(end - start, 1e-4)))
         else:
             life = pred.predict(tenant, vtype)
             log_err.append(np.log(max(life, 1e-4) / max(end - start, 1e-4)))
         leave = start + life
         klass = 0 if life < 1 / 24 else (1 if life < 1.0 else 2)   # under an hour, under a day, longer
         fits = np.flatnonzero((cap[:n_srv] + dem <= 1.0 + 1e-9).all(axis=1) & (count[:n_srv] > 0))
+        if repredict:
+            for o in fits[exit_at[fits] < start]:        # servers that outlived their estimate: estimate again
+                exit_at[o] = start + max(surv.remaining(a, b, start - c) for c, a, b in residents[o].values())
         if len(fits) == 0:
             empties = np.flatnonzero(count[:n_srv] == 0)
             if len(empties):
@@ -125,6 +185,14 @@ def replay(vms, policy):
         else:
             if policy == "first fit":
                 s = fits[0]
+            elif policy in ("batch affinity", "tenant affinity"):
+                # VMs a tenant launches together usually stop together, so keep them together:
+                # prefer a server holding this tenant's VMs from the same minute, then any of
+                # this tenant's VMs, then first fit
+                minute = int(start * 1440)
+                same_batch = [o for o in fits if batch_on[o].get((tenant, minute))] if policy == "batch affinity" else []
+                same_tenant = [o for o in fits if tenant_on[o].get(tenant)]
+                s = same_batch[0] if same_batch else (same_tenant[0] if same_tenant else fits[0])
             else:
                 slack = (1.0 - cap[fits] - dem).sum(axis=1)
                 if policy == "best fit":
@@ -141,21 +209,30 @@ def replay(vms, policy):
         cap[s] += dem
         count[s] += 1
         seq += 1
+        if affinity:
+            tenant_on[s][tenant] = tenant_on[s].get(tenant, 0) + 1
+            key = (tenant, int(start * 1440))
+            batch_on[s][key] = batch_on[s].get(key, 0) + 1
+        if repredict:
+            residents[s][seq] = (start, tenant, vtype)
         heapq.heappush(ends, (end, seq, s, dem, tenant, vtype, start))
     while ends:
         t, _, s, d, ten, ty, st = heapq.heappop(ends)
         count[s] -= 1
         if count[s] == 0:
             busy += t - opened[s]
-    if policy == "lifetime-aware":
-        replay.pred_spread = float(np.std(log_err))
+    if policy in ("lifetime-aware", "re-predicting"):
+        replay.spread[policy] = float(np.sqrt(np.mean(np.square(log_err))))
     return busy
 
 
 def main():
     path = sys.argv[1]
     modulus = int(sys.argv[2]) if len(sys.argv) > 2 else 12
-    pols = ("first fit", "best fit", "lifetime-aware", "oracle", "noisy 0.5", "noisy 1.0", "noisy 2.0", "class-aware", "class oracle")
+    replay.spread = {}
+    pols = ("first fit", "best fit", "tenant affinity", "batch affinity", "lifetime-aware", "re-predicting", "oracle", "noisy 0.5", "noisy 1.0", "noisy 2.0", "class-aware", "class oracle")
+    if len(sys.argv) > 3:
+        pols = tuple(sys.argv[3].split(","))
     print(f"{'sample':>6} {'VMs':>8} | " + " ".join(f"{p:>15}" for p in pols) + " | lower bound")
     rel = {p: [] for p in pols}
     for residue in range(4):  # four disjoint tenant samples
@@ -168,8 +245,8 @@ def main():
     print("\nserver-days versus best fit (mean over four samples; samples better than best fit):")
     for p in pols:
         print(f"  {p:<16} {np.mean(rel[p]):>+7.1%}   {sum(g < 0 for g in rel[p])}/4")
-    print(f"\nlog-scale error of the median predictor (last sample): {replay.pred_spread:.2f}; "
-          "'noisy x' is the lifetime-aware rule fed true lifetimes with log-scale error x")
+    print("\nroot-mean-square log error of the lifetime estimate at arrival (last sample): "
+          + ", ".join(f"{k} {v:.2f}" for k, v in replay.spread.items()))
 
 if __name__ == "__main__":
     main()

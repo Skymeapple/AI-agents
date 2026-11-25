@@ -66,24 +66,33 @@ def run(sim: Simulator, policy: Callable) -> float:
 
 
 class RolloutPolicy:
-    """One-step look-ahead on top of a base policy."""
+    """One-step look-ahead on top of a base policy.
 
-    def __init__(self, base: Callable, max_options: int = 4):
+    With `scenarios` > 1 each option is scored on several sampled futures
+    (`sim.belief(k)` for k = 0, 1, ...) and the average is used. Every option sees
+    the same futures, so differences between options are not sampling noise.
+    """
+
+    def __init__(self, base: Callable, max_options: int = 4, scenarios: int = 1):
         self.base = base
         self.max_options = max_options
+        self.scenarios = scenarios
 
     def __call__(self, sim: Simulator, key, options):
         if len(options) <= 1:
             return options[0]
         best, best_cost = None, None
         for opt in options[: self.max_options]:
-            trial = sim.belief()
-            if not trial.can_apply(key, opt):
-                continue
-            trial.apply(key, opt)
-            c = run(trial, self.base)
-            if best_cost is None or c < best_cost - 1e-9:
-                best, best_cost = opt, c
+            total, ok = 0.0, True
+            for k in range(self.scenarios):
+                trial = sim.belief(k) if self.scenarios > 1 else sim.belief()
+                if not trial.can_apply(key, opt):
+                    ok = False
+                    break
+                trial.apply(key, opt)
+                total += run(trial, self.base)
+            if ok and (best_cost is None or total < best_cost - 1e-9):
+                best, best_cost = opt, total
         return best if best_cost is not None else self.base(sim, key, options)
 
 

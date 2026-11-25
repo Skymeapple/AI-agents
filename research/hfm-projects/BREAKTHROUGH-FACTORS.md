@@ -90,8 +90,9 @@ Gains are relative to the best practical method without that ingredient.
 | Lung cells | The cell-type hierarchy |
 | Steel | A statistical prior conditioned on the tension test |
 | Galaxy redshift | Predicting a full probability distribution |
+| Air-quality sensors | Hygroscopic growth law for humidity |
 
-- **Four of nine worked.** The lowest hit rate of the five ingredients.
+- **Four of ten worked.** The lowest hit rate of the five ingredients.
 - **When it works it is cheap and it transfers.** The Arrhenius result held on
   an independent cell with no change to the code.
 - **The pattern in the failures:** theory helps when it supplies a relationship
@@ -129,7 +130,7 @@ Gains are relative to the best practical method without that ingredient.
 | New information | 7 of 9 | 6–34% | Needs a data source or a measurement |
 | More data of the same kind | 5 of 5 | 6–73% | Needs the data to exist |
 | A better algorithm | 5 of 9 | 3–23% | Engineering time |
-| Theory from another field | 4 of 9 | 3–36% | Nearly free once known |
+| Theory from another field | 4 of 10 | 3–36% | Nearly free once known |
 | More reasoning per decision | 3 of 8 | 0–10%, falling fast | Compute |
 
 The counts are small and come from one programme. The ordering is the finding,

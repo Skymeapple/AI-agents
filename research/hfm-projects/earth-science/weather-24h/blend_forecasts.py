@@ -90,7 +90,15 @@ def main():
             if have.mean() < 0.95:
                 print(f"{name}: skipped, only {have.mean():.0%} of dates present", flush=True)
                 continue
-            sel = ds[VARS].sel(prediction_timedelta=LEAD).sel(time=inits)
+            lead = ds.prediction_timedelta.values
+            hours = lead / np.timedelta64(1, "h") if np.issubdtype(lead.dtype, np.timedelta64) else lead.astype(float)
+            if hours.max() > 1e6:                      # stored as nanoseconds
+                hours = hours / 3.6e12
+            k = int(np.argmin(np.abs(hours - 24)))
+            if abs(hours[k] - 24) > 0.01:
+                print(f"{name}: skipped, no 24 h lead (has {hours[:6]} ...)", flush=True)
+                continue
+            sel = ds[VARS].isel(prediction_timedelta=k).sel(time=inits)
             fc[name] = {v: to_grid(sel[v]).values.astype(np.float32) for v in VARS}
             print(f"{name}: loaded in {time.time() - t1:.0f}s", flush=True)
         except Exception as e:  # keep going with the models that work

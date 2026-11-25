@@ -15,3 +15,4 @@ for m in ("graphcast/2020", "neuralgcm_deterministic", "fuxi", "keisler"):
     print(m, [p.split("/")[-1] for p in fs.ls(f"weatherbench2/datasets/{m}")])
 PY
 python -u research/hfm-projects/earth-science/weather-24h/blend_forecasts.py 2
+# rerun after fixing lead-time selection

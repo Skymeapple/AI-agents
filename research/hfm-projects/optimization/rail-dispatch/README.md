@@ -89,15 +89,16 @@ The look-ahead was given the real entry times of trains that had not yet appeare
 
 ### Follow-up: use the delays that are already visible
 
-A train's delay at the stations it passes before reaching the corridor is in the same open data and is known to a dispatcher in real time. The look-ahead was changed to assume each approaching train enters with the delay it last showed upstream. 18 real days (a 60-day run is queued on free compute).
+A train's delay at the stations it passes before reaching the corridor is in the same open data and is known to a dispatcher in real time. The look-ahead was changed to assume each approaching train enters with the delay it last showed upstream. 52 days, run on free compute ([log](../../../compute/results/rail-upstream-delays/run.log)).
 
-| Policy | Weighted delay versus priority rule | Days better |
-| --- | --- | --- |
-| Look-ahead, unseen trains assumed on time | −10.9% | 18/18 |
-| Look-ahead, upstream delays used | **−14.3%** | 18/18 |
-| Look-ahead, real entry times known (not available) | −19.4% | 18/18 |
+| Policy | Real days | Days better / worse | Disrupted days | Days better / worse |
+| --- | --- | --- | --- | --- |
+| Look-ahead, unseen trains assumed on time | −9.7% | 38 / 14 | −5.8% | 31 / 21 |
+| Look-ahead, upstream delays used | **−14.8%** | 43 / 9 | **−9.1%** | 37 / 15 |
+| Look-ahead, real entry times known (not available) | −20.3% | 52 / 0 | −16.6% | 52 / 0 |
 
-- **Real, available information adds a third to the look-ahead's gain,** on every day tested, and recovers about 40% of what a perfect delay forecast would give.
+- **Real, available information adds half again to the look-ahead's gain** and recovers about half of what a perfect delay forecast would give. An 18-day trial had shown −14.3%; the 52-day run confirms it.
+- **It also makes the policy more dependable:** worse than the priority rule on 9 days instead of 14.
 - The rest of the information gap is delay that builds between the last upstream station and the corridor entry.
 
 ### Follow-up: sampling delays at random does not help

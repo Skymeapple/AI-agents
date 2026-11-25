@@ -107,7 +107,7 @@ Gains are relative to the best practical method without that ingredient.
 | Bike sharing | Look-ahead on one past day | +0.7% (no gain) |
 | Bike sharing | Look-ahead averaged over four past days | −2.7%, better on 13 of 17 days |
 | Rail | Look-ahead over four randomly sampled futures (four times the compute) | −8.8%, against −9.7% without sampling |
-| Rail | Look-ahead told each train's delay upstream (information, not reasoning) | −14.3% |
+| Rail | Look-ahead told each train's delay upstream (information, not reasoning) | −14.8% |
 | Bus holding | Look-ahead with perfect foresight | Under 1% |
 | Job scheduling | Ten times more search rounds, twice | 7.1% → 9.7% → 10.1% |
 | Grid scheduling | 20 scenarios instead of 10 | 23% → 24% |

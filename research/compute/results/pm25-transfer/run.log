@@ -1,25 +1,26 @@
 job: pm25-transfer
-started: 2026-11-25T14:02:24Z
+started: 2026-11-25T14:39:01Z
 cores: 4, memory: 15 GB
 
 308866 sensor-hours with reference; cities: {'Antwerp': 174394, 'Oslo': 73421, 'Zagreb': 61051}; reference sites: 36
 
 transfer across cities: fitted on two cities, tested on the third
   sensor   test                     hours            raw         linear    linear + RH    hygroscopic  boosted trees   (RMSE in ug/m3)
-Traceback (most recent call last):
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 132, in <module>
-    main()
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 127, in main
-    evaluate(city_splits, "transfer across cities: fitted on two cities, tested on the third")
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 102, in evaluate
-    rm = {m: float(np.sqrt(np.mean((fit_predict(tr, te, m) - te.ref.values) ** 2))) for m in METHODS}
-                                    ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/physics/pm25-calibration/pm25_transfer.py", line 89, in fit_predict
-    m = lgb.LGBMRegressor(n_estimators=300, learning_rate=0.05, num_leaves=31, min_child_samples=50, subsample=0.8, subsample_freq=1, verbose=-1, n_jobs=4, random_state=0)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/lightgbm/sklearn.py", line 1478, in __init__
-    super().__init__(
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/lightgbm/sklearn.py", line 721, in __init__
-    raise LightGBMError(
-lightgbm.basic.LightGBMError: scikit-learn is required for lightgbm.sklearn. You must install scikit-learn and restart your session to use this module.
-finished: 2026-11-25T14:38:08Z, exit code 0
+  PMS5003  city Antwerp            173418          16.34           8.93           8.95           9.39           6.47
+  PMS5003  city Oslo                73352          10.04           6.25           6.15           6.25           5.52
+  PMS5003  city Zagreb              60124          12.94           6.24           6.27           6.24           7.18
+  OPC-N3   city Antwerp            174376          34.38          11.08          11.12          10.65           8.92
+  OPC-N3   city Oslo                73404          38.30           9.92           9.93           9.34           8.12
+  OPC-N3   city Zagreb              60965          55.75           9.67           9.78          10.88           9.65
+  mean skill against linear: raw -2.039 (better in 0/6), linear + RH -0.001 (better in 1/6), hygroscopic -0.013 (better in 2/6), boosted trees +0.103 (better in 5/6)
+
+transfer across sites: fitted at the main co-location station, tested at the city's other reference stations
+  sensor   test                     hours            raw         linear    linear + RH    hygroscopic  boosted trees   (RMSE in ug/m3)
+  PMS5003  Antwerp: other sites (17)   59538          21.15          10.05          10.03          10.05           3.60
+  PMS5003  Oslo: other sites (7)    28736          12.60           4.69           4.59           4.66           5.37
+  PMS5003  Zagreb: other sites (9)   11102          22.30          10.09          10.20          10.09           8.87
+  OPC-N3   Antwerp: other sites (17)   59905          47.28          11.02          10.98           9.53           7.04
+  OPC-N3   Oslo: other sites (7)    28720          55.18           9.54           9.36           9.41           6.52
+  OPC-N3   Zagreb: other sites (9)   11924         112.02          14.49          14.21          14.00           8.17
+  mean skill against linear: raw -3.135 (better in 0/6), linear + RH +0.009 (better in 5/6), hygroscopic +0.031 (better in 4/6), boosted trees +0.288 (better in 5/6)
+finished: 2026-11-25T15:06:27Z, exit code 0

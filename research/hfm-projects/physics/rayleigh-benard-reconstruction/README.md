@@ -63,7 +63,7 @@ Code: [`reconstruct.py`](reconstruct.py) in this folder. It ran on free GitHub A
   - **Computing pressure from the flow equation works.** Pressure is never measured, and solving for it from the reconstructed velocity and buoyancy cuts its error by 36%. This is route 2 of section 7.9 in the overview, supported.
   - **Regressing on the sensor history does not work for velocity.** Both maps are worse than gappy POD in every setting, although they are slightly better for buoyancy. Route 1 in its simple form is not supported.
   - **The mode basis is the limit, and data moves it.** Even a perfect fit to 150 modes leaves 0.32 error; doubling the fitting data lowers that to 0.24 at one setting.
-- **Open issue:** the pressure solver reproduces analytic test flows to 0.01%, but on the dataset's own true fields it differs from the stored pressure by 0.21. The equation or wall condition used by the simulation differs in some detail from the one assumed here. Resolving that should improve the pressure result further.
+- **Open issue, partly diagnosed:** the pressure solver reproduces analytic test flows to 0.01%, but on the dataset's own true fields it differs from the stored pressure by about 0.21. A diagnostic ([`pressure_diagnostic.py`](pressure_diagnostic.py)) fitted the advection and buoyancy parts separately: the velocity component order is as assumed, both weights come out near 1 (1.03–1.12 and 1.14), and the mismatch only falls to 0.19. So it is not a scaling or ordering error. The likely cause is how the simulation's time-stepping scheme defines pressure at a saved frame, which the stored fields alone do not reveal.
 
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
@@ -75,7 +75,7 @@ These numbers come from public data and are not comparable to HFM's score, which
 
 ## Next steps
 
-- Find why the stored pressure differs from the pressure equation by 0.21 on true fields (the dataset's exact equations and non-dimensionalisation).
+- Settle the remaining 0.19 pressure mismatch from the dataset's generating script (scaling and component order are now ruled out).
 - Fit on the full 40-run training split, on a machine with more memory or with an incremental SVD.
 - Replace the linear basis with a learned nonlinear decoder (needs a GPU), keeping the equation-based pressure.
 - Choose sensor positions instead of drawing them at random, if the task allows.

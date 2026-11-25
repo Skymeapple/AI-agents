@@ -1,6 +1,94 @@
 job: weather-blend-2022
-started: 2026-11-25T01:00:01Z
+started: 2026-11-25T01:01:43Z
 cores: 4, memory: 15 GB
 year 2022; candidate forecast sets: ['datasets:2022-240x121_equiangular_wit', 'datasets:2018-240x121_equiangular_wit', 'datasets:1959-2022-1h-240x121_equiang', 'datasets:1959-2022-6h-240x121_equiang', 'datasets:1959-2023_01_10-1h-240x121_e', 'datasets:1959-2023_01_10-6h-240x121_e', 'datasets:1990-2017-biweekly_clim_dail', 'datasets:1990-2017-daily_clim_daily_m', 'datasets:1990-2017-weekly_clim_daily_', 'datasets:clim_daily_1959_to_2015_7_dw', 'datasets:daily_clim_daily_mean_1959_t', 'datasets:daily_clim_daily_mean_1981_t', 'datasets:daily_clim_daily_mean_61_dw_', 'datasets:2020-240x121_equiangular_wit', 'datasets:1990-2017_6h_240x121_equiang', 'datasets:1990-2019_6h_240x121_equiang', 'datasets:2016-2022-0012-240x121_equia', 'datasets:2016-2022-6h-240x121_equiang', 'datasets:2016-2024-240x121_equiangula', 'datasets:2018-2022-240x121_equiangula', 'datasets:2018-2022_0012_240x121_equia', 'datasets:2020_0012_240x121_equiangula', 'datasets:2021_0012_240x121_equiangula', 'datasets:2022_0012_240x121_equiangula', 'aurora:2022-240x121_equiangular_wit', 'fgn:2022-240x121_equiangular_wit', 'fuxi:2020-240x121_equiangular_wit', 'gencast:2020-240x121_equiangular_wit', 'graphcast:date_range_2017-11-16_2019-0', 'graphcast:date_range_2019-11-16_2021-0', 'graphcast_hres_init:date_range_2019-11-16_2021-0', 'graphcast_hres_init_v2:2020-240x121_equiangular_wit', 'graphcast_hres_init_v2:2022-240x121_equiangular_wit', 'graphcast_v2:2018-240x121_equiangular_wit', 'graphcast_v2:2020-240x121_equiangular_wit', 'graphcast_v2:2022-240x121_equiangular_wit', 'hres:2016-2022-0012-240x121_equia', 'keisler:2020-240x121_equiangular_wit', 'neuralgcm_deterministic:2020-240x121_equiangular_wit', 'neuralgcm_ens:2020-240x121_equiangular_wit', 'pangu:2018-2022_0012_240x121_equia', 'pangu_hres_init:2020_0012_240x121_equiangula', 'pangu_hres_init:2021_0012_240x121_equiangula', 'pangu_hres_init:2022_0012_240x121_equiangula', 'sphericalcnn:2020-240x121_equiangular_wit']
-KeyError: "not all values found in index 'time'"
-finished: 2026-11-25T01:00:35Z, exit code 0
+ERA5 file does not cover all dates; using ['weatherbench2/datasets/era5/1959-2023_01_10-6h-240x121_equiangular_with_poles_conservative.zarr']
+ERA5 targets loaded: 182 dates, grid (121, 240), 16s
+datasets:2022-240x121_equiangular_wit: loaded in 15s
+datasets:2018-240x121_equiangular_wit: skipped, only 0% of dates present
+datasets:1959-2022-1h-240x121_equiang: skipped, only 0% of dates present
+datasets:1959-2022-6h-240x121_equiang: skipped, only 0% of dates present
+datasets:1959-2023_01_10-1h-240x121_e: failed (AttributeError: 'Dataset' object has no attribute 'prediction_timedelta')
+datasets:1959-2023_01_10-6h-240x121_e: failed (AttributeError: 'Dataset' object has no attribute 'prediction_timedelta')
+datasets:1990-2017-biweekly_clim_dail: skipped, has extra dimensions ['dayofyear']
+datasets:1990-2017-daily_clim_daily_m: skipped, has extra dimensions ['dayofyear']
+datasets:1990-2017-weekly_clim_daily_: skipped, has extra dimensions ['dayofyear']
+datasets:clim_daily_1959_to_2015_7_dw: skipped, has extra dimensions ['dayofyear']
+datasets:daily_clim_daily_mean_1959_t: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['10m_u_component_of_wind_mean', '10m_u_component_of_wind_std', '10m_v_component_of_wind_mean', '10m_v_component_of_wind_std', '2m_dewpoint_temperature_mean', '2m_dewpoint_temperature_std', '2m_temperature_mean', '2m_temperature_std', 'boundary_layer_height_mean', 'boundary_layer_height_std', 'geopotential_mean', 'geopotential_std']
+datasets:daily_clim_daily_mean_1981_t: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['10m_u_component_of_wind_mean', '10m_u_component_of_wind_std', '10m_v_component_of_wind_mean', '10m_v_component_of_wind_std', '2m_dewpoint_temperature_mean', '2m_dewpoint_temperature_std', '2m_temperature_mean', '2m_temperature_std', 'boundary_layer_height_mean', 'boundary_layer_height_std', 'geopotential_mean', 'geopotential_std']
+datasets:daily_clim_daily_mean_61_dw_: skipped, has extra dimensions ['dayofyear']
+datasets:2020-240x121_equiangular_wit: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+datasets:1990-2017_6h_240x121_equiang: skipped, has extra dimensions ['hour', 'dayofyear']
+datasets:1990-2019_6h_240x121_equiang: skipped, has extra dimensions ['hour', 'dayofyear']
+datasets:2016-2022-0012-240x121_equia: loaded in 14s
+datasets:2016-2022-6h-240x121_equiang: failed (AttributeError: 'Dataset' object has no attribute 'prediction_timedelta')
+datasets:2016-2024-240x121_equiangula: failed (GroupNotFoundError: No group found in store 'gs://weatherbench2/datasets/ifs_ens/2016-2024-240x121_equiangular_with_poles_conservative_mean.zarr' at path '')
+datasets:2018-2022-240x121_equiangula: loaded in 15s
+datasets:2018-2022_0012_240x121_equia: loaded in 13s
+datasets:2020_0012_240x121_equiangula: skipped, only 0% of dates present
+datasets:2021_0012_240x121_equiangula: skipped, only 0% of dates present
+datasets:2022_0012_240x121_equiangula: loaded in 15s
+aurora:2022-240x121_equiangular_wit: failed (KeyError: "not all values found in index 'time'")
+fgn:2022-240x121_equiangular_wit: loaded in 14s
+fuxi:2020-240x121_equiangular_wit: skipped, only 0% of dates present
+gencast:2020-240x121_equiangular_wit: skipped, only 0% of dates present
+graphcast:date_range_2017-11-16_2019-0: skipped, only 0% of dates present
+graphcast:date_range_2019-11-16_2021-0: skipped, only 0% of dates present
+graphcast_hres_init:date_range_2019-11-16_2021-0: skipped, only 0% of dates present
+graphcast_hres_init_v2:2020-240x121_equiangular_wit: skipped, only 0% of dates present
+graphcast_hres_init_v2:2022-240x121_equiangular_wit: failed (KeyError: "not all values found in index 'time'")
+graphcast_v2:2018-240x121_equiangular_wit: skipped, only 0% of dates present
+graphcast_v2:2020-240x121_equiangular_wit: skipped, only 0% of dates present
+graphcast_v2:2022-240x121_equiangular_wit: loaded in 8s
+hres:2016-2022-0012-240x121_equia: loaded in 8s
+keisler:2020-240x121_equiangular_wit: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+neuralgcm_deterministic:2020-240x121_equiangular_wit: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['P_minus_E_cumulative', 'geopotential', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+neuralgcm_ens:2020-240x121_equiangular_wit: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+pangu:2018-2022_0012_240x121_equia: loaded in 8s
+pangu_hres_init:2020_0012_240x121_equiangula: skipped, only 0% of dates present
+pangu_hres_init:2021_0012_240x121_equiangula: skipped, only 0% of dates present
+pangu_hres_init:2022_0012_240x121_equiangula: loaded in 9s
+sphericalcnn:2020-240x121_equiangular_wit: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+
+normalised RMSE at 24 h on test blocks (91 forecasts); lower is better
+method                                         t2m     u10     v10    mslp    mean   vs best corrected single model
+datasets:2022-240x121_equiangular_wit, raw  0.0238  0.1156  0.1412  0.0341  0.0787                            +0.4%
+datasets:2022-240x121_equiangular_wit, bias-corrected  0.0234  0.1155  0.1411  0.0336  0.0784                            +0.0%
+datasets:2016-2022-0012-240x121_equia, raw  0.0430  0.1550  0.1875  0.0444  0.1074                           +37.1%
+datasets:2016-2022-0012-240x121_equia, bias-corrected  0.0372  0.1520  0.1850  0.0417  0.1040                           +32.7%
+datasets:2018-2022-240x121_equiangula, raw  0.0402  0.1463  0.1755  0.0439  0.1015                           +29.4%
+datasets:2018-2022-240x121_equiangula, bias-corrected  0.0340  0.1423  0.1729  0.0417  0.0977                           +24.7%
+datasets:2018-2022_0012_240x121_equia, raw  0.0271  0.1304  0.1587  0.0394  0.0889                           +13.4%
+datasets:2018-2022_0012_240x121_equia, bias-corrected  0.0267  0.1298  0.1584  0.0389  0.0884                           +12.8%
+datasets:2022_0012_240x121_equiangula, raw  0.0379  0.1391  0.1697  0.0444  0.0978                           +24.7%
+datasets:2022_0012_240x121_equiangula, bias-corrected  0.0332  0.1379  0.1684  0.0416  0.0953                           +21.5%
+fgn:2022-240x121_equiangular_wit, raw       0.0395  0.1192  0.1451  0.0369  0.0852                            +8.6%
+fgn:2022-240x121_equiangular_wit, bias-corrected  0.0334  0.1176  0.1441  0.0330  0.0820                            +4.6%
+graphcast_v2:2022-240x121_equiangular_wit, raw  0.0238  0.1156  0.1412  0.0341  0.0787                            +0.4%
+graphcast_v2:2022-240x121_equiangular_wit, bias-corrected  0.0234  0.1155  0.1411  0.0336  0.0784                            +0.0%
+hres:2016-2022-0012-240x121_equia, raw      0.0430  0.1550  0.1875  0.0444  0.1074                           +37.1%
+hres:2016-2022-0012-240x121_equia, bias-corrected  0.0372  0.1520  0.1850  0.0417  0.1040                           +32.7%
+pangu:2018-2022_0012_240x121_equia, raw     0.0271  0.1304  0.1587  0.0394  0.0889                           +13.4%
+pangu:2018-2022_0012_240x121_equia, bias-corrected  0.0267  0.1298  0.1584  0.0389  0.0884                           +12.8%
+pangu_hres_init:2022_0012_240x121_equiangula, raw  0.0379  0.1391  0.1697  0.0444  0.0978                           +24.7%
+pangu_hres_init:2022_0012_240x121_equiangula, bias-corrected  0.0332  0.1379  0.1684  0.0416  0.0953                           +21.5%
+equal blend of bias-corrected models        0.0260  0.1143  0.1395  0.0316  0.0778                            -0.7%
+weighted blend of bias-corrected models     0.0225  0.1060  0.1296  0.0291  0.0718                            -8.4%
+
+best corrected single model: datasets:2022-240x121_equiangular_wit, bias-corrected
+blend weights per variable (datasets:2022-240x121_equiangular_wit, datasets:2016-2022-0012-240x121_equia, datasets:2018-2022-240x121_equiangula, datasets:2018-2022_0012_240x121_equia, datasets:2022_0012_240x121_equiangula, fgn:2022-240x121_equiangular_wit, graphcast_v2:2022-240x121_equiangular_wit, hres:2016-2022-0012-240x121_equia, pangu:2018-2022_0012_240x121_equia, pangu_hres_init:2022_0012_240x121_equiangula):
+  2m_temperature                0.66  0.00  0.11  0.20  0.00  0.03  0.00  0.00  0.00  0.00
+  10m_u_component_of_wind       0.48  0.03  0.00  0.06  0.00  0.43  0.00  0.00  0.00  0.00
+  10m_v_component_of_wind       0.49  0.04  0.00  0.05  0.00  0.42  0.00  0.00  0.00  0.00
+  mean_sea_level_pressure       0.38  0.06  0.03  0.12  0.00  0.42  0.00  0.00  0.00  0.00
+bias correction alone, datasets:2022-240x121_equiangular_wit: -0.4%
+bias correction alone, datasets:2016-2022-0012-240x121_equia: -3.2%
+bias correction alone, datasets:2018-2022-240x121_equiangula: -3.7%
+bias correction alone, datasets:2018-2022_0012_240x121_equia: -0.5%
+bias correction alone, datasets:2022_0012_240x121_equiangula: -2.5%
+bias correction alone, fgn:2022-240x121_equiangular_wit: -3.7%
+bias correction alone, graphcast_v2:2022-240x121_equiangular_wit: -0.4%
+bias correction alone, hres:2016-2022-0012-240x121_equia: -3.2%
+bias correction alone, pangu:2018-2022_0012_240x121_equia: -0.5%
+bias correction alone, pangu_hres_init:2022_0012_240x121_equiangula: -2.5%
+finished: 2026-11-25T01:05:05Z, exit code 0

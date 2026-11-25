@@ -36,7 +36,9 @@ which the task allows (HFM's agents use pseudo-labels):
   self-training +      both of the above
   smoothing
 
-Usage: python cross_study_annotation.py [h5ad-url]
+Usage: python cross_study_annotation.py [h5ad-url | full]
+  "full" runs on the full atlas (all studies, Cell Ontology labels), which is HFM's setting.
+  The hierarchy-aware method needs the core's annotation levels and is skipped there.
 """
 from __future__ import annotations
 
@@ -61,13 +63,37 @@ def cat(h, col):
     return g["codes"][:].astype(np.int64), cats
 
 
+def full_atlas_url():
+    """Address of the full atlas file (2.3 million cells, all studies), looked up from CELLxGENE."""
+    import json
+    import urllib.request
+    api = "https://api.cellxgene.cziscience.com/curation/v1/collections/6f6d381a-7701-4781-935c-db10d30de293"
+    c = json.load(urllib.request.urlopen(api, timeout=120))
+    for ds in c["datasets"]:
+        if "(full)" in (ds.get("title") or ""):
+            return next(a["url"] for a in ds["assets"] if a["filetype"] == "H5AD")
+    raise RuntimeError("full atlas not found")
+
+
 def main():
-    url = sys.argv[1] if len(sys.argv) > 1 else URL
+    global PER_STUDY_TRAIN, PER_STUDY_TEST
+    full = len(sys.argv) > 1 and sys.argv[1] == "full"
+    url = full_atlas_url() if full else (sys.argv[1] if len(sys.argv) > 1 else URL)
+    label = "cell_type" if full else "ann_finest_level"     # the full atlas is labelled with Cell Ontology terms
+    if full:
+        PER_STUDY_TRAIN, PER_STUDY_TEST = 6000, 30000
     with fsspec.open(url, "rb", block_size=8 * 2**20) as fh, h5py.File(fh, "r") as h:
+        print("obsm:", list(h["obsm"].keys()), flush=True)
         X = h["obsm"]["X_scanvi_emb"][:].astype(np.float32)
         study, study_names = cat(h, "study")
-        fine, fine_names = cat(h, "ann_finest_level")
-        levels = [cat(h, c)[0] for c in LEVELS]
+        fine, fine_names = cat(h, label)
+        levels = [cat(h, c)[0] for c in LEVELS] if not full else []
+    keep = fine >= 0
+    if full:                                 # drop labels too rare to score and cells without a label
+        counts = np.bincount(fine[keep], minlength=len(fine_names))
+        keep &= counts[np.maximum(fine, 0)] >= 50
+    X, study, fine = X[keep], study[keep], fine[keep]
+    levels = [lv[keep] for lv in levels]
     print(f"{len(X)} cells, {len(study_names)} studies, {len(fine_names)} finest-level cell types", flush=True)
     # each finest type's ancestor at each level: the most common ancestor among its cells
     anc = np.zeros((len(LEVELS), len(fine_names)), dtype=np.int64)
@@ -80,7 +106,9 @@ def main():
     scores = {k: [] for k in ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours", "smoothed over neighbours", "centred study", "self-training", "self-training + smoothing")}
     rare = {k: [] for k in scores}
     for s in range(len(study_names)):
-        tr = np.concatenate([rng.permutation(np.flatnonzero(study == t))[:PER_STUDY_TRAIN] for t in range(len(study_names)) if t != s])
+        if (study == s).sum() < 2000:
+            continue
+        tr = np.concatenate([rng.permutation(np.flatnonzero(study == t))[:PER_STUDY_TRAIN] for t in range(len(study_names)) if t != s and (study == t).any()])
         te = rng.permutation(np.flatnonzero(study == s))[:PER_STUDY_TEST]
         sc = StandardScaler().fit(X[tr])
         A, B = sc.transform(X[tr]), sc.transform(X[te])
@@ -105,7 +133,7 @@ def main():
             lp = np.full((len(B), lv.max() + 1), -30.0)
             lp[:, m.classes_] = m.predict_log_proba(B)
             total += lp[:, anc[li]]
-        record("hierarchy-aware", total.argmax(axis=1))
+        record("hierarchy-aware", total.argmax(axis=1) if levels else logp.argmax(axis=1))
         knn = KNeighborsClassifier(n_neighbors=15, weights="distance", n_jobs=4).fit(A, y)
         record("nearest neighbours", knn.predict(B))
         # --- methods that use the held-out study's own unlabelled cells ---

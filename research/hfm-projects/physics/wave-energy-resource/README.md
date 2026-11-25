@@ -63,12 +63,27 @@ Code: [`wave_resource.py`](wave_resource.py) in this folder. Run instructions ar
   step change would need a swell input from outside the site, such as a
   public wave hindcast. That is a change of data source, not of model.
 
+### Follow-up: add information from outside the site
+
+The first experiment concluded that local wind cannot see swell, and that the limit would only move with a swell input from elsewhere. That was tested using another buoy in the same sea area as the outside source. Its wave record over the assessment year stands in for a long-term reference record or a public hindcast. The partner buoy is chosen inside the campaign (highest correlation), so nothing from the future is used. 186 campaign instances at 16 buoys.
+
+| Method | Error in annual mean power | Skill, annual mean | Skill, hourly | Stations better than wind only |
+| --- | --- | --- | --- | --- |
+| Campaign mean (reference) | 38.7% | 0 | 0 | — |
+| Regression on local wind | 29.1% | +0.226 | +0.132 | — |
+| Regression on local wind and a neighbouring buoy's waves | **19.3%** | **+0.479** | **+0.330** | 12/16 |
+
+- **The wind-only floor of about 30% is broken.** Outside wave information cuts the error in the annual resource by a third and more than doubles both skills.
+- **This confirms the diagnosis.** Three model families stopped at the same error on wind alone; one extra data source moved it by ten points.
+- **A hindcast should do at least as well** where no neighbouring buoy exists, since it covers every site. That is the next test and needs a free Copernicus account for ERA5 wave data.
+- HFM's task supplies wind only for the assessment period. Under that rule the earlier result stands; this shows what the rule costs.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-Using local wind alone, three different model families all stop at about 29 to 31% error in annual mean power (reference 38.5%). That agreement suggests about 30% is the floor for wind-only methods.
+Using local wind alone, three different model families all stop at about 29 to 31% error in annual mean power (reference 38.5%). That agreement suggests about 30% is the floor for wind-only methods. With a neighbouring buoy's wave record added, the error falls to 19%.
 
 ## Next steps
 
-Add ERA5 or WAVEWATCH III swell for the assessment period and measure the drop below 29%.
+Replace the neighbouring buoy with ERA5 or WAVEWATCH III wave fields, which exist for every site, and check the gain holds (19% against 29% here with a buoy).

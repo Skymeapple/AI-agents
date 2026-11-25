@@ -77,7 +77,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Battery Voltage Model for Cold Operating Conditions](physics/cold-battery-voltage/README.md) | Tested on public data | Arrhenius-form resistances: skill +0.34 against +0.15 for fitted slopes; replicated on a second cell (+0.36 against +0.16). Extrapolation now matches fitting in the cold. | 0 → 0.5991 |
-| [Estimating Wave-Energy Resources from Short Measurement Campaigns](physics/wave-energy-resource/README.md) | Tested on public data | Wind cuts annual-resource error by a fifth; swell/wind-sea structure adds nothing. | 0 → 0.5602 |
+| [Estimating Wave-Energy Resources from Short Measurement Campaigns](physics/wave-energy-resource/README.md) | Tested on public data | Wind alone stops at 29% error in the annual resource; adding a neighbouring buoy's wave record brings it to 19%. | 0 → 0.5602 |
 | [Steel Cyclic Loading History Transfer](physics/steel-history-transfer/README.md) | Tested on public data | Shares the steel experiment: donor library cuts error 73%; 40% headroom needs a new measurement. | 0 → 0.6677 |
 | [Predicting Optical Constants Beyond the Measured Wavelength Band](physics/optical-constants/README.md) | Tested on public data | Causality-only fit: +0.02 to +0.11 skill. A reference library with another measurement of the same material: +0.35. | 0 → 0.7907 |
 | [Predict Cyclic Steel Stress Response from Limited Material Tests](physics/steel-cyclic-from-tension/README.md) | Tested on public data | Donor median cuts error 73%; one extra ±2% cyclic test closes 71% of the remaining gap. | 0 → 0.5453 |

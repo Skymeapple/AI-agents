@@ -18,6 +18,10 @@ Methods (no settings were tuned on the results; lag windows were fixed up front)
   boosted trees   gradient boosting on the same features (flexible ML baseline)
   additive        P = swell constant + non-negative sum of wind-sea power terms
                   (U^2, U^3.5, U^5 of 24 h and 72 h mean wind), fitted by NNLS
+  neighbour buoy  log-regression with one more input: the wave power measured at
+                  another buoy in the same sea area during the assessment year.
+                  This stands in for a long-term reference record or hindcast, the
+                  outside information the first results pointed to
 
 HFM's sites, campaign lengths and score are private; numbers are NOT comparable
 to HFM's skill_mean.
@@ -93,9 +97,13 @@ def predict_all(camp, assess):
 def main():
     d = sys.argv[1]
     stations = sorted({os.path.basename(f)[:5] for f in glob.glob(os.path.join(d, "*.txt.gz"))})
+    data = {st: load_station(d, st) for st in stations}
+    # buoys in the same sea area, by the first two digits of the station number
+    area = lambda st: st[:2]
     rows = []
     for st in stations:
-        h = load_station(d, st)
+        h = data[st]
+        others = {o: data[o].P.reindex(h.index) for o in stations if o != st and area(o) == area(st)}
         n_inst = 0
         for s in range(0, len(h) - CAMPAIGN_H - ASSESS_H, STEP_H):
             camp = h.iloc[s:s + CAMPAIGN_H].dropna(subset=["P", "U6", "U24", "U72"])
@@ -107,6 +115,30 @@ def main():
                 rows.append(dict(station=st, start=s, method=name,
                                  mean_err=abs(p.mean() - truth.mean()) / truth.mean(),
                                  rmse=float(np.sqrt(np.mean((p - truth) ** 2)) / truth.mean())))
+            # outside information: the wave record of another buoy in the same sea area. The partner is
+            # chosen inside the campaign (highest correlation of log power), so the choice is causal.
+            best = None
+            for o, ref in others.items():
+                rc = np.log(ref.reindex(camp.index).clip(lower=1e-3))
+                ok = rc.notna()
+                if ok.sum() > 0.6 * len(camp) and ref.reindex(assess.index).notna().mean() > 0.6:
+                    c = np.corrcoef(rc[ok], np.log(camp.P[ok].clip(lower=1e-3)))[0, 1]
+                    if best is None or c > best[0]:
+                        best = (c, o, ref)
+            if best is not None:
+                _, o, ref = best
+                rc, ra = np.log(ref.reindex(camp.index).clip(lower=1e-3)), np.log(ref.reindex(assess.index).clip(lower=1e-3))
+                okc, oka = rc.notna().values, ra.notna().values
+                A = np.column_stack([design_log(camp)[okc], rc.values[okc]])
+                y = np.log(np.maximum(camp.P.values[okc], 1e-3))
+                beta = np.linalg.solve(A.T @ A + 1.0 * np.eye(A.shape[1]), A.T @ y)
+                resid = y - A @ beta
+                p = np.exp(np.column_stack([design_log(assess)[oka], ra.values[oka]]) @ beta + 0.5 * resid.var())
+                t2 = truth[oka]
+                wind_only = predict_all(camp, assess.iloc[oka])
+                for name, pp in (("neighbour buoy + wind", p), ("log-regression, same hours", wind_only["log-regression"]), ("reference, same hours", wind_only["reference"])):
+                    rows.append(dict(station=st, start=s, method=name, mean_err=abs(pp.mean() - t2.mean()) / t2.mean(),
+                                     rmse=float(np.sqrt(np.mean((pp - t2) ** 2)) / t2.mean())))
             n_inst += 1
         print(f"  station {st}: {n_inst} campaign instances", flush=True)
     r = pd.DataFrame(rows)
@@ -119,7 +151,14 @@ def main():
         sk_m = (1 - piv_m[mth].groupby("station").mean() / piv_m["reference"].groupby("station").mean())
         sk_r = (1 - piv_r[mth].groupby("station").mean() / piv_r["reference"].groupby("station").mean())
         print(f"{mth:<30} {piv_m[mth].mean():>18.1%} {sk_m.mean():>+13.3f} {piv_r[mth].mean():>17.3f} {sk_r.mean():>+15.3f} {int((sk_m > 0).sum()):>10}/{len(sk_m)}")
-
+    sub = piv_m.dropna(subset=["neighbour buoy + wind"])
+    subr = piv_r.loc[sub.index]
+    print(f"\nwith a neighbouring buoy's wave record as an extra input: {len(sub)} instances at {sub.index.get_level_values(0).nunique()} stations (hours where the neighbour reported)")
+    for mth in ("reference, same hours", "log-regression, same hours", "neighbour buoy + wind"):
+        sk_m = (1 - sub[mth].groupby("station").mean() / sub["reference, same hours"].groupby("station").mean())
+        sk_r = (1 - subr[mth].groupby("station").mean() / subr["reference, same hours"].groupby("station").mean())
+        better = int((sub[mth].groupby("station").mean() < sub["log-regression, same hours"].groupby("station").mean()).sum())
+        print(f"{mth:<30} {sub[mth].mean():>18.1%} {sk_m.mean():>+13.3f} {subr[mth].mean():>17.3f} {sk_r.mean():>+15.3f}   stations better than wind only: {better}/{len(sk_m)}")
 
 if __name__ == "__main__":
     main()

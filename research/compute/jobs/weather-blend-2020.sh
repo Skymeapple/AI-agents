@@ -1,7 +1,7 @@
 # Weather: bias correction of single models against blending model families, on
 # forecasts stored in the public WeatherBench 2 bucket (24 h lead, 1.5 degrees, 2020).
 set -e
-pip -q install "numpy<2.3" scipy xarray "zarr<3" gcsfs dask
+pip -q install numpy scipy xarray zarr gcsfs dask
 python - <<'PY'
 import xarray as xr
 for name, path in {"era5": "gs://weatherbench2/datasets/era5/1959-2022-6h-240x121_equiangular_with_poles_conservative.zarr",

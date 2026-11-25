@@ -28,6 +28,8 @@ Policies
                     demand rates learned from earlier weekdays
   look-ahead        rollout on top of "forecast": try the best few moves, replay
                     the next three hours on last week's same weekday, keep the best
+  look-ahead,       the same, but each move is scored on four past weekdays and the
+  4 past days       average is used
   perfect forecast  the look-ahead policy given the real future (not available in
                     the task; shows what better forecasts would be worth)
 
@@ -114,10 +116,14 @@ class BikeSim(Simulator):
         c.van_at, c.van_load, c.van_free, c.van_job = self.van_at[:], self.van_load[:], self.van_free[:], self.van_job[:]
         return c
 
-    def belief(self):
-        """Look-ahead copy: future rentals and bikes in use come from the scenario day, not the real one."""
+    def belief(self, k=0):
+        """Look-ahead copy: future rentals and bikes in use come from a past day, not the real one.
+
+        `scenario` may be one day or a list of past days; k picks which one.
+        """
         c = self.clone()
-        s = self.truth if self.truth is not None else self.scenario
+        scen = self.scenario[k % len(self.scenario)] if isinstance(self.scenario, list) else self.scenario
+        s = self.truth if self.truth is not None else scen
         so, sd, st, sdur = (s[x].values for x in ("o", "d", "t", "dur"))
         c.o, c.d, c.t, c.dur = so, sd, st, sdur
         c.k = int(np.searchsorted(st, self.now))
@@ -244,14 +250,17 @@ def main():
 
     def inst(day):
         hist = [x for x in days if x < day and weekday[x] < 5]
-        return dict(trips=by_day[day], net=rates(d, n, hist), scen=by_day[day - 7])
+        past = [by_day[x] for x in sorted(hist, reverse=True) if x != day - 7][:3]      # three most recent other weekdays
+        return dict(trips=by_day[day], net=rates(d, n, hist), scen=by_day[day - 7], scens=[by_day[day - 7]] + past)
 
-    def mk(cls, truth=False):
-        return lambda i: cls(i["trips"], n, drive, cap, i["net"], scenario=i["scen"], truth=i["trips"] if truth else None)
+    def mk(cls, truth=False, many=False):
+        return lambda i: cls(i["trips"], n, drive, cap, i["net"], scenario=i["scens"] if many else i["scen"], truth=i["trips"] if truth else None)
 
     insts = [inst(day) for day in test]
     table = {"no rebalancing": (mk(NoVans), best_first), "reactive": (mk(Reactive), best_first), "forecast": (mk(BikeSim), best_first),
-             "look-ahead (rollout)": (mk(BikeSim), RolloutPolicy(best_first)), "perfect forecast (not available)": (mk(BikeSim, True), RolloutPolicy(best_first))}
+             "look-ahead (rollout)": (mk(BikeSim), RolloutPolicy(best_first)),
+             "look-ahead, 4 past days": (mk(BikeSim, many=True), RolloutPolicy(best_first, scenarios=4)),
+             "perfect forecast (not available)": (mk(BikeSim, True), RolloutPolicy(best_first))}
     # compare() takes one simulator factory, so wrap each policy with its own
     from core import run
     costs = {name: [run(make(i), pol) for i in insts] for name, (make, pol) in table.items()}

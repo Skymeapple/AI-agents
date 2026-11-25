@@ -319,6 +319,7 @@ CPU, and revisited two earlier results.
 | Cross-venue routing | Route to the cheaper last print | 0.70 of 0.77 basis points available, on trade prints only and before fees. |
 | Portfolio under costs | Five trading rules | Part-way trading rescues a fast signal (0.50 → 0.60) but only to the level of holding everything. HFM's drift trigger was the weakest rule. |
 | Dam spill | Gas model and joint spill planning | Joint planning worth 1.4% at most. A linear gas model beat the saturating physics form. |
+| FabNER entity extraction | Dictionary and classical model on CPU | 83.4 and 82.8 F1 on the public split, against HFM's 80.7 from a fine-tuned language model (different evaluator). Headroom is in the 14% of entities never seen in training. |
 | Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
 
 Three points for the conclusions of this review:

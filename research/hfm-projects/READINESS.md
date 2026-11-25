@@ -47,7 +47,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | A free GPU account. |
 | [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | A free GPU account. |
 | [Training Recipes for Qwen2-VL-2B on EmbSpatial-Bench Embodied Spatial Understanding](post-training/embspatial-training/README.md) | A free GPU account. |
-| [FabNER Material Manufacturing Entity Extraction](post-training/fabner-extraction/README.md) | A free GPU account. |
+| [FabNER Material Manufacturing Entity Extraction](post-training/fabner-extraction/README.md) | A CPU study has run. A free GPU account for the hybrid with a language model. |
 | [MapQA Map Visual Question Answering](post-training/mapqa-training/README.md) | A free GPU account. |
 | [ScienceWorld task training on Qwen2.5-7B-Instruct](post-training/scienceworld-training/README.md) | A free GPU account. |
 | [SynLogic logical reasoning training](post-training/synlogic-training/README.md) | A free GPU account. |

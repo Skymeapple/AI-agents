@@ -26,6 +26,16 @@ Methods
                        hierarchy" idea of research/human-frontier-mission.md 4.2
   nearest neighbours   15 nearest training cells, distance-weighted vote
 
+Four further methods use the held-out study's own cells without their labels,
+which the task allows (HFM's agents use pseudo-labels):
+  smoothed             average the flat classifier's probabilities over each cell's
+                       15 nearest cells in the same study
+  centred study        shift the study's embedding so its mean matches the training
+                       mean
+  self-training        add confidently labelled held-out cells and refit once
+  self-training +      both of the above
+  smoothing
+
 Usage: python cross_study_annotation.py [h5ad-url]
 """
 from __future__ import annotations
@@ -37,7 +47,7 @@ import h5py
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 
 URL = "https://datasets.cellxgene.cziscience.com/688185ad-11c2-4172-a53a-f4f1f4076860.h5ad"
@@ -67,7 +77,7 @@ def main():
             anc[li, c] = np.bincount(lv[m]).argmax() if m.any() else 0
 
     rng = np.random.default_rng(0)
-    scores = {k: [] for k in ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours")}
+    scores = {k: [] for k in ("flat", "class-balanced", "hierarchy-aware", "nearest neighbours", "smoothed over neighbours", "centred study", "self-training", "self-training + smoothing")}
     rare = {k: [] for k in scores}
     for s in range(len(study_names)):
         tr = np.concatenate([rng.permutation(np.flatnonzero(study == t))[:PER_STUDY_TRAIN] for t in range(len(study_names)) if t != s])
@@ -98,15 +108,31 @@ def main():
         record("hierarchy-aware", total.argmax(axis=1))
         knn = KNeighborsClassifier(n_neighbors=15, weights="distance", n_jobs=4).fit(A, y)
         record("nearest neighbours", knn.predict(B))
-        print(f"  held out {study_names[s][:38]:<38} {len(te):>6} cells, {len(present):>2} types: "
-              + ", ".join(f"{k} {v[-1]:.3f}" for k, v in scores.items()), flush=True)
+        # --- methods that use the held-out study's own unlabelled cells ---
+        pf = np.zeros((len(B), len(fine_names)))
+        pf[:, flat.classes_] = flat.predict_proba(B)
+        # 1. smooth each cell's prediction over its 15 nearest cells in the same study
+        nn = NearestNeighbors(n_neighbors=15, n_jobs=4).fit(B)
+        idx = nn.kneighbors(B, return_distance=False)
+        record("smoothed over neighbours", pf[idx].mean(axis=1).argmax(axis=1))
+        # 2. shift the study's embedding so its mean matches the training mean
+        Bc = B - B.mean(axis=0) + A.mean(axis=0)
+        record("centred study", flat.predict(Bc))
+        # 3. self-training: add confidently labelled held-out cells and refit once
+        conf = pf.max(axis=1) > 0.9
+        st = LogisticRegression(max_iter=300, C=1.0).fit(np.vstack([A, B[conf]]), np.concatenate([y, pf[conf].argmax(axis=1)]))
+        ps = np.zeros_like(pf)
+        ps[:, st.classes_] = st.predict_proba(B)
+        record("self-training", ps.argmax(axis=1))
+        record("self-training + smoothing", ps[idx].mean(axis=1).argmax(axis=1))
+        print(f"  held out {study_names[s][:30]:<30} {len(te):>6} cells: " + ", ".join(f"{v[-1]:.3f}" for v in scores.values()), flush=True)
 
     base = np.array(scores["flat"])
     print(f"\nstudy macro-F1, leave-one-study-out over {len(base)} studies")
-    print(f"  {'method':<20} {'macro-F1':>9} {'vs flat':>9} {'studies better':>15} {'rare-type F1':>13}")
+    print(f"  {'method':<26} {'macro-F1':>9} {'vs flat':>9} {'studies better':>15} {'rare-type F1':>13}")
     for k, v in scores.items():
         v = np.array(v)
-        print(f"  {k:<20} {v.mean():>9.4f} {v.mean() - base.mean():>+9.4f} {int((v > base + 1e-9).sum()):>11}/{len(v)} {np.nanmean(rare[k]):>13.4f}")
+        print(f"  {k:<26} {v.mean():>9.4f} {v.mean() - base.mean():>+9.4f} {int((v > base + 1e-9).sum()):>11}/{len(v)} {np.nanmean(rare[k]):>13.4f}")
 
 
 if __name__ == "__main__":

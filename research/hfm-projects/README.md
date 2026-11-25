@@ -32,7 +32,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Predicting human regulatory DNA activity with Evo 2 7B and lentiMPRA](biology/regulatory-dna-mpra/README.md) | Tested on public data | Multi-task model +0.039 Spearman on full data; with strand averaging and a five-seed ensemble the total goes from 0.535 to 0.672. | 0.4465 → 0.7076 |
-| [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | Tested on public data | Full 35-study atlas: a nearest-neighbour head beats the linear head by 0.034 macro-F1 on 30 of 35 held-out studies. Hierarchy-aware decoding does not help. | 0.7812 → 0.8536 |
+| [Cross-Study Cell-Type Annotation with UCE on the Human Lung Cell Atlas](biology/lung-cell-annotation/README.md) | Tested on public data | Full atlas, 35 studies each held out: a small network averaged with nearest neighbours lifts macro-F1 from 0.684 (linear) to 0.786, better in 35 of 35 studies. On the 11-study core all methods were within 0.006. | 0.7812 → 0.8536 |
 
 ## earth-science
 

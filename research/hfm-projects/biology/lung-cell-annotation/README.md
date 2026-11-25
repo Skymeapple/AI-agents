@@ -107,6 +107,24 @@ The same experiment on the full release: 2.3 million cells, 35 studies, Cell Ont
 
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
+### Follow-up: non-linear classifier heads on the full atlas
+
+Log: [`research/compute/results/hlca-full-heads/`](../../../compute/results/hlca-full-heads/run.log). Same protocol as the full-atlas run (35 studies, each held out in turn), with 12,000 training cells per study instead of 6,000.
+
+| Classifier on the stored embedding | Study macro-F1 | Versus linear | Studies better | Rare-type F1 |
+| --- | --- | --- | --- | --- |
+| Linear (flat) | 0.684 | — | — | 0.607 |
+| Class-balanced linear | 0.650 | −0.034 | 9/35 | 0.562 |
+| Nearest neighbours, k=15 | 0.733 | +0.050 | 34/35 | 0.677 |
+| Linear + neighbours averaged | 0.737 | +0.054 | 35/35 | 0.676 |
+| Small neural network (two hidden layers) | 0.768 | +0.085 | 35/35 | 0.696 |
+| **Network + neighbours averaged** | **0.786** | **+0.102** | **35/35** | **0.724** |
+
+- **The classifier head matters far more on the full atlas than on the core.** A small network averaged with nearest neighbours lifts macro-F1 by 0.10, in every one of the 35 held-out studies, and rare types gain most (+0.12).
+- **Different heads add:** the network and the neighbours each beat the linear head, and their average beats both.
+- **Class balancing hurts** on the full atlas (−0.034), the opposite of the usual advice for a macro-F1 score.
+- **Caveat, unchanged:** the stored embedding was trained with labels from every study, so absolute scores are optimistic and are not comparable with HFM's UCE-based 0.71 range. The comparison between heads on the same embedding is fair. Whether the gain carries to UCE embeddings needs a GPU to compute them.
+
 ## How far this can go
 
 - **Classifier head:** exhausted on this embedding; four designs agree within 0.006.

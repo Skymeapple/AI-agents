@@ -146,7 +146,7 @@ different deficit.
 | --- | --- | --- |
 | **Steel** | Tension test alone 0.545 → library of other steels 0.145 (data) → one extra cyclic test 0.104 (information). Best possible for the model: 0.087. | −81% |
 | **Wind farms** | No wake model → physics, default settings −1.4% (theory) → site direction calibrated −11.9% (information) → learned residual added −29.8% (data and algorithm) | −29.8% |
-| **Regulatory DNA** | Separate models 0.535 → strand averaging 0.552 (theory) → one multi-task model 0.593 (pooled data) → all training data 0.657 (more data) | +0.122 |
+| **Regulatory DNA** | Separate models 0.535 → strand averaging 0.552 (theory) → one multi-task model 0.593 (pooled data) → all training data 0.657 (more data) → five-seed ensemble 0.672 (more compute) | +0.137 |
 | **Weather** | One model → bias-corrected −0.5% (algorithm) → blend of three −4.6% (information) → blend of five −8.4% (more of it) | −8.4% |
 | **Convection** | Gappy POD 0.381 → pressure from the flow equation 0.340 (theory) → twice the fitting data, a further −13.5% at the one setting tested (data) | about −20% |
 | **Cold battery** | Hold warm values → fitted slope +0.15 → Arrhenius form +0.34 (theory). Refinements beyond that did not carry to a second cell. | +0.34 |

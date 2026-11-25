@@ -80,6 +80,19 @@ Run on free GitHub Actions compute; log in [`research/compute/results/mpra-full-
 - **WTC11 gains most (+0.076),** as it has the least data of its own.
 - A small CNN trained from scratch on CPU reaches 0.657 on the authors' test fold. HFM's baseline and best are 0.447 and 0.708 on its own split, which is not the same split.
 
+### Follow-up: ensemble of five seeds
+
+Five seeds of each model, predictions averaged ([log](../../../compute/results/mpra-full-data/run.log)).
+
+| Model | HepG2 | K562 | WTC11 | Macro |
+| --- | --- | --- | --- | --- |
+| Separate models, five-seed ensemble | 0.672 | 0.690 | 0.557 | 0.640 |
+| Multi-task model, five-seed ensemble | 0.703 | 0.701 | 0.613 | **0.672** |
+
+- **Ensembling adds 0.015** to the multi-task model (0.657 → 0.672) and 0.021 to the separate models.
+- **The multi-task advantage survives ensembling:** +0.033 macro, +0.056 on WTC11.
+- **Step by step from the start of this project:** separate small models 0.535 → reverse-strand averaging 0.552 → one multi-task model 0.593 → all training data 0.657 → five-seed ensemble 0.672. Each ingredient added on top of the others.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

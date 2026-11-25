@@ -73,6 +73,23 @@ Code: [`bus_sim.py`](bus_sim.py) in this folder, built on the shared simulation 
     predictive holding). The proposal assumed bunching is costly on
     these lines; in this model it is not.
 
+### Follow-up: where does holding start to pay?
+
+The same routes were run with shorter headways (15 instances per setting).
+
+| Setting | Look-ahead on no holding | Look-ahead with real future running times | Two-way headway rule |
+| --- | --- | --- | --- |
+| Real headways (8–10 min), assumed variability | −0.2% | −0.3% | +9.9% |
+| Real headways, doubled variability | −0.3% | −0.8% | +12.3% |
+| Headways halved (4–5 min), assumed variability | **−1.5%** (14 of 15) | −2.5% | +13.9% |
+| Headways halved, doubled variability | −0.6% | −3.1% | +17.2% |
+| Headways quartered (2–2.5 min), doubled variability | −0.5% | −7.7% | +26.4% |
+
+- **The value of holding grows as headways shorten:** from under 1% at 8–10 minutes to 7.7% at about 2 minutes, with perfect knowledge of running times.
+- **A look-ahead policy captures a useful part of it only when running times are fairly predictable** (1.5% of 2.5% at 4–5 minutes). With high variability it captures little, because the look-ahead plans on expected times.
+- **The classic headway rule gets worse, not better, at short headways** under this cost measure, because every hold delays a full bus.
+- So the bottleneck on these trunk routes is not the policy. At their real headways there is under 1% to win. On denser lines the limit would be the running-time forecast.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go

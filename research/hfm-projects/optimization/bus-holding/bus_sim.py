@@ -55,10 +55,10 @@ CAPACITY, MIN_GAP, BASE_DWELL, BOARD_S, ALIGHT_S = 90.0, 15.0, 8.0, 2.5, 1.5
 PERIOD = 3 * 3600.0
 
 
-def make_instance(route, seed, noise=1.0):
+def make_instance(route, seed, noise=1.0, headway_factor=1.0):
     rng = np.random.default_rng(seed)
     links = np.array(route["link_seconds"], float)
-    S, H = len(links) + 1, route["headway_seconds"]
+    S, H = len(links) + 1, route["headway_seconds"] * headway_factor
     K = int(PERIOD / H)
     x = np.linspace(0, 1, S)
     board = np.maximum(1 - x / 0.75, 0.05)                 # most boarding early on the route
@@ -193,7 +193,7 @@ class PerfectInfo(BusSim):
         return self.clone()
 
 
-def evaluate(routes, seeds, noise, label):
+def evaluate(routes, seeds, noise, label, headway_factor=1.0):
     table = {"no holding": (BusSim, no_holding), "schedule": (BusSim, schedule), "forward headway": (BusSim, forward_headway),
              "two-way": (BusSim, two_way),
              "look-ahead on two-way": (BusSim, RolloutPolicy(two_way, max_options=5)),
@@ -202,7 +202,7 @@ def evaluate(routes, seeds, noise, label):
     costs = {n: [] for n in table}
     for name, route in routes.items():
         for seed in range(seeds):
-            inst = make_instance(route, 1000 * int(name) + seed, noise)
+            inst = make_instance(route, 1000 * int(name) + seed, noise, headway_factor)
             for n, (cls, pol) in table.items():
                 costs[n].append(run(cls(inst), pol))
     ref = costs["no holding"]
@@ -218,6 +218,9 @@ def main():
     routes = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "hsl_trunk_routes.json")))
     evaluate(routes, seeds, 1.0, "assumed variability")
     evaluate(routes, seeds, 2.0, "doubled variability (30% per link, 90 s terminal lateness)")
+    evaluate(routes, seeds, 1.0, "headways halved (4 to 5 minutes), assumed variability", headway_factor=0.5)
+    evaluate(routes, seeds, 2.0, "headways halved, doubled variability", headway_factor=0.5)
+    evaluate(routes, seeds, 2.0, "headways quartered (2 to 2.5 minutes), doubled variability", headway_factor=0.25)
 
 
 if __name__ == "__main__":

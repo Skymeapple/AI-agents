@@ -2,14 +2,14 @@
 
 - **Field:** quant-finance
 - **HFM track:** `discovery_live_live_quant_cross_venue_routing` (paused on HFM)
-- **Project status:** Open: public data exist, experiment not yet built
+- **Project status:** Tested on public data
 
 ## Readiness
 
-- **State:** Data verified; pipeline or simulator still to build.
+- **State:** Runs today on CPU, on trade prints only.
 - **Data access:** Binance archive used elsewhere here. Bybit public archive and OKX market-data API: Verified reachable from the free compute on 2026-11-25.
 - **Compute:** CPU.
-- **Still missing:** The three-venue replay and cost model.
+- **Still missing:** Order-book data for a faithful replay.
 - **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
 
 ## The challenge
@@ -28,11 +28,11 @@ Smart order routing, venue cost models with adverse selection, convex allocation
 
 ## Public data
 
-Binance, Bybit and OKX all publish historical trade and book data.
+Binance USD-M daily aggregate trades (`data.binance.vision`, CC BY-NC-SA 4.0) and Bybit daily trade files (`public.bybit.com/trading/`). No free order-book archive was found for either; OKX has none for trades.
 
 ## What limits progress
 
-Residual-tree tuning with gains about one part in 100,000.
+Free data has no order books, so fills and impact cannot be replayed faithfully.
 
 ## Route to a step change
 
@@ -40,14 +40,35 @@ A venue-cost model solved as a small convex allocation per order.
 
 ## Experiment and results
 
-No experiment has been run for this project.
+Code: [`routing_replay.py`](routing_replay.py) in this folder. It ran on free GitHub Actions compute; the log is in [`research/compute/results/cross-venue-routing/`](../../../compute/results/cross-venue-routing/run.log).
 
-- **Why:** Needs synchronised order-book data from three venues; Binance is public, Bybit and OKX archives were not fetched.
+- **Setup:** public trade prints for BTCUSDT perpetuals on Binance and Bybit, 3–7 March 2025: 18 million and 24 million trades. A small order arrives every 30 seconds, alternating buy and sell, and is sent to one venue. The first day chooses one setting; the other four days (11,432 orders) are the test. OKX, HFM's third venue, has no free archive and is left out.
+- **Important limit of this replay:** free data has trades only, not order books. The price an order would get is approximated by the next trade in the same direction on that venue at least 200 ms later. That is optimistic, because the print used by the router may no longer be available as a quote. Costs are relative to the average of the two venues' last prices, and fees (several basis points at retail rates) are excluded.
+- **Result (cost in basis points, lower is better):**
+
+  | Policy | Mean cost | Versus always Binance | Days better |
+  | --- | --- | --- | --- |
+  | Always Binance | −0.13 | — | — |
+  | Always Bybit | −0.20 | −0.08 | 4/4 |
+  | Venue with the cheaper last same-direction trade | **−0.83** | **−0.70** | 4/4 |
+  | The same after removing the slow price offset between venues | −0.40 | −0.28 | 4/4 |
+  | Hindsight (cheaper venue each time; a bound) | −0.90 | −0.77 | 4/4 |
+
+- **What this shows:**
+  - **Short-lived price gaps between the venues are real and persistent enough to route on:** the simplest rule captures 0.70 of the 0.77 basis points available in hindsight, on all four days.
+  - **Removing the slow offset makes it worse,** not better. The persistent part of the gap is where the saving is.
+  - **The size is small and uncertain.** 0.7 basis points is well below typical taker fees, and the next-trade proxy flatters any rule that chases the last print. With order-book data the saving could be much smaller.
+  - This establishes the mechanics and a bound. It is not evidence of a tradable edge.
+
+These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-Bounded by hindsight-best venue per order.
+- **Hindsight bound in this replay:** 0.77 basis points per order between two venues for a small order.
+- **Realistic ceiling:** lower, once real quotes replace trade prints. Larger orders would add market impact, which is where HFM's routing problem really lies and which trade prints cannot show.
 
 ## Next steps
 
-Fetch the three venues' archives and compute the hindsight bound.
+- Repeat with order-book snapshots (Tardis offers the first day of each month free for Bybit and OKX) to replace the next-trade proxy.
+- Add order size and impact, and a third venue.
+- Test over more days and other contracts.

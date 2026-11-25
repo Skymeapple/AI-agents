@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 27 projects (26 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 28 projects (27 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 26 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 25 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
 
@@ -96,7 +96,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [FabNER Material Manufacturing Entity Extraction](post-training/fabner-extraction/README.md) | Tested on public data | On the public split a dictionary of training phrases scores 83.4 F1 and a CRF 82.8, against HFM's 80.7 (different evaluator, not directly comparable). 86% of test entities are seen phrases; the classical model finds only 7% of the unseen 14%. | not published → 80.68 |
 | [MapQA Map Visual Question Answering](post-training/mapqa-training/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → 0.8283 |
 | [ScienceWorld task training on Qwen2.5-7B-Instruct](post-training/scienceworld-training/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → 35.8 |
-| [TOPv2 compositional semantic parsing](post-training/topv2-parsing/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → 83 |
+| [TOPv2 compositional semantic parsing](post-training/topv2-parsing/README.md) | Tested on public data | A per-word tagger on CPU scores 38.5% exact match against HFM's 83 (different test set). 90% of test parses use a tree shape seen in training; the tagger gets 2% of the rest. | not published → 83 |
 | [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → 0.367 |
 
 ## pretraining

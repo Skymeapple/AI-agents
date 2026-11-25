@@ -320,6 +320,7 @@ CPU, and revisited two earlier results.
 | Portfolio under costs | Five trading rules | Part-way trading rescues a fast signal (0.50 → 0.60) but only to the level of holding everything. HFM's drift trigger was the weakest rule. |
 | Dam spill | Gas model and joint spill planning | Joint planning worth 1.4% at most. A linear gas model beat the saturating physics form. |
 | FabNER entity extraction | Dictionary and classical model on CPU | 83.4 and 82.8 F1 on the public split, against HFM's 80.7 from a fine-tuned language model (different evaluator). Headroom is in the 14% of entities never seen in training. |
+| TOPv2 semantic parsing | Tree-shape coverage and a per-word tagger on CPU | Tagger 38.5% exact match against HFM's 83 (different test). 90% of test parses use a seen tree shape; the tagger gets 2% of the rest. Here the language model's gain is real, and the open part is the unseen tenth. |
 | Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
 
 Three points for the conclusions of this review:

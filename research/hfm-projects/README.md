@@ -2,8 +2,8 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 24 projects (23 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
-- **Open:** 2 projects where public data exist and the experiment still has to be built.
+- **Tested on public data or in a model study:** 25 projects (24 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Open:** 1 project where public data exist and the experiment still has to be built.
 - **Blocked:** 28 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
@@ -65,7 +65,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Blocked | HFM has not published the instance format or the reward, and no proposals have run. | not published → not published |
 | [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 10% less weighted delay than the priority rule (57 days); 15% when it also uses delays visible upstream (52 days); bound is 35% below. | 0 → 0.3984 |
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. Look-ahead over four past days adds 2.7%; a perfect forecast would add 11%. | 0 → 0.8019 |
-| [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Open | Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled. | 0 → 0.7199 |
+| [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Tested on public data | Gas model fitted on 2012–2021, tested on 2022–2024: a linear model beats the saturating physics form (1.80 vs 2.02 points). Joint spill planning removes only 1.4% of passage loss at a 120% cap and none at 125% (model study). | 0 → 0.7199 |
 | [Toronto Arterial Signal Timing Coordination](optimization/arterial-signals/README.md) | Tested on public data | Model study: a plan tuned to a range of days has 17.5% less delay on other days than one tuned to the counted hour (6 of 8 corridors). | 0 → 0.9892 |
 | [Online Cloud Resource Allocator for Azure Trace Replay](optimization/cloud-vm-placement/README.md) | Tested on public data | Lifetime-aware packing: −13.8% server-days with true lifetimes; five policies without that knowledge do not beat first fit (−3.2%). | 0 → 0.7615 |
 | [Ride-Hail Dispatch Policy for Matching and Repositioning](optimization/ride-hail-dispatch/README.md) | Tested on public data | Repositioning idle drivers on a demand forecast halves lost requests (83% → 92% served, 14 of 14 days); better matching alone gives 0.6%. | 0 → 0.9895 |

@@ -2,14 +2,14 @@
 
 - **Field:** optimization
 - **HFM track:** `discovery_live_live_optimization_cascade_spill_auto` (paused on HFM)
-- **Project status:** Open: public data exist, experiment not yet built
+- **Project status:** Tested on public data
 
 ## Readiness
 
-- **State:** Data verified; pipeline or simulator still to build.
+- **State:** Runs today on CPU, as a reduced model.
 - **Data access:** Columbia Basin Research DART query service: Verified reachable from the free compute on 2026-11-25.
 - **Compute:** CPU.
-- **Still missing:** A reduced fish-passage and dissolved-gas model built from DART data.
+- **Still missing:** A real fish-passage model (COMPASS relationships) and hourly data.
 - **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
 
 ## The challenge
@@ -28,11 +28,11 @@ COMPASS passage model, model-predictive control of reservoir cascades, gas-cap c
 
 ## Public data
 
-Columbia Basin Research DART (dam flows, spill, dissolved gas, fish counts) and US Army Corps data are public.
+Columbia Basin Research DART daily river conditions for the eight forebay and tailwater gauges (public; data courtesy of the US Army Corps of Engineers).
 
 ## What limits progress
 
-Dam-by-dam decisions.
+Gas forecast error is as large as the margin joint planning would use; fish survival relationships are not public in a ready form.
 
 ## Route to a step change
 
@@ -40,14 +40,40 @@ Joint optimisation of all eight dams over the fish travel horizon with gas limit
 
 ## Experiment and results
 
-No experiment has been run for this project.
+Code: [`dam_spill.py`](dam_spill.py) in this folder. It ran on free GitHub Actions compute; the log is in [`research/compute/results/dam-spill/`](../../../compute/results/dam-spill/run.log).
 
-- **Why:** Needs the fish-passage and dissolved-gas models; public data exist but the model is not yet assembled.
+- **Data:** daily flow, spill and dissolved gas at the forebay and tailwater gauges of all eight dams, 1 April to 20 June, 2012–2024 (Columbia Basin Research DART; data courtesy of the US Army Corps of Engineers). Models were fitted on 2012–2021 and tested on 2022–2024.
+- **Part 1, measured: predicting dissolved gas.** Error in percentage points of saturation on the held-out years, mean over the eight dams:
+
+  | Prediction of tailwater gas | Error |
+  | --- | --- |
+  | Linear in spill and forebay gas | **1.80** |
+  | Saturating form (gas from spill levels off, as in the Corps' model) | 2.02 (better at 4 of 8 dams) |
+  | Yesterday's measured value (not usable to plan a different spill) | 1.40 |
+
+  - The next dam's forebay gas is predicted from the upstream release with an error of 2.2 to 4.5 points, against 4.1 to 6.6 for the seasonal mean. Between 79% and 114% of the excess gas released upstream arrives at the next dam, so gas does carry down the river.
+  - **The physically motivated saturating form did not beat a straight line** on unseen years.
+- **Part 2, model study: dam-by-dam against joint spill decisions.** The fitted gas model is used to choose each day's spill share at all eight dams under a tailwater gas cap. Survival values are assumed round numbers (spillway 0.98, other routes 0.94), not fitted.
+
+  | Gas cap | Dam by dam | Joint (exact) | Change in passage loss | Days joint is better |
+  | --- | --- | --- | --- | --- |
+  | 120% | 0.7944 | 0.7973 | −1.4% | 79/243 |
+  | 125% | 0.8147 | 0.8147 | 0.0% | 4/243 |
+
+  - **Coordination across dams is worth little under this model:** 1.4% at the tighter cap and nothing at 125%, where the cap rarely binds and every dam spills near its maximum.
+  - Raising the cap from 120% to 125% is worth about seven times more than coordinating (0.7944 → 0.8147).
+- **Reading:** the route proposed above, joint optimisation of all eight dams, did not pay off in this reduced model. The gas prediction error (about 2 points) is as large as the margin that coordination would exploit.
+- **Limits of this test:** daily averages, no travel-time dynamics beyond a fitted lag, no power or flow constraints, and no real fish-passage model. HFM's instances reward things this model does not contain.
+
+These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-Bounded by a perfect-forecast joint optimisation.
+- **In this reduced model:** joint planning removes at most 1.4% of passage loss.
+- **Where the room is:** the cap level and the accuracy of the gas forecast, not the optimiser.
 
 ## Next steps
 
-Assemble a reduced passage model from DART data.
+- Hourly data and spill patterns by gate, which is how the Corps' gas model is used.
+- Replace the assumed survival values with COMPASS relationships.
+- Test whether weather (wind, temperature) explains the gas prediction error.

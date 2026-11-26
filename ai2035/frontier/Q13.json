@@ -1,0 +1,1314 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "differential privacy language models",
+  "federated learning",
+  "membership inference attack"
+ ],
+ "papers": [
+  {
+   "id": "2504.05238",
+   "title": "Federated Learning for Medical Image Classification: A Comprehensive Benchmark",
+   "published": "2025-04-07",
+   "categories": [
+    "cs.CV",
+    "cs.DC"
+   ],
+   "abstract": "The federated learning paradigm is wellsuited for the field of medical image analysis, as it can effectively cope with machine learning on isolated multicenter data while protecting the privacy of participating parties. However, current research on optimization algorithms in federated learning often focuses on limited datasets and scenarios, primarily centered around natural images, with insufficient comparative experiments in medical contexts. In this work, we conduct a comprehensive evaluation of several state-of-the-art federated learning algorithms in the context of medical imaging. We conduct a fair comparison of classification models trained using various federated learning algorithms across multiple medical imaging datasets. Additionally, we evaluate system performance metrics, such as communication cost and computational efficiency, while considering different federated learning architectures. Our findings show that medical imaging datasets pose substantial challenges for current federated learning optimization algorithms. No single algorithm consistently delivers optimal performance across all medical federated learning scenarios, and many optimization algorithms may underperform when applied to these datasets. Our experiments provide a benchmark and guidance for future research and application of federated learning in medical imaging contexts. Furthermore, we propose an efficient and robust method that combines generative techniques using denoising diffusion probabilistic models with label smoothing to augment datasets, widely enhancing the performance of federated learning on classification tasks across various medical imaging datasets. Our code will be released on GitHub, offering a reliable and comprehensive benchmark for future federated learning studies in medical imaging.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.09800",
+   "title": "Multi-task Federated Learning with Encoder-Decoder Structure: Enabling Collaborative Learning Across Different Tasks",
+   "published": "2025-04-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Federated learning has been extensively studied and applied due to its ability to ensure data security in distributed environments while building better models. However, clients participating in federated learning still face limitations, as clients with different structures or tasks cannot participate in learning together. In view of this, constructing a federated learning framework that allows collaboration between clients with different model structures and performing different tasks, enabling them to share valuable knowledge to enhance model efficiency, holds significant practical implications for the widespread application of federated learning. To achieve this goal, we propose a multi-task federated learning with encoder-decoder structure (M-Fed). Specifically, given the widespread adoption of the encoder-decoder architecture in current models, we leverage this structure to share intra-task knowledge through traditional federated learning methods and extract general knowledge from the encoder to achieve cross-task knowledge sharing. The training process is similar to traditional federated learning, and we incorporate local decoder and global decoder information into the loss function. The local decoder iteratively updates and gradually approaches the global decoder until sufficient cross-task knowledge sharing is achieved. Our method is lightweight and modular, demonstrating innovation compared to previous research. It enables clients performing different tasks to share general knowledge while maintaining the efficiency of traditional federated learning systems. We conducted experiments on two widely used benchmark datasets to verify the feasibility of M-Fed and compared it with traditional methods. The experimental results demonstrate the effectiveness of M-Fed in multi-task federated learning.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2602.03052",
+   "title": "Fedcompass: Federated Clustered and Periodic Aggregation Framework for Hybrid Classical-Quantum Models",
+   "published": "2026-02-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Federated learning enables collaborative model training across decentralized clients under privacy constraints. Quantum computing offers potential for alleviating computational and communication burdens in federated learning, yet hybrid classical-quantum federated learning remains susceptible to performance degradation under non-IID data. To address this,we propose FEDCOMPASS, a layered aggregation framework for hybrid classical-quantum federated learning. FEDCOMPASS employs spectral clustering to group clients by class distribution similarity and performs cluster-wise aggregation for classical feature extractors. For quantum parameters, it uses circular mean aggregation combined with adaptive optimization to ensure stable global updates. Experiments on three benchmark datasets show that FEDCOMPASS improves test accuracy by up to 10.22% and enhances convergence stability under non-IID settings, outperforming six strong federated learning baselines.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.04081",
+   "title": "Corrected with the Latest Version: Make Robust Asynchronous Federated Learning Possible",
+   "published": "2025-04-05",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "As an emerging paradigm of federated learning, asynchronous federated learning offers significant speed advantages over traditional synchronous federated learning. Unlike synchronous federated learning, which requires waiting for all clients to complete updates before aggregation, asynchronous federated learning aggregates the models that have arrived in realtime, greatly improving training speed. However, this mechanism also introduces the issue of client model version inconsistency. When the differences between models of different versions during aggregation become too large, it may lead to conflicts, thereby reducing the models accuracy. To address this issue, this paper proposes an asynchronous federated learning version correction algorithm based on knowledge distillation, named FedADT. FedADT applies knowledge distillation before aggregating gradients, using the latest global model to correct outdated information, thus effectively reducing the negative impact of outdated gradients on the training process. Additionally, FedADT introduces an adaptive weighting function that adjusts the knowledge distillation weight according to different stages of training, helps mitigate the misleading effects caused by the poorer performance of the global model in the early stages of training. This method significantly improves the overall performance of asynchronous federated learning without adding excessive computational overhead. We conducted experimental comparisons with several classical algorithms, and the results demonstrate that FedADT achieves significant improvements over other asynchronous methods and outperforms all methods in terms of convergence speed.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2505.21877",
+   "title": "Hybrid Batch Normalisation: Resolving the Dilemma of Batch Normalisation in Federated Learning",
+   "published": "2025-05-28",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Batch Normalisation (BN) is widely used in conventional deep neural network training to harmonise the input-output distributions for each batch of data. However, federated learning, a distributed learning paradigm, faces the challenge of dealing with non-independent and identically distributed data among the client nodes. Due to the lack of a coherent methodology for updating BN statistical parameters, standard BN degrades the federated learning performance. To this end, it is urgent to explore an alternative normalisation solution for federated learning. In this work, we resolve the dilemma of the BN layer in federated learning by developing a customised normalisation approach, Hybrid Batch Normalisation (HBN). HBN separates the update of statistical parameters (i.e. , means and variances used for evaluation) from that of learnable parameters (i.e. , parameters that require gradient updates), obtaining unbiased estimates of global statistical parameters in distributed scenarios. In contrast with the existing solutions, we emphasise the supportive power of global statistics for federated learning. The HBN layer introduces a learnable hybrid distribution factor, allowing each computing node to adaptively mix the statistical parameters of the current batch with the global statistics. Our HBN can serve as a powerful plugin to advance federated learning performance. It reflects promising merits across a wide range of federated learning settings, especially for small batch sizes and heterogeneous data.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2506.05138",
+   "title": "Federated Isolation Forest for Efficient Anomaly Detection on Edge IoT Systems",
+   "published": "2025-06-05",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Recently, federated learning frameworks such as Python TestBed for Federated Learning Algorithms and MicroPython TestBed for Federated Learning Algorithms have emerged to tackle user privacy concerns and efficiency in embedded systems. Even more recently, an efficient federated anomaly detection algorithm, FLiForest, based on Isolation Forests has been developed, offering a low-resource, unsupervised method well-suited for edge deployment and continuous learning. In this paper, we present an application of Isolation Forest-based temperature anomaly detection, developed using the previously mentioned federated learning frameworks, aimed at small edge devices and IoT systems running MicroPython. The system has been experimentally evaluated, achieving over 96% accuracy in distinguishing normal from abnormal readings and above 78% precision in detecting anomalies across all tested configurations, while maintaining a memory usage below 160 KB during model training. These results highlight its suitability for resource-constrained environments and edge systems, while upholding federated learning principles of data privacy and collaborative learning.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2608.11281",
+   "title": "Federated Learning for Distributed CNC Tool Wear Prediction",
+   "published": "2026-08-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Tool wear prediction is an important task in CNC machining, where accurate monitoring of tool condition supports product quality and process reliability. Machine learning methods have shown potential for this task, but their use in industrial environments is limited by the distributed nature of machining data and by restrictions on data sharing between machines, sites, or organizations. Federated learning offers a suitable framework for this setting by enabling collaborative model training without transferring raw operational data. However, it is open if federated learning can lead to accuracy gains in CNC tool wear prediction that justify the increased complexity of such a system. In this experimental study, real tool trajectories are distributed across simulated clients to represent a federated learning scenario. The federated models are compared against centralized references and local client baselines. Results show that federated learning achieves performance close to centralized learning and improves significantly over local client models. These findings indicate that federated learning can support collaborative tool wear prediction in distributed CNC manufacturing environments and the increased complexity is justified.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.00282",
+   "title": "Federated Learning for Cross-Domain Data Privacy: A Distributed Approach to Secure Collaboration",
+   "published": "2025-03-31",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "This paper proposes a data privacy protection framework based on federated learning, which aims to realize effective cross-domain data collaboration under the premise of ensuring data privacy through distributed learning. Federated learning greatly reduces the risk of privacy breaches by training the model locally on each client and sharing only model parameters rather than raw data. The experiment verifies the high efficiency and privacy protection ability of federated learning under different data sources through the simulation of medical, financial, and user data. The results show that federated learning can not only maintain high model performance in a multi-domain data environment but also ensure effective protection of data privacy. The research in this paper provides a new technical path for cross-domain data collaboration and promotes the application of large-scale data analysis and machine learning while protecting privacy.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.13550",
+   "title": "Towards Privacy-Preserving Data-Driven Education: The Potential of Federated Learning",
+   "published": "2025-03-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "The increasing adoption of data-driven applications in education such as in learning analytics and AI in education has raised significant privacy and data protection concerns. While these challenges have been widely discussed in previous works, there are still limited practical solutions. Federated learning has recently been discoursed as a promising privacy-preserving technique, yet its application in education remains scarce. This paper presents an experimental evaluation of federated learning for educational data prediction, comparing its performance to traditional non-federated approaches. Our findings indicate that federated learning achieves comparable predictive accuracy. Furthermore, under adversarial attacks, federated learning demonstrates greater resilience compared to non-federated settings. We summarise that our results reinforce the value of federated learning as a potential approach for balancing predictive performance and privacy in educational contexts.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.01729",
+   "title": "FLAME: A Federated Learning Benchmark for Robotic Manipulation",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Recent progress in robotic manipulation has been fueled by large-scale datasets collected across diverse environments. Training robotic manipulation policies on these datasets is traditionally performed in a centralized manner, raising concerns regarding scalability, adaptability, and data privacy. While federated learning enables decentralized, privacy-preserving training, its application to robotic manipulation remains largely unexplored. We introduce FLAME (Federated Learning Across Manipulation Environments), the first benchmark designed for federated learning in robotic manipulation. FLAME consists of: (i) a set of large-scale datasets of over 160,000 expert demonstrations of multiple manipulation tasks, collected across a wide range of simulated environments; (ii) a training and evaluation framework for robotic policy learning in a federated setting. We evaluate standard federated learning algorithms in FLAME, showing their potential for distributed policy learning and highlighting key challenges. Our benchmark establishes a foundation for scalable, adaptive, and privacy-aware robotic learning.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2506.08169",
+   "title": "Federated Learning on Stochastic Neural Networks",
+   "published": "2025-06-09",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Federated learning is a machine learning paradigm that leverages edge computing on client devices to optimize models while maintaining user privacy by ensuring that local data remains on the device. However, since all data is collected by clients, federated learning is susceptible to latent noise in local datasets. Factors such as limited measurement capabilities or human errors may introduce inaccuracies in client data. To address this challenge, we propose the use of a stochastic neural network as the local model within the federated learning framework. Stochastic neural networks not only facilitate the estimation of the true underlying states of the data but also enable the quantification of latent noise. We refer to our federated learning approach, which incorporates stochastic neural networks as local models, as Federated stochastic neural networks. We will present numerical experiments demonstrating the performance and effectiveness of our method, particularly in handling non-independent and identically distributed data.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2510.14208",
+   "title": "Incentive-Based Federated Learning: Architectural Elements and Future Directions",
+   "published": "2025-10-16",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Federated learning promises to revolutionize machine learning by enabling collaborative model training without compromising data privacy. However, practical adaptability can be limited by critical factors, such as the participation dilemma. Participating entities are often unwilling to contribute to a learning system unless they receive some benefits, or they may pretend to participate and free-ride on others. This chapter identifies the fundamental challenges in designing incentive mechanisms for federated learning systems. It examines how foundational concepts from economics and game theory can be applied to federated learning, alongside technology-driven solutions such as blockchain and deep reinforcement learning. This work presents a comprehensive taxonomy that thoroughly covers both centralized and decentralized architectures based on the aforementioned theoretical concepts. Furthermore, the concepts described are presented from an application perspective, covering emerging industrial applications, including healthcare, smart infrastructure, vehicular networks, and blockchain-based decentralized systems. Through this exploration, this chapter demonstrates that well-designed incentive mechanisms are not merely optional features but essential components for the practical success of federated learning. This analysis reveals both the promising solutions that have emerged and the significant challenges that remain in building truly sustainable, fair, and robust federated learning ecosystems.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2604.06518",
+   "title": "ADP-FL-MedSeg: Adaptive Differential Privacy for Federated Medical Segmentation Across Diverse Modalities",
+   "published": "2026-04-07",
+   "categories": [
+    "eess.IV",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Large volumes of medical data remain underutilized because centralizing distributed data is often infeasible due to strict privacy regulations and institutional constraints. In addition, models trained in centralized settings frequently fail to generalize across clinical sites because of heterogeneity in imaging protocols and continuously evolving data distributions arising from differences in scanners, acquisition parameters, and patient populations. Federated learning offers a promising solution by enabling collaborative model training without sharing raw data. However, incorporating differential privacy into federated learning, while essential for privacy guarantees, often leads to degraded accuracy, unstable convergence, and reduced generalization. In this work, we propose an adaptive differentially private federated learning (ADP-FL) framework for medical image segmentation that dynamically adjusts privacy mechanisms to better balance the privacy-utility trade-off. The proposed approach stabilizes training, significantly improves Dice scores and segmentation boundary quality, and maintains rigorous privacy guarantees. We evaluated ADP-FL across diverse imaging modalities and segmentation tasks, including skin lesion segmentation in dermoscopic images, kidney tumor segmentation in 3D CT scans, and brain tumor segmentation in multi-parametric MRI. Compared with conventional federated learning and standard differentially private federated learning, ADP-FL consistently achieves higher accuracy, improved boundary delineation, faster convergence, and greater training stability, with performance approaching that of non-private federated learning under the same privacy budgets. These results demonstrate the practical viability of ADP-FL for high-performance, privacy-preserving medical image segmentation in real-world federated settings.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2502.06917",
+   "title": "Krum Federated Chain (KFC): Using blockchain to defend against adversarial attacks in Federated Learning",
+   "published": "2025-02-10",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Federated Learning presents a nascent approach to machine learning, enabling collaborative model training across decentralized devices while safeguarding data privacy. However, its distributed nature renders it susceptible to adversarial attacks. Integrating blockchain technology with Federated Learning offers a promising avenue to enhance security and integrity. In this paper, we tackle the potential of blockchain in defending Federated Learning against adversarial attacks. First, we test Proof of Federated Learning, a well known consensus mechanism designed ad-hoc to federated contexts, as a defense mechanism demonstrating its efficacy against Byzantine and backdoor attacks when at least one miner remains uncompromised. Second, we propose Krum Federated Chain, a novel defense strategy combining Krum and Proof of Federated Learning, valid to defend against any configuration of Byzantine or backdoor attacks, even when all miners are compromised. Our experiments conducted on image classification datasets validate the effectiveness of our proposed approaches.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2611.24254",
+   "title": "FedE2E: One-Shot Federated Learning for End-to-End Autonomous Driving with Closed-Loop Evaluation",
+   "published": "2026-11-18",
+   "categories": [
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Federated learning enables collaborative model training without sharing datasets. However, existing federated learning methods for autonomous driving typically require multi-round communication and lack closed-loop evaluation, while one-shot methods mainly focus on perception tasks. To address these limitations, we propose \\method, a one-shot federated learning method for end-to-end autonomous driving. It comprises multi-client calibration, anchor-based feature alignment, and token-wise consensus distillation to distill knowledge from heterogeneous models. Closed-loop evaluation on Bench2Drive demonstrates the effectiveness of \\method in both one-shot and multi-round federated learning. In the one-shot setting, it achieves a Driving Score of 55.85, which is 4.07 points higher than prior work. In the multi-round setting, it reaches 60.35 after five communication rounds, the best performance among all compared methods under the same number of communication rounds.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2509.00992",
+   "title": "Online Decentralized Federated Multi-task Learning With Trustworthiness in Cyber-Physical Systems",
+   "published": "2025-08-31",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Multi-task learning is an effective way to address the challenge of model personalization caused by high data heterogeneity in federated learning. However, extending multi-task learning to the online decentralized federated learning setting is yet to be explored. The online decentralized federated learning setting considers many real-world applications of federated learning, such as autonomous systems, where clients communicate peer-to-peer and the data distribution of each client is time-varying. A more serious problem in real-world applications of federated learning is the presence of Byzantine clients. Byzantine-resilient approaches used in federated learning work only when the number of Byzantine clients is less than one-half the total number of clients. Yet, it is difficult to put a limit on the number of Byzantine clients within a system in reality. However, recent work in robotics shows that it is possible to exploit cyber-physical properties of a system to predict clients' behavior and assign a trust probability to received signals. This can help to achieve resiliency in the presence of a dominating number of Byzantine clients. Therefore, in this paper, we develop an online decentralized federated multi-task learning algorithm to provide model personalization and resiliency when the number of Byzantine clients dominates the number of honest clients. Our proposed algorithm leverages cyber-physical properties, such as the received signal strength in wireless systems or side information, to assign a trust probability to local models received from neighbors in each iteration. Our simulation results show that the proposed algorithm performs close to a Byzantine-free setting.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2510.04203",
+   "title": "Adaptive Federated Learning via Dynamical System Model",
+   "published": "2025-10-05",
+   "categories": [
+    "cs.LG",
+    "eess.SY"
+   ],
+   "abstract": "Hyperparameter selection is critical for stable and efficient convergence of heterogeneous federated learning, where clients differ in computational capabilities, and data distributions are non-IID. Tuning hyperparameters is a manual and computationally expensive process as the hyperparameter space grows combinatorially with the number of clients. To address this, we introduce an end-to-end adaptive federated learning method in which both clients and central agents adaptively select their local learning rates and momentum parameters. Our approach models federated learning as a dynamical system, allowing us to draw on principles from numerical simulation and physical design. Through this perspective, selecting momentum parameters equates to critically damping the system for fast, stable convergence, while learning rates for clients and central servers are adaptively selected to satisfy accuracy properties from numerical simulation. The result is an adaptive, momentum-based federated learning algorithm in which the learning rates for clients and servers are dynamically adjusted and controlled by a single, global hyperparameter. By designing a fully integrated solution for both adaptive client updates and central agent aggregation, our method is capable of handling key challenges of heterogeneous federated learning, including objective inconsistency and client drift. Importantly, our approach achieves fast convergence while being insensitive to the choice of the global hyperparameter, making it well-suited for rapid prototyping and scalable deployment. Compared to state-of-the-art adaptive methods, our framework is shown to deliver superior convergence for heterogeneous federated learning while eliminating the need for hyperparameter tuning both client and server updates.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2512.10987",
+   "title": "Evaluation Framework for Centralized and Decentralized Aggregation Algorithm in Federated Systems",
+   "published": "2025-12-05",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "In recent years, the landscape of federated learning has witnessed significant advancements, particularly in decentralized methodologies. This research paper presents a comprehensive comparison of Centralized Hierarchical Federated Learning (HFL) with Decentralized Aggregated Federated Learning (AFL) and Decentralized Continual Federated Learning (CFL) architectures. While HFL, in its centralized approach, faces challenges such as communication bottlenecks and privacy concerns due to centralized data aggregation, AFL and CFL provide promising alternatives by distributing computation and aggregation processes across devices. Through evaluation of Fashion MNIST and MNIST datasets, this study demonstrates the advantages of decentralized methodologies, showcasing how AFL and CFL outperform HFL in precision, recall, F1 score, and balanced accuracy. The analysis highlights the importance of decentralized aggregation mechanisms in AFL and CFL, which effectively enables collaborative model training across distributed devices. This comparative study contributes valuable insights into the evolving landscape of federated learning, guiding researchers and practitioners towards decentralized methodologies for enhanced performance in collaborative model training scenarios.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.11808",
+   "title": "Federated Spectral Graph Transformers Meet Neural Ordinary Differential Equations for Non-IID Graphs",
+   "published": "2025-04-16",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Graph Neural Network (GNN) research is rapidly advancing due to GNNs' capacity to learn distributed representations from graph-structured data. However, centralizing large volumes of real-world graph data for GNN training is often impractical due to privacy concerns, regulatory restrictions, and commercial competition. Federated learning (FL), a distributed learning paradigm, offers a solution by preserving data privacy with collaborative model training. Despite progress in training huge vision and language models, federated learning for GNNs remains underexplored. To address this challenge, we present a novel method for federated learning on GNNs based on spectral GNNs equipped with neural ordinary differential equations (ODE) for better information capture, showing promising results across both homophilic and heterophilic graphs. Our approach effectively handles non-Independent and Identically Distributed (non-IID) data, while also achieving performance comparable to existing methods that only operate on IID data. It is designed to be privacy-preserving and bandwidth-optimized, making it suitable for real-world applications such as social network analysis, recommendation systems, and fraud detection, which often involve complex, non-IID, and heterophilic graph structures. Our results in the area of federated learning on non-IID heterophilic graphs demonstrate significant improvements, while also achieving better performance on homophilic graphs. This work highlights the potential of federated learning in diverse and challenging graph settings. Open-source code available on GitHub (https://github.com/SpringWiz11/Fed-GNODEFormer).",
+   "query": "federated learning"
+  },
+  {
+   "id": "2506.18525",
+   "title": "Federated Learning from Molecules to Processes: A Perspective",
+   "published": "2025-06-23",
+   "categories": [
+    "cs.LG",
+    "physics.chem-ph"
+   ],
+   "abstract": "We present a perspective on federated learning in chemical engineering that envisions collaborative efforts in machine learning (ML) developments within the chemical industry. Large amounts of chemical and process data are proprietary to chemical companies and are therefore locked in data silos, hindering the training of ML models on large data sets in chemical engineering. Recently, the concept of federated learning has gained increasing attention in ML research, enabling organizations to jointly train machine learning models without disclosure of their individual data. We discuss potential applications of federated learning in several fields of chemical engineering, from the molecular to the process scale. In addition, we apply federated learning in two exemplary case studies that simulate practical scenarios of multiple chemical companies holding proprietary data sets: (i) prediction of binary mixture activity coefficients with graph neural networks and (ii) system identification of a distillation column with autoencoders. Our results indicate that ML models jointly trained with federated learning yield significantly higher accuracy than models trained by each chemical company individually and can perform similarly to models trained on combined datasets from all companies. Federated learning has therefore great potential to advance ML models in chemical engineering while respecting corporate data privacy, making it promising for future industrial applications.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2510.21183",
+   "title": "Generative Federated Learning for Smart Prediction and Recommendation Applications",
+   "published": "2025-10-24",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "This paper proposes a generative adversarial network and federated learning-based model to address various challenges of the smart prediction and recommendation applications, such as high response time, compromised data privacy, and data scarcity. The integration of the generative adversarial network and federated learning is referred to as Generative Federated Learning (GFL). As a case study of the proposed model, a heart health monitoring application is considered. The realistic synthetic datasets are generated using the generated adversarial network-based proposed algorithm for improving data diversity, data quality, and data augmentation, and remove the data scarcity and class imbalance issues. In this paper, we implement the centralized and decentralized federated learning approaches in an edge computing paradigm. In centralized federated learning, the edge nodes communicate with the central server to build the global and personalized local models in a collaborative manner. In the decentralized federated learning approach, the edge nodes communicate among themselves to exchange model updates for collaborative training. The comparative study shows that the proposed framework outperforms the existing heart health monitoring applications. The results show that using the proposed framework (i) the prediction accuracy is improved by 12% than the conventional framework, and (ii) the response time is reduced by 73% than the conventional cloud-only system.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2603.21102",
+   "title": "Evidential Quantum Vertical Federated Learning",
+   "published": "2026-03-22",
+   "categories": [
+    "quant-ph"
+   ],
+   "abstract": "Quantum federated learning (QFL) has recently emerged as a promising paradigm for privacy-preserving collaborative learning, yet most existing studies focus on horizontal federated learning and ignore the vertical federated learning (VFL), where parties hold complementary features of aligned samples. In this work, we propose Evidential Quantum Vertical Federated Learning (eviQVFL), a VFL-tailored QFL framework that employs a hybrid classical-quantum architecture for party-side feature processing, mapping local features into a quantum state. To preserve privacy and avoid information loss, party-side output states are directly transmitted to the server via quantum teleportation, and the server fuses the received quantum states with a non-parametric evidential fusion circuit grounded in evidence theory, followed by measurement-based inference. Extensive simulations on image classification and other real-world datasets demonstrate that eviQVFL consistently achieves higher classification accuracy than other classical and quantum baselines under comparable parameter budgets. Both empirical observations and theoretical analysis indicate that eviQVFL achieve less approximation error with limited quantum resources, while maintaining training stability and offering stronger feature privacy.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2511.14199",
+   "title": "HFL-FlowLLM: Large Language Models for Network Traffic Flow Classification in Heterogeneous Federated Learning",
+   "published": "2025-11-18",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "In modern communication networks driven by 5G and the Internet of Things (IoT), effective network traffic flow classification is crucial for Quality of Service (QoS) management and security. Traditional centralized machine learning struggles with the distributed data and privacy concerns in these heterogeneous environments, while existing federated learning approaches suffer from high costs and poor generalization. To address these challenges, we propose HFL-FlowLLM, which to our knowledge is the first framework to apply large language models to network traffic flow classification in heterogeneous federated learning. Compared to state-of-the-art heterogeneous federated learning methods for network traffic flow classification, the proposed approach improves the average F1 score by approximately 13%, demonstrating compelling performance and strong robustness. When compared to existing large language models federated learning frameworks, as the number of clients participating in each training round increases, the proposed method achieves up to a 5% improvement in average F1 score while reducing the training costs by about 87%. These findings prove the potential and practical value of HFL-FlowLLM in modern communication networks security.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2502.05273",
+   "title": "Principles and Components of Federated Learning Architectures",
+   "published": "2025-02-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Federated Learning (FL) is a machine learning framework where multiple clients, from mobiles to enterprises, collaboratively construct a model under the orchestration of a central server but still retain the decentralized nature of the training data. This decentralized training of models offers numerous advantages, including cost savings, enhanced privacy, improved security, and compliance with legal requirements. However, for all its apparent advantages, FL is not immune to the limitations of conventional machine learning methodologies. This article provides an elaborate explanation of the inherent concepts and features found within federated learning architecture, addressing five key domains: system heterogeneity, data partitioning, machine learning models, communication protocols, and privacy techniques. This article also highlights the limitations in this domain and proposes avenues for future work. Besides, we provide a set of architectural patterns for federated learning systems, which are derived from the systematic survey of the literature. The main elements of FL, the fundamentals of Federated Learning, and a few architectural specifics will all be better understood with the aid of this research.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2606.04338",
+   "title": "Federated Learning for Multi-Center Sepsis Early Prediction with Privacy-Preserving",
+   "published": "2026-06-03",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Privacy-sensitive and distributed characteristics of multi-center medical data bring severe obstacles to centralized modeling for accurate early prediction of sepsis. Federated learning (FL) has attracted growing attention as a promising framework for collaborative model development, as it allows multiple institutions to jointly train predictive models without directly sharing or centralizing raw data. Nevertheless, its practical performance, robustness, and privacy-preserving benefits remain insufficiently evaluated using real-world clinical datasets. To bridge this gap, this study systematically examines the application of federated learning to multi-center sepsis prediction. The experimental dataset consists of 648 clinically screened samples collected from three tertiary hospitals in China, with rigorous inclusion and exclusion criteria. We establish a centralized training paradigm as the performance baseline, and then implement a horizontal federated learning framework for distributed collaborative modeling. Extensive experimental results demonstrate that the federated learning-based model achieves highly comparable prediction accuracy to the centralized counterpart, while fundamentally avoiding privacy leakage. Further privacy security analysis verifies that malicious attackers cannot reconstruct the original patient data from the transmitted model parameters, indicating strong resistance against data reconstruction attacks. This work not only validates the practicality and security of federated learning in clinical sepsis prediction, but also provides a reliable and feasible solution for privacy-preserving multi-center medical collaboration.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2502.06889",
+   "title": "Secure Visual Data Processing via Federated Learning",
+   "published": "2025-02-09",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "As the demand for privacy in visual data management grows, safeguarding sensitive information has become a critical challenge. This paper addresses the need for privacy-preserving solutions in large-scale visual data processing by leveraging federated learning. Although there have been developments in this field, previous research has mainly focused on integrating object detection with either anonymization or federated learning. However, these pairs often fail to address complex privacy concerns. On the one hand, object detection with anonymization alone can be vulnerable to reverse techniques. On the other hand, federated learning may not provide sufficient privacy guarantees. Therefore, we propose a new approach that combines object detection, federated learning and anonymization. Combining these three components aims to offer a robust privacy protection strategy by addressing different vulnerabilities in visual data. Our solution is evaluated against traditional centralized models, showing that while there is a slight trade-off in accuracy, the privacy benefits are substantial, making it well-suited for privacy sensitive applications.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2501.04331",
+   "title": "AutoDFL: A Scalable and Automated Reputation-Aware Decentralized Federated Learning",
+   "published": "2025-01-08",
+   "categories": [
+    "cs.DC",
+    "cs.CR",
+    "cs.ET",
+    "cs.LG"
+   ],
+   "abstract": "Blockchained federated learning (BFL) combines the concepts of federated learning and blockchain technology to enhance privacy, security, and transparency in collaborative machine learning models. However, implementing BFL frameworks poses challenges in terms of scalability and cost-effectiveness. Reputation-aware BFL poses even more challenges, as blockchain validators are tasked with processing federated learning transactions along with the transactions that evaluate FL tasks and aggregate reputations. This leads to faster blockchain congestion and performance degradation. To improve BFL efficiency while increasing scalability and reducing on-chain reputation management costs, this paper proposes AutoDFL, a scalable and automated reputation-aware decentralized federated learning framework. AutoDFL leverages zk-Rollups as a Layer-2 scaling solution to boost the performance while maintaining the same level of security as the underlying Layer-1 blockchain. Moreover, AutoDFL introduces an automated and fair reputation model designed to incentivize federated learning actors. We develop a proof of concept for our framework for an accurate evaluation. Tested with various custom workloads, AutoDFL reaches an average throughput of over 3000 TPS with a gas reduction of up to 20X.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2601.00526",
+   "title": "Federated Customization of Large Models: Approaches, Experiments, and Insights",
+   "published": "2026-01-02",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "In this article, we explore federated customization of large models and highlight the key challenges it poses within the federated learning framework. We review several popular large model customization techniques, including full fine-tuning, efficient fine-tuning, prompt engineering, prefix-tuning, knowledge distillation, and retrieval-augmented generation. Then, we discuss how these techniques can be implemented within the federated learning framework. Moreover, we conduct experiments on federated prefix-tuning, which, to the best of our knowledge, is the first trial to apply prefix-tuning in the federated learning setting. The conducted experiments validate its feasibility with performance close to centralized approaches. Further comparison with three other federated customization methods demonstrated its competitive performance, satisfactory efficiency, and consistent robustness.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2511.01800",
+   "title": "Bayesian Coreset Optimization for Personalized Federated Learning",
+   "published": "2025-11-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In a distributed machine learning setting like Federated Learning where there are multiple clients involved which update their individual weights to a single central server, often training on the entire individual client's dataset for each client becomes cumbersome. To address this issue we propose $\\methodprop$: a personalized coreset weighted federated learning setup where the training updates for each individual clients are forwarded to the central server based on only individual client coreset based representative data points instead of the entire client data. Through theoretical analysis we present how the average generalization error is minimax optimal up to logarithm bounds (upper bounded by $\\mathcal{O}(n_k^{-\\frac{2 β}{2 β+\\boldsymbolΛ}} \\log ^{2 δ^{\\prime}}(n_k))$) and lower bounds of $\\mathcal{O}(n_k^{-\\frac{2 β}{2 β+\\boldsymbolΛ}})$, and how the overall generalization error on the data likelihood differs from a vanilla Federated Learning setup as a closed form function ${\\boldsymbol{\\Im}}(\\boldsymbol{w}, n_k)$ of the coreset weights $\\boldsymbol{w}$ and coreset sample size $n_k$. Our experiments on different benchmark datasets based on a variety of recent personalized federated learning architectures show significant gains as compared to random sampling on the training data followed by federated learning, thereby indicating how intelligently selecting such training samples can help in performance. Additionally, through experiments on medical datasets our proposed method showcases some gains as compared to other submodular optimization based approaches used for subset selection on client's data.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2509.21704",
+   "title": "PQFed: A Privacy-Preserving Quality-Controlled Federated Learning Framework",
+   "published": "2025-09-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Federated learning enables collaborative model training without sharing raw data, but data heterogeneity consistently challenges the performance of the global model. Traditional optimization methods often rely on collaborative global model training involving all clients, followed by local adaptation to improve individual performance. In this work, we focus on early-stage quality control and propose PQFed, a novel privacy-preserving personalized federated learning framework that designs customized training strategies for each client prior to the federated training process. PQFed extracts representative features from each client's raw data and applies clustering techniques to estimate inter-client dataset similarity. Based on these similarity estimates, the framework implements a client selection strategy that enables each client to collaborate with others who have compatible data distributions. We evaluate PQFed on two benchmark datasets, CIFAR-10 and MNIST, integrated with three existing federated learning algorithms. Experimental results show that PQFed consistently improves the target client's model performance, even with a limited number of participants. We further benchmark PQFed against a baseline cluster-based algorithm, IFCA, and observe that PQFed also achieves better performance in low-participation scenarios. These findings highlight PQFed's scalability and effectiveness in personalized federated learning settings.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2501.05053",
+   "title": "TAPFed: Threshold Secure Aggregation for Privacy-Preserving Federated Learning",
+   "published": "2025-01-09",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Federated learning is a computing paradigm that enhances privacy by enabling multiple parties to collaboratively train a machine learning model without revealing personal data. However, current research indicates that traditional federated learning platforms are unable to ensure privacy due to privacy leaks caused by the interchange of gradients. To achieve privacy-preserving federated learning, integrating secure aggregation mechanisms is essential. Unfortunately, existing solutions are vulnerable to recently demonstrated inference attacks such as the disaggregation attack. This paper proposes TAPFed, an approach for achieving privacy-preserving federated learning in the context of multiple decentralized aggregators with malicious actors. TAPFed uses a proposed threshold functional encryption scheme and allows for a certain number of malicious aggregators while maintaining security and privacy. We provide formal security and privacy analyses of TAPFed and compare it to various baselines through experimental evaluation. Our results show that TAPFed offers equivalent performance in terms of model quality compared to state-of-the-art approaches while reducing transmission overhead by 29%-45% across different model training scenarios. Most importantly, TAPFed can defend against recently demonstrated inference attacks caused by curious aggregators, which the majority of existing approaches are susceptible to.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2607.08368",
+   "title": "FedOPAL: One-Shot Federated Learning via Analytic Visual Prompt Tuning",
+   "published": "2026-07-09",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "With the widespread deployment of basic models in edge intelligence, communication bandwidth has become a core bottleneck restricting the scalability of federated learning. Although one-shot federated learning alleviates this problem by minimizing communication rounds, existing iterative fine-tuning or knowledge distillation methods still face challenges such as high server-side computational costs and hyperparameter sensitivity. Analytical federated learning achieves efficient gradientfree aggregation using least-squares closed-form solutions, but in environments with non-independent and identically distributed data, its static feature assumptions fail, leading to feature manifold misalignment and severely impairing model performance. To address this contradiction, this paper proposes the FedOPAL framework. This framework adapts the visual prompts as feature rectifiers, actively correcting the feature distribution of heterogeneous data to a linearly separable space by applying local proximal constraints, thereby satisfying the theoretical assumptions of analytical federated learning. Experimental results show that FedOPAL not only significantly outperforms the original analytical methods on several benchmarks, but also achieves accuracy comparable to state-of-the-art iterative methods while maintaining zero server-side training costs, providing a new engineering paradigm for efficient collaboration of large models on the edge.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.12220",
+   "title": "PA-CFL: Privacy-Adaptive Clustered Federated Learning for Transformer-Based Sales Forecasting on Heterogeneous Retail Data",
+   "published": "2025-03-15",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Federated learning (FL) enables retailers to share model parameters for demand forecasting while maintaining privacy. However, heterogeneous data across diverse regions, driven by factors such as varying consumer behavior, poses challenges to the effectiveness of federated learning. To tackle this challenge, we propose Privacy-Adaptive Clustered Federated Learning (PA-CFL) tailored for demand forecasting on heterogeneous retail data. By leveraging differential privacy and feature importance distribution, PA-CFL groups retailers into distinct ``bubbles'', each forming its own federated learning system to effectively isolate data heterogeneity. Within each bubble, Transformer models are designed to predict local sales for each client. Our experiments demonstrate that PA-CFL significantly surpasses FedAvg and outperforms local learning in demand forecasting performance across all participating clients. Compared to local learning, PA-CFL achieves a 5.4% improvement in R^2, a 69% reduction in RMSE, and a 45% decrease in MAE. Our approach enables effective FL through adaptive adjustments to diverse noise levels and the range of clients participating in each bubble. By grouping participants and proactively filtering out high-risk clients, PA-CFL mitigates potential threats to the FL system. The findings demonstrate PA-CFL's ability to enhance federated learning in time series prediction tasks with heterogeneous data, achieving a balance between forecasting accuracy and privacy preservation in retail applications. Additionally, PA-CFL's capability to detect and neutralize poisoned data from clients enhances the system's robustness and reliability.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2508.02136",
+   "title": "FedLAD: A Linear Algebra Based Data Poisoning Defence for Federated Learning",
+   "published": "2025-08-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Sybil attacks pose a significant threat to federated learning, as malicious nodes can collaborate and gain a majority, thereby overwhelming the system. Therefore, it is essential to develop countermeasures that ensure the security of federated learning environments. We present a novel defence method against targeted data poisoning, which is one of the types of Sybil attacks, called Linear Algebra-based Detection (FedLAD). Unlike existing approaches, such as clustering and robust training, which struggle in situations where malicious nodes dominate, FedLAD models the federated learning aggregation process as a linear problem, transforming it into a linear algebra optimisation challenge. This method identifies potential attacks by extracting the independent linear combinations from the original linear combinations, effectively filtering out redundant and malicious elements. Extensive experimental evaluations demonstrate the effectiveness of FedLAD compared to five well-established defence methods: Sherpa, CONTRA, Median, Trimmed Mean, and Krum. Using tasks from both image classification and natural language processing, our experiments confirm that FedLAD is robust and not dependent on specific application settings. The results indicate that FedLAD effectively protects federated learning systems across a broad spectrum of malicious node ratios. Compared to baseline defence methods, FedLAD maintains a low attack success rate for malicious nodes when their ratio ranges from 0.2 to 0.8. Additionally, it preserves high model accuracy when the malicious node ratio is between 0.2 and 0.5. These findings underscore FedLAD's potential to enhance both the reliability and performance of federated learning systems in the face of data poisoning attacks.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2506.07173",
+   "title": "Translating Federated Learning Algorithms in Python into CSP Processes Using ChatGPT",
+   "published": "2025-06-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The Python Testbed for Federated Learning Algorithms is a simple Python FL framework that is easy to use by ML&AI developers who do not need to be professional programmers and is also amenable to LLMs. In the previous research, generic federated learning algorithms provided by this framework were manually translated into the CSP processes and algorithms' safety and liveness properties were automatically verified by the model checker PAT. In this paper, a simple translation process is introduced wherein the ChatGPT is used to automate the translation of the mentioned federated learning algorithms in Python into the corresponding CSP processes. Within the process, the minimality of the used context is estimated based on the feedback from ChatGPT. The proposed translation process was experimentally validated by successful translation (verified by the model checker PAT) of both generic centralized and decentralized federated learning algorithms.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2502.05679",
+   "title": "Federated Learning with Reservoir State Analysis for Time Series Anomaly Detection",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "With a growing data privacy concern, federated learning has emerged as a promising framework to train machine learning models without sharing locally distributed data. In federated learning, local model training by multiple clients and model integration by a server are repeated only through model parameter sharing. Most existing federated learning methods assume training deep learning models, which are often computationally demanding. To deal with this issue, we propose federated learning methods with reservoir state analysis to seek computational efficiency and data privacy protection simultaneously. Specifically, our method relies on Mahalanobis Distance of Reservoir States (MD-RS) method targeting time series anomaly detection, which learns a distribution of reservoir states for normal inputs and detects anomalies based on a deviation from the learned distribution. Iterative updating of statistical parameters in the MD-RS enables incremental federated learning (IncFed MD-RS). We evaluate the performance of IncFed MD-RS using benchmark datasets for time series anomaly detection. The results show that IncFed MD-RS outperforms other federated learning methods with deep learning and reservoir computing models particularly when clients' data are relatively short and heterogeneous. We demonstrate that IncFed MD-RS is robust against reduced sample data compared to other methods. We also show that the computational cost of IncFed MD-RS can be reduced by subsampling from the reservoir states without performance degradation. The proposed method is beneficial especially in anomaly detection applications where computational efficiency, algorithm simplicity, and low communication cost are required.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.09192",
+   "title": "Differential Privacy Personalized Federated Learning Based on Dynamically Sparsified Client Updates",
+   "published": "2025-03-12",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Personalized federated learning is extensively utilized in scenarios characterized by data heterogeneity, facilitating more efficient and automated local training on data-owning terminals. This includes the automated selection of high-performance model parameters for upload, thereby enhancing the overall training process. However, it entails significant risks of privacy leakage. Existing studies have attempted to mitigate these risks by utilizing differential privacy. Nevertheless, these studies present two major limitations: (1) The integration of differential privacy into personalized federated learning lacks sufficient personalization, leading to the introduction of excessive noise into the model. (2) It fails to adequately control the spatial scope of model update information, resulting in a suboptimal balance between data privacy and model effectiveness in differential privacy federated learning. In this paper, we propose a differentially private personalized federated learning approach that employs dynamically sparsified client updates through reparameterization and adaptive norm(DP-pFedDSU). Reparameterization training effectively selects personalized client update information, thereby reducing the quantity of updates. This approach minimizes the introduction of noise to the greatest extent possible. Additionally, dynamic adaptive norm refers to controlling the norm space of model updates during the training process, mitigating the negative impact of clipping on the update information. These strategies substantially enhance the effective integration of differential privacy and personalized federated learning. Experimental results on EMNIST, CIFAR-10, and CIFAR-100 demonstrate that our proposed scheme achieves superior performance and is well-suited for more complex personalized federated learning scenarios.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2603.16723",
+   "title": "Federated Learning with Multi-Partner OneFlorida+ Consortium Data for Predicting Major Postoperative Complications",
+   "published": "2026-03-17",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Background: This study aims to develop and validate federated learning models for predicting major postoperative complications and mortality using a large multicenter dataset from the OneFlorida Data Trust. We hypothesize that federated learning models will offer robust generalizability while preserving data privacy and security. Methods: This retrospective, longitudinal, multicenter cohort study included 358,644 adult patients admitted to five healthcare institutions, who underwent 494,163 inpatient major surgical procedures from 2012-2023. We developed and internally and externally validated federated learning models to predict the postoperative risk of intensive care unit (ICU) admission, mechanical ventilation (MV) therapy, acute kidney injury (AKI), and in-hospital mortality. These models were compared with local models trained on data from a single center and central models trained on a pooled dataset from all centers. Performance was primarily evaluated using area under the receiver operating characteristics curve (AUROC) and the area under the precision-recall curve (AUPRC) values. Results: Our federated learning models demonstrated strong predictive performance, with AUROC scores consistently comparable or superior performance in terms of AUROC and AUPRC across all outcomes and sites. Our federated learning models also demonstrated strong generalizability, with comparable or superior performance in terms of both AUROC and AUPRC compared to the best local learning model at each site. Conclusions: By leveraging multicenter data, we developed robust, generalizable, and privacy-preserving predictive models for major postoperative complications and mortality. These findings support the feasibility of federated learning in clinical decision support systems.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2602.03711",
+   "title": "VR-VFL: Joint Rate and Client Selection for Vehicular Federated Learning Under Imperfect CSI",
+   "published": "2026-02-03",
+   "categories": [
+    "eess.SP",
+    "cs.LG"
+   ],
+   "abstract": "Federated learning in vehicular edge networks faces major challenges in efficient resource allocation, largely due to high vehicle mobility and the presence of imperfect channel state information. Many existing methods oversimplify these realities, often assuming fixed communication rounds or ideal channel conditions, which limits their effectiveness in real-world scenarios. To address this, we propose variable rate vehicular federated learning (VR-VFL), a novel federated learning method designed specifically for vehicular networks under imperfect channel state information. VR-VFL combines dynamic client selection with adaptive transmission rate selection, while also allowing round times to flex in response to changing wireless conditions. At its core, VR-VFL is built on a bi-objective optimization framework that strikes a balance between improving learning convergence and minimizing the time required to complete each round. By accounting for both the challenges of mobility and realistic wireless constraints, VR-VFL offers a more practical and efficient approach to federated learning in vehicular edge networks. Simulation results show that the proposed VR-VFL scheme achieves convergence approximately 40% faster than other methods in the literature.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2508.18911",
+   "title": "Enhancing Model Privacy in Federated Learning with Random Masking and Quantization",
+   "published": "2025-08-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The primary goal of traditional federated learning is to protect data privacy by enabling distributed edge devices to collaboratively train a shared global model while keeping raw data decentralized at local clients. The rise of large language models (LLMs) has introduced new challenges in distributed systems, as their substantial computational requirements and the need for specialized expertise raise critical concerns about protecting intellectual property (IP). This highlights the need for a federated learning approach that can safeguard both sensitive data and proprietary models. To tackle this challenge, we propose FedQSN, a federated learning approach that leverages random masking to obscure a subnetwork of model parameters and applies quantization to the remaining parameters. Consequently, the server transmits only a privacy-preserving proxy of the global model to clients during each communication round, thus enhancing the model's confidentiality. Experimental results across various models and tasks demonstrate that our approach not only maintains strong model performance in federated learning settings but also achieves enhanced protection of model parameters compared to baseline methods.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2506.20644",
+   "title": "Efficient Federated Learning with Encrypted Data Sharing for Data-Heterogeneous Edge Devices",
+   "published": "2025-06-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "As privacy protection gains increasing importance, more models are being trained on edge devices and subsequently merged into the central server through Federated Learning (FL). However, current research overlooks the impact of network topology, physical distance, and data heterogeneity on edge devices, leading to issues such as increased latency and degraded model performance. To address these issues, we propose a new federated learning scheme on edge devices that called Federated Learning with Encrypted Data Sharing(FedEDS). FedEDS uses the client model and the model's stochastic layer to train the data encryptor. The data encryptor generates encrypted data and shares it with other clients. The client uses the corresponding client's stochastic layer and encrypted data to train and adjust the local model. FedEDS uses the client's local private data and encrypted shared data from other clients to train the model. This approach accelerates the convergence speed of federated learning training and mitigates the negative impact of data heterogeneity, making it suitable for application services deployed on edge devices requiring rapid convergence. Experiments results show the efficacy of FedEDS in promoting model performance.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.09206",
+   "title": "Robust Asymmetric Heterogeneous Federated Learning with Corrupted Clients",
+   "published": "2025-03-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "This paper studies a challenging robust federated learning task with model heterogeneous and data corrupted clients, where the clients have different local model structures. Data corruption is unavoidable due to factors such as random noise, compression artifacts, or environmental conditions in real-world deployment, drastically crippling the entire federated system. To address these issues, this paper introduces a novel Robust Asymmetric Heterogeneous Federated Learning (RAHFL) framework. We propose a Diversity-enhanced supervised Contrastive Learning technique to enhance the resilience and adaptability of local models on various data corruption patterns. Its basic idea is to utilize complex augmented samples obtained by the mixed-data augmentation strategy for supervised contrastive learning, thereby enhancing the ability of the model to learn robust and diverse feature representations. Furthermore, we design an Asymmetric Heterogeneous Federated Learning strategy to resist corrupt feedback from external clients. The strategy allows clients to perform selective one-way learning during collaborative learning phase, enabling clients to refrain from incorporating lower-quality information from less robust or underperforming collaborators. Extensive experimental results demonstrate the effectiveness and robustness of our approach in diverse, challenging federated learning environments. Our code and models are public available at https://github.com/FangXiuwen/RAHFL.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2608.21096",
+   "title": "FlatLand: Personalized Graph Federated Learning via Tailored Lorentz Space",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Federated learning enables privacy-preserving collaborative training, but highly heterogeneous client data remain challenging, especially in graph federated learning where clients possess structurally diverse graphs. Existing personalized federated learning (PFL) methods ignore the intrinsic geometric properties of diverse graph structures. We propose FlatLand, a novel personalized federated learning method that embeds different clients' data in tailored Lorentz space of hyperbolic geometry. Our key insight is that hyperbolic geometry naturally accommodates the intrinsic negative curvature prevalent in real-world graphs, while the time-like dimension in Lorentz space provides a principled way to encode client-specific heterogeneity. We develop a parameter decoupling strategy that separates heterogeneous information (captured in time-like parameters) from common knowledge (preserved in space-like parameters), enabling direct aggregation without requiring client similarity estimation and extra calculation modules. Empirical results on diverse federated graph learning tasks demonstrate that FlatLand achieves superior performance, particularly in low-dimensional settings.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2601.20397",
+   "title": "FedRD: Reducing Divergences for Generalized Federated Learning via Heterogeneity-aware Parameter Guidance",
+   "published": "2026-01-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Heterogeneous federated learning (HFL) aims to ensure effective and privacy-preserving collaboration among different entities. As newly joined clients require significant adjustments and additional training to align with the existing system, the problem of generalizing federated learning models to unseen clients under heterogeneous data has become progressively crucial. Consequently, we highlight two unsolved challenging issues in federated domain generalization: Optimization Divergence and Performance Divergence. To tackle the above challenges, we propose FedRD, a novel heterogeneity-aware federated learning algorithm that collaboratively utilizes parameter-guided global generalization aggregation and local debiased classification to reduce divergences, aiming to obtain an optimal global model for participating and unseen clients. Extensive experiments on public multi-domain datasets demonstrate that our approach exhibits a substantial performance advantage over competing baselines in addressing this specific problem.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2511.08034",
+   "title": "Generic Algorithm for Universal TDM Communication Over Inter Satellite Links",
+   "published": "2025-11-11",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "The original Python Testbed for Federated Learning Algorithms is a light FL framework, which provides the three generic algorithms: the centralized federated learning, the decentralized federated learning, and the TDM communication (i.e., peer data exchange) in the current time slot. The limitation of the latter is that it allows communication only between pairs of network nodes. This paper presents the new generic algorithm for the universal TDM communication that overcomes this limitation, such that a node can communicate with an arbitrary number of peers (assuming the peers also want to communicate with it). The paper covers: (i) the algorithm's theoretical foundation, (ii) the system design, and (iii) the system validation. The main advantage of the new algorithm is that it supports real-world TDM communications over inter satellite links.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.13624",
+   "title": "SDFLMQ: A Semi-Decentralized Federated Learning Framework over MQTT",
+   "published": "2025-03-17",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "Federated Learning is widely discussed as a distributed machine learning concept with stress on preserving data privacy. Various structures of Federated Learning were proposed. Centralized Federated learning for instance has been the primary structure that suits cloud computing. Decentralized Federated learning also has been proposed for ecosystems where communication is dominantly peer-to-peer. Semi-Decentralized Federated Learning (SDFL) has emerged recently as a new concept where the interconnected nodes are clustered, and each cluster is managed independently. The potential of SDFL lies in its clustering feature, which distributes the load of the global model update down onto multiple nodes. Since the concept is fairly new, much can be done to render this FL model a reliable, efficient, and real-time service at the edge. In this paper, we propose SDFLMQ, a semi-decentralized Federated learning framework at the Edge that uses MQTT as the communication protocol. We demonstrate how the publish/subscribe communication model is used to facilitate the clustering and load balancing in SDFL. We also demonstrate how SDFLMQ can use some of the core MQTT features to expand its capacity with no significant costs. Based on some primary evaluations, we demonstrate how SDFLMQ can efficiently distribute the load of aggregation, and potentially save unnecessary memory allocation, all with no requirement for a powerful central unit for aggregation and global model update. We also disclose some of the key future expansions of SDFLMQ with a focus on the operation of large deep neural network models at the edge.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2610.20264",
+   "title": "FUSE: Fairness-aware Update Screening against Byzantine Exploitation in $q$-Fair Federated Learning",
+   "published": "2026-10-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Client-level fair federated learning, in the form of $q$-fair federated learning ($q$-FFL), agnostic federated learning, or tilted empirical risk minimization, has emerged as an attractive solution to equalize utility across heterogeneous clients. This paradigm grants high-loss clients greater relative influence, while a central server aggregates their loss-weighted updates into a single shared model. Yet, the Byzantine robustness of $q$-fair federated learning has been largely neglected, leaving the server unable to tell legitimate fairness-induced amplification from malicious update scaling. To address this critical gap, we formalize the problem of Byzantine-robust $q$-fair federated learning under an \\emph{update-only interface}, in which the server observes nothing but the fairness-scaled client updates. Our analysis under shared class-conditional label skew shows that fairness scaling preserves the nonnegative class-mixture structure of honest updates, while replacing their unit-sum constraint by a client-dependent radial scale. Moving beyond magnitude-based screening, we show that this warped geometry supplies two complementary tests, one radial and one structural, that a single norm cannot provide. We then introduce FUSE, a structure-aware robust aggregator that uses a small trusted labeled dataset for coefficient recovery, scale and cone-consistency screening, and post-screening step-size control. Across four benchmarks and seven Byzantine attacks, FUSE improves seed-wise worst-attack accuracy over the strongest baseline on each benchmark by 3.9--30.1 percentage points, while largely preserving the influence of the high-loss honest clients that fairness is meant to protect.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2508.04005",
+   "title": "Decoupled Contrastive Learning for Federated Learning",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Federated learning is a distributed machine learning paradigm that allows multiple participants to train a shared model by exchanging model updates instead of their raw data. However, its performance is degraded compared to centralized approaches due to data heterogeneity across clients. While contrastive learning has emerged as a promising approach to mitigate this, our theoretical analysis reveals a fundamental conflict: its asymptotic assumptions of an infinite number of negative samples are violated in finite-sample regime of federated learning. To address this issue, we introduce Decoupled Contrastive Learning for Federated Learning (DCFL), a novel framework that decouples the existing contrastive loss into two objectives. Decoupling the loss into its alignment and uniformity components enables the independent calibration of the attraction and repulsion forces without relying on the asymptotic assumptions. This strategy provides a contrastive learning method suitable for federated learning environments where each client has a small amount of data. Our experimental results show that DCFL achieves stronger alignment between positive samples and greater uniformity between negative samples compared to existing contrastive learning methods. Furthermore, experimental results on standard benchmarks, including CIFAR-10, CIFAR-100, and Tiny-ImageNet, demonstrate that DCFL consistently outperforms state-of-the-art federated learning methods.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2511.00269",
+   "title": "FedReplay: A Feature Replay Assisted Federated Transfer Learning Framework for Efficient and Privacy-Preserving Smart Agriculture",
+   "published": "2025-10-31",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Accurate classification plays a pivotal role in smart agriculture, enabling applications such as crop monitoring, fruit recognition, and pest detection. However, conventional centralized training often requires large-scale data collection, which raises privacy concerns, while standard federated learning struggles with non-independent and identically distributed (non-IID) data and incurs high communication costs. To address these challenges, we propose a federated learning framework that integrates a frozen Contrastive Language-Image Pre-training (CLIP) vision transformer (ViT) with a lightweight transformer classifier. By leveraging the strong feature extraction capability of the pre-trained CLIP ViT, the framework avoids training large-scale models from scratch and restricts federated updates to a compact classifier, thereby reducing transmission overhead significantly. Furthermore, to mitigate performance degradation caused by non-IID data distribution, a small subset (1%) of CLIP-extracted feature representations from all classes is shared across clients. These shared features are non-reversible to raw images, ensuring privacy preservation while aligning class representation across participants. Experimental results on agricultural classification tasks show that the proposed method achieve 86.6% accuracy, which is more than 4 times higher compared to baseline federated learning approaches. This demonstrates the effectiveness and efficiency of combining vision-language model features with federated learning for privacy-preserving and scalable agricultural intelligence.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2509.20223",
+   "title": "An Empirical Analysis of Secure Federated Learning for Autonomous Vehicle Applications",
+   "published": "2025-09-24",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "Federated Learning lends itself as a promising paradigm in enabling distributed learning for autonomous vehicles applications and ensuring data privacy while enhancing and refining predictive model performance through collaborative training on edge client vehicles. However, it remains vulnerable to various categories of cyber-attacks, necessitating more robust security measures to effectively mitigate potential threats. Poisoning attacks and inference attacks are commonly initiated within the federated learning environment to compromise secure system performance. Secure aggregation can limit the disclosure of sensitive information from outsider and insider attackers of the federated learning environment. In this study, our aim is to conduct an empirical analysis on the transportation image dataset (e.g., LISA traffic light) using various secure aggregation techniques and multiparty computation in the presence of diverse categories of cyber-attacks. Multiparty computation serves as a state-of-the-art security mechanism, offering standard privacy for secure aggregation of edge autonomous vehicles local model updates through various security protocols. The presence of adversaries can mislead the autonomous vehicle learning model, leading to the misclassification of traffic lights, and resulting in detrimental impacts. This empirical study explores the resilience of various secure federated learning aggregation techniques and multiparty computation in safeguarding autonomous vehicle applications against various cyber threats during both training and inference times.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.00813",
+   "title": "HLoRA: Efficient Federated Learning System for LLM Heterogeneous Fine-Tuning",
+   "published": "2025-03-02",
+   "categories": [
+    "cs.DC"
+   ],
+   "abstract": "Federated learning systems have been identified as an efficient approach to scaling distributed model training with a large amount of participants or data owners while guaranteeing data privacy. To apply the current most popular pre-trained large language models to other domains with data privacy guarantee requirements, existing works propose fine-tuning the pre-trained large language models in federated learning environments across data owners using the parameter efficient fine-tuning approaches, LoRA. To address the resource and data heterogeneous issues for the participants, previous works adopted heterogeneous LoRA using different ranks for different clients and pending their rank, which brings bias for the parameter aggregation. To address this issue, we propose HLoRA, an efficient federated learning system utilizing a modified LoRA approach that incorporates rank heterogeneity to optimize communication and computational efficiency. Experimental results, conducted using the Microsoft Research Paraphrase Corpus (MRPC), Quora Question Pairs (QQP) and Recognizing Textual Entailment (RTE), within the Plato federated learning framework, demonstrate that our method not only reduces resource demands but also outperforms traditional LoRA applications in terms of convergence speed and final model accuracy. This study shows that our approach can significantly improve the practical deployment of federated LLM fine-tuning, particularly in environments with diverse client resources.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.05474",
+   "title": "Personalized Federated Learning via Learning Dynamic Graphs",
+   "published": "2025-03-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Personalized Federated Learning (PFL) aims to train a personalized model for each client that is tailored to its local data distribution, learning fails to perform well on individual clients due to variations in their local data distributions. Most existing PFL methods focus on personalizing the aggregated global model for each client, neglecting the fundamental aspect of federated learning: the regulation of how client models are aggregated. Additionally, almost all of them overlook the graph structure formed by clients in federated learning. In this paper, we propose a novel method, Personalized Federated Learning with Graph Attention Network (pFedGAT), which captures the latent graph structure between clients and dynamically determines the importance of other clients for each client, enabling fine-grained control over the aggregation process. We evaluate pFedGAT across multiple data distribution scenarios, comparing it with twelve state of the art methods on three datasets: Fashion MNIST, CIFAR-10, and CIFAR-100, and find that it consistently performs well.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2512.04635",
+   "title": "Federated Learning for Anomaly Detection in Maritime Movement Data",
+   "published": "2025-12-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper introduces M3fed, a novel solution for federated learning of movement anomaly detection models. This innovation has the potential to improve data privacy and reduce communication costs in machine learning for movement anomaly detection. We present the novel federated learning (FL) strategies employed to train M3fed, perform an example experiment with maritime AIS data, and evaluate the results with respect to communication costs and FL model quality by comparing classic centralized M3 and the new federated M3fed.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2503.21627",
+   "title": "Provable Reduction in Communication Rounds for Non-Smooth Convex Federated Learning",
+   "published": "2025-03-27",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Multiple local steps are key to communication-efficient federated learning. However, theoretical guarantees for such algorithms, without data heterogeneity-bounding assumptions, have been lacking in general non-smooth convex problems. Leveraging projection-efficient optimization methods, we propose FedMLS, a federated learning algorithm with provable improvements from multiple local steps. FedMLS attains an $ε$-suboptimal solution in $\\mathcal{O}(1/ε)$ communication rounds, requiring a total of $\\mathcal{O}(1/ε^2)$ stochastic subgradient oracle calls.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2511.18841",
+   "title": "Federated style aware transformer aggregation of representations",
+   "published": "2025-11-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.DC"
+   ],
+   "abstract": "Personalized Federated Learning (PFL) faces persistent challenges, including domain heterogeneity from diverse client data, data imbalance due to skewed participation, and strict communication constraints. Traditional federated learning often lacks personalization, as a single global model cannot capture client-specific characteristics, leading to biased predictions and poor generalization, especially for clients with highly divergent data distributions. To address these issues, we propose FedSTAR, a style-aware federated learning framework that disentangles client-specific style factors from shared content representations. FedSTAR aggregates class-wise prototypes using a Transformer-based attention mechanism, allowing the server to adaptively weight client contributions while preserving personalization. Furthermore, by exchanging compact prototypes and style vectors instead of full model parameters, FedSTAR significantly reduces communication overhead. Experimental results demonstrate that combining content-style disentanglement with attention-driven prototype aggregation improves personalization and robustness in heterogeneous environments without increasing communication cost.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.15924",
+   "title": "Achieving Distributive Justice in Federated Learning via Uncertainty Quantification",
+   "published": "2025-04-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Client-level fairness metrics for federated learning are used to ensure that all clients in a federation either: a) have similar final performance on their local data distributions (i.e., client parity), or b) obtain final performance on their local data distributions relative to their contribution to the federated learning process (i.e., contribution fairness). While a handful of works that propose either client-parity or contribution-based fairness metrics ground their definitions and decisions in social theories of equality -- such as distributive justice -- most works arbitrarily choose what notion of fairness to align with which makes it difficult for practitioners to choose which fairness metric aligns best with their fairness ethics. In this work, we propose UDJ-FL (Uncertainty-based Distributive Justice for Federated Learning), a flexible federated learning framework that can achieve multiple distributive justice-based client-level fairness metrics. Namely, by utilizing techniques inspired by fair resource allocation, in conjunction with performing aleatoric uncertainty-based client weighing, our UDJ-FL framework is able to achieve egalitarian, utilitarian, Rawls' difference principle, or desert-based client-level fairness. We empirically show the ability of UDJ-FL to achieve all four defined distributive justice-based client-level fairness metrics in addition to providing fairness equivalent to (or surpassing) other popular fair federated learning works. Further, we provide justification for why aleatoric uncertainty weighing is necessary to the construction of our UDJ-FL framework as well as derive theoretical guarantees for the generalization bounds of UDJ-FL. Our code is publicly available at https://github.com/alycia-noel/UDJ-FL.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2501.12125",
+   "title": "Heterogeneous Federated Learning System for Sparse Healthcare Time-Series Prediction",
+   "published": "2025-01-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In this paper, we propose a heterogeneous federated learning (HFL) system for sparse time series prediction in healthcare, which is a decentralized federated learning algorithm with heterogeneous transfers. We design dense and sparse feature tensors to deal with the sparsity of data sources. Heterogeneous federated learning is developed to share asynchronous parts of networks and select appropriate models for knowledge transfer. Experimental results show that the proposed HFL achieves the lowest prediction error among all benchmark systems on eight out of ten prediction tasks, with MSE reduction of 94.8%, 48.3%, and 52.1% compared to the benchmark systems. These results demonstrate the effectiveness of HFL in transferring knowledge from heterogeneous domains, especially in the smaller target domain. Ablation studies then demonstrate the effectiveness of the designed mechanisms for heterogeneous domain selection and switching in predicting healthcare time series with privacy, model security, and heterogeneous knowledge transfer.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2502.19752",
+   "title": "Probabilistic Federated Prompt-Tuning with Non-IID and Imbalanced Data",
+   "published": "2025-02-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Fine-tuning pre-trained models is a popular approach in machine learning for solving complex tasks with moderate data. However, fine-tuning the entire pre-trained model is ineffective in federated data scenarios where local data distributions are diversely skewed. To address this, we explore integrating federated learning with a more effective prompt-tuning method, optimizing for a small set of input prefixes to reprogram the pre-trained model's behavior. Our approach transforms federated learning into a distributed set modeling task, aggregating diverse sets of prompts to globally fine-tune the pre-trained model. We benchmark various baselines based on direct adaptations of existing federated model aggregation techniques and introduce a new probabilistic prompt aggregation method that substantially outperforms these baselines. Our reported results on a variety of computer vision datasets confirm that the proposed method is most effective to combat extreme data heterogeneity in federated learning.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2504.16227",
+   "title": "Towards a Distributed Federated Learning Aggregation Placement using Particle Swarm Intelligence",
+   "published": "2025-04-22",
+   "categories": [
+    "cs.DC",
+    "cs.LG",
+    "cs.NE",
+    "cs.NI"
+   ],
+   "abstract": "Federated learning has become a promising distributed learning concept with extra insurance on data privacy. Extensive studies on various models of Federated learning have been done since the coinage of its term. One of the important derivatives of federated learning is hierarchical semi-decentralized federated learning, which distributes the load of the aggregation task over multiple nodes and parallelizes the aggregation workload at the breadth of each level of the hierarchy. Various methods have also been proposed to perform inter-cluster and intra-cluster aggregation optimally. Most of the solutions, nonetheless, require monitoring the nodes' performance and resource consumption at each round, which necessitates frequently exchanging systematic data. To optimally perform distributed aggregation in SDFL with minimal reliance on systematic data, we propose Flag-Swap, a Particle Swarm Optimization (PSO) method that optimizes the aggregation placement according only to the processing delay. Our simulation results show that PSO-based placement can find the optimal placement relatively fast, even in scenarios with many clients as candidates for aggregation. Our real-world docker-based implementation of Flag-Swap over the recently emerged FL framework shows superior performance compared to black-box-based deterministic placement strategies, with about 43% minutes faster than random placement, and 32% minutes faster than uniform placement, in terms of total processing time.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2601.15042",
+   "title": "Federated Transformer-GNN for Privacy-Preserving Brain Tumor Localization with Modality-Level Explainability",
+   "published": "2026-01-21",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Deep learning models for brain tumor analysis require large and diverse datasets that are often siloed across healthcare institutions due to privacy regulations. We present a federated learning framework for brain tumor localization that enables multi-institutional collaboration without sharing sensitive patient data. Our method extends a hybrid Transformer-Graph Neural Network architecture derived from prior decoder-free supervoxel GNNs and is deployed within CAFEIN\\textsuperscript{\\textregistered}, CERN's federated learning platform designed for healthcare environments. We provide an explainability analysis through Transformer attention mechanisms that reveals which MRI modalities drive the model predictions. Experiments on the BraTS dataset demonstrate a key finding: while isolated training on individual client data triggers early stopping well before reaching full training capacity, federated learning enables continued model improvement by leveraging distributed data, ultimately matching centralized performance. This result provides strong justification for federated learning when dealing with complex tasks and high-dimensional input data, as aggregating knowledge from multiple institutions significantly benefits the learning process. Our explainability analysis, validated through rigorous statistical testing on the full test set (paired t-tests with Bonferroni correction), reveals that deeper network layers significantly increase attention to T2 and FLAIR modalities ($p<0.001$, Cohen's $d$=1.50), aligning with clinical practice.",
+   "query": "federated learning"
+  },
+  {
+   "id": "2610.36458",
+   "title": "A Simple Presentation of Robust Membership Inference Attacks",
+   "published": "2026-10-27",
+   "categories": [
+    "cs.CR",
+    "cs.IT",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "In a membership inference attack, an attacker is given the data of a particular individual, and tries to determine if that individual was included in a particular dataset, given some kind of statistics derived from the dataset or a model trained on the dataset. Roughly, a membership inference attack is robust if it succeeds even when the statistics are highly noisy, regardless of how that noise is introduced. We give a simple presentation of robust membership inference attacks for mean estimation, covering both multivariate Gaussian distributions and binary product distributions. We also give a summary of the literature on robust membership inference, covering history, extensions, and connections to other research areas.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2501.02182",
+   "title": "AdaMixup: A Dynamic Defense Framework for Membership Inference Attack Mitigation",
+   "published": "2025-01-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Membership inference attacks have emerged as a significant privacy concern in the training of deep learning models, where attackers can infer whether a data point was part of the training set based on the model's outputs. To address this challenge, we propose a novel defense mechanism, AdaMixup. AdaMixup employs adaptive mixup techniques to enhance the model's robustness against membership inference attacks by dynamically adjusting the mixup strategy during training. This method not only improves the model's privacy protection but also maintains high performance. Experimental results across multiple datasets demonstrate that AdaMixup significantly reduces the risk of membership inference attacks while achieving a favorable trade-off between defensive efficiency and model accuracy. This research provides an effective solution for data privacy protection and lays the groundwork for future advancements in mixup training methods.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2507.21412",
+   "title": "Cascading and Proxy Membership Inference Attacks",
+   "published": "2025-07-29",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "A Membership Inference Attack (MIA) assesses how much a trained machine learning model reveals about its training data by determining whether specific query instances were included in the dataset. We classify existing MIAs into adaptive or non-adaptive, depending on whether the adversary is allowed to train shadow models on membership queries. In the adaptive setting, where the adversary can train shadow models after accessing query instances, we highlight the importance of exploiting membership dependencies between instances and propose an attack-agnostic framework called Cascading Membership Inference Attack (CMIA), which incorporates membership dependencies via conditional shadow training to boost membership inference performance. In the non-adaptive setting, where the adversary is restricted to training shadow models before obtaining membership queries, we introduce Proxy Membership Inference Attack (PMIA). PMIA employs a proxy selection strategy that identifies samples with similar behaviors to the query instance and uses their behaviors in shadow models to perform a membership posterior odds test for membership inference. We provide theoretical analyses for both attacks, and extensive experimental results demonstrate that CMIA and PMIA substantially outperform existing MIAs in both settings, particularly in the low false-positive regime, which is crucial for evaluating privacy risks.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2509.06796",
+   "title": "Imitative Membership Inference Attack",
+   "published": "2025-09-08",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "A Membership Inference Attack (MIA) assesses how much a target machine learning model reveals about its training data by determining whether specific query instances were part of the training set. State-of-the-art MIAs rely on training hundreds of shadow models that are independent of the target model, leading to significant computational overhead. In this paper, we introduce Imitative Membership Inference Attack (IMIA), which employs a novel imitative training technique to strategically construct a small number of target-informed imitative models that closely replicate the target model's behavior for inference. Extensive experimental results demonstrate that IMIA substantially outperforms existing MIAs in various attack settings while only requiring less than 5% of the computational cost of state-of-the-art approaches.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2606.06334",
+   "title": "Quantifying the Privacy of Counterfactuals by Leveraging Membership Inference Attacks Against Synthetic Data",
+   "published": "2026-06-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Counterfactuals are typically used in high-stakes decision areas to explain a machine learning model by showing how changes to the user profiles result in the desired outcome. However, explaining the model's decisions through counterfactuals can also be exploited by an adversary to conduct privacy attacks against the model or its training data. Drawing on the analogy that counterfactuals provide realistic substitutes for real training data, similar to synthetic data, we demonstrate in this paper how it is possible to successfully perform privacy attacks on counterfactuals by drawing on the attacks developed against synthetic data. More precisely, we investigate the effectiveness of the membership inference attacks designed for synthetic data on various types of counterfactuals. Additionally, while existing membership inference attacks against counterfactuals usually require to be able to query the model, we show how it is possible to perform successful membership inference attacks using only a set of counterfactuals, with no access to the model from which they are generated. Our results demonstrate that model developers should be more cautious when releasing counterfactuals to various users, as it can lead to a privacy breach.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2502.03692",
+   "title": "DocMIA: Document-Level Membership Inference Attacks against DocVQA Models",
+   "published": "2025-02-06",
+   "categories": [
+    "cs.LG",
+    "cs.CL",
+    "cs.CR"
+   ],
+   "abstract": "Document Visual Question Answering (DocVQA) has introduced a new paradigm for end-to-end document understanding, and quickly became one of the standard benchmarks for multimodal LLMs. Automating document processing workflows, driven by DocVQA models, presents significant potential for many business sectors. However, documents tend to contain highly sensitive information, raising concerns about privacy risks associated with training such DocVQA models. One significant privacy vulnerability, exploited by the membership inference attack, is the possibility for an adversary to determine if a particular record was part of the model's training data. In this paper, we introduce two novel membership inference attacks tailored specifically to DocVQA models. These attacks are designed for two different adversarial scenarios: a white-box setting, where the attacker has full access to the model architecture and parameters, and a black-box setting, where only the model's outputs are available. Notably, our attacks assume the adversary lacks access to auxiliary datasets, which is more realistic in practice but also more challenging. Our unsupervised methods outperform existing state-of-the-art membership inference attacks across a variety of DocVQA models and datasets, demonstrating their effectiveness and highlighting the privacy risks in this domain.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2505.07188",
+   "title": "Securing Genomic Data Against Inference Attacks in Federated Learning Environments",
+   "published": "2025-05-12",
+   "categories": [
+    "cs.CR",
+    "cs.CL"
+   ],
+   "abstract": "Federated Learning (FL) offers a promising framework for collaboratively training machine learning models across decentralized genomic datasets without direct data sharing. While this approach preserves data locality, it remains susceptible to sophisticated inference attacks that can compromise individual privacy. In this study, we simulate a federated learning setup using synthetic genomic data and assess its vulnerability to three key attack vectors: Membership Inference Attack (MIA), Gradient-Based Membership Inference Attack, and Label Inference Attack (LIA). Our experiments reveal that Gradient-Based MIA achieves the highest effectiveness, with a precision of 0.79 and F1-score of 0.87, underscoring the risk posed by gradient exposure in federated updates. Additionally, we visualize comparative attack performance through radar plots and quantify model leakage across clients. The findings emphasize the inadequacy of naïve FL setups in safeguarding genomic privacy and motivate the development of more robust privacy-preserving mechanisms tailored to the unique sensitivity of genomic data.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2509.14225",
+   "title": "Defending Diffusion Models Against Membership Inference Attacks via Higher-Order Langevin Dynamics",
+   "published": "2025-09-17",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Recent advances in generative artificial intelligence applications have raised new data security concerns. This paper focuses on defending diffusion models against membership inference attacks. This type of attack occurs when the attacker can determine if a certain data point was used to train the model. Although diffusion models are intrinsically more resistant to membership inference attacks than other generative models, they are still susceptible. The defense proposed here utilizes critically-damped higher-order Langevin dynamics, which introduces several auxiliary variables and a joint diffusion process along these variables. The idea is that the presence of auxiliary variables mixes external randomness that helps to corrupt sensitive input data earlier on in the diffusion process. This concept is theoretically investigated and validated on a toy dataset and a speech dataset using the Area Under the Receiver Operating Characteristic (AUROC) curves and the FID metric.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2610.30229",
+   "title": "Automated screening of privacy risks in medical AI",
+   "published": "2026-10-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Medical artificial intelligence (AI) models are often shared without their training data, assuming this protects the patients who contributed them. However, a model can reveal whether a patient's records were used in training, a privacy breach known as a membership inference attack. This risk is usually reported as a cohort average, which can appear negligible while individual patients are almost certainly exposed. Identifying potentially vulnerable records before developing a production model could make privacy assessment more practical. We measured each patient's vulnerability to membership inference attack, across 7,789 models trained on six clinical datasets in four modalities, including two adapted pretrained medical models. Training choices changed how many patients had high attack scores, but the patients who ranked highest by risk largely stayed the same across the configurations we tested. Stronger weight decay reduced the exposed cohort up to threefold, yet largely the same patients remained most at risk across training recipes, architectures and initializations, including foundation models. Therefore, we developed a lightweight screening tool that uses four small models to identify patients with high risk of exposure before production-model training. We also assessed if flagged patients could be protected without removing their data. Privacy screening should become incorporated into data preparation for clinical AI.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.13607",
+   "title": "When Reasoning Leaks Membership: Membership Inference Attack on Black-box Large Reasoning Models",
+   "published": "2026-01-20",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Large Reasoning Models (LRMs) have rapidly gained prominence for their strong performance in solving complex tasks. Many modern black-box LRMs expose the intermediate reasoning traces through APIs to improve transparency (e.g., Gemini-2.5 and Claude-sonnet). Despite their benefits, we find that these traces can leak membership signals, creating a new privacy threat even without access to token logits used in prior attacks. In this work, we initiate the first systematic exploration of Membership Inference Attacks (MIAs) on black-box LRMs. Our preliminary analysis shows that LRMs produce confident, recall-like reasoning traces on familiar training member samples but more hesitant, inference-like reasoning traces on non-members. The representations of these traces are continuously distributed in the semantic latent space, spanning from familiar to unfamiliar samples. Building on this observation, we propose BlackSpectrum, the first membership inference attack framework targeting the black-box LRMs. The key idea is to construct a recall-inference axis in the semantic latent space, based on representations derived from the exposed traces. By locating where a query sample falls along this axis, the attacker can obtain a membership score and predict how likely it is to be a member of the training data. Additionally, to address the limitations of outdated datasets unsuited to modern LRMs, we provide two new datasets to support future research, arXivReasoning and BookReasoning. Empirically, exposing reasoning traces significantly increases the vulnerability of LRMs to membership inference attacks, leading to large gains in attack performance. Our findings highlight the need for LRM companies to balance transparency in intermediate reasoning traces with privacy preservation.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2505.03490",
+   "title": "A new membership inference attack that spots memorization in generative and predictive models: Loss-Based with Reference Model algorithm (LBRM)",
+   "published": "2025-05-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Generative models can unintentionally memorize training data, posing significant privacy risks. This paper addresses the memorization phenomenon in time series imputation models, introducing the Loss-Based with Reference Model (LBRM) algorithm. The LBRM method leverages a reference model to enhance the accuracy of membership inference attacks, distinguishing between training and test data. Our contributions are twofold: first, we propose an innovative method to effectively extract and identify memorized training data, significantly improving detection accuracy. On average, without fine-tuning, the AUROC improved by approximately 40\\%. With fine-tuning, the AUROC increased by approximately 60\\%. Second, we validate our approach through membership inference attacks on two types of architectures designed for time series imputation, demonstrating the robustness and versatility of the LBRM approach in different contexts. These results highlight the significant enhancement in detection accuracy provided by the LBRM approach, addressing privacy risks in time series imputation models.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2503.07482",
+   "title": "How does Bayesian Sampling help Membership Inference Attacks?",
+   "published": "2025-03-10",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Membership Inference Attacks (MIAs) aim to estimate whether a specific data point was used in the training of a given model. Existing state-of-the-art attacks typically rely on training multiple reference models to approximate the conditional score distribution for individual data points, which leads to significant computational overhead and limits their practical applicability. In this work, we propose a novel approach -- Bayesian Membership Inference Attack (BMIA), which performs conditional attack through Bayesian sampling. Specifically, we apply Laplace approximation to a single reference model to obtain a posterior over model parameters, enabling direct estimation of the conditional score distribution. Theoretically, we demonstrate that Bayesian sampling reduces intra-model variance, thereby improving attack power. This insight naturally motivates the multi-reference variant that further enhances performance when additional reference models are available. Extensive experiments across image, text, and tabular datasets indicate that our method achieves state-of-the-art performance in both effectiveness and efficiency.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2506.02711",
+   "title": "Privacy Leaks by Adversaries: Adversarial Iterations for Membership Inference Attack",
+   "published": "2025-06-03",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Membership inference attack (MIA) has become one of the most widely used and effective methods for evaluating the privacy risks of machine learning models. These attacks aim to determine whether a specific sample is part of the model's training set by analyzing the model's output. While traditional membership inference attacks focus on leveraging the model's posterior output, such as confidence on the target sample, we propose IMIA, a novel attack strategy that utilizes the process of generating adversarial samples to infer membership. We propose to infer the member properties of the target sample using the number of iterations required to generate its adversarial sample. We conduct experiments across multiple models and datasets, and our results demonstrate that the number of iterations for generating an adversarial sample is a reliable feature for membership inference, achieving strong performance both in black-box and white-box attack scenarios. This work provides a new perspective for evaluating model privacy and highlights the potential of adversarial example-based features for privacy leakage assessment.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2602.07126",
+   "title": "Finding Connections: Membership Inference Attacks for the Multi-Table Synthetic Data Setting",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Synthetic tabular data has gained attention for enabling privacy-preserving data sharing. While substantial progress has been made in single-table synthetic generation where data are modeled at the row or item level, most real-world data exists in relational databases where a user's information spans items across multiple interconnected tables. Recent advances in synthetic relational data generation have emerged to address this complexity, yet release of these data introduce unique privacy challenges as information can be leaked not only from individual items but also through the relationships that comprise a complete user entity. To address this, we propose a novel Membership Inference Attack (MIA) setting to audit the empirical user-level privacy of synthetic relational data and show that single-table MIAs that audit at an item level underestimate user-level privacy leakage. We then propose Multi-Table Membership Inference Attack (MT-MIA), a novel adversarial attack under a No-Box threat model that targets learned representations of user entities via Heterogeneous Graph Neural Networks. By incorporating all connected items for a user, MT-MIA better targets user-level vulnerabilities induced by inter-tabular relationships than existing attacks. We evaluate MT-MIA on a range of real-world multi-table datasets and demonstrate that this vulnerability exists in state-of-the-art relational synthetic data generators, employing MT-MIA to additionally study where this leakage occurs.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2510.21783",
+   "title": "Noise Aggregation Analysis Driven by Small-Noise Injection: Efficient Membership Inference for Diffusion Models",
+   "published": "2025-10-18",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Diffusion models have demonstrated powerful performance in generating high-quality images. A typical example is text-to-image generator like Stable Diffusion. However, their widespread use also poses potential privacy risks. A key concern is membership inference attacks, which attempt to determine whether a particular data sample was used in the model training process. Existing membership inference attacks against diffusion models either directly exploit sample loss differences or rely on image-level reconstruction differences. Both approaches commonly ignore the consistency characteristics of noise prediction during the diffusion process, resulting in either low inference accuracy or high computational costs. To address these shortcomings, we propose a membership inference method based on noise aggregation analysis, and introduce a single-step, low-intensity noise injection diffusion strategy to amplify differences between member and non-member samples. Our proposed approach substantially reduces model query requirements while delivering more efficient and accurate membership inference.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.04116",
+   "title": "Membership Inference Attacks for Retrieval Based In-Context Learning for Document Question Answering",
+   "published": "2026-05-05",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "We show that remotely hosted applications employing in-context learning when augmented with a retrieval function to select in-context examples can be vulnerable to membership-inference attacks even when the service provider and users are separate parties. We propose two black-box membership inference attacks that exploit query text prefixes to distinguish member from non-member inputs. The first attack uses a reference model to estimate an otherwise unavailable loss metric. The second attack improves upon it by eliminating the reference model and instead computing a membership statistic through a simple but novel weighted-averaging scheme. Our comprehensive empirical evaluations consider a stricter case in which the adversary has a paraphrased version of the text in the queries and show that our attacks can exhibit stronger resilience to paraphrasing and outperform three prior attacks in many cases with small number of prefixes. We also adapt an existing ensemble prompting defense to our setting, demonstrating that it substantially mitigates the privacy leakage caused by our second attack.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2502.15796",
+   "title": "Pruning as a Defense: Reducing Memorization in Large Language Models",
+   "published": "2025-02-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large language models have been shown to memorize significant portions of their training data, which they can reproduce when appropriately prompted. This work investigates the impact of simple pruning techniques on this behavior. Our findings reveal that pruning effectively reduces the extent of memorization in LLMs, demonstrating its potential as a foundational approach for mitigating membership inference attacks.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2606.09582",
+   "title": "On Choosing the $μ$ Parameter in Gaussian Differential Privacy",
+   "published": "2026-06-08",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Recent work argues for using Gaussian differential privacy (GDP) to report the privacy guarantees in privacy-preserving machine learning. We provide principled mappings from pure-DP $\\varepsilon$ to GDP $μ$ by matching the worst-case success of a strong-adversary membership inference attack in terms of three metrics: multiplicative advantage at fixed FPR, precision at fixed recall, and the standard privacy profile. We tabulate $μ$ values across a useful range of parameters and recommend $μ\\approx \\varepsilon/5$ as a conservative general-purpose conversion.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2505.03392",
+   "title": "Automatic Calibration for Membership Inference Attack on Large Language Models",
+   "published": "2025-05-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Membership Inference Attacks (MIAs) have recently been employed to determine whether a specific text was part of the pre-training data of Large Language Models (LLMs). However, existing methods often misinfer non-members as members, leading to a high false positive rate, or depend on additional reference models for probability calibration, which limits their practicality. To overcome these challenges, we introduce a novel framework called Automatic Calibration Membership Inference Attack (ACMIA), which utilizes a tunable temperature to calibrate output probabilities effectively. This approach is inspired by our theoretical insights into maximum likelihood estimation during the pre-training of LLMs. We introduce ACMIA in three configurations designed to accommodate different levels of model access and increase the probability gap between members and non-members, improving the reliability and robustness of membership inference. Extensive experiments on various open-source LLMs demonstrate that our proposed attack is highly effective, robust, and generalizable, surpassing state-of-the-art baselines across three widely used benchmarks. Our code is available at: \\href{https://github.com/Salehzz/ACMIA}{\\textcolor{blue}{Github}}.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2511.12043",
+   "title": "BudgetLeak: Membership Inference Attacks on RAG Systems via the Generation Budget Side Channel",
+   "published": "2025-11-15",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Retrieval-Augmented Generation (RAG) enhances large language models by integrating external knowledge, but reliance on proprietary or sensitive corpora poses various data risks, including privacy leakage and unauthorized data usage. Membership inference attacks (MIAs) are a common technique to assess such risks, yet existing approaches underperform in RAG due to black-box constraints and the absence of strong membership signals. In this paper, we identify a previously unexplored side channel in RAG systems: the generation budget, which controls the maximum number of tokens allowed in a generated response. Varying this budget reveals observable behavioral patterns between member and non-member queries, as members gain quality more rapidly with larger budgets. Building on this insight, we propose BudgetLeak, a novel membership inference attack that probes responses under different budgets and analyzes metric evolution via sequence modeling or clustering. Extensive experiments across four datasets, three LLM generators, and two retrievers demonstrate that BudgetLeak consistently outperforms existing baselines, while maintaining high efficiency and practical viability. Our findings reveal a previously overlooked data risk in RAG systems and highlight the need for new defenses.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2503.19070",
+   "title": "Graph-Level Label-Only Membership Inference Attack against Graph Neural Networks",
+   "published": "2025-03-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Graph neural networks (GNNs) are widely used for graph-structured data but are vulnerable to membership inference attacks (MIAs) in graph classification tasks, which determine if a graph was part of the training dataset, potentially causing data leakage. Existing MIAs rely on prediction probability vectors, but they become ineffective when only prediction labels are available. We propose a Graph-level Label-Only Membership Inference Attack (GLO-MIA), which is based on the intuition that the target model's predictions on training data are more stable than those on testing data. GLO-MIA generates a set of perturbed graphs for target graph by adding perturbations to its effective features and queries the target model with the perturbed graphs to get their prediction labels, which are then used to calculate robustness score of the target graph. Finally, by comparing the robustness score with a predefined threshold, the membership of the target graph can be inferred correctly with high probability. Our evaluation on three datasets and four GNN models shows that GLO-MIA achieves an attack accuracy of up to 0.825, outperforming baseline work by 8.5% and closely matching the performance of probability-based MIAs, even with only prediction labels.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2510.10625",
+   "title": "ImpMIA: Leveraging Implicit Bias for Membership Inference Attack",
+   "published": "2025-10-12",
+   "categories": [
+    "cs.LG",
+    "cs.CR",
+    "cs.CV"
+   ],
+   "abstract": "Determining which data samples were used to train a model, known as Membership Inference Attack (MIA), is a well-studied and important problem with implications on data privacy. SotA methods (which are black-box attacks) rely on training many auxiliary reference models to imitate the behavior of the attacked model. As such, they rely on assumptions which rarely hold in real-world settings: (i) the attacker knows the training hyperparameters; (ii) all available non-training samples come from the same distribution as the training data; and (iii) the fraction of training data in the evaluation set is known. We show that removing these assumptions significantly harms the performance of black-box attacks. We introduce ImpMIA, a Membership Inference Attack that exploits the Implicit Bias of neural networks. Building on the maximum-margin implicit bias theory, ImpMIA uses the Karush-Kuhn-Tucker (KKT) optimality conditions to identify training samples -- those whose gradients most strongly reconstruct the trained model's parameters. Our approach is optimization-based, and requires NO training of reference-models, thus removing the need for any knowledge/assumptions regarding the attacked model's training procedure. While ImpMIA is a white-box attack (a setting which assumes access to model weights), this is becoming increasingly realistic given that many models are publicly available (e.g., via Hugging Face). ImpMIA achieves SotA performance compared to both black and white box attacks in settings where only the model weights are known, and a superset of the training data is available.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.06641",
+   "title": "Leveraging Soft Prompts for Privacy Attacks in Federated Prompt Tuning",
+   "published": "2026-01-10",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Membership inference attacks (MIAs) pose a serious privacy threat in federated learning (FL). While MIAs have been extensively studied in standard FL, the recent shift toward federated fine-tuning introduces new and largely unexplored attack surfaces. In this work, we show that federated prompt-tuning, which adapts pre-trained foundation models using lightweight input prefixes, exposes a novel and effective vector for membership inference. We propose PromptMIA, a membership inference attack tailored to federated prompt-tuning, in which a malicious server introduces adversarially crafted prompts and exploits their updates during collaborative training to determine whether a target data point belongs to a client's private dataset. We formalize this threat via a security game and demonstrate that PromptMIA achieves consistently high attack advantage across diverse benchmark datasets, substantially outperforming current SOTA federated MIAs. We also provide a theoretical lower bound on the attack advantage that explains the observed empirical behavior. Finally, we show that existing MIA defenses are often ineffective against PromptMIA, highlighting the need for defense mechanisms specifically tailored to prompt-tuning in federated settings.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.21628",
+   "title": "Noise as a Probe: Membership Inference Attacks on Diffusion Models Leveraging Initial Noise",
+   "published": "2026-01-29",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Diffusion models have achieved remarkable progress in image generation, but their increasing deployment raises serious concerns about privacy and copyright. In particular, fine-tuned models are highly vulnerable, as they are often fine-tuned on small and private datasets. Membership inference attacks (MIAs) are used to assess privacy risks by determining whether a specific sample was part of a model's training data. Existing MIAs against diffusion models either assume obtaining the intermediate results or require training the shadow model on auxiliary datasets. In this work, we utilized a critical yet overlooked vulnerability: the widely used noise schedules fail to fully eliminate semantic information in the images, resulting in residual semantic signals even at the maximum noise step. We empirically demonstrate that the fine-tuned diffusion model captures hidden correlations between the residual semantics in initial noise and the original images. Building on this insight, we propose a simple yet effective membership inference attack, which injects semantic information into the initial noise and infers membership by analyzing the model's generation result. Extensive experiments demonstrate that the semantic initial noise can strongly reveal membership information, highlighting the vulnerability of diffusion models to MIAs. Code is available at https://github.com/S3IC-Lab/NoiseMIA.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.11527",
+   "title": "FERMI: Exploiting Relations for Membership Inference Against Tabular Diffusion Models",
+   "published": "2026-05-12",
+   "categories": [
+    "cs.LG",
+    "cs.CR",
+    "cs.DB"
+   ],
+   "abstract": "Diffusion models are the leading approach for tabular data synthesis and are increasingly used to share sensitive records. Whether they actually protect privacy has become a pressing question. Membership inference attacks are the standard tool for this purpose, yet existing attacks assume a single-table setting and ignore the multi-relational structure of real sensitive data. A core challenge in assessing privacy risks from membership inference attacks in multi-table settings is how to leverage auxiliary information from relations associated with the target table, such as its parent tables. Particularly, we study a practical setting in which such auxiliary information is available only when training the attack model. At inference time, the attacker observes only the attribute values of the target record from the target table. We propose FERMI (FEature-mapping for Relational Membership Inference), which resolves this gap by enriching single-table features with relational membership signal. Across three tabular diffusion architectures and three real-world relational datasets, FERMI consistently improves attack performance over single-table baselines, with TPR@$0.1$FPR rising by up to 53% over the single-table baseline in the white-box setting and 22% in the black-box setting.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.01129",
+   "title": "Revisiting Privacy Leakage in Machine Unlearning: Membership Inference Beyond the Forgotten Set",
+   "published": "2026-05-01",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Machine unlearning (MU) has emerged as a key mechanism for ensuring data privacy and regulatory compliance by enabling models to forget specific training samples. However, recent studies have shown that the removal of data can inadvertently introduce privacy leakages to the retain set,i.e., data that remain in the model after unlearning. In this paper, we extend the scope of privacy analysis in unlearning to the often-overlooked retained data. We introduce TC-UMIA, the first tri-class unlearning membership inference attack. TC-UMIA is a population-level inference framework that leverages model predictions before and after unlearning to distinguish among the forget, retain, and unseen set. Extensive experiments on five state-of-the-art unlearning algorithms and six real-world datasets demonstrate that: (i) unlearning can introduce additional privacy risks to the retain set, making it more susceptible to membership inference attacks; (ii) TC-UMIA is effective across a wide range of model architectures, datasets, and MU approaches. Beyond launching the attack, we rigorously evaluate three defense mechanisms, namely label-only outputs, dropout, and differential privacy, to mitigate the privacy risks posed by TC- UMIA. Our results reveal a fundamental trade-off between privacy protection and model accuracy, with the dropout approach offering the most favorable balance.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2512.02786",
+   "title": "FiMMIA: scaling semantic perturbation-based membership inference across modalities",
+   "published": "2025-12-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Membership Inference Attacks (MIAs) aim to determine whether a specific data point was included in the training set of a target model. Although there are have been numerous methods developed for detecting data contamination in large language models (LLMs), their performance on multimodal LLMs (MLLMs) falls short due to the instabilities introduced through multimodal component adaptation and possible distribution shifts across multiple inputs. In this work, we investigate multimodal membership inference and address two issues: first, by identifying distribution shifts in the existing datasets, and second, by releasing an extended baseline pipeline to detect them. We also generalize the perturbation-based membership inference methods to MLLMs and release \\textbf{FiMMIA} -- a modular \\textbf{F}ramework for \\textbf{M}ultimodal \\textbf{MIA}.\\footnote{The source code and framework have been made publicly available under the MIT license via \\href{https://github.com/ai-forever/data_leakage_detect}{link}.The video demonstration is available on \\href{https://youtu.be/a9L4-H80aSg}{YouTube}.} Our approach trains a neural network to analyze the target model's behavior on perturbed inputs, capturing distributional differences between members and non-members. Comprehensive evaluations on various fine-tuned multimodal models demonstrate the effectiveness of our perturbation-based membership inference attacks in multimodal domains.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2506.12340",
+   "title": "Image Corruption-Inspired Membership Inference Attacks against Large Vision-Language Models",
+   "published": "2025-06-14",
+   "categories": [
+    "cs.CV",
+    "cs.CR"
+   ],
+   "abstract": "Large vision-language models (LVLMs) have demonstrated outstanding performance in many downstream tasks. However, LVLMs are trained on large-scale datasets, which can pose privacy risks if training images contain sensitive information. Therefore, it is important to detect whether an image is used to train the LVLM. Recent studies have investigated membership inference attacks (MIAs) against LVLMs, including detecting image-text pairs and single-modality content. In this work, we focus on detecting whether a target image is used to train the target LVLM. We design simple yet effective Image Corruption-Inspired Membership Inference Attacks (ICIMIA) against LVLMs, which are inspired by LVLM's different sensitivity to image corruption for member and non-member images. We first perform an MIA method under the white-box setting, where we can obtain the embeddings of the image through the vision part of the target LVLM. The attacks are based on the embedding similarity between the image and its corrupted version. We further explore a more practical scenario where we have no knowledge about target LVLMs and we can only query the target LVLMs with an image and a textual instruction. We then conduct the attack by utilizing the output text embeddings' similarity. Experiments on existing datasets validate the effectiveness of our proposed methods under those two different settings.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2510.05582",
+   "title": "(Token-Level) InfoRMIA: Stronger Membership Inference and Memorization Assessment for LLMs",
+   "published": "2025-10-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Machine learning models are known to leak sensitive information, as they inevitably memorize (parts of) their training data. More alarmingly, large language models (LLMs) are now trained on nearly all available data, which amplifies the magnitude of information leakage and raises serious privacy risks. Hence, it is more crucial than ever to quantify privacy risk before the release of LLMs. The standard method to quantify privacy is via membership inference attacks, where the state-of-the-art approach is the Robust Membership Inference Attack (RMIA). In this paper, we present InfoRMIA, a principled information-theoretic formulation of membership inference. Our method consistently outperforms RMIA across benchmarks while also offering improved computational efficiency. In the second part of the paper, we identify the limitations of treating sequence-level membership inference as the gold standard for measuring leakage. We propose a new perspective for studying membership and memorization in LLMs: token-level signals and analyses. We show that a simple token-based InfoRMIA can pinpoint which tokens are memorized within generated outputs, thereby localizing leakage from the sequence level down to individual tokens, while achieving stronger sequence-level inference power on LLMs. This new scope rethinks privacy in LLMs and can lead to more targeted mitigation, such as exact unlearning.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2501.06686",
+   "title": "Modeling Neural Networks with Privacy Using Neural Stochastic Differential Equations",
+   "published": "2025-01-12",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "In this work, we study the feasibility of using neural ordinary differential equations (NODEs) to model systems with intrinsic privacy properties. Unlike conventional feedforward neural networks, which have unlimited expressivity and can represent arbitrary mappings between inputs and outputs, NODEs constrain their learning to the solution of a system of differential equations. We first examine whether this constraint reduces memorization and, consequently, the membership inference risks associated with NODEs. We conduct a comprehensive evaluation of NODEs under membership inference attacks and show that they exhibit twice the resistance compared to conventional models such as ResNets. By analyzing the variance in membership risks across different NODE models, we find that their limited expressivity leads to reduced overfitting to the training data. We then demonstrate, both theoretically and empirically, that membership inference risks can be further mitigated by utilizing a stochastic variant of NODEs: neural stochastic differential equations (NSDEs). We show that NSDEs are differentially-private (DP) learners that provide the same provable privacy guarantees as DPSGD, the de-facto mechanism for training private models. NSDEs are also effective in mitigating membership inference attacks, achieving risk levels comparable to private models trained with DP-SGD while offering an improved privacyutility trade-off. Moreover, we propose a drop-in-replacement strategy that efficiently integrates NSDEs into conventional feedforward architectures to enhance their privacy.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2505.20074",
+   "title": "An Out-Of-Distribution Membership Inference Attack Approach for Cross-Domain Graph Attacks",
+   "published": "2025-05-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Graph Neural Network-based methods face privacy leakage risks due to the introduction of topological structures about the targets, which allows attackers to bypass the target's prior knowledge of the sensitive attributes and realize membership inference attacks (MIA) by observing and analyzing the topology distribution. As privacy concerns grow, the assumption of MIA, which presumes that attackers can obtain an auxiliary dataset with the same distribution, is increasingly deviating from reality. In this paper, we categorize the distribution diversity issue in real-world MIA scenarios as an Out-Of-Distribution (OOD) problem, and propose a novel Graph OOD Membership Inference Attack (GOOD-MIA) to achieve cross-domain graph attacks. Specifically, we construct shadow subgraphs with distributions from different domains to model the diversity of real-world data. We then explore the stable node representations that remain unchanged under external influences and consider eliminating redundant information from confounding environments and extracting task-relevant key information to more clearly distinguish between the characteristics of training data and unseen data. This OOD-based design makes cross-domain graph attacks possible. Finally, we perform risk extrapolation to optimize the attack's domain adaptability during attack inference to generalize the attack to other domains. Experimental results demonstrate that GOOD-MIA achieves superior attack performance in datasets designed for multiple domains.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2508.07066",
+   "title": "Membership Inference Attacks with False Discovery Rate Control",
+   "published": "2025-08-09",
+   "categories": [
+    "stat.ML",
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Recent studies have shown that deep learning models are vulnerable to membership inference attacks (MIAs), which aim to infer whether a data record was used to train a target model or not. To analyze and study these vulnerabilities, various MIA methods have been proposed. Despite the significance and popularity of MIAs, existing works on MIAs are limited in providing guarantees on the false discovery rate (FDR), which refers to the expected proportion of false discoveries among the identified positive discoveries. However, it is very challenging to ensure the false discovery rate guarantees, because the underlying distribution is usually unknown, and the estimated non-member probabilities often exhibit interdependence. To tackle the above challenges, in this paper, we design a novel membership inference attack method, which can provide the guarantees on the false discovery rate. Additionally, we show that our method can also provide the marginal probability guarantee on labeling true non-member data as member data. Notably, our method can work as a wrapper that can be seamlessly integrated with existing MIA methods in a post-hoc manner, while also providing the FDR control. We perform the theoretical analysis for our method. Extensive experiments in various settings (e.g., the black-box setting and the lifelong learning setting) are also conducted to verify the desirable performance of our method.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2508.19458",
+   "title": "The Sample Complexity of Membership Inference and Privacy Auditing",
+   "published": "2025-08-26",
+   "categories": [
+    "cs.LG",
+    "cs.CR",
+    "stat.ML"
+   ],
+   "abstract": "A membership-inference attack gets the output of a learning algorithm, and a target individual, and tries to determine whether this individual is a member of the training data or an independent sample from the same distribution. A successful membership-inference attack typically requires the attacker to have some knowledge about the distribution that the training data was sampled from, and this knowledge is often captured through a set of independent reference samples from that distribution. In this work we study how much information the attacker needs for membership inference by investigating the sample complexity-the minimum number of reference samples required-for a successful attack. We study this question in the fundamental setting of Gaussian mean estimation where the learning algorithm is given $n$ samples from a Gaussian distribution $\\mathcal{N}(μ,Σ)$ in $d$ dimensions, and tries to estimate $\\hatμ$ up to some error $\\mathbb{E}[\\|\\hat μ- μ\\|^2_Σ]\\leq ρ^2 d$. Our result shows that for membership inference in this setting, $Ω(n + n^2 ρ^2)$ samples can be necessary to carry out any attack that competes with a fully informed attacker. Our result is the first to show that the attacker sometimes needs many more samples than the training algorithm uses to train the model. This result has significant implications for practice, as all attacks used in practice have a restricted form that uses $O(n)$ samples and cannot benefit from $ω(n)$ samples. Thus, these attacks may be underestimating the possibility of membership inference, and better attacks may be possible when information about the distribution is easy to obtain.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2604.27002",
+   "title": "Membership Inference Attacks Against Video Large Language Models",
+   "published": "2026-04-29",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Video large language models (VideoLLMs) are increasingly trained or instruction-tuned on large-scale video--text corpora collected from heterogeneous sources, raising an immediate privacy question: can an external auditor determine whether a particular video was used during training? While membership inference attacks (MIAs) have been studied extensively for classifiers and, more recently, for text and image generation models, the VideoLLM setting remains unexplored. This setting is challenging because black-box auditors observe only generated text, whereas the membership signal is entangled with video-specific factors such as motion complexity and temporal span. In this paper, we present a black-box MIA targeting VideoLLMs that couples temperature-perturbed generation with video-aware difficulty features. Our key intuition is that member samples tend to induce sharper, more brittle generation behavior across decoding temperatures, and that this signal should be interpreted jointly with the intrinsic difficulty of the queried video. Concretely, we query the target model at low and high temperatures, measure the semantic drift between the resulting texts. We evaluate the attack against \\texttt{LLaVA-Video-7B-Qwen2-Video-Only} and achieve a member inference AUC of 0.68 and accuracy of 0.63. These results demonstrate that Video-LLMs are vulnerable to black-box membership inference attacks, highlighting an urgent need for the community to systematically evaluate and mitigate privacy risks in VideoLLMs.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.14686",
+   "title": "ReMIA: a Powerful and Efficient Alternative to Membership Inference Attacks against Synthetic Data Generators",
+   "published": "2026-05-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Tabular data sharing under privacy constraints is increasingly important for research and collaboration. Synthetic data generators (SDGs) are a promising solution, but synthetic data remains vulnerable to attacks, such as membership inference attacks (MIAs), which aim to determine whether a specific record was part of the training data. State-of-the-art MIAs are powerful but impractical: they rely on shadow modeling, requiring hundreds of SDG training runs, and need auxiliary data several times larger than the original training set. Fast proxy metrics like distance to closest record (DCR) are efficient but have limited sensitivity to MIA risk. We introduce ReMIA (Relative Membership Inference Attack), a practical privacy metric that requires only two SDG training runs and additional data no larger than the original training set. Rather than predicting whether a record was in the training set, ReMIA generates two synthetic datasets from two source datasets and measures whether a classifier can identify which source a record came from. Experiments across multiple tabular datasets and SDGs show that ReMIA has a sensitivity comparable to state-of-the-art MIAs while being substantially more practical. We further observe that SDGs can achieve privacy-utility trade-offs that traditional noise-based anonymization methods do not match. Code is available at https://github.com/aindo-com/remia.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2610.10909",
+   "title": "Power Side-Channel Membership Inference Attack on Embedded Machine Learning",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Membership inference attacks (MIAs) threaten the privacy of machine learning (ML) training data by determining whether a sample was used to train a target model. Existing MIAs rely on model outputs, ranging from prediction probabilities to predicted labels, an assumption that can be restrictive for on-device ML systems with limited or inaccessible outputs. However, suppressing model outputs does not eliminate the data-dependent computations that produce them, which may remain observable through physical side channels. We present PSCMIA, a power side-channel membership inference attack against embedded ML models that can infer membership directly from power traces without requiring prediction probabilities or even the predicted labels. We evaluate PSCMIA across multiple datasets (MNIST, FMNIST, CIFAR10, CINIC10), fully connected (FC) and convolutional neural network (CNN) architectures, and two embedded platforms (STM32F3, XMEGA). PSCMIA achieves ROC-AUC values of up to 0.907 on FC models. For CNN models, the ROC-AUC gap between PSCMIA and probability vector-based shadow MIA ranges from 0.006 to 0.116. Across the FC and CNN evaluations, PSCMIA outperforms label-only MIA in 11 of 16 model-dataset-hardware configurations, demonstrating that physical execution can expose membership information even when conventional model outputs are unavailable through unintended power side-channel leakage.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2611.18909",
+   "title": "Quantifying Membership Inference Risks in Genomic Data Sharing: The Role of Attacker's Auxiliary Information",
+   "published": "2026-11-13",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Genomic data sharing is essential for biomedical research but introduces significant privacy risks, including membership inference attacks, in which an adversary determines whether a specific individual's data was used in a study. Existing privacy protections are typically applied after a release format has already been chosen, leaving researchers without a principled method to assess dataset-specific risk beforehand. We propose a server-assisted, principal component analysis-based pre-release auditing framework that maps genomic data into a shared low-dimensional space, applies epsilon-local differential privacy via the Laplace mechanism with a formally derived sensitivity for principal component analysis scores, and estimates membership inference attack power at a controlled 5% false-positive rate using a distance-threshold attack. A membership-neutrality diagnostic based on Unbiased Reconstruction Robustness is reported alongside attack power, precision, and recall. Experiments using the openSNP and 1000 Genomes Project datasets across multiple dimensionalities and privacy budgets show that separation between the researcher's dataset and public auxiliary data in principal component analysis space is a dominant determinant of attack success, exceeding the effect of perturbation level alone. Comparison against a genome-wide association study-style likelihood ratio test baseline further contextualizes the measured risk. This framework enables researchers, data repositories, and institutional review bodies to quantify dataset-specific membership inference risk before genomic data publication, supporting more informed and privacy-aware biomedical data-sharing decisions.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2511.17989",
+   "title": "Privacy Auditing of Multi-domain Graph Pre-trained Model under Membership Inference Attacks",
+   "published": "2025-11-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Multi-domain graph pre-training has emerged as a pivotal technique in developing graph foundation models. While it greatly improves the generalization of graph neural networks, its privacy risks under membership inference attacks (MIAs), which aim to identify whether a specific instance was used in training (member), remain largely unexplored. However, effectively conducting MIAs against multi-domain graph pre-trained models is a significant challenge due to: (i) Enhanced Generalization Capability: Multi-domain pre-training reduces the overfitting characteristics commonly exploited by MIAs. (ii) Unrepresentative Shadow Datasets: Diverse training graphs hinder the obtaining of reliable shadow graphs. (iii) Weakened Membership Signals: Embedding-based outputs offer less informative cues than logits for MIAs. To tackle these challenges, we propose MGP-MIA, a novel framework for Membership Inference Attacks against Multi-domain Graph Pre-trained models. Specifically, we first propose a membership signal amplification mechanism that amplifies the overfitting characteristics of target models via machine unlearning. We then design an incremental shadow model construction mechanism that builds a reliable shadow model with limited shadow graphs via incremental learning. Finally, we introduce a similarity-based inference mechanism that identifies members based on their similarity to positive and negative samples. Extensive experiments demonstrate the effectiveness of our proposed MGP-MIA and reveal the privacy risks of multi-domain graph pre-training.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.27020",
+   "title": "Black-box Membership Inference Attacks on the Pre-training Data of Image-generation Models",
+   "published": "2026-05-26",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "The rapid advancement of diffusion-based image generation models has raised serious concerns regarding potential copyright and privacy infringements involving human-created data. Membership inference attacks (MIAs) have emerged as a promising tool for identifying unauthorized data usage during model training. Existing methods typically assess the ability of model to denoise perturbed suspect images as an indicator of membership status. However, the discriminative power of such features is highly dependent on the degree of model memorization and deteriorates significantly when applied to less exposed data (e.g., pre-training data). Although several methods attempt to enhance detection by leveraging internal model features, these features are generally inaccessible in mainstream closed-source image generation platforms, limiting their practicality. In this paper, we demonstrate that analyzing how a black-box diffusion model denoises a target image and corresponding perturbed textual instructions can reveal more distinctive membership cues. Based on this insight, we propose a black-box membership inference attack framework (named SD-MIA) that leverages a cross-modal data perturbation mechanism to detect pre-training data in diffusion models. We conduct extensive experiments on both a public benchmark dataset and a newly constructed dataset, each comprising pre-training membership and non-membership samples with identical distributions. Experimental results demonstrate that SD-MIA achieves superior performance compared to existing baselines, including those with the unfair advantage of accessing internal model features.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.20885",
+   "title": "What Hard Tokens Reveal: Exploiting Low-confidence Tokens for Membership Inference Attacks against Large Language Models",
+   "published": "2026-01-27",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "With the widespread adoption of Large Language Models (LLMs) and increasingly stringent privacy regulations, protecting data privacy in LLMs has become essential, especially for privacy-sensitive applications. Membership Inference Attacks (MIAs) attempt to determine whether a specific data sample was included in the model training/fine-tuning dataset, posing serious privacy risks. However, most existing MIA techniques against LLMs rely on sequence-level aggregated prediction statistics, which fail to distinguish prediction improvements caused by generalization from those caused by memorization, leading to low attack effectiveness. To address this limitation, we propose a novel membership inference approach that captures the token-level probabilities for low-confidence (hard) tokens, where membership signals are more pronounced. By comparing token-level probability improvements at hard tokens between a fine-tuned target model and a pre-trained reference model, HT-MIA isolates strong and robust membership signals that are obscured by prior MIA approaches. Extensive experiments on both domain-specific medical datasets and general-purpose benchmarks demonstrate that HT-MIA consistently outperforms seven state-of-the-art MIA baselines. We further investigate differentially private training as an effective defense mechanism against MIAs in LLMs. Overall, our HT-MIA framework establishes hard-token based analysis as a state-of-the-art foundation for advancing membership inference attacks and defenses for LLMs.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.17378",
+   "title": "Res-MIA: A Training-Free Resolution-Based Membership Inference Attack on Federated Learning Models",
+   "published": "2026-01-24",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Membership inference attacks (MIAs) pose a serious threat to the privacy of machine learning models by allowing adversaries to determine whether a specific data sample was included in the training set. Although federated learning (FL) is widely regarded as a privacy-aware training paradigm due to its decentralized nature, recent evidence shows that the final global model can still leak sensitive membership information through black-box access. In this paper, we introduce Res-MIA, a novel training-free and black-box membership inference attack that exploits the sensitivity of deep models to high-frequency input details. Res-MIA progressively degrades the input resolution using controlled downsampling and restoration operations, and analyzes the resulting confidence decay in the model's predictions. Our key insight is that training samples exhibit a significantly steeper confidence decline under resolution erosion compared to non-member samples, revealing a robust membership signal. Res-MIA requires no shadow models, no auxiliary data, and only a limited number of forward queries to the target model. We evaluate the proposed attack on a federated ResNet-18 trained on CIFAR-10, where it consistently outperforms existing training-free baselines and achieves an AUC of up to 0.88 with minimal computational overhead. These findings highlight frequency-sensitive overfitting as an important and previously underexplored source of privacy leakage in federated learning, and emphasize the need for privacy-aware model designs that reduce reliance on fine-grained, non-robust input features.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2506.05743",
+   "title": "When Better Features Mean Greater Risks: The Performance-Privacy Trade-Off in Contrastive Learning",
+   "published": "2025-06-06",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "With the rapid advancement of deep learning technology, pre-trained encoder models have demonstrated exceptional feature extraction capabilities, playing a pivotal role in the research and application of deep learning. However, their widespread use has raised significant concerns about the risk of training data privacy leakage. This paper systematically investigates the privacy threats posed by membership inference attacks (MIAs) targeting encoder models, focusing on contrastive learning frameworks. Through experimental analysis, we reveal the significant impact of model architecture complexity on membership privacy leakage: As more advanced encoder frameworks improve feature-extraction performance, they simultaneously exacerbate privacy-leakage risks. Furthermore, this paper proposes a novel membership inference attack method based on the p-norm of feature vectors, termed the Embedding Lp-Norm Likelihood Attack (LpLA). This method infers membership status, by leveraging the statistical distribution characteristics of the p-norm of feature vectors. Experimental results across multiple datasets and model architectures demonstrate that LpLA outperforms existing methods in attack performance and robustness, particularly under limited attack knowledge and query volumes. This study not only uncovers the potential risks of privacy leakage in contrastive learning frameworks, but also provides a practical basis for privacy protection research in encoder models. We hope that this work will draw greater attention to the privacy risks associated with self-supervised learning models and shed light on the importance of a balance between model utility and training data privacy. Our code is publicly available at: https://github.com/SeroneySun/LpLA_code.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2511.07503",
+   "title": "Biologically-Informed Hybrid Membership Inference Attacks on Generative Genomic Models",
+   "published": "2025-11-10",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "The increased availability of genetic data has transformed genomics research, but raised many privacy concerns regarding its handling due to its sensitive nature. This work explores the use of language models (LMs) for the generation of synthetic genetic mutation profiles, leveraging differential privacy (DP) for the protection of sensitive genetic data. We empirically evaluate the privacy guarantees of our DP modes by introducing a novel Biologically-Informed Hybrid Membership Inference Attack (biHMIA), which combines traditional black box MIA with contextual genomics metrics for enhanced attack power. Our experiments show that both small and large transformer GPT-like models are viable synthetic variant generators for small-scale genomics, and that our hybrid attack leads, on average, to higher adversarial success compared to traditional metric-based MIAs.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2510.16037",
+   "title": "Membership Inference over Diffusion-models-based Synthetic Tabular Data",
+   "published": "2025-10-16",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "This study investigates the privacy risks associated with diffusion-based synthetic tabular data generation methods, focusing on their susceptibility to Membership Inference Attacks (MIAs). We examine two recent models, TabDDPM and TabSyn, by developing query-based MIAs based on the step-wise error comparison method. Our findings reveal that TabDDPM is more vulnerable to these attacks. TabSyn exhibits resilience against our attack models. Our work underscores the importance of evaluating the privacy implications of diffusion models and encourages further research into robust privacy-preserving mechanisms for synthetic data generation.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2505.23658",
+   "title": "Bayesian Perspective on Memorization and Reconstruction",
+   "published": "2025-05-29",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "We introduce a new Bayesian perspective on the concept of data reconstruction, and leverage this viewpoint to propose a new security definition that, in certain settings, provably prevents reconstruction attacks. We use our paradigm to shed new light on one of the most notorious attacks in the privacy and memorization literature - fingerprinting code attacks (FPC). We argue that these attacks are really a form of membership inference attacks, rather than reconstruction attacks. Furthermore, we show that if the goal is solely to prevent reconstruction (but not membership inference), then in some cases the impossibility results derived from FPC no longer apply.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2603.28378",
+   "title": "Membership Inference Attacks against Large Audio Language Models",
+   "published": "2026-03-30",
+   "categories": [
+    "cs.SD",
+    "cs.AI"
+   ],
+   "abstract": "We present the first systematic Membership Inference Attack (MIA) evaluation of LALMs. Using Multi-modal Blind Baselines based on textual, spectral and prosodic features, we demonstrate that common audio datasets exhibit near-perfect train/test separability (AUC ~ 1.0) even without model inference, thus MIA may primarily detect distribution shift. We therefore introduce a blind-baseline protocol to control for this confound. Under this protocol, we identify that the distribution-matched datasets enable reliable MIA evaluation without distribution-shift artifacts. We benchmark multiple MIA methods and conduct modality disentanglement experiments on these datasets. The results reveal that LALM memorization is cross-modal, arising only from binding a speaker's vocal identity with its text. These findings establish a principled standard for auditing LALMs beyond spurious correlations. Our codebase is available at https://github.com/snooow1029/ALM_MIA.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.24312",
+   "title": "Five Queries Are Enough: Query-Efficient and Surrogate-Free Membership Inference Attacks on RAG via Entailment",
+   "published": "2026-05-23",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Retrieval-augmented generation (RAG) has become central to large language model (LLM) deployments, grounding responses in enterprise or proprietary data to reduce hallucinations. However, this design introduces a new privacy risk: model outputs may signal the presence of specific documents in the retrieval corpus, enabling membership inference attacks (MIAs) that leak sensitive information. Existing MIAs are feasible, but they often rely on easily detected templated queries or require many non-templated yet costly and repetitive queries, limiting practicality. We ask: Can an adversary launch a limited-budget, surrogate-free, stealthy, and defense-agnostic membership inference attack using non-templated queries? We present MEntA (Membership Entailment Attack), a query-efficient MIA that leverages natural-language entailment to maximize information gained per query. By asking low-cost, broad, information-seeking questions and measuring entailment between model responses and candidate documents, MEntA eliminates the need for costly shadow models and large query budgets. Across NFCorpus, SCIDOCS, and TREC-COVID, MEntA achieves up to 0.991 AUC with only 5 queries, outperforming prior methods by up to 0.42 AUC under equivalent conditions. It remains effective under state-of-the-art (SOTA) RAG defenses, while current detectors either miss MEntA or flag benign queries at high rates. Regarding cost, MEntA reduces total attack cost by up to 65$\\times$ lower compared to SOTA attacks under the same attack setting. Our findings expose the feasibility of realistic, low-cost privacy leakage in RAG systems and highlight the urgent need for privacy-aware retrieval and defense mechanisms.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2603.22987",
+   "title": "A Critical Review on the Effectiveness and Privacy Threats of Membership Inference Attacks",
+   "published": "2026-03-24",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Membership inference attacks (MIAs) aim to determine whether a data sample was included in a machine learning (ML) model's training set and have become the de facto standard for measuring privacy leakages in ML. We propose an evaluation framework that defines the conditions under which MIAs constitute a genuine privacy threat, and review representative MIAs against it. We find that, under the realistic conditions defined in our framework, MIAs represent weak privacy threats. Thus, relying on them as a privacy metric in ML can lead to an overestimation of risk and to unnecessary sacrifices in model utility as a consequence of employing too strong defenses.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2502.11619",
+   "title": "Membership Inference Attacks for Face Images Against Fine-Tuned Latent Diffusion Models",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "The rise of generative image models leads to privacy concerns when it comes to the huge datasets used to train such models. This paper investigates the possibility of inferring if a set of face images was used for fine-tuning a Latent Diffusion Model (LDM). A Membership Inference Attack (MIA) method is presented for this task. Using generated auxiliary data for the training of the attack model leads to significantly better performance, and so does the use of watermarks. The guidance scale used for inference was found to have a significant influence. If a LDM is fine-tuned for long enough, the text prompt used for inference has no significant influence. The proposed MIA is found to be viable in a realistic black-box setup against LDMs fine-tuned on face-images.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2607.29144",
+   "title": "Have I Seen You? Embedding Behavior Signals Synthetic Face Dataset Membership",
+   "published": "2026-07-31",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Synthetic face datasets are increasingly used to reduce privacy exposure and data access constraints in biometric recognition. Yet the generators that produce these datasets are trained on real faces, so synthetic data may still reveal their real source data. We study this risk through a dataset-level membership inference attack that first identifies the synthetic dataset used to train a face recognizer and then infers the real dataset used to train the generator. Across 11 face recognition models, 11 synthetic datasets, and 7 real datasets, the attack recovers the synthetic training dataset in 100% of cases and identifies the generator's source dataset in 54.5% of cases. These results show that synthetic data can retain dataset-level traces of real training data and that privacy-preserving deployment requires stronger leakage mitigation.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2506.05126",
+   "title": "Membership Inference Attacks on Sequence Models",
+   "published": "2025-06-05",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Sequence models, such as Large Language Models (LLMs) and autoregressive image generators, have a tendency to memorize and inadvertently leak sensitive information. While this tendency has critical legal implications, existing tools are insufficient to audit the resulting risks. We hypothesize that those tools' shortcomings are due to mismatched assumptions. Thus, we argue that effectively measuring privacy leakage in sequence models requires leveraging the correlations inherent in sequential generation. To illustrate this, we adapt a state-of-the-art membership inference attack to explicitly model within-sequence correlations, thereby demonstrating how a strong existing attack can be naturally extended to suit the structure of sequence models. Through a case study, we show that our adaptations consistently improve the effectiveness of memorization audits without introducing additional computational costs. Our work hence serves as an important stepping stone toward reliable memorization audits for large sequence models.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2606.26021",
+   "title": "Privacy Vulnerabilities of Attention Layers in Tabular Foundation Models and Protection of High-Risk Queries",
+   "published": "2026-06-24",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Tabular foundation models are commonly assumed to present limited privacy concerns as they are often pre-trained on large collections of synthetic data. However, these models leverage in-context learning, where sensitive records may be provided directly at inference time as labelled context examples. In this paper, we demonstrate that predictions generated via the attention mechanism leak sufficient information to enable effective Membership Inference Attacks (MIAs). To highlight this vulnerability, we propose AMIA (Attention-based Membership Inference Attack), a shadow-model-free attack that exploits the concentration of transformer attention patterns. Our results show that attention mechanisms reveal strong membership signals, which exceed classical confidence-based attacks, achieving an average gain of 7.7\\%, specially in low false-positive regimes. To mitigate this risk, we introduce an inference-time defence inspired by $k$-anonymity principles. This approach reduces the uniqueness of context-key representations without introducing random noise or retraining the model. By targeting only high-risk queries identified through AMIA scores, the defence substantially reduces membership leakage of this attack by an average of 50\\% and 25\\% against confidence-based attacks, while preserving predictive utility with only 3.9\\% performance degradation. Beyond showing that context examples are vulnerable, we further demonstrate that fine-tuning introduces an additional source of privacy risk. In particular, samples whose prediction confidence increases after fine-tuning become more susceptible to MIAs, indicating that fine-tuning can amplify memorisation and expose sensitive training information through confidence shifts.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2605.19847",
+   "title": "Auditing Privacy in Multi-Tenant RAG under Account Collusion",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.CR",
+    "cs.IR",
+    "cs.LG"
+   ],
+   "abstract": "Multi-tenant RAG services often treat the account as the privacy boundary: each account receives an $(\\varepsilon_{\\text{acc}},δ_{\\text{acc}})$-DP retrieval guarantee against the tenant index. We show that this framing understates leakage under same-index account collusion. For Gaussian noise-then-select retrieval, $k$ coordinated same-tenant accounts compose to joint leakage $Θ(\\sqrt{k}\\,\\varepsilon_{\\text{acc}})$, not $\\varepsilon_{\\text{acc}}$; we give a matching membership-inference attack and validate the predicted $\\sqrt{k}$ AUC trend in scalar, top-$K$, trained-embedder, and production-scale HNSW settings. We then give a verifier-runnable audit protocol that attests noise-then-select retrieval and reports $(\\textsf{PASS},\\varepsilon_{\\text{audit}})$ for coalitions up to a declared cap $k_{\\max}$, without disclosing the index or changing the retrieval decision rule. The claim is retrieval-channel only: generation-channel leakage and adversarially robust coalition-size estimation are complementary audit predicates.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.12104",
+   "title": "Powerful Training-Free Membership Inference Against Autoregressive Language Models",
+   "published": "2026-01-17",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Fine-tuned language models pose significant privacy risks, as they may memorize and expose sensitive information from their training data. Membership inference attacks (MIAs) provide a principled framework for auditing these risks, yet existing methods achieve limited detection rates, particularly at the low false-positive thresholds required for practical privacy auditing. We present EZ-MIA, a membership inference attack that exploits a key observation: memorization manifests most strongly at error positions, specifically tokens where the model predicts incorrectly yet still shows elevated probability for training examples. We introduce the Error Zone (EZ) score, which measures the directional imbalance of probability shifts at error positions relative to a pretrained reference model. This principled statistic requires only two forward passes per query and no model training of any kind. On WikiText with GPT-2, EZ-MIA achieves 3.8x higher detection than the previous state-of-the-art under identical conditions (66.3% versus 17.5% true positive rate at 1% false positive rate), with near-perfect discrimination (AUC 0.98). At the stringent 0.1% FPR threshold critical for real-world auditing, we achieve 8x higher detection than prior work (14.0% versus 1.8%), requiring no reference model training. These gains extend to larger architectures: on AG News with Llama-2-7B, we achieve 3x higher detection (46.7% versus 15.8% TPR at 1% FPR). These results establish that privacy risks of fine-tuned language models are substantially greater than previously understood, with implications for both privacy auditing and deployment decisions. Code is available at https://github.com/JetBrains-Research/ez-mia.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2507.18302",
+   "title": "LoRA-Leak: Membership Inference Attacks Against LoRA Fine-tuned Language Models",
+   "published": "2025-07-24",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Language Models (LMs) typically adhere to a \"pre-training and fine-tuning\" paradigm, where a universal pre-trained model can be fine-tuned to cater to various specialized domains. Low-Rank Adaptation (LoRA) has gained the most widespread use in LM fine-tuning due to its lightweight computational cost and remarkable performance. Because the proportion of parameters tuned by LoRA is relatively small, there might be a misleading impression that the LoRA fine-tuning data is invulnerable to Membership Inference Attacks (MIAs). However, we identify that utilizing the pre-trained model can induce more information leakage, which is neglected by existing MIAs. Therefore, we introduce LoRA-Leak, a holistic evaluation framework for MIAs against the fine-tuning datasets of LMs. LoRA-Leak incorporates fifteen membership inference attacks, including ten existing MIAs, and five improved MIAs that leverage the pre-trained model as a reference. In experiments, we apply LoRA-Leak to three advanced LMs across three popular natural language processing tasks, demonstrating that LoRA-based fine-tuned LMs are still vulnerable to MIAs (e.g., 0.775 AUC under conservative fine-tuning settings). We also applied LoRA-Leak to different fine-tuning settings to understand the resulting privacy risks. We further explore four defenses and find that only dropout and excluding specific LM layers during fine-tuning effectively mitigate MIA risks while maintaining utility. We highlight that under the \"pre-training and fine-tuning\" paradigm, the existence of the pre-trained model makes MIA a more severe risk for LoRA-based LMs. We hope that our findings can provide guidance on data privacy protection for specialized LM providers.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2508.09603",
+   "title": "The Surprising Effectiveness of Membership Inference with Simple N-Gram Coverage",
+   "published": "2025-08-13",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Membership inference attacks serves as useful tool for fair use of language models, such as detecting potential copyright infringement and auditing data leakage. However, many current state-of-the-art attacks require access to models' hidden states or probability distribution, which prevents investigation into more widely-used, API-access only models like GPT-4. In this work, we introduce N-Gram Coverage Attack, a membership inference attack that relies solely on text outputs from the target model, enabling attacks on completely black-box models. We leverage the observation that models are more likely to memorize and subsequently generate text patterns that were commonly observed in their training data. Specifically, to make a prediction on a candidate member, N-Gram Coverage Attack first obtains multiple model generations conditioned on a prefix of the candidate. It then uses n-gram overlap metrics to compute and aggregate the similarities of these outputs with the ground truth suffix; high similarities indicate likely membership. We first demonstrate on a diverse set of existing benchmarks that N-Gram Coverage Attack outperforms other black-box methods while also impressively achieving comparable or even better performance to state-of-the-art white-box attacks - despite having access to only text outputs. Interestingly, we find that the success rate of our method scales with the attack compute budget - as we increase the number of sequences generated from the target model conditioned on the prefix, attack performance tends to improve. Having verified the accuracy of our method, we use it to investigate previously unstudied closed OpenAI models on multiple domains. We find that more recent models, such as GPT-4o, exhibit increased robustness to membership inference, suggesting an evolving trend toward improved privacy protections.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2601.18110",
+   "title": "AttenMIA: LLM Membership Inference Attack through Attention Signals",
+   "published": "2026-01-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Large Language Models (LLMs) are increasingly deployed to enable or improve a multitude of real-world applications. Given the large size of their training data sets, their tendency to memorize training data raises serious privacy and intellectual property concerns. A key threat is the membership inference attack (MIA), which aims to determine whether a given sample was included in the model's training set. Existing MIAs for LLMs rely primarily on output confidence scores or embedding-based features, but these signals are often brittle, leading to limited attack success. We introduce AttenMIA, a new MIA framework that exploits self-attention patterns inside the transformer model to infer membership. Attention controls the information flow within the transformer, exposing different patterns for memorization that can be used to identify members of the dataset. Our method uses information from attention heads across layers and combines them with perturbation-based divergence metrics to train an effective MIA classifier. Using extensive experiments on open-source models including LLaMA-2, Pythia, and Opt models, we show that attention-based features consistently outperform baselines, particularly under the important low-false-positive metric (e.g., achieving up to 0.996 ROC AUC & 87.9% TPR@1%FPR on the WikiMIA-32 benchmark with Llama2-13b). We show that attention signals generalize across datasets and architectures, and provide a layer- and head-level analysis of where membership leakage is most pronounced. We also show that using AttenMIA to replace other membership inference attacks in a data extraction framework results in training data extraction attacks that outperform the state of the art. Our findings reveal that attention mechanisms, originally introduced to enhance interpretability, can inadvertently amplify privacy risks in LLMs, underscoring the need for new defenses.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2511.07033",
+   "title": "Uncovering Pretraining Code in LLMs: A Syntax-Aware Attribution Approach",
+   "published": "2025-11-10",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "As large language models (LLMs) become increasingly capable, concerns over the unauthorized use of copyrighted and licensed content in their training data have grown, especially in the context of code. Open-source code, often protected by open source licenses (e.g, GPL), poses legal and ethical challenges when used in pretraining. Detecting whether specific code samples were included in LLM training data is thus critical for transparency, accountability, and copyright compliance. We propose SynPrune, a syntax-pruned membership inference attack method tailored for code. Unlike prior MIA approaches that treat code as plain text, SynPrune leverages the structured and rule-governed nature of programming languages. Specifically, it identifies and excludes consequent tokens that are syntactically required and not reflective of authorship, from attribution when computing membership scores. Experimental results show that SynPrune consistently outperforms the state-of-the-arts. Our method is also robust across varying function lengths and syntax categories.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2511.10516",
+   "title": "How Worrying Are Privacy Attacks Against Machine Learning?",
+   "published": "2025-11-13",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "In several jurisdictions, the regulatory framework on the release and sharing of personal data is being extended to machine learning (ML). The implicit assumption is that disclosing a trained ML model entails a privacy risk for any personal data used in training comparable to directly releasing those data. However, given a trained model, it is necessary to mount a privacy attack to make inferences on the training data. In this concept paper, we examine the main families of privacy attacks against predictive and generative ML, including membership inference attacks (MIAs), property inference attacks, and reconstruction attacks. Our discussion shows that most of these attacks seem less effective in the real world than what a prima face interpretation of the related literature could suggest.",
+   "query": "membership inference attack"
+  },
+  {
+   "id": "2509.13046",
+   "title": "MIA-EPT: Membership Inference Attack via Error Prediction for Tabular Data",
+   "published": "2025-09-16",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Synthetic data generation plays an important role in enabling data sharing, particularly in sensitive domains like healthcare and finance. Recent advances in diffusion models have made it possible to generate realistic, high-quality tabular data, but they may also memorize training records and leak sensitive information. Membership inference attacks (MIAs) exploit this vulnerability by determining whether a record was used in training. While MIAs have been studied in images and text, their use against tabular diffusion models remains underexplored despite the unique risks of structured attributes and limited record diversity. In this paper, we introduce MIAEPT, Membership Inference Attack via Error Prediction for Tabular Data, a novel black-box attack specifically designed to target tabular diffusion models. MIA-EPT constructs errorbased feature vectors by masking and reconstructing attributes of target records, disclosing membership signals based on how well these attributes are predicted. MIA-EPT operates without access to the internal components of the generative model, relying only on its synthetic data output, and was shown to generalize across multiple state-of-the-art diffusion models. We validate MIA-EPT on three diffusion-based synthesizers, achieving AUC-ROC scores of up to 0.599 and TPR@10% FPR values of 22.0% in our internal tests. Under the MIDST 2025 competition conditions, MIA-EPT achieved second place in the Black-box Multi-Table track (TPR@10% FPR = 20.0%). These results demonstrate that our method can uncover substantial membership leakage in synthetic tabular data, challenging the assumption that synthetic data is inherently privacy-preserving. Our code is publicly available at https://github.com/eyalgerman/MIA-EPT.",
+   "query": "membership inference attack"
+  }
+ ]
+}

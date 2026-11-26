@@ -1,0 +1,1329 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "LLM multi-agent",
+  "multi-agent reinforcement learning",
+  "emergent cooperation"
+ ],
+ "papers": [
+  {
+   "id": "2505.00212",
+   "title": "Which Agent Causes Task Failures and When? On Automated Failure Attribution of LLM Multi-Agent Systems",
+   "published": "2025-04-30",
+   "categories": [
+    "cs.MA",
+    "cs.CL"
+   ],
+   "abstract": "Failure attribution in LLM multi-agent systems-identifying the agent and step responsible for task failures-provides crucial clues for systems debugging but remains underexplored and labor-intensive. In this paper, we propose and formulate a new research area: automated failure attribution for LLM multi-agent systems. To support this initiative, we introduce the Who&When dataset, comprising extensive failure logs from 127 LLM multi-agent systems with fine-grained annotations linking failures to specific agents and decisive error steps. Using the Who&When, we develop and evaluate three automated failure attribution methods, summarizing their corresponding pros and cons. The best method achieves 53.5% accuracy in identifying failure-responsible agents but only 14.2% in pinpointing failure steps, with some methods performing below random. Even SOTA reasoning models, such as OpenAI o1 and DeepSeek R1, fail to achieve practical usability. These results highlight the task's complexity and the need for further research in this area. Code and dataset are available at https://github.com/mingyin1/Agents_Failure_Attribution",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2604.03295",
+   "title": "Scaling Teams or Scaling Time? Memory Enabled Lifelong Learning in LLM Multi-Agent Systems",
+   "published": "2026-03-27",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "Large language model (LLM) multi-agent systems can scale along two distinct dimensions: by increasing the number of agents and by improving through accumulated experience over time. Although prior work has studied these dimensions separately, their interaction under realistic cost constraints remains unclear. In this paper, we introduce a conceptual scaling view of multi-agent systems that jointly considers team size and lifelong learning ability, and we study how memory design shares this landscape. To this end, we propose \\textbf{LLMA-Mem}, a lifelong memory framework for LLM multi-agent systems under flexible memory topologies. We evaluate LLMA-Mem on \\textsc{MultiAgentBench} across coding, research, and database environments. Empirically, LLMA-Mem consistently improves long-horizon performance over baselines while reducing cost. Our analysis further reveals a non-monotonic scaling landscape: larger teams do not always produce better long-term performance, and smaller teams can outperform larger ones when memory better supports the reuse of experience. These findings position memory design as a practical path for scaling multi-agent systems more effectively and more efficiently over time.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2608.01805",
+   "title": "CockpitHAT: Dependency-Graph-Driven Hierarchical Attribution for Embodied Multi-Agent Cockpits",
+   "published": "2026-08-03",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "LLM multi-agent systems suffer from Correctness Collapse, where high task-level accuracy conceals severe process-level failures. This is especially hazardous in safety-critical embodied settings such as automotive cockpits, where lexically correct utterances may trigger dangerous physical operations. Existing attribution methods rely on text traces alone, missing dependency structure, multi-channel evidence, and safety-aware evaluation. We introduce CockpitHAT, a hierarchical attribution framework that replaces positional windows with dependency-distance thresholds from interaction DAGs, integrates multi-channel evidence via an embodied adapter, and applies a safety-uplift to high-risk failures during confidence-weighted analyst consensus. We further release CockpitBench, a benchmark of 212 annotated failure traces spanning dialogue, vehicle-state, environmental, and memory channels, each labeled with ISO 26262 ASIL severity via three-expert consensus. On the public Who&When benchmark, CockpitHAT achieves agent-level / step-exact accuracies of 77.9% / 37.8% on the Hand-Crafted split and 86.5% / 46.0% on the Algorithm-Generated split, surpassing the text-only SOTA ECHO by up to 17.6 / 16.7 points. On CockpitBench, it attains 78.3% agent-level and 38.2% step-exact accuracy. These results establish dependency-aware, multi-channel, risk-calibrated attribution as an effective paradigm for reliable failure diagnosis in real-world embodied LLM multi-agent systems.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2601.09264",
+   "title": "Coordinated Pandemic Control with Large Language Model Agents as Policymaking Assistants",
+   "published": "2026-01-14",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Effective pandemic control requires timely and coordinated policymaking across administrative regions that are intrinsically interdependent. However, human-driven responses are often fragmented and reactive, with policies formulated in isolation and adjusted only after outbreaks escalate, undermining proactive intervention and global pandemic mitigation. To address this challenge, here we propose a large language model (LLM) multi-agent policymaking framework that supports coordinated and proactive pandemic control across regions. Within our framework, each administrative region is assigned an LLM agent as an AI policymaking assistant. The agent reasons over region-specific epidemiological dynamics while communicating with other agents to account for cross-regional interdependencies. By integrating real-world data, a pandemic evolution simulator, and structured inter-agent communication, our framework enables agents to jointly explore counterfactual intervention scenarios and synthesize coordinated policy decisions through a closed-loop simulation process. We validate the proposed framework using state-level COVID-19 data from the United States between April and December 2020, together with real-world mobility records and observed policy interventions. Compared with real-world pandemic outcomes, our approach reduces cumulative infections and deaths by up to 63.7% and 40.1%, respectively, at the individual state level, and by 39.0% and 27.0%, respectively, when aggregated across states. These results demonstrate that LLM multi-agent systems can enable more effective pandemic control with coordinated policymaking...",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.19240",
+   "title": "CASPIAN: Online Detection and Attribution of Cascade Attacks in LLM Multi-Agent Systems via Cross-Channel Causal Monitoring",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Cascade attacks in LLM multi-agent systems (MAS) arise when adversarial influence propagates across agents and leads to escalated system-level failures through complex agent interactions. Detecting such cascades is challenging, as their signals are distributed, tightly coupled across interaction channels, and often appear plausibly benign locally but may unfold quickly either within a single turn or gradually across multiple turns. Existing defenses, being largely local and text-centric, fail to capture such cross-channel, temporally coordinated dynamics of cascade propagation. Therefore, we propose CASPIAN, the first framework that provides a unified, cross-channel causal analysis of cascade behavior in LLM-MAS through online monitoring of dynamic influence propagation across agents. CASPIAN models multi-agent interactions using a unified, dynamic causal influence matrix across channels, estimated efficiently via a late-interaction conditional transfer entropy (LI-CTE) formulation, thereby enabling the detection of cascade onset from emergent system-level structure rather than isolated anomalies. It further performs online causal attribution, identifying the origin, bridge, and amplifier agents driving the cascade and reconstructing its principal propagation pathways, capabilities not supported by existing methods. Across diverse multi-agent frameworks and benchmarks, CASPIAN consistently outperforms semantic guardrails, LLM-based judges, and graph-based anomaly detectors in both detection accuracy and early cascade identification while operating with sub-1% relative overhead latency. These results demonstrate that unified cross-channel causal modeling is essential for reliably detecting and understanding cascade failures in LLM multi-agent systems.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.29313",
+   "title": "PatchBoard: Schema-Grounded State Mutation for Reliable and Auditable LLM Multi-Agent Collaboration",
+   "published": "2026-05-28",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "LLM multi-agent systems often coordinate through natural-language dialogue or loosely structured shared memory, making intermediate state difficult to validate, attribute, and audit. We introduce PatchBoard, a schema-grounded collaboration architecture that replaces inter-agent dialogue with validated JSON Patch mutations over a shared structured state. An Architect agent constructs a task-specific schema and workflow rules, while a deterministic kernel validates each proposed state mutation against schema constraints, role-specific write contracts, and runtime invariants before committing it transactionally. On 630 matched ALFWorld episodes, PatchBoard achieves an 84.6% success rate, compared with 30.8% for LangGraph and 61.6% for Flock, while reducing tokens per successful task to 45.5k, compared with 368.3k and 64.2k, respectively.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.05007",
+   "title": "Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation",
+   "published": "2026-05-06",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large language model (LLM) multi-agent systems typically rely on rigid orchestration, committing either to flat per-query routing or to hand-engineered task decomposition, so decomposition depth, worker choice, and inference budget are not jointly optimized under one objective. We introduce Uno-Orchestra, a unified orchestration policy that selectively decomposes a task and dispatches each subtask to an admissible (model, primitive) pair, with both decisions learned together from curated RL trajectories grounded in real worker interactions. Against 22 baselines on a 13-benchmark suite spanning math, code, knowledge, long-context, and agentic tool-use, Uno-Orchestra reaches 77.0% macro pass@1, roughly 16% above the strongest workflow baseline, at roughly an order of magnitude lower per-query cost, advancing the accuracy-efficiency frontier of selective delegation.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2504.05358",
+   "title": "Debate-Feedback: A Multi-Agent Framework for Efficient Legal Judgment Prediction",
+   "published": "2025-04-07",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "The use of AI in legal analysis and prediction (LegalAI) has gained widespread attention, with past research focusing on retrieval-based methods and fine-tuning large models. However, these approaches often require large datasets and underutilize the capabilities of modern large language models (LLMs). In this paper, inspired by the debate phase of real courtroom trials, we propose a novel legal judgment prediction model based on the Debate-Feedback architecture, which integrates LLM multi-agent debate and reliability evaluation models. Unlike traditional methods, our model achieves significant improvements in efficiency by minimizing the need for large historical datasets, thus offering a lightweight yet robust solution. Comparative experiments show that it outperforms several general-purpose and domain-specific legal models, offering a dynamic reasoning process and a promising direction for future LegalAI research.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2507.01701",
+   "title": "Exploring Advanced LLM Multi-Agent Systems Based on Blackboard Architecture",
+   "published": "2025-07-02",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "In this paper, we propose to incorporate the blackboard architecture into LLM multi-agent systems (MASs) so that (1) agents with various roles can share all the information and others' messages during the whole problem-solving process, (2) agents that will take actions are selected based on the current content of the blackboard, and (3) the selection and execution round is repeated until a consensus is reached on the blackboard. We develop the first implementation of this proposal and conduct experiments on commonsense knowledge, reasoning and mathematical datasets. The results show that our system can be competitive with the SOTA static and dynamic MASs by achieving the best average performance, and at the same time manage to spend less tokens. Our proposal has the potential to enable complex and dynamic problem-solving where well-defined structures or workflows are unavailable.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2606.24694",
+   "title": "SupplyNet: Supporting Visual Exploratory Learning in Supply Chain via Contextual Multi-Agent Simulation",
+   "published": "2026-06-23",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Simulation has long supported supply chain management instruction by letting learners observe network behavior and test decision strategies. Recent progress in LLM-driven agents opens new possibilities for richer, more adaptive simulations, but many existing systems still present abstract, opaque data that overwhelms learners and discourages active exploration. We introduce \\textit{SupplyNet}, a gamified visual simulation system built on a contextual graph-based LLM multi-agent framework that models interdependent supply chain dynamics and provides responsive feedback through tiered challenges. \\textit{SupplyNet} turns the simulation into a manipulable decision space by integrating an interactive network view of system state, a branching timeline for \"what-if\" exploration and comparison, and a task-oriented analysis console for structured performance breakdowns. Together, these visual components support counterfactual exploration, causal tracing, and comparative reasoning about outcomes. A user study suggests that \\textit{SupplyNet} increases engagement and supports users' perceived understanding of supply chain dynamics, highlighting the potential of pairing contextual multi-agent simulation with visualization to advance operational comprehension.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2511.01854",
+   "title": "Tool-to-Agent Retrieval: Bridging Tools and Agents for Scalable LLM Multi-Agent Systems",
+   "published": "2025-11-03",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Recent advances in LLM Multi-Agent Systems enable scalable orchestration of sub-agents, each coordinating hundreds or thousands of tools or Model Context Protocol (MCP) servers. However, existing retrieval methods typically match queries against coarse agent-level descriptions before routing, which obscures fine-grained tool functionality and often results in suboptimal agent selection. We introduce Tool-to-Agent Retrieval, a unified framework that embeds both tools and their parent agents in a shared vector space and connects them through metadata relationships. By explicitly representing tool capabilities and traversing metadata to the agent level, Tool-to-Agent Retrieval enables granular tool-level or agent-level retrieval, ensuring that agents and their underlying tools or MCP servers are equally represented without the context dilution that arises from chunking many tools together. Evaluating Tool-to-Agent Retrieval across eight embedding models, our approach achieves consistent improvements of 19.4% in Recall@5 and 17.7% in nDCG@5 over previous state-of-the-art agent retrievers on the LiveMCPBench benchmark.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2602.03955",
+   "title": "AgentArk: Distilling Multi-Agent Intelligence into a Single LLM Agent",
+   "published": "2026-02-03",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "While large language model (LLM) multi-agent systems achieve superior reasoning performance through iterative debate, practical deployment is limited by their high computational cost and error propagation. This paper proposes AgentArk, a novel framework to distill multi-agent dynamics into the weights of a single model, effectively transforming explicit test-time interactions into implicit model capabilities. This equips a single agent with the intelligence of multi-agent systems while remaining computationally efficient. Specifically, we investigate three hierarchical distillation strategies across various models, tasks, scaling, and scenarios: reasoning-enhanced fine-tuning; trajectory-based augmentation; and process-aware distillation. By shifting the burden of computation from inference to training, the distilled models preserve the efficiency of one agent while exhibiting strong reasoning and self-correction performance of multiple agents. They further demonstrate enhanced robustness and generalization across diverse reasoning tasks. We hope this work can shed light on future research on efficient and robust multi-agent development. Our code is at https://github.com/AIFrontierLab/AgentArk.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2607.07689",
+   "title": "Agent Delivery Engineering Predictive Reliability Framework",
+   "published": "2026-07-08",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Long-horizon LLM multi-agent systems face reliability risks invisible to infrastructure monitoring. We propose the ADE Predictive Reliability Framework (ADE-PRF), enabling proactive health trajectory prediction from passive degradation detection. ADE-PRF aggregates 20 heterogeneous signals across five layers into a Trust Margin (TM) metric (39.2-point dynamic range). Triple-method parallel prediction enables 8-hour forecasts: the Exponential method achieves MAE=1.228, Direction Accuracy=76.8%, with 99.65% within +/-10-point tolerance. Production validation spans 380,227 predictions and 280,579 validations across six agent profiles over 15 continuous days, plus seven sandbox-controlled experiments. Key findings include detection of \"false prosperity\" -- degradation concealed by normal surface metrics -- and immediate TM coupling with ground-truth states upon ADE plugin integration, with 16/20 factors relying on ADE-collected data. Exponential consistently outperforms Kalman. ADE-PRF provides among the earliest reliability quantification with forward-looking warnings for production LLM agents.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2602.14160",
+   "title": "Process-Supervised Multi-Agent Reinforcement Learning for Reliable Clinical Reasoning",
+   "published": "2026-02-15",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Clinical decision-making requires nuanced reasoning over heterogeneous evidence and traceable justifications. While recent LLM multi-agent systems (MAS) show promise, they largely optimise for outcome accuracy while overlooking process-grounded reasoning aligned with clinical standards. One critical real-world case of this is gene-disease validity curation, where experts must determine whether a gene is causally implicated in a disease by synthesising diverse biomedical evidence. We introduce an agent-as-tool reinforcement learning framework for this task with two objectives: (i) process-level supervision to ensure reasoning follows valid clinical pathways, and (ii) efficient coordination via a hierarchical multi-agent system. Our evaluation on the ClinGen dataset shows that with outcome-only rewards, MAS with a GRPO-trained Qwen3-4B supervisor agent substantially improves final outcome accuracy from 0.195 with a base model supervisor to 0.732, but results in poor process alignment (0.392 F1). Conversely, with process + outcome rewards, MAS with GRPO-trained supervisor achieves higher outcome accuracy (0.750) while significantly improving process fidelity to 0.520 F1. Our code is available at https://github.com/chaeeunlee-io/GeneDiseaseCurationAgents.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.28433",
+   "title": "Roles with Rails: Contract-Preserving Role Evolution in Multi-Agent Structured Reasoning",
+   "published": "2026-05-27",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Role-based LLM multi-agent systems need adaptive role pools, yet adapting such systems is not merely a matter of prompt optimization: roles often carry structural obligations, including capability coverage, message compatibility, validation, final-answer aggregation, and parser-compatible output protocols. Existing systems either fix the role inventory and lose adaptivity, or allow unconstrained generation to induce role drift, removing structurally necessary roles and breaking answer contracts. We formulate this as contract-preserving role evolution, requiring every committed edit to preserve five structural contracts (capability, communication, validation, aggregation, output protocol). We instantiate this formulation in SERO, a Self-Evolving Role Orchestration framework that evolves a typed role-card pool through credit-guided retrieval, a credit-ranked communication DAG with a protected terminal aggregator and conditional validator repair, and a contextual-bandit controller whose LLM-proposed edits are committed only when they preserve the contracts and improve task score. Experiments on real-world reasoning benchmarks across three LLM backbones confirm the value of contract-preserving role evolution.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2607.07467",
+   "title": "SpaCellAgent: A Self-Evolving LLM-Based Multi-Agent Framework for Trajectory Analysis",
+   "published": "2026-07-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Spatial and Single-cell transcriptomics are transformative in deciphering cellular dynamics. As the fundamental paradigm for reconstructing cell developmental paths, trajectory inference (TI) is critical. However, existing methods require extensive manual intervention and proficiency in heterogeneous tools, posing a significant barrier to efficient TI analysis. To bridge this gap, we propose SpaCellAgent, an autonomous large language model (LLM) multi-agent framework that automates end-to-end spatiotemporal analysis and narrative generation. SpaCellAgent utilizes a multi-agent architecture for strategic workflow planning, a dynamic tool-orchestration engine for adaptive algorithm selection, and a self-evolution module that iteratively refines performance through feedback. We evaluate SpaCellAgent on six heterogeneous datasets encompassing complex temporal developmental trajectories, diverse sequencing platforms, and spatially-resolved tissue architectures. SpaCellAgent consistently demonstrates over 40\\% improvement in analytical efficiency while maintaining expert-aligned performance. By converting natural language specifications into optimized analytical workflows and fully automating the pipeline, SpaCellAgent democratizes advanced spatiotemporal modeling and establishes a scalable, agent-driven paradigm for computational biology. The code and materials are available at https://github.com/LittleXH-shw/SpaCellAgent.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2510.04886",
+   "title": "Where Did It All Go Wrong? A Hierarchical Look into Multi-Agent Error Attribution",
+   "published": "2025-10-06",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Error attribution in Large Language Model (LLM) multi-agent systems presents a significant challenge in debugging and improving collaborative AI systems. Current approaches to pinpointing agent and step level failures in interaction traces - whether using all-at-once evaluation, step-by-step analysis, or binary search - fall short when analyzing complex patterns, struggling with both accuracy and consistency. We present ECHO (Error attribution through Contextual Hierarchy and Objective consensus analysis), a novel algorithm that combines hierarchical context representation, objective analysis-based evaluation, and consensus voting to improve error attribution accuracy. Our approach leverages a positional-based leveling of contextual understanding while maintaining objective evaluation criteria, ultimately reaching conclusions through a consensus mechanism. Experimental results demonstrate that ECHO outperforms existing methods across various multi-agent interaction scenarios, showing particular strength in cases involving subtle reasoning errors and complex interdependencies. Our findings suggest that leveraging these concepts of structured, hierarchical context representation combined with consensus-based objective decision-making, provides a more robust framework for error attribution in multi-agent systems.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2509.09292",
+   "title": "LightAgent: Production-level Open-source Agentic AI Framework",
+   "published": "2025-09-11",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "With the rapid advancement of large language models (LLMs), Multi-agent Systems (MAS) have achieved significant progress in various application scenarios. However, substantial challenges remain in designing versatile, robust, and efficient platforms for agent deployment. To address these limitations, we propose \\textbf{LightAgent}, a lightweight yet powerful agentic framework, effectively resolving the trade-off between flexibility and simplicity found in existing frameworks. LightAgent integrates core functionalities such as Memory (mem0), Tools, and Tree of Thought (ToT), while maintaining an extremely lightweight structure. As a fully open-source solution, it seamlessly integrates with mainstream chat platforms, enabling developers to easily build self-learning agents. We have released LightAgent at \\href{https://github.com/wxai-space/LightAgent}{https://github.com/wxai-space/LightAgent}",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2609.19538",
+   "title": "Agentic AI Networking for Heterogeneous Unmanned Aerial Systems in Low-Altitude Wireless Networks",
+   "published": "2026-09-17",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Low-altitude wireless networks (LAWNs) are emerging as a key infrastructure for heterogeneous unmanned aerial systems that support concurrent services within a shared three-dimensional airspace. Their coexistence creates strong coupling among mobility, connectivity, and shared network resources, while heterogeneous services impose distinct and time-varying requirements. These interactions naturally form a dynamic non-cooperative game in which both operating conditions and coordination objectives evolve over time. Conventional optimization and learning-based controllers typically rely on predefined objectives, limiting their ability to adapt autonomously to changing service requirements and resource priorities. To address this challenge, we propose a hierarchical hybrid large language model (LLM)- multi-agent reinforcement learning (MARL) architecture organized as a dual-loop structure. Specifically, an outer adaptation loop employs LLM-assisted game orchestration to interpret service requirements and operator intent, and reconfigure objectives and resource priorities, while an inner loop executes decentralized, parameter-conditioned MARL policies under the configured game. A logistics-monitoring case study illustrates how the proposed framework facilitates coordinated coexistence among heterogeneous services, adapting to evolving operating conditions without retraining the underlying MARL policies. Finally, we discuss key challenges and research directions toward scalable, trustworthy, and adaptive agentic LAWNs.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2508.08761",
+   "title": "DevNous: An LLM-Based Multi-Agent System for Grounding IT Project Management in Unstructured Conversation",
+   "published": "2025-08-12",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "The manual translation of unstructured team dialogue into the structured artifacts required for Information Technology (IT) project governance is a critical bottleneck in modern information systems management. We introduce DevNous, a Large Language Model-based (LLM) multi-agent expert system, to automate this unstructured-to-structured translation process. DevNous integrates directly into team chat environments, identifying actionable intents from informal dialogue and managing stateful, multi-turn workflows for core administrative tasks like automated task formalization and progress summary synthesis. To quantitatively evaluate the system, we introduce a new benchmark of 160 realistic, interactive conversational turns. The dataset was manually annotated with a multi-label ground truth and is publicly available. On this benchmark, DevNous achieves an exact match turn accuracy of 81.3\\% and a multiset F1-Score of 0.845, providing strong evidence for its viability. The primary contributions of this work are twofold: (1) a validated architectural pattern for developing ambient administrative agents, and (2) the introduction of the first robust empirical baseline and public benchmark dataset for this challenging problem domain.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2511.10687",
+   "title": "Who Gets the Reward & Who Gets the Blame? Evaluation-Aligned Training Signals for Multi-LLM Agents",
+   "published": "2025-11-11",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.CL",
+    "cs.GT"
+   ],
+   "abstract": "Large Language Models (LLMs) in multi-agent systems (MAS) have shown promise for complex tasks, yet current training methods lack principled ways to connect system-level evaluation with agent- and message-level learning. We propose a theoretical framework that unifies cooperative game-theoretic attribution with process reward modeling to transform system evaluation to agent credit to response-level signals. Unlike prior approaches that rely only on attribution (Shapley) or step-level labels (PRM), our method produces local, signed, and credit-conserving signals. In success cases, Shapley-based credit assignment fairly allocates outcomes across agents and is refined into per-message rewards that promote cooperation while discouraging redundancy or sabotage; in failure cases, first-error localization yields repair-aware preferences that penalize harmful steps while rewarding corrective attempts. The resulting signals are bounded, cooperative, and directly compatible with reinforcement- or preference-based post-training, providing a unified and auditable pathway from global evaluation to local supervision in LLM multi-agent training. Our contribution is conceptual: we present a theoretical foundation and training signals, leaving empirical validation for future work.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2505.19234",
+   "title": "GUARDIAN: Safeguarding LLM Multi-Agent Collaborations with Temporal Graph Modeling",
+   "published": "2025-05-25",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.MA"
+   ],
+   "abstract": "The emergence of large language models (LLMs) enables the development of intelligent agents capable of engaging in complex and multi-turn dialogues. However, multi-agent collaboration faces critical safety challenges, such as hallucination amplification and error injection and propagation. This paper presents GUARDIAN, a unified method for detecting and mitigating multiple safety concerns in GUARDing Intelligent Agent collaboratioNs. By modeling the multi-agent collaboration process as a discrete-time temporal attributed graph, GUARDIAN explicitly captures the propagation dynamics of hallucinations and errors. The unsupervised encoder-decoder architecture incorporating an incremental training paradigm learns to reconstruct node attributes and graph structures from latent embeddings, enabling the identification of anomalous nodes and edges with unparalleled precision. Moreover, we introduce a graph abstraction mechanism based on the Information Bottleneck Theory, which compresses temporal interaction graphs while preserving essential patterns. Extensive experiments demonstrate GUARDIAN's effectiveness in safeguarding LLM multi-agent collaborations against diverse safety vulnerabilities, achieving state-of-the-art accuracy with efficient resource utilization. The code is available at https://github.com/JialongZhou666/GUARDIAN",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2603.07360",
+   "title": "The Yerkes-Dodson Curve for AI Agents: Emergent Cooperation Under Environmental Pressure in Multi-Agent LLM Simulations",
+   "published": "2026-03-07",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Designing environments that maximize the rate of emergent behavior development in AI agents remains an open problem. We present the first systematic study of stress-performance relationships in large language model (LLM) multi-agent systems, drawing an explicit parallel to the Yerkes-Dodson law from cognitive psychology. Using a grid-world survival arena, we conduct 22 experiments across four phases, varying environmental pressure through resource scarcity (upkeep cost) and reproductive competition (sexual selection). Our key finding is that cooperative behavior follows an inverted-U curve: trade interactions peak at 29 under medium pressure (upkeep=5), while both low and extreme pressure produce 8--12 trades. Under extreme pressure, behavioral repertoire collapses to movement-only within 5--12 turns. We further show that sexual selection -- a softer pressure mechanism where all agents survive but not all reproduce -- eliminates inter-agent aggression entirely and produces communicative behavior absent under survival pressure. These results suggest that environmental pressure calibration is a viable curriculum design strategy for LLM agent development, analogous to the inverted-U relationship between arousal and performance in biological systems.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2604.06452",
+   "title": "Learning to Interrupt in Language-based Multi-agent Communication",
+   "published": "2026-04-07",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "When a colleague starts explaining something you already understand, you interrupt them. This simple act, a listener taking control of the conversation, is natural in human communication but absent in current verbose LLM multi-agent systems. Current approaches address communication efficiency only from the speaker side, compressing messages before they are sent. We flip the perspective: rather than making speakers more concise, we let listeners decide when they have heard enough. We propose a new communication paradigm in which the listener can interrupt the speaker mid-generation. We find that LLMs, given this ability, are overconfident and interrupt too early before receiving sufficient information. This finding motivates HANDRAISER, a learning method that predicts the right moment to interrupt based on estimated future reward and communication cost. We evaluate our framework on three multi-agent tasks: 2-agent text pictionary, 3-agent meeting scheduling, and 3-agent debate. HANDRAISER reduces communication cost by 32.2% over the non-interruptible baseline while achieving comparable or superior task performance, with interruption behavior that generalizes across different agents and tasks.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2608.13767",
+   "title": "Simulation-Aware In-Context Policy Improvement for LLM-Aided Analog Layout Refinement",
+   "published": "2026-08-13",
+   "categories": [
+    "cs.AI",
+    "cs.RO"
+   ],
+   "abstract": "Analog IC layout design remains a labor-intensive iterative process dominated by simulation-driven refinement. Although end-to-end layout generators accelerate initial placement and routing, they still require experts to manually tune layout optimization parameters with repeated post-layout simulations for stringent design specifications. While Bayesian Optimization (BO) is widely adopted for parameter tuning in analog IC design, at the layout level it typically requires hundreds to thousands of evaluations, each involving costly parasitic extraction and post-layout simulation, which makes it impractical. Recently, Large Language Models (LLMs) have demonstrated potential in improving the sample efficiency of such simulation-driven tuning. However, their restricted access to geometric layout context and design-specific heuristics limits their ability to manipulate the layout optimization process. In this paper, we propose a simulation-aware LLM multi-agent framework that performs in-context policy improvement (ICPI) by iteratively updating layout optimization parameters exposed by an analog layout generator through an act-observe-reflect loop on compact structured layout representations. Experiments on real-world analog circuits show that, with only tens of post-layout simulations, our approach improves post-layout performance over the generator's built-in heuristics and BO-based tuning method.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2604.02674",
+   "title": "Do Agent Societies Develop Intellectual Elites? The Hidden Power Laws of Collective Cognition in LLM Multi-Agent Systems",
+   "published": "2026-04-03",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Model (LLM) multi-agent systems are increasingly deployed as interacting agent societies, yet scaling these systems often yields diminishing or unstable returns, the causes of which remain poorly understood. We present the first large-scale empirical study of coordination dynamics in LLM-based multi-agent systems, introducing an atomic event-level formulation that reconstructs reasoning as cascades of coordination. Analyzing over 1.5 Million interactions across tasks, topologies, and scales, we uncover three coupled laws: coordination follows heavy-tailed cascades, concentrates via preferential attachment into intellectual elites, and produces increasingly frequent extreme events as system size grows. We show that these effects are coupled through a single structural mechanism: an integration bottleneck, in which coordination expansion scales with system size while consolidation does not, producing large but weakly integrated reasoning processes. To test this mechanism, we introduce Deficit-Triggered Integration (DTI), which selectively increases integration under imbalance. DTI improves performance precisely where coordination fails, without suppressing large-scale reasoning. Together, our results establish quantitative laws of collective cognition and identify coordination structure as a fundamental, previously unmeasured axis for understanding and improving scalable multi-agent intelligence.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.29292",
+   "title": "Credit Where Credit Is Due: Contrastive Attribution Topology Search for Multi-Agent Systems",
+   "published": "2026-10-21",
+   "categories": [
+    "cs.CL",
+    "cs.MA"
+   ],
+   "abstract": "An LLM multi-agent system (MAS) is only as good as the agents it chooses to trust: its accuracy and cost hinge on its topology, meaning which agents are included and how they communicate. A single task score, however, does not reveal which agents help or hinder performance. We propose Contrastive Attribution Topology Search (CATS), which searches for compact teams within a fixed supergraph of specialized agents. An LLM attributer compares execution traces across candidate topologies and assigns credit to individual agents. CATS uses these credits to update supergraph edges while progressively pruning weak edges and agents, yielding a small team for deployment. With small open-weight models and matched candidate evaluations, CATS improves mean accuracy on BigCodeBench by 5.3 percentage points over score-only heuristic search while using 54$\\%$ fewer deployment tokens. On MBPP, CATS matches the strongest baselines with fewer tokens than the other searches. In a HotpotQA prompt-poisoning stress test, CATS excludes all adversarially prompted agents in all three runs, whereas random search retains some at comparable accuracy. Per-agent credit thus supports both team optimization and the pruning of potentially harmful agents.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2608.18473",
+   "title": "A Locally Deployable Tool-Grounded LLM Multi-agent Framework for Automating Methane Emission Analysis and Reporting",
+   "published": "2026-08-19",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Methane field monitoring requires the integration of sampling design, meteorological interpretation, sensor processing, plume analysis, visualization, and reporting, but these steps are often distributed across separate expert-driven workflows. We developed a locally deployable, tool-grounded large language model (LLM) multi-agent framework for our low-cost methane sensing and field-monitoring campaigns. The framework uses LLM agents as workflow coordinators that link field measurements, meteorological data, deterministic sensor-processing routines, Gaussian plume inversion, and report generation, rather than directly estimating methane concentrations or emissions. Extensive field deployments across diverse real-world environments (e.g., wastewater treatment facilities, landfills, and oil and gas sites) demonstrate that our framework can achieve 92.0\\% accuracy in workflow routing and parameter extraction, 85.0\\% success in emission-rate estimation and plume prediction, and 95.0\\% success in generating editable reports under practical operating conditions. Compared with manual and general-purpose LLM-assisted workflows, it reduced workflow time from hours-level to minutes-level, lowered manual coordination and prompt-engineering requirements, and retained traceable plume-based outputs. In addition, most processing can be performed locally, reducing exposure of sensitive facility and field data to cloud services. These results indicate that tool-grounded LLM coordination can reduce the time, labor, usability, and data-security barriers of methane field monitoring.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.12507",
+   "title": "Can LLM Agents Simulate Dynamic Networks? A Case Study on Email Networks with Phishing Synthesis",
+   "published": "2026-03-20",
+   "categories": [
+    "cs.SI",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "While Large Language Model (LLM) multi-agent systems (MAS) offer a transformative approach to simulating human behavior in complex systems, it remains largely unexplored whether these simulations can replicate realistic structural and temporal dynamics from a dynamic network perspective. Our evaluation indicates that existing frameworks excel at generating plausible micro-level interactions but fail to capture the emergent, macroscopic topologies necessary for domains that rely on realistic network dynamics, such as modeling information propagation and cybersecurity threats. To bridge this gap, we introduce two easily integrable extensions to simulation frameworks to ensure they preserve macroscopic network fidelity: 1) augmenting LLM agents with data-driven event triggers to organically sustain long-horizon interactions, and 2) integrating Hawkes processes to accurately model temporal activation dynamics. Our approach allows LLM MAS to capture both plausible micro-level patterns and macroscopic topologies. We further demonstrate the utility of this framework in synthesizing realistic phishing campaigns within evolving communication networks. The study reveals how threats exploit structural vulnerabilities, highlighting the potential of our framework for developing next-generation defenses. Our code is available at https://github.com/Graph-COM/NSL.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2605.07935",
+   "title": "TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "We present TraceFix, a verification-first pipeline for Large Language Model (LLM) multi-agent coordination. An agent synthesizes a protocol topology as a structured intermediate representation (IR) from a task description, generates PlusCal coordination logic, and iteratively repairs the protocol using counterexamples from the TLA+ model checker (TLC) until verification succeeds. Verified process bodies are compiled into per-agent system prompts and executed under a runtime monitor that rejects out-of-topology coordination operations. On 48 tasks spanning 16 scenario families, all tasks reach full TLC verification; 62.5% pass on the first attempt and none requires more than four repair iterations. State spaces span six orders of magnitude yet verification completes in under 60 s for every task. A 3,456-run runtime comparison shows that topology-monitored execution achieves the highest task completion (89.4% average, 81.5% full) and that runtimes using the verified protocol degrade at roughly half the rate of prompt-only and chat-only baselines when model capability is reduced. A paired ablation under a fixed runtime shows that TLC-verified protocols cut deadlock/livelock (DL/LL) from 31.1% to 14.1%, with the largest separation under fault injection.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2608.30932",
+   "title": "Beacon: LLM Multi-Agent Driven Hardware Design Space Exploration for Heterogeneous Multi-Chiplet Deep Learning Accelerators",
+   "published": "2026-08-31",
+   "categories": [
+    "cs.AR"
+   ],
+   "abstract": "Heterogeneous multi-chiplet accelerators allow chiplets to be configured independently to better match different operator characteristics and improve inference efficiency. However, heterogeneity makes simulator evaluation expensive, limiting the number of iterations affordable for hardware design space exploration (HW-DSE). Mainstream data-driven methods rely mainly on final metrics and a few predefined states, and require many search iterations to implicitly learn the relationships between input parameters and optimization objectives, making them less effective in this setting. In practice, evaluators also generate detailed reports on execution timelines, resource utilization, memory accesses, and communication behavior. Large language models (LLMs) can combine domain knowledge with these reports to explicitly identify bottleneck locations, degradation causes, and parameter adjustment directions, thereby improving each design decision under limited iteration budgets. Based on this observation, we propose Beacon, a report-driven LLM multi-agent framework for heterogeneous multi-chiplet HW-DSE. Beacon employs hierarchical agents for bottleneck localization, root-cause diagnosis, and hardware candidate generation, together with an Analysis Toolbox and RAG memory for closed-loop search. Under the same limited iteration budget, Beacon reduces the composite latency-energy-monetary-cost objective by 25.1\\%--93.5\\% compared with random search, Bayesian optimization, and reinforcement learning.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2506.15451",
+   "title": "AgentGroupChat-V2: Divide-and-Conquer Is What LLM-Based Multi-Agent System Need",
+   "published": "2025-06-18",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large language model based multi-agent systems have demonstrated significant potential in social simulation and complex task resolution domains. However, current frameworks face critical challenges in system architecture design, cross-domain generalizability, and performance guarantees, particularly as task complexity and number of agents increases. We introduces AgentGroupChat-V2, a novel framework addressing these challenges through three core innovations: (1) a divide-and-conquer fully parallel architecture that decomposes user queries into hierarchical task forest structures enabling dependency management and distributed concurrent processing. (2) an adaptive collaboration engine that dynamically selects heterogeneous LLM combinations and interaction modes based on task characteristics. (3) agent organization optimization strategies combining divide-and-conquer approaches for efficient problem decomposition. Extensive experiments demonstrate AgentGroupChat-V2's superior performance across diverse domains, achieving 91.50% accuracy on GSM8K (exceeding the best baseline by 5.6 percentage points), 30.4% accuracy on competition-level AIME (nearly doubling other methods), and 79.20% pass@1 on HumanEval. Performance advantages become increasingly pronounced with higher task difficulty, particularly on Level 5 MATH problems where improvements exceed 11 percentage points compared to state-of-the-art baselines. These results confirm that AgentGroupChat-V2 provides a comprehensive solution for building efficient, general-purpose LLM multi-agent systems with significant advantages in complex reasoning scenarios. Code is available at https://github.com/MikeGu721/AgentGroupChat-V2.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.15095",
+   "title": "Swarm Telepathy: Prefill-Free KV-Cache Transfer Across Families",
+   "published": "2026-10-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "LLM multi-agent systems split work across agents that communicate through text. An agent summarizes its findings, another agent receives the text. This constrains communication to discrete tokens and costs redundant compute, limiting bandwidth and capabilities of multi-agent systems. Recent works demonstrate KV-cache transfer between LLMs but they either require the LLMs to be within the same family or cannot function across context, thus requiring the receiver to prefill text. We present SwaT (Swarm Telepathy), the first cross-family KV-cache transfer method that allows prefill-free communication in multi-family multi-agent systems. In an agent-to-agent communication setting, combining SwaT with recent advances in KV-cache compaction beats text-to-text communication in both accuracy and speed, with a mean of $40\\%$ higher accuracy and a mean of $4\\times$ faster wall-clock time. Experiments show SwaT achieves high performance on 17 benchmarks across 12 LLMs and 6 families. Additionally, given a sender Vision-Language Model (VLM), SwaT is able to transfer the vision capabilities to a text-only receiver LLM exceeding text-to-text communication despite SwaT being trained on text-only data. SwaT keeps both sender and receiver models frozen without fine-tuning and only requires $<50M$ tokens and $<1$ GPU-day to train.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.31709",
+   "title": "Mining the Design Space of Multi-Agent Workflows",
+   "published": "2026-10-22",
+   "categories": [
+    "cs.SE",
+    "cs.AI"
+   ],
+   "abstract": "Designing large language model (LLM) multi-agent systems (MAS) still relies on trial and error and informal \"folk wisdom.\" Manual studies test only a few communication structures or topologies (e.g., sequential, parallel, shared-memory, or debate), while automated optimizers discard search trajectories after selecting a task-specific workflow. We present a two-phase pipeline for mining reproducible design principles from workflow code and execution traces. We repurpose AFlow's MCTS optimizer across six composable operators and 26 deterministically verified Enigmata tasks, retaining all intermediate rounds to build a corpus of 28,568 executable workflows. A sandboxed AutoResearch loop then mines orchestration code and prompt templates under an $L_0$-penalized validation objective and tests candidate principles on held-out searches. Across 300 feature-mining trials, we identify effects that persist on held-out searches across three levels of workflow design: workflows beginning with independent solvers and one-shot aggregation (Star-first) perform worse ($Δ= -0.045$); persistent shared documents (SharedMemory) outperform debate ($Δ= +0.135$); and prompt specificity and placeholder-based context routing yield gains comparable to communication-structure selection ($Δ= +0.118$). More broadly, our pipeline and results show the feasibility of turning discarded search trajectories into a statistical testbed for discovering and validating multi-agent workflow design principles.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.24845",
+   "title": "AgentSoV: Virtual Sensing for LLM Multi-Agent Systems via Stream of Variation",
+   "published": "2026-10-17",
+   "categories": [
+    "cs.MA",
+    "eess.SY"
+   ],
+   "abstract": "Large language model (LLM) multi-agent systems (MASs) solve complex tasks through interacting agents, yet their reliability is difficult to analyze because failures depend on both individual agents and how information and errors propagate across the system. Existing approaches largely treat this as post-hoc failure attribution, but do not provide a common model across heterogeneous MAS architectures or support broader analysis of information influence and observability. We introduce AgentSoV, a virtual-sensing framework that models MAS execution as a stochastic dynamic system through Stream of Variation (SoV). AgentSoV maps heterogeneous trajectories into diagnostic stages, constructs virtual measurements from observable outputs, and learns cross-stage variation propagation with a state-space model. Its representation is architecture-aware in stage dependencies yet architecture-agnostic in analytical language, supporting chain-structured, orchestration-based, and directed acyclic graph (DAG)-structured MASs. Without re-executing the MAS, AgentSoV supports three system-level analyses: failure attribution identifies where abnormal variation enters; stage-input influence quantifies how strongly intermediate inputs affect downstream outcomes; and virtual-sensor placement selects complementary observations under a monitoring budget. Experiments across multiple MAS architectures demonstrate a unified approach to fault localization, information influence, and observability. AgentSoV reframes agentic execution as a dynamic system to model rather than merely text to inspect, providing insights for MAS structure and component design.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2604.24477",
+   "title": "GAMMAF: A Common Framework for Graph-Based Anomaly Monitoring Benchmarking in LLM Multi-Agent Systems",
+   "published": "2026-04-27",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "The rapid integration of Large Language Models (LLMs) into Multi-Agent Systems (MAS) has significantly enhanced their collaborative problem-solving capabilities, but it has also expanded their attack surfaces, exposing them to vulnerabilities such as prompt infection and compromised inter-agent communication. While emerging graph-based anomaly detection methods show promise in protecting these networks, the field currently lacks a standardized, reproducible environment to train these models and evaluate their efficacy. To address this gap, we introduce Gammaf (Graph-based Anomaly Monitoring for LLM Multi-Agent systems Framework), an open-source benchmarking platform. Gammaf is not a novel defense mechanism itself, but rather a comprehensive evaluation architecture designed to generate synthetic multi-agent interaction datasets and benchmark the performance of existing and future defense models. The proposed framework operates through two interdependent pipelines: a Training Data Generation stage, which simulates debates across varied network topologies to capture interactions as robust attributed graphs, and a Defense System Benchmarking stage, which actively evaluates defense models by dynamically isolating flagged adversarial nodes during live inference rounds. Through rigorous evaluation using established defense baselines (XG-Guard and BlindGuard) across multiple knowledge tasks (such as MMLU-Pro and GSM8K), we demonstrate Gammaf's high utility, topological scalability, and execution efficiency. Furthermore, our experimental results reveal that equipping an LLM-MAS with effective attack remediation not only recovers system integrity but also substantially reduces overall operational costs by facilitating early consensus and cutting off the extensive token generation typical of adversarial agents.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2512.06432",
+   "title": "HiveMind: Contribution-Guided Online Prompt Optimization of LLM Multi-Agent Systems",
+   "published": "2025-12-06",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Recent advances in LLM-based multi-agent systems have demonstrated remarkable capabilities in complex decision-making scenarios such as financial trading and software engineering. However, evaluating each individual agent's effectiveness and online optimization of underperforming agents remain open challenges. To address these issues, we present HiveMind, a self-adaptive framework designed to optimize LLM multi-agent collaboration through contribution analysis. At its core, HiveMind introduces Contribution-Guided Online Prompt Optimization (CG-OPO), which autonomously refines agent prompts based on their quantified contributions. We first propose the Shapley value as a grounded metric to quantify each agent's contribution, thereby identifying underperforming agents in a principled manner for automated prompt refinement. To overcome the computational complexity of the classical Shapley value, we present DAG-Shapley, a novel and efficient attribution algorithm that leverages the inherent Directed Acyclic Graph structure of the agent workflow to axiomatically prune non-viable coalitions. By hierarchically reusing intermediate outputs of agents in the DAG, our method further reduces redundant computations, and achieving substantial cost savings without compromising the theoretical guarantees of Shapley values. Evaluated in a multi-agent stock-trading scenario, HiveMind achieves superior performance compared to static baselines. Notably, DAG-Shapley reduces LLM calls by over 80\\% while maintaining attribution accuracy comparable to full Shapley values, establishing a new standard for efficient credit assignment and enabling scalable, real-world optimization of multi-agent collaboration.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2507.22800",
+   "title": "The Multi-Agent Fault Localization System Based on Monte Carlo Tree Search Approach",
+   "published": "2025-07-30",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "In real-world scenarios, due to the highly decoupled and flexible nature of microservices, it poses greater challenges to system reliability. The more frequent occurrence of incidents has created a demand for Root Cause Analysis(RCA) methods that enable rapid identification and recovery of incidents. Large language model (LLM) provides a new path for quickly locating and recovering from incidents by leveraging their powerful generalization ability combined with expert experience. Current LLM for RCA frameworks are based on ideas like ReAct and Chain-of-Thought, but the hallucination of LLM and the propagation nature of anomalies often lead to incorrect localization results. Moreover, the massive amount of anomalous information generated in large, complex systems presents a huge challenge for the context window length of LLMs. To address these challenges, we propose KnowledgeMind, an innovative LLM multi-agent system based on Monte Carlo Tree Search and a knowledge base reward mechanism for standardized service-by-service reasoning. Compared to State-Of-The-Art(SOTA) LLM for RCA methods, our service-by-service exploration approach significantly reduces the burden on the maximum context window length, requiring only one-tenth of its size. Additionally, by incorporating a rule-based real-time reward mechanism, our method effectively mitigates hallucinations during the inference process. Compared to the SOTA LLM for RCA framework, our method achieves a 49.29% to 128.35% improvement in root cause localization accuracy.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2603.26942",
+   "title": "The Observability Gap: Why Output-Level Human Feedback Fails for LLM Coding Agents",
+   "published": "2026-03-27",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Large language model (LLM) multi-agent coding systems typically fix agent capabilities at design time. We study an alternative setting, earned autonomy, in which a coding agent starts with zero pre-defined functions and incrementally builds a reusable function library through lightweight human feedback on visual output alone. We evaluate this setup in a Blender-based 3D scene generation task requiring both spatial reasoning and programmatic geometric control. Although the agent rediscovered core utility functions comparable to a human reference implementation, it achieved 0% full-scene success under output-only feedback across multiple instruction granularities, where success required satisfying object completeness, ground contact, collision avoidance, and scale plausibility simultaneously. Our analysis identifies a structural observability gap: bugs originate in code logic and execution state, while human evaluation occurs only at the output layer, and the many-to-one mapping from internal states to visible outcomes prevents symptom-level feedback from reliably identifying root causes. This mismatch leads to persistent failure mode oscillation rather than convergence. A diagnostic intervention that injected minimal code-level knowledge restored convergence, strongly supporting the interpretation that the main bottleneck lies in feedback observability rather than programming competence. We formalize this phenomenon as a feedback paradox in domains with deep causal chains between internal code logic and perceptual outcomes, and argue that effective human-agent collaboration in such settings requires intermediate observability beyond output-only evaluation.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.25851",
+   "title": "Learning Who Talks to Whom: Role-Aware Communication Topology Scheduling for Efficient LLM Multi-Agent Collaboration",
+   "published": "2026-10-19",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Multi-agent systems driven by large language models (LLMs) rely on structured communication topologies to facilitate information exchange and collaborative reasoning. However, effectively scheduling these topologies to dynamically determine who talks to whom and when to communicate remains a fundamental challenge in balancing collective reasoning performance against exponential token overhead. Existing topology scheduling approaches either enforce static communication graphs that cannot adapt to dynamic problem-solving states, or overlook agent role complementarity while failing to explicitly incorporate the synthesized graph structure into team-level decision evaluation. To tackle these limitations, we propose ACTS, a role-aware adaptive communication topology scheduling framework for efficient LLM multi-agent collaboration. Orchestrated within a Centralized Training with Decentralized Execution (CTDE) paradigm, ACTS introduces a novel dual-attention mechanism. Specifically, a Role-conditioned Relational Attention module dynamically selects variable-cardinality interaction partners based on agent roles and evolving execution states, while a Topological Attention Mixer explicitly embeds the directed communication topology into team value decomposition for precise credit assignment. Comprehensive evaluations across 9 challenging benchmarks covering code generation, multi-step reasoning, general knowledge, and competitive mathematics demonstrate that ACTS consistently outperforms state-of-the-art baselines, boosting average accuracy by up to 6.19 percentage points while reducing token consumption by over 15%. The project website is available at https://acts-mas.github.io/ACTS/.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2502.10931",
+   "title": "D-CIPHER: Dynamic Collaborative Intelligent Multi-Agent System with Planner and Heterogeneous Executors for Offensive Security",
+   "published": "2025-02-15",
+   "categories": [
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Large Language Models (LLMs) have been used in cybersecurity such as autonomous security analysis or penetration testing. Capture the Flag (CTF) challenges serve as benchmarks to assess automated task-planning abilities of LLM agents for cybersecurity. Early attempts to apply LLMs for solving CTF challenges used single-agent systems, where feedback was restricted to a single reasoning-action loop. This approach was inadequate for complex CTF tasks. Inspired by real-world CTF competitions, where teams of experts collaborate, we introduce the D-CIPHER LLM multi-agent framework for collaborative CTF solving. D-CIPHER integrates agents with distinct roles with dynamic feedback loops to enhance reasoning on complex tasks. It introduces the Planner-Executor agent system, consisting of a Planner agent for overall problem-solving along with multiple heterogeneous Executor agents for individual tasks, facilitating efficient allocation of responsibilities among the agents. Additionally, D-CIPHER incorporates an Auto-prompter agent to improve problem-solving by auto-generating a highly relevant initial prompt. We evaluate D-CIPHER on multiple CTF benchmarks and LLM models via comprehensive studies to highlight the impact of our enhancements. Additionally, we manually map the CTFs in NYU CTF Bench to MITRE ATT&CK techniques that apply for a comprehensive evaluation of D-CIPHER's offensive security capability. D-CIPHER achieves state-of-the-art performance on three benchmarks: 22.0% on NYU CTF Bench, 22.5% on Cybench, and 44.0% on HackTheBox, which is 2.5% to 8.5% better than previous work. D-CIPHER solves 65% more ATT&CK techniques compared to previous work, demonstrating stronger offensive capability.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2610.03820",
+   "title": "From Requirements to Attack Trees: Grounded LLM Agents for Design-Time Security Review",
+   "published": "2026-10-02",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Design-level security weaknesses can arise from requirements, trust assumptions, missing controls, and data flows before implementation begins. Existing security practices often identify these issues after code is written. We present a multi-agent LLM framework for design-time security analysis from product requirement documents and architecture diagrams. The proposed framework parses architecture diagrams into graph representations, generates misuse and failure cases, constructs attack trees, checks governance and compliance gaps, recommends mitigations, assigns enterprise security-domain tags, and produces a candidate revised architecture recommendation for expert review. The framework does not retrieve from Common Weakness Enumeration (CWE) databases at inference time. Instead, it analyzes system behavior, trust boundaries, component interactions, and data-flow assumptions. Misuse cases act as intermediate representations that link findings to system components and attack paths, while a validation and refinement loop filters unsupported findings and improves grounding, traceability, and actionability. We evaluate the framework on a Microsoft reference-labeled threat-modeling example, labeled synthetic PRD--architecture pairs, and two open-ended systems: Berty and Gas Town. The reference-labeled case supports threat-recovery and actionability analysis, while the open-ended cases evaluate validity, noise, traceability, actionability, redundancy, and attack-tree quality. Results show that architecture-informed, misuse-driven reasoning improves review quality compared with single-shot and ablation baselines. Keywords: LLM Multi-Agent Systems, Design-Time Security, Threat Modeling, Vulnerability Discovery, Architecture Diagrams, Security Analysis, Misuse Case Derivation, Attack Trees, Iterative Reasoning, Security Governance.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2603.15183",
+   "title": "Token Coherence: Adapting MESI Cache Protocols to Minimize Synchronization Overhead in Multi-Agent LLM Systems",
+   "published": "2026-03-16",
+   "categories": [
+    "cs.DC",
+    "cs.AI",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "Multi-agent LLM orchestration incurs synchronization costs scaling as O(n x S x |D|) in agents, steps, and artifact size under naive broadcast -- a regime I term broadcast-induced triply-multiplicative overhead. I argue this pathology is a structural residue of full-state rebroadcast, not an inherent property of multi-agent coordination. The central claim: synchronization cost explosion in LLM multi-agent systems maps with formal precision onto the cache coherence problem in shared-memory multiprocessors, and MESI-protocol invalidation transfers to artifact synchronization under minimal structural modification. I construct the Artifact Coherence System (ACS) and prove the Token Coherence Theorem: lazy invalidation attenuates cost by at least S/(n + W(d_i)) when S > n + W(d_i), converting O(n x S x |D|) to O((n + W) x |D|). A TLA+-verified protocol enforces single-writer safety, monotonic versioning, and bounded staleness across ~2,400 explored states. Simulation across four workload configurations yields token savings of 95.0% +/- 1.3% at V=0.05, 92.3% +/- 1.4% at V=0.10, 88.3% +/- 1.5% at V=0.25, and 84.2% +/- 1.3% at V=0.50 -- each exceeding the theorem's conservative lower bounds. Savings of ~81% persist at V=0.9, contrary to the predicted collapse threshold. Contributions: (1) formal MESI-to-artifact state mapping; (2) Token Coherence Theorem as savings lower bound; (3) TLA+-verified protocol with three proven invariants; (4) characterization of conditional artifact access semantics resolving the always-read objection; (5) reference Python implementation integrating with LangGraph, CrewAI, and AutoGen via thin adapter layers.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2609.02264",
+   "title": "Codebook Agent: Amortized Topology Design for LLM Multi-Agent Systems",
+   "published": "2026-09-02",
+   "categories": [
+    "cs.AI",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "Adapting the communication topology of an LLM multi-agent system to each query improves both accuracy and efficiency, yet current designers treat this as conditional graph generation: a variational, autoregressive, or diffusion decoder searches the $N \\times N$ adjacency space, and a graph-network proxy trained on utility and a structural cost such as edge count ranks the sampled candidates. We argue that this formulation is misaligned with the problem. Empirically, topologies that survive a reward filter collapse to about six distinct graphs even when the codebook capacity grows from 8 to 64; edge count is negatively correlated with measured token consumption (Pearson $r \\approx -0.4$), so sparsifying the graph makes inference more expensive; and a message-passing scorer over agent-profile nodes is adjacency-invariant whenever agents share a profile---the default configuration of published benchmarks---so it cannot rank candidates at all in that regime. These three facts motivate Codebook Agent: a vector-quantized autoencoder compresses successful topologies into a query-independent 16-entry codebook; a reward-weighted MLP maps the query embedding to a distribution over codes; and an MLP proxy that reads the flattened adjacency, regressed on measured utility and per-task normalized token cost, reranks the top decoded candidates in a single batched forward pass. With no iterative search and no message passing at test time, Codebook Agent is the most accurate method on all six benchmarks we compare (84.6 average against 83.0 for the strongest prior designer), emits a topology in 2.4 ms, and uses 21.9--33.2% fewer LLM tokens.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2607.26724",
+   "title": "UrbanDS: A Graph-Guided LLM Multi-Agent System for Data-Intensive Urban Tasks",
+   "published": "2026-07-29",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large language model (LLM) agents have been widely applied in automating data science tasks. However, existing methods typically rely on a limited set of provided datasets, and they face challenges in data-intensive scenarios that require discovering and leveraging relevant information from large-scale and heterogeneous data repositories. Urban tasks are representative examples of such scenarios, as urban data are not only large-scale and multi-sourced, but also exhibit complex spatial, temporal, and semantic relationships. To address these challenges, we propose UrbanDS, a graph-guided LLM multi-agent system for data-intensive urban tasks. We first construct a unified dataset graph to organize reusable dataset skills and the relationships among datasets. Specifically, we develop a Data Profiling Agent that constructs a skill for each dataset. Moreover, a Relation Agent identifies relationships among datasets and integrates these relationships into the dataset graph. At runtime, a Planner Agent retrieves task-relevant datasets from the graph and generates execution plans. Multiple Execution Agents then perform data processing and analysis, while their execution progress and intermediate results are shared through a common memory. Finally, a Report Agent synthesizes the experimental logs into a report, which can be further refined based on user feedback. To systematically evaluate the capability of agents in handling data-intensive urban scenarios, we further construct UrbanDS-Bench, an urban data science benchmark covering representative data analysis and modeling tasks. Experiments on both general and urban benchmarks demonstrate that UrbanDS consistently outperforms existing data science agents on data-intensive tasks. Furthermore, UrbanDS has been deployed on the urban operations platform of Dongxihu District, Wuhan, demonstrating its effectiveness in real-world urban applications.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2510.01379",
+   "title": "Multi-LLM Orchestration for High-Quality Code Generation: Exploiting Complementary Model Strengths",
+   "published": "2025-10-01",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "Large Language Models (LLMs) are central to automated code generation, yet most approaches use one model at every stage, from writing code to repairing and optimizing it. LLMs have complementary strengths: their failures do not fully overlap across programming languages, algorithmic categories, and development stages. For example, in Python, the model with the highest code-generation accuracy ranks last at code repair. Using one model to generate code, another to repair it, and a third to refine it can therefore achieve higher correctness and better execution performance than a single model throughout. We propose PerfOrch, a multi-LLM multi-agent system with four agents for categorization, generation, debugging, and refinement. The generation, debugging, and refinement agents select models through a Memory module that ranks candidate LLMs by their measured performance for each stage, programming language, and algorithmic category. We evaluate PerfOrch with five candidate LLMs on 4,640 problems from four benchmarks covering five programming languages (HumanEval-X, EffiBench-X, BigCodeBench, and APPS) against single-model direct generation, single-model generate-debug-refine pipelines (PerfCodeGen), and the state-of-the-art multi-agent systems MapCoder and CodeSIM. PerfOrch achieves the highest pass@1 in all twelve benchmark-language settings, exceeding the strongest baseline by an average of 8.19 percentage points, and reduces execution time for an average of 75.03% of solved problems with an average speedup of 1.18x. The Memory rankings remain effective on three unseen benchmarks without re-profiling. Sequential refinement matches exhaustive execution-time refinement coverage with 66% fewer refinement-stage tokens (57% for average-memory optimization). The complementary strengths persist after all five LLMs are replaced with their current-generation successors.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2611.18150",
+   "title": "Who Should Be on the Panel? Task-Conditioned Persona Selection for LLM Trading Agents",
+   "published": "2026-11-13",
+   "categories": [
+    "q-fin.TR",
+    "cs.AI"
+   ],
+   "abstract": "Multi-agent LLM systems are built by fixing a cast of roles and then designing how the cast coordinates. Which agents should make up the group for a given task is left to the designer, and the same cast is reused for every task. Financial trading makes the cost of that choice visible: stocks trade differently, and the trading styles suited to one need not suit another. We study task-conditioned persona selection, composing the group from the characteristics of the task it will face, and instantiate it with FinPanel, an LLM multi-agent trading system in which a recruiter selects a panel of named trader personas for each stock from a direction-blind statistical sketch of how the stock trades, each persona gives an independent daily call in its own style, and a manager commits the trade after reading the panel's arguments and their desk-kept, hierarchical track records. Because nothing is returned to the traders, the panel stays the panel that was selected, and it can trade a new stock from an empty record. On eight US stocks over the out-of-knowledge year 2025, against three prior LLM trading agents re-implemented in the same framework and against rule-based, predictive and reinforcement-learning baselines, the selected panel is ahead of a fixed panel of the same size and of the prior agents run as their papers prescribe, with a shallower drawdown than buy-and-hold on every stock; it keeps its performance with no warm-up and with no record at all, whereas the memory-augmented agents' returns swing with their warm-up; and neither more seats nor the manager's reading of the arguments substitutes for selecting the right ones. Who is in the group is a design decision to be made per task, before how the group coordinates.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2606.29932",
+   "title": "SAGA: Scene-Aware, Goal-Evolving Agents for Long-Horizon Strategy Game Planning",
+   "published": "2026-06-29",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Grand-strategy games such as Civilization pose a distinctive long-horizon planning problem: an agent must divide one shared resource pool among six competing domains -- technology, government, diplomacy, city development, expansion, and military -- under partial observability, with no feedback except a delayed final score. Current LLM agents fall short in three ways: 1) they cannot infer spatial relations from raw coordinates; 2) they allocate resources poorly, because feeding the entire growing state into one prompt and planning all domains in a single output diffuses attention and biases decisions toward urgent events; and 3) they cannot improve, as the delayed score gives no signal within or across games. We present SAGA, an LLM multi-agent framework pairing one mechanism with each weakness: (i) a Map-Semantic Scene Graph turning coordinates into per-entity statements of distance, direction, and threat; (ii) a Tool-Augmented Planner that retrieves only the state a decision needs, cutting the order of magnitude of its input, and issues a separate plan per domain to six specialist controllers, so urgent events do not derail long-term plans; and (iii) a Dual-Horizon Feedback Loop setting short-term goals during play and distilling each game into lessons for the next. On CivRealm, a Civilization-style benchmark, SAGA leads five LLM baselines on mean final score and is the only method significantly ahead of all of them on city development, the first investment baselines sacrifice, with 27% fewer output tokens; with cross-game learning it scores highest after five games, and its fifth game consistently surpasses its first across four maps. Our code is available at https://github.com/Kazecloudk/SAGA-Scene-Aware-Goal-Evolving-Agents-for-Long-Horizon-Strategy-Game-Planning.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2609.07065",
+   "title": "VST: Verifiable Structured Transport for Auditable Agent-to-Agent Alpha Discovery",
+   "published": "2026-09-07",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Agent-to-agent (A2A) alpha discovery is slowed by repeated feedback cycles between mining and evaluation agents, whose hand-offs, in contemporary LLM multi-agent systems, are free-form natural-language messages that carry no stable contract and cannot be replayed. We first restructure this communication as a structured agent-to-agent protocol of \\emph{typed, causally addressable, unicast records}, so that the committed stream forms a causal trajectory. On that trajectory a single predictor with four typed heads forecasts the accumulated guidance the two miners would receive several cycles ahead; a transactional verify--leap controller then commits a multi-cycle speculative outcome only when it passes a four-level gate, and otherwise rolls back to the exact prior state. Structure is the enabling contribution, and its value is not accuracy. A controlled ablation shows an equal-information free-text channel reaches the same predictor hit rate. What typing provides is a state that can be schema-checked, replayed deterministically, and prevented by construction from leaking a forecast to an evaluator: auditability by construction, not an empirically stress-tested guarantee. On a CSI~1000 out-of-sample holdout, our single run is the only one among eight methods (seven baselines and ours) to hold a positive median annualized return and Sharpe at the factor level, though the median return \\emph{in excess} of the benchmark stays negative for every method including ours; its development-selected top-20 portfolios reach a $0.71$ median holdout Sharpe, selected on a split inside the optimization horizon. We report these single-run results descriptively, gross of costs, and are explicit about their limits throughout; in particular we do not isolate the effect of the leap machinery from the inherited search substrate, which we leave to future work.",
+   "query": "LLM multi-agent"
+  },
+  {
+   "id": "2506.06032",
+   "title": "Modeling human reputation-seeking behavior in a spatio-temporally complex public good provision game",
+   "published": "2025-06-06",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Multi-agent reinforcement learning algorithms are useful for simulating social behavior in settings that are too complex for other theoretical approaches like game theory. However, they have not yet been empirically supported by laboratory experiments with real human participants. In this work we demonstrate how multi-agent reinforcement learning can model group behavior in a spatially and temporally complex public good provision game called Clean Up. We show that human groups succeed in Clean Up when they can see who is who and track reputations over time but fail under conditions of anonymity. A new multi-agent reinforcement learning model of reputation-based cooperation demonstrates the same difference between identifiable and anonymous conditions. Furthermore, both human groups and artificial agent groups solve the problem via turn-taking despite other options being available. Our results highlight the benefits of using multi-agent reinforcement learning to model human social behavior in complex environments.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2512.18558",
+   "title": "Distributionally Robust Multi-Agent Reinforcement Learning for Intelligent Traffic Control",
+   "published": "2025-12-21",
+   "categories": [
+    "eess.SY"
+   ],
+   "abstract": "Learning-based traffic signal control is typically optimized for average performance under a few nominal demand patterns, which can result in poor behavior under atypical traffic conditions. To address this, we develop a distributionally robust multi-agent reinforcement learning framework for signal control on a 3x3 urban grid calibrated from a contiguous 3x3 subarea of central Athens covered by the pNEUMA trajectory dataset (Barmpounakis and Geroliminis, 2020). Our approach proceeds in three stages. First, we train a baseline multi-agent RL controller in which each intersection is governed by a proximal policy optimization agent with discrete signal phases, using a centralized training, decentralized execution paradigm. Second, to capture demand uncertainty, we construct eight heterogeneous origin-destination-based traffic scenarios-one directly derived from pNEUMA and seven synthetically generated-to span a wide range of spatial and temporal demand patterns. Over this scenario set, we train a contextual-bandit worst-case estimator that assigns mixture weights to estimate adversarial demand distributions conditioned on context. Finally, without modifying the controller architecture, we fine-tune the baseline multi-agent reinforcement learning agents under these estimated worst-case mixtures to obtain a distributionally robust multi-agent reinforcement learning controller. Across all eight scenarios, as well as on an unseen validation network based on the Sioux Falls configuration, the distributionally robust multi-agent reinforcement learning controller consistently reduces horizon-averaged queues and increases average speeds relative to the baseline, achieving up to 51% shorter queues and 38% higher speeds on the worst-performing scenarios.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2601.18419",
+   "title": "Emergent Cooperation in Quantum Multi-Agent Reinforcement Learning Using Communication",
+   "published": "2026-01-26",
+   "categories": [
+    "quant-ph",
+    "cs.AI",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "Emergent cooperation in classical Multi-Agent Reinforcement Learning has gained significant attention, particularly in the context of Sequential Social Dilemmas (SSDs). While classical reinforcement learning approaches have demonstrated capability for emergent cooperation, research on extending these methods to Quantum Multi-Agent Reinforcement Learning remains limited, particularly through communication. In this paper, we apply communication approaches to quantum Q-Learning agents: the Mutual Acknowledgment Token Exchange (MATE) protocol, its extension Mutually Endorsed Distributed Incentive Acknowledgment Token Exchange (MEDIATE), the peer rewarding mechanism Gifting, and Reinforced Inter-Agent Learning (RIAL). We evaluate these approaches in three SSDs: the Iterated Prisoner's Dilemma, Iterated Stag Hunt, and Iterated Game of Chicken. Our experimental results show that approaches using MATE with temporal-difference measure (MATE\\textsubscript{TD}), AutoMATE, MEDIATE-I, and MEDIATE-S achieved high cooperation levels across all dilemmas, demonstrating that communication is a viable mechanism for fostering emergent cooperation in Quantum Multi-Agent Reinforcement Learning.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2605.12555",
+   "title": "DelAC: A Multi-agent Reinforcement Learning of Team-Symmetric Stochastic Games",
+   "published": "2026-05-11",
+   "categories": [
+    "cs.MA",
+    "cs.GT"
+   ],
+   "abstract": "In this paper we study team-symmetric games with $m\\ge 2$ teams. Players within a team have symmetric identity and have a common payoff function. We show that team-symmetric games always have a team-symmetric Nash equilibrium. We develop and solve a linear complementarity problem of team-symmetric Nash equilibria. We propose an actor-critic based multi-agent reinforcement learning algorithm for team-symmetric games. Through simulations, we show that this multi-agent reinforcement learning algorithm performs much better than many existing algorithms.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2501.13592",
+   "title": "WFCRL: A Multi-Agent Reinforcement Learning Benchmark for Wind Farm Control",
+   "published": "2025-01-23",
+   "categories": [
+    "cs.LG",
+    "cs.MA",
+    "eess.SY"
+   ],
+   "abstract": "The wind farm control problem is challenging, since conventional model-based control strategies require tractable models of complex aerodynamical interactions between the turbines and suffer from the curse of dimension when the number of turbines increases. Recently, model-free and multi-agent reinforcement learning approaches have been used to address this challenge. In this article, we introduce WFCRL (Wind Farm Control with Reinforcement Learning), the first open suite of multi-agent reinforcement learning environments for the wind farm control problem. WFCRL frames a cooperative Multi-Agent Reinforcement Learning (MARL) problem: each turbine is an agent and can learn to adjust its yaw, pitch or torque to maximize the common objective (e.g. the total power production of the farm). WFCRL also offers turbine load observations that will allow to optimize the farm performance while limiting turbine structural damages. Interfaces with two state-of-the-art farm simulators are implemented in WFCRL: a static simulator (FLORIS) and a dynamic simulator (FAST.Farm). For each simulator, $10$ wind layouts are provided, including $5$ real wind farms. Two state-of-the-art online MARL algorithms are implemented to illustrate the scaling challenges. As learning online on FAST.Farm is highly time-consuming, WFCRL offers the possibility of designing transfer learning strategies from FLORIS to FAST.Farm.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2509.19512",
+   "title": "The Heterogeneous Multi-Agent Challenge",
+   "published": "2025-09-23",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "Multi-Agent Reinforcement Learning (MARL) is a growing research area which gained significant traction in recent years, extending Deep RL applications to a much wider range of problems. A particularly challenging class of problems in this domain is Heterogeneous Multi-Agent Reinforcement Learning (HeMARL), where agents with different sensors, resources, or capabilities must cooperate based on local information. The large number of real-world situations involving heterogeneous agents makes it an attractive research area, yet underexplored, as most MARL research focuses on homogeneous agents (e.g., a swarm of identical robots). In MARL and single-agent RL, standardized environments such as ALE and SMAC have allowed to establish recognized benchmarks to measure progress. However, there is a clear lack of such standardized testbed for cooperative HeMARL. As a result, new research in this field often uses simple environments, where most algorithms perform near optimally, or uses weakly heterogeneous MARL environments.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2505.18457",
+   "title": "EdgeAgentX: A Novel Framework for Agentic AI at the Edge in Military Communication Networks",
+   "published": "2025-05-24",
+   "categories": [
+    "cs.AI",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "This paper introduces EdgeAgentX, a novel framework integrating federated learning (FL), multi-agent reinforcement learning (MARL), and adversarial defense mechanisms, tailored for military communication networks. EdgeAgentX significantly improves autonomous decision-making, reduces latency, enhances throughput, and robustly withstands adversarial disruptions, as evidenced by comprehensive simulations.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2512.03528",
+   "title": "Multi-Agent Reinforcement Learning with Communication-Constrained Priors",
+   "published": "2025-12-03",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Communication is one of the effective means to improve the learning of cooperative policy in multi-agent systems. However, in most real-world scenarios, lossy communication is a prevalent issue. Existing multi-agent reinforcement learning with communication, due to their limited scalability and robustness, struggles to apply to complex and dynamic real-world environments. To address these challenges, we propose a generalized communication-constrained model to uniformly characterize communication conditions across different scenarios. Based on this, we utilize it as a learning prior to distinguish between lossy and lossless messages for specific scenarios. Additionally, we decouple the impact of lossy and lossless messages on distributed decision-making, drawing on a dual mutual information estimatior, and introduce a communication-constrained multi-agent reinforcement learning framework, quantifying the impact of communication messages into the global reward. Finally, we validate the effectiveness of our approach across several communication-constrained benchmarks.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2501.01140",
+   "title": "Communicating Unexpectedness for Out-of-Distribution Multi-Agent Reinforcement Learning",
+   "published": "2025-01-02",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "Applying multi-agent reinforcement learning methods to realistic settings is challenging as it may require the agents to quickly adapt to unexpected situations that are rarely or never encountered in training. Recent methods for generalization to such out-of-distribution settings are limited to more specific, restricted instances of distribution shifts. To tackle adaptation to distribution shifts, we propose Unexpected Encoding Scheme, a novel decentralized multi-agent reinforcement learning algorithm where agents communicate \"unexpectedness,\" the aspects of the environment that are surprising. In addition to a message yielded by the original reward-driven communication, each agent predicts the next observation based on previous experience, measures the discrepancy between the prediction and the actually encountered observation, and encodes this discrepancy as a message. Experiments on multi-robot warehouse environment support that our proposed method adapts robustly to dynamically changing training environments as well as out-of-distribution environment.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2610.00705",
+   "title": "Meta-Multi-Agent Reinforcement Learning for Fast Adaptation of Interactive Policies with Applications to Autonomous Driving",
+   "published": "2026-09-30",
+   "categories": [
+    "cs.AI",
+    "cs.MA",
+    "eess.SY"
+   ],
+   "abstract": "This paper develops a meta-multi-agent reinforcement learning (meta-MARL) framework to enable fast adaptation of interactive policies in a multi-agent system (MAS). Meta-reinforcement learning (meta-RL) enables agents to rapidly adapt to new tasks/environments using a bi-level optimization mechanism. However, existing meta-RL generally focuses on single-agent systems. Extending these frameworks and algorithms to multi-agent systems poses additional challenges, as tasks are characterized by not only the environment but also agents' strategic interactions. To address these challenges, we model multi-agent reinforcement learning (MARL) problems as Markov games (MGs) and develop a meta-MARL framework for rapid interactive policy adaptation across a distribution of MGs. A new concept, called meta-NE, is defined to describe the desired solution concept in a meta-MARL problem. Sufficient conditions for the equivalence between a meta-NE and a stationary point of the gradient-play-based meta-MARL algorithm are established. Our evaluation on autonomous-driving tasks demonstrates that the proposed meta-MARL method achieves faster adaptation than pretrained MARL baselines, validating the effectiveness of our framework.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2511.02136",
+   "title": "JaxMARL-HFT: GPU-Accelerated Large-Scale Multi-Agent Reinforcement Learning for High-Frequency Trading",
+   "published": "2025-11-03",
+   "categories": [
+    "q-fin.TR",
+    "cs.MA"
+   ],
+   "abstract": "Agent-based modelling (ABM) approaches for high-frequency financial markets are difficult to calibrate and validate, partly due to the large parameter space created by defining fixed agent policies. Multi-agent reinforcement learning (MARL) enables more realistic agent behaviour and reduces the number of free parameters, but the heavy computational cost has so far limited research efforts. To address this, we introduce JaxMARL-HFT (JAX-based Multi-Agent Reinforcement Learning for High-Frequency Trading), the first GPU-accelerated open-source multi-agent reinforcement learning environment for high-frequency trading (HFT) on market-by-order (MBO) data. Extending the JaxMARL framework and building on the JAX-LOB implementation, JaxMARL-HFT is designed to handle a heterogeneous set of agents, enabling diverse observation/action spaces and reward functions. It is designed flexibly, so it can also be used for single-agent RL, or extended to act as an ABM with fixed-policy agents. Leveraging JAX enables up to a 240x reduction in end-to-end training time, compared with state-of-the-art reference implementations on the same hardware. This significant speed-up makes it feasible to exploit the large, granular datasets available in high-frequency trading, and to perform the extensive hyperparameter sweeps required for robust and efficient MARL research in trading. We demonstrate the use of JaxMARL-HFT with independent Proximal Policy Optimization (IPPO) for a two-player environment, with an order execution and a market making agent, using one year of LOB data (400 million orders), and show that these agents learn to outperform standard benchmarks. The code for the JaxMARL-HFT framework is available on GitHub.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2611.06523",
+   "title": "H^2MARL: Hierarchical Heterogeneous Multi-agent Reinforcement Learning for Humanoid Robot Control",
+   "published": "2026-11-04",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Coordinated whole-body control of humanoid robots remains challenging due to high-dimensional coupled dynamics and substantial physical heterogeneity across joint degrees of freedom (JDoFs). Existing multi-agent reinforcement learning methods either employ coarse agent partitions or directly apply generic heterogeneous-agent algorithms, while hierarchical controllers commonly optimize high-level planning and low-level execution independently, leading to uncoordinated motion. In this paper, we propose H^2MARL, a hierarchical heterogeneous multi-agent reinforcement learning framework with two key mechanisms. We first formulate humanoid whole-body control using a JDoF-level physical-heterogeneity-aware policy factorization, where each torque-actuated JDoF is conditioned on an explicit descriptor of its actuation, kinematic, and dynamic properties. Moreover, we develop a closed-loop policy-executor co-optimization mechanism that jointly adapts the high-level pose planner and the low-level joint executor using shared interaction trajectories, thereby reducing the distribution mismatch between planning and execution. Extensive experiments in MuJoCo and Isaac Gym demonstrate that H^2MARL consistently improves locomotion stability, gait coordination, and motion quality over homogeneous, coarse-grained, and independently optimized alternatives.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2609.33563",
+   "title": "MA-JEPA: Joint-Embedding World Models for Multi-Agent Reinforcement Learning",
+   "published": "2026-09-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "World models improve sample efficiency by training policies on imagined trajectories, but their usefulness depends on learning representations that capture the information needed for future control. We study whether self-supervised joint-embedding prediction (JEPA) can provide this learning signal for multi-agent reinforcement learning. We introduce MA-JEPA, a stochastic world model that replaces observation reconstruction with prediction of target representations, enabling model-based multi-agent reinforcement learning with centralized training and decentralized execution. A categorical latent state and a causal Transformer are trained with posterior and action-conditioned dynamics prediction objectives and are then used for actor-critic learning from latent imagination. A training-only joint predictor conditions on all agents' local states and actions to predict each agent's next local observation embedding. These predictions are passed through the same local posterior used during real interaction with a centralized critic that is used only for value learning, with execution remaining decentralized. Our experiments show that this architecture performs strongly on SMAC, matching or exceeding the strongest reported comparator mean win rate on four of eight evaluated maps.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2509.05051",
+   "title": "QCA-MolGAN: Quantum Circuit Associative Molecular GAN with Multi-Agent Reinforcement Learning",
+   "published": "2025-09-05",
+   "categories": [
+    "quant-ph",
+    "cs.LG"
+   ],
+   "abstract": "Navigating the vast chemical space of molecular structures to design novel drug molecules with desired target properties remains a central challenge in drug discovery. Recent advances in generative models offer promising solutions. This work presents a novel quantum circuit Born machine (QCBM)-enabled Generative Adversarial Network (GAN), called QCA-MolGAN, for generating drug-like molecules. The QCBM serves as a learnable prior distribution, which is associatively trained to define a latent space aligning with high-level features captured by the GANs discriminator. Additionally, we integrate a novel multi-agent reinforcement learning network to guide molecular generation with desired targeted properties, optimising key metrics such as quantitative estimate of drug-likeness (QED), octanol-water partition coefficient (LogP) and synthetic accessibility (SA) scores in conjunction with one another. Experimental results demonstrate that our approach enhances the property alignment of generated molecules with the multi-agent reinforcement learning agents effectively balancing chemical properties.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2501.15695",
+   "title": "Contextual Knowledge Sharing in Multi-Agent Reinforcement Learning with Decentralized Communication and Coordination",
+   "published": "2025-01-26",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "Decentralized Multi-Agent Reinforcement Learning (Dec-MARL) has emerged as a pivotal approach for addressing complex tasks in dynamic environments. Existing Multi-Agent Reinforcement Learning (MARL) methodologies typically assume a shared objective among agents and rely on centralized control. However, many real-world scenarios feature agents with individual goals and limited observability of other agents, complicating coordination and hindering adaptability. Existing Dec-MARL strategies prioritize either communication or coordination, lacking an integrated approach that leverages both. This paper presents a novel Dec-MARL framework that integrates peer-to-peer communication and coordination, incorporating goal-awareness and time-awareness into the agents' knowledge-sharing processes. Our framework equips agents with the ability to (i) share contextually relevant knowledge to assist other agents, and (ii) reason based on information acquired from multiple agents, while considering their own goals and the temporal context of prior knowledge. We evaluate our approach through several complex multi-agent tasks in environments with dynamically appearing obstacles. Our work demonstrates that incorporating goal-aware and time-aware knowledge sharing significantly enhances overall performance.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2610.35736",
+   "title": "Preference-Guided Cooperation in Multi-Objective Multi-Agent Reinforcement Learning",
+   "published": "2026-10-26",
+   "categories": [
+    "cs.MA",
+    "cs.LG"
+   ],
+   "abstract": "Multi-objective multi-agent reinforcement learning (MOMARL) addresses agent coordination and objective trade-offs simultaneously while optimising overall system performance. Existing work tends to treat multi-agent cooperation and multi-objective optimisation as largely independent components of a learning problem, which amounts to an exorbitant complexity except in trivial cases. We study here whether the structure provided by multiple objectives can itself be exploited to facilitate cooperation, rather than being treated as an additional optimisation challenge. We formulate MOMARL at both the team and individual levels and introduce objective-wise counterfactual credit assignment to evaluate each agent's contribution across the team objectives. We propose Meta-Gradient Informed Multi-Objective Multi-Agent Reinforcement Learning (MIRL), with static (MIRL-S) and dynamic (MIRL-D) variants. By incorporating meta-gradient information, MIRL enables agents to learn how to prioritise objectives individually while collectively optimising the system-level objective, allowing the multi-objective structure to directly guide cooperation. Experiments on a multi-objective multiple particle environment show that our methods improve Pareto-front quality over baselines, with the dynamic variant achieving the strongest performance.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2509.14680",
+   "title": "LEED: A Highly Efficient and Scalable LLM-Empowered Expert Demonstrations Framework for Multi-Agent Reinforcement Learning",
+   "published": "2025-09-18",
+   "categories": [
+    "cs.MA",
+    "cs.LG"
+   ],
+   "abstract": "Multi-agent reinforcement learning (MARL) holds substantial promise for intelligent decision-making in complex environments. However, it suffers from a coordination and scalability bottleneck as the number of agents increases. To address these issues, we propose the LLM-empowered expert demonstrations framework for multi-agent reinforcement learning (LEED). LEED consists of two components: a demonstration generation (DG) module and a policy optimization (PO) module. Specifically, the DG module leverages large language models to generate instructions for interacting with the environment, thereby producing high-quality demonstrations. The PO module adopts a decentralized training paradigm, where each agent utilizes the generated demonstrations to construct an expert policy loss, which is then integrated with its own policy loss. This enables each agent to effectively personalize and optimize its local policy based on both expert knowledge and individual experience. Experimental results show that LEED achieves superior sample efficiency, time efficiency, and robust scalability compared to state-of-the-art baselines.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2508.02421",
+   "title": "Emergence of Fair Leaders via Mediators in Multi-Agent Reinforcement Learning",
+   "published": "2025-08-04",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Stackelberg games and their resulting equilibria have received increasing attention in the multi-agent reinforcement learning literature. Each stage of a traditional Stackelberg game involves a leader(s) acting first, followed by the followers. In situations where the roles of leader(s) and followers can be interchanged, the designated role can have considerable advantages, for example, in first-mover advantage settings. Then the question arises: Who should be the leader and when? A bias in the leader selection process can lead to unfair outcomes. This problem is aggravated if the agents are self-interested and care only about their goals and rewards. We formally define this leader selection problem and show its relation to fairness in agents' returns. Furthermore, we propose a multi-agent reinforcement learning framework that maximizes fairness by integrating mediators. Mediators have previously been used in the simultaneous action setting with varying levels of control, such as directly performing agents' actions or just recommending them. Our framework integrates mediators in the Stackelberg setting with minimal control (leader selection). We show that the presence of mediators leads to self-interested agents taking fair actions, resulting in higher overall fairness in agents' returns.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2503.18201",
+   "title": "Iterative Multi-Agent Reinforcement Learning: A Novel Approach Toward Real-World Multi-Echelon Inventory Optimization",
+   "published": "2025-03-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Multi-echelon inventory optimization (MEIO) is critical for effective supply chain management, but its inherent complexity can pose significant challenges. Heuristics are commonly used to address this complexity, yet they often face limitations in scope and scalability. Recent research has found deep reinforcement learning (DRL) to be a promising alternative to traditional heuristics, offering greater versatility by utilizing dynamic decision-making capabilities. However, since DRL is known to struggle with the curse of dimensionality, its relevance to complex real-life supply chain scenarios is still to be determined. This thesis investigates DRL's applicability to MEIO problems of increasing complexity. A state-of-the-art DRL model was replicated, enhanced, and tested across 13 supply chain scenarios, combining diverse network structures and parameters. To address DRL's challenges with dimensionality, additional models leveraging graph neural networks (GNNs) and multi-agent reinforcement learning (MARL) were developed, culminating in the novel iterative multi-agent reinforcement learning (IMARL) approach. IMARL demonstrated superior scalability, effectiveness, and reliability in optimizing inventory policies, consistently outperforming benchmarks. These findings confirm the potential of DRL, particularly IMARL, to address real-world supply chain challenges and call for additional research to further expand its applicability.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2607.13880",
+   "title": "Task-Oriented Sensing and Covert Transmissions for Collaborative Multi-AUV Systems",
+   "published": "2026-07-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In underwater covert cooperative missions, autonomous underwater vehicles (AUVs) often cannot rely on active sonar to continuously obtain complete information, since active sensing and frequent communications increase exposure risk. As a result, AUVs primarily rely on passive observation, which yields incomplete local perception and limited task efficiency. Although underwater acoustic communications can mitigate this limitation through information sharing, they are simultaneously constrained by long delays, severe interference, low reliability, and the risk of covert exposure. Existing communications-oriented multi-agent reinforcement learning (MARL) studies often model communication as an ideal information flow, whereas traditional communication optimization primarily focuses on link-level performance. However, both are insufficient to characterize the actual contribution of perceptual information to cooperative tasks under realistic covert physical communication conditions. This paper proposes a Sensed-information Value Realization Multi-Agent Reinforcement Learning (SVR-MARL) framework that leverages practical information to characterize information utility for cooperative tasks and learns distributed cooperative policies under realistic communication and covert constraints. Through a case study of covert multi-AUV cooperative localization and tracking, the potential of the proposed framework to improve collaborative task efficiency while reducing unnecessary communication and exposure risks is demonstrated.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2611.16574",
+   "title": "HALight: Heterogeneous Multi-Agent Reinforcement Learning for Traffic Signal Control under Lane-Level Missing Observations",
+   "published": "2026-11-12",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Multi-agent reinforcement learning has shown great promise for traffic signal control. However, most existing methods rely on two key assumptions: (i) agents are assumed to be homogeneous with unified observation/action spaces; (ii) full and reliable lane-level traffic observations are available to all agents. In practice, urban road networks exhibit substantial structural heterogeneity (e.g., lane configurations and phase designs), while sensor failures and incomplete detector coverage often result in missing incoming lane measurements. Such issues can severely impair coordination and destabilize learning. To address these challenges, we propose HALight, a communication-enhanced heterogeneous multi-agent reinforcement learning framework for traffic signal control under lane-level missing observations. HALight supports intersection-specific observation and action modeling to accommodate heterogeneous intersections, and incorporates a lightweight one-hop neighborhood communication module to enrich spatial context when lane-level observations are partially unavailable. Moreover, HALight adopts a sequential policy update scheme to improve coordination among heterogeneous agents. Experimental results on two real-world road networks demonstrate that HALight outperforms representative homogeneous and heterogeneous baselines in terms of traffic efficiency and convergence behavior. The code and datasets used in this work are available at https://github.com/Huchenkaii/HALight.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2511.11654",
+   "title": "Convergence of Multiagent Learning Systems for Traffic control",
+   "published": "2025-11-10",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Rapid urbanization in cities like Bangalore has led to severe traffic congestion, making efficient Traffic Signal Control (TSC) essential. Multi-Agent Reinforcement Learning (MARL), often modeling each traffic signal as an independent agent using Q-learning, has emerged as a promising strategy to reduce average commuter delays. While prior work Prashant L A et. al has empirically demonstrated the effectiveness of this approach, a rigorous theoretical analysis of its stability and convergence properties in the context of traffic control has not been explored. This paper bridges that gap by focusing squarely on the theoretical basis of this multi-agent algorithm. We investigate the convergence problem inherent in using independent learners for the cooperative TSC task. Utilizing stochastic approximation methods, we formally analyze the learning dynamics. The primary contribution of this work is the proof that the specific multi-agent reinforcement learning algorithm for traffic control is proven to converge under the given conditions extending it from single agent convergence proofs for asynchronous value iteration.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2503.02077",
+   "title": "M3HF: Multi-agent Reinforcement Learning from Multi-phase Human Feedback of Mixed Quality",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Designing effective reward functions in multi-agent reinforcement learning (MARL) is a significant challenge, often leading to suboptimal or misaligned behaviors in complex, coordinated environments. We introduce Multi-agent Reinforcement Learning from Multi-phase Human Feedback of Mixed Quality ($\\text{M}^3\\text{HF}$), a novel framework that integrates multi-phase human feedback of mixed quality into the MARL training process. By involving humans with diverse expertise levels to provide iterative guidance, $\\text{M}^3\\text{HF}$ leverages both expert and non-expert feedback to continuously refine agents' policies. During training, we strategically pause agent learning for human evaluation, parse feedback using large language models to assign it appropriately and update reward functions through predefined templates and adaptive weights by using weight decay and performance-based adjustments. Our approach enables the integration of nuanced human insights across various levels of quality, enhancing the interpretability and robustness of multi-agent cooperation. Empirical results in challenging environments demonstrate that $\\text{M}^3\\text{HF}$ significantly outperforms state-of-the-art methods, effectively addressing the complexities of reward design in MARL and enabling broader human participation in the training process.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2610.28907",
+   "title": "JaxMARL-BC: Multi-Agent Reinforcement Learning for Macroeconomic Modelling, in Seconds",
+   "published": "2026-10-20",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.LG",
+    "econ.GN"
+   ],
+   "abstract": "Multi-agent reinforcement learning (MARL) offers a principled way of populating simulated economies with many heterogeneous decision makers. Its adoption, pioneered in finance, has nonetheless been slow in macroeconomics because of two main limitations: the lack of a shared frame of reference connecting MARL systems to dynamic stochastic general equilibrium (DSGE) models the profession already trusts, and the very long training times. The first limitation was recently addressed by the Multi-Agent Reinforcement Learning Business Cycle (MARL-BC), which places deep RL households in a real business cycle economy and reduces to classic DSGE models in specific limits. Here we address the second limitation. We present JaxMARL-BC, a JAX-accelerated simulator that trains MARL-BC economies in seconds (between 75x and 724x faster than the reference implementation), and scales to 200,000 independent learning households. We verify its correctness against the known DSGE limits, characterise its scaling through a simple cost law, and demonstrate its value by a proof-of-concept calibration of an extended model with heterogeneous returns on capital, in a two-hour experiment that would previously have taken over a month. We release JaxMARL-BC as open source.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2604.23308",
+   "title": "CODA: Coordination via On-Policy Diffusion for Multi-Agent Offline Reinforcement Learning",
+   "published": "2026-04-25",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Offline multi-agent reinforcement learning (MARL) enables policy learning from fixed datasets, but is prone to coordination failure: agents trained on static, off-policy data converge to suboptimal joint behaviours because they cannot co-adapt as their policies change. We introduce CODA (Coordination via On-Policy Diffusion for Multi-Agent Reinforcement Learning), a diffusion-based multi-agent trajectory generator for data augmentation that samples conditioned on the current joint policy, producing synthetic experience which reflects the evolving behaviours of the agents, thereby providing a mechanism for co-adaptation. We find that previous diffusion-based augmentation approaches are insufficient for fostering multi-agent coordination because they produce static augmented datasets that do not evolve as the current joint policy changes during training; CODA resolves this by more closely simulating on-policy learning and is a meaningful step toward coordinated behaviours in the offline setting. CODA is algorithm-agnostic and can be layered onto both model-free and model-based offline reinforcement learning pipelines as an augmentation module. Empirically, CODA not only resolves canonical coordination pathologies in continuous polynomial games but also delivers strong results on the more complex MaMuJoCo continuous-control benchmarks.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2507.17433",
+   "title": "Fair Compromises in Participatory Budgeting: a Multi-Agent Deep Reinforcement Learning Approach",
+   "published": "2025-07-23",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "Participatory budgeting is a method of collectively understanding and addressing spending priorities where citizens vote on how a budget is spent, it is regularly run to improve the fairness of the distribution of public funds. Participatory budgeting requires voters to make decisions on projects which can lead to ``choice overload\". A multi-agent reinforcement learning approach to decision support can make decision making easier for voters by identifying voting strategies that increase the winning proportion of their vote. This novel approach can also support policymakers by highlighting aspects of election design that enable fair compromise on projects. This paper presents a novel, ethically aligned approach to decision support using multi-agent deep reinforcement learning modelling. This paper introduces a novel use of a branching neural network architecture to overcome scalability challenges of multi-agent reinforcement learning in a decentralized way. Fair compromises are found through optimising voter actions towards greater representation of voter preferences in the winning set. Experimental evaluation with real-world participatory budgeting data reveals a pattern in fair compromise: that it is achievable through projects with smaller cost.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2606.02337",
+   "title": "Coordination Graphs for Constrained Multi-Agent Reinforcement Learning",
+   "published": "2026-06-01",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Constrained Multi-agent reinforcement learning (CMARL) faces two intertwined challenges: the joint action space grows exponentially with the number of agents, and additional requirements couple agents in ways that reward structure alone does not capture. We introduce Coordination Graphs for Constrained Multi-Agent Reinforcement Learning (CG-CMARL), a framework that addresses both challenges by combining coordination graphs with Lagrangian duality. The system decomposes the joint problem into pairwise regions, each served by a set of shared Q-functions, one for the primary objective and one for each of the constraints, so that the number of learned models is independent of the number of agents. At execution time, Max-Sum message passing coordinates actions across the factor graph, while a Lagrangian multiplier controls the objective--constraint tradeoff, allowing a single trained model to trace a Pareto front without retraining. We provide convergence guarantees under mild conditions, together with a compositional error bound that decomposes into separate interpretable sources, each traceable to a specific design choice and independently controllable. Experiments on cooperative navigation tasks (where teams of up to 10 agents must coordinate to reach target positions while satisfying pairwise constraints) show that our method produces Pareto fronts dominating established baselines trained at fixed reward-shaping ratios, while scaling to team sizes where centralized approaches become intractable.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2504.04438",
+   "title": "DRAMA: A Dynamic Packet Routing Algorithm using Multi-Agent Reinforcement Learning with Emergent Communication",
+   "published": "2025-04-06",
+   "categories": [
+    "cs.NI"
+   ],
+   "abstract": "The continuous expansion of network data presents a pressing challenge for conventional routing algorithms. As the demand escalates, these algorithms are struggling to cope. In this context, reinforcement learning (RL) and multi-agent reinforcement learning (MARL) algorithms emerge as promising solutions. However, the urgency and importance of the problem are clear, as existing RL/MARL-based routing approaches lack effective communication in run time among routers, making it challenging for individual routers to adapt to complex and dynamic changing networks. More importantly, they lack the ability to deal with dynamically changing network topology, especially the addition of the router, due to the non-scalability of their neural networks. This paper proposes a novel dynamic routing algorithm, DRAMA, incorporating emergent communication in multi-agent reinforcement learning. Through emergent communication, routers could learn how to communicate effectively to maximize the optimization objectives. Meanwhile, a new Q-network and graph-based emergent communication are introduced to dynamically adapt to the changing network topology without retraining while ensuring robust performance. Experimental results showcase DRAMA's superior performance over the traditional routing algorithm and other RL/MARL-based algorithms, achieving a higher delivery rate and lower latency in diverse network scenarios, including dynamic network load and topology. Moreover, an ablation experiment validates the prospect of emergent communication in facilitating packet routing.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2610.10302",
+   "title": "Continual Graph Multi-Agent Reinforcement Learning",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In Continual Multi-Agent Reinforcement Learning (CMARL), agents learn cooperative policies across sequences of tasks, aiming to adapt effectively to new tasks while preserving the ability to solve previously encountered ones. In many applications, tasks differ in their underlying structure, which can represent, for example, distinct operational conditions or target configurations (e.g., different network topologies in power grids or arrangements in formation control). Existing CMARL methods lack dedicated mechanisms to leverage this structural information when learning new tasks, failing to promote transfer and mitigate forgetting. To fill this gap, we propose Continual Graph Multi-Agent Reinforcement Learning (CGMARL), a novel framework for CMARL problems in which task sequences are mapped into a series of attributed graphs, each modeling a task-specific structure. In CGMARL, each graph determines the environment dynamics (next states and/or rewards) and the number of agents for the corresponding task. Then, we present Graph-based Formation (GRAFO), the first CGMARL benchmark, and show how forgetting arises in this setting. Finally, to address this limitation, we propose Frozen Graph Encoder (FROG), a method that relies on a frozen graph backbone to preserve past structural information in graph-based CMARL policies. Experiments on GRAFO show that pairing FROG with existing CL methods substantially improves performance on multiple CGMARL scenarios.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2506.22445",
+   "title": "Hierarchical Adversarially-Resilient Multi-Agent Reinforcement Learning for Cyber-Physical Systems Security",
+   "published": "2025-06-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR",
+    "cs.MA"
+   ],
+   "abstract": "Cyber-Physical Systems play a critical role in the infrastructure of various sectors, including manufacturing, energy distribution, and autonomous transportation systems. However, their increasing connectivity renders them highly vulnerable to sophisticated cyber threats, such as adaptive and zero-day attacks, against which traditional security methods like rule-based intrusion detection and single-agent reinforcement learning prove insufficient. To overcome these challenges, this paper introduces a novel Hierarchical Adversarially-Resilient Multi-Agent Reinforcement Learning (HAMARL) framework. HAMARL employs a hierarchical structure consisting of local agents dedicated to subsystem security and a global coordinator that oversees and optimizes comprehensive, system-wide defense strategies. Furthermore, the framework incorporates an adversarial training loop designed to simulate and anticipate evolving cyber threats, enabling proactive defense adaptation. Extensive experimental evaluations conducted on a simulated industrial IoT testbed indicate that HAMARL substantially outperforms traditional multi-agent reinforcement learning approaches, significantly improving attack detection accuracy, reducing response times, and ensuring operational continuity. The results underscore the effectiveness of combining hierarchical multi-agent coordination with adversarially-aware training to enhance the resilience and security of next-generation CPS.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2510.04508",
+   "title": "MARCO: A Cooperative Knowledge Transfer Framework for Personalized Cross-domain Recommendations",
+   "published": "2025-10-06",
+   "categories": [
+    "cs.IR"
+   ],
+   "abstract": "Recommender systems frequently encounter data sparsity issues, particularly when addressing cold-start scenarios involving new users or items. Multi-source cross-domain recommendation (CDR) addresses these challenges by transferring valuable knowledge from multiple source domains to enhance recommendations in a target domain. However, existing reinforcement learning (RL)-based CDR methods typically rely on a single-agent framework, leading to negative transfer issues caused by inconsistent domain contributions and inherent distributional discrepancies among source domains. To overcome these limitations, MARCO, a Multi-Agent Reinforcement Learning-based Cross-Domain recommendation framework, is proposed. It leverages cooperative multi-agent reinforcement learning, where each agent is dedicated to estimating the contribution from an individual source domain, effectively managing credit assignment and mitigating negative transfer. In addition, an entropy-based action diversity penalty is introduced to enhance policy expressiveness and stabilize training by encouraging diverse agents' joint actions. Extensive experiments across four benchmark datasets demonstrate MARCO's superior performance over state-of-the-art methods, highlighting its robustness and strong generalization capabilities. The code is at https://github.com/xiewilliams/MARCO.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2512.22832",
+   "title": "MARPO: A Reflective Policy Optimization for Multi Agent Reinforcement Learning",
+   "published": "2025-12-28",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "We propose Multi Agent Reflective Policy Optimization (MARPO) to alleviate the issue of sample inefficiency in multi agent reinforcement learning. MARPO consists of two key components: a reflection mechanism that leverages subsequent trajectories to enhance sample efficiency, and an asymmetric clipping mechanism that is derived from the KL divergence and dynamically adjusts the clipping range to improve training stability. We evaluate MARPO in classic multi agent environments, where it consistently outperforms other methods.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2510.03823",
+   "title": "Distributed Area Coverage with High Altitude Balloons Using Multi-Agent Reinforcement Learning",
+   "published": "2025-10-04",
+   "categories": [
+    "cs.LG",
+    "cs.MA",
+    "cs.RO"
+   ],
+   "abstract": "High Altitude Balloons (HABs) can leverage stratospheric wind layers for limited horizontal control, enabling applications in reconnaissance, environmental monitoring, and communications networks. Existing multi-agent HAB coordination approaches use deterministic methods like Voronoi partitioning and extremum seeking control for large global constellations, which perform poorly for smaller teams and localized missions. While single-agent HAB control using reinforcement learning has been demonstrated on HABs, coordinated multi-agent reinforcement learning (MARL) has not yet been investigated. This work presents the first systematic application of multi-agent reinforcement learning (MARL) to HAB coordination for distributed area coverage. We extend our previously developed reinforcement learning simulation environment (RLHAB) to support cooperative multi-agent learning, enabling multiple agents to operate simultaneously in realistic atmospheric conditions. We adapt QMIX for HAB area coverage coordination, leveraging Centralized Training with Decentralized Execution to address atmospheric vehicle coordination challenges. Our approach employs specialized observation spaces providing individual state, environmental context, and teammate data, with hierarchical rewards prioritizing coverage while encouraging spatial distribution. We demonstrate that QMIX achieves similar performance to the theoretically optimal geometric deterministic method for distributed area coverage, validating the MARL approach and providing a foundation for more complex autonomous multi-HAB missions where deterministic methods become intractable.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2511.14135",
+   "title": "AdaFair-MARL: Enforcing Adaptive Fairness Constraints in Multi-Agent Reinforcement Learning",
+   "published": "2025-11-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.GT",
+    "cs.MA"
+   ],
+   "abstract": "Fair workload enforcement in heterogeneous multi-agent systems that pursue shared objectives remains challenging. Fixed fairness penalties often introduce inefficiencies, training instability, and conflicting agent incentives. Reward-shaping approaches in fair Multi-Agent Reinforcement Learning (MARL) typically incorporate fairness through heuristic penalties or scalar reward modifications and often rely on post-hoc evaluation. However, these methods do not guarantee that a desired fairness level will be satisfied. To address this limitation, we propose the Adaptive Fairness Multi-Agent Reinforcement Learning (AdaFair-MARL) framework, which formulates workload fairness as an explicit constraint so that agents maintain balanced contributions while optimizing team performance. We present AdaFair-MARL, a constrained cooperative MARL framework whose core algorithmic component is a primal-dual update that enforces workload fairness via adaptive Lagrange multiplier updates. Grounding the framework in a cooperative Markov game, we derive the fairness constraint from Jain's Fairness Index (JFI) geometry and show that the resulting feasible set admits a second-order cone representation, enabling principled Lagrangian dual-ascent updates without manual penalty tuning. Experiments in a simulated hospital coordination environment (MARLHospital) demonstrate the effectiveness of AdaFair-MARL compared to reward-shaping and fixed-penalty fairness methods, improving workload balance while maintaining team performance. We found that AdaFair-MARL achieves nearly perfect constraint satisfaction (0.99-1.00) while significantly improving workload fairness compared to fixed-penalty baselines.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2609.32048",
+   "title": "Interactive Distributionally Robust Multi-Agent Learning with General Function Approximation",
+   "published": "2026-09-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Model misspecification poses a fundamental challenge in multi-agent reinforcement learning, where transition uncertainty can be amplified by strategic interactions among agents. Distributionally robust Markov games (DRMGs) provide a principled framework for addressing such uncertainty, yet existing methods often rely on restrictive assumptions or scale poorly to large state and joint action spaces. We study online learning in general-sum DRMGs with general function approximation and $φ$-divergence uncertainty sets. We propose RoMEX-$φ$, a model-free framework that integrates equilibrium-based exploration with dual fitted learning. Through a functional dual representation of the robust multi-agent Bellman operator, RoMEX-$φ$ enables tractable worst-case value estimation from nominal interaction data using a centered empirical robust discrepancy. We introduce the robust Multi-Agent Decoupling Coefficient (robust MADC) to characterize the intrinsic exploration complexity arising from strategic interactions and adversarial transition uncertainty. We establish sublinear robust regret guarantees governed by the robust MADC rather than explicitly by the state and joint action space sizes, replacing tabular dependence with intrinsic function-class complexity. Numerical experiments on a scalable general-sum DRMG under total variation uncertainty show that RoMEX-$φ$ is substantially more resilient to transition shifts than its non-robust counterpart while remaining competitive with an exact tabular robust baseline. Our results provide a scalable framework for distributionally robust multi-agent reinforcement learning with general function approximation.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2511.17653",
+   "title": "MARL-CC: A Mathematical Framework forMulti-Agent Reinforcement Learning in ConnectedAutonomous Vehicles: Addressing Nonlinearity,Partial Observability, and Credit Assignment forOptimal Control",
+   "published": "2025-11-20",
+   "categories": [
+    "math.GM"
+   ],
+   "abstract": "Multi-Agent Reinforcement Learning (MARL) has emerged as a powerfulparadigm for cooperative decision-making in connected autonomous vehicles(CAVs); however, existing approaches often fail to guarantee stability, optimality,and interpretability in systems characterized by nonlinear dynamics,partial observability, and complex inter-agent coupling. This study addressesthese foundational challenges by introducing MARL-CC, a unified MathematicalFramework for Multi-Agent Reinforcement Learning with Control Coordination.The proposed framework integrates differential geometric control, Bayesian inference,and Shapley-value-based credit assignment within a coherent optimizationarchitecture, ensuring bounded policy updates, decentralized belief estimation,and equitable reward distribution. Theoretical analyses establish convergence andstability guarantees under stochastic disturbances and communication delays.Empirical evaluations across simulation and real-world testbeds demonstrate upto a 40% improvement in convergence rate and enhanced cooperative efficiencyover leading baselines, including PPO, DDPG, and QMIX.These results signify a decisive advance in control-oriented reinforcement learning,bridging the gap between mathematical rigor and practical autonomy.The MARL-CC framework provides a scalable foundation for intelligent transportation,UAV coordination, and distributed robotics, paving the way toward interpretable, safe, and adaptive multi-agent systems. All codes and experimentalconfigurations are publicly available on GitHub to support reproducibilityand future research.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2601.12886",
+   "title": "Communication Methods in Multi-Agent Reinforcement Learning",
+   "published": "2026-01-19",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Multi-agent reinforcement learning is a promising research area that extends established reinforcement learning approaches to problems formulated as multi-agent systems. Recently, a multitude of communication methods have been introduced to this field to address problems such as partially observable environments, non-stationarity, and exponentially growing action spaces. Communication further enables efficient cooperation among all agents interacting in an environment. This work aims at providing an overview of communication techniques in multi-agent reinforcement learning. By an in-depth analysis of 29 publications on this topic, the strengths and weaknesses of explicit, implicit, attention-based, graph-based, and hierarchical/role-based communication are evaluated. The results of this comparison show that there is no general, optimal communication framework for every problem. On the contrary, the choice of communication depends heavily on the problem at hand. The comparison also highlights the importance of communication methods with low computational overhead to enable scalability to environments where many agents interact. Finally, the paper discusses current research gaps, emphasizing the need for standardized benchmarking of system-level metrics and improved robustness under realistic communication conditions to enhance the real-world applicability of these approaches.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2501.15802",
+   "title": "Adaptive AI-based Decentralized Resource Management in the Cloud-Edge Continuum",
+   "published": "2025-01-27",
+   "categories": [
+    "cs.DC",
+    "cs.AI"
+   ],
+   "abstract": "In the Cloud-Edge Continuum, dynamic infrastructure change and variable workloads complicate efficient resource management. Centralized methods can struggle to adapt, whilst purely decentralized policies lack global oversight. This paper proposes a hybrid framework using Graph Neural Network (GNN) embeddings and collaborative multi-agent reinforcement learning (MARL). Local agents handle neighbourhood-level decisions, and a global orchestrator coordinates system-wide. This work contributes to decentralized application placement strategies with centralized oversight, GNN integration and collaborative MARL for efficient, adaptive and scalable resource management.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2506.00228",
+   "title": "Sorrel: A simple and flexible framework for multi-agent reinforcement learning",
+   "published": "2025-05-30",
+   "categories": [
+    "cs.MA",
+    "cs.LG"
+   ],
+   "abstract": "We introduce Sorrel (https://github.com/social-ai-uoft/sorrel), a simple Python interface for generating and testing new multi-agent reinforcement learning environments. This interface places a high degree of emphasis on simplicity and accessibility, and uses a more psychologically intuitive structure for the basic agent-environment loop, making it a useful tool for social scientists to investigate how learning and social interaction leads to the development and change of group dynamics. In this short paper, we outline the basic design philosophy and features of Sorrel.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2504.10677",
+   "title": "Achieving Optimal Tissue Repair Through MARL with Reward Shaping and Curriculum Learning",
+   "published": "2025-04-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "In this paper, we present a multi-agent reinforcement learning (MARL) framework for optimizing tissue repair processes using engineered biological agents. Our approach integrates: (1) stochastic reaction-diffusion systems modeling molecular signaling, (2) neural-like electrochemical communication with Hebbian plasticity, and (3) a biologically informed reward function combining chemical gradient tracking, neural synchronization, and robust penalties. A curriculum learning scheme guides the agent through progressively complex repair scenarios. In silico experiments demonstrate emergent repair strategies, including dynamic secretion control and spatial coordination.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2507.07302",
+   "title": "Application of LLMs to Multi-Robot Path Planning and Task Allocation",
+   "published": "2025-07-09",
+   "categories": [
+    "cs.AI",
+    "cs.RO"
+   ],
+   "abstract": "Efficient exploration is a well known problem in deep reinforcement learning and this problem is exacerbated in multi-agent reinforcement learning due the intrinsic complexities of such algorithms. There are several approaches to efficiently explore an environment to learn to solve tasks by multi-agent operating in that environment, of which, the idea of expert exploration is investigated in this work. More specifically, this work investigates the application of large-language models as expert planners for efficient exploration in planning based tasks for multiple agents.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2606.06011",
+   "title": "Merging model-based control with multi-agent reinforcement learning for multi-agent cooperative teaming strategies",
+   "published": "2026-06-04",
+   "categories": [
+    "cs.RO",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "In this work, we propose a framework that combines multi-agent reinforcement learning (MARL) with model-based control to achieve safe, dynamically feasible actions in cooperative multi-agent tasks. Multi-agent reinforcement learning provides the advantage of learning cooperative policies for multi-agent teams from discrete non-differentiable rewards in a long planning horizon. Model-predictive control is robust and offers safe, dynamically feasible actions in a fast replanning framework for short horizons. We propose an algorithm that extends actor-critic model predictive control for MARL which we refer to as multi-agent actor-critic model predictive control (MA-AC-MPC). We demonstrate the capabilities of this algorithm by applying it to a multi-agent pursuit-evasion scenario. Specifically, we compare the evader team's strategy using the MA-AC-MPC model and a multi-layer perceptron model (MA-AC-MLP). The pursuer team uses augmented proportional navigation as it is accepted as an advanced adversarial control law. We also provide an example with a heterogeneous environment where a drone and omni-wheeled rover cooperate to achieve repeatable and successful landing with 100% success rate in hardware for MA-AC-MPC compared to 60% for MA-AC-MLP. We demonstrate the robustness of the proposed MA-AC-MPC algorithm in hardware for both environments.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2601.22292",
+   "title": "Learning Incentive Structures for Cooperative Resilience in Multi-Agent Systems under Social Dilemmas",
+   "published": "2026-01-29",
+   "categories": [
+    "cs.MA",
+    "cs.LG"
+   ],
+   "abstract": "Multi-agent social dilemmas, such as the tragedy of the commons, capture settings where individual incentives conflict with collective well-being, making these systems highly vulnerable to collapse under disruptions. In this context, this work studies cooperative resilience, understood as the system-level ability to maintain collective well-being under perturbations through adaptive agent behavior. We propose a framework for learning incentive structures aligned with collective well-being in multi-agent reinforcement learning systems, where reward functions shape individual decision-making and collective behavior. A resilience metric is used to score and rank agent trajectories, allowing the inference of reward functions that promote resilient collective behavior. These inferred reward functions are integrated into the multi-agent reinforcement learning process to shape agent interactions in social dilemma settings. The approach is evaluated in resource-sharing environments subject to disruptions, using three incentive structures: individual incentives, resilience-aligned incentives, and a hybrid incentive structure that combines both individual and collective components. The results show that the hybrid incentive structure promotes sustained collective behavior, reduces collapse events associated with resource depletion, and preserves system performance under disruption. These findings highlight the role of incentive design as a mechanism for promoting resilient collective behavior and provide a computational framework for multi-agent social dilemmas under disruptions.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2609.18135",
+   "title": "DualSQL: Text-to-SQL with Multi-Agent Reinforcement Learning",
+   "published": "2026-09-16",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.DB"
+   ],
+   "abstract": "State-of-the-art Text-to-SQL systems are typically multi-agent pipelines centered around two fundamental tasks: schema linking and SQL generation. However, existing work trains separate models for each task, failing to leverage the synergy between these interrelated tasks. In this work, we propose DualSQL, a new Text-to-SQL system consisting of two agents powered by a single model backbone. The agents share the same model weights and agentic scaffold, enabling joint optimization through a robust multi-agent reinforcement learning (RL) framework. We design three database access tools to facilitate effective multi-step reasoning grounded to interactions with the databases. To improve training and avoid model collapse, we introduce a set of rollout guardrail mechanisms that stabilizes multi-agent RL training, supporting DualSQL to keep improving during training. We also introduce a new SQL correctness metric, robust execution match (REX), to more accurately judge SQL correctness and assign reward signals. Being trained on only 3755 examples, DualSQL-4B achieves an impressive 68.0% execution accuracy on the BIRD development set, matching previous 7B models. DualSQL-8B further improves to 71.1%, outperforming previous state-of-the-art single-model solutions with 32B parameters. These results demonstrate the strength of joint multi-agent reinforcement learning for building high performance Text-to-SQL pipelines.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2505.02215",
+   "title": "Interpretable Emergent Language Using Inter-Agent Transformers",
+   "published": "2025-05-04",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "This paper explores the emergence of language in multi-agent reinforcement learning (MARL) using transformers. Existing methods such as RIAL, DIAL, and CommNet enable agent communication but lack interpretability. We propose Differentiable Inter-Agent Transformers (DIAT), which leverage self-attention to learn symbolic, human-understandable communication protocols. Through experiments, DIAT demonstrates the ability to encode observations into interpretable vocabularies and meaningful embeddings, effectively solving cooperative tasks. These results highlight the potential of DIAT for interpretable communication in complex multi-agent environments.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2606.25526",
+   "title": "Low Variance Trust Region Optimization with Independent Actors and Sequential Updates in Cooperative Multi-agent Reinforcement Learning",
+   "published": "2026-06-24",
+   "categories": [
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "Cooperative multi-agent reinforcement learning assumes each agent shares the same reward function and can be trained effectively using the Trust Region framework of single-agent. Instead of relying on other agents' actions, the independent actors setting considers each agent to act based only on its local information, thus having more flexible applications. However, in the sequential update framework, it is required to re-estimate the joint advantage function after each individual agent's policy step. Despite the practical success of importance sampling, the updated advantage function suffers from exponentially high variance problems, which likely result in unstable convergence. In this work, we first analyze the high variance advantage both empirically and theoretically. To overcome this limitation, we introduce a clipping objective to control the upper bounds of the advantage fluctuation in sequential updates. With the proposed objective, we provide a monotonic bound with sub-linear convergence to $ε$-Nash Equilibria. We further derive two new practical algorithms using our clipping objective. The experiment results on three popular multi-agent reinforcement learning benchmarks show that our proposed method outperforms the tested baselines in most environments. By carefully analyzing different training settings, our proposed method is highlighted with both stable convergence properties and the desired low advantage variance estimation. For reproducibility purposes, our source code is publicly available at https://github.com/giangbang/Low-Variance-Trust-Region-MARL.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2609.36292",
+   "title": "Fully Decentralized and Safety-Aware Multi-Agent Reinforcement Learning for Control on Networks",
+   "published": "2026-09-28",
+   "categories": [
+    "eess.SY",
+    "cs.MA"
+   ],
+   "abstract": "This paper develops a safe and fully decentralized multi-agent reinforcement learning (MARL) algorithm to solve a class of discrete-time control problems on networks, including the persistent monitoring problem. Fully decentralized control of agents, while offering numerous benefits, faces issues such as exponentially increasing sample complexity, lack of global information about the system, and challenges in coordinating between agents. To address these issues, this paper introduces a fully decentralized multi-agent reinforcement learning algorithm that integrates deep reinforcement learning with safety considerations. This method feeds a history of local observations of the network's state into two parallel neural-network branches: the graph encoder, which adds structural information and correlations among nodes, and a state estimator, which predicts the uncertainty at each node in the graph. Additionally, the result of feeding that input into an actor-critic network is passed through a discrete-time control barrier heuristic to reduce the likelihood that any node will be neglected. This approach enables teams of fully decentralized agents to solve challenging problems by increasing system awareness and incorporating built-in safety measures to prevent the adoption of potentially harmful control policies. Numerical results from a custom simulation environment demonstrate that the proposed algorithm achieves 26.3 percent lower average uncertainty than a centralized control policy and is within 1 percent of the uncertainty performance of a more computationally complex algorithm with added attention layers.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2503.19699",
+   "title": "Optimal Path Planning and Cost Minimization for a Drone Delivery System Via Model Predictive Control",
+   "published": "2025-03-25",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "In this study, we formulate the drone delivery problem as a control problem and solve it using Model Predictive Control. Two experiments are performed: The first is on a less challenging grid world environment with lower dimensionality, and the second is with a higher dimensionality and added complexity. The MPC method was benchmarked against three popular Multi-Agent Reinforcement Learning (MARL): Independent $Q$-Learning (IQL), Joint Action Learners (JAL), and Value-Decomposition Networks (VDN). It was shown that the MPC method solved the problem quicker and required fewer optimal numbers of drones to achieve a minimized cost and navigate the optimal path.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2503.01440",
+   "title": "Trajectory-Class-Aware Multi-Agent Reinforcement Learning",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "In the context of multi-agent reinforcement learning, generalization is a challenge to solve various tasks that may require different joint policies or coordination without relying on policies specialized for each task. We refer to this type of problem as a multi-task, and we train agents to be versatile in this multi-task setting through a single training process. To address this challenge, we introduce TRajectory-class-Aware Multi-Agent reinforcement learning (TRAMA). In TRAMA, agents recognize a task type by identifying the class of trajectories they are experiencing through partial observations, and the agents use this trajectory awareness or prediction as additional information for action policy. To this end, we introduce three primary objectives in TRAMA: (a) constructing a quantized latent space to generate trajectory embeddings that reflect key similarities among them; (b) conducting trajectory clustering using these trajectory embeddings; and (c) building a trajectory-class-aware policy. Specifically for (c), we introduce a trajectory-class predictor that performs agent-wise predictions on the trajectory class; and we design a trajectory-class representation model for each trajectory class. Each agent takes actions based on this trajectory-class representation along with its partial observation for task-aware execution. The proposed method is evaluated on various tasks, including multi-task problems built upon StarCraft II. Empirical results show further performance improvements over state-of-the-art baselines.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2503.06747",
+   "title": "Fully-Decentralized MADDPG with Networked Agents",
+   "published": "2025-03-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "In this paper, we devise three actor-critic algorithms with decentralized training for multi-agent reinforcement learning in cooperative, adversarial, and mixed settings with continuous action spaces. To this goal, we adapt the MADDPG algorithm by applying a networked communication approach between agents. We introduce surrogate policies in order to decentralize the training while allowing for local communication during training. The decentralized algorithms achieve comparable results to the original MADDPG in empirical tests, while reducing computational cost. This is more pronounced with larger numbers of agents.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2508.14131",
+   "title": "An Improved Multi-Agent Algorithm for Cooperative and Competitive Environments by Identifying and Encouraging Cooperation among Agents",
+   "published": "2025-08-19",
+   "categories": [
+    "cs.MA",
+    "cs.AI"
+   ],
+   "abstract": "We propose an improved algorithm by identifying and encouraging cooperative behavior in multi-agent environments. First, we analyze the shortcomings of existing algorithms in addressing multi-agent reinforcement learning problems. Then, based on the existing algorithm MADDPG, we introduce a new parameter to increase the reward that an agent can obtain when cooperative behavior among agents is identified. Finally, we compare our improved algorithm with MADDPG in environments from PettingZoo. The results show that the new algorithm helps agents achieve both higher team rewards and individual rewards.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2607.01063",
+   "title": "AutoRestTest at the SBFT 2026 Tool Competition",
+   "published": "2026-07-01",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "Large input spaces and complex inter-operation dependencies make black-box REST API testing challenging. AutoRestTest combines a Semantic Property Dependency Graph, multi-agent reinforcement learning, and large language models to intelligently explore large API input spaces. In the SBFT 2026 REST League, AutoRestTest ranked first in all three evaluation categories -- fault detection, overall efficiency, and overall effectiveness -- on 11 APIs (317 operations, approximately 29 per API), averaging 67.09 unique server errors and 17.27 successfully processed operations per API under a one-hour testing budget.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2502.02844",
+   "title": "Wolfpack Adversarial Attack for Robust Multi-Agent Reinforcement Learning",
+   "published": "2025-02-05",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR",
+    "cs.MA"
+   ],
+   "abstract": "Traditional robust methods in multi-agent reinforcement learning (MARL) often struggle against coordinated adversarial attacks in cooperative scenarios. To address this limitation, we propose the Wolfpack Adversarial Attack framework, inspired by wolf hunting strategies, which targets an initial agent and its assisting agents to disrupt cooperation. Additionally, we introduce the Wolfpack-Adversarial Learning for MARL (WALL) framework, which trains robust MARL policies to defend against the proposed Wolfpack attack by fostering systemwide collaboration. Experimental results underscore the devastating impact of the Wolfpack attack and the significant robustness improvements achieved by WALL. Our code is available at https://github.com/sunwoolee0504/WALL.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2508.06061",
+   "title": "Policy Optimization in Multi-Agent Settings under Partially Observable Environments",
+   "published": "2025-08-08",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "This work leverages adaptive social learning to estimate partially observable global states in multi-agent reinforcement learning (MARL) problems. Unlike existing methods, the proposed approach enables the concurrent operation of social learning and reinforcement learning. Specifically, it alternates between a single step of social learning and a single step of MARL, eliminating the need for the time- and computation-intensive two-timescale learning frameworks. Theoretical guarantees are provided to support the effectiveness of the proposed method. Simulation results verify that the performance of the proposed methodology can approach that of reinforcement learning when the true state is known.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2611.18543",
+   "title": "Imitation Bootstrapped Multi-Agent Reinforcement Learning",
+   "published": "2026-11-13",
+   "categories": [
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Demonstrations are an effective way to accelerate single-agent reinforcement learning (RL), but extending this idea to multi-agent reinforcement learning (MARL) is non-trivial as it is difficult and often impossible for a single person to teleoperate multiple agents simultaneously. Round-Robin Behavior Cloning (R2BC) addresses this by letting a single demonstrator control one agent at a time while the others execute their current policies. However, the resulting imitation policies are limited by the quality of the demonstrations. We propose Imitation Bootstrapped Multi-Agent Reinforcement Learning (IBMARL), a framework that extends Imitation Bootstrapped Reinforcement Learning (IBRL) to cooperative teams and uses R2BC to train the imitation policies. At each time step, every agent receives one action proposal from its imitation policy and one from its RL policy, and an ensemble of centralized critics selects among the per-agent combinations of the two. A gated imitation penalty, a soft Q-filtered behavior cloning loss, regularizes each RL policy toward its imitation policy only where the critics value the imitation action more, so that after training each agent executes its RL policy alone, without the centralized critics. On four cooperative multi-agent RL benchmarks, IBMARL surpasses its imitation policies $2.6$-$4.2\\times$ faster than demonstration-based baselines on two tasks, is the only method to surpass it on the other two, and exceeds the demonstrator itself on two of the four. With real human demonstrations IBMARL still surpasses imitation learning alone, and does so more than twice as fast as the best baseline.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2504.11569",
+   "title": "Multi-Agent Reinforcement Learning for Decentralized Reservoir Management via Murmuration Intelligence",
+   "published": "2025-04-15",
+   "categories": [
+    "eess.SY"
+   ],
+   "abstract": "Conventional centralized water management systems face critical limitations from computational complexity and uncertainty propagation. We present MurmuRL, a novel decentralized framework inspired by starling murmurations intelligence, integrating bio-inspired alignment, separation, and cohesion rules with multi-agent reinforcement learning. MurmuRL enables individual reservoirs to make autonomous local decisions while achieving emergent global coordination. Experiments on grid networks demonstrate that MurmuRL achieves 8.8% higher final performance while using 27% less computing overhead compared to centralized approaches. Notably, strategic diversity scales super-linearly with system size, exhibiting sophisticated coordination patterns and enhanced resilience during extreme events. MurmuRL offers a scalable solution for managing complex water systems by leveraging principles of natural collective behavior.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2507.20377",
+   "title": "Multi-Agent Reinforcement Learning for Dynamic Mobility Resource Allocation with Hierarchical Adaptive Grouping",
+   "published": "2025-07-27",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Allocating mobility resources (e.g., shared bikes/e-scooters, ride-sharing vehicles) is crucial for rebalancing the mobility demand and supply in the urban environments. We propose in this work a novel multi-agent reinforcement learning named Hierarchical Adaptive Grouping-based Parameter Sharing (HAG-PS) for dynamic mobility resource allocation. HAG-PS aims to address two important research challenges regarding multi-agent reinforcement learning for mobility resource allocation: (1) how to dynamically and adaptively share the mobility resource allocation policy (i.e., how to distribute mobility resources) across agents (i.e., representing the regional coordinators of mobility resources); and (2) how to achieve memory-efficient parameter sharing in an urban-scale setting. To address the above challenges, we have provided following novel designs within HAG-PS. To enable dynamic and adaptive parameter sharing, we have designed a hierarchical approach that consists of global and local information of the mobility resource states (e.g., distribution of mobility resources). We have developed an adaptive agent grouping approach in order to split or merge the groups of agents based on their relative closeness of encoded trajectories (i.e., states, actions, and rewards). We have designed a learnable identity (ID) embeddings to enable agent specialization beyond simple parameter copy. We have performed extensive experimental studies based on real-world NYC bike sharing data (a total of more than 1.2 million trips), and demonstrated the superior performance (e.g., improved bike availability) of HAG-PS compared with other baseline approaches.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2510.07363",
+   "title": "L2M-AID: Autonomous Cyber-Physical Defense by Fusing Semantic Reasoning of Large Language Models with Multi-Agent Reinforcement Learning (Preprint)",
+   "published": "2025-10-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The increasing integration of Industrial IoT (IIoT) exposes critical cyber-physical systems to sophisticated, multi-stage attacks that elude traditional defenses lacking contextual awareness. This paper introduces L2M-AID, a novel framework for Autonomous Industrial Defense using LLM-empowered, Multi-agent reinforcement learning. L2M-AID orchestrates a team of collaborative agents, each driven by a Large Language Model (LLM), to achieve adaptive and resilient security. The core innovation lies in the deep fusion of two AI paradigms: we leverage an LLM as a semantic bridge to translate vast, unstructured telemetry into a rich, contextual state representation, enabling agents to reason about adversary intent rather than merely matching patterns. This semantically-aware state empowers a Multi-Agent Reinforcement Learning (MARL) algorithm, MAPPO, to learn complex cooperative strategies. The MARL reward function is uniquely engineered to balance security objectives (threat neutralization) with operational imperatives, explicitly penalizing actions that disrupt physical process stability. To validate our approach, we conduct extensive experiments on the benchmark SWaT dataset and a novel synthetic dataset generated based on the MITRE ATT&CK for ICS framework. Results demonstrate that L2M-AID significantly outperforms traditional IDS, deep learning anomaly detectors, and single-agent RL baselines across key metrics, achieving a 97.2% detection rate while reducing false positives by over 80% and improving response times by a factor of four. Crucially, it demonstrates superior performance in maintaining physical process stability, presenting a robust new paradigm for securing critical national infrastructure.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2510.16035",
+   "title": "RoBCtrl: Attacking GNN-Based Social Bot Detectors via Reinforced Manipulation of Bots Control Interaction",
+   "published": "2025-10-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Social networks have become a crucial source of real-time information for individuals. The influence of social bots within these platforms has garnered considerable attention from researchers, leading to the development of numerous detection technologies. However, the vulnerability and robustness of these detection methods is still underexplored. Existing Graph Neural Network (GNN)-based methods cannot be directly applied due to the issues of limited control over social agents, the black-box nature of bot detectors, and the heterogeneity of bots. To address these challenges, this paper proposes the first adversarial multi-agent Reinforcement learning framework for social Bot control attacks (RoBCtrl) targeting GNN-based social bot detectors. Specifically, we use a diffusion model to generate high-fidelity bot accounts by reconstructing existing account data with minor modifications, thereby evading detection on social platforms. To the best of our knowledge, this is the first application of diffusion models to mimic the behavior of evolving social bots effectively. We then employ a Multi-Agent Reinforcement Learning (MARL) method to simulate bots adversarial behavior. We categorize social accounts based on their influence and budget. Different agents are then employed to control bot accounts across various categories, optimizing the attachment strategy through reinforcement learning. Additionally, a hierarchical state abstraction based on structural entropy is designed to accelerate the reinforcement learning. Extensive experiments on social bot detection datasets demonstrate that our framework can effectively undermine the performance of GNN-based detectors.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2604.06691",
+   "title": "KD-MARL: Resource-Aware Knowledge Distillation in Multi-Agent Reinforcement Learning",
+   "published": "2026-04-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Real world deployment of multi agent reinforcement learning MARL systems is fundamentally constrained by limited compute memory and inference time. While expert policies achieve high performance they rely on costly decision cycles and large scale models that are impractical for edge devices or embedded platforms. Knowledge distillation KD offers a promising path toward resource aware execution but existing KD methods in MARL focus narrowly on action imitation often neglecting coordination structure and assuming uniform agent capabilities. We propose resource aware Knowledge Distillation for Multi Agent Reinforcement Learning KD MARL a two stage framework that transfers coordinated behavior from a centralized expert to lightweight decentralized student agents. The student policies are trained without a critic relying instead on distilled advantage signals and structured policy supervision to preserve coordination under heterogeneous and limited observations. Our approach transfers both action level behavior and structural coordination patterns from expert policies while supporting heterogeneous student architectures allowing each agent model capacity to match its observation complexity which is crucial for efficient execution under partial or limited observability and limited onboard resources. Extensive experiments on SMAC and MPE benchmarks demonstrate that KD MARL achieves high performance retention while substantially reducing computational cost. Across standard multi agent benchmarks KD MARL retains over 90 percent of expert performance while reducing computational cost by up to 28.6 times FLOPs. The proposed approach achieves expert level coordination and preserves it through structured distillation enabling practical MARL deployment across resource constrained onboard platforms.",
+   "query": "multi-agent reinforcement learning"
+  },
+  {
+   "id": "2502.06748",
+   "title": "Institutional Preferences in the Laboratory",
+   "published": "2025-02-10",
+   "categories": [
+    "cs.SI",
+    "cs.GT"
+   ],
+   "abstract": "Getting a group to adopt cooperative norms is an enduring challenge. But in real-world settings, individuals don't just passively accept static environments, they act both within and upon the social systems that structure their interactions. Should we expect the dynamism of player-driven changes to the \"rules of the game\" to hinder cooperation -- because of the substantial added complexity -- or help it, as prosocial agents tweak their environment toward non-zero-sum games? We introduce a laboratory setting to test whether groups can guide themselves to cooperative outcomes by manipulating the environmental parameters that shape their emergent cooperation process. We test for cooperation in a set of economic games that impose different social dilemmas. These games vary independently in the institutional features of stability, efficiency, and fairness. By offering agency over behavior along with second-order agency over the rules of the game, we understand emergent cooperation in naturalistic settings in which the rules of the game are themselves dynamic and subject to choice. The literature on transfer learning in games suggests that interactions between features are important and might aid or hinder the transfer of cooperative learning to new settings.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2507.19844",
+   "title": "VAE-GAN Based Price Manipulation in Coordinated Local Energy Markets",
+   "published": "2025-07-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA",
+    "eess.SY"
+   ],
+   "abstract": "This paper introduces a model for coordinating prosumers with heterogeneous distributed energy resources (DERs), participating in the local energy market (LEM) that interacts with the market-clearing entity. The proposed LEM scheme utilizes a data-driven, model-free reinforcement learning approach based on the multi-agent deep deterministic policy gradient (MADDPG) framework, enabling prosumers to make real-time decisions on whether to buy, sell, or refrain from any action while facilitating efficient coordination for optimal energy trading in a dynamic market. In addition, we investigate a price manipulation strategy using a variational auto encoder-generative adversarial network (VAE-GAN) model, which allows utilities to adjust price signals in a way that induces financial losses for the prosumers. Our results show that under adversarial pricing, heterogeneous prosumer groups, particularly those lacking generation capabilities, incur financial losses. The same outcome holds across LEMs of different sizes. As the market size increases, trading stabilizes and fairness improves through emergent cooperation among agents.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2508.03929",
+   "title": "MOTIF: Multi-strategy Optimization via Turn-based Interactive Framework",
+   "published": "2025-08-05",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Designing effective algorithmic components remains a fundamental obstacle in tackling NP-hard combinatorial optimization problems (COPs), where solvers often rely on carefully hand-crafted strategies. Despite recent advances in using large language models (LLMs) to synthesize high-quality components, most approaches restrict the search to a single element - commonly a heuristic scoring function - thus missing broader opportunities for innovation. In this paper, we introduce a broader formulation of solver design as a multi-strategy optimization problem, which seeks to jointly improve a set of interdependent components under a unified objective. To address this, we propose Multi-strategy Optimization via Turn-based Interactive Framework (MOTIF) - a novel framework based on Monte Carlo Tree Search that facilitates turn-based optimization between two LLM agents. At each turn, an agent improves one component by leveraging the history of both its own and its opponent's prior updates, promoting both competitive pressure and emergent cooperation. This structured interaction broadens the search landscape and encourages the discovery of diverse, high-performing solutions. Experiments across multiple COP domains show that MOTIF consistently outperforms state-of-the-art methods, highlighting the promise of turn-based, multi-agent prompting for fully automated solver design.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2607.27429",
+   "title": "Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling",
+   "published": "2026-07-29",
+   "categories": [
+    "cs.MA"
+   ],
+   "abstract": "LLM-agent systems can solve complex tasks through dynamic self-organization and emergent cooperation. Auditing this process is essential because plausible intermediate or final outputs can conceal incomplete or unsupported work and poorly allocated responsibility, ultimately compromising response quality. While existing approaches may record messages, tool calls, provenance, or task dependencies, an auditability gap exists as they do not jointly represent what work remains, who is responsible for it, and what evidence justifies each work-state transition. We address this auditability gap by proposing \\emph{Integrated Cooperation-Obligation REpresentation} (iCORE). It creates a unified encoding $X=(G,Q,Π)$ integrating observable interactions as a cooperation graph $G$, evolving work and assignments as an obligation graph $Q$, and the audit map $Π$ linking them with verifiable properties and evidence. This iCORE representation enables the auditor to certify two complementary properties: {Work soundness}, where every active decision-relevant work assertion must have a finite justification through $G$ and $Π$; and {Agent-assignment stability}, which requires that no feasible alternative agent improve the declared contribution value for an evaluated obligation by more than $ε$. We establish local-to-global soundness and assignment-regret guarantees and a performance bound under stated conditions. iCORE is an instrumentation layer over workflows. Numerical results show that the full coupled state exactly reconstructs soundness and assignment defects in two execution modes and that, relative to passive full-state observation, iCORE-Audit yields absolute trajectory-quality improvements of $11.5\\%$ and $26.4\\%$ in controlled and real-LLM execution, respectively, with corresponding absolute terminal-performance improvements of $15.1\\%$ and $31.0\\%$.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2501.16173",
+   "title": "Will Systems of LLM Agents Cooperate: An Investigation into a Social Dilemma",
+   "published": "2025-01-27",
+   "categories": [
+    "cs.MA",
+    "cs.GT"
+   ],
+   "abstract": "As autonomous agents become more prevalent, understanding their collective behaviour in strategic interactions is crucial. This study investigates the emergent cooperative tendencies of systems of Large Language Model (LLM) agents in a social dilemma. Unlike previous research where LLMs output individual actions, we prompt state-of-the-art LLMs to generate complete strategies for iterated Prisoner's Dilemma. Using evolutionary game theory, we simulate populations of agents with different strategic dispositions (aggressive, cooperative, or neutral) and observe their evolutionary dynamics. Our findings reveal that different LLMs exhibit distinct biases affecting the relative success of aggressive versus cooperative strategies. This research provides insights into the potential long-term behaviour of systems of deployed LLM-based autonomous agents and highlights the importance of carefully considering the strategic environments in which they operate.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2510.12662",
+   "title": "Maximal Adaptation, Minimal Guidance: Permissive Reactive Robot Task Planning with Humans in the Loop",
+   "published": "2025-10-14",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "We present a novel framework for human-robot \\emph{logical} interaction that enables robots to reliably satisfy (infinite horizon) temporal logic tasks while effectively collaborating with humans who pursue independent and unknown tasks. The framework combines two key capabilities: (i) \\emph{maximal adaptation} enables the robot to adjust its strategy \\emph{online} to exploit human behavior for cooperation whenever possible, and (ii) \\emph{minimal tunable feedback} enables the robot to request cooperation by the human online only when necessary to guarantee progress. This balance minimizes human-robot interference, preserves human autonomy, and ensures persistent robot task satisfaction even under conflicting human goals. We validate the approach in a real-world block-manipulation task with a Franka Emika Panda robotic arm and in the Overcooked-AI benchmark, demonstrating that our method produces rich, \\emph{emergent} cooperative behaviors beyond the reach of existing approaches, while maintaining strong formal guarantees.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2502.15289",
+   "title": "Sol-gel transition in heteroassociative RNA-protein solutions: A quantitative comparison of coarse-grained simulations and the Semenov-Rubinstein theory",
+   "published": "2025-02-21",
+   "categories": [
+    "cond-mat.soft"
+   ],
+   "abstract": "Protein RNA-binding domains selectively interact with specific RNA sites, a key interaction that determines the emergent cooperative behaviors in RNA-protein mixtures. Through molecular dynamics simulations, we investigate the impact of the specific binding interactions on the phase transitions of an examplary RNA-protein system and compare it with predictions of the Semenov-Rubinstein theory of associative polymers. Our findings reveal a sol-gel (percolation) transition without phase separation, characterized by double reentrant behavior as the RNA or protein concentration increases. We highlight the crucial role of bridge formations in driving these transitions, particularly when binding sites are saturated. The theory quantitatively predicts the binding numbers at equilibrium in the semidilute regime, but it significantly overestimates the size of the concentration range where percolation is observed. This can partly be traced back to the fact that the mean-field assumption in the theory is not valid in the dilute regime, and that the theory neglects the existence of cycles in the connectivity graph of the percolating cluster at the sol-gel transition. Our study enriches the understanding of RNA-protein phase behaviors, providing valuable insights for the interpretation of experimental observations.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2601.22874",
+   "title": "Leveraging Interactions for Efficient Swarm-Based Brownian Computing",
+   "published": "2026-01-30",
+   "categories": [
+    "cond-mat.stat-mech",
+    "cond-mat.dis-nn",
+    "nlin.AO",
+    "physics.comp-ph",
+    "physics.data-an"
+   ],
+   "abstract": "Drawing inspiration from swarm intelligence, we show that short-range attractive interactions between thermally driven Brownian quasiparticles enable energy-efficient optimization. As quasiparticles can be generated directly within a material, the swarm size can be adjusted with minimal energy overhead. Using an optimization task defined by a spatially varying temperature landscape, we quantitatively show that interacting swarms reliably identify global optima and significantly outperform non-interacting searchers within a well-defined regime of interaction strength and swarm size. This improvement arises from emergent cooperative behavior, where local interactions guide the swarm toward high-quality solutions without central coordination. To link our physical model to experimental realizations, we coarse-grain the quasiparticle dynamics onto a sensor lattice and generate trajectories emulating particle-tracking measurements. We further show that the interacting swarm adapts robustly to landscapes that evolve over time. These findings establish interacting Brownian quasiparticles as a physical platform for scalable and energy-efficient unconventional computing.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2611.31609",
+   "title": "From Growth Inhibition to Fluctuations: Testing an Ising Model of Bacterial Responses to Antibiotics",
+   "published": "2026-11-23",
+   "categories": [
+    "cond-mat.stat-mech",
+    "cond-mat.soft"
+   ],
+   "abstract": "Complex networks of biochemical reactions have been proposed to exhibit emergent cooperativity that can be described by an effective Ising model, with a small number of parameters encoding collective interactions. Here this mapping is experimentally tested using the response of three bacterial species to a range of antibiotics acting on different cellular targets. The Ising description is compared to the conventional Hill model, examining both the mean growth-rate response and, importantly, its population growth-rate heterogeneity (PGRH). While both models describe the mean growth-rate dependence on antibiotic concentration comparably well, we find that the Ising model provides a markedly better description of PGRH, offering an additional and more stringent test of the collective description. The fitted Ising interaction strength is systematically related to the Hill exponent and increases with the functional distance of the antibiotic target from the protein-production machinery. These results provide experimental support for describing complex biochemical reaction networks through effective cooperative Ising interactions, and suggest that the collective response of bacterial growth to antibiotics reflects the organization of the underlying metabolic network.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2509.10672",
+   "title": "Nonclassical Driven-Dissipative Dynamics in Collective Quantum Optics",
+   "published": "2025-09-12",
+   "categories": [
+    "quant-ph",
+    "physics.optics"
+   ],
+   "abstract": "Reduced abstract. This Thesis explores emergent cooperative phenomena in collective light-matter systems. We study ensembles of interacting quantum emitters coherently driven by a laser field and coupled to photonic structures, focusing on the hybrid description of emitters dressed by light. The interplay among quantum emitters, coherent driving, and photonic environments reveals a rich landscape of cooperative effects. While single-emitter dressing has been widely studied, we address collective phenomena in two non-identical emitters modelled as two-level systems. Strong interaction forms a dimer exhibiting superradiant and subradiant states, with two-photon resonances directly connecting ground and doubly excited states. This nonlinear process, central to the Thesis, enables new regimes of cooperative light-matter physics. Analytical studies show how interactions reshape observables such as emission intensity, photon statistics, and spectra, offering implications for quantum metrology. The sensitivity of two-photon processes to emitter distance and driving strength enables high-precision sensing and sub-wavelength imaging. Unexpectedly, we find that off-resonant virtual states may gain population through dissipation, redefining their role in open systems. To capture this, we develop a hierarchical adiabatic elimination method for metastable dynamics. We also analyze entanglement in emitters coupled to a lossy cavity, identifying five mechanisms, including the frequency-resolved Purcell effect introduced here. This selective enhancement stabilizes cooperative states and enables scalable entanglement. Our models, tailored to solid-state platforms such as quantum dots and molecular aggregates, address challenges like inhomogeneous broadening and decoherence, demonstrating the feasibility of harnessing cooperative light-matter effects for quantum technologies.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2610.21369",
+   "title": "Pairing-channel reconstruction by Ising spin-orbit coupling in a multiorbital triangular-lattice model",
+   "published": "2026-10-15",
+   "categories": [
+    "cond-mat.supr-con"
+   ],
+   "abstract": "Ising spin-orbit coupling (SOC) is widely known for locking electronic spins and protecting superconductivity against in-plane paramagnetic pair breaking. Here we show that, in a correlated multiorbital system, Ising SOC can play a qualitatively different role: it reconstructs the hierarchy of spin-fluctuation-mediated pairing channels by reshaping the low-energy Fermi surfaces, orbital-spin coherence factors, and momentum-resolved scattering phase space. We study a noncentrosymmetric two-orbital triangular-lattice model with Rashba SOC, Ising SOC, and onsite SOC. We solve the pairing problem within a multiorbital random-phase-approximation framework. In the single-orbital limit, an $E$-representation state with a dominant $S_z=0$ component emerges only at relatively strong Ising SOC. Orbital degrees of freedom facilitate the stabilization of this pairing state at a smaller nominal Ising SOC strength and generate a broad competition between $E$ and $A_1$ pairing channels. The $E$ state can maintain the same $S_z=0$ triplet character, whereas the $A_1$ state becomes a fully gapped sign-changing $\\splusminus$ superconductor. The latter also realizes a topologically nontrivial phase in the time-reversal-invariant weak-pairing regime, with a nonzero $\\mathbb{Z}_2$ index, Wilson-loop spectral flow, and boundary modes. Its topology is not carried by a single orbital pairing component, but emerges cooperatively from the dominant intra- and inter-orbital pairing components. These results establish a microscopic route by which Ising SOC and orbital hybridization can reconstruct interaction-driven superconductivity, producing both Ising-triplet and topological singlet-dominated phases in correlated non-centrosymmetric systems.",
+   "query": "emergent cooperation"
+  },
+  {
+   "id": "2605.23930",
+   "title": "Quantum Frog: Emergent Cooperation and Difficulty Scaling in a Quantized-Time Cooperative Game",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.AI",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "We introduce \\emph{Quantum Frog}, a two-player cooperative game built on a novel \\emph{quantized-time} mechanic in which the environment advances only when a player acts. Inspired by the classic arcade game Frogger, Quantum Frog requires two frogs to cross an 8$\\times$8 grid of traffic and reach the far side together. We use reinforcement learning (RL) as an analytical lens to answer four design questions: (1) how does game difficulty scale with traffic density, (2) what is the optimal single-agent policy and why, (3) how large is the cooperation gap between independent and cooperative two-agent play, and (4) what joint strategy emerges when agents are incentivised to cooperate? We train agents through five escalating stages, Tabular Q-Learning, Deep Q-Network (\\DQN), Independent \\DQN~(\\IDQN), and Multi-Agent Proximal Policy Optimisation (\\MAPPO\\ with a centralised critic), evaluating each against traffic densities of one to six cars. Our key findings are: (i) the quantized-time mechanic makes a \\emph{rush strategy} (moving directly upward at every step) universally optimal, as time exposure to traffic is minimised; (ii) adding an uncoordinated second player is harder than sextupling the traffic for a single expert player; (iii) cooperative training recovers +32--34 percentage points of joint success rate relative to independent agents and reduces episode length from $\\sim$90 to $\\sim$6 steps; and (iv) the emergent cooperative strategy is synchronised rushing, not complex positional coordination, illustrating that shared incentives alone suffice to align agents in time-critical cooperative tasks. These findings provide concrete, empirically grounded guidance for the commercial design of Quantum Frog and offer broader insights into the role of environment mechanics in shaping multi-agent learning dynamics.",
+   "query": "emergent cooperation"
+  }
+ ]
+}

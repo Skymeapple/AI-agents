@@ -1,0 +1,1211 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "scaling laws language models",
+  "test-time compute scaling",
+  "emergent abilities"
+ ],
+ "papers": [
+  {
+   "id": "2501.02497",
+   "title": "A Survey of Test-Time Compute: From Intuitive Inference to Deliberate Reasoning",
+   "published": "2025-01-05",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "The remarkable performance of the o1 model in complex reasoning demonstrates that test-time compute scaling can further unlock the model's potential, enabling powerful System-2 thinking. However, there is still a lack of comprehensive surveys for test-time compute scaling. We trace the concept of test-time compute back to System-1 models. In System-1 models, test-time compute addresses distribution shifts and improves robustness and generalization through parameter updating, input modification, representation editing, and output calibration. In System-2 models, it enhances the model's reasoning ability to solve complex problems through repeated sampling, self-correction, and tree search. We organize this survey according to the trend of System-1 to System-2 thinking, highlighting the key role of test-time compute in the transition from System-1 models to weak System-2 models, and then to strong System-2 models. We also point out advanced topics and future directions.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2504.04718",
+   "title": "T1: Tool-integrated Verification for Test-time Compute Scaling in Small Language Models",
+   "published": "2025-04-07",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Recent studies have demonstrated that test-time compute scaling effectively improves the performance of small language models (sLMs). However, prior research has mainly examined test-time compute scaling with an additional larger model as a verifier, leaving verification by sLMs underexplored. In this work, we investigate whether sLMs can reliably verify the output candidates under test-time scaling. We find that even with knowledge distillation from larger verifiers, sLMs struggle with verification tasks requiring memorization, such as numerical calculations and fact-checking. To address this limitation, we propose Tool-integrated verification (T1), a two-stage framework that first filters candidates with external tools and then uses an sLM for final verification, offloading memorization-heavy steps to tools such as a code interpreter. Within T1, we prove that offloading to external tools reduces the memorization burden on sLMs and improves test-time scaling performance. Experiments on the MATH benchmark demonstrate that, with T1, a Llama-3.2 1B model under test-time scaling outperforms the significantly larger Llama-3.1 8B model. Moreover, T1 improves the verification accuracy of both process reward models (PRMs) and critic models. Our findings highlight the potential of tool integration to substantially improve the verification abilities of sLMs.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2505.04842",
+   "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers",
+   "published": "2025-05-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Prevalent reinforcement learning~(RL) methods for fine-tuning LLM reasoners, such as GRPO or Leave-one-out PPO, abandon the learned value function in favor of empirically estimated returns. This hinders test-time compute scaling that relies on using the value-function for verification. Yet if parallel test-time compute is already part of the deployment plan, training should be designed to support it. In this work, we propose RL$^V$ that augments any ``value-free'' RL method by jointly training the LLM as both a reasoner and a generative verifier using RL-generated data, adding verification capabilities without significant overhead. Empirically, RL$^V$ boosts MATH accuracy by over 20\\% with parallel sampling and enables $8-32\\times$ efficient test-time compute scaling compared to the base RL method. RL$^V$ also exhibits strong generalization capabilities for both easy-to-hard and out-of-domain tasks. Furthermore, RL$^V$ achieves $1.2-1.6\\times$ higher performance when jointly scaling parallel and sequential test-time compute with a long reasoning R1 model. More broadly, RL$^V$ instantiates the principle of co-training for test-time scaling: jointly optimizing for task performance and a capability useful at inference, using data that RL training already produces.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2502.13575",
+   "title": "ETS: Efficient Tree Search for Inference-Time Scaling",
+   "published": "2025-02-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Test-time compute scaling has emerged as a new axis along which to improve model accuracy, where additional computation is used at inference time to allow the model to think longer for more challenging problems. One promising approach for test-time compute scaling is search against a process reward model, where a model generates multiple potential candidates at each step of the search, and these partial trajectories are then scored by a separate reward model in order to guide the search process. The diversity of trajectories in the tree search process affects the accuracy of the search, since increasing diversity promotes more exploration. However, this diversity comes at a cost, as divergent trajectories have less KV sharing, which means they consume more memory and slow down the search process. Previous search methods either do not perform sufficient exploration, or else explore diverse trajectories but have high latency. We address this challenge by proposing Efficient Tree Search (ETS), which promotes KV sharing by pruning redundant trajectories while maintaining necessary diverse trajectories. ETS incorporates a linear programming cost model to promote KV cache sharing by penalizing the number of nodes retained, while incorporating a semantic coverage term into the cost model to ensure that we retain trajectories which are semantically different. We demonstrate how ETS can achieve 1.8$\\times$ reduction in average KV cache size during the search process, leading to 1.4$\\times$ increased throughput relative to prior state-of-the-art methods, with minimal accuracy degradation and without requiring any custom kernel implementation. Code is available at: https://github.com/SqueezeAILab/ETS.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.00510",
+   "title": "Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling",
+   "published": "2026-04-01",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Monte Carlo Tree Search (MCTS) is an effective test-time compute scaling (TTCS) method for improving the reasoning performance of large language models, but its highly variable execution time leads to severe long-tail latency in practice. Existing optimizations such as positive early exit, reduce latency in favorable cases but are less effective when search continues without meaningful progress. We introduce {\\it negative early exit}, which prunes unproductive MCTS trajectories, and an {\\it adaptive boosting mechanism} that reallocates reclaimed computation to reduce resource contention among concurrent searches. Integrated into vLLM, these techniques substantially reduce p99 end-to-end latency while improving throughput and maintaining reasoning accuracy.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2505.17373",
+   "title": "Value-Guided Search for Efficient Chain-of-Thought Reasoning",
+   "published": "2025-05-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "In this paper, we propose a simple and efficient method for value model training on long-context reasoning traces. Compared to existing process reward models (PRMs), our method does not require a fine-grained notion of \"step,\" which is difficult to define for long-context reasoning models. By collecting a dataset of 2.5 million reasoning traces, we train a 1.5B token-level value model and apply it to DeepSeek models for improved performance with test-time compute scaling. We find that block-wise value-guided search (VGS) with a final weighted majority vote achieves better test-time scaling than standard methods such as majority voting or best-of-n. Moreover, VGS significantly reduces the inference FLOPs required to achieve the same performance of majority voting. Our dataset, model and codebase are open-sourced.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2509.18382",
+   "title": "Evaluating the Safety and Skill Reasoning of Large Reasoning Models Under Compute Constraints",
+   "published": "2025-09-22",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Test-time compute scaling has demonstrated the ability to improve the performance of reasoning language models by generating longer chain-of-thought (CoT) sequences. However, this increase in performance comes with a significant increase in computational cost. In this work, we investigate two compute constraint strategies: (1) reasoning length constraint and (2) model quantization, as methods to reduce the compute demand of reasoning models and study their impact on their safety performance. Specifically, we explore two approaches to apply compute constraints to reasoning models: (1) fine-tuning reasoning models using a length controlled policy optimization (LCPO) based reinforcement learning method to satisfy a user-defined CoT reasoning length, and (2) applying quantization to maximize the generation of CoT sequences within a user-defined compute constraint. Furthermore, we study the trade-off between the computational efficiency and the safety of the model.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2606.19347",
+   "title": "How LLMs Fail and Generalize in RTL Coding for Hardware Design?",
+   "published": "2026-04-26",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.PL"
+   ],
+   "abstract": "Translating sequential programming priors into the parallel temporal logic of hardware design remains a crucial bottleneck for large language models(LLM). To investigate this, we introduce a new error taxonomy grounded in problem solvability, inspired by cognitive theory. Our taxonomy categorizes failures into syntactic, semantic, solvable functional, and unsolvable functional types. Evaluations reveal a strict empirical ceiling on the VerilogEval benchmark, as frontier models plateau at a 90.8% initial pass rate. These plateaus are defined by unsolvable functional errors, exposing persistent knowledge gaps immune to test time compute scaling. Furthermore, we expose a striking surface convergence gap: optimization readily eliminates syntax errors but concurrently exacerbates deeper functional failures. Our findings demonstrate that alignment techniques merely teach models to compile. While repeated sampling strategies can patch solvable errors, register-transfer level(RTL) coding capacity remains strictly bounded by pretraining knowledge. Addressing challenges in the current LLM based hardware generation pipeline requires more studies in model reasoning rather than alignment interventions.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.09921",
+   "title": "A Tale of Two Temperatures: Simple, Efficient, and Diverse Sampling from Diffusion Language Models",
+   "published": "2026-04-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Much work has been done on designing fast and accurate sampling for diffusion language models (dLLMs). However, these efforts have largely focused on the tradeoff between speed and quality of individual samples; how to additionally ensure diversity across samples remains less well understood. In this work, we show that diversity can be increased by using softened, tempered versions of familiar confidence-based remasking heuristics, retaining their computational benefits and offering simple implementations. We motivate this approach by introducing an idealized formal model of fork tokens and studying the impact of remasking on the expected entropy at the forks. Empirically, the proposed tempered heuristics close the exploration gap (pass@k) between existing confidence-based and autoregressive sampling, hence outperforming both when controlling for cost (pass@NFE). We further study how the increase in diversity translates to downstream post-training and test-time compute scaling. Overall, our findings demonstrate that simple, efficient, and diverse sampling from dLLMs is possible.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2501.05444",
+   "title": "Can MLLMs Reason in Multimodality? EMMA: An Enhanced MultiModal ReAsoning Benchmark",
+   "published": "2025-01-09",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "The ability to organically reason over and with both text and images is a pillar of human intelligence, yet the ability of Multimodal Large Language Models (MLLMs) to perform such multimodal reasoning remains under-explored. Existing benchmarks often emphasize text-dominant reasoning or rely on shallow visual cues, failing to adequately assess integrated visual and textual reasoning. We introduce EMMA (Enhanced MultiModal reAsoning), a benchmark targeting organic multimodal reasoning across mathematics, physics, chemistry, and coding. EMMA tasks demand advanced cross-modal reasoning that cannot be addressed by reasoning independently in each modality, offering an enhanced test suite for MLLMs' reasoning capabilities. Our evaluation of state-of-the-art MLLMs on EMMA reveals significant limitations in handling complex multimodal and multi-step reasoning tasks, even with advanced techniques like Chain-of-Thought prompting and test-time compute scaling underperforming. These findings underscore the need for improved multimodal architectures and training paradigms to close the gap between human and model reasoning in multimodality.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2603.14724",
+   "title": "GameUIAgent: An LLM-Powered Framework for Automated Game UI Design with Structured Intermediate Representation",
+   "published": "2026-03-16",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Game UI design requires consistent visual assets across rarity tiers yet remains a predominantly manual process. We present GameUIAgent, an LLM-powered agentic framework that translates natural language descriptions into editable Figma designs via a Design Spec JSON intermediate representation. A six-stage neuro-symbolic pipeline combines LLM generation, deterministic post-processing, and a Vision-Language Model (VLM)-guided Reflection Controller (RC) for iterative self-correction with guaranteed non-regressive quality. Evaluated across 110 test cases, three LLMs, and three UI templates, cross-model analysis establishes a game-domain failure taxonomy (rarity-dependent degradation; visual emptiness) and uncovers two key empirical findings. A Quality Ceiling Effect (Pearson r=-0.96, p<0.01) suggests that RC improvement is bounded by headroom below a quality threshold -- a visual-domain counterpart to test-time compute scaling laws. A Rendering-Evaluation Fidelity Principle reveals that partial rendering enhancements paradoxically degrade VLM evaluation by amplifying structural defects. Together, these results establish foundational principles for LLM-driven visual generation agents in game production.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2507.14417",
+   "title": "Inverse Scaling in Test-Time Compute",
+   "published": "2025-07-19",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "We construct evaluation tasks where extending the reasoning length of Large Reasoning Models (LRMs) deteriorates performance, exhibiting an inverse scaling relationship between test-time compute and accuracy. Our evaluation tasks span four categories: simple counting tasks with distractors, regression tasks with spurious features, deduction tasks with constraint tracking, and advanced AI risks. We identify five distinct failure modes when models reason for longer: 1) Claude models become increasingly distracted by irrelevant information; 2) OpenAI o-series models resist distractors but overfit to problem framings; 3) models shift from reasonable priors to spurious correlations; 4) all models show difficulties in maintaining focus on complex deductive tasks; and 5) extended reasoning may amplify concerning behaviors, with Claude Sonnet 4 showing increased expressions of self-preservation. These findings suggest that while test-time compute scaling remains promising for improving model capabilities, it may inadvertently reinforce problematic reasoning patterns. Our results demonstrate the importance of evaluating models across diverse reasoning lengths to identify and address these failure modes in LRMs.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2606.04678",
+   "title": "Test-Time Compute Scaling for ASR with Depth-Conditioned Looped Transformers",
+   "published": "2026-06-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "End-to-end ASR systems typically use fixed-depth acoustic encoders at inference, making it difficult to trade additional test-time computation for improved recognition without training a larger model. A natural approach is to reuse a shared Transformer block recurrently, but we find that naive looping does not fully exploit additional recurrent compute. We introduce LARM, a depth-conditioned looped Transformer that turns recurrent encoder depth into a controllable test-time compute axis. LARM combines sparse CTC checkpoints, supervision-clock embeddings, FiLM depth conditioning, and delayed soft-posterior feedback. These components structure the loop into recognition checkpoints separated by latent refinement phases and allow shared weights to specialize across recurrent steps. On LibriSpeech, LARM improves WER as the number of inference loops increases and achieves performance competitive with deeper unshared-parameter baselines. Our results show that test-time compute scaling can extend beyond autoregressive language-model reasoning to continuous non-autoregressive speech recognition.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2606.15070",
+   "title": "Stop When Further Reasoning Won't Help: Attention-State Adaptive Generation in Reasoning Models",
+   "published": "2026-06-13",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "By incorporating test-time compute scaling, large reasoning models (LRMs) can solve complex problems through explicit chain-of-thought (CoT) reasoning processes. However, they often suffer from overthinking, resulting in redundant token outputs and degraded accuracy. Current methods to mitigate this issue remain limited: training-based approaches require substantial computational resources, while training-free methods rely on well-crafted prompts or unreliable confidence signals. In this work, we investigate early stopping from the perspective of attention distributions and propose a simple method, ASAG, which infers the model's reasoning state and adaptively adjusts the generation strategy. The proposed framework is training-free and plug-and-play, enabling seamless integration into existing LRMs. Extensive experiments on nine benchmarks demonstrate consistent improvements across mainstream LRMs with varying parameter scales, including the DeepSeek-R1-Distill and Qwen3 series. Specifically, ASAG improves average accuracy by 3.2% while reducing the number of generated tokens by nearly 40% across all reasoning tasks on Qwen3-8B.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2602.01070",
+   "title": "What If We Allocate Test-Time Compute Adaptively?",
+   "published": "2026-02-01",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Test-time compute scaling allocates inference computation uniformly, uses fixed sampling strategies, and applies verification only for reranking. In contrast, we propose a verifier-guided adaptive framework treating reasoning as iterative trajectory generation and selection. For each problem, the agent runs multiple inference iterations. In each iteration, it optionally produces a high-level plan, selects a set of reasoning tools and a compute strategy together with an exploration parameter, and then generates a candidate reasoning trajectory. A process reward model (PRM) serves as a unified control signal: within each iteration, step-level PRM scores are aggregated to guide pruning and expansion during generation, and across iterations, aggregated trajectory rewards are used to select the final response. Across datasets, our dynamic, PRM-guided approach consistently outperforms direct test-time scaling, yielding large gains on MATH-500 and several-fold improvements on harder benchmarks such as AIME24 and AMO-Bench. We characterize efficiency using theoretical FLOPs and a compute intensity metric penalizing wasted generation and tool overhead, demonstrating that verification-guided allocation concentrates computation on high-utility reasoning paths.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2605.19943",
+   "title": "Probabilistic Tiny Recursive Model",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Tiny Recursive Models (TRM) solve complex reasoning tasks with a fraction of the parameters of modern large language models (LLMs) by iteratively refining a latent state and final answer. While powerful, their deterministic recursion can lead to convergence at suboptimal solutions, without escape mechanism. A common workaround relies on task-specific input perturbations at test time combined with answer aggregation via voting. We introduce Probabilistic TRM (PTRM), a task-agnostic framework for test-time compute scaling that addresses this limitation through stochastic exploration. PTRM injects Gaussian noise at each deep recursion step, enabling parallel trajectories to explore diverse solution basins, and selects among them using the model's existing Q head (used for early stopping in the original TRM). Without requiring retraining or task-specific augmentations, PTRM enables substantial accuracy gains across benchmarks, including Sudoku-Extreme (87.4% to 98.75%) and on various puzzles from Pencil Puzzle Bench (62.6% to 91.2%). On the latter, PTRM achieves nearly double the accuracy of frontier LLMs (91.2% vs. 55.1%) at less than 0.0001x the cost, using only 7M parameters.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.15259",
+   "title": "Stability and Generalization in Looped Transformers",
+   "published": "2026-04-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Looped transformers promise test-time compute scaling by spending more iterations on harder problems, but it remains unclear which architectural choices let them extrapolate to harder problems at test time rather than memorize training-specific solutions. We introduce a fixed-point based framework for analyzing looped architectures along three axes of stability -- local attractivity, input-dependence, and geometry -- and use it to characterize when fixed-point iteration yields meaningful predictions. Theoretically, we prove that looped networks without recall have countable fixed points and cannot achieve strong input-dependence at any spectral regime, while recall with outer normalization reliably produces a regime in which fixed points are simultaneously locally-attractive, locally smooth in the input, and supported by stable backpropagation. Empirically, we train small looped transformers on chess, sudoku, and prefix-sums and find that downstream performance tracks the framework's predictions across tasks and architectural configurations. We additionally introduce internal recall, a novel recall placement variant allowing an identity residual path, and exploit its contrasting fixed-point behavior to test our framework's predictions in a controlled setting.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2606.06915",
+   "title": "ThinkBooster: A Unified Framework for Seamless Test-Time Scaling of LLM Reasoning",
+   "published": "2026-06-05",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Test-time compute (TTC) scaling has emerged as a powerful paradigm for improving large language model (LLM) reasoning by allocating additional compute during inference, e.g., via multi-sample generation and verifier-based reranking. Existing TTC scaling strategies and reasoning scorers remain fragmented, evaluated under inconsistent protocols, and are rarely analyzed through the lens of quality-cost trade-offs. We introduce ThinkBooster, a unified framework for seamless test-time compute scaling of LLM reasoning, which consists of (i) a modular Python library implementing state-of-the-art TTC scaling strategy and scorer families, (ii) a benchmark that jointly evaluates performance and computational efficiency, and (iii) a deployable OpenAI-compatible proxy service that enables drop-in integration of adaptive reasoning into real-world applications. We further provide a demo visual debugger for inspecting the reasoning trajectories, intermediate selection decisions, and alternative reasoning paths. Empirical results on mathematical and coding tasks reveal the performance-compute trade-offs of TTC scaling strategies and scoring methods and demonstrate that ThinkBooster provides practical gains in real-world tasks. The code is available online under an MIT license.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2602.22207",
+   "title": "Recovered in Translation: Efficient Pipeline for Automated Translation of Benchmarks and Datasets",
+   "published": "2026-02-25",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "The reliability of multilingual Large Language Model (LLM) evaluation is currently compromised by the inconsistent quality of translated benchmarks. Existing resources often suffer from semantic drift and context loss, which can lead to misleading performance metrics. In this work, we present a fully automated framework designed to address these challenges by enabling scalable, high-quality translation of datasets and benchmarks. We demonstrate that adapting test-time compute scaling strategies, specifically Universal Self-Improvement (USI) and our proposed multi-round ranking method, T-RANK, allows for significantly higher quality outputs compared to traditional pipelines. Our framework ensures that benchmarks preserve their original task structure and linguistic nuances during localization. We apply this approach to translate popular benchmarks and datasets into eight Eastern and Southern European languages (Ukrainian, Bulgarian, Slovak, Romanian, Lithuanian, Estonian, Turkish, Greek). Evaluations using both reference-based metrics and LLM-as-a-judge show that our translations surpass existing resources, resulting in more accurate downstream model assessment. We release both the framework and the improved benchmarks to facilitate robust and reproducible multilingual AI development.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.25098",
+   "title": "Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+   "published": "2026-04-28",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Large Language Models (LLMs) now exhibit remarkable reasoning capabilities through test-time compute scaling (TTS), with impressive performance across math and coding benchmarks. In parallel, research in model compression has developed pruning methods that seek to remove redundant/detrimental parameters without sacrificing task performance. The intersection of these two research advancements lays the foundation for our work. Specific to reasoning LLMs, prior work has shown that structured pruning (methods which remove entire set of layer blocks), significantly degrades TTS reasoning performance. However, in this work, we revisit this assumption and investigate whether unstructured pruning (methods that carefully remove only certain redundant/detrimental weights) exhibits similar limitations. Surprisingly, our extensive experiments across four reasoning benchmarks on two reasoning LLMs: s1.1-7B and Qwen3-8B, consistently show that unstructured pruning augments TTS performance compared to structured pruning, and at times can even outperform the unpruned full-weight LLMs. Furthermore, we also empirically study the impact of different layer-wise sparsity allocation strategies, which are an important parametric choice for instantiating these unstructured methods. These findings challenge the conventional notion that pruning always reduces TTS performance and in fact, suggest that carefully undertaken pruning can retain TTS effectiveness.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2610.14896",
+   "title": "Test-Time Compute for Humanoid Behavior Foundation Models",
+   "published": "2026-10-10",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Humanoid Behavior Foundation Models (BFMs) can execute impressive motions, but downstream applications such as loco-manipulation demand high whole-body positional accuracy. Existing BFMs suffer from a systematic command-execution gap, where executed motions deviate from desired ones. We show that additional test-time compute can improve execution without retraining the BFM. First, we introduce Test-Time Command Optimization (TTCO), which adapts the input command to the specific BFM to produce an executed trajectory closer to the desired motion. TTCO finds such commands by sampling-based optimization through closed-loop simulations of the BFM and robot dynamics. Across three BFMs on the AMASS dataset, TTCO reduces mean global body-position error by 79-84% in simulation. Second, we analyze test-time compute scaling and derive an approximate compute-optimal strategy that can sustain performance gains as the compute budget increases. Third, TTCO can generate BFM-specific action labels from recorded robot trajectories without requiring the original teleoperation body-motion commands. Simulation and real-robot experiments show that these labels are effective for training high-level loco-manipulation policies. This method also supports reusing existing demonstrations across BFMs.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2605.15177",
+   "title": "OpenDeepThink: Parallel Reasoning via Bradley-Terry Aggregation",
+   "published": "2026-05-14",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Test-time compute scaling is a primary axis for improving LLM reasoning. Existing methods primarily scale depth by extending a single reasoning trace. Scaling breadth by sampling multiple candidates in parallel is straightforward, but introduces a selection bottleneck: choosing the best candidate without a ground-truth verifier, since pointwise LLM judging is noisy and biased. To address this, we introduce OpenDeepThink, a population-based test-time compute framework that selects via pairwise Bradley-Terry comparison. Each generation, the LLM judges random pairs of candidates and aggregates votes via Bradley-Terry into a global ranking; top-ranked candidates are preserved and the top three quarters are mutated using the natural-language critiques produced during comparison; the bottom quarter is discarded. OpenDeepThink raises Gemini 3.1 Pro's effective Codeforces Elo by +405 points in eight sequential LLM-call rounds (~27 minutes wall-clock). The pipeline transfers across weaker and stronger models without retuning, and on the multi-domain HLE benchmark, gains appear concentrated in objectively verifiable domains and reverse in subjective ones. We release CF-73, a curated set of 73 expert-rated Codeforces problems with International Grandmaster annotation and 99% local-evaluation agreement against the official verdict.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2502.20379",
+   "title": "Multi-Agent Verification: Scaling Test-Time Compute with Multiple Verifiers",
+   "published": "2025-02-27",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "By utilizing more computational resources at test-time, large language models (LLMs) can improve without additional training. One common strategy uses verifiers to evaluate candidate outputs. In this work, we propose a novel scaling dimension for test-time compute: scaling the number of verifiers. We introduce Multi-Agent Verification (MAV) as a test-time compute paradigm that combines multiple verifiers to improve performance. We propose using Aspect Verifiers (AVs), off-the-shelf LLMs prompted to verify different aspects of outputs, as one possible choice for the verifiers in a MAV system. AVs are a convenient building block for MAV since they can be easily combined without additional training. Moreover, we introduce BoN-MAV, a simple multi-agent verification algorithm that combines best-of-n sampling with multiple verifiers. BoN-MAV demonstrates stronger scaling patterns than self-consistency and reward model verification, and we demonstrate both weak-to-strong generalization, where combining weak verifiers improves even stronger LLMs, and self-improvement, where the same base model is used to both generate and verify outputs. Our results establish scaling the number of verifiers as a promising new dimension for improving language model performance at test-time.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2502.18864",
+   "title": "Accelerating scientific discovery with Co-Scientist",
+   "published": "2025-02-26",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.HC",
+    "cs.LG",
+    "physics.soc-ph",
+    "q-bio.OT"
+   ],
+   "abstract": "Scientific discovery is driven by scientists generating novel hypotheses for complex problems that undergo rigorous experimental validation. To augment this process, we introduce Co-Scientist, a multi-agent AI system built on Gemini for structured scientific thinking and hypothesis generation. Co-Scientist aims to help scientists discover new original knowledge. Conditioned on their research objectives and prior scientific evidence, it formulates demonstrably novel research hypotheses for experimental verification. The system's design involves agents continuously generating, critiquing and refining hypotheses accelerated by scaling test-time compute. Key contributions include: (1) a multi-agent architecture with an asynchronous task execution framework for flexible compute scaling; (2) a tournament evolution process for self-improving hypotheses generation. Automated evaluations show continued benefits of test-time compute scaling, improving hypothesis quality over time. While general purpose, we focus the validation in three biomedical applications: drug repurposing, novel target discovery, and explaining mechanisms of anti-microbial resistance. Specifically, Co-Scientist helped identify new drug repurposing candidates and synergistic combination therapies for acute myeloid leukemia, which were validated through in vitro experiments. These real-world validations demonstrate the potential of Co-Scientist to accelerate scientific discovery and usher in an era of AI empowered scientists.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2512.00466",
+   "title": "SCALE: Selective Resource Allocation for Overcoming Performance Bottlenecks in Mathematical Test-time Scaling",
+   "published": "2025-11-29",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Test-time compute scaling has emerged as a powerful paradigm for enhancing mathematical reasoning in large language models (LLMs) by allocating additional computational resources during inference. However, current methods employ uniform resource distribution across all reasoning sub-problems, creating fundamental bottlenecks where challenging sub-problems receive insufficient attention while routine operations consume disproportionate resources. This uniform allocation creates performance bottlenecks where additional computational resources yield diminishing returns. Inspired by dual-process theory, we propose \\textbf{SCALE} (Selective Resource Allocation), a framework that selectively allocates computational resources based on sub-problem difficulty. SCALE operates through four stages: (1) problem decomposition into sequential reasoning sub-problems, (2) difficulty assessment of each sub-problem to distinguish between routine operations and computationally challenging sub-problems, (3) selective processing mode assignment between System 1 for simple sub-problems and System 2 for complex ones, and (4) sequential execution with context propagation. By concentrating resources on challenging sub-problems while processing routine operations efficiently, SCALE achieves substantial performance improvements with superior resource utilization. Extensive experiments demonstrate that SCALE significantly outperforms uniform scaling baselines, achieving accuracy improvements of up to 13.75 percentage points (57.50% to 71.25% on AIME25) while reducing computational costs by 33%-53%, representing a major advance in test-time scaling that addresses fundamental limitations of current approaches.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2509.25424",
+   "title": "Polychromic Objectives for Reinforcement Learning",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning fine-tuning (RLFT) is a dominant paradigm for improving pretrained policies for downstream tasks. These pretrained policies, trained on large datasets, produce generations with a broad range of promising but unrefined behaviors. Often, a critical failure mode of RLFT arises when policies lose this diversity and collapse into a handful of easily exploitable outputs. This convergence hinders exploration, which is essential for expanding the capabilities of the pretrained policy and for amplifying the benefits of test-time compute scaling. To address this, we introduce an objective for policy gradient methods that explicitly enforces the exploration and refinement of diverse generations, which we call a polychromic objective. We then show how proximal policy optimization (PPO) can be adapted to optimize this objective. Our method (1) employs vine sampling to collect on-policy rollouts and (2) modifies the advantage function to reflect the advantage under our new objective. Experiments on BabyAI, Minigrid, and Algorithmic Creativity show that our method improves success rates by reliably solving a larger set of environment configurations and generalizes better under large perturbations. Moreover, when given multiple attempts in pass@$k$ experiments, the policy achieves substantially higher coverage, demonstrating its ability to maintain and exploit a diverse repertoire of strategies.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2506.22865",
+   "title": "ReasonBridge: Efficient Reasoning Transfer from Closed to Open-Source Language Models",
+   "published": "2025-06-28",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Recent advancements in Large Language Models (LLMs) have revealed a significant performance gap between closed-source and open-source models, particularly in tasks requiring complex reasoning and precise instruction following. This paper introduces ReasonBridge, a methodology that efficiently transfers reasoning capabilities from powerful closed-source to open-source models through a novel hierarchical knowledge distillation framework. We develop a tailored dataset Reason1K with only 1,000 carefully curated reasoning traces emphasizing difficulty, diversity, and quality. These traces are filtered from across multiple domains using a structured multi-criteria selection algorithm. Our transfer learning approach incorporates: (1) a hierarchical distillation process capturing both strategic abstraction and tactical implementation patterns, (2) a sparse reasoning-focused adapter architecture requiring only 0.3% additional trainable parameters, and (3) a test-time compute scaling mechanism using guided inference interventions. Comprehensive evaluations demonstrate that ReasonBridge improves reasoning capabilities in open-source models by up to 23% on benchmark tasks, significantly narrowing the gap with closed-source models. Notably, the enhanced Qwen2.5-14B outperforms Claude-Sonnet3.5 on MATH500 and matches its performance on competition-level AIME problems. Our methodology generalizes effectively across diverse reasoning domains and model architectures, establishing a sample-efficient approach to reasoning enhancement for instruction following.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2602.23681",
+   "title": "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+   "published": "2026-02-27",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The paradigm of large language model (LLM) reasoning is shifting from parameter scaling to test-time compute scaling, yet many existing approaches still rely on uniform brute-force sampling (for example, fixed best-of-N or self-consistency) that is costly, hard to attribute, and can trigger overthinking with diminishing returns. We propose ODAR-Expert, an adaptive routing framework that optimizes the accuracy-efficiency trade-off via principled resource allocation. ODAR uses a difficulty estimator grounded in amortized active inference to dynamically route queries between a heuristic Fast Agent and a deliberative Slow Agent. We further introduce a free-energy-principled, risk-sensitive fusion mechanism that selects answers by minimizing a variational free energy objective, balancing log-likelihood with epistemic uncertainty (varentropy) as a principled alternative to ad hoc voting over heterogeneous candidates. Extensive evaluation across 23 benchmarks shows strong and consistent gains, including 98.2% accuracy on MATH and 54.8% on Humanity's Last Exam (HLE), while improving the compute-accuracy frontier under compute-matched settings. We also validate reproducibility on a fully open-source stack (Llama 4 + DeepSeek), where ODAR surpasses homogeneous sampling strategies while reducing computational costs by 82%. Overall, our results suggest that thinking-optimal scaling requires adaptive resource allocation with free-energy-based decision-making rather than simply increasing test-time compute.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2608.08020",
+   "title": "Thought-Level Beam Search for Reasoning",
+   "published": "2026-08-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Test-time compute scaling is a primary driver of performance in large reasoning models (LRMs), but extreme inefficiency bounds current approaches, shifting the critical question from \\emph{how much} compute to spend, to \\emph{where} to allocate it. We formalize test-time reasoning as a constrained compute allocation problem over partial trajectories. Under a fixed hardware budget, existing paradigms fail to actively allocate the compute to the most promising partial progress: traditional parallel sampling treats traces independently and induces severe memory bottlenecks, while subtractive pruning starves hardware and fails to actively and sufficiently shift the output distribution. To overcome this dichotomy, we introduce Gambit, an inference algorithm that executes \\emph{thought-level beam search}. By periodically pruning unpromising trajectories and immediately branching from high-quality prefixes, Gambit dynamically concentrates compute onto the most promising reasoning traces via a light-weight scorer probing hidden states while maintaining continuous high hardware utilization. Extensive evaluations across multiple models and benchmarks demonstrate that Gambit strictly dominates existing baselines. Under identical hardware constraints, our method yields up to a +6.7\\% absolute accuracy gain on HMMT-24 and +3.3\\% on AIME-25 over pruning baselines, delivers $>2\\times$ higher throughput on trace completion, and reduces total token consumption by up to 68.5\\% relative to standard parallel sampling.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2509.04475",
+   "title": "ParaThinker: Native Parallel Thinking as a New Paradigm to Scale LLM Test-time Compute",
+   "published": "2025-08-30",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in Large Language Models (LLMs) have been driven by test-time compute scaling - a strategy that improves reasoning by generating longer, sequential thought processes. While effective, this approach encounters a significant bottleneck as computation increases, where further computation offers only marginal performance gains. We argue this ceiling is not an inherent limit of the model's capability but a flaw in the scaling strategy itself, a phenomenon we term \"Tunnel Vision\", where a model's imperfect initial steps lock it into a suboptimal reasoning path. To overcome this, we introduce a new scaling paradigm: native thought parallelism. We present ParaThinker, an end-to-end framework that trains an LLM to generate multiple, diverse reasoning paths in parallel and synthesize them into a superior final answer. By exploring different lines of thoughts simultaneously, ParaThinker effectively sidesteps the Tunnel Vision issue and unlocks the model's latent reasoning potential. Our approach demonstrates that scaling compute in parallel (width) is a more effective and efficient way to superior reasoning than simply scaling sequentially (depth). On challenging reasoning benchmarks, ParaThinker achieves substantial accuracy improvements over sequential LLMs (12.3% for 1.5B and 7.5% for 7B models on average with 8 parallel paths), while adding only negligible latency overhead (7.1%). This enables smaller models to surpass much larger counterparts and establishes parallel thinking as a critical, efficient dimension for scaling future LLMs.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2608.13200",
+   "title": "GEM: A Generative Embedding Model Bridging Reasoning and Retrieval",
+   "published": "2026-08-13",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.IR"
+   ],
+   "abstract": "Modern LLMs excel at reasoning and instruction following, enabling users to express increasingly complex information needs. However, existing retrievers largely rely on matching surface-level relevance, creating a growing gap between the evolving nature of user queries and how the queries are interpreted by retrievers. In this paper, we present GEM, a generative embedding model that augments retrieval by leveraging its internal knowledge to reason about user intent and relevance criteria prior to embedding. GEM unifies generation and embedding in a sequential manner, where encoding can be conceptually viewed as processing only one additional token during autoregressive generation. Unlike conventional query expansion, GEM learns to produce embeddings aligned with its reasoning, moving beyond surface-level matching. Furthermore, the generative nature allows GEM to be prompted like standard instruction-tuned LLMs and enables test-time compute scaling for retrieval. Compared with a non-reasoning variant of the same backbone, GEM achieves approximately 35% relative improvement in nDCG@10 on BRIGHT, a benchmark of challenging queries requiring reasoning, and 70% in p-MRR on FollowIR, a benchmark evaluating retrievers' ability to understand and follow user instructions. Our results demonstrate the effectiveness of activating an embedding model's internal reasoning capabilities to improve retrieval. Our code and model are publicly available at https://github.com/ZhlSh17/GEM and https://huggingface.co/gem-search/GEM-4B, respectively.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.10219",
+   "title": "Cognitive Pivot Points and Visual Anchoring: Unveiling and Rectifying Hallucinations in Multimodal Reasoning Models",
+   "published": "2026-04-11",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Multimodal Large Reasoning Models (MLRMs) have achieved remarkable strides in visual reasoning through test time compute scaling, yet long chain reasoning remains prone to hallucinations. We identify a concerning phenomenon termed the Reasoning Vision Truth Disconnect (RVTD): hallucinations are strongly correlated with cognitive bifurcation points that often exhibit high entropy states. We attribute this vulnerability to a breakdown in visual semantic anchoring, localized within the network's intermediate layers; specifically, during these high uncertainty transitions, the model fails to query visual evidence, reverting instead to language priors. Consequently, we advocate a shift from solely outcome level supervision to augmenting it with fine grained internal attention guidance. To this end, we propose V-STAR (Visual Structural Training with Attention Reinforcement), a lightweight, holistic training paradigm designed to internalize visually aware reasoning capabilities. Central to our approach is the Hierarchical Visual Attention Reward (HVAR), integrated within the GRPO framework. Upon detecting high entropy states, this mechanism dynamically incentivizes visual attention across critical intermediate layers, thereby anchoring the reasoning process back to the visual input. Furthermore, we introduce the Forced Reflection Mechanism (FRM), a trajectory editing strategy that disrupts cognitive inertia by triggering reflection around high entropy cognitive bifurcation points and encouraging verification of subsequent steps against the visual input, thereby translating external debiasing interventions into an intrinsic capability for hallucination mitigation.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2609.03880",
+   "title": "Xiaomi-TabLDM: A Tabular Foundation Model Technical Report",
+   "published": "2026-09-03",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "We introduce Xiaomi-TabLDM, a tabular large data foundation model for classification and regression via in-context learning, which delivers superior prediction accuracy without requiring task-specific fine-tuning. Pretrained exclusively on synthetic data generated from structural causal models (SCMs), our model enables more flexible context utilization and more efficient capacity scaling. i) A new performance standard. Strong regression performance across benchmarks: Xiaomi-TabLDM ranks 1st on OpenML-CTR23 and 2nd on regression across TALENT, TabArena, and BCCO, demonstrating consistently strong regression performance across four complementary benchmark suites. Favorable performance--efficiency trade-off: Xiaomi-TabLDM combines strong predictive performance with substantially lower computational cost. For example, on TabArena regression, it achieves the second-highest Elo while using 82% less training time and 68% less prediction time than the top-ranked TabFM. ii) Large-scale synthetic pretraining. Xiaomi-TabLDM expands the coverage and diversity of synthetic tabular data used for pretraining. We also adopt a three-stage training strategy together with dual-stream feature grouping, lightweight Attention Residual, and sparse Mixture-of-Experts, enabling Xiaomi-TabLDM to learn richer feature interactions and expert specialization across diverse tabular tasks. iii) Test-time scaling. Xiaomi-TabLDM further extends tabular prediction through test-time compute scaling, where allocating additional computation at inference time consistently improves predictive performance over the base model.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2512.21430",
+   "title": "EVE: A Generator-Verifier System for Generative Policies",
+   "published": "2025-12-24",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Visuomotor policies based on generative such as diffusion and flow-matching have shown strong performance for robotics applications but degrade under distribution shifts, demonstrating limited recovery capabilities without costly finetuning. In the language modeling domain, test-time compute scaling has revolutionized the reasoning capabilities of modern LLMs by enabling candidate solution refinement. These methods typically leverage foundation models as verification modules in a zero-shot manner to score candidate solutions. We hypothesize that generative policies can similarly benefit from additional inference-time compute that employs zero-shot VLM-based verifiers in a generation-verification framework. To this end, we introduce EVE: a modular, generator-verifier interaction framework that boosts the performance of pretrained generative policies at test time, with no additional training. EVE wraps a frozen base policy with multiple zero-shot, VLM-based verifier agents. Each verifier proposes action refinements to the base policy candidate actions, while an action incorporator uses classifier guidance to fuse aggregated verifier feedback into action denoising. We study design choices for generator-verifier information interfacing across a system of verifiers with distinct capabilities. Across diverse simulated and real robotic tasks and embodiments, EVE consistently improves success rates without additional policy or verifier training. Through extensive ablations, we isolate the contribution of verifier capabilities and action incorporator strategies, offering practical guidelines to build scalable, modular generator-verifier systems for embodied control.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2511.02651",
+   "title": "Apriel-H1: Towards Efficient Enterprise Reasoning Models",
+   "published": "2025-11-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) achieve remarkable reasoning capabilities through transformer architectures with attention mechanisms. However, transformers suffer from quadratic time and memory complexity in the attention module (MHA) and require caching key-value states during inference, which severely limits throughput and scalability. High inference throughput is critical for agentic tasks, long-context reasoning, efficient deployment under high request loads, and more efficient test-time compute scaling. State Space Models (SSMs) such as Mamba offer a promising alternative with linear inference complexity and a constant memory footprint via recurrent computation with fixed-size hidden states. In this technical report we introduce the Apriel-H1 family of hybrid LLMs that combine transformer attention and SSM sequence mixers for efficient reasoning at 15B model size. These models are obtained through incremental distillation from a pretrained reasoning transformer, Apriel-Nemotron-15B-Thinker, progressively replacing less critical attention layers with linear Mamba blocks. We release multiple post-distillation variants of Apriel-H1-15B-Thinker with different SSM-to-MHA ratios and analyse how reasoning performance degrades as more Mamba layers replace MHA. Additionally, we release a 30/50 hybrid variant of Apriel-H1, further fine-tuned on a supervised dataset of reasoning traces, achieving over 2x higher inference throughput when deployed in the production-ready vLLM environment, with minimal degradation in reasoning performance. This shows that distilled hybrid SSM-Transformer architectures can deliver substantial efficiency gains over the pretrained transformer equivalent without substantially compromising the reasoning quality.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.14853",
+   "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+   "published": "2026-04-16",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Test-time compute scaling, the practice of spending extra computation during inference via repeated sampling, search, or extended reasoning, has become a powerful lever for improving large language model performance. Yet deploying these techniques under finite inference budgets requires a decision that current systems largely ignore: which inputs deserve more compute, and which can be answered cheaply? We formalize this as a constrained optimization problem (maximize expected accuracy subject to an average compute budget) and solve it with a two-stage Solve-then-Learn pipeline. In the solve stage, Lagrangian relaxation decomposes the global constraint into per-instance sub-problems, each admitting a closed-form oracle action that optimally prices accuracy against cost. We prove that the induced cost is monotone in the dual variable, enabling exact budget targeting via binary search. In the learn stage, a lightweight classifier is trained to predict oracle actions from cheap input features, amortizing the allocation rule for real-time deployment. We establish that the task-level regret of the learned policy is bounded by its imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification. Experiments on MATH and GSM8K with three LLMs (DeepSeek-V3, GPT-4o-mini, Qwen2.5-7B) show that our method consistently outperforms uniform and heuristic allocation baselines, achieving up to 12.8% relative accuracy improvement on MATH under matched budget constraints, while closely tracking the Lagrangian oracle upper bound with over 91% imitation accuracy.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2609.39982",
+   "title": "Mid-Harness: Scaling Actions Between Model and Harness for Terminal Agents",
+   "published": "2026-09-30",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "Terminal agents act through stochastic model generations, yet the ability to generate a useful action does not ensure its reliable execution. A poor command (e.g., wrong package install) can change the environment in ways that hinder subsequent progress, even when the model could generate a better alternative. We investigate whether allocating test-time compute at the model-harness boundary can improve action reliability and trajectory success, and what makes this allocation effective. To study these questions, we introduce Mid-Harness, which samples and verifies candidate actions before forwarding one for execution, while keeping the generator and harness unchanged. With a TMAX-9B generator, more action sampling yields little benefit under weak verification, whereas a capable verifier can exploit useful alternatives from the same generator. On TerminalBench-Lite, a GPT-5.6 Sol verifier raises Pass@1 from 50.00% for the base agent to 68.03% with 8 sampled actions. When the same TMAX-9B model serves as the verifier, pairwise verification performs best among the evaluated verification mechanisms. Distilling responses from the stronger verifier into TMAX-9B further improves Pass@1, while leaving the action generator unchanged. With TMAX-9B on TerminalBench-Lite, combining action and trajectory scaling reaches higher success at lower estimated token cost than generating more trajectories alone. Mid-Harness also improves performance across additional models, benchmarks, and harnesses. These findings identify action scaling as a promising target for test-time compute scaling in terminal agents.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2503.23803",
+   "title": "Thinking Longer, Not Larger: Enhancing Software Engineering Agents via Scaling Test-Time Compute",
+   "published": "2025-03-31",
+   "categories": [
+    "cs.SE",
+    "cs.AI"
+   ],
+   "abstract": "Recent advancements in software engineering agents have demonstrated promising capabilities in automating program improvements. However, their reliance on closed-source or resource-intensive models introduces significant deployment challenges in private environments, prompting a critical question: \\textit{How can personally deployable open-source LLMs achieve comparable code reasoning performance?} To this end, we propose a unified Test-Time Compute scaling framework that leverages increased inference-time computation instead of larger models. Our framework incorporates two complementary strategies: internal TTC and external TTC. Internally, we introduce a \\textit{development-contextualized trajectory synthesis} method leveraging real-world software repositories to bootstrap multi-stage reasoning processes, such as fault localization and patch generation. We further enhance trajectory quality through rejection sampling, rigorously evaluating trajectories along accuracy and complexity. Externally, we propose a novel \\textit{development-process-based search} strategy guided by reward models and execution verification. This approach enables targeted computational allocation at critical development decision points, overcoming limitations of existing \"end-point only\" verification methods. Evaluations on SWE-bench Verified demonstrate our \\textbf{32B model achieves a 46\\% issue resolution rate}, surpassing significantly larger models such as DeepSeek R1 671B and OpenAI o1. Additionally, we provide the empirical validation of the test-time scaling phenomenon within SWE agents, revealing that \\textbf{models dynamically allocate more tokens to increasingly challenging problems}, effectively enhancing reasoning capabilities. We publicly release all training data, models, and code to facilitate future research. https://github.com/yingweima2022/SWE-Reasoner",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2506.01413",
+   "title": "Incentivizing Reasoning for Advanced Instruction-Following of Large Language Models",
+   "published": "2025-06-02",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Existing large language models (LLMs) face challenges of following complex instructions, especially when multiple constraints are present and organized in paralleling, chaining, and branching structures. One intuitive solution, namely chain-of-thought (CoT), is expected to universally improve capabilities of LLMs. However, we find that the vanilla CoT exerts a negative impact on performance due to its superficial reasoning pattern of simply paraphrasing the instructions. It fails to peel back the compositions of constraints for identifying their relationship across hierarchies of types and dimensions. To this end, we propose RAIF, a systematic method to boost LLMs in dealing with complex instructions via incentivizing reasoning for test-time compute scaling. First, we stem from the decomposition of complex instructions under existing taxonomies and propose a reproducible data acquisition method. Second, we exploit reinforcement learning (RL) with verifiable rule-centric reward signals to cultivate reasoning specifically for instruction following. We address the shallow, non-essential nature of reasoning under complex instructions via sample-wise contrast for superior CoT enforcement. We also exploit behavior cloning of experts to facilitate steady distribution shift from fast-thinking LLMs to skillful reasoners. Extensive evaluations on seven comprehensive benchmarks confirm the validity of the proposed method, where a 1.5B LLM achieves 11.74% gains with performance comparable to a 8B LLM. Evaluation on OOD constraints also confirms the generalizability of our RAIF. Codes and data are available at https://github.com/yuleiqin/RAIF. Keywords: reinforcement learning with verifiable rewards (RLVR), instruction following, complex instructions",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2607.11175",
+   "title": "The Path to Self-Evolving Clinical Systems: Scaling Medical Agents from Assistance to Autonomy",
+   "published": "2026-07-13",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The growing ability of large language models and vision-language models to jointly interpret and reason over images and text is reshaping medical imaging AI, moving it from task-specific predictors toward autonomous agents that perceive, reason, plan, remember, and act in clinical environments. This survey departs from the capability-first perspective of existing literature and instead begins from clinical deployment, asking what tasks, contamination-resistant benchmarks, and interactive training environments are required before medical agents can be trusted in practice. Medical agents are formalized as sequential decision-making systems under partial observability, together with a three-level autonomy taxonomy spanning assisted, cooperative, and fully autonomous operation. The field is organized along a unified scaling spine consisting of framework scaling, capability scaling, and environment scaling. Within this framework, clinical environment scaling, the integration of tools, data, and clinical gyms, is identified as the most actionable yet underexplored direction for agents operating in PACS, EHR, and FHIR ecosystems. Clinical self-evolution, where agents improve through interaction with their environments rather than parameter scaling alone, is further positioned as a key research frontier, drawing insights from self-improving agents, agent gyms, and test-time compute scaling. Applications across radiology, pathology, ophthalmology, and hospital workflows are examined together with deployment challenges including hallucination, cascading failures, and fairness. By consolidating more than 300 references, with particular emphasis on advances from 2025 to 2026, this survey provides a roadmap toward trustworthy, self-improving medical imaging systems for real clinical practice.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2503.22732",
+   "title": "Reasoning Beyond Limits: Advances and Open Problems for LLMs",
+   "published": "2025-03-26",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Recent breakthroughs in generative reasoning have fundamentally reshaped how large language models (LLMs) address complex tasks, enabling them to dynamically retrieve, refine, and organize information into coherent multi-step reasoning chains. Techniques such as inference-time scaling, reinforcement learning, supervised fine-tuning, and distillation have been effectively applied to state-of-the-art models, including DeepSeek-R1, OpenAI o1 and o3, GPT-4o, Qwen-32B, and various Llama variants, significantly enhancing their reasoning capabilities. In this paper, we present a comprehensive review of the top 27 LLMs released between 2023 and 2025, such as Mistral AI Small 3 24B, DeepSeek-R1, Search-o1, QwQ-32B, and Phi-4, and analyze their core innovations and performance improvements. We also provide a detailed overview of recent advancements in multilingual large language models (MLLMs), emphasizing methods that improve cross-lingual reasoning and address the limitations of English-centric training. In parallel, we present a comprehensive review of progress in state space model (SSM)-based architectures, including models such as Mamba, which demonstrate improved efficiency for long-context processing compared to transformer-based approaches. Our analysis covers training strategies including general optimization techniques, mixture-of-experts (MoE) configurations, retrieval-augmented generation (RAG), chain-of-thought prompting, self-improvement methods, and test-time compute scaling and distillation frameworks. Finally, we identify key challenges for future research, including enabling multi-step reasoning without human supervision, improving robustness in chained task execution, balancing structured prompting with generative flexibility, and enhancing the integration of long-context retrieval and external tools.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2505.09663",
+   "title": "Analog Foundation Models",
+   "published": "2025-05-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Analog in-memory computing (AIMC) is a promising compute paradigm to improve speed and power efficiency of neural network inference beyond the limits of conventional von Neumann-based architectures. However, AIMC introduces fundamental challenges such as noisy computations and strict constraints on input and output quantization. Because of these constraints and imprecisions, off-the-shelf LLMs are not able to achieve 4-bit-level performance when deployed on AIMC-based hardware. While researchers previously investigated recovering this accuracy gap on small, mostly vision-based models, a generic method applicable to LLMs pre-trained on trillions of tokens does not yet exist. In this work, we introduce a general and scalable method to robustly adapt LLMs for execution on noisy, low-precision analog hardware. Our approach enables state-of-the-art models $\\unicode{x2013}$ including Phi-3-mini-4k-instruct and Llama-3.2-1B-Instruct $\\unicode{x2013}$ to retain performance comparable to 4-bit weight, 8-bit activation baselines, despite the presence of analog noise and quantization constraints. Additionally, we show that as a byproduct of our training methodology, analog foundation models can be quantized for inference on low-precision digital hardware. Finally, we show that our models also benefit from test-time compute scaling, showing better scaling behavior than models trained with 4-bit weight and 8-bit static input quantization. Our work bridges the gap between high-capacity LLMs and efficient analog hardware, offering a path toward energy-efficient foundation models. Code is available at https://github.com/IBM/analog-foundation-models.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2511.01082",
+   "title": "GeoToken: Hierarchical Geolocalization of Images via Next Token Prediction",
+   "published": "2025-11-02",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Image geolocalization, the task of determining an image's geographic origin, poses significant challenges, largely due to visual similarities across disparate locations and the large search space. To address these issues, we propose a hierarchical sequence prediction approach inspired by how humans narrow down locations from broad regions to specific addresses. Analogously, our model predicts geographic tokens hierarchically, first identifying a general region and then sequentially refining predictions to increasingly precise locations. Rather than relying on explicit semantic partitions, our method uses S2 cells, a nested, multiresolution global grid, and sequentially predicts finer-level cells conditioned on visual inputs and previous predictions. This procedure mirrors autoregressive text generation in large language models. Much like in language modeling, final performance depends not only on training but also on inference-time strategy. We investigate multiple top-down traversal methods for autoregressive sampling, incorporating techniques from test-time compute scaling used in language models. Specifically, we integrate beam search and multi-sample inference while exploring various selection strategies to determine the final output. This enables the model to manage uncertainty by exploring multiple plausible paths through the hierarchy. We evaluate our method on the Im2GPS3k and YFCC4k datasets against two distinct sets of baselines: those that operate without a Multimodal Large Language Model (MLLM) and those that leverage one. In the MLLM-free setting, our model surpasses other comparable baselines on nearly all metrics, achieving state-of-the-art performance with accuracy gains of up to 13.9%. When augmented with an MLLM, our model outperforms all baselines, setting a new state-of-the-art across all metrics. The source code is available at https://github.com/NNargesNN/GeoToken.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2604.11465",
+   "title": "Three Roles, One Model: Role Orchestration at Inference Time to Close the Performance Gap Between Small and Large Agents",
+   "published": "2026-04-13",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large language model (LLM) agents show promise on realistic tool-use tasks, but deploying capable agents on modest hardware remains challenging. We study whether inference-time scaffolding alone, without any additional training compute, can improve the performance of a small model in complex multi-step environments. Operating on a single 24GB GPU, we evaluate Qwen3-8B on the AppWorld benchmark under both full-precision and 4-bit quantized configurations. Without any intervention, the raw model achieves just 5.4% (FP16) and 3.0% (AWQ) task goal completion. Guided by a systematic failure mode analysis, we introduce a three-tier inference scaffolding pipeline that deploys the same frozen model in three distinct roles: (1) a summarization model that preserves critical artifacts (tokens, credentials, API responses) while compressing dialogue history; (2) the main agent model that reasons over the compressed context; and (3) an isolated correction model that reviews and revises the agent's code output without access to conversation history, breaking repetitive failure loops. Applied to the same unmodified model, this scaffolding yields 8.9% (FP16) and 5.9% (AWQ) task goal completion, roughly doubling performance in both settings, with particularly strong gains on difficulty-1 tasks (15.8% to 26.3% FP16; 5.3% to 14.0% AWQ). On full-precision inference, our scaffolded 8B model surpasses DeepSeek-Coder 33B Instruct (7.1%) from the original AppWorld evaluation, demonstrating that structured inference-time interventions can make small models competitive with systems 4 times their size. We formalize the approach as a scaffolded policy over a frozen base model, three invocations of the same weights with different conditioning, drawing connections to test-time compute scaling and action-space shaping in reinforcement learning.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2610.20057",
+   "title": "Beyond Correctness: Compute-Responsive Data Selection for Reasoning Model Post-Training",
+   "published": "2026-10-14",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reasoning language models increasingly rely on test-time compute scaling, yet most existing work studies how to allocate inference computation while treating the model itself as fixed. We ask a complementary question: can reasoning models be post-trained to make better use of a given amount of test-time compute, and which examples are most useful for this goal? Our key observation is that reasoning problems differ substantially in their response to additional computation. Some are already solved under limited compute, others remain unresolved even after further reasoning, while a distinct subset changes from complete initial failure to success when additional reasoning is provided. We call these compute-responsive (CR) examples and introduce Compute-Responsive Data Selection (CRDS), a post-training data-selection principle that prioritizes examples with empirically demonstrated marginal utility from additional reasoning. On Qwen3-8B, SFT on CR examples recovers 45.3\\% of held-out low-compute failures, compared with 40.6\\% when training on already-solved examples. The advantage extends beyond the selected CR split: SFT-CR reaches 51.8\\% overall accuracy on an independently sampled test distribution, with the gain concentrated on compute-responsive problems. CR training also shifts the compute--accuracy frontier across inference budgets from 512 to 4,096 tokens, outperforming matched non-CR training throughout and reaching 48.1\\% recovery at the largest budget. The same pattern is supported across multiple data sources, remains visible under on-policy distillation, and extends to Llama-3.1-8B-Instruct when CR sets are reconstructed separately for that model. Better test-time compute utilization can therefore be learned through post-training, with recoverable responses to additional reasoning providing a particularly informative signal for selecting training examples.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2605.13986",
+   "title": "TabPFN-3: Technical Report",
+   "published": "2026-05-13",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Tabular data underpins most high-value prediction problems in science and industry, and TabPFN has driven the foundation model revolution for this modality. Designed with feedback from our users, TabPFN-3 builds on this foundation to scale state-of-the-art performance to datasets with 1M training rows and substantially reduce training and inference time. Pretrained exclusively on synthetic data from our prior, TabPFN-3 dramatically pushes the frontier of tabular prediction and brings substantial gains on time series, relational, and tabular-text data. On the standard tabular benchmark TabArena, a forward pass of TabPFN-3 outperforms all other models, including tuned and ensembled baselines, by a significant margin, and pareto-dominates the speed/performance frontier. On more diverse datasets, TabPFN-3 ranks first on datasets with many classes, and beats 8-hour-tuned gradient-boosted-tree baselines on datasets up to 1M training rows and 200 features. TabPFN-3 introduces test-time compute scaling to tabular foundation models. Our API offering TabPFN-3-Plus (Thinking) exploits this to beat all non-TabPFN models by over 200 Elo on TabArena, rising to 420 Elo on the largest data subset, and outperforms AutoGluon 1.5 extreme while being 10x faster, without using LLMs, real data, internet search or any other model besides TabPFN. TabPFN-3 extends the capabilities of our models, enabling SOTA prediction on relational data (new SOTA foundation model on RelBenchV1) and tabular-text data (SOTA on TabSTAR via TabPFN-3-Plus); and improves existing integrations: a specialized checkpoint, TabPFN-TS-3, ranks 2nd on the time-series benchmark fev-bench, and SHAP-value computation is up to 120x faster. TabPFN-3 achieves this performance while being up to 20x faster than TabPFN-2.5. In addition, a reduced KV cache and row-chunking scale to 1M rows on one H100 with fast inference speed.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2608.26556",
+   "title": "Dynamical phase selection controls compute scaling in looped transformers",
+   "published": "2026-08-27",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cond-mat.stat-mech",
+    "cs.LG"
+   ],
+   "abstract": "A looped transformer performs inference by iterating a weight-tied map, making its computation a dynamical process whose cost is set by the resulting inference dynamics. Here we show that networks with identical architecture and objective, trained to identical accuracy, nevertheless realize distinct dynamical phases depending strongly on initialization, and that the bifurcation defining each phase determines how test-time compute scales. The phases are distinguished by their bifurcation mechanisms, including a saddle-node fold and a Neimark-Sacker-type transition to bounded nonstationary motion. In the fold phase, a one-dimensional normal-form reduction predicts both the relaxation-time and spectral-gap amplitudes from local derivatives of the trained map, yielding the parameter-free relation $τ(\\varepsilon)[1-λ_{\\max}(-\\varepsilon)]\\toπ$. Composed with a regular distribution of problem difficulty, the same critical slowing down produces the workload-level tail $P(τ>N)\\sim N^{-2}$. In the Neimark--Sacker phase, the fold scaling law disappears rather than merely changing its prefactor. Thus, test-time compute is not determined by architecture alone. It is governed by the dynamical phase of the solution found by training.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2601.22786",
+   "title": "Toward IIT-Inspired Consciousness in LLMs: A Reward-Based Learning Framework",
+   "published": "2026-01-30",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The pursuit of Artificial General Intelligence (AGI) is a central goal in language model development, in which consciousness-like processing could serve as a key facilitator. While current language models are not conscious, they exhibit behaviors analogous to certain aspects of consciousness. This paper investigates the implementation of a leading theory of consciousness, Integrated Information Theory (IIT), within language models via a reward-based learning paradigm. IIT provides a formal, axiom-based mathematical framework for quantifying consciousness. Drawing inspiration from its core principles, we formulate a novel reward function that quantifies a text's causality, coherence and integration, characteristics associated with conscious processing. Empirically, it is found that optimizing for this IIT-inspired reward leads to more concise text generation. On out of domain tasks, careful tuning achieves up to a 31% reduction in output length while preserving accuracy levels comparable to the base model. In addition to primary task performance, the broader effects of this training methodology on the model's confidence calibration and test-time computational scaling is analyzed. The proposed framework offers significant practical advantages: it is conceptually simple, computationally efficient, requires no external data or auxiliary models, and leverages a general, capability-driven signal rather than task-specific heuristics. Code available at https://github.com/MH-Sameti/LLM_PostTraining.git",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2504.00810",
+   "title": "Z1: Efficient Test-time Scaling with Code",
+   "published": "2025-04-01",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) can achieve enhanced complex problem-solving through test-time computing scaling, yet this often entails longer contexts and numerous reasoning token costs. In this paper, we propose an efficient test-time scaling method that trains LLMs on code-related reasoning trajectories, facilitating their reduction of excess thinking tokens while maintaining performance. First, we create Z1-Code-Reasoning-107K, a curated dataset of simple and complex coding problems paired with their short and long solution trajectories. Second, we present a novel Shifted Thinking Window to mitigate overthinking overhead by removing context-delimiting tags (e.g., <think>. . . </think>) and capping reasoning tokens. Trained with long and short trajectory data and equipped with Shifted Thinking Window, our model, Z1-7B, demonstrates the ability to adjust its reasoning level as the complexity of problems and exhibits efficient test-time scaling across different reasoning tasks that matches R1-Distill-Qwen-7B performance with about 30% of its average thinking tokens. Notably, fine-tuned with only code trajectories, Z1-7B demonstrates generalization to broader reasoning tasks (47.5% on GPQA Diamond). Our analysis of efficient reasoning elicitation also provides valuable insights for future research.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2505.22960",
+   "title": "Revisiting Multi-Agent Debate as Test-Time Scaling: A Systematic Study of Conditional Effectiveness",
+   "published": "2025-05-29",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "The remarkable growth in large language model (LLM) capabilities has spurred exploration into multi-agent systems, with debate frameworks emerging as a promising avenue for enhanced problem-solving. These multi-agent debate (MAD) approaches, where agents collaboratively present, critique, and refine arguments, potentially offer improved reasoning, robustness, and diverse perspectives over monolithic models. Despite prior studies leveraging MAD, a systematic understanding of its effectiveness compared to self-agent methods, particularly under varying conditions, remains elusive. This paper seeks to fill this gap by conceptualizing MAD as a test-time computational scaling technique, distinguished by collaborative refinement and diverse exploration capabilities. We conduct a comprehensive empirical investigation comparing MAD with strong self-agent test-time scaling baselines on mathematical reasoning and safety-related tasks. Our study systematically examines the influence of task difficulty, model scale, and agent diversity on MAD's performance. Key findings reveal that, for mathematical reasoning, MAD offers limited advantages over self-agent scaling but becomes more effective with increased problem difficulty and decreased model capability, while agent diversity shows little benefit. Conversely, for safety tasks, MAD's collaborative refinement can increase vulnerability, but incorporating diverse agent configurations facilitates a gradual reduction in attack success through the collaborative refinement process. We believe our findings provide critical guidance for the future development of more effective and strategically deployed MAD systems.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2511.21185",
+   "title": "Progress by Pieces: Test-Time Scaling for Autoregressive Image Generation",
+   "published": "2025-11-26",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Recent visual autoregressive (AR) models have shown promising capabilities in text-to-image generation, operating in a manner similar to large language models. While test-time computation scaling has brought remarkable success in enabling reasoning-enhanced outputs for challenging natural language tasks, its adaptation to visual AR models remains unexplored and poses unique challenges. Naively applying test-time scaling strategies such as Best-of-N can be suboptimal: they consume full-length computation on erroneous generation trajectories, while the raster-scan decoding scheme lacks a blueprint of the entire canvas, limiting scaling benefits as only a few prompt-aligned candidates are generated. To address these, we introduce GridAR, a test-time scaling framework designed to elicit the best possible results from visual AR models. GridAR employs a grid-partitioned progressive generation scheme in which multiple partial candidates for the same position are generated within a canvas, infeasible ones are pruned early, and viable ones are fixed as anchors to guide subsequent decoding. Coupled with this, we present a layout-specified prompt reformulation strategy that inspects partial views to infer a feasible layout for satisfying the prompt. The reformulated prompt then guides subsequent image generation to mitigate the blueprint deficiency. Together, GridAR achieves higher-quality results under limited test-time scaling: with N=4, it even outperforms Best-of-N (N=8) by 14.4% on T2I-CompBench++ while reducing cost by 25.6%. It also generalizes to autoregressive image editing, showing comparable edit quality and a 13.9% gain in semantic preservation on PIE-Bench over larger-N baselines.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2607.28997",
+   "title": "Think2Go: Generative Next POI Recommendation with LLM Reasoning",
+   "published": "2026-07-31",
+   "categories": [
+    "cs.IR"
+   ],
+   "abstract": "Next Point-of-Interest (POI) recommendation task focuses on mining user behavioral preference patterns from historical check-ins to provide personalized suggestions for the next destination. Existing methods primarily rely on shallow contextual information and handcrafted feature interactions to predict the next POI. However, the inherent sparsity and complexity of user mobility patterns limit the computational capacity of non-reasoning models to capture deep intent, while large language models (LLMs) perform suboptimally because they lack a deep understanding of semantic IDs (SIDs) when SIDs are trained separately. To address these limitations, we propose Think2Go, a novel generative next POI recommendation framework, which enhances the model's comprehension of SID representations and explores diverse spatial-temporal patterns via test-time computational scaling. We unify supervised fine-tuning (SFT) and reinforcement learning (RL)-based reasoning within a single architecture, enabling joint optimization of memorization and adaptive reasoning to better retain user behavior patterns while exploring diverse user preferences. To further calibrate policy optimization in adaptive reasoning, we propose two advantage weighting mechanisms that integrate (1) prompt epistemic uncertainty, estimated via kernel density methods to assess the spatial-temporal periodic pattern alignment between queries and user history, promoting increased exploration under high epistemic uncertainty; and (2) reward-informed advantage scaling, captured by normalizing rewards against their maxima to adapt update magnitudes, thereby improving training stability and mitigating overfitting to noisy signals. This joint calibration forms an implicit curriculum learning strategy, delivering fine-grained, instance-aware policy updates that prevent entropy collapse and support robust exploration.",
+   "query": "test-time compute scaling"
+  },
+  {
+   "id": "2503.05788",
+   "title": "Emergent Abilities in Large Language Models: A Survey",
+   "published": "2025-02-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) are leading a new technological revolution as one of the most promising research streams toward artificial general intelligence. The scaling of these models, accomplished by increasing the number of parameters and the magnitude of the training datasets, has been linked to various so-called emergent abilities that were previously unobserved. These emergent abilities, ranging from advanced reasoning and in-context learning to coding and problem-solving, have sparked an intense scientific debate: Are they truly emergent, or do they simply depend on external factors, such as training dynamics, the type of problems, or the chosen metric? What underlying mechanism causes them? Despite their transformative potential, emergent abilities remain poorly understood, leading to misconceptions about their definition, nature, predictability, and implications. In this work, we shed light on emergent abilities by conducting a comprehensive review of the phenomenon, addressing both its scientific underpinnings and real-world consequences. We first critically analyze existing definitions, exposing inconsistencies in conceptualizing emergent abilities. We then explore the conditions under which these abilities appear, evaluating the role of scaling laws, task complexity, pre-training loss, quantization, and prompting strategies. Our review extends beyond traditional LLMs and includes Large Reasoning Models (LRMs), which leverage reinforcement learning and inference-time search to amplify reasoning and self-reflection. However, emergence is not inherently positive. As AI systems gain autonomous reasoning capabilities, they also develop harmful behaviors, including deception, manipulation, and reward hacking. We highlight growing concerns about safety and governance, emphasizing the need for better evaluation frameworks and regulatory oversight.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2601.07239",
+   "title": "Stochastic CHAOS: Why Deterministic Inference Kills, and Distributional Variability Is the Heartbeat of Artifical Cognition",
+   "published": "2026-01-12",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Deterministic inference is a comforting ideal in classical software: the same program on the same input should always produce the same output. As large language models move into real-world deployment, this ideal has been imported wholesale into inference stacks. Recent work from the Thinking Machines Lab has presented a detailed analysis of nondeterminism in LLM inference, showing how batch-invariant kernels and deterministic attention can enforce bitwise-identical outputs, positioning deterministic inference as a prerequisite for reproducibility and enterprise reliability. In this paper, we take the opposite stance. We argue that, for LLMs, deterministic inference kills. It kills the ability to model uncertainty, suppresses emergent abilities, collapses reasoning into a single brittle path, and weakens safety alignment by hiding tail risks. LLMs implement conditional distributions over outputs, not fixed functions. Collapsing these distributions to a single canonical completion may appear reassuring, but it systematically conceals properties central to artificial cognition. We instead advocate Stochastic CHAOS, treating distributional variability as a signal to be measured and controlled. Empirically, we show that deterministic inference is systematically misleading. Single-sample deterministic evaluation underestimates both capability and fragility, masking failure probability under paraphrases and noise. Phase-like transitions associated with emergent abilities disappear under greedy decoding. Multi-path reasoning degrades when forced onto deterministic backbones, reducing accuracy and diagnostic insight. Finally, deterministic evaluation underestimates safety risk by hiding rare but dangerous behaviors that appear only under multi-sample evaluation.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2501.04040",
+   "title": "A Survey on Large Language Models with some Insights on their Capabilities and Limitations",
+   "published": "2025-01-03",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG",
+    "cs.NE"
+   ],
+   "abstract": "The rapid advancement of artificial intelligence, particularly with the development of Large Language Models (LLMs) built on the transformer architecture, has redefined the capabilities of natural language processing. These models now exhibit remarkable performance across various language-related tasks, such as text generation, question answering, translation, and summarization, often rivaling human-like comprehension. More intriguingly, LLMs have demonstrated emergent abilities extending beyond their core functions, showing proficiency in tasks like commonsense reasoning, code generation, and arithmetic. This survey paper explores the foundational components, scaling mechanisms, and architectural strategies that drive these capabilities. Emphasizing models like GPT and LLaMA, we analyze the impact of exponential data and computational growth on LLM performance, while also addressing the trade-offs associated with scaling. We also examine LLM applications across sectors, such as healthcare, finance, education, and law, highlighting their adaptability and potential to solve domain-specific challenges. Central to this work are the questions of how LLMs generalize across diverse tasks, exhibit planning, and reasoning abilities, and whether these emergent abilities can be systematically elicited or enhanced. In particular, we provide some insights into the CoT (Chain of Thought) and PoT (Plan of Thought) abilities within LLMs, focusing on how pre-training data influences their emergence. Additionally, we investigate LLM-modulo frameworks that integrate external systems, allowing LLMs to handle complex, dynamic tasks. By analyzing these factors, this paper aims to foster the ongoing discussion on the capabilities and limits of LLMs, promoting their responsible development and application in novel and increasingly complex environments.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2506.02996",
+   "title": "Linear Spatial World Models Emerge in Large Language Models",
+   "published": "2025-06-03",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) have demonstrated emergent abilities across diverse tasks, raising the question of whether they acquire internal world models. In this work, we investigate whether LLMs implicitly encode linear spatial world models, which we define as linear representations of physical space and object configurations. We introduce a formal framework for spatial world models and assess whether such structure emerges in contextual embeddings. Using a synthetic dataset of object positions, we train probes to decode object positions and evaluate geometric consistency of the underlying space. We further conduct causal interventions to test whether these spatial representations are functionally used by the model. Our results provide empirical evidence that LLMs encode linear spatial world models.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2501.05712",
+   "title": "Multi-Step Reasoning in Korean and the Emergent Mirage",
+   "published": "2025-01-10",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "We introduce HRMCR (HAE-RAE Multi-Step Commonsense Reasoning), a benchmark designed to evaluate large language models' ability to perform multi-step reasoning in culturally specific contexts, focusing on Korean. The questions are automatically generated via templates and algorithms, requiring LLMs to integrate Korean cultural knowledge into sequential reasoning steps. Consistent with prior observations on emergent abilities, our experiments reveal that models trained on fewer than \\(2 \\cdot 10^{25}\\) training FLOPs struggle to solve any questions, showing near-zero performance. Beyond this threshold, performance improves sharply. State-of-the-art models (e.g., O1) still score under 50\\%, underscoring the difficulty of our tasks. Notably, stepwise analysis suggests the observed emergent behavior may stem from compounding errors across multiple steps rather than reflecting a genuinely new capability. We publicly release the benchmark and commit to regularly updating the dataset to prevent contamination.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.13214",
+   "title": "Too Easily Fooled? Prompt Injection Breaks LLMs on Frustratingly Simple Multiple-Choice Questions",
+   "published": "2025-08-16",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) have recently demonstrated strong emergent abilities in complex reasoning and zero-shot generalization, showing unprecedented potential for LLM-as-a-judge applications in education, peer review, and data quality evaluation. However, their robustness under prompt injection attacks, where malicious instructions are embedded into the content to manipulate outputs, remains a significant concern. In this work, we explore a frustratingly simple yet effective attack setting to test whether LLMs can be easily misled. Specifically, we evaluate LLMs on basic arithmetic questions (e.g., \"What is 3 + 2?\") presented as either multiple-choice or true-false judgment problems within PDF files, where hidden prompts are injected into the file. Our results reveal that LLMs are indeed vulnerable to such hidden prompt injection attacks, even in these trivial scenarios, highlighting serious robustness risks for LLM-as-a-judge applications.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.13603",
+   "title": "Who Gets the Mic? Investigating Gender Bias in the Speaker Assignment of a Speech-LLM",
+   "published": "2025-08-19",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Similar to text-based Large Language Models (LLMs), Speech-LLMs exhibit emergent abilities and context awareness. However, whether these similarities extend to gender bias remains an open question. This study proposes a methodology leveraging speaker assignment as an analytic tool for bias investigation. Unlike text-based models, which encode gendered associations implicitly, Speech-LLMs must produce a gendered voice, making speaker selection an explicit bias cue. We evaluate Bark, a Text-to-Speech (TTS) model, analyzing its default speaker assignments for textual prompts. If Bark's speaker selection systematically aligns with gendered associations, it may reveal patterns in its training data or model design. To test this, we construct two datasets: (i) Professions, containing gender-stereotyped occupations, and (ii) Gender-Colored Words, featuring gendered connotations. While Bark does not exhibit systematic bias, it demonstrates gender awareness and has some gender inclinations.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2506.13044",
+   "title": "Just Go Parallel: Improving the Multilingual Capabilities of Large Language Models",
+   "published": "2025-06-16",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) have demonstrated impressive translation capabilities even without being explicitly trained on parallel data. This remarkable property has led some to believe that parallel data is no longer necessary for building multilingual language models. While some attribute this to the emergent abilities of LLMs due to scale, recent work suggests that it is actually caused by incidental bilingual signals present in the training data. Various methods have been proposed to maximize the utility of parallel data to enhance the multilingual capabilities of multilingual encoder-based and encoder-decoder language models. However, some decoder-based LLMs opt to ignore parallel data instead. In this work, we conduct a systematic study on the impact of adding parallel data on LLMs' multilingual capabilities, focusing specifically on translation and multilingual common-sense reasoning. Through controlled experiments, we demonstrate that parallel data can significantly improve LLMs' multilingual capabilities.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2507.15758",
+   "title": "LAPO: Internalizing Reasoning Efficiency via Length-Adaptive Policy Optimization",
+   "published": "2025-07-21",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large reasoning models have achieved remarkable performance through extended chain-of-thought sequences, yet this computational freedom leads to excessive token generation even for simple problems. We present Length-Adaptive Policy Optimization (LAPO), a novel framework that transforms reasoning length control from an external constraint into an intrinsic model capability. Unlike existing approaches that impose rigid limits or rely on post-hoc interventions, LAPO enables models to internalize an understanding of appropriate reasoning depth through a two-stage reinforcement learning process. In the first stage, models learn natural reasoning patterns by discovering the statistical distribution of successful solution lengths. The second stage leverages these patterns as meta-cognitive guidance, embedding them directly within the model's reasoning context to ensure inference-time flexibility. Experiments on mathematical reasoning benchmarks demonstrate that LAPO reduces token usage by up to 40.9% while improving accuracy by 2.3%. Our analysis reveals that models trained with LAPO develop emergent abilities to allocate computational resources based on problem complexity, achieving efficient reasoning without sacrificing quality.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2510.20822",
+   "title": "HoloCine: Holistic Generation of Cinematic Multi-Shot Long Video Narratives",
+   "published": "2025-10-23",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "State-of-the-art text-to-video models excel at generating isolated clips but fall short of creating the coherent, multi-shot narratives, which are the essence of storytelling. We bridge this \"narrative gap\" with HoloCine, a model that generates entire scenes holistically to ensure global consistency from the first shot to the last. Our architecture achieves precise directorial control through a Window Cross-Attention mechanism that localizes text prompts to specific shots, while a Sparse Inter-Shot Self-Attention pattern (dense within shots but sparse between them) ensures the efficiency required for minute-scale generation. Beyond setting a new state-of-the-art in narrative coherence, HoloCine develops remarkable emergent abilities: a persistent memory for characters and scenes, and an intuitive grasp of cinematic techniques. Our work marks a pivotal shift from clip synthesis towards automated filmmaking, making end-to-end cinematic creation a tangible future. Our code is available at: https://holo-cine.github.io/.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2506.14098",
+   "title": "Toward a Graph Foundation Model: Pre-Training Transformers With Random Walks",
+   "published": "2025-06-17",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "A foundation model like GPT elicits many emergent abilities, owing to the pre-training with broad inclusion of data and the use of the powerful Transformer architecture. While foundation models in natural languages are prevalent, can we build similar models for graphs? This paper describes an approach toward a graph foundation model that is pre-trained with diverse graph datasets by adapting the Transformer backbone. A central challenge toward this end is how a sequence model encodes graphs of varying sizes and from different domains. We propose representing a node as multiple random walks, such that the Transformer can extract node representations from sequences, which in turn form edge and graph representations. We develop a novel context prediction loss for these random walks and theoretically analyze their expressive power in distinguishing neighborhoods and graphs. We also demonstrate the pre-training of our model and its adaptation to downstream tasks, showcasing its potential as a foundation for processing and reasoning with graph-structured data.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2505.07731",
+   "title": "Spoken Language Understanding on Unseen Tasks With In-Context Learning",
+   "published": "2025-05-12",
+   "categories": [
+    "cs.CL",
+    "cs.LG",
+    "eess.AS"
+   ],
+   "abstract": "Spoken language understanding (SLU) tasks involve diverse skills that probe the information extraction, classification and/or generation capabilities of models. In this setting, task-specific training data may not always be available. While traditional task-specific SLU models are unable to cater to such requirements, the speech-text large language models (LLMs) offer a promising alternative with emergent abilities. However, out of-the-box, our evaluations indicate that the zero/few-shot performance of prominent open-source speech-text LLMs on SLU tasks are not up to the mark. In this paper, we introduce a novel approach to robust task-agnostic fine-tuning using randomized class labels. With this proposed fine-tuning, we illustrate that the performance of the speech-text LLMs on an unseen task is significantly improved over standard approaches. Critically, the proposed approach avoids the requirement of task-specific data annotations for enabling new tasks in speech-text LLMs.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2610.27789",
+   "title": "Foundations of the Scaling Law",
+   "published": "2026-10-20",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Empirical scaling laws relate loss to parameters $N$, training tokens $D$ and compute $C$. This technical note explains three mechanisms behind their exponents. Local approximation bounds function error at rate $N_e^{-γs/d}$, with effective parameters $N_e$, smoothness $s$, reuse exponent $γ$ and dimension $d$; the loss function determines the risk bound. Independent feature coverage gives $α_D=(β-1)/ζ$ from predictive-weight decay $β$ and occurrence rarity $ζ$. Separable-loss optimization determines training allocations and deployment crossovers. Nonlinear scoring can produce apparent emergent abilities, while grokking concerns delayed generalization and verification constrains test-time scaling. For regular molecular configurations, the $\\mathrm{SE}(3)$ quotient gives $d_{\\mathrm{int}}=d-6$ and relative approximation-exponent gain $6/d_{\\mathrm{int}}$. Optimized dense-to-equivariant excess-loss ratios scale as $C^{p_{\\mathrm{eq}}-p_{\\mathrm{dense}}}$, where $p_j$ are compute-loss exponents and the prefactor depends on loss amplitudes and FLOP costs. Domain examples also cover visual resolution, conformational coverage and correlated-sample precision.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.04848",
+   "title": "Three tiers of computation in transformers and in brain architectures",
+   "published": "2025-03-05",
+   "categories": [
+    "cs.CL",
+    "cs.NE",
+    "q-bio.NC"
+   ],
+   "abstract": "Human language and logic abilities are computationally quantified within the well-studied grammar-automata hierarchy. We identify three hierarchical tiers and two corresponding transitions and show their correspondence to specific abilities in transformer-based language models (LMs). These emergent abilities have often been described in terms of scaling; we show that it is the transition between tiers, rather than scaled size itself, that determines a system's capabilities. Specifically, humans effortlessly process language yet require critical training to perform arithmetic or logical reasoning tasks; and LMs possess language abilities absent from predecessor systems, yet still struggle with logical processing. We submit a novel benchmark of computational power, provide empirical evaluations of humans and fifteen LMs, and, most significantly, provide a theoretically grounded framework to promote careful thinking about these crucial topics. The resulting principled analyses provide explanatory accounts of the abilities and shortfalls of LMs, and suggest actionable insights into the expansion of their logic abilities.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2507.15357",
+   "title": "Metaphor and Large Language Models: When Surface Features Matter More than Deep Understanding",
+   "published": "2025-07-21",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "This paper presents a comprehensive evaluation of the capabilities of Large Language Models (LLMs) in metaphor interpretation across multiple datasets, tasks, and prompt configurations. Although metaphor processing has gained significant attention in Natural Language Processing (NLP), previous research has been limited to single-dataset evaluations and specific task settings, often using artificially constructed data through lexical replacement. We address these limitations by conducting extensive experiments using diverse publicly available datasets with inference and metaphor annotations, focusing on Natural Language Inference (NLI) and Question Answering (QA) tasks. The results indicate that LLMs' performance is more influenced by features like lexical overlap and sentence length than by metaphorical content, demonstrating that any alleged emergent abilities of LLMs to understand metaphorical language are the result of a combination of surface-level features, in-context learning, and linguistic knowledge. This work provides critical insights into the current capabilities and limitations of LLMs in processing figurative language, highlighting the need for more realistic evaluation frameworks in metaphor interpretation tasks. Data and code are publicly available.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2602.01687",
+   "title": "Functional Subspace, where language models can use vector algebra to solve problems",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) were invented for natural language tasks such as translation, but they have proved that they can perform highly complex functions across domains. Additionally, they have been thought to develop new skills without being trained on them. These learning capabilities lead to LLMs adoption in a wide range of domains. Thus, it is imperative that we understand their operating mechanisms and limitations for proper diagnostics and repair. The earlier studies proposed that high level concepts are encoded as linear directions in LLMs activation space and that the geometry of embeddings have semantic meanings. Inspired by these studies, we hypothesize that LLMs may use subspaces and vector algebra in subspaces to perform tasks. To address this hypothesis, we analyze LLMs' functional modules and residual streams collected from LLMs engaging in in-context learning (ICL), one of the emergent abilities. Our analyses suggest that 1) LLMs can create subspaces, where evidence can be accumulated and 2) ICL tasks can be solved via simple algebraic operations in subspaces.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.17291",
+   "title": "Meta-R1: Empowering Large Reasoning Models with Metacognition",
+   "published": "2025-08-24",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large Reasoning Models (LRMs) demonstrate remarkable capabilities on complex tasks, exhibiting emergent, human-like thinking patterns. Despite their advances, we identify a fundamental limitation: current LRMs lack a dedicated meta-level cognitive system-an essential faculty in human cognition that enables \"thinking about thinking\". This absence leaves their emergent abilities uncontrollable (non-adaptive reasoning), unreliable (intermediate error), and inflexible (lack of a clear methodology). To address this gap, we introduce Meta-R1, a systematic and generic framework that endows LRMs with explicit metacognitive capabilities. Drawing on principles from cognitive science, Meta-R1 decomposes the reasoning process into distinct object-level and meta-level components, orchestrating proactive planning, online regulation, and adaptive early stopping within a cascaded framework. Experiments on three challenging benchmarks and against eight competitive baselines demonstrate that Meta-R1 is: (I) high-performing, surpassing state-of-the-art methods by up to 27.3%; (II) token-efficient, reducing token consumption to 15.7% ~ 32.7% and improving efficiency by up to 14.8% when compared to its vanilla counterparts; and (III) transferable, maintaining robust performance across datasets and model backbones.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.15841",
+   "title": "A Review of Developmental Interpretability in Large Language Models",
+   "published": "2025-08-19",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "This review synthesizes the nascent but critical field of developmental interpretability for Large Language Models. We chart the field's evolution from static, post-hoc analysis of trained models to a dynamic investigation of the training process itself. We begin by surveying the foundational methodologies, including representational probing, causal tracing, and circuit analysis, that enable researchers to deconstruct the learning process. The core of this review examines the developmental arc of LLM capabilities, detailing key findings on the formation and composition of computational circuits, the biphasic nature of knowledge acquisition, the transient dynamics of learning strategies like in-context learning, and the phenomenon of emergent abilities as phase transitions in training. We explore illuminating parallels with human cognitive and linguistic development, which provide valuable conceptual frameworks for understanding LLM learning. Finally, we argue that this developmental perspective is not merely an academic exercise but a cornerstone of proactive AI safety, offering a pathway to predict, monitor, and align the processes by which models acquire their capabilities. We conclude by outlining the grand challenges facing the field, such as scalability and automation, and propose a research agenda for building more transparent, reliable, and beneficial AI systems.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.17763",
+   "title": "Lifelong Evolution of Swarms",
+   "published": "2025-03-22",
+   "categories": [
+    "cs.NE",
+    "cs.AI"
+   ],
+   "abstract": "Adapting to task changes without forgetting previous knowledge is a key skill for intelligent systems, and a crucial aspect of lifelong learning. Swarm controllers, however, are typically designed for specific tasks, lacking the ability to retain knowledge across changing tasks. Lifelong learning, on the other hand, focuses on individual agents with limited insights into the emergent abilities of a collective like a swarm. To address this gap, we introduce a lifelong evolutionary framework for swarms, where a population of swarm controllers is evolved in a dynamic environment that incrementally presents novel tasks. This requires evolution to find controllers that quickly adapt to new tasks while retaining knowledge of previous ones, as they may reappear in the future. We discover that the population inherently preserves information about previous tasks, and it can reuse it to foster adaptation and mitigate forgetting. In contrast, the top-performing individual for a given task catastrophically forgets previous tasks. To mitigate this phenomenon, we design a regularization process for the evolutionary algorithm, reducing forgetting in top-performing individuals. Evolving swarms in a lifelong fashion raises fundamental questions on the current state of deep lifelong learning and on the robustness of swarm controllers in dynamic environments.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2603.00166",
+   "title": "Exploring the AI Obedience: Why is Generating a Pure Color Image Harder than CyberPunk?",
+   "published": "2026-02-26",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in generative AI have shown human-level performance in complex content creation. However, we identify a \"Paradox of Simplicity\": models that can render complex scenes often fail at trivial, low-entropy tasks, such as generating a uniform pure color image. We argue this is a systemic failure related to uncontrollable emergent abilities. As models scale, strong priors for aesthetics and complexity override deterministic simplicity, creating an \"aesthetic bias\" that hinders the model's transition from data simulation to true intellectual abstraction. To better investigate this problem, we formalize the concept of AI Obedience, a hierarchical framework that grades a model's ability to transition from probabilistic approximation to pixel-level determinism (Levels 1 to 5). We introduce Violin, the first systematic benchmark designed to evaluate Level 4 Obedience through three deterministic tasks: color purity, image masking, and geometric shape generation. Using Violin, we evaluate several state-of-the-art models and reveal that closed-source models generally outperform open-source ones in deterministic precision. Interestingly, performance on our benchmark correlates with the benchmark in natural image generation. Our work provides a foundational framework and tools for achieving better alignment between human instructions and model outputs.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2502.10373",
+   "title": "OWLS: Scaling Laws for Multilingual Speech Recognition and Translation Models",
+   "published": "2025-02-14",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG",
+    "eess.AS"
+   ],
+   "abstract": "Neural scaling laws offer valuable insights for designing robust sequence processing architectures. While these laws have been extensively characterized in other modalities, their behavior in speech remains comparatively underexplored. In this work, we introduce OWLS, an open-access, reproducible suite of multilingual speech recognition and translation models spanning 0.25B to 18B parameters, with the 18B version being the largest speech model, to the best of our knowledge. OWLS leverages up to 360K hours of public speech data across 150 languages, enabling a systematic investigation into how data, model, and compute scaling each influence performance in multilingual speech tasks. We use OWLS to derive neural scaling laws, showing how final performance can be reliably predicted when scaling. One of our key findings is that scaling enhances performance on low-resource languages/dialects, helping to mitigate bias and improve the accessibility of speech technologies. Finally, we show how OWLS can be used to power new research directions by discovering emergent abilities in large-scale speech models. Model checkpoints will be released on https://huggingface.co/collections/espnet/owls-scaling-laws-for-speech-recognition-and-translation-67ab7f991c194065f057ce8d for future studies.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2602.08281",
+   "title": "New Skills or Sharper Primitives? A Probabilistic Perspective on the Emergence of Reasoning in RLVR",
+   "published": "2026-02-09",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Whether Reinforcement Learning with Verifiable Rewards (RLVR) endows Large Language Models (LLMs) with new capabilities or merely elicits latent traces remains a central debate. In this work, we align with the former view, proposing a probabilistic framework where capability is defined by instance-level solvability. We hypothesize that the emergence of complex reasoning can be driven by sharpening atomic step probabilities, which enables models to overcome the exponential decay of success rates inherent in multi-step reasoning chains. Utilizing the Algebrarium framework, we train models exclusively on single-step operations and evaluate their performance on unseen multi-step tasks. Our empirical results confirm that: (1) RLVR incentivizes the exploration of previously inaccessible solution paths by amplifying the model's existing skills; (2) composite performance is strictly governed by the joint probability of atomic steps, evidenced by high Pearson correlation coefficients ($ρ\\in [0.69, 0.96]$); and (3) RLVR, acting as a global optimizer, can cause specific skills to be sacrificed to maximize aggregate reward. Our work offers a novel explanation for emergent abilities in RLVR, suggesting that the iterative optimization of solvable problems enables models to develop the capabilities to tackle previously unsolvable scenarios.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2509.05899",
+   "title": "X-SQL: Expert Schema Linking and Understanding of Text-to-SQL with Multi-LLMs",
+   "published": "2025-09-07",
+   "categories": [
+    "cs.LG",
+    "cs.DB"
+   ],
+   "abstract": "With Large Language Models' (LLMs) emergent abilities on code generation tasks, Text-to-SQL has become one of the most popular downstream applications. Despite the strong results of multiple recent LLM-based Text-to-SQL frameworks, the research community often overlooks the importance of database schema information for generating high-quality SQL queries. We find that such schema information plays a significant or even dominant role in the Text-to-SQL task. To tackle this challenge, we propose a novel database schema expert with two components. We first introduce X-Linking, an LLM Supervised Finetuning (SFT)-based method that achieves superior Schema Linking results compared to existing open-source Text-to-SQL methods. In addition, we innovatively propose an X-Admin component that focuses on Schema Understanding by bridging the gap between abstract schema information and the user's natural language question. Aside from better learning with schema information, we experiment with Multi-LLMs for different components within the system to further boost its performance. By incorporating these techniques into our end-to-end framework, X-SQL, we have achieved Execution Accuracies of 84.9% on the Spider-Dev dataset and 82.5% on the Spider-Test dataset. This outstanding performance establishes X-SQL as the leading Text-to-SQL framework based on open-source models.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2506.00288",
+   "title": "Emergent Abilities of Large Language Models under Continued Pretraining for Language Adaptation",
+   "published": "2025-05-30",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Continued pretraining (CPT) is a popular approach to adapt existing large language models (LLMs) to new languages. When doing so, it is common practice to include a portion of English data in the mixture, but its role has not been carefully studied to date. In this work, we show that including English does not impact validation perplexity, yet it is critical for the emergence of downstream capabilities in the target language. We introduce a language-agnostic benchmark for in-context learning (ICL), which reveals catastrophic forgetting early on CPT when English is not included. This in turn damages the ability of the model to generalize to downstream prompts in the target language as measured by perplexity, even if it does not manifest in terms of accuracy until later in training, and can be tied to a big shift in the model parameters. Based on these insights, we introduce curriculum learning and exponential moving average (EMA) of weights as effective alternatives to mitigate the need for English. All in all, our work sheds light into the dynamics by which emergent abilities arise when doing CPT for language adaptation, and can serve as a foundation to design more effective methods in the future.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2510.13802",
+   "title": "Trace Anything: Representing Any Video in 4D via Trajectory Fields",
+   "published": "2025-10-15",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Effective spatio-temporal representation is fundamental to modeling, understanding, and predicting dynamics in videos. The atomic unit of a video, the pixel, traces a continuous 3D trajectory over time, serving as the primitive element of dynamics. Based on this principle, we propose representing any video as a Trajectory Field: a dense mapping that assigns a continuous 3D trajectory function of time to each pixel in every frame. With this representation, we introduce Trace Anything, a neural network that predicts the entire trajectory field in a single feed-forward pass. Specifically, for each pixel in each frame, our model predicts a set of control points that parameterizes a trajectory (i.e., a B-spline), yielding its 3D position at arbitrary query time instants. We trained the Trace Anything model on large-scale 4D data, including data from our new platform, and our experiments demonstrate that: (i) Trace Anything achieves state-of-the-art performance on our new benchmark for trajectory field estimation and performs competitively on established point-tracking benchmarks; (ii) it offers significant efficiency gains thanks to its one-pass paradigm, without requiring iterative optimization or auxiliary estimators; and (iii) it exhibits emergent abilities, including goal-conditioned manipulation, motion forecasting, and spatio-temporal fusion. Project page: https://trace-anything.github.io/.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2505.04535",
+   "title": "FDA-Opt: Federated Fine-Tuning via Dynamic Update Schedules",
+   "published": "2025-05-07",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Federated Learning (FL) enables the utilization of vast, previously inaccessible data sources. At the same time, pre-trained Language Models (LMs) have taken the world by storm and for good reason. They exhibit remarkable emergent abilities and are readily adapted to downstream tasks. This opens one of the most exciting frontiers in FL: fine-tuning LMs. Yet, a persistent challenge in FL is the frequent, rigid communication of parameters -- a problem magnified by the sheer size of these contemporary models. The FedOpt family of algorithms has become the go-to approach for FL, relying on fixed but arbitrary intervals for model exchanges. Recently, the FDA algorithm prescribed a dynamic approach by monitoring the training progress. However, it introduced a hard-to-calibrate parameter and imposed a rigid synchronization scheme. In this work, we address these limitations by proposing the FDA-Opt family of algorithms -- a unified generalization of both FDA and FedOpt. Our experimental evaluation focuses on fine-tuning LMs on downstream NLP tasks and demonstrates that FDA-Opt outperforms FedOpt even when it is configured with hyper-parameters specifically optimized for the latter. In other words, we show that FDA-Opt is a practical, drop-in replacement for FedOpt in modern FL libraries and systems: it requires no additional configuration and delivers superior performance out of the box.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.02167",
+   "title": "Leveraging Large Language Models for Enhanced Digital Twin Modeling: Trends, Methods, and Challenges",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.ET",
+    "cs.CY"
+   ],
+   "abstract": "Digital twin technology is a transformative innovation driving the digital transformation and intelligent optimization of manufacturing systems. By integrating real-time data with computational models, digital twins enable continuous monitoring, simulation, prediction, and optimization, effectively bridging the gap between the physical and digital worlds. Recent advancements in communication, computing, and control technologies have accelerated the development and adoption of digital twins across various industries. However, significant challenges remain, including limited data for accurate system modeling, inefficiencies in system analysis, and a lack of explainability in the interactions between physical and digital systems. The rise of large language models (LLMs) offers new avenues to address these challenges. LLMs have shown exceptional capabilities across diverse domains, exhibiting strong generalization and emergent abilities that hold great potential for enhancing digital twins. This paper provides a comprehensive review of recent developments in LLMs and their applications to digital twin modeling. We propose a unified description-prediction-prescription framework to integrate digital twin modeling technologies and introduce a structured taxonomy to categorize LLM functionalities in these contexts. For each stage of application, we summarize the methodologies, identify key challenges, and explore potential future directions. To demonstrate the effectiveness of LLM-enhanced digital twins, we present an LLM-enhanced enterprise digital twin system, which enables automatic modeling and optimization of an enterprise. Finally, we discuss future opportunities and challenges in advancing LLM-enhanced digital twins, offering valuable insights for researchers and practitioners in related fields.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2512.04727",
+   "title": "Sequential Enumeration in Large Language Models",
+   "published": "2025-12-04",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Reliably counting and generating sequences of items remain a significant challenge for neural networks, including Large Language Models (LLMs). Indeed, although this capability is readily handled by rule-based symbolic systems based on serial computation, learning to systematically deploy counting procedures is difficult for neural models, which should acquire these skills through learning. Previous research has demonstrated that recurrent architectures can only approximately track and enumerate sequences of events, and it remains unclear whether modern deep learning systems, including LLMs, can deploy systematic counting procedures over sequences of discrete symbols. This paper aims to fill this gap by investigating the sequential enumeration abilities of five state-of-the-art LLMs, including proprietary, open-source, and reasoning models. We probe LLMs in sequential naming and production tasks involving lists of letters and words, adopting a variety of prompting instructions to explore the role of chain-of-thought in the spontaneous emerging of counting strategies. We also evaluate open-source models with the same architecture but increasing size to see whether the mastering of counting principles follows scaling laws, and we analyze the embedding dynamics during sequential enumeration to investigate the emergent encoding of numerosity. We find that some LLMs are indeed capable of deploying counting procedures when explicitly prompted to do so, but none of them spontaneously engage in counting when simply asked to enumerate the number of items in a sequence. Our results suggest that, despite their impressive emergent abilities, LLMs cannot yet robustly and systematically deploy counting procedures, highlighting a persistent gap between neural and symbolic approaches to compositional generalization.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2511.12768",
+   "title": "Evidence of Phase Transitions in Small Transformer-Based Language Models",
+   "published": "2025-11-16",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Phase transitions have been proposed as the origin of emergent abilities in large language models (LLMs), where new capabilities appear abruptly once models surpass critical thresholds of scale. Prior work, such as that of Wei et al., demonstrated these phenomena under model and data scaling, with transitions revealed after applying a log scale to training compute. In this work, we ask three complementary questions: (1) Are phase transitions unique to large models, or can they also be observed in small transformer-based language models? (2) Can such transitions be detected directly in linear training space, rather than only after log rescaling? and (3) Can these transitions emerge at early stages of training? To investigate, we train a small GPT-style transformer on a character-level corpus and analyze the evolution of vocabulary usage throughout training. We track the average word length, the number of correct versus incorrect words, and shifts in vocabulary diversity. Building on these measures, we apply Poisson and sub-Poisson statistics to quantify how words connect and reorganize. This combined analysis reveals a distinct transition point during training. Notably, these transitions are not apparent in standard loss or validation curves, but become visible through our vocabulary- and statistics-based probes. Our findings suggest that phase-transition reorganizations are a general feature of language model training, observable even in modest models, detectable directly in linear training space, and occurring surprisingly early as coherence emerges. This perspective provides new insight into the nonlinear dynamics of language model training and underscores the importance of tailored metrics for uncovering phase transition behaviors",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.04401",
+   "title": "Why are LLMs' abilities emergent?",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "The remarkable success of Large Language Models (LLMs) in generative tasks has raised fundamental questions about the nature of their acquired capabilities, which often appear to emerge unexpectedly without explicit training. This paper examines the emergent properties of Deep Neural Networks (DNNs) through both theoretical analysis and empirical observation, addressing the epistemological challenge of \"creation without understanding\" that characterises contemporary AI development. We explore how the neural approach's reliance on nonlinear, stochastic processes fundamentally differs from symbolic computational paradigms, creating systems whose macro-level behaviours cannot be analytically derived from micro-level neuron activities. Through analysis of scaling laws, grokking phenomena, and phase transitions in model capabilities, I demonstrate that emergent abilities arise from the complex dynamics of highly sensitive nonlinear systems rather than simply from parameter scaling alone. My investigation reveals that current debates over metrics, pre-training loss thresholds, and in-context learning miss the fundamental ontological nature of emergence in DNNs. I argue that these systems exhibit genuine emergent properties analogous to those found in other complex natural phenomena, where systemic capabilities emerge from cooperative interactions among simple components without being reducible to their individual behaviours. The paper concludes that understanding LLM capabilities requires recognising DNNs as a new domain of complex dynamical systems governed by universal principles of emergence, similar to those operating in physics, chemistry, and biology. This perspective shifts the focus from purely phenomenological definitions of emergence to understanding the internal dynamic transformations that enable these systems to acquire capabilities that transcend their individual components.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2604.24037",
+   "title": "A Limit Theory of Foundation Models: A Mathematical Approach to Understanding Emergent Intelligence and Scaling Laws",
+   "published": "2026-04-27",
+   "categories": [
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Emergent intelligence have played a major role in the modern AI development. While existing studies primarily rely on empirical observations to characterize this phenomenon, a rigorous theoretical framework remains underexplored. This study attempts to develop a mathematical approach to formalize emergent intelligence from the perspective of limit theory. Specifically, we introduce a performance function E(N, P, K), dependent on data size N, model size P and training steps K, to quantify intelligence behavior. We posit that intelligence emerges as a transition from finite to effectively infinite knowledge, and thus recast emergent intelligence as existence of the limit $\\lim_{N,P,K \\to \\infty} \\mathcal{E}(N,P,K)$, with emergent abilities corresponding to the limiting behavior. This limit theory helps reveal that emergent intelligence originates from the existence of a parameter-limit architecture (referred to as the limit architecture), and that emergent intelligence rationally corresponds to the learning behavior of this limit system. By introducing tools from nonlinear Lipschitz operator theory, we prove that the necessary and sufficient conditions for existence of the limit architecture. Furthermore, we derive the scaling law of foundation models by leveraging tools of Lipschitz operator and covering number. Theoretical results show that: 1) emergent intelligence is governed by three key factors-training steps, data size and the model architecture, where the properties of basic blocks play a crucial role in constructing foundation models; 2) the critical condition Lip(T)=1 for emergent intelligence provides theoretical support for existing findings. 3) emergent intelligence is determined by an infinite-dimensional system, yet can be effectively realized in practice through a finite-dimensional architecture. Our empirical results corroborate these theoretical findings.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2608.00355",
+   "title": "CurveShift: Is Agent Progress Scalar? Separating Level from Shape",
+   "published": "2026-07-31",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Progress in large language models is often summarized using a single scalar measure, such as a time horizon, a latent ability estimate, or an aggregate benchmark score. These summaries capture the overall performance, but they do not test whether progress is distributed differently across task difficulty. We find that most of the apparent shift in gains toward harder tasks does not reflect a change in the shape of the difficulty-response curve. On METR time-horizon data, a single Rasch model with rising ability reproduces this pattern, so it is largely explained by ceiling effects rather than a qualitative change in capability. This echoes how the choice of metric can make claimed emergent abilities look like a property of the models themselves. We then identify a smaller hard-task effect that survives this control. Isolating it is difficult on agentic benchmarks, because newer models are usually run with newer agentic harnesses, so a gain on hard tasks cannot be assigned to the model or its scaffold. We break the confound with LiveCodeBench, a public competitive programming benchmark that runs no agentic scaffold while pairing dated models with an exogenous difficulty ordering. After accounting for the rise in overall ability, models released after September 2024 still gain on the hardest problems beyond what their easy and medium performance predicts, by about +0.40 logits under our most conservative assumption, raising the hard-problem solve rate from roughly 18% to 25%. The effect is led by the strongest reasoning models and holds for hard tasks that need only short reasoning, not autonomy over long horizons. We present this as a result specific to competitive programming, since our clean identification rests on a single coding benchmark. We release the LiveCodeBench Difficulty Panel (66 dated models x 1,055 problems) and our analysis code.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2606.13876",
+   "title": "Towards Atom-by-Atom Fabrication: Mechanosynthetic donation and abstraction",
+   "published": "2026-06-11",
+   "categories": [
+    "cond-mat.mtrl-sci"
+   ],
+   "abstract": "Enabled by inverted-mode scanning tunneling microscopy (IM-STM) and the use of functionalized molecular tools, we demonstrate positionally-controlled mechanosynthetic addition (donation) of carbon and subtraction (abstraction) of silicon atoms on a model build site: atomically clean and crystalline Si(100). The resulting structures represent the first demonstrations of an emerging ability to manipulate radical chemistry with positional control of specific atoms and moieties in 3D. Furthermore, by comparing the behavior of molecular tools designed for atomic donation versus abstraction, we highlight general principles governing molecular tool design for selective and reliable mechanosynthetic functionality.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2501.14176",
+   "title": "RL + Transformer = A General-Purpose Problem Solver",
+   "published": "2025-01-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "What if artificial intelligence could not only solve problems for which it was trained but also learn to teach itself to solve new problems (i.e., meta-learn)? In this study, we demonstrate that a pre-trained transformer fine-tuned with reinforcement learning over multiple episodes develops the ability to solve problems that it has never encountered before - an emergent ability called In-Context Reinforcement Learning (ICRL). This powerful meta-learner not only excels in solving unseen in-distribution environments with remarkable sample efficiency, but also shows strong performance in out-of-distribution environments. In addition, we show that it exhibits robustness to the quality of its training data, seamlessly stitches together behaviors from its context, and adapts to non-stationary environments. These behaviors demonstrate that an RL-trained transformer can iteratively improve upon its own solutions, making it an excellent general-purpose problem solver.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2505.22809",
+   "title": "First Steps Towards Overhearing LLM Agents: A Case Study With Dungeons & Dragons Gameplay",
+   "published": "2025-05-28",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.HC"
+   ],
+   "abstract": "Much work has been done on conversational LLM agents which directly assist human users with tasks. We present an alternative paradigm for interacting with LLM agents, which we call \"overhearing agents\". These overhearing agents do not actively participate in conversation -- instead, they \"listen in\" on human-to-human conversations and perform background tasks or provide suggestions to assist the user. In this work, we explore the overhearing agents paradigm through the lens of Dungeons & Dragons gameplay. We present an in-depth study using large multimodal audio-language models as overhearing agents to assist a Dungeon Master. We perform a human evaluation to examine the helpfulness of such agents and find that some large audio-language models have the emergent ability to perform overhearing agent tasks using implicit audio cues. Finally, we release Python libraries and our project code to support further research into the overhearing agents paradigm at https://github.com/zhudotexe/overhearing_agents.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2510.08808",
+   "title": "TinyGraphEstimator: Adapting Lightweight Language Models for Graph Structure Inference",
+   "published": "2025-10-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Graphs provide a universal framework for representing complex relational systems, and inferring their structural properties is a core challenge in graph analysis and reasoning. While large language models have recently demonstrated emerging abilities to perform symbolic and numerical reasoning, the potential of smaller, resource-efficient models in this context remains largely unexplored. This paper investigates whether compact transformer-based language models can infer graph-theoretic parameters directly from graph representations. To enable systematic evaluation, we introduce the TinyGraphEstimator dataset - a balanced collection of connected graphs generated from multiple random graph models and annotated with detailed structural metadata. We evaluate several small open models on their ability to predict key graph parameters such as density, clustering, and chromatic number. Furthermore, we apply lightweight fine-tuning using the Low-Rank Adaptation (LoRA) technique, achieving consistent improvements across all evaluated metrics. The results demonstrate that small language models possess non-trivial reasoning capacity over graph-structured data and can be effectively adapted for structural inference tasks through efficient parameter tuning.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2611.23875",
+   "title": "In Situ Training of Optical Neural Networks by Coding Agents",
+   "published": "2026-11-18",
+   "categories": [
+    "physics.optics",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Optical neural networks promise fast, energy-efficient computing, but every device departs from its design and must be trained with the hardware. In situ training relies on an expert-built calibrated digital model of each device or on gradient-free trial and error. Coding agents, large language models that write and run programs, have shown an emergent ability to understand and edit the weights of digital neural networks. Here we introduce optics as code, a method in which a coding agent trains an optical neural network from measurements alone, through a harness that returns camera images of its probes and requires a hypothesis per request. We discovered that the agent forms a physical understanding of the optics and reparametrizes the network with interpretable optical elements tuned on the hardware. It outperforms gradient-free methods in classification and image encoding, approaching backpropagation through a calibrated model at a fraction of the cost. Needing neither per-device calibration nor gradients through the hardware, and improving with more capable models, optics as code offers a practical route to large, scalable optical neural networks and a general tool for calibrating and optimizing optical experiments.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2512.20629",
+   "title": "Learning Evolving Latent Strategies for Multi-Agent Language Systems without Model Fine-Tuning",
+   "published": "2025-11-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "This study proposes a multi-agent language framework that enables continual strategy evolution without fine-tuning the language model's parameters. The core idea is to liberate the latent vectors of abstract concepts from traditional static semantic representations, allowing them to be continuously updated through environmental interaction and reinforcement feedback. We construct a dual-loop architecture: the behavior loop adjusts action preferences based on environmental rewards, while the language loop updates the external latent vectors by reflecting on the semantic embeddings of generated text. Together, these mechanisms allow agents to develop stable and disentangled strategic styles over long-horizon multi-round interactions. Experiments show that agents' latent spaces exhibit clear convergence trajectories under reflection-driven updates, along with structured shifts at critical moments. Moreover, the system demonstrates an emergent ability to implicitly infer and continually adapt to emotional agents, even without shared rewards. These results indicate that, without modifying model parameters, an external latent space can provide language agents with a low-cost, scalable, and interpretable form of abstract strategic representation.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.04873",
+   "title": "Are Large Language Models Good In-context Learners for Financial Sentiment Analysis?",
+   "published": "2025-03-06",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "q-fin.CP"
+   ],
+   "abstract": "Recently, large language models (LLMs) with hundreds of billions of parameters have demonstrated the emergent ability, surpassing traditional methods in various domains even without fine-tuning over domain-specific data. However, when it comes to financial sentiment analysis (FSA)$\\unicode{x2013}$a fundamental task in financial AI$\\unicode{x2013}$these models often encounter various challenges, such as complex financial terminology, subjective human emotions, and ambiguous inclination expressions. In this paper, we aim to answer the fundamental question: whether LLMs are good in-context learners for FSA? Unveiling this question can yield informative insights on whether LLMs can learn to address the challenges by generalizing in-context demonstrations of financial document-sentiment pairs to the sentiment analysis of new documents, given that finetuning these models on finance-specific data is difficult, if not impossible at all. To the best of our knowledge, this is the first paper exploring in-context learning for FSA that covers most modern LLMs (recently released DeepSeek V3 included) and multiple in-context sample selection methods. Comprehensive experiments validate the in-context learning capability of LLMs for FSA.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2606.16507",
+   "title": "Deep Learning Segmentation of Spiral Arms and Bars for 600,000 Galaxies in DESI",
+   "published": "2026-06-15",
+   "categories": [
+    "astro-ph.GA",
+    "astro-ph.IM"
+   ],
+   "abstract": "We present a catalogue of segmentation maps identifying the extent of spiral arms and bars of 639,636 galaxies in the DESI Legacy Survey. To produce these maps, we have trained a deep U-net-style neural network using the pixel masks from the Galaxy Zoo: 3D citizen science project. The resulting data products are \"soft\" segmentation maps, which show the confidence of the model that a pixel lies within the spiral arms or bars of a galaxy. In this paper we detail the sample selection from DESI-LS using the machine classifications from Galaxy Zoo: DESI, the architecture of the U-net model--dubbed ZooBot:3D. We demonstrate the ability of the model to identify spiral arms and bars in a wide range of face-on disks, and identify an emergent ability to identify rings--despite only a small number of ring-type galaxies being present in the training data. Finally, we discuss the practical application of these data products to photometric imaging and IFU spectroscopy. The ZooBot:3D dataset is available for use publicly, and contains the full catalogue presented in this paper, along with cross-matched subsamples for the MaNGA and SAMI IFU surveys.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.19907",
+   "title": "FullDiT: Multi-Task Video Generative Foundation Model with Full Attention",
+   "published": "2025-03-25",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Current video generative foundation models primarily focus on text-to-video tasks, providing limited control for fine-grained video content creation. Although adapter-based approaches (e.g., ControlNet) enable additional controls with minimal fine-tuning, they encounter challenges when integrating multiple conditions, including: branch conflicts between independently trained adapters, parameter redundancy leading to increased computational cost, and suboptimal performance compared to full fine-tuning. To address these challenges, we introduce FullDiT, a unified foundation model for video generation that seamlessly integrates multiple conditions via unified full-attention mechanisms. By fusing multi-task conditions into a unified sequence representation and leveraging the long-context learning ability of full self-attention to capture condition dynamics, FullDiT reduces parameter overhead, avoids conditions conflict, and shows scalability and emergent ability. We further introduce FullBench for multi-task video generation evaluation. Experiments demonstrate that FullDiT achieves state-of-the-art results, highlighting the efficacy of full-attention in complex multi-task video generation.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2506.14641",
+   "title": "Revisiting Chain-of-Thought Prompting: Zero-shot Can Be Stronger than Few-shot",
+   "published": "2025-06-17",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "In-Context Learning (ICL) is an essential emergent ability of Large Language Models (LLMs), and recent studies introduce Chain-of-Thought (CoT) to exemplars of ICL to enhance the reasoning capability, especially in mathematics tasks. However, given the continuous advancement of model capabilities, it remains unclear whether CoT exemplars still benefit recent, stronger models in such tasks. Through systematic experiments, we find that for recent strong models such as the Qwen2.5 series, adding traditional CoT exemplars does not improve reasoning performance compared to Zero-Shot CoT. Instead, their primary function is to align the output format with human expectations. We further investigate the effectiveness of enhanced CoT exemplars, constructed using answers from advanced models such as \\texttt{Qwen2.5-Max} and \\texttt{DeepSeek-R1}. Experimental results indicate that these enhanced exemplars still fail to improve the model's reasoning performance. Further analysis reveals that models tend to ignore the exemplars and focus primarily on the instructions, leading to no observable gain in reasoning ability. Overall, our findings highlight the limitations of the current ICL+CoT framework in mathematical reasoning, calling for a re-examination of the ICL paradigm and the definition of exemplars.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2602.19497",
+   "title": "MICON-Bench: Benchmarking and Enhancing Multi-Image Context Image Generation in Unified Multimodal Models",
+   "published": "2026-02-23",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Recent advancements in Unified Multimodal Models (UMMs) have enabled remarkable image understanding and generation capabilities. However, while models like Gemini-2.5-Flash-Image show emerging abilities to reason over multiple related images, existing benchmarks rarely address the challenges of multi-image context generation, focusing mainly on text-to-image or single-image editing tasks. In this work, we introduce \\textbf{MICON-Bench}, a comprehensive benchmark covering six tasks that evaluate cross-image composition, contextual reasoning, and identity preservation. We further propose an MLLM-driven Evaluation-by-Checkpoint framework for automatic verification of semantic and visual consistency, where multimodal large language model (MLLM) serves as a verifier. Additionally, we present \\textbf{Dynamic Attention Rebalancing (DAR)}, a training-free, plug-and-play mechanism that dynamically adjusts attention during inference to enhance coherence and reduce hallucinations. Extensive experiments on various state-of-the-art open-source models demonstrate both the rigor of MICON-Bench in exposing multi-image reasoning challenges and the efficacy of DAR in improving generation quality and cross-image coherence. Github: https://github.com/Angusliuuu/MICON-Bench.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2606.18978",
+   "title": "Nanoscale memristive devices: Threats and solutions",
+   "published": "2026-06-17",
+   "categories": [
+    "cs.ET",
+    "cs.AR"
+   ],
+   "abstract": "Due to their incentivizing features, memristors are a promising candidate for replacing CMOS-based memories, which are faced with various functional challenges in deep submicron process technologies. Memristors are nonvolatile, have low leakage, and are dense in comparison to CMOS-based memories like SRAM. In this regard, resistive RAM (ReRAM) and spin-transfer-torque RAM (STT-RAM) memristors are distinguished among other memristor-based memory technologies, due to their superiority in process maturity and metrics such as memory operation energy, memory latency, and area. Hence, this chapter focuses on these two memristor-based memory technologies. Despite the good features of these types of memory, they suffer from some reliability threats. Reliability parameters affect each other, and examining their positive and negative effects has a significant impact on the effectiveness of the proposed solutions. In one view, the threats can be categorized into two classes: (1) read/write error and (2) soft error. In this chapter, we comprehensively describe these threats and present the state-of-the-art solutions that enable the widespread use of memristors, particularly ReRAM and STT-RAM, in different applications. Finally, we introduce the emerging ability of memristors as a computing unit aiming to minimize data restoration in computing, and we show how to perform logic and arithmetic computation in a crossbar array.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2505.24332",
+   "title": "DeepDiver: Adaptive Search Intensity Scaling via Open-Web Reinforcement Learning",
+   "published": "2025-05-30",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Information seeking demands iterative evidence gathering and reflective reasoning, yet large language models (LLMs) still struggle with it in open-web question answering. Existing prompting and supervised fine-tuning (SFT) methods remain fixed by prompt rules or training corpora, and are usually benchmarked only on well-structured wiki sources, limiting real-world adaptability. We introduce WebPuzzle, a 24k-sample training and 275-sample test benchmark that evaluates information seeking on the live internet, across both wiki and open-domain queries. Leveraging 7k WebPuzzle instances, we develop DeepDiver, a reinforcement-learning (RL) framework that cultivates Search Intensity Scaling (SIS)-an emergent ability to escalate search frequency and depth instead of settling on overconfident, under-evidenced answers. With SIS, Qwen2.5-7B-Instruct and Pangu-7B-Reasoner attain performance on real-web tasks comparable to the 671B-parameter DeepSeek-R1. We detail DeepDiver's curriculum from cold-start SFT to a well designed RL procedure, and show that its seeking policy generalized from closed-ended queries to open-ended generation such as long-form writing. Our results advance adaptive information seeking in LLMs and provide a rigorous benchmark for future work.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2605.21299",
+   "title": "Tracing the ongoing emergence of human-like reasoning in Large Language Models",
+   "published": "2026-05-20",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Humans effortlessly go beyond literal meanings: If you mow the lawn, I will give you fifty dollars, is typically understood as implying that the speaker will pay only if the lawn is mowed, whereas If you are hungry, there is pizza in the oven implies that pizza is available regardless of the hearers hunger. Large Language Models - LLMs - show human-like performance on many tasks, yet it remains unclear whether they reason like humans. To address this, we conducted a population-matching experiment assessing how twentyfive LLMs compute conditional inferences across four languages, compared to an equal number of humans per language. We find that humans enrich logical reasoning through pragmatic inferences across languages. Model behavior is more variable. Some LLMs perfectly follow the truth-table of conditionals but they ignore pragmatic inferences, while others deviate from the truth-table, adhering to a single interpretation across the board, thus reflecting accurate rule-based processing but not human-like reasoning. Overall, LLMs are accurate semantic operators, but fail to capture the pragmatic enrichments characteristic of human reasoning. Crucially, LLM accuracy is neither predicted nor boosted by open vs. closed status, training orientation, or architecture type, suggesting that pragmatic reasoning is still an emerging ability in the cognitive toolkit of artificial systems.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2503.10779",
+   "title": "The Power of One: A Single Example is All it Takes for Segmentation in VLMs",
+   "published": "2025-03-13",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Large-scale vision-language models (VLMs), trained on extensive datasets of image-text pairs, exhibit strong multimodal understanding capabilities by implicitly learning associations between textual descriptions and image regions. This emergent ability enables zero-shot object detection and segmentation, using techniques that rely on text-image attention maps, without necessarily training on abundant labeled segmentation datasets. However, performance of such methods depends heavily on prompt engineering and manually selected layers or head choices for the attention layers. In this work, we demonstrate that, rather than relying solely on textual prompts, providing a single visual example for each category and fine-tuning the text-to-image attention layers and embeddings significantly improves the performance. Additionally, we propose learning an ensemble through few-shot fine-tuning across multiple layers and/or prompts. An entropy-based ranking and selection mechanism for text-to-image attention layers is proposed to identify the top-performing layers without the need for segmentation labels. This eliminates the need for hyper-parameter selection of text-to-image attention layers, providing a more flexible and scalable solution for open-vocabulary segmentation. We show that this approach yields strong zero-shot performance, further enhanced through fine-tuning with a single visual example. Moreover, we demonstrate that our method and findings are general and can be applied across various vision-language models (VLMs).",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2606.06814",
+   "title": "The Effect of Training Task Diversity on In-Context Learning through the Lens of Low-Dimensional Subspaces",
+   "published": "2026-06-05",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST",
+    "stat.AP"
+   ],
+   "abstract": "The transformer's emergent ability to perform in-context learning (ICL) has sparked a wide range of studies designed to understand its underlying mechanisms. Existing works often study how training task diversity, defined either as the number of ICL training task vectors or as the number of function classes from which the task vectors are drawn, shapes both the learning dynamics and generalization capabilities of ICL. While both definitions have uncovered many interesting phenomena, many observations under the latter definition remain theoretically unexplained. This paper presents a minimal analytical model under which these phenomena provably emerge from the properties of the training data. By modeling the training task vectors as a mixture of low-rank Gaussians, we show how training task diversity, defined by the number of non-overlapping columns between subspaces that parameterize the covariance matrices, improves both the generalization and optimization trajectory of ICL with linear attention. In particular, we show that our model can explain (i) why training with task diversity shortens the ICL plateau and (ii) why ICL appears to achieve out-of-distribution generalization. We conclude by empirically demonstrating how our results extend to nonlinear transformers and nonlinear function classes. Overall, our work presents a tractable framework to unify existing observations.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2511.16543",
+   "title": "The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation",
+   "published": "2025-11-20",
+   "categories": [
+    "cs.IR",
+    "cs.AI",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "The integration of Large Language Models (LLMs) into explainable recommendation systems often leads to a performance-efficiency trade-off in end-to-end architectures, where joint optimization of ranking and explanation can result in suboptimal compromises. To resolve this, we propose Prism, a novel decoupled framework that rigorously separates the recommendation process into a dedicated ranking stage and an explanation generation stage. This decomposition ensures that each component is optimized for its specific objective, eliminating inherent conflicts in coupled models. Inspired by knowledge distillation, Prism leverages a powerful, instruction-following teacher LLM (FLAN-T5-XXL) as an Oracle to produce high-fidelity explanatory knowledge. A compact, fine-tuned student model (BART-Base), the Prism, then specializes in synthesizing this knowledge into personalized explanations. Our extensive experiments on benchmark datasets reveal a key finding: the distillation process not only transfers knowledge but also acts as a noise filter. Our 140M-parameter Prism model significantly outperforms its 11B-parameter teacher in human evaluations of faithfulness and personalization, demonstrating an emergent ability to correct hallucinations present in the teacher's outputs. While achieving a 24x speedup and a 10x reduction in memory consumption, our analysis validates that decoupling, coupled with targeted distillation, provides an efficient and effective pathway to high-quality, and perhaps more importantly, trustworthy explainable recommendation.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2603.26127",
+   "title": "Finding Distributed Object-Centric Properties in Self-Supervised Transformers",
+   "published": "2026-03-27",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.CL",
+    "cs.LG",
+    "cs.MM"
+   ],
+   "abstract": "Self-supervised Vision Transformers (ViTs) like DINO show an emergent ability to discover objects, typically observed in [CLS] token attention maps of the final layer. However, these maps often contain spurious activations resulting in poor localization of objects. This is because the [CLS] token, trained on an image-level objective, summarizes the entire image instead of focusing on objects. This aggregation dilutes the object-centric information existing in the local, patch-level interactions. We analyze this by computing inter-patch similarity using patch-level attention components (query, key, and value) across all layers. We find that: (1) Object-centric properties are encoded in the similarity maps derived from all three components ($q, k, v$), unlike prior work that uses only key features or the [CLS] token. (2) This object-centric information is distributed across the network, not just confined to the final layer. Based on these insights, we introduce Object-DINO, a training-free method that extracts this distributed object-centric information. Object-DINO clusters attention heads across all layers based on the similarities of their patches and automatically identifies the object-centric cluster corresponding to all objects. We demonstrate Object-DINO's effectiveness on two applications: enhancing unsupervised object discovery (+3.6 to +12.4 CorLoc gains) and mitigating object hallucination in Multimodal Large Language Models by providing visual grounding. Our results demonstrate that using this distributed object-centric information improves downstream tasks without additional training.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2604.08491",
+   "title": "Figures as Interfaces: Toward LLM-Native Artifacts for Scientific Discovery",
+   "published": "2026-04-09",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Large language models (LLMs) are transforming scientific workflows, not only through their generative capabilities but also through their emerging ability to use tools, reason about data, and coordinate complex analytical tasks. Yet in most human-AI collaborations, the primary outputs, figures, are still treated as static visual summaries: once rendered, they are handled by both humans and multimodal LLMs as images to be re-interpreted from pixels or captions. The emergent capabilities of LLMs open an opportunity to fundamentally rethink this paradigm. In this paper, we introduce the concept of LLM-native figures: data-driven artifacts that are simultaneously human-legible and machine-addressable. Unlike traditional plots, each artifact embeds complete provenance: the data subset, analytical operations and code, and visualization specification used to generate it. As a result, an LLM can \"see through\" the figure--tracing selections back to their sources, generating code to extend analyses, and orchestrating new visualizations through natural-language instructions or direct manipulation. We implement this concept through a hybrid language-visual interface that integrates LLM agents with a bidirectional mapping between figures and underlying data. Using the science of science domain as a testbed, we demonstrate that LLM-native figures can accelerate discovery, improve reproducibility, and make reasoning transparent across agents and users. More broadly, this work establishes a general framework for embedding provenance, interactivity, and explainability into the artifacts of modern research, redefining the figure not as an end product, but as an interface for discovery. For more details, please refer to the demo video available at www.llm-native-figure.com.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.14377",
+   "title": "ZPD-SCA: Unveiling the Blind Spots of LLMs in Assessing Students' Cognitive Abilities",
+   "published": "2025-08-20",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.CY"
+   ],
+   "abstract": "Large language models (LLMs) have demonstrated potential in educational applications, yet their capacity to accurately assess the cognitive alignment of reading materials with students' developmental stages remains insufficiently explored. This gap is particularly critical given the foundational educational principle of the Zone of Proximal Development (ZPD), which emphasizes the need to match learning resources with Students' Cognitive Abilities (SCA). Despite the importance of this alignment, there is a notable absence of comprehensive studies investigating LLMs' ability to evaluate reading comprehension difficulty across different student age groups, especially in the context of Chinese language education. To fill this gap, we introduce ZPD-SCA, a novel benchmark specifically designed to assess stage-level Chinese reading comprehension difficulty. The benchmark is annotated by 60 Special Grade teachers, a group that represents the top 0.15% of all in-service teachers nationwide. Experimental results reveal that LLMs perform poorly in zero-shot learning scenarios, with Qwen-max and GLM even falling below the probability of random guessing. When provided with in-context examples, LLMs performance improves substantially, with some models achieving nearly double the accuracy of their zero-shot baselines. These results reveal that LLMs possess emerging abilities to assess reading difficulty, while also exposing limitations in their current training for educationally aligned judgment. Notably, even the best-performing models display systematic directional biases, suggesting difficulties in accurately aligning material difficulty with SCA. Furthermore, significant variations in model performance across different genres underscore the complexity of task. We envision that ZPD-SCA can provide a foundation for evaluating and improving LLMs in cognitively aligned educational applications.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2508.02062",
+   "title": "RICL: Adding In-Context Adaptability to Pre-Trained Vision-Language-Action Models",
+   "published": "2025-08-04",
+   "categories": [
+    "cs.RO",
+    "cs.AI"
+   ],
+   "abstract": "Multi-task ``vision-language-action'' (VLA) models have recently demonstrated increasing promise as generalist foundation models for robotics, achieving non-trivial performance out of the box on new tasks in new environments. However, for such models to be truly useful, an end user must have easy means to teach them to improve. For language and vision models, the emergent ability to perform in-context learning (ICL) has proven to be a versatile and highly useful interface to easily teach new tasks with no parameter finetuning. Unfortunately, VLAs pre-trained with imitation learning objectives do not naturally acquire ICL abilities. In this paper, we demonstrate that, with the right finetuning recipe and a small robot demonstration dataset, it is possible to inject in-context adaptability post hoc into such a VLA. After retraining for in-context learning (RICL), our system permits an end user to provide a small number (10-20) of demonstrations for a new task. RICL then fetches the most relevant portions of those demonstrations into the VLA context to exploit ICL, performing the new task and boosting task performance. We apply RICL to inject ICL into the $π_{0}$-FAST VLA, and show that it permits large in-context improvements for a variety of new manipulation tasks with only 20 demonstrations per task, without any parameter updates. When parameter updates on the target task demonstrations is possible, RICL finetuning further boosts performance. We release code and model weights for RICL-$π_{0}$-FAST alongside the paper to enable, for the first time, a simple in-context learning interface for new manipulation tasks. Website: https://ricl-vla.github.io.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2507.00653",
+   "title": "Cognitive Load-Aware Inference: A Neuro-Symbolic Framework for Optimizing the Token Economy of Large Language Models",
+   "published": "2025-07-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The escalating computational costs of Large Language Model (LLM) inference have become a critical barrier to their widespread and sustainable deployment. While existing optimization strategies are effective, they are predominantly based on statistical heuristics or architectural modifications, lacking a guiding cognitive theory to manage the inference process itself. This paper aims to bridge this gap by introducing a novel paradigm: the Cognitive Load-Aware Inference (CLAI) framework, which operationalizes principles from Cognitive Load Theory (CLT) and neuroscience for LLM inference. We formalize the concepts of Intrinsic Cognitive Load, Extraneous Cognitive Load, and Germane Cognitive Load into quantifiable LLM metrics ($ICL_{LLM}$, $ECL_{LLM}$, and $GCL_{LLM}$), thereby reframing the inference process as a cognitive economics optimization problem: based on the intrinsic complexity of a problem ($ICL_{LLM}$), minimize wasteful computation ($ECL_{LLM}$), and strategically allocate the token budget to productive reasoning ($GCL_{LLM}$). We propose two implementation paths: CLAI-Prompt, a zero-shot method that guides a base LLM through cognitive control steps via a structured meta-prompt, and CLAI-Tune, a fine-tuned model that internalizes these principles for spontaneous cognitive economy. Across a range of benchmarks in complex reasoning, long-context question answering, and code generation, our methods achieve significant reductions in token consumption (up to 45\\%) without sacrificing accuracy. Furthermore, CLAI-Tune exhibits an emergent ability to autonomously decompose difficult problems, a key characteristic of human expert cognition. This work demonstrates that by emulating the brain's resource management strategies, we can build more efficient, robust, and capable artificial intelligence systems.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2601.17687",
+   "title": "Agentic reinforcement learning empowers next-generation chemical language models for molecular design and synthesis",
+   "published": "2026-01-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Language models are revolutionizing the biochemistry domain, assisting scientists in drug design and chemical synthesis with high efficiency. Yet current approaches struggle between small language models prone to hallucination and limited knowledge retention, and large cloud-based language models plagued by privacy risks and high inference costs. To bridge this gap, we introduce ChemCRAFT, a novel framework leveraging agentic reinforcement learning to decouple chemical reasoning from knowledge storage. Instead of forcing the model to memorize vast chemical data, our approach empowers the language model to interact with a sandbox for precise information retrieval. This externalization of knowledge allows a locally deployable small model to achieve superior performance with minimal inference costs. To enable small language models for agent-calling ability, we build an agentic trajectory construction pipeline and a comprehensive chemical-agent sandbox. Based on sandbox interactions, we constructed ChemToolDataset, the first large-scale chemical tool trajectory dataset. Simultaneously, we propose SMILES-GRPO to build a dense chemical reward function, promoting the model's ability to call chemical agents. Evaluations across diverse aspects of drug design show that ChemCRAFT outperforms current cloud-based LLMs in molecular structure analysis, molecular optimization, and synthesis pathway prediction, demonstrating that scientific reasoning is not solely an emergent ability of model scale, but a learnable policy of tool orchestration. This work establishes a cost-effective and privacy-preserving paradigm for AI-aided chemistry, opening new avenues for accelerating molecular discovery with locally deployable agents. Code available at https://github.com/HowardLi1984/ChemCraft.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2510.18053",
+   "title": "Adaptive Divergence Regularized Policy Optimization for Fine-tuning Generative Models",
+   "published": "2025-10-20",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Balancing exploration and exploitation during reinforcement learning fine-tuning of generative models presents a critical challenge, as existing approaches rely on fixed divergence regularization that creates an inherent dilemma: strong regularization preserves model capabilities but limits reward optimization, while weak regularization enables greater alignment but risks instability or reward hacking. We introduce Adaptive Divergence Regularized Policy Optimization (ADRPO), which automatically adjusts regularization strength based on advantage estimates-reducing regularization for high-value samples while applying stronger regularization to poor samples, enabling policies to navigate between exploration and aggressive exploitation according to data quality. Our implementation with Wasserstein-2 regularization for flow matching generative models achieves remarkable results on text-to-image generation, achieving better semantic alignment and diversity than offline methods like DPO and online methods with fixed regularization like ORW-CFM-W2. ADRPO enables a 2B parameter SD3 model to surpass much larger models with 4.8B and 12B parameters in attribute binding, semantic consistency, artistic style transfer, and compositional control while maintaining generation diversity. ADRPO generalizes to KL-regularized fine-tuning of both text-only LLMs and multi-modal reasoning models, enhancing existing online RL methods like GRPO. In LLM fine-tuning, ADRPO demonstrates an emergent ability to escape local optima through active exploration, while in multi-modal audio reasoning, it outperforms GRPO through superior step-by-step reasoning, enabling a 7B model to outperform substantially larger commercial models including Gemini 2.5 Pro and GPT-4o Audio, offering an effective plug-and-play solution to the exploration-exploitation challenge across diverse generative architectures and modalities.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2505.12744",
+   "title": "Incentivizing Multimodal Reasoning in Large Models for Direct Robot Manipulation",
+   "published": "2025-05-19",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Recent Large Multimodal Models have demonstrated remarkable reasoning capabilities, especially in solving complex mathematical problems and realizing accurate spatial perception. Our key insight is that these emerging abilities can naturally extend to robotic manipulation by enabling LMMs to directly infer the next goal in language via reasoning, rather than relying on a separate action head. However, this paradigm meets two main challenges: i) How to make LMMs understand the spatial action space, and ii) How to fully exploit the reasoning capacity of LMMs in solving these tasks. To tackle the former challenge, we propose a novel task formulation, which inputs the current states of object parts and the gripper, and reformulates rotation by a new axis representation instead of traditional Euler angles. This representation is more compatible with spatial reasoning and easier to interpret within a unified language space. For the latter challenge, we design a pipeline to utilize cutting-edge LMMs to generate a small but high-quality reasoning dataset of multi-round dialogues that successfully solve manipulation tasks for supervised fine-tuning. Then, we perform reinforcement learning by trial-and-error interactions in simulation to further enhance the model's reasoning abilities for robotic manipulation. Our resulting reasoning model built upon a 7B backbone, named ReasonManip, demonstrates three notable advantages driven by its system-2 level reasoning capabilities: i) exceptional generalizability to out-of-distribution environments, objects, and tasks; ii) inherent sim-to-real transfer ability enabled by the unified language representation shared across domains; iii) transparent interpretability connecting high-level reasoning and low-level control. Extensive experiments demonstrate the effectiveness of the proposed paradigm and its potential to advance LMM-driven robotic manipulation.",
+   "query": "emergent abilities"
+  },
+  {
+   "id": "2605.28241",
+   "title": "PointQ-Bench: Benchmarking Diagnostic and Interpretable Point Cloud Quality Assessment",
+   "published": "2026-05-27",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Point cloud quality plays a critical role in 3D acquisition, reconstruction, rendering, and perception, yet existing point cloud quality assessment (PCQA) research remains largely centered on scalar score prediction. In practical inspection scenarios, quality assessment often involves identifying defects, characterizing dominant issue types, assessing downstream usability, and providing evidence-supported descriptions, which are not explicitly evaluated by current benchmarks. We introduce PointQ-Bench, a benchmark designed to extend PCQA from scalar scoring toward comprehensive quality understanding. PointQ-Bench consists of 3,083 point clouds spanning authentic scans, simulated distortions, and AI-generated content, covering eight major issue types. Each sample is annotated with mean opinion scores (MOS), quality levels, issue tags, expert-grounded descriptions, and 12,332 question-answer pairs. The benchmark supports three perception-oriented tasks: anomaly sensing, defect diagnosis, and usability grading, as well as a cognition-oriented task of open-ended quality reporting. To evaluate free-form quality descriptions, we further propose SSFRQ-5D, a five-dimensional evaluation protocol validated through human-AI agreement analysis. Extensive experiments on 14 vision-language models and traditional PCQA baselines reveal a consistent perception-diagnosis gap: while current models exhibit emerging abilities in coarse defect perception, they struggle with grounded diagnosis and quality calibration. Strong 2D MLLMs generally outperform existing 3D VLMs, and the benefit of additional views or point-level inputs is non-uniform, varying across tasks, data sources, and models, particularly under boundary-ambiguous conditions. Overall, PointQ-Bench provides a diagnostic testbed for advancing reliable and interpretable point cloud quality understanding.",
+   "query": "emergent abilities"
+  }
+ ]
+}

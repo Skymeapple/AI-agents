@@ -1,0 +1,23 @@
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+html { font-size: 10.5pt; }
+body { font-family: "WenQuanYi Zen Hei", "Noto Sans CJK SC", sans-serif; line-height: 1.65; color: #1a1a1a; max-width: none; margin: 0; padding: 0; }
+h1 { font-size: 19pt; line-height: 1.35; margin: 0 0 0.6em; padding-bottom: 0.3em; border-bottom: 2px solid #234; page-break-before: always; break-before: page; }
+h1.cover-title { border: none; page-break-before: avoid; break-before: avoid; font-size: 26pt; margin-top: 30%; text-align: center; }
+h2 { font-size: 13.5pt; margin: 1.3em 0 0.5em; color: #123; page-break-after: avoid; break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 1.1em 0 0.4em; page-break-after: avoid; break-after: avoid; }
+p, li { text-align: justify; orphans: 2; widows: 2; }
+table { border-collapse: collapse; width: 100%; margin: 0.8em 0; font-size: 8.8pt; page-break-inside: auto; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th, td { border: 1px solid #bbb; padding: 3px 5px; vertical-align: top; }
+th { background: #eef2f6; }
+img { max-width: 100%; max-height: 120mm; display: block; margin: 0.6em auto; page-break-inside: avoid; }
+code { font-family: "DejaVu Sans Mono", monospace; font-size: 0.88em; background: #f4f4f4; padding: 0 2px; }
+pre { background: #f6f6f6; padding: 6px 8px; font-size: 8.5pt; white-space: pre-wrap; word-break: break-all; page-break-inside: avoid; }
+blockquote { margin: 0.6em 0; padding: 0.3em 0.8em; border-left: 3px solid #9ab; color: #333; background: #f7f9fb; }
+a { color: #1a4e8a; text-decoration: none; }
+nav#TOC { page-break-before: always; break-before: page; }
+nav#TOC > ul { list-style: none; padding-left: 0; }
+nav#TOC li { margin: 0.25em 0; }
+nav#TOC::before { content: "目录"; display: block; font-size: 19pt; font-weight: bold; margin-bottom: 0.6em; border-bottom: 2px solid #234; }
+.cover p { text-align: center; }
+.paper-tag { color: #567; font-size: 9.5pt; margin-bottom: 0.2em; }

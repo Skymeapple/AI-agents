@@ -1,0 +1,495 @@
+{
+ "config": {
+  "threshold": 0.99,
+  "intervention_factor": 4.0,
+  "exp1": {
+   "n_per_env": 20000,
+   "seeds": 10,
+   "d": [
+    8,
+    16
+   ]
+  },
+  "exp2": {
+   "d": 5,
+   "n": [
+    500,
+    2000,
+    8000,
+    32000
+   ],
+   "seeds": 30,
+   "design": "M, log v ~ U[-1,1]",
+   "regime_filter": "predicted < 0.05"
+  }
+ },
+ "exp1": {
+  "8": {
+   "S": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.627814790903237,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "1": {
+     "identified_mean": 1.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 1.0,
+     "mcc_mean": 0.6999441362440781,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "2": {
+     "identified_mean": 2.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 2.0,
+     "mcc_mean": 0.7645662436617349,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "3": {
+     "identified_mean": 3.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 3.0,
+     "mcc_mean": 0.8085386523279647,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "4": {
+     "identified_mean": 4.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 4.0,
+     "mcc_mean": 0.9000035535465033,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "5": {
+     "identified_mean": 5.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 5.0,
+     "mcc_mean": 0.950045329764795,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "6": {
+     "identified_mean": 6.4,
+     "identified_ci95": 0.5226666666666666,
+     "theory_mean": 6.0,
+     "mcc_mean": 0.9679788990852479,
+     "exact_agreement_rate": 0.8,
+     "full_identification_rate": 0.2
+    },
+    "7": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9998820992252224,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0
+    },
+    "8": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9999146912896915,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0
+    }
+   },
+   "M": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.6486662991398209,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "1": {
+     "identified_mean": 5.6,
+     "identified_ci95": 1.020539290985136,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9788808781250442,
+     "exact_agreement_rate": 0.2,
+     "full_identification_rate": 0.2,
+     "theory_finite_n_mean": 4.7,
+     "finite_n_exact_agreement": 0.5
+    },
+    "2": {
+     "identified_mean": 7.8,
+     "identified_ci95": 0.39199999999999996,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9982449369350256,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.9
+    },
+    "3": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9993713302739184,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0
+    }
+   },
+   "B": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.6203810204455991,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "1": {
+     "identified_mean": 0.2,
+     "identified_ci95": 0.39199999999999996,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.7513047388028141,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 0.0625,
+     "theory_full_prob": 0.0
+    },
+    "2": {
+     "identified_mean": 1.2,
+     "identified_ci95": 0.5695627952893146,
+     "theory_mean": 0.7,
+     "mcc_mean": 0.895901081682306,
+     "exact_agreement_rate": 0.7,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 1.06787109375,
+     "theory_full_prob": 0.0
+    },
+    "3": {
+     "identified_mean": 4.3,
+     "identified_ci95": 0.971249824824809,
+     "theory_mean": 3.9,
+     "mcc_mean": 0.9589841362680482,
+     "exact_agreement_rate": 0.8,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 3.1415672302246094,
+     "theory_full_prob": 0.00240325927734375
+    },
+    "4": {
+     "identified_mean": 5.6,
+     "identified_ci95": 0.7839999999999999,
+     "theory_mean": 4.6,
+     "mcc_mean": 0.9708336030971194,
+     "exact_agreement_rate": 0.6,
+     "full_identification_rate": 0.1,
+     "theory_expected_formula": 5.092006176710129,
+     "theory_full_prob": 0.12082010507583618
+    },
+    "5": {
+     "identified_mean": 6.8,
+     "identified_ci95": 1.0036697110548314,
+     "theory_mean": 6.6,
+     "mcc_mean": 0.9761013549783032,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.6,
+     "theory_expected_formula": 6.405779652064666,
+     "theory_full_prob": 0.38571475306525826
+    },
+    "6": {
+     "identified_mean": 7.3,
+     "identified_ci95": 0.7186666666666667,
+     "theory_mean": 7.1,
+     "mcc_mean": 0.9857035901067628,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.7,
+     "theory_expected_formula": 7.164964043417058,
+     "theory_full_prob": 0.6340278973402746
+    },
+    "7": {
+     "identified_mean": 7.6,
+     "identified_ci95": 0.5226666666666666,
+     "theory_mean": 7.6,
+     "mcc_mean": 0.9950546856314922,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.8,
+     "theory_expected_formula": 7.572621430050262,
+     "theory_full_prob": 0.799993556743317
+    },
+    "8": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9998977061669537,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0,
+     "theory_expected_formula": 7.783796852301947,
+     "theory_full_prob": 0.8954230691078646
+    },
+    "9": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9999097803448679,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0,
+     "theory_expected_formula": 7.891263787047822,
+     "theory_full_prob": 0.9465263275109664
+    },
+    "10": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.9999048681342619,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0,
+     "theory_expected_formula": 7.945472456769345,
+     "theory_full_prob": 0.972961513882354
+    }
+   }
+  },
+  "16": {
+   "S": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.49770510776913435,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "4": {
+     "identified_mean": 4.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 4.0,
+     "mcc_mean": 0.6756909857144179,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "8": {
+     "identified_mean": 8.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 8.0,
+     "mcc_mean": 0.8200185632997696,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "12": {
+     "identified_mean": 12.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 12.0,
+     "mcc_mean": 0.9349403216899381,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "14": {
+     "identified_mean": 14.2,
+     "identified_ci95": 0.39199999999999996,
+     "theory_mean": 14.0,
+     "mcc_mean": 0.9880891107303716,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.1
+    },
+    "15": {
+     "identified_mean": 16.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 16.0,
+     "mcc_mean": 0.9997816735987893,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0
+    },
+    "16": {
+     "identified_mean": 16.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 16.0,
+     "mcc_mean": 0.999822751166073,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 1.0
+    }
+   },
+   "M": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.5155314778054094,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "1": {
+     "identified_mean": 6.3,
+     "identified_ci95": 1.2413333333333332,
+     "theory_mean": 16.0,
+     "mcc_mean": 0.95441907992276,
+     "exact_agreement_rate": 0.0,
+     "full_identification_rate": 0.0,
+     "theory_finite_n_mean": 3.9,
+     "finite_n_exact_agreement": 0.2
+    },
+    "2": {
+     "identified_mean": 14.7,
+     "identified_ci95": 1.0554923021983627,
+     "theory_mean": 16.0,
+     "mcc_mean": 0.9965947258303217,
+     "exact_agreement_rate": 0.5,
+     "full_identification_rate": 0.5
+    },
+    "3": {
+     "identified_mean": 15.7,
+     "identified_ci95": 0.41833745017894614,
+     "theory_mean": 16.0,
+     "mcc_mean": 0.998333233898826,
+     "exact_agreement_rate": 0.8,
+     "full_identification_rate": 0.8
+    }
+   },
+   "B": {
+    "0": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.5235912921867016,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0
+    },
+    "1": {
+     "identified_mean": 0.0,
+     "identified_ci95": 0.0,
+     "theory_mean": 0.0,
+     "mcc_mean": 0.6282955359267188,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 0.00048828125,
+     "theory_full_prob": 0.0
+    },
+    "2": {
+     "identified_mean": 0.4,
+     "identified_ci95": 0.4333723059397722,
+     "theory_mean": 0.1,
+     "mcc_mean": 0.759355653912907,
+     "exact_agreement_rate": 0.8,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 0.213815376162529,
+     "theory_full_prob": 0.0
+    },
+    "3": {
+     "identified_mean": 3.1,
+     "identified_ci95": 0.6821000252488226,
+     "theory_mean": 2.3,
+     "mcc_mean": 0.854940654264271,
+     "exact_agreement_rate": 0.6,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 2.158941019817121,
+     "theory_full_prob": 0.0
+    },
+    "4": {
+     "identified_mean": 6.6,
+     "identified_ci95": 1.0615410182057654,
+     "theory_mean": 5.4,
+     "mcc_mean": 0.9099745955637564,
+     "exact_agreement_rate": 0.4,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 6.076998493043931,
+     "theory_full_prob": 1.1342267125513672e-06
+    },
+    "5": {
+     "identified_mean": 11.5,
+     "identified_ci95": 0.8886294065707155,
+     "theory_mean": 10.9,
+     "mcc_mean": 0.9595992286278578,
+     "exact_agreement_rate": 0.8,
+     "full_identification_rate": 0.0,
+     "theory_expected_formula": 9.937925011523259,
+     "theory_full_prob": 0.010402853923474023
+    },
+    "6": {
+     "identified_mean": 12.6,
+     "identified_ci95": 1.8525197254910224,
+     "theory_mean": 11.5,
+     "mcc_mean": 0.9730924018263464,
+     "exact_agreement_rate": 0.4,
+     "full_identification_rate": 0.3,
+     "theory_expected_formula": 12.633643413429441,
+     "theory_full_prob": 0.12901152992540985
+    },
+    "7": {
+     "identified_mean": 15.2,
+     "identified_ci95": 0.8667446118795443,
+     "theory_mean": 15.0,
+     "mcc_mean": 0.9926949108956361,
+     "exact_agreement_rate": 0.9,
+     "full_identification_rate": 0.7,
+     "theory_expected_formula": 14.224147667974165,
+     "theory_full_prob": 0.376133428676156
+    },
+    "8": {
+     "identified_mean": 15.8,
+     "identified_ci95": 0.39199999999999996,
+     "theory_mean": 15.8,
+     "mcc_mean": 0.9983635578974013,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.9,
+     "theory_expected_formula": 15.08770588541597,
+     "theory_full_prob": 0.6197076974942147
+    },
+    "9": {
+     "identified_mean": 15.6,
+     "identified_ci95": 0.5226666666666666,
+     "theory_mean": 15.6,
+     "mcc_mean": 0.9990470143217941,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.8,
+     "theory_expected_formula": 15.53760476763216,
+     "theory_full_prob": 0.7891676179643943
+    },
+    "10": {
+     "identified_mean": 15.8,
+     "identified_ci95": 0.39199999999999996,
+     "theory_mean": 15.8,
+     "mcc_mean": 0.9962200077038246,
+     "exact_agreement_rate": 1.0,
+     "full_identification_rate": 0.9,
+     "theory_expected_formula": 15.767220412643978,
+     "theory_full_prob": 0.8888886633560478
+    }
+   }
+  }
+ },
+ "exp2": {
+  "500": {
+   "mean_measured": 0.02135193467992902,
+   "mean_predicted": 0.021464333681227007,
+   "ratio_mean": 0.9947634525735921,
+   "frac_in_regime": 0.3466666666666667,
+   "spearman": 0.46725860155382903
+  },
+  "2000": {
+   "mean_measured": 0.016861115579990742,
+   "mean_predicted": 0.013278974890864914,
+   "ratio_mean": 1.2697603330502651,
+   "frac_in_regime": 0.5333333333333333,
+   "spearman": 0.7384903891233006
+  },
+  "8000": {
+   "mean_measured": 0.007022452551931291,
+   "mean_predicted": 0.00826742783595198,
+   "ratio_mean": 0.849412016805668,
+   "frac_in_regime": 0.8733333333333333,
+   "spearman": 0.7571504831046816
+  },
+  "32000": {
+   "mean_measured": 0.0026158542723360594,
+   "mean_predicted": 0.0037175506741141616,
+   "ratio_mean": 0.7036499301947995,
+   "frac_in_regime": 0.9333333333333333,
+   "spearman": 0.6651330607246726
+  },
+  "pooled_loglog_fit": {
+   "slope": 0.9594692646505681,
+   "slope_se": 0.035115244036019296,
+   "intercept": -0.6880762702920453,
+   "r": 0.806576774274878,
+   "n_points": 403,
+   "median_ratio": 0.7310141070263383
+  }
+ },
+ "runtime_sec": 48.809571504592896
+}

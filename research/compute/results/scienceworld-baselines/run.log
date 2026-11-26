@@ -1,0 +1,69 @@
+job: scienceworld-baselines
+started: 2026-11-26T06:07:11Z
+cores: 4, memory: 15 GB
+openjdk version "25.0.5" 2026-10-20 LTS
+gold   boil                                                 score 100.0  valid commands  52%  2s
+gold   change-the-state-of-matter-of                        score 100.0  valid commands  68%  2s
+gold   chemistry-mix                                        score 100.0  valid commands  78%  1s
+gold   chemistry-mix-paint-secondary-color                  score 100.0  valid commands  67%  0s
+gold   chemistry-mix-paint-tertiary-color                   score 100.0  valid commands  69%  0s
+gold   find-animal                                          score 100.0  valid commands  56%  0s
+gold   find-living-thing                                    score 100.0  valid commands  56%  0s
+gold   find-non-living-thing                                score 100.0  valid commands  71%  0s
+gold   find-plant                                           score 100.0  valid commands  58%  0s
+gold   freeze                                               score 100.0  valid commands  63%  3s
+gold   grow-fruit                                           score 100.0  valid commands  82%  3s
+gold   grow-plant                                           score 100.0  valid commands  77%  1s
+gold   identify-life-stages-1                               score 100.0  valid commands  82%  1s
+gold   identify-life-stages-2                               score 100.0  valid commands  50%  0s
+gold   inclined-plane-determine-angle                       score 100.0  valid commands  89%  2s
+gold   inclined-plane-friction-named-surfaces               score 100.0  valid commands  93%  2s
+gold   inclined-plane-friction-unnamed-surfaces             score 100.0  valid commands  96%  4s
+gold   lifespan-longest-lived                               score 100.0  valid commands  67%  0s
+gold   lifespan-longest-lived-then-shortest-lived           score 100.0  valid commands  75%  0s
+gold   lifespan-shortest-lived                              score 100.0  valid commands  67%  0s
+gold   measure-melting-point-known-substance                score 100.0  valid commands  57%  1s
+gold   measure-melting-point-unknown-substance              score 100.0  valid commands  13%  5s
+gold   melt                                                 score 100.0  valid commands  68%  2s
+gold   mendelian-genetics-known-plant                       score 100.0  valid commands  88%  14s
+gold   mendelian-genetics-unknown-plant                     score 100.0  valid commands  86%  16s
+gold   power-component                                      score 100.0  valid commands  86%  0s
+gold   power-component-renewable-vs-nonrenewable-energy     score 100.0  valid commands  78%  1s
+gold   test-conductivity                                    score 100.0  valid commands  71%  1s
+gold   test-conductivity-of-unknown-substances              score 100.0  valid commands  58%  1s
+gold   use-thermometer                                      score 100.0  valid commands  46%  0s
+
+gold: mean score 100.0 over 30 tasks, up to 200 steps each
+random boil                                                 score   0.0  valid commands 100%  0s
+random change-the-state-of-matter-of                        score   0.0  valid commands 100%  0s
+random chemistry-mix                                        score   6.4  valid commands 100%  0s
+random chemistry-mix-paint-secondary-color                  score  16.0  valid commands 100%  0s
+random chemistry-mix-paint-tertiary-color                   score   7.0  valid commands 100%  0s
+random find-animal                                          score  13.4  valid commands 100%  1s
+random find-living-thing                                    score  11.6  valid commands 100%  0s
+random find-non-living-thing                                score  11.6  valid commands 100%  1s
+random find-plant                                           score  13.4  valid commands 100%  0s
+random freeze                                               score   0.0  valid commands 100%  0s
+random grow-fruit                                           score  18.2  valid commands 100%  0s
+random grow-plant                                           score  11.8  valid commands 100%  1s
+random identify-life-stages-1                               score   3.2  valid commands 100%  0s
+random identify-life-stages-2                               score   0.0  valid commands 100%  0s
+random inclined-plane-determine-angle                       score   2.0  valid commands 100%  0s
+random inclined-plane-friction-named-surfaces               score   0.0  valid commands 100%  1s
+random inclined-plane-friction-unnamed-surfaces             score   2.0  valid commands 100%  0s
+random lifespan-longest-lived                               score   0.0  valid commands 100%  0s
+random lifespan-longest-lived-then-shortest-lived           score   3.4  valid commands 100%  0s
+random lifespan-shortest-lived                              score  30.0  valid commands 100%  0s
+random measure-melting-point-known-substance                score   0.2  valid commands 100%  0s
+random measure-melting-point-unknown-substance              score   0.6  valid commands 100%  1s
+random melt                                                 score   0.6  valid commands 100%  0s
+random mendelian-genetics-known-plant                       score   0.4  valid commands 100%  0s
+random mendelian-genetics-unknown-plant                     score   0.4  valid commands 100%  0s
+random power-component                                      score  10.6  valid commands 100%  0s
+random power-component-renewable-vs-nonrenewable-energy     score   6.0  valid commands 100%  0s
+random test-conductivity                                    score   7.0  valid commands 100%  0s
+random test-conductivity-of-unknown-substances              score   0.0  valid commands 100%  0s
+random use-thermometer                                      score   1.8  valid commands 100%  0s
+
+random: mean score 5.9 over 30 tasks, up to 30 steps each
+finished: 2026-11-26T06:12:26Z, exit code 0

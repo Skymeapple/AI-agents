@@ -1,0 +1,48 @@
+job: lean-floor2-test-b
+started: 2026-11-26T15:55:35Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 24490 ms
+Completed successfully!
+{'test': 244}
+test  norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial] proves  23  | "floor_test_18_205_0.lean:10:12: error: unsolved goals\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 % 100 = 1\n⊢ x = 89\n'mathd_numbertheo"
+watchdog: killed lean process using 5086 MB of private memory
+test  simp_all <;> grind                                           proves  48 ['amc12a_2008_p25: exit 137'] | "floor_test_19_205_0.lean:10:15: error: simp_all made no progress\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nfl"
+test  norm_num at * <;> grind                                      proves  84 ['imo_1977_p6: exit 134', 'imo_1981_p6: exit 134', 'mathd_numbertheory_328: exit 134'] | 'floor_test_20_205_0.lean:10:29: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can '
+test  (try field_simp at *) <;> grind                              proves  74 ['imo_1977_p6: exit 134', 'imo_1981_p6: exit 134', 'mathd_numbertheory_328: exit 134'] | 'floor_test_21_205_0.lean:10:37: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can '
+test  intros; constructor <;> grind                                proves  27  | 'floor_test_22_205_0.lean:10:23: error: Tactic `constructor` failed: no applicable constructor found\n\nx : ℕ\nh₀ : x < 100\n'
+test  constructor <;> intros <;> grind                             proves  27  | 'floor_test_23_205_0.lean:10:15: error: Tactic `constructor` failed: no applicable constructor found\n\nx : ℕ\nh₀ : x < 100\n'
+test  intros; simp_all; linarith                                   proves  34 ['amc12a_2008_p25: timeout'] | "floor_test_17_205_0.lean:10:23: error: simp_all made no progress\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nfl"
+test  decide                                                       proves  24  | 'floor_test_25_205_0.lean:10:15: error: Expected type must not contain free variables\n  x = 89\n\nHint: Use the `+revert` o'
+test  grind [Nat.ModEq, Int.ModEq]                                 proves  74 ['imo_1977_p6: exit 134', 'imo_1981_p6: exit 134', 'mathd_numbertheory_328: exit 134'] | "'mathd_numbertheory_34' depends on axioms: [propext, Classical.choice, Quot.sound]\nfloor_test_24_205_0.lean:17:23: error"
+test  norm_num [Nat.ModEq, Int.ModEq] at * <;> omega               proves  39  | 'floor_test_26_205_0.lean:10:52: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can '
+watchdog: killed lean process using 5014 MB of private memory
+test  norm_num at * <;> bound                                      proves  51  | 'floor_test_28_205_0.lean:10:33: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_test_28_205_0.le'
+test  simp_all [Finset.sum_range_succ, Finset.prod_range_succ] <;> grind proves  56 ['amc12a_2008_p25: exit 137'] | "floor_test_27_205_0.lean:10:15: error: simp_all made no progress\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nfl"
+test  (try field_simp at *) <;> nlinarith                          proves  38  | 'floor_test_29_205_0.lean:10:41: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 %'
+test  induction' n with n ih <;> simp_all [Finset.sum_range_succ] <;> grind proves   8  | 'floor_test_30_205_0.lean:10:26: error(lean.unknownIdentifier): Unknown identifier `n`\nfloor_test_30_205_0.lean:10:15: er'
+test  nlinarith [SQUARES]                                          proves  37  | 'floor_test_32_205_0.lean:10:15: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 %'
+test  intros; nlinarith [SQUARES]                                  proves  37  | 'floor_test_33_205_0.lean:10:23: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 %'
+test  exact?                                                       proves  25  | "floor_test_31_205_0.lean:10:15: error: `exact?` could not close the goal. Try `apply?` to see partial suggestions.\n'math"
+
+RESULT test: 244 theorems; any single tactic proves 104 (42.6%)
+RESULT   norm_num at * <;> grind                                       84   new beyond the tactics above: 84
+RESULT   (try field_simp at *) <;> grind                               74   new beyond the tactics above: 0
+RESULT   grind [Nat.ModEq, Int.ModEq]                                  74   new beyond the tactics above: 0
+RESULT   simp_all [Finset.sum_range_succ, Finset.prod_range_succ] <;> grind  56   new beyond the tactics above: 9
+RESULT   norm_num at * <;> bound                                       51   new beyond the tactics above: 4
+RESULT   simp_all <;> grind                                            48   new beyond the tactics above: 0
+RESULT   norm_num [Nat.ModEq, Int.ModEq] at * <;> omega                39   new beyond the tactics above: 2
+RESULT   (try field_simp at *) <;> nlinarith                           38   new beyond the tactics above: 1
+RESULT   nlinarith [SQUARES]                                           37   new beyond the tactics above: 2
+RESULT   intros; nlinarith [SQUARES]                                   37   new beyond the tactics above: 0
+RESULT   intros; simp_all; linarith                                    34   new beyond the tactics above: 0
+RESULT   intros; constructor <;> grind                                 27   new beyond the tactics above: 0
+RESULT   constructor <;> intros <;> grind                              27   new beyond the tactics above: 0
+RESULT   exact?                                                        25   new beyond the tactics above: 1
+RESULT   decide                                                        24   new beyond the tactics above: 0
+RESULT   norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]  23   new beyond the tactics above: 0
+RESULT   induction' n with n ih <;> simp_all [Finset.sum_range_succ] <;> grind   8   new beyond the tactics above: 1
+RESULT   by source: aime 4/15, algebra 2/18, amc12 1/6, amc12a 4/24, amc12b 5/15, imo 2/19, imosl 0/1, induction 1/8, mathd 84/130, numbertheory 1/8
+finished: 2026-11-26T16:23:21Z, exit code 0

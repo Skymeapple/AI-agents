@@ -65,7 +65,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | Project | Still missing |
 | --- | --- |
 | [Agent for ARC Grid Transformation Tasks](agent-harnesses/arc-grid-agent/README.md) | A CPU study has run. A language-model key for the harness. |
-| [Agent for Verified Programming with Dafny](agent-harnesses/dafny-agent/README.md) | A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token. |
+| [Agent for Verified Programming with Dafny](agent-harnesses/dafny-agent/README.md) | A model-free floor has run. A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token. |
 | [Agent for Formal Theorem Proving in Lean](agent-harnesses/lean-prover-agent/README.md) | A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token. |
 | [Building an Agent for Preserving Knowledge from Research Papers](agent-harnesses/paper-memory-agent/README.md) | A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token. |
 | [Agent for Questions over Real Tables](agent-harnesses/table-qa-agent/README.md) | A small-scale study with an open 3B model has run on CPU. A language-model key for HFM's frozen model. |

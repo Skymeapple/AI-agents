@@ -1,0 +1,49 @@
+job: lean-floor2-valid-b
+started: 2026-11-26T14:54:16Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 24734 ms
+Completed successfully!
+{'valid': 244}
+valid norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial] proves  23 ['mathd_numbertheory_543: timeout'] | "floor_valid_18_205_0.lean:6:99: error: unsolved goals\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36\n⊢ ∑ k ∈ S, k = 91\n'mat"
+valid intros; simp_all; linarith                                   proves  32 ['mathd_numbertheory_543: timeout'] | "floor_valid_17_205_0.lean:6:110: error: simp_all made no progress\n'mathd_numbertheory_32' depends on axioms: [propext, s"
+watchdog: killed lean process using 5067 MB of private memory
+valid simp_all <;> grind                                           proves  49 ['aime_1996_p5: exit 137', 'amc12a_2008_p15: exit 134', 'mathd_numbertheory_543: timeout'] | "floor_valid_19_205_0.lean:6:102: error: simp_all made no progress\n'mathd_numbertheory_32' depends on axioms: [propext, s"
+watchdog: killed lean process using 5160 MB of private memory
+valid norm_num at * <;> grind                                      proves  81 ['mathd_numbertheory_543: timeout'] | 'floor_valid_20_205_0.lean:6:120: error: `grind` failed\ncase grind\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), (n ∈ S) = (n ∣ 36)\nh : ¬∑'
+valid intros; constructor <;> grind                                proves  25  | 'floor_valid_22_205_0.lean:6:110: error: Tactic `constructor` failed: no applicable constructor found\n\nS : Finset ℕ\nh₀ : '
+valid (try field_simp at *) <;> grind                              proves  71 ['aime_1996_p5: exit 137'] | 'floor_valid_21_205_0.lean:6:128: error: `grind` failed\ncase grind\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), (n ∈ S) = (n ∣ 36)\nh : ¬∑'
+valid constructor <;> intros <;> grind                             proves  25  | 'floor_valid_23_205_0.lean:6:102: error: Tactic `constructor` failed: no applicable constructor found\n\nS : Finset ℕ\nh₀ : '
+valid decide                                                       proves  25  | 'floor_valid_25_205_0.lean:6:102: error: Expected type must not contain free variables\n  ∑ k ∈ S, k = 91\n\nHint: Use the `'
+valid grind [Nat.ModEq, Int.ModEq]                                 proves  69  | 'floor_valid_24_205_0.lean:6:102: error: `grind` failed\ncase grind\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), (n ∈ S) = (n ∣ 36)\nh : ¬∑'
+watchdog: killed lean process using 5003 MB of private memory
+valid norm_num [Nat.ModEq, Int.ModEq] at * <;> omega               proves  37 ['mathd_numbertheory_543: timeout'] | 'floor_valid_26_205_0.lean:6:143: error: omega could not prove the goal:\na possible counterexample may satisfy the constr'
+valid simp_all [Finset.sum_range_succ, Finset.prod_range_succ] <;> grind proves  51 ['aime_1996_p5: exit 137', 'amc12a_2008_p15: exit 134', 'mathd_numbertheory_543: timeout'] | "floor_valid_27_205_0.lean:6:102: error: simp_all made no progress\n'mathd_numbertheory_32' depends on axioms: [propext, s"
+valid (try field_simp at *) <;> nlinarith                          proves  30  | 'floor_valid_29_205_0.lean:6:128: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n'
+valid induction' n with n ih <;> simp_all [Finset.sum_range_succ] <;> grind proves   5  | 'floor_valid_30_205_0.lean:6:113: error(lean.unknownIdentifier): Unknown identifier `n`\nfloor_valid_30_205_0.lean:6:102: '
+valid norm_num at * <;> bound                                      proves  46 ['mathd_numbertheory_543: timeout'] | "floor_valid_28_205_0.lean:6:120: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  S : Finset ℕ\n  h₀ : ∀ (n"
+valid nlinarith [SQUARES]                                          proves  31  | 'floor_valid_32_205_0.lean:6:102: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n'
+valid exact?                                                       proves  22  | "floor_valid_31_205_0.lean:6:102: error: `exact?` could not close the goal. Try `apply?` to see partial suggestions.\n'mat"
+valid intros; nlinarith [SQUARES]                                  proves  31  | 'floor_valid_33_205_0.lean:6:110: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n'
+
+RESULT valid: 244 theorems; any single tactic proves 107 (43.9%)
+RESULT   norm_num at * <;> grind                                       81   new beyond the tactics above: 81
+RESULT   (try field_simp at *) <;> grind                               71   new beyond the tactics above: 1
+RESULT   grind [Nat.ModEq, Int.ModEq]                                  69   new beyond the tactics above: 0
+RESULT   simp_all [Finset.sum_range_succ, Finset.prod_range_succ] <;> grind  51   new beyond the tactics above: 1
+RESULT   simp_all <;> grind                                            49   new beyond the tactics above: 0
+RESULT   norm_num at * <;> bound                                       46   new beyond the tactics above: 8
+RESULT   norm_num [Nat.ModEq, Int.ModEq] at * <;> omega                37   new beyond the tactics above: 2
+RESULT   intros; simp_all; linarith                                    32   new beyond the tactics above: 1
+RESULT   nlinarith [SQUARES]                                           31   new beyond the tactics above: 8
+RESULT   intros; nlinarith [SQUARES]                                   31   new beyond the tactics above: 0
+RESULT   (try field_simp at *) <;> nlinarith                           30   new beyond the tactics above: 0
+RESULT   intros; constructor <;> grind                                 25   new beyond the tactics above: 0
+RESULT   constructor <;> intros <;> grind                              25   new beyond the tactics above: 0
+RESULT   decide                                                        25   new beyond the tactics above: 3
+RESULT   norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]  23   new beyond the tactics above: 0
+RESULT   exact?                                                        22   new beyond the tactics above: 0
+RESULT   induction' n with n ih <;> simp_all [Finset.sum_range_succ] <;> grind   5   new beyond the tactics above: 2
+RESULT   by source: aime 1/12, aimeI 0/1, aimeII 0/2, algebra 7/18, amc12 2/5, amc12a 8/31, amc12b 2/9, imo 1/20, induction 1/8, mathd 84/130, numbertheory 1/8
+finished: 2026-11-26T15:54:20Z, exit code 0

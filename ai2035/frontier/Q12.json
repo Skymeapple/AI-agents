@@ -1,0 +1,1314 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "jailbreak attacks large language models",
+  "adversarial robustness",
+  "certified robustness"
+ ],
+ "papers": [
+  {
+   "id": "2510.18728",
+   "title": "HarmNet: A Framework for Adaptive Multi-Turn Jailbreak Attacks on Large Language Models",
+   "published": "2025-10-21",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) remain vulnerable to multi-turn jailbreak attacks. We introduce HarmNet, a modular framework comprising ThoughtNet, a hierarchical semantic network; a feedback-driven Simulator for iterative query refinement; and a Network Traverser for real-time adaptive attack execution. HarmNet systematically explores and refines the adversarial space to uncover stealthy, high-success attack paths. Experiments across closed-source and open-source LLMs show that HarmNet outperforms state-of-the-art methods, achieving higher attack success rates. For example, on Mistral-7B, HarmNet achieves a 99.4% attack success rate, 13.9% higher than the best baseline. Index terms: jailbreak attacks; large language models; adversarial framework; query refinement.",
+   "query": "jailbreak attacks large language models"
+  },
+  {
+   "id": "2503.06461",
+   "title": "Long-tailed Adversarial Training with Self-Distillation",
+   "published": "2025-03-09",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Adversarial training significantly enhances adversarial robustness, yet superior performance is predominantly achieved on balanced datasets. Addressing adversarial robustness in the context of unbalanced or long-tailed distributions is considerably more challenging, mainly due to the scarcity of tail data instances. Previous research on adversarial robustness within long-tailed distributions has primarily focused on combining traditional long-tailed natural training with existing adversarial robustness methods. In this study, we provide an in-depth analysis for the challenge that adversarial training struggles to achieve high performance on tail classes in long-tailed distributions. Furthermore, we propose a simple yet effective solution to advance adversarial robustness on long-tailed distributions through a novel self-distillation technique. Specifically, this approach leverages a balanced self-teacher model, which is trained using a balanced dataset sampled from the original long-tailed dataset. Our extensive experiments demonstrate state-of-the-art performance in both clean and robust accuracy for long-tailed adversarial robustness, with significant improvements in tail class performance on various datasets. We improve the accuracy against PGD attacks for tail classes by 20.3, 7.1, and 3.8 percentage points on CIFAR-10, CIFAR-100, and Tiny-ImageNet, respectively, while achieving the highest robust accuracy.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2503.06361",
+   "title": "Adversarial Robustness of Discriminative Self-Supervised Learning in Vision",
+   "published": "2025-03-08",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Self-supervised learning (SSL) has advanced significantly in visual representation learning, yet comprehensive evaluations of its adversarial robustness remain limited. In this study, we evaluate the adversarial robustness of seven discriminative self-supervised models and one supervised model across diverse tasks, including ImageNet classification, transfer learning, segmentation, and detection. Our findings suggest that discriminative SSL models generally exhibit better robustness to adversarial attacks compared to their supervised counterpart on ImageNet, with this advantage extending to transfer learning when using linear evaluation. However, when fine-tuning is applied, the robustness gap between SSL and supervised models narrows considerably. Similarly, this robustness advantage diminishes in segmentation and detection tasks. We also investigate how various factors might influence adversarial robustness, including architectural choices, training duration, data augmentations, and batch sizes. Our analysis contributes to the ongoing exploration of adversarial robustness in visual self-supervised representation systems.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2502.00834",
+   "title": "Boosting Adversarial Robustness and Generalization with Dictionary Structure",
+   "published": "2025-02-02",
+   "categories": [
+    "cs.LG",
+    "cs.CR",
+    "cs.NE"
+   ],
+   "abstract": "This work investigates a novel approach to boost adversarial robustness and generalization by incorporating structural prior into the design of deep learning models. Specifically, our study surprisingly reveals that existing dictionary learning-inspired convolutional neural networks (CNNs) are robust against random noise but remain highly vulnerable to adversarial attacks. To address this, we propose Elastic Dictionary Learning Networks (EDLNets), a novel ResNet architecture that significantly enhances adversarial robustness and generalization. Extensive and reliable experiments demonstrate consistent improvements in adversarial robustness across multiple datasets, backbone architectures, and threat models. To the best of our knowledge, this is the first work to discover and validate that dictionary structure can reliably enhance deep learning robustness under strong adaptive attacks, unveiling a promising direction for future research.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2607.14432",
+   "title": "The Adversarial Robustness of Sketching and Streaming Algorithms",
+   "published": "2026-07-15",
+   "categories": [
+    "cs.DS"
+   ],
+   "abstract": "Sketching and streaming algorithms are vital for handling massive datasets. While classical methods guarantee correctness on fixed inputs, they often fail with adaptive inputs, where future data depends on past algorithm outputs. This is common in settings such as optimization, databases, finance, and network monitoring. This monograph surveys recent advances in adversarial robustness, including techniques for insertion-only streams, connections to differential privacy, and cryptographic methods that achieve adversarial robustness. We also discuss fundamental limitations, especially for linear sketches and streams with insertions and deletions, where robustness often requires polynomial space or sketching dimension. Throughout, we explore core problems like adaptively answering queries for optimization problems, norm estimation, frequency moments, and heavy hitters, and highlight emerging tools and open challenges at the intersection of streaming, sketching, privacy, and adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2607.02074",
+   "title": "Comprehensive Robustness Analysis of LiDAR-based 3D Object Detection in Autonomous Driving",
+   "published": "2026-07-02",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Recent advancements in LiDAR-only 3D object detection have demonstrated improved detection accuracy over benchmark datasets. However, the adversarial robustness of these models remains untested. Very few adversarial robustness studies exist for LiDAR-only 3D object detection and unfortunately, even they are limited to legacy models. Moreover, there is a systemic gap in the existing evaluation frameworks that rely simply on mAP ignoring other structural and predictive factors. To fill this gap, we propose a holistic framework that evaluates adversarial robustness using two structural factors (point cloud density and point cloud localization) and three predictive factors (misclassification, localization error, distance from ego). Using this framework, we perform an empirical study and critical analysis on recent and legacy state-of-the-art models using adversarial attacks specifically designed for LiDAR-based models. Our key finding is that high-capacity, voxel-based detectors are more susceptible to structured coordinate perturbations than pillar-based detectors. Additionally, non-anchor-based detectors demonstrate poor adversarial robustness, which necessitates rethinking model training techniques. Overall, our results demonstrate that recent models are as vulnerable to adversarial attacks as their predecessors. Therefore, we argue that there is a need to improve the evaluation benchmarks for 3D object detection that not only reward architectural modifications for improving detection accuracy, but also evaluate whether the design choices improve adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2508.11848",
+   "title": "Adversarial Robustness in Distributed Quantum Machine Learning",
+   "published": "2025-08-16",
+   "categories": [
+    "quant-ph",
+    "cs.ET",
+    "cs.LG"
+   ],
+   "abstract": "Studying adversarial robustness of quantum machine learning (QML) models is essential in order to understand their potential advantages over classical models and build trustworthy systems. Distributing QML models allows leveraging multiple quantum processors to overcome the limitations of individual devices and build scalable systems. However, this distribution can affect their adversarial robustness, potentially making them more vulnerable to new attacks. Key paradigms in distributed QML include federated learning, which, similar to classical models, involves training a shared model on local data and sending only the model updates, as well as circuit distribution methods inherent to quantum computing, such as circuit cutting and teleportation-based techniques. These quantum-specific methods enable the distributed execution of quantum circuits across multiple devices. This work reviews the differences between these distribution methods, summarizes existing approaches on the adversarial robustness of QML models when distributed using each paradigm, and discusses open questions in this area.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2603.12799",
+   "title": "What Makes VLMs Robust? Towards Reconciling Robustness and Accuracy in Vision-Language Models",
+   "published": "2026-03-13",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Achieving adversarial robustness in Vision-Language Models (VLMs) inevitably compromises accuracy on clean data, presenting a long-standing and challenging trade-off. In this work, we revisit this trade-off by investigating a fundamental question: What makes VLMs robust? Through a detailed analysis of adversarially fine-tuned models, we examine how robustness mechanisms function internally and how they interact with clean accuracy. Our analysis reveals that adversarial robustness is not uniformly distributed across network depth. Instead, unexpectedly, it is primarily localized within the shallow layers, driven by a low-frequency spectral bias and input-insensitive attention patterns. Meanwhile, updates to the deep layers tend to undermine both clean accuracy and robust generalization. Motivated by these insights, we propose Adversarial Robustness Adaptation (R-Adapt), a simple yet effective framework that freezes all pre-trained weights and introduces minimal, insight-driven adaptations only in the initial layers. This design achieves an exceptional balance between adversarial robustness and clean accuracy. R-Adapt further supports training-free, model-guided, and data-driven paradigms, offering flexible pathways to seamlessly equip standard models with robustness. Extensive evaluations on 18 datasets and diverse tasks demonstrate our state-of-the-art performance under various attacks. Notably, R-Adapt generalizes efficiently to large vision-language models (e.g., LLaVA and Qwen-VL) to enhance their robustness. Our project page is available at https://summu77.github.io/R-Adapt.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2601.12865",
+   "title": "Proxy Robustness in Vision Language Models is Effortlessly Transferable",
+   "published": "2026-01-19",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "As a pivotal technique for improving the defense of deep models, adversarial robustness transfer via distillation has demonstrated remarkable success in conventional image classification tasks. However, this paradigm encounters critical challenges when applied to vision-language models (VLM) (e.g., CLIP): constructing adversarially robust teacher for large-scale multi-modal models demands prohibitively high computational resources. We bridge this gap by revealing an interesting phenomenon: vanilla CLIP (without adversarial training) exhibits intrinsic defensive capabilities against adversarial examples generated by another CLIP with different architectures. We formally define this as proxy adversarial robustness, and naturally propose a Heterogeneous Proxy Transfer (HPT) framework that establishes cross-architectural robustness distillation channels between CLIP variants, effortlessly enabling the VLM robustness transfer from proxy to target models. Yet, such proxy transfer paradigm easily induces severe overfitting, leading to a sharp degradation in zero-shot natural generalization. To resolve that, we design Generalization-Pivot Decoupling (GPD) by leveraging the difference in learning rate scheduling. This decouples the proxy transfer process into a generalization-anchored warm-up that maintains generalization and a generalization-pulled HPT that promotes adversarial robustness, to achieve an equilibrium between natural generalization and adversarial robustness. Extensive experiments on 15 zero-shot datasets demonstrate the effectiveness of our HPT-GPD method. The code is available at the website of github.com/fxw13/HPT-GPD.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2506.08611",
+   "title": "Towards Class-wise Fair Adversarial Training via Anti-Bias Soft Label Distillation",
+   "published": "2025-06-10",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Adversarial Training (AT) is widely recognized as an effective approach to enhance the adversarial robustness of Deep Neural Networks. As a variant of AT, Adversarial Robustness Distillation (ARD) has shown outstanding performance in enhancing the robustness of small models. However, both AT and ARD face robust fairness issue: these models tend to display strong adversarial robustness against some classes (easy classes) while demonstrating weak adversarial robustness against others (hard classes). This paper explores the underlying factors of this problem and points out the smoothness degree of soft labels for different classes significantly impacts the robust fairness from both empirical observation and theoretical analysis. Based on the above exploration, we propose Anti-Bias Soft Label Distillation (ABSLD) within the Knowledge Distillation framework to enhance the adversarial robust fairness. Specifically, ABSLD adaptively reduces the student's error risk gap between different classes, which is accomplished by adjusting the class-wise smoothness degree of teacher's soft labels during the training process, and the adjustment is managed by assigning varying temperatures to different classes. Additionally, as a label-based approach, ABSLD is highly adaptable and can be integrated with the sample-based methods. Extensive experiments demonstrate ABSLD outperforms state-of-the-art methods on the comprehensive performance of robustness and fairness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2504.18556",
+   "title": "RDI: An adversarial robustness evaluation metric for deep neural networks based on model statistical features",
+   "published": "2025-04-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Deep neural networks (DNNs) are highly susceptible to adversarial samples, raising concerns about their reliability in safety-critical tasks. Currently, methods of evaluating adversarial robustness are primarily categorized into attack-based and certified robustness evaluation approaches. The former not only relies on specific attack algorithms but also is highly time-consuming, while the latter due to its analytical nature, is typically difficult to implement for large and complex models. A few studies evaluate model robustness based on the model's decision boundary, but they suffer from low evaluation accuracy. To address the aforementioned issues, we propose a novel adversarial robustness evaluation metric, Robustness Difference Index (RDI), which is based on model statistical features. RDI draws inspiration from clustering evaluation by analyzing the intra-class and inter-class distances of feature vectors separated by the decision boundary to quantify model robustness. It is attack-independent and has high computational efficiency. Experiments show that, RDI demonstrates a stronger correlation with the gold-standard adversarial robustness metric of attack success rate (ASR). The average computation time of RDI is only 1/30 of the evaluation method based on the PGD attack. Our open-source code is available at: https://github.com/BUPTAIOC/RDI.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2503.12069",
+   "title": "Robust Dataset Distillation by Matching Adversarial Trajectories",
+   "published": "2025-03-15",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Dataset distillation synthesizes compact datasets that enable models to achieve performance comparable to training on the original large-scale datasets. However, existing distillation methods overlook the robustness of the model, resulting in models that are vulnerable to adversarial attacks when trained on distilled data. To address this limitation, we introduce the task of ``robust dataset distillation\", a novel paradigm that embeds adversarial robustness into the synthetic datasets during the distillation process. We propose Matching Adversarial Trajectories (MAT), a method that integrates adversarial training into trajectory-based dataset distillation. MAT incorporates adversarial samples during trajectory generation to obtain robust training trajectories, which are then used to guide the distillation process. As experimentally demonstrated, even through natural training on our distilled dataset, models can achieve enhanced adversarial robustness while maintaining competitive accuracy compared to existing distillation methods. Our work highlights robust dataset distillation as a new and important research direction and provides a strong baseline for future research to bridge the gap between efficient training and adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2505.16714",
+   "title": "Experimental robustness benchmarking of quantum neural networks on a superconducting quantum processor",
+   "published": "2025-05-22",
+   "categories": [
+    "quant-ph",
+    "cs.LG"
+   ],
+   "abstract": "Quantum machine learning (QML) models, like their classical counterparts, are vulnerable to adversarial attacks, hindering their secure deployment. Here, we report the first systematic experimental robustness benchmark for 20-qubit quantum neural network (QNN) classifiers executed on a superconducting processor. Our benchmarking framework features an efficient adversarial attack algorithm designed for QNNs, enabling quantitative characterization of adversarial robustness and robustness bounds. From our analysis, we verify that adversarial training reduces sensitivity to targeted perturbations by regularizing input gradients, significantly enhancing QNN's robustness. Additionally, our analysis reveals that QNNs exhibit superior adversarial robustness compared to classical neural networks, an advantage attributed to inherent quantum noise. Furthermore, the empirical upper bound extracted from our attack experiments shows a minimal deviation ($3 \\times 10^{-3}$) from the theoretical lower bound, providing strong experimental confirmation of the attack's effectiveness and the tightness of fidelity-based robustness bounds. This work establishes a critical experimental framework for assessing and improving quantum adversarial robustness, paving the way for secure and reliable QML applications.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2507.02394",
+   "title": "On the Adversarial Robustness of Online Importance Sampling",
+   "published": "2025-07-03",
+   "categories": [
+    "cs.DS"
+   ],
+   "abstract": "This paper studies the adversarial-robustness of importance-sampling (aka sensitivity sampling); a useful algorithmic technique that samples elements with probabilities proportional to some measure of their importance. A streaming or online algorithm is called adversarially-robust if it succeeds with high probability on input streams that may change adaptively depending on previous algorithm outputs. Unfortunately, the dependence between stream elements breaks the analysis of most randomized algorithms, and in particular that of importance-sampling algorithms. Previously, Braverman et al. [NeurIPS 2021] suggested that streaming algorithms based on importance-sampling may be adversarially-robust; however, they proved it only for well-behaved inputs. We focus on the adversarial-robustness of online importance-sampling, a natural variant where sampling decisions are irrevocable and made as data arrives. Our main technical result shows that, given as input an adaptive stream of elements $x_1,\\ldots,x_T\\in \\mathbb{R}_+$, online importance-sampling maintains a $(1\\pmε)$-approximation of their sum while matching (up to lower order terms) the storage guarantees of the oblivious (non-adaptive) case. We then apply this result to develop adversarially-robust online algorithms for two fundamental problems: hypergraph cut sparsification and $\\ell_p$ subspace embedding.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2506.02016",
+   "title": "Are classical deep neural networks weakly adversarially robust?",
+   "published": "2025-05-28",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Adversarial attacks have received increasing attention and it has been widely recognized that classical DNNs have weak adversarial robustness. The most commonly used adversarial defense method, adversarial training, improves the adversarial accuracy of DNNs by generating adversarial examples and retraining the model. However, adversarial training requires a significant computational overhead. In this paper, inspired by existing studies focusing on the clustering properties of DNN output features at each layer and the Progressive Feedforward Collapse phenomenon, we propose a method for adversarial example detection and image recognition that uses layer-wise features to construct feature paths and computes the correlation between the examples feature paths and the class-centered feature paths. Experimental results show that the recognition method achieves 82.77% clean accuracy and 44.17% adversarial accuracy on the ResNet-20 with PFC. Compared to the adversarial training method with 77.64% clean accuracy and 52.94% adversarial accuracy, our method exhibits a trade-off without relying on computationally expensive defense strategies. Furthermore, on the standard ResNet-18, our method maintains this advantage with respective metrics of 80.01% and 46.1%. This result reveals inherent adversarial robustness in DNNs, challenging the conventional understanding of the weak adversarial robustness in DNNs.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2509.12939",
+   "title": "Sy-FAR: Symmetry-based Fair Adversarial Robustness",
+   "published": "2025-09-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR",
+    "cs.CV"
+   ],
+   "abstract": "Security-critical machine-learning (ML) systems, such as face-recognition systems, are susceptible to adversarial examples, including real-world physically realizable attacks. Various means to boost ML's adversarial robustness have been proposed; however, they typically induce unfair robustness: It is often easier to attack from certain classes or groups than from others. Several techniques have been developed to improve adversarial robustness while seeking perfect fairness between classes. Yet, prior work has focused on settings where security and fairness are less critical. Our insight is that achieving perfect parity in realistic fairness-critical tasks, such as face recognition, is often infeasible -- some classes may be highly similar, leading to more misclassifications between them. Instead, we suggest that seeking symmetry -- i.e., attacks from class $i$ to $j$ would be as successful as from $j$ to $i$ -- is more tractable. Intuitively, symmetry is a desirable because class resemblance is a symmetric relation in most domains. Additionally, as we prove theoretically, symmetry between individuals induces symmetry between any set of sub-groups, in contrast to other fairness notions where group-fairness is often elusive. We develop Sy-FAR, a technique to encourage symmetry while also optimizing adversarial robustness and extensively evaluate it using five datasets, with three model architectures, including against targeted and untargeted realistic attacks. The results show Sy-FAR significantly improves fair adversarial robustness compared to state-of-the-art methods. Moreover, we find that Sy-FAR is faster and more consistent across runs. Notably, Sy-FAR also ameliorates another type of unfairness we discover in this work -- target classes that adversarial examples are likely to be classified into become significantly less vulnerable after inducing symmetry.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2605.06902",
+   "title": "Streaming Adversarial Robustness in Fuzzy ARTMAP: Mechanism-Aligned Evaluation, Progressive Training, and Interpretable Diagnostics",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Adversarial robustness has been studied extensively for offline deep networks, but less is known about strict single-pass streaming neural learners. This paper studies adversarial robustness in Fuzzy ARTMAP, an Adaptive Resonance Theory architecture based on category competition, complement coding, match tracking, and replay-free prototype updates. We introduce WB-Softmax, a differentiable white-box attack surrogate aligned with ARTMAP's category-competition and map-field prediction mechanism, and formalize a streaming evaluation principle requiring robustness to be assessed on the final deployed model. Across four image benchmarks, WB-Softmax achieves 89-100% attack success on vanilla Fuzzy ARTMAP models. We show that defense rankings can reverse across protocols: offline adversarial training may appear strong under transfer attacks yet collapse under adaptive white-box evaluation, whereas progressive two-stage selective training provides the strongest overall replay-free robustness. We further show that ART's explicit category geometry enables interpretable diagnosis of separation collapse and match-score inversion. These results provide a mechanism-aligned, protocol-aware framework for adversarial robustness in streaming prototype-based learners.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2502.12377",
+   "title": "Alignment and Adversarial Robustness: Are More Human-Like Models More Secure?",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "A small but growing body of work has shown that machine learning models which better align with human vision have also exhibited higher robustness to adversarial examples, raising the question: can human-like perception make models more secure? If true generally, such mechanisms would offer new avenues toward robustness. In this work, we conduct a large-scale empirical analysis to systematically investigate the relationship between representational alignment and adversarial robustness. We evaluate 114 models spanning diverse architectures and training paradigms, measuring their neural and behavioral alignment and engineering task performance across 105 benchmarks as well as their adversarial robustness via AutoAttack. Our findings reveal that while average alignment and robustness exhibit a weak overall correlation, specific alignment benchmarks serve as strong predictors of adversarial robustness, particularly those that measure selectivity toward texture or shape. These results suggest that different forms of alignment play distinct roles in model robustness, motivating further investigation into how alignment-driven approaches can be leveraged to build more secure and perceptually-grounded vision models.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2508.18019",
+   "title": "Does simple trump complex? Comparing strategies for adversarial robustness in DNNs",
+   "published": "2025-08-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep Neural Networks (DNNs) have shown substantial success in various applications but remain vulnerable to adversarial attacks. This study aims to identify and isolate the components of two different adversarial training techniques that contribute most to increased adversarial robustness, particularly through the lens of margins in the input space -- the minimal distance between data points and decision boundaries. Specifically, we compare two methods that maximize margins: a simple approach which modifies the loss function to increase an approximation of the margin, and a more complex state-of-the-art method (Dynamics-Aware Robust Training) which builds upon this approach. Using a VGG-16 model as our base, we systematically isolate and evaluate individual components from these methods to determine their relative impact on adversarial robustness. We assess the effect of each component on the model's performance under various adversarial attacks, including AutoAttack and Projected Gradient Descent (PGD). Our analysis on the CIFAR-10 dataset reveals which elements most effectively enhance adversarial robustness, providing insights for designing more robust DNNs.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2603.29410",
+   "title": "AGFT: Alignment-Guided Fine-Tuning for Zero-Shot Adversarial Robustness of Vision-Language Models",
+   "published": "2026-03-31",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Pre-trained vision-language models (VLMs) exhibit strong zero-shot generalization but remain vulnerable to adversarial perturbations. Existing classification-guided adversarial fine-tuning methods often disrupt pre-trained cross-modal alignment, weakening visual-textual correspondence and degrading zero-shot performance. In this paper, we propose an Alignment-Guided Fine-Tuning (AGFT) framework that enhances zero-shot adversarial robustness while preserving the cross-modal semantic structure. Unlike label-based methods that rely on hard labels and fail to maintain the relative relationships between image and text, AGFT leverages the probabilistic predictions of the original model for text-guided adversarial training, which aligns adversarial visual features with textual embeddings via soft alignment distributions, improving zero-shot adversarial robustness. To address structural discrepancies introduced by fine-tuning, we introduce a distribution consistency calibration mechanism that adjusts the robust model output to match a temperature-scaled version of the pre-trained model predictions. Extensive experiments across multiple zero-shot benchmarks demonstrate that AGFT outperforms state-of-the-art methods while significantly improving zero-shot adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2601.06464",
+   "title": "On the Adversarial Robustness of 3D Large Vision-Language Models",
+   "published": "2026-01-10",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "3D Vision-Language Models (VLMs), such as PointLLM and GPT4Point, have shown strong reasoning and generalization abilities in 3D understanding tasks. However, their adversarial robustness remains largely unexplored. Prior work in 2D VLMs has shown that the integration of visual inputs significantly increases vulnerability to adversarial attacks, making these models easier to manipulate into generating toxic or misleading outputs. In this paper, we investigate whether incorporating 3D vision similarly compromises the robustness of 3D VLMs. To this end, we present the first systematic study of adversarial robustness in point-based 3D VLMs. We propose two complementary attack strategies: \\textit{Vision Attack}, which perturbs the visual token features produced by the 3D encoder and projector to assess the robustness of vision-language alignment; and \\textit{Caption Attack}, which directly manipulates output token sequences to evaluate end-to-end system robustness. Each attack includes both untargeted and targeted variants to measure general vulnerability and susceptibility to controlled manipulation. Our experiments reveal that 3D VLMs exhibit significant adversarial vulnerabilities under untargeted attacks, while demonstrating greater resilience against targeted attacks aimed at forcing specific harmful outputs, compared to their 2D counterparts. These findings highlight the importance of improving the adversarial robustness of 3D VLMs, especially as they are deployed in safety-critical applications.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2610.07677",
+   "title": "Adaptive Model Inversion Attacks Generalize a Privacy-Robustness Tradeoff",
+   "published": "2026-10-06",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "In this paper, we show that standard evaluations of high-resolution Model Inversion Attacks (MIAs) significantly underestimate training-data privacy leakage. State-of-the-art privacy defenses, standard training techniques such as MixUp and Adversarial Training, and undefended models all leak training images at rates 1.16 to 6.59 times higher on FaceScrub under simple adaptive changes to the attack, with the largest increases among defenses reporting the strongest privacy. We further show that measured leakage depends on the feature basis of the external classifier used to evaluate reconstructions: for the same reconstructed images, an adversarially trained Inception evaluator identifies the targeted identity at different rates than the standard Inception evaluator. Our results suggest that standard MIA evaluation can mistake optimization and measurement failures for privacy. These underestimated leakage rates also concealed a broader relationship between privacy and adversarial robustness. Once we adapt the attack and vary the evaluator, reconstruction leakage closely tracks adversarial robustness across recent defenses and standard training regimes, suggesting that robustness provides an attack-agnostic proxy for reconstruction vulnerability that applies far more broadly than previously theorized. This raises an open question: can a practical defense reduce training-data reconstruction without paying a corresponding cost in adversarial robustness?",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2509.01235",
+   "title": "Geometric origin of adversarial vulnerability in deep learning",
+   "published": "2025-09-01",
+   "categories": [
+    "cs.LG",
+    "cond-mat.stat-mech",
+    "q-bio.NC"
+   ],
+   "abstract": "Balancing training accuracy and adversarial robustness has beeen a challenge since the birth of deep learning. Here, we introduce a geometry-aware deep learning framework that leverages layer-wise local training to sculpt the internal representations of deep neural networks. This framework promotes intra-class compactness and inter-class separation in feature space, leading to manifold smoothness and adversarial robustness against white or black box attacks. The performance can be explained by \\blue{data-dependent statistical mechanics of integrating out the network parameters}, \\blue{supplemented by a phenomenological model} with Hebbian coupling between elements of the hidden representation. Based on the current geometry-aware learning framework, the deep network can assimilate new information into existing knowledge structures while reducing representation interference.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2508.05237",
+   "title": "Navigating the Trade-off: A Synthesis of Defensive Strategies for Zero-Shot Adversarial Robustness in Vision-Language Models",
+   "published": "2025-08-07",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "This report synthesizes eight seminal papers on the zero-shot adversarial robustness of vision-language models (VLMs) like CLIP. A central challenge in this domain is the inherent trade-off between enhancing adversarial robustness and preserving the model's zero-shot generalization capabilities. We analyze two primary defense paradigms: Adversarial Fine-Tuning (AFT), which modifies model parameters, and Training-Free/Test-Time Defenses, which preserve them. We trace the evolution from alignment-preserving methods (TeCoA) to embedding space re-engineering (LAAT, TIMA), and from input heuristics (AOM, TTC) to latent-space purification (CLIPure). Finally, we identify key challenges and future directions including hybrid defense strategies and adversarial pre-training.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2511.22099",
+   "title": "Decomposed Trust: Privacy, Adversarial Robustness, Ethics, and Fairness in Low-Rank LLMs",
+   "published": "2025-11-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) have driven major advances across domains, yet their massive size hinders deployment in resource-constrained settings. Low-rank factorization addresses this challenge by compressing models to effectively reduce their computation and memory consumption while maintaining accuracy. While these compressed models boast benign performance and system-level advantages, their trustworthiness implications remain poorly understood. In this paper, we present the first comprehensive study of how low-rank factorization affects LLM trustworthiness across privacy, adversarial robustness, ethics, and fairness, complemented by an explainability-driven analysis of the internal mechanisms behind these trust-related changes. We evaluate multiple LLMs of different sizes and architectures compressed with various low-rank factorization algorithms, revealing key insights: (1) low-rank factorization preserves training data privacy but weakens the protection of personally identifiable information during conversations; (2) adversarial robustness is generally enhanced under compression; (3) ethics degrades in zero-shot prompting but partially recovers in few-shot prompting; (4) fairness declines under compression. Beyond compression, we investigate how model scale and fine-tuning affect trustworthiness. Additionally, to move beyond black-box analysis, we employ a gradient-based attribution to identify which layers of LLMs contribute most to adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2509.20549",
+   "title": "Understanding and Improving Adversarial Robustness of Neural Probabilistic Circuits",
+   "published": "2025-09-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Neural Probabilistic Circuits (NPCs), a new class of concept bottleneck models, comprise an attribute recognition model and a probabilistic circuit for reasoning. By integrating the outputs from these two modules, NPCs produce compositional and interpretable predictions. While offering enhanced interpretability and high performance on downstream tasks, the neural-network-based attribute recognition model remains a black box. This vulnerability allows adversarial attacks to manipulate attribute predictions by introducing carefully crafted subtle perturbations to input images, potentially compromising the final predictions. In this paper, we theoretically analyze the adversarial robustness of NPC and demonstrate that it only depends on the robustness of the attribute recognition model and is independent of the robustness of the probabilistic circuit. Moreover, we propose RNPC, the first robust neural probabilistic circuit against adversarial attacks on the recognition module. RNPC introduces a novel class-wise integration for inference, ensuring a robust combination of outputs from the two modules. Our theoretical analysis demonstrates that RNPC exhibits provably improved adversarial robustness compared to NPC. Empirical results on image classification tasks show that RNPC achieves superior adversarial robustness compared to existing concept bottleneck models while maintaining high accuracy on benign inputs.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2601.05789",
+   "title": "SAFE: Secure and Accurate Federated Learning for Privacy-Preserving Brain-Computer Interfaces",
+   "published": "2026-01-09",
+   "categories": [
+    "cs.HC",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Electroencephalogram (EEG)-based brain-computer interfaces (BCIs) are widely adopted due to their efficiency and portability; however, their decoding algorithms still face multiple challenges, including inadequate generalization, adversarial vulnerability, and privacy leakage. This paper proposes Secure and Accurate FEderated learning (SAFE), a federated learning-based approach that protects user privacy by keeping data local during model training. SAFE employs local batch-specific normalization to mitigate cross-subject feature distribution shifts and hence improves model generalization. It further enhances adversarial robustness by introducing perturbations in both the input space and the parameter space through federated adversarial training and adversarial weight perturbation. Experiments on five EEG datasets from motor imagery (MI) and event-related potential (ERP) BCI paradigms demonstrated that SAFE consistently outperformed 14 state-of-the-art approaches in both decoding accuracy and adversarial robustness, while ensuring privacy protection. Notably, it even outperformed centralized training approaches that do not consider privacy protection at all. To our knowledge, SAFE is the first algorithm to simultaneously achieve high decoding accuracy, strong adversarial robustness, and reliable privacy protection without using any calibration data from the target subject, making it highly desirable for real-world BCIs.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2507.18457",
+   "title": "Revisiting Physically Realizable Adversarial Object Attack against LiDAR-based Detection: Clarifying Problem Formulation and Experimental Protocols",
+   "published": "2025-07-24",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial robustness in LiDAR-based 3D object detection is a critical research area due to its widespread application in real-world scenarios. While many digital attacks manipulate point clouds or meshes, they often lack physical realizability, limiting their practical impact. Physical adversarial object attacks remain underexplored and suffer from poor reproducibility due to inconsistent setups and hardware differences. To address this, we propose a device-agnostic, standardized framework that abstracts key elements of physical adversarial object attacks, supports diverse methods, and provides open-source code with benchmarking protocols in simulation and real-world settings. Our framework enables fair comparison, accelerates research, and is validated by successfully transferring simulated attacks to a physical LiDAR system. Beyond the framework, we offer insights into factors influencing attack success and advance understanding of adversarial robustness in real-world LiDAR perception.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2509.06992",
+   "title": "FedAPT: Federated Adversarial Prompt Tuning for Vision-Language Models",
+   "published": "2025-09-03",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Federated Prompt Tuning (FPT) is an efficient method for cross-client collaborative fine-tuning of large Vision-Language Models (VLMs). However, models tuned using FPT are vulnerable to adversarial attacks, leading to misclassification in downstream tasks. In this work, we introduce Federated Adversarial Prompt Tuning (\\textbf{FedAPT}), a novel method designed to enhance the adversarial robustness of FPT. We identify a key issue in FedAPT under non-independent and identically distributed (non-IID) settings: a \\textit{class information gap} between clients and the global model. Clients rely solely on limited local label information to generate adversarial samples for training, while the global model must defend against adversarial attacks from global labels. To address this issue, we propose a \\textbf{class-aware prompt generator} that generates visual prompts from text prompts. This generator is guided by a \\emph{Global Label Embedding} (serving as a ``beacon\") which encodes cross-client label information to create more globally-aligned visual prompts. Additionally, we propose a \\textbf{cross-layer generator sharing} strategy to enhance prompt coupling across different layers of the model, further boosting adversarial robustness. Extensive experiments on multiple image classification datasets demonstrate the superiority of FedAPT in improving adversarial robustness, outperforming existing methods by a large margin. FedAPT also exhibits exceptional generalization in cross-domain and cross-dataset scenarios, indicating its effectiveness in real-world applications.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2504.14921",
+   "title": "Fast Adversarial Training with Weak-to-Strong Spatial-Temporal Consistency in the Frequency Domain on Videos",
+   "published": "2025-04-21",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial Training (AT) has been shown to significantly enhance adversarial robustness via a min-max optimization approach. However, its effectiveness in video recognition tasks is hampered by two main challenges. First, fast adversarial training for video models remains largely unexplored, which severely impedes its practical applications. Specifically, most video adversarial training methods are computationally costly, with long training times and high expenses. Second, existing methods struggle with the trade-off between clean accuracy and adversarial robustness. To address these challenges, we introduce Video Fast Adversarial Training with Weak-to-Strong consistency (VFAT-WS), the first fast adversarial training method for video data. Specifically, VFAT-WS incorporates the following key designs: First, it integrates a straightforward yet effective temporal frequency augmentation (TF-AUG), and its spatial-temporal enhanced form STF-AUG, along with a single-step PGD attack to boost training efficiency and robustness. Second, it devises a weak-to-strong spatial-temporal consistency regularization, which seamlessly integrates the simpler TF-AUG and the more complex STF-AUG. Leveraging the consistency regularization, it steers the learning process from simple to complex augmentations. Both of them work together to achieve a better trade-off between clean accuracy and robustness. Extensive experiments on UCF-101 and HMDB-51 with both CNN and Transformer-based models demonstrate that VFAT-WS achieves great improvements in adversarial robustness and corruption robustness, while accelerating training by nearly 490%.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2505.22839",
+   "title": "Demystifying Adversarial Robustness in Diffusion Models: Compression, Randomness, and Geometry",
+   "published": "2025-05-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Recent studies suggest that diffusion models significantly improve the empirical adversarial robustness of deep neural network models. While intuitive explanations have been proposed, the mechanisms underlying diffusion-based robustness remain largely unclear. This work aims to demystify how diffusion models improve adversarial robustness. We observe that diffusion models surprisingly increase the $\\ell_p$ distance to clean samples, thus rejecting the hypothesis that purification denoises perturbed images closer to the clean ones. Next, we provide a unifying account of the robustness improvement in diffusion-based purification by decomposing it into two sources: (i) gradient masking induced by randomness; (ii) compression of the image space. First, we find that the purified images are heavily influenced by the internal randomness of diffusion models. This randomness leads to gradient masking that cannot be removed by the previously proposed remedy, i.e., expectation-over-transformation (EOT). The improvement in robustness due to randomness is determined by the cosine similarity of the optimal vs. empirical attack directions, as predicted by a hyperspherical cap model of the adversarial regions. Second, we find that, when fixing the randomness, diffusion models substantially compress the image space. Importantly, we discover a lawful relationship between the model's ability to compress the image space and the genuine adversarial robustness gain. Further theoretical analyses show that convergent score fields encoded in diffusion models explain these compression effects. Our findings reveal new insights into the mechanisms underlying diffusion-based purification, and offer guidance for developing more effective and principled adversarial purification systems.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2512.22522",
+   "title": "Towards Reliable Evaluation of Adversarial Robustness for Spiking Neural Networks",
+   "published": "2025-12-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Spiking Neural Networks (SNNs) utilize spike-based activations to mimic the brain's energy-efficient information processing. However, the binary and discontinuous nature of spike activations causes vanishing gradients, making adversarial robustness evaluation via gradient descent unreliable. While improved surrogate gradient methods have been proposed, their effectiveness under strong adversarial attacks remains unclear. We propose a more reliable framework for evaluating SNN adversarial robustness. We theoretically analyze the degree of gradient vanishing in surrogate gradients and introduce the Adaptive Sharpness Surrogate Gradient (ASSG), which adaptively evolves the shape of the surrogate function according to the input distribution during attack iterations, thereby enhancing gradient accuracy while mitigating gradient vanishing. In addition, we design an adversarial attack with adaptive step size under the $L_\\infty$ constraint-Stable Adaptive Projected Gradient Descent (SA-PGD), achieving faster and more stable convergence under imprecise gradients. Extensive experiments show that our approach substantially increases attack success rates across diverse adversarial training schemes, SNN architectures and neuron models, providing a more generalized and reliable evaluation of SNN adversarial robustness. The experimental results further reveal that the robustness of current SNNs has been significantly overestimated and highlighting the need for more dependable adversarial training methods. The code is released at https://github.com/craree/ASSG-SNNs-Robustness-Evaluation",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2611.25004",
+   "title": "On the Impact of Feature Reduction Techniques on Adversarial Attacks",
+   "published": "2026-11-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial attacks have posed significant threats to machine learning models by exploiting their inherent vulnerabilities. Researchers have established an interdisciplinary field called adversarial machine learning to explore these vulnerabilities and develop corresponding defense strategies. Feature reduction strategies are used to decrease the dimensionality of the data in order to reduce training time, avoid the curse of dimensionality, prevent overfitting, and mitigate redundant features. However, their effect on adversarial robustness across different classifiers and attack scenarios remains insufficiently explored. This study aims to analyze the effect of feature reduction techniques on the adversarial robustness of a diverse set of machine learning models under poisoning, backdoor, and universal adversarial perturbation attacks on the APT dataset. These models include support vector machine, decision tree, random forest, multi-layer perceptron, and k-nearest neighbors. The attained results are compared with scenarios where different feature reduction techniques are applied, including principal component analysis, permutation importance ranking, recursive feature elimination, and univariate mutual information. Metrics such as accuracy, F1-score, and mitigation score are employed to evaluate the effect of these techniques on adversarial robustness. The results demonstrate that permutation importance ranking and univariate mutual information generally provide the most consistent robustness improvements, while other methods exhibit more variable effects depending on the classifier and attack scenario.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2606.27784",
+   "title": "Improving Adversarial Robustness via Activation Amplification and Attenuation",
+   "published": "2026-06-26",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "The existence of adversarial attacks is often attributed to the presence of non-robust features in neural networks. While prior defenses reduce their impact via pruning, masking, or feature recalibration, we instead propose to jointly learn to amplify and attenuate these signals through a simple activation scaling mechanism. To this end, we introduce Activation Amplification and Attenuation (A3), a lightweight plug-in module that enhances adversarial robustness with minimal modifications of the activations. A3 dynamically rescales the activations using a learnable mask and a scaling factor derived from the original activation magnitudes. The influence of adversarial perturbations can be amplified or attenuated using the same learnable parameters by simply flipping the sign of the scaling operation. The amplified signals serve as negative references to construct novel contrastive and ranking loss functions. Experimental analysis shows that learning to degrade the predictions in amplification mode simultaneously improves adversarial robustness in attenuation mode. Moreover, A3 relies on only a small number of learnable parameters, with most of its behavior being determined by the scaling mechanism rather than additional network capacity. Extensive experiments demonstrate that integrating A3 into different backbones, datasets, and training methods consistently improves adversarial robustness while introducing negligible computational and memory overhead compared to existing plug-in modules. Code is available at: https://github.com/tgoncalv/A3.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2509.26598",
+   "title": "Are Robust LLM Fingerprints Adversarially Robust?",
+   "published": "2025-09-30",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Model fingerprinting has emerged as a promising paradigm for claiming model ownership. However, robustness evaluations of these schemes have mostly focused on benign perturbations such as incremental fine-tuning, model merging, and prompting. Lack of systematic investigations into {\\em adversarial robustness} against a malicious model host leaves current systems vulnerable. To bridge this gap, we first define a concrete, practical threat model against model fingerprinting. We then take a critical look at existing model fingerprinting schemes to identify their fundamental vulnerabilities. Based on these, we develop adaptive adversarial attacks tailored for each vulnerability, and demonstrate that these can bypass model authentication completely for ten recently proposed fingerprinting schemes while maintaining high utility of the model for the end users. Our work encourages fingerprint designers to adopt adversarial robustness by design. We end with recommendations for future fingerprinting methods.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2610.27353",
+   "title": "Exposing Vulnerability Monoculture Through Systemic Adversarial Robustness",
+   "published": "2026-10-19",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Beneath the apparent diversity of foundation models lies an increasingly homogeneous technical stack of common training pipelines, distillation methods, and data. These shared algorithmic choices can expose an otherwise distinct model ecosystem to concentrated risks leading to a vulnerability monoculture. Yet current practice in assessing adversarial robustness is restricted to individual robustness scores and attack transfer rates, leaving open the unexplored fundamental question: how many attacks suffice for catastrophic widespread compromise? In this paper, we investigate the empirical nature of shared vulnerabilities within a model pool and introduce Systemic Adversarial Robustness (SAR), a novel measure of shared vulnerability of a model pool through the attack diversity needed to exploit it. Specifically, SAR interpolates between single-attack transferability and independent per-model robustness: small values reveal a vulnerability monoculture, whereas large values indicate that failures are dispersed across models. We theoretically formulate SAR as a partial set-cover problem with provable approximation guarantees---enabling the development of scalable algorithms to empirically measure the systemic adversarial robustness. We empirically test the shared vulnerability of vision and large language models and characterize their shared collective vulnerability curve. Specifically, we demonstrate that model pools distilled from DeepSeek-R1 and Claude Opus 4.6 exhibit lower estimated systemic robustness than their corresponding parent pools, revealing a potential systemic cost of frontier-model distillation. Our framework seeks to establish vulnerability monoculture as a measurable target for a more wholistic adversarial evaluation of model populations.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2604.11563",
+   "title": "Synthius-Mem: Brain-Inspired Hallucination-Resistant Persona Memory Achieving 94.4% Memory Accuracy and 99.6% Adversarial Robustness on LoCoMo",
+   "published": "2026-04-13",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Providing AI agents with reliable long-term memory that does not hallucinate remains an open problem. Current approaches to memory for LLM agents -- sliding windows, summarization, embedding-based RAG, and flat fact extraction -- each reduce token cost but introduce catastrophic information loss, semantic drift, or uncontrolled hallucination about the user. The structural reason is architectural: every published memory system on the LoCoMo benchmark treats conversation as a retrieval problem over raw or lightly summarized dialogue segments, and none reports adversarial robustness, the ability to refuse questions about facts the user never disclosed. We present Synthius-Mem, a brain-inspired structured persona memory system that takes a fundamentally different approach. Instead of retrieving what was said, Synthius-Mem extracts what is known about the person: a full persona extraction pipeline decomposes conversations into six cognitive domains (biography, experiences, preferences, social circle, work, psychometrics), consolidates and deduplicates per domain, and retrieves structured facts via CategoryRAG at 21.79 ms latency. On the LoCoMo benchmark (ACL 2024, 10 conversations, 1,813 questions), Synthius-Mem achieves 94.37% accuracy, exceeding all published systems including MemMachine (91.69%, adversarial score is not reported) and human performance (87.9 F1). Core memory fact accuracy reaches 98.64%. Adversarial robustness, the hallucination resistance metric that no competing system reports, reaches 99.55%. Synthius-Mem reduces token consumption by ~5x compared to full-context replay while achieving higher accuracy. Synthius-Mem achieves state-of-the-art results on LoCoMo and is, to our knowledge, the only persona memory system that both exceeds human-level performance and reports adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2603.23860",
+   "title": "Why the Maximum Second Derivative of Activations Matters for Adversarial Robustness",
+   "published": "2026-03-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "This work investigates the critical role of activation function curvature -- quantified by the maximum second derivative $\\max|σ''|$ -- in adversarial robustness. Using the Recursive Curvature-Tunable Activation Family (RCT-AF), which enables precise control over curvature through parameters $α$ and $β$, we systematically analyze this relationship. Our study reveals a fundamental trade-off: insufficient curvature limits model expressivity, while excessive curvature amplifies the normalized Hessian diagonal norm of the loss, leading to sharper minima that hinder robust generalization. This results in a non-monotonic relationship where optimal adversarial robustness consistently occurs when $\\max|σ''|$ falls within 4 to 10, a finding that holds across diverse network architectures, datasets, and adversarial training methods. We provide theoretical insights into how activation curvature affects the diagonal elements of the hessian matrix of the loss, and experimentally demonstrate that the normalized Hessian diagonal norm exhibits a U-shaped dependence on $\\max|σ''|$, with its minimum within the optimal robustness range, thereby validating the proposed mechanism.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2607.08773",
+   "title": "Interval Certifications for Multilayered Perceptrons via Lattice Traversal",
+   "published": "2026-04-09",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "In this work we present a rigorous theoretical framework to a foundational problem of AI safety, namely adversarial robustness. In particular, we show that the adversarial robustness problem can be reduced to a lattice traversal problem. Each element of this lattice corresponds to an interval, i.e., an axis-aligned hyper-rectangle, containing an input point $\\mathbf{x}$. Consider a multilayered perceptron classifier (MLP). An interval $I$ constitutes a sound certification if $\\mathbf{x} \\in I$ and $\\mathbf{x}$ can be freely perturbed in $I$ without changing the MLP's prediction. Complementarily, an interval $I$ constitutes a complete certification if $\\mathbf{x} \\in I$ and when $\\mathbf{x}$ moves outside of $I$ the MLP's prediction is guaranteed to change. While the sound certification problem corresponds to the well-studied adversarial robustness, complete certifications have not been examined in the literature. We develop lattice traversal operators, which we apply in a refine & verify iterative scheme. Using formal MLP verifiers, sound maximality and complete minimality are guaranteed. Moreover, we examine objective optimization problems. There we discover some interesting asymmetries. For complete certifications, the minimum solution is obtained in polynomial oracle calls. This does not hold for sound certifications, where we prove strong intractability results. Additionally, we examine optimization problems in symmetric intervals (i.e., $\\ell_\\infty$-spheres), where we provide logarithmic algorithms. Finally, we present an empirical evaluation, using the novel ParallelepipedoNN system.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2512.15780",
+   "title": "Adversarial Robustness in Financial Machine Learning: Defenses, Economic Impact, and Governance Evidence",
+   "published": "2025-12-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "We evaluate adversarial robustness in tabular machine learning models used in financial decision making. Using credit scoring and fraud detection data, we apply gradient based attacks and measure impacts on discrimination, calibration, and financial risk metrics. Results show notable performance degradation under small perturbations and partial recovery through adversarial training.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2505.15833",
+   "title": "Adversarially Robust Spiking Neural Networks with Sparse Connectivity",
+   "published": "2025-05-16",
+   "categories": [
+    "cs.NE",
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Deployment of deep neural networks in resource-constrained embedded systems requires innovative algorithmic solutions to facilitate their energy and memory efficiency. To further ensure the reliability of these systems against malicious actors, recent works have extensively studied adversarial robustness of existing architectures. Our work focuses on the intersection of adversarial robustness, memory- and energy-efficiency in neural networks. We introduce a neural network conversion algorithm designed to produce sparse and adversarially robust spiking neural networks (SNNs) by leveraging the sparse connectivity and weights from a robustly pretrained artificial neural network (ANN). Our approach combines the energy-efficient architecture of SNNs with a novel conversion algorithm, leading to state-of-the-art performance with enhanced energy and memory efficiency through sparse connectivity and activations. Our models are shown to achieve up to 100x reduction in the number of weights to be stored in memory, with an estimated 8.6x increase in energy efficiency compared to dense SNNs, while maintaining high performance and robustness against adversarial threats.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2606.03386",
+   "title": "Operationalizing Cyber Attack Prediction: A Gap-Prioritized Framework with Dataset and Model Selection Guidelines",
+   "published": "2026-06-02",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "While AI and machine learning for cyber attack prediction have advanced, a critical gap persists between theoretical research and practical operational deployment. Building on Ankalaki et al. (2025), this paper provides a comprehensive analysis of 150+ benchmark datasets and 200+ studies to identify and prioritize five implementation hurdles: (1) temporal dataset obsolescence, (2) narrow attack scope, (3) real-time model interpretability, (4) inadequate adversarial robustness, and (5) privacy/ethical concerns. We introduce a novel gap-prioritization framework that evaluates these limitations based on detection impact, implementation cost, and remediation time. Our analysis identifies dataset obsolescence and adversarial robustness as the highest-priority gaps, while highlighting model interpretability as the most cost-effective path for resource-constrained environments. To bridge the research-practice divide, we provide a practical implementation roadmap and a dataset quality assessment framework that classifies 45 benchmarks into production-ready, research-only, and unusable categories. This work translates academic findings into actionable decision-support tools for robust, production-oriented AI-driven cyber defense.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2605.04443",
+   "title": "Dissociating spatial frequency reliance from adversarial robustness advantages in neurally guided deep convolutional neural networks",
+   "published": "2026-05-06",
+   "categories": [
+    "q-bio.NC",
+    "cs.AI"
+   ],
+   "abstract": "Deep convolutional neural networks (DCNNs) have rivaled humans on many visual tasks, yet they remain vulnerable to near-imperceptible perturbations generated by adversarial attacks. Recent work shows that aligning DCNN representations with human visual cortex activity improves adversarial robustness, but the mechanisms driving this advantage are unclear. One hypothesis suggests that neural alignment confers robustness by biasing models away from brittle high-frequency details and towards the low spatial frequencies (LSF). However, recent work shows that human object recognition critically depends on a narrow, mid-frequency \"human channel\". Interestingly, this band was partially preserved in prior LSF-focused studies. Here, we investigate whether a spectral bias towards the LSF or the human channel is the primary driver of the adversarial robustness observed in neurally aligned DCNNs. We first show that DCNNs aligned to higher-order regions of the human ventral visual stream systematically increase reliance on both LSF and the human channel. However, directly steering DCNNs towards these bands revealed a clear dissociation. Biasing models towards the human channel, either alone or together with LSF, does not improve robustness and even impairs it. LSF bias produced some robustness gains, but such improvements are modest despite inducing much larger shifts in spatial-frequency reliance than neurally aligned models. Spatial-frequency-biased models overall show little, if any, increase in similarity to human neural representational geometry. Together, our results suggest that altered spatial-frequency reliance is likely an emergent property of learning more human-like representations rather than the primary mechanism by which neural alignment confers adversarial robustness, and motivate the need for future research examining representational properties beyond spatial-frequency profiles.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2607.04145",
+   "title": "Binary Iterative Method for Non-targeted Adversarial Attack",
+   "published": "2026-07-05",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Adversarial attacks guide and provide additional training and test data for both adversarial training and adversarial robustness validation, and expose the 'piecewise linearity' of deep learning based models. Since adversarial attacks and adversarial robustness are mathematically defined problems that can be optimised directly with end-to-end differentiable search, adversarial robustness is more widely applicable than other robustness metrics such as corruption and perturbation robustness, and new kinds of adversarial attacks are beneficial for robustness testing. Attacks are targeted or non-targeted depending on whether the image is modified to misclassify to a particular class or to any incorrect class; we focus on the non-targeted setting. Finding the optimal input data points and hyper-parameters for generating non-targeted adversarial attacks remains a challenge for current methods like the Fast Gradient Method, Basic Iterative Method and Virtual Adversarial Method. We propose a new method, the \"Binary Iterative Method\" (BinIM), which uses a divide-and-conquer paradigm to optimise parameters and hyper-parameters for the generation of non-targeted attacks. We compare our method to other gradient-based adversarial attacks evaluated over pre-trained networks (InceptionV3, InceptionV2, ResNet V2 152) on classification tasks. On 1000 randomly-sampled images from the standard ImageNet dataset, the Binary Iterative Method outperforms all other gradient-based methods, qualitatively making the classifier misclassify with confidence up to 0.995 while reducing the probability of the true label to 2.21e-09 (approximately 0).",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2610.19911",
+   "title": "CARD: Closing the Teacher-Student Loop for Adversarial Robustness Distillation",
+   "published": "2026-10-14",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Adversarial robustness distillation typically treats a robust teacher as a fixed knowledge source and transfers robustness to a compact student in a one-way manner. This paradigm terminates teacher-student interaction once the student is distilled, thereby discarding potentially useful feedback from the distilled student. However, exploiting such feedback is nontrivial because indiscriminate weak-to-strong transfer may propagate student errors to the teacher. To address this issue, we propose Cyclic Adversarial Robustness Distillation (CARD), a closed-loop framework that turns the distilled student into a feedback source for refining the robust teacher and subsequently transfers the teacher gains back to the same student. CARD first performs strong-to-weak adversarial distillation and then uses reliability-enhanced student feedback to refine the robust teacher. The refinement combines inverse adversarial student feedback with teacher-student discrepancy maximization, after which the refined teacher is used to continue training the same student under the unchanged base distillation objective. We further establish a sample-level sufficient condition for reliable weak-to-strong feedback transfer and derive a distribution-level upper bound on the refined teacher's risk. Experiments on CIFAR-10, CIFAR-100, and TinyImageNet-10 across multiple teacher-student architectures and base distillation methods show that CARD improves adversarial robustness in most evaluated settings while generally preserving clean accuracy. These results show that the distilled student can provide useful feedback to the teacher, enabling robustness transfer to proceed beyond the conventional one-way teacher-to-student paradigm.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2508.03949",
+   "title": "Model Compression vs. Adversarial Robustness: An Empirical Study on Language Models for Code",
+   "published": "2025-08-05",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "Transformer-based language models for code have shown remarkable performance in various software analytics tasks, but their adoption is hindered by high computational costs, slow inference speeds, and substantial environmental impact. Model compression techniques such as pruning, quantization, and knowledge distillation have gained traction in addressing these challenges. However, the impact of these strategies on the robustness of compressed language models for code in adversarial scenarios remains poorly understood. Understanding how these compressed models behave under adversarial attacks is essential for their safe and effective deployment in real-world applications. To bridge this knowledge gap, we conduct a comprehensive evaluation of how common compression strategies affect the adversarial robustness of compressed models. We assess the robustness of compressed versions of three widely used language models for code across three software analytics tasks, using six evaluation metrics and four commonly used classical adversarial attacks. Our findings indicate that compressed models generally maintain comparable performance to their uncompressed counterparts. However, when subjected to adversarial attacks, compressed models exhibit significantly reduced robustness. These results reveal a trade-off between model size reduction and adversarial robustness, underscoring the need for careful consideration when deploying compressed models in security-critical software applications. Our study highlights the need for further research into compression strategies that strike a balance between computational efficiency and adversarial robustness, which is essential for deploying reliable language models for code in real-world software applications.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2501.03402",
+   "title": "On the Adversarial Robustness of Benjamini Hochberg",
+   "published": "2025-01-06",
+   "categories": [
+    "math.ST",
+    "cs.LG"
+   ],
+   "abstract": "The Benjamini-Hochberg (BH) procedure is widely used to control the false detection rate (FDR) in multiple testing. Applications of this control abound in drug discovery, forensics, anomaly detection, and, in particular, machine learning, ranging from nonparametric outlier detection to out-of-distribution detection and one-class classification methods. Considering this control could be relied upon in critical safety/security contexts, we investigate its adversarial robustness. More precisely, we study under what conditions BH does and does not exhibit adversarial robustness, we present a class of simple and easily implementable adversarial test-perturbation algorithms, and we perform computational experiments. With our algorithms, we demonstrate that there are conditions under which BH's control can be significantly broken with relatively few (even just one) test score perturbation(s), and provide non-asymptotic guarantees on the expected adversarial-adjustment to FDR. Our technical analysis involves a combinatorial reframing of the BH procedure as a ``balls into bins'' process, and drawing a connection to generalized ballot problems to facilitate an information-theoretic approach for deriving non-asymptotic lower bounds.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2502.11910",
+   "title": "Adversarial Alignment for LLMs Requires Simpler, Reproducible, and More Measurable Objectives",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Misaligned research objectives have considerably hindered progress in adversarial robustness research over the past decade. For instance, an extensive focus on optimizing target metrics, while neglecting rigorous standardized evaluation, has led researchers to pursue ad-hoc heuristic defenses that were seemingly effective. Yet, most of these were exposed as flawed by subsequent evaluations, ultimately contributing little measurable progress to the field. In this position paper, we illustrate that current research on the robustness of large language models (LLMs) risks repeating past patterns with potentially worsened real-world implications. To address this, we argue that realigned objectives are necessary for meaningful progress in adversarial alignment. To this end, we build on established cybersecurity taxonomy to formally define differences between past and emerging threat models that apply to LLMs. Using this framework, we illustrate that progress requires disentangling adversarial alignment into addressable sub-problems and returning to core academic principles, such as measureability, reproducibility, and comparability. Although the field presents significant challenges, the fresh start on adversarial robustness offers the unique opportunity to build on past experience while avoiding previous mistakes.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2601.14302",
+   "title": "DDSA: Dual-Domain Strategic Attack for Spatial-Temporal Efficiency in Adversarial Robustness Testing",
+   "published": "2026-01-18",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.PF"
+   ],
+   "abstract": "Image transmission and processing systems in resource-critical applications face significant challenges from adversarial perturbations that compromise mission-specific object classification. Current robustness testing methods require excessive computational resources through exhaustive frame-by-frame processing and full-image perturbations, proving impractical for large-scale deployments where massive image streams demand immediate processing. This paper presents DDSA (Dual-Domain Strategic Attack), a resource-efficient adversarial robustness testing framework that optimizes testing through temporal selectivity and spatial precision. We introduce a scenario-aware trigger function that identifies critical frames requiring robustness evaluation based on class priority and model uncertainty, and employ explainable AI techniques to locate influential pixel regions for targeted perturbation. Our dual-domain approach achieves substantial temporal-spatial resource conservation while maintaining attack effectiveness. The framework enables practical deployment of comprehensive adversarial robustness testing in resource-constrained real-time applications where computational efficiency directly impacts mission success.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2603.22590",
+   "title": "Precision-Varying Prediction (PVP): Robustifying ASR systems against adversarial attacks",
+   "published": "2026-03-23",
+   "categories": [
+    "cs.LG",
+    "cs.CR",
+    "eess.AS"
+   ],
+   "abstract": "With the increasing deployment of automated and agentic systems, ensuring the adversarial robustness of automatic speech recognition (ASR) models has become highly relevant. We observe that changing the precision of an ASR model during inference reduces the likelihood of adversarial attacks to succeed. We take advantage of this fact to make models more robust simply by randomly sampling the precision during prediction. Moreover, this insight can be turned into an adversarial example detection strategy by implementing a simple Gaussian classifier that thresholds the differences between outputs of models run with different precision. To further enhance security boundaries, we combine the approach with an existing uncertainty-based defense mechanism, which forces adaptive adversaries to introduce highly perceptible noise to bypass detection. An experimental analysis across various ASR models, languages, and attack types demonstrates a significant increase in adversarial robustness, competitive detection capabilities, and resistance to adaptive threats.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2608.29510",
+   "title": "ARMOR: Manifold-Oriented Training for Adversarially Robust Aerial Object Detection under Data Scarcity",
+   "published": "2026-08-30",
+   "categories": [
+    "cs.CV",
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Aerial object detection is increasingly deployed in real-world applications, but models remain vulnerable to physical, universal adversarial patches that cause them to miss objects. Furthermore, defenders face the practical constraint of training data scarcity: aerial imagery is costly to collect and label, so a deployment site typically yields hundreds of images rather than the tens of thousands that adversarial robustness benchmarks assume. To tackle model vulnerability and training data scarcity, we propose Adversarial Robustness with Manifold-Oriented Training (ARMOR), a novel defense that realizes the core insights of on-manifold adversarial training (OMAT) in low-data regimes. ARMOR builds on the insight of OMAT to model the data manifold - the compact structure capturing the data's relevant features - to learn and robustify these features during training. While OMAT relies on the data-intensive operations of training large generative models and adversarial training to achieve this, ARMOR adopts a data-efficient approach that reuses labels the detection task already supplies: ARMOR (i) masks image backgrounds to retain object-relevant features, and (ii) injects randomized patches on objects to improve feature robustness. Our low-data experiments with physically-realizable adversarial patches evaluate both query-free transfer attacks and defense-aware attacks. ARMOR maintains strong clean performance of over 0.90 model confidence, while improving adversarial robustness by up to 0.32 in model confidence over state-of-the-art defenses. Physical experiments with printed patches confirm that these gains survive deployment. Overall, ARMOR translates insights from manifold-based training to defend object detectors amidst training data scarcity.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2606.04612",
+   "title": "Hybrid Adversarial Defence for Natural Language Understanding Tasks",
+   "published": "2026-06-03",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) are vulnerable both to hallucination and adversarial manipulation. Although these problems are closely related, existing defences typically address them separately. We investigate a hybrid defence framework that combines entropy-based models, designed to reduce hallucinations, with uncertainty-based models and geometric-based models, designed to reduce vulnerability. Under in-domain tests on Natural Language Understanding datasets (FEVER, HotpotQA, CSQA, SIQA) we find our hybrid model improves both clean-task performance (up to 43.34\\% increase in accuracy) and adversarial robustness (up to 64.92\\% improvement in accuracy and 62.27\\% reduction in attack success rate). For out-of-distribution datasets (AeroEngQA, CPIQA) we see similar adversarial robustness from our hybrid model (up to 57.14\\% improvement in accuracy). For prompt injection (SafeGuard) and jailbreak detection (AdvBench, DAN) datasets our hybrid model is also very strong (up to 51\\% reduction in attack success rate compared to state of the art baseline models). Overall, our results show that combining entropy, uncertainty and geometric features provides a more effective defence strategy than using any single feature alone for both in-domain and out-of-distribution tasks.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2501.13782",
+   "title": "Defending against Adversarial Malware Attacks on ML-based Android Malware Detection Systems",
+   "published": "2025-01-23",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG",
+    "cs.SE"
+   ],
+   "abstract": "Android malware presents a persistent threat to users' privacy and data integrity. To combat this, researchers have proposed machine learning-based (ML-based) Android malware detection (AMD) systems. However, adversarial Android malware attacks compromise the detection integrity of the ML-based AMD systems, raising significant concerns. Existing defenses against adversarial Android malware provide protections against feature space attacks which generate adversarial feature vectors only, leaving protection against realistic threats from problem space attacks which generate real adversarial malware an open problem. In this paper, we address this gap by proposing ADD, a practical adversarial Android malware defense framework designed as a plug-in to enhance the adversarial robustness of the ML-based AMD systems against problem space attacks. Our extensive evaluation across various ML-based AMD systems demonstrates that ADD is effective against state-of-the-art problem space adversarial Android malware attacks. Additionally, ADD shows the defense effectiveness in enhancing the adversarial robustness of real-world antivirus solutions.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2601.12639",
+   "title": "Objective Matters: Fine-Tuning Objectives Shape Safety, Robustness, and Persona Drift",
+   "published": "2026-01-19",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Fine-tuning LLMs on benign data can still degrade alignment and adversarial robustness, yet direct analysis of the role of fine-tuning objectives in shaping these safety outcomes remain limited. We present a controlled comparison of six fine-tuning objectives -- Supervised Fine-Tuning, Direct Preference Optimization, Conditional Fine-Tuning, Inoculation Prompting, Odds Ratio Preference Optimization, and KL-regularized fine-tuning -- holding data, domain, architecture, and optimization fixed. Across closed-form reasoning and open-ended generation tasks, we find that objective choice induces systematic, scale-dependent shifts along the safety-capability frontier. At small training budgets, robustness is similar across objectives but capability differs. At larger budgets, objectives diverge sharply: supervised and preference-based tuning tightly couple capability gains to increased adversarial vulnerability and persona drift, while objectives that constrain learning signals -- especially ORPO and KL-regularization -- substantially mitigate both. Fine-tuning objectives therefore matter little for safety at small scales but become a primary driver of adversarial robustness and latent persona stability as training scale increases.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2602.11933",
+   "title": "Cross-Modal Robustness Transfer (CMRT): Training Robust Speech Translation Models Using Adversarial Text",
+   "published": "2026-02-12",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "End-to-End Speech Translation (E2E-ST) has seen significant advancements, yet current models are primarily benchmarked on curated, \"clean\" datasets. This overlooks critical real-world challenges, such as morphological robustness to inflectional variations common in non-native or dialectal speech. In this work, we adapt a text-based adversarial attack targeting inflectional morphology to the speech domain and demonstrate that state-of-the-art E2E-ST models are highly vulnerable it. While adversarial training effectively mitigates such risks in text-based tasks, generating high-quality adversarial speech data remains computationally expensive and technically challenging. To address this, we propose Cross-Modal Robustness Transfer (CMRT), a framework that transfers adversarial robustness from the text modality to the speech modality. Our method eliminates the requirement for adversarial speech data during training. Extensive experiments across four language pairs demonstrate that CMRT improves adversarial robustness by an average of more than 3 BLEU points, establishing a new baseline for robust E2E-ST without the overhead of generating adversarial speech.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2602.00857",
+   "title": "Unifying Adversarial Robustness and Training Across Text Scoring Models",
+   "published": "2026-01-31",
+   "categories": [
+    "cs.CL",
+    "cs.IR"
+   ],
+   "abstract": "Research on adversarial robustness in language models is currently fragmented across applications and attacks, obscuring shared vulnerabilities. In this work, we propose unifying the study of adversarial robustness in text scoring models spanning dense retrievers, rerankers, and reward models. This motivates adapting both attacks and adversarial training methods across model roles. Unlike open-ended generation, text scoring failures are directly testable: an attack succeeds when an irrelevant or rejected text outscores a relevant or chosen one. Using this principled lens of text scoring, we demonstrate that current adversarial training formulations for language models are often short-sighted, failing to effectively generalize across attacks. To address this, we introduce multiple adversarial training methods for text scoring models and show that combining complementary training methods can yield strong robustness while also improving task effectiveness. We also highlight the practical value of our approach for RLHF, showing that our adversarially trained reward models mitigate reward hacking and support the training of better-aligned LLMs. We provide our code and models for further study.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2602.01369",
+   "title": "Exposing and Defending the Achilles' Heel of Video Mixture-of-Experts",
+   "published": "2026-02-01",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Mixture-of-Experts (MoE) has demonstrated strong performance in video understanding tasks, yet its adversarial robustness remains underexplored. Existing attack methods often treat MoE as a unified architecture, overlooking the independent and collaborative weaknesses of key components such as routers and expert modules. To fill this gap, we propose Temporal Lipschitz-Guided Attacks (TLGA) to thoroughly investigate component-level vulnerabilities in video MoE models. We first design attacks on the router, revealing its independent weaknesses. Building on this, we introduce Joint Temporal Lipschitz-Guided Attacks (J-TLGA), which collaboratively perturb both routers and experts. This joint attack significantly amplifies adversarial effects and exposes the Achilles' Heel (collaborative weaknesses) of the MoE architecture. Based on these insights, we further propose Joint Temporal Lipschitz Adversarial Training (J-TLAT). J-TLAT performs joint training to further defend against collaborative weaknesses, enhancing component-wise robustness. Our framework is plug-and-play and reduces inference cost by more than 60% compared with dense models. It consistently enhances adversarial robustness across diverse datasets and architectures, effectively mitigating both the independent and collaborative weaknesses of MoE.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2605.29877",
+   "title": "Verifying Adversarial Robustness in Quantum Machine Learning: from theory to physical validation via a software tool",
+   "published": "2026-05-28",
+   "categories": [
+    "quant-ph"
+   ],
+   "abstract": "As with classical neural networks, quantum machine learning (QML) models are vulnerable to small input perturbations that can significantly alter output predictions. Certifying the robustness of QML models, particularly on NISQ hardware, is therefore a fundamental step toward trustworthy quantum AI. This chapter reviews our recently developed comprehensive formal framework for verifying adversarial robustness in QML. The core of this framework is a fidelity-based robustness lower bound computable directly from the measurement outcome distribution, which enables both formal verification and empirical estimation on real quantum devices. Additionally, the optimal bound can be computed via semidefinite programming (SDP) with full knowledge of the quantum machine learning models. We incorporate these results into: (1) an efficient formal verification framework; (2) VeriQR, the first dedicated QML robustness verification tool; and (3) the first experimental benchmark of quantum adversarial robustness on a 20-qubit superconducting processor. Together, these systematic advances enable scalable, physically grounded robustness evaluation of QML models.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2510.11877",
+   "title": "Robust Adversarial Reinforcement Learning in Stochastic Games via Sequence Modeling",
+   "published": "2025-10-13",
+   "categories": [
+    "cs.LG",
+    "cs.GT"
+   ],
+   "abstract": "The Transformer, a highly expressive architecture for sequence modeling, has recently been adapted to solve sequential decision-making, most notably through the Decision Transformer (DT), which learns policies by conditioning on desired returns. Yet, the adversarial robustness of reinforcement learning methods based on sequence modeling remains largely unexplored. Here we introduce the Conservative Adversarially Robust Decision Transformer (CART), to our knowledge the first framework designed to enhance the robustness of DT in adversarial stochastic games. We formulate the interaction between the protagonist and the adversary at each stage as a stage game, where the payoff is defined as the expected maximum value over subsequent states, thereby explicitly incorporating stochastic state transitions. By conditioning Transformer policies on the NashQ value derived from these stage games, CART generates policy that are simultaneously less exploitable (adversarially robust) and conservative to transition uncertainty. Empirically, CART achieves more accurate minimax value estimation and consistently attains superior worst-case returns across a range of adversarial stochastic games.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2502.14298",
+   "title": "Generalization Certificates for Adversarially Robust Bayesian Linear Regression",
+   "published": "2025-02-20",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Adversarial robustness of machine learning models is critical to ensuring reliable performance under data perturbations. Recent progress has been on point estimators, and this paper considers distributional predictors. First, using the link between exponential families and Bregman divergences, we formulate an adversarial Bregman divergence loss as an adversarial negative log-likelihood. Using the geometric properties of Bregman divergences, we compute the adversarial perturbation for such models in closed-form. Second, under such losses, we introduce \\emph{adversarially robust posteriors}, by exploiting the optimization-centric view of generalized Bayesian inference. Third, we derive the \\emph{first} rigorous generalization certificates in the context of an adversarial extension of Bayesian linear regression by leveraging the PAC-Bayesian framework. Finally, experiments on real and synthetic datasets demonstrate the superior robustness of the derived adversarially robust posterior over Bayes posterior, and also validate our theoretical guarantees.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2607.27897",
+   "title": "Unifying Adversarially Robust Model Experts in Vision-Language Models",
+   "published": "2026-07-30",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Vision-language models (VLMs), such as CLIP, are vulnerable to adversarial attacks, posing a serious problem for real-life applications and deployment. Adversarial fine-tuning emerges as a prominent defense method; however, different fine-tuning strategies often produce specialized models with distinct robustness characteristics. Each fine-tuned model in turn thrives in some evaluation settings but falters on others, limiting their defensive capabilities. We refer to these specialized fine-tuned models as robust model experts and propose a collaborative adversarial fine-tuning framework: CARE - Collaborative Adversarial Robustness fine-tuning using Embedding alignment. CARE maintains multiple experts during training, enables knowledge exchange through embedding-space harmonization, and consolidates the learned knowledge into a single unified robust model. Experts benefit from one another while preserving their individual specializations, enabling the final model to inherit complementary robustness properties. In this paper, we demonstrate CARE on two different adversarial fine-tuning strategies with complementary robustness behaviors. Extensive experiments on classic image classification and downstream vision-language tasks display the effectiveness of our approach, with CARE being able to outperform individually learned model experts. The results suggest that collaborative learning across model experts is a promising direction for improving adversarial robustness.",
+   "query": "adversarial robustness"
+  },
+  {
+   "id": "2510.25130",
+   "title": "Lipschitz-aware Linearity Grafting for Certified Robustness",
+   "published": "2025-10-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Lipschitz constant is a fundamental property in certified robustness, as smaller values imply robustness to adversarial examples when a model is confident in its prediction. However, identifying the worst-case adversarial examples is known to be an NP-complete problem. Although over-approximation methods have shown success in neural network verification to address this challenge, reducing approximation errors remains a significant obstacle. Furthermore, these approximation errors hinder the ability to obtain tight local Lipschitz constants, which are crucial for certified robustness. Originally, grafting linearity into non-linear activation functions was proposed to reduce the number of unstable neurons, enabling scalable and complete verification. However, no prior theoretical analysis has explained how linearity grafting improves certified robustness. We instead consider linearity grafting primarily as a means of eliminating approximation errors rather than reducing the number of unstable neurons, since linear functions do not require relaxation. In this paper, we provide two theoretical contributions: 1) why linearity grafting improves certified robustness through the lens of the $l_\\infty$ local Lipschitz constant, and 2) grafting linearity into non-linear activation functions, the dominant source of approximation errors, yields a tighter local Lipschitz constant. Based on these theoretical contributions, we propose a Lipschitz-aware linearity grafting method that removes dominant approximation errors, which are crucial for tightening the local Lipschitz constant, thereby improving certified robustness, even without certified training. Our extensive experiments demonstrate that grafting linearity into these influential activations tightens the $l_\\infty$ local Lipschitz constant and enhances certified robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2601.13303",
+   "title": "On the Extreme Variance of Certified Local Robustness Across Model Seeds",
+   "published": "2026-01-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Robustness verification of neural networks, referring to formally proving that neural networks satisfy robustness properties, is of crucial importance in safety-critical applications, where model failures can result in loss of human life or million-dollar damages. However, the dependability of verification results may be questioned due to sources of randomness in machine learning, and although this has been widely investigated for accuracy, its impact on robustness verification remains unknown. In this paper, we demonstrate a concerning result: Models that differ only in random seeds during training exhibit extreme variance in their certified robustness, with a standard deviation that is statistically larger than the marginal robustness improvements reported in recent machine learning papers. In addition, we also show that certified robustness generalization to unseen data varies significantly across datasets, falling short of the dependability expectations for safety-critical tasks. Our findings are major concerns because: (i) machine learning results in certified robustness are likely unconvincing due to extreme variance in certified robustness, and (ii) a ``lucky'' model seed in a test set cannot be guaranteed to maintain its higher certified robustness under a different test set. In light of these results, we urge researchers to increase the reporting of confidence intervals for certified robustness, and we urge those verifying neural networks to be more comprehensive in verification by using large-scale, diverse, and unseen data.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2504.02412",
+   "title": "Bridging the Theoretical Gap in Randomized Smoothing",
+   "published": "2025-04-03",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Randomized smoothing has become a leading approach for certifying adversarial robustness in machine learning models. However, a persistent gap remains between theoretical certified robustness and empirical robustness accuracy. This paper introduces a new framework that bridges this gap by leveraging Lipschitz continuity for certification and proposing a novel, less conservative method for computing confidence intervals in randomized smoothing. Our approach tightens the bounds of certified robustness, offering a more accurate reflection of model robustness in practice. Through rigorous experimentation we show that our method improves the robust accuracy, compressing the gap between empirical findings and previous theoretical results. We argue that investigating local Lipschitz constants and designing ad-hoc confidence intervals can further enhance the performance of randomized smoothing. These results pave the way for a deeper understanding of the relationship between Lipschitz continuity and certified robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2608.20820",
+   "title": "Certified Multi-Turn Robustness for LLM Safety via Compositional Bounds and Safety Persistence",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) are vulnerable to multi-turn jailbreak attacks that progressively manipulate conversation context. Existing certified robustness methods are limited to single-turn inputs; naive multi-turn composition yields bounds that degrade exponentially in the number of turns. We introduce Multi-Turn Certified Robustness (MTCR), a framework that models conversational safety via State-Adversarial MDPs and defines $k$-turn certified robustness as the worst-case safety probability across $k$ adversarial turns. MTCR comprises: (i) compositional certification via embedding-space mode decomposition, yielding tighter certified lower bounds than naive multiplication; (ii) $(α,β)$-safety persistence, improving the degradation rate from $\\underline{p}^{k}$ to $β^k$ (with $β> \\underline{p}$) and yielding interpretable horizon estimates; (iii) matching information-theoretic upper bounds establishing tightness; and (iv) a unified algorithm combining these results. Experiments on six LLMs under $ε$-bounded and Crescendo-style attacks confirm that empirical safety consistently exceeds the certified bounds.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2505.15174",
+   "title": "Enhancing Certified Robustness via Block Reflector Orthogonal Layers and Logit Annealing Loss",
+   "published": "2025-05-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Lipschitz neural networks are well-known for providing certified robustness in deep learning. In this paper, we present a novel, efficient Block Reflector Orthogonal (BRO) layer that enhances the capability of orthogonal layers on constructing more expressive Lipschitz neural architectures. In addition, by theoretically analyzing the nature of Lipschitz neural networks, we introduce a new loss function that employs an annealing mechanism to increase margin for most data points. This enables Lipschitz models to provide better certified robustness. By employing our BRO layer and loss function, we design BRONet - a simple yet effective Lipschitz neural network that achieves state-of-the-art certified robustness. Extensive experiments and empirical analysis on CIFAR-10/100, Tiny-ImageNet, and ImageNet validate that our method outperforms existing baselines. The implementation is available at https://github.com/ntuaislab/BRONet.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2505.08320",
+   "title": "Adaptive Branch Specialization in Spectral-Spatial Graph Neural Networks for Certified Robustness",
+   "published": "2025-05-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Recent Graph Neural Networks (GNNs) combine spectral-spatial architectures for enhanced representation learning. However, limited attention has been paid to certified robustness, particularly regarding training strategies and underlying rationale. In this paper, we explicitly specialize each branch: the spectral network is trained to withstand l0 edge flips and capture homophilic structures, while the spatial part is designed to resist linf feature perturbations and heterophilic patterns. A context-aware gating network adaptively fuses the two representations, dynamically routing each node's prediction to the more reliable branch. This specialized adversarial training scheme uses branch-specific inner maximization (structure vs feature attacks) and a unified alignment objective. We provide theoretical guarantees: (i) expressivity of the gating mechanism beyond 1-WL, (ii) spectral-spatial frequency bias, and (iii) certified robustness with trade-off. Empirically, SpecSphere attains state-of-the-art node classification accuracy and offers tighter certified robustness on real-world benchmarks.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2509.25979",
+   "title": "Reconcile Certified Robustness and Accuracy for DNN-based Smoothed Majority Vote Classifier",
+   "published": "2025-09-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Within the PAC-Bayesian framework, the Gibbs classifier (defined on a posterior $Q$) and the corresponding $Q$-weighted majority vote classifier are commonly used to analyze the generalization performance. However, there exists a notable lack in theoretical research exploring the certified robustness of majority vote classifier and its interplay with generalization. In this study, we develop a generalization error bound that possesses a certified robust radius for the smoothed majority vote classifier (i.e., the $Q$-weighted majority vote classifier with smoothed inputs); In other words, the generalization bound holds under any data perturbation within the certified robust radius. As a byproduct, we find that the underpinnings of both the generalization bound and the certified robust radius draw, in part, upon weight spectral norm, which thereby inspires the adoption of spectral regularization in smooth training to boost certified robustness. Utilizing the dimension-independent property of spherical Gaussian inputs in smooth training, we propose a novel and inexpensive spectral regularizer to enhance the smoothed majority vote classifier. In addition to the theoretical contribution, a set of empirical results is provided to substantiate the effectiveness of our proposed method.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2503.22998",
+   "title": "AuditVotes: Elevating Provable Defense for GNNs with Efficient Augmentation and Conditional Smoothing",
+   "published": "2025-03-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Despite advancements in Graph Neural Networks (GNNs), adaptive attacks continue to challenge their robustness. Certified robustness via randomized smoothing offers provable guarantees but suffers from a severe accuracy-robustness trade-off, limiting its practical use. To bridge this gap, we introduce AuditVotes, the first framework that simultaneously achieves high clean accuracy and strong certified robustness. AuditVotes seamlessly integrates two novel components into the randomized smoothing pipeline: (1) graph rewiring augmentation, which denoises randomized graphs to recover data quality, and (2) conditional smoothing, which filters low-confidence votes to ensure prediction consistency. We establish a novel theoretical result, proving that certified robustness is preserved under arbitrary filtering functions. Designed for inductive learning, our framework generalizes to unseen nodes and applies broadly to other smoothing schemes, including de-randomized smoothing for graphs and Gaussian smoothing for images. Extensive experiments show AuditVotes delivers substantial gains: on Cora-ML under 20-edge attacks, it improves clean accuracy by 437.1% and certified accuracy by 409.3%, while maintaining comparable runtime to vanilla smoothing. As a widely applicable and efficient plug-in, AuditVotes offers higher accuracy and stronger guarantees, enabling the practical and certifiably robust GNNs in security-sensitive domains.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2611.18775",
+   "title": "Quantum-inspired orthogonal adapters for certifiably robust medical image classification",
+   "published": "2026-11-12",
+   "categories": [
+    "cs.CV",
+    "cs.LG",
+    "quant-ph"
+   ],
+   "abstract": "Medical image classifiers require not only high accuracy but also reliable predictions under small input perturbations. Certified robustness provides mathematical guarantees of prediction stability, but preserving these guarantees when adapting pretrained models to new tasks remains challenging. We propose a fine-tuning approach based on quantum-inspired orthogonal butterfly layers that preserves the Lipschitz bounds of pretrained certified networks. Inspired by quantum circuits of reconfigurable beam splitters, these layers preserve orthogonality by construction using only $\\mathcal{O}(n\\log n)$ trainable parameters. Their structured design enables efficient classical implementation and offers a path toward future quantum implementations with logarithmic circuit depth under suitable connectivity assumptions. Controlled experiments on MNIST and MedMNIST demonstrate improved certified robustness compared with conventional alternatives and, in the DermaMNIST transfer, greater resistance to the tested attacks than low-rank adaptation (LoRA). We then apply it to trichoscopic image classification for alopecia diagnosis and alopecia areata activity assessment. By adapting a certified ImageNet-pretrained network, butterfly fine-tuning achieves approximately twice the certified accuracy of conventional fine-tuning and LoRA, with comparable classification accuracy on the same backbone and data split and similar empirical resistance to the tested adversarial attacks. Larger robustness guarantees, including certificates covering certain image-processing transformations, can be obtained at the cost of reduced accuracy. These results highlight the potential of quantum-inspired butterfly layers for parameter-efficient adaptation of medical image classifiers while preserving the mathematical guarantees underlying certified robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2503.17172",
+   "title": "Principal Eigenvalue Regularization for Improved Worst-Class Certified Robustness of Smoothed Classifiers",
+   "published": "2025-03-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Recent studies have identified a critical challenge in deep neural networks (DNNs) known as ``robust fairness\", where models exhibit significant disparities in robust accuracy across different classes. While prior work has attempted to address this issue in adversarial robustness, the study of worst-class certified robustness for smoothed classifiers remains unexplored. Our work bridges this gap by developing a PAC-Bayesian bound for the worst-class error of smoothed classifiers. Through theoretical analysis, we demonstrate that the largest eigenvalue of the smoothed confusion matrix fundamentally influences the worst-class error of smoothed classifiers. Based on this insight, we introduce a regularization method that optimizes the largest eigenvalue of smoothed confusion matrix to enhance worst-class accuracy of the smoothed classifier and further improve its worst-class certified robustness. We provide extensive experimental validation across multiple datasets and model architectures to demonstrate the effectiveness of our approach.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2512.10600",
+   "title": "Authority Backdoor: A Certifiable Backdoor Mechanism for Authoring DNNs",
+   "published": "2025-12-11",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Deep Neural Networks (DNNs), as valuable intellectual property, face unauthorized use. Existing protections, such as digital watermarking, are largely passive; they provide only post-hoc ownership verification and cannot actively prevent the illicit use of a stolen model. This work proposes a proactive protection scheme, dubbed ``Authority Backdoor,\" which embeds access constraints directly into the model. In particular, the scheme utilizes a backdoor learning framework to intrinsically lock a model's utility, such that it performs normally only in the presence of a specific trigger (e.g., a hardware fingerprint). But in its absence, the DNN's performance degrades to be useless. To further enhance the security of the proposed authority scheme, the certifiable robustness is integrated to prevent an adaptive attacker from removing the implanted backdoor. The resulting framework establishes a secure authority mechanism for DNNs, combining access control with certifiable robustness against adversarial attacks. Extensive experiments on diverse architectures and datasets validate the effectiveness and certifiable robustness of the proposed framework.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2603.24119",
+   "title": "Enhancing and Reporting Robustness Boundary of Neural Code Models for Intelligent Code Understanding",
+   "published": "2026-03-25",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "With the development of deep learning, Neural Code Models (NCMs) such as CodeBERT and CodeLlama are widely used for code understanding tasks, including defect detection and code classification. However, recent studies have revealed that NCMs are vulnerable to adversarial examples, inputs with subtle perturbations that induce incorrect predictions while remaining difficult to detect. Existing defenses address this issue via data augmentation to empirically improve robustness, but they are costly, offer no theoretical robustness guarantees, and typically require white-box access to model internals, such as gradients. To address the above challenges, we propose ENBECOME, a novel black-box training-free and lightweight adversarial defense. ENBECOME is designed to both enhance empirical robustness and report certified robustness boundaries for NCMs. ENBECOME operates solely during inference, introducing random, semantics-preserving perturbations to input code snippets to smooth the NCM's decision boundaries. This smoothing enables ENBECOME to formally certify a robustness radius within which adversarial examples can never induce misclassification, a property known as certified robustness. We conduct comprehensive experiments across multiple NCM architectures and tasks. Results show that ENBECOME significantly reduces attack success rates while maintaining high accuracy. For example, in defect detection, it reduces the average ASR from 42.43% to 9.74% with only a 0.29% drop in accuracy. Results show that ENBECOME significantly reduces attack success rates while maintaining high accuracy. For example, in defect detection, it reduces the average ASR from 42.43% to 9.74% with only a 0.29% drop in accuracy. Furthermore, ENBECOME achieves an average certified robustness radius of 1.63, meaning that adversarial modifications to no more than 1.63 identifiers are provably ineffective.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2502.05637",
+   "title": "Adversarial Machine Learning: Attacks, Defenses, and Open Challenges",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.CR",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial Machine Learning (AML) addresses vulnerabilities in AI systems where adversaries manipulate inputs or training data to degrade performance. This article provides a comprehensive analysis of evasion and poisoning attacks, formalizes defense mechanisms with mathematical rigor, and discusses the challenges of implementing robust solutions in adaptive threat models. Additionally, it highlights open challenges in certified robustness, scalability, and real-world deployment.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2510.12939",
+   "title": "Pruning Cannot Hurt Robustness: Certified Trade-offs in Reinforcement Learning",
+   "published": "2025-10-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement learning (RL) policies deployed in real-world environments must remain reliable under adversarial perturbations. At the same time, modern deep RL agents are heavily over-parameterized, raising costs and fragility concerns. While pruning has been shown to improve robustness in supervised learning, its role in adversarial RL remains poorly understood. We develop the first theoretical framework for certified robustness under pruning in state-adversarial Markov decision processes (SA-MDPs). For Gaussian and categorical policies with Lipschitz networks, we prove that element-wise pruning can only tighten certified robustness bounds; pruning never makes the policy less robust. Building on this, we derive a novel three-term regret decomposition that disentangles clean-task performance, pruning-induced performance loss, and robustness gains, exposing a fundamental performance--robustness frontier. Empirically, we evaluate magnitude and micro-pruning schedules on continuous-control benchmarks with strong policy-aware adversaries. Across tasks, pruning consistently uncovers reproducible ``sweet spots'' at moderate sparsity levels, where robustness improves substantially without harming - and sometimes even enhancing - clean performance. These results position pruning not merely as a compression tool but as a structural intervention for robust RL.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2602.02626",
+   "title": "Learning Better Certified Models from Empirically-Robust Teachers",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Adversarial training attains strong empirical robustness to specific adversarial attacks by training on concrete adversarial perturbations, but it produces neural networks that are not amenable to strong robustness certificates through neural network verification. On the other hand, earlier certified training schemes directly train on bounds from network relaxations to obtain models that are certifiably robust, but display sub-par standard performance. Recent work has shown that state-of-the-art trade-offs between certified robustness and standard performance can be obtained through a family of losses combining adversarial outputs and neural network bounds. Nevertheless, differently from empirical robustness, verifiability still comes at a significant cost in standard performance. In this work, we propose to leverage empirically-robust teachers to improve the performance of certifiably-robust models through knowledge distillation. Using versatile feature-space distillation objectives, we show that distillation from adversarially-trained teachers can significantly improve the performance of state-of-the-art certified training algorithms for ReLU networks on robust computer vision benchmarks.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2502.16737",
+   "title": "Keeping up with dynamic attackers: Certifying robustness to adaptive online data poisoning",
+   "published": "2025-02-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The rise of foundation models fine-tuned on human feedback from potentially untrusted users has increased the risk of adversarial data poisoning, necessitating the study of robustness of learning algorithms against such attacks. Existing research on provable certified robustness against data poisoning attacks primarily focuses on certifying robustness for static adversaries who modify a fraction of the dataset used to train the model before the training algorithm is applied. In practice, particularly when learning from human feedback in an online sense, adversaries can observe and react to the learning process and inject poisoned samples that optimize adversarial objectives better than when they are restricted to poisoning a static dataset once, before the learning algorithm is applied. Indeed, it has been shown in prior work that online dynamic adversaries can be significantly more powerful than static ones. We present a novel framework for computing certified bounds on the impact of dynamic poisoning, and use these certificates to design robust learning algorithms. We give an illustration of the framework for the mean estimation and binary classification problems and outline directions for extending this in further work. The code to implement our certificates and replicate our results is available at https://github.com/Avinandan22/Certified-Robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2506.11992",
+   "title": "Compression Aware Certified Training",
+   "published": "2025-06-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep neural networks deployed in safety-critical, resource-constrained environments must balance efficiency and robustness. Existing methods treat compression and certified robustness as separate goals, compromising either efficiency or safety. We propose CACTUS (Compression Aware Certified Training Using network Sets), a general framework for unifying these objectives during training. CACTUS models maintain high certified accuracy even when compressed. We apply CACTUS for both pruning and quantization and show that it effectively trains models which can be efficiently compressed while maintaining high accuracy and certifiable robustness. CACTUS achieves state-of-the-art accuracy and certified performance for both pruning and quantization on a variety of datasets and input specifications.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2605.07690",
+   "title": "Fortifying Time Series: DTW-Certified Robust Anomaly Detection",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Time-series anomaly detection is critical for ensuring safety in high-stakes applications, where robustness is a fundamental requirement rather than a mere performance metric. Addressing the vulnerability of these systems to adversarial manipulation is therefore essential. Existing defenses are largely heuristic or provide certified robustness only under $\\ell_p$-norm constraints, which are incompatible with time-series data. In particular, $\\ell_p$-norm fails to capture the intrinsic temporal structure in time series, causing small temporal distortions to significantly alter the $\\ell_p$-norm measures. Instead, the similarity metric \\emph{Dynamic Time Warping} (DTW) is more suitable and widely adopted in the time-series domain, as DTW accounts for temporal alignment and remains robust to temporal variations. To date, however, there has been no certifiable robustness result in this metric that provides guarantees. In this work, we introduce the first \\emph{DTW-certified robust defense} in time-series anomaly detection by adapting the randomized smoothing paradigm. We develop this certificate by bridging the $\\ell_p$-norm to DTW distance through a lower-bound transformation. Extensive experiments across various datasets and models validate the effectiveness and practicality of our theoretical approach. Results demonstrate significantly improved performance, e.g., up to 18.7\\% in F1-score under DTW-based adversarial attacks compared to traditional certified models.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2609.31310",
+   "title": "Revisiting Certified Defense with Differential Privacy on Vision Transformers",
+   "published": "2026-09-25",
+   "categories": [
+    "cs.CR",
+    "stat.AP"
+   ],
+   "abstract": "Certified defenses that incorporate differential privacy have proven effective on Convolutional Neural Networks (CNNs), furnishing rigorous robustness guarantees against norm-bounded adversaries. However, the certified robustness behavior of Pixel Differential Privacy (PixelDP) remains largely unexplored with the self-attention architecture now dominating the deep-learning landscape. Given that the Transformer has a profound impact on our daily applications from the digital world to the physical world, it is crucial to study certified robustness through differential-privacy-style stability. To fill this research gap, we revisit this construction in Vision Transformers and identify a failure mode that is largely hidden in the convolutional setting. When noise is injected after the patch embedding, the Laplace mechanism with the inherited grouped $\\ell_1$ sensitivity bound collapses to chance-level accuracy across noise scales, whereas the Gaussian mechanism remains trainable. This contrast isolates the source of failure: not the injected noise itself, but the geometry of the sensitivity constraint. We show that the attenuation induced by the inherited $Δ_{1,1}$ projection increases with layer width and kernel size according to a random-matrix scale $C/(\\sqrt{M}+\\sqrt{N})$. Replacing the $\\ell_1$-type constraint with a spectral-norm constraint eliminates the collapse across datasets and architectures, but creates a fundamental obstacle: the repaired models no longer satisfy the sensitivity condition required by the standard Laplace certificate. We resolve this mismatch by deriving a dimension-free $(\\varepsilon,\\ δ)$-privacy guarantee for the Laplace mechanism under $\\ell_2$ sensitivity through concentration of the privacy loss.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2605.25352",
+   "title": "Certified Robustness from Approximate Gaussian Mixture Structures in Pretrained Latent Spaces",
+   "published": "2026-05-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Deep learning models are vulnerable to adversarial perturbations, raising important concerns for safety-critical deployment. Empirical defenses can achieve strong robustness in practice, but lack formal guarantees, motivating the need for certifiably robust classifiers. While certified methods provide formal guarantees, they often yield overly conservative bounds due to their inability to exploit structure in complex data distributions. In this work, we propose a framework for designing certifiably robust classifiers that leverages latent structure in data representations. We first analyze the Gaussian mixture setting, deriving necessary and sufficient conditions for the existence of robust classifiers and constructing a classifier with a closed-form robustness certificate and generalization guarantees. Our main contribution is to show that exact structure is not required: we prove that if a pretrained encoder maps inputs to a latent distribution that is $\\varepsilon$-close (in KL divergence) to a Gaussian mixture, then certified accuracy degrades gracefully, with an explicit bound relating robustness under the true and approximate distributions. This result enables the direct use of pretrained models without requiring exact distributional assumptions. Empirically, our method achieves state-of-the-art or competitive certified accuracy on CIFAR-10 and ImageNet, while maintaining strong clean performance and low computational overhead. Overall, our work establishes approximate latent structure as a practical and principled route to certifiable robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2503.20660",
+   "title": "DR-PETS: Learning-Based Control With Planning in Adversarial Environments",
+   "published": "2025-03-26",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Ensuring robustness against epistemic, possibly adversarial, perturbations is essential for reliable real-world decision-making. While the Probabilistic Ensembles with Trajectory Sampling (PETS) algorithm inherently handles uncertainty via ensemble-based probabilistic models, it lacks guarantees against structured adversarial or worst-case uncertainty distributions. To address this, we propose DR-PETS, a distributionally robust extension of PETS that certifies robustness against adversarial perturbations. We formalize uncertainty via a p-Wasserstein ambiguity set, enabling worst-case-aware planning through a min-max optimization framework. While PETS passively accounts for stochasticity, DR-PETS actively optimizes robustness via a tractable convex approximation integrated into PETS planning loop. Experiments on pendulum stabilization and cart-pole balancing show that DR-PETS certifies robustness against adversarial parameter perturbations, achieving consistent performance in worst-case scenarios where PETS deteriorates.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2505.18171",
+   "title": "Robust Knowledge Graph Embedding via Denoising",
+   "published": "2025-05-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We focus on obtaining robust knowledge graph embedding under perturbation in the embedding space. To address these challenges, we introduce a novel framework, Robust Knowledge Graph Embedding via Denoising, which enhances the robustness of KGE models on noisy triples. By treating KGE methods as energy-based models, we leverage the established connection between denoising and score matching, enabling the training of a robust denoising KGE model. Furthermore, we propose certified robustness evaluation metrics for KGE methods based on the concept of randomized smoothing. Through comprehensive experiments on benchmark datasets, our framework consistently shows superior performance compared to existing state-of-the-art KGE methods when faced with perturbed entity embedding.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2610.16016",
+   "title": "Certified Robustness via Sparse Second-Order Cone Relaxations",
+   "published": "2026-10-12",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Certified robustness is critical for deploying neural networks in safety-sensitive settings, but computing exact certificates typically requires solving nonconvex optimization problems. Practical verifiers use convex relaxations: linear programming (LP) relaxations are scalable but often too conservative, whereas semidefinite programming (SDP) relaxations can be substantially tighter but are computationally expensive. We introduce a hierarchy of second-order cone programming (SOCP) relaxations that provide stronger certificates than LP while avoiding the cost of global positive-semidefinite constraints. Our construction combines convex-hull relaxations of ReLU activations, selective McCormick lifting over certified variable bounds, and second-order cone constraints induced by 2-by-2 principal minors. Adding these constraints progressively yields a monotone hierarchy of increasingly tight bounds with a controllable computation-tightness trade-off. On fully connected and convolutional networks on MNIST and CIFAR-10, SOCP-based verification improves certified robust accuracy over LP-based verification and is competitive with alpha,beta-CROWN, while remaining orders of magnitude faster than SDP-based verification. These results position selective second-order constraints as a practical middle ground between scalable LP-based and tight SDP-based certification. Finally, we introduce class-optimized robust evaluation (CORE), which applies tighter relaxations only to target classes not certified by cheaper ones. On the fully connected MNIST benchmark, CORE variants match SDP-cert's certified robust accuracy while reducing average verification time by up to 86.30%.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2511.09316",
+   "title": "AdaptDel: Adaptable Deletion Rate Randomized Smoothing for Certified Robustness",
+   "published": "2025-11-12",
+   "categories": [
+    "cs.CL",
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "We consider the problem of certified robustness for sequence classification against edit distance perturbations. Naturally occurring inputs of varying lengths (e.g., sentences in natural language processing tasks) present a challenge to current methods that employ fixed-rate deletion mechanisms and lead to suboptimal performance. To this end, we introduce AdaptDel methods with adaptable deletion rates that dynamically adjust based on input properties. We extend the theoretical framework of randomized smoothing to variable-rate deletion, ensuring sound certification with respect to edit distance. We achieve strong empirical results in natural language tasks, observing up to 30 orders of magnitude improvement to median cardinality of the certified region, over state-of-the-art certifications.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2604.20495",
+   "title": "Towards Certified Malware Detection: Provable Guarantees Against Evasion Attacks",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Machine learning-based static malware detectors remain vulnerable to adversarial evasion techniques, such as metamorphic engine mutations. To address this vulnerability, we propose a certifiably robust malware detection framework based on randomized smoothing through feature ablation and targeted noise injection. During evaluation, our system analyzes an executable by generating multiple ablated variants, classifies them by using a smoothed classifier, and identifies the final label based on the majority vote. By analyzing the top-class voting distribution and the Wilson score interval, we derive a formal certificate that guarantees robustness within a specific radius against feature-space perturbations. We evaluate our approach by comparing the performance of the base classifier and the smoothed classifier on both clean executables and ablated variants generated using PyMetaEngine. Our results demonstrate that the proposed smoothed classifier successfully provides certifiable robustness against metamorphic evasion attacks without requiring modifications to the underlying machine learning architecture.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2602.08137",
+   "title": "Robust and Gain-Scheduling ${\\cal H}_2$ Control Techniques for LFT Uncertain and Parameter-Dependent Systems",
+   "published": "2026-02-08",
+   "categories": [
+    "eess.SY"
+   ],
+   "abstract": "This paper addresses the robust ${\\cal H}_2$ synthesis problem for linear fractional transformation (LFT) systems subject to structured uncertainty (parameter) and white-noise disturbances. By introducing an intermediate matrix variable, we derive convex synthesis conditions in terms of linear matrix inequalities (LMIs) that enable both robust and gain-scheduled controller design for parameter-dependent systems. The proposed framework preserves the classical white-noise and impulse-response interpretation of the ${\\cal H}_2$ criterion while providing certified robustness guarantees, thereby extending optimal ${\\cal H}_2$ control beyond the linear time-invariant setting. Numerical and application examples demonstrate that the resulting robust ${\\cal H}_2$ controllers achieve significantly reduced conservatism and improved disturbance rejection compared with conventional robust ${\\cal H}_\\infty$-based designs.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2506.13024",
+   "title": "Position: Certified Robustness Does Not (Yet) Imply Model Security",
+   "published": "2025-06-16",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "While certified robustness is widely promoted as a solution to adversarial examples in Artificial Intelligence systems, significant challenges remain before these techniques can be meaningfully deployed in real-world applications. We identify critical gaps in current research, including the paradox of detection without distinction, the lack of clear criteria for practitioners to evaluate certification schemes, and the potential security risks arising from users' expectations surrounding ``guaranteed\" robustness claims. These create an alignment issue between how certifications are presented and perceived, relative to their actual capabilities. This position paper is a call to arms for the certification research community, proposing concrete steps to address these fundamental challenges and advance the field toward practical applicability.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2605.21780",
+   "title": "Provable Robustness against Backdoor Attacks via the Primal-Dual Perspective on Differential Privacy",
+   "published": "2026-05-20",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Randomized smoothing is a powerful tool for certifying robustness to adversarial perturbations, including poisoning attacks via randomized training and evasion attacks via randomized inference. Extending these guarantees to backdoor attacks, where training and test data are jointly perturbed, remains challenging because training- and test-time randomized mechanisms must be analyzed within a single robustness certificate. We address this by connecting randomized smoothing to the dual view of differential privacy through privacy profiles, which provide a numerical procedure for composing heterogeneous mechanisms. The resulting framework enables tight, modular, end-to-end certification of complex, composed mechanisms while leveraging existing analyses of differentially private mechanisms. We instantiate the framework for DP-SGD and Deep Partition Aggregation with inference-time smoothing, deriving joint robustness guarantees against both training-time and inference-time attacks. Experiments on MNIST and CIFAR-10 demonstrate the effectiveness of our framework. Overall, we provide a principled and general framework for using composite mechanisms to certify robustness under complex threat models that better capture the capabilities of real-world adversaries.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2601.18513",
+   "title": "LipNeXt: Scaling up Lipschitz-based Certified Robustness to Billion-parameter Models",
+   "published": "2026-01-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Lipschitz-based certification offers efficient, deterministic robustness guarantees but has struggled to scale in model size, training efficiency, and ImageNet performance. We introduce \\emph{LipNeXt}, the first \\emph{constraint-free} and \\emph{convolution-free} 1-Lipschitz architecture for certified robustness. LipNeXt is built using two techniques: (1) a manifold optimization procedure that updates parameters directly on the orthogonal manifold and (2) a \\emph{Spatial Shift Module} to model spatial pattern without convolutions. The full network uses orthogonal projections, spatial shifts, a simple 1-Lipschitz $β$-Abs nonlinearity, and $L_2$ spatial pooling to maintain tight Lipschitz control while enabling expressive feature mixing. Across CIFAR-10/100 and Tiny-ImageNet, LipNeXt achieves state-of-the-art clean and certified robust accuracy (CRA), and on ImageNet it scales to 1-2B large models, improving CRA over prior Lipschitz models (e.g., up to $+8\\%$ at $\\varepsilon{=}1$) while retaining efficient, stable low-precision training. These results demonstrate that Lipschitz-based certification can benefit from modern scaling trends without sacrificing determinism or efficiency.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2506.08255",
+   "title": "SHIELD: Secure Hypernetworks for Incremental Expansion Learning Defense",
+   "published": "2025-06-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Continual learning under adversarial conditions remains an open problem, as existing methods often compromise either robustness, scalability, or both. We propose a novel framework that integrates Interval Bound Propagation (IBP) with a hypernetwork-based architecture to enable certifiably robust continual learning across sequential tasks. Our method, SHIELD, generates task-specific model parameters via a shared hypernetwork conditioned solely on compact task embeddings, eliminating the need for replay buffers or full model copies and enabling efficient over time. To further enhance robustness, we introduce Interval MixUp, a novel training strategy that blends virtual examples represented as $\\ell_{\\infty}$ balls centered around MixUp points. Leveraging interval arithmetic, this technique guarantees certified robustness while mitigating the wrapping effect, resulting in smoother decision boundaries. We evaluate SHIELD under strong white-box adversarial attacks, including PGD and AutoAttack, across multiple benchmarks. It consistently outperforms existing robust continual learning methods, achieving state-of-the-art average accuracy while maintaining both scalability and certification. These results represent a significant step toward practical and theoretically grounded continual learning in adversarial settings.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2511.09834",
+   "title": "CertMask: Certifiable Defense Against Adversarial Patches via Theoretically Optimal Mask Coverage",
+   "published": "2025-11-13",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial patch attacks inject localized perturbations into images to mislead deep vision models. These attacks can be physically deployed, posing serious risks to real-world applications. In this paper, we propose CertMask, a certifiably robust defense that constructs a provably sufficient set of binary masks to neutralize patch effects with strong theoretical guarantees. While the state-of-the-art approach (PatchCleanser) requires two rounds of masking and incurs $O(n^2)$ inference cost, CertMask performs only a single round of masking with $O(n)$ time complexity, where $n$ is the cardinality of the mask set to cover an input image. Our proposed mask set is computed using a mathematically rigorous coverage strategy that ensures each possible patch location is covered at least $k$ times, providing both efficiency and robustness. We offer a theoretical analysis of the coverage condition and prove its sufficiency for certification. Experiments on ImageNet, ImageNette, and CIFAR-10 show that CertMask improves certified robust accuracy by up to +13.4\\% over PatchCleanser, while maintaining clean accuracy nearly identical to the vanilla model.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2611.03350",
+   "title": "Certifying Graph Neural Networks Against Label and Structure Poisoning",
+   "published": "2026-11-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Robust machine learning for graph-structured data has made significant progress against test-time attacks, yet certified robustness to poisoning - where adversaries manipulate the training data - remains largely underexplored. For image data, state-of-the-art poisoning certificates rely on partitioning-and-aggregation schemes. However, we show that these methods fail when applied in the graph domain due to the inherent label and structure sparsity found in common graph datasets, making effective graph-partitioning difficult. To address this challenge, we propose a novel semi-supervised learning framework called deep Self-Training Graph Partition Aggregation (ST-GPA), which enriches each graph partition with informative pseudo-labels and synthetic edges, enabling effective certification against node-label and graph-structure poisoning under sparse conditions. Our method is architecture-agnostic, scales to large numbers of partitions, and consistently and significantly improves robustness guarantees against both label and structure poisoning across multiple benchmarks, while maintaining strong clean accuracy. Overall, our results establish a promising direction for certifiably robust learning on graph-structured data against poisoning under sparse conditions.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2606.13439",
+   "title": "S-GBT: Smooth Growth Bound Tensor for Certified Robustness Against Word Substitution Attacks in NLP",
+   "published": "2026-06-11",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Despite recent progress in Natural Language Processing (NLP), models remain vulnerable to word substitution attacks. Most existing defenses focus on first order sensitivity and measure how much the output changes when the input is slightly perturbed. However, they ignore how this sensitivity evolves, which is described by curvature. When gradients vary sharply, models can still fail. This paper introduces the Smooth Growth Bound Tensor (S-GBT), a second order method that bounds the Hessian element-wise, for which we provide formal theoretical proofs on the resulting robustness bounds. A regularization term is added during training to minimize these bounds. This yields tighter certified robustness against word substitution attacks. The change in the output under word substitution is bounded by both a linear term and a quadratic term. S-GBT is derived for two architectures: Long Short-Term Memory (LSTM) and Convolutional Neural Networks (CNN). The method is integrated directly into the training objective. Its effectiveness is evaluated on multiple benchmark datasets. The results show that combining first and second order regularization improves certified robust accuracy by up to 23.4% compared to prior methods, while clean accuracy remains competitive. These findings indicate that controlling both the gradient and its variation is a promising direction for building more robust models.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2512.06010",
+   "title": "Fast and Flexible Robustness Certificates for Semantic Segmentation",
+   "published": "2025-12-03",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Deep Neural Networks are vulnerable to small perturbations that can drastically alter their predictions for perceptually unchanged inputs. The literature on adversarially robust Deep Learning attempts to either enhance the robustness of neural networks (e.g, via adversarial training) or to certify their decisions up to a given robustness level (e.g, by using randomized smoothing, formal methods or Lipschitz bounds). These studies mostly focus on classification tasks and few efficient certification procedures currently exist for semantic segmentation. In this work, we introduce a new class of certifiably robust Semantic Segmentation networks with built-in Lipschitz constraints that are efficiently trainable and achieve competitive pixel accuracy on challenging datasets such as Cityscapes. Additionally, we provide a novel framework that generalizes robustness certificates for semantic segmentation tasks, where we showcase the flexibility and computational efficiency of using Lipschitz networks. Our approach unlocks real-time compatible certifiably robust semantic segmentation for the first time. Moreover, it allows the computation of worst-case performance under $\\ell_2$ attacks of radius $ε$ across a wide range of performance measures. Crucially, we benchmark the runtime of our certification process and find our approach to be around 600 times faster than randomized smoothing methods at inference with comparable certificates on an NVIDIA A100 GPU. Finally, we evaluate the tightness of our worstcase certificates against state-of-the-art adversarial attacks to further validate the performance of our method.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2502.06892",
+   "title": "Certifying Language Model Robustness with Fuzzed Randomized Smoothing: An Efficient Defense Against Backdoor Attacks",
+   "published": "2025-02-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The widespread deployment of pre-trained language models (PLMs) has exposed them to textual backdoor attacks, particularly those planted during the pre-training stage. These attacks pose significant risks to high-reliability applications, as they can stealthily affect multiple downstream tasks. While certifying robustness against such threats is crucial, existing defenses struggle with the high-dimensional, interdependent nature of textual data and the lack of access to original poisoned pre-training data. To address these challenges, we introduce \\textbf{F}uzzed \\textbf{R}andomized \\textbf{S}moothing (\\textbf{FRS}), a novel approach for efficiently certifying language model robustness against backdoor attacks. FRS integrates software robustness certification techniques with biphased model parameter smoothing, employing Monte Carlo tree search for proactive fuzzing to identify vulnerable textual segments within the Damerau-Levenshtein space. This allows for targeted and efficient text randomization, while eliminating the need for access to poisoned training data during model smoothing. Our theoretical analysis demonstrates that FRS achieves a broader certified robustness radius compared to existing methods. Extensive experiments across various datasets, model configurations, and attack strategies validate FRS's superiority in terms of defense efficiency, accuracy, and robustness.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2606.27694",
+   "title": "Halt Fast! Early Stopping for Certified Robustness",
+   "published": "2026-06-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Randomized Smoothing (RS) provides rigorous robustness guarantees for neural networks without architectural constraints, yet its adoption is limited by extreme computational costs. Standard RS requires tens of thousands of model evaluations per input and forces practitioners to commit to fixed sample sizes a priori. In this work, we present a novel meta-learning framework for anytime-valid certified robustness that adaptively deploys computational resources. By using a lightweight meta-learner to predict image-specific priors for a sequential E-process, we achieve a 20-fold reduction in sample complexity compared to traditional methods while maintaining rigorous statistical guarantees. Beyond raw efficiency, we demonstrate how anytime-validity enables adaptively allocating compute based upon application-specific risk thresholds, a form of resource triage impossible under classic certification frameworks. That this is achievable while also providing similar certification performance demonstrates that our approach provides a pathway for real-time, safety-critical certification deployments.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2503.14751",
+   "title": "LipShiFT: A Certifiably Robust Shift-based Vision Transformer",
+   "published": "2025-03-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Deriving tight Lipschitz bounds for transformer-based architectures presents a significant challenge. The large input sizes and high-dimensional attention modules typically prove to be crucial bottlenecks during the training process and leads to sub-optimal results. Our research highlights practical constraints of these methods in vision tasks. We find that Lipschitz-based margin training acts as a strong regularizer while restricting weights in successive layers of the model. Focusing on a Lipschitz continuous variant of the ShiftViT model, we address significant training challenges for transformer-based architectures under norm-constrained input setting. We provide an upper bound estimate for the Lipschitz constants of this model using the $l_2$ norm on common image classification datasets. Ultimately, we demonstrate that our method scales to larger models and advances the state-of-the-art in certified robustness for transformer-based architectures.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2604.04234",
+   "title": "Stability Margins of CBF-QP Safety Filters: Analysis and Synthesis",
+   "published": "2026-04-05",
+   "categories": [
+    "eess.SY",
+    "math.OC"
+   ],
+   "abstract": "Control barrier function (CBF)-QP safety filters enforce safety by minimally modifying a nominal controller. While prior work has mainly addressed robustness of safety under uncertainty, robustness of the resulting closed-loop \\emph{stability} is much less understood. This issue is important because once the safety filter becomes active, it modifies the nominal dynamics and can reduce stability margins or even destabilize the system, despite preserving safety. For linear systems with a single affine safety constraint, we show that the active-mode dynamics admit an exact scalar loop representation, leading to a classical robust-control interpretation in terms of gain, phase, and delay margins. This viewpoint yields exact stability-margin characterizations and tractable linear matrix inequality (LMI)-based certificates and synthesis conditions for controllers with certified robustness guarantees. Numerical examples illustrate the proposed analysis and the enlargement of certified stability margins for safety-filtered systems.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2608.21488",
+   "title": "KAN-Robust-Bench: A Benchmark for Evaluating the Robustness of Kolmogorov-Arnold Networks",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "While machine learning models have demonstrated strong performance in many domains, these models have shown profound vulnerabilities when they are exposed to adversarial threats. While adversarial attacks fall into various categories, the most prominent category in research studies is evasion. In evasion attacks, the adversary generates perturbed versions of samples, which might not be observable by human eyes. These samples generally fool the machine learning models with high confidence. This phenomenon poses a significant security violation against machine learning models. In this paper, we investigate the certified and empirical robustness of various Kolmogorov-Arnold network architectures against strong evasion attacks. At first, we provide the mathematical foundations for randomized smoothing and interval bound propagation, and report the $\\ell_2$-certified robustness of the models under randomized smoothing. After that, we systematically evaluate the robustness of various defended and undefended KAN models under FGSM, PGD, and C&W attacks in order to find out the optimal defense strategies and architectures.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2506.15499",
+   "title": "Pixel-level Certified Explanations via Randomized Smoothing",
+   "published": "2025-06-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Post-hoc attribution methods aim to explain deep learning predictions by highlighting influential input pixels. However, these explanations are highly non-robust: small, imperceptible input perturbations can drastically alter the attribution map while maintaining the same prediction. This vulnerability undermines their trustworthiness and calls for rigorous robustness guarantees of pixel-level attribution scores. We introduce the first certification framework that guarantees pixel-level robustness for any black-box attribution method using randomized smoothing. By sparsifying and smoothing attribution maps, we reformulate the task as a segmentation problem and certify each pixel's importance against $\\ell_2$-bounded perturbations. We further propose three evaluation metrics to assess certified robustness, localization, and faithfulness. An extensive evaluation of 12 attribution methods across 5 ImageNet models shows that our certified attributions are robust, interpretable, and faithful, enabling reliable use in downstream tasks. Our code is at https://github.com/AlaaAnani/certified-attributions.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2605.09646",
+   "title": "\"Training robust watermarking model may hurt authentication!'' Exploring and Mitigating the Identity Leakage in Robust Watermarking",
+   "published": "2026-05-10",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "The rapid advancement of generative AI has underscored the critical need for identifying image ownership and protecting copyrights. This makes post-processing image watermarking an essential tool -- it involves embedding a specific watermark message into an image, with successful verification if a similar message can be decoded from the watermarked image. However, this method is susceptible to both adversarial attacks that manipulate the watermarked image to yield an unverified message upon decoding, and the proposed identity leakage-related attacks (e.g., forging watermarked images). The threat of identity leakage is particularly exacerbated in both empirical and certified robust watermarking methods. To defend against the aforementioned attacks, we propose W-IR, the first image watermarking framework that simultaneously incorporates identity protection and robustness. To enhance model robustness, we introduce a novel randomized smoothing technique as part of a robust watermarking, that offers certified robustness against perturbations across two distinct transformation spaces: pixel-level and coordinate-level. Moreover, to further mitigate identity leakage, we propose a new strategy based on residual information loss, aimed at minimizing the mutual information between the residual and watermarked images. Our work strikes a superior balance between robustness and identity leakage mitigation. Extensive experiments demonstrate that our W-IR framework achieves high certified accuracy for authenticity while effectively reducing identity leakage. \\footnote{The code is available at https://github.com/holdrain/W-I-R.}",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2607.03232",
+   "title": "Fast SDP certification of neural networks : towards large multi-class datasets",
+   "published": "2026-07-03",
+   "categories": [
+    "math.CO",
+    "stat.ML"
+   ],
+   "abstract": "We present a new quadratic model for the certification problem in adversarial robustness, which simultaneously accounts for all possible target classes. Building on this model, we propose a novel semidefinite programming (SDP) relaxation for incomplete verification. A key advantage of our approach is that it certifies robustness in a single optimization, avoiding the need for a separate resolution per class. This yields a significant computational speed-up and enables scalability to large datasets with many classes. To further improve efficiency, we also propose an effective pruning strategy of active neurons, thus reducing the problem dimensionality and accelerating convergence.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2506.23977",
+   "title": "A Scalable Approach for Safe and Robust Learning via Lipschitz-Constrained Networks",
+   "published": "2025-06-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Certified robustness is a critical property for deploying neural networks (NN) in safety-critical applications. A principle approach to achieving such guarantees is to constrain the global Lipschitz constant of the network. However, accurate methods for Lipschitz-constrained training often suffer from non-convex formulations and poor scalability due to reliance on global semidefinite programs (SDPs). In this letter, we propose a convex training framework that enforces global Lipschitz constraints via semidefinite relaxation. By reparameterizing the NN using loop transformation, we derive a convex admissibility condition that enables tractable and certifiable training. While the resulting formulation guarantees robustness, its scalability is limited by the size of global SDP. To overcome this, we develop a randomized subspace linear matrix inequalities (RS-LMI) approach that decomposes the global constraints into sketched layerwise constraints projected onto low-dimensional subspaces, yielding a smooth and memory-efficient training objective. Empirical results on MNIST, CIFAR-10, and ImageNet demonstrate that the proposed framework achieves competitive accuracy with significantly improved Lipschitz bounds and runtime performance.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2509.10913",
+   "title": "Robustifying Diffusion-Denoised Smoothing Against Covariate Shift",
+   "published": "2025-09-13",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Randomized smoothing is a well-established method for achieving certified robustness against l2-adversarial perturbations. By incorporating a denoiser before the base classifier, pretrained classifiers can be seamlessly integrated into randomized smoothing without significant performance degradation. Among existing methods, Diffusion Denoised Smoothing - where a pretrained denoising diffusion model serves as the denoiser - has produced state-of-the-art results. However, we show that employing a denoising diffusion model introduces a covariate shift via misestimation of the added noise, ultimately degrading the smoothed classifier's performance. To address this issue, we propose a novel adversarial objective function focused on the added noise of the denoising diffusion model. This approach is inspired by our understanding of the origin of the covariate shift. Our goal is to train the base classifier to ensure it is robust against the covariate shift introduced by the denoiser. Our method significantly improves certified accuracy across three standard classification benchmarks - MNIST, CIFAR-10, and ImageNet - achieving new state-of-the-art performance in l2-adversarial perturbations. Our implementation is publicly available at https://github.com/ahedayat/Robustifying-DDS-Against-Covariate-Shift",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2608.28056",
+   "title": "Anytime Primal--Dual Certification of the Maximum Disturbance Radius in Robust MPC",
+   "published": "2026-08-28",
+   "categories": [
+    "eess.SY"
+   ],
+   "abstract": "Adjustable-set robust model predictive control (MPC) characterizes a state-dependent maximum disturbance radius, which can be interpreted as a certified robustness reserve. Existing methods primarily focus on optimizing and propagating this reserve under in-set disturbances. This letter investigates how much reserve remains after a finite out-of-set disturbance without immediately re-solving the full optimization problem. To this end, we propose a two-sided reserve-depletion envelope formed by independent primal and dual correction hierarchies, which supply monotone lower and upper bounds, respectively. The envelope remains valid across active-set changes, has an online-computable width, and contracts monotonically under subspace expansion. Leveraging its finite-step exactness, we present a basis-first adaptive algorithm that operates in an anytime manner: every completed reduced solve returns a valid certificate, enabling early termination once a prescribed tolerance is reached. Across the tested cases, numerical studies report no certificate violations and median speedups of up to 4.97x over warm-started full re-optimization at a 2% certificate-width tolerance.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2501.17667",
+   "title": "CAMP in the Odyssey: Provably Robust Reinforcement Learning with Certified Radius Maximization",
+   "published": "2025-01-29",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Deep reinforcement learning (DRL) has gained widespread adoption in control and decision-making tasks due to its strong performance in dynamic environments. However, DRL agents are vulnerable to noisy observations and adversarial attacks, and concerns about the adversarial robustness of DRL systems have emerged. Recent efforts have focused on addressing these robustness issues by establishing rigorous theoretical guarantees for the returns achieved by DRL agents in adversarial settings. Among these approaches, policy smoothing has proven to be an effective and scalable method for certifying the robustness of DRL agents. Nevertheless, existing certifiably robust DRL relies on policies trained with simple Gaussian augmentations, resulting in a suboptimal trade-off between certified robustness and certified return. To address this issue, we introduce a novel paradigm dubbed \\texttt{C}ertified-r\\texttt{A}dius-\\texttt{M}aximizing \\texttt{P}olicy (\\texttt{CAMP}) training. \\texttt{CAMP} is designed to enhance DRL policies, achieving better utility without compromising provable robustness. By leveraging the insight that the global certified radius can be derived from local certified radii based on training-time statistics, \\texttt{CAMP} formulates a surrogate loss related to the local certified radius and optimizes the policy guided by this surrogate loss. We also introduce \\textit{policy imitation} as a novel technique to stabilize \\texttt{CAMP} training. Experimental results demonstrate that \\texttt{CAMP} significantly improves the robustness-return trade-off across various tasks. Based on the results, \\texttt{CAMP} can achieve up to twice the certified expected return compared to that of baselines. Our code is available at https://github.com/NeuralSec/camp-robust-rl.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2507.16264",
+   "title": "Learning Acceleration Algorithms for Fast Parametric Convex Optimization with Certified Robustness",
+   "published": "2025-07-22",
+   "categories": [
+    "math.OC"
+   ],
+   "abstract": "We develop a machine-learning framework to learn hyperparameter sequences for accelerated first-order methods (e.g., the step size and momentum sequences in accelerated gradient descent) to quickly solve parametric convex optimization problems with certified robustness. We obtain a strong form of robustness guarantee -- certification of worst-case performance over all parameters within a set after a given number of iterations -- through regularization-based training. The regularization term is derived from the performance estimation problem (PEP) framework based on semidefinite programming, in which the hyperparameters appear as problem data. We show how to use gradient-based training to learn the hyperparameters for several first-order methods: accelerated versions of gradient descent, proximal gradient descent, and alternating direction method of multipliers. Through various numerical examples from signal processing, control, and statistics, we demonstrate that the quality of the solution can be dramatically improved within a budget of iterations, while also maintaining strong robustness guarantees. Notably, our approach is highly data-efficient in that we only use ten training instances in all of the numerical examples.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2607.16329",
+   "title": "Lipschitz Continuity in Deep Learning: A Systematic Review of Theoretical Foundations, Estimation Methods, Regularization Approaches, and Certifiable Robustness",
+   "published": "2026-07-15",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Lipschitz continuity is a fundamental property of neural networks that characterizes their sensitivity to input perturbations. It plays a pivotal role in deep learning, governing \\textbf{robustness}, \\textbf{generalization} and \\textbf{optimization dynamics}. Despite its importance, research on Lipschitz continuity is scattered across various domains, lacking a unified perspective. This paper addresses this gap by providing a systematic review of Lipschitz continuity in deep learning. We explore its \\textbf{theoretical foundations}, \\textbf{estimation methods}, \\textbf{regularization approaches}, and \\textbf{certifiable robustness}. By reviewing existing research through the lens of Lipschitz continuity, this survey serves as a comprehensive reference for researchers and practitioners seeking a deeper understanding of Lipschitz continuity and its implications in deep learning.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2602.05311",
+   "title": "Formal Synthesis of Certifiably Robust Neural Lyapunov-Barrier Certificates",
+   "published": "2026-02-05",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.RO",
+    "eess.SY"
+   ],
+   "abstract": "Neural Lyapunov and barrier certificates have recently been used as powerful tools for verifying the safety and stability properties of deep reinforcement learning (RL) controllers. However, existing methods offer guarantees only under fixed ideal unperturbed dynamics, limiting their reliability in real-world applications where dynamics may deviate due to uncertainties. In this work, we study the problem of synthesizing \\emph{robust neural Lyapunov barrier certificates} that maintain their guarantees under perturbations in system dynamics. We formally define a robust Lyapunov barrier function and specify sufficient conditions based on Lipschitz continuity that ensure robustness against bounded perturbations. We propose practical training objectives that enforce these conditions via adversarial training, Lipschitz neighborhood bound, and global Lipschitz regularization. We validate our approach in two practically relevant environments, Inverted Pendulum and 2D Docking. The former is a widely studied benchmark, while the latter is a safety-critical task in autonomous systems. We show that our methods significantly improve both certified robustness bounds (up to $4.6$ times) and empirical success rates under strong perturbations (up to $2.4$ times) compared to the baseline. Our results demonstrate effectiveness of training robust neural certificates for safe RL under perturbations in dynamics.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2512.24564",
+   "title": "CPR: Causal Physiological Representation Learning for Robust ECG Analysis under Distribution Shifts",
+   "published": "2025-12-31",
+   "categories": [
+    "cs.LG",
+    "eess.SP"
+   ],
+   "abstract": "Deep learning models for Electrocardiogram (ECG) diagnosis have achieved remarkable accuracy but exhibit fragility against adversarial perturbations, particularly Smooth Adversarial Perturbations (SAP) that mimic biological morphology. Existing defenses face a critical dilemma: Adversarial Training (AT) provides robustness but incurs a prohibitive computational burden, while certified methods like Randomized Smoothing (RS) introduce significant inference latency, rendering them impractical for real-time clinical monitoring. We posit that this vulnerability stems from the models' reliance on non-robust spurious correlations rather than invariant pathological features. To address this, we propose Causal Physiological Representation Learning (CPR). Unlike standard denoising approaches that operate without semantic constraints, CPR incorporates a Physiological Structural Prior within a causal disentanglement framework. By modeling ECG generation via a Structural Causal Model (SCM), CPR enforces a structural intervention that strictly separates invariant pathological morphology (P-QRS-T complex) from non-causal artifacts. Empirical results on PTB-XL demonstrate that CPR significantly outperforms standard clinical preprocessing methods. Specifically, under SAP attacks, CPR achieves an F1 score of 0.632, surpassing Median Smoothing (0.541 F1) by 9.1%. Crucially, CPR matches the certified robustness of Randomized Smoothing while maintaining single-pass inference efficiency, offering a superior trade-off between robustness, efficiency, and clinical interpretability.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2607.05251",
+   "title": "Privacy-Preserving Robustness Verification for Neural Networks",
+   "published": "2026-07-06",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG",
+    "cs.LO"
+   ],
+   "abstract": "Neural network verification and data privacy are inherently in tension: verification demands full access to model parameters and input data, yet both are increasingly restricted by privacy regulations and intellectual property constraints. This tension has left robustness verification impractical in privacy-sensitive domains. In this work, we address this gap with SecureCROWN, the first framework for privacy-preserving neural network robustness verification. Built upon secure two-party computation (2PC), our framework enables a model owner and a data owner to jointly compute certified robustness bounds -- revealing only the final result while provably protecting both parties' private data under the semi-honest security model. A key challenge is securely computing the conditional operations in Linear Bound Propagation, where the data-dependent branching is incompatible with standard secure computation protocols. We eliminate branching by formulating conditional logic as continuous arithmetic operations. Additionally, we introduce a Newton--Raphson refinement method to improve numerical stability. Extensive analysis and experiments show that SecureCROWN strictly matches plaintext verification results, while completing in 0.1--200s across varied model sizes and communication settings (LAN/WAN), demonstrating the feasibility of privacy-preserving neural network verification.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2607.05536",
+   "title": "Higher-Order Certified Robustness for Regression",
+   "published": "2026-07-06",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Randomized smoothing has emerged as a scalable technique for certifying the adversarial robustness of classifiers. However, its application to regression remains under-explored and faces unique challenges. Existing regression certificates rely on probabilistic acceptance regions and fail to exploit the local geometry of the function. In this work, we present a novel framework for certified robust regression that addresses these limitations. We derive a prediction-centered certificate that guarantees the stability of the smoothed model's prediction and ensures practical computability at test time. We investigate several alternatives for constructing these certificates by explicitly incorporating means, variances, and gradients. In particular, we demonstrate on the MNIST rotation task that utilizing gradient information yields significantly tighter robustness certificates compared to the current state-of-the-art, alpha-smoothing.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2601.20301",
+   "title": "Towards Compact and Robust DNNs via Compression-aware Sharpness Minimization",
+   "published": "2026-01-28",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Sharpness-Aware Minimization (SAM) has recently emerged as an effective technique for improving DNN robustness to input variations. However, its interplay with the compactness requirements of on-device DNN deployments remains less explored. Simply pruning a SAM-trained model can undermine robustness, since flatness in the continuous parameter space does not necessarily translate to robustness under the discrete structural changes induced by pruning. Conversely, applying SAM after pruning may be fundamentally constrained by architectural limitations imposed by an early, robustness-agnostic pruning pattern. To address this gap, we propose Compression-aware ShArpness Minimization (C-SAM), a framework that shifts sharpness-aware learning from parameter perturbations to mask perturbations. By explicitly perturbing pruning masks during training, C-SAM promotes a flatter loss landscape with respect to model structure, enabling the discovery of pruning patterns that simultaneously optimize model compactness and robustness to input variations. Extensive experiments on CelebA-HQ, Flowers-102, and CIFAR-10-C across ResNet-18, GoogLeNet, and MobileNet-V2 show that C-SAM consistently achieves higher certified robustness than strong baselines, with improvements of up to 42%, while maintaining task accuracy comparable to the corresponding unpruned models.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2604.24993",
+   "title": "Laplace-Bridged Randomized Smoothing for Fast Certified Robustness",
+   "published": "2026-04-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Randomized Smoothing (RS) offers formal $\\ell_2$ guarantees for arbitrary base classifiers but faces two key practical bottlenecks: (i) it often relies on noise-augmented training to achieve nontrivial certificates, which increases training cost, can reduce clean accuracy, and weakens RS as a genuinely post-hoc defense; and (ii) certification is computationally expensive, typically requiring tens of thousands of noisy forward passes per input, which hinders deployment, especially on resource-constrained edge devices. To address both limitations, we propose Laplace-Bridged Smoothing (LBS), an analytic reformulation of RS that replaces high-dimensional input-space Monte Carlo (MC) sampling with efficient computations in a low-dimensional probability space. LBS preserves formal robustness guarantees without requiring noise-augmented training while substantially reducing certification burden. On CIFAR-10 and ImageNet, LBS attains stronger certified robustness than RS and reduces per-sample certification cost by nearly an order of magnitude. Notably, on NVIDIA Jetson Orin Nano and Raspberry Pi 4, LBS achieves speedups of up to $494\\times$, enabling practical certified deployment on real-world edge devices. Finally, we provide theoretical justification for the analytic formulation and certificate validity of LBS.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2510.16171",
+   "title": "Bridging Symmetry and Robustness: On the Role of Equivariance in Enhancing Adversarial Robustness",
+   "published": "2025-10-17",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial examples reveal critical vulnerabilities in deep neural networks by exploiting their sensitivity to imperceptible input perturbations. While adversarial training remains the predominant defense strategy, it often incurs significant computational cost and may compromise clean-data accuracy. In this work, we investigate an architectural approach to adversarial robustness by embedding group-equivariant convolutions-specifically, rotation- and scale-equivariant layers-into standard convolutional neural networks (CNNs). These layers encode symmetry priors that align model behavior with structured transformations in the input space, promoting smoother decision boundaries and greater resilience to adversarial attacks. We propose and evaluate two symmetry-aware architectures: a parallel design that processes standard and equivariant features independently before fusion, and a cascaded design that applies equivariant operations sequentially. Theoretically, we demonstrate that such models reduce hypothesis space complexity, regularize gradients, and yield tighter certified robustness bounds under the CLEVER (Cross Lipschitz Extreme Value for nEtwork Robustness) framework. Empirically, our models consistently improve adversarial robustness and generalization across CIFAR-10, CIFAR-100, and CIFAR-10C under both FGSM and PGD attacks, without requiring adversarial training. These findings underscore the potential of symmetry-enforcing architectures as efficient and principled alternatives to data augmentation-based defenses.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2611.14554",
+   "title": "Optical and ADM Tomography from Directed Causal Arrival Times",
+   "published": "2026-11-03",
+   "categories": [
+    "gr-qc"
+   ],
+   "abstract": "We formulate a local reconstruction of Lorentzian geometry from directed null arrival times and spacetime volume, assuming a supplied clock foliation and spatial coordinate gauge. Static arrival data recover the optical metric $\\bar h=N^{-2}h$, while a normalized volume density fixes the remaining conformal scale up to a global constant. In the stationary case, the Randers arrival function separates optical geometry and shift. For time-dependent ADM metrics we derive the exact future null indicatrix, its algebraic inverse, and a minimal finite-direction sampling scheme: $d(d+3)/2$ one-way arrival measurements suffice in $d$ spatial dimensions, are necessary for stable local recovery within the specified scalar-measurement class, and admit an exact semialgebraic consistency test with certified robustness and rejection margins under bounded measurement error. A short-time freezing estimate and finite-resolution inverse give metric error $O(a/ε+ε+ζ)$ for arrival error $a$, probe scale $ε$, and volume error $ζ$; optimizing yields $O(\\sqrt a+ζ)$. Algebraic and numerical checks reproduce the inversion and stability formulas. The result is an operational, gauge-conditional tomography theorem; it does not infer the clocks or arrival oracle from a background-free quantum theory.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2604.12757",
+   "title": "GF-Score: Certified Class-Conditional Robustness Evaluation with Fairness Guarantees",
+   "published": "2026-04-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Adversarial robustness is essential for deploying neural networks in safety-critical applications, yet standard evaluation methods either require expensive adversarial attacks or report only a single aggregate score that obscures how robustness is distributed across classes. We introduce the \\emph{GF-Score} (GREAT-Fairness Score), a framework that decomposes the certified GREAT Score into per-class robustness profiles and quantifies their disparity through four metrics grounded in welfare economics: the Robustness Disparity Index (RDI), the Normalized Robustness Gini Coefficient (NRGC), Worst-Case Class Robustness (WCR), and a Fairness-Penalized GREAT Score (FP-GREAT). The framework further eliminates the original method's dependence on adversarial attacks through a self-calibration procedure that tunes the temperature parameter using only clean accuracy correlations. Evaluating 22 models from RobustBench across CIFAR-10 and ImageNet, we find that the decomposition is exact, that per-class scores reveal consistent vulnerability patterns (e.g., ``cat'' is the weakest class in 76\\% of CIFAR-10 models), and that more robust models tend to exhibit greater class-level disparity. These results establish a practical, attack-free auditing pipeline for diagnosing where certified robustness guarantees fail to protect all classes equally. We release our code on \\href{https://github.com/aryashah2k/gf-score}{GitHub}.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2505.06958",
+   "title": "A Formally Verified Robustness Certifier for Neural Networks (Extended Version)",
+   "published": "2025-05-11",
+   "categories": [
+    "cs.PL",
+    "cs.LG"
+   ],
+   "abstract": "Neural networks are often susceptible to minor perturbations in input that cause them to misclassify. A recent solution to this problem is the use of globally-robust neural networks, which employ a function to certify that the classification of an input cannot be altered by such a perturbation. Outputs that pass this test are called certified robust. However, to the authors' knowledge, these certification functions have not yet been verified at the implementation level. We demonstrate how previous unverified implementations are exploitably unsound in certain circumstances. Moreover, they often rely on approximation-based algorithms, such as power iteration, that (perhaps surprisingly) do not guarantee soundness. To provide assurance that a given output is robust, we implemented and formally verified a certification function for globally-robust neural networks in Dafny. We describe the program, its specifications, and the important design decisions taken for its implementation and verification, as well as our experience applying it in practice.",
+   "query": "certified robustness"
+  },
+  {
+   "id": "2509.21879",
+   "title": "Learning Aligned Stability in Neural ODEs Reconciling Accuracy with Robustness",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Despite Neural Ordinary Differential Equations (Neural ODEs) exhibiting intrinsic robustness, existing methods often impose Lyapunov stability for formal guarantees. However, these methods still face a fundamental accuracy-robustness trade-off, which stems from a core limitation: their applied stability conditions are rigid and inappropriate, creating a mismatch between the model's regions of attraction (RoAs) and its decision boundaries. To resolve this, we propose Zubov-Net, a novel framework that unifies dynamics and decision-making. We first employ learnable Lyapunov functions directly as the multi-class classifier, ensuring the prescribed RoAs (PRoAs, defined by the Lyapunov functions) inherently align with a classification objective. Then, for aligning prescribed and true regions of attraction (PRoAs-RoAs), we establish a Zubov-driven stability region matching mechanism by reformulating Zubov's equation into a differentiable consistency loss. Building on this alignment, we introduce a new paradigm for actively controlling the geometry of RoAs by directly optimizing PRoAs to reconcile accuracy and robustness. Theoretically, we prove that minimizing the tripartite loss guarantees consistency alignment of PRoAs-RoAs, non-overlapping PRoAs, trajectory stability, and a certified robustness margin. Moreover, we establish stochastic convex separability with tighter probability bounds and lower dimensionality requirements to justify the convex design in Lyapunov functions.",
+   "query": "certified robustness"
+  }
+ ]
+}

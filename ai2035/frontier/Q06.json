@@ -1,0 +1,691 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "in-context learning few-shot",
+  "semi-supervised learning foundation models",
+  "few-shot learning"
+ ],
+ "papers": [
+  {
+   "id": "2505.15784",
+   "title": "Large Language Models as Computable Approximations to Solomonoff Induction",
+   "published": "2025-05-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "The rapid advancement of large language models (LLMs) calls for a rigorous theoretical framework to explain their empirical success. While significant progress has been made in understanding LLM behaviors, existing theoretical frameworks remain fragmented in explaining emergent phenomena through a unified mathematical lens. We establish the first formal connection between LLM architectures and Algorithmic Information Theory (AIT) by proving two fundamental results: (1) the training process computationally approximates Solomonoff prior through loss minimization interpreted as program length optimization, and (2) next-token prediction implements approximate Solomonoff induction. We leverage AIT to provide a unified theoretical explanation for in-context learning, few-shot learning, and scaling laws. Furthermore, our theoretical insights lead to a principled method for few-shot example selection that prioritizes samples where models exhibit lower predictive confidence. We demonstrate through experiments on diverse text classification benchmarks that this strategy yields significant performance improvements, particularly for smaller model architectures, when compared to selecting high-confidence examples. Our framework bridges the gap between theoretical foundations and practical LLM behaviors, providing both explanatory power and actionable insights for future model development.",
+   "query": "in-context learning few-shot"
+  },
+  {
+   "id": "2606.15417",
+   "title": "From Frames to Temporal Graphs: In-Context Egocentric Action Recognition with Vision-Language Models",
+   "published": "2026-06-13",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Action reasoning in egocentric video requires capturing fine-grained transitions of hand-object interactions, a task where general-purpose Vision-Language Models (VLMs) often struggle when operating directly on raw pixels. We propose to decouple visual perception from symbolic reasoning by converting videos into Temporal Action Graphs. In a multi-stage prompting pipeline, we first generate dense natural language narratives over short temporal windows as a semantic bottleneck, then formalize them into structured, open-vocabulary graph representations. On the EGTEA and Epic-Kitchens-100 datasets, the symbolic representation unlocks efficient in-context learning: few-shot graph demonstrations yield substantial accuracy gains over zero-shot frame-based inference. Even in the zero-shot setting, graph-based reasoning remains competitive with pixel-based inference despite potential pretraining contamination favoring the latter. Across 11 open-weight VLMs from 6 model families ranging from 2B to 235B parameters, our findings indicate that current VLMs are more effective as symbolic reasoners than as direct visual observers. By projecting video into the language domain, we provide a scalable, fine-tuning-free alternative to end-to-end approaches that better leverages these models' latent reasoning strengths. The code will be made public.",
+   "query": "in-context learning few-shot"
+  },
+  {
+   "id": "2506.17130",
+   "title": "Chain-of-Trust: A Progressive Trust Evaluation Framework Enabled by Generative AI",
+   "published": "2025-06-20",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "In collaborative systems with complex tasks relying on distributed resources, trust evaluation of potential collaborators has emerged as an effective mechanism for task completion. However, due to the network dynamics and varying information gathering latencies, it is extremely challenging to observe and collect all trust attributes of a collaborating device concurrently for a comprehensive trust assessment. In this paper, a novel progressive trust evaluation framework, namely chain-of-trust, is proposed to make better use of misaligned device attribute data. This framework, designed for effective task completion, divides the trust evaluation process into multiple chained stages based on task decomposition. At each stage, based on the task completion process, the framework only gathers the latest device attribute data relevant to that stage, leading to reduced trust evaluation complexity and overhead. By leveraging advanced in-context learning, few-shot learning, and reasoning capabilities, generative AI is then employed to analyze and interpret the collected data to produce correct evaluation results quickly. Only devices deemed trustworthy at this stage proceed to the next round of trust evaluation. The framework ultimately determines devices that remain trustworthy across all stages. Experimental results demonstrate that the proposed framework achieves high accuracy in trust evaluation.",
+   "query": "in-context learning few-shot"
+  },
+  {
+   "id": "2512.05658",
+   "title": "Multilingual Medical Reasoning for Question Answering with Large Language Models",
+   "published": "2025-12-05",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) with reasoning capabilities have recently demonstrated strong potential in medical Question Answering (QA). Existing approaches are largely English-focused and primarily rely on distillation from general-purpose LLMs, raising concerns about the reliability of their medical knowledge. In this work, we present a method to generate multilingual reasoning traces based on medical knowledge extracted from Wikipedia. We produce 500k traces in English, Italian, and Spanish, using a retrieval-augmented generation approach over medical information from Wikipedia. The traces are generated to solve medical questions drawn from MedQA and MedMCQA, which we extend to Italian and Spanish. We test our pipeline in both in-domain and out-of-domain settings across Medical QA benchmarks, and demonstrate that our reasoning traces improve performance both when utilized via in-context learning (few-shot) and supervised fine-tuning, yielding state-of-the-art results among 8B-parameter LLMs. We believe that these resources can support the development of more transparent clinical decision-support tools in multilingual settings. We release the full suite of resources: reasoning traces, translated QA datasets, Medical-Wikipedia, and fine-tuned models.",
+   "query": "in-context learning few-shot"
+  },
+  {
+   "id": "2501.14401",
+   "title": "Semantic-Anchored, Class Variance-Optimized Clustering for Robust Semi-Supervised Few-Shot Learning",
+   "published": "2025-01-24",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Few-shot learning has been extensively explored to address problems where the amount of labeled samples is very limited for some classes. In the semi-supervised few-shot learning setting, substantial quantities of unlabeled samples are available. Such unlabeled samples are generally cheaper to obtain and can be used to improve the few-shot learning performance of the model. Some of the recent methods for this setting rely on clustering to generate pseudo-labels for the unlabeled samples. Since the effectiveness of clustering heavily influences the labeling of the unlabeled samples, it can significantly affect the few-shot learning performance. In this paper, we focus on improving the representation learned by the model in order to improve the clustering and, consequently, the model performance. We propose an approach for semi-supervised few-shot learning that performs a class-variance optimized clustering coupled with a cluster separation tuner in order to improve the effectiveness of clustering the labeled and unlabeled samples in this setting. It also optimizes the clustering-based pseudo-labeling process using a restricted pseudo-labeling approach and performs semantic information injection in order to improve the semi-supervised few-shot learning performance of the model. We experimentally demonstrate that our proposed approach significantly outperforms recent state-of-the-art methods on the benchmark datasets. To further establish its robustness, we conduct extensive experiments under challenging conditions, showing that the model generalizes well to domain shifts and achieves new state-of-the-art performance in open-set settings with distractor classes, highlighting its effectiveness for real-world applications.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.09679",
+   "title": "DRESS: Disentangled Representation-based Self-Supervised Meta-Learning for Diverse Tasks",
+   "published": "2025-03-12",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Meta-learning represents a strong class of approaches for solving few-shot learning tasks. Nonetheless, recent research suggests that simply pre-training a generic encoder can potentially surpass meta-learning algorithms. In this paper, we first discuss the reasons why meta-learning fails to stand out in these few-shot learning experiments, and hypothesize that it is due to the few-shot learning tasks lacking diversity. We propose DRESS, a task-agnostic Disentangled REpresentation-based Self-Supervised meta-learning approach that enables fast model adaptation on highly diversified few-shot learning tasks. Specifically, DRESS utilizes disentangled representation learning to create self-supervised tasks that can fuel the meta-training process. Furthermore, we also propose a class-partition based metric for quantifying the task diversity directly on the input space. We validate the effectiveness of DRESS through experiments on datasets with multiple factors of variation and varying complexity. The results suggest that DRESS is able to outperform competing methods on the majority of the datasets and task setups. Through this paper, we advocate for a re-examination of proper setups for task adaptation studies, and aim to reignite interest in the potential of meta-learning for solving few-shot learning tasks via disentangled representations.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.09515",
+   "title": "Cough Classification using Few-Shot Learning",
+   "published": "2025-09-11",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper investigates the effectiveness of few-shot learning for respiratory sound classification, focusing on coughbased detection of COVID-19, Flu, and healthy conditions. We leverage Prototypical Networks with spectrogram representations of cough sounds to address the challenge of limited labeled data. Our study evaluates whether few-shot learning can enable models to achieve performance comparable to traditional deep learning approaches while using significantly fewer training samples. Additionally, we compare multi-class and binary classification models to assess whether multi-class models can perform comparably to their binary counterparts. Experimental findings show that few-shot learning models can achieve competitive accuracy. Our model attains 74.87% accuracy in multi-class classification with only 15 support examples per class, while binary classification achieves over 70% accuracy across all class pairs. Class-wise analysis reveals Flu as the most distinguishable class, and Healthy as the most challenging. Statistical tests (paired t-test p = 0.149, Wilcoxon p = 0.125) indicate no significant performance difference between binary and multiclass models, supporting the viability of multi-class classification in this setting. These results highlight the feasibility of applying few-shot learning in medical diagnostics, particularly when large labeled datasets are unavailable.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2504.04385",
+   "title": "Pre-trained Language Models and Few-shot Learning for Medical Entity Extraction",
+   "published": "2025-04-06",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "This study proposes a medical entity extraction method based on Transformer to enhance the information extraction capability of medical literature. Considering the professionalism and complexity of medical texts, we compare the performance of different pre-trained language models (BERT, BioBERT, PubMedBERT, ClinicalBERT) in medical entity extraction tasks. Experimental results show that PubMedBERT achieves the best performance (F1-score = 88.8%), indicating that a language model pre-trained on biomedical literature is more effective in the medical domain. In addition, we analyze the impact of different entity extraction methods (CRF, Span-based, Seq2Seq) and find that the Span-based approach performs best in medical entity extraction tasks (F1-score = 88.6%). It demonstrates superior accuracy in identifying entity boundaries. In low-resource scenarios, we further explore the application of Few-shot Learning in medical entity extraction. Experimental results show that even with only 10-shot training samples, the model achieves an F1-score of 79.1%, verifying the effectiveness of Few-shot Learning under limited data conditions. This study confirms that the combination of pre-trained language models and Few-shot Learning can enhance the accuracy of medical entity extraction. Future research can integrate knowledge graphs and active learning strategies to improve the model's generalization and stability, providing a more effective solution for medical NLP research. Keywords- Natural Language Processing, medical named entity recognition, pre-trained language model, Few-shot Learning, information extraction, deep learning",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2605.24410",
+   "title": "Advancing Graph Few-Shot Learning via In-Context Learning",
+   "published": "2026-05-23",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Graph few-shot learning, which aims to classify nodes from novel classes with only a few labeled examples, is a widely studied problem in graph learning. However, existing methods often face two key limitations. First, the predominant graph few-shot learning paradigm relies on supervised tasks, failing to leverage the vast number of unlabeled nodes in the graph. Second, many approaches require complex task adaptation or fine-tuning during inference, limiting their efficiency and applicability. Inspired by the powerful in-context learning capabilities of large language models, we propose a novel model named VISION for adVancIng graph few-Shot learning via In-cOntext LearNing to address these challenges. Our model reframes graph few-shot learning as a fine-tuning-free sequence reasoning problem. At its core is a context-aware network that initializes nodes with role embeddings and employs a dual-context fusion module to synergistically integrate local topological structures and global task-level dependencies. This allows our model to dynamically generate class-aware representations for the query set conditioned on the support set context in a single forward pass. To effectively train our model, we introduce an unsupervised task generator that creates structure-adaptive features and constructs diverse pseudo-tasks from abundant unlabeled data. Our method unifies unsupervised meta-learning with graph in-context learning, achieving efficient inference. Extensive experiments on multiple benchmark datasets demonstrate the superiority of our model. Our public code can be found",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.25590",
+   "title": "MetaChest: Generalized few-shot learning of pathologies from chest X-rays",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "The limited availability of annotated data presents a major challenge for applying deep learning methods to medical image analysis. Few-shot learning methods aim to recognize new classes from only a small number of labeled examples. These methods are typically studied under the standard few-shot learning setting, where all classes in a task are new. However, medical applications such as pathology classification from chest X-rays often require learning new classes while simultaneously leveraging knowledge of previously known ones, a scenario more closely aligned with generalized few-shot classification. Despite its practical relevance, few-shot learning has been scarcely studied in this context. In this work, we present MetaChest, a large-scale dataset of 479,215 chest X-rays collected from four public databases. MetaChest includes a meta-set partition specifically designed for standard few-shot classification, as well as an algorithm for generating multi-label episodes. We conduct extensive experiments evaluating both a standard transfer learning approach and an extension of ProtoNet across a wide range of few-shot multi-label classification tasks. Our results demonstrate that increasing the number of classes per episode and the number of training examples per class improves classification performance. Notably, the transfer learning approach consistently outperforms the ProtoNet extension, despite not being tailored for few-shot learning. We also show that higher-resolution images improve accuracy at the cost of additional computation, while efficient model architectures achieve comparable performance to larger models with significantly reduced resource requirements.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.10074",
+   "title": "Prototypical Contrastive Learning For Improved Few-Shot Audio Classification",
+   "published": "2025-09-12",
+   "categories": [
+    "cs.SD",
+    "cs.LG"
+   ],
+   "abstract": "Few-shot learning has emerged as a powerful paradigm for training models with limited labeled data, addressing challenges in scenarios where large-scale annotation is impractical. While extensive research has been conducted in the image domain, few-shot learning in audio classification remains relatively underexplored. In this work, we investigate the effect of integrating supervised contrastive loss into prototypical few shot training for audio classification. In detail, we demonstrate that angular loss further improves the performance compared to the standard contrastive loss. Our method leverages SpecAugment followed by a self-attention mechanism to encapsulate diverse information of augmented input versions into one unified embedding. We evaluate our approach on MetaAudio, a benchmark including five datasets with predefined splits, standardized preprocessing, and a comprehensive set of few-shot learning models for comparison. The proposed approach achieves state-of-the-art performance in a 5-way, 5-shot setting.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.22749",
+   "title": "Adaptive Clipping for Privacy-Preserving Few-Shot Learning: Enhancing Generalization with Limited Data",
+   "published": "2025-03-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In the era of data-driven machine-learning applications, privacy concerns and the scarcity of labeled data have become paramount challenges. These challenges are particularly pronounced in the domain of few-shot learning, where the ability to learn from limited labeled data is crucial. Privacy-preserving few-shot learning algorithms have emerged as a promising solution to address such pronounced challenges. However, it is well-known that privacy-preserving techniques often lead to a drop in utility due to the fundamental trade-off between data privacy and model performance. To enhance the utility of privacy-preserving few-shot learning methods, we introduce a novel approach called Meta-Clip. This technique is specifically designed for meta-learning algorithms, including Differentially Private (DP) model-agnostic meta-learning, DP-Reptile, and DP-MetaSGD algorithms, with the objective of balancing data privacy preservation with learning capacity maximization. By dynamically adjusting clipping thresholds during the training process, our Adaptive Clipping method provides fine-grained control over the disclosure of sensitive information, mitigating overfitting on small datasets and significantly improving the generalization performance of meta-learning models. Through comprehensive experiments on diverse benchmark datasets, we demonstrate the effectiveness of our approach in minimizing utility degradation, showcasing a superior privacy-utility trade-off compared to existing privacy-preserving techniques. The adoption of Adaptive Clipping represents a substantial step forward in the field of privacy-preserving few-shot learning, empowering the development of secure and accurate models for real-world applications, especially in scenarios where there are limited data availability.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2505.07921",
+   "title": "Self-cross Feature based Spiking Neural Networks for Efficient Few-shot Learning",
+   "published": "2025-05-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Deep neural networks (DNNs) excel in computer vision tasks, especially, few-shot learning (FSL), which is increasingly important for generalizing from limited examples. However, DNNs are computationally expensive with scalability issues in real world. Spiking Neural Networks (SNNs), with their event-driven nature and low energy consumption, are particularly efficient in processing sparse and dynamic data, though they still encounter difficulties in capturing complex spatiotemporal features and performing accurate cross-class comparisons. To further enhance the performance and efficiency of SNNs in few-shot learning, we propose a few-shot learning framework based on SNNs, which combines a self-feature extractor module and a cross-feature contrastive module to refine feature representation and reduce power consumption. We apply the combination of temporal efficient training loss and InfoNCE loss to optimize the temporal dynamics of spike trains and enhance the discriminative power. Experimental results show that the proposed FSL-SNN significantly improves the classification performance on the neuromorphic dataset N-Omniglot, and also achieves competitive performance to ANNs on static datasets such as CUB and miniImageNet with low power consumption.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2601.02409",
+   "title": "Expert-Guided Explainable Few-Shot Learning with Active Sample Selection for Medical Image Analysis",
+   "published": "2026-01-02",
+   "categories": [
+    "eess.IV",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Medical image analysis faces two critical challenges: scarcity of labeled data and lack of model interpretability, both hindering clinical AI deployment. Few-shot learning (FSL) addresses data limitations but lacks transparency in predictions. Active learning (AL) methods optimize data acquisition but overlook interpretability of acquired samples. We propose a dual-framework solution: Expert-Guided Explainable Few-Shot Learning (EGxFSL) and Explainability-Guided AL (xGAL). EGxFSL integrates radiologist-defined regions-of-interest as spatial supervision via Grad-CAM-based Dice loss, jointly optimized with prototypical classification for interpretable few-shot learning. xGAL introduces iterative sample acquisition prioritizing both predictive uncertainty and attention misalignment, creating a closed-loop framework where explainability guides training and sample selection synergistically. On the BraTS (MRI), VinDr-CXR (chest X-ray), and SIIM-COVID-19 (chest X-ray) datasets, we achieve accuracies of 92\\%, 76\\%, and 62\\%, respectively, consistently outperforming non-guided baselines across all datasets. Under severe data constraints, xGAL achieves 76\\% accuracy with only 680 samples versus 57\\% for random sampling. Grad-CAM visualizations demonstrate guided models focus on diagnostically relevant regions, with generalization validated on breast ultrasound confirming cross-modality applicability.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2604.27462",
+   "title": "Improving Graph Few-shot Learning with Hyperbolic Space and Denoising Diffusion",
+   "published": "2026-04-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Graph few-shot learning, which focuses on effectively learning from only a small number of labeled nodes to quickly adapt to new tasks, has garnered significant research attention. Despite recent advances in graph few-shot learning that have demonstrated promising performance, existing methods still suffer from several key limitations. First, during the meta-training phase, these methods typically perform node representation learning in Euclidean space, which often fails to capture the inherently hierarchical structure existing in real-world graph data. Second, during the meta-testing phase, they usually fit an empirical target distribution derived from only a few support samples, even when this distribution significantly deviates from the true underlying distribution. To address these issues, we propose IMPRESS, a novel framework that IMproves graPh few-shot learning with hypeRbolic spacE and denoiSing diffuSion. Specifically, our model learns node representations in a hyperbolic space and enriches the support distribution through denoising diffusion mechanisms. Theoretically, IMPRESS achieves a tighter generalization bound. Empirically, IMPRESS consistently outperforms competitive baselines across multiple benchmark datasets.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2506.00447",
+   "title": "Performance Analysis of Few-Shot Learning Approaches for Bangla Handwritten Character and Digit Recognition",
+   "published": "2025-05-31",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "This study investigates the performance of few-shot learning (FSL) approaches in recognizing Bangla handwritten characters and numerals using limited labeled data. It demonstrates the applicability of these methods to scripts with intricate and complex structures, where dataset scarcity is a common challenge. Given the complexity of Bangla script, we hypothesize that models performing well on these characters can generalize effectively to languages of similar or lower structural complexity. To this end, we introduce SynergiProtoNet, a hybrid network designed to improve the recognition accuracy of handwritten characters and digits. The model integrates advanced clustering techniques with a robust embedding framework to capture fine-grained details and contextual nuances. It leverages multi-level (both high- and low-level) feature extraction within a prototypical learning framework. We rigorously benchmark SynergiProtoNet against several state-of-the-art few-shot learning models: BD-CSPN, Prototypical Network, Relation Network, Matching Network, and SimpleShot, across diverse evaluation settings including Monolingual Intra-Dataset Evaluation, Monolingual Inter-Dataset Evaluation, Cross-Lingual Transfer, and Split Digit Testing. Experimental results show that SynergiProtoNet consistently outperforms existing methods, establishing a new benchmark in few-shot learning for handwritten character and digit recognition. The code is available on GitHub: https://github.com/MehediAhamed/SynergiProtoNet.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2611.00099",
+   "title": "A Novel Lightweight Multi-Scale Branching Encoder for Few-Shot Image Classification",
+   "published": "2026-10-26",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Few-Shot Learning (FSL) addresses classification scenarios in which only a small number of labeled examples are available for each class. This paper presents the Sum12 Multi-Scale branching encoder, a lightweight convolutional architecture designed to improve the embedding stage of Prototypical Networks without substantially increasing computational cost. The encoder uses seven parallel convolutional branches whose kernel-size combinations sum to 12, allowing local and broader spatial structures to be represented within a unified Multi-Scale feature space. The proposed architecture was evaluated on Omniglot, CIFAR- FS, FC100, and miniImageNet under controlled few-shot learning protocols and compared with the original Prototypical Network encoder and Inception-inspired branch variants. Additional ablation studies have investigated fusion strategies, dilated convolutions, branch compositions, and receptive field budget. Beyond few-shot learning, the encoder was also tested on the MedMNIST 2D benchmark to assess its behavior in conventional supervised medical image classification. Across these experiments, Sum12 generally improved the low-shot classification performance with respect to the basic ProtoNet encoder while preserving a compact model size. These properties suggest that the proposed encoder may be suitable for low-data visual recognition and resource-constrained intelligent imaging applications. However, complete end-to- end validation on the target embedded platform, including resolution of the observed implementation discrepancies, remains future work.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2602.19355",
+   "title": "Active perception and disentangled representations allow continual, episodic zero and few-shot learning",
+   "published": "2026-02-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Generalization is often regarded as an essential property of machine learning systems. However, perhaps not every component of a system needs to generalize. Training models for generalization typically produces entangled representations at the boundaries of entities or classes, which can lead to destructive interference when rapid, high-magnitude updates are required for continual or few-shot learning. Techniques for fast learning with non-interfering representations exist, but they generally fail to generalize. Here, we describe a Complementary Learning System (CLS) in which the fast learner entirely foregoes generalization in exchange for continual zero-shot and few-shot learning. Unlike most CLS approaches, which use episodic memory primarily for replay and consolidation, our fast, disentangled learner operates as a parallel reasoning system. The fast learner can overcome observation variability and uncertainty by leveraging a conventional slow, statistical learner within an active perception system: A contextual bias provided by the fast learner induces the slow learner to encode novel stimuli in familiar, generalized terms, enabling zero-shot and few-shot learning. This architecture demonstrates that fast, context-driven reasoning can coexist with slow, structured generalization, providing a pathway for robust continual learning.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2504.06608",
+   "title": "A Cross-Domain Few-Shot Learning Method Based on Domain Knowledge Mapping",
+   "published": "2025-04-09",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "In task-based few-shot learning paradigms, it is commonly assumed that different tasks are independently and identically distributed (i.i.d.). However, in real-world scenarios, the distribution encountered in few-shot learning can significantly differ from the distribution of existing data. Thus, how to effectively leverage existing data knowledge to enable models to quickly adapt to class variations under non-i.i.d. assumptions has emerged as a key research challenge. To address this challenge, this paper proposes a new cross-domain few-shot learning approach based on domain knowledge mapping, applied consistently throughout the pre-training, training, and testing phases. In the pre-training phase, our method integrates self-supervised and supervised losses by maximizing mutual information, thereby mitigating mode collapse. During the training phase, the domain knowledge mapping layer collaborates with a domain classifier to learn both domain mapping capabilities and the ability to assess domain adaptation difficulty. Finally, this approach is applied during the testing phase, rapidly adapting to domain variations through meta-training tasks on support sets, consequently enhancing the model's capability to transfer domain knowledge effectively. Experimental validation conducted across six datasets from diverse domains demonstrates the effectiveness of the proposed method.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.22193",
+   "title": "Unbiased Max-Min Embedding Classification for Transductive Few-Shot Learning: Clustering and Classification Are All You Need",
+   "published": "2025-03-28",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Convolutional neural networks and supervised learning have achieved remarkable success in various fields but are limited by the need for large annotated datasets. Few-shot learning (FSL) addresses this limitation by enabling models to generalize from only a few labeled examples. Transductive few-shot learning (TFSL) enhances FSL by leveraging both labeled and unlabeled data, though it faces challenges like the hubness problem. To overcome these limitations, we propose the Unbiased Max-Min Embedding Classification (UMMEC) Method, which addresses the key challenges in few-shot learning through three innovative contributions. First, we introduce a decentralized covariance matrix to mitigate the hubness problem, ensuring a more uniform distribution of embeddings. Second, our method combines local alignment and global uniformity through adaptive weighting and nonlinear transformation, balancing intra-class clustering with inter-class separation. Third, we employ a Variational Sinkhorn Few-Shot Classifier to optimize the distances between samples and class prototypes, enhancing classification accuracy and robustness. These combined innovations allow the UMMEC method to achieve superior performance with minimal labeled data. Our UMMEC method significantly improves classification performance with minimal labeled data, advancing the state-of-the-art in TFSL.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2510.12140",
+   "title": "Graph Few-Shot Learning via Adaptive Spectrum Experts and Cross-Set Distribution Calibration",
+   "published": "2025-10-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Graph few-shot learning has attracted increasing attention due to its ability to rapidly adapt models to new tasks with only limited labeled nodes. Despite the remarkable progress made by existing graph few-shot learning methods, several key limitations remain. First, most current approaches rely on predefined and unified graph filters (e.g., low-pass or high-pass filters) to globally enhance or suppress node frequency signals. Such fixed spectral operations fail to account for the heterogeneity of local topological structures inherent in real-world graphs. Moreover, these methods often assume that the support and query sets are drawn from the same distribution. However, under few-shot conditions, the limited labeled data in the support set may not sufficiently capture the complex distribution of the query set, leading to suboptimal generalization. To address these challenges, we propose GRACE, a novel Graph few-shot leaRning framework that integrates Adaptive spectrum experts with Cross-sEt distribution calibration techniques. Theoretically, the proposed approach enhances model generalization by adapting to both local structural variations and cross-set distribution calibration. Empirically, GRACE consistently outperforms state-of-the-art baselines across a wide range of experimental settings. Our code can be found here.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2507.11634",
+   "title": "Cross-lingual Few-shot Learning for Persian Sentiment Analysis with Incremental Adaptation",
+   "published": "2025-07-15",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "This research examines cross-lingual sentiment analysis using few-shot learning and incremental learning methods in Persian. The main objective is to develop a model capable of performing sentiment analysis in Persian using limited data, while getting prior knowledge from high-resource languages. To achieve this, three pre-trained multilingual models (XLM-RoBERTa, mDeBERTa, and DistilBERT) were employed, which were fine-tuned using few-shot and incremental learning approaches on small samples of Persian data from diverse sources, including X, Instagram, Digikala, Snappfood, and Taaghche. This variety enabled the models to learn from a broad range of contexts. Experimental results show that the mDeBERTa and XLM-RoBERTa achieved high performances, reaching 96% accuracy on Persian sentiment analysis. These findings highlight the effectiveness of combining few-shot learning and incremental learning with multilingual pre-trained models.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2508.09699",
+   "title": "Slot Attention-based Feature Filtering for Few-Shot Learning",
+   "published": "2025-08-13",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Irrelevant features can significantly degrade few-shot learn ing performance. This problem is used to match queries and support images based on meaningful similarities despite the limited data. However, in this process, non-relevant fea tures such as background elements can easily lead to confu sion and misclassification. To address this issue, we pro pose Slot Attention-based Feature Filtering for Few-Shot Learning (SAFF) that leverages slot attention mechanisms to discriminate and filter weak features, thereby improving few-shot classification performance. The key innovation of SAFF lies in its integration of slot attention with patch em beddings, unifying class-aware slots into a single attention mechanism to filter irrelevant features effectively. We intro duce a similarity matrix that computes across support and query images to quantify the relevance of filtered embed dings for classification. Through experiments, we demon strate that Slot Attention performs better than other atten tion mechanisms, capturing discriminative features while reducing irrelevant information. We validate our approach through extensive experiments on few-shot learning bench marks: CIFAR-FS, FC100, miniImageNet and tieredIma geNet, outperforming several state-of-the-art methods.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2601.02971",
+   "title": "Few-shot learning for security bug report identification",
+   "published": "2026-01-06",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "Security bug reports require prompt identification to minimize the window of vulnerability in software systems. Traditional machine learning (ML) techniques for classifying bug reports to identify security bug reports rely heavily on large amounts of labeled data. However, datasets for security bug reports are often scarce in practice, leading to poor model performance and limited applicability in real-world settings. In this study, we propose a few-shot learning-based technique to effectively identify security bug reports using limited labeled data. We employ SetFit, a state-of-the-art few-shot learning framework that combines sentence transformers with contrastive learning and parameter-efficient fine-tuning. The model is trained on a small labeled dataset of bug reports and is evaluated on its ability to classify these reports as either security-related or non-security-related. Our approach achieves an AUC of 0.865, at best, outperforming traditional ML techniques (baselines) for all of the evaluated datasets. This highlights the potential of SetFit to effectively identify security bug reports. SetFit-based few-shot learning offers a promising alternative to traditional ML techniques to identify security bug reports. The approach enables efficient model development with minimal annotation effort, making it highly suitable for scenarios where labeled data is scarce.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.15291",
+   "title": "MAPROC at AHaSIS Shared Task: Few-Shot and Sentence Transformer for Sentiment Analysis of Arabic Hotel Reviews",
+   "published": "2025-11-19",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Sentiment analysis of Arabic dialects presents significant challenges due to linguistic diversity and the scarcity of annotated data. This paper describes our approach to the AHaSIS shared task, which focuses on sentiment analysis on Arabic dialects in the hospitality domain. The dataset comprises hotel reviews written in Moroccan and Saudi dialects, and the objective is to classify the reviewers sentiment as positive, negative, or neutral. We employed the SetFit (Sentence Transformer Fine-tuning) framework, a data-efficient few-shot learning technique. On the official evaluation set, our system achieved an F1 of 73%, ranking 12th among 26 participants. This work highlights the potential of few-shot learning to address data scarcity in processing nuanced dialectal Arabic text within specialized domains like hotel reviews.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2508.16063",
+   "title": "Synthesizing DSLs for Few-Shot Learning",
+   "published": "2025-08-22",
+   "categories": [
+    "cs.PL",
+    "cs.FL"
+   ],
+   "abstract": "We study the problem of synthesizing domain-specific languages (DSLs) for few-shot learning in symbolic domains. Given a base language and instances of few-shot learning problems, where each instance is split into training and testing samples, the DSL synthesis problem asks for a grammar over the base language that guarantees that small expressions solving training samples also solve corresponding testing samples. We prove that the problem is decidable for a class of languages whose semantics over fixed structures can be evaluated by tree automata and when expression size corresponds to parse tree depth in the grammar, and, furthermore, the grammars solving the problem correspond to a regular set of trees. We also prove decidability results for variants of the problem where DSLs are only required to express solutions for input learning problems and where DSLs are defined using macro grammars.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2501.05635",
+   "title": "Enhancing Unsupervised Graph Few-shot Learning via Set Functions and Optimal Transport",
+   "published": "2025-01-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Graph few-shot learning has garnered significant attention for its ability to rapidly adapt to downstream tasks with limited labeled data, sparking considerable interest among researchers. Recent advancements in graph few-shot learning models have exhibited superior performance across diverse applications. Despite their successes, several limitations still exist. First, existing models in the meta-training phase predominantly focus on instance-level features within tasks, neglecting crucial set-level features essential for distinguishing between different categories. Second, these models often utilize query sets directly on classifiers trained with support sets containing only a few labeled examples, overlooking potential distribution shifts between these sets and leading to suboptimal performance. Finally, previous models typically require necessitate abundant labeled data from base classes to extract transferable knowledge, which is typically infeasible in real-world scenarios. To address these issues, we propose a novel model named STAR, which leverages Set funcTions and optimAl tRansport for enhancing unsupervised graph few-shot learning. Specifically, STAR utilizes expressive set functions to obtain set-level features in an unsupervised manner and employs optimal transport principles to align the distributions of support and query sets, thereby mitigating distribution shift effects. Theoretical analysis demonstrates that STAR can capture more task-relevant information and enhance generalization capabilities. Empirically, extensive experiments across multiple datasets validate the effectiveness of STAR. Our code can be found here.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.06988",
+   "title": "HCFSLN: Adaptive Hyperbolic Few-Shot Learning for Multimodal Anxiety Detection",
+   "published": "2025-11-10",
+   "categories": [
+    "cs.LG",
+    "cs.HC"
+   ],
+   "abstract": "Anxiety disorders impact millions globally, yet traditional diagnosis relies on clinical interviews, while machine learning models struggle with overfitting due to limited data. Large-scale data collection remains costly and time-consuming, restricting accessibility. To address this, we introduce the Hyperbolic Curvature Few-Shot Learning Network (HCFSLN), a novel Few-Shot Learning (FSL) framework for multimodal anxiety detection, integrating speech, physiological signals, and video data. HCFSLN enhances feature separability through hyperbolic embeddings, cross-modal attention, and an adaptive gating network, enabling robust classification with minimal data. We collected a multimodal anxiety dataset from 108 participants and benchmarked HCFSLN against six FSL baselines, achieving 88% accuracy, outperforming the best baseline by 14%. These results highlight the effectiveness of hyperbolic space for modeling anxiety-related speech patterns and demonstrate FSL's potential for anxiety classification.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2505.05145",
+   "title": "Understanding In-context Learning of Addition via Activation Subspaces",
+   "published": "2025-05-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "To perform few-shot learning, language models extract signals from a few input-label pairs, aggregate them into a learned prediction rule, and apply this rule to new inputs. How is this implemented in the forward pass of modern transformer models? To explore this question, we study a structured family of few-shot learning tasks for which the true prediction rule is to add an integer $k$ to the input. We introduce a novel method that localizes the model's few-shot learning ability to only a few attention heads. This method and the findings generalize to four additional task families spanning arithmetic and semantic tasks. We then perform an in-depth analysis of individual heads via dimensionality reduction and decomposition of the heads' output spaces. For example, in Llama-3-8B-Instruct, we reduce the mechanism underlying these tasks to just three attention heads with six-dimensional subspaces, in which four dimensions track the units digit using trigonometric functions with periods $2$, $5$, and $10$, while two dimensions track magnitude using low-frequency components. To deepen our understanding of this mechanism, we also derive a mathematical identity relating the ''aggregator'' and ''extractor'' subspaces of attention heads, allowing us to track the flow of information from individual examples to a final aggregated concept. Our results demonstrate how tracking low-dimensional subspaces of localized heads throughout a forward pass can provide insight into fine-grained computational structures in language models. Our code is available at https://github.com/xyVickyHu/addition-subspaces.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2504.20193",
+   "title": "ProFi-Net: Prototype-based Feature Attention with Curriculum Augmentation for WiFi-based Gesture Recognition",
+   "published": "2025-04-28",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper presents ProFi-Net, a novel few-shot learning framework for WiFi-based gesture recognition that overcomes the challenges of limited training data and sparse feature representations. ProFi-Net employs a prototype-based metric learning architecture enhanced with a feature-level attention mechanism, which dynamically refines the Euclidean distance by emphasizing the most discriminative feature dimensions. Additionally, our approach introduces a curriculum-inspired data augmentation strategy exclusively on the query set. By progressively incorporating Gaussian noise of increasing magnitude, the model is exposed to a broader range of challenging variations, thereby improving its generalization and robustness to overfitting. Extensive experiments conducted across diverse real-world environments demonstrate that ProFi-Net significantly outperforms conventional prototype networks and other state-of-the-art few-shot learning methods in terms of classification accuracy and training efficiency.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.11632",
+   "title": "Toward Better Generalization in Few-Shot Learning through the Meta-Component Combination",
+   "published": "2025-11-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In few-shot learning, classifiers are expected to generalize to unseen classes given only a small number of instances of each new class. One of the popular solutions to few-shot learning is metric-based meta-learning. However, it highly depends on the deep metric learned on seen classes, which may overfit to seen classes and fail to generalize well on unseen classes. To improve the generalization, we explore the substructures of classifiers and propose a novel meta-learning algorithm to learn each classifier as a combination of meta-components. Meta-components are learned across meta-learning episodes on seen classes and disentangled by imposing an orthogonal regularizer to promote its diversity and capture various shared substructures among different classifiers. Extensive experiments on few-shot benchmark tasks show superior performances of the proposed method.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.11096",
+   "title": "Detection of Bark Beetle Attacks using Hyperspectral PRISMA Data and Few-Shot Learning",
+   "published": "2025-11-14",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Bark beetle infestations represent a serious challenge for maintaining the health of coniferous forests. This paper proposes a few-shot learning approach leveraging contrastive learning to detect bark beetle infestations using satellite PRISMA hyperspectral data. The methodology is based on a contrastive learning framework to pre-train a one-dimensional CNN encoder, enabling the extraction of robust feature representations from hyperspectral data. These extracted features are subsequently utilized as input to support vector regression estimators, one for each class, trained on few labeled samples to estimate the proportions of healthy, attacked by bark beetle, and dead trees for each pixel. Experiments on the area of study in the Dolomites show that our method outperforms the use of original PRISMA spectral bands and of Sentinel-2 data. The results indicate that PRISMA hyperspectral data combined with few-shot learning offers significant advantages for forest health monitoring.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2502.14884",
+   "title": "SEM-CLIP: Precise Few-Shot Learning for Nanoscale Defect Detection in Scanning Electron Microscope Image",
+   "published": "2025-02-15",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "In the field of integrated circuit manufacturing, the detection and classification of nanoscale wafer defects are critical for subsequent root cause analysis and yield enhancement. The complex background patterns observed in scanning electron microscope (SEM) images and the diverse textures of the defects pose significant challenges. Traditional methods usually suffer from insufficient data, labels, and poor transferability. In this paper, we propose a novel few-shot learning approach, SEM-CLIP, for accurate defect classification and segmentation. SEM-CLIP customizes the Contrastive Language-Image Pretraining (CLIP) model to better focus on defect areas and minimize background distractions, thereby enhancing segmentation accuracy. We employ text prompts enriched with domain knowledge as prior information to assist in precise analysis. Additionally, our approach incorporates feature engineering with textual guidance to categorize defects more effectively. SEM-CLIP requires little annotated data, substantially reducing labor demands in the semiconductor industry. Extensive experimental validation demonstrates that our model achieves impressive classification and segmentation results under few-shot learning scenarios.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.04874",
+   "title": "Memory Is All You Need: Testing How Model Memory Affects LLM Performance in Annotation Tasks",
+   "published": "2025-03-06",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Generative Large Language Models (LLMs) have shown promising results in text annotation using zero-shot and few-shot learning. Yet these approaches do not allow the model to retain information from previous annotations, making each response independent from the preceding ones. This raises the question of whether model memory -- the LLM having knowledge about its own previous annotations in the same task -- affects performance. In this article, using OpenAI's GPT-4o and Meta's Llama 3.1 on two political science datasets, we demonstrate that allowing the model to retain information about its own previous classifications yields significant performance improvements: between 5 and 25\\% when compared to zero-shot and few-shot learning. Moreover, memory reinforcement, a novel approach we propose that combines model memory and reinforcement learning, yields additional performance gains in three out of our four tests. These findings have important implications for applied researchers looking to improve performance and efficiency in LLM annotation tasks.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.14279",
+   "title": "Free Lunch to Meet the Gap: Intermediate Domain Reconstruction for Cross-Domain Few-Shot Learning",
+   "published": "2025-11-18",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Cross-Domain Few-Shot Learning (CDFSL) endeavors to transfer generalized knowledge from the source domain to target domains using only a minimal amount of training data, which faces a triplet of learning challenges in the meantime, i.e., semantic disjoint, large domain discrepancy, and data scarcity. Different from predominant CDFSL works focused on generalized representations, we make novel attempts to construct Intermediate Domain Proxies (IDP) with source feature embeddings as the codebook and reconstruct the target domain feature with this learned codebook. We then conduct an empirical study to explore the intrinsic attributes from perspectives of visual styles and semantic contents in intermediate domain proxies. Reaping benefits from these attributes of intermediate domains, we develop a fast domain alignment method to use these proxies as learning guidance for target domain feature transformation. With the collaborative learning of intermediate domain reconstruction and target feature transformation, our proposed model is able to surpass the state-of-the-art models by a margin on 8 cross-domain few-shot learning benchmarks.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2512.17969",
+   "title": "Convolutional-neural-operator-based transfer learning for solving PDEs",
+   "published": "2025-12-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math-ph"
+   ],
+   "abstract": "Convolutional neural operator is a CNN-based architecture recently proposed to enforce structure-preserving continuous-discrete equivalence and enable the genuine, alias-free learning of solution operators of PDEs. This neural operator was demonstrated to outperform for certain cases some baseline models such as DeepONet, Fourier neural operator, and Galerkin transformer in terms of surrogate accuracy. The convolutional neural operator, however, seems not to be validated for few-shot learning. We extend the model to few-shot learning scenarios by first pre-training a convolutional neural operator using a source dataset and then adjusting the parameters of the trained neural operator using only a small target dataset. We investigate three strategies for adjusting the parameters of a trained neural operator, including fine-tuning, low-rank adaption, and neuron linear transformation, and find that the neuron linear transformation strategy enjoys the highest surrogate accuracy in solving PDEs such as Kuramoto-Sivashinsky equation, Brusselator diffusion-reaction system, and Navier-Stokes equations.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2504.13769",
+   "title": "Detecting Malicious Source Code in PyPI Packages with LLMs: Does RAG Come in Handy?",
+   "published": "2025-04-18",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "Malicious software packages in open-source ecosystems, such as PyPI, pose growing security risks. Unlike traditional vulnerabilities, these packages are intentionally designed to deceive users, making detection challenging due to evolving attack methods and the lack of structured datasets. In this work, we empirically evaluate the effectiveness of Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and few-shot learning for detecting malicious source code. We fine-tune LLMs on curated datasets and integrate YARA rules, GitHub Security Advisories, and malicious code snippets with the aim of enhancing classification accuracy. We came across a counterintuitive outcome: While RAG is expected to boost up the prediction performance, it fails in the performed evaluation, obtaining a mediocre accuracy. In contrast, few-shot learning is more effective as it significantly improves the detection of malicious code, achieving 97% accuracy and 95% balanced accuracy, outperforming traditional RAG approaches. Thus, future work should expand structured knowledge bases, refine retrieval models, and explore hybrid AI-driven cybersecurity solutions.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2501.13479",
+   "title": "Adaptive Few-Shot Learning (AFSL): Tackling Data Scarcity with Stability, Robustness, and Versatility",
+   "published": "2025-01-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Few-shot learning (FSL) enables machine learning models to generalize effectively with minimal labeled data, making it crucial for data-scarce domains such as healthcare, robotics, and natural language processing. Despite its potential, FSL faces challenges including sensitivity to initialization, difficulty in adapting to diverse domains, and vulnerability to noisy datasets. To address these issues, this paper introduces Adaptive Few-Shot Learning (AFSL), a framework that integrates advancements in meta-learning, domain alignment, noise resilience, and multi-modal integration. AFSL consists of four key modules: a Dynamic Stability Module for performance consistency, a Contextual Domain Alignment Module for domain adaptation, a Noise-Adaptive Resilience Module for handling noisy data, and a Multi-Modal Fusion Module for integrating diverse modalities. This work also explores strategies such as task-aware data augmentation, semi-supervised learning, and explainable AI techniques to enhance the applicability and robustness of FSL. AFSL provides scalable, reliable, and impactful solutions for real-world, high-stakes domains.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.25033",
+   "title": "VT-FSL: Bridging Vision and Text with LLMs for Few-Shot Learning",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Few-shot learning (FSL) aims to recognize novel concepts from only a few labeled support samples. Recent studies enhance support features by incorporating additional semantic information or designing complex semantic fusion modules. However, they still suffer from hallucinating semantics that contradict the visual evidence due to the lack of grounding in actual instances, resulting in noisy guidance and costly corrections. To address these issues, we propose a novel framework, bridging Vision and Text with LLMs for Few-Shot Learning (VT-FSL), which constructs precise cross-modal prompts conditioned on Large Language Models (LLMs) and support images, seamlessly integrating them through a geometry-aware alignment. It mainly consists of Cross-modal Iterative Prompting (CIP) and Cross-modal Geometric Alignment (CGA). Specifically, the CIP conditions an LLM on both class names and support images to generate precise class descriptions iteratively in a single structured reasoning pass. These descriptions not only enrich the semantic understanding of novel classes but also enable the zero-shot synthesis of semantically consistent images. The descriptions and synthetic images act respectively as complementary textual and visual prompts, providing high-level class semantics and low-level intra-class diversity to compensate for limited support data. Furthermore, the CGA jointly aligns the fused textual, support, and synthetic visual representations by minimizing the kernelized volume of the 3-dimensional parallelotope they span. It captures global and nonlinear relationships among all representations, enabling structured and consistent multimodal integration. The proposed VT-FSL method establishes new state-of-the-art performance across ten diverse benchmarks, including standard, cross-domain, and fine-grained few-shot learning scenarios. Code is available at https://github.com/peacelwh/VT-FSL.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2511.16218",
+   "title": "Mind the Gap: Bridging Prior Shift in Realistic Few-Shot Crop-Type Classification",
+   "published": "2025-11-20",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Real-world agricultural distributions often suffer from severe class imbalance, typically following a long-tailed distribution. Labeled datasets for crop-type classification are inherently scarce and remain costly to obtain. When working with such limited data, training sets are frequently constructed to be artificially balanced -- in particular in the case of few-shot learning -- failing to reflect real-world conditions. This mismatch induces a shift between training and test label distributions, degrading real-world generalization. To address this, we propose Dirichlet Prior Augmentation (DirPA), a novel method that simulates an unknown label distribution skew of the target domain proactively during model training. Specifically, we model the real-world distribution as Dirichlet-distributed random variables, effectively performing a prior augmentation during few-shot learning. Our experiments show that DirPA successfully shifts the decision boundary and stabilizes the training process by acting as a dynamic feature regularizer.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2602.12295",
+   "title": "Design Environment of Quantization-Aware Edge AI Hardware for Few-Shot Learning",
+   "published": "2026-02-01",
+   "categories": [
+    "cs.AR"
+   ],
+   "abstract": "This study aims to ensure consistency in accuracy throughout the entire design flow in the implementation of edge AI hardware for few-shot learning, by implementing fixed-point data processing in the pre-training and evaluation phases. Specifically, the quantization module, called Brevitas, is applied to implement fixed-point data processing, which allows for arbitrary specification of the bit widths for the integer and fractional parts. Two methods of fixed-point data quantization, quantization-aware training (QAT) and post-training quantization (PTQ), are utilized in Brevitas. With Tensil, which is used in the current design flow, the bit widths of the integer and fractional parts need to be 8 bits each or 16 bits each when implemented in hardware, but performance validation has shown that accuracy comparable to floating-point operations can be maintained even with 6 bits or 5 bits each, indicating potential for further reduction in computational resources. These results clearly contribute to the creation of a versatile design and evaluation environment for edge AI hardware for few-shot learning.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.02141",
+   "title": "Network Traffic Classification Using Machine Learning, Transformer, and Large Language Models",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.LG",
+    "cs.CL",
+    "cs.CR"
+   ],
+   "abstract": "This study uses various models to address network traffic classification, categorizing traffic into web, browsing, IPSec, backup, and email. We collected a comprehensive dataset from Arbor Edge Defender (AED) devices, comprising of 30,959 observations and 19 features. Multiple models were evaluated, including Naive Bayes, Decision Tree, Random Forest, Gradient Boosting, XGBoost, Deep Neural Networks (DNN), Transformer, and two Large Language Models (LLMs) including GPT-4o and Gemini with zero- and few-shot learning. Transformer and XGBoost showed the best performance, achieving the highest accuracy of 98.95 and 97.56%, respectively. GPT-4o and Gemini showed promising results with few-shot learning, improving accuracy significantly from initial zero-shot performance. While Gemini Few-Shot and GPT-4o Few-Shot performed well in categories like Web and Email, misclassifications occurred in more complex categories like IPSec and Backup. The study highlights the importance of model selection, fine-tuning, and the balance between training data size and model complexity for achieving reliable classification results.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.23175",
+   "title": "Large Language Models Are Unreliable for Cyber Threat Intelligence",
+   "published": "2025-03-29",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Several recent works have argued that Large Language Models (LLMs) can be used to tame the data deluge in the cybersecurity field, by improving the automation of Cyber Threat Intelligence (CTI) tasks. This work presents an evaluation methodology that other than allowing to test LLMs on CTI tasks when using zero-shot learning, few-shot learning and fine-tuning, also allows to quantify their consistency and their confidence level. We run experiments with three state-of-the-art LLMs and a dataset of 350 threat intelligence reports and present new evidence of potential security risks in relying on LLMs for CTI. We show how LLMs cannot guarantee sufficient performance on real-size reports while also being inconsistent and overconfident. Few-shot learning and fine-tuning only partially improve the results, thus posing doubts about the possibility of using LLMs for CTI scenarios, where labelled datasets are lacking and where confidence is a fundamental factor.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2603.06676",
+   "title": "XAI and Few-shot-based Hybrid Classification Model for Plant Leaf Disease Prognosis",
+   "published": "2026-03-03",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Performing a timely and accurate identification of crop diseases is vital to maintain agricultural productivity and food security. The current work presents a hybrid few-shot learning model that integrates Explainable Artificial Intelligence (XAI) and Few-Shot Learning (FSL) to address the challenge of identifying and classifying the stages of disease of the diseases of maize, rice, and wheat leaves under limited annotated data conditions. The proposed model integrates Siamese and Prototypical Networks within an episodic training paradigm to effectively learn discriminative disease features from a few examples. To ensure model transparency and trustworthiness, Gradient-weighted Class Activation Mapping (Grad-CAM) is employed for visualizing key decision regions in the leaf images, offering interpretable insights into the classification process. Experimental evaluations on custom few-shot datasets developed in the study prove that the model consistently achieves high accuracy, precision, recall, and F1-scores, frequently exceeding 92% across various disease stages. Comparative analyses against baseline FSL models further confirm the superior performance and explainability of the proposed approach. The framework offers a promising solution for real-world, data-constrained agricultural disease monitoring applications.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.11219",
+   "title": "CCoMAML: Efficient Cattle Identification Using Cooperative Model-Agnostic Meta-Learning",
+   "published": "2025-09-14",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Cattle identification is critical for efficient livestock farming management, currently reliant on radio-frequency identification (RFID) ear tags. However, RFID-based systems are prone to failure due to loss, damage, tampering, and vulnerability to external attacks. As a robust alternative, biometric identification using cattle muzzle patterns similar to human fingerprints has emerged as a promising solution. Deep learning techniques have demonstrated success in leveraging these unique patterns for accurate identification. But deep learning models face significant challenges, including limited data availability, disruptions during data collection, and dynamic herd compositions that require frequent model retraining. To address these limitations, this paper proposes a novel few-shot learning framework for real-time cattle identification using Cooperative Model-Agnostic Meta-Learning (CCoMAML) with Multi-Head Attention Feature Fusion (MHAFF) as a feature extractor model. This model offers great model adaptability to new data through efficient learning from few data samples without retraining. The proposed approach has been rigorously evaluated against current state-of-the-art few-shot learning techniques applied in cattle identification. Comprehensive experimental results demonstrate that our proposed CCoMAML with MHAFF has superior cattle identification performance with 98.46% and 97.91% F1 scores.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2506.04005",
+   "title": "Vocabulary-free few-shot learning for Vision-Language Models",
+   "published": "2025-06-04",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Recent advances in few-shot adaptation for Vision-Language Models (VLMs) have greatly expanded their ability to generalize across tasks using only a few labeled examples. However, existing approaches primarily build upon the strong zero-shot priors of these models by leveraging carefully designed, task-specific prompts. This dependence on predefined class names can restrict their applicability, especially in scenarios where exact class names are unavailable or difficult to specify. To address this limitation, we introduce vocabulary-free few-shot learning for VLMs, a setting where target class instances - that is, images - are available but their corresponding names are not. We propose Similarity Mapping (SiM), a simple yet effective baseline that classifies target instances solely based on similarity scores with a set of generic prompts (textual or visual), eliminating the need for carefully handcrafted prompts. Although conceptually straightforward, SiM demonstrates strong performance, operates with high computational efficiency (learning the mapping typically takes less than one second), and provides interpretability by linking target classes to generic prompts. We believe that our approach could serve as an important baseline for future research in vocabulary-free few-shot learning. Code is available at https://github.com/MaxZanella/vocabulary-free-FSL.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2501.12596",
+   "title": "Adapting OpenAI's CLIP Model for Few-Shot Image Inspection in Manufacturing Quality Control: An Expository Case Study with Multiple Application Examples",
+   "published": "2025-01-22",
+   "categories": [
+    "cs.CV",
+    "stat.AP",
+    "stat.OT"
+   ],
+   "abstract": "This expository paper introduces a simplified approach to image-based quality inspection in manufacturing using OpenAI's CLIP (Contrastive Language-Image Pretraining) model adapted for few-shot learning. While CLIP has demonstrated impressive capabilities in general computer vision tasks, its direct application to manufacturing inspection presents challenges due to the domain gap between its training data and industrial applications. We evaluate CLIP's effectiveness through five case studies: metallic pan surface inspection, 3D printing extrusion profile analysis, stochastic textured surface evaluation, automotive assembly inspection, and microstructure image classification. Our results show that CLIP can achieve high classification accuracy with relatively small learning sets (50-100 examples per class) for single-component and texture-based applications. However, the performance degrades with complex multi-component scenes. We provide a practical implementation framework that enables quality engineers to quickly assess CLIP's suitability for their specific applications before pursuing more complex solutions. This work establishes CLIP-based few-shot learning as an effective baseline approach that balances implementation simplicity with robust performance, demonstrated in several manufacturing quality control applications.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2510.19425",
+   "title": "Neural Variational Dropout Processes",
+   "published": "2025-10-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Learning to infer the conditional posterior model is a key step for robust meta-learning. This paper presents a new Bayesian meta-learning approach called Neural Variational Dropout Processes (NVDPs). NVDPs model the conditional posterior distribution based on a task-specific dropout; a low-rank product of Bernoulli experts meta-model is utilized for a memory-efficient mapping of dropout rates from a few observed contexts. It allows for a quick reconfiguration of a globally learned and shared neural network for new tasks in multi-task few-shot learning. In addition, NVDPs utilize a novel prior conditioned on the whole task data to optimize the conditional \\textit{dropout} posterior in the amortized variational inference. Surprisingly, this enables the robust approximation of task-specific dropout rates that can deal with a wide range of functional ambiguities and uncertainties. We compared the proposed method with other meta-learning approaches in the few-shot learning tasks such as 1D stochastic regression, image inpainting, and classification. The results show the excellent performance of NVDPs.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.10993",
+   "title": "Riemannian Geometric-based Meta Learning",
+   "published": "2025-03-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Meta-learning, or \"learning to learn,\" aims to enable models to quickly adapt to new tasks with minimal data. While traditional methods like Model-Agnostic Meta-Learning (MAML) optimize parameters in Euclidean space, they often struggle to capture complex learning dynamics, particularly in few-shot learning scenarios. To address this limitation, we propose Stiefel-MAML, which integrates Riemannian geometry by optimizing within the Stiefel manifold, a space that naturally enforces orthogonality constraints. By leveraging the geometric structure of the Stiefel manifold, we improve parameter expressiveness and enable more efficient optimization through Riemannian gradient calculations and retraction operations. We also introduce a novel kernel-based loss function defined on the Stiefel manifold, further enhancing the model's ability to explore the parameter space. Experimental results on benchmark datasets--including Omniglot, Mini-ImageNet, FC-100, and CUB--demonstrate that Stiefel-MAML consistently outperforms traditional MAML, achieving superior performance across various few-shot learning tasks. Our findings highlight the potential of Riemannian geometry to enhance meta-learning, paving the way for future research on optimizing over different geometric structures.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2611.05538",
+   "title": "Recasting Visual Language Models as EEG Foundation Models for Clinical Neurodiagnostics",
+   "published": "2026-11-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Historically automated electroencephalography (EEG) systems was done using task-specific supervised models trained on purposely annotated data. A more recent modeling paradigm relies on creating a unified representation, or a 'foundation model', for multiple modality-specific tasks through large-scale domain-specific pretraining on the unannotated EEG signal. The quality of this unified representation directly depends on the availability of the modality-specific datasets. At the same time, generalist Vision Language Models (VLMs) exhibit broad few-shot learning capacities as well as good fine-tuning adaptability to different visual and language tasks. Can VLMs learn how to read and interpret EEG visually, emulating to a degree the way human clinicians inspect the EEG patterns? In this work we make a case that they can: we show that generalist VLMs without large-scale EEG pretraining perform competitively across a collection of clinical neuro-diagnostic tasks, can adapt to different tasks in a few-shot learning setting better than specialist foundation models, and exhibit better performance with model scaling when modality-specific models fail to exhibit.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2509.04753",
+   "title": "A Study of Large Language Models for Patient Information Extraction: Model Architecture, Fine-Tuning Strategy, and Multi-task Instruction Tuning",
+   "published": "2025-09-05",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Natural language processing (NLP) is a key technology to extract important patient information from clinical narratives to support healthcare applications. The rapid development of large language models (LLMs) has revolutionized many NLP tasks in the clinical domain, yet their optimal use in patient information extraction tasks requires further exploration. This study examines LLMs' effectiveness in patient information extraction, focusing on LLM architectures, fine-tuning strategies, and multi-task instruction tuning techniques for developing robust and generalizable patient information extraction systems. This study aims to explore key concepts of using LLMs for clinical concept and relation extraction tasks, including: (1) encoder-only or decoder-only LLMs, (2) prompt-based parameter-efficient fine-tuning (PEFT) algorithms, and (3) multi-task instruction tuning on few-shot learning performance. We benchmarked a suite of LLMs, including encoder-based LLMs (BERT, GatorTron) and decoder-based LLMs (GatorTronGPT, Llama 3.1, GatorTronLlama), across five datasets. We compared traditional full-size fine-tuning and prompt-based PEFT. We explored a multi-task instruction tuning framework that combines both tasks across four datasets to evaluate the zero-shot and few-shot learning performance using the leave-one-dataset-out strategy.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2508.10066",
+   "title": "Stochastic-based Patch Filtering for Few-Shot Learning",
+   "published": "2025-08-13",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Food images present unique challenges for few-shot learning models due to their visual complexity and variability. For instance, a pasta dish might appear with various garnishes on different plates and in diverse lighting conditions and camera perspectives. This problem leads to losing focus on the most important elements when comparing the query with support images, resulting in misclassification. To address this issue, we propose Stochastic-based Patch Filtering for Few-Shot Learning (SPFF) to attend to the patch embeddings that show greater correlation with the class representation. The key concept of SPFF involves the stochastic filtering of patch embeddings, where patches less similar to the class-aware embedding are more likely to be discarded. With patch embedding filtered according to the probability of appearance, we use a similarity matrix that quantifies the relationship between the query image and its respective support images. Through a qualitative analysis, we demonstrate that SPFF effectively focuses on patches where class-specific food features are most prominent while successfully filtering out non-relevant patches. We validate our approach through extensive experiments on few-shot classification benchmarks: Food-101, VireoFood-172 and UECFood-256, outperforming the existing SoA methods.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2605.26292",
+   "title": "Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning",
+   "published": "2026-05-25",
+   "categories": [
+    "cs.CV",
+    "cs.CL"
+   ],
+   "abstract": "Parameter-efficient adaptation of vision-language foundation models is crucial for precise multimodal understanding of biomedical images, yet existing methods remain deterministic and often struggle under domain shift or ambiguous image-text alignment. This limitation is particularly critical in the clinic, where models should remain robust in low-data regimes and domain shifts. We present Evi-Steer, an evidential cross-modal low-dimensional steering framework for BiomedCLIP that enables uncertainty-aware parameter-efficient fine-tuning while updating only 0.11% of total model parameters. Our approach performs lightweight low-dimensional token updates in both vision and text encoders while simultaneously estimating epistemic uncertainty. These uncertainty estimates update gate residuals, allowing the model to adapt conservatively when evidence is weak. Furthermore, we introduce cross-modal confidence fusion based on Dempster-Shafer theory, enabling visual adaptation to be conditioned on textual confidence and suppressing conflicting or uncertain cross-modal updates. We conduct a comprehensive evaluation on 15 biomedical imaging datasets spanning 8 organs and 8 imaging modalities under few-shot learning and domain generalization settings. Evi-Steer consistently outperforms state-of-the-art methods under few-shot learning and domain shift settings, demonstrating a practical and robust pathway for deploying vision-language models in real-world clinical settings. Code is available at https://github.com/HealthX-Lab/Evi-Steer.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2603.11617",
+   "title": "Noise-aware few-shot learning through bi-directional multi-view prompt alignment",
+   "published": "2026-03-12",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Vision-language models offer strong few-shot capability through prompt tuning but remain vulnerable to noisy labels, which can corrupt prompts and degrade cross-modal alignment. Existing approaches struggle because they often lack the ability to model fine-grained semantic cues and to adaptively separate clean from noisy signals. To address these challenges, we propose NA-MVP, a framework for Noise-Aware few-shot learning through bi-directional Multi-View Prompt alignment. NA-MVP is built upon a key conceptual shift: robust prompt learning requires moving from global matching to region-aware alignment that explicitly distinguishes clean cues from noisy ones. To realize this, NA-MVP employs (1) multi-view prompts combined with unbalanced optimal transport to achieve fine-grained patch-to-prompt correspondence while suppressing unreliable regions; (2) a bi-directional prompt design that captures complementary clean-oriented and noise-aware cues, enabling the model to focus on stable semantics; and (3) an alignment-guided selective refinement strategy that uses optimal transport to correct only mislabeled samples while retaining reliable data. Experiments on synthetic and real-world noisy benchmarks demonstrate that NA-MVP consistently outperforms state-of-the-art baselines, confirming its effectiveness in enabling robust few-shot learning under noisy supervision.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2507.20511",
+   "title": "Beyond Class Tokens: LLM-guided Dominant Property Mining for Few-shot Classification",
+   "published": "2025-07-28",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Few-shot Learning (FSL), which endeavors to develop the generalization ability for recognizing novel classes using only a few images, faces significant challenges due to data scarcity. Recent CLIP-like methods based on contrastive language-image pertaining mitigate the issue by leveraging textual representation of the class name for unseen image discovery. Despite the achieved success, simply aligning visual representations to class name embeddings would compromise the visual diversity for novel class discrimination. To this end, we proposed a novel Few-Shot Learning (FSL) method (BCT-CLIP) that explores \\textbf{dominating properties} via contrastive learning beyond simply using class tokens. Through leveraging LLM-based prior knowledge, our method pushes forward FSL with comprehensive structural image representations, including both global category representation and the patch-aware property embeddings. In particular, we presented a novel multi-property generator (MPG) with patch-aware cross-attentions to generate multiple visual property tokens, a Large-Language Model (LLM)-assistant retrieval procedure with clustering-based pruning to obtain dominating property descriptions, and a new contrastive learning strategy for property-token learning. The superior performances on the 11 widely used datasets demonstrate that our investigation of dominating properties advances discriminative class-specific representation learning and few-shot classification.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2506.03926",
+   "title": "Multiple Stochastic Prompt Tuning for Few-shot Adaptation under Extreme Domain Shift",
+   "published": "2025-06-04",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Foundation Vision-Language Models (VLMs) like CLIP exhibit strong generalization capabilities due to large-scale pretraining on diverse image-text pairs. However, their performance often degrades when applied to target datasets with significant distribution shifts in both visual appearance and class semantics. Recent few-shot learning approaches adapt CLIP to downstream tasks using limited labeled data via adapter or prompt tuning, but are not specifically designed to handle such extreme domain shifts. Conversely, some works addressing cross-domain few-shot learning consider such domain-shifted scenarios but operate in an episodic setting with only a few classes per episode, limiting their applicability to real-world deployment, where all classes must be handled simultaneously. To address this gap, we propose a novel framework, MIST (Multiple Stochastic Prompt Tuning), for efficiently adapting CLIP to datasets with extreme distribution shifts using only a few labeled examples, in scenarios involving all classes at once. Specifically, we introduce multiple learnable prompts per class to effectively capture diverse modes in visual representations arising from distribution shifts. To further enhance generalization, these prompts are modeled as learnable Gaussian distributions, enabling efficient exploration of the prompt parameter space and reducing overfitting caused by limited supervision. Extensive experiments and comparisons with state-of-the-art methods demonstrate the effectiveness of the proposed framework.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2607.02423",
+   "title": "Neuron-Aware Active Few-Shot Learning for LLMs",
+   "published": "2026-07-02",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Active Few-Shot Learning (AFSL) adapts LLMs to specialized domains by identifying the most valuable unlabeled samples for annotation and use as few-shot demonstrations, effectively reducing human annotation costs while promoting high performance. However, existing methods typically rely on output-level signals for sample identification, such as predictive entropy or semantic similarities with test-time data based on external embeddings, which often overlook models' internal dynamics, which could pinpoint specific knowledge gaps. To bridge this gap, we propose NeuFS, a Neuron-Aware Active Few-Shot Learning framework that shifts the selection paradigm from output-level proxies to models' internal dynamics. NeuFS utilizes neuron activation patterns to represent sample directly, and includes a dual-criteria selection strategy that: (1) ensures few-shot sample diversity with neuron patterns for broader example coverage, while (2) prioritizing on identifying informative and challenging few-shot samples LLMs tend to hallucinate by quantifying neuron consensus. Experiments on three datasets demonstrate that NeuFS excels in both reasoning and text classification tasks, outperforming existing AFSL baselines. Ablation studies further highlight that internal neuron activations provide a more principled and effective selection signal than external embeddings, validating the superiority of the proposed NeuFS.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.02144",
+   "title": "Malware Classification from Memory Dumps Using Machine Learning, Transformers, and Large Language Models",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.LG",
+    "cs.CL",
+    "cs.CR"
+   ],
+   "abstract": "This study investigates the performance of various classification models for a malware classification task using different feature sets and data configurations. Six models-Logistic Regression, K-Nearest Neighbors (KNN), Support Vector Machines (SVM), Decision Trees, Random Forest (RF), and Extreme Gradient Boosting (XGB)-were evaluated alongside two deep learning models, Recurrent Neural Networks (RNN) and Transformers, as well as the Gemini zero-shot and few-shot learning methods. Four feature sets were tested including All Features, Literature Review Features, the Top 45 Features from RF, and Down-Sampled with Top 45 Features. XGB achieved the highest accuracy of 87.42% using the Top 45 Features, outperforming all other models. RF followed closely with 87.23% accuracy on the same feature set. In contrast, deep learning models underperformed, with RNN achieving 66.71% accuracy and Transformers reaching 71.59%. Down-sampling reduced performance across all models, with XGB dropping to 81.31%. Gemini zero-shot and few-shot learning approaches showed the lowest performance, with accuracies of 40.65% and 48.65%, respectively. The results highlight the importance of feature selection in improving model performance while reducing computational complexity. Traditional models like XGB and RF demonstrated superior performance, while deep learning and few-shot methods struggled to match their accuracy. This study underscores the effectiveness of traditional machine learning models for structured datasets and provides a foundation for future research into hybrid approaches and larger datasets.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2506.03461",
+   "title": "RoNFA: Robust Neural Field-based Approach for Few-Shot Image Classification with Noisy Labels",
+   "published": "2025-06-03",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "In few-shot learning (FSL), the labeled samples are scarce. Thus, label errors can significantly reduce classification accuracy. Since label errors are inevitable in realistic learning tasks, improving the robustness of the model in the presence of label errors is critical. This paper proposes a new robust neural field-based image approach (RoNFA) for few-shot image classification with noisy labels. RoNFA consists of two neural fields for feature and category representation. They correspond to the feature space and category set. Each neuron in the field for category representation (FCR) has a receptive field (RF) on the field for feature representation (FFR) centered at the representative neuron for its category generated by soft clustering. In the prediction stage, the range of these receptive fields adapts according to the neuronal activation in FCR to ensure prediction accuracy. These learning strategies provide the proposed model with excellent few-shot learning capability and strong robustness against label noises. The experimental results on real-world FSL datasets with three different types of label noise demonstrate that the proposed method significantly outperforms state-of-the-art FSL methods. Its accuracy obtained in the presence of noisy labels even surpasses the results obtained by state-of-the-art FSL methods trained on clean support sets, indicating its strong robustness against noisy labels.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2609.00259",
+   "title": "DUPIN: Attack Learning Is Still Needed! Demonstrating Few-Shot after Unsupervised Pretraining Is A Nimble Forensics Learner",
+   "published": "2026-08-31",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "We propose a novel approach to learning-based attack forensics called DUPIN. DUPIN performs unsupervised pre-training on an enormous amount of audit events in the form of provenance graphs. It then proceeds to a few-shot learning stage, leveraging a small number of labeled attack examples to fine-tune its detection capabilities. We pretrain DUPIN on up to 38 - 52 days of audit logs (7.3TB total) and evaluate it against various baselines on 25 APT campaigns across four different data sources, facilitating the scalable evaluation.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2501.18128",
+   "title": "Unraveling the Capabilities of Language Models in News Summarization",
+   "published": "2025-01-30",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Given the recent introduction of multiple language models and the ongoing demand for improved Natural Language Processing tasks, particularly summarization, this work provides a comprehensive benchmarking of 20 recent language models, focusing on smaller ones for the news summarization task. In this work, we systematically test the capabilities and effectiveness of these models in summarizing news article texts which are written in different styles and presented in three distinct datasets. Specifically, we focus in this study on zero-shot and few-shot learning settings and we apply a robust evaluation methodology that combines different evaluation concepts including automatic metrics, human evaluation, and LLM-as-a-judge. Interestingly, including demonstration examples in the few-shot learning setting did not enhance models' performance and, in some cases, even led to worse quality of the generated summaries. This issue arises mainly due to the poor quality of the gold summaries that have been used as reference summaries, which negatively impacts the models' performance. Furthermore, our study's results highlight the exceptional performance of GPT-3.5-Turbo and GPT-4, which generally dominate due to their advanced capabilities. However, among the public models evaluated, certain models such as Qwen1.5-7B, SOLAR-10.7B-Instruct-v1.0, Meta-Llama-3-8B and Zephyr-7B-Beta demonstrated promising results. These models showed significant potential, positioning them as competitive alternatives to large models for the task of news summarization.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2501.04985",
+   "title": "SpaLLM-Guard: Pairing SMS Spam Detection Using Open-source and Commercial LLMs",
+   "published": "2025-01-09",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "The increasing threat of SMS spam, driven by evolving adversarial techniques and concept drift, calls for more robust and adaptive detection methods. In this paper, we evaluate the potential of large language models (LLMs), both open-source and commercial, for SMS spam detection, comparing their performance across zero-shot, few-shot, fine-tuning, and chain-of-thought prompting approaches. Using a comprehensive dataset of SMS messages, we assess the spam detection capabilities of prominent LLMs such as GPT-4, DeepSeek, LLAMA-2, and Mixtral. Our findings reveal that while zero-shot learning provides convenience, it is unreliable for effective spam detection. Few-shot learning, particularly with carefully selected examples, improves detection but exhibits variability across models. Fine-tuning emerges as the most effective strategy, with Mixtral achieving 98.6% accuracy and a balanced false positive and false negative rate below 2%, meeting the criteria for robust spam detection. Furthermore, we explore the resilience of these models to adversarial attacks, finding that fine-tuning significantly enhances robustness against both perceptible and imperceptible manipulations. Lastly, we investigate the impact of concept drift and demonstrate that fine-tuned LLMs, especially when combined with few-shot learning, can mitigate its effects, maintaining high performance even on evolving spam datasets. This study highlights the importance of fine-tuning and tailored learning strategies to deploy LLMs effectively for real-world SMS spam detection",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2503.01885",
+   "title": "Learning Policy Committees for Effective Personalization in MDPs with Diverse Tasks",
+   "published": "2025-02-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Many dynamic decision problems, such as robotic control, involve a series of tasks, many of which are unknown at training time. Typical approaches for these problems, such as multi-task and meta reinforcement learning, do not generalize well when the tasks are diverse. On the other hand, approaches that aim to tackle task diversity, such as using task embedding as policy context and task clustering, typically lack performance guarantees and require a large number of training tasks. To address these challenges, we propose a novel approach for learning a policy committee that includes at least one near-optimal policy with high probability for tasks encountered during execution. While we show that this problem is in general inapproximable, we present two practical algorithmic solutions. The first yields provable approximation and task sample complexity guarantees when tasks are low-dimensional (the best we can do due to inapproximability), whereas the second is a general and practical gradient-based approach. In addition, we provide a provable sample complexity bound for few-shot learning. Our experiments on MuJoCo and Meta-World show that the proposed approach outperforms state-of-the-art multi-task, meta-, and task clustering baselines in training, generalization, and few-shot learning, often by a large margin. Our code is available at https://github.com/CERL-WUSTL/PACMAN.",
+   "query": "few-shot learning"
+  },
+  {
+   "id": "2507.07994",
+   "title": "Doodle Your Keypoints: Sketch-Based Few-Shot Keypoint Detection",
+   "published": "2025-07-10",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Keypoint detection, integral to modern machine perception, faces challenges in few-shot learning, particularly when source data from the same distribution as the query is unavailable. This gap is addressed by leveraging sketches, a popular form of human expression, providing a source-free alternative. However, challenges arise in mastering cross-modal embeddings and handling user-specific sketch styles. Our proposed framework overcomes these hurdles with a prototypical setup, combined with a grid-based locator and prototypical domain adaptation. We also demonstrate success in few-shot convergence across novel keypoints and classes through extensive experiments.",
+   "query": "few-shot learning"
+  }
+ ]
+}

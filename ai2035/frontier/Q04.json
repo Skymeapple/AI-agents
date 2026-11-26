@@ -1,0 +1,1041 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "benign overfitting",
+  "in-context learning theory",
+  "double descent"
+ ],
+ "papers": [
+  {
+   "id": "2505.16204",
+   "title": "Directional Convergence, Benign Overfitting of Gradient Descent in leaky ReLU two-layer Neural Networks",
+   "published": "2025-05-22",
+   "categories": [
+    "cs.LG",
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "In this paper, we provide sufficient conditions of benign overfitting of fixed width leaky ReLU two-layer neural network classifiers trained on mixture data via gradient descent. Our results are derived by establishing directional convergence of the network parameters and classification error bound of the convergent direction. Our classification error bound also lead to the discovery of a newly identified phase transition. Previously, directional convergence in (leaky) ReLU neural networks was established only for gradient flow. Due to the lack of directional convergence, previous results on benign overfitting were limited to those trained on nearly orthogonal data. All of our results hold on mixture data, which is a broader data setting than the nearly orthogonal data setting in prior work. We demonstrate our findings by showing that benign overfitting occurs with high probability in a much wider range of scenarios than previously known. Our results also allow us to characterize cases when benign overfitting provably fails even if directional convergence occurs. Our work thus provides a more complete picture of benign overfitting in leaky ReLU two-layer neural networks.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2501.10538",
+   "title": "Universality of Benign Overfitting in Binary Linear Classification",
+   "published": "2025-01-17",
+   "categories": [
+    "cs.LG",
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "The practical success of deep learning has led to the discovery of several surprising phenomena. One of these phenomena, that has spurred intense theoretical research, is ``benign overfitting'': deep neural networks seem to generalize well in the over-parametrized regime even though the networks show a perfect fit to noisy training data. It is now known that benign overfitting also occurs in various classical statistical models. For linear maximum margin classifiers, benign overfitting has been established theoretically in a class of mixture models with very strong assumptions on the covariate distribution. However, even in this simple setting, many questions remain open. For instance, most of the existing literature focuses on the noiseless case where all true class labels are observed without errors, whereas the more interesting noisy case remains poorly understood. We provide a comprehensive study of benign overfitting for linear maximum margin classifiers. We discover a phase transition in test error bounds for the noisy model which was previously unknown and provide some geometric intuition behind it. We further considerably relax the required covariate assumptions in both the noisy and noiseless cases. Our results demonstrate that benign overfitting of maximum margin classifiers holds in a much wider range of scenarios than was previously known and provide new insights into the underlying mechanisms.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2601.22200",
+   "title": "Adaptive Benign Overfitting (ABO): Overparameterized RLS for Online Learning in Non-stationary Time-series",
+   "published": "2026-01-29",
+   "categories": [
+    "q-fin.ST",
+    "cs.LG",
+    "cs.MS",
+    "math.NA",
+    "stat.ML"
+   ],
+   "abstract": "Overparameterized models have recently challenged conventional learning theory by exhibiting improved generalization beyond the interpolation limit, a phenomenon known as benign overfitting. This work introduces Adaptive Benign Overfitting (ABO), extending the recursive least-squares (RLS) framework to this regime through a numerically stable formulation based on orthogonal-triangular updates. A QR-based exponentially weighted RLS (QR-EWRLS) algorithm is introduced, combining random Fourier feature mappings with forgetting-factor regularization to enable online adaptation under non-stationary conditions. The orthogonal decomposition prevents the numerical divergence associated with covariance-form RLS while retaining adaptability to evolving data distributions. Experiments on nonlinear synthetic time series confirm that the proposed approach maintains bounded residuals and stable condition numbers while reproducing the double-descent behavior characteristic of overparameterized models. Applications to forecasting foreign exchange and electricity demand show that ABO is highly accurate (comparable to baseline kernel methods) while achieving speed improvements of between 20 and 40 percent. The results provide a unified view linking adaptive filtering, kernel approximation, and benign overfitting within a stable online learning framework.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2609.33675",
+   "title": "Benign Overfitting for General Norms and Distributions",
+   "published": "2026-09-27",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Understanding why predictors can generalize despite interpolating noisy training data is a central puzzle in machine learning. Most work on such \"benign overfitting\" studies minimum-2-norm linear regression, reflecting the inductive bias of gradient descent. However, modern optimizers such as Adam and Muon use non-Euclidean update geometries, favoring solutions associated with other norms. Analyzing regression for non-Euclidean norms is substantially more difficult, with known results essentially limited to Gaussians. In this paper, we develop a method to analyze benign overfitting in linear regression for general norms and general (sub-Gaussian) distributions. As a special case, we prove that minimum-p-norm interpolation with p>1 can benignly overfit even for non-Gaussian distributions, under suitable conditions. Perhaps surprisingly, for the 1-norm, benign overfitting does not hold in general for well-behaved (but non-Gaussian) distributions, showing that existing positive 1-norm results rely crucially on Gaussianity. Our proof analyzes the geometry of the dual optimization problem, using concentration and central limit tools to show it is approximately Euclidean in many high-dimensional cases.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2605.15358",
+   "title": "Double Descent and Benign Overfitting in Macroeconomic Forecasting",
+   "published": "2026-05-14",
+   "categories": [
+    "econ.EM"
+   ],
+   "abstract": "We study double descent and benign overfitting in macroeconomic forecasting. We document that double-descent risk curves arise in standard macroeconomic datasets that are driven by a small number of latent factors, and we characterize when the underlying benign-overfitting mechanism holds. The conditions of Bartlett et al. (2020) are satisfied under the exact factor model and can also hold under the more realistic approximate factor model, provided idiosyncratic variances are not too dispersed across series. Because macroeconomic panels have only moderate dimensions, the overparameterization ratio N/T required by the theory is not naturally available. Our solution is to augment the data with synthetic copies from an estimated factor model and we prove that this strategy converges to a kernel ridge regression with a factor-structured kernel. Using monthly (FRED-MD) and quarterly (FRED-QD) US data, the resulting estimator consistently outperforms the Stock-Watson factor model for point forecasting across all series and horizons, with gains that are pervasive, statistically significant, and increasing with the forecast horizon. Our results suggest that benign overfitting, when it works, succeeds because overparameterization implicitly constructs a well-behaved kernel, not because overparameterization is intrinsically desirable.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2502.12508",
+   "title": "Understanding Generalization in Transformers: Error Bounds and Training Dynamics Under Benign and Harmful Overfitting",
+   "published": "2025-02-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Transformers serve as the foundational architecture for many successful large-scale models, demonstrating the ability to overfit the training data while maintaining strong generalization on unseen data, a phenomenon known as benign overfitting. However, research on how the training dynamics influence error bounds within the context of benign overfitting has been limited. This paper addresses this gap by developing a generalization theory for a two-layer transformer with labeled flip noise. Specifically, we present generalization error bounds for both benign and harmful overfitting under varying signal-to-noise ratios (SNR), where the training dynamics are categorized into three distinct stages, each with its corresponding error bounds. Additionally, we conduct extensive experiments to identify key factors that influence test errors in transformers. Our experimental results align closely with the theoretical predictions, validating our findings.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2511.12840",
+   "title": "Benign Overfitting in Linear Classifiers with a Bias Term",
+   "published": "2025-11-16",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Overparameterized models often generalize well even when they interpolate noisy training data. This is known as benign overfitting. For linear classification, Hashimoto et al. (2025) analyzed the phenomenon under a broad class of mixture distributions, but only for homogeneous classifiers without a bias term. We extend their framework to classifiers with an intercept. Benign overfitting still occurs, but the intercept perturbs the normalized Gram matrix of the noise and creates extra constraints on the covariance. These constraints are strongest with label noise. Their effect depends on the covariance: under isotropic noise they are dominated by the homogeneous conditions, while in anisotropic or noisy regimes they can raise the dimensionality needed for benign generalization. Thus the bias term changes the theory in some covariance regimes and leaves the asymptotic thresholds unchanged in others.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2610.24350",
+   "title": "Benign Overfitting Property of the Minimum $\\ell_q$ -norm Interpolant Estimator in Regression Problem via Feature Space Decomposition",
+   "published": "2026-10-17",
+   "categories": [
+    "math.ST",
+    "math.PR"
+   ],
+   "abstract": "This paper establishes high-probability, non-asymptotic upper bounds for the population excess risk of minimum $\\ell_q$-norm interpolating estimators in linear regression, valid for all $1<q<\\infty$ under three scenarios: convex concentration, mild moment assumptions and log-concavity. Consequently, we derive sufficient conditions for these estimators to exhibit benign overfitting. Our analysis hinges on a Feature Space Decomposition (FSD) framework, which naturally highlights the self-regularizing properties of minimum norm interpolants as well as the role of alignment between the signal and the features for benign overfitting. From a technical perspective, our approach circumvents the traditionally used Convex Gaussian Min-max Theorem (CGMT) by instead leveraging the Dvoretzky-Milman theorem. We emphasize that the FSD method has the potential to refine standard uniform convergence approaches. Furthermore, the isomorphic Dvoretzky-Milman theorem established herein -- proven under the three scenarios mentioned above -- for the $\\ell_q$-norm is of independent mathematical interest.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2604.00505",
+   "title": "Towards Initialization-dependent and Non-vacuous Generalization Bounds for Overparameterized Shallow Neural Networks",
+   "published": "2026-04-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Overparameterized neural networks often show a benign overfitting property in the sense of achieving excellent generalization behavior despite the number of parameters exceeding the number of training examples. A promising direction to explain benign overfitting is to relate generalization to the norm of distance from initialization, motivated by the empirical observations that this distance is often significantly smaller than the norm itself. However, the existing initialization-dependent complexity analyses measure the distance from initialization by the Frobenius norm, and often imply vacuous bounds in practice for overparamterized models. In this paper, we develop initialization-dependent complexity bounds for shallow neural networks with general Lipschitz activation functions. Our bounds depend on the path-norm of the distance from initialization, which are derived by introducing a new peeling technique to handle the challenge along with the initialization-dependent constraint. We also develop a lower bound tight up to a constant factor. Finally, we conduct empirical comparisons and show that our generalization analysis implies non-vacuous bounds for overparameterized networks.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2604.08625",
+   "title": "A Transport Geometry of Benign Overfitting",
+   "published": "2026-04-09",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Benign overfitting, the phenomenon that interpolating noisy data can be statistically harmless, is usually characterized through effective-rank conditions on the covariance spectrum. These conditions are fragile: a perturbation of vanishing relative operator and Frobenius norm can turn a benign covariance into one whose minimum-norm interpolator has non-vanishing excess risk. We argue that the natural geometry of benign overfitting is optimal transport of the log-eigenvalues, measured in units of the sample size $n$. In log-spectral coordinates, the deterministic equivalent of the risk becomes a functional of two measures smoothed by a logistic kernel centred at the interpolation threshold $\\logκ$. We compute its exact first variation: the threshold moves by a sensitivity-weighted average of the log-eigenvalue displacements, and the influence of each eigenvalue decays exponentially with its log-distance to the threshold. We then derive global, dimension-free stability bounds. The variance functional is $8/(27n)$-Lipschitz in the 1-Wasserstein distance between log-spectra, with a sharp constant, and is controlled more generally by a threshold-localized transport discrepancy; an analogous bound controls the bias. Consequently, any rank-$k$ update of the covariance, of arbitrary norm, changes the variance functional by at most $3k/n$, and benign overfitting survives every perturbation whose localized transport cost is $o(n)$. The results extend to ridge regression and to infinite-dimensional trace-class covariances. Matching lower bounds show that the $n$-scaling is necessary and cannot be replaced by operator norms, Frobenius norms, or dimension-normalized spectral distances. Simulations, one-step feature learning in two-layer networks, and random features of real images support the theory and delineate its limits.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2503.17020",
+   "title": "Benign Overfitting with Quantum Kernels",
+   "published": "2025-03-21",
+   "categories": [
+    "quant-ph",
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Kernel methods compare inputs through feature maps. Quantum kernels follow the same principle: input data are encoded into quantum states, which define quantum feature representations in Hilbert spaces. Kernel values are then obtained by estimating inner products between these states using suitable quantum circuit measurements. As a result, quantum kernels may be intractable to compute classically while remaining efficiently computable on quantum hardware, potentially leading to a quantum advantage. However, designing effective quantum kernels remains a major challenge. Many quantum kernels, such as the fidelity kernel, suffer from exponential concentration. This results in near-identity kernel matrices that fail to capture meaningful data correlations and lead to overfitting and poor generalization. In this paper, we propose a novel strategy for constructing quantum kernels that achieve good generalization performance, drawing inspiration from benign overfitting in classical machine learning. We introduce the concept of Local-Global quantum kernels, which combine two components: a local quantum kernel based on measurements of small subsystems, and a global quantum kernel derived from full-system measurements. To support the effectiveness of the proposed construction, we show theoretically and empirically that Local-Global quantum kernels exhibit benign overfitting.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2610.09340",
+   "title": "Benign Overfitting under Heterogeneous Input Fusion",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Benign overfitting is extensively studied when learning from a single high-dimensional input, but its behavior under heterogeneous input fusion remains largely unexplored. We study this question for minimum-norm linear interpolation under a heterogeneous Gaussian design, comparing two statistically dependent input blocks with their fusion while holding the underlying population task fixed. For regression, we identify a full-spectrum covariance certificate whose asymptotic status is independent of the cutoff threshold and prove that it is preserved by every positive-semidefinite joint covariance consistent with the two marginals. This protection is sharp, yet it does not extend to all benign regression problems: outside the certified regime, two benign marginals can have a harmful fusion. For one-sparse Gaussian classification, benignity in the regular regime is characterized by the balance between surviving predictive signal and nuisance contamination. Fusion can move these two quantities in opposite directions, and within this model class every marginal-to-joint benign/non-benign pattern is attainable. We further show that the same fused input can have qualitatively different effects on regression and classification. These results establish that benign overfitting under heterogeneous fusion is determined by the joint signal and spectral geometry created by input interaction, rather than by marginal benignity alone.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2601.08316",
+   "title": "Deep Exploration of Epoch-wise Double Descent in Noisy Data: Signal Separation, Large Activation, and Benign Overfitting",
+   "published": "2026-01-13",
+   "categories": [
+    "cs.LG",
+    "cs.CV",
+    "stat.ML"
+   ],
+   "abstract": "Deep double descent is one of the key phenomena underlying the generalization capability of deep learning models. In this study, epoch-wise double descent, which is delayed generalization following overfitting, was empirically investigated by focusing on the evolution of internal structures. Fully connected neural networks of three different sizes were trained on the CIFAR-10 dataset with 30% label noise. By decomposing the loss curves into signal contributions from clean and noisy training data, the epoch-wise evolutions of internal signals were analyzed separately. Three main findings were obtained from this analysis. First, the model achieved strong re-generalization on test data even after perfectly fitting noisy training data during the double descent phase, corresponding to a \"benign overfitting\" state. Second, noisy data were learned after clean data, and as learning progressed, their corresponding internal activations became increasingly separated in outer layers; this enabled the model to overfit only noisy data. Third, a single, very large activation emerged in the shallow layer across all models; this phenomenon is referred as \"outliers,\" \"massive activa-tions,\" and \"super activations\" in recent large language models and evolves with re-generalization. The magnitude of large activation correlated with input patterns but not with output patterns. These empirical findings directly link the recent key phenomena of \"deep double descent,\" \"benign overfitting,\" and \"large activation\", and support the proposal of a novel scenario for understanding deep double descent.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2605.06314",
+   "title": "When Does $\\ell_2$-Boosting Overfit Benignly? High-Dimensional Risk Asymptotics and the $\\ell_1$ Implicit Bias",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Benign overfitting is well-characterized in $\\ell_2$ geometries, but its behavior under the $\\ell_1$ implicit bias of greedy ensembles remains challenging. The analytical barrier stems from the non-linear coupling of coordinate selection thresholds, which invalidates standard spectral resolvent tools. To isolate this algorithmic bias, we characterize the high-dimensional risk of continuous-time $\\ell_2$-Boosting over $p$ features and $n$ samples. By coupling the Convex Gaussian Minimax Theorem with delicate asymptotic expansions of double-sided truncated Gaussian moments, we analytically resolve the non-smooth $\\ell_1$ interpolant. Under an isotropic pure-noise model, we prove that benign overfitting fails at the linear rate: greedy selection localizes noise into sparse active sets, and the excess variance decays at a logarithmic rate $Θ(σ^2/\\log(p/n))$ for noise variance $σ^2$. We remark that while this localization mechanism should persist in the presence of signals, the exact signal-noise decomposition remains an open problem. For spiked-isotropic designs with $k^*$ head eigenvalues and $r_2 = p - k^*$ tail dimensions, the risk converges to zero when $r_{2} \\gg n$, but only at a logarithmic rate $Θ(σ^2/\\log(r_2/n))$, which is slower than the linear decay observed in $\\ell_2$ geometries. To avoid this slow convergence, we analyze the non-smooth subdifferential dynamics of the boosting flow. This yields a tuning-free early stopping rule that, under a bounded $\\ell_1$-path condition, recovers the Lasso basic inequality and attains the minimax-optimal empirical prediction rate for $\\ell_1$-bounded signals.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2510.01414",
+   "title": "Risk Phase Transitions in Spiked Regression: Alignment Driven Benign and Catastrophic Overfitting",
+   "published": "2025-10-01",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "This paper analyzes the generalization error of minimum-norm interpolating solutions in linear regression using spiked covariance data models. The paper characterizes how varying spike strengths and target-spike alignments can affect risk, especially in overparameterized settings. The study presents an exact expression for the generalization error, leading to a comprehensive classification of benign, tempered, and catastrophic overfitting regimes based on spike strength, the aspect ratio $c=d/n$ (particularly as $c \\to \\infty$), and target alignment. Notably, in well-specified aligned problems, increasing spike strength can surprisingly induce catastrophic overfitting before achieving benign overfitting. The paper also reveals that target-spike alignment is not always advantageous, identifying specific, sometimes counterintuitive, conditions for its benefit or detriment. Alignment with the spike being detrimental is empirically demonstrated to persist in nonlinear models.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2602.00825",
+   "title": "Harmful Overfitting in Sobolev Spaces",
+   "published": "2026-01-31",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Motivated by recent work on benign overfitting in overparameterized machine learning, we study the generalization behavior of functions in Sobolev spaces $W^{k, p}(\\mathbb{R}^d)$ that perfectly fit a noisy training data set. Under assumptions of label noise and sufficient regularity in the data distribution, we show that approximately norm-minimizing interpolators, which are canonical solutions selected by smoothness bias, exhibit harmful overfitting: even as the training sample size $n \\to \\infty$, the generalization error remains bounded below by a positive constant with high probability. Our results hold for arbitrary values of $p \\in [1, \\infty)$, in contrast to prior results studying the Hilbert space case ($p = 2$) using kernel methods. Our proof uses a geometric argument which identifies harmful neighborhoods of the training data using Sobolev inequalities.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2505.11621",
+   "title": "Benign Overfitting of Two-Layer ReLU Networks in Fixed Dimension through Localized Initialization",
+   "published": "2025-05-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Benign overfitting occurs when a model fits noisy training data exactly and still generalizes well. We establish this behavior for finite-width two-layer networks with the standard ReLU activation, trained by gradient flow in fixed dimension. Our data-independent initialization combines Gaussian weights with neurons initially active only on shrinking spherical caps. For uniform spherical inputs and any fixed bounded conditional response law, training and excess risks vanish in probability uniformly over all sufficiently late times. The parameters also converge, with probability tending to one, to an interpolating limit whose excess risk vanishes in probability. We use one schedule depending only on sample size and dimension. Our proof connects the network to a kernel flow whose limit combines ridge regression with localized spikes that fit the training residuals. We give explicit sample-size, width and training-time bounds.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2604.19724",
+   "title": "Benign Overfitting in Adversarial Training for Vision Transformers",
+   "published": "2026-04-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Despite the remarkable success of Vision Transformers (ViTs) across a wide range of vision tasks, recent studies have revealed that they remain vulnerable to adversarial examples, much like Convolutional Neural Networks (CNNs). A common empirical defense strategy is adversarial training, yet the theoretical underpinnings of its robustness in ViTs remain largely unexplored. In this work, we present the first theoretical analysis of adversarial training under simplified ViT architectures. We show that, when trained under a signal-to-noise ratio that satisfies a certain condition and within a moderate perturbation budget, adversarial training enables ViTs to achieve nearly zero robust training loss and robust generalization error under certain regimes. Remarkably, this leads to strong generalization even in the presence of overfitting, a phenomenon known as \\emph{benign overfitting}, previously only observed in CNNs (with adversarial training). Experiments on both synthetic and real-world datasets further validate our theoretical findings.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2508.13895",
+   "title": "Generalisation and benign over-fitting for linear regression onto random functional covariates",
+   "published": "2025-08-19",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We study theoretical predictive performance of ridge and ridge-less least-squares regression when covariate vectors arise from evaluating $p$ random, means-square continuous functions over a latent metric space at $n$ random and unobserved locations, subject to additive noise. This leads us away from the standard assumption of i.i.d. data to a setting in which the $n$ covariate vectors are exchangeable but not independent in general. Under an assumption of independence across dimensions, $4$-th order moment, and other regularity conditions, we obtain probabilistic bounds on a notion of predictive excess risk adapted to our random functional covariate setting, making use of recent results of Barzilai and Shamir. We derive convergence rates in regimes where $p$ grows suitably fast relative to $n$, illustrating interplay between ingredients of the model in determining convergence behaviour and the role of additive covariate noise in benign-overfitting.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2608.23761",
+   "title": "(Mis)Understanding Benign Overfitting in Equity Return Prediction",
+   "published": "2026-08-24",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "stat.AP",
+    "stat.ME"
+   ],
+   "abstract": "Highly overparameterized models often predict well despite interpolating training data in complex domains, challenging the classical bias--variance tradeoff. We investigate whether this ``benign overfitting'' phenomenon extends to equity return prediction. Consistent with recent statistical theory, we document two key phenomena: first, a double descent pattern in the ridgeless model's prediction risk; and second, that while the optimal ridge model consistently outperforms its ridgeless counterpart, this performance gap becomes negligible at large parameter-to-observation ratios. Ultimately, however, both models fail to outperform a simple historical average. This empirical evidence aligns with our asymptotic results under the null hypothesis of zero slope coefficients, suggesting that standard equity predictors lack true forecasting power---even within highly flexible, nonlinear machine learning architectures. These findings reconcile modern and classical machine learning in asset pricing: in the absence of a true signal, they asymptotically collapse to the historical average benchmark.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2510.15337",
+   "title": "Transfer Learning for Benign Overfitting in High-Dimensional Linear Regression",
+   "published": "2025-10-17",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Transfer learning is a key component of modern machine learning, enhancing the performance of target tasks by leveraging diverse data sources. Simultaneously, overparameterized models such as the minimum-$\\ell_2$-norm interpolator (MNI) in high-dimensional linear regression have garnered significant attention for their remarkable generalization capabilities, a property known as benign overfitting. Despite their individual importance, the intersection of transfer learning and MNI remains largely unexplored. Our research bridges this gap by proposing a novel two-step Transfer MNI approach and analyzing its trade-offs. We characterize its non-asymptotic excess risk and identify conditions under which it outperforms the target-only MNI. Our analysis reveals free-lunch covariate shift regimes, where leveraging heterogeneous data yields the benefit of knowledge transfer at limited cost. To operationalize our findings, we develop a data-driven procedure to detect informative sources and introduce an ensemble method incorporating multiple informative Transfer MNIs. Finite-sample experiments demonstrate the robustness of our methods to model and data heterogeneity, confirming their advantage.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2605.06077",
+   "title": "Understanding diffusion models requires rethinking (again) generalization",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This position paper argues that understanding generalization in diffusion models requires fundamentally new theoretical frameworks that go beyond both classical statistical learning theory and the benign overfitting paradigm developed for supervised learning. In diffusion models, unlike in supervised learning, memorization of training data and generalization to novel samples are incompatible: a model that has fully memorized its training set generates copies rather than novel data. Several theoretical explanations for why practical diffusion models nevertheless generalize have been proposed, based on capacity limitations, implicit regularization from optimization, or architectural inductive biases, but their interactions remain unclear. We argue that the field should pivot from explaining why the diffusion models do not memorize to investigating what the model actually learns during pre-memorization phase. To highlight our stance, we conduct empirical study of diffusion models trained on CIFAR-10, and we distill the findings into concrete open questions that we believe are key to improve understanding of generalization in diffusion models.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2510.24812",
+   "title": "From Linear to Nonlinear: Provable Weak-to-Strong Generalization through Feature Learning",
+   "published": "2025-10-28",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Weak-to-strong generalization refers to the phenomenon where a stronger model trained under supervision from a weaker one can outperform its teacher. While prior studies aim to explain this effect, most theoretical insights are limited to abstract frameworks or linear/random feature models. In this paper, we provide a formal analysis of weak-to-strong generalization from a linear CNN (weak) to a two-layer ReLU CNN (strong). We consider structured data composed of label-dependent signals of varying difficulty and label-independent noise, and analyze gradient descent dynamics when the strong model is trained on data labeled by the pretrained weak model. Our analysis identifies two regimes -- data-scarce and data-abundant -- based on the signal-to-noise characteristics of the dataset, and reveals distinct mechanisms of weak-to-strong generalization. In the data-scarce regime, generalization occurs via benign overfitting or fails via harmful overfitting, depending on the amount of data, and we characterize the transition boundary. In the data-abundant regime, generalization emerges in the early phase through label correction, but we observe that overtraining can subsequently degrade performance.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2509.17251",
+   "title": "Risk Comparisons in Linear Regression: Implicit Regularization Dominates Explicit Regularization",
+   "published": "2025-09-21",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Existing theory suggests that for linear regression problems categorized by capacity and source conditions, gradient descent (GD) is always minimax optimal, while both ridge regression and online stochastic gradient descent (SGD) are polynomially suboptimal for certain categories of such problems. Moving beyond minimax theory, this work provides instance-wise comparisons of the finite-sample risks for these algorithms on any well-specified linear regression problem. Our analysis yields three key findings. First, GD dominates ridge regression: with comparable regularization, the excess risk of GD is always within a constant factor of that of ridge, but ridge can be polynomially worse even when tuned optimally. Second, GD is incomparable with SGD. While it is known that for certain problems GD can be polynomially better than SGD, the reverse is also true: we construct problems, inspired by benign overfitting theory, where optimally stopped GD is polynomially worse. Finally, GD dominates SGD for a significant subclass of problems -- those with fast and continuously decaying covariance spectra -- which includes all problems satisfying the standard capacity condition.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2503.02113",
+   "title": "Deep Learning is Not So Mysterious or Different",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Deep neural networks are often seen as different from other model classes by defying conventional notions of generalization. Popular examples of anomalous generalization behaviour include benign overfitting, double descent, and the success of overparametrization. We argue that these phenomena are not distinct to neural networks, or particularly mysterious. Moreover, this generalization behaviour can be intuitively understood, and rigorously characterized, using long-standing generalization frameworks such as PAC-Bayes and countable hypothesis bounds. We present soft inductive biases as a key unifying principle in explaining these phenomena: rather than restricting the hypothesis space to avoid overfitting, embrace a flexible hypothesis space, with a soft preference for simpler solutions that are consistent with the data. This principle can be encoded in many model classes, and thus deep learning is not as mysterious or different from other model classes as it might seem. However, we also highlight how deep learning is relatively distinct in other ways, such as its ability for representation learning, phenomena such as mode connectivity, and its relative universality.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2503.07966",
+   "title": "Benign Overfitting and the Geometry of the Ridge Regression Solution in Binary Classification",
+   "published": "2025-03-11",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "In this work, we investigate the behavior of ridge regression in an overparameterized binary classification task. We assume examples are drawn from (anisotropic) class-conditional cluster distributions with opposing means and we allow for the training labels to have a constant level of label-flipping noise. We characterize the classification error achieved by ridge regression under the assumption that the covariance matrix of the cluster distribution has a high effective rank in the tail. We show that ridge regression has qualitatively different behavior depending on the scale of the cluster mean vector and its interaction with the covariance matrix of the cluster distributions. In regimes where the scale is very large, the conditions that allow for benign overfitting turn out to be the same as those for the regression task. We additionally provide insights into how the introduction of label noise affects the behavior of the minimum norm interpolator (MNI). The optimal classifier in this setting is a linear transformation of the cluster mean vector and in the noiseless setting the MNI approximately learns this transformation. On the other hand, the introduction of label noise can significantly change the geometry of the solution while preserving the same qualitative behavior.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2512.11089",
+   "title": "TPV: Parameter Perturbations Through the Lens of Test Prediction Variance",
+   "published": "2025-12-11",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We introduce test prediction variance (TPV)--the first-order sensitivity of a trained model's outputs to parameter perturbations--as a unifying framework for analyzing post-training robustness. TPV is a fully label-free object whose trace form separates the geometry of the trained model from the specific perturbation mechanism, placing SGD noise, label noise, quantization, and pruning under a single lens. The resulting expressions recover the wide-minima hypothesis for SGD and quantization noise, and yield a distinct Jacobian-spectral characterization for label noise connecting label-noise TPV with benign overfitting in nonlinear networks. Theoretically, we prove that training-set TPV converges to its test-set counterpart in the overparameterized limit, irrespective of generalization performance, providing the first result that prediction variance under local parameter perturbations can be inferred from training inputs alone. Empirically, this stability holds far more broadly, including at very low widths. Further, TPV correlates well with test loss, enabling practical applications: JBR, a label-free pruning criterion derived from TPV geometry matching state-of-the-art baselines; and training-set based model selection signal for in-distribution and transfer learning scenarios. Code available at github.com/devansharpit/TPV.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2608.07281",
+   "title": "High-dimensional ridgeless least squares interpolation under spiked covariance structures",
+   "published": "2026-08-07",
+   "categories": [
+    "math.ST",
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "This paper investigates the asymptotic behavior of the out-of-sample prediction risk of the high-dimensional ridgeless least-squares estimator when the feature dimension $p$ and the sample size $n$ grow proportionally. We consider a generalized spiked population covariance model with multiple latent factors, where the number of spiked eigenvalues may remain finite or increase with $n$, and the spiked eigenvalues may be bounded or diverge at arbitrary rates. Beyond characterizing the impact of covariance spectra, we reveal a new mechanism underlying benign overfitting: the prediction behavior of ridgeless interpolation is fundamentally governed by the alignment between the regression coefficient $\\boldsymbolβ$ and the spiked eigenspaces of the population covariance matrix. In particular, we show that the signal energy distributed along latent spike directions determines whether interpolation leads to benign, tempered, or catastrophic overfitting. Our theoretical framework establishes sharp prediction risk limits under minimal moment conditions, requiring only finite fourth moments rather than Gaussianity. We characterize how the number, strength, and geometric structure of the spikes jointly influence the double-descent phenomenon. These results provide a unified understanding of when latent covariance structures facilitate or hinder generalization in overparameterized regression.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2504.11834",
+   "title": "Estimation and inference in error-in-operator model",
+   "published": "2025-04-16",
+   "categories": [
+    "math.ST"
+   ],
+   "abstract": "Many statistical problems can be reduced to a linear inverse problem in which only a noisy version of the operator is available. Particular examples include random design regression, deconvolution problem, instrumental variable regression, functional data analysis, error-in-variable regression, drift estimation in stochastic diffusion, and many others. The pragmatic plug-in approach can be well justified in the classical asymptotic setup with a growing sample size. However, recent developments in high dimensional inference reveal some new features of this problem. In high dimensional linear regression with a random design, the plug-in approach is questionable but the use of a simple ridge penalization yields a benign overfitting phenomenon; see \\cite{baLoLu2020}, \\cite{ChMo2022}, \\cite{NoPuSp2024}. This paper revisits the general Error-in-Operator problem for finite samples and high dimension of the source and image spaces. A particular focus is on the choice of a proper regularization. We show that a simple ridge penalty (Tikhonov regularization) works properly in the case when the operator is more regular than the signal. In the opposite case, some model reduction technique like spectral truncation should be applied.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2605.01172",
+   "title": "A Theory of Generalization in Deep Learning",
+   "published": "2026-05-02",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We present a non-asymptotic theory of generalization in deep learning where the empirical neural tangent kernel partitions the output space. In directions corresponding to signal, error dissipates rapidly; in the vast orthogonal dimensions corresponding to noise, the kernel's near-zero eigenvalues trap residual error in a test-invisible reservoir. Within the signal channel, minibatch SGD ensures that coherent population signal accumulates via fast linear drift, while idiosyncratic memorization is suppressed into a slow, diffusive random walk. We prove generalization survives even when the kernel evolves $\\mathcal{O}(1)$ in operator norm, the full feature-learning regime. This theory naturally explains disparate phenomena in deep learning theory, such as benign overfitting, double descent, implicit bias, and grokking. Lastly, we derive an exact population-risk objective from a single training run with no validation data, for any architecture, loss, or optimizer, and prove that it measures precisely the noise in the signal channel. This objective reduces in practice to an SNR preconditioner on top of Adam, adding one state vector at no extra cost; it accelerates grokking by $5 \\times$, suppresses memorization in PINNs and implicit neural representations, and improves DPO fine-tuning under noisy preferences while staying $3 \\times$ closer to the reference policy.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2603.00070",
+   "title": "Certainty-Validity: A Diagnostic Framework for Discrete Commitment Systems",
+   "published": "2026-02-10",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Standard evaluation metrics for machine learning -- accuracy, precision, recall, and AUROC -- assume that all errors are equivalent: a confident incorrect prediction is penalized identically to an uncertain one. For discrete commitment systems (architectures that select committed states {-W, 0, +W}), this assumption is epistemologically flawed. We introduce the Certainty-Validity (CVS) Framework, a diagnostic method that decomposes model performance into a 2x2 matrix distinguishing high/low certainty from valid/invalid predictions. This framework reveals a critical failure mode hidden by standard accuracy: Confident-Incorrect (CI) behavior, where models hallucinate structure in ambiguous data. Through ablation experiments on Fashion-MNIST, EMNIST, and IMDB, we analyze the \"83% Ambiguity Ceiling\" -- a stopping point where this specific discrete architecture consistently plateaus on noisy benchmarks. Unlike continuous models that can surpass this ceiling by memorizing texture or statistical noise, the discrete model refuses to commit to ambiguous samples. We show that this refusal is not a failure but a feature: the model stops where structural evidence ends. However, standard training on ambiguous data eventually forces Benign Overfitting, causing a pathological migration from Uncertain-Incorrect (appropriate doubt) to Confident-Incorrect (hallucination). We propose that \"good training\" for reasoning systems must be defined not by accuracy, but by maximizing the Certainty-Validity Score (CVS) -- ensuring the model knows where to stop.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2608.23938",
+   "title": "Generalization, memorization, and overfitting for diffusion models trained in the lazy high-dimensional regime",
+   "published": "2026-08-25",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Modern score-based generative models have achieved remarkable empirical success in high-dimensional tasks such as image, audio, and video synthesis. These models reduce distribution learning to a sequence of regression problems that, if solved exactly on finite data, would ultimately reproduce the training samples. Their ability to generalize must therefore arise from the implicit or explicit regularization during training. In this work, we develop a generative counterpart to the theory of benign overfitting and algorithmic regularization for overparameterized neural networks in the supervised lazy-training regime. We study denoising score matching in a vector-valued reproducing kernel Hilbert space with an inner-product kernel. In the proportional high-dimensional regime $n\\asymp d$, we derive exact risk trajectories under gradient flow training. These trajectories exhibit three phases governed by qualitatively distinct estimators: a spectral estimator that generalizes, a pure-noise score with localized peaks that interpolate the training objective, and an empirical Bayes estimator that memorizes the data. We then analyze how these estimators combine along the reverse-time SDE and characterize the distribution of the resulting samples. The analysis reveals familiar mechanisms from supervised learning, including kernel linearization and self-induced regularization from the nonlinear part of the kernel, but also reveals a distinct phenomenology specific to generative modeling.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2607.02671",
+   "title": "Benign Overfitting Does Not Occur in Diffusion Models",
+   "published": "2026-07-02",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Benign overfitting and double descent have come to shape our understanding of generalization in deep learning, establishing that overfitting is not only compatible with good generalization but can actively benefit it. Diffusion models share much of the machinery of standard deep learning, so it is natural to assume that they also exhibit these properties. In this work, we show that this assumption is largely incorrect. We first establish fundamental impossibility results showing that, unless the sample size grows exponentially with the data dimension, overfitting and good generalization cannot occur simultaneously. Consequently, the population loss follows a classical U-shaped curve in model complexity rather than exhibiting double descent. Analyzing a simplified setting, we identify a key difference between regression and score matching: regression benefits from an alignment between the target and the empirical covariance; score matching admits no such alignment, leaving overfitting irreparably harmful. We further identify implicit regularization stemming from time-smoothness of the score and early stopping during training as mechanisms that prevent such overfitting and verify our findings with high-dimensional image generation experiments. Our results reveal that generalization in diffusion models is governed by mechanisms distinct from those of traditional regression, motivating the development of new theory.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2606.06469",
+   "title": "How abundant are good interpolators?",
+   "published": "2026-06-04",
+   "categories": [
+    "math.ST",
+    "cs.LG",
+    "math.PR"
+   ],
+   "abstract": "Let $S$ be the set of unit norm linear classifiers $θ\\in \\mathbb{R}^d$ which correctly classify every point of a labeled dataset $(X_i,y_i)_{i=1}^n$, $X_i \\in \\mathbb{R}^d$, $y_i \\in \\{-1,+1\\}$, with a possibly negative margin $κ$ fixed in advance. Under two natural data-generating distributions of the $(X,y)$ pairs -- a Gaussian mixture model and a logistic model with Gaussian features -- and in the proportional regime $n/d \\to α$ with small enough $α$, we establish a large deviation principle on the event that a point $θ$ chosen uniformly at random from $S$ achieves a given generalization error, with high probability over the choice of the data. The associated large deviation rate function is deterministic and describes the proportion, at the exponential scale in $d$, of interpolating classifiers having a given desired performance. As a consequence, we establish the following concentration phenomenon: all but an exponentially small fraction of interpolating classifiers have approximately the same generalization performance given by the unique maximizer of this rate function. We numerically compare this maximizer to the performance of empirical risk minimization by gradient descent and to the performance of a natural linear program, both finding a point in $S$, and deduce that in the overparametrized regime of small $α$, these efficient procedures outperform the vast majority of interpolators, pointing to their nontrivial benign overfitting in this setting.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2604.25858",
+   "title": "Investigation into In-Context Learning Capabilities of Transformers",
+   "published": "2026-04-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Transformers have demonstrated a strong ability for in-context learning (ICL), enabling models to solve previously unseen tasks using only example input output pairs provided at inference time. While prior theoretical work has established conditions under which transformers can perform linear classification in-context, the empirical scaling behavior governing when this mechanism succeeds remains insufficiently characterized. In this paper, we conduct a systematic empirical study of in-context learning for Gaussian-mixture binary classification tasks. Building on the theoretical framework of Frei and Vardi (2024), we analyze how in-context test accuracy depends on three fundamental factors: the input dimension, the number of in-context examples, and the number of pre-training tasks. Using a controlled synthetic setup and a linear in-context classifier formulation, we isolate the geometric conditions under which models successfully infer task structure from context alone. We additionally investigate the emergence of benign overfitting, where models memorize noisy in-context labels while still achieving strong generalization performance on clean test data. Through extensive sweeps across dimensionality, sequence length, task diversity, and signal-to-noise regimes, we identify the parameter regions in which this phenomenon arises and characterize how it depends on data geometry and training exposure. Our results provide a comprehensive empirical map of scaling behavior in in-context classification, highlighting the critical role of dimensionality, signal strength, and contextual information in determining when in-context learning succeeds and when it fails.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2603.12288",
+   "title": "From Garbage to Gold: A Data-Architectural Theory of Predictive Robustness",
+   "published": "2026-03-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Tabular machine learning presents a paradox: modern models achieve state-of-the-art performance using high-dimensional (high-D), collinear, error-prone data, defying the \"Garbage In, Garbage Out\" mantra. To help resolve this, we synthesize principles from Information Theory, Latent Factor Models, and Psychometrics, clarifying that predictive robustness arises not solely from data cleanliness, but from the synergy between data architecture and model capacity. Partitioning predictor-space \"noise\" into \"Predictor Error\" and \"Structural Uncertainty\" (informational deficits from stochastic generative mappings), we prove that leveraging high-D sets of error-prone predictors asymptotically overcomes both types of noise, whereas cleaning a low-D set is fundamentally bounded by Structural Uncertainty. We demonstrate why \"Informative Collinearity\" (dependencies from shared latent causes) enhances reliability and convergence efficiency, and explain why increased dimensionality reduces the latent inference burden, enabling feasibility with finite samples. To address practical constraints, we propose \"Proactive Data-Centric AI\" to identify predictors that enable robustness efficiently. We also derive boundaries for Systematic Error Regimes and show why models that absorb \"rogue\" dependencies can mitigate assumption violations. Linking latent architecture to Benign Overfitting, we offer a first step towards a unified view of robustness to Outcome Error and predictor-space noise, while also delineating when traditional DCAI's focus on label cleaning remains powerful. By redefining data quality from item-level perfection to portfolio-level architecture, we provide a theoretical rationale for \"Local Factories\" -- learning from live, uncurated enterprise \"data swamps\" -- supporting a deployment paradigm shift from \"Model Transfer\" to \"Methodology Transfer'' to overcome static generalizability limitations.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2611.23630",
+   "title": "What Interpolators Store and What They Express: An Information-Theoretic Framework for Benign Overfitting and Label-Free Model Selection",
+   "published": "2026-11-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Overparameterized learners can fit noisy training labels perfectly and still predict well, which neither classical complexity measures nor information-theoretic generalization bounds explain. We develop an information-theoretic framework that separates two things an interpolating learner does with its sample: storage, the information the trained model retains about its training labels, and expression, the information about the sample that reaches its predictions at fresh inputs. We first characterize the ideal model: for a loss l, the least complex l-sufficient representation is the Bayes act, whose entropy is the minimal sufficient complexity; this generalizes, and corrects, an earlier \"lossless maximal compression\" view of boosting. We then show that every interpolator stores exactly nH(Y|X) bits of label noise, so storage, and bounds built on it (including CMI bounds), cannot tell interpolators apart. Expression can: excess risk is bounded above and below by the expressed information V, the entropy over training samples of the prediction at an input, plus a modal-bias term, exactly so for binary labels. Benign overfitting is therefore vanishing expression, a picture that covers nearest-neighbour rules, averaging, minimum-norm least squares and double descent, and that links V to classical bias-variance decompositions and to model disagreement. Finally, V gives a model-selection criterion that needs no held-out labels. Among overparameterized learners on 15 noisy datasets, V estimated from two disjoint halves has 60% less regret than holdout validation at the same cost and matches 5-fold cross-validation at a quarter of its cost; at matched cost it also beats selection by conditional mutual information. We characterize when it fails and give remedies. Code: https://github.com/nnikolaou/GLMC",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2609.26392",
+   "title": "Double Descent and Malign Overfitting in Diffusion Models",
+   "published": "2026-09-22",
+   "categories": [
+    "cs.LG",
+    "cond-mat.dis-nn"
+   ],
+   "abstract": "Conventional wisdom in deep learning holds that overparameterization---having more parameters $p$ than training samples $n$---is benign: larger models generalize better and, even without regularization, interpolating models generalize well, the test error following a double-descent curve. One might expect the same benign overfitting for diffusion models, whose training reduces to regression, i.e. to minimizing a quadratic score-matching loss. Yet the opposite is observed: overfitting here is catastrophic, driving the model into a memorization regime. We resolve this paradox by combining experiments on U-Nets trained on CelebA with a random-features model for which we derive closed-form learning curves. We show that with a fixed number $m$ of noise realizations per training sample, an interpolation peak does occur, but at $p\\sim nm$ rather than at $p\\sim n$ as in standard regression. The rise of the test loss, however, sets in much earlier, at $p\\sim n$, independently of $m$. This overfitting is malign because, although the implicit regularization of training is fully at work, it drives the model toward the empirical score, which memorizes the training set, rather than toward the true score. A bias-variance decomposition pinpoints the mechanism: the bias of the score estimator starts to grow at $p\\sim n$; past the peak the variance decays, as in regression, whereas the bias keeps growing and both saturate at a large value. Since diffusion models are trained with $m\\gg1$, the peak is pushed to very large model sizes, and therefore sit on the rising branch that precedes it, where malign overfitting is already in play. Nevertheless, overparameterization remains beneficial when paired with regularization: in the random-features theory and in U-Net experiments, optimally regularized large models---via a ridge penalty or early stopping, respectively---outperform any unregularized models.",
+   "query": "benign overfitting"
+  },
+  {
+   "id": "2503.02302",
+   "title": "On the Relationship Between Double Descent of CNNs and Shape/Texture Bias Under Learning Process",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "The double descent phenomenon, which deviates from the traditional bias-variance trade-off theory, attracts considerable research attention; however, the mechanism of its occurrence is not fully understood. On the other hand, in the study of convolutional neural networks (CNNs) for image recognition, methods are proposed to quantify the bias on shape features versus texture features in images, determining which features the CNN focuses on more. In this work, we hypothesize that there is a relationship between the shape/texture bias in the learning process of CNNs and epoch-wise double descent, and we conduct verification. As a result, we discover double descent/ascent of shape/texture bias synchronized with double descent of test error under conditions where epoch-wise double descent is observed. Quantitative evaluations confirm this correlation between the test errors and the bias values from the initial decrease to the full increase in test error. Interestingly, double descent/ascent of shape/texture bias is observed in some cases even in conditions without label noise, where double descent is thought not to occur. These experimental results are considered to contribute to the understanding of the mechanisms behind the double descent phenomenon and the learning process of CNNs in image recognition.",
+   "query": "double descent"
+  },
+  {
+   "id": "2508.12489",
+   "title": "The square-integrability of double descent",
+   "published": "2025-08-17",
+   "categories": [
+    "math.NT"
+   ],
+   "abstract": "Double descent is a method to construct automorphic representations of classical groups. For given A-parameter $ψ$ with certain good properties, double descent constructs a space of functions orthogonal to any cuspidal representation whose A-parameter is not $ψ$ and not orthogonal to any cuspidal representation with A-parameter $ψ$. In this paper, we show that functions constructed by double descent are always square-integrable.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.25216",
+   "title": "Evaluating Double Descent in Machine Learning: Insights from Tree-Based Models Applied to a Genomic Prediction Task",
+   "published": "2025-09-22",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Classical learning theory describes a well-characterised U-shaped relationship between model complexity and prediction error, reflecting a transition from underfitting in underparameterised regimes to overfitting as complexity grows. Recent work, however, has introduced the notion of a second descent in test error beyond the interpolation threshold-giving rise to the so-called double descent phenomenon. While double descent has been studied extensively in the context of deep learning, it has also been reported in simpler models, including decision trees and gradient boosting. In this work, we revisit these claims through the lens of classical machine learning applied to a biological classification task: predicting isoniazid resistance in Mycobacterium tuberculosis using whole-genome sequencing data. We systematically vary model complexity along two orthogonal axes-learner capacity (e.g., Pleaf, Pboost) and ensemble size (i.e., Pens)-and show that double descent consistently emerges only when complexity is scaled jointly across these axes. When either axis is held fixed, generalisation behaviour reverts to classical U- or L-shaped patterns. These results are replicated on a synthetic benchmark and support the unfolding hypothesis, which attributes double descent to the projection of distinct generalisation regimes onto a single complexity axis. Our findings underscore the importance of treating model complexity as a multidimensional construct when analysing generalisation behaviour. All code and reproducibility materials are available at: https://github.com/guillermocomesanacimadevila/Demystifying-Double-Descent-in-ML.",
+   "query": "double descent"
+  },
+  {
+   "id": "2511.17825",
+   "title": "Analog Physical Systems Can Exhibit Double Descent",
+   "published": "2025-11-21",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "An important component of the success of large AI models is double descent, in which networks avoid overfitting as they grow relative to the amount of training data, instead improving their performance on unseen data. Here we demonstrate double descent in a decentralized analog network of self-adjusting resistive elements. This system trains itself and performs tasks without a digital processor, offering potential gains in energy efficiency and speed -- but must endure component non-idealities. We find that standard training fails to yield double descent, but a modified protocol that accommodates this inherent imperfection succeeds. Our findings show that analog physical systems, if appropriately trained, can exhibit behaviors underlying the success of digital AI. Further, they suggest that biological systems might similarly benefit from over-parameterization.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.21494",
+   "title": "Double descent for least-squares interpolation on contaminated data: A simulation study",
+   "published": "2026-04-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Overparametrized models can exhibit an excellent generalization performance, although they should be prone to overfitting according to classical statistical theory. The discovery of the \"double descent\", indicating that the generalization error decreases after a certain model complexity has been reached, opened a new line of research. Robust statistics considers statistical estimation on contaminated data, which, due to assumptions that do not hold on real data, let data points appear as outliers w.r.t. the assumed \"ideal\" distribution, potentially severely distorting any classical estimator. We address the question whether a double descent phenomenon can be observed in a linear regression setting with contaminated training data. We compare the performance of the highly non-robust least-squares interpolation estimator with several robust alternatives. It turns out that large overparametrization indeed allows for a double descent phenomenon, resulting in a very good generalization performance of the least-squares interpolator, surpassing that of the robust alternatives.",
+   "query": "double descent"
+  },
+  {
+   "id": "2501.10077",
+   "title": "Double descent in quantum kernel methods",
+   "published": "2025-01-17",
+   "categories": [
+    "quant-ph",
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "The double descent phenomenon challenges traditional statistical learning theory by revealing scenarios where larger models do not necessarily lead to reduced performance on unseen data. While this counterintuitive behavior has been observed in a variety of classical machine learning models, particularly modern neural network architectures, it remains elusive within the context of quantum machine learning. In this work, we analytically demonstrate that linear regression models in quantum feature spaces can exhibit double descent behavior by drawing on insights from classical linear regression and random matrix theory. Additionally, our numerical experiments on quantum kernel methods across different real-world datasets and system sizes further confirm the existence of a test error peak, a characteristic feature of double descent. Our findings provide evidence that quantum models can operate in the modern, overparameterized regime without experiencing overfitting, potentially opening pathways to improved learning performance beyond traditional statistical learning theory.",
+   "query": "double descent"
+  },
+  {
+   "id": "2507.04663",
+   "title": "A Non-Asymptotic Class of Dense Precision Matrix Estimators: Complexity, Signal and Double Descent",
+   "published": "2025-07-07",
+   "categories": [
+    "econ.EM",
+    "stat.ML"
+   ],
+   "abstract": "Precision matrix estimation is a cornerstone concept in statistics, economics, and finance. Despite advances in recent years, estimation methods that are simultaneously (i) dense, (ii) consistent, and (iii) model-free are lacking. While each of these targets can be met separately, achieving them together is challenging.We address this gap by introducing a general class of estimators that unifies these features within a nonasymptotic framework, allowing for explicit characterization of the computational complexity, signal-to-noise ratio trade-off. Our analysis identifies three fundamental random quantities, complexity, signal magnitude, and method bias that jointly determine estimation error. A particularly striking result is that ridgeless regression, a tuning-free special case within our class, exhibits the double descent phenomenon. This establishes the first formal precision matrix analogue to the well-known double descent behavior in linear regression. Our theoretical analysis is supported by a thorough empirical study of the S\\&P 500 index, where we observe a doubly ascending Sharpe ratio pattern, which complements the double descent phenomenon.",
+   "query": "double descent"
+  },
+  {
+   "id": "2507.07338",
+   "title": "Bayesian Double Descent",
+   "published": "2025-07-09",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "stat.CO"
+   ],
+   "abstract": "Double descent is a phenomenon of over-parameterized statistical models such as deep neural networks which have a re-descending property in their risk function. As the complexity of the model increases, risk exhibits a U-shaped region due to the traditional bias-variance trade-off, then as the number of parameters equals the number of observations and the model becomes one of interpolation where the risk can be unbounded and finally, in the over-parameterized region, it re-descends -- the double descent effect. Our goal is to show that this has a natural Bayesian interpretation. We also show that this is not in conflict with the traditional Occam's razor -- simpler models are preferred to complex ones, all else being equal. Our theoretical foundations use Bayesian model selection, the Dickey-Savage density ratio, and connect generalized ridge regression and global-local shrinkage methods with double descent. We illustrate our approach for high dimensional neural networks and provide detailed treatments of infinite Gaussian means models and non-parametric regression. Finally, we conclude with directions for future research.",
+   "query": "double descent"
+  },
+  {
+   "id": "2609.19061",
+   "title": "Double Descent in High-dimensional Linear Discriminant Analysis",
+   "published": "2026-07-22",
+   "categories": [
+    "stat.ME"
+   ],
+   "abstract": "The double-descent phenomenon observed in modern machine learning models has challenged the classical bias-variance trade-off by showing that prediction error can decrease again as model complexity exceeds the interpolation threshold. Although this phenomenon has been extensively studied for deep neural networks and other high-capacity models, its implications for classical statistical methods remain less well understood. In this paper, we investigate double descent in linear discriminant analysis (LDA), a fundamental classification method for binary classification. Using random matrix theory, we derive the asymptotic misclassification risk of LDA in the high-dimensional regime where the dimension (p) and sample size (n) satisfy (p/n \\to γ). Specifically, we obtain an explicit asymptotic expression for the LDA risk with a general population covariance matrix when (γ\\in (0,1)), and for the Moore-Penrose pseudo-inverse LDA classifier under an isotropic covariance model when (γ\\in (1,\\infty)). Together, these results provide a complete characterization of the double-descent risk curve of LDA across both the under- and over-parameterized regimes. Simulation studies and experiments on the ARCENE cancer classification dataset demonstrate close agreement with the theoretical predictions.",
+   "query": "double descent"
+  },
+  {
+   "id": "2604.17202",
+   "title": "Double Descent in Quantum Kernel Ridge Regression",
+   "published": "2026-04-19",
+   "categories": [
+    "quant-ph"
+   ],
+   "abstract": "Various classical machine learning models, including linear regression, kernel methods, and deep neural networks, exhibit double descent, in which the test risk peaks near the interpolation threshold and then decreases in the overparameterized regime. However, this phenomenon has received less attention in the quantum setting. In this work, we investigate the double descent phenomenon in quantum kernel ridge regression (QKRR). By applying deterministic equivalents from random matrix theory (RMT), we derive an asymptotic expression for the test risk of QKRR in the high-dimensional limit. Our analysis rigorously characterizes the interpolation peak and reveals how explicit regularization can effectively suppress it. We corroborate our theoretical results with numerical simulations, demonstrating close agreement even for finite-size quantum systems.",
+   "query": "double descent"
+  },
+  {
+   "id": "2504.19351",
+   "title": "The Double Descent Behavior in Two Layer Neural Network for Binary Classification",
+   "published": "2025-04-27",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Recent studies observed a surprising concept on model test error called the double descent phenomenon, where the increasing model complexity decreases the test error first and then the error increases and decreases again. To observe this, we work on a two layer neural network model with a ReLU activation function designed for binary classification under supervised learning. Our aim is to observe and investigate the mathematical theory behind the double descent behavior of model test error for varying model sizes. We quantify the model size by the ratio of number of training samples to the dimension of the model. Due to the complexity of the empirical risk minimization procedure, we use the Convex Gaussian Min Max Theorem to find a suitable candidate for the global training loss.",
+   "query": "double descent"
+  },
+  {
+   "id": "2607.04135",
+   "title": "Broken Ergodicity and the Violation of the Fluctuation-Dissipation Theorem Lead to Generalization Beyond Overfitting in Machine Learning",
+   "published": "2026-07-05",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cond-mat.stat-mech",
+    "cs.LG"
+   ],
+   "abstract": "The remarkable ability of modern neural networks to generalize improves with increasing network capacity, even when the number of model parameters or effective degrees of freedom exceeds the number of training data points. This phenomenon is all the more surprising given that generalization error diverges when the number of model parameters approaches a critical value from below. Here we use dynamical mean field theory to show that this so-called \"double descent\" behavior is the outcome of a phase transition in the stochastic field theory describing the training process. We calculate the critical exponents and scaling function of the double descent phase transition, and show that it is marked by a breakdown of the fluctuation-dissipation theorem associated with broken ergodicity. The corresponding response function has the same functional form as the simple London model of the superconducting transition, with the rigidity of the wave function corresponding to the neural network's ability to generalize accurately.",
+   "query": "double descent"
+  },
+  {
+   "id": "2607.26414",
+   "title": "Origins and mitigation of double descent in reduced order modeling",
+   "published": "2026-07-29",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.DS",
+    "physics.data-an"
+   ],
+   "abstract": "Latent low-dimensional structure in datasets of natural and engineered systems enables their sparse sensing, or full-state reconstruction from historical data and very few carefully chosen localized measurements. Depending on the reconstruction algorithm, sensor locations, and measurement noise, the reconstruction risk curves demonstrate a diversity of patterns including a dramatic peak in error known as double descent in Machine Learning literature. Here we explore those scenarios under a unified Data-Noise Averaging theory. Qualitatively, we formulate sufficient criteria for double descent to emerge through a catastrophic amplification of a pathological signal in reconstruction. Quantitatively, we predict the detailed risk curves at a fraction of computational cost, trace reconstruction instability to individual sensors and their combinations, and provide regularization mechanisms to mitigate the instability. We demonstrate results for both static reconstruction of Sea Surface Temperature patterns and time integration of a reduced order model of a PDE.",
+   "query": "double descent"
+  },
+  {
+   "id": "2609.30338",
+   "title": "Double Descent for Random Fourier Series Models",
+   "published": "2026-09-24",
+   "categories": [
+    "math.ST",
+    "cs.IT"
+   ],
+   "abstract": "We investigate the least squares linear regression problem with random partial Discrete Fourier Transform (DFT) matrices, providing a rigorous analysis of the model's generalization error. By leveraging tools from random matrix theory, we derive exact non-asymptotic bounds for the risk of the Moore-Penrose estimator, which hold for finite-dimensional problems and reveal the precise dependence on key parameters such as the sample size, dimension, and noise variance. Then we obtain a characterization of the double descent phenomenon in the linear regression context, demonstrating how the risk evolves when the number of parameters $p$ and the number of samples $n$ tend to infinity, with $p/n$ fixed. The analysis relies on applications of the Stieltjes transform for random Fourier matrices, enabling a precise description of the spectral properties of these matrices and their impact on regression performance. To validate our theoretical findings, we present several numerical examples that illustrate the double descent curves. These simulations align closely with our derived bounds, confirming their predictive power in both under-parameterized and over-parameterized regimes.",
+   "query": "double descent"
+  },
+  {
+   "id": "2512.12463",
+   "title": "Understanding Overparametrization in Survival Models through Interpolation",
+   "published": "2025-12-13",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Classical statistical learning theory predicts a U-shaped relationship between test loss and model capacity, driven by the bias-variance trade-off. Recent advances in modern machine learning have revealed a more complex pattern, double-descent, in which test loss, after peaking near the interpolation threshold, decreases again as model capacity continues to grow. While this behavior has been extensively analyzed in regression and classification, its manifestation in survival analysis remains unexplored. This study investigates overparametrization in four representative survival models: DeepSurv, PC-Hazard, Nnet-Survival, and N-MTLR. We rigorously define interpolation and finite-norm interpolation, two key characteristics of loss-based models to understand double-descent. We then show the existence (or absence) of (finite-norm) interpolation of all four models. Our findings clarify how likelihood-based losses and model implementation jointly determine the feasibility of interpolation and show that overparametrization should not be regarded as benign for survival models. All theoretical results are supported by numerical experiments that highlight the distinct generalization behaviors of survival models.",
+   "query": "double descent"
+  },
+  {
+   "id": "2607.21409",
+   "title": "Cautious optimism for deep parameterized quantum circuits",
+   "published": "2026-07-23",
+   "categories": [
+    "quant-ph",
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "A central challenge in quantum machine learning is understanding the scaling behavior of parameterized quantum circuits (PQCs). In particular, it remains unclear how their performance on unseen data changes as the number of trainable parameters increases. Prior works have derived formal generalization guarantees for quantum models, but it is well-known that many such results do not fully characterize generalization behavior in practice. In this work, we show that gradient-based PQCs can exhibit improved performance on unseen data as model size increases, displaying the phenomenon of double descent. This contrasts with the traditional view that larger models lead to degraded generalization. We provide analytical results rigorously underpinning this behavior by leveraging add-one-in perturbation techniques and spectral properties of random matrices. We support these results with numerical experiments on re-uploading PQCs across several data sets and training set sizes, consistently observing the predicted double descent behavior. While other obstacles on the path toward practical quantum machine learning remain, our finding that deeper parameterized quantum circuits do not necessarily exhibit degraded performance provides reasons for cautious optimism.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.01397",
+   "title": "Double Descent and Overparameterization in Particle Physics Data",
+   "published": "2025-09-01",
+   "categories": [
+    "hep-ex",
+    "cs.LG",
+    "hep-ph",
+    "physics.data-an"
+   ],
+   "abstract": "Recently, the benefit of heavily overparameterized models has been observed in machine learning tasks: models with enough capacity to easily cross the \\emph{interpolation threshold} improve in generalization error compared to the classical bias-variance tradeoff regime. We demonstrate this behavior for the first time in particle physics data and explore when and where `double descent' appears and under which circumstances overparameterization results in a performance gain.",
+   "query": "double descent"
+  },
+  {
+   "id": "2508.00068",
+   "title": "Double descent: When do neural quantum states generalize?",
+   "published": "2025-07-31",
+   "categories": [
+    "cond-mat.dis-nn",
+    "quant-ph"
+   ],
+   "abstract": "Neural quantum states (NQS) provide flexible and compact wavefunction parameterizations for numerical studies of quantum many-body physics. In particular, NQS aim to circumvent the exponential scaling of the Hilbert space by compressing quantum many-body wavefunctions with a tractable amount of parameters. While inspired by deep learning, it remains unclear to what extent NQS share characteristics with neural networks used for standard machine learning tasks. We demonstrate that, in a simplified supervised setting, NQS exhibit the double descent phenomenon, a key feature of modern deep learning, where generalization worsens as network size increases before improving again in an overparameterized regime. Notably, we find the second descent to occur only for network sizes much larger than the Hilbert space dimension, i.e. network sizes that are out of reach for problems of practical interest. Within our setting, this observation places typical NQS in the underparameterized regime. We also observe that the optimal network size in the underparameterized regime depends on the number of unique training samples. While the double descent phenomenon does indeed translate to the NQS setting, potential practical consequences of our findings point more towards the need for symmetry-aware, physics-informed architecture design, rather than directly adopting machine learning heuristics.",
+   "query": "double descent"
+  },
+  {
+   "id": "2502.14538",
+   "title": "LoRA-MGPO: Mitigating Double Descent in Low-Rank Adaptation via Momentum-Guided Perturbation Optimization",
+   "published": "2025-02-20",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Parameter-efficient fine-tuning (PEFT), particularly Low-Rank Adaptation (LoRA), adapts large language models (LLMs) by training only a small fraction of parameters. However, as the rank of the low-rank matrices used for adaptation increases, LoRA often exhibits an unstable \"double descent\" phenomenon, characterized by transient divergence in the training loss, which delays convergence and impairs generalization by causing instability due to the attraction to sharp local minima. To address this, we introduce LoRA-MGPO, a framework that incorporates Momentum-Guided Perturbation Optimization (MGPO). MGPO stabilizes training dynamics by mitigating the double descent phenomenon and guiding weight perturbations using momentum vectors from the optimizer's state, thus avoiding dual gradient computations. Additionally, an adaptive normalization scheme scales the magnitude of perturbations based on an exponential moving average (EMA) of gradient norms, further enhancing stability. While EMA controls the magnitude of the perturbations, MGPO guides their direction, ensuring a more stable optimization trajectory. Experiments on a suite of natural language understanding and generation benchmarks show that LoRA-MGPO consistently achieves superior performance over LoRA and other PEFT methods. The analysis indicates that LoRA-MGPO leads to smoother loss curves, faster convergence, and improved generalization by stabilizing the training process and mitigating the attraction to sharp minima.",
+   "query": "double descent"
+  },
+  {
+   "id": "2610.04507",
+   "title": "LoRA's Second Descent Extends Beyond Parameter Parity",
+   "published": "2026-10-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Double descent has sparked considerable interest, with recent work relating it to the data, the model and the learning configuration. Practical fine-tuning commonly involves training a small adapter on top of frozen pretrained weights, as in low-rank adaptation (LoRA). The adapter's rank is the hyperparameter that sets its capacity, yet how this rank relates to double descent has not been well explored. We quantify this relation under label noise on four vision backbones and a 7B language model with a module-matched rank sweep (MMRS), which extends past full rank and compares every rank with dense fine-tuning of the same modules, paired by seed. On DeiT-Tiny, risk is lowest at rank one and rises sharply as the adapter becomes able to fit the noisy labels, forming an interpolation cliff. Past the peak, risk falls again, but every tested post-peak rank that still saves parameters remains above dense risk. Rank-one LoRA outperforms dense fine-tuning on three of the four vision backbones, consistent with strong regularization at small rank. LoRA thus exhibits a second descent, but matches dense risk only after losing its parameter advantage, first on DeiT-Tiny at four times dense's projection weights. Code is available at https://anonymous.4open.science/r/lora-second-descent-C7B5.",
+   "query": "double descent"
+  },
+  {
+   "id": "2512.10427",
+   "title": "Renormalizable Spectral-Shell Dynamics as the Origin of Neural Scaling Laws",
+   "published": "2025-12-11",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Neural scaling laws and double-descent phenomena suggest that deep-network training obeys a simple macroscopic structure despite highly nonlinear optimization dynamics. We derive such structure directly from gradient descent in function space. For mean-squared error loss, the training error evolves as $\\dot e_t=-M(t)e_t$ with $M(t)=J_{θ(t)}J_{θ(t)}^{\\!*}$, a time-dependent self-adjoint operator induced by the network Jacobian. Using Kato perturbation theory, we obtain an exact system of coupled modewise ODEs in the instantaneous eigenbasis of $M(t)$. To extract macroscopic behavior, we introduce a logarithmic spectral-shell coarse-graining and track quadratic error energy across shells. Microscopic interactions within each shell cancel identically at the energy level, so shell energies evolve only through dissipation and external inter-shell interactions. We formalize this via a \\emph{renormalizable shell-dynamics} assumption, under which cumulative microscopic effects reduce to a controlled net flux across shell boundaries. Assuming an effective power-law spectral transport in a relevant resolution range, the shell dynamics admits a self-similar solution with a moving resolution frontier and explicit scaling exponents. This framework explains neural scaling laws and double descent, and unifies lazy (NTK-like) training and feature learning as two limits of the same spectral-shell dynamics.",
+   "query": "double descent"
+  },
+  {
+   "id": "2609.37657",
+   "title": "The double descent and Runge phenomena in overparametrized polynomial interpolation",
+   "published": "2026-09-29",
+   "categories": [
+    "math.NA",
+    "math.CA",
+    "stat.ML"
+   ],
+   "abstract": "The Runge phenomenon in polynomial interpolation is often considered a classical analogue of the double descent phenomenon in machine learning. In this note, we explore overparameterized polynomial interpolation in three popular polynomial bases: Monomial, Chebyshev and Legendre basis with coefficients that are minimal in the $\\ell^2$-norm (and, for the monomial basis, also those minimal in the $\\ell^1$-norm). We present our results primarily for equidistant and Chebyshev data points, but many results are independent of the exact form of sampling.",
+   "query": "double descent"
+  },
+  {
+   "id": "2607.08350",
+   "title": "Grokking and epoch-wise double descent in quantum neural networks",
+   "published": "2026-07-09",
+   "categories": [
+    "quant-ph",
+    "physics.data-an"
+   ],
+   "abstract": "Grokking, the delayed transition from memorization to generalization, is a fundamental phenomenon in gradient-based learning, yet its dynamics within variational quantum machine learning (QML) remain largely unexamined. In this work, we report the empirical observation of both the grokking transition and epoch-wise double descent in a two-qubit quantum neural network (QNN) under a complete parameterization of the SU(4) manifold. We demonstrate that overparameterization via increased circuit depth improves the probability of successful generalization. Notably, these architectures frequently exhibit an epoch-wise double descent in test error, degrading at a critical epoch before recovering into a generalizing state. Crucially, we identify a generalization decay in late-stage training, where the test error increases significantly despite a stagnant training loss. Bridging this behavior with algorithmic stability theory, our analysis reveals that this decay correlates with an unconstrained increase of the weight-norm, drifting away from sparse, phase-aligned harmonic solutions toward overfitted solutions in the Hilbert space. We analyze the underlying temporal dynamics of this transition, demonstrating how the onset of generalization is linked to optimization hyperparameters such as learning rate and weight decay. Finally, to mitigate late-stage decay, we introduce a weak explicit weight-norm regularization into the loss function. We demonstrate that this structural anchor stabilizes the post-grokking phase and permanently preserves generalization gains, providing a robust framework for training overparameterized quantum circuits.",
+   "query": "double descent"
+  },
+  {
+   "id": "2608.03111",
+   "title": "Double Descent in Gradient Boosting Decision Trees via Split-Candidate Scaling",
+   "published": "2026-08-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Double descent is commonly studied by scaling an explicit capacity parameter, such as neural-network width. For gradient boosting decision trees (GBDTs), however, an analogous single-axis capacity parameter has not been established. We propose the number of split candidates as an operational capacity parameter for GBDTs. Holding other training controls fixed, increasing the split-candidate budget refines the feature-quantization grid and expands the dictionary of root-to-leaf paths from which boosting selects its updates. To analyze this expansion, we construct an empirical tree-kernel diagnostic that summarizes how candidate-induced paths group the training examples. A regime in which the empirical kernel rank grows toward the sample size and very small positive eigenvalues emerge exposes noise-sensitive directions; in this regime, test error peaks before decreasing again at larger split-candidate budgets. This perspective predicts that deeper trees should reach the regime with fewer split candidates, larger training sets should require finer grids, and label noise should make the peak more pronounced. Experiments support these predictions and show test-error peaks at intermediate split-candidate budgets across XGBoost, LightGBM, and CatBoost, whereas a random-forest control improves monotonically under the same split-candidate sweep. Taken together, our analysis and experiments support split-candidate scaling as a single-axis capacity intervention for studying GBDTs and suggest that the observed double descent arises from an interaction between candidate-induced geometry and boosting dynamics.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.27078",
+   "title": "Two Speeds of Learning: A Representation-Readout Decomposition of Grokking and Double Descent",
+   "published": "2026-05-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Training loss and accuracy are the standard signals used to monitor generalization during deep neural network training. Two well-documented phenomena complicate this picture: in grokking, train loss falls rapidly while test performance improves abruptly only after a long delay; in epoch-wise double descent, train loss decreases monotonically while test loss or error rises and falls. Existing accounts are often task-specific, and a task-agnostic analysis framework for diagnosing and explaining these phenomena across realistic tasks and architectures is missing. We address this challenge by analyzing two competing processes that underlie learning dynamics: representation learning in the encoder and readout calibration in the final classifier. Using tools from representational geometry, neural tangent kernels, and linear probing, we show that both processes are active throughout training, with the fluctuations of their relative speed giving rise to seemingly anomalous generalization dynamics. Applying the representation-readout decomposition to grokking across a wide range of tasks and architectures, we find that the readout is train-biased before grokking onset, and representation learning is gradual but not absent, contrary to the lazy-to-rich account. The framework further provides diagnostic signatures distinguishing spurious from genuine generalization: in a previously reported MNIST grokking example and an epoch-wise double descent example, apparent delayed or non-monotone generalization is shown to arise from representation degradation and readout misalignment induced by non-standard training recipes. Together, these results establish the representation-readout decomposition as a top-down framework for understanding learning dynamics and revealing underlying algorithms for interpretability research.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.24974",
+   "title": "Double Descent as a Lens for Sample Efficiency in Autoregressive vs. Discrete Diffusion Models",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Data scarcity drives the need for more sample-efficient large language models. In this work, we use the double descent phenomenon to holistically compare the sample efficiency of discrete diffusion and autoregressive models. We show that discrete diffusion models require larger capacity and more training epochs to escape their underparameterized regime and reach the interpolation threshold. In the strongly overparameterized regime, both models exhibit similar behavior, with neither exhibiting a pronounced second descent in test loss across a large range of model sizes. Overall, our results indicate that autoregressive models are more sample-efficient on small-scale datasets, while discrete diffusion models only become competitive when given sufficient capacity and compute.",
+   "query": "double descent"
+  },
+  {
+   "id": "2608.28059",
+   "title": "Landau theory of quenched criticality in linear in-context learning",
+   "published": "2026-08-28",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "In-context learning (ICL) allows a pretrained model to infer a new task from examples supplied in its prompt without updating its parameters. In linear models of ICL, the prediction error develops a double-descent singularity when the number of pretraining samples becomes comparable to the number of learnable parameters. We formulate this interpolation singularity as a critical phenomenon of a quenched disordered system. By comparing annealed and quenched descriptions of the same linear ICL model, we identify the connected sample-to-sample fluctuations of the learned parameters as the microscopic origin of the singular error. A Landau potential is constructed by integrating the cavity self-consistency equation for the renormalized ridge parameter $ξ$. The role of (magnetization) order parameter is played by $ξ$, while the bare ridge parameter $λ$ becomes its conjugate magnetic field. The normalized sample complexity $τ$ acts as a temperature and the double-descent singularity occurs at the critical temperature $τ_c =1$. The Landau susceptibility is precisely the quantity that diverges in the fluctuation contribution to the prediction error. The order parameter is closely related to the fraction of zero eigenvalues of the empirical relaxation matrix in the ridgeless limit, which define flat directions in the learning dynamics. The Landau theory is generically cubic in the order parameter with critical exponents $(β_{\\rm cr},δ_{\\rm cr},γ_{\\rm cr})=(1,2,1)$. In the large-context regime, there appears a pseudogap-like regime characterized by suppressed order parameter. Predictions of the Landau theory are independently confirmed from numerical solutions of the original learning problem with good quantitative agreement. Our results pave the way for solid statistical-physics understanding of the interpolation criticality in linear in-context learning.",
+   "query": "double descent"
+  },
+  {
+   "id": "2602.19462",
+   "title": "Zero Variance Portfolio",
+   "published": "2026-02-23",
+   "categories": [
+    "stat.ME",
+    "math.ST",
+    "stat.AP"
+   ],
+   "abstract": "When the number of assets is larger than the sample size, the minimum variance portfolio interpolates the training data, delivering pathological zero in-sample variance. We show that if the weights of the zero variance portfolio are learned by a novel ``Ridgelet'' estimator, in a new test data this portfolio enjoys out-of-sample generalizability. It exhibits the double descent phenomenon and can achieve optimal risk in the overparametrized regime when the number of assets dominates the sample size. In contrast, a ``Ridgeless'' estimator which invokes the pseudoinverse fails in-sample interpolation and diverges away from out-of-sample optimality. Extensive simulations and empirical studies demonstrate that the Ridgelet method performs competitively in high-dimensional portfolio optimization.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.22124",
+   "title": "Incorporating priors in learning: a random matrix study under a teacher-student framework",
+   "published": "2025-09-26",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Regularized linear regression is central to machine learning, yet its high-dimensional behavior with informative priors remains poorly understood. We provide the first exact asymptotic characterization of training and test risks for maximum a posteriori (MAP) regression with Gaussian priors centered at a domain-informed initialization. Our framework unifies ridge regression, least squares, and prior-informed estimators, and -- using random matrix theory -- yields closed-form risk formulas that expose the bias-variance-prior tradeoff, explain double descent, and quantify prior mismatch. We also identify a closed-form minimizer of test risk, enabling a simple estimator of the optimal regularization parameter. Simulations confirm the theory with high accuracy. By connecting Bayesian priors, classical regularization, and modern asymptotics, our results provide both conceptual clarity and practical guidance for learning with structured prior knowledge.",
+   "query": "double descent"
+  },
+  {
+   "id": "2506.09678",
+   "title": "Black hole/quantum machine learning correspondence",
+   "published": "2025-06-11",
+   "categories": [
+    "quant-ph",
+    "gr-qc"
+   ],
+   "abstract": "We explore a possible connection between the black hole information paradox and interpolation geometry underlying the double descent phenomenon in quantum machine learning. State-dependent operator reconstruction on the Hawking radiation can be formulated as a quantum linear inverse problem defined on the black hole-radiation purification. In this picture, the Page time corresponds to the interpolation threshold, where the dimensions of the remaining black hole and the radiation become comparable. Using the Marchenko-Pastur law, we study the spectrum of the corresponding Gram matrices and obtain the variance of the linear reconstruction coefficients. The Page point is then related to both a change in the rank structure of the two subsystems and a strong enhancement of the coefficient variance near the interpolation threshold. This suggests a possible relation between the Page transition and interpolation phenomena in quantum machine learning.",
+   "query": "double descent"
+  },
+  {
+   "id": "2505.01751",
+   "title": "A dynamic view of some anomalous phenomena in SGD",
+   "published": "2025-05-03",
+   "categories": [
+    "math.OC",
+    "cs.LG"
+   ],
+   "abstract": "It has been observed by Belkin et al.\\ that over-parametrized neural networks exhibit a `double descent' phenomenon. That is, as the model complexity (as reflected in the number of features) increases, the test error initially decreases, then increases, and then decreases again. A counterpart of this phenomenon in the time domain has been noted in the context of epoch-wise training, viz., the test error decreases with the number of iterates, then increases, then decreases again. Another anomalous phenomenon is that of \\textit{grokking} wherein two regimes of descent are interrupted by a third regime wherein the mean loss remains almost constant. This note presents a plausible explanation for these and related phenomena by using the theory of two time scale stochastic approximation, applied to the continuous time limit of the gradient dynamics. This gives a novel perspective for an already well studied theme.",
+   "query": "double descent"
+  },
+  {
+   "id": "2505.20123",
+   "title": "Understanding Generalization in Diffusion Distillation via Probability Flow Distance",
+   "published": "2025-05-26",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Diffusion distillation provides an effective approach for learning lightweight and few-steps diffusion models with efficient generation. However, evaluating their generalization remains challenging: theoretical metrics are often impractical for high-dimensional data, while no practical metrics rigorously measure generalization. In this work, we bridge this gap by introducing probability flow distance (\\texttt{PFD}), a theoretically grounded and computationally efficient metric to measure generalization. Specifically, \\texttt{PFD} quantifies the distance between distributions by comparing their noise-to-data mappings induced by the probability flow ODE. Using \\texttt{PFD} under the diffusion distillation setting, we empirically uncover several key generalization behaviors, including: (1) quantitative scaling behavior from memorization to generalization, (2) epoch-wise double descent training dynamics, and (3) bias-variance decomposition. Beyond these insights, our work lays a foundation for generalization studies in diffusion distillation and bridges them with diffusion training.",
+   "query": "double descent"
+  },
+  {
+   "id": "2511.06895",
+   "title": "On The Presence of Double-Descent in Deep Reinforcement Learning",
+   "published": "2025-11-10",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "The double descent (DD) paradox, where over-parameterized models see generalization improve past the interpolation point, remains largely unexplored in the non-stationary domain of Deep Reinforcement Learning (DRL). We present preliminary evidence that DD exists in model-free DRL, investigating it systematically across varying model capacity using the Actor-Critic framework. We rely on an information-theoretic metric, Policy Entropy, to measure policy uncertainty throughout training. Preliminary results show a clear epoch-wise DD curve; the policy's entrance into the second descent region correlates with a sustained, significant reduction in Policy Entropy. This entropic decay suggests that over-parameterization acts as an implicit regularizer, guiding the policy towards robust, flatter minima in the loss landscape. These findings establish DD as a factor in DRL and provide an information-based mechanism for designing agents that are more general, transferable, and robust.",
+   "query": "double descent"
+  },
+  {
+   "id": "2603.05060",
+   "title": "Asymptotic Behavior of Multi--Task Learning: Implicit Regularization and Double Descent Effects",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.LG",
+    "cs.IT"
+   ],
+   "abstract": "Multi--task learning seeks to improve the generalization error by leveraging the common information shared by multiple related tasks. One challenge in multi--task learning is identifying formulations capable of uncovering the common information shared between different but related tasks. This paper provides a precise asymptotic analysis of a popular multi--task formulation associated with misspecified perceptron learning models. The main contribution of this paper is to precisely determine the reasons behind the benefits gained from combining multiple related tasks. Specifically, we show that combining multiple tasks is asymptotically equivalent to a traditional formulation with additional regularization terms that help improve the generalization performance. Another contribution is to empirically study the impact of combining tasks on the generalization error. In particular, we empirically show that the combination of multiple tasks postpones the double descent phenomenon and can mitigate it asymptotically.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.13203",
+   "title": "Double Descent, Ensemble Emergence, and Large Model Averaging in High-Dimensional Multimodel Prediction",
+   "published": "2026-05-13",
+   "categories": [
+    "stat.ME"
+   ],
+   "abstract": "This paper investigates the predictive performance of high-dimensional multimodel prediction, where the number of regressors is comparable to the sample size. Leveraging tools from random matrix theory, we derive the exact limiting out-of-sample risk under a nested model setting and comprehensively characterize the risk landscape. This limiting risk helps to reveal two phenomena: simple weighting inherits the double descent trajectory and its associated variance explosion near the interpolation boundary; strategic weighting triggers an ensemble emergence that suppresses the localized risk surge and yields a globally flat risk surface. Building on this limiting risk, we also propose the Large Model Averaging (LaMA) method, in which we consider the discrepancy between in-sample and out-of-sample risks in the high-dimensional regime. Numerical studies and real data applications confirm that LaMA achieves superior predictive accuracy in high-dimensional environments.",
+   "query": "double descent"
+  },
+  {
+   "id": "2504.12700",
+   "title": "A Two-Phase Perspective on Deep Learning Dynamics",
+   "published": "2025-04-17",
+   "categories": [
+    "hep-th",
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "We propose that learning in deep neural networks proceeds in two phases: a rapid curve fitting phase followed by a slower compression or coarse graining phase. This view is supported by the shared temporal structure of three phenomena: grokking, double descent and the information bottleneck, all of which exhibit a delayed onset of generalization well after training error reaches zero. We empirically show that the associated timescales align in two rather different settings. Mutual information between hidden layers and input data emerges as a natural progress measure, complementing circuit-based metrics such as local complexity and the linear mapping number. We argue that the second phase is not actively optimized by standard training algorithms and may be unnecessarily prolonged. Drawing on an analogy with the renormalization group, we suggest that this compression phase reflects a principled form of forgetting, critical for generalization.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.15152",
+   "title": "Asymptotic Study of In-context Learning with Random Transformers through Equivalent Models",
+   "published": "2025-09-18",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We study the in-context learning (ICL) capabilities of pretrained Transformers in the setting of nonlinear regression. Specifically, we focus on a random Transformer with a nonlinear MLP head where the first layer is randomly initialized and fixed while the second layer is trained. Furthermore, we consider an asymptotic regime where the context length, input dimension, hidden dimension, number of training tasks, and number of training samples jointly grow. In this setting, we show that the random Transformer behaves equivalent to a finite-degree Hermite polynomial model in terms of ICL error. This equivalence is validated through simulations across varying activation functions, context lengths, hidden layer widths (revealing a double-descent phenomenon), and regularization settings. Our results offer theoretical and empirical insights into when and how MLP layers enhance ICL, and how nonlinearity and over-parameterization influence model performance.",
+   "query": "double descent"
+  },
+  {
+   "id": "2511.09526",
+   "title": "Typicality of thermal states in isolated quantum systems corresponds to ubiquity of global minima in wide artificial neural networks",
+   "published": "2025-11-12",
+   "categories": [
+    "cond-mat.stat-mech"
+   ],
+   "abstract": "The Neural Tangent Kernel theory theoretically guarantees the existence of global minima of the cost functional in the neighborhood of an arbitrary random initialized parameters in wide artificial neural networks. In this paper, we show that the ubiquity of the global minima directly corresponds to the typicality of pure thermal states in isolated quantum systems by identifying a common underlying mechanism characterized by the restriction to a few observables and the role of a Wishart-type matrix. Moreover, we demonstrate that the increase in distinguishability of the reduced density matrices of typical pure states with subsystem size corresponds to the double descent phenomenon observed by varying the width of layers in finite-width artificial neural networks. Thereby, the threshold for the reduced state become thermal is determined by essentially the same condition as the fitting threshold. In this manner, we reveal a structural correspondence between thermalization in isolated quantum systems and wide neural network.",
+   "query": "double descent"
+  },
+  {
+   "id": "2502.10442",
+   "title": "Analysis of Overparameterization in Continual Learning under a Linear Model",
+   "published": "2025-02-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Autonomous machine learning systems that learn many tasks in sequence are prone to the catastrophic forgetting problem. Mathematical theory is needed in order to understand the extent of forgetting during continual learning. As a foundational step towards this goal, we study continual learning and catastrophic forgetting from a theoretical perspective in the simple setting of gradient descent with no explicit algorithmic mechanism to prevent forgetting. In this setting, we analytically demonstrate that overparameterization alone can mitigate forgetting in the context of a linear regression model. We consider a two-task setting motivated by permutation tasks, and show that as the overparameterization ratio becomes sufficiently high, a model trained on both tasks in sequence results in a low-risk estimator for the first task. As part of this work, we establish a non-asymptotic bound of the risk of a single linear regression task, which may be of independent interest to the field of double descent theory.",
+   "query": "double descent"
+  },
+  {
+   "id": "2509.22011",
+   "title": "A Random Matrix Perspective of Echo State Networks: From Precise Bias--Variance Characterization to Optimal Regularization",
+   "published": "2025-09-26",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "We present a rigorous asymptotic analysis of Echo State Networks (ESNs) in a teacher student setting with a linear teacher with oracle weights. Leveraging random matrix theory, we derive closed form expressions for the asymptotic bias, variance, and mean-squared error (MSE) as functions of the input statistics, the oracle vector, and the ridge regularization parameter. The analysis reveals two key departures from classical ridge regression: (i) ESNs do not exhibit double descent, and (ii) ESNs attain lower MSE when both the number of training samples and the teacher memory length are limited. We further provide an explicit formula for the optimal regularization in the identity input covariance case, and propose an efficient numerical scheme to compute the optimum in the general case. Together, these results offer interpretable theory and practical guidelines for tuning ESNs, helping reconcile recent empirical observations with provable performance guarantees",
+   "query": "double descent"
+  },
+  {
+   "id": "2502.01585",
+   "title": "The $\\varphi$ Curve: The Shape of Generalization through the Lens of Norm-based Capacity Control",
+   "published": "2025-02-03",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Understanding how the test risk scales with model complexity is a central question in machine learning. Classical theory is challenged by the learning curves observed for large over-parametrized deep networks. Capacity measures based on parameter count typically fail to account for these empirical observations. To tackle this challenge, we consider norm-based capacity measures and develop our study for random features based estimators, widely used as simplified theoretical models for more complex networks. In this context, we provide a precise characterization of how the estimator's norm concentrates and how it governs the associated test error. Our results show that the predicted learning curve admits a phase transition from under- to over-parameterization, but no double descent behavior. This confirms that more classical U-shaped behavior is recovered considering appropriate capacity measures based on models norms rather than size. From a technical point of view, we leverage deterministic equivalence as the key tool and further develop new deterministic quantities which are of independent interest.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.23591",
+   "title": "Asymmetric Scaling Laws from Sparse Features",
+   "published": "2026-05-22",
+   "categories": [
+    "stat.ML",
+    "cond-mat.dis-nn",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "We introduce a model for neural scaling laws under sparse activations. In the model, test loss is often dominated by rare coordinates that are never observed in the training input. This mechanism induces a novel bottleneck absent from dense models. We derive the asymptotic population loss in both the underparameterized and overparameterized regimes, and show that the loss exhibits a double-descent peak near the interpolation threshold -- where the number of parameters is just sufficient to fit the training data -- resulting in a loss curve governed by two distinct scaling exponents -- one for the overparameterized regime and one for the underparameterized regime -- with a gap determined by the degree of sparsity. Additionally, we derive a compute-optimal frontier that favors increasing dataset size over model capacity under fixed compute budgets. We also analyze gradient-descent dynamics and identify a scaling law for the probability that fixed-step gradient descent becomes unstable. We further show that the sparsity-induced effect persists under nonlinear activations.",
+   "query": "double descent"
+  },
+  {
+   "id": "2611.18164",
+   "title": "Detection and Classification in Latent Spaces: High-Dimensional Analysis and Validation",
+   "published": "2026-11-13",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Foundation models produce high-dimensional latent representations in which suitably designed statistical decision rules can be effective yet analytically tractable. We study such detectors in the high-dimensional regime, where latent dimension and training sample size grow proportionally. For linear and quadratic statistics, we derive explicit large-deviation characterizations of false-alarm and miss-detection performance under the Neyman-Pearson paradigm, and show how the binary analysis extends to multi-class classification. The resulting error probabilities and corresponding decay rates exhibit non-monotonic dependence on the shape parameter, including double-descent and, in some regimes, multiple-descent. Experiments on vision, text, and audio datasets using modern foundation models show close agreement between theoretical predictions and empirical performance. In particular, the proposed framework allows us to set a prescribed false-alarm level and accurately predict the corresponding miss-detection probability. Overall, our results provide a theoretically grounded and interpretable framework with competitive empirical performance across different modalities.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.21167",
+   "title": "A Rigorous, Tractable Measure of Model Complexity",
+   "published": "2026-05-20",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "An accurate assessment of a model's complexity is crucial for topics such as interpretation, generalization, and model selection. However, existing complexity measures either rely on heuristic assumptions or are computationally prohibitive. In this paper, we present a mathematically rigorous yet easy-to-compute measure of model complexity that is based on the similarities between feature vectors for different inputs. It is thus well-defined for any parametric model (via NTK feature generalization) and for kernel-based non-parametric models (via the induced kernel). We prove that our measure of complexity generalizes model-specific complexity measures, including polynomial degree (for polynomial regression), kernel length scale (for Matérn kernels), number of neighbors (for k-nearest neighbors), number of splits (for decision trees), and number of trees (for random forests). We also use our measure to obtain new insights into the double descent phenomenon for random Fourier features, random forests, neural networks, and gradient boosting.",
+   "query": "double descent"
+  },
+  {
+   "id": "2601.10483",
+   "title": "High-Dimensional Analysis of Gradient Flow for Extensive-Width Quadratic Neural Networks",
+   "published": "2026-01-15",
+   "categories": [
+    "math.OC",
+    "cond-mat.dis-nn",
+    "stat.ML"
+   ],
+   "abstract": "We study the high-dimensional training dynamics of a shallow neural network with quadratic activation in a teacher-student setup. We focus on the extensive-width regime, where the teacher and student network widths scale proportionally with the input dimension, and the sample size grows quadratically. This scaling aims to describe overparameterized neural networks in which feature learning still plays a central role. In the high-dimensional limit, we derive a dynamical characterization of the gradient flow, in the spirit of dynamical mean-field theory (DMFT). Under l2-regularization, we analyze these equations at long times and characterize the performance and spectral properties of the resulting estimator. This result provides a quantitative understanding of the effect of overparameterization on learning and generalization, and reveals a double descent phenomenon in the presence of label noise, where generalization improves beyond interpolation. In the small regularization limit, we obtain an exact expression for the perfect recovery threshold as a function of the network widths, providing a precise characterization of how overparameterization influences recovery.",
+   "query": "double descent"
+  },
+  {
+   "id": "2605.09031",
+   "title": "Spherical Boltzmann machines: a solvable theory of learning and generation in energy-based models",
+   "published": "2026-05-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Energy-based models (EBMs) are flexible generative architectures inspired by statistical physics, but their learning and generative properties remain poorly understood. Here, we analyze a solvable EBM in the high-dimensional limit: the spherical Boltzmann machine (SBM). Combining tools from random matrix theory and dynamical mean-field theory, we: derive and solve closed equations describing the training dynamics of the SBM in the high-dimensional limit; compute the asymptotic Bayesian evidence, which acts as a partition function in parameter space and encodes global properties of the trained model; and uncover cascades of phase transitions that occur both during training and as a function of hyperparameters, related to successive alignment and condensation of the top modes of the coupling matrix to the data. We connect these transitions to sampling-time generative phenomena in a teacher-student scenario, including: sampling temperature tuning, double descent as a function of regularization strength, tempered posterior effects, and out-of-equilibrium effects during training that induce biases in the trained model. We provide numerical evidence showing that all these phenomena appear in standard generative architectures, beyond the SBM.",
+   "query": "double descent"
+  },
+  {
+   "id": "2610.06581",
+   "title": "Shaping double descent in quantum extreme learning through model design",
+   "published": "2026-10-05",
+   "categories": [
+    "quant-ph"
+   ],
+   "abstract": "Increasing capacity can induce a machine learning model to generalize worse until it perfectly interpolates the training data, and better once it moves beyond interpolation. This inversion, known as \\emph{double descent}, is well understood for independent features. For correlated features, its shape is governed by the spectrum of the feature covariance, but existing analyses typically yield only implicit equations. We first close this gap for classical linear regression, analytically characterizing the entire risk curve through two quantities, namely the condition number of the feature population covariance and a spectral measure of correlation strength. Then, we apply this theory on quantum models, focusing on quantum extreme learning machines (QELMs). We show that three tunable design knobs, \\textit{i.e.,} encoding strength, input reuploads, and measurement shots, each regularize the QELM output covariance, and derive conditions under which the interpolation threshold remains stable. Finite measurement shot noise can be leveraged to guarantee this stability. Numerical experiments confirm each prediction, yielding concrete design principles for QELMs that generalize well beyond interpolation.",
+   "query": "double descent"
+  },
+  {
+   "id": "2506.13139",
+   "title": "Random Matrix Theory for Deep Learning: Beyond Eigenvalues of Linear Models",
+   "published": "2025-06-16",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Modern Machine Learning (ML) and Deep Neural Networks (DNNs) often operate on high-dimensional data and rely on overparameterized models, where classical low-dimensional intuitions break down. In particular, the proportional regime where the data dimension, sample size, and number of model parameters are all large and comparable, gives rise to novel and sometimes counterintuitive behaviors. This paper extends traditional Random Matrix Theory (RMT) beyond eigenvalue-based analysis of linear models to address the challenges posed by nonlinear ML models such as DNNs in this regime. We introduce the concept of High-dimensional Equivalent, which unifies and generalizes both Deterministic Equivalent and Linear Equivalent, to systematically address three technical challenges: high dimensionality, nonlinearity, and the need to analyze generic eigenspectral functionals. Leveraging this framework, we provide precise characterizations of the training and generalization performance of linear models, nonlinear shallow networks, and deep networks. Our results capture rich phenomena, including scaling laws, double descent, and nonlinear learning dynamics, offering a unified perspective on the theoretical understanding of deep learning in high dimensions.",
+   "query": "double descent"
+  },
+  {
+   "id": "2601.23031",
+   "title": "Asymptotic Theory of Iterated Empirical Risk Minimization, with Applications to Active Learning",
+   "published": "2026-01-30",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We study a class of iterated empirical risk minimization (ERM) procedures in which two successive ERMs are performed on the same dataset, and the predictions of the first estimator enter as an argument in the loss function of the second. This setting, which arises naturally in active learning and reweighting schemes, introduces intricate statistical dependencies across samples and fundamentally distinguishes the problem from classical single-stage ERM analyses. For linear models trained with a broad class of convex losses on Gaussian mixture data, we derive a sharp asymptotic characterization of the test error in the high-dimensional regime where the sample size and ambient dimension scale proportionally. Our results provide explicit, fully asymptotic predictions for the performance of the second-stage estimator despite the reuse of data and the presence of prediction-dependent losses. We apply this theory to revisit a well-studied pool-based active learning problem, removing oracle and sample-splitting assumptions made in prior work. We uncover a fundamental tradeoff in how the labeling budget should be allocated across stages, and demonstrate a double-descent behavior of the test error driven purely by data selection, rather than model size or sample count.",
+   "query": "double descent"
+  },
+  {
+   "id": "2602.12680",
+   "title": "A Regularization-Sharpness Tradeoff for Linear Interpolators",
+   "published": "2026-02-13",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "The rule of thumb regarding the relationship between the bias-variance tradeoff and model size plays a key role in classical machine learning, but is now well-known to break down in the overparameterized setting as per the double descent curve. In particular, minimum-norm interpolating estimators can perform well, suggesting the need for new tradeoff in these settings. Accordingly, we propose a regularization-sharpness tradeoff for overparameterized linear regression with an $\\ell^p$ penalty. Inspired by the interpolating information criterion, our framework decomposes the selection penalty into a regularization term (quantifying the alignment of the regularizer and the interpolator) and a geometric sharpness term on the interpolating manifold (quantifying the effect of local perturbations), yielding a tradeoff analogous to bias-variance. Building on prior analyses that established this information criterion for ridge regularizers, this work first provides a general expression of the interpolating information criterion for $\\ell^p$ regularizers where $p \\ge 2$. Subsequently, we extend this to the LASSO interpolator with $\\ell^1$ regularizer, which induces stronger sparsity. Empirical results on real-world datasets with random Fourier features and polynomials validate our theory, demonstrating how the tradeoff terms can distinguish performant linear interpolators from weaker ones.",
+   "query": "double descent"
+  },
+  {
+   "id": "2602.18679",
+   "title": "Transformers for dynamical systems learn transfer operators in-context",
+   "published": "2026-02-21",
+   "categories": [
+    "cs.LG",
+    "nlin.CD"
+   ],
+   "abstract": "Large-scale foundation models for scientific machine learning adapt to physical settings unseen during training, such as zero-shot transfer between turbulent scales. This phenomenon, in-context learning, challenges conventional understanding of learning and adaptation in physical systems. Here, we study in-context learning of dynamical systems in a minimal setting: we train a small two-layer, single-head transformer to forecast one dynamical system, and then evaluate its ability to forecast a different dynamical system without retraining. We discover an early tradeoff in training between in-distribution and out-of-distribution performance, which manifests as a secondary double descent phenomenon. We discover that attention-based models apply a transfer-operator forecasting strategy in-context. They (1) lift low-dimensional time series using delay embedding, to detect the system's higher-dimensional dynamical manifold, and (2) identify and forecast long-lived invariant sets that characterize the global flow on this manifold. Our results clarify the mechanism enabling large pretrained models to forecast unseen physical systems at test time without retraining, and they illustrate the unique ability of attention-based models to leverage global attractor information in service of short-term forecasts.",
+   "query": "double descent"
+  },
+  {
+   "id": "2503.06001",
+   "title": "Analyzing the Role of Permutation Invariance in Linear Mode Connectivity",
+   "published": "2025-03-08",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "It was empirically observed in Entezari et al. (2021) that when accounting for the permutation invariance of neural networks, there is likely no loss barrier along the linear interpolation between two SGD solutions -- a phenomenon known as linear mode connectivity (LMC) modulo permutation. This phenomenon has sparked significant attention due to both its theoretical interest and practical relevance in applications such as model merging. In this paper, we provide a fine-grained analysis of this phenomenon for two-layer ReLU networks under a teacher-student setup. We show that as the student network width $m$ increases, the LMC loss barrier modulo permutation exhibits a double descent behavior. Particularly, when $m$ is sufficiently large, the barrier decreases to zero at a rate $O(m^{-1/2})$. Notably, this rate does not suffer from the curse of dimensionality and demonstrates how substantial permutation can reduce the LMC loss barrier. Moreover, we observe a sharp transition in the sparsity of GD/SGD solutions when increasing the learning rate and investigate how this sparsity preference affects the LMC loss barrier modulo permutation. Experiments on both synthetic and MNIST datasets corroborate our theoretical predictions and reveal a similar trend for more complex network architectures.",
+   "query": "double descent"
+  },
+  {
+   "id": "2609.19076",
+   "title": "Double descent is the principle of least action",
+   "published": "2026-09-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.ST",
+    "physics.comp-ph",
+    "physics.data-an"
+   ],
+   "abstract": "The test error of a model plotted against its number of parameters $d$ falls, peaks when the model can just fit the training data, and falls again, exhibiting the double descent phenomenon. We explain the phenomenon with statistical mechanics. The training trajectory of a stochastic gradient-based method is a particle wandering over the energy landscape of the training loss at an induced temperature $T$, and a run that has equilibrated visits every parameter vector of a given training loss equally often, the fundamental postulate of statistical mechanics, with probability given by the Boltzmann distribution. Because training starts at an initial point and has only finite time to diffuse, it carries an effective weight decay, which makes every parameter a quadratic degree of freedom. The equipartition theorem then distributes the energy among the $d$ degrees of freedom in shares of $T/2$, so at a fixed training loss adding parameters lowers the temperature and drives the Boltzmann distribution toward the stationary path. Finally, adding parameters can only lower the $L^2$ norm of the stationary path, so a solution sampled at fixed loss is less likely to be large with increasing $d$, effectively increasing weight regularization.",
+   "query": "double descent"
+  },
+  {
+   "id": "2610.00394",
+   "title": "Forking: Sudden Overfitting Under Replay",
+   "published": "2026-09-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper studies forking, a generalization failure discovered in NanoGPT autoresearch. Under data replay, models with an over-encoding n-gram memory branch show a sharp separation of training and validation loss at epoch boundaries, resembling the shape of forks. We study this phenomenon in a controlled vanilla NanoGPT setting and reproduce it in a DeepSeek-style model with Engram. Mechanistically, repeated updates sharpen the continuations observed in training while suppressing the probability of unseen continuations, whose loss grows with each pass. The n-gram module creates weakly interacting context-specific subspaces, amplifying this effect. Low-frequency contexts contribute most of the gap, whereas larger training budgets and heavily crowded tables suppress it. We also observe forking in short-budget, heavily repeated SFT and RL-like regimes. The contributions of this paper are twofold: (1) Forking reveals yet another curious phenomenon in deep learning, in addition to grokking and double descent. (2) Forking is an unexpected and unpleasant by-product of tricks proposed by autoresearch agents. While these agents produce an enormous number of results that seem useful, we should always be careful with their results.",
+   "query": "double descent"
+  }
+ ]
+}

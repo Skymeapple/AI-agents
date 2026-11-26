@@ -1,0 +1,1321 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "length generalization transformers",
+  "compositional generalization",
+  "out-of-distribution generalization"
+ ],
+ "papers": [
+  {
+   "id": "2602.08857",
+   "title": "Discovering Interpretable Algorithms by Decompiling Transformers to RASP",
+   "published": "2026-02-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Recent work has shown that the computations of Transformers can be simulated in the RASP family of programming languages. These findings have enabled improved understanding of the expressive capacity and generalization abilities of Transformers. In particular, Transformers have been suggested to length-generalize exactly on problems that have simple RASP programs. However, it remains open whether trained models actually implement simple interpretable programs. In this paper, we present a general method to extract such programs from trained Transformers. The idea is to faithfully re-parameterize a Transformer as a RASP program and then apply causal interventions to discover a small sufficient sub-program. In experiments on small Transformers trained on algorithmic and formal language tasks, we show that our method often recovers simple and interpretable RASP programs from length-generalizing transformers. Our results provide the most direct evidence so far that Transformers internally implement simple RASP programs.",
+   "query": "length generalization transformers"
+  },
+  {
+   "id": "2511.02667",
+   "title": "Scalable Evaluation and Neural Models for Compositional Generalization",
+   "published": "2025-11-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization-a key open challenge in modern machine learning-requires models to predict unknown combinations of known concepts. However, assessing compositional generalization remains a fundamental challenge due to the lack of standardized evaluation protocols and the limitations of current benchmarks, which often favor efficiency over rigor. At the same time, general-purpose vision architectures lack the necessary inductive biases, and existing approaches to endow them compromise scalability. As a remedy, this paper introduces: 1) a rigorous evaluation framework that unifies and extends previous approaches while reducing computational requirements from combinatorial to constant; 2) an extensive and modern evaluation on the status of compositional generalization in supervised vision backbones, training more than 5000 models; 3) Attribute Invariant Networks, a class of models establishing a new Pareto frontier in compositional generalization, achieving a 23.43% accuracy improvement over baselines while reducing parameter overhead from 600% to 16% compared to fully disentangled counterparts. Our code is available at https://github.com/IBM/scalable-compositional-generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2605.04920",
+   "title": "Reinforcement Learning for Compositional Generalization with Outcome-Level Optimization",
+   "published": "2026-05-06",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Compositional generalization refers to correctly interpret novel combinations of known primitives, which remains a major challenge. Existing approaches often rely on supervised fine-tuning, which encourages models to imitate target outputs. This token-level training paradigm fails to capture the global compositional structure required for generalizing to unseen combinations. In this work, we investigate whether compositional generalization can instead be improved through outcome-level reinforcement learning. We adopt Group Relative Policy Optimization to optimize models based on feedback on their final outputs. Within this framework, we explore both a simple binary outcome reward and a composite reward that provides additional composition feedback. Experiments on multiple compositional benchmarks show that reinforcement learning improves compositional generalization compared to supervised fine-tuning. Further analysis reveals that supervised models tend to overfit frequent training compositions, whereas reinforcement learning improves compositional generalization by reshaping the output distribution, particularly for more complex composition types.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2511.09082",
+   "title": "Composition-Incremental Learning for Compositional Generalization",
+   "published": "2025-11-12",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Compositional generalization has achieved substantial progress in computer vision on pre-collected training data. Nonetheless, real-world data continually emerges, with possible compositions being nearly infinite, long-tailed, and not entirely visible. Thus, an ideal model is supposed to gradually improve the capability of compositional generalization in an incremental manner. In this paper, we explore Composition-Incremental Learning for Compositional Generalization (CompIL) in the context of the compositional zero-shot learning (CZSL) task, where models need to continually learn new compositions, intending to improve their compositional generalization capability progressively. To quantitatively evaluate CompIL, we develop a benchmark construction pipeline leveraging existing datasets, yielding MIT-States-CompIL and C-GQA-CompIL. Furthermore, we propose a pseudo-replay framework utilizing a visual synthesizer to synthesize visual representations of learned compositions and a linguistic primitive distillation mechanism to maintain aligned primitive representations across the learning process. Extensive experiments demonstrate the effectiveness of the proposed framework.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2507.07102",
+   "title": "Does Data Scaling Lead to Visual Compositional Generalization?",
+   "published": "2025-07-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Compositional understanding is crucial for human intelligence, yet it remains unclear whether contemporary vision models exhibit it. The dominant machine learning paradigm is built on the premise that scaling data and model sizes will improve out-of-distribution performance, including compositional generalization. We test this premise through controlled experiments that systematically vary data scale, concept diversity, and combination coverage. We find that compositional generalization is driven by data diversity, not mere data scale. Increased combinatorial coverage forces models to discover a linearly factored representational structure, where concepts decompose into additive components. We prove this structure is key to efficiency, enabling perfect generalization from few observed combinations. Evaluating pretrained models (DINO, CLIP), we find above-random yet imperfect performance, suggesting partial presence of this structure. Our work motivates stronger emphasis on constructing diverse datasets for compositional generalization, and considering the importance of representational structure that enables efficient compositional learning. Code available at https://github.com/oshapio/visual-compositional-generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2601.18858",
+   "title": "Representational Homomorphism Predicts and Improves Compositional Generalization In Transformer Language Model",
+   "published": "2026-01-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization-the ability to interpret novel combinations of familiar components-remains a persistent challenge for neural networks. Behavioral evaluations reveal \\emph{when} models fail but offer limited insight into \\emph{why} failures arise at the representational level. We introduce \\textit{Homomorphism Error} (HE), a structural metric that measures the inconsistency between a set of established rules for which words combine to form new meaning (linguistic syntax) and model's learned rules for which hidden states combine to form new states (semantic syntax). We formulate this inconsistency as deviations from approximate homomorphisms between the linguistic expression algebra and a model's hidden-state space. We designed experiments to test if i) HE predicts compositional generalization performance, and ii) will regularizing for low HE during training improve such performance. To avoid the effect of data spoilage, we train small decoder-only Transformers from scratch using an adapted version of established dataset, SCAN, for testing compositional generalization. Across controlled experiments, HE predicts out-of-distribution (OOD) compositional generalization under noise injection, achieving $R^2=0.73$ correlation between HE and OOD accuracy. Ablations show that model depth has minimal effect on either HE or OOD accuracy, training data coverage exhibits threshold effects, and randomly inserted noise tokens increase HE. Intervention experiment shows that HE-regularized training significantly reduces HE ($p=1.1\\times10^{-4}$) and yields a statistically significant improvement in OOD accuracy ($p=0.023$). Together, these results indicate the potential of HE to be both a diagnostic and an actionable training signal for improving compositional generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2602.24264",
+   "title": "Compositional Generalization Requires Linear, Orthogonal Representations in Vision Embedding Models",
+   "published": "2026-02-27",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Compositional generalization, the ability to recognize familiar parts in novel contexts, is a defining property of intelligent systems. Although modern models are trained on massive datasets, they still cover only a tiny fraction of the combinatorial space of possible inputs, raising the question of what structure representations must have to support generalization to unseen combinations. We formalize three desiderata for compositional generalization under standard training (divisibility, transferability, stability) and show they impose necessary geometric constraints: representations must decompose linearly into per-concept components, and these components must be orthogonal across concepts. This provides theoretical grounding for the Linear Representation Hypothesis: the linear structure widely observed in neural representations is a necessary consequence of compositional generalization. We further derive dimension bounds linking the number of composable concepts to the embedding geometry. Empirically, we evaluate these predictions across modern vision models (CLIP, SigLIP, DINO) and find that representations exhibit partial linear factorization with low-rank, near-orthogonal per-concept factors, and that the degree of this structure correlates with compositional generalization on unseen combinations. As models continue to scale, these conditions predict the representational geometry they may converge to. Code is available at https://github.com/oshapio/necessary-compositionality.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2601.03676",
+   "title": "Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+   "published": "2026-01-07",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) and agent-based systems often struggle with compositional generalization due to a data bottleneck in which complex skill combinations follow a long-tailed, power-law distribution, limiting both instruction-following performance and generalization in agent-centric tasks. To address this challenge, we propose STEPS, a Skill Taxonomy guided Entropy-based Post-training data Synthesis framework for generating compositionally challenging data. STEPS explicitly targets compositional generalization by uncovering latent relationships among skills and organizing them into an interpretable, hierarchical skill taxonomy using structural information theory. Building on this taxonomy, we formulate data synthesis as a constrained information maximization problem, selecting skill combinations that maximize marginal structural information within the hierarchy while preserving semantic coherence. Experiments on challenging instruction-following benchmarks show that STEPS outperforms existing data synthesis baselines, while also yielding improved compositional generalization in downstream agent-based evaluations.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.09507",
+   "title": "When and How Does CLIP Enable Domain and Compositional Generalization?",
+   "published": "2025-02-13",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "The remarkable generalization performance of contrastive vision-language models like CLIP is often attributed to the diversity of their training distributions. However, key questions remain unanswered: Can CLIP generalize to an entirely unseen domain when trained on a diverse mixture of domains (domain generalization)? Can it generalize to unseen classes within partially seen domains (compositional generalization)? What factors affect such generalization? To answer these questions, we trained CLIP models on systematically constructed training distributions with controlled domain diversity and object class exposure. Our experiments show that domain diversity is essential for both domain and compositional generalization, yet compositional generalization can be surprisingly weaker than domain generalization when the training distribution contains a suboptimal subset of the test domain. Through data-centric and mechanistic analyses, we find that successful generalization requires the learning of sufficiently shared representations in intermediate layers and circuits.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2505.02627",
+   "title": "A Theoretical Analysis of Provable Compositional Generalization in Neural Networks: A Necessary and Sufficient Condition",
+   "published": "2025-05-05",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization$\\unicode{x2013}$the ability to systematically process novel combinations of known components$\\unicode{x2013}$is a hallmark of human intelligence; however, its theoretical foundation in neural networks is not yet well understood. This paper establishes a necessary and sufficient condition for provable compositional generalization, precisely characterizing its boundary. Conceptually, the condition consists of two principles: (i) structural alignment, where a model's computational graph aligns with a task's true compositional hierarchy, and (ii) unambiguous minimized representations, where each component encodes adequate but not redundant information on the training data. The result is fully proved and machine-verified in Lean 4 and holds even in few-shot and one-shot regimes. The necessity direction establishes that provable compositional generalization cannot circumvent these requirements, while the sufficiency direction yields a unified inductive bias that jointly governs architectural design, training data properties, and regularization strategies. Building on this condition, we develop an example algorithmic approach, illustrate it through a controlled minimal example, and further demonstrate the condition on the SCAN jump task. All conclusions are derived mathematically without reliance on empirical validation. Our work provides a theoretical characterization of provable compositional generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2510.03075",
+   "title": "What Drives Compositional Generalization in Visual Generative Models? The Importance of Continuous Training Objectives",
+   "published": "2025-10-03",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Compositional generalization, the ability to generate novel combinations of known concepts, is a key ingredient for visual generative models. Yet, not all mechanisms that enable or inhibit it are fully understood. In this work, we conduct a systematic study of which design choices critically determine compositional generalization in image and video generation. By isolating independent design axes, we identify two key factors strongly associated with compositional success: (i) whether the training objective operates on a discrete or continuous distribution, and (ii) the completeness of conditioning information about constituent factors during training. We also show that relaxing the discrete loss with an auxiliary continuous latent objective can partially recover compositional performance in discrete models like MaskGIT. Our findings, corroborated by diverse compositional tasks and preliminary evidence in world models and LLMs, motivate a shift toward continuous objectives for compositional generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.20834",
+   "title": "Learning to Substitute Components for Compositional Generalization",
+   "published": "2025-02-28",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Despite the rising prevalence of neural language models, recent empirical evidence suggests their deficiency in compositional generalization. One of the current de-facto solutions to this problem is compositional data augmentation, which aims to introduce additional compositional inductive bias. However, existing handcrafted augmentation strategies offer limited improvement when systematic generalization of neural language models requires multi-grained compositional bias (i.e., not limited to either lexical or structural biases alone) or when training sentences have an imbalanced difficulty distribution. To address these challenges, we first propose a novel compositional augmentation strategy called Component Substitution (CompSub), which enables multi-grained composition of substantial substructures across the entire training set. Furthermore, we introduce the Learning Component Substitution (LCS) framework. This framework empowers the learning of component substitution probabilities in CompSub in an end-to-end manner by maximizing the loss of neural language models, thereby prioritizing challenging compositions with elusive concepts and novel contexts. We extend the key ideas of CompSub and LCS to the recently emerging in-context learning scenarios of pre-trained large language models (LLMs), proposing the LCS-ICL algorithm to enhance the few-shot compositional generalization of state-of-the-art (SOTA) LLMs. Theoretically, we provide insights into why applying our algorithms to language models can improve compositional generalization performance. Empirically, our results on four standard compositional generalization benchmarks(SCAN, COGS, GeoQuery, and COGS-QL) demonstrate the superiority of CompSub, LCS, and LCS-ICL, with improvements of up to 66.5%, 10.3%, 1.4%, and 8.8%, respectively.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2602.16689",
+   "title": "Are Object-Centric Representations Better At Compositional Generalization?",
+   "published": "2026-02-18",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Compositional generalization, the ability to reason about novel combinations of familiar concepts, is fundamental to human cognition and a critical challenge for machine learning. Object-centric (OC) representations, which encode a scene as a set of objects, are often argued to support such generalization, but systematic evidence in visually rich settings is limited. We introduce a Visual Question Answering benchmark across three controlled visual worlds (CLEVRTex, Super-CLEVR, and MOVi-C) to measure how well vision encoders, with and without object-centric biases, generalize to unseen combinations of object properties. To ensure a fair and comprehensive comparison, we carefully account for training data diversity, sample size, representation size, downstream model capacity, and compute. We use DINOv2 and SigLIP2, two widely used vision encoders, as the foundation models and their OC counterparts. Our key findings reveal that (1) OC approaches are superior in harder compositional generalization settings; (2) original dense representations surpass OC only on easier settings and typically require substantially more downstream compute; and (3) OC models are more sample efficient, achieving stronger generalization with fewer images, whereas dense encoders catch up or surpass them only with sufficient data and diversity. Overall, object-centric representations offer stronger compositional generalization when any one of dataset size, training data diversity, or downstream compute is constrained.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2512.08854",
+   "title": "Is Generation Required for Data-Efficient Perception?",
+   "published": "2025-12-09",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "It has been hypothesized that achieving the data efficiency of human visual perception requires a generative approach in which internal representations result from inverting a decoder. Yet today's most successful vision models are non-generative, relying on an encoder that maps images to representations without decoder inversion. This raises the question of whether generation is necessary for data-efficient machine perception. To address this, we study to what extent generative and non-generative methods can achieve compositional generalization, a hallmark of human data efficiency. Under a compositional generative process, we formally characterize the inductive biases required for compositional generalization in decoder-based (generative) and encoder-based (non-generative) methods. We show theoretically that the inductive biases required for an encoder are substantially more complex and generally infeasible to impose explicitly through architectural constraints or regularization. By contrast, the decoder biases take a simple form that can be enforced directly. These results suggest that compositional generalization may be substantially easier to achieve through a generative paradigm of learning and inverting a decoder rather than learning an encoder directly. We examine our theoretical findings empirically by training a range of generative and non-generative methods on synthetic image data. We find that non-generative methods often fail to generalize compositionally and require large-scale pretraining to improve generalization. By comparison, generative methods yield gains in generalization without requiring additional data.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2512.10669",
+   "title": "Learning by Analogy: A Causal Framework for Composition Generalization",
+   "published": "2025-12-11",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Compositional generalization -- the ability to understand and generate novel combinations of learned concepts -- enables models to extend their capabilities beyond limited experiences. While effective, the data structures and principles that enable this crucial capability remain poorly understood. We propose that compositional generalization fundamentally requires decomposing high-level concepts into basic, low-level concepts that can be recombined across similar contexts, similar to how humans draw analogies between concepts. For example, someone who has never seen a peacock eating rice can envision this scene by relating it to their previous observations of a chicken eating rice. In this work, we formalize these intuitive processes using principles of causal modularity and minimal changes. We introduce a hierarchical data-generating process that naturally encodes different levels of concepts and their interaction mechanisms. Theoretically, we demonstrate that this approach enables compositional generalization supporting complex relations between composed concepts, advancing beyond prior work that assumes simpler interactions like additive effects. Critically, we also prove that this latent hierarchical structure is provably recoverable (identifiable) from observable data like text-image pairs, a necessary step for learning such a generative process. To validate our theory, we apply insights from our theoretical framework and achieve significant improvements on benchmark datasets.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2603.25583",
+   "title": "Towards Generalizable Robotic Data Flywheel: High-Dimensional Factorization and Composition",
+   "published": "2026-03-26",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "The lack of sufficiently diverse data, coupled with limited data efficiency, remains a major bottleneck for generalist robotic models, yet systematic strategies for collecting and curating such data are not fully explored. Task diversity arises from implicit factors that are sparsely distributed across multiple dimensions and are difficult to define explicitly. To address this challenge, we propose F-ACIL, a heuristic factor-aware compositional iterative learning framework that enables structured data factorization and promotes compositional generalization. F-ACIL decomposes the data distribution into structured factor spaces such as object, action, and environment. Based on the factorized formulation, we develop a factor-wise data collection and an iterative training paradigm that promotes compositional generalization over the high-dimensional factor space, leading to more effective utilization of real-world robotic demonstrations. With extensive real-world experiments, we show that F-ACIL can achieve more than 45% performance gains with 5-10$\\times$ fewer demonstrations comparing to that of which without the strategy. The results suggest that structured factorization offers a practical pathway toward efficient compositional generalization in real-world robotic learning. We believe F-ACIL can inspire more systematic research on building generalizable robotic data flywheel strategies. More demonstrations can be found at: https://f-acil.github.io/",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2512.10067",
+   "title": "Independent Density Estimation",
+   "published": "2025-12-10",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Large-scale Vision-Language models have achieved remarkable results in various domains, such as image captioning and conditioned image generation. Nevertheless, these models still encounter difficulties in achieving human-like compositional generalization. In this study, we propose a new method called Independent Density Estimation (IDE) to tackle this challenge. IDE aims to learn the connection between individual words in a sentence and the corresponding features in an image, enabling compositional generalization. We build two models based on the philosophy of IDE. The first one utilizes fully disentangled visual representations as input, and the second leverages a Variational Auto-Encoder to obtain partially disentangled features from raw images. Additionally, we propose an entropy-based compositional inference method to combine predictions of each word in the sentence. Our models exhibit superior generalization to unseen compositions compared to current models when evaluated on various datasets.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2509.09541",
+   "title": "Compositional Concept Generalization with Variational Quantum Circuits",
+   "published": "2025-09-11",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization is a key facet of human cognition, but lacking in current AI tools such as vision-language models. Previous work examined whether a compositional tensor-based sentence semantics can overcome the challenge, but led to negative results. We conjecture that the increased training efficiency of quantum models will improve performance in these tasks. We interpret the representations of compositional tensor-based models in Hilbert spaces and train Variational Quantum Circuits to learn these representations on an image captioning task requiring compositional generalization. We used two image encoding techniques: a multi-hot encoding (MHE) on binary image vectors and an angle/amplitude encoding on image vectors taken from the vision-language model CLIP. We achieve good proof-of-concept results using noisy MHE encodings. Performance on CLIP image vectors was more mixed, but still outperformed classical compositional models.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2604.27340",
+   "title": "Investigating More Explainable and Partition-Free Compositionality Estimation for LLMs: A Rule-Generation Perspective",
+   "published": "2026-04-30",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization tests are often used to estimate the compositionality of LLMs. However, such tests have the following limitations: (1) they only focus on the output results without considering LLMs' understanding of sample compositionality, resulting in explainability defects; (2) they rely on dataset partition to form the test set with combinations unseen in the training set, suffering from combination leakage issues. In this work, we propose a novel rule-generation perspective for compositionality estimation for LLMs. It requires LLMs to generate a program as rules for dataset mapping and provides estimates of the compositionality of LLMs using complexity-based theory. The perspective addresses the limitations of compositional generalization tests and provides a new way to analyze the compositionality characterization of LLMs. We conduct experiments and analysis of existing advanced LLMs based on this perspective on a string-to-grid task, and find various compositionality characterizations and compositionality deficiencies exhibited by LLMs.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2509.16447",
+   "title": "Local Mechanisms of Compositional Generalization in Conditional Diffusion",
+   "published": "2025-09-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Conditional diffusion models appear capable of compositional generalization, i.e., generating convincing samples for out-of-distribution combinations of conditioners, but the mechanisms underlying this ability remain unclear. To make this concrete, we study length generalization, the ability to generate images with more objects than seen during training. In a controlled CLEVR setting (Johnson et al., 2017), we find that length generalization is achievable in some cases but not others, suggesting that models only sometimes learn the underlying compositional structure. We then investigate locality as a structural mechanism for compositional generalization. Prior works proposed score locality as a mechanism for creativity in unconditional diffusion models (Kamb & Ganguli, 2024; Niedoba et al., 2024), but did not address flexible conditioning or compositional generalization. In this paper, we prove an exact equivalence between a specific compositional structure (\"conditional projective composition\") (Bradley et al., 2025) and scores with sparse dependencies on both pixels and conditioners (\"local conditional scores\"). This theory also extends to feature-space compositionality. We validate our theory empirically: CLEVR models that succeed at length generalization exhibit local conditional scores, while those that fail do not. Furthermore, we show that a causal intervention explicitly enforcing local conditional scores restores length generalization in a previously failing model. Finally, we investigate SDXL and find that in pixel-space, spatial locality is present but conditional-locality is mostly absent; however, we find quantitative evidence of local conditional scores in the network's learned feature-space.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2506.20986",
+   "title": "EVA: Mixture-of-Experts Semantic Variant Alignment for Compositional Zero-Shot Learning",
+   "published": "2025-06-26",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Compositional Zero-Shot Learning (CZSL) investigates compositional generalization capacity to recognize unknown state-object pairs based on learned primitive concepts. Existing CZSL methods typically derive primitives features through a simple composition-prototype mapping, which is suboptimal for a set of individuals that can be divided into distinct semantic subsets. Moreover, the all-to-one cross-modal primitives matching neglects compositional divergence within identical states or objects, limiting fine-grained image-composition alignment. In this study, we propose EVA, a Mixture-of-Experts Semantic Variant Alignment framework for CZSL. Specifically, we introduce domain-expert adaption, leveraging multiple experts to achieve token-aware learning and model high-quality primitive representations. To enable accurate compositional generalization, we further present semantic variant alignment to select semantically relevant representation for image-primitives matching. Our method significantly outperforms other state-of-the-art CZSL methods on three popular benchmarks in both closed- and open-world settings, demonstrating the efficacy of the proposed insight.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2501.13859",
+   "title": "Learning Visual Proxy for Compositional Zero-Shot Learning",
+   "published": "2025-01-23",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Compositional Zero-Shot Learning (CZSL) aims to recognize novel attribute-object compositions by leveraging knowledge from seen compositions. Current methods align textual prototypes with visual features via Vision-Language Models (VLMs), but suffer from two limitations: (1) modality gaps hinder the discrimination of semantically similar pairs, and (2) single-modal textual prototypes lack fine-grained visual cues. In this paper, we introduce Visual Proxy Learning, a method that reduces modality gaps and enhances compositional generalization. We initialize visual proxies for attributes, objects, and their compositions using text representations and optimize the visual space to capture fine-grained cues, improving visual representations. Additionally, we propose Cross-Modal Joint Learning (CMJL), which imposes cross-modal constraints between the text-image and fine-grained visual spaces, improving generalization for unseen compositions and discriminating similar pairs. Experiments show state-of-the-art performance in closed-world scenarios and competitive results in open-world settings across four CZSL benchmarks, demonstrating the effectiveness of our approach in compositional generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2501.12539",
+   "title": "Compositional Instruction Following with Language Models and Reinforcement Learning",
+   "published": "2025-01-21",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Combining reinforcement learning with language grounding is challenging as the agent needs to explore the environment while simultaneously learning multiple language-conditioned tasks. To address this, we introduce a novel method: the compositionally-enabled reinforcement learning language agent (CERLLA). Our method reduces the sample complexity of tasks specified with language by leveraging compositional policy representations and a semantic parser trained using reinforcement learning and in-context learning. We evaluate our approach in an environment requiring function approximation and demonstrate compositional generalization to novel tasks. Our method significantly outperforms the previous best non-compositional baseline in terms of sample complexity on 162 tasks designed to test compositional generalization. Our model attains a higher success rate and learns in fewer steps than the non-compositional baseline. It reaches a success rate equal to an oracle policy's upper-bound performance of 92%. With the same number of environment steps, the baseline only reaches a success rate of 80%.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.18326",
+   "title": "Pretraining Frequency Predicts Compositional Generalization of CLIP on Real-World Tasks",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We investigate the success conditions for compositional generalization of CLIP models on real-world data through performance prediction. Prior work shows that CLIP requires exponentially more pretraining data for linear performance gains on individual concepts. This sample-inefficient scaling could be mitigated if CLIP systematically understood new inputs as compositions of learned components, allowing rare observation to be mapped to common concepts. To explore CLIP's compositional generalization ability, we filter retrieval corpora for samples with object combinations not present in the pretraining corpus. We show that CLIP's performance on these samples can be accurately predicted from the pretraining frequencies of individual objects. Our findings demonstrate that CLIP learns to disentangle objects observed in its pretraining data and can recompose them straightforwardly. Additionally, we are the first to show how this ability scales with pretraining data. For data curation in practice, our results suggest that balancing object occurrences improves generalization, which should benefit CLIP's efficiency and accuracy without scaling data volume.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2506.15629",
+   "title": "Revisiting Compositional Generalization Capability of Large Language Models Considering Instruction Following Ability",
+   "published": "2025-06-18",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "In generative commonsense reasoning tasks such as CommonGen, generative large language models (LLMs) compose sentences that include all given concepts. However, when focusing on instruction-following capabilities, if a prompt specifies a concept order, LLMs must generate sentences that adhere to the specified order. To address this, we propose Ordered CommonGen, a benchmark designed to evaluate the compositional generalization and instruction-following abilities of LLMs. This benchmark measures ordered coverage to assess whether concepts are generated in the specified order, enabling a simultaneous evaluation of both abilities. We conducted a comprehensive analysis using 36 LLMs and found that, while LLMs generally understand the intent of instructions, biases toward specific concept order patterns often lead to low-diversity outputs or identical results even when the concept order is altered. Moreover, even the most instruction-compliant LLM achieved only about 75% ordered coverage, highlighting the need for improvements in both instruction-following and compositional generalization capabilities.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2608.28603",
+   "title": "C3-UniMM: Causal Cycle-Consistent Unified Multimodal Modeling via Super Alignment and Shared Decoding Space",
+   "published": "2026-07-04",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Unified Multimodal Models aim to achieve any-to-any understanding and generation across arbitrary modalities. However, existing methods primarily rely on modeling implicit statistical correlations and lack cross-modal structural consistency constraints. This deficiency leads to profound issues, including semantic drift, poor compositional generalization, and instability under interventions. In this paper, we propose C3-UniMM, a unified multimodal modeling framework based on Causal Cycle Consistency and Super Alignment. Specifically, we introduce a Structured Latent Causal Graph (SLCG) as a shared cross-modal semantic space and design unified multimodal encoding blocks, enabling understanding and generation to be synergistically optimized within the identical causal semantic structure. Furthermore, we propose a Unified Decoding Space to enforce structural preservation and semantic invertibility during the cross-modal generation process. Theoretical analyses demonstrate that our approach significantly enhances both the invertibility and mechanism invariance of cross-modal mappings. Extensive experimental results across multiple understanding, generation, and compositional generalization tasks indicate that C3-UniMM substantially outperforms existing unified multimodal baselines.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2510.05013",
+   "title": "Curiosity-Driven Development of Action and Language in Robots Through Self-Exploration",
+   "published": "2025-10-06",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Infants acquire language with generalization from minimal experience, whereas large language models require billions of training tokens. What underlies efficient development in humans? We investigated this problem through experiments wherein robotic agents learn to perform actions associated with imperative sentences (e.g., push red cube) via curiosity-driven self-exploration. Our approach amortizes active inference using Q-learning, enabling intrinsically motivated developmental learning. The simulations reveal key findings corresponding to observations in developmental psychology. i) Generalization improves drastically as the scale of compositional elements increases. ii) Curiosity-driven exploration enables faster learning. iii) Rote pairing of sentences and actions precedes compositional generalization. iv) Exception-handling induces U-shaped developmental performance, a pattern like representational redescription in child language learning. These results suggest that curiosity-driven active inference accounts for how intrinsically motivated sensorimotor-linguistic learning supports scalable compositional generalization and exception handling in humans and artificial agents.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2509.16053",
+   "title": "Compose by Focus: Scene Graph-based Atomic Skills",
+   "published": "2025-09-19",
+   "categories": [
+    "cs.RO",
+    "cs.AI"
+   ],
+   "abstract": "A key requirement for generalist robots is compositional generalization - the ability to combine atomic skills to solve complex, long-horizon tasks. While prior work has primarily focused on synthesizing a planner that sequences pre-learned skills, robust execution of the individual skills themselves remains challenging, as visuomotor policies often fail under distribution shifts induced by scene composition. To address this, we introduce a scene graph-based representation that focuses on task-relevant objects and relations, thereby mitigating sensitivity to irrelevant variation. Building on this idea, we develop a scene-graph skill learning framework that integrates graph neural networks with diffusion-based imitation learning, and further combine \"focused\" scene-graph skills with a vision-language model (VLM) based task planner. Experiments in both simulation and real-world manipulation tasks demonstrate substantially higher success rates than state-of-the-art baselines, highlighting improved robustness and compositional generalization in long-horizon tasks.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.15277",
+   "title": "Analyzing the Inner Workings of Transformers in Compositional Generalization",
+   "published": "2025-02-21",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "The compositional generalization abilities of neural models have been sought after for human-like linguistic competence. The popular method to evaluate such abilities is to assess the models' input-output behavior. However, that does not reveal the internal mechanisms, and the underlying competence of such models in compositional generalization remains unclear. To address this problem, we explore the inner workings of a Transformer model by finding an existing subnetwork that contributes to the generalization performance and by performing causal analyses on how the model utilizes syntactic features. We find that the model depends on syntactic features to output the correct answer, but that the subnetwork with much better generalization performance than the whole model relies on a non-compositional algorithm in addition to the syntactic features. We also show that the subnetwork improves its generalization performance relatively slowly during the training compared to the in-distribution one, and the non-compositional solution is acquired in the early stages of the training.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2605.00273",
+   "title": "When Do Diffusion Models learn to Generate Multiple Objects?",
+   "published": "2026-04-30",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Text-to-image diffusion models achieve impressive visual fidelity, yet they remain unreliable in multi-object generation. Despite extensive empirical evidence of these failures, the underlying causes remain unclear. We begin by asking how much of this limitation arises from the data itself. To disentangle data effects, we consider two regimes across different dataset sizes: (1) concept generalization, where each individual concept is observed during training under potentially imbalanced data distributions, and (2) compositional generalization, where specific combinations of concepts are systematically held out. To study these regimes, we introduce mosaic (Multi-Object Spatial relations, AttrIbution, Counting), a controlled framework for dataset generation. By training diffusion models on mosaic, we find that scene complexity plays a dominant role rather than concept imbalance, and that counting is uniquely difficult to learn in low-data regimes. Moreover, compositional generalization collapses as more concept combinations are held out during training. These findings highlight fundamental limitations of diffusion models and motivate stronger inductive biases and data design for robust multi-object compositional generation.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2610.04649",
+   "title": "Gated Target Propagation for Compositional Generalization in Continual Learning",
+   "published": "2026-10-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning is typically framed as acquiring new knowledge without catastrophically forgetting previous tasks. However, a flexible continual learner should also be able to reuse and recombine previously acquired knowledge to rapidly solve novel task compositions. We introduce Gated Target Propagation (GaTaP), a continual learning algorithm in which task-specific gating variables---learned through a closed-form inner loop update---selectively suppress or enhance network modules. Network parameters are learned in a slower timescale outer loop, using the same local difference target propagation error signal as is used for adapting gating variables. We provide tractable experiments on class-incremental learning scenarios for both multilayer perceptron and convolutional network architectures. We show strong performance retention on previously learned tasks, as well as compositional generalization to unseen tasks, achieved through few-shot gain adaptation at inference. We analyze learned gating patterns and find that related tasks exhibit similar gating patterns, suggesting that inferred gates capture meaningful, reusable task structure. Overall, GaTaP provides a powerful framework for jointly ameliorating catastrophic forgetting and enabling few-shot compositional generalization in neural network models.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2610.39016",
+   "title": "Implicit Reasoning in Transformers: Bridging the Compositionality Gap in GPT-2-like Models",
+   "published": "2026-10-28",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization remains a persistent limitation of transformer language models: even when a model learns to combine known facts correctly in-distribution (ID), the same compositional mechanism may fail when applied to out-of-distribution (OOD) knowledge. We investigate this compositionality gap in a controlled two-hop reasoning setting using a GPT-2-like transformer model trained from scratch. Building on prior work identifying a circuit associated with compositional generalization, we test whether the failure of OOD transfer is related to how atomic knowledge is structurally exposed during training. We modify the training distribution by presenting both ID and OOD atomic facts in a format positionally aligned with the second-hop retrieval step of the learned compositional circuit, without modifying the model architecture or adding OOD compositional supervision. Under this intervention, the model successfully transfers the learned ID compositional behaviour to held-out OOD atomic facts, closing the observed compositionality gap in the controlled setting. Our results provide evidence that the observed compositionality gap is not a fundamental architecture limitation and that it can be overcome through mechanistically informed training distribution design.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2605.31497",
+   "title": "Assign and Add: A Mechanistic Study of Compositional Arithmetic",
+   "published": "2026-05-29",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Large language models are able to compose skills in order to perform complex tasks, many of which might not have been seen during training. The details of how exactly this composition occurs remain elusive. In this paper, we study a mechanism for compositional generalization in transformers by considering a simple controlled setting involving variable assignment and modular addition. By partitioning our training data into disjoint sets, we observe that small transformers are able to generalize to previously unseen combinations of variables and numbers. Our mechanistic analysis shows that the same ``modular addition'' MLP module is used whether the inputs are given directly or indirectly through a separate variable assignment mechanism. We also analyze the training dynamics from an empirical lens, which reveals three phases of learning: first, modular addition is learned, then the structure required for variable assignment, and finally a refinement phase where the model generalizes to some hard sequences not seen in training. Finally, we provide a theoretical framework to explain how compositionality emerges from training dynamics. These results suggest that compositional generalization can be a natural consequence of the compositionality of internal mechanisms in~transformers.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2510.01661",
+   "title": "Symskill: Symbol and Skill Co-Invention for Data-Efficient and Reactive Long-Horizon Manipulation",
+   "published": "2025-10-02",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Multi-step manipulation in dynamic environments remains challenging. Imitation learning (IL) is reactive but lacks compositional generalization, since monolithic policies do not decide which skill to reuse when scenes change. Classical task-and-motion planning (TAMP) offers compositionality, but its high planning latency prevents real-time failure recovery. We introduce SymSkill, a unified framework that jointly learns predicates, operators, and skills from unlabeled, unsegmented demonstrations, combining compositional generalization with real-time recovery. Offline, SymSkill learns symbolic abstractions and goal-oriented skills directly from demonstrations. Online, given a conjunction of learned predicates, it uses a symbolic planner to compose and reorder skills to achieve symbolic goals while recovering from failures at both the motion and symbolic levels in real time. Coupled with a compliant controller, SymSkill supports safe execution under human and environmental disturbances. In RoboCasa simulation, SymSkill executes 12 single-step tasks with 85% success and composes them into multi-step plans without additional data. On a real Franka robot, it learns from 5 minutes of play data and performs 12-step tasks from goal specifications. Code and additional analysis are available at https://symskill.github.io/ .",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2608.29305",
+   "title": "Learning Simple Test-Time Environments for LLM Web Agents",
+   "published": "2026-08-29",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Large language model (LLM) agents have demonstrated remarkable proficiency in manually constructed environments, yet their performance frequently collapses when transitioned to complex real-world settings. Existing research largely attribute this degradation to the compositional generalization gaps in LLMs on combinations of multiple simple, well-structured environments. In this work, we propose that LLM web agents can learn simple environment observations at test time. Specifically, we introduce trial steps for agents to decompose a complex environment observation into sub-modules, and implement a label-free learning method, Test-Time Environment Decomposition (TTED), to adapt agent behaviors with experience during inference. Our empirical evaluations demonstrate the framework's efficacy across both synthetic and realistic benchmarks, showing (1) experience gains acquired within simpler sub-environments can be effectively composed to improve performance in the full one, and (2) test-time training on sub-environments can significantly enhance the compositional generalization of agents in real-world web automation tasks. We also provide key insights in the design of the label-free learning algorithm. As more complex environments are accessed by LLM agents, we believe learning environment decomposition skills at test time will be critical for robust real-world deployment.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2505.23045",
+   "title": "Multi-Sourced Compositional Generalization in Visual Question Answering",
+   "published": "2025-05-29",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Compositional generalization is the ability of generalizing novel compositions from seen primitives, and has received much attention in vision-and-language (V\\&L) recently. Due to the multi-modal nature of V\\&L tasks, the primitives composing compositions source from different modalities, resulting in multi-sourced novel compositions. However, the generalization ability over multi-sourced novel compositions, \\textit{i.e.}, multi-sourced compositional generalization (MSCG) remains unexplored. In this paper, we explore MSCG in the context of visual question answering (VQA), and propose a retrieval-augmented training framework to enhance the MSCG ability of VQA models by learning unified representations for primitives from different modalities. Specifically, semantically equivalent primitives are retrieved for each primitive in the training samples, and the retrieved features are aggregated with the original primitive to refine the model. This process helps the model learn consistent representations for the same semantic primitives across different modalities. To evaluate the MSCG ability of VQA models, we construct a new GQA-MSCG dataset based on the GQA dataset, in which samples include three types of novel compositions composed of primitives from different modalities. Experimental results demonstrate the effectiveness of the proposed framework. We release GQA-MSCG at https://github.com/NeverMoreLCH/MSCG.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2608.05970",
+   "title": "SkillMemo: Expert-guided Skill Memory Framework for Compositional Embodied Manipulation",
+   "published": "2026-08-06",
+   "categories": [
+    "cs.RO",
+    "cs.AI"
+   ],
+   "abstract": "Embodied visuomotor models, including Diffusion Policy (DP) and Vision-Language-Action (VLA) models, have demonstrated promising performance on robotic manipulation benchmarks. However, their potential remains fundamentally constrained by the scarcity of large-scale embodied trajectory datasets, leading to insufficient compositional generalization in out-of-distribution (OOD) scenarios with limited capability to capture reusable skill structures. To address this limitation, we propose Skill-Based Memory (SkillMemo) framework that implicitly decomposes long-horizon demonstrations into latent atomic skills and integrates skill-level features into a dynamic episodic memory bank for solving compositional tasks. Specifically, we first introduce an expert-guided trajectory segmentation module built upon a Mixture-of-Experts (MoE) architecture, which implicitly partitions trajectories into distinct skill primitives represented by learned gating coefficients. We further design a skill-level episodic memory architecture that stores compact skill representations as retrievable key-value pairs. During inference, the memory bank retrieves the most relevant skill primitives which are subsequently fused with the model's current gating distribution, providing a robust contextual prior to refine action predictions. Extensive experiments on the simulation benchmark and real-world manipulation tasks demonstrate that SkillMemo consistently enhances both DP and VLA backbones, achieving state-of-the-art performance and outperforming $π_{0.5}$, while exhibiting strong compositional generalization to unseen task configurations.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2501.18797",
+   "title": "Compositional Generalization via Forced Rendering of Disentangled Latents",
+   "published": "2025-01-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Composition-the ability to generate myriad variations from finite means-is believed to underlie powerful generalization. However, compositional generalization remains a key challenge for deep learning. A widely held assumption is that learning disentangled (factorized) representations naturally supports this kind of extrapolation. Yet, empirical results are mixed, with many generative models failing to recognize and compose factors to generate out-of-distribution (OOD) samples. In this work, we investigate a controlled 2D Gaussian \"bump\" generation task with fully disentangled (x,y) inputs, demonstrating that standard generative architectures still fail in OOD regions when training with partial data, by re-entangling latent representations in subsequent layers. By examining the model's learned kernels and manifold geometry, we show that this failure reflects a \"memorization\" strategy for generation via data superposition rather than via composition of the true factorized features. We show that when models are forced-through architectural modifications with regularization or curated training data-to render the disentangled latents into the full-dimensional representational (pixel) space, they can be highly data-efficient and effective at composing in OOD regions. These findings underscore that disentangled latents in an abstract representation are insufficient and show that if models can represent disentangled factors directly in the output representational space, it can achieve robust compositional generalization.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2510.13149",
+   "title": "RoboHiMan: A Hierarchical Evaluation Paradigm for Compositional Generalization in Long-Horizon Manipulation",
+   "published": "2025-10-15",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Enabling robots to flexibly schedule and compose learned skills for novel long-horizon manipulation under diverse perturbations remains a core challenge. Early explorations with end-to-end VLA models show limited success, as these models struggle to generalize beyond the training distribution. Hierarchical approaches, where high-level planners generate subgoals for low-level policies, bring certain improvements but still suffer under complex perturbations, revealing limited capability in skill composition. However, existing benchmarks primarily emphasize task completion in long-horizon settings, offering little insight into compositional generalization, robustness, and the interplay between planning and execution. To systematically investigate these gaps, we propose RoboHiMan, a hierarchical evaluation paradigm for compositional generalization in long-horizon manipulation. RoboHiMan introduces HiMan-Bench, a benchmark of atomic and compositional tasks under diverse perturbations, supported by a multi-level training dataset for analyzing progressive data scaling, and proposes three evaluation paradigms (vanilla, decoupled, coupled) that probe the necessity of skill composition and reveal bottlenecks in hierarchical architectures. Experiments highlight clear capability gaps across representative models and architectures, pointing to directions for advancing models better suited to real-world long-horizon manipulation tasks. Videos and open-source code can be found on our project website: https://chenyt31.github.io/robo-himan.github.io/.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2607.08127",
+   "title": "Understanding and Mitigating the Video-Action Generalization Gap via Temporal Ratio",
+   "published": "2026-07-09",
+   "categories": [
+    "cs.CV",
+    "cs.RO"
+   ],
+   "abstract": "Generative video foundation models exhibit strong compositional priors, yet world-action models (WAMs) and video-action models (VAMs) often lose these priors after finetuning on robotic action data. We refer to this discrepancy as the video-action generalization gap. In this paper, we systematically investigate this gap by evaluating a comprehensive design space of VAMs, demonstrating that standard design choices yield no emergent explanation pattern. To explain this behavior, we introduce the Temporal Ratio (TR), an attention-based measure of how strongly the action head relies on future latent rollouts relative to the anchored current frame. TR has two key properties: first, a model's structural reliance on future-predictive latents, measured via TR, acts as a predictor of its compositional generalization capacity; second, it natively fluctuates based on task phase, shifting attention to future frames during planning and reverting to the present frame for precise manipulation. Finally, based on these findings, we propose an inference-time adaptive guidance method, which exploits this intrinsic feature attention pattern to dynamically amplify compositional video conditioning signals precisely when the policy relies on future rollouts. Evaluated on the LIBERO benchmark and real-world tasks, our approach mitigates the OOD-ID compositional generalization gap. More details: https://umishra.me/temporal-ratio/",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2606.18089",
+   "title": "From Reasoning Traces to Reusable Modules: Understanding Compositional Generalization in Language Model Reasoning",
+   "published": "2026-06-16",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Post-training pipelines that combine supervised fine-tuning (SFT) with reinforcement learning (RL) have emerged as the key recipe for transforming large language models (LLMs) into robust reasoners. We argue that this combined success is driven by compositional generalization, which we formalize through a hierarchical latent selection model. In this framework, reasoning traces are generated by a cascade of discrete latent selection variables corresponding to reusable atomic modules, including both skills (local operations) and routing mechanisms (how intermediate information is selected, reused, and composed). Within this model, we theoretically show that SFT and RL play asymmetric, complementary roles: SFT supplies the raw module materials in compositional traces, and RL decomposes those traces to identify the latent atomic modules and enable compositional generalization. We design controlled experiments to validate this theory. Our results demonstrate that RL can extract atomic modules from compound traces supplied by SFT and recombine them to solve new configurations. Moreover, we find that training on compound traces yields stronger generalization than training on isolated atomic modules. Finally, we investigate the relationship between SFT and RL data and identify an effective protocol in which SFT ensures coverage of all atomic modules through compositional traces, while RL focuses on novel compositions outside the SFT support to drive exploration.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2604.26522",
+   "title": "AGEL-Comp: A Neuro-Symbolic Framework for Compositional Generalization in Interactive Agents",
+   "published": "2026-04-29",
+   "categories": [
+    "cs.AI",
+    "cs.LG",
+    "cs.LO",
+    "cs.MA",
+    "cs.SC"
+   ],
+   "abstract": "Large Language Model (LLM)-based agents exhibit systemic failures in compositional generalization, limiting their robustness in interactive environments. This work introduces AGEL-Comp, a neuro-symbolic AI agent architecture designed to address this challenge by grounding actions of the agent. AGEL-Comp integrates three core innovations: (1) a dynamic Causal Program Graph (CPG) as a world model, representing procedural and causal knowledge as a directed hypergraph; (2) an Inductive Logic Programming (ILP) engine that synthesizes new Horn clauses from experiential feedback, grounding symbolic knowledge through interaction; and (3) a hybrid reasoning core where an LLM proposes a set of candidate sub-goals that are verified for logical consistency by a Neural Theorem Prover (NTP). Together, these components operationalize a deduction--abduction learning cycle: enabling the agent to deduce plans and abductively expand its symbolic world model, while a neural adaptation phase keeps its reasoning engine aligned with new knowledge. We propose an evaluation protocol within the \\texttt{Retro Quest} simulation environment to probe for compositional generalization scenarios to evaluate our AGEL agent. Our findings clearly indicate the better performance of our AGEL model over pure LLM-based models. Our framework presents a principled path toward agents that build an explicit, interpretable, and compositionally structured understanding of their world.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2604.07822",
+   "title": "Loop, Think, & Generalize: Implicit Reasoning in Recurrent-Depth Transformers",
+   "published": "2026-04-09",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "We study implicit reasoning, i.e. the ability to combine knowledge or rules within a single forward pass. While transformer-based large language models store substantial factual knowledge and rules, they often fail to compose this knowledge for implicit multi-hop reasoning, suggesting a lack of compositional generalization over their parametric knowledge. To address this limitation, we study recurrent-depth transformers, which enables iterative computation over the same transformer layers. We investigate two compositional generalization challenges under the implicit reasoning scenario: systematic generalization, i.e. combining knowledge that is never used for compositions during training, and depth extrapolation, i.e. generalizing from limited reasoning depth (e.g. training on up to 5-hop) to deeper compositions (e.g. 10-hop). Through controlled studies with models trained from scratch, we show that while vanilla transformers struggle with both generalization challenges, recurrent-depth transformers can effectively make such generalization. For systematic generalization, we find that this ability emerges through a three-stage grokking process, transitioning from memorization to in-distribution generalization and finally to systematic generalization, supported by mechanistic analysis. For depth extrapolation, we show that generalization beyond training depth can be unlocked by scaling inference-time recurrence, with more iterations enabling deeper reasoning. We further study how training strategies affect extrapolation, providing guidance on training recurrent-depth transformers, and identify a key limitation, overthinking, where excessive recurrence degrades predictions and limits generalization to very deep compositions.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2608.26465",
+   "title": "Compositional Generalization via Structural Identification in a Category-Theoretic Framework",
+   "published": "2026-08-26",
+   "categories": [
+    "cs.CL",
+    "stat.ML"
+   ],
+   "abstract": "Compositional generalization is usually evaluated through model accuracy. We instead ask which structural or lexical identifications make held-out COGS examples admissible from the structures observed in training. Sentences are represented as functors from syntactic addresses to lexical tokens, and selective collapses induce Kan extensions that propagate observed associations. Across 21 COGS generalization types, admissibility follows distinct identification profiles, while residual failures separate unsupported structural templates. These data-side diagnoses characterize what the training corpus licenses under specified identifications, without training a predictive model.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2606.27721",
+   "title": "Learning to Reason with Curriculum II: Compositional Generalization",
+   "published": "2026-06-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Compositional generalization, the ability to solve complex problems by combining solutions to simpler sub-problems, is a fundamental capability of both natural and artificial intelligence, and a key mechanism underlying chain-of-thought reasoning. However, the theoretical underpinnings of compositional generalization remain poorly understood: when and why does decomposing a problem into parts yield more efficient learning than solving it directly? We study this question through the canonical problem of learning to simulate semiautomata (predicting the outcome of $T$ steps of sequential computation), a model that captures state tracking, regular language recognition, and modular arithmetic. We show that an autocurriculum-based approach building on Part I of this series, recursively decomposing longer sequences into shorter sub-problems, learning to solve them, and composing the solutions, achieves dramatically better statistical complexity than direct methods. (i) For a setting inspired by supervised fine-tuning (SFT) where the learner receives interactive feedback on intermediate states of the computation, curriculum facilitates learning from only $2^{\\mathcal{O}(\\sqrt{\\log T})}$ tokens of supervision; i.e., subpolynomial in the sequence length $T$, overcoming the $Ω(T)$ token barrier required by direct simulation. (ii) For a setting inspired by reinforcement learning with verifiable rewards (RLVR), where the learner improves a pre-trained reference model using an outcome verifier, we show that curriculum reduces the requirement on the reference model from coverage at the full sequence length $T$ to coverage at a shorter block length $B \\ll T$, an exponentially weaker condition.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2511.11034",
+   "title": "CrossMed: A Multimodal Cross-Task Benchmark for Compositional Generalization in Medical Imaging",
+   "published": "2025-11-14",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in multimodal large language models have enabled unified processing of visual and textual inputs, offering promising applications in general-purpose medical AI. However, their ability to generalize compositionally across unseen combinations of imaging modality, anatomy, and task type remains underexplored. We introduce CrossMed, a benchmark designed to evaluate compositional generalization (CG) in medical multimodal LLMs using a structured Modality-Anatomy-Task (MAT) schema. CrossMed reformulates four public datasets, CheXpert (X-ray classification), SIIM-ACR (X-ray segmentation), BraTS 2020 (MRI classification and segmentation), and MosMedData (CT classification) into a unified visual question answering (VQA) format, resulting in 20,200 multiple-choice QA instances. We evaluate two open-source multimodal LLMs, LLaVA-Vicuna-7B and Qwen2-VL-7B, on both Related and Unrelated MAT splits, as well as a zero-overlap setting where test triplets share no Modality, Anatomy, or Task with the training data. Models trained on Related splits achieve 83.2 percent classification accuracy and 0.75 segmentation cIoU, while performance drops significantly under Unrelated and zero-overlap conditions, demonstrating the benchmark difficulty. We also show cross-task transfer, where segmentation performance improves by 7 percent cIoU even when trained using classification-only data. Traditional models (ResNet-50 and U-Net) show modest gains, confirming the broad utility of the MAT framework, while multimodal LLMs uniquely excel at compositional generalization. CrossMed provides a rigorous testbed for evaluating zero-shot, cross-task, and modality-agnostic generalization in medical vision-language models.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2505.18083",
+   "title": "What Do You Need for Compositional Generalization in Diffusion Planning?",
+   "published": "2025-05-23",
+   "categories": [
+    "cs.LG",
+    "cs.RO"
+   ],
+   "abstract": "In policy learning, stitching and compositional generalization refer to the extent to which the policy is able to piece together sub-trajectories of data it is trained on to generate new and diverse behaviours. While stitching has been identified as a significant strength of offline reinforcement learning, recent generative behavioural cloning (BC) methods have also shown proficiency at stitching. However, the main factors behind this are poorly understood, hindering the development of new algorithms that can reliably stitch by design. Focusing on diffusion planners trained via generative behavioural cloning, and without resorting to dynamic programming or TD-learning, we find three properties are key enablers for composition: shift equivariance, local receptive fields, and inference choices. We use these properties to explain architecture, data, and inference choices in existing generative BC methods based on diffusion planning including replanning frequency, data augmentation, and data scaling. Our experiments show that while local receptive fields are more important than shift equivariance in creating a diffusion planner capable of composition, both are crucial. Using findings from our experiments, we develop a new architecture for diffusion planners called Eq-Net, that is simple, produces diverse trajectories competitive with more computationally expensive methods such as replanning or scaling data, and can be guided to enable generalization in goal-conditioned settings. We show that Eq-Net exhibits significant compositional generalization in a variety of navigation and manipulation tasks designed to test planning diversity.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2511.20194",
+   "title": "In-Context Compositional Learning via Sparse Coding Transformer",
+   "published": "2025-11-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Transformer architectures have achieved remarkable success across language, vision, and multimodal tasks, and there is growing demand for them to address in-context compositional learning tasks. In these tasks, models solve the target problems by inferring compositional rules from context examples, which are composed of basic components structured by underlying rules. However, some of these tasks remain challenging for Transformers, which are not inherently designed to handle compositional tasks and offer limited structural inductive bias. In this work, inspired by the principle of sparse coding, we propose a reformulation of the attention to enhance its capability for compositional tasks. In sparse coding, data are represented as sparse combinations of dictionary atoms with coefficients that capture their compositional rules. Specifically, we reinterpret the attention block as a mapping of inputs into outputs through projections onto two sets of learned dictionary atoms: an encoding dictionary and a decoding dictionary. The encoding dictionary decomposes the input into a set of coefficients, which represent the compositional structure of the input. To enhance structured representations, we impose sparsity on these coefficients. The sparse coefficients are then used to linearly combine the decoding dictionary atoms to generate the output. Furthermore, to assist compositional generalization tasks, we propose estimating the coefficients of the target problem as a linear combination of the coefficients obtained from the context examples. We demonstrate the effectiveness of our approach on the S-RAVEN and RAVEN datasets. For certain compositional generalization tasks, our method maintains performance even when standard Transformers fail, owing to its ability to learn and apply compositional rules.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2507.15877",
+   "title": "Out-of-Distribution Generalization in the ARC-AGI Domain: Comparing Execution-Guided Neural Program Synthesis and Test-Time Fine-Tuning",
+   "published": "2025-07-17",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "We run a controlled compositional generalization experiment in the ARC-AGI domain: an open-world problem domain in which the ability to generalize out-of-distribution is, by design, an essential characteristic for success. We compare neural program synthesis and test-time fine-tuning approaches on this experiment. We find that execution-guided neural program synthesis outperforms all reference algorithms in its ability to compose novel solutions. Our empirical findings also suggest that the success of TTFT on ARC-AGI lies mainly in eliciting in-distribution knowledge that the LLM otherwise fails to rely on directly.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2605.05775",
+   "title": "The autoPET3 Challenge: Automated Lesion Segmentation in Whole-Body PET/CT $\\unicode{x2013}$ Multitracer Multicenter Generalization",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "We report the design and results of the third autoPET challenge (MICCAI 2024), which benchmarked automated lesion segmentation in whole-body PET/CT under a compositional generalization setting. Training data comprised 1,014 [18F]-FDG PET/CT studies from the University Hospital Tübingen and 597 [18F]/[68Ga]-PSMA PET/CT studies from the LMU University Hospital Munich, constituting the largest publicly available annotated PSMA PET/CT dataset to date. The held-out test set of 200 studies covered four tracer-center combinations, two of which represented unseen compositional pairings. A complementary data-centric award category isolated the contribution of data handling strategies by restricting participants to a fixed baseline model. Seventeen teams submitted 27 algorithms, predominantly nnU-Net-based 3D networks with PET/CT channel concatenation. The top-ranked algorithm achieved a mean DSC of 0.66, FNV of 3.18 mL, and FPV of 2.78 mL across all four test conditions, improving DSC by 8% and reducing the false-negative volume by 5 mL relative to the provided baseline. Ranking was stable across bootstrap resampling and alternative ranking schemes for the top tier. Beyond the benchmark, we provide an in-depth analysis of segmentation performance at the patient and lesion level. Three main conclusions can be drawn: (1) in-domain multitracer PET/CT segmentation is sufficient and probably approaching reader agreement; (2) compositional generalization to unseen tracer-center combinations remains an open problem mainly driven by systematic volume overestimation; (3) heterogeneity and case difficulty drive performance variation substantially more than the choice of algorithm among top-ranked teams.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2611.13498",
+   "title": "Evaluating Compositional Generalization in Transformers: The Role of Composition Equivalence and Module Coverage",
+   "published": "2026-11-10",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Compositional generalization is an important form of out-of-distribution generalization, defined as the ability to train on some combinations of modules (e.g., functions such as sort, filter) and then generalize to unseen combinations. Despite substantial empirical work evaluating compositional generalization in transformers, findings have been inconsistent because evaluations were often conducted on a limited set of train-test splits, defined in an ad hoc manner. Through a systematic evaluation, we identify two key aspects of the train-test distribution that strongly affect performance: composition equivalence and module coverage. We show that the apparent performance of direct models (trained only on final outputs) results primarily from exploiting composition equivalences, meaning different sequences of modules that reduce to identical end-to-end functions. When benchmarks eliminate these equivalences, performance drops significantly, showing their inability to generalize to compositions of known modules that produce novel end-to-end functions. We further demonstrate that performance degrades monotonically as module coverage shifts increase (when modules appear in different contexts between train and test), affecting both direct and step-by-step models (trained on intermediate and final outputs). These findings have concrete implications for benchmark design: benchmarks that include compositional equivalences can lead to significant overestimation of the generalization abilities of direct models, and benchmarks that include both module coverage violations and compositional equivalences can exacerbate shortcut learning. As a case study, we demonstrate the role of compositional equivalence on the generalization performance of the pre-trained model Llama3-8B on the code-output prediction task in the coding benchmark LiveCodeBench.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2601.10169",
+   "title": "CtD: Composition through Decomposition in Emergent Communication",
+   "published": "2026-01-15",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Compositionality is a cognitive mechanism that allows humans to systematically combine known concepts in novel ways. This study demonstrates how artificial neural agents acquire and utilize compositional generalization to describe previously unseen images. Our method, termed \"Composition through Decomposition\", involves two sequential training steps. In the 'Decompose' step, the agents learn to decompose an image into basic concepts using a codebook acquired during interaction in a multi-target coordination game. Subsequently, in the 'Compose' step, the agents employ this codebook to describe novel images by composing basic concepts into complex phrases. Remarkably, we observe cases where generalization in the `Compose' step is achieved zero-shot, without the need for additional training.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2507.08000",
+   "title": "Impact of Pretraining Word Co-occurrence on Compositional Generalization in Multimodal Models",
+   "published": "2025-07-10",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "CLIP and large multimodal models (LMMs) have better accuracy on examples involving concepts that are highly represented in the training data. However, the role of concept combinations in the training data on compositional generalization is largely unclear -- for instance, how does accuracy vary when a common object appears in an uncommon pairing with another object? In this paper, we investigate how word co-occurrence statistics in the pretraining dataset (a proxy for co-occurrence of visual concepts) impacts CLIP/LMM performance. To disentangle the effects of word co-occurrence frequencies from single-word frequencies, we measure co-occurrence with pointwise mutual information (PMI), which normalizes the joint probability of two words co-occurring by the probability of co-occurring independently. Using synthetically generated images with a variety of concept pairs, we show a strong correlation between PMI in the CLIP pretraining data and zero-shot accuracy in CLIP models trained on LAION-400M (r=0.97 and 14% accuracy gap between images in the top and bottom 5% of PMI values), demonstrating that even accuracy on common concepts is affected by the combination of concepts in the image. Leveraging this finding, we reproduce this effect in natural images by editing them to contain pairs with varying PMI, resulting in a correlation of r=0.75. Finally, we demonstrate that this behavior in CLIP transfers to LMMs built on top of CLIP (r=0.70 for TextVQA, r=0.62 for VQAv2). Our findings highlight the need for algorithms and architectures that improve compositional generalization in multimodal models without scaling the training data combinatorially. Our code is available at https://github.com/helenqu/multimodal-pretraining-pmi.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.05454",
+   "title": "Temporal Representation Alignment: Successor Features Enable Emergent Compositionality in Robot Instruction Following",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.RO",
+    "cs.LG"
+   ],
+   "abstract": "Effective task representations should facilitate compositionality, such that after learning a variety of basic tasks, an agent can perform compound tasks consisting of multiple steps simply by composing the representations of the constituent steps together. While this is conceptually simple and appealing, it is not clear how to automatically learn representations that enable this sort of compositionality. We show that learning to associate the representations of current and future states with a temporal alignment loss can improve compositional generalization, even in the absence of any explicit subtask planning or reinforcement learning. We evaluate our approach across diverse robotic manipulation tasks as well as in simulation, showing substantial improvements for tasks specified with either language or goal images.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2602.00924",
+   "title": "Supervised sparse auto-encoders for interpretable and compositional representations",
+   "published": "2026-01-31",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Sparse auto-encoders (SAEs) have re-emerged as a prominent method for mechanistic interpretability, yet they face two significant challenges: the non-smoothness of the $L_1$ penalty, which hinders reconstruction and scalability, and a lack of alignment between learned features and human semantics. In this paper, we address these limitations by adapting unconstrained feature models, a mathematical framework from neural collapse theory, and by supervising the task. We supervise (decoder-only) SAEs to reconstruct feature vectors by jointly learning sparse concept embeddings and decoder weights. Validated on Stable Diffusion 3.5, our approach demonstrates compositional generalization, successfully reconstructing images with concept combinations unseen during training, and enabling feature-level intervention for semantic image editing without prompt modification.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2502.15801",
+   "title": "An explainable transformer circuit for compositional generalization",
+   "published": "2025-02-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Compositional generalization-the systematic combination of known components into novel structures-remains a core challenge in cognitive science and machine learning. Although transformer-based large language models can exhibit strong performance on certain compositional tasks, the underlying mechanisms driving these abilities remain opaque, calling into question their interpretability. In this work, we identify and mechanistically interpret the circuit responsible for compositional induction in a compact transformer. Using causal ablations, we validate the circuit and formalize its operation using a program-like description. We further demonstrate that this mechanistic understanding enables precise activation edits to steer the model's behavior predictably. Our findings advance the understanding of complex behaviors in transformers and highlight such insights can provide a direct pathway for model control.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2611.16213",
+   "title": "Visibility-Aware Task and Motion Planning with Task-Centric Perception",
+   "published": "2026-11-12",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Long-horizon manipulation under uncertainty remains a challenging problem in robotics. We present \\ourmethod{}, an algorithm for Visibility-Aware Task and Motion Planning. \\ourmethod{} extends existing deterministic task and motion planning solvers to partially observable object rearrangement tasks, while still being able to take advantage of the efficiency and compositional generalization over long horizons of the base solver. This extension interleaves sensing actions into a plan skeleton that assumed full observability, and uses a novel persistent object-based memory to fuse observations into object mesh hypotheses and an observed occupancy map. We evaluate \\ourmethod{} on real-world tabletop rearrangement tasks which feature heavy occlusion and partial visibility and demonstrate that it outperforms baselines that do not perform active perception or have persistent memory.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2603.07295",
+   "title": "A Cortically Inspired Architecture for Modular Perceptual AI",
+   "published": "2026-03-07",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "This paper bridges neuroscience and artificial intelligence to propose a cortically inspired blueprint for modular perceptual AI. While current monolithic models such as GPT-4V achieve impressive performance, they often struggle to explicitly support interpretability, compositional generalization, and adaptive robustness - hallmarks of human cognition. Drawing on neuroscientific models of cortical modularity, predictive processing, and cross-modal integration, we advocate decomposing perception into specialized, interacting modules. This architecture supports structured, human-inspired reasoning by making internal inference processes explicit through hierarchical predictive feedback loops and shared latent spaces. Our proof-of-concept study provides empirical evidence that modular decomposition yields more stable and inspectable representations. By grounding AI design in biologically validated principles, we move toward systems that not only perform well, but also support more transparent and human-aligned inference.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2508.16652",
+   "title": "Do VLMs Have Bad Eyes? Diagnosing Compositional Failures via Mechanistic Interpretability",
+   "published": "2025-08-20",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Vision-Language Models (VLMs) have shown remarkable performance in integrating visual and textual information for tasks such as image captioning and visual question answering. However, these models struggle with compositional generalization and object binding, which limit their ability to handle novel combinations of objects and their attributes. Our work explores the root causes of these failures using mechanistic interpretability techniques. We show evidence that individual neurons in the MLP layers of CLIP's vision encoder represent multiple features, and this \"superposition\" directly hinders its compositional feature representation which consequently affects compositional reasoning and object binding capabilities. We hope this study will serve as an initial step toward uncovering the mechanistic roots of compositional failures in VLMs. The code and supporting results can be found https://github.com/Mystic-Slice/Do-VLMs-Have-Bad-Eyes.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2607.03134",
+   "title": "Open-Set Source Tracing as Compositional Factors via Structured Prototypes",
+   "published": "2026-07-03",
+   "categories": [
+    "eess.AS",
+    "cs.LG"
+   ],
+   "abstract": "Recent research expands beyond binary anti-spoofing with the emergence of Source Tracing, the task of identifying the specific generative origins of synthetic speech. However, current research often equates a \"source\" with its generative architecture. We propose redefining a source as a compositional tuple of Architecture, Training Data, and other training factors affecting the generated speech. We propose a framework using Structured Orthonormal Prototypes to minimize class overlap and intra-class variance. Our Subspace Partitioning strategy splits the embedding into architecture and data subspaces, while a residual subspace captures stochastic variability, enabling \"compositional generalization\" for novel factor combinations. This approach improves performance for partially seen sources and maintains robustness in fully open-set scenarios. MLAAD evaluations for Few-Shot open-set Identification show our approach significantly outperforms angular-margin baselines.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2505.06191",
+   "title": "Building Intelligent Agents with Neuro-Symbolic Concepts",
+   "published": "2025-05-09",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.CV",
+    "cs.LG",
+    "cs.RO"
+   ],
+   "abstract": "This article presents a concept-centric paradigm for building agents that can learn continually and reason flexibly. The concept-centric agent utilizes a vocabulary of neuro-symbolic concepts. These concepts, such as object, relation, and action concepts, are grounded on sensory inputs and actuation outputs. They are also compositional, allowing for the creation of novel concepts through their structural combination. To facilitate learning and reasoning, the concepts are typed and represented using a combination of symbolic programs and neural network representations. Leveraging such neuro-symbolic concepts, the agent can efficiently learn and recombine them to solve various tasks across different domains, ranging from 2D images, videos, 3D scenes, and robotic manipulation tasks. This concept-centric framework offers several advantages, including data efficiency, compositional generalization, continual learning, and zero-shot transfer.",
+   "query": "compositional generalization"
+  },
+  {
+   "id": "2501.08361",
+   "title": "Weight Averaging for Out-of-Distribution Generalization and Few-Shot Domain Adaptation",
+   "published": "2025-01-14",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Empirical risk minimization (ERM) is not robust to changes in the distribution of data. When the distribution of test data is different from that of training data, the problem is known as out-of-distribution generalization. Recently, two techniques have been developed for addressing out-of-distribution generalization in computer vision: weight averaging (WA) and sharpness-aware minimization (SAM). WA involves training multiple models with different hyperparameters and then averaging the weights of these models, which can significantly improve out-of-distribution generalization performance. SAM optimizes a neural network to find minima in flat regions, which have been proven to perform well under distribution shifts. While these techniques have made great progress, there is still room for improvement and further exploration. In this thesis, we propose increasing the model diversity in WA explicitly by introducing gradient similarity as a loss regularizer to further improve out-of-distribution generalization performance. We also propose combining WA and SAM to solve the problem of few-shot domain adaptation. Our extensive experiments on digits datasets (MNIST, SVHN, USPS, MNIST-M) and other domain adaptation datasets (VLCS, PACS) show that combining WA and SAM leads to improved out-of-distribution generalization performance and significantly increases few-shot domain adaptation accuracy.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2609.33688",
+   "title": "TopoMamba: A Load-Support Relation-Guided Multi-Directional State-Space Model for Topology Optimization",
+   "published": "2026-09-27",
+   "categories": [
+    "cs.AI",
+    "cs.CE",
+    "cs.LG"
+   ],
+   "abstract": "Deep learning has emerged as an efficient alternative for predicting high-performance material distributions in topology optimization. Existing methods struggle to accurately capture load-transfer information, limiting out-of-distribution generalization, while their model architectures often incur high computational costs. To address these challenges, this paper proposes TopoMamba, a topology prediction framework incorporating a load-support relation-guided multi-directional state-space model. Coupling physical fields with load-support relations enables more effective modeling of mechanical dependencies. A load-support relation-guided spatially adaptive fusion mechanism dynamically adjusts multi-directional scan features according to spatial conditions. Mamba is coupled with the solid isotropic material with penalty method to enhance structural mechanical performance while maintaining computational efficiency. Results on two-dimensional topology optimization benchmarks demonstrate that TopoMamba achieves superior topology prediction accuracy, out-of-distribution generalization, and computational efficiency over state-of-the-art models. The proposed load-support physics-guided framework enables efficient optimization of more complex structural systems.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2607.13597",
+   "title": "Semantic Anchoring for Robotic Action Representations",
+   "published": "2026-07-15",
+   "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Vision-Language-Action (VLA) models inherit rich semantic representations from pretrained Vision-Language Models, yet fine-tuning on limited robot demonstrations degrades this structure and undermines generalization. A fundamental question therefore arises: what constitutes a good action representation? Inspired by the mirror neuron theory's insight that observation and execution share an intention-level encoding, we examine whether a robot's action representations preserve the semantic structure captured by pretrained encoders. Systematic probing confirms that this structure erodes during finetuning, and that its quality synchronizes with both task success and out-of-distribution generalization. We further introduce a plug-and-play method that anchors action representations to a semantic manifold while decomposing representations into a shared semantic channel and a private channel, all discarded at inference, leaving the deployed model unchanged. Validated on different VLA backbones across simulation and real-world benchmarks, our method yields up to +18.7% on real-world in-distribution tasks and +21.5% on out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2609.32493",
+   "title": "SoFT: Soft Targets for Generalizable LLM Fine-Tuning",
+   "published": "2026-09-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Distillation enables student language models to acquire new capabilities from expert teachers. However, integrating knowledge from multi-teacher, multi-domain demonstrations into a single student remains challenging. We study supervised fine-tuning (SFT) in this setting, where students must acquire diverse capabilities while maintaining generalization beyond the training tasks. Our experiments reveal varying trade-offs between in-distribution learning and out-of-distribution generalization across SFT methods, motivating more explicit control over this balance. To this end, we propose soft-target fine-tuning (SoFT) to balance learning from teacher demonstrations with retaining the Base model's existing capabilities. SoFT sets a minimum target probability for each demonstrated token while making the smallest KL change to the Base distribution. The resulting objective couples learning from demonstrations with adaptively weighted regularization toward the Base model. We further use domain-specific gradient budgets to control this balance and determine a probability threshold for each trajectory. Experiments on mixed-domain reasoning and agentic tasks show that SoFT achieves the best overall performance among the compared methods, with improvements in both in-distribution capability acquisition and out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2509.19372",
+   "title": "Representation-based Broad Hallucination Detectors Fail to Generalize Out of Distribution",
+   "published": "2025-09-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We critically assess the efficacy of the current SOTA in hallucination detection and find that its performance on the RAGTruth dataset is largely driven by a spurious correlation with data. Controlling for this effect, state-of-the-art performs no better than supervised linear probes, while requiring extensive hyperparameter tuning across datasets. Out-of-distribution generalization is currently out of reach, with all of the analyzed methods performing close to random. We propose a set of guidelines for hallucination detection and its evaluation.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2609.07156",
+   "title": "Frequency-Domain Mixing Data Augmentation for Malicious Traffic Detection",
+   "published": "2026-09-07",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "The strong dynamics of network traffic often force malicious traffic detection models to handle out-of-distribution data. Typically, deep learning-based malicious traffic detection models require a large amount of high-quality training data. However, owing to challenges such as high labeling difficulty and resource consumption, existing datasets often suffer from insufficient diversity and fail to capture evolving traffic patterns, leading to poor out-of-distribution generalization ability of the trained models. Data augmentation has been widely adopted to improve data diversity and model generalization. Recently, frequency-domain mixing augmentation has shown promising performance because it effectively perturbs data while preserving key structural information. This approach shows potential for enhancing malicious traffic detection models. However, existing studies lack theoretical interpretation of the mixing mechanism, and do not adapt to the characteristics of network traffic. In this paper, we first conduct a theoretical analysis of the current frequency-domain mixing method, revealing its underlying principles and limitations. We further propose an improved frequency-domain mixing-based data augmentation method for network traffic data, which enhances the diversity of sequence features in network traffic and improves the out-of-distribution generalization of malicious traffic detection models. Extensive experiments on multiple artificial and real-world datasets demonstrate that our method substantially improves detection performance across diverse network environments and outperforms other data augmentation approaches.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2610.30518",
+   "title": "Protegrity-PII Technical Report",
+   "published": "2026-10-21",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "We present Protegrity-PII, a new PII detection model for structured and unstructured text. Protegrity-PII achieves a typed recall of 0.910 with a precision of 0.902 on a new benchmark we propose, PII-SCOPE. Our model processes text in 0.49 seconds per million characters at \\$0.0005 per million characters on a single RTX 6000 using batched inference. Due in part to the expansive nature of the entity type taxonomy used in training, Protegrity-PII achieves superior out-of-distribution generalization when benchmarked against a selection of state of the art models and datasets.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2610.22655",
+   "title": "Is a Linear Probe Evidence of a Linear Representation?",
+   "published": "2026-10-15",
+   "categories": [
+    "stat.ML",
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "The linear representation hypothesis holds that pretrained vision models encode generative factors as linearly decodable directions in feature space, and comes with a standard methodology: train a linear probe, declare a factor represented if accuracy is high. We show this test is too permissive. Asymptotically, any sufficiently rich feature map, including a random one, admits a linear readout, so high probe accuracy is consistent with two very different geometries: a true linear world model, where the latent-aligned subspace dominates the representation, or a kernel machine, where the latents lie linearly inside a much larger curved manifold. This distinction matters because the curved structure orthogonal to the probe is relevant for out-of-distribution generalization, robustness, and compositional transfer. We propose three asymmetric diagnostics that distinguish the two cases: reverse predictivity, spectral concentration, and out-of-distribution generalization. We validate them in a fully observed simulation where ground truth is known. Applied to six pretrained vision transformers on SVG-World, our deterministic generative benchmark with paired visual styles, and to two of them on CelebA, they show pretraining produces structure beyond a random kernel but well short of a linear world model. On dSprites, 3D Shapes and MPI3D, forward decodability and latent-aligned variance dissociate. Thus, forward decoding alone does not show that the probed factors align with the dominant geometry of the representation. In summary, our work cautions about the success of linear probes as opposed to truly linear and low dimensional representations.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2601.17257",
+   "title": "A Constrained Optimization Perspective of Unrolled Transformers",
+   "published": "2026-01-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We introduce a constrained optimization framework for training transformers that behave like optimization descent algorithms. Specifically, we enforce layerwise descent constraints on the objective function and replace standard empirical risk minimization (ERM) with a primal-dual training scheme. This approach yields models whose intermediate representations decrease the loss monotonically in expectation across layers. We apply our method to both unrolled transformer architectures and conventional pretrained transformers on tasks of video denoising and text classification. Across these settings, we observe constrained transformers achieve stronger robustness to perturbations and maintain higher out-of-distribution generalization, while preserving in-distribution performance.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2601.20355",
+   "title": "CURVE: Learning Causality-Inspired Invariant Representations for Robust Scene Understanding via Uncertainty-Guided Regularization",
+   "published": "2026-01-28",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Scene graphs provide structured abstractions for scene understanding, yet they often overfit to spurious correlations, severely hindering out-of-distribution generalization. To address this limitation, we propose CURVE, a causality-inspired framework that integrates variational uncertainty modeling with uncertainty-guided structural regularization to suppress high-variance, environment-specific relations. Specifically, we apply prototype-conditioned debiasing to disentangle invariant interaction dynamics from environment-dependent variations, promoting a sparse and domain-stable topology. Empirically, we evaluate CURVE in zero-shot transfer and low-data sim-to-real adaptation, verifying its ability to learn domain-stable sparse topologies and provide reliable uncertainty estimates to support risk prediction under distribution shifts.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.13262",
+   "title": "General learned delegation by clones",
+   "published": "2026-02-03",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Frontier language models improve with additional test-time computation, but serial reasoning or uncoordinated parallel sampling can be compute-inefficient under fixed inference budgets. We propose SELFCEST, which equips a base model with the ability to spawn same-weight clones in separate parallel contexts by agentic reinforcement learning. Training is end-to-end under a global task reward with shared-parameter rollouts, yielding a learned controller that allocates both generation and context budget across branches. Across challenging math reasoning benchmarks and long-context multi-hop QA, SELFCEST improves the accuracy-cost Pareto frontier relative to monolithic baselines at matched inference budget, and exhibits out-of-distribution generalization in both domains.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2603.04535",
+   "title": "A Fast Generative Framework for High-dimensional Posterior Sampling: Application to CMB Delensing",
+   "published": "2026-03-04",
+   "categories": [
+    "astro-ph.IM",
+    "astro-ph.CO",
+    "cs.LG"
+   ],
+   "abstract": "We introduce a deep generative framework for high-dimensional Bayesian inference that enables efficient posterior sampling. As telescopes and simulations rapidly expand the volume and resolution of astrophysical data, fast simulation-based inference methods are increasingly needed to extract scientific insights. While diffusion-based approaches offer high-quality generative capabilities, they are hindered by slow sampling speeds. Our method performs posterior sampling an order of magnitude faster than a diffusion baseline. Applied to the problem of CMB delensing, it successfully recovers the unlensed CMB power spectrum from simulated observations. The model also remains robust to shifts in cosmological parameters, demonstrating its potential for out-of-distribution generalization and application to observational cosmological data.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.04492",
+   "title": "Discovering Mechanistic Models of Neural Activity: System Identification in an in Silico Zebrafish",
+   "published": "2026-02-04",
+   "categories": [
+    "q-bio.NC",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Constructing mechanistic models of neural circuits is a fundamental goal of neuroscience, yet verifying such models is limited by the lack of ground truth. To rigorously test model discovery, we establish an in silico testbed using neuromechanical simulations of a larval zebrafish as a transparent ground truth. We find that LLM-based tree search autonomously discovers predictive models that significantly outperform established forecasting baselines. Conditioning on sensory drive is necessary but not sufficient for faithful system identification, as models exploit statistical shortcuts. Structural priors prove essential for enabling robust out-of-distribution generalization and recovery of interpretable mechanistic models. Our insights provide guidance for modeling real-world neural recordings and offer a broader template for AI-driven scientific discovery.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2506.08240",
+   "title": "Dealing with the Evil Twins: Improving Random Augmentation by Addressing Catastrophic Forgetting of Diverse Augmentations",
+   "published": "2025-06-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Data augmentation is a promising tool for enhancing out-of-distribution generalization, where the key is to produce diverse, challenging variations of the source domain via costly targeted augmentations that maximize its generalization effect. Conversely, random augmentation is inexpensive but is deemed suboptimal due to its limited effect. In this paper, we revisit random augmentation and explore methods to address its shortcomings. We show that the stochastic nature of random augmentation can produce a set of colliding augmentations that distorts the learned features, similar to catastrophic forgetting. We propose a simple solution that improves the generalization effect of random augmentation by addressing forgetting, which displays strong generalization performance across various single source domain generalization (sDG) benchmarks.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2606.09009",
+   "title": "Scaling by Diversified Experience for Vision-Language-Action Models",
+   "published": "2026-06-08",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Vision-Language-Action models face significant challenges in real-world deployment due to the entanglement of high-level reasoning with low-level control, and the instability of policy optimization. In this paper, we introduce SyVLA, a robust VLA model trained with diversified experiences. We propose an Intention Decoupling algorithm to isolate control-relevant features from reasoning contexts and a similar-sample guided RL pipeline to stabilize policy updates and mitigate distribution shift. Extensive experiments on real-world robotic tasks and multi-modal benchmarks demonstrate that SyVLA achieves superior task success rates and stronger out-of-distribution generalization compared to existing methods, while effectively preserving core vision-language capabilities. Codes and Datasets is released on \\href{https://sy-vla.github.io/}{project page}.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2611.09385",
+   "title": "Against All Likelihood",
+   "published": "2026-11-06",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Maximum likelihood is the dominant training principle for large language models, yet likelihood is neither necessary nor sufficient for truth. Unlikely events happen every day, and frequently repeated statements can be false. Drawing on a philosophical tradition that ties objectivity to invariance rather than probability (from Nozick's account of objective facts and Wigner's principles of invariance to the structural realism of Poincaré and Cassirer), we argue that the truth of a statement should be judged not by its probability under a single distribution, but by its invariance across relevant transformations of the environment. We connect this view to machine learning literature on out-of-distribution generalization and invariant learning, sketch how invariance could be tested at inference time with language models, and discuss implications for continual learning.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2508.08298",
+   "title": "Channel-Wise MLPs Improve the Generalization of Recurrent Convolutional Networks",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We investigate the impact of channel-wise mixing via multi-layer perceptrons (MLPs) on the generalization capabilities of recurrent convolutional networks. Specifically, we compare two architectures: DARC (Depth Aware Recurrent Convolution), which employs a simple recurrent convolutional structure, and DAMP (Depth Aware Multi-layer Perceptron), which extends DARC with a gated MLP for channel mixing. Using the Re-ARC benchmark, we find that DAMP significantly outperforms DARC in both in-distribution and out-of-distribution generalization under exact-match grading criteria. These results suggest that explicit channel mixing through MLPs enables recurrent convolutional networks to learn more robust and generalizable computational patterns. Our findings have implications for neural program synthesis and highlight the potential of DAMP as a target architecture for hypernetwork approaches.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2607.27183",
+   "title": "Pangram 4 Technical Report",
+   "published": "2026-07-29",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "We present Pangram 4, the latest deep-learning-based AI-text classification model from Pangram Labs. We achieve an AUROC of 0.9916 with a false positive rate of 0.0041% and a false negative rate of 0.3396%. In addition to its increased overall accuracy compared with Pangram 3, Pangram 4 exhibits superior out-of-distribution generalization and robustness to adversarial attacks. Another novel contribution of Pangram 4 is its improved ability to distinguish fine-grained edits and mixed AI-human co-authored text. We demonstrate improvements to both boundary detection tasks and the detection of interleaved AI assistance. Finally, we report metrics on standard AI detection benchmarks showing that Pangram 4 achieves state-of-the-art performance on the AI text detection task across a wide variety of settings and domains.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.16133",
+   "title": "Generative Inverse Estimation of 3D Atomic Coordination from Near-Edge Spectra via Equivariant Diffusion Models",
+   "published": "2026-02-18",
+   "categories": [
+    "cond-mat.mtrl-sci"
+   ],
+   "abstract": "Extracting 3D atomic coordinates from spectroscopic data is a longstanding inverse problem. We present an equivariant diffusion model that generates site-specific 3D structures directly from near-edge spectra (ELNES/XANES). Trained on Si-O crystals, the model achieves radial accuracy comparable to Extended X-ray Absorption Fine Structure (EXAFS) (RMSD ~0.06 Å) but with superior coordination number precision (errors < 4.3% vs. EXAFS ~20%). Crucially, it reconstructs full 3D geometries including bond angles, overcoming the limitations of 1D radial distribution analysis. The model demonstrates robust out-of-distribution generalization, accurately predicting local structures in amorphous systems despite being trained exclusively on crystalline lattices. Application to experimental O K-edge spectra from α-quartz validates practical applicability. This generative approach outperforms template matching and establishes automated, quantitative 3D structure determination from spectroscopic data.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2507.21533",
+   "title": "Model Predictive Adversarial Imitation Learning for Planning from Observation",
+   "published": "2025-07-29",
+   "categories": [
+    "cs.RO",
+    "cs.AI"
+   ],
+   "abstract": "Human demonstration data is often ambiguous and incomplete, motivating imitation learning approaches that also exhibit reliable planning behavior. A common paradigm to perform planning-from-demonstration involves learning a reward function via Inverse Reinforcement Learning (IRL) then deploying this reward via Model Predictive Control (MPC). Towards unifying these methods, we derive a replacement of the policy in IRL with a planning-based agent. With connections to Adversarial Imitation Learning, this formulation enables end-to-end interactive learning of planners from observation-only demonstrations. In addition to benefits in interpretability, complexity, and safety, we study and observe significant improvements on sample efficiency, out-of-distribution generalization, and robustness. The study includes evaluations in both simulated control benchmarks and real-world navigation experiments using few-to-single observation-only demonstrations.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2605.30015",
+   "title": "Test Time Training for Supervised Causal Learning",
+   "published": "2026-05-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Supervised Causal Learning (SCL) has shown promise in causal discovery by framing it as a supervised learning problem. However, it suffers from significant out-of-distribution generalization challenges. We reveal three limitations of previous SCL practices: a significant performance gap between synthetic benchmarks and real-world data, fragility to distribution shifts, and failure in compositional generalization, collectively questioning its real-world applicability. To address this, we propose Test-Time Training for Supervised Causal Learning (TTT-SCL), a novel framework that dynamically generates training sets explicitly aligned with any specific test instance. We demonstrate the correlation between TTT-SCL and score-based methods, and design an efficient module for generating training sets based on the classic scoring function. Experiments on synthetic benchmarks, pseudo-real and real-world datasets demonstrate that TTT-SCL significantly outperforms existing SCL and traditional causal discovery methods.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.21951",
+   "title": "RADAR: Reasoning as Discrimination with Aligned Representations for LLM-based Knowledge Graph Reasoning",
+   "published": "2026-02-25",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Knowledge graph reasoning (KGR) infers missing facts, with recent advances increasingly harnessing the semantic priors and reasoning abilities of Large Language Models (LLMs). However, prevailing generative paradigms are prone to memorizing surface-level co-occurrences rather than learning genuine relational semantics, limiting out-of-distribution generalization. To address this, we propose RADAR, which reformulates KGR from generative pattern matching to discriminative relational reasoning. We recast KGR as discriminative entity selection, where reinforcement learning enforces relative entity separability beyond token-likelihood imitation. Leveraging this separability, inference operates directly in representation space, ensuring consistency with the discriminative optimization and bypassing generation-induced hallucinations. Across four benchmarks, RADAR achieves 5-6% relative gains on link prediction and triple classification over strong LLM baselines, while increasing task-relevant mutual information in intermediate representations by 62.9%, indicating more robust and transferable relational reasoning.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2509.25158",
+   "title": "Physics-Informed Inductive Biases for Voltage Prediction in Distribution Grids",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.LG",
+    "eess.SY"
+   ],
+   "abstract": "Voltage prediction in distribution grids is a critical yet difficult task for maintaining power system stability. Machine learning approaches, particularly Graph Neural Networks (GNNs), offer significant speedups but suffer from poor generalization when trained on limited or incomplete data. In this work, we systematically investigate the role of inductive biases in improving a model's ability to reliably learn power flow. Specifically, we evaluate three physics-informed strategies: (i) power-flow-constrained loss functions, (ii) complex-valued neural networks, and (iii) residual-based task reformulation. Using the ENGAGE dataset, which spans multiple low- and medium-voltage grid configurations, we conduct controlled experiments to isolate the effect of each inductive bias and assess both standard predictive performance and out-of-distribution generalization. Our study provides practical insights into which model assumptions most effectively guide learning for reliable and efficient voltage prediction in modern distribution networks.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2508.11898",
+   "title": "OmniD: Generalizable Robot Manipulation Policy via Image-Based BEV Representation",
+   "published": "2025-08-16",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "The visuomotor policy can easily overfit to its training datasets, such as fixed camera positions and backgrounds. This overfitting makes the policy perform well in the in-distribution scenarios but underperform in the out-of-distribution generalization. Additionally, the existing methods also have difficulty fusing multi-view information to generate an effective 3D representation. To tackle these issues, we propose Omni-Vision Diffusion Policy (OmniD), a multi-view fusion framework that synthesizes image observations into a unified bird's-eye view (BEV) representation. We introduce a deformable attention-based Omni-Feature Generator (OFG) to selectively abstract task-relevant features while suppressing view-specific noise and background distractions. OmniD achieves 11\\%, 17\\%, and 84\\% average improvement over the best baseline model for in-distribution, out-of-distribution, and few-shot experiments, respectively. Training code and simulation benchmark are available: https://github.com/1mather/omnid.git",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2508.02458",
+   "title": "From Stimuli to Minds: Enhancing Psychological Reasoning in LLMs via Bilateral Reinforcement Learning",
+   "published": "2025-08-04",
+   "categories": [
+    "cs.DB"
+   ],
+   "abstract": "Large Language Models show promise in emotion understanding, social reasoning, and empathy, yet they struggle with psychologically grounded tasks that require inferring implicit mental states in context-rich, ambiguous settings. These limitations arise from the absence of theory-aligned supervision and the difficulty of capturing nuanced mental processes in real-world narratives. To address this gap, we leverage expert-labeled, psychologically rich scenarios and propose a trajectory-aware reinforcement learning framework that explicitly imitates expert psychological thought patterns. By integrating real-world stimuli with structured reasoning guidance, our approach enables compact models to internalize social-cognitive principles, perform nuanced psychological inference, and support continual self-improvement. Comprehensive experiments across multiple benchmarks further demonstrate that our models achieve expert-level interpretive capabilities, exhibiting strong out-of-distribution generalization and robust continual learning across diverse, challenging, and psychologically grounded tasks.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2512.04475",
+   "title": "GraphBench: Next-generation graph learning benchmarking",
+   "published": "2025-12-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.NE",
+    "stat.ML"
+   ],
+   "abstract": "Machine learning on graphs has made substantial progress across domains such as molecular property prediction and chip design. Yet benchmarking practices remain fragmented, often relying on narrow, task-specific datasets and inconsistent evaluation protocols, hindering reproducibility and broader progress. With the recent popularity of graph foundation models, these weaknesses have become apparent, as existing benchmarks are insufficient for thorough evaluation. To address these challenges, we introduce GraphBench, a comprehensive benchmark suite spanning diverse real-world domains and task settings, including node-level, edge-level, graph-level, and generative tasks. GraphBench provides standardized evaluation protocols, including consistent dataset splits and metrics for assessing out-of-distribution generalization across selected tasks, as well as a unified hyperparameter-tuning framework. We further evaluate GraphBench with recent message-passing neural networks and graph transformer models, establishing principled baselines for future research. See www.graphbench.io for further details.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2604.25166",
+   "title": "Towards Training Transformers as a Universal Computer",
+   "published": "2026-04-28",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "We demonstrate that a small transformer can learn to execute programs in MicroPy, a simplified yet computationally universal programming language. Given procedure definitions together with an expression to evaluate, the transformer predicts small-step execution using PENCIL scaffolding for space-efficient execution within a bounded context window. After training on randomly generated, semantically arbitrary MicroPy programs, the learned transformer generalizes to held-out human-written programs including bit copying and flipping, binary addition and multiplication, and SAT verification and solving. The trained model exhibits out-of-distribution generalization: it correctly evaluates programs drawn from a substantially different distribution than the one used to generate its training data. Since MicroPy can express any computation, our results provide empirical evidence that a standard transformer can be trained to act as a universal computer when paired with PENCIL scaffolding. Project page: https://www.micropy.org",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.07135",
+   "title": "Landscaper: Understanding Loss Landscapes Through Multi-Dimensional Topological Analysis",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Loss landscapes are a powerful tool for understanding neural network optimization and generalization, yet traditional low-dimensional analyses often miss complex topological features. We present Landscaper, an open-source Python package for arbitrary-dimensional loss landscape analysis. Landscaper combines Hessian-based subspace construction with topological data analysis to reveal geometric structures such as basin hierarchy and connectivity. A key component is the Saddle-Minimum Average Distance (SMAD) for quantifying landscape smoothness. We demonstrate Landscaper's effectiveness across various architectures and tasks, including those involving pre-trained language models, showing that SMAD captures training transitions, such as landscape simplification, that conventional metrics miss. We also illustrate Landscaper's performance in challenging chemical property prediction tasks, where SMAD can serve as a metric for out-of-distribution generalization, offering valuable insights for model diagnostics and architecture design in data-scarce scientific machine learning scenarios.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2505.12629",
+   "title": "Enhancing Latent Computation in Transformers with Latent Tokens",
+   "published": "2025-05-19",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Augmenting large language models (LLMs) with auxiliary tokens has emerged as a promising strategy for enhancing model performance. In this work, we introduce a lightweight method termed latent tokens; these are dummy tokens that may be non-interpretable in natural language but steer the autoregressive decoding process of a Transformer-based LLM via the attention mechanism. The proposed latent tokens can be seamlessly integrated with a pre-trained Transformer, trained in a parameter-efficient manner, and applied flexibly at inference time, while adding minimal complexity overhead to the existing infrastructure of standard Transformers. We propose several hypotheses about the underlying mechanisms of latent tokens and design synthetic tasks accordingly to verify them. Numerical results confirm that the proposed method noticeably outperforms the baselines, particularly in the out-of-distribution generalization scenarios, highlighting its potential in improving the adaptability of LLMs.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2502.09297",
+   "title": "When Do Neural Networks Learn World Models?",
+   "published": "2025-02-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Humans develop world models that capture the underlying generation process of data. Whether neural networks can learn similar world models remains an open problem. In this work, we present the first theoretical results for this problem, showing that in a multi-task setting, models with a low-degree bias provably recover latent data-generating variables under mild assumptions--even if proxy tasks involve complex, non-linear functions of the latents. However, such recovery is sensitive to model architecture. Our analysis leverages Boolean models of task solutions via the Fourier-Walsh transform and introduces new techniques for analyzing invertible Boolean transforms, which may be of independent interest. We illustrate the algorithmic implications of our results and connect them to related research areas, including self-supervised learning, out-of-distribution generalization, and the linear representation hypothesis in large language models.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2604.00333",
+   "title": "MVNN: A Measure-Valued Neural Network for Learning McKean-Vlasov Dynamics from Particle Data",
+   "published": "2026-04-01",
+   "categories": [
+    "math.NA",
+    "cs.LG",
+    "physics.comp-ph"
+   ],
+   "abstract": "Collective behaviors that emerge from interactions are fundamental to numerous biological systems. To learn such interacting forces from observations, we introduce a measure-valued neural network that infers measure-dependent interaction (drift) terms directly from particle-trajectory observations. The proposed architecture generalizes standard neural networks to operate on probability measures by learning cylindrical features, using an embedding network that produces scalable distribution-to-vector representations. On the theory side, we establish well-posedness of the resulting dynamics and prove propagation-of-chaos for the associated interacting-particle system. We further show universal approximation and quantitative approximation rates under a low-dimensional measure-dependence assumption. Numerical experiments on first and second order systems, including deterministic and stochastic Motsch-Tadmor dynamics, two-dimensional attraction-repulsion aggregation, Cucker-Smale dynamics, and a hierarchical multi-group system, demonstrate accurate prediction and strong out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2604.17295",
+   "title": "LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics",
+   "published": "2026-04-19",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Comprehensive understanding of time series remains a significant challenge for Large Language Models (LLMs). Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models(TSRMs). To bridge this gap, we formalize Time Series Reasoning (TSR) via a four-level taxonomy of increasing cognitive complexity. We introduce HiTSR, a hierarchical time series reasoning dataset comprising 83k samples with diverse task combinations and verified Chain-of-Thought (CoT) trajectories. Leveraging HiTSR, we propose LLaTiSA, a strong TSRM that integrates visualized patterns with precision-calibrated numerical tables to enhance the temporal perception of Vision-Language Models (VLMs). Through a multi-stage curriculum fine-tuning strategy, LLaTiSA achieves superior performance and exhibits robust out-of-distribution generalization across diverse TSR tasks and real-world scenarios. Our code is available at https://github.com/RainingNovember/LLaTiSA.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2603.07644",
+   "title": "PanoDP: Learning Collision-Free Navigation with Panoramic Depth and Differentiable Physics",
+   "published": "2026-03-08",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Autonomous collision-free navigation in cluttered environments requires safe decision-making under partial observability with both static structure and dynamic obstacles. We present \\textbf{PanoDP}, a communication-free learning framework that combines four-view panoramic depth perception with differentiable-physics-based training signals. PanoDP encodes panoramic depth using a lightweight CNN and optimizes policies with dense differentiable collision and motion-feasibility terms, improving training stability beyond sparse terminal collisions. We evaluate PanoDP on a controlled ring-to-center benchmark with systematic sweeps over agent count, obstacle density/layout, and dynamic behaviors, and further test out-of-distribution generalization in an external simulator (e.g., AirSim). Across settings, PanoDP increases collision-free and completion rates over single-view and non-physics-guided baselines under matched training budgets, and ablations (view masking, rotation augmentation) confirm the policy leverages 360-degree information. Code will be open source upon acceptance.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2510.18052",
+   "title": "Measure-Theoretic Anti-Causal Representation Learning",
+   "published": "2025-10-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ME"
+   ],
+   "abstract": "Causal representation learning in the anti-causal setting (labels cause features rather than the reverse) presents unique challenges requiring specialized approaches. We propose Anti-Causal Invariant Abstractions (ACIA), a novel measure-theoretic framework for anti-causal representation learning. ACIA employs a two-level design, low-level representations capture how labels generate observations, while high-level representations learn stable causal patterns across environment-specific variations. ACIA addresses key limitations of existing approaches by accommodating prefect and imperfect interventions through interventional kernels, eliminating dependency on explicit causal structures, handling high-dimensional data effectively, and providing theoretical guarantees for out-of-distribution generalization. Experiments on synthetic and real-world medical datasets demonstrate that ACIA consistently outperforms state-of-the-art methods in both accuracy and invariance metrics. Furthermore, our theoretical results establish tight bounds on performance gaps between training and unseen environments, confirming the efficacy of our approach for robust anti-causal learning.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2604.18484",
+   "title": "XEmbodied: A Foundation Model with Enhanced Geometric and Physical Cues for Large-Scale Embodied Environments",
+   "published": "2026-04-20",
+   "categories": [
+    "cs.CV",
+    "cs.MM",
+    "cs.RO"
+   ],
+   "abstract": "Vision-Language-Action (VLA) models drive next-generation autonomous systems, but training them requires scalable, high-quality annotations from complex environments. Current cloud pipelines rely on generic vision-language models (VLMs) that lack geometric reasoning and domain semantics due to their 2D image-text pretraining. To address this mismatch, we propose XEmbodied, a cloud-side foundation model that endows VLMs with intrinsic 3D geometric awareness and interaction with physical cues (e.g., occupancy grids, 3D boxes). Instead of treating geometry as auxiliary input, XEmbodied integrates geometric representations via a structured 3D Adapter and distills physical signals into context tokens using an Efficient Image-Embodied Adapter. Through progressive domain curriculum and reinforcement learning post-training, XEmbodied preserves general capabilities while demonstrating robust performance across 18 public benchmarks. It significantly improves spatial reasoning, traffic semantics, embodied affordance, and out-of-distribution generalization for large-scale scenario mining and embodied VQA.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2505.07395",
+   "title": "ReinboT: Amplifying Robot Visual-Language Manipulation with Reinforcement Learning",
+   "published": "2025-05-12",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Vision-Language-Action (VLA) models have shown great potential in general robotic decision-making tasks via imitation learning. However, the variable quality of training data often constrains the performance of these models. On the other hand, offline Reinforcement Learning (RL) excels at learning robust policy models from mixed-quality data. In this paper, we introduce Reinforced robot GPT (ReinboT), a novel end-to-end VLA model that integrates the RL principle of maximizing cumulative reward. ReinboT achieves a deeper understanding of the data quality distribution by predicting dense returns that capture the nuances of manipulation tasks. The dense return prediction capability enables the robot to generate more robust decision-making actions, oriented towards maximizing future benefits. Extensive experiments show that ReinboT achieves state-of-the-art performance on the CALVIN mixed-quality dataset and exhibits superior few-shot learning and out-of-distribution generalization capabilities in real-world tasks.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2512.07234",
+   "title": "Dropout Prompt Learning: Towards Robust and Adaptive Vision-Language Models",
+   "published": "2025-12-08",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Dropout is a widely used regularization technique which improves the generalization ability of a model by randomly dropping neurons. In light of this, we propose Dropout Prompt Learning, which aims for applying dropout to improve the robustness of the vision-language models. Different from the vanilla dropout, we apply dropout on the tokens of the textual and visual branches, where we evaluate the token significance considering both intra-modal context and inter-modal alignment, enabling flexible dropout probabilities for each token. Moreover, to maintain semantic alignment for general knowledge transfer while encouraging the diverse representations that dropout introduces, we further propose residual entropy regularization. Experiments on 15 benchmarks show our method's effectiveness in challenging scenarios like low-shot learning, long-tail classification, and out-of-distribution generalization. Notably, our method surpasses regularization-based methods including KgCoOp by 5.10% and PromptSRC by 2.13% in performance on base-to-novel generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2505.20235",
+   "title": "Variational Deep Learning via Implicit Regularization",
+   "published": "2025-05-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Modern deep learning models generalize remarkably well in-distribution, despite being overparametrized and trained with little to no explicit regularization. Instead, current theory credits implicit regularization imposed by the choice of architecture, hyperparameters, and optimization procedure. However, deep neural networks can be surprisingly non-robust, resulting in overconfident predictions and poor out-of-distribution generalization. Bayesian deep learning addresses this via model averaging, but typically requires significant computational resources as well as carefully elicited priors to avoid overriding the benefits of implicit regularization. Instead, in this work, we propose to regularize variational neural networks solely by relying on the implicit bias of (stochastic) gradient descent. We theoretically characterize this inductive bias in overparametrized linear models as generalized variational inference and demonstrate the importance of the choice of parametrization. Empirically, our approach demonstrates strong in- and out-of-distribution performance without additional hyperparameter tuning and with minimal computational overhead.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.15632",
+   "title": "Neural-POD: A Plug-and-Play Neural Operator Framework for Infinite-Dimensional Functional Nonlinear Proper Orthogonal Decomposition",
+   "published": "2026-02-17",
+   "categories": [
+    "physics.comp-ph",
+    "cs.LG",
+    "math.NA"
+   ],
+   "abstract": "AI for science (AI4Science) models often suffer from discretization: learned representations remain tied to the training grid, limiting transfer across resolutions, solvers and applications. We introduce Neural Proper Orthogonal Decomposition (Neural-POD), a plug-and-play neural operator that learns nonlinear, orthogonal basis functions directly in function space and can be integrated in both projection-based reduced order models and operator-learning frameworks such as DeepONet. Neural-POD replaces SVD-derived, resolution-dependent linear modes with continuous, resolution-invariant bases learned via sequential residual minimization, analogous to Gram-Schmidt orthogonalization. The framework supports training under task-specific norms (e.g., $L^2$, $L^1$), improves out-of-distribution generalization to unseen parameter regimes, and captures nonlinear structure in complex systems. Because the learned bases are interpretable and reusable, Neural-POD serves as a general representation module for AI4Science workflows. We demonstrate Neural-POD on Burgers' and Navier-Stokes equations.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2608.04980",
+   "title": "Protoreasoning in Tiny Transformers",
+   "published": "2026-08-05",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "We show that tiny transformers can profitably employ a simple form of Chain of Thought, which we call protoreasoning, allowing us to study step-by-step reasoning on ~1M-parameter models and opening up opportunities for much more detailed experimentation and analysis than is feasible for larger models. Current Large Language Models exhibit impressive step-by-step reasoning, but we have yet to understand its generality, i.e., when and how LLMs learn genuinely general algorithms rather than \"bags of heuristics.\" Such questions are hard to settle on compute-intensive frontier models trained on opaque data. To work at model scales far below the threshold for natural-language competence, we define reasoning-friendly tasks on Dyck languages (sentences of correctly nested brackets). We find that protoreasoning traces substantially close the out-of-distribution generalization gap, and ablations confirm that the trace's content, not merely its extra tokens, drives the gain.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2603.05484",
+   "title": "Towards Multimodal Lifelong Understanding: A Dataset and Agentic Baseline",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "While datasets for video understanding have scaled to hour-long durations, they typically consist of densely concatenated clips that differ from natural, unscripted daily life. To bridge this gap, we introduce MM-Lifelong, a dataset designed for Multimodal Lifelong Understanding. Comprising 181.1 hours of footage, it is structured across Day, Week, and Month scales to capture varying temporal densities. Extensive evaluations reveal two critical failure modes in current paradigms: end-to-end MLLMs suffer from a Working Memory Bottleneck due to context saturation, while representative agentic baselines experience Global Localization Collapse when navigating sparse, month-long timelines. To address this, we propose the Recursive Multimodal Agent (ReMA), which employs dynamic memory management to iteratively update a recursive belief state, significantly outperforming existing methods. Finally, we establish dataset splits designed to isolate temporal and domain biases, providing a rigorous foundation for future research in supervised learning and out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.04153",
+   "title": "Pruning for Generalization: A Transfer-Oriented Spatiotemporal Graph Framework",
+   "published": "2026-02-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Multivariate time series forecasting in graph-structured domains is critical for real-world applications, yet existing spatiotemporal models often suffer from performance degradation under data scarcity and cross-domain shifts. We address these challenges through the lens of structure-aware context selection. We propose TL-GPSTGN, a transfer-oriented spatiotemporal framework that enhances sample efficiency and out-of-distribution generalization by selectively pruning non-optimized graph context. Specifically, our method employs information-theoretic and correlation-based criteria to extract structurally informative subgraphs and features, resulting in a compact, semantically grounded representation. This optimized context is subsequently integrated into a spatiotemporal convolutional architecture to capture complex multivariate dynamics. Evaluations on large-scale traffic benchmarks demonstrate that TL-GPSTGN consistently outperforms baselines in low-data transfer scenarios. Our findings suggest that explicit context pruning serves as a powerful inductive bias for improving the robustness of graph-based forecasting models.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2505.21469",
+   "title": "PropMolFlow: Property-Guided Molecule Generation with Geometry-Complete Flow Matching",
+   "published": "2025-05-27",
+   "categories": [
+    "physics.chem-ph"
+   ],
+   "abstract": "Molecule generation is advancing rapidly in chemical discovery and drug design. Flow matching methods have recently set the state of the art (SOTA) in unconditional molecule generation, surpassing score-based diffusion models. However, diffusion models still lead in property-guided generation. In this work, we introduce PropMolFlow, an approach for property-guided molecule generation based on geometry-complete SE(3)-equivariant flow matching. Integrating five different property embedding methods with a Gaussian expansion of scalar properties, PropMolFlow achieves competitive performance against previous SOTA diffusion models in conditional molecule generation while maintaining high structural stability and validity. Additionally, it enables faster sampling speed with fewer time steps compared to baseline models. We highlight the importance of validating the properties of generated molecules through DFT calculations. Furthermore, we introduce a task to assess the model's ability to propose molecules with underrepresented property values, assessing its capacity for out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2608.08024",
+   "title": "Prompt Embedding Probes (PEP): Hallucination Detection in LLMs from Hidden States",
+   "published": "2026-08-08",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) can generate fluent and useful responses but remain prone to hallucinations. We introduce Prompt Embedding Probes (PEP), a white-box method for answer-level hallucination detection from the hidden states of a frozen LLM. PEP extends standard linear probes by augmenting the input with a small number of learnable prompt embeddings. We evaluate PEP on TriviaQA, GSM8K, and MedQA using Qwen3 models at multiple scales. PEP improves hidden-state-based detection over standard linear probes in the main in-distribution setting. We further evaluate PEP for pre-generation prediction, cross-model transfer, and out-of-distribution generalization. PEP remains effective in the pre-generation and cross-model settings, whereas robust cross-dataset transfer remains difficult. These results show that prompt-based adaptation can strengthen hidden-state probing while keeping the backbone frozen and adding only a small number of trainable parameters.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2509.24655",
+   "title": "HyperHELM: Hyperbolic Hierarchy Encoding for mRNA Language Modeling",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.LG",
+    "q-bio.GN"
+   ],
+   "abstract": "Language models are increasingly applied to biological sequences like proteins and mRNA, yet their default Euclidean geometry may mismatch the hierarchical structures inherent to biological data. While hyperbolic geometry provides a better alternative for accommodating hierarchical data, it has yet to find a way into language modeling for mRNA sequences. In this work, we introduce HyperHELM, a framework that implements masked language model pre-training in hyperbolic space for mRNA sequences. Using a hybrid design with hyperbolic layers atop Euclidean backbone, HyperHELM aligns learned representations with the biological hierarchy defined by the relationship between mRNA and amino acids. Across multiple multi-species datasets, it outperforms Euclidean baselines on 9 out of 10 tasks involving property prediction, with 10% improvement on average, and excels in out-of-distribution generalization to long and low-GC content sequences; for antibody region annotation, it surpasses hierarchy-aware Euclidean models by 3% in annotation accuracy. Our results highlight hyperbolic geometry as an effective inductive bias for hierarchical language modeling of mRNA sequences.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2502.05593",
+   "title": "Semantic Data Augmentation Enhanced Invariant Risk Minimization for Medical Image Domain Generalization",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Deep learning has achieved remarkable success in medical image classification. However, its clinical application is often hindered by data heterogeneity caused by variations in scanner vendors, imaging protocols, and operators. Approaches such as invariant risk minimization (IRM) aim to address this challenge of out-of-distribution generalization. For instance, VIRM improves upon IRM by tackling the issue of insufficient feature support overlap, demonstrating promising potential. Nonetheless, these methods face limitations in medical imaging due to the scarcity of annotated data and the inefficiency of augmentation strategies. To address these issues, we propose a novel domain-oriented direction selector to replace the random augmentation strategy used in VIRM. Our method leverages inter-domain covariance as a guider for augmentation direction, guiding data augmentation towards the target domain. This approach effectively reduces domain discrepancies and enhances generalization performance. Experiments on a multi-center diabetic retinopathy dataset demonstrate that our method outperforms state-of-the-art approaches, particularly under limited data conditions and significant domain heterogeneity.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2602.21221",
+   "title": "Latent Context Compilation: Distilling Long Context into Compact Portable Memory",
+   "published": "2026-01-31",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Efficient long-context LLM deployment is stalled by a dichotomy between amortized compression, which struggles with out-of-distribution generalization, and Test-Time Training, which incurs prohibitive synthetic data costs and requires modifying model weights, creating stateful parameters that complicate concurrent serving. We propose Latent Context Compilation, a framework that fundamentally shifts context processing from adaptation to compilation. By utilizing a disposable LoRA module as a compiler, we distill long contexts into compact buffer tokens -- stateless, portable memory artifacts that are plug-and-play compatible with frozen base models. Crucially, we introduce a self-aligned optimization strategy that eliminates the need for synthetic context-relevant QA pairs. By regularizing context reconstruction task with context-agnostic random queries, we force compressed tokens to reside within the model's existing instruction-following manifold. Experiments with Llama-3.1-8B demonstrate that Latent Context Compilation preserves fine-grained details and reasoning capabilities where prior methods falter, effectively decoupling memory density from model parameters even at a 16x compression ratio.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2501.11896",
+   "title": "Systematic Abductive Reasoning via Diverse Relation Representations in Vector-symbolic Architecture",
+   "published": "2025-01-21",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "In abstract visual reasoning, monolithic deep learning models suffer from limited interpretability and generalization, while existing neuro-symbolic approaches fall short in capturing the diversity and systematicity of attributes and relation representations. To address these challenges, we propose a Systematic Abductive Reasoning model with diverse relation representations (Rel-SAR) in Vector-symbolic Architecture (VSA) to solve Raven's Progressive Matrices (RPM). To derive attribute representations with symbolic reasoning potential, we introduce not only various types of atomic vectors that represent numeric, periodic and logical semantics, but also the structured high-dimentional representation (SHDR) for the overall Grid component. For systematic reasoning, we propose novel numerical and logical relation functions and perform rule abduction and execution in a unified framework that integrates these relation representations. Experimental results demonstrate that Rel-SAR achieves significant improvement on RPM tasks and exhibits robust out-of-distribution generalization. Rel-SAR leverages the synergy between HD attribute representations and symbolic reasoning to achieve systematic abductive reasoning with both interpretable and computable semantics.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2503.09551",
+   "title": "Using Convolutional Neural Networks to Accelerate 3D Coherent Synchrotron Radiation Computations",
+   "published": "2025-03-12",
+   "categories": [
+    "physics.acc-ph"
+   ],
+   "abstract": "Calculating the effects of Coherent Synchrotron Radiation (CSR) is one of the most computationally expensive tasks in accelerator physics. Here, we use convolutional neural networks (CNN's), along with a latent conditional diffusion (LCD) model, trained on physics-based simulations to speed up calculations. Specifically, we produce the 3D CSR wakefields generated by electron bunches in circular orbit in the steady-state condition. Two datasets are used for training and testing the models: wakefields generated by three-dimensional Gaussian electron distributions and wakefields from a sum of up to 25 three-dimensional Gaussian distributions. The CNN's are able to accurately produce the 3D wakefields $\\sim 250-1000$ times faster than the numerical calculations, while the LCD has a gain of a factor of $\\sim 34$. We also test the extrapolation and out-of-distribution generalization ability of the models. They generalize well on distributions with larger spreads than what they were trained on, but struggle with smaller spreads.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2506.05814",
+   "title": "Positional Encoding meets Persistent Homology on Graphs",
+   "published": "2025-06-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.ET",
+    "cs.SI"
+   ],
+   "abstract": "The local inductive bias of message-passing graph neural networks (GNNs) hampers their ability to exploit key structural information (e.g., connectivity and cycles). Positional encoding (PE) and Persistent Homology (PH) have emerged as two promising approaches to mitigate this issue. PE schemes endow GNNs with location-aware features, while PH methods enhance GNNs with multiresolution topological features. However, a rigorous theoretical characterization of the relative merits and shortcomings of PE and PH has remained elusive. We bridge this gap by establishing that neither paradigm is more expressive than the other, providing novel constructions where one approach fails but the other succeeds. Our insights inform the design of a novel learnable method, PiPE (Persistence-informed Positional Encoding), which is provably more expressive than both PH and PE. PiPE demonstrates strong performance across a variety of tasks (e.g., molecule property prediction, graph classification, and out-of-distribution generalization), thereby advancing the frontiers of graph representation learning. Code is available at https://github.com/Aalto-QuML/PIPE.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2503.19564",
+   "title": "FedMM-X: A Trustworthy and Interpretable Framework for Federated Multi-Modal Learning in Dynamic Environments",
+   "published": "2025-03-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "As artificial intelligence systems increasingly operate in Real-world environments, the integration of multi-modal data sources such as vision, language, and audio presents both unprecedented opportunities and critical challenges for achieving trustworthy intelligence. In this paper, we propose a novel framework that unifies federated learning with explainable multi-modal reasoning to ensure trustworthiness in decentralized, dynamic settings. Our approach, called FedMM-X (Federated Multi-Modal Explainable Intelligence), leverages cross-modal consistency checks, client-level interpretability mechanisms, and dynamic trust calibration to address challenges posed by data heterogeneity, modality imbalance, and out-of-distribution generalization. Through rigorous evaluation across federated multi-modal benchmarks involving vision-language tasks, we demonstrate improved performance in both accuracy and interpretability while reducing vulnerabilities to adversarial and spurious correlations. Further, we introduce a novel trust score aggregation method to quantify global model reliability under dynamic client participation. Our findings pave the way toward developing robust, interpretable, and socially responsible AI systems in Real-world environments.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2510.20295",
+   "title": "Quantifying Distributional Invariance in Causal Subgraph for IRM-Free Graph Generalization",
+   "published": "2025-10-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Out-of-distribution generalization under distributional shifts remains a critical challenge for graph neural networks. Existing methods generally adopt the Invariant Risk Minimization (IRM) framework, requiring costly environment annotations or heuristically generated synthetic splits. To circumvent these limitations, in this work, we aim to develop an IRM-free method for capturing causal subgraphs. We first identify that causal subgraphs exhibit substantially smaller distributional variations than non-causal components across diverse environments, which we formalize as the Invariant Distribution Criterion and theoretically prove in this paper. Building on this criterion, we systematically uncover the quantitative relationship between distributional shift and representation norm for identifying the causal subgraph, and investigate its underlying mechanisms in depth. Finally, we propose an IRM-free method by introducing a norm-guided invariant distribution objective for causal subgraph discovery and prediction. Extensive experiments on two widely used benchmarks demonstrate that our method consistently outperforms state-of-the-art methods in graph generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2508.14094",
+   "title": "Hard Examples Are All You Need: Maximizing GRPO Post-Training Under Annotation Budgets",
+   "published": "2025-08-15",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Collecting high-quality training examples for language model fine-tuning is expensive, with practical budgets limiting the amount of data that can be procured. We investigate whether example difficulty affects GRPO training effectiveness by comparing selection strategies (easy, medium, hard, random) across multiple models and reasoning tasks. Training on the hardest 10\\% of examples (those where the base model fails most often) yields dramatic performance gains up to 47\\%, while easy examples produce minimal improvements of 3-15\\%. This occurs because GRPO requires outcome variance to generate learning signals; hard examples maintain mixed success/failure outcomes throughout training while easy examples quickly converge to consistent success, eliminating learning opportunities. Moreover, models trained on hard examples show superior out-of-distribution generalization, with only hard-trained models achieving meaningful gains on the AIME2025 benchmark. Our findings provide clear guidance: when budget-constrained, prioritize collecting and annotating examples where your base model struggles, as these drive nearly all learning value in GRPO fine-tuning",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2605.06609",
+   "title": "Transformers Efficiently Perform In-Context Logistic Regression via Normalized Gradient Descent",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Transformers have demonstrated remarkable in-context learning (ICL) capabilities. The strong ICL performance of transformers is commonly believed to arise from their ability to implicitly execute certain algorithms on the context, thereby enhancing prediction and generation. In this work, we investigate how transformers with softmax attention perform in-context learning on linear classification data. We first construct a class of multi-layer transformers that can perform in-context logistic regression, with each layer exactly performing one step of normalized gradient descent on an in-context loss. Then, we show that our constructed transformer can be obtained through (i) training a single self-attention layer supervised by one-step gradient descent, and (ii) recurrently applying the trained layer to obtain a looped model. Training convergence guarantees of the self-attention layer and out-of-distribution generalization guarantees of the looped model are provided. Our results advance the theoretical understanding of ICL mechanism by showcasing how softmax transformers can effectively act as in-context learners.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2605.00623",
+   "title": "Recovering Hidden Reward in Diffusion-Based Policies",
+   "published": "2026-05-01",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "This paper introduces EnergyFlow, a framework that unifies generative action modeling with inverse reinforcement learning by parameterizing a scalar energy function whose gradient is the denoising field. We establish that under maximum-entropy optimality, the score function learned via denoising score matching recovers the gradient of the expert's soft Q-function, enabling reward extraction without adversarial training. Formally, we prove that constraining the learned field to be conservative reduces hypothesis complexity and tightens out-of-distribution generalization bounds. We further characterize the identifiability of recovered rewards and bound how score estimation errors propagate to action preferences. Empirically, EnergyFlow achieves state-of-the-art imitation performance on various manipulation tasks while providing an effective reward signal for downstream reinforcement learning that outperforms both adversarial IRL methods and likelihood-based alternatives. These results show that the structural constraints required for valid reward extraction simultaneously serve as beneficial inductive biases for policy generalization. The code is available at https://github.com/sotaagi/EnergyFlow.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2605.08273",
+   "title": "Efficient Prompt Learning for Traffic Forecasting",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Accurate traffic prediction is essential for optimizing transportation systems, enhancing resource allocation, and improving overall urban administration. Spatio-temporal graph neural networks (GNNs) have achieved state-of-the-art performance and have been widely used in various spatio-temporal prediction scenarios. However, these prediction methods often exhibit low generalization ability, struggling with distribution shifts caused by spatio-temporal dynamics. To address this challenge, we propose an approach to enhance the generalization and adaptation of spatio-temporal GNNs through efficient prompting. Specifically, we introduce a lightweight and model-agnostic prompt tuning framework for spatio-temporal GNNs, named SimpleST. It facilitates adapting pre-trained spatio-temporal GNNs to novel distributions while keeping the model parameters fixed. This prompt mechanism reduces the overhead and complexity of adaptation, enabling efficient utilization of pre-trained models for out-of-distribution generalization. Extensive experiments conducted on five real-world urban spatio-temporal datasets demonstrate the superiority of our approach in terms of prediction accuracy and computational efficiency.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2604.22938",
+   "title": "Large language model-enabled automated data extraction for concrete materials informatics",
+   "published": "2026-04-24",
+   "categories": [
+    "cond-mat.mtrl-sci",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "The promise of data-driven materials discovery remains constrained by the scarcity of large, high-quality, and accessible experimental datasets. Here, we introduce a generalizable large language model (LLM)-powered pipeline for automated extraction and structuring of materials data from unstructured scientific literature, using concrete materials as a representative and particularly challenging example. The pipeline exhibits robust performance across a broad range of LLMs and achieves an $F_1$ score of up to 0.98 for diverse composition--process--property attributes. Within one hour, it extracts nearly 9,000 high-quality records with over 100 attributes from a corpus screened from more than 27,000 publications, enabling the construction of the largest open laboratory database for blended cement concrete. Machine learning analyses underscore the importance of large, diverse, and information-rich datasets for enhancing both in-distribution accuracy and out-of-distribution generalization to unseen materials. The proposed pipeline is readily adaptable to other materials domains and accelerates the development of scalable data infrastructures for materials informatics.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2609.34786",
+   "title": "Instance-Adaptive Prompts as Context for Time-Series Foundation Models",
+   "published": "2026-09-28",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Longer histories can improve time-series foundation models (TSFMs), but require substantially higher inference cost. We therefore ask whether contextual information can be provided more efficiently through a compact set of learned token embeddings. We introduce PaCTS, which generates a small set of instance-adaptive latent prompts in the form of continuous embedding tokens conditioned on the visible context. These prompts serve as compact context surrogates for frozen TSFMs. PaCTS constructs them from instance-specific global statistics and further refines them with segment-level temporal information, capturing both global characteristics and local temporal variations. The prompt module is jointly trained and deployed across heterogeneous time series with the frozen backbone. Extensive experiments demonstrate the effectiveness of prompts as context, consistently improving forecasting across context lengths and model architectures. With a shorter input context, PaCTS can outperform the same frozen backbone using double context while requiring substantially less inference computation. Compared with weight-space adaptation methods, PaCTS achieves stronger improvements and better out-of-distribution generalization.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2508.04117",
+   "title": "Unveiling Over-Memorization in Finetuning LLMs for Reasoning Tasks",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "The pretrained large language models (LLMs) are finetuned with labeled data for better instruction following ability and alignment with human values. In this paper, we study the learning dynamics of LLM finetuning on reasoning tasks and reveal the uncovered over-memorization phenomenon during a specific stage of LLM finetuning. At this stage, the LLMs have excessively memorized training data and exhibit high test perplexity while maintaining good test accuracy. We explore the conditions that contribute to over-memorization and discover that this issue is prevalent across various tasks, models, and fine-tuning methods, with prolonged training and large learning rates exacerbating the problem. Although models with over-memorization demonstrate comparable test accuracy to normal models, they suffer from reduced robustness, poor out-of-distribution generalization, and decreased generation diversity. In light of our findings on over-memorization, we offer recommendations for checkpoint selection and propose techniques such as checkpoint merging and memorization-aware reweighting to mitigate this effect.",
+   "query": "out-of-distribution generalization"
+  },
+  {
+   "id": "2611.23729",
+   "title": "Toward Out-of-Distribution Generalization in Neural AC Power Flow",
+   "published": "2026-11-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Growing uncertainty in power system operations from renewables integration, extreme weather, and data center loads challenges the reliability of traditional power flow solvers at scale. Machine learning-based proxies are a potentially promising alternative, but the prohibitive cost of generating training data for large grids makes out-of-distribution generalization a key capability for deployment; currently, models trained on small grids lack that capability. In this work, we systematically evaluate how physics-informed losses, multi-grid training, and perturbation-based data augmentation improve the zero-shot transfer of three graph neural network-based power flow models from smaller systems to a larger, unseen 500-bus system. We find that (1) physics-informed losses improve transfer relative to purely supervised objectives; (2) multi-grid training on smaller systems matches the best single grid but does not close the gap to target-grid training; (3) perturbation-based augmentation on edge attributes improves transfer by up to 54.6%; and (4) random line/generator dropout does not consistently improve performance.",
+   "query": "out-of-distribution generalization"
+  }
+ ]
+}

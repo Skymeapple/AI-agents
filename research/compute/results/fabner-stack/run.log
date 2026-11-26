@@ -1,0 +1,28 @@
+job: fabner-stack
+started: 2026-11-26T04:02:59Z
+cores: 4, memory: 15 GB
+{'fabner': ['test', 'train', 'validation'], 'fabner_bio': ['test', 'train', 'validation'], 'fabner_simple': ['test', 'train', 'validation'], 'text2tech': ['test', 'train', 'validation']}
+config: fabner_bio
+['O', 'B-MATE', 'I-MATE', 'B-MANP', 'I-MANP', 'B-MACEQ', 'I-MACEQ', 'B-APPL', 'I-APPL', 'B-FEAT', 'I-FEAT', 'B-PRO', 'I-PRO', 'B-CHAR', 'I-CHAR', 'B-PARA', 'I-PARA', 'B-ENAT', 'I-ENAT', 'B-CONPRI', 'I-CONPRI', 'B-MANS', 'I-MANS', 'B-BIOP', 'I-BIOP']
+total 1248
+drwxr-xr-x 2 runner runner   4096 Nov 26 04:03 .
+drwxr-xr-x 3 runner runner   4096 Nov 26 04:03 ..
+-rw-r--r-- 1 runner runner    249 Nov 26 04:03 labels.json
+-rw-r--r-- 1 runner runner 186509 Nov 26 04:03 test.parquet
+-rw-r--r-- 1 runner runner 882323 Nov 26 04:03 train.parquet
+-rw-r--r-- 1 runner runner 189840 Nov 26 04:03 validation.parquet
+held-out dictionary F1 on training folds: 91.9 (88.5, 95.6)
+
+Entity-level micro F1 on the test set (precision, recall)
+   dictionary                                     83.4  (81.3, 85.5)
+   CRF                                            82.8  (84.7, 81.0)   [validation 86.4]
+   union: dictionary + non-overlapping CRF        83.3  (81.0, 85.7)
+   CRF given the dictionary's tags (cross-fitted) 86.2  (87.5, 84.9)   [validation 90.1]
+
+Recall by whether the phrase is an entity anywhere in training
+   dictionary   seen 99.1% of 8308, unseen 0.0% of 1325
+   CRF          seen 92.8% of 8308, unseen 7.2% of 1325
+   stacked CRF  seen 97.9% of 8308, unseen 3.2% of 1325
+
+stacked minus dictionary, 1000 bootstrap resamples of test sentences: median +2.83, 95% interval +2.49 to +3.19, better in 100.0%
+finished: 2026-11-26T04:11:45Z, exit code 0

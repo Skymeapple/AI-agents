@@ -1,0 +1,42 @@
+job: tableqa-direct-set2
+started: 2026-11-25T23:23:26Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+WikiTableQuestions
+qwen2.5-3b-instruct-q4_k_m.gguf
+wtq.zip
+README.md
+csv
+data
+evaluator.py
+tagged
+4345 WikiTableQuestions/data/pristine-unseen-tables.tsv
+direct: 10 questions, 20.0% correct, 31s last
+direct: 20 questions, 15.0% correct, 40s last
+direct: 30 questions, 20.0% correct, 6s last
+direct: 40 questions, 25.0% correct, 11s last
+direct: 50 questions, 26.0% correct, 9s last
+direct: 60 questions, 26.7% correct, 50s last
+direct: 70 questions, 24.3% correct, 12s last
+direct: 80 questions, 23.8% correct, 15s last
+direct: 90 questions, 23.3% correct, 10s last
+direct: 100 questions, 26.0% correct, 27s last
+direct: 110 questions, 26.4% correct, 33s last
+direct: 120 questions, 25.8% correct, 40s last
+direct: 130 questions, 24.6% correct, 9s last
+direct: 140 questions, 25.0% correct, 68s last
+direct: 150 questions, 24.7% correct, 13s last
+direct: 160 questions, 25.6% correct, 27s last
+direct: 170 questions, 26.5% correct, 12s last
+direct: 180 questions, 26.1% correct, 15s last
+direct: 190 questions, 26.8% correct, 30s last
+direct: 200 questions, 28.0% correct, 9s last
+direct: 210 questions, 28.1% correct, 14s last
+direct: 220 questions, 28.2% correct, 15s last
+direct: 230 questions, 27.8% correct, 17s last
+direct: 240 questions, 27.9% correct, 17s last
+direct: 250 questions, 28.0% correct, 10s last
+direct: 250 questions, 28.0% correct
+250 /home/runner/work/AI-agents/AI-agents/research/compute/results/tableqa-direct-set2/direct.jsonl
+finished: 2026-11-26T01:02:22Z, exit code 0

@@ -70,11 +70,12 @@ Gains are relative to the best practical method without that ingredient.
 | TOPv2 parsing (small open model) | Constrain output to well-formed trees with known labels | Exact match 26.7% → 45.7%; no gain on unseen tree shapes |
 | Lung cells | A small network averaged with nearest neighbours, instead of a linear classifier | Macro-F1 0.684 → 0.786, in 35 of 35 studies |
 
-- **Nine of fifteen attempts worked,** counting part-way trading of a fast
+- **Nine of sixteen attempts worked,** counting part-way trading of a fast
   portfolio signal (return per unit of risk 0.50 → 0.60). Failures: joint
   spill planning across eight dams (1.4% at best), drift-triggered portfolio
   rebalancing, headway-based bus holding (worse by 4–12%), random-scenario scheduling (unstable), lifetime classes for cloud
-  placement, and single-scenario look-ahead for bikes.
+  placement, single-scenario look-ahead for bikes, and adding an untrained small
+  model's entities to a dictionary tagger (F1 83.2 → 75.7).
 - **Typical size: 3% to 23%, median about 10%.**
 - **Algorithms fail when their premise is wrong.** Bus holding assumed bunching
   was costly; on these routes it was not.
@@ -136,7 +137,7 @@ Gains are relative to the best practical method without that ingredient.
 | --- | --- | --- | --- |
 | New information | 7 of 9 | 6–34% | Needs a data source or a measurement |
 | More data of the same kind | 5 of 5 | 6–73% | Needs the data to exist |
-| A better algorithm | 9 of 15 | 3–23% | Engineering time |
+| A better algorithm | 9 of 16 | 3–23% | Engineering time |
 | Theory from another field | 4 of 11 | 3–36% | Nearly free once known |
 | More reasoning per decision | 3 of 8 | 0–10%, falling fast | Compute |
 

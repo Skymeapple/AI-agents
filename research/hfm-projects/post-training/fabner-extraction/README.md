@@ -36,7 +36,7 @@ Unseen phrases (14% of test entities) and inconsistent labels (a quarter of repe
 
 ## Route to a step change
 
-Constrained JSON decoding and hard-example mining.
+A trained model that is given the dictionary's answer and decides the unseen phrases. An untrained small model adding entities to the dictionary lowers F1 from 83.2 to 75.7.
 
 ## Experiment and results
 
@@ -59,6 +59,21 @@ Code: [`fabner_ceiling.py`](fabner_ceiling.py) in this folder. It ran on free Gi
   - **Labels are inconsistent:** among phrases that appear five or more times, a quarter of appearances are labelled differently from the phrase's usual label, mostly left unlabelled or absorbed into a longer span. That caps what any model can score.
 - **Reading:** fine-tuning a language model end to end spends its capacity relearning a dictionary. A hybrid, with dictionary or CRF predictions supplied to the language model as candidates, targets the 14% directly.
 
+### Follow-up: does a small language model find the unseen phrases?
+
+Code: [`fabner_hybrid.py`](fabner_hybrid.py); log in [`research/compute/results/fabner-hybrid/`](../../../compute/results/fabner-hybrid/run.log). A 3B open model (Qwen2.5-3B, 4-bit, CPU, no fine-tuning) was shown six retrieved training sentences with their entities and asked to list the entities of each of 300 test sentences (1,264 entities).
+
+| System | F1 | Precision | Recall |
+| --- | --- | --- | --- |
+| Dictionary | 83.2 | 82.0 | 84.4 |
+| Small model with 6 retrieved examples | 33.6 | 37.4 | 30.5 |
+| Dictionary plus the model's non-overlapping entities | 75.7 | 67.8 | 85.8 |
+
+- **The hybrid is worse than the dictionary by 7.5 points.** The model added 299 entities with phrases unseen in training; 17 were correct (6%).
+- **The model does find some unseen entities:** 19.7% of the 188, against 0% for the dictionary and 7% for the CRF. After removing those that overlap dictionary matches, 9.0% remain.
+- **Reading:** an untrained small model cannot tell which unseen phrases the annotators would have marked. Recall on the unseen part is available, but precision is not, and at 6% precision every correct addition costs sixteen wrong ones. The hybrid route needs a model trained on this annotation style, or a learned filter on the proposals. That is a GPU fine-tune, or the classical stacking test below.
+- **Limits:** 300 sentences, one prompt, one small model. A fine-tuned 7B model is a different object.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -68,6 +83,6 @@ These numbers come from public data and are not comparable to HFM's score, which
 
 ## Next steps
 
-- Build the hybrid: classical candidates in the prompt, language model decides unseen phrases and boundaries (needs a GPU or a language-model key).
+- The untrained hybrid failed (above). Next: a fine-tuned model that sees the dictionary's tags, on a GPU; and a CRF that sees them, on CPU (`fabner_stack.py`, queued).
 - Score HFM-style generative output with the same scorer to check comparability.
 - Quantify the label-noise ceiling by re-annotating a sample.

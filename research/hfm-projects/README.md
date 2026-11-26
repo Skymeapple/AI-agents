@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 35 projects (34 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 36 projects (35 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 18 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 17 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
 
@@ -81,7 +81,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Steel Cyclic Loading History Transfer](physics/steel-history-transfer/README.md) | Tested on public data | Shares the steel experiment: donor library cuts error 73%; 40% headroom needs a new measurement. | 0 → 0.6677 |
 | [Predicting Optical Constants Beyond the Measured Wavelength Band](physics/optical-constants/README.md) | Tested on public data | Causality-only fit: +0.02 to +0.11 skill. A reference library with another measurement of the same material: +0.35. | 0 → 0.7907 |
 | [Predict Cyclic Steel Stress Response from Limited Material Tests](physics/steel-cyclic-from-tension/README.md) | Tested on public data | Donor median cuts error 73%; one extra ±2% cyclic test closes 71% of the remaining gap. | 0 → 0.5453 |
-| [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. The Well dataset is hundreds of GB and Walrus is a large model. | 0.3693 → 0.3129 |
+| [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | Tested on public data | Floors with no network on three flow settings: blurring towards the mean beats persistence by only 9–16% (0.56–0.57) and fails at the most turbulent setting; simple skill is gone within about 8 frames. The Walrus model itself needs a GPU. | 0.3693 → 0.3129 |
 | [Optical Coating Design Under Manufacturing Variation](physics/robust-ar-coating/README.md) | Tested on public data | Selecting designs by robust score: −14.5% expected reflectance. | 0 → 0.2523 |
 | [PM2.5 Sensor Calibration Transfer](physics/pm25-calibration/README.md) | Tested on public data | A learned calibration transfers 10% better to an unseen city and 29% better to unseen sites than a linear one; the physics-based humidity form adds nothing. | 0 → 0.6945 |
 | [Full-field reconstruction of 2D Rayleigh–Bénard convection from 256 fixed sensors](physics/rayleigh-benard-reconstruction/README.md) | Tested on public data | Pressure from the flow equation cuts pressure error 36% and total field error 10.8% against gappy POD; sensor-history regressions are worse. | 0.2918 → 0.2342 |

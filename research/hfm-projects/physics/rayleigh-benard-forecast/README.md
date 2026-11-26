@@ -2,7 +2,7 @@
 
 - **Field:** physics
 - **HFM track:** `discovery_live_ai4x_physics_rb` (active on HFM)
-- **Project status:** Blocked
+- **Project status:** Tested on public data
 
 ## Readiness
 
@@ -40,9 +40,23 @@ Rollout training with physics losses; ensembles scored with CRPS.
 
 ## Experiment and results
 
-No experiment has been run for this project.
+Code: [`forecast_floor.py`](forecast_floor.py) in this folder. It ran on free GitHub Actions compute (four CPU cores, about two minutes per flow setting); logs are in [`research/compute/results/`](../../../compute/results/) under `rb-forecast-floor-*`.
 
-- **Why:** Needs a GPU. This analysis ran on a 4-CPU container. The Well dataset is hundreds of GB and Walrus is a large model.
+- **This is a floor, not a forecast model.** The Walrus model needs a GPU. These are five methods with no neural network, to measure how much of the score simple statistics explain.
+- **Setup:** The Well's public data at Prandtl 1 and Rayleigh 1e6, 1e8 and 1e10. Weights are fitted on 8 training runs and scored on the 5 test runs, from start frames 0 (onset), 65 and 130. Input is 6 frames, the forecast is the next 64. Error is RMSE divided by the standard deviation of the true frames, averaged over the four fields. This normalisation is ours; HFM's `rollout_nrmse` may differ, so the numbers are not comparable with 0.3693 or 0.3129.
+
+  | Method | Rayleigh 1e6 | 1e8 | 1e10 |
+  | --- | --- | --- | --- |
+  | Persistence (repeat the last frame) | 0.663 | 0.630 | 0.747 |
+  | Mean vertical profile | 0.762 | 0.820 | 0.945 |
+  | Damped persistence | 0.580 | 0.616 | 0.877 |
+  | Blurred and damped persistence | **0.558** | **0.573** | 1.115 |
+  | Linear regression on 60 flow modes | 0.646 | 0.759 | 0.915 |
+
+- **Blurring towards the mean helps only a little.** At 1e6 and 1e8 the best blur-and-shrink forecast is 9% to 16% better than plain persistence. If HFM's metric is close to ours, its 0.37 to 0.31 is well below anything blurring reaches, so the Walrus scores reflect real forecasting skill.
+- **Skill is lost within about 8 frames.** From start frame 65 at 1e8, the best floor's error is 0.25 at lead 1, 0.59 at lead 8 and 0.72 at lead 64. Most of the 64-frame score is therefore set by frames where no simple method knows more than the mean.
+- **Onset is a different problem.** From frame 0 the velocity error is 1.0 for every method: the flow is still at rest in the input and convection starts inside the forecast window. This matches the HFM agents' choice to treat onset separately.
+- **A negative result:** at 1e10 the fitted methods are worse than persistence, and the blurred one fails at onset (1.87). Weights fitted on 8 runs do not transfer to the test runs at the most turbulent setting. A linear forecast on flow modes was never the best method at any setting.
 
 ## How far this can go
 

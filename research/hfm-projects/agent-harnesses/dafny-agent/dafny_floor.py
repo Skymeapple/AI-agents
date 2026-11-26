@@ -7,6 +7,8 @@ public DafnyBench task (Loughridge et al., Apache 2.0) is to restore the removed
 invariants and assertions so each program verifies. No language model is used here.
 
 Stage 1  verify every hints-removed program unchanged.
+Stage 3  as stage 2, adding each postcondition of the enclosing method as a candidate,
+         once unchanged and once with the loop bound replaced by the loop counter.
 Stage 2  for each failing program, add candidate bound invariants read off each
          while-loop guard (for `while i < n`: 0 <= i, i <= n, ...), then repeatedly
          delete every candidate the verifier complains about until the program
@@ -60,16 +62,34 @@ def candidates(guard):
     return list(dict.fromkeys(out))
 
 
-def add_candidates(text):
-    out, n = [], 0
+def from_postconditions(ensures, guard):
+    """Classic "replace a constant by the loop variable": each postcondition with the
+    loop bound replaced by the loop counter, and each postcondition unchanged."""
+    out = []
+    m = re.fullmatch(r"\s*\(?\s*([A-Za-z_]\w*)\s*(<=|<|!=)\s*(.+?)\s*\)?\s*", guard.split("&&")[0])
+    for e in ensures:
+        if m and m.group(3) in e:
+            out.append(e.replace(m.group(3), m.group(1)))
+        out.append(e)
+    return out
+
+
+def add_candidates(text, post=False):
+    out, n, ensures = [], 0, []
     for line in text.split("\n"):
+        if re.match(r"^\s*(method|lemma|function|predicate|ghost|class|datatype)\b", line):
+            ensures = []
+        e = re.match(r"^\s*ensures\s+(.*?);?\s*$", line)
+        if e and e.group(1).count("(") == e.group(1).count(")") and "old(" not in e.group(1):
+            ensures.append(e.group(1).split("//")[0].strip())
         m = re.match(r"^(\s*)while\s*(.*?)\s*(\{?)\s*$", line)
         if m and m.group(2) and not m.group(2).startswith("*"):
             indent, guard, brace = m.groups()
             guard = guard.strip()
             if guard.startswith("(") and guard.endswith(")"):
                 guard = guard[1:-1]
-            cands = candidates(guard)
+            cands = candidates(guard) + (from_postconditions(ensures, guard) if post else [])
+            cands = list(dict.fromkeys(c for c in cands if c))
             if cands:
                 out.append(f"{indent}while {m.group(2)}")
                 for c in cands:
@@ -82,11 +102,11 @@ def add_candidates(text):
     return "\n".join(out), n
 
 
-def houdini(dafny, text):
-    cur, n = add_candidates(text)
+def houdini(dafny, text, post=False):
+    cur, n = add_candidates(text, post)
     if n == 0:
         return False, 0, 0
-    for _ in range(8):
+    for _ in range(12):
         ok, out, bad = verify(dafny, cur)
         kept = sum(MARK in l for l in cur.split("\n"))
         if ok:
@@ -107,6 +127,8 @@ def one(args):
            "plain": ok, "timeout": out == "timeout" or "time out" in out, "tail": out.strip()[-300:]}
     if not ok and rec["loops"]:
         rec["houdini"], rec["candidates"], rec["kept"] = houdini(dafny, text)
+        if not rec["houdini"]:
+            rec["houdini_post"], rec["candidates_post"], rec["kept_post"] = houdini(dafny, text, post=True)
     return rec
 
 
@@ -132,6 +154,9 @@ def main():
     print(f"RESULT verify with no hints: {plain} ({plain / n:.1%})")
     print(f"RESULT   programs without loops: {sum(r['plain'] for r in noloop)} of {len(noloop)}; with loops: {sum(r['plain'] for r in loop)} of {len(loop)}")
     print(f"RESULT recovered by loop-bound guess-and-prune: {hou} more -> {plain + hou} ({(plain + hou) / n:.1%})")
+    hp = sum(bool(r.get("houdini_post")) for r in recs)
+    print(f"RESULT recovered by also trying postconditions with the bound replaced by the counter: {hp} more -> {plain + hou + hp} ({(plain + hou + hp) / n:.1%})")
+    print(f"RESULT parse errors in the hint-stripped file itself: {sum('parse errors' in r['tail'] for r in recs)}")
     print(f"RESULT timeouts among failures: {sum(r['timeout'] and not r['plain'] for r in recs)}")
     short = [r for r in recs if r["lines"] <= 40]
     print(f"RESULT programs of 40 lines or fewer: {len(short)}, verify with no hints {sum(r['plain'] for r in short)}, after guess-and-prune {sum(r['plain'] or bool(r.get('houdini')) for r in short)}")

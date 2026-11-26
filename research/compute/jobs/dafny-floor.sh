@@ -1,4 +1,4 @@
-# DafnyBench with no language model: how many hint-stripped programs verify as they
+# (second run: postcondition-derived candidates added) DafnyBench with no language model: how many hint-stripped programs verify as they
 # are, and how many more a classical guess-and-prune of loop bounds recovers.
 set -e
 cd "$DATA"

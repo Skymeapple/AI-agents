@@ -338,6 +338,7 @@ CPU, and revisited two earlier results.
 | TOPv2, constrained decoding | Small open model, retrieved examples, with and without a grammar | Exact match 26.7% → 45.7% with no training (60 fixed, 2 broken). Unseen shapes unchanged within noise (6 → 9 of 130). |
 | Table question answering | Two harnesses around a small open model on CPU | Printing the code's last expression moves the code route from 1.6% to 27.6%. A simple rule choosing between the direct and code routes gives 41.2% on fresh questions against 28.0% direct; a perfect selector 47.6%. |
 | Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
+| Looped transformer, variable loops | Toy-scale comparison | Mixed loop counts in training cost 0.013 to 0.048 bits per byte at 3 loops and buy tolerance to running fewer loops. Extra loops at test time never help. Confidence-based early exit does not pay. |
 
 Three points for the conclusions of this review:
 

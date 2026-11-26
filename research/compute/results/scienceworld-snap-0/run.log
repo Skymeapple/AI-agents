@@ -1,0 +1,24 @@
+job: scienceworld-snap-0
+started: 2026-11-26T06:07:11Z
+cores: 4, memory: 15 GB
+openjdk version "25.0.5" 2026-10-20 LTS
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+snap   boil                                                 score   0.0  valid commands 100%  8s
+snap   chemistry-mix                                        score  25.0  valid commands 100%  147s
+snap   chemistry-mix-paint-tertiary-color                   score   7.0  valid commands 100%  190s
+snap   find-living-thing                                    score  25.0  valid commands 100%  18s
+snap   find-plant                                           score   0.0  valid commands 100%  4s
+snap   grow-fruit                                           score  16.0  valid commands 100%  39s
+snap   identify-life-stages-1                               score   0.0  valid commands 100%  20s
+snap   inclined-plane-determine-angle                       score   5.0  valid commands 100%  159s
+snap   inclined-plane-friction-unnamed-surfaces             score   5.0  valid commands 100%  40s
+snap   lifespan-longest-lived-then-shortest-lived           score   0.0  valid commands 100%  5s
+snap   measure-melting-point-known-substance                score   0.0  valid commands 100%  7s
+snap   melt                                                 score   0.0  valid commands 100%  5s
+snap   mendelian-genetics-unknown-plant                     score   0.0  valid commands 100%  85s
+snap   power-component-renewable-vs-nonrenewable-energy     score  43.0  valid commands 100%  124s
+snap   test-conductivity-of-unknown-substances              score   0.0  valid commands 100%  6s
+
+snap: mean score 8.4 over 15 tasks, up to 30 steps each
+finished: 2026-11-26T06:22:29Z, exit code 0

@@ -8,7 +8,8 @@ For each tactic, every theorem's `sorry` is replaced by that tactic and the file
 checked once; `#print axioms` after each theorem confirms it was accepted without
 `sorry`. Each declaration has a fixed heartbeat budget so slow tactics fail cleanly.
 
-Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json>
+Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json> <valid|test>
+       python lean_floor.py summary <valid.json> <test.json>
 """
 import json
 import os
@@ -61,11 +62,13 @@ def run(repo, split, stmts, k):
 
 
 def main():
-    repo, outp = sys.argv[1:3]
-    sets = {"valid": statements(os.path.join(repo, "MiniF2F", "Valid")), "test": statements(os.path.join(repo, "MiniF2F", "Test"))}
+    if sys.argv[1] == "summary":
+        return summary(sum((json.load(open(f)) for f in sys.argv[2:4]), []))
+    repo, outp, which = sys.argv[1:4]
+    sets = {which: statements(os.path.join(repo, "MiniF2F", which.capitalize()))}
     print({k: len(v) for k, v in sets.items()}, flush=True)
     jobs = [(repo, sp, sets[sp], k) for k in range(len(TACTICS)) for sp in sets]
-    with ThreadPoolExecutor(4) as ex:
+    with ThreadPoolExecutor(2) as ex:
         res = list(ex.map(lambda a: run(*a), jobs))
     json.dump([{"split": s, "tactic": t, "proved": p} for s, t, p in res], open(outp, "w"), indent=0)
     for sp in sets:
@@ -84,9 +87,13 @@ def main():
             a[0] += name in union
             a[1] += 1
         print("RESULT   by source: " + ", ".join(f"{k} {a}/{b}" for k, (a, b) in sorted(kinds.items())))
+
+
+def summary(rows):
+    n_test = 244
     # tactics chosen on valid, scored on test: greedy cover of the validation set
-    by_v = {t: set(p) for s, t, p in res if s == "valid"}
-    by_t = {t: set(p) for s, t, p in res if s == "test"}
+    by_v = {t: set(p) for r in rows for s, t, p in [(r["split"], r["tactic"], r["proved"])] if s == "valid"}
+    by_t = {t: set(p) for r in rows for s, t, p in [(r["split"], r["tactic"], r["proved"])] if s == "test"}
     chosen, cov = [], set()
     for _ in range(5):
         t = max(by_v, key=lambda t: len(by_v[t] - cov))
@@ -95,7 +102,7 @@ def main():
         chosen.append(t)
         cov |= by_v[t]
         tc = set().union(*[by_t[c] for c in chosen])
-        print(f"RESULT best {len(chosen)} tactics picked on valid ({', '.join(chosen)}): valid {len(cov)}, test {len(tc)} ({len(tc) / len(sets['test']):.1%})")
+        print(f"RESULT best {len(chosen)} tactics picked on valid ({', '.join(chosen)}): valid {len(cov)}, test {len(tc)} ({len(tc) / n_test:.1%})")
 
 
 if __name__ == "__main__":

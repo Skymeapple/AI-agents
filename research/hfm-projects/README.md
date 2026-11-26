@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 33 projects (32 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 34 projects (33 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 20 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 19 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
 
@@ -15,7 +15,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
 | [Building an Agent for Preserving Knowledge from Research Papers](agent-harnesses/paper-memory-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.2405 → 0.4794 |
-| [Agent for ARC Grid Transformation Tasks](agent-harnesses/arc-grid-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.1213 → 0.7856 |
+| [Agent for ARC Grid Transformation Tasks](agent-harnesses/arc-grid-agent/README.md) | Tested on public data | With no model, a fixed library of 34 grid operations searched two deep solves 6.5% of public training tasks and 1.0% of held-out evaluation tasks. When a program fits the examples it is usually right (30 of 36); the hard part is proposing one. | 0.1213 → 0.7856 |
 | [Agent for Verified Programming with Dafny](agent-harnesses/dafny-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.3165 → 0.8289 |
 | [Agent for Formal Theorem Proving in Lean](agent-harnesses/lean-prover-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.3643 → 0.5661 |
 | [Agent for Questions over Real Tables](agent-harnesses/table-qa-agent/README.md) | Tested on public data | With a small open model on CPU, one harness detail (printing the last expression) moves the code route from 1.6% to 27.6%. Choosing between the direct and code routes with a simple rule gives 41.2% on fresh questions against 28.0% direct (perfect selector 47.6%). | 0.3711 → 0.877 |

@@ -18,7 +18,7 @@ import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
-TACTICS = ["rfl", "decide", "norm_num", "simp", "ring", "linarith", "nlinarith", "omega", "positivity", "aesop", "simp_all", "grind", "bound",
+TACTICS = ["rfl", "norm_num", "simp", "ring", "linarith", "nlinarith", "omega", "positivity", "aesop", "simp_all", "grind", "bound",
            "intros; norm_num [*]", "intros; nlinarith [sq_nonneg (0:ℝ)]", "norm_num at *; linarith", "field_simp; ring", "intros; omega",
            "intros; simp_all; linarith", "norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]"]
 HEARTBEATS = 200000

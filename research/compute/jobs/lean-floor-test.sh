@@ -1,4 +1,4 @@
-# miniF2F (test set) with no language model: which theorems fall to a single built-in tactic. (third run: memory cap and chunks)
+# miniF2F (test set) with no language model: which theorems fall to a single built-in tactic. (fourth run: memory cap, chunks, no bare decide)
 set -e
 curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
 export PATH="$HOME/.elan/bin:$PATH"

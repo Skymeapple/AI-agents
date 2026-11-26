@@ -1,0 +1,8 @@
+job: embspatial-records
+started: 2026-11-26T05:37:54Z
+cores: 4, memory: 15 GB
+3640 records written
+{"id": "mp3d_0", "source": "mp3d", "scene": "q9vSo1VnCiC", "relation": "close", "question": "Among the listed objects, which one is closest to your current location in the image?", "options": ["table", "towel", "door", "basket"], "answer": 3, "objects": {"bbox": [[103, 296, 106, 52], [83, 350, 85, 69], [100, 94, 178, 308], [45, 374, 170, 106]], "name": ["table", "towel", "door", "basket"]}, "width": 640, "height": 480}
+{"id": "mp3d_1", "source": "mp3d", "scene": "EU6Fwq7SyZv", "relation": "close", "question": "Which object, in relation to your current position, holds the nearest placement in the image?", "options": ["fireplace", "pool table", "railing", "pillow"], "answer": 3, "objects": {"bbox": [[460, 129, 121, 198], [197, 275, 99, 85], [361, 1, 279, 53], [564, 338, 76, 104]], "name": ["fireplace", "pool table", "railing", "pillow"]}, "width": 640, "height": 480}
+{"id": "mp3d_2", "source": "mp3d", "scene": "pa4otMbVnkk", "relation": "right", "question": "What is the spatial relationship between cabinet and bag in the image?", "options": ["The cabinet is touching the bag.", "The cabinet is inside the bag.", "The cabinet is at the left side of the bag.", "The cabinet is right of the bag."], "answer": 3, "objects": {"bbox": [[360, 303, 280, 177], [292, 409, 58, 60]], "name": ["cabinet", "bag"]}, "width": 640, "height": 480}
+{"id": "mp3d_3", "source": "mp3d", "scene": "YFuZgdQ5vWj", "relation": "close", "question": "Which object, in relation to your current position, holds the finished: 2026-11-26T05:38:09Z, exit code 0

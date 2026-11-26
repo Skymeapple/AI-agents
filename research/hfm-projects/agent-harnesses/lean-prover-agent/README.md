@@ -44,9 +44,9 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 
 - **Data:** the public miniF2F Lean 4 port (github.com/yangky11/miniF2F-lean4, MIT licence; Lean v4.24.0 with Mathlib), 244 validation and 244 test theorems.
 - **Method:** each theorem's `sorry` is replaced by one tactic call and checked by Lean under a fixed budget (200,000 heartbeats per theorem). `#print axioms` after each theorem confirms the proof was accepted without `sorry`.
-- **Tactics:** 34 in two rounds. Round one is 19 built-in tactics and simple pairs. Round two is 15 short compositions around the strongest of them, such as `norm_num at * <;> grind`, and `nlinarith` given the squares of the theorem's real variables and of their pairwise sums and differences (generated from the statement by a fixed rule).
+- **Tactics:** 52 in three rounds. Round three (18 tactics, run only on theorems the first two rounds left unproved) takes one structural step, such as induction on a natural-number variable, case-splitting a bounded integer, splitting a conjunction or arguing by contradiction, and then tries a fixed portfolio of twelve closing tactics on every goal that remains. Rounds one and two: Round one is 19 built-in tactics and simple pairs. Round two is 15 short compositions around the strongest of them, such as `norm_num at * <;> grind`, and `nlinarith` given the squares of the theorem's real variables and of their pairwise sums and differences (generated from the statement by a fixed rule).
 - **Selection:** the tactics to combine were chosen on the validation set (greedy cover) and scored once on the test set.
-- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor2-valid-a`, `-valid-b`, `-test-a`, `-test-b`. The `lean-floor-*` folders hold the first round's earlier run, which lost whole batches to timeouts and is superseded.
+- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor2-*` (rounds one and two) and `lean-floor3-*` (round three). The `lean-floor-*` folders hold the first round's earlier run, which lost whole batches to timeouts and is superseded.
 
 **Results.**
 
@@ -57,12 +57,16 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 | best 2: adding `bound` | 89 (36.5%) | 88 (36.1%) |
 | best 4: adding `nlinarith` with generated squares, `intros; norm_num [*]` | 100 (41.0%) | 95 (38.9%) |
 | best 8 | 108 (44.3%) | 99 (40.6%) |
-| any of the 34 (upper bound, selection-biased) | 108 (44.3%) | 106 (43.4%) |
+| any of the 34 in rounds one and two (upper bound, selection-biased) | 108 (44.3%) | 106 (43.4%) |
+| all three rounds, 14 tactics chosen on validation | 118 (48.4%) | 103 (42.2%) |
+| any of the 52 (upper bound, selection-biased) | 118 (48.4%) | 110 (45.1%) |
 
 - **One short tactic call proves about a third of miniF2F, and a handful prove about 40%.** The eight tactics picked on validation prove 99 of the 244 test theorems.
 - **Composition helped.** Normalising numerals before `grind` adds 10 test theorems to `grind` alone (84 against 74). The generated squares add 5 test theorems to plain `nlinarith` (37 against 32).
 - **The gains are concentrated in the easy sources.** Of the 106 test theorems proved by any tactic, 86 are `mathd` problems. Two of the 20 test `imo` problems fall (`imo_1964_p2`, `imo_1982_p1`), four `aime` problems and one `induction` problem.
 - **Returns flatten quickly.** From four tactics to eight, the test score rises by 4 theorems.
+- **One structural step adds almost nothing.** Round three proved 10 more validation theorems and 4 more test theorems out of the 136 and 138 left. Induction followed by the portfolio is the only structural step that helped on both sets (3 validation, 2 test). The validation gain did not transfer: the 14 tactics chosen on validation reach 48.4% there and 42.2% on test.
+- **Some proved statements may be weaker than the original problems.** Round three's proofs include `imo_1987_p4` and `imo_1977_p6`. Lean accepted them without `sorry`, but short automatic proofs of olympiad problems usually mean the formal statement is easier than the informal one; this was not checked statement by statement.
 
 **Limits of this measurement.**
 
@@ -71,7 +75,7 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 - The floor depends on the Mathlib version; `grind` and `bound` are recent additions.
 - The second-round tactics were written after seeing first-round test results per tactic, so the choice of what to compose is not fully blind to the test set. The combination reported was still selected on validation only.
 
-**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call, and the remaining 60% (almost all `imo`, most `aime`, `induction` and `amc12` problems) are where a model has to supply structure.
+**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call. One more automatic step moves that by under two points, so the remaining theorems need several coordinated steps, not a better closing tactic. That remainder (almost all `imo`, most `aime`, `induction` and `amc12` problems) is where a model has to supply structure.
 
 ## How far this can go
 
@@ -79,4 +83,4 @@ HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 25
 
 ## Next steps
 
-Add a model-free search over two- and three-step tactic sequences to see how far the floor moves without a model. Once a model endpoint is available, run a tactic-search baseline that calls `grind` and `bound` at every sub-goal.
+Once a model endpoint is available, run a tactic-search baseline that calls `grind` and `bound` at every sub-goal.

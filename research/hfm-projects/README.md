@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 34 projects (33 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 35 projects (34 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 19 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 18 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md).
 
@@ -106,7 +106,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Looped pretraining with two concurrent four-GPU ideas per batch](pretraining/looped-pretraining-v2/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → -1.152 |
 | [Pretraining architecture development on frozen public training pool](pretraining/pretraining-architecture-pool/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → -0.7048 |
 | [Agentic Pretraining with a Frozen Corpus and Tokenizer](pretraining/agentic-pretraining/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → -0.6941 |
-| [Agentic Pretraining Under Fixed Inference-Cost Constraint](pretraining/pretraining-fixed-inference-cost/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → -0.667 |
+| [Agentic Pretraining Under Fixed Inference-Cost Constraint](pretraining/pretraining-fixed-inference-cost/README.md) | Tested on public data | Toy scale (3.7M parameters, CPU): at equal per-token compute, 8 layers beats 2, 4 and 16 layers, but the three reasonable shapes span only 0.017 bits per byte; doubling training gains 0.084. | not published → -0.667 |
 | [Looped-Transformer Pretraining Under a Fixed Compute Budget](pretraining/looped-pretraining-fixed-compute/README.md) | Tested on public data | Toy scale (2–4M parameters, CPU): looping closes 63% of the gap between 4 and 8 layers at equal parameters, loses by 0.026 bits per byte at equal compute, and the loop-index idea adds nothing beyond seed noise. | not published → -0.7786 |
 | [Looped Transformer Pretraining with Recurrent Depth Architectures](pretraining/looped-pretraining-v1/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. The track has ended. | not published → -1.553 |
 | [Pretraining architecture development from scratch](pretraining/pretraining-from-scratch/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → -0.9624 |

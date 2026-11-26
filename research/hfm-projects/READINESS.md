@@ -57,7 +57,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Looped Transformer Pretraining with Recurrent Depth Architectures](pretraining/looped-pretraining-v1/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
 | [Looped pretraining with two concurrent four-GPU ideas per batch](pretraining/looped-pretraining-v2/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
 | [Pretraining architecture development on frozen public training pool](pretraining/pretraining-architecture-pool/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
-| [Agentic Pretraining Under Fixed Inference-Cost Constraint](pretraining/pretraining-fixed-inference-cost/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
+| [Agentic Pretraining Under Fixed Inference-Cost Constraint](pretraining/pretraining-fixed-inference-cost/README.md) | A toy-scale CPU test has run. A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
 | [Pretraining architecture development from scratch](pretraining/pretraining-from-scratch/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
 
 ## Ready to run once a language-model key is connected (6)

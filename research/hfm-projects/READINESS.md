@@ -50,7 +50,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | [FabNER Material Manufacturing Entity Extraction](post-training/fabner-extraction/README.md) | A CPU study has run. A free GPU account for the hybrid with a language model. |
 | [MapQA Map Visual Question Answering](post-training/mapqa-training/README.md) | A free GPU account. |
 | [ScienceWorld task training on Qwen2.5-7B-Instruct](post-training/scienceworld-training/README.md) | A free GPU account. |
-| [SynLogic logical reasoning training](post-training/synlogic-training/README.md) | A free GPU account. |
+| [SynLogic logical reasoning training](post-training/synlogic-training/README.md) | A CPU stand-in study has run. A free GPU account for the fine-tuning. |
 | [TOPv2 compositional semantic parsing](post-training/topv2-parsing/README.md) | A CPU study has run. A free GPU account for the language model. |
 | [Agentic Pretraining with a Frozen Corpus and Tokenizer](pretraining/agentic-pretraining/README.md) | A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |
 | [Looped-Transformer Pretraining Under a Fixed Compute Budget](pretraining/looped-pretraining-fixed-compute/README.md) | A toy-scale CPU test has run. A free GPU account for scaled-down studies. Matching HFM's budget needs a research allocation or paid compute. |

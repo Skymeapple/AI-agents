@@ -1,0 +1,26 @@
+job: loops-tiny-mix-124
+started: 2026-11-26T17:45:33Z
+cores: 4, memory: 15 GB
+  mix-124 seed 0 step 1500: 1.4641 bits/byte at 3 loops, 1190s
+  mix-124 seed 0 step 3000: 1.2661 bits/byte at 3 loops, 2375s
+  mix-124 seed 0 step 4500: 1.1647 bits/byte at 3 loops, 3683s
+RESULT mix-124 seed 0: mean training loops 2.33, train time 5020s; held-out bits/byte at loops 1: 1.1770, 2: 1.1480, 3: 1.1448, 4: 1.1498, 6: 1.1755, 8: 1.2207
+RESULT mix-124 seed 0 oracle exit: 1.0508 bits/byte at 2.38 mean loops (share of tokens best at 1/2/3/4 loops: 0.33/0.24/0.14/0.29)
+RESULT mix-124 seed 0 exit when top probability >= 0.5: 1.1646 bits/byte at 1.67 mean loops
+RESULT mix-124 seed 0 exit when top probability >= 0.7: 1.1567 bits/byte at 2.09 mean loops
+RESULT mix-124 seed 0 exit when top probability >= 0.8: 1.1539 bits/byte at 2.31 mean loops
+RESULT mix-124 seed 0 exit when top probability >= 0.9: 1.1513 bits/byte at 2.58 mean loops
+RESULT mix-124 seed 0 exit when top probability >= 0.95: 1.1501 bits/byte at 2.79 mean loops
+RESULT mix-124 seed 0 exit when top probability >= 0.99: 1.1495 bits/byte at 3.21 mean loops
+  mix-124 seed 1 step 1500: 1.4560 bits/byte at 3 loops, 1170s
+  mix-124 seed 1 step 3000: 1.2643 bits/byte at 3 loops, 2322s
+  mix-124 seed 1 step 4500: 1.1658 bits/byte at 3 loops, 3476s
+RESULT mix-124 seed 1: mean training loops 2.32, train time 4770s; held-out bits/byte at loops 1: 1.1755, 2: 1.1477, 3: 1.1453, 4: 1.1507, 6: 1.1758, 8: 1.2179
+RESULT mix-124 seed 1 oracle exit: 1.0510 bits/byte at 2.39 mean loops (share of tokens best at 1/2/3/4 loops: 0.34/0.23/0.13/0.30)
+RESULT mix-124 seed 1 exit when top probability >= 0.5: 1.1646 bits/byte at 1.67 mean loops
+RESULT mix-124 seed 1 exit when top probability >= 0.7: 1.1573 bits/byte at 2.08 mean loops
+RESULT mix-124 seed 1 exit when top probability >= 0.8: 1.1543 bits/byte at 2.31 mean loops
+RESULT mix-124 seed 1 exit when top probability >= 0.9: 1.1519 bits/byte at 2.57 mean loops
+RESULT mix-124 seed 1 exit when top probability >= 0.95: 1.1512 bits/byte at 2.79 mean loops
+RESULT mix-124 seed 1 exit when top probability >= 0.99: 1.1507 bits/byte at 3.22 mean loops
+finished: 2026-11-26T20:29:20Z, exit code 0

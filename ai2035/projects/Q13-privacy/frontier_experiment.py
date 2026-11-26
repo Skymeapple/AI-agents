@@ -237,6 +237,9 @@ out = {"config": dict(q=Q, steps=STEPS, lr=LR, clip=CLIP, delta=DELTA, epsilons=
                       beta_conf=BETA_CONF, steinke_r_grid="m*{0.05,0.1,0.2,0.5,1.0}, Bonferroni, delta term 2*m*delta",
                       multi_run_runs_per_arm=MR_RUNS),
        "sigma": {ek(e): s for e, s in sigmas.items()},
+       # 所有中间迭代均可见时 DP-SGD 的 GDP 中心极限近似 μ_CLT = q·sqrt(T(e^{1/σ²}-1))（Dong et al. 2019），对比末次迭代审计天花板
+       "all_iterates_gdp_clt": {ek(e): {"mu": float(Q * np.sqrt(STEPS * np.expm1(1 / sigmas[e] ** 2))),
+                                         "eps": eps_from_mu(float(Q * np.sqrt(STEPS * np.expm1(1 / sigmas[e] ** 2))))} for e in EPSILONS},
        "theory_ceiling_eps_gdp_dirac_m1": {ek(e): eps_from_mu(mu_theory(sigmas[e], 1, None)) for e in EPSILONS}}
 groups = {}
 for r in rec:

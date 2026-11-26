@@ -348,14 +348,17 @@ od = results_dir(__file__)
 
 # ------------------------------------------------------------------ figures
 P = plt()
-fig, ax = P.subplots(1, 3, figsize=(15, 4.3))
+fig, ax = P.subplots(1, 4, figsize=(19, 4.3))
 cols = {"learned": "C0", "diff": "C3", "common": "C2"}
 lab = {"learned": "学习模型", "diff": "差分型扰动(动作增益)", "common": "共模型扰动(重力/偏置)"}
-for k, (xk, xl) in enumerate([("mse1_uniform", "均匀分布一步 RMSE"), ("rollout30", "30 步开环 RMSE"), ("regret_local", "局部排序后悔（标准差单位）")]):
+for k, (xk, xl) in enumerate([("mse1_uniform", "均匀分布一步 RMSE"), ("rollout30", "30 步开环 RMSE"), ("regret_local", "局部排序后悔（标准差单位）"),
+                              ("optimism_offline", "离线乐观度（真实−预测代价/步）")]):
     for t in cols:
         rs = [r for r in rows if r["type"] == t]
-        ax[k].scatter([max(r[xk], 1e-5) for r in rs], [r["nret"] for r in rs], s=12, alpha=0.6, color=cols[t], label=lab[t])
-    ax[k].set_xscale("log"); ax[k].set_xlabel(xl); ax[k].set_ylabel("归一化回报")
+        xv = [r[xk] if xk == "optimism_offline" else max(r[xk], 1e-5) for r in rs]
+        ax[k].scatter(xv, [r["nret"] for r in rs], s=12, alpha=0.6, color=cols[t], label=lab[t])
+    ax[k].set_xscale("symlog", linthresh=1e-2) if xk == "optimism_offline" else ax[k].set_xscale("log")
+    ax[k].set_xlabel(xl); ax[k].set_ylabel("归一化回报")
     ax[k].set_title(f"Spearman ρ = {out['spearman_with_return'][xk][0]:.2f}±{out['spearman_with_return'][xk][1]:.2f}")
 ax[0].legend(fontsize=7)
 fig.tight_layout(); fig.savefig(od / "frontier_fidelity_vs_utility.png"); P.close(fig)

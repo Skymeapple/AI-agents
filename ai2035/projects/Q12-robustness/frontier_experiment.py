@@ -269,6 +269,8 @@ for sigma in SIGMAS:
     allc = np.array([(main[(sigma, s)]["preds"] == yc) & (main[(sigma, s)]["radii"] >= 0.5) for s in SEEDS])
     e["pairwise_disagreement@0.5"] = dict(zip(["mean", "ci95"], mean_ci(dis)))
     e["pairwise_spearman_radius"] = dict(zip(["mean", "ci95"], mean_ci(sp)))
+    # 命题 4：若各测试点的证书在种子间独立翻转，则聚合认证准确率的跨种子标准差 ≈ sqrt(D/(2n))
+    e["pred_seed_sd_if_independent"] = float(np.sqrt(np.mean(dis) / (2 * N_CERT)))
     e["frac_certified_by_all_seeds@0.5"] = float(allc.all(0).mean())
     e["frac_certified_by_some_seed@0.5"] = float(allc.any(0).mean())
     # L∞ implication: L2 radius R certifies L∞ ball of radius R/sqrt(d)

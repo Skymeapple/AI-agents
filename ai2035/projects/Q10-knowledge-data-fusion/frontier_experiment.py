@@ -210,15 +210,17 @@ cols = {"物理": "C1", "数据": "C0", "混合-oracle λ": "C2", "混合-GCV": 
 for ax, B in zip(axes, BS[1:]):
     for m in ["物理", "数据", "混合-oracle λ", "混合-EB"]:
         ns = [n for n in NS if n in summary[B][m]]
-        mu = [summary[B][m][n]["mean"] for n in ns]; ci = [summary[B][m][n]["ci95"] for n in ns]
-        ax.errorbar(ns, mu, yerr=ci, fmt="o", ms=3.5, capsize=2, color=cols[m], label=f"{m}（实测）")
+        md = [summary[B][m][n]["median"] for n in ns]
+        ax.plot(ns, md, "o", ms=3.5, color=cols[m], label=f"{m}（实测中位数）")
     ax.plot(NS, [th_phys(n, B) for n in NS], "-", color="C1", lw=1, label="物理（理论）")
     ax.plot([n for n in NS if n > 23], [th_data(n) for n in NS if n > 23], "-", color="C0", lw=1, label="数据（理论）")
     ax.plot(NS, [th_hyb_opt(n, B) for n in NS], "--", color="C2", lw=1, label="混合最优λ（理论）")
     if cross[B]["theory_exact"]:
         ax.axvline(cross[B]["theory_exact"], color="grey", ls=":", lw=1)
     ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlabel("样本数 n"); ax.set_ylabel("L2 风险")
-    ax.set_title(f"错设强度 B={B:g}（灰线=理论交叉点）", fontsize=10); ax.grid(alpha=.3)
+    lo = min(summary[B]["混合-EB"][n]["median"] for n in NS); hi = max(summary[B]["物理"][n]["median"] for n in NS)
+    ax.set_ylim(lo * 0.3, hi * 30)
+    ax.set_title(f"错设强度 B={B:g}（灰线=理论交叉点；数据模型小 n 时重尾，图示中位数）", fontsize=8.5); ax.grid(alpha=.3)
 axes[0].legend(fontsize=7)
 fig.tight_layout(); fig.savefig(OUT / "frontier_risk_curves.png"); Pl.close(fig)
 

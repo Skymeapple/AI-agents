@@ -217,7 +217,7 @@ for key, lab, st in [("LSA_new", "LSA：新任务", "o-"), ("LSA_train", "LSA：
     ax.plot([v[0] for v in vals], [v[1] for v in vals], st, ms=4, label=lab)
 ax.axhline(E3["∞"]["ridge_new"]["mean"], color="grey", ls="-.", lw=1, label="岭回归（Bayes 最优）")
 ax.set_xscale("log", base=2); ax.set_yscale("log"); ax.set_xlabel("预训练任务数 M（最右为 ∞）"); ax.set_ylabel("查询超额风险")
-ax.set_title(f"E3 任务多样性（d={D}, n={N3}）"); ax.legend(fontsize=6.5); ax.grid(alpha=.3)
+ax.set_ylim(1e-3, 3); ax.set_title(f"E3 任务多样性（d={D}, n={N3}；dMMSE 训练任务≈0 未显示）", fontsize=9); ax.legend(fontsize=6.5); ax.grid(alpha=.3)
 fig.tight_layout(); fig.savefig(OUT / "frontier_icl.png"); P.close(fig)
 
 fig, ax = P.subplots(figsize=(5.6, 4.2))

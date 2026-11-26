@@ -6,7 +6,7 @@ WorldArena (arXiv:2602.08971)、MiraBench (2605.29360)、LRC (2610.37588)、RLVR
 设计（参数在运行前固定）：
 - 环境：Gym Pendulum 动力学（同第一阶段），摆起任务 200 步，CEM-MPC（H=20, pop=100, elite=10, 3 iters）。
 - 模型动物园（每种子 20 个）：
-  学习模型：随机傅里叶特征岭回归 RFF(M) M∈{25,100,400} × 随机交互数据 N∈{200,2000}；
+  学习模型：随机傅里叶特征岭回归 RFF(M) M∈{25,100} × 随机交互数据 N∈{200,2000}（首轮含 M=400，为满足 4 分钟限制删去）；
             错设线性（N=2000）；含 sinθ 的物理特征岭回归（N=2000）。
   受控扰动的真实动力学：动作增益误差 k∈{0.7,1.3,0.4,1.6}（作用于动作项，“差分型”误差）；
             重力误差与状态偏置 δ·sin(2θ)（与动作无关，“共模型”误差），二者的幅度
@@ -18,7 +18,10 @@ WorldArena (arXiv:2602.08971)、MiraBench (2605.29360)、LRC (2610.37588)、RLVR
   (e) 闭环归一化回报 (R − R_zero)/(R_true − R_zero)。
 - 干预（决策感知数据分配，Ross & Bagnell 2012 式 DAgger）：RFF(M=25)，总预算 2000：
   A=2000 条随机交互；B=1200 条随机 + 2 轮各 400 条“当前模型 MPC 策略（加 N(0,0.3²) 探索噪声）”在线数据。
-- 8 个种子；跨模型 Spearman 相关取每种子值再求均值±CI；配对 t 检验。
+- 6 个种子（首轮 8 个超时）；跨模型 Spearman 相关取每种子值再求均值±CI；配对 t 检验。
+- 事后补充（首轮结果后加入，非预注册）：(i) 策略分布上的“乐观度” = 每步所选计划的真实代价 −
+  模型预测代价（/H），正值表示模型乐观；离线乐观度 = 在 15 个固定评估状态上用模型做 CEM 规划，
+  计算同一量（无需用模型闭环运行）；(ii) DAgger 也作用于错设线性模型。
 """
 from __future__ import annotations
 
@@ -39,7 +42,7 @@ from common.util import mean_ci, plt, results_dir, rng  # noqa: E402
 from scipy import stats  # noqa: E402
 
 T0 = time.time()
-SEEDS = list(range(8))
+SEEDS = list(range(6))
 DT, G, MAXU, MAXV = 0.05, 10.0, 2.0, 8.0
 EP_LEN, SEG = 200, 25
 CEM = dict(H=20, pop=100, elite=10, iters=3)
@@ -127,11 +130,14 @@ def cem_plan(model, th, thd, mu, g):
     return m
 
 
-def episode(model, g, th0, noise=0.0, record=False):
+def episode(model, g, th0, noise=0.0, record=False, optim=None):
     th, thd, R = th0, 0.0, 0.0
     mu = np.zeros(CEM["H"]); traj = []
     for _ in range(EP_LEN):
         m = cem_plan(model, th, thd, mu, g)
+        if optim is not None:  # on-policy optimism: true minus predicted cost of the chosen plan (per step)
+            A1 = np.clip(m, -MAXU, MAXU)[None]
+            optim.append(float((seq_cost(TRUE, th, thd, A1) - seq_cost(model, th, thd, A1))[0] / CEM["H"]))
         u = float(np.clip(m[0] + noise * g.standard_normal(), -MAXU, MAXU))
         if record:
             traj.append((th, thd, m.copy()))
@@ -173,6 +179,13 @@ def metrics(model, ev):
         th, thd = TRUE.step(th, thd, ev["rollU"][:, k]); pth, pthd = model.step(pth, pthd, ev["rollU"][:, k])
     e = (np.cos(th) - np.cos(pth)) ** 2 + (np.sin(th) - np.sin(pth)) ** 2 + ((thd - pthd) / MAXV) ** 2
     m["rollout30"] = float(np.sqrt(np.mean(e)))
+    # offline optimism (post-hoc): at half of the evaluation states, plan with the model (CEM) and compare
+    # true vs predicted cost of the model's own plan -- needs no closed-loop rollout with the model
+    gp = rng(4242); opts = []
+    for (s_th, s_thd, A, Jt) in ev["rank"]["local"][::2]:
+        m_plan = np.clip(cem_plan(model, s_th, s_thd, np.zeros(CEM["H"]), gp), -MAXU, MAXU)[None]
+        opts.append(float((seq_cost(TRUE, s_th, s_thd, m_plan) - seq_cost(model, s_th, s_thd, m_plan))[0] / CEM["H"]))
+    m["optimism_offline"] = float(np.mean(opts))
     for kind in ("global", "local"):
         rhos, regs = [], []
         for (s_th, s_thd, A, Jt) in ev["rank"][kind]:
@@ -197,7 +210,7 @@ def calibrate(target, kind, ev, sign):
 
 
 rows = []  # per (seed, model)
-dagger = {"random": [], "dagger": [], "random_mse": [], "dagger_mse": [], "random_onp": [], "dagger_onp": []}
+dagger = {}
 true_ret, zero_ret = [], []
 for sd in SEEDS:
     g = rng(500 + sd)
@@ -223,7 +236,7 @@ for sd in SEEDS:
     # model zoo
     zoo = {}
     D200, D2000 = collect_random(200, rng(800 + sd)), collect_random(2000, rng(900 + sd))
-    for M in (25, 100, 400):
+    for M in (25, 100):
         for N, D in ((200, D200), (2000, D2000)):
             zoo[f"RFF{M}_N{N}"] = ("learned", Ridge("rff", M, rng(1000 + sd + M)).fit(*D.T))
     zoo["linear_N2000"] = ("learned", Ridge("linear").fit(*D2000.T))
@@ -236,34 +249,40 @@ for sd in SEEDS:
             zoo[f"grav_m{lvl}{'+' if sgn > 0 else '-'}"] = ("common", Dyn(grav=1 + sgn * calibrate(tgt, "grav", ev, 1)))
             zoo[f"bias_m{lvl}{'+' if sgn > 0 else '-'}"] = ("common", Dyn(bias=sgn * calibrate(tgt, "bias", ev, 1)))
     for name, (typ, model) in zoo.items():
-        R, _ = episode(model, rng(600 + sd), th0)
+        opt = []
+        R, _ = episode(model, rng(600 + sd), th0, optim=opt)
         m = metrics(model, ev)
-        m.update(seed=sd, model=name, type=typ, ret=R, nret=(R - R_zero) / (R_true - R_zero))
+        m.update(seed=sd, model=name, type=typ, ret=R, nret=(R - R_zero) / (R_true - R_zero),
+                 optimism_onpolicy=float(np.mean(opt)), optimism_onpolicy_abs=float(np.mean(np.abs(opt))))
         rows.append(m)
-    # DAgger intervention on capacity-limited RFF(25)
-    for arm in ("random", "dagger"):
-        gd = rng(1100 + sd)
-        if arm == "random":
-            D = collect_random(2000, gd)
-            model = Ridge("rff", 25, rng(1200 + sd)).fit(*D.T)
-        else:
-            D = collect_random(1200, gd)
-            model = Ridge("rff", 25, rng(1200 + sd)).fit(*D.T)
-            for it in range(2):
-                new = []
-                for j in range(2):
-                    _, tr = episode(model, rng(1300 + 10 * sd + 2 * it + j), gd.uniform(-np.pi, np.pi), noise=0.3)
-                    new += tr
-                D = np.concatenate([D, np.array(new)])
-                model = Ridge("rff", 25, rng(1200 + sd)).fit(*D.T)
-        R, _ = episode(model, rng(600 + sd), th0)
-        dagger[arm].append((R - R_zero) / (R_true - R_zero))
-        dagger[arm + "_mse"].append(state_err(model, *ev["uni"]))
-        dagger[arm + "_onp"].append(state_err(model, *ev["onp"]))
+    # DAgger intervention: pre-registered on RFF(25); post-hoc also on misspecified linear model
+    for cls in ("rff25", "linear"):
+        for arm in ("random", "dagger"):
+            gd = rng(1100 + sd)
+            mk = (lambda: Ridge("rff", 25, rng(1200 + sd))) if cls == "rff25" else (lambda: Ridge("linear"))
+            if arm == "random":
+                D = collect_random(2000, gd)
+                model = mk().fit(*D.T)
+            else:
+                D = collect_random(1200, gd)
+                model = mk().fit(*D.T)
+                for it in range(2):
+                    new = []
+                    for j in range(2):
+                        _, tr = episode(model, rng(1300 + 10 * sd + 2 * it + j), gd.uniform(-np.pi, np.pi), noise=0.3)
+                        new += tr
+                    D = np.concatenate([D, np.array(new)])
+                    model = mk().fit(*D.T)
+            R, _ = episode(model, rng(600 + sd), th0)
+            key = arm if cls == "rff25" else "lin_" + arm
+            dagger.setdefault(key, []).append((R - R_zero) / (R_true - R_zero))
+            dagger.setdefault(key + "_mse", []).append(state_err(model, *ev["uni"]))
+            dagger.setdefault(key + "_onp", []).append(state_err(model, *ev["onp"]))
     print(f"seed {sd} done {time.time()-T0:.1f}s", flush=True)
 
 # ------------------------------------------------------------------ analysis
-METRICS = ["mse1_uniform", "mse1_onpolicy", "rollout30", "rank_rho_global", "rank_rho_local", "regret_global", "regret_local"]
+METRICS = ["mse1_uniform", "mse1_onpolicy", "rollout30", "rank_rho_global", "rank_rho_local", "regret_global", "regret_local",
+           "optimism_onpolicy", "optimism_onpolicy_abs", "optimism_offline"]
 out = {"config": dict(seeds=SEEDS, cem=CEM, n_rank_states=N_RANK_STATES, n_cand=N_CAND, gain_levels=GAIN_LEVELS),
        "true_return": mean_ci(true_ret), "zero_return": mean_ci(zero_ret)}
 corr = {k: [] for k in METRICS}
@@ -278,7 +297,9 @@ out["spearman_per_seed"] = corr
 absd = lambda a, b: np.abs(corr[a]) - np.abs(corr[b])  # noqa: E731
 out["tests"] = {}
 for a, b in [("regret_local", "mse1_uniform"), ("regret_local", "rollout30"), ("rank_rho_local", "mse1_uniform"),
-             ("regret_local", "regret_global"), ("mse1_onpolicy", "mse1_uniform")]:
+             ("regret_local", "regret_global"), ("mse1_onpolicy", "mse1_uniform"),
+             ("optimism_onpolicy", "mse1_uniform"), ("optimism_onpolicy", "regret_local"),
+             ("optimism_offline", "mse1_uniform")]:
     d = absd(a, b)
     out["tests"][f"|rho|({a}) - |rho|({b})"] = {"diff": mean_ci(d), "p": float(stats.ttest_1samp(d, 0).pvalue)}
 # per-model summary
@@ -311,6 +332,14 @@ out["dagger"]["nret_diff"] = mean_ci(np.array(dagger["dagger"]) - np.array(dagge
 out["dagger"]["p_nret"] = float(stats.ttest_rel(dagger["dagger"], dagger["random"]).pvalue)
 out["dagger"]["mse_ratio"] = mean_ci(np.array(dagger["dagger_mse"]) / np.array(dagger["random_mse"]))
 out["dagger"]["onp_ratio"] = mean_ci(np.array(dagger["dagger_onp"]) / np.array(dagger["random_onp"]))
+out["dagger"]["lin_nret_diff"] = mean_ci(np.array(dagger["lin_dagger"]) - np.array(dagger["lin_random"]))
+out["dagger"]["lin_p_nret"] = float(stats.ttest_rel(dagger["lin_dagger"], dagger["lin_random"]).pvalue)
+out["dagger"]["lin_mse_ratio"] = mean_ci(np.array(dagger["lin_dagger_mse"]) / np.array(dagger["lin_random_mse"]))
+out["dagger"]["lin_onp_ratio"] = mean_ci(np.array(dagger["lin_dagger_onp"]) / np.array(dagger["lin_random_onp"]))
+fail = [r for r in rows if r["nret"] < 0.9]
+out["failure_analysis"] = {"n_rows": len(rows), "n_fail": len(fail),
+                           "frac_fail_with_positive_optimism": float(np.mean([r["optimism_onpolicy"] > 0 for r in fail])) if fail else None,
+                           "frac_nonfail_with_positive_optimism": float(np.mean([r["optimism_onpolicy"] > 0 for r in rows if r["nret"] >= 0.9]))}
 out["dagger"]["per_seed"] = dagger
 out["rows"] = rows
 out["runtime_s"] = time.time() - T0

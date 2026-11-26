@@ -22,6 +22,7 @@ TACTICS = ["rfl", "decide", "norm_num", "simp", "ring", "linarith", "nlinarith",
            "intros; norm_num [*]", "intros; nlinarith [sq_nonneg (0:ℝ)]", "norm_num at *; linarith", "field_simp; ring", "intros; omega",
            "intros; simp_all; linarith", "norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]"]
 HEARTBEATS = 200000
+CHUNK = 41
 HEADER = "import Mathlib\nset_option maxHeartbeats %d\nset_option maxRecDepth 2000\nopen BigOperators Real Nat Topology Rat\n\n" % HEARTBEATS
 
 
@@ -39,26 +40,40 @@ def statements(folder):
     return out
 
 
-def run(repo, split, stmts, k):
-    tac = TACTICS[k]
-    path = os.path.join(repo, f"floor_{split}_{k}.lean")
+def check(repo, split, k, part, items):
+    """Check one chunk of theorems with one tactic; returns the names accepted and a status word."""
+    path = os.path.join(repo, f"floor_{split}_{k}_{part}.lean")
     with open(path, "w", encoding="utf-8") as fo:
         fo.write(HEADER)
-        for name, s in stmts.items():
-            fo.write(f"{s}{tac}\n#print axioms {name}\n\n")
+        for name, s in items:
+            fo.write(f"{s}{TACTICS[k]}\n#print axioms {name}\n\n")
+    status = "ok"
     try:
-        r = subprocess.run(["lake", "env", "lean", os.path.basename(path)], cwd=repo, capture_output=True, text=True, timeout=5400)
-        out, timed = r.stdout + r.stderr, False
+        r = subprocess.run(["lake", "env", "lean", "-M", "5000", os.path.basename(path)], cwd=repo, capture_output=True, text=True, timeout=1500)
+        out = r.stdout + r.stderr
+        if r.returncode not in (0, 1):
+            status = f"exit {r.returncode}"
     except subprocess.TimeoutExpired as e:
-        out, timed = (e.stdout or b"").decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or ""), True
+        out = e.stdout.decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or "")
+        status = "timeout"
     proved = set()
     for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
         if "sorryAx" not in m.group(2):
             proved.add(m.group(1))
     proved |= {m.group(1) for m in re.finditer(r"'([^']+)' does not depend on any axioms", out)}
-    proved &= set(stmts)
-    print(f"{split:5s} {tac:60s} proves {len(proved):3d}{'  (file timed out)' if timed else ''} | output head: {out[:160]!r}", flush=True)
-    return split, tac, sorted(proved)
+    return proved & {n for n, _ in items}, status, out[:120]
+
+
+def run(repo, split, stmts, k):
+    items = list(stmts.items())
+    proved, notes = set(), []
+    for part in range(0, len(items), CHUNK):
+        got, status, head = check(repo, split, k, part, items[part:part + CHUNK])
+        proved |= got
+        if status != "ok":
+            notes.append(f"chunk {part}: {status}")
+    print(f"{split:5s} {TACTICS[k]:60s} proves {len(proved):3d} {notes if notes else ''} | {head!r}", flush=True)
+    return split, TACTICS[k], sorted(proved)
 
 
 def main():

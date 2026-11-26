@@ -1,0 +1,40 @@
+job: mix-tiny-pool-3
+started: 2026-11-26T19:54:24Z
+cores: 4, memory: 15 GB
+CORPUS web: https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/main/sample/10BT/000_00000.parquet
+  train 30.0 MB in 6160 documents, held-out 4.0 MB in 842 documents
+  starts: 'The Independent Jane For all the love, romance and scandal in Jane Austen’s books, what they are really about is freedom and independence. Independence of thoug'
+CORPUS dclm: https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0/resolve/main/global-shard_01_of_10/local-shard_0_of_10/shard_00000000_processed.jsonl.zst
+  train 30.0 MB in 6018 documents, held-out 4.0 MB in 579 documents
+  starts: "Take the 2-minute tour ×  Here what happened with me today. TimeMachine asked me whether I want to set a backup disk, I've answered yes, but then, when I've rea"
+CORPUS code: https://huggingface.co/datasets/codeparrot/codeparrot-clean-valid/resolve/main/file-000000000054.json.gz
+  train 30.0 MB in 3029 documents, held-out 4.1 MB in 353 documents
+  starts: 'from django.conf import settings from django.core.paginator import Paginator, InvalidPage, EmptyPage from django.http import HttpResponse  from tardis.tardis_po'
+CORPUS math: https://huggingface.co/datasets/HuggingFaceTB/finemath/resolve/main/finemath-3plus/train-00000-of-00128.parquet
+  train 30.0 MB in 4909 documents, held-out 4.0 MB in 683 documents
+  starts: '1 JEE Main 2022 (Online) 26th July Morning Shift +4 -1  Let f : R $$\\to$$ R be a continuous function such that $$f(3x) - f(x) = x$$. If $$f(8) = 7$$, then $$f(1'
+  web=1 seed 0 step 1500: train loss 2.437 bits/byte, 296s
+  web=1 seed 0 step 3000: train loss 2.235 bits/byte, 590s
+  web=1 seed 0 step 4500: train loss 2.028 bits/byte, 883s
+RESULT dense-4 web=1 seed 0: web 2.0067, dclm 2.3112, code 5.5649, math 3.0235, mean of 4 3.2266 bits/byte, train time 1193s
+  web=1 seed 1 step 1500: train loss 2.312 bits/byte, 296s
+  web=1 seed 1 step 3000: train loss 2.088 bits/byte, 589s
+  web=1 seed 1 step 4500: train loss 1.919 bits/byte, 883s
+RESULT dense-4 web=1 seed 1: web 2.0118, dclm 2.3122, code 5.2935, math 3.0398, mean of 4 3.1643 bits/byte, train time 1191s
+  web=1 seed 2 step 1500: train loss 2.357 bits/byte, 299s
+  web=1 seed 2 step 3000: train loss 2.171 bits/byte, 591s
+  web=1 seed 2 step 4500: train loss 2.048 bits/byte, 886s
+RESULT dense-4 web=1 seed 2: web 2.0146, dclm 2.3178, code 5.4486, math 3.0460, mean of 4 3.2067 bits/byte, train time 1192s
+  web=0.2,code=0.4,math=0.4 seed 0 step 1500: train loss 2.591 bits/byte, 292s
+  web=0.2,code=0.4,math=0.4 seed 0 step 3000: train loss 2.227 bits/byte, 587s
+  web=0.2,code=0.4,math=0.4 seed 0 step 4500: train loss 2.017 bits/byte, 881s
+RESULT dense-4 web=0.2,code=0.4,math=0.4 seed 0: web 2.1852, dclm 2.3695, code 1.7847, math 2.3410, mean of 4 2.1701 bits/byte, train time 1187s
+  web=0.2,code=0.4,math=0.4 seed 1 step 1500: train loss 2.337 bits/byte, 293s
+  web=0.2,code=0.4,math=0.4 seed 1 step 3000: train loss 1.886 bits/byte, 586s
+  web=0.2,code=0.4,math=0.4 seed 1 step 4500: train loss 1.934 bits/byte, 879s
+RESULT dense-4 web=0.2,code=0.4,math=0.4 seed 1: web 2.1676, dclm 2.3469, code 1.7700, math 2.3191, mean of 4 2.1509 bits/byte, train time 1185s
+  web=0.2,code=0.4,math=0.4 seed 2 step 1500: train loss 2.653 bits/byte, 293s
+  web=0.2,code=0.4,math=0.4 seed 2 step 3000: train loss 2.213 bits/byte, 588s
+  web=0.2,code=0.4,math=0.4 seed 2 step 4500: train loss 2.043 bits/byte, 894s
+RESULT dense-4 web=0.2,code=0.4,math=0.4 seed 2: web 2.1764, dclm 2.3579, code 1.7862, math 2.3373, mean of 4 2.1644 bits/byte, train time 1204s
+finished: 2026-11-26T21:54:13Z, exit code 0

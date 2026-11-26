@@ -1,4 +1,4 @@
-# miniF2F valid set, tactics 0 to 16: first-round tactics rerun with per-theorem recovery, plus second-round compositions
+# miniF2F valid set, tactics 0 to 16: first-round tactics rerun with per-theorem recovery, plus second-round compositions (rerun: job was skipped)
 set -e
 curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
 export PATH="$HOME/.elan/bin:$PATH"

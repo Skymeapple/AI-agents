@@ -23,7 +23,7 @@ jobs:
           BEFORE: ${{ github.event.before }}
         run: |
           if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then base="$BEFORE"; else base="HEAD~1"; fi
-          files=$(git diff --name-only --diff-filter=AM "$base" HEAD -- 'research/compute/jobs/*.sh' | xargs -r -n1 basename | sed 's/\.sh$//')
+          files=$(git diff --no-renames --name-only --diff-filter=AM "$base" HEAD -- 'research/compute/jobs/*.sh' | xargs -r -n1 basename | sed 's/\.sh$//')
           echo "jobs=$(printf '%s\n' $files | jq -R . | jq -cs 'map(select(length>0))')" >> "$GITHUB_OUTPUT"
   run:
     needs: plan

@@ -18,6 +18,10 @@ Note builders (all cut at the character budget)
                      for some question; highest scores first ("question anticipation")
   learned + dense    the same, ranked by score per character and with citations stripped
   learned, no words  the same model without word features (position, section type, numbers only)
+  paragraphs         gradient-boosted trees scoring whole paragraphs (QASPER evidence is marked by
+                     paragraph) from position, section type, numbers, a short list of cue words and
+                     similarity to the title and abstract, which is what the question writers saw;
+                     whole paragraphs are packed by score, by score per character, or in between
   oracle             knows the questions: packs gold evidence first (the budget's ceiling)
 
 Scores, over answerable questions with text evidence
@@ -39,6 +43,7 @@ import numpy as np
 import pyarrow.parquet as pq
 from scipy.sparse import csr_matrix, hstack
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 
 BUDGET = 3000
@@ -234,6 +239,71 @@ def build_learned(p, budget, model=None, dense=False, **_):
     return pack(p, list(np.argsort(-s)), budget, dense)
 
 
+CUES = ["dataset", "corpus", "annot", "baseline", "we use", "we used", "hyper", "f1", "accuracy", "bleu", "outperform", "state-of-the-art",
+        "table", "figure", "train", "test set", "languages", "english", "evaluat", "metric", "compar", "pre-trained", "embedding", "layer",
+        "future", "propose", "collected", "crowd", "human", "size", "sentences", "tokens", "architecture", "improv", "error", "limit"]
+
+
+def paragraphs(p):
+    """Paragraph features, sentence indices per paragraph, and whether each holds evidence."""
+    flags = evidence_flags(p)
+    groups = {}
+    for i, s in enumerate(p["sents"]):
+        if not s["abs"]:
+            groups.setdefault(s["par"], []).append(i)
+    ids = sorted(groups)
+    texts = [" ".join(p["sents"][i]["n"] for i in groups[g]) for g in ids]
+    abstract = " ".join(s["n"] for s in p["sents"] if s["abs"])
+    vec = TfidfVectorizer(sublinear_tf=True, stop_words="english").fit(texts + [abstract, norm(p["title"])])
+    X = vec.transform(texts)
+    sim_a = np.asarray((X @ vec.transform([abstract]).T).todense()).ravel()
+    sim_t = np.asarray((X @ vec.transform([norm(p["title"])]).T).todense()).ravel()
+    keys = ["other"] + [k for k, _ in SECTIONS]
+    F, prev_sec, in_sec = [], None, 0
+    for n, g in enumerate(ids):
+        idx = groups[g]
+        sec = p["sents"][idx[0]]["sec"]
+        in_sec = in_sec + 1 if sec == prev_sec else 0
+        prev_sec = sec
+        raw = " ".join(p["sents"][i]["t"] for i in idx)
+        low = raw.lower()
+        f = [float(sec == k) for k in keys]
+        f += [n / len(ids), in_sec, len(raw), len(idx), len(re.findall(r"\d+(?:\.\d+)?", raw)), float("%" in raw), sim_a[n], sim_t[n],
+              len(re.findall(r"BIBREF", raw)) / (len(idx) + 1), len(re.findall(r"TABREF|FIGREF", raw)), p["chars"]]
+        f += [float(c in low) for c in CUES]
+        F.append(f)
+    y = np.array([flags[groups[g]].any() for g in ids])
+    return np.array(F), [groups[g] for g in ids], y
+
+
+class ParagraphModel:
+    def fit(self, papers):
+        parts = [paragraphs(p) for p in papers]
+        X, y = np.vstack([a for a, _, _ in parts]), np.concatenate([c for _, _, c in parts])
+        self.model = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.05, max_leaf_nodes=15, l2_regularization=1.0,
+                                                    early_stopping=True, random_state=0).fit(X, y)
+        print(f"paragraphs: {len(y)} training paragraphs, {y.mean():.1%} hold evidence", flush=True)
+        return self
+
+
+def build_paragraphs(p, budget, model=None, power=0.5, **_):
+    F, groups, _ = paragraphs(p)
+    pr = model.model.predict_proba(F)[:, 1]
+    length = np.array([sum(len(p["sents"][i]["t"]) + 1 for i in g) for g in groups])
+    used, chosen = 0, []
+    for j in np.argsort(-pr / length ** power):
+        if used + length[j] <= budget:
+            chosen += groups[j]
+            used += length[j]
+    # fill what is left with single sentences from the best remaining paragraphs
+    for j in np.argsort(-pr):
+        for i in groups[j]:
+            if i not in chosen and used + len(p["sents"][i]["t"]) + 1 <= budget:
+                chosen.append(i)
+                used += len(p["sents"][i]["t"]) + 1
+    return " ".join(p["sents"][i]["t"] for i in sorted(set(chosen)))
+
+
 def build_oracle(p, budget, **_):
     flags = evidence_flags(p)
     return pack(p, [i for i in range(len(flags)) if flags[i]] + [i for i in range(len(flags)) if not flags[i]], budget)
@@ -280,18 +350,22 @@ def main():
               f"median length {int(np.median([p['chars'] for p in d]))} characters", flush=True)
     model = Learned().fit(train)
     plain = Learned(use_words=False).fit(train)
+    para = ParagraphModel().fit(train)
     builders = {"lead": (build_lead, {}), "abstract + firsts": (build_firsts, {}), "central": (build_central, {}),
                 "numbers first": (build_numbers, {}), "learned": (build_learned, {"model": model}),
                 "learned + dense": (build_learned, {"model": model, "dense": True}),
-                "learned, no words": (build_learned, {"model": plain}), "oracle": (build_oracle, {})}
+                "learned, no words": (build_learned, {"model": plain}),
+                "paragraphs, by score": (build_paragraphs, {"model": para, "power": 0.0}),
+                "paragraphs, balanced": (build_paragraphs, {"model": para, "power": 0.5}),
+                "paragraphs, dense": (build_paragraphs, {"model": para, "power": 1.0}), "oracle": (build_oracle, {})}
     res = {}
     for split, d in (("validation", valid), ("test", test)):
         print(f"\n===== {split}: budget {BUDGET} characters =====")
-        print(f"  {'builder':20s}{'evidence kept':>15s}{'evidence share':>16s}{'span kept':>12s}{'answer words':>14s}")
+        print(f"  {'builder':22s}{'evidence kept':>15s}{'evidence share':>16s}{'span kept':>12s}{'answer words':>14s}")
         for name, (fn, kw) in builders.items():
             e, s, a, ne, ns, h = evaluate(d, fn, **kw)
             res[split, name] = (e, s, a, h)
-            print(f"  {name:20s}{e:15.3f}{h:16.3f}{s:12.3f}{a:14.3f}", flush=True)
+            print(f"  {name:22s}{e:15.3f}{h:16.3f}{s:12.3f}{a:14.3f}", flush=True)
         print(f"  ({ne} questions; {ns} with extractive spans)")
     real = [n for n in builders if n != "oracle"]
     best = max(real, key=lambda n: res["validation", n][3])
@@ -300,10 +374,10 @@ def main():
         e, s, a, h = res["test", name]
         print(f"RESULT test, {name:18s} evidence kept {e:.3f}  evidence share {h:.3f}  span kept {s:.3f}  answer words {a:.3f}")
     print("\n===== test: how the budget changes the picture (evidence share) =====")
-    print(f"  {'budget':>8s}{'lead':>9s}{best:>20s}{'oracle':>9s}")
+    print(f"  {'budget':>8s}{'lead':>9s}{best:>24s}{'oracle':>9s}")
     for b in (1000, 2000, 3000, 6000, 12000, 24000):
         vals = [evaluate(test, builders[n][0], b, **builders[n][1])[5] for n in ("lead", best, "oracle")]
-        print(f"  {b:8d}{vals[0]:9.3f}{vals[1]:20.3f}{vals[2]:9.3f}", flush=True)
+        print(f"  {b:8d}{vals[0]:9.3f}{vals[1]:24.3f}{vals[2]:9.3f}", flush=True)
     # where the evidence sits
     pos = np.concatenate([np.array([s["pos"] for s in p["sents"]])[evidence_flags(p)] for p in train])
     hist = np.histogram(pos, bins=10, range=(0, 1))[0] / len(pos)

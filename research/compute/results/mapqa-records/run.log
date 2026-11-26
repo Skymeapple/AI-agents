@@ -1,17 +1,19 @@
 job: mapqa-records
-started: 2026-11-26T06:01:16Z
+started: 2026-11-26T06:02:15Z
 cores: 4, memory: 15 GB
 elliot-mllm/mapqa_cleaned default train 9 files
-Traceback (most recent call last):
-  File "<stdin>", line 10, in <module>
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1915, in read_table
-    dataset = ParquetDataset(
-              ^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1480, in __init__
-    [fragment], schema=schema or fragment.physical_schema,
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "pyarrow/_dataset.pyx", line 1479, in pyarrow._dataset.Fragment.physical_schema.__get__
-  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
-  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
-pyarrow.lib.ArrowInvalid: Could not open Parquet input source '<Buffer>': Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.
-finished: 2026-11-26T06:01:27Z, exit code 1
+  not readable: https://huggingface.co/api/datasets/elliot-mllm/mapqa_cleaned/parquet/default/train/0.parquet 401 147 b'{"error":"Access to dataset elliot-mllm/mapqa_cleaned is restricted. You must have access to it and be authenticated to access it. Please log in."}' ArrowInvalid("Could not open Parquet input source '<Buffer>': Parquet magic bytes not found in foote
+nimapourjafar/mm_mapqa default train 7 files
+  bytes 394980805 rows 5346 columns ['images', 'audios', 'videos', 'data']
+    audios []
+    videos []
+    data [{'data': '0', 'modality': 'image', 'role': 'user'}
+ {'data': 'Does Tennessee have the highest value in the USA?\nShort answer required.', 'modality': 'text', 'role': 'user'}
+ {'data': 'Yes.', 'modality': 'text', 'role': 'assistant'}
+ {'data': 'Does Rhode Island have the highest value in the Northeast?\nQuick response, please.', 'modality': 'text', 'role': 'user'}
+ {'data': 'No.', 'modality': 'text', 'role': 'assistant'}
+ {'data': 'Does Nebraska have a higher value than Pennsylvania?\nBe succinct.', 'modality': 'text', 'role': 'user'}
+ {'data': 'Yes.', 'modality': 'text', 'role': 'assistant'}
+
+bytes written 14896186
+finished: 2026-11-26T06:02:32Z, exit code 0

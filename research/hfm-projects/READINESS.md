@@ -46,7 +46,7 @@ Where each project stands, and what it still needs before research can proceed. 
 | [Patient-level lung cancer histology classification from H&E slides with Phikon-v2](medicine/lung-histology/README.md) | A free GPU account, and an NLST data request for the held-out cohort (CPTAC can stand in until then). A CPU route also exists: pre-extracted slide features for TCGA and CPTAC are on Hugging Face behind an access form, which needs a free Hugging Face account token. |
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | A free GPU account. |
 | [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | A free GPU account. |
-| [Training Recipes for Qwen2-VL-2B on EmbSpatial-Bench Embodied Spatial Understanding](post-training/embspatial-training/README.md) | A free GPU account. |
+| [Training Recipes for Qwen2-VL-2B on EmbSpatial-Bench Embodied Spatial Understanding](post-training/embspatial-training/README.md) | A CPU study has run. A free GPU account for the fine-tuning. |
 | [FabNER Material Manufacturing Entity Extraction](post-training/fabner-extraction/README.md) | A CPU study has run. A free GPU account for the hybrid with a language model. |
 | [MapQA Map Visual Question Answering](post-training/mapqa-training/README.md) | A free GPU account. |
 | [ScienceWorld task training on Qwen2.5-7B-Instruct](post-training/scienceworld-training/README.md) | A free GPU account. |

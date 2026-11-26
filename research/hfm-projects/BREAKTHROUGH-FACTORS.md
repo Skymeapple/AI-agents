@@ -34,8 +34,9 @@ Gains are relative to the best practical method without that ingredient.
 | Weather | Forecasts from other model families | Error −8.4% |
 | Wind farms | The wind-direction offset of the site | Gain at the unseen farm 1.4% → 11.9% |
 | Galaxy redshift | Extinction, size, shape, apertures, errors | Error −5.8% |
+| EmbSpatial-Bench (oracle) | The objects' bounding boxes, with plain geometry | 89.1% against 59.5% blind; depth is the input still missing for nearest/farthest |
 
-- **Seven of nine attempts worked.** The two that failed tried to substitute
+- **Eight of ten attempts worked** (one of them, EmbSpatial, with annotated boxes a real model would have to detect). The two that failed tried to substitute
   for the real thing: a look-alike material instead of the same material
   (optical constants), and tenant or batch identity instead of the lifetime
   itself (cloud placement).
@@ -137,7 +138,7 @@ Gains are relative to the best practical method without that ingredient.
 
 | Ingredient | Attempts that worked | Typical gain when it worked | Cost |
 | --- | --- | --- | --- |
-| New information | 7 of 9 | 6–34% | Needs a data source or a measurement |
+| New information | 8 of 10 | 6–34% | Needs a data source or a measurement |
 | More data of the same kind | 5 of 5 | 6–73% | Needs the data to exist |
 | A better algorithm | 11 of 18 | 3–23% | Engineering time |
 | Theory from another field | 4 of 11 | 3–36% | Nearly free once known |

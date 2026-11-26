@@ -17,10 +17,13 @@ Note builders (all cut at the character budget)
                      position, section type and words whether a sentence is answer evidence
                      for some question; highest scores first ("question anticipation")
   learned + dense    the same, ranked by score per character and with citations stripped
+  learned, no words  the same model without word features (position, section type, numbers only)
   oracle             knows the questions: packs gold evidence first (the budget's ceiling)
 
 Scores, over answerable questions with text evidence
-  evidence kept      share of questions with a gold evidence sentence in the note
+  evidence kept      share of questions with a gold evidence sentence in the note (lenient:
+                     one sentence of an evidence paragraph is enough)
+  evidence share     mean share of the gold evidence sentences that are in the note (strict)
   span kept          share of extractive questions whose full answer span is in the note
   answer words       mean share of the gold answer's content words present in the note
 
@@ -198,13 +201,19 @@ def structure(p):
 
 
 class Learned:
+    def __init__(self, use_words=True):
+        self.use_words = use_words
+
     def fit(self, papers):
         self.vec = TfidfVectorizer(ngram_range=(1, 2), min_df=20, max_features=30000, binary=True, use_idf=False, norm=None)
         text = [s["n"] for p in papers for s in p["sents"]]
-        X = hstack([self.vec.fit_transform(text), csr_matrix(np.vstack([structure(p) for p in papers]))]).tocsr()
+        W = self.vec.fit_transform(text)
+        X = hstack([W if self.use_words else W * 0, csr_matrix(np.vstack([structure(p) for p in papers]))]).tocsr()
         y = np.concatenate([evidence_flags(p) for p in papers])
         self.model = LogisticRegression(C=0.3, max_iter=300).fit(X, y)
         print(f"learned: {len(y)} training sentences, {y.mean():.1%} are evidence", flush=True)
+        if not self.use_words:
+            return self
         names = list(self.vec.get_feature_names_out())
         w = self.model.coef_[0][:len(names)]
         top = np.argsort(w)
@@ -213,7 +222,8 @@ class Learned:
         return self
 
     def score(self, p):
-        X = hstack([self.vec.transform([s["n"] for s in p["sents"]]), csr_matrix(structure(p))]).tocsr()
+        W = self.vec.transform([s["n"] for s in p["sents"]])
+        X = hstack([W if self.use_words else W * 0, csr_matrix(structure(p))]).tocsr()
         return self.model.predict_proba(X)[:, 1]
 
 
@@ -232,27 +242,35 @@ def build_oracle(p, budget, **_):
 def score(p, note):
     n = norm(note)
     note_words = set(words(note))
-    kept = [s["n"] for s in p["sents"] if s["n"] and s["n"] in n]
-    ev, span, aw = [], [], []
+    all_s = [s["n"] for s in p["sents"] if s["n"]]
+    kept = [k for k in all_s if k in n]
+    ev, span, aw, share = [], [], [], []
     for q in p["qs"]:
         ev.append(max(float(any(k in e for e in a["ev"] for k in kept)) for a in q))
+        best = 0.0
+        for a in q:
+            gold = [k for k in all_s if any(k in e for e in a["ev"])]
+            if gold:
+                best = max(best, sum(len(k) for k in gold if k in kept) / sum(len(k) for k in gold))
+        share.append(best)
         with_spans = [a for a in q if a["spans"]]
         if with_spans:
             span.append(max(float(all(s in n for s in a["spans"])) for a in with_spans))
         with_ans = [a for a in q if a["ans"]]
         if with_ans:
             aw.append(max(np.mean([w in note_words for w in a["ans"]]) for a in with_ans))
-    return ev, span, aw
+    return ev, span, aw, share
 
 
 def evaluate(papers, build, budget=BUDGET, **kw):
-    E, S, A = [], [], []
+    E, S, A, H = [], [], [], []
     for p in papers:
-        e, s, a = score(p, build(p, budget, **kw))
+        e, s, a, h = score(p, build(p, budget, **kw))
         E += e
         S += s
         A += a
-    return np.mean(E), np.mean(S), np.mean(A), len(E), len(S)
+        H += h
+    return np.mean(E), np.mean(S), np.mean(A), len(E), len(S), np.mean(H)
 
 
 def main():
@@ -261,28 +279,30 @@ def main():
         print(f"{name}: {len(d)} papers in the 4,000-86,000 character range, {sum(len(p['qs']) for p in d)} answerable text questions, "
               f"median length {int(np.median([p['chars'] for p in d]))} characters", flush=True)
     model = Learned().fit(train)
+    plain = Learned(use_words=False).fit(train)
     builders = {"lead": (build_lead, {}), "abstract + firsts": (build_firsts, {}), "central": (build_central, {}),
                 "numbers first": (build_numbers, {}), "learned": (build_learned, {"model": model}),
-                "learned + dense": (build_learned, {"model": model, "dense": True}), "oracle": (build_oracle, {})}
+                "learned + dense": (build_learned, {"model": model, "dense": True}),
+                "learned, no words": (build_learned, {"model": plain}), "oracle": (build_oracle, {})}
     res = {}
     for split, d in (("validation", valid), ("test", test)):
         print(f"\n===== {split}: budget {BUDGET} characters =====")
-        print(f"  {'builder':20s}{'evidence kept':>15s}{'span kept':>12s}{'answer words':>14s}")
+        print(f"  {'builder':20s}{'evidence kept':>15s}{'evidence share':>16s}{'span kept':>12s}{'answer words':>14s}")
         for name, (fn, kw) in builders.items():
-            e, s, a, ne, ns = evaluate(d, fn, **kw)
-            res[split, name] = (e, s, a)
-            print(f"  {name:20s}{e:15.3f}{s:12.3f}{a:14.3f}", flush=True)
+            e, s, a, ne, ns, h = evaluate(d, fn, **kw)
+            res[split, name] = (e, s, a, h)
+            print(f"  {name:20s}{e:15.3f}{h:16.3f}{s:12.3f}{a:14.3f}", flush=True)
         print(f"  ({ne} questions; {ns} with extractive spans)")
     real = [n for n in builders if n != "oracle"]
-    best = max(real, key=lambda n: res["validation", n][0])
-    print(f"\nRESULT builder chosen on validation (by evidence kept): {best}")
+    best = max(real, key=lambda n: res["validation", n][3])
+    print(f"\nRESULT builder chosen on validation (by evidence share): {best}")
     for name in ("lead", best, "oracle"):
-        e, s, a = res["test", name]
-        print(f"RESULT test, {name:18s} evidence kept {e:.3f}  span kept {s:.3f}  answer words {a:.3f}")
-    print("\n===== test: how the budget changes the picture (evidence kept) =====")
+        e, s, a, h = res["test", name]
+        print(f"RESULT test, {name:18s} evidence kept {e:.3f}  evidence share {h:.3f}  span kept {s:.3f}  answer words {a:.3f}")
+    print("\n===== test: how the budget changes the picture (evidence share) =====")
     print(f"  {'budget':>8s}{'lead':>9s}{best:>20s}{'oracle':>9s}")
     for b in (1000, 2000, 3000, 6000, 12000, 24000):
-        vals = [evaluate(test, builders[n][0], b, **builders[n][1])[0] for n in ("lead", best, "oracle")]
+        vals = [evaluate(test, builders[n][0], b, **builders[n][1])[5] for n in ("lead", best, "oracle")]
         print(f"  {b:8d}{vals[0]:9.3f}{vals[1]:20.3f}{vals[2]:9.3f}", flush=True)
     # where the evidence sits
     pos = np.concatenate([np.array([s["pos"] for s in p["sents"]])[evidence_flags(p)] for p in train])

@@ -1,4 +1,4 @@
-# QASPER: how much answer evidence survives in a 3,000-character note built without a language model
+# QASPER: how much answer evidence survives in a 3,000-character note built without a language model (second run: strict evidence share, ablation without word features)
 set -e
 pip install -q pandas pyarrow scikit-learn scipy numpy
 cd "$DATA"

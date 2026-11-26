@@ -1,0 +1,17 @@
+job: mapqa-records
+started: 2026-11-26T06:01:16Z
+cores: 4, memory: 15 GB
+elliot-mllm/mapqa_cleaned default train 9 files
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1915, in read_table
+    dataset = ParquetDataset(
+              ^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1480, in __init__
+    [fragment], schema=schema or fragment.physical_schema,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_dataset.pyx", line 1479, in pyarrow._dataset.Fragment.physical_schema.__get__
+  File "pyarrow/error.pxi", line 155, in pyarrow.lib.pyarrow_internal_check_status
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: Could not open Parquet input source '<Buffer>': Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.
+finished: 2026-11-26T06:01:27Z, exit code 1

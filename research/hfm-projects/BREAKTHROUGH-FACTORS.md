@@ -66,7 +66,7 @@ Gains are relative to the best practical method without that ingredient.
 | Job scheduling | Local search on top of the dispatch rule | Lateness −10% |
 | Rail | Look-ahead instead of a priority rule | Delay −9.9% |
 | Cloud placement | First fit instead of best fit | Server time −3.2% |
-| Table questions (small open model) | Use code when it runs, otherwise answer directly | Correct answers 28.4% → 33.2%; one harness detail was worth 26 points on the code route |
+| Table questions (small open model) | Choose between a code route and a direct route with a simple rule | Correct answers 28.0% → 41.2% on fresh questions; one harness detail was worth 26 points on the code route |
 | Lung cells | A small network averaged with nearest neighbours, instead of a linear classifier | Macro-F1 0.684 → 0.786, in 35 of 35 studies |
 
 - **Eight of fourteen attempts worked,** counting part-way trading of a fast

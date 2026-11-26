@@ -18,7 +18,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Agent for ARC Grid Transformation Tasks](agent-harnesses/arc-grid-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.1213 → 0.7856 |
 | [Agent for Verified Programming with Dafny](agent-harnesses/dafny-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.3165 → 0.8289 |
 | [Agent for Formal Theorem Proving in Lean](agent-harnesses/lean-prover-agent/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | 0.3643 → 0.5661 |
-| [Agent for Questions over Real Tables](agent-harnesses/table-qa-agent/README.md) | Tested on public data | With a small open model on CPU, one harness detail (printing the last expression) moves the code route from 1.6% to 27.6%. Direct and code routes are complementary: fallback 33.2%, perfect selector 45.6%. | 0.3711 → 0.877 |
+| [Agent for Questions over Real Tables](agent-harnesses/table-qa-agent/README.md) | Tested on public data | With a small open model on CPU, one harness detail (printing the last expression) moves the code route from 1.6% to 27.6%. Choosing between the direct and code routes with a simple rule gives 41.2% on fresh questions against 28.0% direct (perfect selector 47.6%). | 0.3711 → 0.877 |
 | [Agent Harness Evolution Under a Frozen API Model](agent-harnesses/terminal-agent-harness/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | not published → 0.5362 |
 
 ## astronomy

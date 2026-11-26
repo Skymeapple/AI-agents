@@ -321,7 +321,7 @@ CPU, and revisited two earlier results.
 | Dam spill | Gas model and joint spill planning | Joint planning worth 1.4% at most. A linear gas model beat the saturating physics form. |
 | FabNER entity extraction | Dictionary and classical model on CPU | 83.4 and 82.8 F1 on the public split, against HFM's 80.7 from a fine-tuned language model (different evaluator). Headroom is in the 14% of entities never seen in training. |
 | TOPv2 semantic parsing | Tree-shape coverage and a per-word tagger on CPU | Tagger 38.5% exact match against HFM's 83 (different test). 90% of test parses use a seen tree shape; the tagger gets 2% of the rest. Here the language model's gain is real, and the open part is the unseen tenth. |
-| Table question answering | Two harnesses around a small open model on CPU | Printing the code's last expression moves the code route from 1.6% to 27.6%. Direct and code routes are right on different questions: fallback 33.2%, perfect selector 45.6%. |
+| Table question answering | Two harnesses around a small open model on CPU | Printing the code's last expression moves the code route from 1.6% to 27.6%. A simple rule choosing between the direct and code routes gives 41.2% on fresh questions against 28.0% direct; a perfect selector 47.6%. |
 | Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
 
 Three points for the conclusions of this review:

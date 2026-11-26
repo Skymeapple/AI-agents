@@ -56,6 +56,19 @@ A small-scale harness comparison without any paid key. A small open model (Qwen2
 - **Retries on errors help modestly:** 23.6% on the first attempt, 27.6% after up to two retries. Code still fails to run on 28% of questions.
 - **Uncertainty:** with 250 questions, differences under about 5 points are within noise. The 1.6 to 27.6 jump and the complementarity are not.
 
+**Follow-up: a selector, checked on fresh questions.** On the first set, the rule "use the code answer when it looks like an answer (one short line, not empty, zero or a truth value), otherwise the direct answer" scored 40.0%. Because it was chosen on those questions, both harnesses were rerun on a second set of 250 questions with no overlap. Outputs: [`tableqa-direct-set2`](../../../compute/results/tableqa-direct-set2/), [`tableqa-code-notebook-set2`](../../../compute/results/tableqa-code-notebook-set2/).
+
+| Harness, same model | First set | Fresh set |
+| --- | --- | --- |
+| Direct | 28.4% | 28.0% |
+| Notebook-style code | 27.6% | 28.4% |
+| Code when it ran, otherwise direct | 33.2% | 36.8% |
+| Code when its answer looks clean, otherwise direct | 40.0% | 41.2% |
+| Either route right (perfect selector) | 45.6% | 47.6% |
+
+- **The selector holds on fresh questions:** 41.2% against 28.0% for the direct route, a gain of 13 points with the model unchanged. It captures about two thirds of what a perfect selector would add.
+- **Long tables on the fresh set:** direct 6.5%, code 29.0% (31 questions).
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -64,5 +77,5 @@ HFM's harness work took its frozen model from 0.37 to 0.88. On this much weaker 
 
 ## Next steps
 
-- Build a selector between the two routes (for example, agreement between two code attempts) and test whether it captures part of the 12-point gap between fallback and perfect selection.
+- Get code to run more often (it fails on 28% of questions) and close the remaining 6 points to a perfect selector.
 - Repeat on HFM's frozen model once a language-model key is available.

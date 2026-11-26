@@ -64,6 +64,20 @@ Code: [`embspatial_no_image.py`](embspatial_no_image.py) in this folder. It runs
   - **The arithmetic for HFM's 78.5%:** a model perfect on the four 2D relations and at chance on nearest/farthest would score about 75%. HFM's score is consistent with a model that has learned the 2D relations and little depth. Its per-relation scores are not published, so this is an inference.
 - **Limits:** the boxes are the benchmark's own annotations, which a model under HFM's rules does not receive. The box result is a ceiling for "detector plus rules", not a submission. The blind learned model is fitted on benchmark questions from other scenes, which a real recipe may not be allowed to do.
 
+### Follow-up: does a depth estimate fix nearest/farthest?
+
+Code: [`embspatial_depth.py`](embspatial_depth.py); log in [`research/compute/results/embspatial-depth/`](../../../compute/results/embspatial-depth/run.log). A small off-the-shelf monocular depth model (Depth Anything V2 Small, not trained on this benchmark) ran on the 1,206 nearest/farthest images on CPU, 0.8 seconds each. The nearest object is the one with the highest estimated nearness inside its box.
+
+| Rule for nearest/farthest | All | ai2thor | mp3d | scannet |
+| --- | --- | --- | --- | --- |
+| Box bottom edge, no depth model | 67.2 | 65.7 | 64.3 | 71.8 |
+| Estimated depth, median inside the box | 74.8 | 60.6 | 88.4 | 76.0 |
+
+- **Depth helps, by 7.6 points overall,** and takes the whole-benchmark figure for "boxes plus rules" from about 89% to 91.0%.
+- **The gain is uneven.** On real scanned homes (mp3d) it reaches 88%. On the simulated scenes (ai2thor) it is worse than the box rule, 60.6 against 65.7.
+- **So depth is part of the missing input, not all of it.** A quarter of these questions are still wrong. Likely causes are boxes that include background behind the object, and a depth model weak on rendered images; neither was tested.
+- **Limit:** the choice of "median inside the box" was made on these same questions; the other variants tested range from 62.9 to 74.5.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
@@ -74,5 +88,5 @@ These numbers come from public data and are not comparable to HFM's score, which
 ## Next steps
 
 - With a GPU: fine-tune with the training effort concentrated on nearest/farthest, and add depth supervision (a depth map channel or depth-ordered object lists as auxiliary targets).
-- Test a monocular depth model on CPU for the nearest/farthest questions (needs the images, 400 MB; feasible on the free runner).
+- Mask the object inside its box before reading depth, and choose per source between the box rule and depth.
 - Ask HFM for per-relation scores to confirm where its 78.5% comes from.

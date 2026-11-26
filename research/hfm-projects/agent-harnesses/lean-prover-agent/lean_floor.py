@@ -8,12 +8,13 @@ For each tactic, every theorem's `sorry` is replaced by that tactic and the file
 checked once; `#print axioms` after each theorem confirms it was accepted without
 `sorry`. Each declaration has a fixed heartbeat budget so slow tactics fail cleanly.
 
-Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json> <valid|test>
-       python lean_floor.py summary <valid.json> <test.json>
+Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json> <valid|test> [first:last tactic index]
+       python lean_floor.py summary <result.json> [<result.json> ...]
 """
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -48,14 +49,26 @@ def check(repo, split, k, part, items):
         for name, s in items:
             fo.write(f"{s}{TACTICS[k]}\n#print axioms {name}\n\n")
     status = "ok"
-    try:
-        r = subprocess.run(["lake", "env", "lean", "-M", "5000", os.path.basename(path)], cwd=repo, capture_output=True, text=True, timeout=1500)
-        out = r.stdout + r.stderr
-        if r.returncode not in (0, 1) or r.returncode < 0:
-            status = f"exit {r.returncode}"
-    except subprocess.TimeoutExpired as e:
-        out = e.stdout.decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or "")
-        status = "timeout"
+    log = path + ".out"
+    # own process group, so a timeout also stops the lean process that lake started
+    with open(log, "wb") as lf:
+        proc = subprocess.Popen(["lake", "env", "lean", "-M", "5000", os.path.basename(path)], cwd=repo, stdout=lf, stderr=subprocess.STDOUT,
+                                start_new_session=True)
+        try:
+            code = proc.wait(timeout=1500)
+            if code not in (0, 1):
+                status = f"exit {code}"
+        except subprocess.TimeoutExpired:
+            status = "timeout"
+        finally:
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)
+            except OSError:
+                pass
+            proc.wait()
+    with open(log, "rb") as lf:
+        out = lf.read(20_000_000).decode("utf-8", "replace")
+    os.remove(log)
     proved = set()
     for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
         if "sorryAx" not in m.group(2):
@@ -103,13 +116,14 @@ def watchdog(limit_kb=5_000_000):
 
 def main():
     if sys.argv[1] == "summary":
-        return summary(sum((json.load(open(f)) for f in sys.argv[2:4]), []))
+        return summary(sum((json.load(open(f)) for f in sys.argv[2:]), []))
     repo, outp, which = sys.argv[1:4]
     sets = {which: statements(os.path.join(repo, "MiniF2F", which.capitalize()))}
     print({k: len(v) for k, v in sets.items()}, flush=True)
     import threading
     threading.Thread(target=watchdog, daemon=True).start()
-    jobs = [(repo, sp, sets[sp], k) for k in range(len(TACTICS)) for sp in sets]
+    lo, hi = (int(x) for x in sys.argv[4].split(":")) if len(sys.argv) > 4 else (0, len(TACTICS))
+    jobs = [(repo, sp, sets[sp], k) for k in range(lo, hi) for sp in sets]
     with ThreadPoolExecutor(2) as ex:
         res = list(ex.map(lambda a: run(*a), jobs))
     json.dump([{"split": s, "tactic": t, "proved": p} for s, t, p in res], open(outp, "w"), indent=0)

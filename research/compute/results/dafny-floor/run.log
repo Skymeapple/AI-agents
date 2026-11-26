@@ -1,5 +1,5 @@
 job: dafny-floor
-started: 2026-11-26T09:47:08Z
+started: 2026-11-26T09:58:36Z
 cores: 4, memory: 15 GB
 11.0.100
 4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2
@@ -26,6 +26,8 @@ RESULT programs 782
 RESULT verify with no hints: 225 (28.8%)
 RESULT   programs without loops: 209 of 371; with loops: 16 of 411
 RESULT recovered by loop-bound guess-and-prune: 7 more -> 232 (29.7%)
+RESULT recovered by also trying postconditions with the bound replaced by the counter: 57 more -> 289 (37.0%)
+RESULT parse errors in the hint-stripped file itself: 60
 RESULT timeouts among failures: 5
 RESULT programs of 40 lines or fewer: 459, verify with no hints 151, after guess-and-prune 155
-finished: 2026-11-26T09:57:14Z, exit code 0
+finished: 2026-11-26T10:13:55Z, exit code 0

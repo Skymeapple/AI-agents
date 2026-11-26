@@ -51,7 +51,7 @@ def check(repo, split, k, part, items):
     try:
         r = subprocess.run(["lake", "env", "lean", "-M", "5000", os.path.basename(path)], cwd=repo, capture_output=True, text=True, timeout=1500)
         out = r.stdout + r.stderr
-        if r.returncode not in (0, 1):
+        if r.returncode not in (0, 1) or r.returncode < 0:
             status = f"exit {r.returncode}"
     except subprocess.TimeoutExpired as e:
         out = e.stdout.decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or "")
@@ -76,12 +76,30 @@ def run(repo, split, stmts, k):
     return split, TACTICS[k], sorted(proved)
 
 
+def watchdog(limit_kb=5_500_000):
+    """Kill any lean process whose resident memory passes the limit, so one runaway
+    tactic cannot take the whole machine down. The chunk it was checking is lost."""
+    import time
+    while True:
+        try:
+            for line in subprocess.run(["ps", "-eo", "pid,rss,comm"], capture_output=True, text=True).stdout.split("\n")[1:]:
+                f = line.split()
+                if len(f) == 3 and f[2] == "lean" and int(f[1]) > limit_kb:
+                    os.kill(int(f[0]), 9)
+                    print(f"watchdog: killed lean process using {int(f[1]) // 1000} MB", flush=True)
+        except Exception as e:
+            print("watchdog error", e, flush=True)
+        time.sleep(1)
+
+
 def main():
     if sys.argv[1] == "summary":
         return summary(sum((json.load(open(f)) for f in sys.argv[2:4]), []))
     repo, outp, which = sys.argv[1:4]
     sets = {which: statements(os.path.join(repo, "MiniF2F", which.capitalize()))}
     print({k: len(v) for k, v in sets.items()}, flush=True)
+    import threading
+    threading.Thread(target=watchdog, daemon=True).start()
     jobs = [(repo, sp, sets[sp], k) for k in range(len(TACTICS)) for sp in sets]
     with ThreadPoolExecutor(2) as ex:
         res = list(ex.map(lambda a: run(*a), jobs))

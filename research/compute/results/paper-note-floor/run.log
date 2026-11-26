@@ -1,53 +1,56 @@
 job: paper-note-floor
-started: 2026-11-26T17:31:53Z
+started: 2026-11-26T17:34:25Z
 cores: 4, memory: 15 GB
 total 25592
--rw-r--r-- 1 runner runner  7074873 Nov 26 17:32 test.parquet
--rw-r--r-- 1 runner runner 14374550 Nov 26 17:32 train.parquet
--rw-r--r-- 1 runner runner  4749127 Nov 26 17:32 validation.parquet
+-rw-r--r-- 1 runner runner  7074873 Nov 26 17:34 test.parquet
+-rw-r--r-- 1 runner runner 14374550 Nov 26 17:34 train.parquet
+-rw-r--r-- 1 runner runner  4749127 Nov 26 17:34 validation.parquet
 train: 818 papers in the 4,000-86,000 character range, 2089 answerable text questions, median length 23934 characters
 validation: 274 papers in the 4,000-86,000 character range, 885 answerable text questions, median length 22042 characters
 test: 406 papers in the 4,000-86,000 character range, 1308 answerable text questions, median length 21531 characters
 learned: 144930 training sentences, 9.2% are evidence
   words that raise the score: pinyin, ptsd, cts, leftmargin, ids, judgement, head and, speaker and, nnjm, engaged, tourist action, chatbots, human translations, dagger, string kernels, gunrock, and tweets, hypernymy, molecules, code mixed, in number, sentence classification, transcript, scenario we, inconsistency
   words that lower the score: mathbf, entropy loss, abuse, user utterance, bibref40, finetuning, thank, the random, services, models such, factor, memory network, bots, textrm, same way, fold, system which, rest of, posterior, of annotated, eq, evaluators, in non, as its, our datasets
+learned: 144930 training sentences, 9.2% are evidence
 
 ===== validation: budget 3000 characters =====
-  builder               evidence kept   span kept  answer words
-  lead                          0.124       0.111         0.418
-  abstract + firsts             0.496       0.193         0.493
-  central                       0.562       0.223         0.551
-  numbers first                 0.297       0.183         0.494
-  learned                       0.746       0.351         0.630
-  learned + dense               0.680       0.324         0.629
-  oracle                        0.873       0.758         0.807
+  builder               evidence kept  evidence share   span kept  answer words
+  lead                          0.124           0.078       0.111         0.418
+  abstract + firsts             0.496           0.114       0.193         0.493
+  central                       0.562           0.178       0.223         0.551
+  numbers first                 0.297           0.123       0.183         0.494
+  learned                       0.746           0.309       0.351         0.630
+  learned + dense               0.680           0.211       0.324         0.629
+  learned, no words             0.525           0.349       0.356         0.609
+  oracle                        0.873           0.785       0.758         0.807
   (885 questions; 641 with extractive spans)
 
 ===== test: budget 3000 characters =====
-  builder               evidence kept   span kept  answer words
-  lead                          0.141       0.130         0.435
-  abstract + firsts             0.528       0.224         0.520
-  central                       0.615       0.234         0.568
-  numbers first                 0.338       0.193         0.508
-  learned                       0.781       0.398         0.658
-  learned + dense               0.711       0.370         0.655
-  oracle                        0.887       0.765         0.828
+  builder               evidence kept  evidence share   span kept  answer words
+  lead                          0.141           0.093       0.130         0.435
+  abstract + firsts             0.528           0.140       0.224         0.520
+  central                       0.615           0.203       0.234         0.568
+  numbers first                 0.338           0.131       0.193         0.508
+  learned                       0.781           0.347       0.398         0.658
+  learned + dense               0.711           0.239       0.370         0.655
+  learned, no words             0.569           0.379       0.375         0.617
+  oracle                        0.887           0.808       0.765         0.828
   (1308 questions; 957 with extractive spans)
 
-RESULT builder chosen on validation (by evidence kept): learned
-RESULT test, lead               evidence kept 0.141  span kept 0.130  answer words 0.435
-RESULT test, learned            evidence kept 0.781  span kept 0.398  answer words 0.658
-RESULT test, oracle             evidence kept 0.887  span kept 0.765  answer words 0.828
+RESULT builder chosen on validation (by evidence share): learned, no words
+RESULT test, lead               evidence kept 0.141  evidence share 0.093  span kept 0.130  answer words 0.435
+RESULT test, learned, no words  evidence kept 0.569  evidence share 0.379  span kept 0.375  answer words 0.617
+RESULT test, oracle             evidence kept 0.887  evidence share 0.808  span kept 0.765  answer words 0.828
 
-===== test: how the budget changes the picture (evidence kept) =====
-    budget     lead             learned   oracle
-      1000    0.013               0.506    0.629
-      2000    0.058               0.668    0.804
-      3000    0.141               0.781    0.887
-      6000    0.359               0.921    0.979
-     12000    0.662               0.987    0.994
-     24000    0.952               0.996    0.999
+===== test: how the budget changes the picture (evidence share) =====
+    budget     lead   learned, no words   oracle
+      1000    0.004               0.180    0.416
+      2000    0.031               0.293    0.673
+      3000    0.093               0.379    0.808
+      6000    0.300               0.575    0.961
+     12000    0.625               0.809    0.993
+     24000    0.942               0.972    0.999
 
 RESULT share of evidence sentences by tenth of the paper (training papers): 0.05 0.09 0.10 0.10 0.12 0.12 0.13 0.12 0.10 0.06
 RESULT evidence rate by section type: data 0.19, setup 0.13, result 0.12, method 0.09, intro 0.09, other 0.07, analysis 0.07, end 0.05, related 0.04, abstract 0.00
-finished: 2026-11-26T17:33:05Z, exit code 0
+finished: 2026-11-26T17:35:55Z, exit code 0

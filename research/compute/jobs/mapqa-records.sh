@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# MapQA: look at the public copies and write question/answer text (no images) for a CPU analysis.
+# MapQA (second try): look at the public copies and write question/answer text (no images) for a CPU analysis.
 set -euo pipefail
 pip install -q pandas pyarrow requests
 python - <<'PY'
@@ -11,8 +11,13 @@ for ds in ("elliot-mllm/mapqa_cleaned", "nimapourjafar/mm_mapqa"):
         for split, urls in splits.items():
             print(ds, cfg, split, len(urls), "files")
             for k, u in enumerate(urls[:3] if ds.startswith("elliot") else urls[:1]):
-                raw = requests.get(u, timeout=1200).content
-                t = pq.read_table(io.BytesIO(raw))
+                resp = requests.get(u, timeout=1200)
+                raw = resp.content
+                try:
+                    t = pq.read_table(io.BytesIO(raw))
+                except Exception as e:
+                    print("  not readable:", u, resp.status_code, len(raw), raw[:200], repr(e)[:100])
+                    break
                 cols = [c for c in t.column_names if "image" not in c.lower()]
                 df = t.select(cols).to_pandas()
                 if k == 0:

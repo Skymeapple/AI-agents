@@ -68,9 +68,10 @@ Gains are relative to the best practical method without that ingredient.
 | Cloud placement | First fit instead of best fit | Server time −3.2% |
 | Table questions (small open model) | Choose between a code route and a direct route with a simple rule | Correct answers 28.0% → 41.2% on fresh questions; one harness detail was worth 26 points on the code route |
 | TOPv2 parsing (small open model) | Constrain output to well-formed trees with known labels | Exact match 26.7% → 45.7%; no gain on unseen tree shapes |
+| FabNER entities | Give a CRF the dictionary's tags, cross-fitted | F1 83.4 → 86.2; a plain union of the two gives nothing |
 | Lung cells | A small network averaged with nearest neighbours, instead of a linear classifier | Macro-F1 0.684 → 0.786, in 35 of 35 studies |
 
-- **Nine of sixteen attempts worked,** counting part-way trading of a fast
+- **Ten of seventeen attempts worked,** counting part-way trading of a fast
   portfolio signal (return per unit of risk 0.50 → 0.60). Failures: joint
   spill planning across eight dams (1.4% at best), drift-triggered portfolio
   rebalancing, headway-based bus holding (worse by 4–12%), random-scenario scheduling (unstable), lifetime classes for cloud
@@ -137,7 +138,7 @@ Gains are relative to the best practical method without that ingredient.
 | --- | --- | --- | --- |
 | New information | 7 of 9 | 6–34% | Needs a data source or a measurement |
 | More data of the same kind | 5 of 5 | 6–73% | Needs the data to exist |
-| A better algorithm | 9 of 16 | 3–23% | Engineering time |
+| A better algorithm | 10 of 17 | 3–23% | Engineering time |
 | Theory from another field | 4 of 11 | 3–36% | Nearly free once known |
 | More reasoning per decision | 3 of 8 | 0–10%, falling fast | Compute |
 

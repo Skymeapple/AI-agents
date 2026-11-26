@@ -74,15 +74,32 @@ Code: [`fabner_hybrid.py`](fabner_hybrid.py); log in [`research/compute/results/
 - **Reading:** an untrained small model cannot tell which unseen phrases the annotators would have marked. Recall on the unseen part is available, but precision is not, and at 6% precision every correct addition costs sixteen wrong ones. The hybrid route needs a model trained on this annotation style, or a learned filter on the proposals. That is a GPU fine-tune, or the classical stacking test below.
 - **Limits:** 300 sentences, one prompt, one small model. A fine-tuned 7B model is a different object.
 
+### Follow-up: a classical model that is shown the dictionary's answer
+
+Code: [`fabner_stack.py`](fabner_stack.py); log in [`research/compute/results/fabner-stack/`](../../../compute/results/fabner-stack/run.log). The CRF receives the dictionary's tag for each word as a feature. For training sentences the dictionary is built from the other nine tenths of the training set, so the CRF learns how far to trust it. Full test split, 2,064 sentences, 9,633 entities.
+
+| System | F1 | Precision | Recall | Recall, seen phrases | Recall, unseen phrases |
+| --- | --- | --- | --- | --- | --- |
+| Dictionary | 83.4 | 81.3 | 85.5 | 99.1% | 0.0% |
+| CRF | 82.8 | 84.7 | 81.0 | 92.8% | 7.2% |
+| Union of the two | 83.3 | 81.0 | 85.7 | | |
+| CRF given the dictionary's tags | **86.2** | 87.5 | 84.9 | 97.9% | 3.2% |
+
+- **Stacking adds 2.8 points over the dictionary** (95% interval +2.5 to +3.2 over 1,000 resamples of test sentences; setting chosen on validation, where it scores 90.1).
+- **The gain is precision, not unseen phrases.** The stacked model keeps the dictionary's recall on seen phrases and learns when a dictionary match is not an entity in context (precision 81.3 → 87.5). On unseen phrases it finds 3.2%, fewer than the plain CRF.
+- **A simple union does nothing.** The two must be combined by a trained model.
+- **Scale:** 86.2 is above the best published generative figure found (GNER, 85.4) and HFM's 80.7. Splits and scoring may differ, so this is not a claim to have beaten either. It runs in minutes on a CPU.
+- **What remains:** the 1,325 unseen-phrase entities. Nothing tested here finds more than 20% of them, and the one method that did (the untrained small model) had 6% precision.
+
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
 ## How far this can go
 
-- **On the public split:** 83.4 from a dictionary. Perfect recall of the unseen phrases would add up to about 12 points, less whatever label inconsistency removes.
+- **On the public split:** 86.2 from a CRF given the dictionary's tags; 83.4 from the dictionary alone. Perfect recall of the unseen phrases would add up to about 12 points, less whatever label inconsistency removes.
 - **Published best:** 85.4.
 
 ## Next steps
 
-- The untrained hybrid failed (above). Next: a fine-tuned model that sees the dictionary's tags, on a GPU; and a CRF that sees them, on CPU (`fabner_stack.py`, queued).
+- The untrained hybrid failed (above). Next: a fine-tuned model that sees the dictionary's tags, on a GPU; the CPU version with a CRF reached 86.2 (above).
 - Score HFM-style generative output with the same scorer to check comparability.
 - Quantify the label-noise ceiling by re-annotating a sample.

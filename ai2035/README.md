@@ -150,9 +150,9 @@
 
 | 审计 | 方法 | 结果 |
 |---|---|---|
-| 引文真实性 | [`audit/citations.py`](audit/citations.py)：抽取全部 Markdown 中的 arXiv 编号，批量调用 arXiv API 解析，并比对参考文献条目标题 | 见 [`audit/citations.md`](audit/citations.md) |
-| 实验可复现 | [`audit/compare_repro.py`](audit/compare_repro.py)：在隔离副本中从零重跑全部实验脚本，逐个比较全部数值 | 见 [`audit/reproducibility.md`](audit/reproducibility.md) |
-| 数字可追溯 | 研究规范要求报告中的每个数字都能在 `results/*.json` 中找到；各子项目完成后均做过脚本化核对 | 见各项目报告 |
+| 引文真实性 | [`audit/citations.py`](audit/citations.py)：抽取全部 Markdown 中的 arXiv 编号，批量调用 arXiv API 解析，并比对参考文献条目标题 | **781 个不同编号全部可解析**；参考文献条目中只有 1 条标题低重合，是期刊版标题对应 arXiv 预印本编号，属正常情况（[`audit/citations.md`](audit/citations.md)） |
+| 实验可复现 | [`audit/compare_repro.py`](audit/compare_repro.py)：在隔离副本中从零重跑全部 40 个实验脚本，逐个比较全部数值 | **40/40 个结果文件、约 4.2 万个数值全部逐位一致**（[`audit/reproducibility.md`](audit/reproducibility.md)） |
+| 数字可追溯 | [`audit/traceability.py`](audit/traceability.py)：抽取报告、论文、结论卡中的全部 ≥2 位小数，与本项目结果 JSON 按引用精度匹配 | **6,153 个小数中 6,129 个（99.6%）可直接追溯**；其余 24 个为文献引用值（如 Q02 的 −0.64）、标注 [判断] 的理论估计、两数之差或科学计数法写法（[`audit/traceability.md`](audit/traceability.md)） |
 | 研究规范 | [`PROTOCOL.md`](PROTOCOL.md)（第一阶段）、[`PAPER_PROTOCOL.md`](PAPER_PROTOCOL.md)（第二阶段）：预注册假设与否证条件、≥5 个种子、95% 置信区间、对照组、证据分级 | — |
 
 ## 七、局限（务必阅读）

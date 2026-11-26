@@ -40,33 +40,38 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 
 ## Experiment and results
 
-**What was run.** [`lean_floor.py`](lean_floor.py) measures how many miniF2F theorems fall to a single built-in Lean/Mathlib tactic, with no language model and no search. This is a floor for the track, not an entry in it: HFM's task uses a frozen language model, which needs a paid key.
+**What was run.** [`lean_floor.py`](lean_floor.py) measures how many miniF2F theorems fall to a single short tactic call, with no language model and no search. This is a floor for the track, not an entry in it: HFM's task uses a frozen language model, which needs a paid key.
 
 - **Data:** the public miniF2F Lean 4 port (github.com/yangky11/miniF2F-lean4, MIT licence; Lean v4.24.0 with Mathlib), 244 validation and 244 test theorems.
-- **Method:** each theorem's `sorry` is replaced by one of 19 tactics and checked by Lean under a fixed budget (200,000 heartbeats per theorem). `#print axioms` after each theorem confirms the proof was accepted without `sorry`.
+- **Method:** each theorem's `sorry` is replaced by one tactic call and checked by Lean under a fixed budget (200,000 heartbeats per theorem). `#print axioms` after each theorem confirms the proof was accepted without `sorry`.
+- **Tactics:** 34 in two rounds. Round one is 19 built-in tactics and simple pairs. Round two is 15 short compositions around the strongest of them, such as `norm_num at * <;> grind`, and `nlinarith` given the squares of the theorem's real variables and of their pairwise sums and differences (generated from the statement by a fixed rule).
 - **Selection:** the tactics to combine were chosen on the validation set (greedy cover) and scored once on the test set.
-- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor-test` and `lean-floor-valid-a`, `-b`, `-c`.
+- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor2-valid-a`, `-valid-b`, `-test-a`, `-test-b`. The `lean-floor-*` folders hold the first round's earlier run, which lost whole batches to timeouts and is superseded.
 
 **Results.**
 
 | Tactics (chosen on validation) | Validation, of 244 | Test, of 244 |
 |---|---|---|
-| `grind` alone | 69 (28.3%) | 64 (26.2%) |
-| `grind` or `bound` | 85 (34.8%) | 77 (31.6%) |
-| best 5 (`grind`, `bound`, `intros; nlinarith [sq_nonneg (0:ℝ)]`, `omega`, `intros; norm_num [*]`) | 92 (37.7%) | 89 (36.5%) |
-| any of the 19 (upper bound, selection-biased) | 95 (38.9%) | 94 (38.5%) |
+| `grind` alone (best of round one) | 69 (28.3%) | 74 (30.3%) |
+| `norm_num at * <;> grind` alone | 81 (33.2%) | 84 (34.4%) |
+| best 2: adding `bound` | 89 (36.5%) | 88 (36.1%) |
+| best 4: adding `nlinarith` with generated squares, `intros; norm_num [*]` | 100 (41.0%) | 95 (38.9%) |
+| best 8 | 108 (44.3%) | 99 (40.6%) |
+| any of the 34 (upper bound, selection-biased) | 108 (44.3%) | 106 (43.4%) |
 
-- **One tactic call proves about a third of miniF2F.** Two tactics picked on validation prove 31.6% of the test set; five prove 36.5%.
-- **The gains are concentrated in the easy sources.** On validation, 74 of the 88 theorems proved by the second batch of tactics are `mathd` problems; none of the 20 `imo` or 8 `induction` problems is proved by any tactic.
-- **The newer automation dominates.** `grind` alone proves more than twice as many test theorems as `norm_num`, `simp`, `linarith` or `omega` alone (64 against 17 to 30).
+- **One short tactic call proves about a third of miniF2F, and a handful prove about 40%.** The eight tactics picked on validation prove 99 of the 244 test theorems.
+- **Composition helped.** Normalising numerals before `grind` adds 10 test theorems to `grind` alone (84 against 74). The generated squares add 5 test theorems to plain `nlinarith` (37 against 32).
+- **The gains are concentrated in the easy sources.** Of the 106 test theorems proved by any tactic, 86 are `mathd` problems. Two of the 20 test `imo` problems fall (`imo_1964_p2`, `imo_1982_p1`), four `aime` problems and one `induction` problem.
+- **Returns flatten quickly.** From four tactics to eight, the test score rises by 4 theorems.
 
 **Limits of this measurement.**
 
-- These numbers are a lower bound. A few 41-theorem batches were lost whole: when one theorem made a tactic loop, the batch timed out (validation: the last batch for seven simp-based tactics; test: one batch for one tactic) or crashed (test: two `grind` batches; validation: one batch).
+- These numbers are a lower bound. When a theorem makes a tactic hang or crash Lean, that theorem is dropped for that tactic and the rest of its batch is rerun; a handful of theorem-tactic pairs were dropped this way (for example `mathd_numbertheory_543` for the simp-based tactics on validation, and `imo_1977_p6`, `imo_1981_p6`, `mathd_numbertheory_328` for the `grind` family on test).
 - The scores are not comparable with HFM's 0.364 → 0.566: HFM's problem set and budgets are private and may differ from miniF2F.
 - The floor depends on the Mathlib version; `grind` and `bound` are recent additions.
+- The second-round tactics were written after seeing first-round test results per tactic, so the choice of what to compose is not fully blind to the test set. The combination reported was still selected on validation only.
 
-**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about a third of the theorems before any model call, and the remaining two thirds (almost all `imo`, `aime`, `induction` and most `amc12` problems) are where a model has to supply structure.
+**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call, and the remaining 60% (almost all `imo`, most `aime`, `induction` and `amc12` problems) are where a model has to supply structure.
 
 ## How far this can go
 
@@ -74,4 +79,4 @@ HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 25
 
 ## Next steps
 
-Rerun the lost batches one theorem at a time to tighten the floor. Once a model endpoint is available, run a tactic-search baseline that calls `grind` and `bound` at every sub-goal.
+Add a model-free search over two- and three-step tactic sequences to see how far the floor moves without a model. Once a model endpoint is available, run a tactic-search baseline that calls `grind` and `bound` at every sub-goal.

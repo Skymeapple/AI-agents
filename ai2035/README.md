@@ -7,6 +7,8 @@
 | 一：基础分析 | `README.md` + `experiment.py` | 问题界定、经典文献综述、预注册假设、可复现实验、文献计量信号、2035 路线图 |
 | 二：前沿研究 | `paper.md` + `frontier_experiment.py` + `CONCLUSIONS.md` | 综述 2025–2026 年全球前沿进展（每篇论文引用 18–32 篇 2025 年后的 arXiv 文献），选一个前沿争论，做理论推导与新实验，写成完整学术论文，并附一页结论卡片 |
 
+> **合订本**：20 篇前沿论文的 PDF 合订本见 [`export/ai2035-papers.pdf`](export/ai2035-papers.pdf)（A4，172 页，含封面、说明、目录与书签）。重新生成：`python ai2035/export/build_pdf.py`（需 pandoc 与 Node 版 Playwright）。
+
 > **清单来源说明（请先读）**：本环境无法访问原书及其转载页面，因此 [`questions.yaml`](questions.yaml) 中的 20 个题目**不是原文逐字条目**。它们是根据可检索到的原书主题（认知与计算的关系、机器学习统计学基础、稳健性与稳定性、小样本与缺标签学习、数据共享与隐私保护、因果驱动方法、可解释性等），结合国家自然科学基金委“可解释、可通用的下一代人工智能方法”重大研究计划等同期议程重建的工作清单。拿到原书后应逐条核对；若某题与原文不符，替换 `title` 后各项目的方法框架仍可复用。
 
 ---
@@ -202,7 +204,8 @@ ai2035/
   common/util.py            种子、结果记录、中文绘图
   bibliometrics/            arXiv 关注度趋势：采集、统计、图、自动注入各报告
   frontier/                 每题 2025 年以来的 arXiv 前沿文献（id/标题/摘要），共约 2,600 篇
-  audit/                    引文审计、复现审计
+  audit/                    引文审计、复现审计、数字可追溯审计
+  export/                   20 篇论文合订本 PDF 及其生成脚本
   projects/Qxx-<slug>/
     README.md               第一阶段分析报告
     experiment.py           第一阶段实验

@@ -10,7 +10,7 @@ checked once; `#print axioms` after each theorem confirms it was accepted withou
 theorem that still hangs or crashes Lean is dropped for that tactic and the rest of its
 batch is rerun.
 
-Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json> <valid|test> [first:last tactic index]
+Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json> <valid|test> [first:last tactic index] [earlier result.json ...]
        python lean_floor.py summary <result.json> [<result.json> ...]
 """
 import json
@@ -32,7 +32,17 @@ TACTICS = ["rfl", "norm_num", "simp", "ring", "linarith", "nlinarith", "omega", 
            "constructor <;> intros <;> grind", "grind [Nat.ModEq, Int.ModEq]", "decide", "norm_num [Nat.ModEq, Int.ModEq] at * <;> omega",
            "simp_all [Finset.sum_range_succ, Finset.prod_range_succ] <;> grind", "norm_num at * <;> bound",
            "(try field_simp at *) <;> nlinarith", "induction' n with n ih <;> simp_all [Finset.sum_range_succ] <;> grind", "exact?",
-           "nlinarith [SQUARES]", "intros; nlinarith [SQUARES]"]
+           "nlinarith [SQUARES]", "intros; nlinarith [SQUARES]",
+           # third round: one structural step, then a fixed portfolio (PORTFOLIO below) on every goal it leaves
+           "PORTFOLIO", "intros; PORTFOLIO", "(repeat' apply And.intro) <;> PORTFOLIO", "intros; constructor <;> intros <;> PORTFOLIO",
+           "(try simp_all) <;> PORTFOLIO", "(try norm_num [*] at *) <;> PORTFOLIO", "(try field_simp at *) <;> (try ring_nf at *) <;> PORTFOLIO",
+           "subst_vars <;> PORTFOLIO", "by_contra! hneg <;> PORTFOLIO", "INDUCTION", "CASES", "ext x <;> (try simp_all) <;> PORTFOLIO",
+           "(try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO",
+           "(try push_cast at *) <;> (try zify at *) <;> PORTFOLIO", "casesm* _ ∧ _, ∃ _, _ <;> PORTFOLIO", "exfalso <;> PORTFOLIO",
+           "left <;> PORTFOLIO", "right <;> PORTFOLIO"]
+ROUND3 = 34
+PORTFOLIO = ("(first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [SQUARES]) | (intros; norm_num [*]; done) | omega | decide"
+             " | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)")
 HEARTBEATS = 200000
 CHUNK = 41
 CHUNK_SECONDS = 600
@@ -42,6 +52,18 @@ def tactic_for(k, statement):
     """The tactic text for one theorem. SQUARES expands to the squares of the theorem's
     real variables and of their pairwise sums and differences (at most four variables)."""
     t = TACTICS[k]
+    ints = []
+    for m in re.finditer(r"\(([^():]+):\s*[ℕℤ]\s*\)", statement):
+        ints += m.group(1).split()
+    ints = list(dict.fromkeys(ints))[:3]
+    if t == "INDUCTION":
+        step = "simp_all [Finset.sum_range_succ, Finset.prod_range_succ, pow_succ]"
+        alts = [f"(induction {v} <;> (try {step}) <;> PORTFOLIO)" for v in ints]
+        t = "first | " + " | ".join(alts + [f"(intro n; induction n <;> (try {step}) <;> PORTFOLIO)"])
+    if t == "CASES":
+        alts = [f"(interval_cases {v} <;> (try simp_all) <;> PORTFOLIO)" for v in ints]
+        t = "first | " + " | ".join(alts + ["(intro n; interval_cases n <;> (try simp_all) <;> PORTFOLIO)"])
+    t = t.replace("PORTFOLIO", PORTFOLIO)
     if "SQUARES" not in t:
         return t
     names = []
@@ -53,7 +75,7 @@ def tactic_for(k, statement):
         for v in names[i + 1:]:
             hints += [f"sq_nonneg ({u} - {v})", f"sq_nonneg ({u} + {v})", f"mul_self_nonneg ({u} * {v})"]
     return t.replace("SQUARES", ", ".join(hints) if hints else "sq_nonneg (0:ℝ)")
-HEADER = "import Mathlib\nset_option maxHeartbeats %d\nset_option maxRecDepth 2000\nopen BigOperators Real Nat Topology Rat\n\n" % HEARTBEATS
+HEADER = "import Mathlib\nset_option maxHeartbeats %d\nset_option maxRecDepth 2000\nopen BigOperators Real Nat Topology Rat\n\n"
 
 
 def statements(folder):
@@ -114,10 +136,10 @@ def check(repo, split, k, part, items):
     while todo:
         path = os.path.join(repo, f"floor_{split}_{k}_{part}_{tries}.lean")
         with open(path, "w", encoding="utf-8") as fo:
-            fo.write(HEADER)
+            fo.write(HEADER % (HEARTBEATS * (2 if k >= ROUND3 else 1)))
             for name, s in todo:
                 fo.write(f"{s}{tactic_for(k, s)}\n#print axioms {name}\n\n")
-        out, status = lean(repo, path, CHUNK_SECONDS)
+        out, status = lean(repo, path, CHUNK_SECONDS * (2 if k >= ROUND3 else 1))
         os.remove(path)
         head = head or out[:120]
         tries += 1
@@ -142,8 +164,9 @@ def check(repo, split, k, part, items):
 def run(repo, split, stmts, k):
     items = list(stmts.items())
     proved, notes = set(), []
-    for part in range(0, len(items), CHUNK):
-        got, dropped, head = check(repo, split, k, part, items[part:part + CHUNK])
+    size = CHUNK // 2 if k >= ROUND3 else CHUNK
+    for part in range(0, len(items), size):
+        got, dropped, head = check(repo, split, k, part, items[part:part + size])
         proved |= got
         notes += dropped
     print(f"{split:5s} {TACTICS[k]:60s} proves {len(proved):3d} {notes if notes else ''} | {head!r}", flush=True)
@@ -180,12 +203,17 @@ def main():
         return summary(sum((json.load(open(f)) for f in sys.argv[2:]), []))
     repo, outp, which = sys.argv[1:4]
     sets = {which: statements(os.path.join(repo, "MiniF2F", which.capitalize()))}
+    for f in sys.argv[5:]:                      # earlier result files: theorems already proved are not tried again
+        for r in json.load(open(f)):
+            if r["split"] == which:
+                for name in r["proved"]:
+                    sets[which].pop(name, None)
     print({k: len(v) for k, v in sets.items()}, flush=True)
     import threading
     threading.Thread(target=watchdog, daemon=True).start()
     lo, hi = (int(x) for x in sys.argv[4].split(":")) if len(sys.argv) > 4 else (0, len(TACTICS))
     jobs = [(repo, sp, sets[sp], k) for k in range(lo, hi) for sp in sets]
-    with ThreadPoolExecutor(2) as ex:
+    with ThreadPoolExecutor(3 if lo >= ROUND3 else 2) as ex:
         res = list(ex.map(lambda a: run(*a), jobs))
     json.dump([{"split": s, "tactic": t, "proved": p} for s, t, p in res], open(outp, "w"), indent=0)
     for sp in sets:

@@ -1,0 +1,31 @@
+job: dafny-floor
+started: 2026-11-26T09:47:08Z
+cores: 4, memory: 15 GB
+11.0.100
+4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2
+[0] 630-dafny_tmp_tmpz2kokaiq_Solution_no_hints.dfy: plain False, houdini False | 'Length ==> a[i] != x\n   |                             ^^^^^^\n\n\nDafny program verifier finished with 2 verified, 2 errors'
+[1] 703FinalProject_tmp_tmpr_10rn4z_DP-GD_no_hints.dfy: plain True, houdini None | 'verifier finished with 1 verified, 0 errors\nCompilation failed because warnings were found and --allow-warnings is false'
+[2] 703FinalProject_tmp_tmpr_10rn4z_gaussian_no_hints.dfy: plain True, houdini None | 'Dafny program verifier finished with 3 verified, 0 errors'
+[50] Clover_longest_prefix_no_hints.dfy: plain False, houdini None | 'fix|])\n  |                                                ^^\n\n\nDafny program verifier finished with 1 verified, 5 errors'
+[100] Dafny-Exercises_tmp_tmpjm75muf__Session7Exercises_ExerciseBubbleSort_no_hints.dfy: plain False, houdini False | '.]==old(a[f..])\n   |                                      ^^\n\n\nDafny program verifier finished with 3 verified, 8 errors'
+[150] Dafny_Verify_tmp_tmphq7j0row_AI_agent_verify_examples_DoubleArray_no_hints.dfy: plain False, houdini False | '|         dst[n] := 2 * src[n]; n := n + 1;\n  |            ^\n\n\nDafny program verifier finished with 1 verified, 2 errors'
+[200] Dafny_tmp_tmpmvs2dmry_examples2_no_hints.dfy: plain False, houdini False | 'proved\n   |\n62 | ensures r == exp(x0, n0);\n   |           ^^\n\n\nDafny program verifier finished with 3 verified, 5 errors'
+[250] MIEIC_mfes_tmp_tmpq3ho7nve_TP3_binary_search_no_hints.dfy: plain False, houdini False | 'Statement\n   |\n18 |             x !in a[..low] && x !in a[high..]\n   |               ^\n\n1 parse errors detected in p.dfy'
+[300] Program-Verification-Dataset_tmp_tmpgbdrlnu__Dafny_basic examples_add_by_one_details_no_hints.dfy: plain True, houdini None | 'verifier finished with 2 verified, 0 errors\nCompilation failed because warnings were found and --allow-warnings is false'
+[350] SENG2011_tmp_tmpgk5jq85q_ass2_ex2_no_hints.dfy: plain True, houdini None | 'verifier finished with 4 verified, 0 errors\nCompilation failed because warnings were found and --allow-warnings is false'
+[400] cs245-verification_tmp_tmp0h_nxhqp_power_no_hints.dfy: plain False, houdini False | '                                                          ^^\n\n\nDafny program verifier finished with 1 verified, 5 errors'
+[450] dafny-language-server_tmp_tmpkir0kenl_Test_dafny1_ListReverse_no_hints.dfy: plain False, houdini False | 'the loop\n   |\n16 |     while (current != null)\n   |     ^^^^^\n\n\nDafny program verifier finished with 1 verified, 1 error'
+[500] dafny-synthesis_task_id_135_no_hints.dfy: plain True, houdini None | 'Dafny program verifier finished with 1 verified, 0 errors'
+[550] dafny-synthesis_task_id_424_no_hints.dfy: plain False, houdini None | ' i < |l| ==> r[i] == l[i][|l[i]| - 1]\n  |             ^^^^^^\n\n\nDafny program verifier finished with 1 verified, 2 errors'
+[600] dafny-synthesis_task_id_606_no_hints.dfy: plain True, houdini None | 'Dafny program verifier finished with 2 verified, 0 errors'
+[650] dafny-synthesis_task_id_82_no_hints.dfy: plain True, houdini None | 'Dafny program verifier finished with 2 verified, 0 errors'
+[700] ironsync-osdi2023_tmp_tmpx80antoe_lib_Math_div_def_no_hints.dfy: plain False, houdini None | 'cursive(x:int, m:int) : int\n   |                           ^\n\n\nDafny program verifier finished with 9 verified, 2 errors'
+[750] stunning-palm-tree_tmp_tmpr84c2iwh_ch5_no_hints.dfy: plain False, houdini None | '31,8): Error: invalid AssignStatement\n    |\n131 |       x + 1 - 2 * m;\n    |         ^\n\n1 parse errors detected in p.dfy'
+
+RESULT programs 782
+RESULT verify with no hints: 225 (28.8%)
+RESULT   programs without loops: 209 of 371; with loops: 16 of 411
+RESULT recovered by loop-bound guess-and-prune: 7 more -> 232 (29.7%)
+RESULT timeouts among failures: 5
+RESULT programs of 40 lines or fewer: 459, verify with no hints 151, after guess-and-prune 155
+finished: 2026-11-26T09:57:14Z, exit code 0

@@ -1,0 +1,102 @@
+"""Model-free floor on miniF2F: how many competition theorems fall to one built-in
+Lean/Mathlib tactic, with no language model and no search.
+
+Stand-in for HFM's "Agent for Formal Theorem Proving in Lean" track, which needs a
+paid language-model API. Statements: the public miniF2F Lean 4 port
+(github.com/yangky11/miniF2F-lean4, MIT; 244 validation and 244 test theorems).
+For each tactic, every theorem's `sorry` is replaced by that tactic and the file is
+checked once; `#print axioms` after each theorem confirms it was accepted without
+`sorry`. Each declaration has a fixed heartbeat budget so slow tactics fail cleanly.
+
+Usage: python lean_floor.py <miniF2F-lean4 checkout> <out.json>
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor
+
+TACTICS = ["rfl", "decide", "norm_num", "simp", "ring", "linarith", "nlinarith", "omega", "positivity", "aesop", "simp_all", "grind", "bound",
+           "intros; norm_num [*]", "intros; nlinarith [sq_nonneg (0:ℝ)]", "norm_num at *; linarith", "field_simp; ring", "intros; omega",
+           "intros; simp_all; linarith", "norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]"]
+HEARTBEATS = 200000
+HEADER = "import Mathlib\nset_option maxHeartbeats %d\nset_option maxRecDepth 2000\nopen BigOperators Real Nat Topology Rat\n\n" % HEARTBEATS
+
+
+def statements(folder):
+    out = {}
+    for f in sorted(os.listdir(folder)):
+        text = open(os.path.join(folder, f), encoding="utf-8").read()
+        i = text.find("theorem ")
+        if i < 0:
+            continue
+        body = text[i:].rstrip()
+        name = re.match(r"theorem\s+(\S+)", body).group(1)
+        if body.endswith("sorry"):
+            out[name] = body[:-len("sorry")]
+    return out
+
+
+def run(repo, split, stmts, k):
+    tac = TACTICS[k]
+    path = os.path.join(repo, f"floor_{split}_{k}.lean")
+    with open(path, "w", encoding="utf-8") as fo:
+        fo.write(HEADER)
+        for name, s in stmts.items():
+            fo.write(f"{s}{tac}\n#print axioms {name}\n\n")
+    try:
+        r = subprocess.run(["lake", "env", "lean", os.path.basename(path)], cwd=repo, capture_output=True, text=True, timeout=5400)
+        out, timed = r.stdout + r.stderr, False
+    except subprocess.TimeoutExpired as e:
+        out, timed = (e.stdout or b"").decode("utf-8", "replace") if isinstance(e.stdout, bytes) else (e.stdout or ""), True
+    proved = set()
+    for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
+        if "sorryAx" not in m.group(2):
+            proved.add(m.group(1))
+    proved |= {m.group(1) for m in re.finditer(r"'([^']+)' does not depend on any axioms", out)}
+    proved &= set(stmts)
+    print(f"{split:5s} {tac:60s} proves {len(proved):3d}{'  (file timed out)' if timed else ''} | output head: {out[:160]!r}", flush=True)
+    return split, tac, sorted(proved)
+
+
+def main():
+    repo, outp = sys.argv[1:3]
+    sets = {"valid": statements(os.path.join(repo, "MiniF2F", "Valid")), "test": statements(os.path.join(repo, "MiniF2F", "Test"))}
+    print({k: len(v) for k, v in sets.items()}, flush=True)
+    jobs = [(repo, sp, sets[sp], k) for k in range(len(TACTICS)) for sp in sets]
+    with ThreadPoolExecutor(4) as ex:
+        res = list(ex.map(lambda a: run(*a), jobs))
+    json.dump([{"split": s, "tactic": t, "proved": p} for s, t, p in res], open(outp, "w"), indent=0)
+    for sp in sets:
+        n = len(sets[sp])
+        by = {t: set(p) for s, t, p in res if s == sp}
+        union = set().union(*by.values())
+        print(f"\nRESULT {sp}: {n} theorems; any single tactic proves {len(union)} ({len(union) / n:.1%})")
+        got = set()
+        for t in sorted(by, key=lambda t: -len(by[t])):
+            print(f"RESULT   {t:60s} {len(by[t]):3d}   new beyond the tactics above: {len(by[t] - got)}")
+            got |= by[t]
+        kinds = {}
+        for name in sets[sp]:
+            kind = name.split("_")[0]
+            a = kinds.setdefault(kind, [0, 0])
+            a[0] += name in union
+            a[1] += 1
+        print("RESULT   by source: " + ", ".join(f"{k} {a}/{b}" for k, (a, b) in sorted(kinds.items())))
+    # tactics chosen on valid, scored on test: greedy cover of the validation set
+    by_v = {t: set(p) for s, t, p in res if s == "valid"}
+    by_t = {t: set(p) for s, t, p in res if s == "test"}
+    chosen, cov = [], set()
+    for _ in range(5):
+        t = max(by_v, key=lambda t: len(by_v[t] - cov))
+        if not by_v[t] - cov:
+            break
+        chosen.append(t)
+        cov |= by_v[t]
+        tc = set().union(*[by_t[c] for c in chosen])
+        print(f"RESULT best {len(chosen)} tactics picked on valid ({', '.join(chosen)}): valid {len(cov)}, test {len(tc)} ({len(tc) / len(sets['test']):.1%})")
+
+
+if __name__ == "__main__":
+    main()

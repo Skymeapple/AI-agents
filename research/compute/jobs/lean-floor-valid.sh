@@ -1,4 +1,4 @@
-# miniF2F (fifth run: memory watchdog)
+# miniF2F (sixth run: watchdog on private memory only)
 set -e
 curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
 export PATH="$HOME/.elan/bin:$PATH"

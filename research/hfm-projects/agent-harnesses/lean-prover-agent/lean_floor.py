@@ -76,17 +76,26 @@ def run(repo, split, stmts, k):
     return split, TACTICS[k], sorted(proved)
 
 
-def watchdog(limit_kb=5_500_000):
-    """Kill any lean process whose resident memory passes the limit, so one runaway
-    tactic cannot take the whole machine down. The chunk it was checking is lost."""
+def watchdog(limit_kb=5_000_000):
+    """Kill any lean process whose private (anonymous) memory passes the limit, so one
+    runaway tactic cannot take the whole machine down. Mathlib's memory-mapped files
+    (about 5.6 GB, shared between processes) are not counted. The chunk is lost."""
     import time
     while True:
         try:
-            for line in subprocess.run(["ps", "-eo", "pid,rss,comm"], capture_output=True, text=True).stdout.split("\n")[1:]:
-                f = line.split()
-                if len(f) == 3 and f[2] == "lean" and int(f[1]) > limit_kb:
-                    os.kill(int(f[0]), 9)
-                    print(f"watchdog: killed lean process using {int(f[1]) // 1000} MB", flush=True)
+            for pid in os.listdir("/proc"):
+                if not pid.isdigit():
+                    continue
+                try:
+                    st = open(f"/proc/{pid}/status").read()
+                except OSError:
+                    continue
+                if not st.startswith("Name:\tlean\n"):
+                    continue
+                m = re.search(r"RssAnon:\s+(\d+) kB", st)
+                if m and int(m.group(1)) > limit_kb:
+                    os.kill(int(pid), 9)
+                    print(f"watchdog: killed lean process using {int(m.group(1)) // 1000} MB of private memory", flush=True)
         except Exception as e:
             print("watchdog error", e, flush=True)
         time.sleep(1)

@@ -1,44 +1,28 @@
 job: wireless-milp-floor
-started: 2026-11-27T03:12:40Z
+started: 2026-11-27T04:03:56Z
 cores: 4, memory: 15 GB
-seed 0: 400 cells (81 macro), 6000 users, 32528 user-cell pairs, 38928 variables, 38928 constraints
-  LP bound 39673.3 (2s)
-RESULT seed 0 greedy: 55340.0, gap 39.49%, cells on 223, dropped 832 (1s)
-RESULT seed 0 highs 60s: 50300.0, gap 26.79%, cells on 276, dropped 694, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (62s)
-RESULT seed 0 lns 60s: 50300.0, gap 26.79%, cells on 226, dropped 692, 3 rounds, 3 improved (61s)
-seed 1: 400 cells (83 macro), 6000 users, 31260 user-cell pairs, 37660 variables, 37660 constraints
-  LP bound 46870.8 (2s)
-RESULT seed 1 greedy: 62840.0, gap 34.07%, cells on 216, dropped 1164 (1s)
-RESULT seed 1 highs 60s: 48020.0, gap 2.45%, cells on 251, dropped 736, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (60s)
-RESULT seed 1 lns 60s: 57850.0, gap 23.42%, cells on 224, dropped 993, 3 rounds, 3 improved (61s)
-seed 2: 400 cells (80 macro), 6000 users, 34853 user-cell pairs, 41253 variables, 41253 constraints
-  LP bound 38761.3 (2s)
-RESULT seed 2 greedy: 53760.0, gap 38.69%, cells on 238, dropped 772 (1s)
-RESULT seed 2 highs 60s: 40550.0, gap 4.61%, cells on 261, dropped 433, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (60s)
-RESULT seed 2 lns 60s: 48220.0, gap 24.40%, cells on 245, dropped 630, 5 rounds, 5 improved (60s)
-seed 3: 400 cells (73 macro), 6000 users, 30504 user-cell pairs, 36904 variables, 36904 constraints
-  LP bound 43083.9 (2s)
-RESULT seed 3 greedy: 59020.0, gap 36.99%, cells on 227, dropped 1026 (1s)
-RESULT seed 3 highs 60s: 44540.0, gap 3.38%, cells on 253, dropped 616, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (60s)
-RESULT seed 3 lns 60s: 52270.0, gap 21.32%, cells on 231, dropped 827, 4 rounds, 4 improved (61s)
 seed 0: 400 cells (81 macro), 6000 users, 32528 user-cell pairs, 38928 variables, 38928 constraints
   LP bound 39673.3 (3s)
 RESULT seed 0 greedy: 55340.0, gap 39.49%, cells on 223, dropped 832 (1s)
 RESULT seed 0 highs 300s: 40730.0, gap 2.66%, cells on 251, dropped 459, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (301s)
-RESULT seed 0 lns 300s: 44210.0, gap 11.44%, cells on 237, dropped 569, 21 rounds, 18 improved (300s)
+RESULT seed 0 lns 300s: 44210.0, gap 11.44%, cells on 237, dropped 569, 21 rounds, 18 improved (301s)
+RESULT seed 0 highs+lns 300s: 40460.0, gap 1.98% (HiGHS part alone 40730.0, gap 2.66%), 66 rounds, 7 improved (300s)
 seed 1: 400 cells (83 macro), 6000 users, 31260 user-cell pairs, 37660 variables, 37660 constraints
   LP bound 46870.8 (2s)
 RESULT seed 1 greedy: 62840.0, gap 34.07%, cells on 216, dropped 1164 (1s)
-RESULT seed 1 highs 300s: 47800.0, gap 1.98%, cells on 249, dropped 744, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (301s)
-RESULT seed 1 lns 300s: 50260.0, gap 7.23%, cells on 237, dropped 816, 18 rounds, 15 improved (300s)
+RESULT seed 1 highs 300s: 47800.0, gap 1.98%, cells on 249, dropped 744, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (300s)
+RESULT seed 1 lns 300s: 50260.0, gap 7.23%, cells on 237, dropped 816, 18 rounds, 15 improved (301s)
+RESULT seed 1 highs+lns 300s: 47530.0, gap 1.41% (HiGHS part alone 47800.0, gap 1.98%), 60 rounds, 4 improved (300s)
 seed 2: 400 cells (80 macro), 6000 users, 34853 user-cell pairs, 41253 variables, 41253 constraints
   LP bound 38761.3 (2s)
 RESULT seed 2 greedy: 53760.0, gap 38.69%, cells on 238, dropped 772 (1s)
 RESULT seed 2 highs 300s: 40540.0, gap 4.59%, cells on 262, dropped 442, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (300s)
 RESULT seed 2 lns 300s: 41870.0, gap 8.02%, cells on 247, dropped 505, 20 rounds, 16 improved (301s)
+RESULT seed 2 highs+lns 300s: 39650.0, gap 2.29% (HiGHS part alone 40540.0, gap 4.59%), 41 rounds, 15 improved (300s)
 seed 3: 400 cells (73 macro), 6000 users, 30504 user-cell pairs, 36904 variables, 36904 constraints
   LP bound 43083.9 (2s)
 RESULT seed 3 greedy: 59020.0, gap 36.99%, cells on 227, dropped 1026 (1s)
-RESULT seed 3 highs 300s: 44150.0, gap 2.47%, cells on 252, dropped 639, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (300s)
+RESULT seed 3 highs 300s: 44150.0, gap 2.47%, cells on 252, dropped 639, solver status 1 (Time limit reached. (HiGHS Status 13: Time limit reached)) (301s)
 RESULT seed 3 lns 300s: 45830.0, gap 6.37%, cells on 240, dropped 651, 21 rounds, 19 improved (301s)
-finished: 2026-11-27T04:01:26Z, exit code 0
+RESULT seed 3 highs+lns 300s: 43830.0, gap 1.73% (HiGHS part alone 44150.0, gap 2.47%), 52 rounds, 10 improved (300s)
+finished: 2026-11-27T05:04:23Z, exit code 0

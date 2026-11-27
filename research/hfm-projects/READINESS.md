@@ -42,7 +42,7 @@ Where each project stands, and what it still needs before research can proceed. 
 
 | Project | Still missing |
 | --- | --- |
-| [Crystal Generation for Unseen Chemical Systems with MatterGen and MatterSim](materials/crystal-generation/README.md) | A free GPU account. |
+| [Crystal Generation for Unseen Chemical Systems with MatterGen and MatterSim](materials/crystal-generation/README.md) | A CPU stand-in for the selection step has run. A free GPU account. |
 | [Patient-level lung cancer histology classification from H&E slides with Phikon-v2](medicine/lung-histology/README.md) | A free GPU account, and an NLST data request for the held-out cohort (CPTAC can stand in until then). A CPU route also exists: pre-extracted slide features for TCGA and CPTAC are on Hugging Face behind an access form, which needs a free Hugging Face account token. |
 | [64-Frame Rayleigh–Bénard Convection Forecasting with Walrus and The Well](physics/rayleigh-benard-forecast/README.md) | A CPU floor study has run. A free GPU account for the Walrus model. |
 | [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | A free GPU account. |

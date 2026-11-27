@@ -343,6 +343,7 @@ CPU, and revisited two earlier results.
 | Pretraining data mix, four domains | Toy-scale mix sweep | HFM's 0.60/0.20/0.20 mix helps web (−0.015) and hurts the four-domain mean (+0.031) against 0.50/0.25/0.25. Balanced mixes are flat within noise; starving a domain is costly. |
 | Stacking recipe changes | Toy-scale 2×2×2 factorial | Each of three changes gains 0.03–0.04; stacked they beat additive by 0.023. Pairs that enable each other are super-additive, overlapping pairs sub-additive. |
 | Short-run screening | Toy-scale rank transfer | Runs at 5–12% of final length rank recipes at 0.52 and reject a change that wins later; a quarter-length run picks the right winner (0.79). |
+| Crystal pre-screening | Public DFT stand-in, held-out chemical systems | A learned screen raises the stable share of a fixed budget 1.4–1.7× (23% → 39% on the hull for one pick) and transfers to unseen chemical families. Diversity by formula trades stable share for unique compositions. |
 
 Three points for the conclusions of this review:
 

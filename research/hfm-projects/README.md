@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 44 projects (43 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 45 projects (44 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 9 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 8 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md). The nine problem classes behind the 54 projects, what blocks each, and how they compare with AI breakthroughs in mathematics, physics and biology (in Chinese) are in [`PROBLEM-CLASSES.md`](PROBLEM-CLASSES.md).
 
@@ -50,7 +50,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Crystal Generation for Unseen Chemical Systems with MatterGen and MatterSim](materials/crystal-generation/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. MatterGen sampling and MatterSim relaxation need one. | 0.1364 → 0.4395 |
+| [Crystal Generation for Unseen Chemical Systems with MatterGen and MatterSim](materials/crystal-generation/README.md) | Tested on public data | Selection stand-in on JARVIS-DFT, 1,468 held-out chemical systems: a cheap learned screen raises the stable share of one pick from 23% to 39% (on the hull) and from 47% to 70% (within 0.05 eV/atom), and holds when related systems are removed from training. Generation still needs a GPU. | 0.1364 → 0.4395 |
 
 ## medicine
 

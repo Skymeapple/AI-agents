@@ -1,0 +1,110 @@
+[
+{
+"name": "aime_1983_p3",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 181
+},
+{
+"name": "algebra_amgm_sum1toneqn_prod1tonleq1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 121
+},
+{
+"name": "amc12_2000_p6",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "as-is",
+"proof": "  rcases h\u2080 with \u27e8hp, hq\u27e9\n  rcases h\u2081 with \u27e8hp_min, hp_max\u27e9\n  rcases h\u2082 with \u27e8hq_min, hq_max\u27e9\n  interval_cases p <;> interval_cases q <;> norm_num at * <;>\n  simp_all [Nat.Prime.ne_one, Nat.Prime.ne_zero, Nat.Prime.ne_zero, Nat.Prime.ne_one]",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 4",
+"proof": "  rcases h\u2080 with \u27e8hp, hq\u27e9\n  rcases h\u2081 with \u27e8hp_min, hp_max\u27e9\n  rcases h\u2082 with \u27e8hq_min, hq_max\u27e9\n  interval_cases p <;> interval_cases q <;> norm_num at * <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 165
+},
+{
+"name": "amc12a_2020_p15",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 230
+},
+{
+"name": "amc12a_2021_p8",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 382
+},
+{
+"name": "imo_1960_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 189
+},
+{
+"name": "imo_1985_p6",
+"proved": true,
+"plain": true,
+"repaired": false,
+"wins": [
+{
+"sample": 0,
+"variant": "as-is",
+"proof": "  use 0\n  constructor\n  intro n hn\n  simp_all [h\u2080, h\u2081]\n  <;> linarith\n  <;> aesop",
+"lean": "ok"
+}
+],
+"secs": 198
+},
+{
+"name": "mathd_algebra_114",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 113
+},
+{
+"name": "mathd_algebra_362",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 179
+},
+{
+"name": "mathd_numbertheory_353",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 86
+},
+{
+"name": "numbertheory_3pow2pownm1mod2pownp3eq2pownp2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 144
+}
+]

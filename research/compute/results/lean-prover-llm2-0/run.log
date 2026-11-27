@@ -1,0 +1,27 @@
+job: lean-prover-llm2-0
+started: 2026-11-27T06:27:48Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf
+Decompressing 7335 file(s)
+Unpacked in 16084 ms
+Completed successfully!
+116 test theorems left by the tactics; this shard tries 15, 8 attempts each
+  [1/15] aime_1983_p1: no (generation 151s, lean ok)
+  [2/15] aime_1997_p9: no (generation 114s, lean ok)
+  [3/15] algebra_apbon2pownleqapownpbpowon2: no (generation 128s, lean ok)
+  [4/15] amc12_2001_p21: no (generation 92s, lean ok)
+  [5/15] amc12a_2020_p10: no (generation 102s, lean ok)
+  [6/15] amc12a_2021_p19: no (generation 378s, lean ok)
+  [7/15] amc12b_2020_p22: no (generation 122s, lean ok)
+  [8/15] imo_1963_p5: no (generation 263s, lean ok)
+  [9/15] imo_1985_p6: no (generation 54s, lean ok)
+  [10/15] induction_pprime_pdvdapowpma: no (generation 170s, lean ok)
+  [11/15] mathd_algebra_196: no (generation 300s, lean ok)
+  [12/15] mathd_algebra_392: no (generation 87s, lean ok)
+  [13/15] mathd_numbertheory_234: PROVED by [1] (generation 151s, lean ok)
+  [14/15] mathd_numbertheory_495: no (generation 152s, lean ok)
+  [15/15] numbertheory_exk2powkeqapb2mulbpa2_aeq1: no (generation 218s, lean ok)
+RESULT shard 0/8: 1 of 15 residual theorems proved with 8 attempts each
+finished: 2026-11-27T07:13:09Z, exit code 0

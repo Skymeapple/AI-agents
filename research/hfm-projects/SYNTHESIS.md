@@ -350,6 +350,7 @@ CPU, and revisited two earlier results.
 | Order execution | Public crypto books | Passive placement loses 0.7–0.85 bp to TWAP on tight books (adverse selection); an imbalance rule recovers two-thirds; savings exist only with a wide spread and are under 0.1 bp. |
 | Activity-surprise ranking | Public crypto trades | Linear model 0.52 Spearman, reversion alone 0.38; HFM's momentum covariate +0.002; boosted trees worse than linear. |
 | Intraday overlay | Public crypto minute data | Reversal earns ~75 bp/day gross; 2 bp costs turn every overlay negative; tenfold shrinkage is within noise. Not trading is best. |
+| Wireless MILP | Self-built 400-cell instances | Greedy-seeded LNS loses to plain HiGHS; HiGHS stalls after 180 s; LNS around HiGHS's incumbent cuts the gap to the LP bound from 2.93% to 1.85% (4 of 4). |
 
 Three points for the conclusions of this review:
 

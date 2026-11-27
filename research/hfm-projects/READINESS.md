@@ -84,7 +84,7 @@ Where each project stands, and what it still needs before research can proceed. 
 
 | Project | Still missing |
 | --- | --- |
-| [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | The instance format and reward, which HFM has not published. |
+| [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | A stand-in on a self-built instance family has run. The instance format and reward, which HFM has not published. |
 
 ## What would unblock the most
 

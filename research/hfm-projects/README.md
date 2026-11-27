@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 51 projects (50 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 52 projects (51 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 2 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 1 project that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md). The nine problem classes behind the 54 projects, what blocks each, and how they compare with AI breakthroughs in mathematics, physics and biology (in Chinese) are in [`PROBLEM-CLASSES.md`](PROBLEM-CLASSES.md).
 
@@ -62,7 +62,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Blocked | HFM has not published the instance format or the reward, and no proposals have run. | not published → not published |
+| [Wireless 400-Cell Synthetic MILP Case Solver](optimization/wireless-milp/README.md) | Tested on public data | Self-built 400-cell stand-in (HFM's format is unpublished): greedy-seeded LNS loses to plain HiGHS (6–11% vs 2–5% gap at 300 s); HiGHS stalls after 180 s, and LNS around its incumbent cuts the mean gap from 2.93% to 1.85% on all four instances. | not published → not published |
 | [Online Single-Track Railway Dispatcher for Finnish Main-Line Replay](optimization/rail-dispatch/README.md) | Tested on public data | Look-ahead dispatching: 10% less weighted delay than the priority rule (57 days); 15% when it also uses delays visible upstream (52 days); bound is 35% below. | 0 → 0.3984 |
 | [Citywide Bicycle Rebalancing Policy for Station-Based Bike-Sharing](optimization/bike-rebalancing/README.md) | Tested on public data | Forecast-based dispatch: 16% fewer failures than reactive. Look-ahead over four past days adds 2.7%; a perfect forecast would add 11%. | 0 → 0.8019 |
 | [Columbia and Snake River Dam Spill Optimization for Juvenile Salmon and Steelhead Migration](optimization/dam-spill/README.md) | Tested on public data | Gas model fitted on 2012–2021, tested on 2022–2024: a linear model beats the saturating physics form (1.80 vs 2.02 points). Joint spill planning removes only 1.4% of passage loss at a 120% cap and none at 125% (model study). | 0 → 0.7199 |

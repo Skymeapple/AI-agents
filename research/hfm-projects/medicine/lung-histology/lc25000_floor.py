@@ -92,8 +92,11 @@ def embed(imgs):
     return np.concatenate(out)
 
 
-def groups(z, thr):
-    zn = z / np.linalg.norm(z, axis=1, keepdims=True)
+def groups(z, thr, top=10):
+    """Connected components of links between each patch and those of its `top` nearest
+    neighbours (centred cosine) above `thr`; the neighbour cap limits chaining."""
+    zc = z - z.mean(0)
+    zn = zc / np.linalg.norm(zc, axis=1, keepdims=True)
     parent = list(range(len(z)))
 
     def find(a):
@@ -103,7 +106,9 @@ def groups(z, thr):
         return a
     for s in range(0, len(z), 1000):
         sim = zn[s:s + 1000] @ zn.T
-        for i, j in zip(*np.nonzero(sim > thr)):
+        sim[np.arange(len(sim)), np.arange(s, s + len(sim))] = -1
+        nbr = np.argpartition(-sim, top, axis=1)[:, :top]
+        for i, j in ((i, j) for i in range(len(sim)) for j in nbr[i] if sim[i, j] > thr):
             a, b = find(s + i), find(j)
             if a != b:
                 parent[a] = b
@@ -133,21 +138,27 @@ def main():
     repo = sys.argv[2] if len(sys.argv) > 2 else "marlygotti/LC25000"
     os.makedirs(out, exist_ok=True)
     imgs, labels = load(repo, out)
+    labels = np.array([str(l) for l in labels])
     print("classes:", {c: int((labels == c).sum()) for c in np.unique(labels)}, flush=True)
     z = embed(imgs)
-    zn = z / np.linalg.norm(z, axis=1, keepdims=True)
+    zc = z - z.mean(0)
+    zn = zc / np.linalg.norm(zc, axis=1, keepdims=True)
     rng = np.random.default_rng(0)
     probe = rng.choice(len(z), 2000, replace=False)
     sim = zn[probe] @ zn.T
     sim[np.arange(len(probe)), probe] = -1
     nn = sim.max(1)
-    print("nearest-neighbour cosine similarity, quantiles 1/10/50/90%:", np.round(np.quantile(nn, [0.01, 0.1, 0.5, 0.9]), 4), flush=True)
+    print("nearest-neighbour centred cosine similarity, quantiles 1/10/25/50/75/90%:", np.round(np.quantile(nn, [0.01, 0.1, 0.25, 0.5, 0.75, 0.9]), 4), flush=True)
+    np.save(os.path.join(out, "features.npy"), z)
     tumour = np.isin(labels, [l for l in np.unique(labels) if "n" != l.split("_")[-1]])
-    for thr in (0.97, 0.95, 0.92, 0.90):
+    for thr in (0.99, 0.97, 0.95, 0.9, 0.85, 0.8):
         g = groups(z, thr)
         sizes = np.bincount(np.unique(g, return_inverse=True)[1])
         print(f"\n===== link threshold {thr}: {len(sizes)} groups (expected about 750 if augmentation copies were found); "
               f"median size {np.median(sizes):.0f}, largest {sizes.max()}; mixed-class groups {sum(len(set(labels[g == k])) > 1 for k in np.unique(g))} =====", flush=True)
+        if sizes.max() > 0.2 * len(labels):
+            print("  skipped: one group holds over a fifth of the patches, so grouped folds would be degenerate", flush=True)
+            continue
         for name, mask in (("adenocarcinoma vs squamous", tumour), ("three classes", np.ones(len(labels), bool))):
             r = evaluate(z[mask], labels[mask], None, 5, rng)
             gg = evaluate(z[mask], labels[mask], g[mask], 5, rng)

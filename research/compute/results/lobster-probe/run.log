@@ -1,38 +1,63 @@
 job: lobster-probe
-started: 2026-11-27T02:52:05Z
+started: 2026-11-27T02:52:51Z
 cores: 4, memory: 15 GB
-HTTP/2 200 
-server: nginx/1.31.8
-date: Fri, 27 Nov 2026 02:52:06 GMT
-content-type: text/html
-content-length: 457
-vary: Accept-Encoding
-last-modified: Sat, 31 Oct 2026 15:55:48 GMT
-etag: "6ae60f84-1c9"
-accept-ranges: bytes
-strict-transport-security: max-age=31536000; includeSubDomains
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-x-xss-protection: 1; mode=block
-
--rw-r--r-- 1 runner runner 457 Nov 27 02:52 a.bin
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lobster-react-app</title>
-    <script type="module" crossorigin src="/assets/index-9e0decf7.js"></script>
-    <link rel="stylesheet" href="/assets/index-144e5de3.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
-  </body>
-</html>
-
-== https://lobsterdata.com/info/DataSamples.php
-== https://lobsterdata.com/info/DataStructure.php
-== https://lobsterdata.com/
-finished: 2026-11-27T02:52:07Z, exit code 0
+-rw-r--r-- 1 runner runner 1122586 Nov 27 02:52 app.js
+"${e}-download-sample"
+"),R_([])}finally{M_(!1)}}},[e]);C.useEffect(()=>{gp()},[gp]);const H1=C.useCallback(async()=>{if(e){U_(!0),z_(null);try{const $=[...await J.listBookSampleRequests(e)].sort((te,ue)=>(ue.id??0)-(te.id??0));B_($)}catch(N){z_(N.message||"
+"),_(null)},[e==null?void 0:e.id]),C.useEffect(()=>{if(!I||!n){r(null),l(null),d(!1);return}const B={cancelled:!1,objectUrl:null};return d(!0),l(null),r(null),(async()=>{try{const L=await J.getBookSampleProofBlob(I,n);if(B.cancelled)return;const ae=URL.createObjectURL(L);if(B.objectUrl=ae,B.cancelled){URL.revokeObjectURL(ae);return}r(ae)}catch(L){B.cancelled||l(L.message||"
+"),e},async acceptBookSampleTerms(n,e){const t=await wA(`${Q}/book-download/accept-terms`,{method:"
+"),k(!0);try{await J.downloadBookSample(t)}catch(R){h(R.message||"
+");return}l(!0);try{await J.submitBookSampleRequest(n.trim(),t),d("
+");t.href=this.bookSampleDownloadUrl(n),t.download=e,t.style.display="
+");try{await J.acceptBookSampleTerms(t,i.map(R=>({slug:R.slug,version:R.version})))}catch(R){u(R.message||"
+");try{const I=await J.probeBookSampleDownload(t);if(R)return;if(I.kind==="
+"){w(!0),k(!0);try{J.triggerBookSampleDownload(t,I.filename||"
+")},async checkBookSampleDownloadReady(n){const e=await wA(`${Q}/book-download/ready?token=${encodeURIComponent(n)}`,{},LT);if(!e.ok){let t="
+")}return e.json()},triggerBookSampleDownload(n,e="
+")}return t.blob()},async approveBookSampleRequest(n,e){const t=await fetch(`${Q}/book-download/admin/${n}/approve`,{method:"
+")}return t.json()},async listBookSampleRequests(n){const e=await fetch(`${Q}/book-download/admin`,{method:"
+")}return t.json()},async rejectBookSampleRequest(n,e,t){const i=await fetch(`${Q}/book-download/admin/${n}/reject`,{method:"
+")}return t.json()},async submitBookSampleRequest(n,e){const t=new FormData;t.append("
+", request the accompanying sample LOBSTER dataset. We verify purchase proof and send a time-limited download link."
+", you may request the accompanying sample LOBSTER dataset. Enter the e-mail address where we should send your download link, and upload a clear purchase proof (order confirmation or receipt). Our team will verify your request and send you a time-limited download link."
+",document.body.appendChild(t),t.click(),t.remove()},async downloadBookSample(n){const e=await this.checkBookSampleDownloadReady(n);return this.triggerBookSampleDownload(n,e.filename||"
+",{children:I?`Book sample review — #${I}`:"
+"/book-sample"
+"/book-sample/download"
+"/terms/trial-and-sample-data"
+":`${t}-download-sample`}:{},children:["
+";try{s=(await i.json()).detail||s}catch{}throw new Error(s)}return i.json()},bookSampleDownloadUrl(n){return`${Q}/book-download/download?token=${encodeURIComponent(n)}`},async probeBookSampleDownload(n){const e=await wA(`${Q}/book-download/ready?token=${encodeURIComponent(n)}`,{},LT);if(e.ok){const i=await e.json();return{kind:"
+"?B=await J.approveBookSampleRequest(I,n):B=await J.rejectBookSampleRequest(I,n,{reason:H}),R(B.detail||"
+"Add a domain that is missing from the built-in academic list. Addresses at that domain, and its subdomains, are then accepted for book-sample and conference-trial applications. Free providers such as gmail.com cannot be added."
+"Back to book sample"
+"Book Sample Data"
+"Book sample download"
+"Book samples → Review / View"
+"Book samples"
+"Failed to fetch book sample request"
+"Failed to fetch book sample requests"
+"Loading book sample requests…"
+"No book sample requests yet."
+"Open a request to approve or reject pending samples, or view already decided ones."
+"Request sample download"
+"Review public book-sample download requests. Pending items show a badge on this tab."
+"Sample dataset"
+.zip
+data_tqap.7z
+== HF lobster: 13
+   Royal-lobster/10001-Science-Facts ['license:mit'] []
+   Royal-lobster/Slither-Audited-Solidity-QA ['license:mit'] []
+   wl-lobster/controlnet-test [] []
+   mlnomad/imnet1k_American_lobster_Northern_lobster_Maine_lobster_Homarus_americanus [] []
+   mlnomad/imnet1k_spiny_lobster_langouste_rock_lobster_crawfish_crayfish_sea_crawfish [] []
+   totalorganfailure/lobster-data [] []
+   Zhennilin020/Lobster ['license:openrail'] []
+   lobstermeeat/trellis2-data [] []
+   england-lobster/zhang-xuefeng-data ['license:other'] []
+   y7pan/lobster-data [] []
+   Ayrus-1007/lobster-data [] []
+   agriculture-food-systems-ai/Lobster-Aquaculture-Water-Quality-Causal-Reasoning-QA-Dataset [] []
+   agriculture-food-systems-ai/Lobster-Feeding-and-Growth-Causal-Reasoning-Question-Answer-Dataset [] []
+== HF limit order book nasdaq: 0
+== HF LOBSTER_SampleFile: 0
+finished: 2026-11-27T02:52:53Z, exit code 0

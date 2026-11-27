@@ -341,6 +341,8 @@ CPU, and revisited two earlier results.
 | Looped transformer, variable loops | Toy-scale comparison | Mixed loop counts in training cost 0.013 to 0.048 bits per byte at 3 loops and buy tolerance to running fewer loops. Extra loops at test time never help. Confidence-based early exit does not pay. |
 | Looped transformer, data mix | Toy-scale share sweep | Held-out DCLM is best when training on DCLM alone and worsens steadily as FineWeb-Edu replaces it (2.090 → 2.153 at a 75% share), against HFM's best proposal. |
 | Pretraining data mix, four domains | Toy-scale mix sweep | HFM's 0.60/0.20/0.20 mix helps web (−0.015) and hurts the four-domain mean (+0.031) against 0.50/0.25/0.25. Balanced mixes are flat within noise; starving a domain is costly. |
+| Stacking recipe changes | Toy-scale 2×2×2 factorial | Each of three changes gains 0.03–0.04; stacked they beat additive by 0.023. Pairs that enable each other are super-additive, overlapping pairs sub-additive. |
+| Short-run screening | Toy-scale rank transfer | Runs at 5–12% of final length rank recipes at 0.52 and reject a change that wins later; a quarter-length run picks the right winner (0.79). |
 
 Three points for the conclusions of this review:
 

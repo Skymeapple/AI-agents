@@ -1,0 +1,576 @@
+job: lean-recheck
+started: 2026-11-27T11:10:42Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 15275 ms
+Completed successfully!
+import Mathlib
+set_option maxHeartbeats 400000
+set_option maxRecDepth 2000
+open BigOperators Real Nat Topology Rat
+
+theorem aime_1994_p3
+  (f : ℤ → ℤ)
+  (h0 : ∀ x, f x + f (x - 1) = x^2)
+  (h1 : f 19 = 94) :
+  f 94 % 1000 = 561 := by
+  have h2 := h0 19
+  have h3 := h0 94
+  have h4 := h0 93
+  have h5 := h0 92
+  have h6 := h0 91
+  have h7 := h0 90
+  have h8 := h0 89
+  have h9 := h0 88
+  have h10 := h0 87
+  have h11 := h0 86
+  have h12 := h0 85
+  have h13 := h0 84
+  have h14 := h0 83
+  have h15 := h0 82
+  have h16 := h0 81
+  have h17 := h0 80
+  have h18 := h0 79
+  have h19 := h0 78
+  have h20 := h0 77
+  have h21 := h0 76
+  have h22 := h0 75
+  have h23 := h0 74
+  have h24 := h0 73
+  have h25 := h0 72
+  have h26 := h0 71
+  have h27 := h0 70
+  have h28 := h0 69
+  have h29 := h0 68
+  have h30 := h0 67
+  have h31 := h0 66
+  have h32 := h0 65
+  have h33 := h0 64
+  have h34 := h0 63
+  have h35 := h0 62
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:ℝ)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms aime_1994_p3
+
+theorem aime_1994_p3_contra
+  (f : ℤ → ℤ)
+  (h0 : ∀ x, f x + f (x - 1) = x^2)
+  (h1 : f 19 = 94) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms aime_1994_p3_contra
+
+theorem algebra_absapbon1pabsapbleqsumabsaon1pabsa
+  (a b : ℝ) :
+  abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b) := by
+  cases' le_total 0 (a + b) with h₀ h₀ <;>
+  cases' le_total 0 a with h₁ h₁ <;>
+  cases' le_total 0 b with h₂ h₂ <;>
+  simp_all [abs_of_nonneg, abs_of_nonpos, le_add_iff_nonneg_right, le_add_iff_nonneg_left,
+    le_of_eq] <;>
+  field_simp <;>
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg a, sq_nonneg b, sq_nonneg (a - b), sq_nonneg (a + b), mul_self_nonneg (a * b)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms algebra_absapbon1pabsapbleqsumabsaon1pabsa
+
+theorem algebra_absapbon1pabsapbleqsumabsaon1pabsa_contra
+  (a b : ℝ) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms algebra_absapbon1pabsapbleqsumabsaon1pabsa_contra
+
+theorem amc12_2000_p6
+  (p q : ℕ)
+  (h₀ : Nat.Prime p ∧ Nat.Prime q)
+  (h₁ : 4 ≤ p ∧ p ≤ 18)
+  (h₂ : 4 ≤ q ∧ q ≤ 18) :
+  p * q - (p + q) ≠ 194 := by
+  rcases h₀ with ⟨hp, hq⟩
+  rcases h₁ with ⟨hp_min, hp_max⟩
+  rcases h₂ with ⟨hq_min, hq_max⟩
+  interval_cases p <;> interval_cases q <;> norm_num at * <;>
+  simp_all [Nat.Prime.ne_one, Nat.Prime.ne_zero, Nat.Prime.ne_zero, Nat.Prime.ne_one]
+
+#print axioms amc12_2000_p6
+
+theorem amc12_2000_p6_contra
+  (p q : ℕ)
+  (h₀ : Nat.Prime p ∧ Nat.Prime q)
+  (h₁ : 4 ≤ p ∧ p ≤ 18)
+  (h₂ : 4 ≤ q ∧ q ≤ 18) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms amc12_2000_p6_contra
+
+theorem amc12a_2021_p12
+  (a b c d : ℝ)
+  (f : ℂ → ℂ)
+  (h₀ : ∀ z, f z = z^6 - 10 * z^5 + a * z^4 + b * z^3 + c * z^2 + d * z + 16)
+  (h₁ : ∀ z, f z = 0 → (z.im = 0 ∧ 0 < z.re ∧ ↑(Int.floor z.re) = z.re)) :
+  b = -88 := by
+  have h₂ := h₁ 0
+  have h₃ := h₁ 1
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (Complex.I)
+  have h₆ := h₁ (-Complex.I)
+  simp_all [Complex.ext_iff]
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg a, sq_nonneg b, sq_nonneg c, sq_nonneg d, sq_nonneg (a - b), sq_nonneg (a + b), mul_self_nonneg (a * b), sq_nonneg (a - c), sq_nonneg (a + c), mul_self_nonneg (a * c), sq_nonneg (a - d), sq_nonneg (a + d), mul_self_nonneg (a * d), sq_nonneg (b - c), sq_nonneg (b + c), mul_self_nonneg (b * c), sq_nonneg (b - d), sq_nonneg (b + d), mul_self_nonneg (b * d), sq_nonneg (c - d), sq_nonneg (c + d), mul_self_nonneg (c * d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms amc12a_2021_p12
+
+theorem amc12a_2021_p12_contra
+  (a b c d : ℝ)
+  (f : ℂ → ℂ)
+  (h₀ : ∀ z, f z = z^6 - 10 * z^5 + a * z^4 + b * z^3 + c * z^2 + d * z + 16)
+  (h₁ : ∀ z, f z = 0 → (z.im = 0 ∧ 0 < z.re ∧ ↑(Int.floor z.re) = z.re)) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms amc12a_2021_p12_contra
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (hN : N > 0)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  norm_num [Nat.divisors, Finset.card] at h₀
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms amc12a_2021_p25
+
+theorem amc12a_2021_p25_contra
+  (N : ℕ)
+  (hN : N > 0)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms amc12a_2021_p25_contra
+
+theorem imo_1985_p6
+  (f : ℕ → NNReal → ℝ)
+  (h₀ : ∀ x, f 1 x = x)
+  (h₁ : ∀ x n, f (n + 1) x = f n x * (f n x + 1 / n)) :
+  ∃! a, ∀ n, 0 < n → 0 < f n a ∧ f n a < f (n + 1) a ∧ f (n + 1) a < 1 := by
+  use 0
+  constructor
+  intro n hn
+  simp_all [h₀, h₁]
+  <;> linarith
+  <;> aesop
+
+#print axioms imo_1985_p6
+
+theorem imo_1985_p6_contra
+  (f : ℕ → NNReal → ℝ)
+  (h₀ : ∀ x, f 1 x = x)
+  (h₁ : ∀ x n, f (n + 1) x = f n x * (f n x + 1 / n)) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms imo_1985_p6_contra
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  apply or_iff_not_imp_left.2
+  intro h
+  simp_all [Int.dvd_iff_emod_eq_zero, mul_comm, mul_assoc, mul_left_comm, sub_eq_add_neg]
+  omega
+
+#print axioms imo_1992_p1
+
+theorem imo_1992_p1_contra
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms imo_1992_p1_contra
+
+theorem imo_2019_p1
+  (f : ℤ → ℤ) :
+  ((∀ a b, f (2 * a) + (2 * f b) = f (f (a + b))) ↔ (∀ z, f z = 0 \/ ∃ c, ∀ z, f z = 2 * z + c)) := by
+  constructor
+  intro h
+  have h1 := h 0 0
+  have h2 := h 1 0
+  have h3 := h 0 1
+  have h4 := h 1 1
+  simp at h1 h2 h3 h4
+  intro z
+  by_cases hz : f z = 0 <;> simp_all
+  <;>
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:ℝ)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms imo_2019_p1
+
+theorem imo_2019_p1_contra
+  (f : ℤ → ℤ) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms imo_2019_p1_contra
+
+theorem mathd_algebra_313
+  (v i z : ℂ)
+  (h₀ : v = i * z)
+  (h₁ : v = 1 + Complex.I)
+  (h₂ : z = 2 - Complex.I) :
+  i = 1/5 + 3/5 * Complex.I := by
+  rw [h₀, h₂] at h₁
+  field_simp
+  ring_nf at h₁ ⊢
+  norm_num
+  rw [Complex.ext_iff] at h₁ ⊢
+  simp_all
+  constructor <;> linarith
+
+#print axioms mathd_algebra_313
+
+theorem mathd_algebra_313_contra
+  (v i z : ℂ)
+  (h₀ : v = i * z)
+  (h₁ : v = 1 + Complex.I)
+  (h₂ : z = 2 - Complex.I) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms mathd_algebra_313_contra
+
+theorem mathd_algebra_484 :
+  Real.log 27 / Real.log 3 = 3 := by
+  rw [div_eq_iff (by norm_num : Real.log 3 ≠ 0)] <;> norm_num <;>
+   rw [← Real.log_rpow] <;> norm_num
+   <;> linarith
+
+#print axioms mathd_algebra_484
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  norm_num at hx ht
+  have h₃ : x ≥ 16 := by
+    have h₄ : x ≥ 16 := by
+      nlinarith [pow_two x, pow_two (x - 1), pow_two (x + 1), pow_two (x - 2), pow_two (x + 2),
+        pow_two (x - 3), pow_two (x + 3), pow_two (x - 4), pow_two (x + 4),
+        pow_two (x - 5), pow_two (x + 5), pow_two (x - 6), pow_two (x + 6),
+        pow_two (x - 7), pow_two (x + 7), pow_two (x - 8), pow_two (x + 8),
+        pow_two (x - 9), pow_two (x + 9), pow_two (x - 10), pow_two (x + 10),
+        pow_two (x - 11), pow_two (x + 11), pow_two (x - 12), pow_two (x + 12),
+        pow_two (x - 13), pow_two (x + 13), pow_two (x - 14), pow_two (x + 14),
+        pow_two (x - 15), pow_two (x + 15)]
+      linarith
+    linarith
+  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:ℝ)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)
+
+#print axioms mathd_numbertheory_296
+
+theorem mathd_numbertheory_296_contra
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) : False := by (first | (simp_all; done) | (norm_num at *; done) | (have := h₁ 0 0; simp_all; done) | aesop | grind)
+
+#print axioms mathd_numbertheory_296_contra
+
+theorem numbertheory_notEquiv2i2jasqbsqdiv8 :
+  ¬ (∀ a b : ℤ, (∃ i j, a = 2*i ∧ b=2*j) ↔ (∃ k, a^2 + b^2 = 8*k)) := by
+  intro h
+  have h₁ := h 0 2
+  have h₂ := h 2 0
+  have h₃ := h 2 2
+  have h₄ := h 1 1
+  simp_all
+  <;> omega
+
+#print axioms numbertheory_notEquiv2i2jasqbsqdiv8
+
+
+===== lean output =====
+recheck.lean:6:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'aime_1994_p3' does not depend on any axioms
+recheck.lean:52:128: error: `grind` failed
+case grind
+f : ℤ → ℤ
+h0 : ∀ (x : ℤ), f x + f (x + -1) + -1 * x ^ 2 = 0
+h1 : f 19 = 94
+⊢ False
+[grind] Goal diagnostics
+  [facts] Asserted facts
+    [prop] ∀ (x : ℤ), f x + f (x + -1) + -1 * x ^ 2 = 0
+    [prop] f 19 = 94
+    [prop] f 18 + f 19 + -361 = 0
+    [prop] f 17 + f 18 + -324 = 0
+    [prop] f 16 + f 17 + -289 = 0
+    [prop] f 15 + f 16 + -256 = 0
+    [prop] f 14 + f 15 + -225 = 0
+  [eqc] True propositions
+    [prop] ∀ (x : ℤ), f x + f (x + -1) + -1 * x ^ 2 = 0
+  [eqc] Equivalence classes
+    [eqc] {f 19, 94}
+    [eqc] {0, f 18 + f 19 + -361, f 17 + f 18 + -324, f 16 + f 17 + -289, f 15 + f 16 + -256, f 14 + f 15 + -225}
+  [ematch] E-matching patterns
+    [thm] h0: [f #0]
+    [thm] h0: [f (@HAdd.hAdd `[ℤ] `[ℤ] `[ℤ] `[instHAdd] #0 `[-1])]
+    [thm] h0: [@HPow.hPow `[ℤ] `[ℕ] `[ℤ] `[instHPow] #0 `[2]]
+  [cutsat] Assignment satisfying linear constraints
+    [assign] f 19 := 94
+    [assign] f 18 := 267
+    [assign] f 17 := 57
+    [assign] f 16 := 232
+    [assign] f 15 := 24
+    [assign] f 14 := 201
+  [ring] Ring `ℤ`
+    [basis] Basis
+      [_] f 18 + -267 = 0
+      [_] f 19 + -94 = 0
+      [_] f 17 + -57 = 0
+      [_] f 16 + -232 = 0
+      [_] f 15 + -24 = 0
+      [_] f 14 + -201 = 0
+  [limits] Thresholds reached
+    [limit] maximum number of E-matching rounds has been reached, threshold: `(ematch := 5)`
+'aime_1994_p3_contra' depends on axioms: [propext, sorryAx]
+recheck.lean:65:63: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:65:63: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:65:63: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:65:287: error: tactic 'aesop' failed, made no progress
+Initial goal:
+  case inl.inr.inr
+  a b : ℝ
+  h₀ : 0 ≤ a + b
+  h₁ : a ≤ 0
+  h₂ : b ≤ 0
+  ⊢ a + b ≤ (1 + (a + b)) * (-(a / (1 + -a)) + -(b / (1 + -b)))
+recheck.lean:65:287: error: tactic 'aesop' failed, made no progress
+Initial goal:
+  case inr.inl.inl
+  a b : ℝ
+  h₀ : a + b ≤ 0
+  h₁ : 0 ≤ a
+  h₂ : 0 ≤ b
+  ⊢ (-b + -a) * (1 + a) * (1 + b) / (1 + (-b + -a)) ≤ a * (1 + b) + b * (1 + a)
+recheck.lean:65:287: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:65:287: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:65:287: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:58:81: error: unsolved goals
+case inr.inr.inr
+a b : ℝ
+h₀ : a + b ≤ 0
+h₁ : a ≤ 0
+h₂ : b ≤ 0
+⊢ (-b + -a) / (1 + (-b + -a)) + b / (1 + -b) ≤ -(a / (1 + -a))
+recheck.lean:56:8: error: (kernel) declaration has metavariables 'algebra_absapbon1pabsapbleqsumabsaon1pabsa'
+recheck.lean:62:42: warning: This simp argument is unused:
+  le_add_iff_nonneg_right
+
+Hint: Omit it from the simp argument list.
+  simp_all [abs_of_nonneg, abs_of_nonpos, l̵e̵_̵a̵d̵d̵_̵i̵f̵f̵_̵n̵o̵n̵n̵e̵g̵_̵r̵i̵g̵h̵t̵,̵ ̵le_add_iff_nonneg_left, le_of_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+recheck.lean:62:67: warning: This simp argument is unused:
+  le_add_iff_nonneg_left
+
+Hint: Omit it from the simp argument list.
+  simp_all [abs_of_nonneg, abs_of_nonpos, le_add_iff_nonneg_right, l̵e̵_̵a̵d̵d̵_̵i̵f̵f̵_̵n̵o̵n̵n̵e̵g̵_̵l̵e̵f̵t̵,̵le_of_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+recheck.lean:63:4: warning: This simp argument is unused:
+  le_of_eq
+
+Hint: Omit it from the simp argument list.
+  simp_all [abs_of_nonneg, abs_of_nonpos, le_add_iff_nonneg_right, le_add_iff_nonneg_left,̵
+  ̵ ̵ ̵ ̵ ̵l̵e̵_̵o̵f̵_̵e̵q̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'algebra_absapbon1pabsapbleqsumabsaon1pabsa' depends on axioms: [algebra_absapbon1pabsapbleqsumabsaon1pabsa,
+ propext,
+ Classical.choice,
+ Quot.sound]
+recheck.lean:70:121: error: `grind` failed
+case grind
+a b : ℝ
+⊢ False
+[grind] Goal diagnostics
+  [facts] Asserted facts
+'algebra_absapbon1pabsapbleqsumabsaon1pabsa_contra' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+recheck.lean:84:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+recheck.lean:84:2: warning: 'simp_all [Nat.Prime.ne_one, Nat.Prime.ne_zero, Nat.Prime.ne_zero, Nat.Prime.ne_one]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'amc12_2000_p6' depends on axioms: [propext]
+recheck.lean:92:125: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:92:35: error: unsolved goals
+p q : ℕ
+left : Nat.Prime p
+right : Nat.Prime q
+left_1 : 4 ≤ p
+right_1 : p ≤ 18
+left_2 : 4 ≤ q
+right_2 : q ≤ 18
+⊢ False
+'amc12_2000_p6_contra' depends on axioms: [propext, sorryAx]
+recheck.lean:96:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'amc12a_2021_p12' does not depend on any axioms
+recheck.lean:116:174: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:116:84: error: unsolved goals
+a b c d : ℝ
+f : ℂ → ℂ
+h₀ : ∀ (z : ℂ), f z = z ^ 6 - 10 * z ^ 5 + ↑a * z ^ 4 + ↑b * z ^ 3 + ↑c * z ^ 2 + ↑d * z + 16
+h₁ :
+  ∀ (z : ℂ),
+    z ^ 6 - 10 * z ^ 5 + ↑a * z ^ 4 + ↑b * z ^ 3 + ↑c * z ^ 2 + ↑d * z + 16 = 0 → z.im = 0 ∧ 0 < z.re ∧ ↑⌊z.re⌋ = z.re
+⊢ False
+'amc12a_2021_p12_contra' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+recheck.lean:120:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'amc12a_2021_p25' does not depend on any axioms
+recheck.lean:137:137: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:137:47: error: unsolved goals
+N : ℕ
+f : ℕ → ℝ
+hN : 0 < N
+h₀ : ∀ (n : ℕ), 0 < n → f n = ↑n.divisors.card / ↑n ^ 3⁻¹
+h₁ : ∀ (n : ℕ), ¬n = N → 0 < n → ↑n.divisors.card / ↑n ^ 3⁻¹ < ↑N.divisors.card / ↑N ^ 3⁻¹
+⊢ False
+'amc12a_2021_p25_contra' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+recheck.lean:150:6: error: linarith failed to find a contradiction
+case h.left
+f : ℕ → NNReal → ℝ
+n : ℕ
+h₀ : ∀ (x : NNReal), f 0 x * f 0 x = ↑x
+h₁ : ∀ (x : NNReal) (n : ℕ), f (n + 1) x = f n x * (f n x + (↑n)⁻¹)
+hn : 0 < n
+⊢ False
+failed
+recheck.lean:141:8: error: (kernel) declaration has metavariables 'imo_1985_p6'
+recheck.lean:149:12: warning: This simp argument is unused:
+  h₀
+
+Hint: Omit it from the simp argument list.
+  simp_all [h₀̵,̵ ̵h̵₁]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+recheck.lean:149:16: warning: This simp argument is unused:
+  h₁
+
+Hint: Omit it from the simp argument list.
+  simp_all [h₀,̵ ̵h̵₁̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'imo_1985_p6' depends on axioms: [imo_1985_p6, propext, Classical.choice, Quot.sound]
+recheck.lean:158:155: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:158:65: error: unsolved goals
+f : ℕ → NNReal → ℝ
+h₀ : ∀ (x : NNReal), f 0 x * f 0 x = ↑x
+h₁ : ∀ (x : NNReal) (n : ℕ), f (n + 1) x = f n x * (f n x + (↑n)⁻¹)
+⊢ False
+'imo_1985_p6_contra' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+recheck.lean:162:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'imo_1992_p1' does not depend on any axioms
+recheck.lean:177:154: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:177:64: error: unsolved goals
+p q r : ℤ
+h₁ : (p - 1) * (q - 1) * (r - 1) ∣ p * q * r - 1
+left : 1 < p
+left_1 : p < q
+right : q < r
+⊢ False
+'imo_1992_p1_contra' depends on axioms: [sorryAx]
+recheck.lean:181:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'imo_2019_p1' does not depend on any axioms
+recheck.lean:199:123: error: `grind` failed
+case grind
+f : ℤ → ℤ
+⊢ False
+[grind] Goal diagnostics
+  [facts] Asserted facts
+'imo_2019_p1_contra' depends on axioms: [sorryAx]
+recheck.lean:212:2: warning: 'norm_num' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'mathd_algebra_313' depends on axioms: [propext, Classical.choice, Quot.sound]
+recheck.lean:223:128: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:223:38: error: unsolved goals
+i : ℂ
+h₀ : 1 + Complex.I = i * (2 - Complex.I)
+⊢ False
+'mathd_algebra_313_contra' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+recheck.lean:231:7: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+recheck.lean:229:49: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+recheck.lean:229:62: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+recheck.lean:229:53: warning: 'norm_num' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+recheck.lean:231:7: warning: 'linarith' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'mathd_algebra_484' depends on axioms: [propext, Classical.choice, Quot.sound]
+recheck.lean:246:6: error: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+recheck.lean:244:22: error: (deterministic) timeout at `«tactic execution»`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+recheck.lean:235:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (400000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'mathd_numbertheory_296' does not depend on any axioms
+recheck.lean:264:123: warning: aesop: failed to prove the goal after exhaustive search.
+recheck.lean:264:33: error: unsolved goals
+w w_1 : ℕ
+h₀ : 2 ≤ w_1 ^ 4
+h : w ^ 3 = w_1 ^ 4
+⊢ False
+'mathd_numbertheory_296_contra' depends on axioms: [propext, sorryAx]
+recheck.lean:276:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'numbertheory_notEquiv2i2jasqbsqdiv8' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+lean status ok
+RESULT aime_1994_p3: proof REJECTED; hypotheses contradictory: not shown
+RESULT algebra_absapbon1pabsapbleqsumabsaon1pabsa: proof accepted; hypotheses contradictory: not shown
+RESULT amc12_2000_p6: proof accepted; hypotheses contradictory: not shown
+RESULT amc12a_2021_p12: proof REJECTED; hypotheses contradictory: not shown
+RESULT amc12a_2021_p25: proof REJECTED; hypotheses contradictory: not shown
+RESULT imo_1985_p6: proof accepted; hypotheses contradictory: not shown
+RESULT imo_1992_p1: proof REJECTED; hypotheses contradictory: not shown
+RESULT imo_2019_p1: proof REJECTED; hypotheses contradictory: not shown
+RESULT mathd_algebra_313: proof accepted; hypotheses contradictory: not shown
+RESULT mathd_algebra_484: proof accepted; hypotheses contradictory: not shown
+RESULT mathd_numbertheory_296: proof REJECTED; hypotheses contradictory: not shown
+RESULT numbertheory_notEquiv2i2jasqbsqdiv8: proof accepted; hypotheses contradictory: not shown
+finished: 2026-11-27T11:15:14Z, exit code 0

@@ -34,7 +34,7 @@ Proposals are grouped by what they ask HFM to do. Each links to the project fold
 | [S&P activity ranking](quant-finance/sp500-activity-ranking/README.md) | Add a price-momentum covariate. | Public crypto stand-in: +0.002 to a linear model. | Burst and level features in a linear model (0.52). |
 | [A-share overlay](quant-finance/ashare-intraday-overlay/README.md) | Tenfold stronger ridge shrinkage. | Public crypto stand-in: within one standard error; every overlay negative after 2 bp cost. | Measure gross-to-net first; compare with not trading. |
 | [Portfolio with frictions](quant-finance/portfolio-with-frictions/README.md) | Drift-triggered rebalancing. | 49 US industry portfolios: the weakest of five cost-aware rules. | Partial trading towards target. |
-| [Order-book depth](quant-finance/order-book-depletion/README.md) | Student-t likelihood in a frozen variance model. | Public crypto stand-in: trees ≈ linear; depth mean reversion carries most of the signal. | Feature work (flow, cancellations) over likelihood changes. |
+| [Order-book depth](quant-finance/order-book-depletion/README.md) | Student-t likelihood in a frozen variance model. | Public crypto stand-in: trees ≈ linear; depth mean reversion carries most of the signal. Adding the depth's drawdown from its 5- and 30-minute peak and its distance from the 30-minute minimum raises Spearman on 4 of 4 symbols (+0.016 to +0.043). | Path features (drawdown from recent peak, distance from recent minimum) over likelihood changes. |
 
 ## C. Fix the yardstick first
 

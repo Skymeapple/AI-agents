@@ -55,6 +55,21 @@ Task: at the end of every ten-second bucket, for each side, rank by the log chan
 - **Trees add almost nothing over a linear model** (+0.001 to +0.010). HFM's best idea at this point is a change of likelihood inside a frozen variance model; on this evidence, feature choice matters more than the fitting machinery.
 - **Deep, fast books are the most predictable.** BTC and ETH reach 0.58; XRP, with a wide spread and fewer trades, 0.32. Ranking the deepest depletions is harder: the top-decile hit is 2.3–2.6 times random.
 
+**Path memory: the steel-hysteresis analogy, tested.** [`memory_floor.py`](memory_floor.py) adds features that summarise the book's recent path to the eight state features, on the same data and split (logs: `book-memory-*` in [`../../../compute/results/`](../../../compute/results/)). Spearman on the test day, gradient-boosted trees:
+
+| Features | BTC | ETH | SOL | XRP |
+|---|---|---|---|---|
+| state (eight features above) | 0.585 | 0.578 | 0.485 | 0.319 |
+| + lags (depth changes over the previous minute) | 0.589 | 0.585 | 0.515 | 0.349 |
+| + drawdown from the 5- and 30-minute peak, distance from the 30-minute minimum | 0.597 | 0.598 | 0.518 | 0.358 |
+| + flow and volatility over 1 and 5 minutes | 0.595 | 0.590 | 0.489 | 0.323 |
+| + lags + flow and volatility | 0.596 | 0.593 | 0.514 | 0.351 |
+| + all path features | **0.601** | **0.602** | **0.528** | **0.361** |
+
+- **The path adds on every symbol:** +0.016 to +0.043 over the state features, with ridge giving the same picture.
+- **The drawdown features carry the most.** Three numbers (how far depth has fallen from its recent peak, and how far it sits above its recent minimum) are the best single group on all four symbols, and they add on top of lags, flow and volatility on all four. That is the hysteresis reading: where the book stands relative to its recent loading history predicts the next depletion, beyond its last few changes.
+- Same caveat as above: one test day per symbol, crypto not Nasdaq.
+
 ## How far this can go
 
 Unknown for Nasdaq stocks. On public crypto books, depth reversion plus a handful of flow features gives rank correlations of 0.3–0.6 from one day of fitting.

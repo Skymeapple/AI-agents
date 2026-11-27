@@ -1,47 +1,203 @@
 job: filing-probe
-started: 2026-11-27T05:18:16Z
+started: 2026-11-27T05:19:06Z
 cores: 4, memory: 15 GB
 
-== xbrl: 15
-  DenyTranDFW/edgar_xbrl_companyfacts dl=2707 gated=False lic=['license:gpl'] n_files=0 e.g. []
-  CyberMax-tools/figurewell-sec-xbrl-financials dl=1684 gated=False lic=['license:cc0-1.0'] n_files=0 e.g. []
-  wangd12/XBRL_analysis dl=899 gated=False lic=[] n_files=0 e.g. []
-  KirkHan/XBRL_Formula_Calculation dl=475 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
-  arthurpoon/XBRL_financebench_metrics dl=462 gated=False lic=[] n_files=0 e.g. []
-  mirageco/XBRLBench dl=350 gated=False lic=[] n_files=0 e.g. []
-  ct1212/XBRL-FinNQA dl=257 gated=False lic=[] n_files=0 e.g. []
-  alea-institute/alea-xbrl-finance dl=241 gated=False lic=['license:cc-by-4.0'] n_files=0 e.g. []
-  bethelhall/XBRLFiling dl=239 gated=False lic=['license:cc-by-nc-4.0'] n_files=0 e.g. []
-  CyberMax-tools/figurewell-sec-xbrl-financials-full-history dl=183 gated=auto lic=['license:cc0-1.0'] n_files=0 e.g. []
-  robosystems/sec-xbrl-knowledge-graphs dl=177 gated=False lic=['license:cc-by-4.0'] n_files=0 e.g. []
-  ptoro/amzn-10k-xbrl-statements dl=164 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
-  bowang0911/sec-xbrl-hard-negatives dl=104 gated=False lic=['license:cc0-1.0'] n_files=0 e.g. []
-  wangd12/xbrl_analysis_train dl=84 gated=False lic=[] n_files=0 e.g. []
-  KirkHan/XBRL_Terminology dl=38 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+===== CyberMax-tools/figurewell-sec-xbrl-financials
+card: cc0-1.0 ['.gitattributes', 'LATEST.md', 'README.md', 'data/facts.parquet', 'data/filings.parquet', 'data/key_metrics.csv', 'data/key_metrics.parquet', 'latest.json', 'meta.json', 'notebooks/quickstart.ipynb']
+parquet: {"key_metrics": {"train": ["https://huggingface.co/api/datasets/CyberMax-tools/figurewell-sec-xbrl-financials/parquet/key_metrics/train/0.parquet"]}, "facts": {"train": ["https://huggingface.co/api/datasets/CyberMax-tools/figurewell-sec-xbrl-financials/parquet/facts/train/0.parquet"]}, "filings": {"train": ["https://huggingface.co/api/datasets/CyberMax-tools/figurewell-sec-xbrl-financials/parquet/filings/train/0.parquet"]}}
+README: ---
+# LATEST: https://huggingface.co/datasets/CyberMax-tools/figurewell-sec-xbrl-financials/blob/main/latest.json (data date, refresh cadence, fresh API, licence links; also LATEST.md)
+# API (fresh data): https://apify.com/cybermax/sec-insider-tracker?utm_source=huggingface&utm_medium=free-asset&utm_campaign=file-figurewell-sec-xbrl-financials&utm_content=insidewell
+# Licence: cc0-1.0 (open, unchanged); commercial licence + support: https://buy.stripe.com/5kQ9AT4A40oVfF7dlNbV61L?utm_source=huggingface&utm_medium=free-asset&utm_campaign=file-figurewell-sec-xbrl-financials&utm_content=st-dataset-license-small&client_reference_id=data_hf-file-figurewell-sec-xbrl-financials
+license: cc0-1.0
+pretty_name: SEC XBRL Financial Statements & Key Metrics (every US filer, latest 4
+  quarters) | Figurewell
+language:
+- en
+tags:
+- finance
+- sec
+- edgar
+- xbrl
+- financial-statements
+- fundamentals
+- 10-k
+- 10-q
+- earnings
+- revenue
+- balance-sheet
+- cash-flow
+- stocks
+- us-stocks
+- tabular
+- cybermax
+task_categories:
+- tabular-regression
+- time-series-forecasting
+- table-question-answering
+size_categories:
+- 1M<n<10M
+configs:
+- config_name: key_metrics
+  default: true
+  data_files:
+  - split: train
+    path: data/key_metrics.parquet
+- config_name: facts
+  data_files:
+  - split: train
+    path: data/facts.parquet
+- config_name: filings
+  data_files:
+  - split: train
+    path: data/filings.parquet
+---
 
-== sec financial statements: 2
-  FinzData/sec-financial-statements dl=931 gated=False lic=['license:other'] n_files=0 e.g. []
-  NYSgpt/sec-financial-statements-sample dl=77 gated=False lic=['license:other'] n_files=0 e.g. []
+# Figurewell: SEC XBRL financial statements and key metrics
 
-== edgar financial: 3
-  ArthurMrv/EDGAR-CORPUS-Financial-Summarization-Labeled dl=60 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
-  kritsadaK/EDGAR-CORPUS-Financial-Summarization dl=49 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
-  gmayank100/EDGAR_financial-data dl=47 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+<!-- cybermax-bridge:start -->
+> **Need it fresh, filtered or via API?** **Any company back to 2009, point-in-time with EDGAR acceptance times: $5 for 1,500 calls.** **[Buy now →](https://data.cybermaxtools.com/buy/figurewell-api-pack?s=hf-figurewell-sec-xbrl-financials-top)** · API key on screen the moment checkout ends · no subscription · [14-day refund](https://cybermaxtools.com/terms#payments) if it doesn't work as described · help: cybermax.tools@gmail.com
+> 
+> This free file is a snapshot (SEC XBRL financials up to the last refresh), last updated **2026-10-08**.
+> - **[Insidewell on Apify](https://apify.com/cybermax/sec-insider-tracker?utm_source=huggingface&utm_medium=free-asset&utm_campaign=figurewell-sec-xbrl-financials&utm_content=insidewell)** ($0.004 per insider transaction): pulls today's SEC Form 4 trades for your own watchlist, filtered by buy/sell and size, with cluster-buy alerts on a schedule.
+> - Using it at work? **[CyberMax Dataset Commercial License: Small (up to 10 people)](https://buy.st
 
-== financial statement data sets: 0
+===== DenyTranDFW/edgar_xbrl_companyfacts
+card: gpl ['.gitattributes', 'EntityCommonStockSharesOutstanding.parquet', 'EntityListingParValuePerShare.parquet', 'EntityPublicFloat.parquet', 'Facts_IfrsFull.parquet', 'Facts_Invest.parquet', 'Facts_Srt.parquet', 'Facts_UsGaap.parquet', 'README.md']
+parquet: {"default": {"train": ["https://huggingface.co/api/datasets/DenyTranDFW/edgar_xbrl_companyfacts/parquet/default/train/0.parquet", "https://huggingface.co/api/datasets/DenyTranDFW/edgar_xbrl_companyfacts/parquet/default/train/1.parquet", "https://huggingface.co/api/datasets/DenyTranDFW/edgar_xbrl_companyfacts/parquet/default/train/2.parquet", "https://huggingface.co/api/datasets/DenyTranDFW/edgar_xbrl_companyfacts/parquet/default/train/3.parquet", "https://huggingface.co/api/datasets/DenyTranDFW/edgar_xbrl_companyfacts/parquet/default/train/4.parquet", "https://huggingface.co/api/datasets/DenyT
+README: ---
+license: gpl
+language:
+- en
+tags:
+- xbrl
+- edgar
+- financials
+- usgaap
+- ifrs
+- gaap
+pretty_name: Edgar XBRL Company Facts
+---
 
-== 10-K fundamentals: 0
+===== no-ry/world-stock-prices-daily-updating
+card: None ['.gitattributes', 'World-Stock-Prices-Dataset.csv']
+parquet: {"default": {"train": ["https://huggingface.co/api/datasets/no-ry/world-stock-prices-daily-updating/parquet/default/train/0.parquet"]}}
+ERR HTTP Error 404: Not Found
 
-== stock prices daily: 1
-  no-ry/world-stock-prices-daily-updating dl=5281 gated=False lic=[] n_files=0 e.g. []
+===== FinzData/sec-financial-statements
+card: other ['.gitattributes', 'README.md', 'data/annual_statements.parquet']
+parquet: {"default": {"train": ["https://huggingface.co/api/datasets/FinzData/sec-financial-statements/parquet/default/train/0.parquet"]}}
+README: ---
+license: other
+license_name: public-domain-source-us-government
+pretty_name: US Company Financial Statements from SEC XBRL (annual, last 12 months)
+language:
+- en
+tags:
+- finance
+- sec
+- xbrl
+- fundamentals
+- financial-statements
+- stocks
+- quant
+size_categories:
+- 10K<n<100K
+configs:
+- config_name: default
+  data_files: data/annual_statements.parquet
+  default: true
+---
 
-== us stock daily ohlcv: 0
+# US Company Financial Statements from SEC XBRL (annual, last 12 months)
 
-== sp500 daily prices: 0
+Standardised annual income statement, balance sheet and cash-flow lines for 5,494 US-listed companies, fiscal years ending in the last 12 months (5,537 company-years): revenue, gross profit, operating income, net income, EPS, cash, assets, liabilities, equity, operating cash flow, capex, dividends and buybacks.
 
-== earnings announcements: 0
+```python
+import pandas as pd
+df = pd.read_parquet("hf://datasets/FinzData/sec-financial-statements/data/annual_statements.parquet")
+df[df.ticker == "AAPL"]
+```
 
-== compustat: 2
-  Alexhuou/ML_Fin_Compustat_Processed dl=553 gated=False lic=[] n_files=0 e.g. []
-  binxingao/compustat-uspto dl=4 gated=False lic=[] n_files=0 e.g. []
-finished: 2026-11-27T05:18:17Z, exit code 0
+**In the full FinzData dataset:** quarterly, annual and trailing-twelve-month statements since 2009, point-in-time (as filed on any past date) for backtests without look-ahead bias (`yf.Ticker("AAPL").quarterly_income_stmt`).
+
+## Get the full history
+This is a free sample. FinzData serves the complete dataset through its API and Python client
+(`pip install finzdata`), with daily updates, alongside survivorship-free US stock prices since 2000,
+COT positioning, 13F holdings, point-in-time fundamentals and macro data.
+
+- Free API key: https://api.finzdata.com/
+- Pricing (history bundles from $195 once): https://finzdata.com/pricing
+- Guides: https://finzdata.com/guides
+- Python client (open source): https://github.com/FinzData-com/finzdata-python
+
+Data for research, not investment advice. Compiled by FinzData from public U.S. government sources.
+
+
+== CyberMax-tools/figurewell-sec-xbrl-financials: 3 parquet files; first https://huggingface.co/api/datasets/CyberMax-tools/figurewell-sec-xbrl-financials/parquet/key_metrics/train/0.parquet
+adsh: large_string
+cik: large_string
+ticker: large_string
+company_name: large_string
+form: large_string
+fiscal_year: large_string
+fiscal_period: large_string
+period_end: large_string
+filed_date: large_string
+accepted_et: large_string
+accepted_utc: timestamp[us, tz=UTC]
+currency: large_string
+revenue: double
+cost_of_revenue: double
+gross_profit: double
+operating_income: double
+net_income: double
+eps_basic: double
+eps_diluted: double
+diluted_shares: double
+total_assets: double
+current_assets: double
+total_liabilities: double
+current_liabilities: double
+stockholders_equity: double
+cash: double
+long_term_debt: double
+operating_cash_flow_ytd: double
+capex_ytd: double
+dividends_paid_ytd: double
+cash_flow_quarters: int16
+free_cash_flow_ytd: double
+gross_margin: double
+net_margin: double
+sic: large_string
+filer_status: large_string
+business_country: large_string
+business_state: large_string
+amended_later: bool
+filing_url: large_string
+tags_used: large_string
+source_quarter: large_string
+-- schema metadata --
+pandas: '{"index_columns": [], "column_indexes": [], "columns": [{"name":' + 5252
+rows in first file: 23980
+ERR CyberMax-tools/figurewell-sec-xbrl-financials No module named 'pandas'
+
+== no-ry/world-stock-prices-daily-updating: 1 parquet files; first https://huggingface.co/api/datasets/no-ry/world-stock-prices-daily-updating/parquet/default/train/0.parquet
+Date: string
+Open: double
+High: double
+Low: double
+Close: double
+Volume: double
+Brand_Name: string
+Ticker: string
+Industry_Tag: string
+Country: string
+Dividends: double
+Stock Splits: double
+Capital Gains: double
+-- schema metadata --
+huggingface: '{"info": {"features": {"Date": {"dtype": "string", "_type":' + 627
+rows in first file: 310122
+ERR no-ry/world-stock-prices-daily-updating No module named 'pandas'
+finished: 2026-11-27T05:19:17Z, exit code 0

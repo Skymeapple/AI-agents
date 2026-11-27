@@ -1,0 +1,25 @@
+job: grpo-tiny-grpo-diverse
+started: 2026-11-27T00:55:50Z
+cores: 4, memory: 15 GB
+/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:377: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:82.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 0 after supervised stage: narrow 0.273, diverse 0.415, benchmark 0.107 (320s)
+  seed 0 grpo-diverse step 375: narrow 0.448, diverse 0.388, benchmark 0.128, informative groups 0.28, 551s
+  seed 0 grpo-diverse step 750: narrow 0.340, diverse 0.380, benchmark 0.120, informative groups 0.23, 790s
+  seed 0 grpo-diverse step 1125: narrow 0.407, diverse 0.393, benchmark 0.115, informative groups 0.21, 1023s
+RESULT grpo-diverse seed 0: base narrow 0.273, diverse 0.415, benchmark 0.107 -> final narrow 0.385, diverse 0.388, benchmark 0.105, time 1249s
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 1 after supervised stage: narrow 0.380, diverse 0.415, benchmark 0.115 (291s)
+  seed 1 grpo-diverse step 375: narrow 0.427, diverse 0.367, benchmark 0.095, informative groups 0.28, 500s
+  seed 1 grpo-diverse step 750: narrow 0.450, diverse 0.388, benchmark 0.115, informative groups 0.24, 710s
+  seed 1 grpo-diverse step 1125: narrow 0.472, diverse 0.378, benchmark 0.113, informative groups 0.22, 933s
+RESULT grpo-diverse seed 1: base narrow 0.380, diverse 0.415, benchmark 0.115 -> final narrow 0.403, diverse 0.388, benchmark 0.115, time 1167s
+  seed 2 after supervised stage: narrow 0.440, diverse 0.438, benchmark 0.122 (286s)
+  seed 2 grpo-diverse step 375: narrow 0.427, diverse 0.420, benchmark 0.128, informative groups 0.29, 488s
+  seed 2 grpo-diverse step 750: narrow 0.417, diverse 0.420, benchmark 0.110, informative groups 0.24, 685s
+  seed 2 grpo-diverse step 1125: narrow 0.455, diverse 0.390, benchmark 0.128, informative groups 0.22, 887s
+RESULT grpo-diverse seed 2: base narrow 0.440, diverse 0.438, benchmark 0.122 -> final narrow 0.425, diverse 0.403, benchmark 0.135, time 1093s
+finished: 2026-11-27T01:54:49Z, exit code 0

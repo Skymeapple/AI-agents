@@ -54,7 +54,22 @@ Code: [`dafny_floor.py`](dafny_floor.py) in this folder. It ran on free GitHub A
 - **Bounds are not what is missing.** Index-range invariants recover 7 programs. A textbook rule (take the postcondition and replace the loop bound by the loop counter) recovers 57 more. Together the two rules move loop programs from 16 to 80 of 411. No program logic is edited; the verifier decides which guesses survive.
 - **A benchmark defect:** 60 hint-stripped files (7.7%) do not parse, because removing a hint left broken syntax. No method can verify those without editing code, so the ceiling for a strict no-edit method is 92.3%.
 - **What it means for a model-based agent:** the cheap template step is worth 8 points on its own and costs seconds, so it belongs in front of any model call. The remaining 331 loop programs (some of which are among the files that do not parse) need invariants that are not a rewrite of the postcondition; that is where a language model has to earn its place.
-- **Not done:** no language model was run, and HFM's own task (writing implementations) was not attempted.
+- **Not done here:** HFM's own task (writing implementations) was not attempted; see the second experiment for a model.
+
+**Second experiment: an open coding model proposes invariants, the verifier prunes them.** [`dafny_llm.py`](dafny_llm.py) gives Qwen2.5-Coder-7B-Instruct (4-bit GGUF, llama.cpp on four CPU cores, no GPU) each of the 433 parseable programs the rules above leave (22 longer than 6,000 characters skipped, 411 attempted). Logs: `dafny-llm2-*` in [`../../../compute/results/`](../../../compute/results/).
+
+- **Design that failed first.** Asking the model for the whole annotated program and checking that it only added annotations verified 0 of 82 programs before it was stopped (`dafny-llm-2`, `dafny-llm-9`): the model reformatted lines, dropped comments, moved braces and wrote programs that did not parse, so the integrity check or the parser rejected nearly every answer.
+- **Design that works.** Only the `invariant` and `decreases` clauses the model writes after each loop header are kept. They are inserted after the matching loop header of the original, untouched program, together with the rule-based candidates. Dafny verifies; every inserted clause it reports as failing is dropped and the rest re-verified, up to 12 rounds (Houdini pruning). If the program still fails, the model gets one repair turn with the pruned program and Dafny's errors, and the clauses from both turns are pooled and pruned again. The program text is never edited and `decreases *` is refused, so the specification cannot be weakened; acceptance is Dafny's own "verified, 0 errors" summary.
+
+| | Programs that verify | Share of 782 |
+| --- | --- | --- |
+| rules (above) | 289 | 37.0% |
+| + model clauses, first turn | 295 | 37.7% |
+| + one repair turn with Dafny's errors | **320** | **40.9%** |
+
+- **The repair turn does most of the work:** 6 programs verify on the first turn, 25 more after one turn of feedback. Feedback from the verifier is worth four times the first answer.
+- **Pruning matters:** in the verified programs the model proposed 3 to 16 clauses and Dafny kept about two thirds; without pruning, one wrong clause fails the whole program.
+- **Still far from published systems.** 31 of 411 remaining programs is 7.5%. DafnyBench reports much higher rates for large models; this is a 7B model on CPU with two turns.
 
 ## How far this can go
 

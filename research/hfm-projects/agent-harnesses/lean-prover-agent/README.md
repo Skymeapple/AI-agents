@@ -40,6 +40,8 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 
 ## Experiment and results
 
+> **Under audit (2026-11-27).** A re-check found that the acceptance test used by all scripts here was too weak: when Lean's kernel rejects a proof it adds the theorem as an axiom of itself, and `#print axioms` then shows no `sorryAx`; some failed theorems also print "does not depend on any axioms". Every number below may be too high. [`audit.py`](audit.py) re-checks all 2,410 counted proofs with a strict test (no error inside the theorem, only standard axioms); the numbers will be replaced by the audited ones.
+
 **What was run.** [`lean_floor.py`](lean_floor.py) measures how many miniF2F theorems fall to a single short tactic call, with no language model and no search. This is a floor for the track, not an entry in it: HFM's task uses a frozen language model, which needs a paid key.
 
 - **Data:** the public miniF2F Lean 4 port (github.com/yangky11/miniF2F-lean4, MIT licence; Lean v4.24.0 with Mathlib), 244 validation and 244 test theorems.

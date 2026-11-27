@@ -1,0 +1,47 @@
+job: filing-probe
+started: 2026-11-27T05:18:16Z
+cores: 4, memory: 15 GB
+
+== xbrl: 15
+  DenyTranDFW/edgar_xbrl_companyfacts dl=2707 gated=False lic=['license:gpl'] n_files=0 e.g. []
+  CyberMax-tools/figurewell-sec-xbrl-financials dl=1684 gated=False lic=['license:cc0-1.0'] n_files=0 e.g. []
+  wangd12/XBRL_analysis dl=899 gated=False lic=[] n_files=0 e.g. []
+  KirkHan/XBRL_Formula_Calculation dl=475 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+  arthurpoon/XBRL_financebench_metrics dl=462 gated=False lic=[] n_files=0 e.g. []
+  mirageco/XBRLBench dl=350 gated=False lic=[] n_files=0 e.g. []
+  ct1212/XBRL-FinNQA dl=257 gated=False lic=[] n_files=0 e.g. []
+  alea-institute/alea-xbrl-finance dl=241 gated=False lic=['license:cc-by-4.0'] n_files=0 e.g. []
+  bethelhall/XBRLFiling dl=239 gated=False lic=['license:cc-by-nc-4.0'] n_files=0 e.g. []
+  CyberMax-tools/figurewell-sec-xbrl-financials-full-history dl=183 gated=auto lic=['license:cc0-1.0'] n_files=0 e.g. []
+  robosystems/sec-xbrl-knowledge-graphs dl=177 gated=False lic=['license:cc-by-4.0'] n_files=0 e.g. []
+  ptoro/amzn-10k-xbrl-statements dl=164 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+  bowang0911/sec-xbrl-hard-negatives dl=104 gated=False lic=['license:cc0-1.0'] n_files=0 e.g. []
+  wangd12/xbrl_analysis_train dl=84 gated=False lic=[] n_files=0 e.g. []
+  KirkHan/XBRL_Terminology dl=38 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+
+== sec financial statements: 2
+  FinzData/sec-financial-statements dl=931 gated=False lic=['license:other'] n_files=0 e.g. []
+  NYSgpt/sec-financial-statements-sample dl=77 gated=False lic=['license:other'] n_files=0 e.g. []
+
+== edgar financial: 3
+  ArthurMrv/EDGAR-CORPUS-Financial-Summarization-Labeled dl=60 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+  kritsadaK/EDGAR-CORPUS-Financial-Summarization dl=49 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+  gmayank100/EDGAR_financial-data dl=47 gated=False lic=['license:apache-2.0'] n_files=0 e.g. []
+
+== financial statement data sets: 0
+
+== 10-K fundamentals: 0
+
+== stock prices daily: 1
+  no-ry/world-stock-prices-daily-updating dl=5281 gated=False lic=[] n_files=0 e.g. []
+
+== us stock daily ohlcv: 0
+
+== sp500 daily prices: 0
+
+== earnings announcements: 0
+
+== compustat: 2
+  Alexhuou/ML_Fin_Compustat_Processed dl=553 gated=False lic=[] n_files=0 e.g. []
+  binxingao/compustat-uspto dl=4 gated=False lic=[] n_files=0 e.g. []
+finished: 2026-11-27T05:18:17Z, exit code 0

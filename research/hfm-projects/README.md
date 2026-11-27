@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 52 projects (51 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 53 projects (52 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 1 project that needs a language-model key. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** none. Every project now has at least a public-data or stand-in experiment; several still need a GPU, a language-model key or licensed data to run on HFM's own setup. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md). The nine problem classes behind the 54 projects, what blocks each, and how they compare with AI breakthroughs in mathematics, physics and biology (in Chinese) are in [`PROBLEM-CLASSES.md`](PROBLEM-CLASSES.md).
 
@@ -19,7 +19,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [Agent for Verified Programming with Dafny](agent-harnesses/dafny-agent/README.md) | Tested on public data | With no model on DafnyBench: 28.8% of hint-stripped programs verify unchanged; two template rules for loop invariants, pruned by the verifier, raise that to 37.0%. 7.7% of the files do not parse. HFM's own task needs a language-model key. | 0.3165 → 0.8289 |
 | [Agent for Formal Theorem Proving in Lean](agent-harnesses/lean-prover-agent/README.md) | Tested on public data | With no model on miniF2F: one composed tactic (`norm_num at * <;> grind`) proves 34.4% of the test theorems; eight tactics chosen on the validation set prove 40.6%. Adding one structural step before a tactic portfolio moves that only to 42.2%. HFM's own task needs a language-model key. | 0.3643 → 0.5661 |
 | [Agent for Questions over Real Tables](agent-harnesses/table-qa-agent/README.md) | Tested on public data | With a small open model on CPU, one harness detail (printing the last expression) moves the code route from 1.6% to 27.6%. Choosing between the direct and code routes with a simple rule gives 41.2% on fresh questions against 28.0% direct (perfect selector 47.6%). | 0.3711 → 0.877 |
-| [Agent Harness Evolution Under a Frozen API Model](agent-harnesses/terminal-agent-harness/README.md) | Blocked | Needs paid access to a language-model API to run the frozen model. | not published → 0.5362 |
+| [Agent Harness Evolution Under a Frozen API Model](agent-harnesses/terminal-agent-harness/README.md) | Tested on public data | Stand-in with a frozen 3B open model on 48 checkable shell tasks: the harness change that is best on development tasks (+12 points) is worst on held-out task kinds (−12 points); two of three changes alter no outcome. | not published → 0.5362 |
 
 ## astronomy
 

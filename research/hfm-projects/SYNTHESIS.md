@@ -351,6 +351,7 @@ CPU, and revisited two earlier results.
 | Activity-surprise ranking | Public crypto trades | Linear model 0.52 Spearman, reversion alone 0.38; HFM's momentum covariate +0.002; boosted trees worse than linear. |
 | Intraday overlay | Public crypto minute data | Reversal earns ~75 bp/day gross; 2 bp costs turn every overlay negative; tenfold shrinkage is within noise. Not trading is best. |
 | Wireless MILP | Self-built 400-cell instances | Greedy-seeded LNS loses to plain HiGHS; HiGHS stalls after 180 s; LNS around HiGHS's incumbent cuts the gap to the LP bound from 2.93% to 1.85% (4 of 4). |
+| Harness changes, frozen model | 3B open model, 48 shell tasks | Folder listing up front: development +12 points, held-out task kinds −12 points. Structured feedback and a check before finishing change no outcome. Effective sample is 12 task kinds. |
 
 Three points for the conclusions of this review:
 

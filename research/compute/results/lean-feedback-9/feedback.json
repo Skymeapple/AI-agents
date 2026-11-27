@@ -1,0 +1,112 @@
+[
+{
+"name": "aime_1999_p11",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 149
+},
+{
+"name": "algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 150
+},
+{
+"name": "amc12a_2008_p25",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 1968
+},
+{
+"name": "amc12a_2021_p12",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 207
+},
+{
+"name": "amc12b_2020_p22",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 178
+},
+{
+"name": "imo_1968_p5_1",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 224
+},
+{
+"name": "imo_1997_p5",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 207
+},
+{
+"name": "mathd_algebra_156",
+"fresh_ok": 0,
+"feedback_ok": 1,
+"n_feedback": 4,
+"proved": true,
+"by_feedback_only": true,
+"proof": "\n  simp_all only [h\u2080, h\u2081]\n  have h\u2085 : x^4 = 5 * x^2 - 6 := h\u2082\n  have h\u2086 : y^4 = 5 * y^2 - 6 := h\u2083\n  have h\u2087 : y^2 - x^2 > 0 := by linarith\n  have h\u2088 : (y^2 - x^2) * (y^2 + x^2) = 1 * (y^2 + x^2) := by\n    nlinarith [sq_nonneg (y^2 - x^2), sq_nonneg (y^2 + x^2)]\n  have h\u2089 : y^2 - x^2 = 1 := by\n    apply mul_right_cancel\u2080 (show y^2 + x^2 \u2260 0 by nlinarith)\n    linarith\n  exact h\u2089\n",
+"secs": 222
+},
+{
+"name": "mathd_algebra_362",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 141
+},
+{
+"name": "mathd_numbertheory_321",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 84
+},
+{
+"name": "mathd_numbertheory_764",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 166
+}
+]

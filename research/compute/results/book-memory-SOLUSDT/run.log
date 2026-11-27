@@ -1,0 +1,18 @@
+job: book-memory-SOLUSDT
+started: 2026-11-27T08:40:48Z
+cores: 4, memory: 15 GB
+total 292512
+drwxr-xr-x 2 runner runner     4096 Nov 27 08:41 .
+drwxr-xr-x 5 runner runner     4096 Nov 27 08:40 ..
+-rw-r--r-- 1 runner runner 86012192 Nov 27 08:41 2024-06-03_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 75422692 Nov 27 08:41 2024-06-04_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 78531527 Nov 27 08:41 2024-06-05_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 20343314 Nov 27 08:41 SOLUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner 17705743 Nov 27 08:41 SOLUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner 21497971 Nov 27 08:41 SOLUSDT2024-06-05.csv.gz
+SOLUSDT: 33832 fitting and 16916 test bucket-sides
+RESULT SOLUSDT state     ridge    Spearman +0.484; top-decile hit 0.272
+RESULT SOLUSDT state     boosted  Spearman +0.485; top-decile hit 0.267
+RESULT SOLUSDT + memory  ridge    Spearman +0.530; top-decile hit 0.300
+RESULT SOLUSDT + memory  boosted  Spearman +0.528; top-decile hit 0.298
+finished: 2026-11-27T08:42:00Z, exit code 0

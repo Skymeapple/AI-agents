@@ -1,0 +1,18 @@
+job: book-memory-XRPUSDT
+started: 2026-11-27T08:39:32Z
+cores: 4, memory: 15 GB
+total 93916
+drwxr-xr-x 2 runner runner     4096 Nov 27 08:39 .
+drwxr-xr-x 5 runner runner     4096 Nov 27 08:39 ..
+-rw-r--r-- 1 runner runner 28239120 Nov 27 08:39 2024-06-03_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 27678651 Nov 27 08:39 2024-06-04_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 26187010 Nov 27 08:39 2024-06-05_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  4318265 Nov 27 08:39 XRPUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  5104474 Nov 27 08:39 XRPUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  4619681 Nov 27 08:39 XRPUSDT2024-06-05.csv.gz
+XRPUSDT: 33832 fitting and 16916 test bucket-sides
+RESULT XRPUSDT state     ridge    Spearman +0.313; top-decile hit 0.245
+RESULT XRPUSDT state     boosted  Spearman +0.319; top-decile hit 0.247
+RESULT XRPUSDT + memory  ridge    Spearman +0.356; top-decile hit 0.275
+RESULT XRPUSDT + memory  boosted  Spearman +0.361; top-decile hit 0.286
+finished: 2026-11-27T08:40:41Z, exit code 0

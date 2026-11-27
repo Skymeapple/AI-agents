@@ -1,0 +1,25 @@
+job: lean-prover-llm2-4
+started: 2026-11-27T06:27:44Z
+cores: 4, memory: 15 GB
+info: downloading installer
+/home/runner/work/_temp/data/DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf
+Decompressing 7335 file(s)
+Unpacked in 14361 ms
+Completed successfully!
+116 test theorems left by the tactics; this shard tries 14, 8 attempts each
+  [1/14] aime_1990_p4: no (generation 73s, lean ok)
+  [2/14] algebra_absapbon1pabsapbleqsumabsaon1pabsa: no (generation 184s, lean ok)
+  [3/14] algebra_sum1onsqrt2to1onsqrt10000lt198: no (generation 153s, lean ok)
+  [4/14] amc12a_2008_p25: no (generation 187s, lean timeout)
+  [5/14] amc12a_2020_p7: no (generation 98s, lean ok)
+  [6/14] amc12b_2002_p4: no (generation 73s, lean ok)
+  [7/14] amc12b_2021_p9: no (generation 75s, lean ok)
+  [8/14] imo_1974_p3: no (generation 97s, lean ok)
+  [9/14] imo_2019_p1: no (generation 324s, lean ok)
+  [10/14] mathd_algebra_156: no (generation 79s, lean ok)
+  [11/14] mathd_algebra_288: no (generation 196s, lean ok)
+  [12/14] mathd_algebra_756: no (generation 155s, lean ok)
+  [13/14] mathd_numbertheory_353: no (generation 77s, lean ok)
+  [14/14] mathd_numbertheory_711: no (generation 196s, lean ok)
+RESULT shard 4/8: 0 of 14 residual theorems proved with 8 attempts each
+finished: 2026-11-27T07:20:29Z, exit code 0

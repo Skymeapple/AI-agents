@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 49 projects (48 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 50 projects (49 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 4 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 3 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md). The nine problem classes behind the 54 projects, what blocks each, and how they compare with AI breakthroughs in mathematics, physics and biology (in Chinese) are in [`PROBLEM-CLASSES.md`](PROBLEM-CLASSES.md).
 
@@ -115,7 +115,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 
 | Project | Status | Headline result or blocker | HFM baseline → best |
 | --- | --- | --- | --- |
-| [S&P 500 Minute Trading Activity Ranking](quant-finance/sp500-activity-ranking/README.md) | Blocked | One-minute consolidated-tape bars for S&P 500 members are licensed data and not freely available. | 0.1674 → 0.4625 |
+| [S&P 500 Minute Trading Activity Ranking](quant-finance/sp500-activity-ranking/README.md) | Tested on public data | Stand-in on public Bybit trades (24 perpetuals, 7 test days): a linear model on burst and level features ranks 30-minute activity surprises at Spearman 0.52 (bursts fading alone: 0.38); HFM's momentum covariate adds +0.002; trees are worse. | 0.1674 → 0.4625 |
 | [Event-Driven Equity Strategy Based on Financial Filing Events](quant-finance/filing-event-strategy/README.md) | Open | The reward is pinned at 1.0, so HFM's evaluation cannot rank methods. Public data exist (SEC EDGAR XBRL, free daily prices) but a replay was not built. | 0 → 1 |
 | [Nasdaq Ten-Level Order Book Depth Exhaustion Ranking](quant-finance/order-book-depletion/README.md) | Tested on public data | Stand-in on public Bybit order books (four perpetuals, one test day): ranking ten-second depth changes reaches Spearman 0.32–0.59; most of it is depth mean reversion (0.23–0.42), and trees add almost nothing over a linear model. | 0.1997 → 0.3766 |
 | [Intraday Trading Overlay for A-Share Holdings](quant-finance/ashare-intraday-overlay/README.md) | Blocked | Five-minute A-share data are not freely redistributable, and the reward is pinned at 1.0. | 0 → 1 |

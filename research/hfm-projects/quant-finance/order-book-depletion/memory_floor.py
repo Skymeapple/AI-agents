@@ -17,6 +17,8 @@ fit, last day test). Feature sets:
             (distance from the recent "exhausted" state); traded volume against the side
             over 1 and 5 minutes relative to depth; mid-price volatility over 1 and 5
             minutes; the other side's last change
+An ablation adds each group of memory features alone (lags; drawdown and distance from
+the minimum; flow and volatility), lags with flow, and all of them.
 Models: ridge and gradient-boosted trees for each set. Score: Spearman on the test day and
 top-decile hit rate, as in bybit_book_floor.py.
 
@@ -81,14 +83,20 @@ def main():
     yf, yt = np.array([r[0] for r in fit]), np.array([r[0] for r in test])
     big = -yt >= np.quantile(-yt, 0.9)
     print(f"{sym}: {len(fit)} fitting and {len(test)} test bucket-sides", flush=True)
-    for name, col in (("state", 1), ("+ memory", 2)):
-        Xf = np.nan_to_num(np.array([r[col] for r in fit], float))
-        Xt = np.nan_to_num(np.array([r[col] for r in test], float))
+    # memory columns (after the 8 state columns): 0-4 lags, 5-7 drawdown and distance from the 30-minute minimum,
+    # 8-9 traded volume over 1 and 5 minutes, 10-11 volatility, 12 the other side's last change
+    groups = {"state": [], "+ lags": [0, 1, 2, 3, 4], "+ drawdown/tipping": [5, 6, 7], "+ flow/volatility": [8, 9, 10, 11, 12],
+              "+ lags + flow/vol": [0, 1, 2, 3, 4, 8, 9, 10, 11, 12], "+ memory (all)": list(range(13))}
+    Ff = np.nan_to_num(np.array([r[2] for r in fit], float))
+    Ft = np.nan_to_num(np.array([r[2] for r in test], float))
+    for name, g in groups.items():
+        cols = list(range(8)) + [8 + k for k in g]
+        Xf, Xt = Ff[:, cols], Ft[:, cols]
         for model, m in (("ridge", RidgeCV(alphas=np.logspace(-3, 3, 13))),
                          ("boosted", HistGradientBoostingRegressor(max_iter=300, learning_rate=0.05, max_leaf_nodes=15, random_state=0))):
             p = m.fit(Xf, yf).predict(Xt)
             top = p <= np.quantile(p, 0.1)
-            print(f"RESULT {sym} {name:9s} {model:8s} Spearman {spearmanr(p, yt).correlation:+.3f}; top-decile hit {np.mean(big[top]):.3f}", flush=True)
+            print(f"RESULT {sym} {name:20s} {model:8s} Spearman {spearmanr(p, yt).correlation:+.3f}; top-decile hit {np.mean(big[top]):.3f}", flush=True)
 
 
 if __name__ == "__main__":

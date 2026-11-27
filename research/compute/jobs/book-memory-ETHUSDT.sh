@@ -1,4 +1,4 @@
-# Mapping C test: path (memory) features against state features for depth depletion, Bybit ETHUSDT, 3-5 June 2024.
+# Mapping C ablation: which path features help (lags, drawdown/tipping, flow/volatility), Bybit ETHUSDT, 3-5 June 2024.
 set -e
 pip -q install numpy scipy scikit-learn
 cd "$DATA"

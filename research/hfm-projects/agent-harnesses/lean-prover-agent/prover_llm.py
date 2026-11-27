@@ -28,13 +28,15 @@ def main():
     stmts = lf.statements(os.path.join(repo, "MiniF2F", "Test"))
     for f in sys.argv[6:]:
         for r in json.load(open(f)):
-            if r["split"] == "test":
+            if "split" in r and r["split"] == "test":           # tactic floor results
                 for name in r["proved"]:
                     stmts.pop(name, None)
+            elif r.get("proved") is True:                         # earlier prover_llm.py results
+                stmts.pop(r["name"], None)
     names = sorted(stmts)[k_shard::n_shards]
     print(f"{len(stmts)} test theorems left by the tactics; this shard tries {len(names)}, {attempts} attempts each", flush=True)
     from llama_cpp import Llama
-    llm = Llama(model_path=gguf, n_ctx=2048, n_threads=4, verbose=False, seed=k_shard)
+    llm = Llama(model_path=gguf, n_ctx=2048, n_threads=4, verbose=False, seed=k_shard + int(os.environ.get("PROVER_SEED", "0")))
     results = []
     for i, name in enumerate(names):
         s = stmts[name]
@@ -45,7 +47,7 @@ def main():
             out = llm.create_completion(prompt, max_tokens=512, temperature=1.0, top_p=0.95, stop=["```"])
             proofs.append(out["choices"][0]["text"])
         gen = time.time() - t0
-        path = os.path.join(repo, f"llm_{k_shard}_{i}.lean")
+        path = os.path.join(repo, f"llm_{k_shard}_{i}.lean")  # one file per theorem
         with open(path, "w", encoding="utf-8") as fo:
             fo.write(lf.HEADER % 400000)
             for a, p in enumerate(proofs):

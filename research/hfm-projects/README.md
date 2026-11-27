@@ -2,9 +2,9 @@
 
 Each of HFM's 54 challenges has its own folder here. Every folder holds the task, HFM's score so far, the existing methods, the public data, what limits progress, a route past it, the experiment and results where one was run, an estimate of how far the problem can go, and next steps.
 
-- **Tested on public data or in a model study:** 45 projects (44 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
+- **Tested on public data or in a model study:** 46 projects (45 experiments; the two steel tracks share one). Five use simulators, four of them built on the shared core in [`_sim/`](_sim/core.py).
 - **Open:** 1 project where public data exist and the experiment still has to be built.
-- **Blocked:** 8 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
+- **Blocked:** 7 projects that need a GPU, a language-model key, licensed data, or details HFM has not published. See [`READINESS.md`](READINESS.md) for what each one needs, [`LITERATURE-FINDINGS.md`](LITERATURE-FINDINGS.md) for what the literature pass changed, and [`../compute/README.md`](../compute/README.md) for free compute.
 
 The cross-project review of what worked, what stalled and where AI applies is in [`SYNTHESIS.md`](SYNTHESIS.md). The breakdown of which ingredient (information, data, algorithm, theory, reasoning) produced each gain is in [`BREAKTHROUGH-FACTORS.md`](BREAKTHROUGH-FACTORS.md). The nine problem classes behind the 54 projects, what blocks each, and how they compare with AI breakthroughs in mathematics, physics and biology (in Chinese) are in [`PROBLEM-CLASSES.md`](PROBLEM-CLASSES.md).
 
@@ -97,7 +97,7 @@ No result here is scored on HFM's private evaluators. The overview and cross-pro
 | [MapQA Map Visual Question Answering](post-training/mapqa-training/README.md) | Tested on public data | Without the map a model scores about 20% (yes/no guessing; 4–7% on state and value questions) on 65,071 questions from a public copy. The benchmark cannot be answered from language, unlike EmbSpatial-Bench. | not published → 0.8283 |
 | [ScienceWorld task training on Qwen2.5-7B-Instruct](post-training/scienceworld-training/README.md) | Tested on public data | With no training, a 3B open model scores 12.9 of 100 (16.5 when its commands are snapped to the simulator's valid-action list) against 5.9 for random actions, on 30 tasks. The snap gain rests on one task, and the valid-action list omits many gold commands. | not published → 35.8 |
 | [TOPv2 compositional semantic parsing](post-training/topv2-parsing/README.md) | Tested on public data | A per-word tagger on CPU scores 38.5% exact match against HFM's 83 (different test set). 90% of test parses use a tree shape seen in training; the tagger gets 2% of the rest. With a small open model and no training, grammar-constrained decoding lifts exact match from 26.7% to 45.7%, but not on unseen shapes. | not published → 83 |
-| [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | Blocked | Needs a GPU. This analysis ran on a 4-CPU container. | not published → 0.367 |
+| [Agentic RL Training Recipe Exploration with verl and agent-harness](post-training/agentic-rl-recipes/README.md) | Tested on public data | Toy scale (CPU, test-checked string-command tasks): GRPO on a narrow task generator gains 16 points in its own distribution but loses 30 on broader tasks and halves a longer-task benchmark; no recipe improves the longer tasks. | not published → 0.367 |
 
 ## pretraining
 

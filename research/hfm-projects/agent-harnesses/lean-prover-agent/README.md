@@ -2,14 +2,14 @@
 
 - **Field:** agent-harnesses
 - **HFM track:** `discovery_live_live_harness_formal_proofs` (paused on HFM)
-- **Project status:** Tested on public data (model-free floor; HFM's own task still needs a language-model key)
+- **Project status:** Tested on public data (model-free floor plus a free open-weight prover model on CPU; HFM's own task uses a paid frozen model)
 
 ## Readiness
 
-- **State:** A model-free floor has run. The agent itself is ready to run once a language-model key is connected.
+- **State:** A model-free floor and an open-weight prover model (on free CPU runners) have run. HFM's own setting, a frozen API model, still needs a key.
 - **Data access:** miniF2F on GitHub: Verified reachable from the free compute on 2026-11-25.
 - **Compute:** CPU for the harness; the model runs behind an API or on a GPU.
-- **Still missing:** A language-model key, or a free GPU account to host an open-weight model. GitHub Models did not accept the workflow's built-in token.
+- **Still missing:** A language-model key or a GPU for larger budgets (more attempts, repair rounds). GitHub Models did not accept the workflow's built-in token.
 - **Literature and materials:** [`REFERENCES.md`](REFERENCES.md) in this folder.
 
 ## The challenge
@@ -75,6 +75,19 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 - The floor depends on the Mathlib version; `grind` and `bound` are recent additions.
 - The second-round tactics were written after seeing first-round test results per tactic, so the choice of what to compose is not fully blind to the test set. The combination reported was still selected on validation only.
 
+**Second experiment: an open-weight prover model on the remainder.** [`prover_llm.py`](prover_llm.py) gives DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on the runners' four CPU cores, no GPU) the 134 test theorems that none of the 52 tactics proved. For each theorem it samples 4 whole proofs (temperature 1.0, top-p 0.95, at most 512 tokens, the model's non-chain-of-thought prompt) and Lean checks each one against Mathlib; a proof counts only if `#print axioms` shows no `sorry`. Four shards ran in parallel, about 4.5 hours each. Logs and proofs are in [`../../../compute/results/`](../../../compute/results/) under `lean-prover-llm-*`.
+
+| | Test, of 244 |
+|---|---|
+| model alone, on the 134 left by every tactic | 18 of 134 (13.4%) |
+| any of the 52 tactics, then the model on the rest | 128 (52.5%) |
+| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 121 (49.6%) |
+
+- **The model proves things the tactics cannot, but few of them.** 18 of 134: 6 `mathd`, 6 hand-written `algebra`, 3 `amc12`, 1 `aime` (`aime_1983_p2`), 1 `induction`, 1 `numbertheory`. No `imo` problem fell. The proofs are short (33–348 characters), mostly a case split or a few `have` steps closed by `nlinarith` or `omega`: one or two structural steps that the fixed round-three recipe did not find. None uses `native_decide`.
+- **Half the successes needed more than one sample.** 7 of the 18 were found by only one of the four attempts, so a larger sampling budget would add more; the published model reaches about 50% on miniF2F-test alone at 32 samples (with a different Lean version).
+- **The combination is the useful number.** Cheap tactics first, then the model, reaches 52.5% of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 49.6% (the model was not run on the 7 theorems proved only by unchosen tactics).
+- **This is below HFM's 0.566, and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
+
 **What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call. One more automatic step moves that by under two points, so the remaining theorems need several coordinated steps, not a better closing tactic. That remainder (almost all `imo`, most `aime`, `induction` and `amc12` problems) is where a model has to supply structure.
 
 ## How far this can go
@@ -83,4 +96,4 @@ HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 25
 
 ## Next steps
 
-Once a model endpoint is available, run a tactic-search baseline that calls `grind` and `bound` at every sub-goal.
+With a GPU or a model key: raise the samples per theorem (the 1-of-4 successes suggest the remainder is budget-limited), feed Lean's error back for one repair round, and call the tactic portfolio at every sub-goal the model writes as `have ... := by sorry`.

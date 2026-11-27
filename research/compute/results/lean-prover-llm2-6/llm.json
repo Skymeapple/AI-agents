@@ -1,0 +1,116 @@
+[
+{
+"name": "aime_1994_p3",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 442
+},
+{
+"name": "algebra_amgm_sumasqdivbgeqsuma",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 212
+},
+{
+"name": "amc12_2000_p12",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 143
+},
+{
+"name": "amc12a_2009_p7",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 115
+},
+{
+"name": "amc12a_2021_p12",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 146
+},
+{
+"name": "amc12b_2020_p13",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 109
+},
+{
+"name": "imo_1960_p2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 217
+},
+{
+"name": "imo_1983_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 115
+},
+{
+"name": "induction_nfactltnexpnm1ngt3",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 88
+},
+{
+"name": "mathd_algebra_170",
+"proved": true,
+"attempts_ok": [
+6
+],
+"lean": "ok",
+"proof": "\n  have h\u2081 : S = Finset.filter (fun n => abs (n - 2) \u2264 5 + 6 / 10) (Finset.Icc (-10) 10) := by\n    ext n\n    simp [h\u2080, abs_le]\n    omega\n  rw [h\u2081]\n  decide\n",
+"gen_secs": 167
+},
+{
+"name": "mathd_algebra_320",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 99
+},
+{
+"name": "mathd_numbertheory_227",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 72
+},
+{
+"name": "mathd_numbertheory_435",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 96
+},
+{
+"name": "numbertheory_3pow2pownm1mod2pownp3eq2pownp2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 101
+}
+]

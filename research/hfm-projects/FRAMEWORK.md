@@ -120,7 +120,11 @@
 
 ## 四、框架检验（本轮新增实验）
 
-1. **同构 B：同一套不变性方法跨项目。** 共享模块 [`_framework/invariance.py`](_framework/invariance.py) 对任意 (X, y, 环境) 表比较七种方法：普通 ERM、环境等权、group DRO、环境内标准化、神经网络 ERM、V-REx、IRM。协议统一为“留一环境”，惩罚强度只在训练环境内选择。适配器 [`_framework/run_invariance.py`](_framework/run_invariance.py) 目前接入 PM2.5（城市、站点）和测光红移（六个天区带）。结果见下方，跑完后填写。
+1. **同构 B：同一套不变性方法跨项目。** 共享模块 [`_framework/invariance.py`](_framework/invariance.py) 对任意 (X, y, 环境) 表比较七种方法：普通 ERM、环境等权、group DRO、环境内标准化、神经网络 ERM、V-REx、IRM。协议统一为“留一环境”，惩罚强度只在训练环境内选择。适配器 [`_framework/run_invariance.py`](_framework/run_invariance.py) 目前接入 PM2.5（城市、站点）和测光红移（六个天区带）。
+
+   **测光红移（198,350 个 SDSS 星系，六个 60° 赤经带，留一带）：同构 B 被否定。** 平均 / 最差 RMSE：ERM 0.0625 / 0.0793；环境等权 0.0630 / 0.0798；group DRO 0.0636 / 0.0797；环境内标准化 0.0691 / 0.0940；神经网络 ERM 0.0650 / 0.0814；V-REx 0.0652 / 0.0814；IRM 0.0659 / 0.0820。没有任何不变性方法在多数天区胜过各自的基准（V-REx 只在 1/6 个天区略好于神经网络 ERM），连最差天区也没有改善。环境内标准化最差，因为它抹掉了天区之间真实的星等水平差异。日志：[`invariance-photoz`](../compute/results/invariance-photoz/run.log)。
+
+   **解读。** 这里的天区差异主要是协变量分布的移动（深浅、消光不同），输入到红移的机制本身相同；这时普通 ERM 已经学到的就是不变机制，不变性惩罚只会损失拟合。项目里真正有效的跨天区改进是**加入能解释差异的输入**（消光、尺寸，−5.8%），也就是把“环境变量”显式建模，而不是把它惩罚掉。PM2.5 结果待填。
 2. **同构 A：Dafny 的“提议—剪枝—修复”。** 见 Dafny 项目。
 3. **同构 A + 第 3 层：Lean 草稿修补。** 见 Lean 项目。
 

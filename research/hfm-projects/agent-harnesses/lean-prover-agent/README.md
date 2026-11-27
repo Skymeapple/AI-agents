@@ -40,62 +40,60 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 
 ## Experiment and results
 
-> **Under audit (2026-11-27).** A re-check found that the acceptance test used by all scripts here was too weak: when Lean's kernel rejects a proof it adds the theorem as an axiom of itself, and `#print axioms` then shows no `sorryAx`; some failed theorems also print "does not depend on any axioms". Every number below may be too high. [`audit.py`](audit.py) re-checks all 2,410 counted proofs with a strict test (no error inside the theorem, only standard axioms); the numbers will be replaced by the audited ones.
+> **Audited (2026-11-27).** The first versions of these scripts accepted a theorem when `#print axioms` showed no `sorryAx`. That test is too weak: when Lean's kernel rejects a proof ("declaration has metavariables") it adds the theorem as an axiom of itself, so `#print axioms` lists the theorem's own name and no `sorryAx`, and some failed theorems print "does not depend on any axioms". [`audit.py`](audit.py) re-checked all 2,410 proofs that had been counted, accepting one only if no Lean error points inside the theorem and its axioms are a subset of propext, Classical.choice and Quot.sound. 2,246 passed. **All numbers below are the audited ones** ([`audit_summary.py`](audit_summary.py); logs `lean-audit-*`). Earlier figures in this repository's history (42.2%, 52.5%, 54.9%, 138 and 143 of 244) were too high and are withdrawn. All three scripts now use the strict test.
 
 **What was run.** [`lean_floor.py`](lean_floor.py) measures how many miniF2F theorems fall to a single short tactic call, with no language model and no search. This is a floor for the track, not an entry in it: HFM's task uses a frozen language model, which needs a paid key.
 
 - **Data:** the public miniF2F Lean 4 port (github.com/yangky11/miniF2F-lean4, MIT licence; Lean v4.24.0 with Mathlib), 244 validation and 244 test theorems.
-- **Method:** each theorem's `sorry` is replaced by one tactic call and checked by Lean under a fixed budget (200,000 heartbeats per theorem). `#print axioms` after each theorem confirms the proof was accepted without `sorry`.
-- **Tactics:** 52 in three rounds. Round three (18 tactics, run only on theorems the first two rounds left unproved) takes one structural step, such as induction on a natural-number variable, case-splitting a bounded integer, splitting a conjunction or arguing by contradiction, and then tries a fixed portfolio of twelve closing tactics on every goal that remains. Rounds one and two: Round one is 19 built-in tactics and simple pairs. Round two is 15 short compositions around the strongest of them, such as `norm_num at * <;> grind`, and `nlinarith` given the squares of the theorem's real variables and of their pairwise sums and differences (generated from the statement by a fixed rule).
+- **Method:** each theorem's `sorry` is replaced by one tactic call and checked by Lean under a fixed budget (200,000 heartbeats per theorem).
+- **Tactics:** 52 in three rounds. Round one is 19 built-in tactics and simple pairs. Round two is 15 short compositions around the strongest of them, such as `norm_num at * <;> grind`, and `nlinarith` given the squares of the theorem's real variables and of their pairwise sums and differences (generated from the statement by a fixed rule). Round three (18 tactics, run only on theorems the first two rounds left unproved) takes one structural step, such as induction on a natural-number variable, case-splitting a bounded integer, splitting a conjunction or arguing by contradiction, and then tries a fixed portfolio of twelve closing tactics on every goal that remains.
 - **Selection:** the tactics to combine were chosen on the validation set (greedy cover) and scored once on the test set.
-- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor2-*` (rounds one and two) and `lean-floor3-*` (round three). The `lean-floor-*` folders hold the first round's earlier run, which lost whole batches to timeouts and is superseded.
+- **Compute:** free GitHub Actions runners (4 cores). Logs and per-theorem results are in [`../../../compute/results/`](../../../compute/results/) under `lean-floor2-*` (rounds one and two), `lean-floor3-*` (round three) and `lean-audit-*` (the strict re-check).
 
-**Results.**
+**Results (audited).**
 
 | Tactics (chosen on validation) | Validation, of 244 | Test, of 244 |
 |---|---|---|
 | `grind` alone (best of round one) | 69 (28.3%) | 74 (30.3%) |
-| `norm_num at * <;> grind` alone | 81 (33.2%) | 84 (34.4%) |
-| best 2: adding `bound` | 89 (36.5%) | 88 (36.1%) |
-| best 4: adding `nlinarith` with generated squares, `intros; norm_num [*]` | 100 (41.0%) | 95 (38.9%) |
-| best 8 | 108 (44.3%) | 99 (40.6%) |
-| any of the 34 in rounds one and two (upper bound, selection-biased) | 108 (44.3%) | 106 (43.4%) |
-| all three rounds, 14 tactics chosen on validation | 118 (48.4%) | 103 (42.2%) |
-| any of the 52 (upper bound, selection-biased) | 118 (48.4%) | 110 (45.1%) |
+| `norm_num at * <;> grind` alone | 80 (32.8%) | 84 (34.4%) |
+| best 2: adding `bound` | 88 (36.1%) | 88 (36.1%) |
+| best 4: adding `nlinarith` with generated squares, `intros; norm_num [*]` | 97 (39.8%) | 94 (38.5%) |
+| best 8 | 107 (43.9%) | 99 (40.6%) |
+| any of the 34 in rounds one and two (upper bound, selection-biased) | 106 (43.4%) | 104 (42.6%) |
+| all three rounds, 13 tactics chosen on validation | 113 (46.3%) | 101 (41.4%) |
+| any of the 52 (upper bound, selection-biased) | 113 (46.3%) | 106 (43.4%) |
 
 - **One short tactic call proves about a third of miniF2F, and a handful prove about 40%.** The eight tactics picked on validation prove 99 of the 244 test theorems.
-- **Composition helped.** Normalising numerals before `grind` adds 10 test theorems to `grind` alone (84 against 74). The generated squares add 5 test theorems to plain `nlinarith` (37 against 32).
-- **The gains are concentrated in the easy sources.** Of the 106 test theorems proved by any tactic, 86 are `mathd` problems. Two of the 20 test `imo` problems fall (`imo_1964_p2`, `imo_1982_p1`), four `aime` problems and one `induction` problem.
-- **Returns flatten quickly.** From four tactics to eight, the test score rises by 4 theorems.
-- **One structural step adds almost nothing.** Round three proved 10 more validation theorems and 4 more test theorems out of the 136 and 138 left. Induction followed by the portfolio is the only structural step that helped on both sets (3 validation, 2 test). The validation gain did not transfer: the 14 tactics chosen on validation reach 48.4% there and 42.2% on test.
-- **Some proved statements may be weaker than the original problems.** Round three's proofs include `imo_1987_p4` and `imo_1977_p6`. Lean accepted them without `sorry`, but short automatic proofs of olympiad problems usually mean the formal statement is easier than the informal one; this was not checked statement by statement.
+- **Composition helped.** Normalising numerals before `grind` adds 10 test theorems to `grind` alone (84 against 74). The generated squares add 2 test theorems to plain `nlinarith` (34 against 32).
+- **The gains are concentrated in the easy sources.** Of the 106 test theorems proved by any tactic, 87 are `mathd` problems; one `imo` problem (`imo_1964_p2`), four `aime` and two `induction` problems.
+- **One structural step adds almost nothing.** Round three adds 7 validation and 2 test theorems.
+- **The audit removed the most impressive-looking proofs.** Of the tactic proofs, 5 validation and 4 test theorems were false acceptances, including `imo_1982_p1`, `imo_1977_p6` and `imo_1987_p4`, which earlier versions of this page listed as proved.
 
 **Limits of this measurement.**
 
-- These numbers are a lower bound. When a theorem makes a tactic hang or crash Lean, that theorem is dropped for that tactic and the rest of its batch is rerun; a handful of theorem-tactic pairs were dropped this way (for example `mathd_numbertheory_543` for the simp-based tactics on validation, and `imo_1977_p6`, `imo_1981_p6`, `mathd_numbertheory_328` for the `grind` family on test).
+- When a theorem makes a tactic hang or crash Lean, that theorem is dropped for that tactic; a handful of pairs were dropped this way.
 - The scores are not comparable with HFM's 0.364 → 0.566: HFM's problem set and budgets are private and may differ from miniF2F.
 - The floor depends on the Mathlib version; `grind` and `bound` are recent additions.
 - The second-round tactics were written after seeing first-round test results per tactic, so the choice of what to compose is not fully blind to the test set. The combination reported was still selected on validation only.
 
-**Second experiment: an open-weight prover model on the remainder.** [`prover_llm.py`](prover_llm.py) gives DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on the runners' four CPU cores, no GPU) the 134 test theorems that none of the 52 tactics proved. For each theorem it samples 4 whole proofs (temperature 1.0, top-p 0.95, at most 512 tokens, the model's non-chain-of-thought prompt) and Lean checks each one against Mathlib; a proof counts only if `#print axioms` shows no `sorry`. Four shards ran in parallel, about 4.5 hours each. A second round then gave the 116 theorems still unproved 8 fresh samples each (different seeds, eight runners, about 1.5 hours), for 12 samples per theorem in all. Logs and proofs are in [`../../../compute/results/`](../../../compute/results/) under `lean-prover-llm-*` and `lean-prover-llm2-*`.
+**Second experiment: an open-weight prover model on the remainder.** [`prover_llm.py`](prover_llm.py) gives DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on the runners' four CPU cores, no GPU) the test theorems that none of the 52 tactics had (by the old test) proved. For each theorem it samples whole proofs (temperature 1.0, top-p 0.95, at most 512 tokens, the model's non-chain-of-thought prompt) and Lean checks each one. Round one: 4 samples per theorem; round two: 8 more. Rounds three to five ([`prover_repair.py`](prover_repair.py)) sample 4, 8 and 8 more and also try "repaired" variants: every one-line `have` falls back to the tactic portfolio, and every prefix of the model's steps is followed by `all_goals` portfolio. Logs: `lean-prover-llm-*`, `lean-prover-llm2-*`, `lean-prover-repair-*`, `lean-prover-repair2-*`, `lean-prover-repair3-*`.
 
-| | Test, of 244 |
-|---|---|
-| model, 4 samples, on the 134 left by every tactic | 18 of 134 (13.4%) |
-| model, 8 more samples, on the 116 still left | 3 of 116 (2.6%) |
-| model sketch repaired by the tactic portfolio, 4 new samples, on the 113 still left | 3 of 113 (2 only through repair) |
-| the same with 8 new samples, on the 110 still left | 4 of 110 (all also found by plain sampling) |
-| any of the 52 tactics, then the model (24 samples, with repair in the last 12) | 138 (56.6%) |
-| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 131 (53.7%) |
+| Round (audited) | Claimed | Pass the strict check | New theorems | Running total, of 244 |
+|---|---|---|---|---|
+| any of the 52 tactics | 110 | 106 | 106 | 106 (43.4%) |
+| model, 4 samples | 18 | 16 | 16 | 122 (50.0%) |
+| model, 8 more samples | 3 | 3 | 3 | 125 (51.2%) |
+| model, 4 more samples with repair | 3 | 0 | 0 | 125 |
+| model, 8 more samples with repair | 4 | 3 | 3 | 128 (52.5%) |
+| model, 8 more samples with repair | 5 | 1 | 1 | **129 (52.9%)** |
+| 13 tactics chosen on validation, then the model | | | | **124 (50.8%)** |
 
-- **The model proves things the tactics cannot, but few of them.** 18 of 134: 6 `mathd`, 6 hand-written `algebra`, 3 `amc12`, 1 `aime` (`aime_1983_p2`), 1 `induction`, 1 `numbertheory`. No `imo` problem fell. The proofs are short (33–348 characters), mostly a case split or a few `have` steps closed by `nlinarith` or `omega`: one or two structural steps that the fixed round-three recipe did not find. None uses `native_decide`.
-- **More samples barely help.** 7 of the first 18 were found by only one of four attempts, which suggested the remainder was budget-limited. It is not: tripling the samples (8 more per theorem) proved only 3 of the 116 left (`mathd_numbertheory_234`, `amc12b_2002_p7`, `mathd_algebra_170`). The remaining theorems need proof structure this model does not produce whole, not more draws.
-- **Model sketch plus automation finds what neither finds alone.** Round three ([`prover_repair.py`](prover_repair.py), `lean-prover-repair-*`) keeps each new sample as a sketch: every one-line `have` falls back to the tactic portfolio, and every prefix of the model's steps is tried with `all_goals` portfolio after it. 2 of the 3 new proofs came only from repair. In `aime_1994_p3` the model writes out 40 instances of the recurrence but closes wrongly; truncated after those instances, the portfolio's `linarith` finishes. In `algebra_absapbon1pabs…` the model's case split on signs is right and its closing step wrong; the portfolio closes all eight cases. Per model sample, repair proved as many new theorems as 8 extra plain samples did, at no extra model cost.
-- **The combination is the useful number.** Cheap tactics first, then the model, reaches 138 of 244 (0.5656) of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 131 (53.7%) (the model was not run on the 7 theorems proved only by unchosen tactics).
-- **Round four** (8 more samples with repair, `lean-prover-repair2-*`) added `mathd_algebra_313`, `imo_1992_p1`, `numbertheory_notEquiv2i2jasqbsqdiv8` and `mathd_algebra_484`, all also proved by the unrepaired sample. One shard brought its runner down twice (a Lean process ran out of memory); with a 4 GB watchdog, three Lean runs were killed and that shard completed, so a few variants were not checked.
-- **This is level with HFM's 0.5661 to within one theorem (0.5656), not above it, and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
+- **The open model adds about 9 points to the tactic floor:** 23 test theorems over five rounds and 32 samples per theorem, mostly `mathd`, hand-written `algebra` and `amc12` problems, with a case split or a few `have` steps closed by `nlinarith` or `omega`. No `imo` proof survived the audit.
+- **More samples help slowly.** 4 samples prove 16; 28 more add 7.
+- **Sketch repair did not work.** Every theorem that only a repaired variant had proved (5 of them, among them `aime_1994_p3` and `amc12a_2021_p25`) was a false acceptance: the variants that "closed" the proof had in fact failed. The repair route as built here adds nothing; its earlier write-up is withdrawn.
+- **The total, 0.529 (0.508 with validation-chosen tactics), is clearly below HFM's 0.566,** and not comparable with it: HFM's problem set is private, its model and budgets differ, and the prover model may have seen miniF2F statements during training.
 
-**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call. One more automatic step moves that by under two points, so the remaining theorems need several coordinated steps, not a better closing tactic. That remainder (almost all `imo`, most `aime`, `induction` and `amc12` problems) is where a model has to supply structure.
+**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves; on miniF2F that removes about 40% of the theorems before any model call. A 7B open prover on CPU adds about 9 points more. The rest needs coordinated multi-step structure. The audit is also a lesson for any agent harness on this track: the acceptance check must look for errors in the theorem itself, not only at `#print axioms`, or the harness will reward its own failures.
 
 ## How far this can go
 
@@ -103,4 +101,4 @@ HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 25
 
 ## Next steps
 
-With a GPU or a model key: do not just raise the samples (12 per theorem added 3 theorems over 4); feed Lean's error back for repair rounds, and call the tactic portfolio at every sub-goal the model writes as `have ... := by sorry`.
+With a GPU or a model key: feed Lean's error messages back to the model for repair rounds (the automatic tactic repair tried here added nothing once checked strictly), and decompose into sub-goals the model states as `have ... := by sorry`, each attacked separately.

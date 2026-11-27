@@ -3,7 +3,8 @@
 Stand-in for HFM's "Agent for Formal Theorem Proving in Lean" track, which assumes a
 paid language-model API. DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on four CPU
 cores) writes whole proofs in its non-chain-of-thought mode; each attempt is checked by
-Lean against Mathlib, and accepted only if `#print axioms` shows no `sorry`. Only the
+Lean against Mathlib, and accepted only if no Lean error points inside it and its axioms
+are standard (lean_floor.strict). Only the
 test theorems left unproved by all 52 tactics of lean_floor.py are attempted, so the
 result adds to the tactic floor.
 
@@ -48,19 +49,12 @@ def main():
             proofs.append(out["choices"][0]["text"])
         gen = time.time() - t0
         path = os.path.join(repo, f"llm_{k_shard}_{i}.lean")  # one file per theorem
-        with open(path, "w", encoding="utf-8") as fo:
-            fo.write(lf.HEADER % 400000)
-            for a, p in enumerate(proofs):
-                renamed = re.sub(r"theorem\s+" + re.escape(name), f"theorem {name}_a{a}", s, count=1)
-                fo.write(f"{renamed}{p.rstrip()}\n\n#print axioms {name}_a{a}\n\n")
+        items = [(f"{name}_a{a}", re.sub(r"theorem\s+" + re.escape(name), f"theorem {name}_a{a}", s, count=1) + p.rstrip()) for a, p in enumerate(proofs)]
+        text, spans = lf.build(lf.HEADER % 400000, items)
+        open(path, "w", encoding="utf-8").write(text)
         out, status = lf.lean(repo, path, 900)
         os.remove(path)
-        ok = set()
-        for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
-            if "sorryAx" not in m.group(2):
-                ok.add(m.group(1))
-        for m in re.finditer(r"'([^']+)' does not depend on any axioms", out):
-            ok.add(m.group(1))
+        ok, _ = lf.strict(out, spans)
         good = [a for a in range(attempts) if f"{name}_a{a}" in ok]
         results.append({"name": name, "proved": bool(good), "attempts_ok": good, "lean": status,
                         "proof": proofs[good[0]] if good else None, "gen_secs": round(gen)})

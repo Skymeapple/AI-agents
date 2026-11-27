@@ -13,7 +13,9 @@ indented or `<;>` continuation lines). Variants, each checked by Lean:
   hardened     every one-line `have ... := by t` becomes `have ... := by first | (t) | PORTFOLIO`
   prefix k     the first k hardened steps, then `all_goals PORTFOLIO` (k = 1 .. n-1)
 A theorem counts as proved by repair only if some variant other than as-is is accepted
-(no `sorry` in `#print axioms`).
+(no Lean error inside it and standard axioms only: lean_floor.strict).
+
+Note: the first runs used a weaker test; see audit.py and the README for the audited results.
 
 Usage: python prover_repair.py <miniF2F-lean4 checkout> <model.gguf> <out.json> <shard>/<shards> <samples> <earlier results.json ...>
 """
@@ -85,16 +87,6 @@ def variants(proof, port):
     return out[:MAX_VARIANTS]
 
 
-def accepted(out):
-    ok = set()
-    for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
-        if "sorryAx" not in m.group(2):
-            ok.add(m.group(1))
-    for m in re.finditer(r"'([^']+)' does not depend on any axioms", out):
-        ok.add(m.group(1))
-    return ok
-
-
 def main():
     repo, gguf, outp, shard, samples = sys.argv[1:6]
     k_shard, n_shards = (int(x) for x in shard.split("/"))
@@ -126,14 +118,13 @@ def main():
             if not vs:
                 continue
             path = os.path.join(repo, f"rep_{k_shard}_{i}_{a}.lean")
-            with open(path, "w", encoding="utf-8") as fo:
-                fo.write(lf.HEADER % 400000)
-                for j, (tag, body) in enumerate(vs):
-                    renamed = re.sub(r"theorem\s+" + re.escape(name), f"theorem {name}_s{a}_v{j}", s, count=1)
-                    fo.write(f"{renamed.rstrip()}\n{body}\n\n#print axioms {name}_s{a}_v{j}\n\n")
+            items = [(f"{name}_s{a}_v{j}", re.sub(r"theorem\s+" + re.escape(name), f"theorem {name}_s{a}_v{j}", s, count=1).rstrip() + "\n" + body)
+                     for j, (tag, body) in enumerate(vs)]
+            text, spans = lf.build(lf.HEADER % 400000, items)
+            open(path, "w", encoding="utf-8").write(text)
             out, status = lf.lean(repo, path, 900)
             os.remove(path)
-            ok = accepted(out)
+            ok, _ = lf.strict(out, spans)
             for j, (tag, body) in enumerate(vs):
                 if f"{name}_s{a}_v{j}" in ok:
                     wins.append({"sample": a, "variant": tag, "proof": body, "lean": status})

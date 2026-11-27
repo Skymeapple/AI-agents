@@ -76,6 +76,40 @@ def tactic_for(k, statement):
             hints += [f"sq_nonneg ({u} - {v})", f"sq_nonneg ({u} + {v})", f"mul_self_nonneg ({u} * {v})"]
     return t.replace("SQUARES", ", ".join(hints) if hints else "sq_nonneg (0:ℝ)")
 HEADER = "import Mathlib\nset_option maxHeartbeats %d\nset_option maxRecDepth 2000\nopen BigOperators Real Nat Topology Rat\n\n"
+STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
+
+
+def build(header, items):
+    """File text with one theorem per item (name, text) followed by `#print axioms name`,
+    and the line span of each theorem."""
+    lines = header.split("\n")
+    spans = []
+    for name, text in items:
+        start = len(lines) + 1
+        lines += text.rstrip().split("\n")
+        spans.append((name, start, len(lines)))
+        lines += ["", f"#print axioms {name}", ""]
+    return "\n".join(lines), spans
+
+
+def strict(out, spans):
+    """(accepted, seen): a theorem is accepted only if no Lean error points inside its
+    lines and its axioms are standard. A kernel-rejected proof is added by Lean as an
+    axiom of itself, so a missing `sorryAx` alone proves nothing."""
+    errs = [int(m.group(1)) for m in re.finditer(r"^[^\n:]*\.lean:(\d+):\d+: error", out, re.M)]
+    accepted, seen = set(), set()
+    for name, start, end in spans:
+        m = re.search(rf"'{re.escape(name)}' depends on axioms: \[(.*?)\]", out, re.S)
+        n = re.search(rf"'{re.escape(name)}' does not depend on any axioms", out)
+        if not (m or n):
+            continue
+        seen.add(name)
+        if any(start <= e <= end for e in errs):
+            continue
+        if m and {a.strip() for a in m.group(1).replace("\n", " ").split(",") if a.strip()} - STANDARD_AXIOMS:
+            continue
+        accepted.add(name)
+    return accepted, seen
 
 
 def statements(folder):
@@ -135,22 +169,14 @@ def check(repo, split, k, part, items):
     proved, notes, head, todo, tries = set(), [], "", list(items), 0
     while todo:
         path = os.path.join(repo, f"floor_{split}_{k}_{part}_{tries}.lean")
-        with open(path, "w", encoding="utf-8") as fo:
-            fo.write(HEADER % (HEARTBEATS * (2 if k >= ROUND3 else 1)))
-            for name, s in todo:
-                fo.write(f"{s}{tactic_for(k, s)}\n#print axioms {name}\n\n")
+        text, spans = build(HEADER % (HEARTBEATS * (2 if k >= ROUND3 else 1)), [(name, f"{s}{tactic_for(k, s)}") for name, s in todo])
+        open(path, "w", encoding="utf-8").write(text)
         out, status = lean(repo, path, CHUNK_SECONDS * (2 if k >= ROUND3 else 1))
         os.remove(path)
         head = head or out[:120]
         tries += 1
-        seen = set()
-        for m in re.finditer(r"'([^']+)' depends on axioms: \[(.*?)\]", out, re.S):
-            seen.add(m.group(1))
-            if "sorryAx" not in m.group(2):
-                proved.add(m.group(1))
-        for m in re.finditer(r"'([^']+)' does not depend on any axioms", out):
-            seen.add(m.group(1))
-            proved.add(m.group(1))
+        ok, seen = strict(out, spans)
+        proved |= ok
         if status == "ok":
             break
         rest = [(n, s) for n, s in todo if n not in seen]

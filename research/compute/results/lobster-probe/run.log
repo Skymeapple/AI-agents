@@ -1,63 +1,18 @@
 job: lobster-probe
-started: 2026-11-27T02:52:51Z
+started: 2026-11-27T02:53:38Z
 cores: 4, memory: 15 GB
--rw-r--r-- 1 runner runner 1122586 Nov 27 02:52 app.js
-"${e}-download-sample"
-"),R_([])}finally{M_(!1)}}},[e]);C.useEffect(()=>{gp()},[gp]);const H1=C.useCallback(async()=>{if(e){U_(!0),z_(null);try{const $=[...await J.listBookSampleRequests(e)].sort((te,ue)=>(ue.id??0)-(te.id??0));B_($)}catch(N){z_(N.message||"
-"),_(null)},[e==null?void 0:e.id]),C.useEffect(()=>{if(!I||!n){r(null),l(null),d(!1);return}const B={cancelled:!1,objectUrl:null};return d(!0),l(null),r(null),(async()=>{try{const L=await J.getBookSampleProofBlob(I,n);if(B.cancelled)return;const ae=URL.createObjectURL(L);if(B.objectUrl=ae,B.cancelled){URL.revokeObjectURL(ae);return}r(ae)}catch(L){B.cancelled||l(L.message||"
-"),e},async acceptBookSampleTerms(n,e){const t=await wA(`${Q}/book-download/accept-terms`,{method:"
-"),k(!0);try{await J.downloadBookSample(t)}catch(R){h(R.message||"
-");return}l(!0);try{await J.submitBookSampleRequest(n.trim(),t),d("
-");t.href=this.bookSampleDownloadUrl(n),t.download=e,t.style.display="
-");try{await J.acceptBookSampleTerms(t,i.map(R=>({slug:R.slug,version:R.version})))}catch(R){u(R.message||"
-");try{const I=await J.probeBookSampleDownload(t);if(R)return;if(I.kind==="
-"){w(!0),k(!0);try{J.triggerBookSampleDownload(t,I.filename||"
-")},async checkBookSampleDownloadReady(n){const e=await wA(`${Q}/book-download/ready?token=${encodeURIComponent(n)}`,{},LT);if(!e.ok){let t="
-")}return e.json()},triggerBookSampleDownload(n,e="
-")}return t.blob()},async approveBookSampleRequest(n,e){const t=await fetch(`${Q}/book-download/admin/${n}/approve`,{method:"
-")}return t.json()},async listBookSampleRequests(n){const e=await fetch(`${Q}/book-download/admin`,{method:"
-")}return t.json()},async rejectBookSampleRequest(n,e,t){const i=await fetch(`${Q}/book-download/admin/${n}/reject`,{method:"
-")}return t.json()},async submitBookSampleRequest(n,e){const t=new FormData;t.append("
-", request the accompanying sample LOBSTER dataset. We verify purchase proof and send a time-limited download link."
-", you may request the accompanying sample LOBSTER dataset. Enter the e-mail address where we should send your download link, and upload a clear purchase proof (order confirmation or receipt). Our team will verify your request and send you a time-limited download link."
-",document.body.appendChild(t),t.click(),t.remove()},async downloadBookSample(n){const e=await this.checkBookSampleDownloadReady(n);return this.triggerBookSampleDownload(n,e.filename||"
-",{children:I?`Book sample review — #${I}`:"
-"/book-sample"
-"/book-sample/download"
-"/terms/trial-and-sample-data"
-":`${t}-download-sample`}:{},children:["
-";try{s=(await i.json()).detail||s}catch{}throw new Error(s)}return i.json()},bookSampleDownloadUrl(n){return`${Q}/book-download/download?token=${encodeURIComponent(n)}`},async probeBookSampleDownload(n){const e=await wA(`${Q}/book-download/ready?token=${encodeURIComponent(n)}`,{},LT);if(e.ok){const i=await e.json();return{kind:"
-"?B=await J.approveBookSampleRequest(I,n):B=await J.rejectBookSampleRequest(I,n,{reason:H}),R(B.detail||"
-"Add a domain that is missing from the built-in academic list. Addresses at that domain, and its subdomains, are then accepted for book-sample and conference-trial applications. Free providers such as gmail.com cannot be added."
-"Back to book sample"
-"Book Sample Data"
-"Book sample download"
-"Book samples → Review / View"
-"Book samples"
-"Failed to fetch book sample request"
-"Failed to fetch book sample requests"
-"Loading book sample requests…"
-"No book sample requests yet."
-"Open a request to approve or reject pending samples, or view already decided ones."
-"Request sample download"
-"Review public book-sample download requests. Pending items show a badge on this tab."
-"Sample dataset"
-.zip
-data_tqap.7z
-== HF lobster: 13
-   Royal-lobster/10001-Science-Facts ['license:mit'] []
-   Royal-lobster/Slither-Audited-Solidity-QA ['license:mit'] []
-   wl-lobster/controlnet-test [] []
-   mlnomad/imnet1k_American_lobster_Northern_lobster_Maine_lobster_Homarus_americanus [] []
-   mlnomad/imnet1k_spiny_lobster_langouste_rock_lobster_crawfish_crayfish_sea_crawfish [] []
-   totalorganfailure/lobster-data [] []
-   Zhennilin020/Lobster ['license:openrail'] []
-   lobstermeeat/trellis2-data [] []
-   england-lobster/zhang-xuefeng-data ['license:other'] []
-   y7pan/lobster-data [] []
-   Ayrus-1007/lobster-data [] []
-   agriculture-food-systems-ai/Lobster-Aquaculture-Water-Quality-Causal-Reasoning-QA-Dataset [] []
-   agriculture-food-systems-ai/Lobster-Feeding-and-Growth-Causal-Reasoning-Question-Answer-Dataset [] []
-== HF limit order book nasdaq: 0
-== HF LOBSTER_SampleFile: 0
-finished: 2026-11-27T02:52:53Z, exit code 0
+== https://quote-saver.bycsi.com/orderbook/linear/BTCUSDT/2024-06-03_BTCUSDT_ob500.data.zip
+200 167774686
+f.bin: Zip archive data, at least v2.0 to extract, compression method=deflate
+{"topic":"orderbook.500.BTCUSDT","type":"snapshot","ts":1717372803721,"data":{"s":"BTCUSDT","b":[["67776.30","6.379"],["67776.20","1.089"],["67776.00","0.715"],["67775.90","0.010"],["67775.80","0.059"],["67775.70","0.002"],["67775.60","0.001"],["67775.50","0.225"],["67775.30","0.001"],["67775.00","0.170"],["67774.80","0.060"],["67774.60","0.001"],["67774.50","0.100"],["67774.20","0.059"],["67774.00","0.001"],["67773.90","0.003"],["67773.60","0.012"],["67773.40","0.059"],["67773.30","0.039"],["67773.20","0.059"],["67772.70","0.001"],["67772.60","0.060"],["67772.00","0.071"],["67771.90","0.073"],["67771.80","0.059"],["67771.60","0.059"],["67771.40","0.008"],["67771.20","0.001"],["67771.00","0.
+== https://quote-saver.bycsi.com/orderbook/linear/ETHUSDT/2024-06-03_ETHUSDT_ob500.data.zip
+200 167365340
+f.bin: Zip archive data, at least v2.0 to extract, compression method=deflate
+{"topic":"orderbook.500.ETHUSDT","type":"snapshot","ts":1717372800476,"data":{"s":"ETHUSDT","b":[["3783.45","24.07"],["3783.40","28.40"],["3783.38","2.08"],["3783.35","0.07"],["3783.27","0.07"],["3783.20","1.26"],["3783.18","0.02"],["3783.17","5.02"],["3783.14","4.44"],["3783.11","8.30"],["3783.10","0.14"],["3783.09","0.01"],["3783.08","1.70"],["3783.07","5.00"],["3783.01","0.40"],["3783.00","2.76"],["3782.98","0.06"],["3782.95","0.10"],["3782.91","0.57"],["3782.90","0.11"],["3782.89","1.48"],["3782.88","7.66"],["3782.87","0.96"],["3782.86","1.59"],["3782.85","0.01"],["3782.83","0.47"],["3782.81","1.35"],["3782.80","1.28"],["3782.77","13.88"],["3782.76","8.40"],["3782.75","0.33"],["3782.71",
+== https://quote-saver.bycsi.com/orderbook/spot/BTCUSDT/2024-06-03_BTCUSDT_ob200.data.zip
+404 391
+f.bin: HTML document, ASCII text
+== https://public.bybit.com/trading/BTCUSDT/BTCUSDT2024-06-03.csv.gz
+200 54671170
+f.bin: gzip compressed data, was "BTCUSDT2024-06-03.csv", last modified: Mon Jun  3 23:59:59 2024, from Unix, original size modulo 2^32 183832769
+finished: 2026-11-27T02:54:01Z, exit code 0

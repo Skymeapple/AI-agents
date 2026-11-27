@@ -85,15 +85,17 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 | model, 8 more samples | 3 | 3 | 3 | 125 (51.2%) |
 | model, 4 more samples with repair | 3 | 0 | 0 | 125 |
 | model, 8 more samples with repair | 4 | 3 | 3 | 128 (52.5%) |
-| model, 8 more samples with repair | 5 | 1 | 1 | **129 (52.9%)** |
-| 13 tactics chosen on validation, then the model | | | | **124 (50.8%)** |
+| model, 8 more samples with repair | 5 | 1 | 1 | 129 (52.9%) |
+| model, 4 fresh samples + 4 rewritten from Lean's error messages (strict check built in) | 2 | 2 | 2 | **131 (53.7%)** |
+| 13 tactics chosen on validation, then the model | | | | **126 (51.6%)** |
 
 - **The open model adds about 9 points to the tactic floor:** 23 test theorems over five rounds and 32 samples per theorem, mostly `mathd`, hand-written `algebra` and `amc12` problems, with a case split or a few `have` steps closed by `nlinarith` or `omega`. No `imo` proof survived the audit.
 - **More samples help slowly.** 4 samples prove 16; 28 more add 7.
 - **Sketch repair did not work.** Every theorem that only a repaired variant had proved (5 of them, among them `aime_1994_p3` and `amc12a_2021_p25`) was a false acceptance: the variants that "closed" the proof had in fact failed. The repair route as built here adds nothing; its earlier write-up is withdrawn.
-- **The total, 0.529 (0.508 with validation-chosen tactics), is clearly below HFM's 0.566,** and not comparable with it: HFM's problem set is private, its model and budgets differ, and the prover model may have seen miniF2F statements during training.
+- **Feedback from Lean's own errors helps a little.** [`prover_feedback.py`](prover_feedback.py) (`lean-feedback-*`) gives every failed fresh sample back to the model with Lean's first error messages and asks for a corrected proof. Of the 115 theorems left, 4 fresh samples proved 1 and the feedback rewrites 1 more (`mathd_algebra_156`, 1 of 4 rewrites). Unlike in Dafny, where one repair turn verified four times as many programs as the first answer, a 7B prover without chat training makes little use of the messages.
+- **The total, 0.537 (0.516 with validation-chosen tactics), is clearly below HFM's 0.566,** and not comparable with it: HFM's problem set is private, its model and budgets differ, and the prover model may have seen miniF2F statements during training.
 
-**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves; on miniF2F that removes about 40% of the theorems before any model call. A 7B open prover on CPU adds about 9 points more. The rest needs coordinated multi-step structure. The audit is also a lesson for any agent harness on this track: the acceptance check must look for errors in the theorem itself, not only at `#print axioms`, or the harness will reward its own failures.
+**What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves; on miniF2F that removes about 40% of the theorems before any model call. A 7B open prover on CPU adds about 10 points more. The rest needs coordinated multi-step structure. The audit is also a lesson for any agent harness on this track: the acceptance check must look for errors in the theorem itself, not only at `#print axioms`, or the harness will reward its own failures.
 
 ## How far this can go
 

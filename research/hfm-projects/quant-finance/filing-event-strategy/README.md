@@ -43,6 +43,7 @@ Fix the metric first: uncapped, net of costs, on a later window.
 No experiment has been run for this project.
 
 - **Why:** The reward is pinned at 1.0, so HFM's evaluation cannot rank methods. Public data exist (SEC EDGAR XBRL, free daily prices) but a replay was not built.
+- **Data search (2026-11-27):** SEC EDGAR asks automated clients to declare a contact e-mail address, which needs the repository owner's decision. A public-domain mirror of XBRL key metrics with filing and acceptance times exists on Hugging Face (CyberMax-tools/figurewell-sec-xbrl-financials, CC0), but it covers only the latest four quarters, and no clearly licensed source of daily prices for individual US stocks was found among public datasets. A replay is therefore waiting on either a contact address for EDGAR or a price source with clear terms.
 
 ## How far this can go
 

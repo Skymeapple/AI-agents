@@ -1,0 +1,38 @@
+job: lobster-probe
+started: 2026-11-27T02:52:05Z
+cores: 4, memory: 15 GB
+HTTP/2 200 
+server: nginx/1.31.8
+date: Fri, 27 Nov 2026 02:52:06 GMT
+content-type: text/html
+content-length: 457
+vary: Accept-Encoding
+last-modified: Sat, 31 Oct 2026 15:55:48 GMT
+etag: "6ae60f84-1c9"
+accept-ranges: bytes
+strict-transport-security: max-age=31536000; includeSubDomains
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+
+-rw-r--r-- 1 runner runner 457 Nov 27 02:52 a.bin
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lobster-react-app</title>
+    <script type="module" crossorigin src="/assets/index-9e0decf7.js"></script>
+    <link rel="stylesheet" href="/assets/index-144e5de3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+  </body>
+</html>
+
+== https://lobsterdata.com/info/DataSamples.php
+== https://lobsterdata.com/info/DataStructure.php
+== https://lobsterdata.com/
+finished: 2026-11-27T02:52:07Z, exit code 0

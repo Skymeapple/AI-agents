@@ -75,18 +75,19 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 - The floor depends on the Mathlib version; `grind` and `bound` are recent additions.
 - The second-round tactics were written after seeing first-round test results per tactic, so the choice of what to compose is not fully blind to the test set. The combination reported was still selected on validation only.
 
-**Second experiment: an open-weight prover model on the remainder.** [`prover_llm.py`](prover_llm.py) gives DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on the runners' four CPU cores, no GPU) the 134 test theorems that none of the 52 tactics proved. For each theorem it samples 4 whole proofs (temperature 1.0, top-p 0.95, at most 512 tokens, the model's non-chain-of-thought prompt) and Lean checks each one against Mathlib; a proof counts only if `#print axioms` shows no `sorry`. Four shards ran in parallel, about 4.5 hours each. Logs and proofs are in [`../../../compute/results/`](../../../compute/results/) under `lean-prover-llm-*`.
+**Second experiment: an open-weight prover model on the remainder.** [`prover_llm.py`](prover_llm.py) gives DeepSeek-Prover-V1.5-RL (7B, 4-bit GGUF, llama.cpp on the runners' four CPU cores, no GPU) the 134 test theorems that none of the 52 tactics proved. For each theorem it samples 4 whole proofs (temperature 1.0, top-p 0.95, at most 512 tokens, the model's non-chain-of-thought prompt) and Lean checks each one against Mathlib; a proof counts only if `#print axioms` shows no `sorry`. Four shards ran in parallel, about 4.5 hours each. A second round then gave the 116 theorems still unproved 8 fresh samples each (different seeds, eight runners, about 1.5 hours), for 12 samples per theorem in all. Logs and proofs are in [`../../../compute/results/`](../../../compute/results/) under `lean-prover-llm-*` and `lean-prover-llm2-*`.
 
 | | Test, of 244 |
 |---|---|
-| model alone, on the 134 left by every tactic | 18 of 134 (13.4%) |
-| any of the 52 tactics, then the model on the rest | 128 (52.5%) |
-| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 121 (49.6%) |
+| model, 4 samples, on the 134 left by every tactic | 18 of 134 (13.4%) |
+| model, 8 more samples, on the 116 still left | 3 of 116 (2.6%) |
+| any of the 52 tactics, then the model (12 samples) | 131 (53.7%) |
+| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 124 (50.8%) |
 
 - **The model proves things the tactics cannot, but few of them.** 18 of 134: 6 `mathd`, 6 hand-written `algebra`, 3 `amc12`, 1 `aime` (`aime_1983_p2`), 1 `induction`, 1 `numbertheory`. No `imo` problem fell. The proofs are short (33–348 characters), mostly a case split or a few `have` steps closed by `nlinarith` or `omega`: one or two structural steps that the fixed round-three recipe did not find. None uses `native_decide`.
-- **Half the successes needed more than one sample.** 7 of the 18 were found by only one of the four attempts, so a larger sampling budget would add more; the published model reaches about 50% on miniF2F-test alone at 32 samples (with a different Lean version).
-- **The combination is the useful number.** Cheap tactics first, then the model, reaches 52.5% of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 49.6% (the model was not run on the 7 theorems proved only by unchosen tactics).
-- **This is below HFM's 0.566, and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
+- **More samples barely help.** 7 of the first 18 were found by only one of four attempts, which suggested the remainder was budget-limited. It is not: tripling the samples (8 more per theorem) proved only 3 of the 116 left (`mathd_numbertheory_234`, `amc12b_2002_p7`, `mathd_algebra_170`). The remaining theorems need proof structure this model does not produce whole, not more draws.
+- **The combination is the useful number.** Cheap tactics first, then the model, reaches 53.7% of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 50.8% (the model was not run on the 7 theorems proved only by unchosen tactics).
+- **This is below HFM's 0.566 (by 3 points), and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
 
 **What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call. One more automatic step moves that by under two points, so the remaining theorems need several coordinated steps, not a better closing tactic. That remainder (almost all `imo`, most `aime`, `induction` and `amc12` problems) is where a model has to supply structure.
 
@@ -96,4 +97,4 @@ HFM is at 0.566. A harness around a frozen general model (Delta Prover, arXiv 25
 
 ## Next steps
 
-With a GPU or a model key: raise the samples per theorem (the 1-of-4 successes suggest the remainder is budget-limited), feed Lean's error back for one repair round, and call the tactic portfolio at every sub-goal the model writes as `have ... := by sorry`.
+With a GPU or a model key: do not just raise the samples (12 per theorem added 3 theorems over 4); feed Lean's error back for repair rounds, and call the tactic portfolio at every sub-goal the model writes as `have ... := by sorry`.

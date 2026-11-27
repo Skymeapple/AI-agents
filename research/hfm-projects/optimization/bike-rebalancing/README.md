@@ -84,6 +84,20 @@ The single-day look-ahead failed because one remembered day is a poor stand-in f
 
 These numbers come from public data and are not comparable to HFM's score, which uses private data and scoring.
 
+**Settings chosen by forecast accuracy or by the decision outcome.** [`decision_tuning.py`](decision_tuning.py) tunes the forecast policy on the first 6 test weekdays and scores it on the other 11 (log: [`bike-decision-tuning`](../../../compute/results/bike-decision-tuning/run.log)). The policy has a scale α on the learned hourly rates, a projection window and a safety margin.
+
+| Settings (α, window in minutes, margin) | Chosen by | Failures per day | vs default | Days better |
+|---|---|---|---|---|
+| 1, 120, 3 | default | 4,957 | — | — |
+| 0.75, 120, 3 | forecast squared error | 4,835 | −2.5% | 9/11 |
+| 0.5, 120, 3 | simulated failures, α only | 4,819 | −2.8% | 8/11 |
+| 1.25, 60, 8 | simulated failures, all three | 4,777 | −3.6% | 9/11 |
+| 0, 120, 3 | no forecast | 5,924 | +19.5% | 1/11 |
+
+- **Choosing by the decision outcome beats choosing by forecast accuracy, but by about one point.** The gain comes from the settings that are not part of the forecast at all: a shorter window with a larger margin. Choosing α by failures instead of forecast error changes almost nothing (−2.8% against −2.5%).
+- **Both choices shrink the forecast.** The most accurate scale is 0.75, not 1: hourly averages over earlier weekdays overstate the net flow of a given day.
+- A perfect forecast was worth −11.3% in the main experiment, so tuning closes about a third of that gap without any new information.
+
 ## How far this can go
 
 - **With these vans:** even a perfect forecast leaves 11% of trips failing, so van capacity and fleet size bound the result more than the policy does.

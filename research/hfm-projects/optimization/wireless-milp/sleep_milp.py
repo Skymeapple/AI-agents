@@ -128,10 +128,13 @@ def from_vector(inst, x, sizes):
     return on, assign
 
 
-def lns(inst, cost, A, lo, hi, integ, sizes, seconds, rng, cluster=25):
+def lns(inst, cost, A, lo, hi, integ, sizes, seconds, rng, cluster=25, start=None, sub_limit=20.0):
     nc, npair, nu = sizes
-    on, assign = greedy(inst)
-    x = to_vector(inst, on, assign, sizes)
+    if start is None:
+        on, assign = greedy(inst)
+        x = to_vector(inst, on, assign, sizes)
+    else:
+        x = start.copy()
     best = cost @ x
     t0 = time.time()
     u_of = inst["pairs"][:, 0]
@@ -152,7 +155,7 @@ def lns(inst, cost, A, lo, hi, integ, sizes, seconds, rng, cluster=25):
         if left < 1:
             break
         res = milp(cost, constraints=LinearConstraint(A, lo, hi), integrality=integ, bounds=Bounds(lb, ub),
-                   options={"time_limit": min(20.0, left), "disp": False})
+                   options={"time_limit": min(sub_limit, left), "disp": False})
         rounds += 1
         if res.x is not None and cost @ res.x < best - 1e-6:
             x, best = np.round(res.x), cost @ res.x
@@ -192,6 +195,17 @@ def main():
     on_l, assign_l = from_vector(inst, x, sizes)
     print(f"RESULT seed {seed} lns {seconds:.0f}s: {best:.1f}, gap {(best - bound) / bound:.2%}, cells on {on_l.sum()}, "
           f"dropped {(assign_l < 0).sum()}, {rounds} rounds, {improved} improved ({time.time() - t:.0f}s)", flush=True)
+    # hybrid: HiGHS for 60% of the budget, then small, fast neighbourhoods around its incumbent
+    t = time.time()
+    res = milp(cost, constraints=LinearConstraint(A, lo, hi), integrality=integ, bounds=Bounds(0, 1),
+               options={"time_limit": 0.6 * seconds, "disp": False})
+    if res.x is not None:
+        start = np.round(res.x)
+        h0 = cost @ start
+        x, best, rounds, improved = lns(inst, cost, A, lo, hi, integ, sizes, seconds - (time.time() - t), np.random.default_rng(seed + 1),
+                                        cluster=12, start=start, sub_limit=4.0)
+        print(f"RESULT seed {seed} highs+lns {seconds:.0f}s: {best:.1f}, gap {(best - bound) / bound:.2%} (HiGHS part alone {h0:.1f}, "
+              f"gap {(h0 - bound) / bound:.2%}), {rounds} rounds, {improved} improved ({time.time() - t:.0f}s)", flush=True)
 
 
 if __name__ == "__main__":

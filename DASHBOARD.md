@@ -1,6 +1,6 @@
 # Lab Dashboard
 
-_Generated 2026-11-26 07:43 UTC · metrics as of 2026-11-26_
+_Generated 2026-11-27 07:43 UTC · metrics as of 2026-11-27_
 
 | Projects shipped | Downloads (7d) | Downloads (all-time) | ⭐ Stars | Forks | Visitors (14d) | Clones (14d) |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -26,15 +26,15 @@ Median day-30 rate of small entrants (< 5,000/wk now): **38**
 
 | Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
 |---|---:|---:|---:|---:|
-| agnix | 54,424 | 1,537 | 3,611 | 492 |
-| @yawlabs/ctxlint | 34,613 | 1,524 | 5,557 | 538 |
-| claude-code-lint | 13,886 | 294 | 1,013 | 324 |
-| agentlinter | 4,353 | 2,067 | 2,344 | 64 |
-| @promptci/cli | 1,176 | 309 | 562 | 43 |
-| @felixgeelhaar/cclint | 408 | 291 | 400 | 14 |
-| unrot | 33 | 2,078 | 2,310 | 34 |
-| tidyagents | 31 | 732 | 803 | 0 |
-| rulecheck | 17 | 547 | 596 | 0 |
+| agnix | 55,000 | 1,537 | 3,611 | 492 |
+| @yawlabs/ctxlint | 36,884 | 1,524 | 5,557 | 538 |
+| claude-code-lint | 13,971 | 294 | 1,013 | 324 |
+| agentlinter | 4,447 | 2,067 | 2,344 | 64 |
+| @promptci/cli | 1,250 | 309 | 562 | 43 |
+| @felixgeelhaar/cclint | 425 | 291 | 400 | 14 |
+| tidyagents | 33 | 732 | 812 | 0 |
+| unrot | 30 | 2,078 | 2,310 | 34 |
+| rulecheck | 15 | 547 | 600 | 0 |
 | **ctxlint (lab)** _parked_ | 0 | - | - | - |
 
 ### agent-guardrail-hooks
@@ -43,11 +43,11 @@ Median day-30 rate of small entrants (< 5,000/wk now): **23**
 
 | Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
 |---|---:|---:|---:|---:|
-| block-no-verify | 48,078 | 369 | 1,229 | 417 |
-| @hasna/hooks | 12,763 | 1,325 | 1,413 | 13 |
-| ghostimport | 201 | 1,051 | 1,449 | 35 |
-| slopcheck | 146 | 522 | 695 | 12 |
-| @mharoon07/slopguard | 17 | 443 | 476 | 0 |
+| block-no-verify | 46,163 | 369 | 1,229 | 417 |
+| @hasna/hooks | 12,468 | 1,325 | 1,413 | 13 |
+| ghostimport | 160 | 1,051 | 1,449 | 35 |
+| slopcheck | 153 | 522 | 695 | 12 |
+| @mharoon07/slopguard | 23 | 443 | 484 | 0 |
 
 ### unicode-security
 
@@ -55,8 +55,8 @@ Median day-30 rate of small entrants (< 5,000/wk now): **-**
 
 | Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
 |---|---:|---:|---:|---:|
-| anti-trojan-source | 45,563 | 365 | 7,504 | 3,655 |
-| out-of-character | 9,481 | 193 | 279 | 8 |
+| anti-trojan-source | 46,256 | 365 | 7,504 | 3,655 |
+| out-of-character | 9,256 | 193 | 279 | 8 |
 
 ### agent-secret-leaks
 
@@ -64,11 +64,11 @@ Median day-30 rate of small entrants (< 5,000/wk now): **-**
 
 | Package | Weekly downloads now | First 7 days | First 30 days | Day-30 rate |
 |---|---:|---:|---:|---:|
-| secretlint | 1,976,029 | 85 | 2,497 | 879 |
-| eslint-plugin-no-secrets | 424,434 | 94 | 123 | 8 |
-| gitleaks-secret-scanner | 25,002 | 0 | 352 | 352 |
-| @visulima/secret-scanner | 15,328 | 239 | 649 | 306 |
-| claude-settings-leak-check | 55 | 358 | 435 | 0 |
+| secretlint | 1,957,726 | 85 | 2,497 | 879 |
+| eslint-plugin-no-secrets | 415,201 | 94 | 123 | 8 |
+| gitleaks-secret-scanner | 24,753 | 0 | 352 | 352 |
+| @visulima/secret-scanner | 11,941 | 239 | 649 | 306 |
+| claude-settings-leak-check | 63 | 358 | 447 | 0 |
 | **agent-commit-guard (lab)** _active_ | 0 | - | - | - |
 
 ### python-supply-chain

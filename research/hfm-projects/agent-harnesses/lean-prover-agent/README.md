@@ -81,13 +81,15 @@ Reflective sub-goal decomposition with a lemma store and compiler-guided repair 
 |---|---|
 | model, 4 samples, on the 134 left by every tactic | 18 of 134 (13.4%) |
 | model, 8 more samples, on the 116 still left | 3 of 116 (2.6%) |
-| any of the 52 tactics, then the model (12 samples) | 131 (53.7%) |
-| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 124 (50.8%) |
+| model sketch repaired by the tactic portfolio, 4 new samples, on the 113 still left | 3 of 113 (2 only through repair) |
+| any of the 52 tactics, then the model (16 samples, with repair in the last 4) | 134 (54.9%) |
+| 14 tactics chosen on validation, then the model on what all 52 left (lower bound) | at least 127 (52.0%) |
 
 - **The model proves things the tactics cannot, but few of them.** 18 of 134: 6 `mathd`, 6 hand-written `algebra`, 3 `amc12`, 1 `aime` (`aime_1983_p2`), 1 `induction`, 1 `numbertheory`. No `imo` problem fell. The proofs are short (33–348 characters), mostly a case split or a few `have` steps closed by `nlinarith` or `omega`: one or two structural steps that the fixed round-three recipe did not find. None uses `native_decide`.
 - **More samples barely help.** 7 of the first 18 were found by only one of four attempts, which suggested the remainder was budget-limited. It is not: tripling the samples (8 more per theorem) proved only 3 of the 116 left (`mathd_numbertheory_234`, `amc12b_2002_p7`, `mathd_algebra_170`). The remaining theorems need proof structure this model does not produce whole, not more draws.
-- **The combination is the useful number.** Cheap tactics first, then the model, reaches 53.7% of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 50.8% (the model was not run on the 7 theorems proved only by unchosen tactics).
-- **This is below HFM's 0.566 (by 3 points), and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
+- **Model sketch plus automation finds what neither finds alone.** Round three ([`prover_repair.py`](prover_repair.py), `lean-prover-repair-*`) keeps each new sample as a sketch: every one-line `have` falls back to the tactic portfolio, and every prefix of the model's steps is tried with `all_goals` portfolio after it. 2 of the 3 new proofs came only from repair. In `aime_1994_p3` the model writes out 40 instances of the recurrence but closes wrongly; truncated after those instances, the portfolio's `linarith` finishes. In `algebra_absapbon1pabs…` the model's case split on signs is right and its closing step wrong; the portfolio closes all eight cases. Per model sample, repair proved as many new theorems as 8 extra plain samples did, at no extra model cost.
+- **The combination is the useful number.** Cheap tactics first, then the model, reaches 54.9% of miniF2F-test with free CPU and no paid model. The honest variant, where the tactics are those chosen on validation, is at least 52.0% (the model was not run on the 7 theorems proved only by unchosen tactics).
+- **This is below HFM's 0.566 (by 5 theorems), and not comparable with it.** HFM's problem set is private and its model and budgets differ. The prover model may also have seen miniF2F statements during training.
 
 **What it means for the track.** A harness should call cheap automation first and spend model budget only on what it leaves. On miniF2F that removes about 40% of the theorems before any model call. One more automatic step moves that by under two points, so the remaining theorems need several coordinated steps, not a better closing tactic. That remainder (almost all `imo`, most `aime`, `induction` and `amc12` problems) is where a model has to supply structure.
 

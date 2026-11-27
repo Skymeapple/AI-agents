@@ -110,7 +110,7 @@ def main():
     names = sorted(stmts)[k_shard::n_shards]
     print(f"{len(stmts)} test theorems left by the tactics and the model; this shard tries {len(names)}, {samples} samples each", flush=True)
     from llama_cpp import Llama
-    llm = Llama(model_path=gguf, n_ctx=2048, n_threads=4, verbose=False, seed=200 + k_shard)
+    llm = Llama(model_path=gguf, n_ctx=2048, n_threads=4, verbose=False, seed=200 + k_shard + int(os.environ.get("PROVER_SEED", "0")))
     results = []
     for i, name in enumerate(names):
         s = stmts[name]

@@ -1,0 +1,127 @@
+# 用“四个同构 + 四层路线”逐一处理 54 个项目
+
+本页把用户提出的框架（四个跨领域同构映射、四层路线图）落到 54 个项目上。原则是**把框架当作待检验的假设**：每个项目写出它属于哪个同构、哪一层是瓶颈、已有实验是支持还是反对，以及下一步能做的具体实验。已经跑出的证据都链接到项目目录；本页新增的实验写在最后的“框架检验”一节。
+
+所有数字都是公开数据上的替代实验，不能与 HFM 私有评测上的分数直接比较。
+
+## 一、框架要点（摘要）
+
+| 编号 | 内容 | 在本仓库里怎样检验 |
+|---|---|---|
+| 同构 A | 把 Lean 的“生成 → 验证 → 诊断 → 修复”推广为各领域的“广义验证器” | Lean、Dafny 的模型加验证器实验；运筹类项目的可行性检查加局部修复（LNS） |
+| 同构 B | 测序批次、风场、天区、城市、市场之间的差异，都是“环境变量污染不变机制”，可用同一套不变性方法 | 共享模块 [`_framework/invariance.py`](_framework/invariance.py)，同一套方法、同一个“留一环境”协议，跑在多个项目上 |
+| 同构 C | 钢材滞回、对流失稳与订单簿耗竭、路网拥堵同属路径依赖、临界相变系统，可迁移物理方法 | 在订单簿和交通类项目里加入“历史记忆”特征或状态空间模型，看是否超过只看当前状态的模型 |
+| 同构 D | AI-for-AI 底座（预训练、后训练、智能体框架）反哺现实问题 | 智能体框架实验里学到的规律（例如“先廉价自动化、再调模型”）能否在其他项目复用 |
+| 第 1 层 | 三级验证金字塔：L1 解析/守恒过滤，L2 代理模型，L3 高保真仿真或真实实验 | 晶体生成（便宜筛选再算 DFT）、Lean（策略组合再调模型） |
+| 第 2 层 | 物理/因果骨架 + 神经网络残差 | 风场尾流、冷电池、PM2.5、大坝气体、光学常数 |
+| 第 3 层 | 失败感知的研究树搜索，保留全部失败证据 | 本仓库每个项目保留负结果；终端智能体框架实验检验“在噪声上接受改动”的风险 |
+| 第 4 层 | 预测—决策一体化与跨任务元框架 | 共享骑行、机组组合、组合优化里比较“先预测再优化”和“直接按决策效用训练” |
+
+## 二、已有证据对框架的总体判断
+
+- **同构 A 得到最强支持，但验证器只是必要条件。** Lean：零模型策略组合 42.2%，加开源模型 52.5%，再用策略组合修补模型草稿，合计 54.9%（[Lean 项目](agent-harnesses/lean-prover-agent/README.md)）。修补带来的新增和“多采样 8 次”相当，而且不增加模型调用。Dafny：让模型整段重写程序再验证，82 个程序全部失败（大量格式改动、语法错误）；改为“模型只提议不变式、验证器剪枝”后正在重跑。教训是：广义验证器要配合**受约束的生成接口**，否则验证器只会一再拒绝。
+- **第 2 层（物理骨架 + 残差）是条件性成立。** 支持：风场尾流在未见风场上“物理 + 残差”最好（−29.8%）；冷电池用 Arrhenius 形式外推技能 +0.34 对 +0.15，并在第二块电芯复现。反对：大坝气体模型中线性模型胜过饱和物理形式（1.80 对 2.02）；PM2.5 中物理湿度增长形式没有带来增益。规律是：物理形式要在**外推方向**上起约束作用才有用；在插值范围内，它常常不如灵活模型。
+- **同构 B 还没有直接证据。** 已有跨环境的成功（肺细胞 35 个研究全部提升、测光红移每个天区都提升、PM2.5 跨城市 +10%）来自**更好的输入或更灵活的模型**，不是来自不变性方法。本页第四节用同一套不变性方法在多个项目上直接检验。
+- **同构 C 目前只是类比。** 订单簿深度排序主要来自深度的均值回复（[订单簿项目](quant-finance/order-book-depletion/README.md)），尚无证据表明物理式的路径依赖模型更好。要用实验回答，而不是靠类比。
+- **第 4 层有部分支持。** 机组组合用“分散情景”的决策导向承诺，比调好的备用规则后悔值低 23%；共享骑行中完美预测只多带来 11%，说明预测精度不是唯一瓶颈。组合优化中“部分交易”胜过“漂移触发”，也是按净效用而不是按预测精度选方法。
+
+## 三、54 个项目逐一映射
+
+列含义：**同构**（A–D，可多选）；**瓶颈层**（1–4，最该投入的一层）；**已有证据**；**下一步**（可在免费算力上做的，标“需资源”的需要 GPU、模型密钥或授权数据）。
+
+### 智能体框架（6）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [Lean 定理证明](agent-harnesses/lean-prover-agent/README.md) | A、D | 3 | 策略组合 42.2% → 加开源模型 52.5% → 草稿修补 54.9%；多采样几乎无效 | 第四轮（8 次采样加修补）在跑；需资源：带 Lean 报错的多轮修复、子目标分解 |
+| [Dafny 验证编程](agent-harnesses/dafny-agent/README.md) | A | 1、3 | 规则地板 37.0%；整段重写 0/82 | 模型提议不变式 + Houdini 剪枝 + 一轮修复（在跑） |
+| [ARC 网格](agent-harnesses/arc-grid-agent/README.md) | A | 3 | 34 个算子两层搜索 6.5%/1.0%；拟合例子的程序 30/36 正确 | 验证器（例子一致性）已很准，瓶颈在提议：用模型提议算子组合，例子检验剪枝 |
+| [表格问答](agent-harnesses/table-qa-agent/README.md) | A、D | 3 | 打印最后表达式 1.6% → 27.6%；路由 41.2% | 把执行报错反馈给模型做一轮修复（与 Lean 修补同构） |
+| [论文记忆](agent-harnesses/paper-memory-agent/README.md) | A | 2 | 证据保留 0.09 → 0.46，神谕 0.81 | 用“答题检验”作验证器，迭代修订笔记 |
+| [终端智能体框架](agent-harnesses/terminal-agent-harness/README.md) | D、第 3 层 | 3 | 开发集最好的改动在留出任务上最差（+12 → −12） | 第 3 层的反例：失败感知搜索必须以留出任务种类为准 |
+
+### 天文、生物、地球科学、材料、医学、基础设施（7）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [测光红移](astronomy/photometric-redshift/README.md) | B | 2 | 加消光、尺寸等输入，每个天区误差 −5.8% | 同构 B 检验：六个天区带“留一环境”（本页第四节） |
+| [调控 DNA](biology/regulatory-dna-mpra/README.md) | B、D | 2 | 多任务 + 双链平均 + 集成：0.535 → 0.672 | 把细胞类型当环境，测不变性方法；需资源：Evo 2 嵌入 |
+| [肺细胞注释](biology/lung-cell-annotation/README.md) | B | 2 | 留一研究，35/35 提升（0.684 → 0.786） | 同构 B 的最佳试验场：35 个研究作环境，跑共享模块 |
+| [24 小时天气](earth-science/weather-24h/README.md) | 第 2、4 层 | 2 | 多模型加权融合 −4.6%/−8.4% | 按地区和季节作环境检验融合权重的稳定性 |
+| [晶体生成](materials/crystal-generation/README.md) | A、第 1 层 | 1 | 便宜筛选使单次命中稳定比例 23% → 39% | 三级金字塔：组成筛选 → 机器学习势单点 → DFT；需资源：MatterSim |
+| [肺组织病理](medicine/lung-histology/README.md) | B | 3 | 随机折 99.5%，按近重复分组 93.6% | 以医院/来源作环境；需资源：带病人 ID 的公开切片 |
+| [加权拖期调度](infrastructure/weighted-tardiness/README.md) | A | 3 | 迭代局部搜索 −12.5% | 下界作验证器，衡量剩余差距 |
+
+### 运筹优化（9）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [无线 400 小区 MILP](optimization/wireless-milp/README.md) | A | 3 | HiGHS 后接小邻域修复：差距 2.93% → 1.85% | 已是“验证—修复”；可加学习型邻域选择 |
+| [铁路调度](optimization/rail-dispatch/README.md) | A、第 4 层 | 4 | 前瞻 −10%，用上游延误 −15%；下界低 35% | 用离散事件仿真作验证器，滚动修复调度 |
+| [共享单车再平衡](optimization/bike-rebalancing/README.md) | 第 4 层 | 4 | 基于预测 −16%；完美预测再加 11% | 预测—决策一体化：直接以失败数训练调度规则 |
+| [大坝泄洪](optimization/dam-spill/README.md) | 第 2 层 | 2 | 线性模型胜过饱和物理形式 | 第 2 层的反例，写明物理形式何时有用 |
+| [干线信号](optimization/arterial-signals/README.md) | B、第 4 层 | 4 | 对多日稳健调参，其他日子延误 −17.5% | 把“日子”当环境：稳健优化就是同构 B 的决策版 |
+| [云主机放置](optimization/cloud-vm-placement/README.md) | 第 4 层 | 2 | 真寿命 −13.8%；不知寿命的策略都不胜首次适配 | 用寿命预测直接训练放置效用 |
+| [网约车调度](optimization/ride-hail-dispatch/README.md) | 第 4 层 | 4 | 再定位使服务率 83% → 92% | 已是决策导向；需要更大城市数据复验 |
+| [公交驻站](optimization/bus-holding/README.md) | C | 4 | 按车头时距驻站反而增加 4–12% | 同构 C 的候选：车辆串车是路径依赖现象 |
+| [机组组合](optimization/unit-commitment/README.md) | 第 4 层 | 4 | 分散情景承诺，后悔值 −23% | 决策导向情景生成 |
+
+### 物理（10，两个钢材项目共用一个实验）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [冷电池电压](physics/cold-battery-voltage/README.md) | 第 2 层 | 2 | Arrhenius 形式外推 +0.34 对 +0.15，第二电芯复现 | 第 2 层的正例 |
+| [波浪能资源](physics/wave-energy-resource/README.md) | B | 2 | 加邻近浮标：误差 29% → 19% | 浮标站点作环境 |
+| [钢材历史迁移](physics/steel-history-transfer/README.md) | C | 2 | 供体库误差 −73% | 同构 C 的源头：滞回记忆模型 |
+| [光学常数](physics/optical-constants/README.md) | 第 2 层 | 2 | 只用因果约束 +0.02~0.11；同材料参考库 +0.35 | 信息比约束更值钱 |
+| [钢材由拉伸预测循环](physics/steel-cyclic-from-tension/README.md) | C、第 1 层 | 1 | 再做一次 ±2% 循环试验，剩余差距收窄 71% | “花钱做一次实验”是 L3 |
+| [对流预报](physics/rayleigh-benard-forecast/README.md) | C | 2 | 无网络地板只比持续性好 9–16% | 需资源：神经算子 |
+| [抗制造偏差镀膜](physics/robust-ar-coating/README.md) | A、第 1 层 | 1 | 按稳健分数选设计 −14.5% | 解析薄膜模型就是 L1 验证器 |
+| [PM2.5 校准迁移](physics/pm25-calibration/README.md) | B、第 2 层 | 2 | 学习型校准跨城市 +10%、跨站点 +29%；物理湿度形式无增益 | 同构 B 检验（本页第四节） |
+| [对流场重建](physics/rayleigh-benard-reconstruction/README.md) | 第 2 层 | 2 | 由流动方程算压力，压力误差 −36% | 第 2 层的正例 |
+| [风场尾流](physics/wind-farm-wakes/README.md) | B、第 2 层 | 2 | 未见风场：物理 + 残差 −29.8% 最好 | 第 2 层与同构 B 的交汇点 |
+
+### 后训练（7）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [SynLogic](post-training/synlogic-training/README.md) | A、D | 3 | 3B 模型直接 4.8%，写程序 1.5%；经典搜索更强 | 每类谜题都有检查器：生成—验证—修复 |
+| [EmbSpatial](post-training/embspatial-training/README.md) | 第 1 层 | 1 | 不看图 89.1%，基准有捷径 | 先修评测再训练 |
+| [FabNER](post-training/fabner-extraction/README.md) | B | 2 | 词典 + CRF 86.2 F1 | 不同制造子领域作环境 |
+| [MapQA](post-training/mapqa-training/README.md) | 第 1 层 | 1 | 不看地图约 20% | 先修评测 |
+| [ScienceWorld](post-training/scienceworld-training/README.md) | A、D | 3 | 3B 模型 12.9；对齐合法动作 16.5 | 合法动作列表就是验证器：约束生成 |
+| [TOPv2](post-training/topv2-parsing/README.md) | A | 2 | 词级标注 38.5% | 语法检查作验证器约束解码 |
+| [智能体 RL 配方](post-training/agentic-rl-recipes/README.md) | D | 3 | 窄生成器域内 +16、域外 −30 | 同构 B 的训练版：任务分布即环境 |
+
+### 预训练（7）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [循环预训练 v1](pretraining/looped-pretraining-v1/README.md) | D | 3 | 混合循环次数有代价 | 需资源：放大验证 |
+| [循环预训练 v2](pretraining/looped-pretraining-v2/README.md) | B | 3 | 提高 FineWeb 比例使 DCLM 变差 | 数据源即环境：最差域目标（group DRO 式混合） |
+| [架构池](pretraining/pretraining-architecture-pool/README.md) | B | 3 | 0.6/0.2/0.2 使四域平均变差 | 同上 |
+| [智能体预训练](pretraining/agentic-pretraining/README.md) | D | 3 | 三项改动各 0.03–0.04，叠加有交互 | 需资源 |
+| [固定推理成本](pretraining/pretraining-fixed-inference-cost/README.md) | D | 3 | 合理形状差距只有 0.017 | 需资源 |
+| [固定算力循环](pretraining/looped-pretraining-fixed-compute/README.md) | D | 3 | 等算力下循环输 0.026 | 需资源 |
+| [从零预训练](pretraining/pretraining-from-scratch/README.md) | 第 3 层 | 3 | 5–12% 长度的短跑排序相关只有 0.52 | 第 3 层：剪枝要用四分之一长度 |
+
+### 量化金融（8）
+
+| 项目 | 同构 | 瓶颈层 | 已有证据 | 下一步 |
+|---|---|---|---|---|
+| [S&P 活跃度排序](quant-finance/sp500-activity-ranking/README.md) | B | 2 | 线性模型 0.52；动量 +0.002 | 币种/日期作环境 |
+| [财报事件](quant-finance/filing-event-strategy/README.md) | A | 1 | 奖励恒为 1.0，评测无法区分方法 | 先修评测；需资源：SEC 联系地址或价格数据 |
+| [订单簿耗竭](quant-finance/order-book-depletion/README.md) | C | 2 | 0.32–0.59，主要来自均值回复 | 同构 C 检验：加入耗竭历史记忆特征 |
+| [A 股日内叠加](quant-finance/ashare-intraday-overlay/README.md) | 第 4 层 | 4 | 毛收益约 +75 bp/天，2 bp 成本后为负 | 按净收益直接训练（决策导向） |
+| [跨场所路由](quant-finance/cross-venue-routing/README.md) | 第 4 层 | 4 | 每单省 0.7 bp（上界 0.77） | 已接近上界 |
+| [永续合约策略](quant-finance/perpetual-futures-strategy/README.md) | B | 3 | 信号族可持续，精调参数不可持续 | 时期作环境：只保留跨期不变的信号 |
+| [订单簿执行](quant-finance/order-book-execution/README.md) | C、第 4 层 | 4 | 挂单比 TWAP 差 0.7–0.85 bp | 冲击模型作验证器 |
+| [含摩擦组合](quant-finance/portfolio-with-frictions/README.md) | 第 4 层 | 4 | 部分交易使夏普 0.50 → 0.60 | 直接按净效用优化交易速度 |
+
+## 四、框架检验（本轮新增实验）
+
+1. **同构 B：同一套不变性方法跨项目。** 共享模块 [`_framework/invariance.py`](_framework/invariance.py) 对任意 (X, y, 环境) 表比较七种方法：普通 ERM、环境等权、group DRO、环境内标准化、神经网络 ERM、V-REx、IRM。协议统一为“留一环境”，惩罚强度只在训练环境内选择。适配器 [`_framework/run_invariance.py`](_framework/run_invariance.py) 目前接入 PM2.5（城市、站点）和测光红移（六个天区带）。结果见下方，跑完后填写。
+2. **同构 A：Dafny 的“提议—剪枝—修复”。** 见 Dafny 项目。
+3. **同构 A + 第 3 层：Lean 草稿修补。** 见 Lean 项目。
+
+结果待填。

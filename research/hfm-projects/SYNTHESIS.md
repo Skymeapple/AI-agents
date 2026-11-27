@@ -349,6 +349,7 @@ CPU, and revisited two earlier results.
 | Order-book depth ranking | Public crypto books | Spearman 0.32–0.59 on a test day; depth mean reversion gives 0.23–0.42; trees ≈ linear. |
 | Order execution | Public crypto books | Passive placement loses 0.7–0.85 bp to TWAP on tight books (adverse selection); an imbalance rule recovers two-thirds; savings exist only with a wide spread and are under 0.1 bp. |
 | Activity-surprise ranking | Public crypto trades | Linear model 0.52 Spearman, reversion alone 0.38; HFM's momentum covariate +0.002; boosted trees worse than linear. |
+| Intraday overlay | Public crypto minute data | Reversal earns ~75 bp/day gross; 2 bp costs turn every overlay negative; tenfold shrinkage is within noise. Not trading is best. |
 
 Three points for the conclusions of this review:
 

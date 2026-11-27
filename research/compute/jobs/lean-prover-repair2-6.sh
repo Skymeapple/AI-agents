@@ -1,4 +1,4 @@
-# Prover round 4: 8 new samples, sketches repaired with the tactic portfolio, on theorems left by tactics and rounds 1-3: shard 6 of 10.
+# (rerun after runner shutdown) Prover round 4: 8 new samples, sketches repaired with the tactic portfolio, on theorems left by tactics and rounds 1-3: shard 6 of 10.
 set -e
 curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
 export PATH="$HOME/.elan/bin:$PATH"

@@ -76,8 +76,8 @@ Where each project stands, and what it still needs before research can proceed. 
 | Project | Still missing |
 | --- | --- |
 | [Intraday Trading Overlay for A-Share Holdings](quant-finance/ashare-intraday-overlay/README.md) | Licensed intraday data, or a redefinition on daily data. |
-| [Nasdaq Ten-Level Order Book Depth Exhaustion Ranking](quant-finance/order-book-depletion/README.md) | Licensed order-book history. |
-| [Execution Policy Development from Ten-Level Order Book Data](quant-finance/order-book-execution/README.md) | Licensed order-book history. |
+| [Nasdaq Ten-Level Order Book Depth Exhaustion Ranking](quant-finance/order-book-depletion/README.md) | A stand-in on public crypto order books has run. Licensed order-book history. |
+| [Execution Policy Development from Ten-Level Order Book Data](quant-finance/order-book-execution/README.md) | A stand-in on public crypto order books has run. Licensed order-book history. |
 | [S&P 500 Minute Trading Activity Ranking](quant-finance/sp500-activity-ranking/README.md) | Licensed minute bars. |
 
 ## Blocked on unpublished task details (1)

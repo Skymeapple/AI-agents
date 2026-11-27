@@ -346,6 +346,8 @@ CPU, and revisited two earlier results.
 | Crystal pre-screening | Public DFT stand-in, held-out chemical systems | A learned screen raises the stable share of a fixed budget 1.4–1.7× (23% → 39% on the hull for one pick) and transfers to unseen chemical families. Diversity by formula trades stable share for unique compositions. |
 | RL on procedural tasks with tests | Toy-scale GRPO | Narrow generator: +16 points in-distribution, −30 on broader tasks, benchmark halved. No recipe improves longer compositions. Dynamic sampling and rejection-sampling fine-tuning avoid the in-distribution loss. |
 | Histology patch leakage | Public LC25000, CPU | Random folds 99.5%; grouping augmented copies of one image drops adenocarcinoma vs squamous to 93.6% (error ×12). Near-perfect patch benchmarks largely measure leakage. |
+| Order-book depth ranking | Public crypto books | Spearman 0.32–0.59 on a test day; depth mean reversion gives 0.23–0.42; trees ≈ linear. |
+| Order execution | Public crypto books | Passive placement loses 0.7–0.85 bp to TWAP on tight books (adverse selection); an imbalance rule recovers two-thirds; savings exist only with a wide spread and are under 0.1 bp. |
 
 Three points for the conclusions of this review:
 

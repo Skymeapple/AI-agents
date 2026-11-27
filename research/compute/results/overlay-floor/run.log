@@ -1,0 +1,49 @@
+job: overlay-floor
+started: 2026-11-27T03:10:35Z
+cores: 4, memory: 15 GB
+  BTCUSDT: total volume $577.08bn, trades 110150733
+  ETHUSDT: total volume $208.37bn, trades 71030564
+  SOLUSDT: total volume $94.94bn, trades 66926841
+  XRPUSDT: total volume $15.11bn, trades 22212755
+  DOGEUSDT: total volume $31.79bn, trades 81537642
+  ADAUSDT: total volume $5.24bn, trades 13746894
+  AVAXUSDT: total volume $7.72bn, trades 18143037
+  LINKUSDT: total volume $5.62bn, trades 18793991
+  DOTUSDT: total volume $2.92bn, trades 13058112
+  LTCUSDT: total volume $4.42bn, trades 9645871
+  BCHUSDT: total volume $7.19bn, trades 13377772
+  TRXUSDT: total volume $0.51bn, trades 2727660
+  NEARUSDT: total volume $12.46bn, trades 28437659
+  ATOMUSDT: total volume $1.99bn, trades 7740846
+  UNIUSDT: total volume $2.69bn, trades 11683104
+  FILUSDT: total volume $2.11bn, trades 10478752
+  APTUSDT: total volume $3.57bn, trades 15614886
+  ARBUSDT: total volume $4.98bn, trades 17726775
+  OPUSDT: total volume $5.05bn, trades 24167402
+  SUIUSDT: total volume $5.09bn, trades 14311838
+  INJUSDT: total volume $5.96bn, trades 21876026
+  AAVEUSDT: total volume $0.98bn, trades 6309434
+  ETCUSDT: total volume $2.95bn, trades 11730113
+  XLMUSDT: total volume $0.47bn, trades 3543536
+merged 24
+members 24; fitting intervals 17280, test intervals 6047; CV ridge penalty 1.78e+04
+ridge x1 coefficients (per sd): ret5 -1.12 bp, ret30 -0.22 bp, ret120 +0.06 bp, volsurp -0.02 bp
+
+===== cost 0.0 bp per unit turnover =====
+RESULT cost 0.0 ridge x1       k 2.0 band 0.0: test net +73.63 bp/day (se 12.11, positive days 1.00); gross +73.63; fitting-days net +76.63
+RESULT cost 0.0 ridge x10      k 2.0 band 0.5: test net +74.97 bp/day (se 10.62, positive days 1.00); gross +74.97; fitting-days net +76.60
+RESULT cost 0.0 ridge x100     k 2.0 band 0.5: test net +74.24 bp/day (se 9.96, positive days 0.95); gross +74.24; fitting-days net +73.85
+RESULT cost 0.0 reversal sign  k 2.0 band 1.0: test net +79.61 bp/day (se 12.86, positive days 0.95); gross +79.61; fitting-days net +84.86
+
+===== cost 2.0 bp per unit turnover =====
+RESULT cost 2.0 ridge x1       k 0.25 band 1.0: test net -6.82 bp/day (se 5.10, positive days 0.33); gross +1.82; fitting-days net +0.92
+RESULT cost 2.0 ridge x10      k 0.25 band 1.0: test net -4.62 bp/day (se 4.72, positive days 0.43); gross +3.24; fitting-days net +1.79
+RESULT cost 2.0 ridge x100     k 0.25 band 1.0: test net -6.66 bp/day (se 5.87, positive days 0.48); gross -0.54; fitting-days net +3.47
+RESULT cost 2.0 reversal sign  k 0.25 band 1.0: test net +0.00 bp/day (se 0.00, positive days 0.00); gross +0.00; fitting-days net +0.11
+
+===== cost 5.0 bp per unit turnover =====
+RESULT cost 5.0 ridge x1       k 0.25 band 1.0: test net -19.77 bp/day (se 5.65, positive days 0.19); gross +1.82; fitting-days net -8.59
+RESULT cost 5.0 ridge x10      k 0.25 band 1.0: test net -16.41 bp/day (se 5.13, positive days 0.19); gross +3.24; fitting-days net -6.98
+RESULT cost 5.0 ridge x100     k 0.25 band 1.0: test net -15.82 bp/day (se 5.84, positive days 0.24); gross -0.54; fitting-days net -3.41
+RESULT cost 5.0 reversal sign  k 0.25 band 1.0: test net +0.00 bp/day (se 0.00, positive days 0.00); gross +0.00; fitting-days net +0.11
+finished: 2026-11-27T04:24:59Z, exit code 0

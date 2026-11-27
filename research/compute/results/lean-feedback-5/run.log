@@ -1,0 +1,23 @@
+job: lean-feedback-5
+started: 2026-11-27T11:41:41Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf
+Decompressing 7335 file(s)
+Unpacked in 14539 ms
+Completed successfully!
+115 test theorems not proved by the audited results; this shard tries 11
+  [1/11] aime_1991_p9: fresh 0/4, feedback 0/4 (290s)
+  [2/11] algebra_amgm_sumasqdivbgeqsuma: fresh 0/4, feedback 0/4 (354s)
+  [3/11] amc12_2001_p21: fresh 0/4, feedback 0/4 (460s)
+  [4/11] amc12a_2020_p25: fresh 0/4, feedback 0/4 (259s)
+  [5/11] amc12a_2021_p8: fresh 0/4, feedback 0/4 (472s)
+  [6/11] imo_1960_p2: fresh 0/4, feedback 0/4 (334s)
+  [7/11] imo_1983_p6: fresh 0/4, feedback 0/4 (486s)
+  [8/11] induction_pprime_pdvdapowpma: fresh 0/4, feedback 0/4 (301s)
+  [9/11] mathd_algebra_276: fresh 0/4, feedback 0/4 (207s)
+  [10/11] mathd_numbertheory_227: fresh 0/4, feedback 0/4 (225s)
+  [11/11] mathd_numbertheory_5: fresh 0/4, feedback 0/4 (358s)
+RESULT shard 5/10: 0 of 11 proved; by fresh samples 0, only by feedback 0
+finished: 2026-11-27T12:45:46Z, exit code 0

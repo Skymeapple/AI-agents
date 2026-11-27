@@ -1,0 +1,157 @@
+[
+{
+"name": "aime_1983_p1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 332
+},
+{
+"name": "algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 404
+},
+{
+"name": "amc12_2000_p12",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 269
+},
+{
+"name": "amc12a_2020_p10",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 164
+},
+{
+"name": "amc12a_2021_p25",
+"proved": true,
+"plain": false,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "prefix 11",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  have h\u2087 := h\u2081 5\n  have h\u2088 := h\u2081 6\n  have h\u2089 := h\u2081 7\n  have h\u2081\u2080 := h\u2081 8\n  have h\u2081\u2081 := h\u2081 9\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 10",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  have h\u2087 := h\u2081 5\n  have h\u2088 := h\u2081 6\n  have h\u2089 := h\u2081 7\n  have h\u2081\u2080 := h\u2081 8\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 9",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  have h\u2087 := h\u2081 5\n  have h\u2088 := h\u2081 6\n  have h\u2089 := h\u2081 7\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 8",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  have h\u2087 := h\u2081 5\n  have h\u2088 := h\u2081 6\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 7",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  have h\u2087 := h\u2081 5\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 6",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  have h\u2086 := h\u2081 4\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 5",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  have h\u2085 := h\u2081 3\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 4",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  have h\u2084 := h\u2081 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 3",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  have h\u2083 := h\u2081 1\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 2",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  have h\u2082 := h\u2081 0\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 1",
+"proof": "  norm_num [Nat.divisors, Finset.card] at h\u2080\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg 1]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 651
+},
+{
+"name": "imo_1959_p1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 225
+},
+{
+"name": "imo_1984_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 167
+},
+{
+"name": "induction_sumkexp3eqsumksq",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 131
+},
+{
+"name": "mathd_algebra_320",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 301
+},
+{
+"name": "mathd_numbertheory_321",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 90
+},
+{
+"name": "mathd_numbertheory_764",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 342
+}
+]

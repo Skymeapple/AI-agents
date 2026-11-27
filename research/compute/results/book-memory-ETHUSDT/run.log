@@ -1,0 +1,26 @@
+job: book-memory-ETHUSDT
+started: 2026-11-27T08:44:38Z
+cores: 4, memory: 15 GB
+total 543128
+drwxr-xr-x 2 runner runner      4096 Nov 27 08:44 .
+drwxr-xr-x 5 runner runner      4096 Nov 27 08:44 ..
+-rw-r--r-- 1 runner runner 167365340 Nov 27 08:44 2024-06-03_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 157936114 Nov 27 08:44 2024-06-04_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 151032740 Nov 27 08:44 2024-06-05_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  26375205 Nov 27 08:44 ETHUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  25634393 Nov 27 08:44 ETHUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  27798773 Nov 27 08:44 ETHUSDT2024-06-05.csv.gz
+ETHUSDT: 33832 fitting and 16916 test bucket-sides
+RESULT ETHUSDT state                ridge    Spearman +0.570; top-decile hit 0.235
+RESULT ETHUSDT state                boosted  Spearman +0.578; top-decile hit 0.248
+RESULT ETHUSDT + lags               ridge    Spearman +0.586; top-decile hit 0.243
+RESULT ETHUSDT + lags               boosted  Spearman +0.585; top-decile hit 0.255
+RESULT ETHUSDT + drawdown/tipping   ridge    Spearman +0.593; top-decile hit 0.249
+RESULT ETHUSDT + drawdown/tipping   boosted  Spearman +0.598; top-decile hit 0.257
+RESULT ETHUSDT + flow/volatility    ridge    Spearman +0.580; top-decile hit 0.244
+RESULT ETHUSDT + flow/volatility    boosted  Spearman +0.590; top-decile hit 0.271
+RESULT ETHUSDT + lags + flow/vol    ridge    Spearman +0.592; top-decile hit 0.256
+RESULT ETHUSDT + lags + flow/vol    boosted  Spearman +0.593; top-decile hit 0.262
+RESULT ETHUSDT + memory (all)       ridge    Spearman +0.602; top-decile hit 0.262
+RESULT ETHUSDT + memory (all)       boosted  Spearman +0.602; top-decile hit 0.261
+finished: 2026-11-27T08:46:38Z, exit code 0

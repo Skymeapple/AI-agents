@@ -1,0 +1,97 @@
+job: synlogic-direct-1
+started: 2026-11-26T04:16:05Z
+cores: 4, memory: 15 GB
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='pypi.org', port=443): Read timed out. (read timeout=15)")': /simple/llama-cpp-python/
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+1 done, 0 correct; campsite: False (stop); 52s
+2 done, 0 correct; campsite: False (stop); 53s
+3 done, 0 correct; campsite: False (stop); 38s
+4 done, 1 correct; mathador: True (stop); 17s
+5 done, 1 correct; mathador: False (length); 46s
+6 done, 1 correct; mathador: False (stop); 12s
+7 done, 1 correct; mathador: False (stop); 13s
+8 done, 1 correct; skyscraper_puzzle: False (stop); 53s
+9 done, 1 correct; skyscraper_puzzle: False (stop); 51s
+10 done, 1 correct; skyscraper_puzzle: False (stop); 39s
+11 done, 1 correct; zebra_puzzle: False (length); 73s
+12 done, 1 correct; zebra_puzzle: False (length); 52s
+13 done, 1 correct; zebra_puzzle: False (stop); 37s
+14 done, 1 correct; cipher: False (stop); 40s
+15 done, 1 correct; cipher: False (stop); 41s
+16 done, 1 correct; cipher: False (stop); 35s
+17 done, 1 correct; cipher: False (stop); 44s
+18 done, 1 correct; arc_agi: False (stop); 26s
+19 done, 1 correct; arc_agi: False (too long); 0s
+20 done, 1 correct; arc_agi: False (length); 68s
+21 done, 1 correct; web_of_lies: False (length); 57s
+22 done, 1 correct; web_of_lies: False (length); 58s
+23 done, 1 correct; web_of_lies: False (length); 56s
+24 done, 1 correct; cryptarithm: False (length); 48s
+25 done, 1 correct; cryptarithm: False (length); 48s
+26 done, 1 correct; cryptarithm: False (stop); 44s
+27 done, 1 correct; cryptarithm: False (length); 48s
+28 done, 1 correct; star_placement_puzzle: False (stop); 22s
+29 done, 1 correct; star_placement_puzzle: False (stop); 24s
+30 done, 1 correct; star_placement_puzzle: False (stop); 28s
+31 done, 1 correct; sudoku: False (stop); 46s
+32 done, 1 correct; sudoku: False (length); 52s
+33 done, 1 correct; sudoku: False (length); 52s
+34 done, 1 correct; math_path: False (length); 49s
+35 done, 1 correct; math_path: False (stop); 25s
+36 done, 1 correct; math_path: False (length); 49s
+37 done, 1 correct; math_path: False (length); 48s
+38 done, 1 correct; survo: False (length); 53s
+39 done, 1 correct; survo: False (length); 50s
+40 done, 1 correct; survo: False (length); 52s
+41 done, 1 correct; calcudoko: False (length); 55s
+42 done, 1 correct; calcudoko: False (length); 55s
+43 done, 1 correct; calcudoko: False (length); 55s
+44 done, 1 correct; dyck_language: False (stop); 21s
+45 done, 1 correct; dyck_language: False (stop); 20s
+46 done, 1 correct; dyck_language: False (stop); 18s
+47 done, 1 correct; dyck_language: False (stop); 12s
+48 done, 1 correct; dyck_language_errors: False (stop); 28s
+49 done, 1 correct; dyck_language_errors: False (length); 47s
+50 done, 1 correct; dyck_language_errors: False (length); 48s
+51 done, 1 correct; dyck_language_reasoning_errors: False (stop); 28s
+52 done, 1 correct; dyck_language_reasoning_errors: False (stop); 23s
+53 done, 1 correct; dyck_language_reasoning_errors: False (stop); 19s
+54 done, 1 correct; object_properties: False (length); 79s
+55 done, 1 correct; object_properties: False (length); 65s
+56 done, 1 correct; object_properties: False (length); 71s
+57 done, 1 correct; object_properties: False (length); 74s
+58 done, 1 correct; futoshiki: False (length); 57s
+59 done, 1 correct; futoshiki: False (length); 56s
+60 done, 1 correct; futoshiki: False (length); 52s
+61 done, 1 correct; buggy_tables: False (stop); 47s
+62 done, 1 correct; buggy_tables: False (stop); 40s
+63 done, 1 correct; buggy_tables: False (stop); 41s
+64 done, 1 correct; word_sorting: False (length); 47s
+65 done, 1 correct; word_sorting: False (stop); 40s
+66 done, 1 correct; word_sorting: False (length); 46s
+67 done, 1 correct; word_sorting: False (stop); 35s
+68 done, 1 correct; numbrix: False (stop); 46s
+69 done, 1 correct; numbrix: False (stop); 57s
+70 done, 1 correct; numbrix: False (stop); 58s
+71 done, 1 correct; word_sorting_mistake: False (stop); 138s
+72 done, 2 correct; word_sorting_mistake: True (stop); 108s
+73 done, 2 correct; word_sorting_mistake: False (stop); 66s
+74 done, 2 correct; time_sequence: False (length); 95s
+75 done, 2 correct; time_sequence: False (length); 76s
+76 done, 2 correct; time_sequence: False (length); 90s
+77 done, 2 correct; time_sequence: False (length); 80s
+78 done, 2 correct; operation: False (stop); 26s
+79 done, 3 correct; operation: True (stop); 24s
+80 done, 4 correct; operation: True (stop); 16s
+81 done, 4 correct; number_wall: False (stop); 30s
+82 done, 4 correct; number_wall: False (stop); 20s
+83 done, 4 correct; number_wall: False (stop); 29s
+84 done, 4 correct; space_reasoning: False (stop); 17s
+85 done, 5 correct; space_reasoning: True (stop); 29s
+86 done, 6 correct; space_reasoning: True (stop); 16s
+87 done, 6 correct; space_reasoning: False (stop); 17s
+88 done, 6 correct; boolean_expressions: False (length); 53s
+89 done, 6 correct; boolean_expressions: False (length); 55s
+90 done, 6 correct; boolean_expressions: False (length); 59s
+90 /home/runner/work/AI-agents/AI-agents/research/compute/results/synlogic-direct-1/direct-1.jsonl
+finished: 2026-11-26T05:25:04Z, exit code 0

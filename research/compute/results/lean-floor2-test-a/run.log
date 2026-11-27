@@ -1,0 +1,46 @@
+job: lean-floor2-test-a
+started: 2026-11-26T15:55:33Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 23215 ms
+Completed successfully!
+{'test': 244}
+test  rfl                                                          proves  24  | 'floor_test_0_205_0.lean:10:15: error: Tactic `rfl` failed: The left-hand side\n  x\nis not definitionally equal to the rig'
+test  norm_num                                                     proves  23  | "floor_test_1_205_0.lean:10:12: error: unsolved goals\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 % 100 = 1\n⊢ x = 89\n'mathd_numbertheor"
+test  simp                                                         proves  17  | "floor_test_2_205_0.lean:10:15: error: `simp` made no progress\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nfloor"
+test  ring                                                         proves  25  | 'Try this:\n  ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note '
+test  linarith                                                     proves  28  | 'floor_test_4_205_0.lean:10:15: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 % '
+test  nlinarith                                                    proves  32  | 'floor_test_5_205_0.lean:10:15: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 % '
+test  omega                                                        proves  30  | "'mathd_numbertheory_34' depends on axioms: [propext, Quot.sound]\nfloor_test_6_205_0.lean:17:23: error: omega could not p"
+test  positivity                                                   proves   0  | "floor_test_7_205_0.lean:10:15: error: not a positivity goal\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nfloor_t"
+test  aesop                                                        proves  33  | "floor_test_8_205_0.lean:10:15: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  x : ℕ\n  h₀ : x < 100\n  h₁ "
+test  simp_all                                                     proves  22  | "floor_test_9_205_0.lean:10:15: error: simp_all made no progress\n'mathd_numbertheory_34' depends on axioms: [sorryAx]\nflo"
+test  bound                                                        proves  49  | 'floor_test_11_205_0.lean:10:15: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_test_11_205_0.le'
+test  intros; norm_num [*]                                         proves  36  | "floor_test_12_205_0.lean:10:12: error: unsolved goals\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 % 100 = 1\n⊢ x = 89\n'mathd_numbertheo"
+test  grind                                                        proves  74 ['imo_1977_p6: exit 134', 'imo_1981_p6: exit 134', 'mathd_numbertheory_328: exit 134'] | "'mathd_numbertheory_34' depends on axioms: [propext, Classical.choice, Quot.sound]\nfloor_test_10_205_0.lean:17:23: error"
+test  norm_num at *; linarith                                      proves  43  | 'floor_test_14_205_0.lean:10:30: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 %'
+test  intros; nlinarith [sq_nonneg (0:ℝ)]                          proves  32  | 'floor_test_13_205_0.lean:10:23: error: linarith failed to find a contradiction\ncase h1.h\nx : ℕ\nh₀ : x < 100\nh₁ : x * 9 %'
+test  field_simp; ring                                             proves  13  | "floor_test_15_205_0.lean:10:15: error: field_simp made no progress on goal\n'mathd_numbertheory_34' depends on axioms: [s"
+test  intros; omega                                                proves  30  | "floor_test_16_205_0.lean:10:15: warning: 'intros' tactic does nothing\n\nNote: This linter can be disabled with `set_optio"
+
+RESULT test: 244 theorems; any single tactic proves 96 (39.3%)
+RESULT   grind                                                         74   new beyond the tactics above: 74
+RESULT   bound                                                         49   new beyond the tactics above: 10
+RESULT   norm_num at *; linarith                                       43   new beyond the tactics above: 2
+RESULT   intros; norm_num [*]                                          36   new beyond the tactics above: 5
+RESULT   aesop                                                         33   new beyond the tactics above: 2
+RESULT   nlinarith                                                     32   new beyond the tactics above: 1
+RESULT   intros; nlinarith [sq_nonneg (0:ℝ)]                           32   new beyond the tactics above: 0
+RESULT   omega                                                         30   new beyond the tactics above: 2
+RESULT   intros; omega                                                 30   new beyond the tactics above: 0
+RESULT   linarith                                                      28   new beyond the tactics above: 0
+RESULT   ring                                                          25   new beyond the tactics above: 0
+RESULT   rfl                                                           24   new beyond the tactics above: 0
+RESULT   norm_num                                                      23   new beyond the tactics above: 0
+RESULT   simp_all                                                      22   new beyond the tactics above: 0
+RESULT   simp                                                          17   new beyond the tactics above: 0
+RESULT   field_simp; ring                                              13   new beyond the tactics above: 0
+RESULT   positivity                                                     0   new beyond the tactics above: 0
+RESULT   by source: aime 3/15, algebra 1/18, amc12 1/6, amc12a 3/24, amc12b 5/15, imo 0/19, imosl 0/1, induction 0/8, mathd 83/130, numbertheory 0/8
+finished: 2026-11-26T16:05:06Z, exit code 0

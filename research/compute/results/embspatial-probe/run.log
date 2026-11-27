@@ -1,0 +1,54 @@
+job: embspatial-probe
+started: 2026-11-26T05:36:39Z
+cores: 4, memory: 15 GB
+EmbSpatial [('Phineas476/EmbSpatial-Bench', 2224), ('FlagEval/EmbSpatial-Bench', 3296), ('advaitgupta/embspatial-mcq', 62), ('Zray26/embspatial-bench', 113), ('advaitgupta/embspatial-mcq-1000', 56), ('ch-min/EmbSpatial-Bench-tsv', 258), ('lifuguan/EmbSpatial-Modified', 80), ('wangzhelingmengs/dex-embspatial', 3), ('wangzhelingmengs/dex_embspatial', 13), ('hunarbatra/embspatial-bench-eval', 85), ('thomas-yanxin/embspatial-bench-mirror', 60), ('amalia-llm/EmbSpatial-Bench-PT', 72)]
+  Phineas476/EmbSpatial-Bench {}
+  FlagEval/EmbSpatial-Bench {'default': {'test': 1}}
+    default test 1 files; first file bytes 408685444
+    (3640, 10) ['data_source', 'scene_id', 'question_id', 'question', 'relation', 'image', 'answer_options', 'answer', 'objects', 'image_base64']
+      data_source str mp3d
+        values {'ai2thor': 1239, 'mp3d': 1201, 'scannet': 1200}
+      scene_id str q9vSo1VnCiC
+      question_id str mp3d_0
+      question str Among the listed objects, which one is closest to your current location in the image?
+      relation str close
+        values {'right': 620, 'left': 616, 'close': 612, 'under': 602, 'above': 596, 'far': 594}
+      image dict (binary)
+      answer_options ndarray ['table' 'towel' 'door' 'basket']
+      answer int32 3
+        values {0: 958, 3: 918, 1: 912, 2: 852}
+      objects dict (binary)
+      image_base64 str /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQgJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAHgAoADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUF
+  advaitgupta/embspatial-mcq {'default': {'train': 3}}
+    default train 3 files; first file bytes 341239427
+    (1214, 7) ['image', 'question', 'options', 'data_source', 'relation', 'answer', 'objects']
+      image dict (binary)
+      question str Among the listed objects, which one is closest to your current location in the image?
+      options ndarray ['table' 'towel' 'door' 'basket']
+      data_source str mp3d
+        values {'mp3d': 1201, 'ai2thor': 13}
+      relation str close
+        values {'left': 212, 'right': 211, 'close': 206, 'under': 200, 'far': 195, 'above': 190}
+      answer int64 3
+        values {3: 309, 0: 308, 2: 304, 1: 293}
+      objects ndarray [{'name': 'table', 'bbox': array([103, 296, 106,  52])}
+ {'name': 'towel', 'bbox': array([ 83, 350,  85,  69])}
+ {'name': 'door', 'bbox': array([100,  94, 178, 308])}
+ {'name': 'basket', 'bbox': array([ 45, 374, 170, 106])}]
+  Zray26/embspatial-bench {'default': {'test': 1}}
+    default test 1 files; first file bytes 175217102
+    (3640, 4) ['question_id', 'image', 'question', 'answer_letter']
+      question_id str mp3d_0
+      image dict (binary)
+      question str Among the listed objects, which one is closest to your current location in the image?
+Options:
+A. table
+B. towel
+C. door
+D. basket
+      answer_letter str D
+        values {'A': 958, 'D': 918, 'B': 912, 'C': 852}
+MapQA [('nimapourjafar/mm_mapqa', 3176), ('elliot-mllm/mapqa_cleaned', 722)]
+  nimapourjafar/mm_mapqa {'default': {'train': 7}}
+  elliot-mllm/mapqa_cleaned {'default': {'train': 9}}
+finished: 2026-11-26T05:36:53Z, exit code 0

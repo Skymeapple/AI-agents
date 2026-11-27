@@ -1,0 +1,8 @@
+job: shape-tiny-16x136-s0
+started: 2026-11-26T06:33:24Z
+cores: 4, memory: 15 GB
+  16x136 seed 0 step 1500: held-out 1.4055 bits/byte, 1623s
+  16x136 seed 0 step 3000: held-out 1.2041 bits/byte, 3244s
+  16x136 seed 0 step 4500: held-out 1.1055 bits/byte, 4872s
+RESULT layers 16 width 136 seed 0: parameters 3.64M, per-token compute 12*L*D^2 = 3.55M, steps 6000, held-out 1.0798 bits/byte, train time 6501s
+finished: 2026-11-26T08:22:17Z, exit code 0

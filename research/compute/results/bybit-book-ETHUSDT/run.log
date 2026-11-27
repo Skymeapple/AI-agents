@@ -1,0 +1,27 @@
+job: bybit-book-ETHUSDT
+started: 2026-11-27T02:56:02Z
+cores: 4, memory: 15 GB
+total 543132
+drwxr-xr-x 2 runner runner      4096 Nov 27 02:56 .
+drwxr-xr-x 5 runner runner      4096 Nov 27 02:56 ..
+-rw-r--r-- 1 runner runner 167365340 Nov 27 02:56 2024-06-03_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 157936114 Nov 27 02:56 2024-06-04_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 151032740 Nov 27 02:56 2024-06-05_ETHUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  26375205 Nov 27 02:56 ETHUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  25634393 Nov 27 02:56 ETHUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  27798773 Nov 27 02:56 ETHUSDT2024-06-05.csv.gz
+ETHUSDT 2024-06-03: seconds with a full book 86400, trades 693201, median spread 0.03 bp, median ten-level depth $147,448 per side
+ETHUSDT 2024-06-04: seconds with a full book 86400, trades 684581, median spread 0.03 bp, median ten-level depth $134,263 per side
+ETHUSDT 2024-06-05: seconds with a full book 86400, trades 742272, median spread 0.03 bp, median ten-level depth $169,420 per side
+
+===== ETHUSDT part 1: 34548 fitting and 17274 test bucket-sides; depth falls in 0.499 of test buckets =====
+RESULT ETHUSDT depth reversion  Spearman +0.419; top-decile hit 0.192 (random 0.100)
+RESULT ETHUSDT depth ridge      Spearman +0.568; top-decile hit 0.235 (random 0.100)
+RESULT ETHUSDT depth boosted    Spearman +0.577; top-decile hit 0.251 (random 0.100)
+RESULT ETHUSDT exec $20,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +0.17±0.02  twap +0.02±0.28  passive +0.85±0.30  adaptive +0.27±0.29
+RESULT ETHUSDT exec $20,000 saving of passive over twap -0.83 bp (se 0.03), better in 0.05
+RESULT ETHUSDT exec $20,000 saving of adaptive over twap -0.25 bp (se 0.02), better in 0.40
+RESULT ETHUSDT exec $200,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +1.92±0.08  twap +0.17±0.29  passive +0.91±0.30  adaptive +0.44±0.29
+RESULT ETHUSDT exec $200,000 saving of passive over twap -0.75 bp (se 0.03), better in 0.11
+RESULT ETHUSDT exec $200,000 saving of adaptive over twap -0.28 bp (se 0.02), better in 0.38
+finished: 2026-11-27T02:59:02Z, exit code 0

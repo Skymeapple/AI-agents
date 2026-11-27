@@ -1,0 +1,9 @@
+job: shape-tiny-8x192-long-s1
+started: 2026-11-26T06:33:25Z
+cores: 4, memory: 15 GB
+  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /packages/53/7b/678c8fbd372ff96375ac0bbdd20b78f20ef8ba6ca5966c49548fa5886557/filelock-4.3.1-py3-none-any.whl.metadata
+  8x192 seed 1 step 3000: held-out 1.2364 bits/byte, 2753s
+  8x192 seed 1 step 6000: held-out 1.0901 bits/byte, 5528s
+  8x192 seed 1 step 9000: held-out 1.0079 bits/byte, 8272s
+RESULT layers 8 width 192 seed 1: parameters 3.67M, per-token compute 12*L*D^2 = 3.54M, steps 12000, held-out 0.9896 bits/byte, train time 11042s
+finished: 2026-11-26T09:38:04Z, exit code 0

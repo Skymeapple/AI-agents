@@ -1,0 +1,46 @@
+job: lean-prover-llm-0
+started: 2026-11-27T05:24:56Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf
+Decompressing 7335 file(s)
+Unpacked in 14857 ms
+Completed successfully!
+134 test theorems left by the tactics; this shard tries 34, 4 attempts each
+  [1/34] aime_1983_p1: no (generation 80s, lean ok)
+  [2/34] aime_1988_p8: no (generation 82s, lean ok)
+  [3/34] aime_1995_p7: no (generation 63s, lean ok)
+  [4/34] algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2: no (generation 159s, lean ok)
+  [5/34] algebra_amgm_sumasqdivbgeqsuma: no (generation 96s, lean ok)
+  [6/34] algebra_bleqa_apbon2msqrtableqambsqon8b: no (generation 139s, lean ok)
+  [7/34] algebra_sqineq_unitcircatbpabsamblt1: PROVED by [0, 1, 2, 3] (generation 31s, lean ok)
+  [8/34] amc12_2000_p6: no (generation 89s, lean ok)
+  [9/34] amc12a_2002_p6: PROVED by [1, 2] (generation 25s, lean ok)
+  [10/34] amc12a_2009_p6: no (generation 40s, lean ok)
+  [11/34] amc12a_2020_p15: no (generation 112s, lean ok)
+  [12/34] amc12a_2020_p9: no (generation 155s, lean ok)
+  [13/34] amc12a_2021_p22: no (generation 105s, lean ok)
+  [14/34] amc12b_2002_p7: no (generation 52s, lean ok)
+  [15/34] amc12b_2020_p6: PROVED by [3] (generation 56s, lean ok)
+  [16/34] amc12b_2021_p9: no (generation 68s, lean ok)
+  [17/34] imo_1963_p5: no (generation 101s, lean ok)
+  [18/34] imo_1974_p3: no (generation 99s, lean ok)
+  [19/34] imo_1985_p6: no (generation 37s, lean ok)
+  [20/34] imo_2019_p1: no (generation 166s, lean ok)
+  [21/34] induction_pord1p1on2powklt5on2: no (generation 47s, lean ok)
+  [22/34] mathd_algebra_113: PROVED by [0, 1, 2, 3] (generation 20s, lean ok)
+  [23/34] mathd_algebra_17: no (generation 87s, lean ok)
+  [24/34] mathd_algebra_208: no (generation 25s, lean ok)
+  [25/34] mathd_algebra_293: PROVED by [0] (generation 63s, lean ok)
+  [26/34] mathd_algebra_392: no (generation 69s, lean ok)
+  [27/34] mathd_algebra_756: no (generation 73s, lean ok)
+  [28/34] mathd_numbertheory_227: no (generation 31s, lean ok)
+  [29/34] mathd_numbertheory_296: no (generation 106s, lean ok)
+  [30/34] mathd_numbertheory_435: no (generation 57s, lean ok)
+  [31/34] mathd_numbertheory_5: no (generation 100s, lean ok)
+  [32/34] mathd_numbertheory_618: PROVED by [2] (generation 54s, lean ok)
+  [33/34] numbertheory_4x3m7y3neq2003: no (generation 57s, lean ok)
+  [34/34] numbertheory_notEquiv2i2jasqbsqdiv8: no (generation 41s, lean ok)
+RESULT shard 0/4: 6 of 34 residual theorems proved with 4 attempts each
+finished: 2026-11-27T06:14:17Z, exit code 0

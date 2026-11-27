@@ -1,0 +1,18 @@
+job: mix-tiny-looped-web-1
+started: 2026-11-26T19:54:19Z
+cores: 4, memory: 15 GB
+CORPUS web: https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/main/sample/10BT/000_00000.parquet
+  train 30.0 MB in 6160 documents, held-out 4.0 MB in 842 documents
+  starts: 'The Independent Jane For all the love, romance and scandal in Jane Austen’s books, what they are really about is freedom and independence. Independence of thoug'
+CORPUS dclm: https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0/resolve/main/global-shard_01_of_10/local-shard_0_of_10/shard_00000000_processed.jsonl.zst
+  train 30.0 MB in 6018 documents, held-out 4.0 MB in 579 documents
+  starts: "Take the 2-minute tour ×  Here what happened with me today. TimeMachine asked me whether I want to set a backup disk, I've answered yes, but then, when I've rea"
+  web=1,dclm=0 seed 0 step 1500: train loss 2.423 bits/byte, 1388s
+  web=1,dclm=0 seed 0 step 3000: train loss 2.215 bits/byte, 2783s
+  web=1,dclm=0 seed 0 step 4500: train loss 1.992 bits/byte, 4175s
+RESULT looped web=1,dclm=0 seed 0: web 1.9803, dclm 2.2787, mean of 2 2.1295 bits/byte, train time 5576s
+  web=1,dclm=0 seed 1 step 1500: train loss 2.277 bits/byte, 1366s
+  web=1,dclm=0 seed 1 step 3000: train loss 2.045 bits/byte, 2723s
+  web=1,dclm=0 seed 1 step 4500: train loss 1.889 bits/byte, 4086s
+RESULT looped web=1,dclm=0 seed 1: web 1.9831, dclm 2.2854, mean of 2 2.1342 bits/byte, train time 5481s
+finished: 2026-11-26T22:59:12Z, exit code 0

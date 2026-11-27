@@ -1,0 +1,14 @@
+job: bike-decision-tuning
+started: 2026-11-27T08:42:26Z
+cores: 4, memory: 15 GB
+457 stations; tuning days [np.int32(8), np.int32(9), np.int32(10), np.int32(11), np.int32(14), np.int32(15)]; evaluation days [np.int32(16), np.int32(17), np.int32(18), np.int32(21), np.int32(22), np.int32(23), np.int32(24), np.int32(25), np.int32(28), np.int32(29), np.int32(30)]
+predictive choice: alpha 0.75 (forecast squared error by alpha: 0.0: 2846324, 0.5: 2043017, 0.75: 2002484, 1.0: 2202699, 1.25: 2643660, 1.5: 3325369, 2.0: 5411027)
+decision choice: alpha 1.25, LOOK 60, MARGIN 8 (tuning cost 5474); alpha only: 0.5 (tuning cost 5592); default (1, 120, 3) tuning cost 5745
+
+evaluation: failed rentals + returns per day over 11 weekdays
+RESULT default (alpha 1, LOOK 120, MARGIN 3)  settings (1.0, 120.0, 3): mean 4957, vs default +0.0%, better on 0/11 days
+RESULT predictive                             settings (0.75, 120.0, 3): mean 4835, vs default -2.5%, better on 9/11 days
+RESULT decision, alpha only                   settings (0.5, 120.0, 3): mean 4819, vs default -2.8%, better on 8/11 days
+RESULT decision, all three                    settings (1.25, 60.0, 8): mean 4777, vs default -3.6%, better on 9/11 days
+RESULT no forecast (alpha 0)                  settings (0.0, 120.0, 3): mean 5924, vs default +19.5%, better on 1/11 days
+finished: 2026-11-27T08:43:46Z, exit code 0

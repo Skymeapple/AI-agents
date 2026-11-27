@@ -1,0 +1,167 @@
+job: lean-floor-valid
+started: 2026-11-26T12:23:19Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 23485 ms
+Completed successfully!
+/dev/root       145G   67G   78G  46% /
+               total        used        free      shared  buff/cache   available
+Mem:              15           1           4           0           9          14
+{'valid': 244}
+watchdog: killed lean process using 5613 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5624 MB
+watchdog: killed lean process using 5627 MB
+watchdog: killed lean process using 5628 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5624 MB
+watchdog: killed lean process using 5632 MB
+watchdog: killed lean process using 5634 MB
+watchdog: killed lean process using 5668 MB
+watchdog: killed lean process using 5668 MB
+valid rfl                                                          proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid norm_num                                                     proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5618 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5615 MB
+watchdog: killed lean process using 5613 MB
+watchdog: killed lean process using 5615 MB
+watchdog: killed lean process using 5612 MB
+watchdog: killed lean process using 5635 MB
+watchdog: killed lean process using 5635 MB
+valid simp                                                         proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid ring                                                         proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5616 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5606 MB
+watchdog: killed lean process using 5607 MB
+valid linarith                                                     proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid nlinarith                                                    proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5628 MB
+watchdog: killed lean process using 5630 MB
+watchdog: killed lean process using 5616 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5611 MB
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5642 MB
+watchdog: killed lean process using 5640 MB
+watchdog: killed lean process using 5590 MB
+watchdog: killed lean process using 5591 MB
+watchdog: killed lean process using 5606 MB
+watchdog: killed lean process using 5608 MB
+valid positivity                                                   proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid omega                                                        proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5610 MB
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5610 MB
+watchdog: killed lean process using 5615 MB
+watchdog: killed lean process using 5618 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5612 MB
+watchdog: killed lean process using 5681 MB
+watchdog: killed lean process using 5676 MB
+watchdog: killed lean process using 5611 MB
+watchdog: killed lean process using 5609 MB
+valid aesop                                                        proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid simp_all                                                     proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5633 MB
+watchdog: killed lean process using 5628 MB
+watchdog: killed lean process using 5624 MB
+watchdog: killed lean process using 5626 MB
+watchdog: killed lean process using 5614 MB
+watchdog: killed lean process using 5610 MB
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5606 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5621 MB
+valid grind                                                        proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid bound                                                        proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5587 MB
+watchdog: killed lean process using 5607 MB
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5611 MB
+watchdog: killed lean process using 5611 MB
+watchdog: killed lean process using 5610 MB
+watchdog: killed lean process using 5608 MB
+watchdog: killed lean process using 5609 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5620 MB
+valid intros; norm_num [*]                                         proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid intros; nlinarith [sq_nonneg (0:ℝ)]                          proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5631 MB
+watchdog: killed lean process using 5635 MB
+watchdog: killed lean process using 5637 MB
+watchdog: killed lean process using 5637 MB
+valid norm_num at *; linarith                                      proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid field_simp; ring                                             proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5622 MB
+watchdog: killed lean process using 5621 MB
+watchdog: killed lean process using 5617 MB
+watchdog: killed lean process using 5615 MB
+watchdog: killed lean process using 5620 MB
+watchdog: killed lean process using 5619 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5623 MB
+watchdog: killed lean process using 5622 MB
+valid intros; omega                                                proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+valid intros; simp_all; linarith                                   proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+watchdog: killed lean process using 5714 MB
+watchdog: killed lean process using 5705 MB
+watchdog: killed lean process using 5687 MB
+watchdog: killed lean process using 5715 MB
+watchdog: killed lean process using 5687 MB
+watchdog: killed lean process using 5687 MB
+valid norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial] proves   0 ['chunk 0: exit 137', 'chunk 41: exit 137', 'chunk 82: exit 137', 'chunk 123: exit 137', 'chunk 164: exit 137', 'chunk 205: exit 137'] | ''
+
+RESULT valid: 244 theorems; any single tactic proves 0 (0.0%)
+RESULT   rfl                                                            0   new beyond the tactics above: 0
+RESULT   norm_num                                                       0   new beyond the tactics above: 0
+RESULT   simp                                                           0   new beyond the tactics above: 0
+RESULT   ring                                                           0   new beyond the tactics above: 0
+RESULT   linarith                                                       0   new beyond the tactics above: 0
+RESULT   nlinarith                                                      0   new beyond the tactics above: 0
+RESULT   omega                                                          0   new beyond the tactics above: 0
+RESULT   positivity                                                     0   new beyond the tactics above: 0
+RESULT   aesop                                                          0   new beyond the tactics above: 0
+RESULT   simp_all                                                       0   new beyond the tactics above: 0
+RESULT   grind                                                          0   new beyond the tactics above: 0
+RESULT   bound                                                          0   new beyond the tactics above: 0
+RESULT   intros; norm_num [*]                                           0   new beyond the tactics above: 0
+RESULT   intros; nlinarith [sq_nonneg (0:ℝ)]                            0   new beyond the tactics above: 0
+RESULT   norm_num at *; linarith                                        0   new beyond the tactics above: 0
+RESULT   field_simp; ring                                               0   new beyond the tactics above: 0
+RESULT   intros; omega                                                  0   new beyond the tactics above: 0
+RESULT   intros; simp_all; linarith                                     0   new beyond the tactics above: 0
+RESULT   norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]   0   new beyond the tactics above: 0
+RESULT   by source: aime 0/12, aimeI 0/1, aimeII 0/2, algebra 0/18, amc12 0/5, amc12a 0/31, amc12b 0/9, imo 0/20, induction 0/8, mathd 0/130, numbertheory 0/8
+finished: 2026-11-26T12:27:43Z, exit code 0

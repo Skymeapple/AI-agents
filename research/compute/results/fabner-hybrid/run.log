@@ -1,0 +1,44 @@
+job: fabner-hybrid
+started: 2026-11-26T02:55:23Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+{'fabner': ['test', 'train', 'validation'], 'fabner_bio': ['test', 'train', 'validation'], 'fabner_simple': ['test', 'train', 'validation'], 'text2tech': ['test', 'train', 'validation']}
+config: fabner_bio
+['O', 'B-MATE', 'I-MATE', 'B-MANP', 'I-MANP', 'B-MACEQ', 'I-MACEQ', 'B-APPL', 'I-APPL', 'B-FEAT', 'I-FEAT', 'B-PRO', 'I-PRO', 'B-CHAR', 'I-CHAR', 'B-PARA', 'I-PARA', 'B-ENAT', 'I-ENAT', 'B-CONPRI', 'I-CONPRI', 'B-MANS', 'I-MANS', 'B-BIOP', 'I-BIOP']
+total 1248
+drwxr-xr-x 2 runner runner   4096 Nov 26 02:56 .
+drwxr-xr-x 4 runner runner   4096 Nov 26 02:56 ..
+-rw-r--r-- 1 runner runner    249 Nov 26 02:56 labels.json
+-rw-r--r-- 1 runner runner 186509 Nov 26 02:56 test.parquet
+-rw-r--r-- 1 runner runner 882323 Nov 26 02:56 train.parquet
+-rw-r--r-- 1 runner runner 189840 Nov 26 02:56 validation.parquet
+20 sentences; F1 so far: dictionary 90.6, model 28.0, hybrid 77.0; 12s last
+40 sentences; F1 so far: dictionary 92.1, model 24.2, hybrid 81.6; 10s last
+60 sentences; F1 so far: dictionary 89.5, model 27.0, hybrid 78.9; 15s last
+80 sentences; F1 so far: dictionary 89.2, model 26.3, hybrid 78.1; 11s last
+100 sentences; F1 so far: dictionary 88.4, model 29.1, hybrid 77.4; 9s last
+120 sentences; F1 so far: dictionary 85.5, model 31.3, hybrid 75.9; 11s last
+140 sentences; F1 so far: dictionary 83.9, model 32.8, hybrid 75.1; 11s last
+160 sentences; F1 so far: dictionary 82.4, model 31.3, hybrid 73.4; 13s last
+180 sentences; F1 so far: dictionary 81.1, model 31.3, hybrid 72.8; 11s last
+200 sentences; F1 so far: dictionary 81.5, model 31.4, hybrid 73.2; 15s last
+220 sentences; F1 so far: dictionary 82.1, model 32.0, hybrid 74.0; 13s last
+240 sentences; F1 so far: dictionary 81.9, model 32.5, hybrid 73.9; 12s last
+260 sentences; F1 so far: dictionary 83.1, model 33.3, hybrid 75.3; 21s last
+280 sentences; F1 so far: dictionary 83.3, model 33.6, hybrid 75.6; 13s last
+300 sentences; F1 so far: dictionary 83.2, model 33.6, hybrid 75.7; 11s last
+
+entity-level micro F1 (precision, recall) on 300 test sentences, 1264 entities
+  dictionary                                               83.2  (82.0, 84.4)
+  model with 6 retrieved examples                          33.6  (37.4, 30.5)
+  hybrid: dictionary + non-overlapping model entities      75.7  (67.8, 85.8)
+  hybrid: dictionary + model entities with unseen phrases  75.7  (67.8, 85.8)
+
+recall on the 188 test entities whose phrase is never an entity in training (14.9% of entities)
+  dictionary   0.0%
+  model        19.7%
+  hybrid       9.0%
+
+entities the model adds with unseen phrases: 299, of which correct: 17 (6%)
+finished: 2026-11-26T04:01:17Z, exit code 0

@@ -1,0 +1,19 @@
+job: mapqa-records
+started: 2026-11-26T06:02:15Z
+cores: 4, memory: 15 GB
+elliot-mllm/mapqa_cleaned default train 9 files
+  not readable: https://huggingface.co/api/datasets/elliot-mllm/mapqa_cleaned/parquet/default/train/0.parquet 401 147 b'{"error":"Access to dataset elliot-mllm/mapqa_cleaned is restricted. You must have access to it and be authenticated to access it. Please log in."}' ArrowInvalid("Could not open Parquet input source '<Buffer>': Parquet magic bytes not found in foote
+nimapourjafar/mm_mapqa default train 7 files
+  bytes 394980805 rows 5346 columns ['images', 'audios', 'videos', 'data']
+    audios []
+    videos []
+    data [{'data': '0', 'modality': 'image', 'role': 'user'}
+ {'data': 'Does Tennessee have the highest value in the USA?\nShort answer required.', 'modality': 'text', 'role': 'user'}
+ {'data': 'Yes.', 'modality': 'text', 'role': 'assistant'}
+ {'data': 'Does Rhode Island have the highest value in the Northeast?\nQuick response, please.', 'modality': 'text', 'role': 'user'}
+ {'data': 'No.', 'modality': 'text', 'role': 'assistant'}
+ {'data': 'Does Nebraska have a higher value than Pennsylvania?\nBe succinct.', 'modality': 'text', 'role': 'user'}
+ {'data': 'Yes.', 'modality': 'text', 'role': 'assistant'}
+
+bytes written 14896186
+finished: 2026-11-26T06:02:32Z, exit code 0

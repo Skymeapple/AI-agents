@@ -1,0 +1,46 @@
+job: dam-spill
+started: 2026-11-25T15:27:11Z
+cores: 4, memory: 15 GB
+LWG: 1053 days, 974 complete, median flow 85 kcfs, median spill share 0.41
+LGS: 1053 days, 1053 complete, median flow 83 kcfs, median spill share 0.39
+LMN: 1053 days, 1043 complete, median flow 83 kcfs, median spill share 0.48
+IHR: 1053 days, 1040 complete, median flow 86 kcfs, median spill share 0.68
+MCN: 1053 days, 1038 complete, median flow 248 kcfs, median spill share 0.57
+JDA: 1053 days, 985 complete, median flow 249 kcfs, median spill share 0.41
+TDA: 1053 days, 998 complete, median flow 235 kcfs, median spill share 0.40
+BON: 1053 days, 895 complete, median flow 257 kcfs, median spill share 0.45
+
+Part 1a. Tailwater dissolved gas (% saturation), error on held-out years [2022, 2023, 2024]
+  dam    days   linear  saturating  yesterday
+  LWG     237     2.58        2.38       1.48   fitted: gas from spill levels off at 131%, forebay carry-over 0.26
+  LGS     240     1.29        1.20       1.38   fitted: gas from spill levels off at 125%, forebay carry-over 0.14
+  LMN     240     2.12        1.98       1.46   fitted: gas from spill levels off at 119%, forebay carry-over 0.18
+  IHR     240     1.48        2.14       1.44   fitted: gas from spill levels off at 121%, forebay carry-over 0.67
+  MCN     238     2.14        2.71       1.34   fitted: gas from spill levels off at 125%, forebay carry-over 0.52
+  JDA     237     1.80        2.16       1.44   fitted: gas from spill levels off at 127%, forebay carry-over 0.58
+  TDA     236     1.69        1.16       1.45   fitted: gas from spill levels off at 117%, forebay carry-over 0.86
+  BON     215     1.33        2.47       1.22   fitted: gas from spill levels off at 118%, forebay carry-over 0.74
+  mean            1.80        2.02       1.40   dams where saturating beats linear: 4/8
+
+Part 1b. Next dam's forebay gas from the upstream release, error on held-out years
+  reach      lag (days)  from upstream  season mean
+  LWG-LGS             3           4.50         5.53   forebay excess = 0.92 x upstream excess + 4.3
+  LGS-LMN             0           2.68         6.55   forebay excess = 1.14 x upstream excess + -0.1
+  LMN-IHR             1           2.37         4.80   forebay excess = 0.82 x upstream excess + 2.2
+  IHR-MCN             0           3.15         4.14   forebay excess = 0.79 x upstream excess + -1.3
+  MCN-JDA             1           3.60         5.60   forebay excess = 0.90 x upstream excess + -2.3
+  JDA-TDA             0           2.56         5.36   forebay excess = 0.87 x upstream excess + 0.8
+  TDA-BON             0           2.23         5.34   forebay excess = 0.98 x upstream excess + -0.1
+
+Part 2. Tailwater gas cap 120%, 243 held-out days (model study, assumed survival values)
+  dam by dam: survival through eight dams 0.7944, mean spill share 0.69
+  joint:      survival through eight dams 0.7973, mean spill share 0.70
+  dam-passage loss 0.2056 -> 0.2027 (-1.4%); days joint is better 79/243; by year: 2022 -0.0036, 2023 -0.0039, 2024 -0.0010
+  bounds: no spill 0.6096, maximum spill everywhere (ignoring the cap) 0.8166
+
+Part 2. Tailwater gas cap 125%, 243 held-out days (model study, assumed survival values)
+  dam by dam: survival through eight dams 0.8147, mean spill share 0.79
+  joint:      survival through eight dams 0.8147, mean spill share 0.79
+  dam-passage loss 0.1853 -> 0.1853 (-0.0%); days joint is better 4/243; by year: 2022 -0.0000, 2023 +0.0000, 2024 +0.0000
+  bounds: no spill 0.6096, maximum spill everywhere (ignoring the cap) 0.8166
+finished: 2026-11-25T15:27:59Z, exit code 0

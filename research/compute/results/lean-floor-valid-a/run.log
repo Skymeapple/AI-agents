@@ -1,0 +1,26 @@
+job: lean-floor-valid-a
+started: 2026-11-26T13:56:28Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 14938 ms
+Completed successfully!
+{'valid': 244}
+valid rfl                                                          proves  22  | 'floor_valid_0_205.lean:6:102: error: Tactic `rfl` failed: The left-hand side\n  ∑ k ∈ S, k\nis not definitionally equal to'
+valid norm_num                                                     proves  16 ['chunk 205: timeout'] | "floor_valid_1_205.lean:6:99: error: unsolved goals\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36\n⊢ ∑ k ∈ S, k = 91\n'mathd_"
+valid simp                                                         proves   8 ['chunk 205: timeout'] | ''
+valid linarith                                                     proves  20  | 'floor_valid_4_205.lean:6:102: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ '
+valid nlinarith                                                    proves  23  | 'floor_valid_5_205.lean:6:102: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ '
+valid omega                                                        proves  23  | 'floor_valid_6_205.lean:6:102: error: omega could not prove the goal:\na possible counterexample may satisfy the constrain'
+valid ring                                                         proves  22 ['chunk 205: timeout'] | 'Try this:\n  ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note '
+
+RESULT valid: 244 theorems; any single tactic proves 56 (23.0%)
+RESULT   nlinarith                                                     23   new beyond the tactics above: 23
+RESULT   omega                                                         23   new beyond the tactics above: 16
+RESULT   rfl                                                           22   new beyond the tactics above: 12
+RESULT   ring                                                          22   new beyond the tactics above: 5
+RESULT   linarith                                                      20   new beyond the tactics above: 0
+RESULT   norm_num                                                      16   new beyond the tactics above: 0
+RESULT   simp                                                           8   new beyond the tactics above: 0
+RESULT   by source: aime 0/12, aimeI 0/1, aimeII 0/2, algebra 4/18, amc12 1/5, amc12a 2/31, amc12b 0/9, imo 0/20, induction 0/8, mathd 49/130, numbertheory 0/8
+finished: 2026-11-26T14:50:04Z, exit code 0

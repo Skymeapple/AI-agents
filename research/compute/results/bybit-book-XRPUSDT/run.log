@@ -1,0 +1,27 @@
+job: bybit-book-XRPUSDT
+started: 2026-11-27T02:56:02Z
+cores: 4, memory: 15 GB
+total 93916
+drwxr-xr-x 2 runner runner     4096 Nov 27 02:56 .
+drwxr-xr-x 5 runner runner     4096 Nov 27 02:56 ..
+-rw-r--r-- 1 runner runner 28239120 Nov 27 02:56 2024-06-03_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 27678651 Nov 27 02:56 2024-06-04_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 26187010 Nov 27 02:56 2024-06-05_XRPUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  4318265 Nov 27 02:56 XRPUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  5104474 Nov 27 02:56 XRPUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  4619681 Nov 27 02:56 XRPUSDT2024-06-05.csv.gz
+XRPUSDT 2024-06-03: seconds with a full book 86398, trades 112222, median spread 1.92 bp, median ten-level depth $1,155,587 per side
+XRPUSDT 2024-06-04: seconds with a full book 86398, trades 135639, median spread 1.91 bp, median ten-level depth $1,242,314 per side
+XRPUSDT 2024-06-05: seconds with a full book 86398, trades 121689, median spread 1.90 bp, median ten-level depth $1,121,178 per side
+
+===== XRPUSDT part 1: 34548 fitting and 17274 test bucket-sides; depth falls in 0.503 of test buckets =====
+RESULT XRPUSDT depth reversion  Spearman +0.231; top-decile hit 0.225 (random 0.100)
+RESULT XRPUSDT depth ridge      Spearman +0.313; top-decile hit 0.248 (random 0.100)
+RESULT XRPUSDT depth boosted    Spearman +0.320; top-decile hit 0.244 (random 0.100)
+RESULT XRPUSDT exec $20,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +1.21±0.02  twap +0.97±0.23  passive +1.14±0.25  adaptive +0.90±0.24
+RESULT XRPUSDT exec $20,000 saving of passive over twap -0.17 bp (se 0.03), better in 0.40
+RESULT XRPUSDT exec $20,000 saving of adaptive over twap +0.07 bp (se 0.02), better in 0.55
+RESULT XRPUSDT exec $200,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +3.28±0.04  twap +1.19±0.23  passive +1.31±0.26  adaptive +1.17±0.24
+RESULT XRPUSDT exec $200,000 saving of passive over twap -0.13 bp (se 0.03), better in 0.45
+RESULT XRPUSDT exec $200,000 saving of adaptive over twap +0.02 bp (se 0.02), better in 0.53
+finished: 2026-11-27T02:56:59Z, exit code 0

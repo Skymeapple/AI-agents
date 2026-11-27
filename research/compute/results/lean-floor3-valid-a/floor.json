@@ -1,0 +1,57 @@
+[
+{
+"split": "valid",
+"tactic": "PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "intros; PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "(repeat' apply And.intro) <;> PORTFOLIO",
+"proved": [
+"mathd_algebra_101"
+]
+},
+{
+"split": "valid",
+"tactic": "intros; constructor <;> intros <;> PORTFOLIO",
+"proved": [
+"imo_1987_p4",
+"mathd_algebra_101"
+]
+},
+{
+"split": "valid",
+"tactic": "(try simp_all) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "(try norm_num [*] at *) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "(try field_simp at *) <;> (try ring_nf at *) <;> PORTFOLIO",
+"proved": [
+"aime_1996_p5",
+"algebra_2complexrootspoly_xsqp49eqxp7itxpn7i"
+]
+},
+{
+"split": "valid",
+"tactic": "subst_vars <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "by_contra! hneg <;> PORTFOLIO",
+"proved": [
+"amc12a_2003_p25"
+]
+}
+]

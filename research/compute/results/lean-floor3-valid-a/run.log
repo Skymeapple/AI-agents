@@ -1,0 +1,34 @@
+job: lean-floor3-valid-a
+started: 2026-11-26T16:45:57Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 15394 ms
+Completed successfully!
+{'valid': 136}
+valid (repeat' apply And.intro) <;> PORTFOLIO                      proves   1  | 'floor_valid_36_120_0.lean:8:292: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_36_120_0.'
+valid PORTFOLIO                                                    proves   0  | 'floor_valid_34_120_0.lean:8:262: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_34_120_0.'
+valid intros; PORTFOLIO                                            proves   0  | 'floor_valid_35_120_0.lean:8:270: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_35_120_0.'
+watchdog: killed lean process using 5036 MB of private memory
+watchdog: killed lean process using 5052 MB of private memory
+valid intros; constructor <;> intros <;> PORTFOLIO                 proves   2  | 'floor_valid_37_120_0.lean:8:67: error: Tactic `constructor` failed: no applicable constructor found\n\na b c : ℕ\nt : ℕ → ℕ'
+watchdog: killed lean process using 5079 MB of private memory
+watchdog: killed lean process using 5015 MB of private memory
+valid (try norm_num [*] at *) <;> PORTFOLIO                        proves   0 ['aime_1996_p5: exit 137', 'amc12a_2003_p1: exit 137', 'mathd_numbertheory_543: timeout'] | "floor_valid_39_120_0.lean:8:290: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  a b c : ℕ\n  t : ℕ → ℕ\n  "
+valid (try simp_all) <;> PORTFOLIO                                 proves   0 ['aime_1996_p5: exit 137', 'amc12a_2003_p1: exit 137', 'amc12a_2008_p15: exit 134', 'mathd_numbertheory_543: timeout'] | "floor_valid_38_120_0.lean:8:281: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  a b c : ℕ\n  t : ℕ → ℕ\n  "
+valid (try field_simp at *) <;> (try ring_nf at *) <;> PORTFOLIO   proves   2 ['mathd_numbertheory_543: timeout'] | 'floor_valid_40_120_0.lean:8:311: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_40_120_0.'
+valid subst_vars <;> PORTFOLIO                                     proves   0 ['amc12a_2008_p15: exit 134'] | 'floor_valid_41_120_0.lean:8:277: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_41_120_0.'
+valid by_contra! hneg <;> PORTFOLIO                                proves   1  | 'floor_valid_42_120_0.lean:8:282: warning: aesop: failed to prove the goal. Some goals were not explored because the maxi'
+
+RESULT valid: 136 theorems; any single tactic proves 5 (3.7%)
+RESULT   intros; constructor <;> intros <;> PORTFOLIO                   2   new beyond the tactics above: 2
+RESULT   (try field_simp at *) <;> (try ring_nf at *) <;> PORTFOLIO     2   new beyond the tactics above: 2
+RESULT   (repeat' apply And.intro) <;> PORTFOLIO                        1   new beyond the tactics above: 0
+RESULT   by_contra! hneg <;> PORTFOLIO                                  1   new beyond the tactics above: 1
+RESULT   PORTFOLIO                                                      0   new beyond the tactics above: 0
+RESULT   intros; PORTFOLIO                                              0   new beyond the tactics above: 0
+RESULT   (try simp_all) <;> PORTFOLIO                                   0   new beyond the tactics above: 0
+RESULT   (try norm_num [*] at *) <;> PORTFOLIO                          0   new beyond the tactics above: 0
+RESULT   subst_vars <;> PORTFOLIO                                       0   new beyond the tactics above: 0
+RESULT   by source: aime 1/11, aimeI 0/1, aimeII 0/2, algebra 1/11, amc12 0/3, amc12a 1/23, amc12b 0/7, imo 1/19, induction 0/7, mathd 1/45, numbertheory 0/7
+finished: 2026-11-26T17:28:22Z, exit code 0

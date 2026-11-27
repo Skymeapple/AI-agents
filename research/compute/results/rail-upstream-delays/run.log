@@ -1,0 +1,23 @@
+job: rail-upstream-delays
+started: 2026-11-25T14:01:21Z
+cores: 4, memory: 15 GB
+60 days in /home/runner/work/_temp/data/rail
+57 days, 49 trains a day on the corridor
+entry delays on the five learning days: mean 13.4 min, 90th percentile 30.6 min
+
+real days, real entry delays (52 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       1724.5                  +2.4%            15/52     27
+  priority                         1683.6                  +0.0%             0/52      0
+  look-ahead (rollout)             1519.5                  -9.7%            38/52     14
+  look-ahead, upstream delays used     1434.3                 -14.8%            43/52      9
+  look-ahead, real future known     1341.4                 -20.3%            52/52      0
+
+disrupted days (extra entry delays on 30% of trains) (52 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       2126.3                  +3.2%            13/52     28
+  priority                         2059.6                  +0.0%             0/52      0
+  look-ahead (rollout)             1940.6                  -5.8%            31/52     21
+  look-ahead, upstream delays used     1872.2                  -9.1%            37/52     15
+  look-ahead, real future known     1717.1                 -16.6%            52/52      0
+finished: 2026-11-25T14:40:02Z, exit code 0

@@ -1,0 +1,43 @@
+job: topv2-fewshot-plain
+started: 2026-11-26T01:07:47Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+total 2064160
+drwxr-xr-x 3 runner runner       4096 Nov 26 01:08 .
+drwxr-xr-x 5 runner runner       4096 Nov 26 01:07 ..
+drwxr-xr-x 3 runner runner       4096 Nov 26 01:08 .cache
+-rw-r--r-- 1 runner runner 2104932768 Nov 26 01:08 qwen2.5-3b-instruct-q4_k_m.gguf
+-rw-r--r-- 1 runner runner    2015857 Nov 26 01:08 test.parquet
+-rw-r--r-- 1 runner runner    6729460 Nov 26 01:08 train.parquet
+plain: 20 examples, 15.0% exact, 11s last
+plain: 40 examples, 17.5% exact, 12s last
+plain: 60 examples, 16.7% exact, 11s last
+plain: 80 examples, 22.5% exact, 11s last
+plain: 100 examples, 23.0% exact, 9s last
+plain: 120 examples, 22.5% exact, 11s last
+plain: 140 examples, 23.6% exact, 9s last
+plain: 160 examples, 25.6% exact, 10s last
+plain: 180 examples, 23.9% exact, 12s last
+plain: 200 examples, 25.0% exact, 13s last
+plain: 220 examples, 25.0% exact, 10s last
+plain: 240 examples, 26.7% exact, 11s last
+plain: 260 examples, 26.2% exact, 15s last
+plain: 280 examples, 26.4% exact, 12s last
+plain: 300 examples, 26.7% exact, 8s last
+plain: 320 examples, 25.0% exact, 18s last
+plain: 340 examples, 23.5% exact, 16s last
+plain: 360 examples, 23.1% exact, 18s last
+plain: 380 examples, 22.1% exact, 15s last
+plain: 400 examples, 21.5% exact, 10s last
+--- plain
+  exact match on the random sample:        26.7% of 300
+     tree shape seen in training:          29.6% of 270
+  tree shape not seen (all such examples): 4.6% of 130
+     of those, shape right:                6.2% of 130
+  output is a well-formed tree:            64.8% of 400
+  nearest retrieved example has the right shape: 41.0% of 300
+  copying the nearest example's shape would be right at most: seen 76.7% of 270, unseen 0 by definition
+  seconds per example: 12
+400 /home/runner/work/AI-agents/AI-agents/research/compute/results/topv2-fewshot-plain/plain.jsonl
+finished: 2026-11-26T02:29:01Z, exit code 0

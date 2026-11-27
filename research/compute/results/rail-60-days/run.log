@@ -1,0 +1,43 @@
+job: rail-60-days
+started: 2026-11-24T23:39:21Z
+cores: 4, memory: 15 GB
+60 days in /home/runner/work/_temp/data/rail
+57 days, 49 trains a day on the corridor
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+
+real days, real entry delays (57 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       1769.8                  +2.3%            18/57     29
+  priority                         1730.8                  +0.0%             0/57      0
+  look-ahead (rollout)             1560.0                  -9.9%            43/57     14
+  hindsight bound                  1129.0                 -34.8%
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+
+disrupted days (extra entry delays on 30% of trains) (57 instances); cost: lower is better
+  policy                        mean cost            vs priority  instances better  worse
+  first come                       2169.4                  +2.8%            10/57     36
+  priority                         2110.2                  +0.0%             0/57      0
+  look-ahead (rollout)             1968.6                  -6.7%            39/57     18
+  hindsight bound                  1495.4                 -29.1%
+finished: 2026-11-25T00:37:22Z, exit code 0

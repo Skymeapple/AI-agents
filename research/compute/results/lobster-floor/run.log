@@ -1,0 +1,72 @@
+job: lobster-floor
+started: 2026-11-27T02:50:48Z
+cores: 4, memory: 15 GB
+[AMZN.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of AMZN.zip or
+        AMZN.zip.zip, and cannot find AMZN.zip.ZIP, period.
+FAILED AMZN
+[AAPL.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of AAPL.zip or
+        AAPL.zip.zip, and cannot find AAPL.zip.ZIP, period.
+FAILED AAPL
+[GOOG.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of GOOG.zip or
+        GOOG.zip.zip, and cannot find GOOG.zip.ZIP, period.
+FAILED GOOG
+[INTC.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of INTC.zip or
+        INTC.zip.zip, and cannot find INTC.zip.ZIP, period.
+FAILED INTC
+[MSFT.zip]
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of MSFT.zip or
+        MSFT.zip.zip, and cannot find MSFT.zip.ZIP, period.
+FAILED MSFT
+total 28
+drwxr-xr-x 2 runner runner 4096 Nov 27 02:51 .
+drwxr-xr-x 5 runner runner 4096 Nov 27 02:50 ..
+-rw-r--r-- 1 runner runner  457 Nov 27 02:51 AAPL.zip
+-rw-r--r-- 1 runner runner  457 Nov 27 02:51 AMZN.zip
+-rw-r--r-- 1 runner runner  457 Nov 27 02:51 GOOG.zip
+-rw-r--r-- 1 runner runner  457 Nov 27 02:51 INTC.zip
+-rw-r--r-- 1 runner runner  457 Nov 27 02:51 MSFT.zip
+Traceback (most recent call last):
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 226, in <module>
+    main()
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 221, in main
+    part1(data)
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 92, in part1
+    print(f"\n===== Part 1: depth change over the next ten seconds; {am.sum()} morning and {(~am).sum()} afternoon bucket-sides =====")
+                                                                                             ^^^
+TypeError: ufunc 'invert' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+stopped early
+Traceback (most recent call last):
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 226, in <module>
+    main()
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 221, in main
+    part1(data)
+  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/quant-finance/order-book-depletion/lobster_floor.py", line 92, in part1
+    print(f"\n===== Part 1: depth change over the next ten seconds; {am.sum()} morning and {(~am).sum()} afternoon bucket-sides =====")
+                                                                                             ^^^
+TypeError: ufunc 'invert' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+stopped early
+finished: 2026-11-27T02:51:05Z, exit code 0

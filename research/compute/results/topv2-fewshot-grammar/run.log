@@ -1,0 +1,43 @@
+job: topv2-fewshot-grammar
+started: 2026-11-26T01:07:48Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+total 2064160
+drwxr-xr-x 3 runner runner       4096 Nov 26 01:08 .
+drwxr-xr-x 5 runner runner       4096 Nov 26 01:07 ..
+drwxr-xr-x 3 runner runner       4096 Nov 26 01:08 .cache
+-rw-r--r-- 1 runner runner 2104932768 Nov 26 01:08 qwen2.5-3b-instruct-q4_k_m.gguf
+-rw-r--r-- 1 runner runner    2015857 Nov 26 01:08 test.parquet
+-rw-r--r-- 1 runner runner    6729460 Nov 26 01:08 train.parquet
+grammar: 20 examples, 35.0% exact, 14s last
+grammar: 40 examples, 40.0% exact, 16s last
+grammar: 60 examples, 38.3% exact, 14s last
+grammar: 80 examples, 43.8% exact, 15s last
+grammar: 100 examples, 41.0% exact, 12s last
+grammar: 120 examples, 41.7% exact, 15s last
+grammar: 140 examples, 42.1% exact, 12s last
+grammar: 160 examples, 45.6% exact, 13s last
+grammar: 180 examples, 45.6% exact, 15s last
+grammar: 200 examples, 46.5% exact, 16s last
+grammar: 220 examples, 45.9% exact, 13s last
+grammar: 240 examples, 46.7% exact, 14s last
+grammar: 260 examples, 45.8% exact, 20s last
+grammar: 280 examples, 45.4% exact, 17s last
+grammar: 300 examples, 45.7% exact, 11s last
+grammar: 320 examples, 43.1% exact, 23s last
+grammar: 340 examples, 40.6% exact, 21s last
+grammar: 360 examples, 39.2% exact, 24s last
+grammar: 380 examples, 37.4% exact, 19s last
+grammar: 400 examples, 36.0% exact, 12s last
+--- grammar
+  exact match on the random sample:        45.7% of 300
+     tree shape seen in training:          50.0% of 270
+  tree shape not seen (all such examples): 6.9% of 130
+     of those, shape right:                11.5% of 130
+  output is a well-formed tree:            100.0% of 400
+  nearest retrieved example has the right shape: 41.0% of 300
+  copying the nearest example's shape would be right at most: seen 76.7% of 270, unseen 0 by definition
+  seconds per example: 16
+400 /home/runner/work/AI-agents/AI-agents/research/compute/results/topv2-fewshot-grammar/grammar.jsonl
+finished: 2026-11-26T02:53:33Z, exit code 0

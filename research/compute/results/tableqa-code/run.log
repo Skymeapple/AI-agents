@@ -1,0 +1,42 @@
+job: tableqa-code
+started: 2026-11-25T20:35:32Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+WikiTableQuestions
+qwen2.5-3b-instruct-q4_k_m.gguf
+wtq.zip
+README.md
+csv
+data
+evaluator.py
+tagged
+4345 WikiTableQuestions/data/pristine-unseen-tables.tsv
+code: 10 questions, 10.0% correct, 41s last
+code: 20 questions, 10.0% correct, 10s last
+code: 30 questions, 6.7% correct, 20s last
+code: 40 questions, 5.0% correct, 12s last
+code: 50 questions, 4.0% correct, 38s last
+code: 60 questions, 5.0% correct, 27s last
+code: 70 questions, 4.3% correct, 42s last
+code: 80 questions, 3.8% correct, 40s last
+code: 90 questions, 3.3% correct, 20s last
+code: 100 questions, 3.0% correct, 14s last
+code: 110 questions, 2.7% correct, 48s last
+code: 120 questions, 2.5% correct, 12s last
+code: 130 questions, 2.3% correct, 36s last
+code: 140 questions, 2.1% correct, 32s last
+code: 150 questions, 2.0% correct, 12s last
+code: 160 questions, 1.9% correct, 39s last
+code: 170 questions, 1.8% correct, 14s last
+code: 180 questions, 1.7% correct, 16s last
+code: 190 questions, 1.6% correct, 54s last
+code: 200 questions, 1.5% correct, 24s last
+code: 210 questions, 1.4% correct, 15s last
+code: 220 questions, 1.4% correct, 18s last
+code: 230 questions, 1.7% correct, 18s last
+code: 240 questions, 1.7% correct, 13s last
+code: 250 questions, 1.6% correct, 13s last
+code: 250 questions, 1.6% correct
+250 /home/runner/work/AI-agents/AI-agents/research/compute/results/tableqa-code/code.jsonl
+finished: 2026-11-25T22:22:26Z, exit code 0

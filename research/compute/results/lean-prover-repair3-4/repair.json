@@ -1,0 +1,127 @@
+[
+{
+"name": "aime_1990_p4",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 131
+},
+{
+"name": "algebra_apbon2pownleqapownpbpowon2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 142
+},
+{
+"name": "amc12a_2002_p13",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 332
+},
+{
+"name": "amc12a_2020_p7",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 195
+},
+{
+"name": "amc12b_2020_p21",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 587
+},
+{
+"name": "imo_1965_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 400
+},
+{
+"name": "imo_2019_p1",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 7,
+"variant": "as-is",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  (try\n    { use 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0 + f 1\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  aesop",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 13",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  (try\n    { use 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0 + f 1\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 12",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  (try\n    { use 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 11",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  (try\n    { use 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  (try\n    { use 2 * z + f 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 10",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  (try\n    { use 0\n      intro z\n      by_cases hz : f z = 0 <;> simp_all })\n  <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 9",
+"proof": "  constructor\n  intro h\n  have h1 := h 0 0\n  have h2 := h 1 0\n  have h3 := h 0 1\n  have h4 := h 1 1\n  simp at h1 h2 h3 h4\n  intro z\n  by_cases hz : f z = 0 <;> simp_all\n  <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 623
+},
+{
+"name": "mathd_algebra_184",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 155
+},
+{
+"name": "mathd_algebra_598",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 246
+},
+{
+"name": "mathd_numbertheory_451",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 468
+},
+{
+"name": "numbertheory_fxeq4powxp6powxp9powx_f2powmdvdf2pown",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 129
+}
+]

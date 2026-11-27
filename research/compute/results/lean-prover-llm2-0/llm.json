@@ -1,0 +1,124 @@
+[
+{
+"name": "aime_1983_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 151
+},
+{
+"name": "aime_1997_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 114
+},
+{
+"name": "algebra_apbon2pownleqapownpbpowon2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 128
+},
+{
+"name": "amc12_2001_p21",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 92
+},
+{
+"name": "amc12a_2020_p10",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 102
+},
+{
+"name": "amc12a_2021_p19",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 378
+},
+{
+"name": "amc12b_2020_p22",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 122
+},
+{
+"name": "imo_1963_p5",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 263
+},
+{
+"name": "imo_1985_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 54
+},
+{
+"name": "induction_pprime_pdvdapowpma",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 170
+},
+{
+"name": "mathd_algebra_196",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 300
+},
+{
+"name": "mathd_algebra_392",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 87
+},
+{
+"name": "mathd_numbertheory_234",
+"proved": true,
+"attempts_ok": [
+1
+],
+"lean": "ok",
+"proof": "\n  have h\u2082 : (10 * a + b) = 97 := by\n    nlinarith [pow_two (10 * a + b), pow_two (10 * a + b - 1), pow_two (10 * a + b + 1)]\n  have h\u2083 : a = 9 := by\n    omega\n  have h\u2084 : b = 7 := by\n    omega\n  simp [h\u2083, h\u2084]\n",
+"gen_secs": 151
+},
+{
+"name": "mathd_numbertheory_495",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 152
+},
+{
+"name": "numbertheory_exk2powkeqapb2mulbpa2_aeq1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 218
+}
+]

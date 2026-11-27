@@ -1,0 +1,28 @@
+job: factorial-tiny-3
+started: 2026-11-26T19:50:20Z
+cores: 4, memory: 15 GB
+  rope+wsd seed 0 step 1500: held-out 1.3984 bits/byte, 615s
+  rope+wsd seed 0 step 3000: held-out 1.2730 bits/byte, 1231s
+  rope+wsd seed 0 step 4500: held-out 1.1725 bits/byte, 1849s
+RESULT rope+wsd seed 0: steps 6000, held-out 1.0942 bits/byte, train time 2468s
+  rope+wsd seed 1 step 1500: held-out 1.3874 bits/byte, 620s
+  rope+wsd seed 1 step 3000: held-out 1.2670 bits/byte, 1236s
+  rope+wsd seed 1 step 4500: held-out 1.1690 bits/byte, 1848s
+RESULT rope+wsd seed 1: steps 6000, held-out 1.0920 bits/byte, train time 2470s
+  rope+wsd seed 2 step 1500: held-out 1.4089 bits/byte, 611s
+  rope+wsd seed 2 step 3000: held-out 1.2764 bits/byte, 1221s
+  rope+wsd seed 2 step 4500: held-out 1.1772 bits/byte, 1830s
+RESULT rope+wsd seed 2: steps 6000, held-out 1.1000 bits/byte, train time 2447s
+  rope+long seed 0 step 1500: held-out 1.3588 bits/byte, 662s
+  rope+long seed 0 step 3000: held-out 1.2004 bits/byte, 1326s
+  rope+long seed 0 step 4500: held-out 1.1054 bits/byte, 1996s
+RESULT rope+long seed 0: steps 6000, held-out 1.0666 bits/byte, train time 2666s
+  rope+long seed 1 step 1500: held-out 1.3660 bits/byte, 655s
+  rope+long seed 1 step 3000: held-out 1.1977 bits/byte, 1309s
+  rope+long seed 1 step 4500: held-out 1.1080 bits/byte, 1965s
+RESULT rope+long seed 1: steps 6000, held-out 1.0693 bits/byte, train time 2628s
+  rope+long seed 2 step 1500: held-out 1.3802 bits/byte, 659s
+  rope+long seed 2 step 3000: held-out 1.2168 bits/byte, 1319s
+  rope+long seed 2 step 4500: held-out 1.1177 bits/byte, 1981s
+RESULT rope+long seed 2: steps 6000, held-out 1.0798 bits/byte, train time 2651s
+finished: 2026-11-27T00:06:25Z, exit code 0

@@ -1,0 +1,47 @@
+job: lean-floor2-valid-a
+started: 2026-11-26T15:55:34Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 14939 ms
+Completed successfully!
+{'valid': 244}
+valid rfl                                                          proves  22  | 'floor_valid_0_205_0.lean:6:102: error: Tactic `rfl` failed: The left-hand side\n  ∑ k ∈ S, k\nis not definitionally equal '
+valid norm_num                                                     proves  23 ['mathd_numbertheory_543: timeout'] | "floor_valid_1_205_0.lean:6:99: error: unsolved goals\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36\n⊢ ∑ k ∈ S, k = 91\n'math"
+valid simp                                                         proves  12 ['mathd_numbertheory_543: timeout'] | "floor_valid_2_205_0.lean:6:102: error: `simp` made no progress\n'mathd_numbertheory_32' depends on axioms: [propext, sorr"
+valid linarith                                                     proves  20  | 'floor_valid_4_205_0.lean:6:102: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n '
+valid nlinarith                                                    proves  23  | 'floor_valid_5_205_0.lean:6:102: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n '
+valid omega                                                        proves  23  | 'floor_valid_6_205_0.lean:6:102: error: omega could not prove the goal:\na possible counterexample may satisfy the constra'
+valid positivity                                                   proves   0  | "floor_valid_7_205_0.lean:6:102: error: not a positivity goal\n'mathd_numbertheory_32' depends on axioms: [propext, sorryA"
+valid aesop                                                        proves  26  | "floor_valid_8_205_0.lean:6:102: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  S : Finset ℕ\n  h₀ : ∀ (n "
+valid ring                                                         proves  29 ['mathd_numbertheory_543: timeout'] | 'Try this:\n  ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note '
+valid grind                                                        proves  69  | 'floor_valid_10_205_0.lean:6:102: error: `grind` failed\ncase grind\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), (n ∈ S) = (n ∣ 36)\nh : ¬∑'
+valid bound                                                        proves  45  | "floor_valid_11_205_0.lean:6:102: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  S : Finset ℕ\n  h₀ : ∀ (n"
+watchdog: killed lean process using 5009 MB of private memory
+valid simp_all                                                     proves  14 ['mathd_numbertheory_543: timeout'] | "floor_valid_9_205_0.lean:6:102: error: simp_all made no progress\n'mathd_numbertheory_32' depends on axioms: [propext, so"
+valid intros; nlinarith [sq_nonneg (0:ℝ)]                          proves  24  | 'floor_valid_13_205_0.lean:6:110: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n'
+valid intros; norm_num [*]                                         proves  33 ['amc12a_2003_p1: exit 137', 'mathd_numbertheory_543: timeout'] | "floor_valid_12_205_0.lean:6:99: error: unsolved goals\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36\n⊢ ∑ k ∈ S, k = 91\n'mat"
+valid field_simp; ring                                             proves  20  | "floor_valid_15_205_0.lean:6:102: error: field_simp made no progress on goal\n'mathd_numbertheory_32' depends on axioms: ["
+valid intros; omega                                                proves  23  | 'floor_valid_16_205_0.lean:6:110: error: omega could not prove the goal:\na possible counterexample may satisfy the constr'
+valid norm_num at *; linarith                                      proves  34 ['mathd_numbertheory_543: timeout'] | 'floor_valid_14_205_0.lean:6:117: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n'
+
+RESULT valid: 244 theorems; any single tactic proves 95 (38.9%)
+RESULT   grind                                                         69   new beyond the tactics above: 69
+RESULT   bound                                                         45   new beyond the tactics above: 16
+RESULT   norm_num at *; linarith                                       34   new beyond the tactics above: 1
+RESULT   intros; norm_num [*]                                          33   new beyond the tactics above: 3
+RESULT   ring                                                          29   new beyond the tactics above: 0
+RESULT   aesop                                                         26   new beyond the tactics above: 1
+RESULT   intros; nlinarith [sq_nonneg (0:ℝ)]                           24   new beyond the tactics above: 2
+RESULT   norm_num                                                      23   new beyond the tactics above: 0
+RESULT   nlinarith                                                     23   new beyond the tactics above: 0
+RESULT   omega                                                         23   new beyond the tactics above: 2
+RESULT   intros; omega                                                 23   new beyond the tactics above: 0
+RESULT   rfl                                                           22   new beyond the tactics above: 0
+RESULT   linarith                                                      20   new beyond the tactics above: 0
+RESULT   field_simp; ring                                              20   new beyond the tactics above: 1
+RESULT   simp_all                                                      14   new beyond the tactics above: 0
+RESULT   simp                                                          12   new beyond the tactics above: 0
+RESULT   positivity                                                     0   new beyond the tactics above: 0
+RESULT   by source: aime 1/12, aimeI 0/1, aimeII 0/2, algebra 5/18, amc12 2/5, amc12a 7/31, amc12b 2/9, imo 0/20, induction 0/8, mathd 78/130, numbertheory 0/8
+finished: 2026-11-26T16:41:49Z, exit code 0

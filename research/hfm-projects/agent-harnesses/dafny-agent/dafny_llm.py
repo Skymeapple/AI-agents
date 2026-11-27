@@ -18,7 +18,8 @@ specification cannot be weakened; `decreases *` is not accepted.
 Only programs that neither verify unchanged nor are recovered by the template rules of
 dafny_floor.py are attempted, and files that do not parse are skipped.
 
-Usage: python dafny_llm.py <dafny> <hints_removed folder> <floor.jsonl> <model.gguf> <out.jsonl> <shard>/<shards>
+Usage: python dafny_llm.py <dafny> <hints_removed folder> <floor.jsonl> <model.gguf> <out.jsonl> <shard>/<shards> [earlier llm.jsonl ...]
+       DAFNY_TURNS (default 2) sets the number of turns (the first answer plus repair turns).
 """
 import json
 import os
@@ -132,10 +133,17 @@ def errors(out):
 def main():
     dafny, folder, floor, gguf, outp, shard = sys.argv[1:7]
     k_shard, n_shards = (int(x) for x in shard.split("/"))
+    turns = int(os.environ.get("DAFNY_TURNS", "2"))
+    done = set()
+    for prev in sys.argv[7:]:                                    # programs verified by earlier runs
+        for ln in open(prev):
+            r = json.loads(ln)
+            if r.get("verified"):
+                done.add(r["file"])
     todo = []
     for ln in open(floor):
         r = json.loads(ln)
-        if r["plain"] or r.get("houdini") or r.get("houdini_post") or "parse errors" in r["tail"]:
+        if r["plain"] or r.get("houdini") or r.get("houdini_post") or "parse errors" in r["tail"] or r["file"] in done:
             continue
         todo.append(r["file"])
     todo = sorted(todo)
@@ -146,7 +154,7 @@ def main():
     print(f"{len(todo) + len(long_)} programs left by the floor (parse errors excluded); {len(long_)} longer than {MAX_CHARS} characters skipped; "
           f"this shard tries {len(mine)}", flush=True)
     from llama_cpp import Llama
-    llm = Llama(model_path=gguf, n_ctx=8192, n_threads=4, verbose=False, seed=k_shard)
+    llm = Llama(model_path=gguf, n_ctx=8192, n_threads=4, verbose=False, seed=k_shard + 100 * turns)
     n_ok = n_first = 0
     with open(outp, "w") as fo:
         for i, f in enumerate(mine):
@@ -156,8 +164,10 @@ def main():
             msgs = [{"role": "system", "content": SYSTEM},
                     {"role": "user", "content": f"Add the loop invariants and decreases clauses this Dafny program needs to verify. Put them directly after each loop header.\n\n```dafny\n{orig}\n```"}]
             answers = ""
-            for turn in range(2):
-                text = llm.create_chat_completion(messages=msgs, temperature=0.2, max_tokens=2500)["choices"][0]["message"]["content"]
+            for turn in range(turns):
+                if sum(len(m["content"]) for m in msgs) > 20000:          # keep within the context window
+                    msgs = msgs[:2] + msgs[-2:]
+                text = llm.create_chat_completion(messages=msgs, temperature=0.2 + 0.2 * turn, max_tokens=2500)["choices"][0]["message"]["content"]
                 ans = extract(text) or ""
                 answers += "\n" + ans                          # clauses from both turns are pooled
                 prog, n = insert(orig, answers)
@@ -179,7 +189,12 @@ def main():
             fo.flush()
             print(f"  [{i + 1}/{len(mine)}] {f}: " + " / ".join(f"{t['proposed']} proposed, {t['kept']} kept, {'VERIFIED' if t['verified'] else 'no'}" for t in rec["turns"])
                   + f" ({rec['secs']}s)", flush=True)
-    print(f"RESULT shard {k_shard}/{n_shards}: {n_ok} of {len(mine)} verified ({n_first} on the first turn, {n_ok - n_first} after one repair turn)")
+    by_turn = [0] * turns
+    for ln in open(outp):
+        r = json.loads(ln)
+        if r["verified"]:
+            by_turn[len(r["turns"]) - 1] += 1
+    print(f"RESULT shard {k_shard}/{n_shards}: {n_ok} of {len(mine)} verified; by turn: {by_turn}")
 
 
 if __name__ == "__main__":

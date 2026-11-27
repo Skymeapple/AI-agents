@@ -1,5 +1,5 @@
 job: lc25000-floor
-started: 2026-11-27T00:59:12Z
+started: 2026-11-27T01:53:16Z
 cores: 4, memory: 15 GB
 schema: image: struct<bytes: binary, path: string>
   child 0, bytes: binary
@@ -24,39 +24,27 @@ Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /hom
   embedded 11584 of 15000
   embedded 12864 of 15000
   embedded 14144 of 15000
-nearest-neighbour cosine similarity, quantiles 1/10/50/90%: [0.9818 0.993  0.9979 1.    ]
+nearest-neighbour centred cosine similarity, quantiles 1/10/25/50/75/90%: [0.8868 0.956  0.9761 0.9887 1.     1.    ]
 
-===== link threshold 0.97: 148 groups (expected about 750 if augmentation copies were found); median size 18, largest 8057; mixed-class groups 1 =====
-RESULT thr 0.97 adenocarcinoma vs squamous: random folds accuracy 0.9945, near-duplicate-grouped folds 0.9039
-RESULT thr 0.97 three classes: random folds accuracy 0.9968, near-duplicate-grouped folds 0.9290
+===== link threshold 0.99: 10850 groups (expected about 750 if augmentation copies were found); median size 1, largest 16; mixed-class groups 0 =====
+RESULT thr 0.99 adenocarcinoma vs squamous: random folds accuracy 0.9945, near-duplicate-grouped folds 0.9907
+RESULT thr 0.99 three classes: random folds accuracy 0.9965, near-duplicate-grouped folds 0.9945
 
-===== link threshold 0.95: 7 groups (expected about 750 if augmentation copies were found); median size 20, largest 14880; mixed-class groups 1 =====
-RESULT thr 0.95 adenocarcinoma vs squamous: random folds accuracy 0.9953, near-duplicate-grouped folds 0.6497
-RESULT thr 0.95 three classes: random folds accuracy 0.9965, near-duplicate-grouped folds 0.4331
+===== link threshold 0.97: 5816 groups (expected about 750 if augmentation copies were found); median size 2, largest 39; mixed-class groups 0 =====
+RESULT thr 0.97 adenocarcinoma vs squamous: random folds accuracy 0.9949, near-duplicate-grouped folds 0.9804
+RESULT thr 0.97 three classes: random folds accuracy 0.9960, near-duplicate-grouped folds 0.9872
 
-===== link threshold 0.92: 1 groups (expected about 750 if augmentation copies were found); median size 15000, largest 15000; mixed-class groups 1 =====
-Traceback (most recent call last):
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/medicine/lung-histology/lc25000_floor.py", line 158, in <module>
-    main()
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/medicine/lung-histology/lc25000_floor.py", line 153, in main
-    gg = evaluate(z[mask], labels[mask], g[mask], 5, rng)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/AI-agents/AI-agents/research/hfm-projects/medicine/lung-histology/lc25000_floor.py", line 125, in evaluate
-    sc = StandardScaler().fit(X[tr])
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 928, in fit
-    return self.partial_fit(X, y, sample_weight)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sklearn/base.py", line 1403, in wrapper
-    return fit_method(estimator, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sklearn/preprocessing/_data.py", line 965, in partial_fit
-    X = validate_data(
-        ^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sklearn/utils/validation.py", line 3041, in validate_data
-    out = check_array(X, input_name="X", **check_params)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sklearn/utils/validation.py", line 1113, in check_array
-    raise ValueError(
-ValueError: Found array with 0 sample(s) (shape=(0, 512)) while a minimum of 1 is required by StandardScaler.
-finished: 2026-11-27T01:51:53Z, exit code 1
+===== link threshold 0.95: 3484 groups (expected about 750 if augmentation copies were found); median size 2, largest 66; mixed-class groups 0 =====
+RESULT thr 0.95 adenocarcinoma vs squamous: random folds accuracy 0.9940, near-duplicate-grouped folds 0.9645
+RESULT thr 0.95 three classes: random folds accuracy 0.9967, near-duplicate-grouped folds 0.9769
+
+===== link threshold 0.9: 1178 groups (expected about 750 if augmentation copies were found); median size 5, largest 2068; mixed-class groups 1 =====
+RESULT thr 0.9 adenocarcinoma vs squamous: random folds accuracy 0.9947, near-duplicate-grouped folds 0.9364
+RESULT thr 0.9 three classes: random folds accuracy 0.9965, near-duplicate-grouped folds 0.9571
+
+===== link threshold 0.85: 460 groups (expected about 750 if augmentation copies were found); median size 15, largest 4783; mixed-class groups 1 =====
+  skipped: one group holds over a fifth of the patches, so grouped folds would be degenerate
+
+===== link threshold 0.8: 177 groups (expected about 750 if augmentation copies were found); median size 19, largest 7214; mixed-class groups 2 =====
+  skipped: one group holds over a fifth of the patches, so grouped folds would be degenerate
+finished: 2026-11-27T02:47:57Z, exit code 0

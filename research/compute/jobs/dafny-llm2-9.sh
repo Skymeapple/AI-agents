@@ -1,4 +1,4 @@
-# Open-weight coding model (Qwen2.5-Coder-7B-Instruct, 4-bit, CPU) on DafnyBench programs left by the rule floor, one repair turn: shard 9 of 10.
+# Dafny round 2: the coding model proposes loop invariants, the verifier prunes them (Houdini), one repair turn: shard 9 of 10.
 set -e
 pip install -q huggingface_hub
 pip install -q llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu

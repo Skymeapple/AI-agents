@@ -340,6 +340,7 @@ CPU, and revisited two earlier results.
 | Looped transformer | Toy-scale comparison | Looping closes 63% of the depth gap per parameter, loses at equal compute. The loop-index idea adds nothing. |
 | Looped transformer, variable loops | Toy-scale comparison | Mixed loop counts in training cost 0.013 to 0.048 bits per byte at 3 loops and buy tolerance to running fewer loops. Extra loops at test time never help. Confidence-based early exit does not pay. |
 | Looped transformer, data mix | Toy-scale share sweep | Held-out DCLM is best when training on DCLM alone and worsens steadily as FineWeb-Edu replaces it (2.090 → 2.153 at a 75% share), against HFM's best proposal. |
+| Pretraining data mix, four domains | Toy-scale mix sweep | HFM's 0.60/0.20/0.20 mix helps web (−0.015) and hurts the four-domain mean (+0.031) against 0.50/0.25/0.25. Balanced mixes are flat within noise; starving a domain is costly. |
 
 Three points for the conclusions of this review:
 

@@ -1,0 +1,38 @@
+{
+ "collected_at": "2026-11-16",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Charta Health",
+    "url": "https://www.chartahealth.com",
+    "kind": "product",
+    "description": "AI medical chart review platform that checks coding and clinical documentation before claims are submitted, for providers and health plans.",
+    "tags": ["healthcare", "medical-coding", "ai-agents"]
+   },
+   "metric": "growth_pct",
+   "value": 900,
+   "period_days": 365,
+   "observed_on": "2026-11-10",
+   "source_url": "https://www.prnewswire.com/news-releases/charta-health-raises-55-million-series-b-to-establish-a-shared-standard-of-accuracy-in-healthcare-billing-302934401.html",
+   "method": "reported",
+   "note": "Charta Health Series B release (PR Newswire, Nov 10, 2026, $55M led by Insight Partners): 'Charta has grown its revenue 10x in the last 12 months' and 'Charta Health grew revenue 10x in the last 12 months with both health plans and provider organizations.' 10x recorded as +900%; 'last 12 months' recorded as 365 days. The release gives no end date for the window, so it is dated to the Nov 10 announcement date. CEO Justin Liu's LinkedIn post says the same ('Revenue has grown 10x in the last 12 months'). Revenue growth, not ARR; no level stated. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "XpertDox",
+    "url": "https://www.xpertdox.com",
+    "kind": "product",
+    "description": "AI-first healthcare company whose XpertCoding platform autonomously turns EHR clinical documentation into coded billing data.",
+    "tags": ["healthcare", "medical-coding"]
+   },
+   "metric": "growth_pct",
+   "value": 100,
+   "period_days": 365,
+   "observed_on": "2026-11-11",
+   "source_url": "https://www.xpertdox.com/news/xpertdox-raises-20m-for-ai-medical-coding-from-savant-growth",
+   "method": "reported",
+   "note": "XpertDox Series A release (Business Wire, Nov 11, 2026, $20M led by Savant Growth), company newsroom copy: 'Over the last 12 months, XpertDox doubled its revenue, with 126% net revenue retention and 95% customer retention.' Doubled recorded as +100%; 'last 12 months' recorded as 365 days. The release gives no end date for the window, so it is dated to the Nov 11 announcement date. Revenue growth, no level stated. Page read with Tavily extract (the businesswire.com original was not fetched; the company's own copy carries the Business Wire dateline)."
+  }
+ ]
+}

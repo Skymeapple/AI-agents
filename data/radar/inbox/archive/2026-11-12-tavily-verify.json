@@ -1,0 +1,46 @@
+{
+ "collector": "agent:tavily-verify",
+ "collected_at": "2026-11-12",
+ "observations": [
+  {
+   "app": {
+    "name": "DeepSeek Harness",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "kind": "product",
+    "description": "DeepSeek's open-source (MIT) agent harness app, run via npx @deepseek-ai/dsh web or desktop builds, with a third-party plugin ecosystem.",
+    "tags": [
+     "coding-agent",
+     "agent-harness",
+     "deepseek-harness"
+    ]
+   },
+   "metric": "users",
+   "value": 429000,
+   "basis": "dau",
+   "observed_on": "2026-10-07",
+   "source_url": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million",
+   "method": "reported",
+   "note": "Page read in full via Tavily extract on 2026-11-12 (Yicai Global, Nov 6): 'DeepSeek Harness had 1.54 million DAUs on its official application programming interface over the week ended Nov. 4, up from 429,000 over the week ended Oct. 7 and 271,000 over the one ended Sept. 30, Hangzhou-based DeepSeek said yesterday.' All three are stated on the same basis (DAU on the official API, over a week), so they are comparable with the 1.54M figure already recorded for Nov 4. Dated to the stated week-end date. No growth rate derived."
+  },
+  {
+   "app": {
+    "name": "DeepSeek Harness",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "kind": "product",
+    "description": "DeepSeek's open-source (MIT) agent harness app, run via npx @deepseek-ai/dsh web or desktop builds, with a third-party plugin ecosystem.",
+    "tags": [
+     "coding-agent",
+     "agent-harness",
+     "deepseek-harness"
+    ]
+   },
+   "metric": "users",
+   "value": 271000,
+   "basis": "dau",
+   "observed_on": "2026-09-30",
+   "source_url": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million",
+   "method": "reported",
+   "note": "Page read in full via Tavily extract on 2026-11-12 (Yicai Global, Nov 6): 'DeepSeek Harness had 1.54 million DAUs on its official application programming interface over the week ended Nov. 4, up from 429,000 over the week ended Oct. 7 and 271,000 over the one ended Sept. 30, Hangzhou-based DeepSeek said yesterday.' All three are stated on the same basis (DAU on the official API, over a week), so they are comparable with the 1.54M figure already recorded for Nov 4. Dated to the stated week-end date. No growth rate derived."
+  }
+ ]
+}

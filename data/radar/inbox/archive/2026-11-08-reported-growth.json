@@ -1,0 +1,26 @@
+{
+ "collected_at": "2026-11-08",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Atlassian Rovo MCP server",
+    "url": "https://mcp.atlassian.com/v1/sse",
+    "kind": "product",
+    "description": "Atlassian's Model Context Protocol server that gives AI agents and assistants (Claude, ChatGPT, Cursor, etc.) access to Jira, Confluence and the Teamwork Graph.",
+    "tags": [
+     "mcp",
+     "coding-agent",
+     "productivity"
+    ]
+   },
+   "metric": "users",
+   "value": 2000000,
+   "basis": "mau",
+   "observed_on": "2026-11-05",
+   "source_url": "https://www.atlassian.com/blog/company-news/shareholder-letter-q1fy27",
+   "method": "reported",
+   "note": "Atlassian Q1 FY27 shareholder letter (published with results on Nov 5, 2026): MCP server 'monthly active users' at 'over 2 million', 'up 8x since March', 'nearly half from enterprise customers'. The earnings release (https://www.financialcontent.com/article/bizwire-2026-11-5-atlassian-announces-first-quarter-fiscal-year-2027-results) says 'over 2 million monthly users'; the Nov 5 call (transcript posted Nov 6) says it passed '2 million users'. A threshold. Basis mau as the letter states 'monthly active users'. No as-of date for the count is given, so dated to the Nov 5 announcement (not to the Sep 30 quarter end). 'Up 8x since March' is a months window (March to the report, not a quarter or year), so no growth_pct recorded. '15 million daily tool calls, up 15x since March' is usage, not recorded. Company-reported. Search-result summaries only; no page was read (WebFetch of www.fool.com got ENOTFOUND, and the Atlassian pages were not tried after repeated host failures)."
+  }
+ ]
+}

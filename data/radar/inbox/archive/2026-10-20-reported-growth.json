@@ -1,0 +1,440 @@
+{
+ "collected_at": "2026-10-20",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "ChatGPT",
+    "url": "https://chatgpt.com",
+    "kind": "consumer_app",
+    "description": "OpenAI's general-purpose AI assistant.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "users",
+   "value": 1200000000,
+   "observed_on": "2026-09-29",
+   "source_url": "https://fourweekmba.com/ai-chatgpt-12b-weekly-users-devday-2026-distribution/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); WAU: OpenAI said at DevDay (Sep 29) ChatGPT has 1.2B weekly active users (repeated in Oct 7 announcement); up from 1B in Aug."
+  },
+  {
+   "app": {
+    "name": "ChatGPT",
+    "url": "https://chatgpt.com",
+    "kind": "consumer_app",
+    "description": "OpenAI's general-purpose AI assistant.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 70000000000,
+   "observed_on": "2026-09-29",
+   "source_url": "https://axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); OpenAI company-wide annualized revenue 'nears $70B' (Axios sources, Reuters single source); FT later reported ~$50B (net of partner share) - accounting methods differ."
+  },
+  {
+   "app": {
+    "name": "ChatGPT",
+    "url": "https://chatgpt.com",
+    "kind": "consumer_app",
+    "description": "OpenAI's general-purpose AI assistant.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 70,
+   "observed_on": "2026-09-29",
+   "source_url": "https://axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); OpenAI run-rate grew 'more than 70%' since the beginning of Q3 (Jul 1); B2B revenue +100% over same stretch.",
+   "period_days": 90
+  },
+  {
+   "app": {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "kind": "consumer_app",
+    "description": "Anthropic's AI assistant (web, apps, Claude Code) and the company's model business.",
+    "tags": [
+     "assistant",
+     "coding-agent"
+    ]
+   },
+   "metric": "visits_monthly",
+   "value": 1000000000,
+   "observed_on": "2026-09-30",
+   "source_url": "https://www.visualcapitalist.com/ranked-worlds-most-popular-ai-tools-2026/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); claude.ai ~1.0B web visits Sept 2026 (Similarweb via Visual Capitalist); #3 AI chatbot site, 9.6% share; excludes apps/API."
+  },
+  {
+   "app": {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "kind": "consumer_app",
+    "description": "Anthropic's AI assistant (web, apps, Claude Code) and the company's model business.",
+    "tags": [
+     "assistant",
+     "coding-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 45,
+   "observed_on": "2026-09-30",
+   "source_url": "https://thenextweb.com/news/anthropic-q3-revenue-16-8bn-ipo",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Anthropic company-wide Q3 2026 quarterly revenue $16.8B vs $11.6B in Q2 (+~45% QoQ), told to investors Oct 14 per FT; quarterly revenue, not run-rate.",
+   "period_days": 92
+  },
+  {
+   "app": {
+    "name": "Cognition (Devin, Windsurf)",
+    "url": "https://cognition.ai",
+    "kind": "product",
+    "description": "Maker of the Devin autonomous coding agent and the Windsurf/Devin Desktop IDE.",
+    "tags": [
+     "coding-agent"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1000000000,
+   "observed_on": "2026-09-25",
+   "source_url": "https://cognition.com/blog/1b-run-rate",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Company blog: Cognition crossed $1B annualized revenue run rate (Sep 25)."
+  },
+  {
+   "app": {
+    "name": "Cognition (Devin, Windsurf)",
+    "url": "https://cognition.ai",
+    "kind": "product",
+    "description": "Maker of the Devin autonomous coding agent and the Windsurf/Devin Desktop IDE.",
+    "tags": [
+     "coding-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 100,
+   "observed_on": "2026-09-25",
+   "source_url": "https://aiweekly.co/alerts/cognition-says-devin-coding-agent-hit-1b-annualized-revenue-run-rate-doubling",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Run rate doubled from $492M in May to $1B ('four months after $492M' per RuntimeWire).",
+   "period_days": 120
+  },
+  {
+   "app": {
+    "name": "Modal",
+    "url": "https://modal.com",
+    "kind": "product",
+    "description": "Serverless AI cloud for inference, training and agent sandboxes.",
+    "tags": [
+     "llm-inference",
+     "agent-runtime"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1000000000,
+   "observed_on": "2026-10-14",
+   "source_url": "https://fourweekmba.com/ai-modal-tops-1b-run-rate-raises-750m-at-15-75b-valuation/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Company says it passed $1B annualized run rate, with $750M Series D at $15.75B (Accel); Sandboxes product alone ~$300M run rate."
+  },
+  {
+   "app": {
+    "name": "Modal",
+    "url": "https://modal.com",
+    "kind": "product",
+    "description": "Serverless AI cloud for inference, training and agent sandboxes.",
+    "tags": [
+     "llm-inference",
+     "agent-runtime"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 1400,
+   "observed_on": "2026-10-14",
+   "source_url": "https://fourweekmba.com/ai-modal-tops-1b-run-rate-raises-750m-at-15-75b-valuation/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); CEO: Modal has grown 'more than 15x year-over-year' (metric not specified; usage tripled since May Series C).",
+   "period_days": 365
+  },
+  {
+   "app": {
+    "name": "Anam",
+    "url": "https://anam.ai",
+    "kind": "product",
+    "description": "Real-time interactive AI avatar/persona platform.",
+    "tags": [
+     "voice",
+     "multimodal"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 1300,
+   "observed_on": "2026-10-11",
+   "source_url": "https://www.arr.club/signal/anam-grew-arr-14x-in-13-months",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); ARR grew 14x in 13 months (Head of GTM Anna Buckley); dollar ARR not disclosed; single tracker source.",
+   "period_days": 395
+  },
+  {
+   "app": {
+    "name": "Kimi (Moonshot AI)",
+    "url": "https://www.kimi.com",
+    "kind": "consumer_app",
+    "description": "Moonshot AI's assistant app and Kimi open-weight models/API.",
+    "tags": [
+     "assistant",
+     "foundation-model"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1000000000,
+   "observed_on": "2026-08-31",
+   "source_url": "https://aiweekly.co/alerts/moonshot-ai-tells-investors-arr-topped-1b-in-august-targets-2b-by-end-of-2026",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Moonshot AI company-wide ARR topped $1B in August (Bloomberg, Sep 11, people familiar); target $2B by end-2026; >70% from API. Day approximated to month end."
+  },
+  {
+   "app": {
+    "name": "Kimi (Moonshot AI)",
+    "url": "https://www.kimi.com",
+    "kind": "consumer_app",
+    "description": "Moonshot AI's assistant app and Kimi open-weight models/API.",
+    "tags": [
+     "assistant",
+     "foundation-model"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 300000000,
+   "observed_on": "2026-06-15",
+   "source_url": "https://cryptobriefing.com/moonshot-ai-2b-revenue-target/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Baseline in same reporting: ARR ~$300M by mid-June 2026; day approximated."
+  },
+  {
+   "app": {
+    "name": "Kimi (Moonshot AI)",
+    "url": "https://www.kimi.com",
+    "kind": "consumer_app",
+    "description": "Moonshot AI's assistant app and Kimi open-weight models/API.",
+    "tags": [
+     "assistant",
+     "foundation-model"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 200,
+   "observed_on": "2026-08-31",
+   "source_url": "https://cryptobriefing.com/moonshot-ai-2b-revenue-target/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); ARR 'triples in two months' (June ~$300M -> Aug >$1B), driven by Kimi K3 release.",
+   "period_days": 61
+  },
+  {
+   "app": {
+    "name": "Z.ai (Zhipu AI)",
+    "url": "https://z.ai",
+    "kind": "product",
+    "description": "Zhipu AI's GLM models, MaaS/API platform and chat app.",
+    "tags": [
+     "foundation-model",
+     "llm-inference"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 1600000000,
+   "observed_on": "2026-08-31",
+   "source_url": "https://equalocean.com/news/2026090222159-zhipu-ais-h1-revenue-jumps-nearly-400-as-api-business-takes-86-5-sales",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Company disclosed MaaS platform ARR reached $1.6B as of Aug 31 (monthly basis), with H1 2026 results."
+  },
+  {
+   "app": {
+    "name": "Z.ai (Zhipu AI)",
+    "url": "https://z.ai",
+    "kind": "product",
+    "description": "Zhipu AI's GLM models, MaaS/API platform and chat app.",
+    "tags": [
+     "foundation-model",
+     "llm-inference"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 399.7,
+   "observed_on": "2026-06-30",
+   "source_url": "https://www.caixinglobal.com/2026-09-01/zhipu-revenue-rises-nearly-400-as-cloud-business-gains-ground-102480471.html",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); H1 2026 revenue RMB954M, +399.7% YoY (interim results); API business +2,735.7%, 86.5% of revenue.",
+   "period_days": 365
+  },
+  {
+   "app": {
+    "name": "MiniMax",
+    "url": "https://www.minimax.io",
+    "kind": "product",
+    "description": "Chinese model maker behind Hailuo AI video, Talkie and an open API platform.",
+    "tags": [
+     "foundation-model",
+     "video-generation",
+     "voice"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 283.1,
+   "observed_on": "2026-06-30",
+   "source_url": "https://www.minimax.io/news/minimax-announces-first-half-2026-financial-results-1787744160",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); H1 2026 revenue $116.6M, +283.1% YoY (company release Aug 26); open platform/enterprise +703.1%, AI-native products (Hailuo, Talkie) +100.9%.",
+   "period_days": 365
+  },
+  {
+   "app": {
+    "name": "DeepSeek",
+    "url": "https://www.deepseek.com",
+    "kind": "consumer_app",
+    "description": "DeepSeek's chat assistant and open-weight models.",
+    "tags": [
+     "assistant",
+     "foundation-model"
+    ]
+   },
+   "metric": "visits_monthly",
+   "value": 353800000,
+   "observed_on": "2026-08-31",
+   "source_url": "https://www.secondtalent.com/resources/deepseek-statistics/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); deepseek.com web visits Aug 2026, Similarweb via Second Talent (~6% of chatgpt.com)."
+  },
+  {
+   "app": {
+    "name": "DeepSeek",
+    "url": "https://www.deepseek.com",
+    "kind": "consumer_app",
+    "description": "DeepSeek's chat assistant and open-weight models.",
+    "tags": [
+     "assistant",
+     "foundation-model"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 2.14,
+   "observed_on": "2026-08-31",
+   "source_url": "https://www.secondtalent.com/resources/deepseek-statistics/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); deepseek.com visits Aug vs Jul 2026, Similarweb via Second Talent.",
+   "period_days": 31
+  },
+  {
+   "app": {
+    "name": "Grok",
+    "url": "https://grok.com",
+    "kind": "consumer_app",
+    "description": "xAI's (SpaceX) AI assistant on web, apps and X.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "visits_monthly",
+   "value": 286000000,
+   "observed_on": "2026-09-30",
+   "source_url": "https://firstpagesage.com/?p=40663",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); grok.com monthly visits Sept 2026 per FirstPage Sage (web + app panel method, not Similarweb); Similarweb had 244.9M in May."
+  },
+  {
+   "app": {
+    "name": "Grok",
+    "url": "https://grok.com",
+    "kind": "consumer_app",
+    "description": "xAI's (SpaceX) AI assistant on web, apps and X.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "users",
+   "value": 117000000,
+   "observed_on": "2026-03-31",
+   "source_url": "https://pulse2.com/spacex-grok-reaches-117-million-users-as-ai-push-accelerates/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); MAU using Grok AI features as of Mar 31, 2026 per SpaceX IPO filing (includes use inside X; ~1.9M paid subscriptions). Baseline for new app."
+  },
+  {
+   "app": {
+    "name": "EliseAI",
+    "url": "https://eliseai.com",
+    "kind": "product",
+    "description": "AI agents for property management (leasing) and healthcare front office.",
+    "tags": [
+     "enterprise-agent",
+     "customer-support",
+     "healthcare"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 200000000,
+   "observed_on": "2026-06-30",
+   "source_url": "https://www.digitalhealthnews.com/eliseai-raises-350m-at-4b-valuation-to-accelerate-ai-product-development-",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Company says ARR surpassed $200M in June 2026 (disclosed with $350M raise at $4B, Sep 29); day approximated."
+  },
+  {
+   "app": {
+    "name": "Use.ai",
+    "url": "https://use.ai",
+    "kind": "consumer_app",
+    "description": "Multi-model AI assistant bundling GPT, Claude, Gemini, Grok, DeepSeek in one app.",
+    "tags": [
+     "assistant"
+    ]
+   },
+   "metric": "users",
+   "value": 1000000,
+   "observed_on": "2026-10-01",
+   "source_url": "https://www.globenewswire.com/news-release/2026/10/01/3372927/0/en/use-ai-reaches-1-million-monthly-active-users-less-than-a-year-after-launch.html",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); MAU: press release says 1 million monthly active users less than a year after launch."
+  },
+  {
+   "app": {
+    "name": "RapidCanvas",
+    "url": "https://www.rapidcanvas.ai",
+    "kind": "product",
+    "description": "Enterprise AI agent / data-science automation platform.",
+    "tags": [
+     "enterprise-agent"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 700,
+   "observed_on": "2026-10-16",
+   "source_url": "https://businessreviewlive.com/enterprise-ai-startup-rapidcanvas-raises-29-mn-to-strengthen-its-platform/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Company says ARR grew eightfold over the past six quarters ($29M Series B, Vertex Ventures SEA & India); dollar ARR not given.",
+   "period_days": 548
+  },
+  {
+   "app": {
+    "name": "Arena (LMArena)",
+    "url": "https://lmarena.ai",
+    "kind": "product",
+    "description": "Crowdsourced AI model leaderboard and commercial AI Evaluations product.",
+    "tags": [
+     "agent-evaluation"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 100000000,
+   "observed_on": "2026-06-29",
+   "source_url": "https://techcrunch.com/2026/06/29/arena-the-ai-leaderboard-everyone-uses-is-now-a-100m-business/",
+   "method": "reported",
+   "note": "Search-result summary only (WebFetch/Tavily unavailable this session); Annualized run-rate $100M in June (consumption-based, not recurring); restated with $200M Series B at $3.1B on Oct 8. Baseline for new app."
+  }
+ ]
+}

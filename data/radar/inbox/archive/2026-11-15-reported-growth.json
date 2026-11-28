@@ -1,0 +1,54 @@
+{
+ "collected_at": "2026-11-15",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "kind": "consumer_app",
+    "description": "Anthropic's AI assistant (web, apps, Claude Code) and the company's model business.",
+    "tags": ["assistant", "coding-agent"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 81000000000,
+   "rounded_to": 1000000000,
+   "observed_on": "2026-10-31",
+   "source_url": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/ANTLLV/ANTLLVred.pdf",
+   "method": "reported",
+   "note": "Anthropic, PBC Form S-1/A (Amendment No. 2, filed Nov 10, 2026), copy hosted by Fidelity: 'our Run-Rate Revenue was approximately $81 billion as of October 31, 2026, up $10 billion from September 30, 2026.' Company-wide run-rate (Anthropic's own metric: trailing 28-day consumption fees x 13 plus monthly subscription fees x 12), dated Oct 31 as stated. 'Approximately' read as rounded to the billion, not a ceiling. No basis set: the filing does not call it gross, net or contracted. The implied Sept 30 level ($71B) is not stated as a number in the filing, so it is not recorded; earlier notes (Nov 11) declined an '$81B October ARR' only as a secondhand newsletter figure, and this is the filing itself. Also reported by Reuters (Nov 10) and citybiz (Nov 13). Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Level AI",
+    "url": "https://thelevel.ai",
+    "kind": "product",
+    "description": "AI-native customer experience platform for contact centers: AI voice agents, agent assist, automated quality management and voice-of-customer analytics.",
+    "tags": ["voice-ai", "customer-support", "ai-agents"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 20000000,
+   "rounded_to": 1000000,
+   "observed_on": "2026-10-31",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262293018-",
+   "method": "reported",
+   "note": "Five9 Q3 2026 earnings call (Nov 5, 2026), announcing its ~$325M cash acquisition of Level AI: 'Level AI reported stand-alone annual recurring revenue of approximately $20 million as of October 31 and grew approximately 50% year-over-year.' Stated by the acquirer's management on the call (first-hand), standalone figure, not inflated by the acquisition. Dated Oct 31 as stated. No basis set. The call's forward ARR growth expectation is a forecast and is not recorded. Transcript page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Level AI",
+    "url": "https://thelevel.ai",
+    "kind": "product",
+    "description": "AI-native customer experience platform for contact centers: AI voice agents, agent assist, automated quality management and voice-of-customer analytics.",
+    "tags": ["voice-ai", "customer-support", "ai-agents"]
+   },
+   "metric": "growth_pct",
+   "value": 50,
+   "period_days": 365,
+   "observed_on": "2026-11-05",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262293018-",
+   "method": "reported",
+   "note": "Five9 Q3 2026 earnings call (Nov 5, 2026): Level AI 'grew approximately 50% year-over-year' (standalone ARR). Year-over-year recorded as 365 days. The sentence gives Oct 31 for the ARR level but does not explicitly date the growth window, so this is dated to the Nov 5 call date. Transcript page read with Tavily extract."
+  }
+ ]
+}

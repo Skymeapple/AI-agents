@@ -1,0 +1,143 @@
+{
+ "collected_at": "2026-11-18",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Baidu DuMate",
+    "url": "https://www.dumate.cn",
+    "kind": "product",
+    "description": "Baidu's general work agent (搭子DuMate) for desktop and mobile that runs multi-step office tasks across files, apps and the web.",
+    "tags": [
+     "ai-agents",
+     "productivity",
+     "china"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 2900,
+   "period_days": 91,
+   "observed_on": "2026-11-16",
+   "source_url": "https://www.theglobeandmail.com/investing/markets/stocks/BIDU-Q/pressreleases/8862532/baidu-bidu-q3-2026-earnings-call-transcript",
+   "method": "reported",
+   "note": "Baidu Q3 2026 earnings call (Nov 16, 2026), Robin Li's prepared remarks: 'DuMate, our general work agent introduced earlier this year, has grown rapidly. In September, its MAU increased by more than 30-fold quarter-over-quarter.' 30-fold recorded as +2900% (a floor: 'more than'); quarter-over-quarter recorded as 91 days. Growth of monthly active users (MAU); no level stated by Baidu. The call states only the month, so dated to Sept 30 (month end, following earlier files' convention for month-only figures); the call date is Nov 16. DuMate is a separately stated AI product of Baidu. Transcript page read with Tavily extract (Globe and Mail copy); BigGo's call summary says the same. The 9.77M September MAU on Baidu Baike is a QuestMobile third-party figure and is not recorded. [Daily-run review: re-dated to the Nov 16 call date; the source states only \"September\", and the rules forbid inferring a period end date.]"
+  },
+  {
+   "app": {
+    "name": "Model ML",
+    "url": "https://www.modelml.com",
+    "kind": "product",
+    "description": "Personal AI agent platform for bankers, consultants and investors that prepares finished analysis inside the firm's own systems.",
+    "tags": [
+     "finance",
+     "ai-agents",
+     "enterprise"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 1100,
+   "period_days": 365,
+   "observed_on": "2026-11-17",
+   "source_url": "https://www.generalatlantic.com/media-article/model-ml-raises-250-million-at-1-5-billion-valuation-18-months-after-launching-from-stealth",
+   "method": "reported",
+   "note": "Model ML Series B release (Nov 17, 2026, $250M at $1.5B, co-led by General Atlantic and QED), General Atlantic's copy: 'In the third quarter of 2026, Model ML's annual recurring revenue grew 12x year on year and daily active users increased 26x.' ARR growth: 12x recorded as +1100%; year on year recorded as 365 days; dated to Sept 30, the end of the stated quarter (Q3 2026). No ARR level stated. Page read with Tavily extract; Unite.AI, EU-Startups, Pulse 2.0 and TFN repeat it. [Daily-run review: re-dated to the Nov 17 announcement; the source states only \"the third quarter\", and the rules forbid inferring a period end date.]"
+  },
+  {
+   "app": {
+    "name": "Model ML",
+    "url": "https://www.modelml.com",
+    "kind": "product",
+    "description": "Personal AI agent platform for bankers, consultants and investors that prepares finished analysis inside the firm's own systems.",
+    "tags": [
+     "finance",
+     "ai-agents",
+     "enterprise"
+    ]
+   },
+   "metric": "growth_pct",
+   "value": 2500,
+   "period_days": 365,
+   "observed_on": "2026-11-17",
+   "source_url": "https://www.generalatlantic.com/media-article/model-ml-raises-250-million-at-1-5-billion-valuation-18-months-after-launching-from-stealth",
+   "method": "reported",
+   "note": "Same Model ML release (Nov 17, 2026): 'In the third quarter of 2026, Model ML's annual recurring revenue grew 12x year on year and daily active users increased 26x.' This row is user growth: daily active users (DAU) 26x recorded as +2500%. The release puts the DAU multiple in the same year-on-year Q3 sentence as the ARR figure, so 365 days and Sept 30 (end of Q3 2026). No DAU level stated. Page read with Tavily extract. [Daily-run review: re-dated to the Nov 17 announcement; the source states only \"the third quarter\", and the rules forbid inferring a period end date.]"
+  },
+  {
+   "app": {
+    "name": "CodeRabbit",
+    "url": "https://www.coderabbit.ai",
+    "kind": "product",
+    "description": "AI code review platform that reviews, triages and secures pull requests written by people and coding agents.",
+    "tags": [
+     "coding",
+     "code-review",
+     "developer-tools"
+    ]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 100000000,
+   "observed_on": "2026-11-12",
+   "source_url": "https://www.coderabbit.ai/blog/coderabbit-100-million-arr",
+   "method": "reported",
+   "note": "CodeRabbit blog post by co-founders Harjot Gill and Gur Singh (Nov 12, 2026), 'CodeRabbit Passes $100 million in ARR': 'CodeRabbit has grown from $10 million to $100 million in annual recurring revenue in just over a year.' The Business Wire release of the same day says 'CodeRabbit has passed $100 million in annual recurring revenue.' $100M is a floor ('passed'). Basis (gross/net/contracted) not stated, so left out. The growth from $10M is over 'just over a year', which is not an exact window and is two levels, so no growth row. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "CodeRabbit",
+    "url": "https://www.coderabbit.ai",
+    "kind": "product",
+    "description": "AI code review platform that reviews, triages and secures pull requests written by people and coding agents.",
+    "tags": [
+     "coding",
+     "code-review",
+     "developer-tools"
+    ]
+   },
+   "metric": "users",
+   "value": 400000,
+   "basis": "mau",
+   "observed_on": "2026-11-12",
+   "source_url": "https://www.coderabbit.ai/blog/coderabbit-100-million-arr",
+   "method": "reported",
+   "note": "CodeRabbit blog post (Nov 12, 2026): 'More than 20,000 customers and 400,000 monthly active users now use CodeRabbit'. Monthly active users, so basis mau; a floor ('more than'). The newsroom copy of the Business Wire release gives the same 400,000+ MAU in its chart caption. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "CodeRabbit",
+    "url": "https://www.coderabbit.ai",
+    "kind": "product",
+    "description": "AI code review platform that reviews, triages and secures pull requests written by people and coding agents.",
+    "tags": [
+     "coding",
+     "code-review",
+     "developer-tools"
+    ]
+   },
+   "metric": "users",
+   "value": 120000,
+   "basis": "dau",
+   "observed_on": "2026-11-12",
+   "source_url": "https://www.coderabbit.ai/newsroom/coderabbit-tops-100m-arr-governance-agentic-software-development",
+   "method": "reported",
+   "note": "CodeRabbit newsroom copy of its Business Wire release (Nov 12, 2026; Business Wire listing shows Nov 12, 9:05 AM): 'It now serves more than 20,000 customers and 120,000 daily active users'. Daily active users, so basis dau; a floor ('more than'). This is a different basis from the 400,000 MAU in the blog, not a second figure for the same metric. Page read with Tavily extract (businesswire.com original not fetched)."
+  },
+  {
+   "app": {
+    "name": "HeyGen",
+    "url": "https://www.heygen.com",
+    "kind": "product",
+    "description": "AI video platform that creates personal avatars and avatar videos from a script.",
+    "tags": [
+     "video-generation",
+     "avatars"
+    ]
+   },
+   "metric": "users",
+   "value": 40000000,
+   "observed_on": "2026-11-17",
+   "source_url": "https://www.streetinsider.com/PRNewswire/HeyGen+Introduces+Avatar+6%2C+an+Audio-Driven%2C+Context-Aware+AI+Model+that+Alleviates+Repetitive+or+Unnatural+Motion+in+AI-Generated+Video/27362277.html",
+   "method": "reported",
+   "note": "HeyGen Avatar 6 release (PR Newswire, Los Angeles, Nov 17, 2026), StreetInsider syndicated copy: 'Founded in 2020, HeyGen now reaches over 40 million users across 196 countries' and 'HeyGen is used by over 40 million people'. 'Users' with no stated basis, so basis left out; a floor ('over'). No as-of date beyond 'now', so dated to the Nov 17 announcement. The same release re-quotes the June $200M ARR and 'doubling revenue in eight months', both already recorded (June 25 rows) and not repeated. Page read with Tavily extract."
+  }
+ ]
+}

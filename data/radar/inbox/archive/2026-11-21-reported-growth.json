@@ -1,0 +1,53 @@
+{
+ "collected_at": "2026-11-21",
+ "collector": "agent:web-research",
+ "observations": [
+  {
+   "app": {
+    "name": "Magnific (formerly Freepik)",
+    "url": "https://www.magnific.com",
+    "kind": "product",
+    "description": "AI creative platform (formerly Freepik) that brings image, video and audio generation models, team tools and a 250M-asset stock library into one workspace.",
+    "tags": ["image-generation", "video-generation", "creative-tools"]
+   },
+   "metric": "revenue_annualized_usd",
+   "value": 300000000,
+   "observed_on": "2026-11-17",
+   "source_url": "https://www.media-marketing.com/en/news/magnific-invests-10-million-in-expansion-among-asian-agencies-studios-and-brands",
+   "method": "reported",
+   "note": "Company announcement with its Shanghai/Singapore expansion, as reported by Media-Marketing.com (dated 17/11/2026): 'The expansion is accompanied by the announcement that Magnific has surpassed $300 million in annual recurring revenue, or ARR, globally.' A floor ('surpassed'). Basis (gross/net/contracted) not stated, so left out. Dated to the article/announcement date. Dealroom (read) confirms: 'said on Tuesday it has passed $300M in annual recurring revenue (ARR). That is up from $230M when it rebranded in April' (the April figure has no day, so not recorded). Identity: magnific.com homepage reads 'Magnific (formerly Freepik)'; freepik.com is not used as the key. Pages read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "Pulley (permitting)",
+    "url": "https://www.withpulley.com",
+    "kind": "product",
+    "description": "AI-native development and permitting platform where AI agents and licensed experts run diligence, approval strategy and plan review for commercial construction projects.",
+    "tags": ["ai-agents", "proptech", "vertical-ai"]
+   },
+   "metric": "growth_pct",
+   "value": 400,
+   "period_days": 365,
+   "observed_on": "2026-11-18",
+   "source_url": "https://finance.yahoo.com/real-estate/articles/pulley-raises-64m-accelerate-every-223000419.html",
+   "method": "reported",
+   "note": "Business Wire release (San Francisco, November 18, 2026), $64M Series A+B: 'Following 5x year-over-year growth in annual recurring revenue, the investment will support the expansion of Pulley's permitting service...' ARR growth: 5x recorded as +400%; year over year recorded as 365 days; dated to the release. No ARR level disclosed. Not the cap-table company Pulley (pulley.com); identity withpulley.com, confirmed by reading the company's own post at withpulley.com/resources/pulley-next-chapter. Service-heavy (75+ licensed experts alongside AI agents); reviewer may judge whether it belongs on an AI-app radar. Page read with Tavily extract."
+  },
+  {
+   "app": {
+    "name": "deepseek-ai/deepseek-harness",
+    "url": "https://github.com/deepseek-ai/deepseek-harness",
+    "kind": "repo",
+    "description": "DeepSeek Harness: DeepSeek's open-source, plugin-based agent harness for coding and office work, comparable to Claude Code and Codex.",
+    "tags": ["coding-agent", "ai-agents", "china", "open-source"]
+   },
+   "metric": "users",
+   "value": 5480000,
+   "basis": "mau",
+   "observed_on": "2026-11-04",
+   "source_url": "https://m.sohu.com/a/1099299267_115571",
+   "method": "reported",
+   "note": "Caijing (via Sohu), on DeepSeek's Nov 5 open-source community announcement: '截至11月4日，DeepSeek Harness日活跃用户已达154万，月活跃用户达到548万，单日Token消耗量约92万亿。' Scope: '这一数据仅统计通过DeepSeek官方API调用模型的用户' (official-API users only; actual usage larger). Dated to the 'as of Nov 4' the source states. The 1.54M DAU is already in observations (basis dau); this adds the MAU reading, which observations lacked. Thepaper (via Eastmoney) and 36Kr reports of the same announcement give only the DAU, so the MAU rests on Caijing (also repeated on Zhihu). Identity: the existing radar key gh:deepseek-ai/deepseek-harness. Page read with Tavily extract."
+  }
+ ]
+}

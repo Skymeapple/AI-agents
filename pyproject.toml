@@ -13,21 +13,25 @@ dependencies = [
 dev = ["pytest>=8.0"]
 # Only needed for autoscout's LLM proposer; the agent runs without it.
 llm = ["anthropic>=1.8"]
+cosmos = ["scipy>=1.11", "matplotlib>=3.8"]
 
 [project.scripts]
 sciscout = "sciscout.cli:main"
 autoscout = "autoscout.cli:main"
-
-[tool.setuptools.packages.find]
-include = ["sciscout*", "autoscout*"]
-
-[tool.setuptools.package-data]
-sciscout = ["priors/*.yaml"]
-autoscout = ["agenda.yaml"]
+airadar = "airadar.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sciscout*", "autoscout*", "airadar*", "cosmos*", "worldsim*"]
+
+[tool.setuptools.package-data]
+sciscout = ["priors/*.yaml"]
+autoscout = ["agenda.yaml"]
+cosmos = ["data/*"]
+worldsim = ["*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

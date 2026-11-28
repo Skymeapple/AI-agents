@@ -1,0 +1,1163 @@
+# The forecast ledger: every dated, checkable prediction found in this repository.
+#
+# Extracted on 2026-11-28. Each entry names the file it came from and an anchor
+# string that must still be present in that file (tests/test_nexus_ledger.py
+# checks every one). Nothing here was resolved from memory: outcomes go in
+# resolutions.yaml, and each must name its source.
+#
+# Not included, and why:
+#   frontier-trends: $1B+ cyber incident attributed to AI-autonomous exploitation -- attribution of an incident to autonomous AI has no agreed arbiter
+#   frontier-trends: Community-accepted useful quantum advantage -- no settling criterion: 'community-accepted' is a judgement
+#   frontier-trends: Stratos sustained commercial operation -- 'sustained' is not defined
+#   worldsim: ai_gap -- a constructed index with no external measurement
+#   worldsim: pandemic_deaths (2030) -- the 2030 quantiles are all zero; the pandemic forecast is carried as a probability instead
+#   worldsim: Cooperation and Fragmentation scenarios, and all 2050 quantiles -- conditional on lever settings nobody has chosen; 2030 current-trajectory values are the checkable part
+#   airadar: data/radar/predictions.jsonl -- 7-day growth scores, not probabilities, and airadar already scores them itself (data/radar/reviews.jsonl)
+#   ai100: numbered predictions P1..Pn in research/papers -- hypotheses about experiments with no date attached, except the two from p077 below
+#   ai2035, cosmos, open-problems-sim, hfm-projects, world-understanding, autoscout -- no dated quantitative forecasts found
+- id: trends-metr-published-50-horizon-ge-40-h-2027
+  statement: METR-published 50% horizon ≥ 40 h (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 104
+    anchor: '| METR-published 50% horizon ≥ 40 h | End-2027 | ~70% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.7
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by METR's published time-horizon results (metr.org).
+- id: trends-metr-50-horizon-ge-1-work-month-167-h-2029
+  statement: METR 50% horizon ≥ 1 work-month (~167 h) (End-2029)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 105
+    anchor: '| METR 50% horizon ≥ 1 work-month (~167 h) | End-2029 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2029-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2029-12-31. Settled by METR's published time-horizon results (metr.org).
+- id: trends-swe-bench-pro-public-set-gt-80-2027
+  statement: SWE-bench Pro public set > 80% (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 106
+    anchor: '| SWE-bench Pro public set > 80% | End-2027 | ~65% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·secondary
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by the public SWE-bench Pro leaderboard maintained by Scale AI.
+- id: trends-a-frontier-lab-at-ge-100b-annualised-revenue-2026
+  statement: A frontier lab at ≥ $100B annualised revenue (End-2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 107
+    anchor: '| A frontier lab at ≥ $100B annualised revenue | End-2026 | ~75% |'
+  made: '2026-09-24'
+  resolves: '2026-12-31'
+  kind: binary
+  probability: 0.75
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2026-12-31. Settled by audited filings or consistent reporting by at least two major outlets of annualised revenue.
+- id: trends-top-4-hyperscaler-capex-gt-1t-2027
+  statement: Top-4 hyperscaler capex > $1T (Calendar 2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 108
+    anchor: '| Top-4 hyperscaler capex > $1T | Calendar 2027 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·secondary
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by calendar-2027 capital expenditure summed from the 10-K/10-Q filings of the four largest hyperscalers.
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-global-semiconductor-revenue-2027-below-2026-nom-2027
+  statement: Global semiconductor revenue 2027 below 2026 (nominal) (2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 109
+    anchor: '| Global semiconductor revenue 2027 below 2026 (nominal) | 2027 | ~35% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by WSTS/SIA full-year 2027 and 2026 sales (published early 2028).
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-semiconductor-revenue-gt-1-5t-2030
+  statement: Semiconductor revenue > $1.5T (2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 110
+    anchor: '| Semiconductor revenue > $1.5T | 2030 | ~70% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.7
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by WSTS/SIA full-year 2030 sales (published early 2031).
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-cpo-in-scale-up-links-of-a-shipping-flagship-ai-2028
+  statement: CPO in scale-up links of a shipping flagship AI system (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 111
+    anchor: '| CPO in scale-up links of a shipping flagship AI system | End-2028 | ~50% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.5
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by vendor documentation of a shipping flagship AI system using co-packaged optics in scale-up links.
+- id: trends-global-data-centre-electricity-ge-900-twh-in-som-2030
+  statement: Global data-centre electricity ≥ 900 TWh in some year (By 2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 112
+    anchor: '| Global data-centre electricity ≥ 900 TWh in some year | By 2030 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by IEA data-centre electricity estimates for each year to 2030.
+- id: trends-eu-annex-iii-obligations-apply-on-2-dec-2027-wit-2027
+  statement: EU Annex III obligations apply on 2 Dec 2027 without further delay (Dec 2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 114
+    anchor: '| EU Annex III obligations apply on 2 Dec 2027 without further delay | Dec 2027 | ~65% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: 'Yes if the milestone as worded has happened by 2027-12-31. Settled by the Official Journal of the EU: the application date of the AI Act''s Annex III obligations.'
+- id: trends-us-federal-statute-preempting-state-ai-laws-2027
+  statement: US federal statute preempting state AI laws (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 115
+    anchor: '| US federal statute preempting state AI laws | End-2027 | ~25% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.25
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: 'Yes if the milestone as worded has happened by 2027-12-31. Settled by congress.gov: an enacted statute preempting state AI laws.'
+- id: trends-ge-100-logical-qubits-at-le-10-logical-error-2028
+  statement: ≥ 100 logical qubits at ≤ 10⁻⁴ logical error (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 117
+    anchor: '| ≥ 100 logical qubits at ≤ 10⁻⁴ logical error | End-2028 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by a peer-reviewed or vendor-published demonstration with the stated logical-qubit count and error rate.
+- id: trends-ibm-starling-class-system-ge-100-logical-qubits-2029-12
+  statement: IBM Starling-class system (≥ 100 logical qubits, ≥ 10⁷ ops) (End-2029)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 118
+    anchor: '| IBM Starling-class system (≥ 100 logical qubits, ≥ 10⁷ ops) | End-2029 / End-2031 | ~40% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2029-12-31'
+  kind: binary
+  probability: 0.4
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2029-12-31. Settled by IBM's published system specifications.
+- id: trends-ibm-starling-class-system-ge-100-logical-qubits-2031-12
+  statement: IBM Starling-class system (≥ 100 logical qubits, ≥ 10⁷ ops) (End-2031)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 118
+    anchor: '| IBM Starling-class system (≥ 100 logical qubits, ≥ 10⁷ ops) | End-2029 / End-2031 | ~40% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2031-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2031-12-31. Settled by IBM's published system specifications.
+- id: trends-rsa-2048-broken-by-a-quantum-computer-2031
+  statement: RSA-2048 broken by a quantum computer (End-2031)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 119
+    anchor: '| RSA-2048 broken by a quantum computer | End-2031 | ~5-10% |'
+  made: '2026-09-24'
+  resolves: '2031-12-31'
+  kind: binary
+  probability: 0.075
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2031-12-31. Settled by a publicly verified factorisation of an RSA-2048 modulus on a quantum computer.
+  probability_range:
+  - 0.05
+  - 0.1
+- id: trends-average-li-ion-pack-le-100-kwh-bnef-2026-survey-2026
+  statement: Average Li-ion pack ≤ $100/kWh (BNEF 2026 survey) (Dec 2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 120
+    anchor: '| Average Li-ion pack ≤ $100/kWh (BNEF 2026 survey) | Dec 2026 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2026-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2026-12-31. Settled by BNEF's annual lithium-ion battery price survey for 2026.
+- id: trends-annual-storage-additions-ge-1-twh-2030
+  statement: Annual storage additions ≥ 1 TWh (Some year by 2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 121
+    anchor: '| Annual storage additions ≥ 1 TWh | Some year by 2030 | ~50% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.5
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by BNEF annual energy-storage deployment data.
+- id: trends-all-solid-state-battery-in-a-series-car-on-sale-2027-12
+  statement: All-solid-state battery in a series car on sale (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 122
+    anchor: '| All-solid-state battery in a series car on sale | End-2027 / End-2028 | ~35% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by a manufacturer's announcement of a series-production car on sale with an all-solid-state battery.
+- id: trends-all-solid-state-battery-in-a-series-car-on-sale-2028-12
+  statement: All-solid-state battery in a series car on sale (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 122
+    anchor: '| All-solid-state battery in a series car on sale | End-2027 / End-2028 | ~35% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by a manufacturer's announcement of a series-production car on sale with an all-solid-state battery.
+- id: trends-sparc-first-plasma-2027
+  statement: SPARC first plasma (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 123
+    anchor: '| SPARC first plasma | End-2027 | ~70% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.7
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced (conflicting dates)
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by Commonwealth Fusion Systems' announcement of first plasma.
+- id: trends-sparc-q-gt-1-2028-12
+  statement: SPARC Q > 1 (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 124
+    anchor: '| SPARC Q > 1 | End-2028 / End-2030 | ~35% / ~60% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by a published SPARC result reporting Q > 1.
+- id: trends-sparc-q-gt-1-2030-12
+  statement: SPARC Q > 1 (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 124
+    anchor: '| SPARC Q > 1 | End-2028 / End-2030 | ~35% / ~60% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.6
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by a published SPARC result reporting Q > 1.
+- id: trends-helion-delivers-fusion-electricity-to-the-grid-2028
+  statement: Helion delivers fusion electricity to the grid (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 125
+    anchor: '| Helion delivers fusion electricity to the grid | End-2028 | ~10% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.1
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by confirmation by Helion and its offtaker or grid operator of electricity delivered to the grid.
+- id: trends-palisades-grid-synchronised-2026-12
+  statement: Palisades grid-synchronised (End-2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 126
+    anchor: '| Palisades grid-synchronised | End-2026 / mid-2027 | ~60% / ~85% |'
+  made: '2026-09-24'
+  resolves: '2026-12-31'
+  kind: binary
+  probability: 0.6
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2026-12-31. Settled by Holtec / NRC confirmation of grid synchronisation.
+- id: trends-palisades-grid-synchronised-2027-06
+  statement: Palisades grid-synchronised (mid-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 126
+    anchor: '| Palisades grid-synchronised | End-2026 / mid-2027 | ~60% / ~85% |'
+  made: '2026-09-24'
+  resolves: '2027-06-30'
+  kind: binary
+  probability: 0.85
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-06-30. Settled by Holtec / NRC confirmation of grid synchronisation.
+- id: trends-crane-tmi-1-producing-power-2027
+  statement: Crane (TMI-1) producing power (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 127
+    anchor: '| Crane (TMI-1) producing power | End-2027 | ~50% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.5
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by Constellation / NRC confirmation of power generation.
+- id: trends-a-us-smr-or-advanced-reactor-delivering-commerci-2030
+  statement: A US SMR or advanced reactor delivering commercial grid power (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 128
+    anchor: '| A US SMR or advanced reactor delivering commercial grid power | End-2030 | ~25% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.25
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by NRC and operator confirmation of commercial power delivered to the grid.
+- id: trends-fervo-phase-i-100-mw-fully-commercial-2027
+  statement: Fervo Phase I (100 MW) fully commercial (Mid-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 129
+    anchor: '| Fervo Phase I (100 MW) fully commercial | Mid-2027 | ~70% |'
+  made: '2026-09-24'
+  resolves: '2027-06-30'
+  kind: binary
+  probability: 0.7
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced (company)
+  resolution_rule: Yes if the milestone as worded has happened by 2027-06-30. Settled by Fervo's announcement of commercial operation at 100 MW.
+- id: trends-certified-tandem-cell-ge-36-2027
+  statement: Certified tandem cell ≥ 36% (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 130
+    anchor: '| Certified tandem cell ≥ 36% | End-2027 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by the NREL best research-cell efficiency chart.
+- id: trends-fda-approval-of-lonvo-z-first-in-vivo-crispr-2027
+  statement: FDA approval of lonvo-z (first in vivo CRISPR) (30 Jun 2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 131
+    anchor: '| FDA approval of lonvo-z (first in vivo CRISPR) | 30 Jun 2027 | ~80% |'
+  made: '2026-09-24'
+  resolves: '2027-06-30'
+  kind: binary
+  probability: 0.8
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-06-30. Settled by the FDA approval announcement.
+- id: trends-retatrutide-fda-approval-for-obesity-2027
+  statement: Retatrutide FDA approval for obesity (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 132
+    anchor: '| Retatrutide FDA approval for obesity | End-2027 | ~70% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.7
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by the FDA approval announcement.
+- id: trends-us-glp-1-net-price-per-patient-month-ge-40-below-2028
+  statement: US GLP-1 net price per patient-month ≥ 40% below 2024 (2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 133
+    anchor: '| US GLP-1 net price per patient-month ≥ 40% below 2024 | 2028 | ~80% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.8
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by realised net price per patient-month computed from Lilly and Novo Nordisk filings, against 2024.
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-intismeran-fda-approval-in-adjuvant-melanoma-2028
+  statement: Intismeran FDA approval in adjuvant melanoma (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 134
+    anchor: '| Intismeran FDA approval in adjuvant melanoma | End-2028 | ~65% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by the FDA approval announcement.
+- id: trends-first-autoimmune-car-t-approval-miv-cel-sps-2027
+  statement: First autoimmune CAR-T approval (miv-cel, SPS) (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 135
+    anchor: '| First autoimmune CAR-T approval (miv-cel, SPS) | End-2027 | ~60% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.6
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by the FDA approval announcement.
+- id: trends-positive-phase-3-readout-for-an-ai-discovered-dr-2028
+  statement: Positive Phase 3 readout for an AI-discovered drug (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 136
+    anchor: '| Positive Phase 3 readout for an AI-discovered drug | End-2028 | ~35% (range 30-40%) |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by a sponsor's announced Phase 3 primary-endpoint result for a drug generally described as AI-discovered.
+  probability_range:
+  - 0.3
+  - 0.4
+- id: trends-fda-ema-nmpa-approval-of-a-drug-with-ai-generate-2030
+  statement: FDA/EMA/NMPA approval of a drug with AI-generated target and molecule (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 137
+    anchor: '| FDA/EMA/NMPA approval of a drug with AI-generated target and molecule | End-2030 | ~30% (range 25-35%) |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.3
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by the regulator's approval announcement.
+  probability_range:
+  - 0.25
+  - 0.35
+- id: trends-ai-produced-lean-proof-of-a-major-open-conjectur-2030
+  statement: AI-produced Lean proof of a major open conjecture (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 138
+    anchor: '| AI-produced Lean proof of a major open conjecture | End-2030 | ~30% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.3
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by a Lean proof, checked by the Lean kernel and publicly released, of a conjecture listed as a major open problem.
+- id: trends-global-humanoid-shipments-ge-100k-2027
+  statement: Global humanoid shipments ≥ 100k (Calendar 2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 139
+    anchor: '| Global humanoid shipments ≥ 100k | Calendar 2027 | ~35% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by full-year 2027 humanoid shipment trackers (the report notes trackers disagree by about 30%).
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-tesla-sells-optimus-to-external-customers-2027
+  statement: Tesla sells Optimus to external customers (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 140
+    anchor: '| Tesla sells Optimus to external customers | End-2027 | ~35% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·secondary
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by Tesla 10-Q/10-K disclosure of external Optimus sales.
+- id: trends-waymo-ge-1m-paid-rides-week-2026-12
+  statement: Waymo ≥ 1M paid rides/week (End-2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 141
+    anchor: '| Waymo ≥ 1M paid rides/week | End-2026 / End-2027 | ~30% / ~75% |'
+  made: '2026-09-24'
+  resolves: '2026-12-31'
+  kind: binary
+  probability: 0.3
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2026-12-31. Settled by Alphabet's disclosed paid rides per week.
+- id: trends-waymo-ge-1m-paid-rides-week-2027-12
+  statement: Waymo ≥ 1M paid rides/week (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 141
+    anchor: '| Waymo ≥ 1M paid rides/week | End-2026 / End-2027 | ~30% / ~75% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.75
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by Alphabet's disclosed paid rides per week.
+- id: trends-tesla-ge-1-000-driverless-vehicles-in-commercial-2027
+  statement: Tesla ≥ 1,000 driverless vehicles in commercial service (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 142
+    anchor: '| Tesla ≥ 1,000 driverless vehicles in commercial service | End-2027 | ~50% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.5
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by state AV registrations and Tesla disclosures.
+- id: trends-starship-ship-to-ship-propellant-transfer-2026-12
+  statement: Starship ship-to-ship propellant transfer (End-2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 143
+    anchor: '| Starship ship-to-ship propellant transfer | End-2026 / End-2027 | ~20% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2026-12-31'
+  kind: binary
+  probability: 0.2
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2026-12-31. Settled by SpaceX / NASA confirmation of an in-orbit ship-to-ship propellant transfer.
+- id: trends-starship-ship-to-ship-propellant-transfer-2027-12
+  statement: Starship ship-to-ship propellant transfer (End-2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 143
+    anchor: '| Starship ship-to-ship propellant transfer | End-2026 / End-2027 | ~20% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2027-12-31. Settled by SpaceX / NASA confirmation of an in-orbit ship-to-ship propellant transfer.
+- id: trends-nasa-crewed-lunar-landing-2028-12
+  statement: NASA crewed lunar landing (End-2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 144
+    anchor: '| NASA crewed lunar landing | End-2028 / End-2030 | ~35% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.35
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by NASA confirmation of a crewed lunar landing.
+- id: trends-nasa-crewed-lunar-landing-2030-12
+  statement: NASA crewed lunar landing (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 144
+    anchor: '| NASA crewed lunar landing | End-2028 / End-2030 | ~35% / ~65% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.65
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by NASA confirmation of a crewed lunar landing.
+- id: trends-chinese-crewed-lunar-landing-2030
+  statement: Chinese crewed lunar landing (End-2030)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 145
+    anchor: '| Chinese crewed lunar landing | End-2030 | ~55% |'
+  made: '2026-09-24'
+  resolves: '2030-12-31'
+  kind: binary
+  probability: 0.55
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: not verified this session
+  resolution_rule: Yes if the milestone as worded has happened by 2030-12-31. Settled by CMSA confirmation of a crewed lunar landing.
+- id: trends-global-ev-share-ge-30-iea-2027
+  statement: Global EV share ≥ 30% (IEA) (Calendar 2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 146
+    anchor: '| Global EV share ≥ 30% (IEA) | Calendar 2027 | ~60% |'
+  made: '2026-09-24'
+  resolves: '2027-12-31'
+  kind: binary
+  probability: 0.6
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: 'Yes if the milestone as worded has happened by 2027-12-31. Settled by IEA Global EV Outlook: share of new car sales that are electric in calendar 2027.'
+  note: refers to a calendar year; the settling figure is published after the resolution date
+- id: trends-microsoft-s-share-of-annual-durable-cdr-contract-2028
+  statement: Microsoft's share of annual durable CDR contracting < 50% (Any year by 2028)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 148
+    anchor: '| Microsoft''s share of annual durable CDR contracting < 50% | Any year by 2028 | ~40% |'
+  made: '2026-09-24'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.4
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced·snippet
+  resolution_rule: Yes if the milestone as worded has happened by 2028-12-31. Settled by CDR.fyi data on durable CDR contracting by buyer.
+- id: trends-china-s-oct-2025-rare-earth-rules-extended-or-st-2026
+  statement: China's Oct 2025 rare-earth rules extended or still suspended (10 Nov 2026)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 149
+    anchor: '| China''s Oct 2025 rare-earth rules extended or still suspended | 10 Nov 2026 | ~60% (partial reinstatement ~30%, full ~10%) |'
+  made: '2026-09-24'
+  resolves: '2026-11-10'
+  kind: binary
+  probability: 0.6
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2026-11-10. Settled by MOFCOM announcements on the status of the October 2025 rare-earth export rules on 10 November 2026.
+- id: trends-ambient-pressure-room-temperature-superconductor-2031
+  statement: Ambient-pressure room-temperature superconductor replicated (By 2031)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 150
+    anchor: '| Ambient-pressure room-temperature superconductor replicated | By 2031 | ≤ 3% |'
+  made: '2026-09-24'
+  resolves: '2031-12-31'
+  kind: binary
+  probability: 0.03
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2031-12-31. Settled by independent peer-reviewed replication.
+  note: stated as an upper bound ('at most'); scored at the bound
+- id: trends-fy2027-enacted-nsf-appropriation-gt-7b-2027
+  statement: FY2027 enacted NSF appropriation > $7B (FY2027)
+  project: frontier-trends
+  source:
+    file: reports/Frontier technology trends 2027 2031.md
+    locator: Consolidated forecast table, line 151
+    anchor: '| FY2027 enacted NSF appropriation > $7B | FY2027 | ~75% |'
+  made: '2026-09-24'
+  resolves: '2027-09-30'
+  kind: binary
+  probability: 0.75
+  provenance:
+    grade: assumed
+    detail: the research team's own estimate; the report grades every probability in the table as assumed
+  evidence: sourced
+  resolution_rule: Yes if the milestone as worded has happened by 2027-09-30. Settled by the enacted FY2027 appropriations act.
+- id: worldsim-temperature-2030
+  statement: Global warming in 2030 on the current trajectory (degC above pre-industrial)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=temperature].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "temperature"'
+    json_key: temperature
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 1.473
+    0.5: 1.5037
+    0.9: 1.5353
+  unit: degC above pre-industrial
+  provenance:
+    grade: sourced
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 4%, sourced 81%, assumed 14%, chance and interaction 2%; graded here by the largest of the three input grades'
+    reference: the cited inputs in data/world/sourced.yaml and worldsim/params.yaml
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with the human-induced warming estimate for 2030 in the Indicators of Global Climate Change series (Forster et al.), the series the model's 2024 anchor comes from; a single year's observed anomaly is noisier than the modelled quantity.
+- id: worldsim-emissions-2030
+  statement: CO2 emissions in 2030 on the current trajectory (GtCO2 per year)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=emissions].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "emissions"'
+    json_key: emissions
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 44.3634
+    0.5: 45.2316
+    0.9: 46.1187
+  unit: GtCO2 per year
+  provenance:
+    grade: observed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 99%, sourced 0%, assumed 0%, chance and interaction 0%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with Global Carbon Project CO2 emissions for 2030, fossil plus land-use change, as carried in the OWID co2-data file the model was fitted on.
+- id: worldsim-conflict-deaths-2030
+  statement: Deaths from organised violence in 2030 on the current trajectory (thousand per year)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=conflict_deaths].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "conflict_deaths"'
+    json_key: conflict_deaths
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 80.0324
+    0.5: 143.8819
+    0.9: 256.0633
+  unit: thousand per year
+  provenance:
+    grade: sourced
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 0%, sourced 3%, assumed 2%, chance and interaction 95%; graded here by the largest of the three input grades'
+    reference: the cited inputs in data/world/sourced.yaml and worldsim/params.yaml
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with UCDP annual total for 2030 across state-based, non-state and one-sided violence.
+- id: worldsim-poverty-people-2030
+  statement: People under $3 a day in 2030 on the current trajectory (million)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=poverty_people].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "poverty_people"'
+    json_key: poverty_people
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 677.0339
+    0.5: 721.9033
+    0.9: 765.7529
+  unit: million
+  provenance:
+    grade: observed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 66%, sourced 2%, assumed 15%, chance and interaction 18%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with World Bank poverty rate at $3.00/day (SI.POV.DDAY, world) for 2030 times world population (SP.POP.TOTL).
+- id: worldsim-hunger-people-2030
+  statement: Undernourished people in 2030 on the current trajectory (million)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=hunger_people].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "hunger_people"'
+    json_key: hunger_people
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 611.1618
+    0.5: 669.2833
+    0.9: 727.3678
+  unit: million
+  provenance:
+    grade: sourced
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 0%, sourced 70%, assumed 15%, chance and interaction 15%; graded here by the largest of the three input grades'
+    reference: the cited inputs in data/world/sourced.yaml and worldsim/params.yaml
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: 'Compare with FAO State of Food Security and Nutrition in the World: number of undernourished people in 2030.'
+- id: worldsim-amr-deaths-2030
+  statement: Deaths from drug-resistant infections in 2030 on the current trajectory (million per year)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=amr_deaths].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "amr_deaths"'
+    json_key: amr_deaths
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 1.2957
+    0.5: 1.3404
+    0.9: 1.3866
+  unit: million per year
+  provenance:
+    grade: sourced
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 0%, sourced 97%, assumed 2%, chance and interaction 0%; graded here by the largest of the three input grades'
+    reference: the cited inputs in data/world/sourced.yaml and worldsim/params.yaml
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with a GRAM/IHME estimate of deaths directly attributable to bacterial resistance in 2030.
+- id: worldsim-forest-share-2030
+  statement: Forest cover (habitat proxy) in 2030 on the current trajectory (% of land)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=forest_share].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "forest_share"'
+    json_key: forest_share
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 30.8974
+    0.5: 30.9024
+    0.9: 30.9074
+  unit: '% of land'
+  provenance:
+    grade: assumed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 2%, sourced 6%, assumed 90%, chance and interaction 1%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with World Bank forest area as % of land area (AG.LND.FRST.ZS, world) for 2030.
+- id: worldsim-water-people-2030
+  statement: People without safe drinking water in 2030 on the current trajectory (million)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=water_people].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "water_people"'
+    json_key: water_people
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 2052.9461
+    0.5: 2069.9224
+    0.9: 2100.5678
+  unit: million
+  provenance:
+    grade: assumed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 1%, sourced 7%, assumed 58%, chance and interaction 34%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with World Bank safely managed drinking water rate (SH.H2O.SMDW.ZS, world) for 2030, as people without it.
+- id: worldsim-sanitation-people-2030
+  statement: People without safe sanitation in 2030 on the current trajectory (million)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=sanitation_people].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "sanitation_people"'
+    json_key: sanitation_people
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 3123.9579
+    0.5: 3164.9731
+    0.9: 3216.0084
+  unit: million
+  provenance:
+    grade: assumed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 22%, sourced 5%, assumed 42%, chance and interaction 30%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: Compare with World Bank safely managed sanitation rate (SH.STA.SMSS.ZS, world) for 2030, as people without it.
+- id: worldsim-displaced-2030
+  statement: Forcibly displaced people in 2030 on the current trajectory (million)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=displaced].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "displaced"'
+    json_key: displaced
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 131.0667
+    0.5: 143.1905
+    0.9: 160.5147
+  unit: million
+  provenance:
+    grade: assumed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 0%, sourced 4%, assumed 24%, chance and interaction 72%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: 'Compare with UNHCR Global Trends: forcibly displaced people at end-2030.'
+- id: worldsim-wealth-share-2030
+  statement: Wealth share of the richest 10% in 2030 on the current trajectory (%)
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: outcomes[key=wealth_share].scenarios['Current trajectory'], year 2030
+    anchor: '"key": "wealth_share"'
+    json_key: wealth_share
+  made: '2026-11-28'
+  resolves: '2030-12-31'
+  kind: quantiles
+  quantiles:
+    0.1: 74.7474
+    0.5: 75.002
+    0.9: 75.2516
+  unit: '%'
+  provenance:
+    grade: assumed
+    detail: 'share of the result''s spread by input grade, as the model reports it: observed 0%, sourced 0%, assumed 100%, chance and interaction 0%; graded here by the largest of the three input grades'
+  conditional: Assumes recent trends persist and no policy lever moves. worldsim says of itself that it is not a forecast.
+  resolution_rule: 'Compare with World Inequality Report: share of global household wealth held by the richest 10% in 2030.'
+- id: worldsim-pandemic-by-2050
+  statement: A pandemic on the scale of COVID-19 strikes at least once between 2025 and 2050
+  project: worldsim
+  source:
+    file: data/world/simulation.json
+    locator: pandemic_probability
+    anchor: '"pandemic_probability": 0.406'
+  made: '2026-11-28'
+  resolves: '2050-12-31'
+  kind: binary
+  probability: 0.406
+  provenance:
+    grade: sourced
+    detail: follows from the annual probability of about 2% a year, which worldsim cites to Marani et al., PNAS 2021 and flags as needing review
+    reference: Marani et al., PNAS 2021, Intensity and frequency of extreme novel epidemics
+  resolution_rule: Yes if WHO declares a pandemic whose estimated excess deaths are of the order of COVID-19's (about 15 million in its first two years) before 2051. Resolves early as yes if one occurs.
+- id: ai100-p077-gpt4-match-small-compute
+  statement: Year in which the first open-weights model matches GPT-4 on a pre-registered benchmark suite using at most 2.46e22 training FLOP
+  project: ai100
+  source:
+    file: research/papers/p077/paper.md
+    locator: Section 7, prediction P1
+    anchor: will appear by 2034. The model's 90% interval is 2026.5–2033.9 [C]
+  made: '2026-11-22'
+  resolves: '2034-01-01'
+  kind: interval
+  low: 2026.5
+  high: 2033.9
+  level: 0.9
+  unit: calendar year
+  provenance:
+    grade: assumed
+    detail: output of the paper's own model; the paper tags it [C], computed from its assumptions
+  resolution_rule: 'The release date of the first qualifying model in Epoch AI''s model database, evaluated on a suite fixed in advance. The paper''s refutation condition: no such model exists by 2034.0.'
+- id: ai100-p077-frontier-share-rises
+  statement: The share of world H100-equivalent stock needed for the largest training run in a 90-day window is higher in 2028 than in 2026
+  project: ai100
+  source:
+    file: research/papers/p077/paper.md
+    locator: Section 7, prediction P3
+    anchor: will rise from 2026 to 2028. Equivalently, λ_front < 0 (P = 0.985 [C])
+  made: '2026-11-22'
+  resolves: '2028-12-31'
+  kind: binary
+  probability: 0.985
+  provenance:
+    grade: assumed
+    detail: output of the paper's own model; the paper tags it [C], computed from its assumptions
+  resolution_rule: Each year, divide the largest disclosed or estimated training run (Epoch AI) by chip stock (Epoch AI chip sales); yes if the 2028 share exceeds the 2026 share.
+- id: session-great-powers-china-passes-us-2050
+  statement: China passes the United States by 2050 on the composite measure used in the great-powers model
+  project: great-powers (not in this repository)
+  source:
+    session: Great power cycles analysis (2026-11-23)
+    note: 'Imported from a one-line session summary: ''China passes US by 2050 in ~46% of weighted scenarios (base-case median 2038)''. The model, its code and its definition of ''passes'' are not in this repository, so the number cannot be checked here.'
+  made: '2026-11-23'
+  resolves: '2050-12-31'
+  kind: binary
+  probability: 0.46
+  provenance:
+    grade: assumed
+    detail: scenario-weighted model output known only from a session summary; weights and inputs unavailable
+  resolution_rule: Cannot be settled until the model's composite measure is recovered. If it is not, this entry should be withdrawn rather than scored against a substitute measure.

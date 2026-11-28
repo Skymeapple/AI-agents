@@ -1363,7 +1363,129 @@
    "best_channel": 1.045966981644535
   },
   "median_gain_opt_vs_best_simple_over_fb": 1.5033769043387694e-17,
-  "max_sum_theta_minus_budget": 0.00011669136350800358,
+  "max_sum_theta_minus_budget": 9.592326932761353e-14,
   "corr_budget_vs_optimal_dwl": -0.8966914846763812
- }
+ },
+ "f_breakeven_forensic_cost": [
+  {
+   "rho": 2,
+   "q": 0.4,
+   "origin_dwl": 4.602792291600821,
+   "channel_dwl": 3.068528194400547,
+   "incident_rate_origin_rule": 0.30000000000000004,
+   "breakeven_forensic_cost_over_L": -0.051142136573342455
+  },
+  {
+   "rho": 2,
+   "q": 0.5344,
+   "origin_dwl": 3.669702424053586,
+   "channel_dwl": 3.068528194400547,
+   "incident_rate_origin_rule": 0.280688622754491,
+   "breakeven_forensic_cost_over_L": -0.02141783388843894
+  },
+  {
+   "rho": 2,
+   "q": 0.8,
+   "origin_dwl": 0.40284673028685436,
+   "channel_dwl": 3.068528194400547,
+   "incident_rate_origin_rule": 0.1875,
+   "breakeven_forensic_cost_over_L": 0.14216967808606362
+  },
+  {
+   "rho": 5,
+   "q": 0.4,
+   "origin_dwl": 3.5022556087550702,
+   "channel_dwl": 9.562248350263598,
+   "incident_rate_origin_rule": 0.15000000000000002,
+   "breakeven_forensic_cost_over_L": 0.40399951610056845
+  },
+  {
+   "rho": 5,
+   "q": 0.5344,
+   "origin_dwl": 1.4678809696214346,
+   "channel_dwl": 9.562248350263598,
+   "incident_rate_origin_rule": 0.11227544910179642,
+   "breakeven_forensic_cost_over_L": 0.7209383213691953
+  },
+  {
+   "rho": 5,
+   "q": 0.8,
+   "origin_dwl": 0.16113869211474174,
+   "channel_dwl": 9.562248350263598,
+   "incident_rate_origin_rule": 0.07500000000000001,
+   "breakeven_forensic_cost_over_L": 1.2534812877531807
+  },
+  {
+   "rho": 10,
+   "q": 0.4,
+   "origin_dwl": 1.7511278043775351,
+   "channel_dwl": 13.394829814011908,
+   "incident_rate_origin_rule": 0.07500000000000001,
+   "breakeven_forensic_cost_over_L": 1.5524936012845827
+  },
+  {
+   "rho": 10,
+   "q": 0.5344,
+   "origin_dwl": 0.7339404848107173,
+   "channel_dwl": 13.394829814011908,
+   "incident_rate_origin_rule": 0.0561377245508982,
+   "breakeven_forensic_cost_over_L": 2.255326419175039
+  },
+  {
+   "rho": 10,
+   "q": 0.8,
+   "origin_dwl": 0.08056934605737087,
+   "channel_dwl": 13.394829814011908,
+   "incident_rate_origin_rule": 0.03750000000000001,
+   "breakeven_forensic_cost_over_L": 3.550469458121208
+  },
+  {
+   "rho": 30,
+   "q": 0.4,
+   "origin_dwl": 0.5837092681258449,
+   "channel_dwl": 17.065868412225228,
+   "incident_rate_origin_rule": 0.025,
+   "breakeven_forensic_cost_over_L": 6.592863657639754
+  },
+  {
+   "rho": 30,
+   "q": 0.5344,
+   "origin_dwl": 0.2446468282702391,
+   "channel_dwl": 17.065868412225228,
+   "incident_rate_origin_rule": 0.018712574850299396,
+   "breakeven_forensic_cost_over_L": 8.989260814465549
+  },
+  {
+   "rho": 30,
+   "q": 0.8,
+   "origin_dwl": 0.026856448685790287,
+   "channel_dwl": 17.065868412225228,
+   "incident_rate_origin_rule": 0.0125,
+   "breakeven_forensic_cost_over_L": 13.63120957083155
+  },
+  {
+   "rho": 100,
+   "q": 0.4,
+   "origin_dwl": 0.17511278043775352,
+   "channel_dwl": 18.878965962802383,
+   "incident_rate_origin_rule": 0.0075000000000000015,
+   "breakeven_forensic_cost_over_L": 24.938470909819497
+  },
+  {
+   "rho": 100,
+   "q": 0.5344,
+   "origin_dwl": 0.07339404848107173,
+   "channel_dwl": 18.878965962802383,
+   "incident_rate_origin_rule": 0.005613772455089821,
+   "breakeven_forensic_cost_over_L": 33.49899210337769
+  },
+  {
+   "rho": 100,
+   "q": 0.8,
+   "origin_dwl": 0.008056934605737087,
+   "channel_dwl": 18.878965962802383,
+   "incident_rate_origin_rule": 0.0037500000000000016,
+   "breakeven_forensic_cost_over_L": 50.32242407519104
+  }
+ ]
 }

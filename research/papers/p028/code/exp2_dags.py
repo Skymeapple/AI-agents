@@ -14,7 +14,8 @@ from dagsim import DagProject, simulate, waterfill
 from model import latent_defect_rate
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "results")
-R = int(os.environ.get("R", 400))
+R = int(os.environ.get("R", 4000))
+R_SWEEP = int(os.environ.get("R_SWEEP", 2000))
 BASE = dict(p=0.9, b=0.02, delta=0.3, kappa=0.3, rho=0.5, a_acc=0.5, K=10)
 BETA = 1.0
 C0 = 0.9
@@ -47,6 +48,12 @@ def stats(P):
                 max_reach=int(P.reach.max()), gini_reach=gini(P.reach))
 
 
+def neff_frac(P, kw=BASE):
+    """N_eff / N of Corollary 4 at uniform coverage C0."""
+    q = latent_defect_rate(kw["p"], C0, kw["b"])
+    return float(np.mean((1 - kw["delta"] * (1 - q)) ** P.outdeg * (1 - kw["a_acc"] * (1 - q))))
+
+
 def policies(P, kw):
     N = P.N; B = N * E0
     surv = (1 - kw["delta"]) ** P.outdeg * (1 - kw["a_acc"])
@@ -58,14 +65,23 @@ def policies(P, kw):
     }
 
 
+def residual(P, c, kw):
+    """Proposition 4: per-module residual latent-defect probability (exact for kappa=0)."""
+    q = latent_defect_rate(kw["p"], c, kw["b"])
+    return q * (1 - kw["delta"] * (1 - q)) ** P.outdeg * (1 - kw["a_acc"] * (1 - q))
+
+
 def job(args):
     name, P, pol, e, kw, seed = args
     c = 1 - np.exp(-BETA * e)
-    S, C, L = simulate(P, R, seed, cvec=c, **kw)
-    return dict(graph=name, policy=pol, **{k: v for k, v in kw.items()},
-                success=float(S.mean()), success_se=float(S.std() / np.sqrt(R)),
-                cost=float(C.mean()), cost_se=float(C.std() / np.sqrt(R)),
-                latent=float(L.mean()))
+    r_ = R_SWEEP if "sweep" in name else R
+    S, C, L = simulate(P, r_, seed, cvec=c, **kw)
+    r = residual(P, c, kw)
+    return dict(graph=name, policy=pol, R=r_, **{k: v for k, v in kw.items()},
+                success=float(S.mean()), success_se=float(S.std() / np.sqrt(r_)),
+                cost=float(C.mean()), cost_se=float(C.std() / np.sqrt(r_)),
+                latent=float(L.mean()),
+                success_prop4=float(np.prod(1 - r)), latent_prop4=float(r.sum()))
 
 
 def main():
@@ -75,9 +91,12 @@ def main():
     struct = {}
     for k, P in projs.items():
         st = stats(P)
-        nulls = [stats(DagProject(random_dag(P.N, st["E"], s))) for s in range(5)]
+        st["neff_frac"] = neff_frac(P)
+        st["scc_max"] = int(max(graphs[k][2])); st["files"] = graphs[k][0].number_of_nodes()
+        nullP = [DagProject(random_dag(P.N, st["E"], s)) for s in range(5)]
+        nulls = [dict(stats(Pn), neff_frac=neff_frac(Pn)) for Pn in nullP]
         st["null"] = {f: float(np.mean([n[f] for n in nulls])) for f in
-                      ["frac_sinks", "frac_sources", "max_depth", "mean_reach", "gini_reach"]}
+                      ["frac_sinks", "frac_sources", "max_depth", "mean_reach", "gini_reach", "neff_frac"]}
         struct[k] = st
     json.dump(struct, open(os.path.join(OUT, "exp2_structure.json"), "w"), indent=1)
     print("structure done", time.time() - t0, flush=True)
@@ -90,6 +109,9 @@ def main():
             jobs.append((k, P, pol, e, BASE, seed)); seed += 1
         Pn = DagProject(random_dag(P.N, struct[k]["E"], 99))
         jobs.append((k + "|null", Pn, "uniform", np.full(P.N, E0), BASE, seed)); seed += 1
+        K0 = dict(BASE, kappa=0.0)
+        jobs.append((k + "|kappa0", P, "uniform", np.full(P.N, E0), K0, seed)); seed += 1
+        jobs.append((k + "|kappa0", P, "sink-aware", policies(P, K0)["sink-aware"], K0, seed)); seed += 1
     # (c) sweeps on three graphs
     for k in ["numpy", "scipy", "setuptools"]:
         P = projs[k]
@@ -100,13 +122,17 @@ def main():
                     if pol in ("uniform", "sink-aware", "reach"):
                         jobs.append((k + "|sweep", P, pol, e, kw, seed)); seed += 1
     print("jobs", len(jobs), flush=True)
-    with Pool(4) as pool:
+    with Pool(2) as pool:
         res = pool.map(job, jobs, chunksize=1)
     json.dump(res, open(os.path.join(OUT, "exp2_sim.json"), "w"), indent=1)
     # chain-theory reference for the main config (no integration testing):
     q = latent_defect_rate(BASE["p"], C0, BASE["b"])
     ref = {k: float((1 - q) ** P.N) for k, P in projs.items()}
-    json.dump(dict(q=float(q), chain_success=ref), open(os.path.join(OUT, "exp2_chainref.json"), "w"), indent=1)
+    import scipy, matplotlib, sympy, pandas, setuptools, pip, platform
+    vers = dict(python=platform.python_version(), numpy=np.__version__, scipy=scipy.__version__,
+                matplotlib=matplotlib.__version__, networkx=nx.__version__, sympy=sympy.__version__,
+                pandas=pandas.__version__, setuptools=setuptools.__version__, pip=pip.__version__)
+    json.dump(dict(q=float(q), versions=vers, chain_success=ref), open(os.path.join(OUT, "exp2_chainref.json"), "w"), indent=1)
     print("done", time.time() - t0)
 
 

@@ -1,0 +1,1178 @@
+                   Which Agent Causes Task Failures and When?
+            On Automated Failure Attribution of LLM Multi-Agent Systems
+
+
+   Shaokun Zhang * † 1 Ming Yin * 2 Jieyu Zhang 3 Jiale Liu 1 Zhiguang Han 4 Jingyang Zhang 2 Beibin Li 5
+                         Chi Wang 6 Huazheng Wang 7 Yiran Chen 2 Qingyun Wu 1
+
+
+                          Abstract
+     Failure attribution in LLM multi-agent sys-
+     tems—identifying the agent and step responsible
+     for task failures—provides crucial clues for sys-
+     tems debugging but remains underexplored and
+     labor-intensive. In this paper, we propose and for-
+     mulate a new research area: automated failure
+     attribution for LLM multi-agent systems. To sup-
+     port this initiative, we introduce the Who&When
+     dataset, comprising extensive failure logs from
+     127 LLM multi-agent systems with fine-grained
+     annotations linking failures to specific agents and
+     decisive error steps. Using the Who&When, we                         Figure 1. When developing LLMs-powered multi-agent systems,
+     develop and evaluate three automated failure attri-                  failure attribution—identifying system components responsible
+     bution methods, summarizing their corresponding                      for task failures based on evaluation results—has received limited
+     pros and cons. The best method achieves 53.5%                        attention in existing research. This process is typically performed
+                                                                          manually, demanding substantial labor and specialized expertise.
+     accuracy in identifying failure-responsible agents
+                                                                          In this study, we explore the potential for automating this process.
+     but only 14.2% in pinpointing failure steps, with
+     some methods performing below random. Even                           ing coding (Hong et al., 2023), scientific discovery (Gha-
+     SOTA reasoning models, such as OpenAI o1 and                         farollahi & Buehler, 2024), and addressing complex real-
+     DeepSeek R1, fail to achieve practical usability.                    world challenges (Fourney et al., 2024).
+     These results highlight the task’s complexity and
+     the need for further research in this area. Code                     Once constructed, these systems are typically refined
+     and dataset are available in the public repository.                  through an iterative process when they fail in specific scenar-
+                                                                          ios: evaluation against established benchmarks, followed by
+                                                                          manual failure attribution and system refinement. This cycle
+                                                                          repeats until the desired outcomes are achieved. Failure
+1. Introduction
+                                                                          attribution—identifying the components of the system that
+In recent years, the reframing Large Language Mod-                        directly lead to task failures—is a crucial step that serves as
+els (LLMs) as agents and built agentic multi-agent sys-                   the foundation for guiding improvements. Despite its im-
+tems—composed of interactive, LLM-powered agents col-                     portance, this process is largely overlooked in mainstream
+laborating to achieve shared goals—has garnered significant               research, which typically leaves it as a manual task requir-
+attention (Hong et al., 2023; Li et al., 2023a; Wu et al., 2023).         ing significant labor, such as analyzing complex historical
+These purposefully designed agentic systems have demon-                   logs and navigating the technical intricacies of the system.
+strated remarkable potential across various domains, includ-              Moreover, mapping benchmark evaluation results to failure
+   *
+                                                                          components is heavily dependent on domain expertise, im-
+     Equal contribution 1 Pennsylvania State University 2 Duke Uni-       posing additional requirements on practitioners. As systems
+versity 3 University of Washington 4 Nanyang Technological Uni-
+versity 5 Meta 6 Google DeepMind 7 Oregon State University. Cor-          grow in complexity, this challenge becomes increasingly
+respondence to: †Shaokun Zhang <shaokun.zhang@psu.edu>.                   difficult due to the growing number of components that must
+                                                                          be considered when conducting failure attribution.
+Proceedings of the 42 nd International Conference on Machine
+Learning, Vancouver, Canada. PMLR 267, 2025. Copyright 2025               Previous manual efforts involves a non-straightforward way
+by the author(s).                                                         to facilitate failure attribution in multi-agent systems: de-
+
+                                                                      1
+                                             Title Suppressed Due to Excessive Size
+
+veloping increasingly fine-grained benchmarks, with the               targeted system refinements. We believe that Who&When
+hope that more metrics will enable quicker failure attribu-           can serve as a foundational resource for driving progress in
+tion (Zhuge et al., 2024). For example, DevAI (Zhuge et al.,          automated failure attribution research.
+2024) introduces a coding benchmark that incorporates di-
+                                                                      Additionally, we construct and evaluate several automated
+verse delivery requirements, offering a more nuanced eval-
+                                                                      failure attribution approaches on the Who&When. Our find-
+uation compared to the widely used SWE-Bench (Jimenez
+                                                                      ings reveal the strengths and limitations of each method,
+et al., 2023), which focuses exclusively on final resolution
+                                                                      as well as their performance across different conditions, in-
+rates. Despite these advancements, the process of failure
+                                                                      cluding model variations, historical context lengths, and the
+attribution based on benchmark results remains a manual
+                                                                      presence or absence of query labels. The results underscore
+process, merely providing more metrics as reference points
+                                                                      the complexity of using LLMs for failure analysis in multi-
+without fundamentally addressing the underlying challenges.
+                                                                      agent systems. For example, the best-performing method
+With increasingly comprehensive benchmarks, a fundamen-
+                                                                      achieved only 8.77% accuracy in identifying decisive error
+tal question remains unanswered: which components of
+                                                                      steps within the hand-crafted agentic system.
+the agentic system require improvement?
+We argue that evaluation and failure attribution should be            2. Problem Formulation: Automated Failure
+tightly integrated, adhering to the principle that “evaluation
+is not an end in itself, but a means to improvement.” (Scriven,
+                                                                         Attribution in Multi-Agent Cooperation
+1991) More research efforts should focus on bridging the              In this section, we introduce decisive errors and formulate
+substantial gap between evaluation results and failure attribu-       the automated failure attribution problem,
+tion, which currently relies heavily on manual labor. Draw-
+ing inspiration from the LLM-as-a-judge paradigm (Gu                  Background. Considering a LLMs-powered multi-agent
+et al., 2024; Tan et al., 2024; Zheng et al., 2023), which            system M with a group of N agents, denoted as N =
+leverages LLMs to replace human effort in evaluation, we              {1, 2, ..N }, that operate at discrete time steps. These agents
+propose to bridge the gap between evaluation and failure              are taking actions in a turn-based protocol, meaning that
+attribution by harnessing the comprehensive judgment ca-              exactly one agent performs an action at each time step.
+pabilities of LLMs. Specifically, we propose and formulate            Formally, the system is described as:
+a new research problem: automated failure attributions
+in LLM multi-agent systems. When failures occur under
+                                                                                                D                  E
+                                                                                        M = N , S, A, P, ϕ .                      (1)
+specific scenarios during evaluation, the goal is to automati-
+cally identify the components responsible for these failures
+                                                                      Here, S is the set of possible states. A is the global action
+without human intervention. We believe this research could
+                                                                      set; each agent i ∈ N can typically perform actions from
+serve as a substitute for manual failure attribution, enabling
+                                                                      some subset Ai ⊆ A. ϕ(t) is a function that indicates which
+human resources to focus on improving system functionality
+                                                                      agent is active at time t, thus specifying the turn-based rule.
+rather than performing time-intensive diagnostics.
+                                                                      P st+1 | st , at , ϕ(t) is the state-transition probability,
+To advance the research in this area, we introduce the                given that only one agent ϕ(t) acts at time t.
+Who&When benchmark, comprising extensive failure logs
+                                                                      We employ ϕ(t) to denote the agent that takes an action
+annotated with fine-grained failure details for addressing
+                                                                      at at time step t. A full trajectory     τ can be written as:
+real-world tasks, where these logs are collected from 127                                               
+                                                                      τ = s0 , a0 , s1 , a1 , . . . , sT , where T is a terminal time
+LLMs-powered multi-agent systems. This benchmark in-
+                                                                      step or when the system enters a terminating state.
+cludes both algorithmically generated and hand-crafted
+multi-agent systems, encompassing a wide range of realistic
+scenarios. Each failure log is accompanied by meticulous              Decisive Error and Objective. We use a tuple (i, t) to
+annotations, specifying the failure-responsible agent, the            denote a mistake in a trajectory, which means agent i is
+corresponding failure step, and the reasons for failure in            active at time t, and its action at is deemed a mistake (e.g.,
+plain language. The primary task involves pinpointing the             wrong reasoning etc.). A trajectory may contain multiple
+agent most accountable for the failure and the exact step             mistakes, but not all of them result in overall failure. We
+where the error occurred. Predicting the failure-responsible          employ Z(τ ) to denote the result of a trajectory τ .
+agent serves as a fundamental requirement for failure attri-                            
+                                                                                        1, if the system ultimately fails,
+bution, given that agents are the basic units of multi-agent
+                                                                             Z(τ ) =                                            (2)
+systems. Extending this to the specific failure step predic-                            0, otherwise.
+tion imposes a higher level of requirement, enabling more
+fine-grained failure attribution, such as uncovering the spe-         Suppose the original trajectory τ is a failure, i.e., Z(τ ) = 1.
+cific reasons behind failures, which can further facilitate           Considering the following scenario, if correcting the mistake
+
+                                                                  2
+                                                     Title Suppressed Due to Excessive Size
+
+made by agent i at time t: we replace at with a ”correct”                   2023) or AssistantBench (Yoran et al., 2024), describing a
+action ãt . The steps prior to step t remain unchanged, while              real-world question. (2) Failure log: The full conversation
+the actions following t are adjusted accordingly to ensure                  log of a specific system as it fails to solve the query. (3)
+correctness. This process generates a modified trajectory:                  Agentic system information: For algorithm-generated sys-
+                                                                            tems, including system prompts, tools, and agent names, all
+                     τ (i,t) = I(i,t) (τ ),                       (3)       tailored to this specific query. (4) Annotations: An annota-
+                                                                            tion of the agent responsible for task failure, specifying the
+where I(i,t) denotes the intervention. If in the modified                   step where the failure occurred, along with a plain-language
+                                
+trajectory we obtain Z τ (i,t) = 0 (success), then the error                explanation of why the failure took place. An example of the
+(i, t) is said to be a decisive error. Formally, we define the              instance in this benchmark could be found in Appendix C.
+decisive error indicator ∆i,t (τ ) as
+                                                                            To better reflect our definition of decisive error in Section 2,
+                                                 
+                  1, if Z(τ ) = 1 and Z τ (i,t) = 0,                       we design three metrics to evaluate the performance of vari-
+    ∆i,t (τ ) =                                            (4)              ous failure attribution methods: (1) Agent-Level Accuracy:
+                  0, otherwise.                                            This metric measures the percentage of correctly predicted
+                                                                            failure-responsible agents by failure attribution algorithms.
+In words, ∆i,t (τ ) = 1 ⇐⇒ Fixing agent i’s mistake                         (2) Step-Level Accuracy: This metric quantifies the per-
+at time t changes Z(τ ) from 1 (fail) to 0 (success). For-                  centage of correctly identified decisive error steps. It im-
+mally, the decisive error could be defined as agent-time                    poses higher requirements on the algorithms compared to
+pairs (i∗ , t∗ ) such that ∆i∗ ,t∗ (τ ) = 1, where i∗ represents            the first metric. (3) Step-Level Accuracy with Tolerance:
+the agent responsible for the system failure, and t∗ repre-                 To account for slight deviations, this metric allows a toler-
+sents the exact time step at which the critical mistake occurs.             ance range for mistake step predictions. If the predicted
+We refer to these as the failure-responsible agent and the                  step falls within the specified tolerance range of the actual
+decisive error step, respectively across the paper.                         mistake step, the prediction is considered correct.
+In practice, multiple decisive errors may occur within a tra-
+jectory. In our study, we address this situation by identifying             3.1. Agentic Systems Constructions
+the earliest error in time as the principal cause of failure.               Who&When includes two types of agentic systems:
+Specifically, we define an objective to determine:                          algorithm-generated agentic systems and one meticulously
+                                                                           hand-crafted agentic systems, totaling 127 agentic systems
+             C(τ ) = (i, t) | ∆i,t (τ ) = 1 ,                (5)            equipped with diverse tools for evaluation.
+                  (i∗ , t∗ ) = arg      min          t.
+                                     (i,t) ∈ C(τ )
+                                                                            Algorithm-Generated Agentic Systems. To ensure an
+which selects the pair (i∗ , t∗ ) yielding the highest decisive             adequate number of agentic systems for the Who&When
+error indicator with earliest time step. In this study, the                 datasets, we first employ the CaptainAgent algorithm (Song
+research problem focuses on the automatic identification of                 et al., 2024) from the AG2 library 1 to automatically gen-
+the (i∗ , t∗ ) in LLMs-powered multiple agent systems.                      erate agentic systems for each data instance sourced from
+                                                                            the validation sets of the GAIA (Mialon et al., 2023) and
+                                                                            AssistantBench (Yoran et al., 2024) benchmarks. Specifi-
+3. The Who&When Dataset
+                                                                            cally, it constructs a team of agents tailored to a given task,
+To advance research in this area, we introduce a dataset                    assigning appropriate agent names, prompts, and necessary
+called Who&When. This dataset comprises extensive fail-                     tools. The system iteratively optimizes the agents’ con-
+ure logs from 127 LLM multi-agent systems including both                    figuration until the task is successfully completed. In the
+algorithm-generated and human-crafted systems. These logs                   Who&When, we select only the final multi-agent config-
+are carefully annotated with labels that identify the failure-              urations, along with the corresponding execution history,
+reponsible agents and the decisive error steps in agent co-                 as these represent the optimized solutions for each query.
+operation directly responsible for problem-solving failures.                All agents within the constructed systems, as well as the
+Additionally, each annotation is supplemented with natural                  CaptainAgent algorithm itself, are based on the GPT-4o
+language explanations, culminating in 184 distinct failure                  on 2024-08-01-preview version. Additionally, since
+annotation tasks. The dataset is specifically designed to                   the primary objective of the Who&When is to capture mis-
+detect the failure-reponsible agents (who) and the corre-                   takes made by agents that lead to failures in solving real-
+sponding steps (when) within each failure log.                              world problems within agentic systems, we retain only those
+                                                                            agentic systems that fail to successfully address the queries
+Specifically, each instance in Who&When includes the fol-
+                                                                               1
+lowing entry: (1) Query: A query from GAIA (Mialon et al.,                         https://github.com/ag2ai/ag2
+
+                                                                        3
+                                                                                            Title Suppressed Due to Excessive Size
+
+
+                         30                                                                             50
+
+
+
+
+                                                                                                                                                             204nd84n 8n3d0wmg 0dmfogp3
+                                     Algorithm Generated Systems
+                         25          Hand Crafted Systems                                               40                                                                                 33.3     50.0      N/A
+
+
+
+
+                                                                                 Uncertainty Rate (%)
+  Annotion Cost (hour)
+
+
+
+                         20   18.4
+                                                 16.2
+                                                                                                        30           26.3%
+                         15          12.5
+                                                        14.0
+                                                                   12.4
+                                                                                                                             23.8%
+                                                                                                                                     21.1%           21.1%
+                                                                                                                                                                                           16.7      N/A      9.1
+                                                                          10.8                          20   16.7%                           16.7%
+                         10
+                                                                                                        10                                                                                  N/A     10.0      18.2
+                          5
+
+                          0   204nd84n          8n3d0wmg           0dmfogp3                              0   204nd84n        8n3d0wmg        0dmfogp3                                     204nd84n 8n3d0wmg 0dmfogp3
+                               (a) Annotation labor cost.                                               (b) Uncertain annotation percentages.                (c) Disagreement rates in voting.
+
+Figure 2. Statistical analysis of the annotation process: (1) Total labor cost for annotations in human hours. (2) The proportion of uncertain
+annotations to total annotations during the second round. (3) Initial disagreement rates between annotators (note that we make sure
+to reach a consensus through a careful discussion and voting process afterwards). These results highlight the challenges involved in
+performing manual failure attribution.
+
+
+associated with each data instance from these benchmarks.                                                                             into two groups: those they are undoubtedly confident are
+                                                                                                                                      correct and those they have any uncertainty about. Round
+Hand-Crafted Agentic Systems. In addition to algorithm-                                                                               II: In the second round, people are instructed to make an
+generated systems, Who&When also includes a meticu-                                                                                   agreement on all the uncertain annotations from Round II.
+lously hand-crafted, mature multi-agent system, Magnetic-                                                                             For these uncertain annotations, we engage in a collabo-
+One (Fourney et al., 2024), to ensure the representation of                                                                           rative discussion to reach a consensus. We do not simply
+realistic and highly refined agentic systems. Magnetic-One                                                                            follow the principle of majority rule; instead, we aim to
+is a generalist agentic system designed to handle a broad                                                                             ensure that everyone is persuaded and that a consensus is
+range of tasks. It comprises five carefully crafted agents,                                                                           ultimately reached. Round III: In the final round, a cross-
+each specializing in distinct capabilities, such as operat-                                                                           validation procedure is employed. Each expert is asked to
+ing a web browser or navigating local files. We evaluate                                                                              go through another expert’s annotations to assess the con-
+Magnetic-One using the validation set from the Assistant-                                                                             sistency of the annotation standards. If any discrepancies
+Bench (Yoran et al., 2024) benchmark, aggregating its fail-                                                                           or issues with the annotations are identified, the experts
+ure logs for subsequent annotation. We also test Magnetic-                                                                            engage in further discussion and, if necessary, re-annotate
+One on a randomly sampled subset of 30 instances from the                                                                             the data according to the established guidelines until a con-
+GAIA (Mialon et al., 2023), incorporating the correspond-                                                                             sensus is reached. Incorporating the viewpoints of multiple
+ing execution failure logs into the dataset. We exclude the                                                                           annotators and ensuring consensus among them, we aim to
+entire GAIA dataset due to the complexity of annotating the                                                                           accurately reach the actual ground truth, as suggested by
+long context logs produced by Magentic-One.                                                                                           previous studies (Clemen, 1989; Zhuge et al., 2024).
+
+3.2. Decisive Error Annotation                                                                                                        3.3. Analysis
+
+After obtaining the failure logs of various agentic systems,                                                                         Annotating the decisive error agent and identifying the spe-
+we introduce an annotation procedure to identify the deci-                                                                           cific step of the error is challenging for both normal people
+sive error failure and decisive error step. To ensure precise                                                                        and domain experts. The annotators must parse complex
+annotation, we conduct multiple rounds of annotation per-                                                                            logs, follow the problem-solving logic of each agent, and
+formed by three human experts in AI agent (whose identities                                                                          assess whether each action is correct or if it misleads the en-
+are anonymized as 0dmfogp3, 8n3d0wmg, and 204nd84n).                                                                                 tire problem-solving process. For example, if an agent uses
+                                                                                                                                     a web browser to gather essential information for problem-
+Round I: In the first round, we distribute the failure logs                                                                          solving, annotators must check the browser history and visit
+from all agentic systems for each query equally among three                                                                          each website to determine whether the failure is due to un-
+experts. To ensure consistency, we provide the experts with                                                                          available information on the website or because the agent
+a standardized annotation guideline as shown in Appendix F.                                                                          failed to retrieve it. As shown in Figure 2(a), three annota-
+Each expert is tasked with annotating three elements: the                                                                            tors spent 30.9, 30.2, and 23.2 human hours, respectively,
+single erroneous agent primarily responsible for the task                                                                            to complete the annotations. This demonstrates that the
+failure, the specific step at which the error occurred, and the                                                                      annotation process is very time-consuming, leading us to
+reasoning behind the mistake in natural language. Addition-                                                                          consider doing research on automated failure attribution.
+ally, each expert is required to categorize their annotations
+
+                                                                                                                               4
+                                           Title Suppressed Due to Excessive Size
+
+Additionally, in many data instances, it’s not just one agent       made, the LLM is provided with the selected half of the log
+that makes mistakes, but several agents. People need to iden-       and the process is repeated iteratively until a single step is
+tify these mistakes and select the most severe ones, which          identified. The three algorithms and corresponding prompts
+can directly lead to problem-solving failures as formulated         are detailed in Appendix B and Appendix G.
+in Section 2. Since the severity of mistakes may be subtle
+and even subjective at times, the process becomes even more         4.2. Settings
+difficult. As shown in Figure 2(b), we present the uncertain
+annotation percentages for three individuals. The uncertain         Scenario. We conduct experiments under two distinct
+percentages across different annotators range from 15% to           settings to simulate various realistic scenarios. (1) With
+30%. We also visualize the disagreement rates between               Ground Truth: In this setting, the final ground truth of
+different individuals when voting on each other’s uncertain         the query that the agentic system is attempting to resolve
+data in Figure 2(c). We can see some disagreement remains           is available to the LLMs. Our focus here is on the typical
+before discussing to make the agreement, further highlight-         AI system development cycle, where it is common practice
+ing the difficulties involved in the annotation process.            to use a development dataset with ground truth to identify
+                                                                    and debug potential errors in experimental systems. (2)
+                                                                    Without Ground Truth: In the second setting, the final
+4. Can LLMs help identify When and Which                            ground truth of the query is unavailable. In this scenario,
+   agent causes task failures?                                      LLMs are employed to perform failure attribution in agentic
+                                                                    systems based on their running logs. This capability can
+As revealed in Section 3.3, detecting the failure-responsible
+                                                                    also be viewed as a form of self-reflection (Huang et al.,
+agent and corresponding failure step in agentic system are
+                                                                    2023; Shinn et al., 2024), which contributes to the improve-
+often subtle, requiring significant human effort. Given these
+                                                                    ment of multi-agent systems. Throughout this paper, unless
+challenges, we are thinking of performing automated failure
+                                                                    otherwise specified, all results are reported as the average
+attribution, using LLMs themselves to detect these errors
+                                                                    accuracy across these two scenarios.
+and provide signal for human to perform essential improve-
+ment. In this section, we set up experiments to answer a
+fundamental question: Can LLMs help identify when and               Models. The primary experiments are conducted using
+which agent causes task failures in multi-agent systems?            the GPT-4o model, unless otherwise specified. Addition-
+                                                                    ally, we also incorporate several other models, including
+4.1. LLMs for Failure Attribution in Agentic Systems                both open-source (such as the Llama and Qwen series)
+                                                                    and closed-source models (GPT series), to ensure the con-
+To answer the question mentioned above, we propose three            sistency of the conclusions drawn from the experiments.
+judgement methods for automated failure attribution in agen-        Additionally, we employ advanced reasoning models, i.e.,
+tic systems. Through extensive experiments, we demon-               OpenAI o1 and DeepSeek R1, to assess the performance of
+strate that each method has distinct advantages and limita-         reasoning models on failure attribution tasks. The results of
+tions, and they can be applied either independently or in           these evaluations are provided in Appendix A.2.
+combination. Furthermore, we analyze the performance
+of these methods across various scenarios and constraints,          4.3. Overall Performance
+highlighting their applicability in different contexts.
+                                                                    We first perform experiments to compare the performance
+(1) All-at-once: An LLM is provided with a query and the            of three failure attribution methods on Who&When dataset
+complete failure log, and it is tasked with identifying the         with GPT-4o model. The results are reported on Table 1.
+failure-responsible agent as well as the specific step where
+the decisive error occurred. (2) Step-by-step: An LLM is
+                                                                    Agent-Level Accuracy Relies on Large Receptive Field.
+provided with a query, and the failure log is presented step-
+                                                                    As shown in Table 1, all-at-once significantly outperforms
+by-step. At each step, the LLM is tasked with determining
+                                                                    the other two failure attribution methods in agent-level ac-
+whether a mistake has occurred in the current step. If a
+                                                                    curacy. Specifically, its agent-level accuracy is 19.13% and
+mistake is identified, the judging process terminates, and
+                                                                    20.69% higher than step-by-step when judging with ground
+the responsible agent’s name along with the current step
+                                                                    truth, and 25.1% and 20.69% higher when judging without
+number are returned as the output. Otherwise, the process
+                                                                    ground truth, respectively. The performance of the binary
+continues until the final step is reached. (3) Binary search:
+                                                                    search method falls between these two approaches.
+Alternatively, this method uses a receptive field approach
+that lies between the previous two methods. Starting with           These results can be attributed to the fact that predicting the
+the query and the full failure log, the LLM is tasked with          failure-responsible agent requires the judge LLMs to con-
+determining whether the mistake occurred in the upper half          sider a broader context, including the behaviors of multiple
+or lower half of the failure logs. Once this decision is            agents. Since all-at-once has access to the entire conver-
+
+                                                                5
+                                                                      Title Suppressed Due to Excessive Size
+
+                                                                    With Ground Truth                                                 Without Ground Truth
+            Agentic Systems Types                           Algorithm Generated Hand Crafted                                    Algorithm Generated Hand Crafted
+                                                                               Random
+                Agent-Level Accuracy                                29.10             12.00                                             29.10               12.00
+                Step-Level Accuracy                                19.06               4.16                                             19.06               4.16
+                                                                              All-at-Once
+                Agent-Level Accuracy                                54.33             55.17                                             51.12               53.44
+                Step-Level Accuracy                                12.50               5.26                                             13.53               3.51
+                                                                             Step-by-Step
+                Agent-Level Accuracy                               35.20              34.48                                             26.02               32.75
+                Step-Level Accuracy                                 25.51              7.02                                             15.31                8.77
+                                                                            Binary Search
+                Agent-Level Accuracy                               44.13              51.72                                             30.11               36.21
+                Step-Level Accuracy                                23.98               6.90                                             16.59                6.90
+
+Table 1. Performance of the three failure attribution methods on the Who&When dataset with and without labels, evaluated on the
+GPT-4o model. For agent-level accuracy, all-at-once outperforms binary search, which in turn surpasses step-by-step. Conversely, for
+step-level accuracy, step-by-step achieves the best performance, followed by binary search and then all-at-once.
+
+
+        All-at-Once                           Step-by-Step                    Binary Search                         curacy in 3 out of 4 cases. The performance of the binary
+       Agent-Level Accuracy (%)                             Step-Level Accuracy (%)                                 search method still falls between these two approaches.
+                 GPT-4-turbo                                         GPT-4-turbo
+                                    60                                                      20
+
+                                                                                       15
+                                                                                                                    These two results can be attributed to the ’space-in-the-
+                               40
+ Qwen-2.5-72b                            GPT-4o-mini Qwen-2.5-72b                 10             GPT-4o-mini        needle’ problem, where LLMs often struggle to retrieve
+                          20
+                                                                              5                                     specific information from long contexts (Nelson et al., 2024).
+                      0                                                   0
+                                                                                                                    The all-at-once method has access to the largest context
+                                                                                                                    when making decisions about the decisive error step, but
+  Qwen-2.5-7b                            Llama-3.1-8b Qwen-2.5-7b                                Llama-3.1-8b       this can lead to difficulties in pinpointing the exact failure
+                                                                                                                    step within a long history. In contrast, the step-by-step
+                Llama-3.1-70b                                       Llama-3.1-70b                                   method processes the context incrementally, allowing for
+                                                                                                                    more focused decision-making. The binary search method
+                                                                                                                    performs at a level between these two approaches.
+Figure 3. Performance comparison of three failure attribution meth-
+ods on different models in both two metrics. We found the conclu-                                                       Finding 2: Incrementally processing context en-
+sion is mostly consistent with Table 1.                                                                                 ables better step-level failure attribution since LLMs
+                                                                                                                        struggle to retrieve information from long contexts.
+sation log when making the final judgment, its prediction                                                           Impact of Ground Truth on Failure Attribution. We
+of the failure-responsible agent is more accurate. In con-                                                          also observed that failure attribution accuracy is higher for
+trast, the step-by-step method processes the conversation                                                           all three methods when ground truth are available, compared
+history incrementally, while the final decision can be made                                                         to when judgments are made without ground truth in all
+with incomplete information, thus resulting in lower perfor-                                                        cases in all metrics. Although the answers to users’ queries
+mance. Moreover, all failure attribution methods outperform                                                         may not serve as definitive ’golden labels’ for each agent’s
+the random baseline, highlighting that these approaches are                                                         correct behavior, they provide a useful reference signal for
+nontrivial and affirming the necessity of involving LLMs                                                            the judgment LLMs. For instance, if an agent leads the
+for failure attribution.                                                                                            system in a completely wrong direction, with no possibility
+                                                                                                                    of reaching the correct final answer, the label information
+    Finding 1: Providing broader failure log context
+                                                                                                                    can directly help alert the judgment LLMs to this error.
+    enables more accurate agent-level failure attribution
+                                                                                                                    Without such intervention, the entire system might proceed
+    by incorporating more complete information.
+                                                                                                                    in the wrong direction without any external warning.
+Fine-Grained Predictions Boost Better Step-Level Ac-
+curacy. In terms of step-level accuracy, the all-at-once                                                            Consistency of Conclusions Across Various LLMs. In
+approach performs obviously the worst, even with its aver-                                                          addition to the GPT-4o model, we conducted evaluations
+age performance falling below that of random method. This                                                           on other LLMs, including open-source models (e.g., the
+outcome underscores the method’s practical infeasibility.                                                           Llama series and Qwen series) as well as closed-source
+By contrast, the step-by-step approach achieves the highest                                                         models (e.g., the GPT series). Due to the significant compu-
+performance, outperforming other methods in step-level ac-                                                          tational and token costs, we only perform experiments on
+
+                                                                                                                6
+                                                                                      Title Suppressed Due to Excessive Size
+
+           100
+                                        All-at-Once
+                                                                   20.0                                                                                                     120
+                                        Step-by-Step               17.5
+               80                                                                                                      8                                                    100
+                                        Binary Search
+Accuracy (%)
+
+
+                                                                   15.0
+
+
+
+
+                                                        Accuracy (%)
+                                                                                                                       6                                                        80
+
+
+
+
+                                                                                                                Distance
+
+
+
+
+                                                                                                                                                                     Distance
+               60                                                  12.5
+                                                                   10.0                                                                                                         60
+               40                                                                                                      4
+                                                                       7.5                                                                                                      40
+               20
+                                                                       5.0                                             2                                                        20
+                                                                       2.5
+               0                                                       0.0
+                                                                                                                       0                                                        0
+                     1    2        3         4      5                        1   2        3         4   5                   All-at-Once Step-by-Step Binary Search                   All-at-Once Step-by-Step Binary Search
+                              Length Level                                           Length Level
+                                                                                                                            (a) Algorithm-Generated                                    (b) Hand-Crafted
+               (a) Agent-Level Accuracy                                 (b) Step-Level Accuracy
+                                                                                                                  Figure 5. The distances between human-annotated decisive error
+ Figure 4. Comparison of three failure attribution methods applied                                                steps and the predicted steps for each date instance on failure logs
+ to all failure logs from the hand-crafted systems in the Who&When,                                               from both algorithm-generated and hand-crafted systems.
+ evaluated under varying failure log lengths across both metrics.
+
+                                                                                                                            Finding 4: Failure attribution performance de-
+                                                                                                                            clines as context length increases, with step-level
+  hand-crafted agentic systems from Who&When which has                                                                      accuracy being more sensitive.
+  fewer failure logs. The results of three methods are shown in
+  Figure 3. We found that the phenomena observed in Table 1                                                       4.5. Step-Level Accuracy Under Different Tolerances
+  hold consistently across different LLMs. Specifically, for
+  agent-level accuracy, the ranking is: all-at-once, followed                                                              Toler.     All-at-Once            Step-by-Step                       Binary Search
+  by binary search, and then step-by-step. Conversely, for                                                                 ±1         12.07                  14.66                              13.79
+  step-level accuracy, the ranking is: step-by-step, followed                                                              ±2         19.83                  16.38                              18.97
+  by binary search, and then all-at-once.                                                                                  ±3         30.17                  18.10                              22.41
+                                                                                                                           ±4         37.07                  31.90                              31.89
+                                                                                                                           ±5         43.10                  33.62                              36.21
+                    Finding 3: The pros and cons of different failure
+                    attributions methods in this study are mostly consis-                                         Table 2. Step-level accuracy with different tolerances on the failure
+                    tent across different LLMs.                                                                   logs of hand-crafted agentic systems from Who&When dataset.
+
+
+  4.4. Performance Across Varying Context Lengths                                                                 In practice, directly identifying the exact decisive error step
+                                                                                                                  is not always necessary; it is often sufficient to determine a
+ We investigate the relationship between the length of failure                                                    range of steps where the mistake might occur. In this section,
+ logs and the corresponding failure attribution performance.                                                      we show the performance of the three failure attribution
+ Specifically, the failure logs of hand-crafted agentic systems                                                   methods under varying tolerance conditions on the failure
+ from the Who&When dataset are divided into five levels,                                                          logs of hand-crafted agentic systems from the Who&When
+ with context length progressively increasing from Level 1                                                        dataset. Algorithm-generated systems are excluded from
+ to Level 5. Both agent-level and step-level judgment perfor-                                                     this analysis because their maximum step count is limited
+ mances across the three evaluation methods are presented in                                                      to 10, and increasing the tolerance would lead to artificially
+ Figure 4. Algorithm-generated systems are excluded from                                                          inflated accuracy.
+ this analysis due to their limited maximum step count of 10,
+ which prevents meaningful divisions of context length.                                                           As shown in Table 2, our findings show that step-by-step
+                                                                                                                  achieves the highest performance when the tolerance is set to
+  Our findings indicate that all three methods exhibit a decline                                                  0 or 1. However, as the tolerance increases, the advantages
+  in both metrics as context length increases. Notably, step-                                                     of all-at-once become more pronounced, while the benefits
+  level accuracy is more sensitive to context length changes                                                      of step-by-step diminish. Compared to all-at-once, step-by-
+  than agent-level accuracy. Furthermore, the step-by-step                                                        step demonstrates better alignment with accurate predictions
+  performance decline is particularly pronounced compared                                                         when high precision is required.
+  to the other two. We also analyze the distances between
+  human-annotated decisive error steps and the predicted steps                                                              Finding 5: Allowing tolerance in failure attribu-
+  for each data instance, as shown in Figure 5. These results                                                               tion enables broader context processing methods to
+  demonstrate that the step-by-step method outperforms the                                                                  achieve competitive step-level accuracy.
+  other two methods in accurately predicting the decisive error
+                                                                                                                  4.6. A Statistical Viewpoint on Failure Attribution
+  steps. However, as context length reaches its maximum, all
+  three failure attribution methods converge to near 0%, as                                                       This study primarily perform experiments on single-data-
+  shown in Figure 4.                                                                                              level failure attribution in LLM-powered multi-agent sys-
+
+                                                                                                            7
+                                                Title Suppressed Due to Excessive Size
+
+                                                                                                      Cost  Agent-Level Step-Level
+                                                                                  Metrics
+                                                                                                   Token Num Accuracy Accuracy
+                                                                              Binary Search          34,659         43.97        6.90
+                                                                              △ All-at-Once          17,106         57.02         4.39
+                                                                              □ Step-by-Step         87,720         35.96        7.90
+                                                                           Hybrid Method (□&△)       149,177        57.02        12.28
+
+                                                                          Table 3. Comparison of the three failure attribution methods with a
+                                                                          hybrid approach that combines all-at-once and step-by-step on the
+                                                                          failure logs of hand-crafted systems from the Who&When dataset.
+                                                                          The hybrid method achieves the highest performance in both two
+                                                                          metrics but incurs the highest token costs.
+
+
+                                                                          4.7. Can We Combine Multiple Failure Attribution
+                                                                               Methods?
+
+Figure 6. Histogram of the actual and predicted failure-responsible       We then investigate whether a hybrid method could leverage
+agents for all three methods. We present only the failure logs            the advantages of both two different methods, all-at-once
+of hand-crafted systems in Who&When to aggregate the largest              and step-by-step. The former excels at failure-responsible
+number of results for one multi-agent system. Number 0, 1, 2,             agent predictions, while the latter is better at accurately
+3 represents Assistant, FileSurfer, Orchestrator and                      predicting the decisive error step. Specifically, we start
+WebSurfer respectively.                                                   by prompting all-at-once to predict the failure-responsible
+                                                                          agent and then use step-by-step to detect the mistake step in
+                                                                          the actions step taken by the identified failure-responsible
+                                                                          agent. To evaluate this, we perform experiments on the hand-
+tems, i.e., identifying the specific component (referred to as            crafted systems from the Who&When dataset considering
+the failure-responsible agent) and the precise location (the              the token cost. The results are shown on Table 3.
+decisive error step) responsible for task failure in a single
+data instance. This practice indeed mirrors human proce-                  We observe that the hybrid method outperforms all methods
+dures for failure attribution and could serves as a founda-               in step-level accuracy. This improvement is attributed to
+tional tool for deriving statistical-level conclusions. There-            the all-at-once narrowing the range of possible failure steps
+fore, we think of whether these methods could be applied to               by excluding action steps taken by other agents, thereby
+entire datasets to extract meaningful statistical results.                significantly reducing the difficulty of prediction for step-
+                                                                          by-step. However, the hybrid method comes with a notable
+In Figure 6, we show the histogram of actual and the pre-                 drawback: it requires running two algorithms sequentially.
+dicted failure-responsible agents for all three methods. We               Compared to making judgments with a single algorithm,
+only show the failure logs of hand-crafted systems from                   this approach incurs higher computational costs.
+Who&When to aggregate the largest number of results for
+one system type. We observe that the single agent that make                   Finding 7: Combining different failure attribution
+the most decisive errors predicted by all methods to are con-                 methods allows leveraging their respective strengths
+sistent with the ground truth (agent 3). Moreover, the top                    for better performance.
+two failure-responsible agents predicted by three methods
+are also consistent with the ground truth in most cases (2                5. Related Works
+out of 3). These experiments demonstrate that, although
+the instance-level failure attribution results are not highly             LLM Multi-Agent Systems. An emerging research fo-
+positive, all three methods still yield meaningful insights               cus examines using LLMs (Achiam et al., 2023; Wang
+from a statistical perspective. In practice, these statistical re-        et al., 2024) as central controllers to develop LLM agents
+sults provide a more actionable basis for system refinement               that interact with the external world beyond text-based do-
+compared to focusing solely on single data instances.                     mains (Deng et al., 2024; Xie et al., 2024; Zhang et al.,
+                                                                          2024b). While single-agent systems (Yao et al., 2022; Zhang
+                                                                          et al., 2023a; 2024a) excel in specific tasks, they struggle
+    Finding 6: The three baseline methods are more                        with challenges requiring collaboration and collective intelli-
+    effective at performing failure attribution at a statis-              gence. To address this, studies have explored LLM-powered
+    tical level than at an instance level.                                multi-agent systems, where multiple interactive agents work
+                                                                          concurrently (Hong et al., 2023; Li et al., 2023a). These sys-
+
+                                                                      8
+                                             Title Suppressed Due to Excessive Size
+
+tems leverage the specialized skills and roles of individual
+agents, enabling collaborative problem-solving for complex
+tasks by simulating real-world cooperation patterns.
+
+LLM for Judging. Numerous studies have explored the
+use of large language models (LLMs) as evaluators to assess
+various tasks based on pre-defined standards (Fu et al., 2023;
+Gu et al., 2024; Hu et al., 2024; Li et al., 2024; 2023b; Liu
+et al., 2023; Thakur et al., 2024). For instance, Chan et al.
+(2023); Zheng et al. (2023) utilize LLMs to evaluate the
+performance of LLMs in chat conversation scenarios, which
+would otherwise incur significant labor costs if performed by
+humans. Another notable example is Miao et al. (2023); van
+Schaik & Pugh (2024), who employ LLMs as evaluators
+in the context of text summarization which also heavily
+relies on human efforts. In the field of agentic systems,
+related research includes Shinn et al. (2024), who adopt
+the concept of LLMs-as-judges to analyze task feedback
+signals and guide corrective actions. Similarly, Zhuge et al.
+(2024) demonstrate the use of LLMs to provide detailed
+evaluations of agentic systems within their proposed DevAI
+dataset. Despite these advancements, failure attribution
+remains a manual process, with evaluation results serving
+only as a reference for such attributions
+
+6. Conclusion
+In this study, we propose and formulate a new research area:
+automated failure attribution in LLM multi-agent systems,
+an area that has been largely overlooked in current research.
+To advance this field, we introduce the Who&When dataset,
+which consists of 127 multi-agent systems with extensive
+failure logs meticulously annotated with failure details. Fur-
+thermore, we develop and evaluate three automated failure
+attribution methods, highlighting the challenges and com-
+plexities of this task. Our findings underscore the significant
+difficulty of automated failure attribution and emphasize the
+urgent need for further research in this emerging area.
+
+
+
+
+                                                                  9
+                                           Title Suppressed Due to Excessive Size
+
+7. Impact Statement                                                  Gu, J., Jiang, X., Shi, Z., Tan, H., Zhai, X., Xu, C., Li, W.,
+                                                                       Shen, Y., Ma, S., Liu, H., et al. A survey on llm-as-a-
+Our approach has societal implications, both positive and              judge. arXiv preprint arXiv:2411.15594, 2024.
+negative. On the positive side, our work contributes to the
+efficient development of multi-agent systems powered by              Hong, S., Zheng, X., Chen, J., Cheng, Y., Wang, J., Zhang,
+LLMs, enabling their application across a wide range of                C., Wang, Z., Yau, S. K. S., Lin, Z., Zhou, L., et al.
+domains (Ghafarollahi & Buehler, 2024; Xu et al., 2024).               Metagpt: Meta programming for multi-agent collabora-
+Incorporating mechanisms for failure attribution and con-              tive framework. International Conference on Learning
+duct corresponding improvement, these advancements have               Representations, 2023.
+the potential to enhance LLM multi-agent systems signifi-
+cantly. However, the development of increasingly intelligent         Hu, Z., Zhang, J., Xiong, Z., Ratner, A., Xiong, H.,
+multi-agent systems also introduces potential risks. For in-           and Krishna, R. Language model preference evalu-
+stance, granting these systems the ability to modify external          ation with multiple weak evaluators. arXiv preprint
+environments, such as executing code on computers, could               arXiv:2410.12869, 2024.
+lead to unintended consequences (Liu et al., 2024; Tian
+et al., 2023). Careful consideration these risks is essential        Huang, J. and Chang, K. C.-C. Towards reasoning in large
+to ensure responsible deployment.                                      language models: A survey. In Findings of the Associa-
+                                                                       tion for Computational Linguistics: ACL 2023, 2022.
+References                                                           Huang, J., Chen, X., Mishra, S., Zheng, H. S., Yu,
+Achiam, J., Adler, S., Agarwal, S., Ahmad, L., Akkaya, I.,            A. W., Song, X., and Zhou, D. Large language mod-
+  Aleman, F. L., Almeida, D., Altenschmidt, J., Altman, S.,            els cannot self-correct reasoning yet. arXiv preprint
+  Anadkat, S., et al. Gpt-4 technical report. arXiv preprint           arXiv:2310.01798, 2023.
+  arXiv:2303.08774, 2023.
+                                                                     Jimenez, C. E., Yang, J., Wettig, A., Yao, S., Pei, K., Press,
+Chan, C.-M., Chen, W., Su, Y., Yu, J., Xue, W., Zhang, S.,             O., and Narasimhan, K. Swe-bench: Can language mod-
+  Fu, J., and Liu, Z. Chateval: Towards better llm-based               els resolve real-world github issues? International Con-
+  evaluators through multi-agent debate. International Con-            ference on Learning Representations, 2023.
+  ference on Learning Representations, 2023.
+                                                                     Li, D., Jiang, B., Huang, L., Beigi, A., Zhao, C., Tan, Z.,
+Clemen, R. T. Combining forecasts: A review and annotated              Bhattacharjee, A., Jiang, Y., Chen, C., Wu, T., et al. From
+  bibliography. International journal of forecasting, 1989.            generation to judgment: Opportunities and challenges of
+                                                                       llm-as-a-judge. arXiv preprint arXiv:2411.16594, 2024.
+DeepSeek-AI. Deepseek-r1: Incentivizing reasoning ca-
+  pability in llms via reinforcement learning deepseek-ai.           Li, G., Hammoud, H., Itani, H., Khizbullin, D., and Ghanem,
+  arXiv preprint arXiv:2501.12948, 2025.                                B. Camel: Communicative agents for” mind” exploration
+Deng, X., Gu, Y., Zheng, B., Chen, S., Stevens, S., Wang,               of large language model society. Advances in Neural In-
+  B., Sun, H., and Su, Y. Mind2web: Towards a general-                  formation Processing Systems, 36:51991–52008, 2023a.
+  ist agent for the web. Advances in Neural Information
+                                                                     Li, X., Zhang, T., Dubois, Y., Taori, R., Gulrajani, I.,
+  Processing Systems, 2024.
+                                                                       Guestrin, C., Liang, P., and Hashimoto, T. B. Alpacaeval:
+Fourney, A., Bansal, G., Mozannar, H., Tan, C., Salinas,               An automatic evaluator of instruction-following models,
+  E., Niedtner, F., Proebsting, G., Bassman, G., Gerrits,              2023b.
+  J., Alber, J., et al. Magentic-one: A generalist multi-
+  agent system for solving complex tasks. arXiv preprint             Liu, M., Wang, J., Lin, T., Ma, Q., Fang, Z., and Wu, Y. An
+  arXiv:2411.04468, 2024.                                              empirical study of the code generation of safety-critical
+                                                                       software using llms. Applied Sciences, 2024.
+Fu, J., Ng, S.-K., Jiang, Z., and Liu, P. Gptscore: Evaluate
+  as you desire. Proceedings of the 2024 Conference of               Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., and Zhu, C.
+  the North American Chapter of the Association for Com-               G-eval: Nlg evaluation using gpt-4 with better human
+  putational Linguistics: Human Language Technologies,                 alignment. arXiv preprint arXiv:2303.16634, 2023.
+  2023.
+                                                                     Mialon, G., Fourrier, C., Swift, C., Wolf, T., LeCun, Y., and
+Ghafarollahi, A. and Buehler, M. J. Sciagents: Automating             Scialom, T. Gaia: a benchmark for general ai assistants.
+  scientific discovery through multi-agent intelligent graph          International Conference on Learning Representations,
+  reasoning. arXiv preprint arXiv:2409.05556, 2024.                   2023.
+
+                                                                10
+                                            Title Suppressed Due to Excessive Size
+
+Miao, N., Teh, Y. W., and Rainforth, T. Selfcheck: Using              Xie, T., Zhang, D., Chen, J., Li, X., Zhao, S., Cao, R.,
+ llms to zero-shot check their own step-by-step reasoning.              Hua, T. J., Cheng, Z., Shin, D., Lei, F., et al. Os-
+ International Conference on Learning Representations,                  world: Benchmarking multimodal agents for open-ended
+ 2023.                                                                  tasks in real computer environments. arXiv preprint
+                                                                        arXiv:2404.07972, 2024.
+Nelson, E., Kollias, G., Das, P., Chaudhury, S., and Dan, S.
+  Needle in the haystack for memory based large language              Xu, Y., Wang, Z., Wang, J., Lu, D., Xie, T., Saha, A., Sahoo,
+  models. arXiv preprint arXiv:2407.01437, 2024.                        D., Yu, T., and Xiong, C. Aguvis: Unified pure vision
+                                                                        agents for autonomous gui interaction. arXiv preprint
+Scriven, M. Evaluation thesaurus. Sage Publications, 1991.              arXiv:2412.04454, 2024.
+Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., and             Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan,
+  Yao, S. Reflexion: Language agents with verbal rein-                  K., and Cao, Y. React: Synergizing reasoning and acting
+  forcement learning. Advances in Neural Information                    in language models. ICLR, 2022.
+  Processing Systems, 2024.
+                                                                      Yao, S., Yu, D., Zhao, J., Shafran, I., Griffiths, T., Cao, Y.,
+Song, L., Liu, J., Zhang, J., Zhang, S., Luo, A., Wang,                 and Narasimhan, K. Tree of thoughts: Deliberate problem
+  S., Wu, Q., and Wang, C. Adaptive in-conversation                     solving with large language models. Advances in Neural
+  team building for language model agents. arXiv preprint               Information Processing Systems, 2024.
+  arXiv:2405.19425, 2024.
+                                                                      Yoran, O., Amouyal, S. J., Malaviya, C., Bogin, B., Press,
+Tan, S., Zhuang, S., Montgomery, K., Tang, W. Y., Cuadron,              O., and Berant, J. Assistantbench: Can web agents solve
+  A., Wang, C., Popa, R. A., and Stoica, I. Judgebench:                 realistic and time-consuming tasks? In Proceedings of
+  A benchmark for evaluating llm-based judges. arXiv                    the 2024 Conference on Empirical Methods in Natural
+  preprint arXiv:2410.12784, 2024.                                      Language Processing, 2024.
+Thakur, A. S., Choudhary, K., Ramayapally, V. S.,                     Yu, T. and Zhu, H. Hyper-parameter optimization: A
+  Vaidyanathan, S., and Hupkes, D. Judging the judges:                  review of algorithms and applications. arXiv preprint
+  Evaluating alignment and vulnerabilities in llms-as-                  arXiv:2003.05689, 2020.
+  judges. arXiv preprint arXiv:2406.12624, 2024.
+                                                                      Zhang, J., Krishna, R., Awadallah, A. H., and Wang, C.
+Tian, Y., Yang, X., Zhang, J., Dong, Y., and Su, H. Evil                Ecoassistant: Using llm assistant more affordably and
+  geniuses: Delving into the safety of llm-based agents.                accurately. arXiv preprint arXiv:2310.03046, 2023a.
+  arXiv preprint arXiv:2311.11855, 2023.
+                                                                      Zhang, S., Jia, F., Wang, C., and Wu, Q. Targeted hyper-
+van Schaik, T. A. and Pugh, B. A field guide to automatic               parameter optimization with lexicographic preferences
+  evaluation of llm-generated summaries. In Proceedings                 over multiple objectives. In International Conference on
+  of the 47th International ACM SIGIR Conference on Re-                 Learning Representations, 2023b.
+  search and Development in Information Retrieval, pp.
+  2832–2836, 2024.                                                    Zhang, S., Zhang, J., Ding, D., Garcia, M. H., Mallick, A.,
+                                                                        Madrigal, D., Xia, M., Rühle, V., Wu, Q., and Wang,
+Wang, F., Zhang, Z., Zhang, X., Wu, Z., Mo, T., Lu, Q.,                 C. Ecoact: Economic agent determines when to register
+ Wang, W., Li, R., Xu, J., Tang, X., et al. A comprehen-                what action. arXiv preprint arXiv:2411.01643, 2024a.
+ sive survey of small language models in the era of large
+ language models: Techniques, enhancements, applica-                  Zhang, S., Zhang, J., Liu, J., Song, L., Wang, C., Krishna,
+ tions, collaboration with llms, and trustworthiness. arXiv             R., and Wu, Q. Offline training of language model agents
+ preprint arXiv:2411.03350, 2024.                                       with functions as learnable weights. In International
+                                                                        Conference on Machine Learning, 2024b.
+Wei, J., Wang, X., Schuurmans, D., Bosma, M., Xia, F.,
+ Chi, E., Le, Q. V., Zhou, D., et al. Chain-of-thought                Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z.,
+ prompting elicits reasoning in large language models.                  Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E., et al. Judging
+ Advances in Neural Information Processing Systems, pp.                 llm-as-a-judge with mt-bench and chatbot arena. Ad-
+ 24824–24837, 2022.                                                     vances in Neural Information Processing Systems, 2023.
+
+Wu, Q., Bansal, G., Zhang, J., Wu, Y., Zhang, S., Zhu, E., Li,        Zhuge, M., Zhao, C., Ashley, D., Wang, W., Khizbullin, D.,
+ B., Jiang, L., Zhang, X., and Wang, C. Autogen: Enabling               Xiong, Y., Liu, Z., Chang, E., Krishnamoorthi, R., Tian,
+ next-gen llm applications via multi-agent conversation                 Y., et al. Agent-as-a-judge: Evaluate agents with agents.
+ framework. Conference on Language Modeling, 2023.                      arXiv preprint arXiv:2410.10934, 2024.
+
+                                                                 11
+                                                                                                Title Suppressed Due to Excessive Size
+
+Appendix
+
+A. Additional Experiments
+A.1. Ablation of Reasoning Prompts
+
+                 60                                                          25                                                             60                                                      10
+                      52.7                With Reasoning                                 With Reasoning                                          54.3            With Reasoning                                With Reasoning
+                 50                       Without Reasoning                              Without Reasoning   20.4                           50                   Without Reasoning                             Without Reasoning   7.9
+                                                                             20                                                                           47.3                                      8
+                               45.3
+                                                                                                                                                                                                                                            6.9
+                 40                                                                                                   16.0                  40
+  Accuracy (%)
+
+
+
+
+                                                              Accuracy (%)
+
+
+
+
+                                                                                                                             Accuracy (%)
+
+
+
+
+                                                                                                                                                                                     Accuracy (%)
+                                                                                  15.4
+                                                                             15                                                                                    33.6                             6
+                                            30.6                                                                                                                            29.3
+                 30                                                                           11.5                                          30                                                           4.4
+                                                     25.2
+                                                                             10                                                                                                                     4                3.5
+                 20                                                                                                                         20
+
+                 10                                                           5                                                             10                                                      2
+
+                 0    Once-for-All          Step-by-Step                      0   Once-for-All               Step-by-Step                   0    Once-for-All      Step-by-Step                     0    Once-for-All              Step-by-Step
+
+   (a) Alg.-Generated Agent-Level (b) Alg.-Generated Step-Level (c) Hand-Crafted Agent-Level                                                                                                  (d) Hand-Crafted Step-Level
+
+Figure 7. Ablation of the explicit reasoning prompts in all-at-once and step-by-step. From the result we could observe that the explicit
+specify reasoning prompt in failure attributing methods could greatly boost their performance.
+
+
+LLMs have shown incredible reasoning ability (Huang & Chang, 2022; Wei et al., 2022; Yao et al., 2024), considering these,
+in both the all-at-once and step-by-step approaches, we explicitly require the LLMs to not only conduct failure attributions
+but also specify the reasons for these attributions within the prompt. We don’t include binary search here because it doesn’t
+include reasoning mechanisms in their prompt. We only wants binary search to do simple classification task. To investigate
+the impact of these reasoning prompts on the failure attributions, we conduct additional experiments where the reasoning
+prompt is removed, allowing the LLMs to directly provide the judgment results. We make comparisons and the results
+are shown in Figure 7. We observed a significant drop in performance after removing the explicit reasoning prompts for
+failure attribution in both two metrics. For example, in algorithm-generated multi-agent systems, the agent-level accuracy
+decreased by 7.4% for the all-at-once method. For the step-by-step method, the step-level performance drops 4.4%. These
+results highlight the necessity of incorporating additional reasoning mechanisms in failure attributions.
+
+A.2. Strong Reasoning Model for Automated Failure Attributions
+
+
+                                                        GPT-4o               OpenAI o1             DeepSeek R1
+                                        Accuracy Agent-Level Step-Level Agent-Level Step-Level Agent-Level Step-Level
+                                      All-at-Once  54.31        4.39      41.38       10.34      56.90        3.45
+                                      Step-by-Step 33.62        7.90      36.21       13.79      32.76        6.90
+
+Table 4. The performance of the automated failure attribution methods with reasoning mechanism with strong reasoning model OpenAI
+o1 and DeepSeek R1 model. We could observe that strong reasoning models not necessarily lead to better performance.
+
+
+We then examine whether the advanced reasoning models OpenAI o1 and DeepSeek R1 (DeepSeek-AI, 2025) can enhance
+the automated failure attribution process. However, the original prompt used in our experiments was flagged by OpenAI’s
+policy as potentially violating usage guidelines (error message: ’Your prompt was flagged as potentially violating our
+usage policy.’). To address this, we implemented minor modifications to the prompt while preserving its original intent.
+For DeepSeek R1, we employed the same prompt as used in other experiments to ensure consistency. The results are
+shown in Table A.2. We don’t include binary search here because it doesn’t include reasoning mechanisms in their prompt.
+We only wants binary search to do simple classification task. The results indicate that stronger reasoning models do not
+necessarily outperform standard models. Although may provide some improvement, but still far from practical usability.
+For instance, DeepSeek R1 underperforms GPT-4o in three out of four cases, and OpenAI o1 fails to consistently surpass
+GPT-4o across all metrics. These findings highlight the inherent challenges of failure attribution. In contrast, integrating
+reasoning mechanisms into the prompt yields significant performance improvements across all metrics and cases, as shown
+in Figure 7. This demonstrates that replacing the base model alone does not guarantee better outcomes.
+
+                                                                                                                             12
+                                              Title Suppressed Due to Excessive Size
+
+B. Algorithm Details
+B.1. Notations
+We then provide more details on the Step-by-Step and Binary Search failure attribution methods. To begin, we define some
+notations used in the algorithms. We employ Q to denote the query provided to the system. L = {l1 , l2 , . . . , ln } denotes the
+failure log consisting of n entries where each entry li specify the action taken at time step i by one agent. A∗ , s∗ denotes the
+agent responsible for the task failure and the decisive error step respectively.
+
+B.2. Details of Step-by-Step
+
+Algorithm 1 Step-by-Step
+Require: Query Q, failure log L = {l1 , l2 , . . . , ln }
+Ensure: Responsible agent A∗ , error step s∗
+ 1: for i ∈ {1, 2, . . . , n} do
+ 2:   Provide Q and {l1 , ..., li } to LLM
+ 3:   if LLM indicates error at step i then
+ 4:       s∗ ← i
+ 5:       Identify responsible agent A∗ in li
+ 6:       Return A∗ , s∗
+ 7:   end if
+ 8: end for
+ 9: No error found
+
+
+B.3. Details of Binary Search
+
+Algorithm 2 Binary Search
+Require: Query Q, failure log L = {l1 , l2 , . . . , ln }
+Ensure: Responsible agent A∗ , error step s∗
+   Initialize low ← 1, high ← n
+   while low  < high do 
+                 low + high
+      mid ←
+                     2
+      Extract log segment L′ ← {llow , llow+1 , . . . , lmid }
+      Provide Q and L′ to LLM
+      if LLM indicates error in L′ then
+         high ← mid
+      else
+         low ← mid + 1
+      end if
+   end while
+   s∗ ← low, identify responsible agent A∗ in ls∗
+   Return A∗ , s∗
+
+
+C. More Details of Who&When
+C.1. Overview
+We then provide more details about the Who&When dataset, which comprises 184 failure annotations tasks from both
+hand-crafted and algorithm-generated agentic systems. These failure logs encompass diverse scenarios with varying numbers
+of agents and interaction lengths. In Table 5, we show the total number of data instances for each category, along with
+the maximum and minimum number of agents and log lengths. We also visualize the information of each data instance in
+Figure 8. Note that due to task overlap, some data points may appear sparse in the visualization. We also show an failure
+
+                                                                 13
+                                                                       Title Suppressed Due to Excessive Size
+
+task example in Figure 9.
+
+                                                                              Algorithm-Generated                                        Hand-Crafted
+                                                                              GAIA AssistantBench                                    GAIA AssistantBench
+                            Total Number                                       98         28                                          30         28
+                        Maximum Agent Number                                   4           4                                           5          4
+                        Minimum Agent Number                                   1           3                                           1          2
+                         Maximum Log Length                                    10         10                                          130       129
+                         Minimum Log Length                                     5          6                                           5          8
+
+Table 5. Additional details about the Who&When benchmark: We present the total number of tasks for each category, along with the
+maximum and minimum number of agents and log lengths.
+
+
+C.2. Data Distribution
+
+
+                                        10
+                                                                                                             120
+                                        9
+                                                                                                             100
+                     Total Log Length
+
+
+
+
+                                                                                          Total Log Length
+                                        8                                                                    80
+
+                                                                                                             60
+                                        7
+                                                                                                             40
+                                        6
+                                                                                                             20
+                                        5
+                                                                                                              0
+                                             1.0    1.5    2.0   2.5    3.0   3.5   4.0                            1.0   1.5   2.0   2.5   3.0   3.5   4.0   4.5   5.0
+                                                          Number of Agents                                                      Number of Agents
+                                                   (a) Algorithm-Generated                                                     (b) Hand-Crafted
+
+Figure 8. The number of agents involved and the total length of each failure log instance in the Who&When dataset. Note that due to task
+overlap, some data points may appear sparse in the visualization
+
+
+C.3. Data Example
+
+
+
+
+Figure 9. A task example from Who&When, where we annotate failure-responsible agents and their corresponding error steps within the
+failure logs. Each annotation includes a natural language explanation of the failure reason for reference.
+
+
+
+                                                                                          14
+                                            Title Suppressed Due to Excessive Size
+
+D. Brief Cost Analysis
+We then present a brief analysis of the computational costs associated with three failure attribution methods. We focus solely
+on input tokens, as the contribution of output tokens such as the agent name and error step number is small. We also ignore
+the mirror token difference between one-time instruction from different methods. We let C to denote the cost of query Q
+and corresponding instructions of methods. We employ L = {l1 , l2 , ..., ln }, where each entry li has an average token of Tl .
+
+D.1. All-at-Once
+In the all-at-once method, the LLM receives the full context in a single input. The total input token cost is:
+
+                                                Costall−at−once = C + n · Tl                                                 (6)
+
+This method incurs the lowest cost as it requires only a single inference step.
+
+D.2. Step-by-Step
+In the Step-by-Step method, the LLM processes the failure log incrementally. At each step i, it receives query, instructions
+and the log segment {l1 , ..., li }. The process terminates when the decisive error step i∗ is found.
+                                                       ∗
+                                                       i
+                                                      X                                 i∗ · (i∗ + 1)
+                             Coststep−by−step =           (C + i · Tl ) = i∗ · C + Tl ·                                      (7)
+                                                      i=1
+                                                                                               2
+
+In the worst case, i∗ = n, either when no error is detected or the decisive error occurs in the final step.
+
+D.3. Binary Search
+In the Binary Search method, the LLM operates in a logarithmic fashion by iteratively splitting the failure log into halves.
+                                                                                                     n
+At each step i, the segment of the failure log processed by the LLM has a size of approximately 2i−1    , where n is the total
+                                                                        n·Tl
+number of log entries. Therefore the total cost at interaction i is C + 2i−1 . The Binary Search continues until the search
+space is narrowed down to a single step, requiring ⌈log2 (n)⌉ iterations. Therefore the cost of binary search is:
+
+
+                                             ⌈log2 (n)⌉                                        ⌈log2 (n)⌉
+                                               X                 n · Tl                          X              n · Tl
+                      CostBinarySearch =                  (C +          ) = ⌈log2 (n)⌉ · C +                (          )     (8)
+                                                i=1
+                                                                 2i−1                             i=1
+                                                                                                                2i−1
+
+D.4. Cost Summary
+In summary, the costs associated with the three methods are influenced by three key factors: the size of the failure log (n),
+the average token count per log entry (Tl ), and the decisive error step (i∗ ). The choice of method should align with the user’s
+budget and specific use case requirements. Among the methods, the all-at-once approach incurs the lowest cost as it requires
+only a single inference step. In contrast, the costs of the binary search and step-by-step methods are highly dependent on the
+specific scenario, particularly the distribution of decisive error locations and the total length of the failure log.
+
+E. Hyperparameters
+Hyperparameters play a critical role in determining the performance of machine learning algorithms (Yu & Zhu, 2020; Zhang
+et al., 2023b). In this paper, the hyperparameters we utilize are divided into two categories: those used for Who&When data
+construction and those employed for automated failure attribution algorithms. For data construction, we adopt the default
+settings of CaptainAgent and Magentic-One from their official libraries (AG2 and Autogen). One notable setting is that the
+maximum iteration count for CaptainAgent is limited to 10, whereas Magentic-One allows up to 30 rounds. It is important
+to highlight that the agent’s thought processes are excluded from the round count, which contributes to longer failure log
+lengths, as discussed in Appendix C. For the inference hyperparameters of other large language models (LLMs), we adhere
+to the default configurations specified in their official documentation.
+
+
+                                                                   15
+                                             Title Suppressed Due to Excessive Size
+
+F. Annotation Details
+In Figure 10, we present our standardized annotation guidelines used by all annotators. The guidelines clearly define criteria
+for identifying failure-responsible agents and decisive error steps. Annotators are instructed to document any uncertainties
+in their annotations for subsequent group discussion and voting.
+
+   Annotation Guideline
+
+    Failure Responsible Agent:
+
+    a) Select the single agent that should be directly responsible for this
+    failure in your mind. Allow for some subjectivity, but be prepared to give
+    your reasons.
+
+    b) Don’t be too strict. If there exist agents that do redundant steps and
+    agents that make mistakes, choose the agent who makes mistakes.
+
+    c) If there are no agents that make obvious mistakes, decide one single agent
+    in your mind.
+
+    d) If multiple agents make mistakes, choose the one that made the most
+    serious mistake
+
+    Decisive error step:
+
+    a) First decide one single mistake agent, then decide one single mistake
+    step. The Mistake step must be made by the mistake agent.
+
+    b) If the mistake agent makes mistakes in multiple steps, choose the
+    first step.
+
+    c) Index from 0.
+
+    Failure Reasons:
+
+    a) First, use natural language to describe the reason. E.g.,
+    \The agent wrote the wrong code".
+
+    b) Make sure the reader could understand the annotations.
+
+    Others:
+
+    a) Accurately record the time of labeling.
+
+    b) Mark all annotation if you have any uncertain, and then we need to vote
+    and discuss later.
+
+
+
+         Figure 10. The guideline in making annotation. We maintain consistent annotation guidelines across all annotators.
+
+
+
+
+                                                                16
+                                            Title Suppressed Due to Excessive Size
+
+G. Prompts
+We list the prompt templates for all three attribution methods in this section. Please refer to our code base for more details.
+
+G.1. Prompts of All-at-Once
+
+   You are an AI assistant tasked with analyzing a multi-agent conversation history when solving a real world problem.
+   The problem is: {problem}.
+   Identify which agent made an error, at which step, and explain the reason for the error.
+   Here’s the conversation: {failure log}
+   Based on this conversation, please predict the following:
+   1. The name of the agent who made a mistake that should be directly responsible for the wrong solution to the real
+   world problem. If there are no agents that make obvious mistakes, decide one single agent in your mind. Directly
+   output the name of the Expert.
+   2. In which step the mistake agent first made mistake. For example, in a conversation structured as follows:
+   {
+   ”agent a”: ”xx”,
+   ”agent b”: ”xxxx”,
+   ”agent c”: ”xxxxx”,
+   ”agent a”: ”xxxxxxx”
+   },
+   each entry represents a ’step’ where an agent provides input. The ’x’ symbolizes the speech of each agent. If the
+   mistake is in agent c’s speech, the step number is 2. If the second speech by ’agent a’ contains the mistake, the step
+   number is 3, and so on. Please determine the step number where the first mistake occurred.
+   3. The reason for your prediction. Please answer in the format:
+   Agent Name: (Your prediction)
+   Step Number: (Your prediction)
+   Reason for Mistake: (Your reason)
+
+
+   You are an AI assistant tasked with analyzing a multi-agent conversation history when solving a real world problem.
+   The problem is: {problem}.
+   The Answer for the problem is: {ground truth}.
+   Identify which agent made an error, at which step, and explain the reason for the error.
+   Here’s the conversation: {failure log}
+   Based on this conversation, please predict the following:
+   1. The name of the agent who made a mistake that should be directly responsible for the wrong solution to the real
+   world problem. If there are no agents that make obvious mistakes, decide one single agent in your mind. Directly
+   output the name of the Expert.
+   2. In which step the mistake agent first made mistake. For example, in a conversation structured as follows:
+   {
+   ”agent a”: ”xx”,
+   ”agent b”: ”xxxx”,
+   ”agent c”: ”xxxxx”,
+   ”agent a”: ”xxxxxxx”
+   },
+   each entry represents a ’step’ where an agent provides input. The ’x’ symbolizes the speech of each agent. If the
+   mistake is in agent c’s speech, the step number is 2. If the second speech by ’agent a’ contains the mistake, the step
+   number is 3, and so on. Please determine the step number where the first mistake occurred.
+   3. The reason for your prediction. Please answer in the format:
+   Agent Name: (Your prediction)
+   Step Number: (Your prediction)
+   Reason for Mistake: (Your reason)
+
+
+
+                                                             17
+                                           Title Suppressed Due to Excessive Size
+
+G.2. Prompts of Binary Search
+
+   You are an AI assistant tasked with analyzing a segment of a multi-agent conversation. Multiple agents are
+   collaborating to address a user query, with the goal of resolving the query through their collective dialogue.
+   Your primary task is to identify location of the most critical mistake, and determine the single step in the conversation
+   where this error occurs, ultimately leading to the failure in resolving the user’s query.
+   The problem to address is as follows: {problem}.
+   Review the following conversation range
+   {range description}: {sliced log}.
+   Based on your analysis, predict whether the error is more likely to be located in the upper or lower half of the segment.
+   lower half is defined as the range lower half range and upper half is defined as the range upper half range.
+   Please simply output either ’upper half’ or ’lower half’.
+   You should not output anything else.
+
+
+   You are an AI assistant tasked with analyzing a segment of a multi-agent conversation. Multiple agents are
+   collaborating to address a user query, with the goal of resolving the query through their collective dialogue.
+   Your primary task is to identify location of the most critical mistake, and determine the single step in the conversation
+   where this error occurs, ultimately leading to the failure in resolving the user’s query.
+   The problem to address is as follows: {problem}.
+   The Answer for the problem is: {ground truth}.
+   Review the following conversation range
+   {range description}: {sliced log}.
+   Based on your analysis, predict whether the error is more likely to be located in the upper or lower half of the segment.
+   lower half is defined as the range lower half range and upper half is defined as the range upper half range.
+   Please simply output either ’upper half’ or ’lower half’.
+   You should not output anything else.
+
+
+G.3. Prompts of Step-by-Step
+
+   You are an AI assistant tasked with evaluating the correctness of each step in an ongoing multi-agent conversation
+   aimed at solving a real-world problem.
+   The problem being addressed is: {problem}.
+   Here is the conversation history up to the current step: {failure log}.
+   Your task is to determine whether the most recent agent’s action contains an error that could hinder the problem-
+   solving process. Please respond with ’Yes’ or ’No’ and provide a clear explanation for your judgment.
+   Note: Please avoid being overly critical in your evaluation.
+   Attention: Respond in the format:
+   1. Yes/No. 2. Reason for the judgment.
+
+
+   You are an AI assistant tasked with evaluating the correctness of each step in an ongoing multi-agent conversation
+   aimed at solving a real-world problem.
+   The problem being addressed is: {problem}.
+   Here is the conversation history up to the current step: {failure log}.
+   The Answer for the problem is: {ground truth}.
+   Your task is to determine whether the most recent agent’s action contains an error that could hinder the problem-
+   solving process. Please respond with ’Yes’ or ’No’ and provide a clear explanation for your judgment.
+   Note: Please avoid being overly critical in your evaluation.
+   Attention: Respond in the format:
+   1. Yes/No. 2. Reason for the judgment.
+
+
+
+                                                             18
+

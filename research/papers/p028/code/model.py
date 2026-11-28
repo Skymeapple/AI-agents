@@ -42,7 +42,7 @@ def project_success(N, q):
 
 def horizon(q, level=0.5):
     """Largest number of modules completed with probability >= level."""
-    return np.log(level) / np.log(1 - q)
+    return np.log(level) / np.log1p(-np.asarray(q, dtype=float))
 
 
 def ceiling_q(p, b):

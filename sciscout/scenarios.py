@@ -162,6 +162,50 @@ class Scenario:
         )
 
 
+def _parse_fields(
+    specs: dict, known: dict[str, str], what: str, context: str, name: str, path: Path
+) -> dict[str, Distribution]:
+    """Build a distribution per field, rejecting any field not in ``known``.
+
+    ``known`` maps each permitted field to the distribution kind it takes.
+    """
+    built: dict[str, Distribution] = {}
+    for field_name, spec in specs.items():
+        if field_name not in known:
+            raise ValueError(
+                f"{path}: scenario {name!r} sets unknown {what} field "
+                f"{field_name!r}; known fields are {', '.join(sorted(known))}"
+            )
+        built[field_name] = _build_distribution(
+            spec, f"{context}/{field_name}", known[field_name]
+        )
+    return built
+
+
+def _parse_market(specs: dict, name: str, path: Path) -> MarketModel:
+    market = MarketModel.placeholder()
+    for field_name, distribution in _parse_fields(
+        specs, _MARKET_FIELDS, "market", name, name, path
+    ).items():
+        setattr(market, field_name, distribution)
+    return market
+
+
+def _parse_deal(spec: dict, name: str) -> DealTerms:
+    deal = DealTerms.placeholder(
+        check_usd=float(spec.get("check_usd", 5.0e6)),
+        entry_ownership=float(spec.get("entry_ownership", 0.15)),
+    )
+    for field_name in ("valuation_step_up", "discount_rate"):
+        if field_name in spec:
+            setattr(
+                deal,
+                field_name,
+                _build_distribution(spec[field_name], f"{name}/{field_name}", "pert"),
+            )
+    return deal
+
+
 @dataclass
 class ScenarioOutcome:
     """A scenario paired with what it produced."""
@@ -208,60 +252,16 @@ class ScenarioSet:
 
     @staticmethod
     def _parse_scenario(raw: dict, name: str, path: Path) -> Scenario:
-        market = None
-        if "market" in raw:
-            base = MarketModel.placeholder()
-            for field_name, spec in raw["market"].items():
-                if field_name not in _MARKET_FIELDS:
-                    raise ValueError(
-                        f"{path}: scenario {name!r} sets unknown market field "
-                        f"{field_name!r}; known fields are "
-                        f"{', '.join(sorted(_MARKET_FIELDS))}"
-                    )
-                setattr(
-                    base,
-                    field_name,
-                    _build_distribution(
-                        spec, f"{name}/{field_name}", _MARKET_FIELDS[field_name]
-                    ),
-                )
-            market = base
-
-        deal = None
-        if "deal" in raw:
-            spec = raw["deal"]
-            base = DealTerms.placeholder(
-                check_usd=float(spec.get("check_usd", 5.0e6)),
-                entry_ownership=float(spec.get("entry_ownership", 0.15)),
+        # Market, then deal, then stages: the first invalid section is the one
+        # reported, so the order is part of the error behaviour.
+        market = _parse_market(raw["market"], name, path) if "market" in raw else None
+        deal = _parse_deal(raw["deal"], name) if "deal" in raw else None
+        stage_overrides = {
+            str(stage_name): _parse_fields(
+                fields, _STAGE_FIELDS, "stage", f"{name}/{stage_name}", name, path
             )
-            for field_name in ("valuation_step_up", "discount_rate"):
-                if field_name in spec:
-                    setattr(
-                        base,
-                        field_name,
-                        _build_distribution(
-                            spec[field_name], f"{name}/{field_name}", "pert"
-                        ),
-                    )
-            deal = base
-
-        stage_overrides: dict[str, dict[str, Distribution]] = {}
-        for stage_name, fields in (raw.get("stages") or {}).items():
-            built: dict[str, Distribution] = {}
-            for field_name, spec in fields.items():
-                if field_name not in _STAGE_FIELDS:
-                    raise ValueError(
-                        f"{path}: scenario {name!r} sets unknown stage field "
-                        f"{field_name!r}; known fields are "
-                        f"{', '.join(sorted(_STAGE_FIELDS))}"
-                    )
-                built[field_name] = _build_distribution(
-                    spec,
-                    f"{name}/{stage_name}/{field_name}",
-                    _STAGE_FIELDS[field_name],
-                )
-            stage_overrides[str(stage_name)] = built
-
+            for stage_name, fields in (raw.get("stages") or {}).items()
+        }
         return Scenario(
             name=name,
             description=" ".join(str(raw.get("description", "")).split()),

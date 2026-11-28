@@ -190,7 +190,7 @@ comparison is in
 ## Quick start
 
 ```bash
-pip install numpy pyyaml requests pytest
+pip install numpy scipy pyyaml requests pytest
 
 # Generate a synthetic demo corpus (no network required)
 python scripts/make_demo_corpus.py
@@ -247,12 +247,17 @@ These are the things most likely to mislead you. None are hidden in the code.
    discovery something measurable to be scored against. It tells you nothing about
    any real field.
 
-3. **Clustering is lexical, and it scales only so far.** `discover` groups
-   papers that use the same words, so one idea pursued in two vocabularies splits,
-   and a shared methods vocabulary can pull unrelated work together. Dense
-   clustering refuses above 12,000 works rather than dying on a multi-gigabyte
-   allocation; `discover_by_discipline` partitions first, which scales further and
-   avoids cross-field lexical collisions, at the cost of splitting genuinely
+3. **Clustering is lexical, and large corpora are slow rather than impossible.**
+   `discover` groups papers that use the same words, so one idea pursued in two
+   vocabularies splits, and a shared methods vocabulary can pull unrelated work
+   together. Up to 8,000 works it holds every pairwise similarity in memory
+   (`--method dense`), which is fastest. Above that it switches to a sparse
+   method that stores none (`--method sparse`): memory then grows with the
+   amount of text, but time still grows with roughly the square of the corpus —
+   about a minute at 20,000 works on a laptop-class core. The two methods find
+   the same clusters except where similarities tie exactly.
+   `discover_by_discipline` partitions first, which is faster again and avoids
+   cross-field lexical collisions, at the cost of splitting genuinely
    cross-disciplinary directions. Neither failure is hidden — run both and compare.
 
 4. **Foundationality is a lexical proxy.** It counts platform/method/enabling
@@ -281,6 +286,7 @@ sciscout/
   models.py              Work and Track
   pipeline.py            corpus -> ranked investment cases
   discovery.py           unsupervised clustering into candidate directions
+  linkage.py             the two clustering methods: dense, and sparse for large corpora
   classify.py            routing to a commercialisation model, and coverage gaps
   scenarios.py           named scenarios, provenance-enforced config, comparison
   report.py              markdown rendering
@@ -292,7 +298,7 @@ sciscout/
   priors/sectors.yaml    commercialisation priors, graded by provenance
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generator
-tests/                   78 tests
+tests/                   102 tests
 ```
 
 ## Tests

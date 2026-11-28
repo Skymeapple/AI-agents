@@ -121,55 +121,61 @@ class ArxivSource(Source):
         )
 
     def _parse_entry(self, entry: ET.Element) -> Work:
-        def text(tag: str) -> str:
-            node = entry.find(f"{ATOM}{tag}")
-            return (node.text or "").strip() if node is not None else ""
-
-        raw_id = text("id")
-        published_text = text("published")
+        raw_id = _text(entry, "id")
+        published_text = _text(entry, "published")
         published = None
         if published_text:
             published = dt.datetime.fromisoformat(
                 published_text.replace("Z", "+00:00")
             ).date()
 
-        authors = [
-            Author(
-                name=(node.find(f"{ATOM}name").text or "").strip(),
-                affiliation=(
-                    node.find(f"{ARXIV_NS}affiliation").text
-                    if node.find(f"{ARXIV_NS}affiliation") is not None
-                    else None
-                ),
-            )
-            for node in entry.findall(f"{ATOM}author")
-            if node.find(f"{ATOM}name") is not None
-        ]
-
         categories = [
             node.attrib["term"]
             for node in entry.findall(f"{ATOM}category")
             if "term" in node.attrib
         ]
-        disciplines = sorted({_discipline(c) for c in categories})
 
         # A journal reference means the preprint has since been published, which
         # is a genuine step up in evidence weight.
-        journal_ref = entry.find(f"{ARXIV_NS}journal_ref")
-        has_journal = journal_ref is not None and (journal_ref.text or "").strip()
+        journal = _node_text(entry.find(f"{ARXIV_NS}journal_ref"))
 
         return Work(
             id=raw_id.rsplit("/", 1)[-1],
-            title=" ".join(text("title").split()),
-            abstract=" ".join(text("summary").split()),
-            authors=authors,
+            title=" ".join(_text(entry, "title").split()),
+            abstract=" ".join(_text(entry, "summary").split()),
+            authors=_parse_authors(entry),
             published=published,
-            venue=(journal_ref.text.strip() if has_journal else "arXiv"),
-            maturity=Maturity.PEER_REVIEWED if has_journal else Maturity.PREPRINT,
-            disciplines=disciplines,
+            venue=journal or "arXiv",
+            maturity=Maturity.PEER_REVIEWED if journal else Maturity.PREPRINT,
+            disciplines=sorted({_discipline(c) for c in categories}),
             # arXiv exposes no citation data. None, not 0: we did not measure it.
             citations=None,
             url=raw_id,
             source=self.name,
             extra={"categories": categories},
         )
+
+
+def _node_text(node: ET.Element | None) -> str:
+    """Stripped text of ``node``; empty when the node or its text is missing."""
+    return (node.text or "").strip() if node is not None else ""
+
+
+def _text(entry: ET.Element, tag: str) -> str:
+    return _node_text(entry.find(f"{ATOM}{tag}"))
+
+
+def _parse_authors(entry: ET.Element) -> list[Author]:
+    authors: list[Author] = []
+    for node in entry.findall(f"{ATOM}author"):
+        name = node.find(f"{ATOM}name")
+        if name is None:
+            continue
+        affiliation = node.find(f"{ARXIV_NS}affiliation")
+        authors.append(
+            Author(
+                name=_node_text(name),
+                affiliation=affiliation.text if affiliation is not None else None,
+            )
+        )
+    return authors

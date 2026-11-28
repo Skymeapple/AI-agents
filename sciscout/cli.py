@@ -32,7 +32,7 @@ from .report import render_portfolio, render_track
 from .scenarios import ScenarioSet, render_comparison
 from .sources.base import dump_works
 from .classify import classify, coverage_report
-from .discovery import discover, discover_by_discipline, evaluate_against_labels
+from .discovery import METHODS, discover, discover_by_discipline, evaluate_against_labels
 from .sources.local import LocalCorpus
 
 
@@ -164,7 +164,10 @@ def cmd_discover(args) -> int:
     finder = discover_by_discipline if args.by_discipline else discover
     try:
         found = finder(
-            works, threshold=args.threshold, min_cluster_size=args.min_cluster_size
+            works,
+            threshold=args.threshold,
+            min_cluster_size=args.min_cluster_size,
+            method=args.method,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
@@ -341,6 +344,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--threshold", type=float, default=0.16, help="clustering similarity floor"
     )
     discovery.add_argument("--min-cluster-size", type=int, default=3)
+    discovery.add_argument(
+        "--method",
+        choices=METHODS,
+        default="auto",
+        help="dense is fastest on a small corpus; sparse needs far less memory; "
+        "auto picks by corpus size",
+    )
     discovery.add_argument(
         "--by-discipline",
         action="store_true",

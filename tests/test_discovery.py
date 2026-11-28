@@ -12,6 +12,8 @@ from sciscout.classify import CONFIDENCE_FLOOR, classify, coverage_report
 from sciscout.commercial.profile import PriorLibrary
 from sciscout.discovery import (
     MAX_WORKS_DENSE,
+    _index_class,
+    _SparseIndex,
     discover,
     discover_by_discipline,
     evaluate_against_labels,
@@ -116,7 +118,10 @@ def test_dense_clustering_refuses_a_corpus_it_cannot_hold():
         for i in range(MAX_WORKS_DENSE + 1)
     ]
     with pytest.raises(ValueError, match="above the"):
-        discover(works)
+        discover(works, method="dense")
+    # Left to choose, discovery takes the method that can hold the corpus.
+    assert _index_class("auto", len(works)) is _SparseIndex
+    assert len(discover(works).unclustered) == len(works)
 
 
 def test_partitioned_discovery_keeps_disciplines_apart():

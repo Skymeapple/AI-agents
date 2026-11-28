@@ -147,17 +147,42 @@ def render_track(report: TrackReport, detail: bool = True) -> str:
             f"| {np.percentile(own, 50):.2%} | {np.percentile(own, 90):.2%} |"
         )
     lines.append("")
+    low, high = simulation.expected_moic_interval()
     lines.append(
-        f"- Probability of reaching market: **{simulation.success_rate:.1%}**"
+        f"- Probability of reaching market: **{simulation.expected_success_rate():.1%}**"
     )
     lines.append(
         f"- Expected investor multiple across all outcomes: "
         f"**{simulation.expected_moic():.2f}x** "
-        f"(**{simulation.conditional_moic():.2f}x** conditional on reaching market)"
+        f"(**{simulation.conditional_moic():.2f}x** conditional on reaching market). "
+        f"Sampling error at this draw count: {low:.2f}x to {high:.2f}x (90% interval); "
+        f"the top 1% of draws contribute {simulation.tail_concentration():.0%} of it"
     )
     lines.append(
         f"- Probability the project destroys value: **{simulation.probability_of_loss():.1%}**"
     )
+    if len(simulation.starting_trl) and len(set(simulation.starting_trl.tolist())) > 1:
+        levels, counts = np.unique(simulation.starting_trl, return_counts=True)
+        mix = ", ".join(
+            f"TRL {int(level)} {count / simulation.draws:.0%}"
+            for level, count in zip(levels, counts)
+            if count / simulation.draws >= 0.005
+        )
+        lines.append(f"- Starting readiness simulated per draw: {mix}")
+        no_stage = simulation.reached_market & (simulation.total_spend == 0)
+        if no_stage.any() and simulation.moic_given_inputs.sum() > 0:
+            carried = (
+                simulation.moic_given_inputs[no_stage].sum()
+                / simulation.moic_given_inputs.sum()
+            )
+            lines.append(
+                f"- {no_stage.mean():.1%} of draws start with no development stage "
+                f"left and carry {carried:.0%} of the expected multiple. Entry terms "
+                "are the same in every draw, so those are worlds in which an "
+                "early-stage price buys a finished technology: if that share is "
+                "large, narrow the TRL with an analyst override before reading the "
+                "multiple"
+            )
     lines.append("")
 
     lines.append("**Where the programme dies**")
@@ -185,12 +210,25 @@ def render_track(report: TrackReport, detail: bool = True) -> str:
             )
         lines.append("")
 
-    grade_mix = simulation.variance_by_grade()
+    split = simulation.variance_decomposition()
+    by_grade = dict(split.by_grade)
+    # Readiness is pulled out by name. It is graded by how the TRL belief was
+    # reached, but a wide belief inferred from abstracts is better described as
+    # "we do not know where this starts" than as a measured input.
+    readiness = split.by_input.get("starting TRL", 0.0)
+    if readiness:
+        by_grade[simulation.input_grades["starting TRL"]] -= readiness
     lines.append(
-        f"**Provenance of this forecast:** "
-        f"{grade_mix[Grade.OBSERVED]:.0%} of the spread traces to measured inputs, "
-        f"{grade_mix[Grade.SOURCED]:.0%} to sourced figures, and "
-        f"**{grade_mix[Grade.ASSUMED]:.0%} to assumptions**."
+        f"**Where the spread comes from:** {split.gate_luck:.0%} of the variance in "
+        f"project NPV is gate luck \u2014 which side of each gate the programme lands on "
+        f"\u2014 and would remain if every input were known exactly. The other "
+        f"{split.inputs_total:.0%} is uncertainty about the inputs: "
+        f"{readiness:.1%} from not knowing the starting readiness level, "
+        f"{max(0.0, by_grade[Grade.OBSERVED]):.1%} from measured inputs, "
+        f"{max(0.0, by_grade[Grade.SOURCED]):.1%} from sourced figures, "
+        f"**{max(0.0, by_grade[Grade.ASSUMED]):.1%} from assumptions**, and "
+        f"{split.interactions:.1%} from combinations of inputs that no single one "
+        f"accounts for."
     )
     lines.append("")
     needing = simulation.ledger.needing_review()
@@ -219,7 +257,7 @@ def render_portfolio(reports: list[TrackReport], asof: dt.date | None = None) ->
     for index, report in enumerate(reports, start=1):
         assessment = report.assessment
         simulation = report.simulation
-        p_market = f"{simulation.success_rate:.0%}" if simulation else "—"
+        p_market = f"{simulation.expected_success_rate():.0%}" if simulation else "—"
         moic = f"{simulation.expected_moic():.2f}x" if simulation else "—"
         lines.append(
             f"| {index} | {report.name} | **{assessment.priority:.2f}** "

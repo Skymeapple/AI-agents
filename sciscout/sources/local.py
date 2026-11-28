@@ -41,6 +41,7 @@ def _parse_work(raw: dict, source_label: str) -> Work:
         citations=raw.get("citations"),
         url=raw.get("url"),
         source=raw.get("source", source_label),
+        references=[str(r) for r in raw.get("references", [])],
         extra=raw.get("extra", {}),
     )
 

@@ -1,0 +1,104 @@
+# Measurements used by the cosmos simulations.
+#
+# Every entry carries where it came from, in the same spirit as the rest of this repo.
+#   provenance: sourced  -> a named reference; `checked` says how far it was verified:
+#       document        read in the primary document or data file itself
+#       search-summary  seen in a web-search summary of the reference, not the paper
+#       recalled        quoted from memory of the literature; NOT re-verified
+#   provenance: assumed  -> a modelling choice, with a rationale
+#
+# Anything marked `recalled` should be checked against the paper before being relied on.
+
+cmb:
+  theta_star_prior:
+    value: {mean: [0.01041, 0.02223, 0.14208],
+            cov_1e9: [[0.006621, 0.12444, -1.1929], [0.12444, 21.344, -94.001], [-1.1929, -94.001, 1488.4]]}
+    provenance: sourced
+    checked: document
+    ref: "DESI DR2 Results II, arXiv:2503.14738, Appendix A eqs. A1-A2: Gaussian prior on (theta*, omega_b, omega_bc)"
+  planck_h0: {value: 67.36, err: 0.54, unit: km/s/Mpc, provenance: sourced, checked: recalled, ref: "Planck 2018 VI, TT,TE,EE+lowE+lensing"}
+  planck_ns: {value: 0.9649, err: 0.0042, provenance: sourced, checked: recalled, ref: "Planck 2018 VI"}
+  pact_lb_ns: {value: 0.9743, err: 0.0034, provenance: sourced, checked: recalled, ref: "ACT DR6 (2025), Planck+ACT+lensing+DESI BAO"}
+  r_upper_95: {value: 0.036, provenance: sourced, checked: search-summary, ref: "BICEP/Keck 2021, r_0.05 < 0.036 at 95% CL"}
+  planck_s8: {value: 0.832, err: 0.013, provenance: sourced, checked: recalled, ref: "Planck 2018 VI"}
+  sigma8: {value: 0.811, err: 0.006, provenance: sourced, checked: recalled, ref: "Planck 2018 VI"}
+
+bbn:
+  omega_b: {value: 0.02218, err: 0.00055, provenance: sourced, checked: recalled, ref: "Schoeneberg 2024 BBN prior as used by DESI"}
+  neutron_lifetime: {value: 878.4, err: 0.5, unit: s, provenance: sourced, checked: recalled, ref: "PDG average"}
+  yp_observed: {value: 0.245, err: 0.003, provenance: sourced, checked: recalled, ref: "PDG review of primordial helium (Aver et al.)"}
+  dh_observed: {value: 2.527e-5, err: 0.030e-5, provenance: sourced, checked: recalled, ref: "Cooke, Pettini & Steidel 2018"}
+  li7_predicted: {value: 4.72e-10, err: 0.72e-10, provenance: sourced, checked: recalled, ref: "Fields, Olive, Yeh & Young 2020"}
+  li7_observed: {value: 1.6e-10, err: 0.3e-10, provenance: sourced, checked: recalled, ref: "Spite plateau, Sbordone et al. 2010"}
+  cluster_initial_excess: {value: 0.78, provenance: sourced, checked: search-summary, ref: "Globular-cluster diffusion study: stars began with 78% more Li (Physics World report; Korn et al.)"}
+
+h0:  # km/s/Mpc
+  - {name: "Planck 2018 (LCDM)", value: 67.36, err: 0.54, kind: early, provenance: sourced, checked: recalled, ref: "Planck 2018 VI"}
+  - {name: "ACT DR6 + Planck (LCDM)", value: 68.22, err: 0.36, kind: early, provenance: sourced, checked: recalled, ref: "ACT DR6 2025"}
+  - {name: "DESI DR2 BAO + BBN + theta*", value: 68.51, err: 0.58, kind: early, provenance: sourced, checked: recalled, ref: "DESI DR2 Results II"}
+  - {name: "SH0ES Cepheids (HST)", value: 73.17, err: 0.86, kind: ladder, provenance: sourced, checked: search-summary, ref: "Riess et al. / Breuval et al. 2024"}
+  - {name: "SH0ES JWST subsample", value: 72.6, err: 2.0, kind: ladder, provenance: sourced, checked: search-summary, ref: "Riess et al. 2024 JWST cross-check"}
+  - {name: "CCHP TRGB (JWST+HST)", value: 70.39, err: 1.9, kind: ladder, provenance: sourced, checked: search-summary, ref: "Freedman et al. 2025; central value from search, total error recalled"}
+  - {name: "Surface brightness fluct.", value: 73.3, err: 2.5, kind: ladder, provenance: sourced, checked: recalled, ref: "Blakeslee et al. 2021"}
+  - {name: "TDCOSMO 2025 lensing", value: 71.6, err: 3.6, kind: independent, provenance: sourced, checked: search-summary, ref: "TDCOSMO 2025, A&A 704, A63 (+3.9/-3.3 symmetrised)"}
+  - {name: "Megamasers", value: 73.9, err: 3.0, kind: independent, provenance: sourced, checked: recalled, ref: "Pesce et al. 2020"}
+
+dark_energy_published:  # benchmarks to compare the fit against, chi2 improvement of w0wa over LCDM
+  desi_only: {value: -4.7, provenance: sourced, checked: document, ref: "arXiv:2503.14738 Table VI"}
+  desi_cmbprior: {value: -8.0, provenance: sourced, checked: document, ref: "arXiv:2503.14738 Table VI"}
+  desi_pantheon: {value: -4.9, provenance: sourced, checked: document, ref: "arXiv:2503.14738 Table VI"}
+  desi_fullcmb_pantheon: {value: -10.7, provenance: sourced, checked: document, ref: "arXiv:2503.14738 Table VI (full CMB, not the compressed prior)"}
+
+dark_matter:
+  lz_limit_sigma: {value: 2.2e-48, unit: cm^2, provenance: sourced, checked: search-summary, ref: "LZ 2024, minimum SI exclusion at 40 GeV"}
+  lz_exposure: {value: 4.2, unit: tonne-year, provenance: sourced, checked: recalled, ref: "LZ 2024 combined exposure"}
+  lz_hint_exposure: {value: 2.84, unit: tonne-year, provenance: sourced, checked: search-summary, ref: "LZ Sept 2026 high-energy analysis"}
+  local_density: {value: 0.3, unit: GeV/cm^3, provenance: assumed, rationale: "Standard-halo convention used by direct-detection experiments"}
+  v0: {value: 238.0, unit: km/s, provenance: assumed, rationale: "Standard halo model circular speed"}
+  v_earth: {value: 254.0, unit: km/s, provenance: assumed, rationale: "Mean Earth speed in the Galactic frame"}
+  efficiency: {value: 0.5, provenance: assumed, rationale: "Flat nuclear-recoil efficiency in the 5-50 keV window; real efficiency is energy dependent"}
+  galaxy: {value: {disk_mass: 5.0e10, disk_scale: 3.0, bulge_mass: 1.0e10, bulge_scale: 0.5, halo_m200: 1.0e12, halo_c: 10.0},
+           provenance: assumed, rationale: "Milky-Way-like synthetic galaxy; the SPARC rotation-curve database host was not reachable from this environment"}
+  mond_a0: {value: 1.2e-10, unit: m/s^2, provenance: sourced, checked: recalled, ref: "McGaugh et al. 2016 radial acceleration relation"}
+
+early_black_holes:  # redshift, black-hole mass in solar masses
+  - {name: "J0313-1806", z: 7.64, mass: 1.6e9, provenance: sourced, checked: recalled, ref: "Wang et al. 2021"}
+  - {name: "J1342+0928", z: 7.54, mass: 7.8e8, provenance: sourced, checked: recalled, ref: "Banados et al. 2018"}
+  - {name: "J1120+0641", z: 7.08, mass: 1.35e9, provenance: sourced, checked: recalled, ref: "Mortlock et al. 2011; JWST revision"}
+  - {name: "UHZ1", z: 10.1, mass: 4.0e7, provenance: sourced, checked: recalled, ref: "Bogdan et al. 2024 (X-ray based, uncertain to ~1 dex)"}
+  - {name: "CEERS-1019", z: 8.68, mass: 9.0e6, provenance: sourced, checked: recalled, ref: "Larson et al. 2023"}
+  - {name: "GN-z11", z: 10.6, mass: 1.6e6, provenance: sourced, checked: recalled, ref: "Maiolino et al. 2024"}
+  - {name: "Abell2744-QSO1 (LRD)", z: 7.04, mass: 4.0e7, provenance: sourced, checked: recalled, ref: "Furtak et al. 2024"}
+
+structure:
+  s8:
+    - {name: "Planck 2018 (CMB)", value: 0.832, err: 0.013, provenance: sourced, checked: recalled, ref: "Planck 2018 VI"}
+    - {name: "KiDS-Legacy", value: 0.815, err: 0.018, provenance: sourced, checked: recalled, ref: "Wright et al. 2025 (+0.016/-0.021 symmetrised)"}
+    - {name: "KiDS-Legacy + external", value: 0.816, err: 0.006, provenance: sourced, checked: search-summary, ref: "A&A May 2026, all probes combined, LCDM"}
+    - {name: "DES Y3 3x2pt", value: 0.776, err: 0.017, provenance: sourced, checked: recalled, ref: "DES Collaboration 2022"}
+    - {name: "DES Y6 3x2pt", value: 0.789, err: 0.012, provenance: sourced, checked: recalled, ref: "DES Collaboration 2026"}
+    - {name: "HSC Y3", value: 0.776, err: 0.032, provenance: sourced, checked: recalled, ref: "HSC 2023 cosmic shear"}
+  dipole_observed: {value: 0.01554, provenance: sourced, checked: recalled, ref: "Secrest et al. 2021, CatWISE quasars"}
+  dipole_n_sources: {value: 1.36e6, provenance: sourced, checked: search-summary, ref: "Secrest et al. 2021 / RMP Colloquium 2025"}
+  dipole_published_sigma: {value: 4.9, provenance: sourced, checked: search-summary, ref: "RMP Colloquium, arXiv:2505.23526"}
+  cmb_velocity: {value: 369.82, unit: km/s, provenance: sourced, checked: recalled, ref: "Planck 2018 I, solar dipole"}
+  quasar_x: {value: 1.7, provenance: sourced, checked: recalled, ref: "Secrest et al. 2021, source-count slope"}
+  quasar_alpha: {value: 1.26, provenance: sourced, checked: recalled, ref: "Secrest et al. 2021, spectral index"}
+  galactic_cut_deg: {value: 30.0, provenance: sourced, checked: recalled, ref: "Secrest et al. 2021 mask |b| > 30 deg"}
+
+neutrino:
+  dm21: {value: 7.49e-5, unit: eV^2, provenance: sourced, checked: recalled, ref: "NuFIT 6.0"}
+  dm31_normal: {value: 2.513e-3, unit: eV^2, provenance: sourced, checked: recalled, ref: "NuFIT 6.0"}
+  dm32_inverted: {value: -2.484e-3, unit: eV^2, provenance: sourced, checked: recalled, ref: "NuFIT 6.0"}
+  katrin_limit: {value: 0.45, unit: eV, provenance: sourced, checked: search-summary, ref: "KATRIN, Science 2025, 90% CL"}
+  katrin_final: {value: 0.3, unit: eV, provenance: sourced, checked: search-summary, ref: "KATRIN projected final sensitivity"}
+  cosmo_limit_95: {value: 0.064, unit: eV, provenance: sourced, checked: recalled, ref: "DESI DR2 + CMB, LCDM"}
+
+baryogenesis:
+  eta_b: {value: 6.12e-10, err: 0.04e-10, provenance: sourced, checked: recalled, ref: "Planck 2018 baryon-to-photon ratio"}
+  m_atm: {value: 0.05, unit: eV, provenance: sourced, checked: recalled, ref: "sqrt of atmospheric splitting"}
+  higgs_vev: {value: 174.0, unit: GeV, provenance: sourced, checked: recalled, ref: "Standard Model"}
+  m_star: {value: 1.08e-3, unit: eV, provenance: sourced, checked: recalled, ref: "Equilibrium neutrino mass, Buchmuller, Di Bari & Plumacher 2005"}
+
+inflation:
+  efolds: {value: [50, 60], provenance: assumed, rationale: "Standard bracket for the number of e-folds between horizon exit of the pivot scale and the end of inflation"}

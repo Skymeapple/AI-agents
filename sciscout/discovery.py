@@ -152,7 +152,8 @@ def _build_tfidf(
 
     norms = np.linalg.norm(matrix, axis=1, keepdims=True)
     norms[norms == 0] = 1.0
-    return matrix / norms, vocabulary
+    matrix /= norms  # in place: a second works x vocabulary array is not free
+    return matrix, vocabulary
 
 
 class _AverageLinkage:
@@ -167,7 +168,7 @@ class _AverageLinkage:
     def __init__(self, similarity: np.ndarray) -> None:
         n = similarity.shape[0]
         self.clusters: dict[int, list[int]] = {i: [i] for i in range(n)}
-        self.pair_sum = similarity.astype(np.float64).copy()
+        self.pair_sum = similarity.astype(np.float64)  # astype copies
         np.fill_diagonal(self.pair_sum, -np.inf)
         self.sizes = np.ones(n, dtype=np.float64)
         self.active = np.ones(n, dtype=bool)
@@ -243,14 +244,21 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
 
 
 def _label_cluster(
-    matrix: np.ndarray, vocabulary: list[str], members: list[int], top: int
+    matrix: np.ndarray,
+    corpus_mean: np.ndarray,
+    vocabulary: list[str],
+    members: list[int],
+    top: int,
 ) -> list[str]:
-    """Terms that distinguish this cluster from the corpus as a whole."""
+    """Terms that distinguish this cluster from the corpus as a whole.
+
+    ``corpus_mean`` is ``matrix.mean(axis=0)``, passed in because it is the same
+    for every cluster: recomputing it per cluster made labelling cost grow with
+    clusters x works x vocabulary and dominate discovery on large corpora.
+    """
     if not vocabulary:
         return []
-    inside = matrix[members].mean(axis=0)
-    outside = matrix.mean(axis=0)
-    distinctiveness = inside - outside
+    distinctiveness = matrix[members].mean(axis=0) - corpus_mean
     order = np.argsort(distinctiveness)[::-1][:top]
     return [vocabulary[i] for i in order if distinctiveness[i] > 0]
 
@@ -322,6 +330,7 @@ def discover(
 
     similarity = matrix @ matrix.T
     clusters = _agglomerate(similarity, threshold)
+    corpus_mean = matrix.mean(axis=0)
 
     tracks: list[DiscoveredTrack] = []
     unclustered: list[Work] = []
@@ -329,7 +338,7 @@ def discover(
         if len(members) < min_cluster_size:
             unclustered.extend(works[i] for i in members)
             continue
-        terms = _label_cluster(matrix, vocabulary, members, top_terms)
+        terms = _label_cluster(matrix, corpus_mean, vocabulary, members, top_terms)
         label = " / ".join(terms[:3]) if terms else f"cluster of {len(members)}"
         tracks.append(
             DiscoveredTrack(

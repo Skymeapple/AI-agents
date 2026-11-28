@@ -160,3 +160,17 @@ def test_trl_credible_range_widens_under_contradictory_evidence():
     low_c, high_c = infer_trl(consistent).credible_range()
     low_x, high_x = infer_trl(conflicted).credible_range()
     assert (high_x - low_x) > (high_c - low_c)
+
+
+def test_citation_baseline_median_stays_correct_as_a_pool_grows():
+    """The median is cached per pool; a pool that grows must not serve a stale one."""
+    low = make_track("low", citations=10)
+    baseline = CitationBaseline.from_works(low.works, asof=ASOF)
+    age = low.works[0].age_years(ASOF)
+    assert baseline.expected("physics", age)[0] == 10
+    assert baseline.expected("physics", age)[0] == 10  # served from the cache
+
+    high = make_track("high", years=((2023, 20),), citations=90)
+    pool = next(iter(baseline._by_discipline.values()))
+    pool.extend(w.citations for w in high.works)
+    assert baseline.expected("physics", age)[0] == 90

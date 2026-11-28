@@ -209,3 +209,22 @@ def test_arxiv_harvest_skips_bad_entries_and_stops_on_bad_xml(monkeypatch):
     assert [w.id for w in result.works] == ["2401.00001v1", "y"]
     assert any("skipped an arXiv entry" in e for e in result.errors)
     assert any("unparseable XML" in e for e in result.errors)
+
+
+# -- local corpus -----------------------------------------------------------
+
+
+def test_local_corpus_loads_every_record_unless_a_limit_is_given(tmp_path):
+    """A corpus file must never be silently truncated: the tail is data too."""
+    import json
+
+    from sciscout.sources.local import LocalCorpus
+
+    records = [
+        {"id": f"w{i}", "title": f"work {i}", "published": "2024-01-01"}
+        for i in range(10_050)
+    ]
+    path = tmp_path / "corpus.json"
+    path.write_text(json.dumps(records))
+    assert len(LocalCorpus(path).harvest().works) == 10_050
+    assert len(LocalCorpus(path).harvest(limit=7).works) == 7

@@ -1,0 +1,85 @@
+{
+ "E_audit": {
+  "E1_grid_relerr": {
+   "0.01": 1.3312558346337763e-08,
+   "0.03": 4.464603336210728e-08,
+   "0.1": 2.3273371600553952e-07,
+   "0.3": 1.6582642281647692e-06,
+   "0.5": 1.0529641089004733e-06
+  },
+  "terminal_L1_max_rho>=0.003": 4.788632992722835e-07,
+  "terminal_L1_mean_rho=0.003": 1.4911882916139e-07,
+  "commuting_max_L1": 5.2909066017292616e-17,
+  "recovery10_means": {
+   "0.003": 586.7614296521768,
+   "0.01": 200.26130982846547,
+   "0.03": 81.23499999999999,
+   "0.1": 33.5
+  },
+  "slope_logmean_rho<=0.1": -0.8169197365969315,
+  "slope_two_smallest": -0.8928733667204185,
+  "steps_to_L2_1pct[GD]": {
+   "min": 12,
+   "max": 46,
+   "per_rho_means": [
+    18.6,
+    20.2,
+    24.4
+   ]
+  },
+  "steps_to_L2_1pct[damped_newton_delta=0.1]": {
+   "min": 6,
+   "max": 12,
+   "per_rho_means": [
+    6.7,
+    7.2,
+    7.8
+   ]
+  },
+  "steps_to_L2_1pct[damped_newton_delta=0.01]": {
+   "min": 4,
+   "max": 4,
+   "per_rho_means": [
+    4.0,
+    4.0,
+    4.0
+   ]
+  },
+  "steps_to_L2_1pct[damped_newton_delta=0.001]": {
+   "min": 4,
+   "max": 4,
+   "per_rho_means": [
+    4.0,
+    4.0,
+    4.0
+   ]
+  },
+  "steps_to_L2_1pct[damped_newton_delta=0.0001]": {
+   "min": 4,
+   "max": 4,
+   "per_rho_means": [
+    4.0,
+    4.0,
+    4.0
+   ]
+  },
+  "steps_to_L2_1pct[exact_newton_pinv]": {
+   "min": 4,
+   "max": 4,
+   "per_rho_means": [
+    4.0,
+    4.0,
+    4.0
+   ]
+  },
+  "steps_to_L2_1pct[diag_precond]": {
+   "min": 11,
+   "max": 39,
+   "per_rho_means": [
+    16.8,
+    18.4,
+    22.4
+   ]
+  }
+ }
+}

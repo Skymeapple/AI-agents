@@ -383,6 +383,12 @@ def fig_e6():
            label="distance to ridge (general rule)")
     a.plot(Ms, [np.mean(r["eval"]["fresh"]["dist_to_dmmse"][tail]) for r in fin], marker="s", color=C[1],
            label="distance to dMMSE (memorised pool)")
+    extra = [load_json(f.stem) for f in sorted(RESULTS.glob("e6_extra_M*_seed*.json"))]
+    if extra:
+        a.plot([r["M"] for r in extra], [np.mean(np.asarray(r["eval"]["fresh"]["dist_to_ridge"])[tail]) for r in extra],
+               "o", mfc="none", color=C[2], label="second seed")
+        a.plot([r["M"] for r in extra], [np.mean(np.asarray(r["eval"]["fresh"]["dist_to_dmmse"])[tail]) for r in extra],
+               "s", mfc="none", color=C[1])
     a.set_xscale("log", base=2)
     a.set_yscale("log")
     a.set_xlabel("number of training worlds M")

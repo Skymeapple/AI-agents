@@ -45,6 +45,6 @@ Its limits are stated there too, and are worth repeating here:
   The capacity-scaling exponents in E3 do not track the Zipf exponent, because training is
   optimisation-limited. E2's 1/d law appears only once the optimisation floor is modelled;
   the naive fit does not show it.
-- **E6 has one or two seeds per condition.** The memorise/generalise contrast is large; the
-  exact threshold is not resolved.
+- **E6 has one or two seeds per condition.** The memorise/generalise contrast replicates across
+  seeds; the exact threshold is not resolved.
 - Decisions made after seeing pilot data are listed in Appendix A of the paper.

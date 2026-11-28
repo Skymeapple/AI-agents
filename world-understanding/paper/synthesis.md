@@ -13,7 +13,7 @@ Table 2 gives each framework's prediction, the result that would have counted ag
 | Quantization model (D5) | Capacity exponent −(α−1) | Exponent independent of α | Frequency-ordered learning holds; exponent does not track α (optimisation-limited) | Partially supported |
 | Superposition (D6) | Features stored > dimensions iff sparse and nonlinear | Linear and ReLU behave alike | 18.7 of 20 features in 5 dims at S = 0.997; linear model stays at 5 | Supported |
 | Algorithmic compression (D6) | Generalisation coincides with structured, low-norm representation; needs simplicity pressure | Generalisation without structure, or without weight decay | {{E5_SUMMARY}} | {{E5_VERDICT}} |
-| In-context Bayes (D7) | Diverse pre-training → near-ridge; narrow → pool-Bayes, fails on new worlds | Same behaviour at all M | M = 8: pool-Bayes behaviour, fails on new worlds (MSE 3.9); M ≥ 64: ridge-like (0.17–0.22, ridge 0.10) | Supported (qualitatively; 1 seed, ~2× Bayes error) |
+| In-context Bayes (D7) | Diverse pre-training → near-ridge; narrow → pool-Bayes, fails on new worlds | Same behaviour at all M | M = 8: pool-Bayes behaviour, fails on new worlds (MSE 3.9); M ≥ 64: ridge-like (0.17–0.22, ridge 0.10) | Supported (qualitatively; 1–2 seeds; model ~2× Bayes error) |
 | Shortcuts (D8) | Reliance on spurious cue grows with ρ; removed only by decorrelating interventions | No reliance, or reweighting suffices | Reversed-cue accuracy 98% → 0%; randomisation restores 98%, reweighting 80% | Supported |
 
 Table: **Table 2.** Pre-specified predictions, falsifiers, and outcomes.

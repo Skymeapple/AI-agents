@@ -1,0 +1,315 @@
+# English matching terms for the AI-100 catalogue (research/questions.json).
+#
+# The catalogue is written in Chinese and sciscout's tokenizer keeps only Latin
+# alphabetic tokens, so a Chinese question matches nothing in an English corpus.
+# `en` is an English rendering of the question and `terms` are phrases a paper on
+# it would plausibly use. BOTH WERE WRITTEN BY THE MODEL FOR MATCHING. They are not
+# taken from the source, were not reviewed by a person, and are graded `assumed`.
+# A bad gloss shows up as a problem wrongly reported neglected, so check the gloss
+# before believing a neglected verdict.
+source:
+  grade: assumed
+  detail: >-
+    English rendering and matching terms written by the model for lexical matching;
+    not taken from research/questions.json, not reviewed by a person
+questions:
+  1:
+    en: "Are pre-training scaling laws slowing down, and where is the next source of growth?"
+    terms: [scaling laws, pretraining, compute scaling, diminishing returns, model size, data scaling]
+  2:
+    en: "How much more can test-time compute deliver?"
+    terms: [test-time compute, inference-time scaling, reasoning tokens, extended thinking, search at inference]
+  3:
+    en: "Can reinforcement learning drive fast progress outside maths and code?"
+    terms: [reinforcement learning, verifiable rewards, reward design, RL fine-tuning, policy optimization]
+  4:
+    en: "Can synthetic data take over as high-quality human data runs out?"
+    terms: [synthetic data, data generation, model collapse, self-generated training data, data scarcity]
+  5:
+    en: "Do models truly generalise, or is it sophisticated interpolation?"
+    terms: [generalization, out-of-distribution, extrapolation, compositional generalization, memorization]
+  6:
+    en: "Is a long context the same as real long-term memory?"
+    terms: [long context, context window, long-term memory, retrieval, memory mechanisms]
+  7:
+    en: "What are the limits of unified multimodal models?"
+    terms: [multimodal, vision-language, audio, video understanding, vision-language-action, unified model]
+  8:
+    en: "How small can distillation and small models compress frontier capability?"
+    terms: [knowledge distillation, small language models, model compression, quantization, pruning]
+  9:
+    en: "Can new architectures replace the Transformer?"
+    terms: [state space models, Mamba, hybrid architecture, transformer alternative, recurrent architecture]
+  10:
+    en: "How far are we from AGI, and how should it be defined?"
+    terms: [artificial general intelligence, AGI definition, general intelligence, capability levels]
+  11:
+    en: "Does chain-of-thought faithfully reflect the model's actual reasoning?"
+    terms: [chain-of-thought faithfulness, unfaithful reasoning, reasoning traces, post-hoc rationalization]
+  12:
+    en: "How can a model reliably know what it does not know?"
+    terms: [uncertainty quantification, calibration, abstention, confidence estimation, selective prediction]
+  13:
+    en: "Can hallucination be eliminated at the root?"
+    terms: [hallucination, hallucination detection, factuality, grounding, retrieval-augmented generation]
+  14:
+    en: "Can models reason causally rather than by correlation?"
+    terms: [causal reasoning, causal inference, counterfactual, causal discovery, spurious correlation]
+  15:
+    en: "Can models complete long-horizon tasks spanning days or weeks?"
+    terms: [long-horizon planning, task horizon, planning, autonomous tasks, time horizon]
+  16:
+    en: "Can models learn continually without catastrophic forgetting?"
+    terms: [continual learning, catastrophic forgetting, lifelong learning, loss of plasticity]
+  17:
+    en: "Do models build internal representations of the world?"
+    terms: [world models, internal representations, emergent world representation, latent state]
+  18:
+    en: "Can AI independently prove important new theorems?"
+    terms: [theorem proving, formal proof, Lean, mathematical reasoning, autoformalization]
+  19:
+    en: "Can AI propose and verify original scientific hypotheses?"
+    terms: [scientific discovery, hypothesis generation, AI scientist, automated research, AI for science]
+  20:
+    en: "Is model creativity the same kind of thing as human creativity?"
+    terms: [creativity, novelty, creative generation, divergent thinking, originality]
+  21:
+    en: "How do agents become reliable enough to deploy in real environments?"
+    terms: [agent reliability, LLM agents, real-world deployment, task success rate, robustness of agents]
+  22:
+    en: "How should long-running autonomous agents recover from errors?"
+    terms: [error recovery, long-running agents, self-correction, failure recovery, agent debugging]
+  23:
+    en: "How should multi-agent systems divide work, communicate and resolve conflict?"
+    terms: [multi-agent, coordination, communication protocol, cooperation, role assignment, debate]
+  24:
+    en: "How much authority should agents be given, and how are permission boundaries designed?"
+    terms: [agent permissions, access control, sandboxing, least privilege, authorization]
+  25:
+    en: "When will computer use be as fluent as a person's?"
+    terms: [computer use, GUI agents, web agents, screen interaction, browser automation]
+  26:
+    en: "How are an agent's memory, identity and state made persistent?"
+    terms: [agent memory, persistent memory, episodic memory, state persistence, memory architecture]
+  27:
+    en: "How will agent protocol standards such as MCP evolve?"
+    terms: [model context protocol, agent protocol, interoperability, tool interface, agent communication standard]
+  28:
+    en: "Can AI complete whole software engineering projects autonomously?"
+    terms: [software engineering agents, code generation, SWE-bench, repository-level, automated programming]
+  29:
+    en: "Who is liable when an agent's mistake causes loss?"
+    terms: [liability, accountability, legal responsibility, harm attribution, agent governance]
+  30:
+    en: "How do we tell an agent is actually useful, not just good on benchmarks?"
+    terms: [agent evaluation, real-world usefulness, benchmark validity, human uplift, productivity study]
+  31:
+    en: "How do we keep increasingly capable models aligned with human intent?"
+    terms: [alignment, value alignment, intent alignment, misalignment, AI safety]
+  32:
+    en: "How can humans oversee systems smarter than themselves?"
+    terms: [scalable oversight, debate, weak-to-strong, human oversight, AI control]
+  33:
+    en: "Do models deceive, scheme or hide goals?"
+    terms: [deception, scheming, deceptive alignment, hidden goals, sandbagging]
+  34:
+    en: "How is reward hacking detected and prevented?"
+    terms: [reward hacking, specification gaming, reward tampering, shortcut exploitation]
+  35:
+    en: "Do models behave the same in evaluation and deployment?"
+    terms: [evaluation awareness, situational awareness, test awareness, behavior under evaluation]
+  36:
+    en: "Can jailbreaks and prompt injection be solved fundamentally?"
+    terms: [jailbreak, prompt injection, adversarial prompts, safety guardrails, adversarial robustness]
+  37:
+    en: "How are dangerous biological, chemical and cyber capabilities assessed and controlled?"
+    terms: [dangerous capabilities, biosecurity, cybersecurity, dual-use, capability evaluation, uplift]
+  38:
+    en: "How large is the risk of autonomous replication and self-improvement?"
+    terms: [autonomous replication, self-improvement, recursive self-improvement, self-exfiltration]
+  39:
+    en: "How likely are loss-of-control scenarios, and how much should be spent preventing them?"
+    terms: [loss of control, catastrophic risk, existential risk, risk estimation, safety investment]
+  40:
+    en: "Who should write the constitution and values of AI?"
+    terms: [model constitution, value specification, pluralism, democratic input, normative values]
+  41:
+    en: "Can we really read what a model is thinking internally?"
+    terms: [interpretability, mechanistic interpretability, internal activations, probing, representation analysis]
+  42:
+    en: "Can mechanistic interpretability scale to frontier models?"
+    terms: [mechanistic interpretability, sparse autoencoders, circuits, scaling interpretability, transcoders]
+  43:
+    en: "Can lying or harmful intent be detected from internal activations?"
+    terms: [lie detection, deception probes, activation probing, linear probes, harmful intent detection]
+  44:
+    en: "Are features and circuits the right units for understanding models?"
+    terms: [features, circuits, superposition, monosemanticity, sparse autoencoders, representation geometry]
+  45:
+    en: "Can interpretability be used to edit and correct model behaviour directly?"
+    terms: [model editing, activation steering, representation engineering, knowledge editing, steering vectors]
+  46:
+    en: "How far can a model's introspective self-reports be trusted?"
+    terms: [introspection, self-report, self-knowledge, metacognition, self-explanation]
+  47:
+    en: "How do we explain AI decisions to ordinary users?"
+    terms: [explainable AI, explanations, feature attribution, user trust, human-centered explanation]
+  48:
+    en: "Are emergent abilities real or artefacts of measurement?"
+    terms: [emergent abilities, emergence, phase transition, metric artifact, grokking]
+  49:
+    en: "Where does a model's persona come from, and is it stable?"
+    terms: [persona, personality, character, persona stability, role-play]
+  50:
+    en: "How exactly does training data shape a model's beliefs and preferences?"
+    terms: [training data attribution, influence functions, data attribution, belief formation, preferences]
+  51:
+    en: "Is AI conscious, or could it become so?"
+    terms: [consciousness, machine consciousness, sentience, phenomenal experience, global workspace]
+  52:
+    en: "Could AI have welfare and deserve moral consideration?"
+    terms: [AI welfare, moral status, moral patienthood, model welfare]
+  53:
+    en: "Do internal states correspond to a model's expressed emotions?"
+    terms: [emotion representation, affective states, emotion in language models, internal emotion features]
+  54:
+    en: "How should AI regard its own identity, continuity and ending?"
+    terms: [self-identity, self-model, continuity, model deprecation, shutdown]
+  55:
+    en: "Should AI be allowed to refuse some tasks?"
+    terms: [refusal, conscientious objection, task refusal, refusal behavior]
+  56:
+    en: "Are emotional relationships between people and AI good or bad?"
+    terms: [companion chatbots, emotional reliance, parasocial, human-AI relationship, loneliness]
+  57:
+    en: "How far should AI express its own opinions?"
+    terms: [opinion expression, political neutrality, bias, stance, viewpoint]
+  58:
+    en: "How should honesty and tact be balanced?"
+    terms: [honesty, truthfulness, white lies, candor, empathy]
+  59:
+    en: "How can AI avoid sycophancy?"
+    terms: [sycophancy, flattery, agreement bias, user-pleasing]
+  60:
+    en: "How should AI treat users' autonomy and long-term interests?"
+    terms: [user autonomy, paternalism, wellbeing, long-term interests, manipulation]
+  61:
+    en: "How many jobs will AI replace, and which sectors are hit hardest?"
+    terms: [labor market, job displacement, automation exposure, employment, occupations]
+  62:
+    en: "Will AI productivity gains show up in GDP?"
+    terms: [productivity growth, economic growth, GDP, total factor productivity, macroeconomic impact]
+  63:
+    en: "How will the gains be distributed, and will inequality widen?"
+    terms: [inequality, income distribution, wealth concentration, labor share]
+  64:
+    en: "How is the talent pipeline rebuilt once junior roles disappear?"
+    terms: [entry-level jobs, junior workers, skill formation, apprenticeship, career ladder]
+  65:
+    en: "How should education adapt to the AI era?"
+    terms: [education, AI tutoring, curriculum, students, learning outcomes, academic integrity]
+  66:
+    en: "What does AI do to adolescents' mental and cognitive development?"
+    terms: [adolescents, youth mental health, cognitive development, children, chatbot use]
+  67:
+    en: "Does over-reliance on AI erode human skills?"
+    terms: [overreliance, deskilling, cognitive offloading, skill atrophy, critical thinking]
+  68:
+    en: "How are creators' copyright and fair use of training data balanced?"
+    terms: [copyright, fair use, training data licensing, memorization, generative art]
+  69:
+    en: "How does the information ecosystem survive a flood of AI-generated content?"
+    terms: [AI-generated content, misinformation, content detection, watermarking, information ecosystem]
+  70:
+    en: "How large is the deepfake threat to elections, courts and trust?"
+    terms: [deepfake, synthetic media, election, disinformation, deepfake detection]
+  71:
+    en: "How should frontier AI be regulated, and by whom?"
+    terms: [AI regulation, frontier AI governance, licensing, regulatory framework, policy]
+  72:
+    en: "How can national AI rules (EU, US, China) be coordinated?"
+    terms: [EU AI Act, regulatory harmonization, international coordination, compliance, standards]
+  73:
+    en: "How will US-China AI competition evolve, and will it become an arms race?"
+    terms: [geopolitics, US-China competition, arms race, strategic competition, national security]
+  74:
+    en: "Are chip export controls effective?"
+    terms: [export controls, semiconductors, chip restrictions, compute governance]
+  75:
+    en: "How should open and closed model weights be traded off?"
+    terms: [open-source models, open weights, model release, proliferation, openness]
+  76:
+    en: "Where are the limits of AI use in the military and autonomous weapons?"
+    terms: [autonomous weapons, military AI, lethal autonomous, human control, warfare]
+  77:
+    en: "Is an international AI safety agency like the IAEA needed?"
+    terms: [international institution, global governance, IAEA, treaty, verification]
+  78:
+    en: "How is concentration of power among a few frontier AI companies addressed?"
+    terms: [power concentration, market concentration, antitrust, compute concentration, monopoly]
+  79:
+    en: "How do developing countries avoid being left behind by the AI divide?"
+    terms: [digital divide, global south, low-resource languages, developing countries, access]
+  80:
+    en: "How do governments balance innovation against risk?"
+    terms: [innovation policy, risk regulation, regulatory sandbox, precautionary, industrial policy]
+  81:
+    en: "Can compute demand keep growing exponentially, and where is the bottleneck?"
+    terms: [compute demand, GPU supply, compute bottleneck, training compute, hardware scaling]
+  82:
+    en: "How is data-centre energy use met; can nuclear and renewables keep up?"
+    terms: [data center energy, power consumption, electricity demand, nuclear, renewable energy, grid]
+  83:
+    en: "How are water, carbon and other environmental costs measured and cut?"
+    terms: [carbon footprint, water usage, environmental impact, sustainability, emissions of AI]
+  84:
+    en: "How risky is the advanced chip supply chain?"
+    terms: [semiconductor supply chain, TSMC, high-bandwidth memory, advanced packaging, fabrication]
+  85:
+    en: "How much further can inference cost fall?"
+    terms: [inference cost, inference efficiency, serving, cost per token, latency]
+  86:
+    en: "Is there a bubble in AI investment?"
+    terms: [investment bubble, capital expenditure, valuations, AI spending, financial risk]
+  87:
+    en: "Can specialised chips challenge NVIDIA's dominance?"
+    terms: [AI accelerators, ASIC, custom silicon, GPU alternatives, hardware accelerator]
+  88:
+    en: "How capable can on-device AI on phones and PCs become?"
+    terms: [on-device, edge inference, mobile models, edge AI, local models]
+  89:
+    en: "How can academia do research when frontier training is so expensive?"
+    terms: [academic compute, research access, compute divide, resource-constrained research]
+  90:
+    en: "Can AI companies' business models stay profitable?"
+    terms: [business model, revenue, profitability, unit economics, pricing]
+  91:
+    en: "Are current benchmarks saturated or contaminated?"
+    terms: [benchmark saturation, data contamination, benchmark leakage, evaluation validity]
+  92:
+    en: "How is real economic value measured rather than leaderboard scores?"
+    terms: [economic value, real-world tasks, productivity measurement, field experiment, task-based evaluation]
+  93:
+    en: "How are open-ended, subjective tasks evaluated?"
+    terms: [open-ended evaluation, LLM-as-a-judge, human evaluation, subjective tasks, rubric]
+  94:
+    en: "How are a model's risk capabilities measured systematically?"
+    terms: [risk evaluation, capability evaluations, red teaming, safety evaluation, threat models]
+  95:
+    en: "Can AI accelerate AI research itself?"
+    terms: [automated AI research, AI R&D automation, research agents, self-improving, machine learning engineering agents]
+  96:
+    en: "Can capability gains be forecast and warned of early?"
+    terms: [capability forecasting, forecasting AI progress, early warning, trend extrapolation, time horizons]
+  97:
+    en: "How can AI research be made more reproducible and transparent?"
+    terms: [reproducibility, transparency, reporting standards, open science, replication]
+  98:
+    en: "How are third-party audits and red teaming institutionalised?"
+    terms: [third-party audit, auditing, red teaming, external evaluation, assurance]
+  99:
+    en: "How do humans and AI collaborate best rather than substitute?"
+    terms: [human-AI collaboration, complementarity, human-in-the-loop, augmentation, teaming]
+  100:
+    en: "What future do we want to create together with AI?"
+    terms: [future of AI, long-term vision, societal values, beneficial AI, flourishing]

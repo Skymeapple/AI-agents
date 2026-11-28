@@ -1,0 +1,29 @@
+# English display titles for the ai2035 questions (ai2035/questions.yaml).
+#
+# The source titles are in Chinese. These renderings are for report tables only
+# and are NOT used for matching, which runs on the arXiv phrases the source file
+# lists. Written by the model, not taken from the source: graded `assumed`.
+source:
+  grade: assumed
+  detail: English rendering of the Chinese title written by the model for display; not from the source
+titles:
+  Q01: "Cognition and computation: the computational nature of intelligence"
+  Q02: "The mathematics of deep learning: approximation, optimisation, implicit bias"
+  Q03: "Scaling laws and emergent abilities in large models"
+  Q04: "Statistical foundations: generalisation under over-parameterisation"
+  Q05: "Theory of reinforcement learning: exploration and sample complexity"
+  Q06: "Learning from few samples and few labels"
+  Q07: "Continual learning and catastrophic forgetting"
+  Q08: "Causality-driven machine learning"
+  Q09: "Out-of-distribution generalisation and extrapolation"
+  Q10: "Fusing knowledge and data: neuro-symbolic and physics priors"
+  Q11: "Interpretability of AI"
+  Q12: "Robustness and adversarial safety"
+  Q13: "Data sharing and privacy protection"
+  Q14: "Fairness and value alignment"
+  Q15: "Uncertainty quantification and trustworthy decisions"
+  Q16: "Brain-inspired intelligence and low-energy computing"
+  Q17: "Embodied intelligence and world models"
+  Q18: "Multi-agent cooperation and collective intelligence"
+  Q19: "Human-machine hybrid augmented intelligence"
+  Q20: "AI for science: discovering laws from data"

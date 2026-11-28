@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-R = os.path.join(HERE, "..", "results"); RAW = os.path.join(R, "raw")
+R = os.path.join(HERE, "..", "results"); RAW = os.environ.get("RAW", os.path.join(R, "raw"))
 THR = float(os.environ.get("THR", 0.9))
 TMIN = int(os.environ.get("TMIN", 100_000))
 SUF = os.environ.get("SUF", "")

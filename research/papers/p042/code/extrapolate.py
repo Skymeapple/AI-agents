@@ -64,7 +64,7 @@ tabB = []
 for a in alphas:
     for N in (1e9, 1e10, 1e12):
         R10, R01 = rank_for_U(0.10, N, a), rank_for_U(0.01, N, a)
-        for beta in (1.0, 1.4):
+        for beta in (1.0, 1.4, 2.0):
             wm = R01 / R10; tm = wm ** (a / beta)
             tabB.append(dict(alpha=a, N=N, beta=beta, R_U10=R10, R_U01=R01, width_mult=wm, token_mult=tm, compute_mult=wm * tm))
 out["tableB_multipliers"] = tabB
@@ -81,14 +81,14 @@ out["tableB2_absolute_beta1"] = tabB2
 # ---- Exponents under balanced allocation rho*M = R_T, with T*(R) ∝ R^(alpha/beta)
 out["exponents"] = {f"alpha={a},beta={b}": dict(U_vs_T=-b * (a - 1) / a, U_vs_M=-(a - 1), T_opt_vs_M=a / b,
                                                 U_vs_compute=-(a - 1) / (1 + a / b), tokens_per_latent_vs_M=a / b - 1)
-                    for a in (1.1, 1.2, 1.5, 2.0) for b in (1.0, 1.4)}
+                    for a in (1.1, 1.2, 1.5, 2.0) for b in (1.0, 1.4, 2.0)}
 
 # ---- Gao et al. convergence budget T_conv ∝ n^g vs requirement T*(rank n) ∝ n^(alpha/beta):
 # fraction of latents (relative to a width n0 where the budget just suffices) whose feature is learnable
 tabC = []
 for g in (0.60, 0.65):
     for a in (1.0, 1.2, 1.5):
-        for b in (1.0, 1.4):
+        for b in (1.0, 1.4, 2.0):
             e = g * b / a - 1
             tabC.append(dict(gamma=g, alpha=a, beta=b, exponent=e, **{f"frac_at_{k}x": min(1.0, k ** e) for k in (10, 100, 1000)}))
 out["tableC_gao_budget"] = tabC
@@ -105,7 +105,7 @@ ax[0].set_title("capacity limit, N = 1e10 true features", fontsize=10); ax[0].le
 n = np.geomspace(1, 1e4, 50)
 for g in (0.60,):
     for a in (1.0, 1.2, 1.5):
-        for b in (1.0, 1.4):
+        for b in (1.0, 1.4, 2.0):
             ax[1].loglog(n, np.minimum(1, n ** (g * b / a - 1)), ls="-" if b == 1 else "--", label=f"γ={g}, α={a}, β={b}")
 ax[1].set_xlabel("width relative to reference n/n0"); ax[1].set_ylabel("fraction of latents whose feature gets ≥ m* exposures")
 ax[1].set_title("budget T ∝ n^γ vs requirement T* ∝ n^(α/β)", fontsize=10); ax[1].legend(fontsize=6)

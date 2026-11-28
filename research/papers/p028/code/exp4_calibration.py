@@ -54,5 +54,11 @@ for s in [0.05, 0.15, 0.4]:
         p = brentq(lambda p: (1 - p) * s / (p + (1 - p) * s) - qt, 1e-9, 1 - 1e-12)
         gen[f"s={s},N50={Nt}"] = dict(p_needed=p, error_rate_needed=1 - p)
 out["generator_only_route"] = gen
+# power of the protocol in Sec. 8: two-proportion z-test, n modules per arm, no clustering
+from scipy.stats import norm
+n, q0, q1 = 100 * 30, 0.10, 0.13
+se = np.sqrt(q0 * (1 - q0) / n + q1 * (1 - q1) / n)
+out["protocol_power"] = dict(n_per_arm=n, q0=q0, q1=q1, se=float(se),
+                             power=float(norm.cdf((q1 - q0) / se - norm.ppf(0.975))))
 json.dump(out, open(os.path.join(OUT, "exp4_calibration.json"), "w"), indent=1)
 print(json.dumps(out, indent=1))

@@ -74,6 +74,9 @@ fig.tight_layout(); fig.savefig(os.path.join(OUT, "fig1_ceiling.png"), dpi=150)
 tbl = {}
 for b in [0.0, 0.01, 0.05, 0.2]:
     tbl[str(b)] = {f"c={c}": float(horizon(latent_defect_rate(0.9, c, b))) for c in [0.5, 0.9, 0.99, 1.0 - 1e-12]}
-json.dump(dict(module_level=rows, project_level=proj, horizon_table_p09=tbl),
+extra = dict(no_verifier_N50_p09=float(horizon(1 - 0.9)),
+             crossover_coverage={str(b): 1 - b / (1 - b) for b in [0.01, 0.05, 0.2]},
+             theorem2_bound_p09={str(b): float(np.log(2) * (0.9 / (0.1 * b) + 1)) for b in [0.01, 0.05, 0.2]})
+json.dump(dict(module_level=rows, project_level=proj, horizon_table_p09=tbl, extra=extra),
           open(os.path.join(OUT, "exp1_validate.json"), "w"), indent=2)
 print(json.dumps(dict(module_level=rows, project_level=proj, horizon_table_p09=tbl), indent=1))

@@ -24,3 +24,4 @@ a { color:var(--accent); text-decoration:none; }
 #refs .csl-entry { margin-bottom:3pt; padding-left:1.5em; text-indent:-1.5em; }
 blockquote { margin:6pt 8mm; color:var(--ink2); }
 @media screen and (max-width:600px) { body { font-size:15px; } .abstract { margin:12px 0; } }
+h2, h3 { break-after: avoid; page-break-after: avoid; }

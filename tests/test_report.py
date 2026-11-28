@@ -38,7 +38,7 @@ def test_sections_appear_in_order_with_a_simulation():
         "### Investment case",
         "**Where the programme dies**",
         "**What drives the outcome**",
-        "**Provenance of this forecast:**",
+        "**Where the spread comes from:**",
     ]
     positions = [text.index(h) for h in headings]
     assert positions == sorted(positions)
@@ -50,7 +50,7 @@ def test_detail_false_omits_only_the_sensitivity_table():
     brief = render_track(report, detail=False)
     assert "**What drives the outcome**" not in brief
     assert "**Where the programme dies**" in brief
-    assert "**Provenance of this forecast:**" in brief
+    assert "**Where the spread comes from:**" in brief
     assert len(brief) < len(render_track(report))
 
 

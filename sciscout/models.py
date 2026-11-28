@@ -85,6 +85,12 @@ class Work:
     citations: int | None = None
     url: str | None = None
     source: str = "unknown"
+    # Ids of the works this one cites, in the same id scheme as ``id`` where the
+    # source provides them. The only non-lexical link between works the platform
+    # holds: two groups describing one idea in different words still cite the
+    # same prior work, and downstream work citing a result is what makes it
+    # foundational.
+    references: list[str] = field(default_factory=list)
     # Free-form extras an adapter wants to preserve (arXiv categories, OpenAlex
     # concept scores) without forcing every source into one schema.
     extra: dict = field(default_factory=dict)

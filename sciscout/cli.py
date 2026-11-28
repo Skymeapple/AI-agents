@@ -32,7 +32,12 @@ from .report import render_portfolio, render_track
 from .scenarios import ScenarioSet, render_comparison
 from .sources.base import dump_works
 from .classify import classify, coverage_report
-from .discovery import discover, discover_by_discipline, evaluate_against_labels
+from .discovery import (
+    discover,
+    discover_by_discipline,
+    evaluate_against_labels,
+    threshold_sensitivity,
+)
 from .sources.local import LocalCorpus
 
 
@@ -95,18 +100,32 @@ def cmd_harvest(args) -> int:
 
 def cmd_rank(args) -> int:
     """Score and rank research directions."""
-    pipeline = Pipeline(asof=args.asof, draws=args.draws, seed=args.seed)
+    pipeline = Pipeline(
+        asof=args.asof, draws=args.draws, seed=args.seed, resamples=args.resamples
+    )
     _, tracks = _load_tracks(pipeline, Path(args.corpus), args.label_key)
     reports = pipeline.analyse(tracks, simulate=not args.no_simulate)
 
     width = max(len(r.name) for r in reports)
-    print(f"{'direction'.ljust(width)}  prio   imp   urg   conf  TRL  works")
+    extra = "  prio 90%      rank 90%" if args.resamples else ""
+    print(f"{'direction'.ljust(width)}  prio   imp   urg   conf  TRL  works{extra}")
     for report in reports:
         a = report.assessment
-        print(
+        line = (
             f"{report.name.ljust(width)}  {a.priority:.2f}  {a.importance:.2f}  "
             f"{a.urgency:.2f}  {a.confidence:.0%}   {report.profile.trl.mode}   "
-            f"{len(report.track.works)}"
+            f"{len(report.track.works):5d}"
+        )
+        if a.priority_interval and a.rank_interval:
+            line += (
+                f"  {a.priority_interval[0]:.2f}-{a.priority_interval[1]:.2f}"
+                f"     {a.rank_interval[0]}-{a.rank_interval[1]}"
+            )
+        print(line)
+    if args.resamples:
+        print(
+            f"\nIntervals from {args.resamples} resamples of each direction's works. "
+            "Directions whose rank intervals overlap are not separated by the evidence."
         )
     return 0
 
@@ -164,7 +183,11 @@ def cmd_discover(args) -> int:
     finder = discover_by_discipline if args.by_discipline else discover
     try:
         found = finder(
-            works, threshold=args.threshold, min_cluster_size=args.min_cluster_size
+            works,
+            threshold=args.threshold,
+            min_cluster_size=args.min_cluster_size,
+            method=args.method,
+            citation_weight=args.citation_weight,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
@@ -204,7 +227,40 @@ def cmd_discover(args) -> int:
         )
         print(f"- Mean cluster purity: **{scores['mean_purity']:.2f}**")
         print(f"- Works placed in a direction: **{scores['coverage']:.0%}**")
+        print(
+            f"- Completeness (each true direction kept in one cluster): "
+            f"**{scores['completeness']:.2f}**; V-measure **{scores['v_measure']:.2f}**"
+        )
+        print(
+            f"- Adjusted Rand index: **{scores['adjusted_rand']:.2f}** "
+            "(1 is a perfect match, 0 is chance; unlike purity it cannot be "
+            "raised by splitting directions into fragments)"
+        )
         print()
+
+    if args.sensitivity:
+        print("## Sensitivity to the similarity threshold\n")
+        print("| Threshold | Directions | Works placed | Agreement with the run above |")
+        print("| --- | --- | --- | --- |")
+        grid = sorted({round(args.threshold * f, 3) for f in (0.6, 0.8, 1.0, 1.2, 1.4)})
+        for row in threshold_sensitivity(
+            works,
+            thresholds=tuple(grid),
+            reference=round(args.threshold, 3),
+            min_cluster_size=args.min_cluster_size,
+            method=args.method,
+            citation_weight=args.citation_weight,
+        ):
+            print(
+                f"| {row['threshold']:.3f} | {row['clusters']} | {row['coverage']:.0%} "
+                f"| {row['agreement_with_reference']:.2f} |"
+            )
+        print(
+            "\nAgreement is the adjusted Rand index against the clustering at the "
+            "threshold in use. It needs no labels: if it stays near 1 the directions "
+            "are a property of the corpus, and if it falls away they are a property "
+            "of the threshold.\n"
+        )
 
     if args.rank:
         reports = pipeline.analyse(tracks, simulate=not args.no_simulate)
@@ -309,6 +365,12 @@ def build_parser() -> argparse.ArgumentParser:
     rank = sub.add_parser("rank", help="score and rank research directions")
     add_common(rank)
     rank.add_argument("--no-simulate", action="store_true", help="skip Monte Carlo")
+    rank.add_argument(
+        "--resamples",
+        type=int,
+        default=0,
+        help="bootstrap resamples for priority and rank intervals (e.g. 200); 0 skips them",
+    )
     rank.set_defaults(func=cmd_rank)
 
     model = sub.add_parser("model", help="run the investment simulation for one direction")
@@ -352,6 +414,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="score discovery against labels, where the corpus carries them",
     )
     discovery.add_argument("--rank", action="store_true", help="also score and rank")
+    discovery.add_argument(
+        "--method",
+        choices=["auto", "dense", "scalable"],
+        default="auto",
+        help="dense is exact; scalable clusters micro-clusters; auto picks by corpus size",
+    )
+    discovery.add_argument(
+        "--citation-weight",
+        type=float,
+        default=1.0,
+        help="weight of shared references beside shared vocabulary (0 disables)",
+    )
+    discovery.add_argument(
+        "--sensitivity",
+        action="store_true",
+        help="report how the directions change as the threshold moves",
+    )
     discovery.add_argument("--no-simulate", action="store_true")
     discovery.set_defaults(func=cmd_discover)
 

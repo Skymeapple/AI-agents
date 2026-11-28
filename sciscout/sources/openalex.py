@@ -165,6 +165,9 @@ class OpenAlexSource(Source):
             citations=raw.get("cited_by_count"),
             url=raw.get("doi") or raw.get("id"),
             source=self.name,
+            references=[
+                str(ref).rsplit("/", 1)[-1] for ref in (raw.get("referenced_works") or [])
+            ],
             extra={"type": work_type, "open_access": (raw.get("open_access") or {}).get("is_oa")},
         )
 

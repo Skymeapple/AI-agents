@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import datetime as dt
 import math
+import random
 from dataclasses import dataclass, field
 
 from ..models import Track
@@ -101,6 +102,10 @@ class Assessment:
     importance_parts: dict[str, Estimate[float]] = field(default_factory=dict)
     urgency_parts: dict[str, Estimate[float]] = field(default_factory=dict)
     ledger: ProvenanceLedger = field(default_factory=ProvenanceLedger)
+    # Filled by ``Scorer.rank(..., resamples=N)``: how far the priority, and the
+    # track's place in the ranking, move when its works are resampled.
+    priority_interval: tuple[float, float] | None = None
+    rank_interval: tuple[int, int] | None = None
 
     @property
     def confidence(self) -> float:
@@ -128,10 +133,25 @@ class Scorer:
         baseline: CitationBaseline,
         weights: Weights | None = None,
         asof: dt.date | None = None,
+        tracks: list[Track] | None = None,
     ) -> None:
         self.baseline = baseline
         self.weights = weights or Weights()
         self.asof = asof or dt.date.today()
+        # Which other tracks cite each track, where works carry reference lists.
+        self._cited_by: dict[str, set[str]] = {}
+        self._resolved_references = 0
+        if tracks:
+            owner = {w.id: t.id for t in tracks for w in t.works}
+            for track in tracks:
+                for work in track.works:
+                    for reference in work.references:
+                        cited = owner.get(reference)
+                        if cited is None:
+                            continue
+                        self._resolved_references += 1
+                        if cited != track.id:
+                            self._cited_by.setdefault(cited, set()).add(track.id)
 
     # -- importance sub-scores ------------------------------------------------
 
@@ -143,9 +163,16 @@ class Scorer:
         important is usually that its *best* results landed, not that its median
         one did -- but a raw max would let one fluke paper carry a whole track.
         """
-        ratios = [
-            e.value for w in track.works if (e := self.baseline.normalised_impact(w))
+        # Compared against everyone else: a track is never part of its own
+        # baseline. See CitationBaseline.excluding for why.
+        others = self.baseline.excluding(track.works)
+        measured = [
+            (e.value, others.within_discipline(w))
+            for w in track.works
+            if (e := others.normalised_impact(w))
         ]
+        ratios = [value for value, _ in measured]
+        same_field = sum(1 for _, within in measured if within)
         if not ratios:
             return Estimate(
                 0.0,
@@ -166,7 +193,10 @@ class Scorer:
             score,
             observed(
                 f"75th-percentile normalised citation impact {p75:.2f}x expected "
-                f"across {len(ratios)} works with citation data"
+                f"across {len(ratios)} works with citation data, against other "
+                f"tracks' works only; {same_field} compared within their own "
+                f"discipline and {len(ratios) - same_field} against the whole "
+                f"corpus at that age, which does not correct for field"
             ),
             label="impact",
         )
@@ -251,6 +281,21 @@ class Scorer:
         """Whether the direction enables downstream work or is an endpoint."""
         if not track.works:
             return Estimate(0.0, assumed("track has no works"), label="foundationality")
+        if self._resolved_references:
+            # The real thing, where the corpus carries it: how many other
+            # directions build on this one.
+            citing = self._cited_by.get(track.id, set())
+            return Estimate(
+                _saturating(len(citing), scale=3.0),
+                observed(
+                    f"works in {len(citing)} other tracked direction(s) cite this "
+                    f"one, out of {self._resolved_references} references in the "
+                    "corpus that resolve to a tracked work. Only citations between "
+                    "tracked directions are visible, so this understates "
+                    "directions whose downstream work has not been ingested"
+                ),
+                label="foundationality",
+            )
         hits = track.matches(_FOUNDATIONAL_PATTERNS)
         fraction = hits / len(track.works)
         return Estimate(
@@ -392,8 +437,85 @@ class Scorer:
             return 0.0
         return sum(parts[k].value * weights.get(k, 0.0) for k in parts) / total_weight
 
-    def rank(self, tracks: list[Track]) -> list[Assessment]:
-        """Score every track, highest priority first."""
-        return sorted(
-            (self.score(t) for t in tracks), key=lambda a: a.priority, reverse=True
-        )
+    def rank(
+        self, tracks: list[Track], resamples: int = 0, seed: int = 20260918
+    ) -> list[Assessment]:
+        """Score every track, highest priority first.
+
+        With ``resamples`` set, each assessment also carries a 90% interval for
+        its priority and for its rank; see :meth:`add_intervals`.
+        """
+        assessments = [self.score(t) for t in tracks]
+        if resamples:
+            self.add_intervals(tracks, assessments, resamples, seed)
+        return sorted(assessments, key=lambda a: a.priority, reverse=True)
+
+    def add_intervals(
+        self,
+        tracks: list[Track],
+        assessments: list[Assessment],
+        resamples: int = 200,
+        seed: int = 20260918,
+    ) -> None:
+        """Attach bootstrap intervals for priority and rank to ``assessments``.
+
+        A priority is computed from the works that happen to be in the corpus.
+        A direction with eight works and one with eight hundred get a number to
+        the same two decimal places, and a ranking printed from those numbers
+        looks equally sure of both. Here each track's works are resampled with
+        replacement and the track rescored, ``resamples`` times; the spread of
+        the results is how much the score depends on which works were caught.
+
+        Rank intervals come from ranking the tracks within each resample. Two
+        tracks whose rank intervals overlap are not separated by the evidence,
+        whatever order the table lists them in.
+
+        Each track's resampled scores are recentred on its actual score before
+        intervals and ranks are read off. Resampling with replacement thins the
+        count-based signals -- distinct groups, disciplines, publication years
+        -- so the raw resamples sit systematically low; what carries over
+        honestly is their spread, not their level.
+
+        This measures sampling variability only. It does not know whether the
+        weights are right or whether the corpus is biased toward some fields.
+        """
+        if resamples < 20:
+            raise ValueError("fewer than 20 resamples gives intervals that are noise")
+        rng = random.Random(seed)
+        samples: list[list[float]] = []
+        for track in tracks:
+            draws: list[float] = []
+            for _ in range(resamples):
+                if not track.works:
+                    draws.append(0.0)
+                    continue
+                resampled = Track(
+                    id=track.id,
+                    name=track.name,
+                    works=rng.choices(track.works, k=len(track.works)),
+                    sector=track.sector,
+                    trl_override=track.trl_override,
+                )
+                draws.append(self.score(resampled).priority)
+            samples.append(draws)
+
+        for index, assessment in enumerate(assessments):
+            shift = assessment.priority - sum(samples[index]) / resamples
+            samples[index] = [min(1.0, max(0.0, v + shift)) for v in samples[index]]
+
+        def interval(values: list[float]) -> tuple[float, float]:
+            ordered = sorted(values)
+            low = ordered[int(0.05 * (len(ordered) - 1))]
+            high = ordered[int(round(0.95 * (len(ordered) - 1)))]
+            return low, high
+
+        ranks: list[list[int]] = [[] for _ in tracks]
+        for b in range(resamples):
+            order = sorted(range(len(tracks)), key=lambda i: -samples[i][b])
+            for position, index in enumerate(order, start=1):
+                ranks[index].append(position)
+
+        for index, assessment in enumerate(assessments):
+            assessment.priority_interval = interval(samples[index])
+            low, high = interval([float(r) for r in ranks[index]])
+            assessment.rank_interval = (int(low), int(high))

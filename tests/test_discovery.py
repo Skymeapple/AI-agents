@@ -12,6 +12,10 @@ from sciscout.classify import CONFIDENCE_FLOOR, classify, coverage_report
 from sciscout.commercial.profile import PriorLibrary
 from sciscout.discovery import (
     MAX_WORKS_DENSE,
+    DiscoveredTrack,
+    DiscoveryResult,
+    agreement,
+    threshold_sensitivity,
     discover,
     discover_by_discipline,
     evaluate_against_labels,
@@ -109,6 +113,27 @@ def test_a_higher_threshold_never_yields_fewer_clusters():
     assert len(tight.tracks) >= len(loose.tracks)
 
 
+def planted_corpus(copies):
+    """The demo corpus's 16 planted directions, regenerated at any size."""
+    import random
+    import sys
+
+    sys.path.insert(0, "scripts")
+    import make_demo_corpus
+
+    rng = random.Random(3)
+    return [
+        Work(
+            id=f"{spec['track']}-{i}",
+            title=spec["name"],
+            abstract=" ".join(rng.sample(spec["phrases"], k=3)),
+            extra={"track": spec["track"]},
+        )
+        for spec in make_demo_corpus.TRACKS
+        for i in range(copies)
+    ]
+
+
 def test_dense_clustering_refuses_a_corpus_it_cannot_hold():
     """Failing loudly beats dying on a multi-gigabyte allocation."""
     works = [
@@ -116,7 +141,147 @@ def test_dense_clustering_refuses_a_corpus_it_cannot_hold():
         for i in range(MAX_WORKS_DENSE + 1)
     ]
     with pytest.raises(ValueError, match="above the"):
-        discover(works)
+        discover(works, method="dense")
+
+
+def test_a_corpus_too_large_for_dense_clustering_is_still_clustered():
+    """Past the dense limit discovery switches method instead of refusing."""
+    works = planted_corpus(copies=MAX_WORKS_DENSE // 16 + 1)
+    assert len(works) > MAX_WORKS_DENSE
+    scores = evaluate_against_labels(discover(works), works)
+    assert scores["directions_recovered"] == 16
+    assert scores["adjusted_rand"] > 0.99
+
+
+def test_the_scalable_method_agrees_with_exact_clustering():
+    """Measured, not assumed: both methods run on the same corpus."""
+    works = LocalCorpus("data/demo_corpus.json").harvest().works
+    exact = discover(works, method="dense")
+    approximate = discover(works, method="scalable", micro_cluster_size=10)
+    assert agreement(exact, approximate) > 0.99
+    for a, b in zip(exact.tracks, approximate.tracks):
+        assert a.cohesion == pytest.approx(b.cohesion, abs=1e-4)
+
+
+def test_an_unknown_method_is_rejected():
+    with pytest.raises(ValueError, match="unknown method"):
+        discover(two_topic_corpus(), method="fast")
+
+
+# -- shared references ------------------------------------------------------
+
+
+def split_vocabulary_corpus():
+    """One direction written in two vocabularies, beside a lexical near-neighbour.
+
+    ``sodium`` and ``natrium`` works share no words at all but cite the same
+    prior work. ``lithium`` works share some of their words with ``sodium``
+    ones but stand on a different literature.
+    """
+    import random
+
+    rng = random.Random(11)
+    dialects = {
+        "sodium": ("sodium solid electrolyte ceramic conductivity dendrite interface anode", "na"),
+        "natrium": ("natrium superionic conductor sintered pellet impedance grain boundary", "na"),
+        "lithium": ("lithium garnet electrolyte conductivity cathode stack pressure sulfide", "li"),
+        "qubit": ("qubit coherence superconducting circuit gate fidelity transmon readout", "qc"),
+    }
+    truth = {"sodium": "sodium-ssb", "natrium": "sodium-ssb", "lithium": "lithium-ssb", "qubit": "qubit"}
+    works = []
+    for dialect, (words, literature) in dialects.items():
+        vocabulary = words.split()
+        for i in range(10):
+            text = " ".join(rng.sample(vocabulary, k=6))
+            works.append(
+                Work(
+                    id=f"{dialect}-{i}",
+                    title=text,
+                    abstract=text,
+                    references=rng.sample([f"prior-{literature}-{j}" for j in range(6)], k=4),
+                    extra={"track": truth[dialect]},
+                )
+            )
+    return works
+
+
+def test_words_alone_split_a_direction_written_in_two_vocabularies():
+    works = split_vocabulary_corpus()
+    scores = evaluate_against_labels(discover(works, citation_weight=0.0), works)
+    assert scores["clusters"] == 4
+    assert scores["completeness"] < 0.9
+
+
+def test_shared_references_reunite_it_without_merging_its_lexical_neighbour():
+    works = split_vocabulary_corpus()
+    scores = evaluate_against_labels(discover(works), works)
+    assert scores["clusters"] == 3
+    assert scores["adjusted_rand"] == 1.0
+
+
+def test_a_direct_citation_links_two_works():
+    """Citing a work in the corpus counts like sharing a reference with it."""
+    works = two_topic_corpus(n=4)
+    stranger = Work(
+        id="stranger",
+        title="zirconia membrane permeation",
+        abstract="zirconia membrane permeation",
+        references=[w.id for w in works if w.id.startswith("bat-")],
+        extra={"track": "battery"},
+    )
+    alone = discover(works + [stranger], citation_weight=0.0)
+    linked = discover(works + [stranger])
+    assert stranger in alone.unclustered
+    battery = next(t for t in linked.tracks if any(w.id == "bat-0" for w in t.works))
+    assert stranger in battery.works
+
+
+def test_references_change_nothing_when_no_work_has_any():
+    works = LocalCorpus("data/demo_corpus.json").harvest().works
+    assert agreement(discover(works), discover(works, citation_weight=0.0)) == 1.0
+
+
+# -- measuring discovery honestly --------------------------------------------
+
+
+def test_shattering_every_direction_keeps_purity_but_not_the_stricter_scores():
+    """Purity and recovery cannot tell a good clustering from a shredded one."""
+    works = two_topic_corpus(n=12)
+    whole = discover(works)
+    halves = []
+    for track in whole.tracks:
+        middle = track.size // 2
+        for part, members in enumerate((track.works[:middle], track.works[middle:])):
+            halves.append(
+                DiscoveredTrack(f"{track.id}-{part}", track.label, members, track.terms, 1.0)
+            )
+    shattered = evaluate_against_labels(DiscoveryResult(tracks=halves), works)
+    intact = evaluate_against_labels(whole, works)
+
+    assert shattered["mean_purity"] == intact["mean_purity"] == 1.0
+    assert shattered["recovery_rate"] == intact["recovery_rate"] == 1.0
+    assert intact["completeness"] == intact["adjusted_rand"] == 1.0
+    assert shattered["completeness"] < 0.6
+    assert shattered["adjusted_rand"] < 0.6
+
+
+def test_quarantining_works_costs_completeness():
+    works = two_topic_corpus(n=6)
+    result = discover(works)
+    dropped = result.tracks[0].works[:2]
+    result.tracks[0].works = result.tracks[0].works[2:]
+    result.unclustered.extend(dropped)
+    assert evaluate_against_labels(result, works)["completeness"] < 1.0
+
+
+def test_threshold_sensitivity_reports_agreement_with_the_reference_run():
+    works = LocalCorpus("data/demo_corpus.json").harvest().works
+    rows = threshold_sensitivity(works, thresholds=(0.13, 0.16, 0.60))
+    by_threshold = {row["threshold"]: row for row in rows}
+    assert by_threshold[0.16]["agreement_with_reference"] == 1.0
+    assert by_threshold[0.13]["agreement_with_reference"] > 0.95
+    # A floor far above anything in the corpus shreds it, and the score says so.
+    assert by_threshold[0.60]["agreement_with_reference"] < 0.8
 
 
 def test_partitioned_discovery_keeps_disciplines_apart():

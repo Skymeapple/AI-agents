@@ -104,11 +104,16 @@ class TRLBelief:
     def as_estimate(self) -> Estimate[int]:
         return Estimate(self.mode, self.grade_note, label="TRL (modal)")
 
-    def sample(self, rng) -> int:
-        """Draw one TRL from the belief. Used by the Monte Carlo engine."""
+    def sample(self, rng, size: int | None = None):
+        """Draw TRLs from the belief: one int, or an array of ``size`` of them.
+
+        The Monte Carlo engine draws one starting TRL per simulated world.
+        """
         levels = sorted(self.probabilities)
         weights = [self.probabilities[level] for level in levels]
-        return int(rng.choice(levels, p=weights))
+        if size is None:
+            return int(rng.choice(levels, p=weights))
+        return rng.choice(levels, p=weights, size=size)
 
 
 def infer_trl(track: Track) -> TRLBelief:
@@ -145,23 +150,27 @@ def infer_trl(track: Track) -> TRLBelief:
 
     posterior = dict(_PRIOR)
     evidence: list[str] = []
-    corpus = " \n ".join(w.text() for w in track.works)
+    texts = [w.text() for w in track.works]
     n_works = len(track.works)
 
     for pattern, levels, strength in _SIGNALS:
-        matches = len(re.findall(pattern, corpus, re.IGNORECASE))
+        compiled = re.compile(pattern, re.IGNORECASE)
+        # Count *works* that carry the signal, not mentions. Counting mentions
+        # lets one paper that says "prototype" twenty times read as the whole
+        # track being at prototype stage.
+        matches = sum(1 for text in texts if compiled.search(text))
         if matches == 0:
             continue
         # Scale by prevalence, not raw count: one mention of "prototype" across
         # 50 papers is noise, the same word in half of them is a signal.
-        prevalence = min(1.0, matches / max(1, n_works))
+        prevalence = matches / max(1, n_works)
         multiplier = 1.0 + (strength - 1.0) * prevalence
         for level in levels:
             posterior[level] *= multiplier
         phrase = pattern.replace("\\b", "").replace("\\", "")
         bands = "/".join(str(level) for level in levels)
         evidence.append(
-            f"{matches} mention(s) matching {phrase!r} -> TRL {bands} x{multiplier:.2f}"
+            f"{matches} of {n_works} work(s) matching {phrase!r} -> TRL {bands} x{multiplier:.2f}"
         )
 
     # Registered clinical trials are strong structural evidence, not lexical.

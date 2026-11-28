@@ -237,8 +237,12 @@ def test_a_stage_cost_override_actually_changes_spend(tmp_path):
     # paid that stage's cost and nothing else. Comparing total means instead
     # would be diluted by the untouched downstream stage.
     def first_stage_spend(outcome):
-        died = outcome.result.failure_stage == 0
-        return outcome.result.total_spend[died].mean()
+        result = outcome.result
+        gate = result.stage_names.index("Pilot and scale-up")
+        # Draws starting at the modal TRL or above, so this is the only stage
+        # they paid for.
+        died = (result.failure_stage == gate) & (result.starting_trl >= 4)
+        return result.total_spend[died].mean()
 
     assert first_stage_spend(expensive) > 10 * first_stage_spend(cheap)
     assert expensive.result.total_spend.mean() > cheap.result.total_spend.mean()
@@ -269,7 +273,8 @@ def test_overriding_cost_alone_leaves_technical_risk_untouched(tmp_path):
 def test_scenarios_report_their_assumption_share(tmp_path):
     path = write(tmp_path, MINIMAL)
     outcome = ScenarioSet.from_file(path).run(profile(), draws=4_000)[0]
-    assert outcome.assumption_share == pytest.approx(1.0, abs=1e-9)
+    # Everything but the analyst-supplied TRL is a placeholder.
+    assert outcome.assumption_share > 0.95
 
 
 def test_comparison_renders_every_scenario(tmp_path):
@@ -277,7 +282,7 @@ def test_comparison_renders_every_scenario(tmp_path):
     outcomes = ScenarioSet.from_file(path).run(profile(), draws=2_000)
     markdown = render_comparison(outcomes, "Sodium")
     assert "Sodium" in markdown and "Base" in markdown
-    assert "Assumption-driven" in markdown
+    assert "gate luck" in markdown and "from assumptions" in markdown
 
 
 def test_the_shipped_example_file_loads_and_runs():

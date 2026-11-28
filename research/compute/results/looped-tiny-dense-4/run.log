@@ -1,0 +1,14 @@
+job: looped-tiny-dense-4
+started: 2026-11-25T14:10:52Z
+cores: 4, memory: 15 GB
+-rw-r--r-- 1 runner runner 150000001 Nov 25 14:11 train.txt
+-rw-r--r-- 1 runner runner  22502601 Nov 25 14:11 valid.txt
+  dense-4 seed 0 step 1500: held-out 1.4415 bits/byte, 293s
+  dense-4 seed 0 step 3000: held-out 1.2493 bits/byte, 600s
+  dense-4 seed 0 step 4500: held-out 1.1574 bits/byte, 917s
+RESULT dense-4 seed 0: parameters 1.89M, steps 6000, bytes seen 25M, held-out 1.1375 bits/byte, train time 1234s
+  dense-4 seed 1 step 1500: held-out 1.4453 bits/byte, 306s
+  dense-4 seed 1 step 3000: held-out 1.2613 bits/byte, 607s
+  dense-4 seed 1 step 4500: held-out 1.1666 bits/byte, 919s
+RESULT dense-4 seed 1: parameters 1.89M, steps 6000, bytes seen 25M, held-out 1.1452 bits/byte, train time 1222s
+finished: 2026-11-25T14:52:15Z, exit code 0

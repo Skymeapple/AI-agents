@@ -1,0 +1,14 @@
+job: looped-tiny-looped
+started: 2026-11-25T14:10:44Z
+cores: 4, memory: 15 GB
+-rw-r--r-- 1 runner runner 150000001 Nov 25 14:11 train.txt
+-rw-r--r-- 1 runner runner  22502601 Nov 25 14:11 valid.txt
+  looped seed 0 step 1500: held-out 1.4054 bits/byte, 899s
+  looped seed 0 step 3000: held-out 1.2154 bits/byte, 1824s
+  looped seed 0 step 4500: held-out 1.1189 bits/byte, 2777s
+RESULT looped seed 0: parameters 1.89M, steps 6000, bytes seen 25M, held-out 1.0979 bits/byte, train time 3725s
+  looped seed 1 step 1500: held-out 1.4071 bits/byte, 911s
+  looped seed 1 step 3000: held-out 1.2163 bits/byte, 1815s
+  looped seed 1 step 4500: held-out 1.1156 bits/byte, 2699s
+RESULT looped seed 1: parameters 1.89M, steps 6000, bytes seen 25M, held-out 1.0963 bits/byte, train time 3589s
+finished: 2026-11-25T16:13:02Z, exit code 0

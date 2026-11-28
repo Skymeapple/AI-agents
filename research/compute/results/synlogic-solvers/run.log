@@ -1,0 +1,35 @@
+job: synlogic-solvers
+started: 2026-11-26T05:34:28Z
+cores: 4, memory: 15 GB
+sudoku                     answered 10 of 10, slowest 0.0s
+campsite                   answered 10 of 10, slowest 0.0s
+skyscraper_puzzle          answered 10 of 10, slowest 0.0s
+star_placement_puzzle      answered 10 of 10, slowest 0.0s
+survo                      answered 10 of 10, slowest 0.0s
+futoshiki                  answered 4 of 10, slowest 0.0s
+calcudoko                  answered 10 of 10, slowest 0.0s
+numbrix                    answered 10 of 10, slowest 0.0s
+cryptarithm                answered 10 of 10, slowest 0.01s
+math_path                  answered 10 of 10, slowest 5.1s
+dyck_language              answered 10 of 10, slowest 0.0s
+dyck_language_errors       answered 10 of 10, slowest 0.0s
+mathador                   answered 10 of 10, slowest 0.0s
+task                       puzzles  solver answered  verifier accepts  also inside <answer> tags
+sudoku                          10               10                10                         10
+campsite                        10               10                10                         10
+skyscraper_puzzle               10               10                10                         10
+star_placement_puzzle           10               10                10                         10
+survo                           10               10                10                         10
+futoshiki                       10                4                 4                          4
+calcudoko                       10               10                10                         10
+numbrix                         10               10                10                         10
+cryptarithm                     10               10                10                         10
+math_path                       10               10                10                         10
+dyck_language                   10               10                10                          0
+dyck_language_errors            10               10                10                          0
+mathador                        10               10                10                         10
+
+verified: 124 of 130 puzzles in 13 task types; that is 45.9% of the 270-puzzle easy validation set
+
+mathador check: a wrong expression (the plain sum of the numbers, which does not equal the target) was accepted by the verifier in 10 of 10 puzzles
+finished: 2026-11-26T05:35:01Z, exit code 0

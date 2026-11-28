@@ -1,0 +1,24 @@
+job: scienceworld-free-0
+started: 2026-11-26T06:07:11Z
+cores: 4, memory: 15 GB
+openjdk version "25.0.5" 2026-10-20 LTS
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/qwen2.5-3b-instruct-q4_k_m.gguf
+free   boil                                                 score   0.0  valid commands   0%  9s
+free   chemistry-mix                                        score  25.0  valid commands  40%  53s
+free   chemistry-mix-paint-tertiary-color                   score   7.0  valid commands  27%  152s
+free   find-living-thing                                    score   8.0  valid commands  40%  49s
+free   find-plant                                           score   8.0  valid commands  27%  83s
+free   grow-fruit                                           score  16.0  valid commands  27%  127s
+free   identify-life-stages-1                               score   0.0  valid commands  44%  39s
+free   inclined-plane-determine-angle                       score   5.0  valid commands  50%  96s
+free   inclined-plane-friction-unnamed-surfaces             score   5.0  valid commands  70%  102s
+free   lifespan-longest-lived-then-shortest-lived           score   0.0  valid commands 100%  3s
+free   measure-melting-point-known-substance                score   1.0  valid commands  40%  84s
+free   melt                                                 score   0.0  valid commands  14%  24s
+free   mendelian-genetics-unknown-plant                     score   1.0  valid commands  45%  26s
+free   power-component-renewable-vs-nonrenewable-energy     score  43.0  valid commands  37%  76s
+free   test-conductivity-of-unknown-substances              score   5.0  valid commands  33%  53s
+
+free: mean score 8.3 over 15 tasks, up to 30 steps each
+finished: 2026-11-26T06:24:15Z, exit code 0

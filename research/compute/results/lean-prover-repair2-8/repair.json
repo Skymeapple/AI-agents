@@ -1,0 +1,175 @@
+[
+{
+"name": "aime_1999_p11",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 150
+},
+{
+"name": "algebra_sum1onsqrt2to1onsqrt10000lt198",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 134
+},
+{
+"name": "amc12a_2009_p7",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 176
+},
+{
+"name": "amc12a_2021_p19",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 356
+},
+{
+"name": "amc12b_2021_p18",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 172
+},
+{
+"name": "imo_1981_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 148
+},
+{
+"name": "induction_pord1p1on2powklt5on2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 110
+},
+{
+"name": "mathd_algebra_215",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 301
+},
+{
+"name": "mathd_algebra_756",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 160
+},
+{
+"name": "mathd_numbertheory_495",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 117
+},
+{
+"name": "numbertheory_notEquiv2i2jasqbsqdiv8",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "as-is",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  have h\u2084 := h 1 1\n  simp_all\n  <;> omega",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 5",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  have h\u2084 := h 1 1\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 4",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 3",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 2",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 7",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  have h\u2084 := h 1 1\n  have h\u2085 := h 1 0\n  have h\u2086 := h 0 1\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 6",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  have h\u2084 := h 1 1\n  have h\u2085 := h 1 0\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 5",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  have h\u2084 := h 1 1\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 4",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 3",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 6,
+"variant": "prefix 2",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 4",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  have h\u2083 := h 2 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 3",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  have h\u2082 := h 2 0\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 7,
+"variant": "prefix 2",
+"proof": "  intro h\n  have h\u2081 := h 0 2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 126
+}
+]

@@ -1,0 +1,69 @@
+job: portfolio-costs
+started: 2026-11-25T15:24:16Z
+cores: 4, memory: 15 GB
+total 24772
+drwxr-xr-x 2 runner runner     4096 Nov 25 15:24 .
+drwxr-xr-x 3 runner runner     4096 Nov 25 15:24 ..
+-rw-r--r-- 1 runner runner 21176692 Oct 26 13:58 49_Industry_Portfolios_Daily.csv
+-rw-r--r-- 1 runner runner  4177116 Nov 25 15:24 ind.zip
+=== cost 5 basis points ===
+49 industries, 19260701-20260930; settings chosen on 1970-1999, tested 20000103-20260930; cost 5 basis points per unit traded
+
+signal: slow
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.40%    0.61       +10.43%             0.3x                     9/27
+  trade fully every day                         -     +12.39%    0.66       +14.18%            15.8x                     6/27
+  trade fully every 21 days                     -     +13.67%    0.71       +14.01%             3.0x                     0/27
+  trade only when drifted (HFM's idea)        0.3     +12.28%    0.65       +12.77%             4.4x                    11/27
+  trade part-way every day                   0.05     +12.26%    0.65       +12.55%             2.6x                     4/27
+  hold until a holding weakens                 15     +12.78%    0.68       +13.12%             3.0x                    11/27
+
+signal: fast
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.45%    0.61       +10.48%             0.3x                    15/27
+  trade fully every day                         -      +5.01%    0.33       +12.28%            66.9x                     7/27
+  trade fully every 21 days                     -      +9.73%    0.53       +10.57%             7.6x                     0/27
+  trade only when drifted (HFM's idea)        0.6      +9.73%    0.54       +13.26%            31.6x                    13/27
+  trade part-way every day                   0.02     +11.19%    0.62       +11.54%             3.1x                    16/27
+  hold until a holding weakens                 30     +12.63%    0.66       +14.38%            15.5x                    18/27
+=== cost 10 basis points ===
+49 industries, 19260701-20260930; settings chosen on 1970-1999, tested 20000103-20260930; cost 10 basis points per unit traded
+
+signal: slow
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.37%    0.61       +10.43%             0.3x                    10/27
+  trade fully every day                         -     +10.63%    0.59       +14.18%            15.8x                     4/27
+  trade fully every 21 days                     -     +13.33%    0.70       +14.01%             3.0x                     0/27
+  trade only when drifted (HFM's idea)        0.3     +11.78%    0.63       +12.77%             4.4x                    10/27
+  trade part-way every day                   0.05     +11.96%    0.64       +12.55%             2.6x                     4/27
+  hold until a holding weakens                 15     +12.44%    0.66       +13.12%             3.0x                    11/27
+
+signal: fast
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.42%    0.61       +10.48%             0.3x                    16/27
+  trade fully every day                         -      -1.79%    0.03       +12.28%            66.9x                     4/27
+  trade fully every 21 days                     -      +8.90%    0.50       +10.57%             7.6x                     0/27
+  trade only when drifted (HFM's idea)        0.6      +6.31%    0.39       +13.26%            31.6x                    12/27
+  trade part-way every day                   0.01     +10.60%    0.60       +10.97%             1.7x                    18/27
+  hold until a holding weakens                 30     +10.90%    0.59       +14.38%            15.5x                    18/27
+=== cost 20 basis points ===
+49 industries, 19260701-20260930; settings chosen on 1970-1999, tested 20000103-20260930; cost 20 basis points per unit traded
+
+signal: slow
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.31%    0.60       +10.43%             0.3x                    11/27
+  trade fully every day                         -      +7.18%    0.43       +14.18%            15.8x                     2/27
+  trade fully every 21 days                     -     +12.65%    0.67       +14.01%             3.0x                     0/27
+  trade only when drifted (HFM's idea)        0.6     +12.48%    0.65       +13.12%             1.4x                    12/27
+  trade part-way every day                   0.02     +11.00%    0.60       +11.70%             1.6x                     8/27
+  hold until a holding weakens                 15     +11.76%    0.63       +13.12%             3.0x                    11/27
+
+signal: fast
+  rule                                    setting  net return  Sharpe  before costs  yearly turnover  years better than monthly
+  all industries, equal weight                  -     +10.36%    0.61       +10.48%             0.3x                    19/27
+  trade fully every day                         -     -14.10%   -0.56       +12.28%            66.9x                     0/27
+  trade fully every 21 days                     -      +7.25%    0.43       +10.57%             7.6x                     0/27
+  trade only when drifted (HFM's idea)        0.6      -0.21%    0.10       +13.26%            31.6x                     4/27
+  trade part-way every day                   0.01     +10.23%    0.58       +10.97%             1.7x                    22/27
+  hold until a holding weakens                 30      +7.53%    0.45       +14.38%            15.5x                    14/27
+finished: 2026-11-25T15:24:54Z, exit code 0

@@ -1,0 +1,25 @@
+job: grpo-tiny-rft-diverse
+started: 2026-11-27T00:55:47Z
+cores: 4, memory: 15 GB
+/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:377: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:82.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 0 after supervised stage: narrow 0.307, diverse 0.432, benchmark 0.130 (385s)
+  seed 0 rft-diverse step 375: narrow 0.415, diverse 0.398, benchmark 0.115, informative groups 0.43, 493s
+  seed 0 rft-diverse step 750: narrow 0.443, diverse 0.385, benchmark 0.130, informative groups 0.40, 640s
+  seed 0 rft-diverse step 1125: narrow 0.468, diverse 0.407, benchmark 0.140, informative groups 0.39, 790s
+RESULT rft-diverse seed 0: base narrow 0.307, diverse 0.432, benchmark 0.130 -> final narrow 0.455, diverse 0.405, benchmark 0.147, time 943s
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 1 after supervised stage: narrow 0.407, diverse 0.422, benchmark 0.125 (354s)
+  seed 1 rft-diverse step 375: narrow 0.410, diverse 0.383, benchmark 0.117, informative groups 0.43, 454s
+  seed 1 rft-diverse step 750: narrow 0.472, diverse 0.400, benchmark 0.115, informative groups 0.41, 554s
+  seed 1 rft-diverse step 1125: narrow 0.450, diverse 0.398, benchmark 0.115, informative groups 0.40, 651s
+RESULT rft-diverse seed 1: base narrow 0.407, diverse 0.422, benchmark 0.125 -> final narrow 0.477, diverse 0.407, benchmark 0.120, time 748s
+  seed 2 after supervised stage: narrow 0.352, diverse 0.448, benchmark 0.135 (350s)
+  seed 2 rft-diverse step 375: narrow 0.453, diverse 0.440, benchmark 0.120, informative groups 0.44, 443s
+  seed 2 rft-diverse step 750: narrow 0.507, diverse 0.448, benchmark 0.130, informative groups 0.41, 534s
+  seed 2 rft-diverse step 1125: narrow 0.490, diverse 0.435, benchmark 0.133, informative groups 0.40, 628s
+RESULT rft-diverse seed 2: base narrow 0.352, diverse 0.448, benchmark 0.135 -> final narrow 0.448, diverse 0.430, benchmark 0.130, time 719s
+finished: 2026-11-27T01:36:28Z, exit code 0

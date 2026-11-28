@@ -1,0 +1,16 @@
+job: grpo-tiny-none
+started: 2026-11-27T00:55:47Z
+cores: 4, memory: 15 GB
+/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/torch/_subclasses/functional_tensor.py:377: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:82.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 0 after supervised stage: narrow 0.307, diverse 0.432, benchmark 0.130 (391s)
+RESULT none seed 0: base narrow 0.307, diverse 0.432, benchmark 0.130 -> final narrow 0.307, diverse 0.432, benchmark 0.130, time 393s
+/home/runner/work/AI-agents/AI-agents/research/hfm-projects/post-training/agentic-rl-recipes/grpo_tiny.py:95: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.body = nn.TransformerEncoder(layer, LAYERS)
+  seed 1 after supervised stage: narrow 0.407, diverse 0.422, benchmark 0.125 (364s)
+RESULT none seed 1: base narrow 0.407, diverse 0.422, benchmark 0.125 -> final narrow 0.407, diverse 0.422, benchmark 0.125, time 366s
+  seed 2 after supervised stage: narrow 0.352, diverse 0.448, benchmark 0.135 (354s)
+RESULT none seed 2: base narrow 0.352, diverse 0.448, benchmark 0.135 -> final narrow 0.352, diverse 0.448, benchmark 0.135, time 356s
+finished: 2026-11-27T01:14:51Z, exit code 0

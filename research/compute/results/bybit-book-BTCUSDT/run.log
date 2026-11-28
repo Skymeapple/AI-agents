@@ -1,0 +1,27 @@
+job: bybit-book-BTCUSDT
+started: 2026-11-27T02:56:02Z
+cores: 4, memory: 15 GB
+total 631596
+drwxr-xr-x 2 runner runner      4096 Nov 27 02:56 .
+drwxr-xr-x 5 runner runner      4096 Nov 27 02:56 ..
+-rw-r--r-- 1 runner runner 167774686 Nov 27 02:56 2024-06-03_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 168482465 Nov 27 02:56 2024-06-04_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 167142465 Nov 27 02:56 2024-06-05_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  54671170 Nov 27 02:56 BTCUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  47400323 Nov 27 02:56 BTCUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  41263100 Nov 27 02:56 BTCUSDT2024-06-05.csv.gz
+BTCUSDT 2024-06-03: seconds with a full book 86397, trades 1455750, median spread 0.01 bp, median ten-level depth $454,491 per side
+BTCUSDT 2024-06-04: seconds with a full book 86397, trades 1253172, median spread 0.01 bp, median ten-level depth $470,822 per side
+BTCUSDT 2024-06-05: seconds with a full book 86397, trades 1074916, median spread 0.01 bp, median ten-level depth $493,365 per side
+
+===== BTCUSDT part 1: 34548 fitting and 17274 test bucket-sides; depth falls in 0.497 of test buckets =====
+RESULT BTCUSDT depth reversion  Spearman +0.406; top-decile hit 0.171 (random 0.100)
+RESULT BTCUSDT depth ridge      Spearman +0.576; top-decile hit 0.223 (random 0.100)
+RESULT BTCUSDT depth boosted    Spearman +0.585; top-decile hit 0.226 (random 0.100)
+RESULT BTCUSDT exec $20,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +0.05±0.01  twap +0.01±0.27  passive +0.86±0.28  adaptive +0.25±0.27
+RESULT BTCUSDT exec $20,000 saving of passive over twap -0.85 bp (se 0.03), better in 0.07
+RESULT BTCUSDT exec $20,000 saving of adaptive over twap -0.24 bp (se 0.01), better in 0.43
+RESULT BTCUSDT exec $200,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +0.83±0.07  twap +0.05±0.27  passive +0.87±0.28  adaptive +0.29±0.27
+RESULT BTCUSDT exec $200,000 saving of passive over twap -0.82 bp (se 0.03), better in 0.08
+RESULT BTCUSDT exec $200,000 saving of adaptive over twap -0.25 bp (se 0.01), better in 0.42
+finished: 2026-11-27T02:58:55Z, exit code 0

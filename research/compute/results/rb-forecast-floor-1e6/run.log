@@ -1,0 +1,39 @@
+job: rb-forecast-floor-1e6
+started: 2026-11-26T09:41:41Z
+cores: 4, memory: 15 GB
+fit runs 8, test runs 5, frames 200, grid 512 x 128
+
+===== start frame 0: 24 fitting windows, 5 test windows =====
+  (mode regression: 60 modes, ridge 1000; blur widths chosen at leads 1/8/32/64, mean over fields: 3.0, 8.0, 16.0, 22.0 grid cells)
+  method                    buoyancy    pressure  velocity x  velocity y     mean   | mean error at lead 1, 8, 32, 64
+  persistence                  0.405       0.262       1.001       1.000    0.667   | 0.007  0.038  0.099  1.542
+  profile                      0.675       0.610       1.001       1.000    0.821   | 0.364  0.345  0.317  1.529
+  damped persistence           0.327       0.218       1.001       0.995    0.635   | 0.006  0.030  0.088  1.474
+  blurred + damped             0.321       0.218       1.001       0.992    0.633   | 0.005  0.028  0.083  1.472
+  mode regression              0.617       0.555       1.036       1.012    0.805   | 0.325  0.308  0.294  1.579
+
+===== start frame 65: 40 fitting windows, 5 test windows =====
+  (mode regression: 60 modes, ridge 10; blur widths chosen at leads 1/8/32/64, mean over fields: 2.5, 16.0, 32.0, 32.0 grid cells)
+  method                    buoyancy    pressure  velocity x  velocity y     mean   | mean error at lead 1, 8, 32, 64
+  persistence                  0.707       0.374       1.242       1.269    0.898   | 0.174  0.730  0.962  1.000
+  profile                      0.623       0.389       1.004       1.000    0.754   | 0.819  0.743  0.753  0.771
+  damped persistence           0.549       0.317       0.980       0.970    0.704   | 0.172  0.626  0.741  0.764
+  blurred + damped             0.453       0.284       0.984       0.985    0.677   | 0.170  0.595  0.717  0.750
+  mode regression              0.617       0.386       0.973       0.974    0.738   | 0.747  0.712  0.761  0.736
+
+===== start frame 130: 24 fitting windows, 5 test windows =====
+  (mode regression: 60 modes, ridge 1; blur widths chosen at leads 1/8/32/64, mean over fields: 2.5, 18.0, 17.0, 16.0 grid cells)
+  method                    buoyancy    pressure  velocity x  velocity y     mean   | mean error at lead 1, 8, 32, 64
+  persistence                  0.387       0.219       0.542       0.541    0.422   | 0.070  0.344  0.461  0.501
+  profile                      0.530       0.316       0.999       1.000    0.711   | 0.721  0.706  0.716  0.709
+  damped persistence           0.354       0.198       0.525       0.522    0.400   | 0.070  0.333  0.435  0.465
+  blurred + damped             0.322       0.197       0.512       0.426    0.364   | 0.069  0.300  0.394  0.430
+  mode regression              0.438       0.292       0.434       0.414    0.394   | 0.423  0.425  0.393  0.392
+
+===== mean over start frames =====
+RESULT persistence            0.667  0.898  0.422   mean 0.663
+RESULT profile                0.821  0.754  0.711   mean 0.762
+RESULT damped persistence     0.635  0.704  0.400   mean 0.580
+RESULT blurred + damped       0.633  0.677  0.364   mean 0.558
+RESULT mode regression        0.805  0.738  0.394   mean 0.646
+finished: 2026-11-26T09:43:07Z, exit code 0

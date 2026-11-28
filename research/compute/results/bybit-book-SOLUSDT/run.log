@@ -1,0 +1,27 @@
+job: bybit-book-SOLUSDT
+started: 2026-11-27T02:56:04Z
+cores: 4, memory: 15 GB
+total 292512
+drwxr-xr-x 2 runner runner     4096 Nov 27 02:56 .
+drwxr-xr-x 5 runner runner     4096 Nov 27 02:56 ..
+-rw-r--r-- 1 runner runner 86012192 Nov 27 02:56 2024-06-03_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 75422692 Nov 27 02:56 2024-06-04_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 78531527 Nov 27 02:56 2024-06-05_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 20343314 Nov 27 02:56 SOLUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner 17705743 Nov 27 02:56 SOLUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner 21497971 Nov 27 02:56 SOLUSDT2024-06-05.csv.gz
+SOLUSDT 2024-06-03: seconds with a full book 86398, trades 562726, median spread 0.61 bp, median ten-level depth $976,502 per side
+SOLUSDT 2024-06-04: seconds with a full book 86398, trades 491743, median spread 0.60 bp, median ten-level depth $987,410 per side
+SOLUSDT 2024-06-05: seconds with a full book 86398, trades 598744, median spread 0.58 bp, median ten-level depth $1,007,742 per side
+
+===== SOLUSDT part 1: 34548 fitting and 17274 test bucket-sides; depth falls in 0.501 of test buckets =====
+RESULT SOLUSDT depth reversion  Spearman +0.386; top-decile hit 0.236 (random 0.100)
+RESULT SOLUSDT depth ridge      Spearman +0.485; top-decile hit 0.271 (random 0.100)
+RESULT SOLUSDT depth boosted    Spearman +0.486; top-decile hit 0.264 (random 0.100)
+RESULT SOLUSDT exec $20,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +0.45±0.01  twap +0.31±0.37  passive +1.07±0.39  adaptive +0.51±0.37
+RESULT SOLUSDT exec $20,000 saving of passive over twap -0.76 bp (se 0.04), better in 0.22
+RESULT SOLUSDT exec $20,000 saving of adaptive over twap -0.20 bp (se 0.02), better in 0.48
+RESULT SOLUSDT exec $200,000: 568 parents, adaptive threshold 0.0; cost bp: sweep +1.36±0.03  twap +0.45±0.37  passive +1.14±0.39  adaptive +0.68±0.38
+RESULT SOLUSDT exec $200,000 saving of passive over twap -0.69 bp (se 0.04), better in 0.26
+RESULT SOLUSDT exec $200,000 saving of adaptive over twap -0.23 bp (se 0.03), better in 0.46
+finished: 2026-11-27T02:57:33Z, exit code 0

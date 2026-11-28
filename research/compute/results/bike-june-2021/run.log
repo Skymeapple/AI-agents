@@ -1,0 +1,14 @@
+job: bike-june-2021
+started: 2026-11-25T12:55:46Z
+cores: 4, memory: 15 GB
+457 stations, 9104 docks, 17 test weekdays, 41680 trips a day
+
+cost = failed rentals + failed returns per day (17 test days)
+  policy                              mean cost  share of trips  vs forecast  days better  worse
+  no rebalancing                           9271          22.24%       +77.2%        0/17     17
+  reactive                                 6256          15.01%       +19.6%        1/17     16
+  forecast                                 5232          12.55%        +0.0%        0/17      0
+  look-ahead (rollout)                     5269          12.64%        +0.7%        7/17     10
+  look-ahead, 4 past days                  5093          12.22%        -2.7%       13/17      4
+  perfect forecast (not available)         4641          11.13%       -11.3%       17/17      0
+finished: 2026-11-25T13:40:48Z, exit code 0

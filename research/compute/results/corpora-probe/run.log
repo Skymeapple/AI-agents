@@ -1,0 +1,27 @@
+job: corpora-probe
+started: 2026-11-26T19:50:39Z
+cores: 4, memory: 15 GB
+CORPUS web: https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/main/sample/10BT/000_00000.parquet
+  train 5.0 MB in 1027 documents, held-out 4.0 MB in 782 documents
+  starts: 'The Independent Jane For all the love, romance and scandal in Jane Austen’s books, what they are really about is freedom and independence. Independence of thoug'
+CORPUS dclm: https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0/resolve/main/global-shard_01_of_10/local-shard_0_of_10/shard_00000000_processed.jsonl.zst
+  train 5.0 MB in 937 documents, held-out 4.0 MB in 877 documents
+  starts: "Take the 2-minute tour ×  Here what happened with me today. TimeMachine asked me whether I want to set a backup disk, I've answered yes, but then, when I've rea"
+CORPUS code: https://huggingface.co/datasets/codeparrot/codeparrot-clean-valid/resolve/main/file-000000000054.json.gz
+  train 5.0 MB in 482 documents, held-out 4.0 MB in 424 documents
+  starts: 'from django.conf import settings from django.core.paginator import Paginator, InvalidPage, EmptyPage from django.http import HttpResponse  from tardis.tardis_po'
+CORPUS math: https://huggingface.co/datasets/HuggingFaceTB/finemath/resolve/main/finemath-3plus/train-00000-of-00128.parquet
+  train 5.0 MB in 571 documents, held-out 4.0 MB in 620 documents
+  starts: '1 JEE Main 2022 (Online) 26th July Morning Shift +4 -1  Let f : R $$\\to$$ R be a continuous function such that $$f(3x) - f(x) = x$$. If $$f(8) = 7$$, then $$f(1'
+total 35256
+drwxr-xr-x 2 runner runner    4096 Nov 26 19:50 .
+drwxr-xr-x 5 runner runner    4096 Nov 26 19:50 ..
+-rw-r--r-- 1 runner runner 4010949 Nov 26 19:50 code.heldout.txt
+-rw-r--r-- 1 runner runner 5038729 Nov 26 19:50 code.train.txt
+-rw-r--r-- 1 runner runner 4005157 Nov 26 19:50 dclm.heldout.txt
+-rw-r--r-- 1 runner runner 5000571 Nov 26 19:50 dclm.train.txt
+-rw-r--r-- 1 runner runner 4013586 Nov 26 19:50 math.heldout.txt
+-rw-r--r-- 1 runner runner 5006777 Nov 26 19:50 math.train.txt
+-rw-r--r-- 1 runner runner 4001214 Nov 26 19:50 web.heldout.txt
+-rw-r--r-- 1 runner runner 5004291 Nov 26 19:50 web.train.txt
+finished: 2026-11-26T19:50:49Z, exit code 0

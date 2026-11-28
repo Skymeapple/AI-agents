@@ -1,0 +1,31 @@
+job: lean-floor3-test-b
+started: 2026-11-26T16:46:00Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 16202 ms
+Completed successfully!
+{'test': 138}
+test  CASES                                                        proves   0  | 'floor_test_44_120_0.lean:12:283: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the'
+test  ext x <;> (try simp_all) <;> PORTFOLIO                       proves   0  | "floor_test_45_120_0.lean:12:14: error: This extensionality tactic only applies to equalities, not\n  Nat.le 5 k\n'mathd_nu"
+watchdog: killed lean process using 5041 MB of private memory
+test  INDUCTION                                                    proves   2  | 'floor_test_43_120_0.lean:12:336: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the'
+test  casesm* _ ∧ _, ∃ _, _ <;> PORTFOLIO                          proves   0  | "floor_test_48_120_0.lean:12:14: error: no match\n'mathd_numbertheory_435' depends on axioms: [propext, sorryAx]\nfloor_tes"
+test  (try push_cast at *) <;> (try zify at *) <;> PORTFOLIO       proves   0 ['imo_1981_p6: exit 134'] | 'floor_test_47_120_0.lean:12:110: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_test_47_120_0.l'
+test  (try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO proves   0 ['amc12a_2008_p25: exit 137', 'imo_1981_p6: exit 134'] | 'floor_test_46_120_0.lean:12:169: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_test_46_120_0.l'
+test  left <;> PORTFOLIO                                           proves   0  | 'floor_test_50_120_0.lean:12:14: error: Tactic `apply` failed: could not unify the conclusion of the term\n  Nat.le ?n ?n\n'
+test  right <;> PORTFOLIO                                          proves   0  | 'floor_test_51_120_0.lean:12:14: error: Tactic `apply` failed: could not unify the conclusion of the term\n  Nat.le ?n (su'
+test  exfalso <;> PORTFOLIO                                        proves   0 ['imo_1981_p6: exit 134'] | 'floor_test_49_120_0.lean:12:77: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_test_49_120_0.le'
+
+RESULT test: 138 theorems; any single tactic proves 2 (1.4%)
+RESULT   INDUCTION                                                      2   new beyond the tactics above: 2
+RESULT   CASES                                                          0   new beyond the tactics above: 0
+RESULT   ext x <;> (try simp_all) <;> PORTFOLIO                         0   new beyond the tactics above: 0
+RESULT   (try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO   0   new beyond the tactics above: 0
+RESULT   (try push_cast at *) <;> (try zify at *) <;> PORTFOLIO         0   new beyond the tactics above: 0
+RESULT   casesm* _ ∧ _, ∃ _, _ <;> PORTFOLIO                            0   new beyond the tactics above: 0
+RESULT   exfalso <;> PORTFOLIO                                          0   new beyond the tactics above: 0
+RESULT   left <;> PORTFOLIO                                             0   new beyond the tactics above: 0
+RESULT   right <;> PORTFOLIO                                            0   new beyond the tactics above: 0
+RESULT   by source: aime 0/11, algebra 0/16, amc12 0/5, amc12a 0/20, amc12b 0/10, imo 1/17, imosl 0/1, induction 1/7, mathd 0/44, numbertheory 0/7
+finished: 2026-11-26T16:53:48Z, exit code 0

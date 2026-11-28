@@ -1,0 +1,24 @@
+job: lean-floor-valid-c
+started: 2026-11-26T13:56:27Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 14912 ms
+Completed successfully!
+{'valid': 244}
+valid intros; nlinarith [sq_nonneg (0:ℝ)]                          proves  24  | 'floor_valid_13_205.lean:6:110: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈'
+valid field_simp; ring                                             proves  20  | "floor_valid_15_205.lean:6:102: error: field_simp made no progress on goal\n'mathd_numbertheory_32' depends on axioms: [pr"
+valid intros; omega                                                proves  23  | 'floor_valid_16_205.lean:6:110: error: omega could not prove the goal:\na possible counterexample may satisfy the constrai'
+valid norm_num at *; linarith                                      proves  29 ['chunk 205: timeout'] | 'floor_valid_14_205.lean:6:117: error: linarith failed to find a contradiction\ncase h1.h\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈'
+valid intros; simp_all; linarith                                   proves  28 ['chunk 205: timeout'] | ''
+valid norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial] proves  16 ['chunk 205: timeout'] | "floor_valid_18_205.lean:6:99: error: unsolved goals\nS : Finset ℕ\nh₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36\n⊢ ∑ k ∈ S, k = 91\n'mathd"
+
+RESULT valid: 244 theorems; any single tactic proves 68 (27.9%)
+RESULT   norm_num at *; linarith                                       29   new beyond the tactics above: 29
+RESULT   intros; simp_all; linarith                                    28   new beyond the tactics above: 13
+RESULT   intros; nlinarith [sq_nonneg (0:ℝ)]                           24   new beyond the tactics above: 7
+RESULT   intros; omega                                                 23   new beyond the tactics above: 11
+RESULT   field_simp; ring                                              20   new beyond the tactics above: 8
+RESULT   norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]  16   new beyond the tactics above: 0
+RESULT   by source: aime 1/12, aimeI 0/1, aimeII 0/2, algebra 4/18, amc12 1/5, amc12a 4/31, amc12b 1/9, imo 0/20, induction 0/8, mathd 57/130, numbertheory 0/8
+finished: 2026-11-26T14:50:21Z, exit code 0

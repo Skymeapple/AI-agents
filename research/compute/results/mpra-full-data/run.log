@@ -1,0 +1,48 @@
+job: mpra-full-data
+started: 2026-11-25T13:29:39Z
+cores: 4, memory: 15 GB
+HepG2: train 96728, test 12298
+K562: train 155284, test 19670
+WTC11: train 35854, test 4622
+multi-task training sequences: 272706 (labels per cell line: [96728, 155284, 35854])
+  seed 0: multi-task trained in 568s
+  seed 0: HepG2 single-task trained in 215s
+  seed 0: K562 single-task trained in 349s
+  seed 0: WTC11 single-task trained in 83s
+  seed 1: multi-task trained in 552s
+  seed 1: HepG2 single-task trained in 224s
+  seed 1: K562 single-task trained in 345s
+  seed 1: WTC11 single-task trained in 81s
+  seed 2: multi-task trained in 545s
+  seed 2: HepG2 single-task trained in 209s
+  seed 2: K562 single-task trained in 339s
+  seed 2: WTC11 single-task trained in 79s
+  seed 3: multi-task trained in 546s
+  seed 3: HepG2 single-task trained in 210s
+  seed 3: K562 single-task trained in 351s
+  seed 3: WTC11 single-task trained in 80s
+  seed 4: multi-task trained in 539s
+  seed 4: HepG2 single-task trained in 208s
+  seed 4: K562 single-task trained in 344s
+  seed 4: WTC11 single-task trained in 81s
+
+Spearman correlation on the test fold (mean over seeds); rc = reverse-complement averaging
+cell                HepG2    K562   WTC11   macro
+model       rc                                   
+multi-task  False  0.6659  0.6667  0.5879  0.6402
+            True   0.6853  0.6848  0.6011  0.6571
+single-task False  0.6328  0.6566  0.5164  0.6019
+            True   0.6541  0.6748  0.5381  0.6224
+
+ensemble of all seeds (predictions averaged, with reverse-complement averaging)
+  single-task  HepG2 0.6716  K562 0.6901  WTC11 0.5568  macro 0.6395
+  multi-task   HepG2 0.7025  K562 0.7012  WTC11 0.6127  macro 0.6721
+
+macro Spearman by seed
+seed                    0       1       2       3       4
+model       rc                                           
+multi-task  False  0.6407  0.6412  0.6392  0.6389  0.6408
+            True   0.6573  0.6587  0.6562  0.6555  0.6577
+single-task False  0.6012  0.6053  0.6037  0.5986  0.6008
+            True   0.6219  0.6255  0.6241  0.6192  0.6211
+finished: 2026-11-25T15:10:51Z, exit code 0

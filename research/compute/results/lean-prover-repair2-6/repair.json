@@ -1,0 +1,97 @@
+[
+{
+"name": "aime_1995_p7",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 242
+},
+{
+"name": "algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 161
+},
+{
+"name": "amc12a_2008_p25",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 285
+},
+{
+"name": "amc12a_2021_p12",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 327
+},
+{
+"name": "amc12b_2021_p1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 205
+},
+{
+"name": "imo_1969_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 168
+},
+{
+"name": "imosl_2007_algebra_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 136
+},
+{
+"name": "mathd_algebra_196",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 306
+},
+{
+"name": "mathd_algebra_484",
+"proved": true,
+"plain": true,
+"repaired": false,
+"wins": [
+{
+"sample": 5,
+"variant": "as-is",
+"proof": "  rw [div_eq_iff (by norm_num : Real.log 3 \u2260 0)] <;> norm_num <;>\n   rw [\u2190 Real.log_rpow] <;> norm_num\n   <;> linarith",
+"lean": "ok"
+}
+],
+"secs": 88
+},
+{
+"name": "mathd_numbertheory_435",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 196
+},
+{
+"name": "numbertheory_exk2powkeqapb2mulbpa2_aeq1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 201
+}
+]

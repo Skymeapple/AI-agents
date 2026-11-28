@@ -1,0 +1,26 @@
+job: book-memory-BTCUSDT
+started: 2026-11-27T08:44:37Z
+cores: 4, memory: 15 GB
+total 631596
+drwxr-xr-x 2 runner runner      4096 Nov 27 08:45 .
+drwxr-xr-x 5 runner runner      4096 Nov 27 08:44 ..
+-rw-r--r-- 1 runner runner 167774686 Nov 27 08:44 2024-06-03_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 168482465 Nov 27 08:45 2024-06-04_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 167142465 Nov 27 08:45 2024-06-05_BTCUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner  54671170 Nov 27 08:45 BTCUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner  47400323 Nov 27 08:45 BTCUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner  41263100 Nov 27 08:45 BTCUSDT2024-06-05.csv.gz
+BTCUSDT: 33832 fitting and 16916 test bucket-sides
+RESULT BTCUSDT state                ridge    Spearman +0.576; top-decile hit 0.223
+RESULT BTCUSDT state                boosted  Spearman +0.585; top-decile hit 0.231
+RESULT BTCUSDT + lags               ridge    Spearman +0.588; top-decile hit 0.235
+RESULT BTCUSDT + lags               boosted  Spearman +0.589; top-decile hit 0.243
+RESULT BTCUSDT + drawdown/tipping   ridge    Spearman +0.592; top-decile hit 0.234
+RESULT BTCUSDT + drawdown/tipping   boosted  Spearman +0.597; top-decile hit 0.241
+RESULT BTCUSDT + flow/volatility    ridge    Spearman +0.582; top-decile hit 0.221
+RESULT BTCUSDT + flow/volatility    boosted  Spearman +0.595; top-decile hit 0.238
+RESULT BTCUSDT + lags + flow/vol    ridge    Spearman +0.592; top-decile hit 0.232
+RESULT BTCUSDT + lags + flow/vol    boosted  Spearman +0.596; top-decile hit 0.236
+RESULT BTCUSDT + memory (all)       ridge    Spearman +0.599; top-decile hit 0.236
+RESULT BTCUSDT + memory (all)       boosted  Spearman +0.601; top-decile hit 0.236
+finished: 2026-11-27T08:47:05Z, exit code 0

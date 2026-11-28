@@ -1,0 +1,84 @@
+job: invariance-pm25
+started: 2026-11-27T08:34:09Z
+cores: 4, memory: 15 GB
+  [pm25 PMS5003 by city] held out Antwerp (173418 rows): erm 6.47, env-balanced 6.44, group-dro 6.45, env-standardised 8.372, erm-nn 6.571, vrex 6.597, irm 6.537
+  [pm25 PMS5003 by city] held out Oslo (73352 rows): erm 5.518, env-balanced 5.897, group-dro 6.587, env-standardised 9.011, erm-nn 6.657, vrex 6.412, irm 6.73
+  [pm25 PMS5003 by city] held out Zagreb (60124 rows): erm 7.184, env-balanced 7.249, group-dro 7.21, env-standardised 7.652, erm-nn 7.053, vrex 7.095, irm 7.181
+RESULT [pm25 PMS5003 by city] 3 held-out environments; mean / worst RMSE; environments better than its reference (erm for tree methods, erm-nn for vrex and irm):
+RESULT [pm25 PMS5003 by city]   erm               6.39 / 7.184   better in 0/3
+RESULT [pm25 PMS5003 by city]   env-balanced      6.529 / 7.249   better in 1/3
+RESULT [pm25 PMS5003 by city]   group-dro         6.749 / 7.21   better in 1/3
+RESULT [pm25 PMS5003 by city]   env-standardised  8.345 / 9.011   better in 0/3
+RESULT [pm25 PMS5003 by city]   erm-nn            6.76 / 7.053   better in 1/3
+RESULT [pm25 PMS5003 by city]   vrex              6.701 / 7.095   better in 1/3
+RESULT [pm25 PMS5003 by city]   irm               6.816 / 7.181   better in 1/3
+  [pm25 PMS5003 by site] held out ANT_REF_AL01 (5853 rows): erm 2.774, env-balanced 2.946, group-dro 5.172, env-standardised 3.84, erm-nn 3.276, vrex 3.858, irm 3.595
+  [pm25 PMS5003 by site] held out ANT_REF_M802 (5857 rows): erm 2.953, env-balanced 3.193, group-dro 5.45, env-standardised 3.498, erm-nn 3.428, vrex 4.03, irm 3.71
+  [pm25 PMS5003 by site] held out ANT_REF_R801 (113880 rows): erm 6.181, env-balanced 5.97, group-dro 7.576, env-standardised 8.588, erm-nn 5.797, vrex 6.396, irm 6.292
+  [pm25 PMS5003 by site] held out ANT_REF_R802 (12238 rows): erm 2.724, env-balanced 2.988, group-dro 5.649, env-standardised 3.945, erm-nn 3.263, vrex 4.147, irm 3.78
+  [pm25 PMS5003 by site] held out ANT_REF_R803 (5860 rows): erm 2.668, env-balanced 2.88, group-dro 5.464, env-standardised 4.204, erm-nn 3.096, vrex 3.94, irm 3.479
+  [pm25 PMS5003 by site] held out ANT_REF_R804 (12354 rows): erm 3.927, env-balanced 3.978, group-dro 5.936, env-standardised 5.044, erm-nn 4.283, vrex 4.843, irm 4.699
+  [pm25 PMS5003 by site] held out ANT_REF_R805 (5851 rows): erm 2.631, env-balanced 3.001, group-dro 5.552, env-standardised 3.674, erm-nn 3.303, vrex 4.057, irm 3.733
+  [pm25 PMS5003 by site] held out ANT_REF_R811 (5636 rows): erm 4.363, env-balanced 4.405, group-dro 6.402, env-standardised 8.88, erm-nn 5.06, vrex 10.78, irm 6.472
+  [pm25 PMS5003 by site] held out ANT_REF_R817 (5844 rows): erm 2.661, env-balanced 2.769, group-dro 5.437, env-standardised 3.508, erm-nn 2.952, vrex 3.866, irm 3.498
+  [pm25 PMS5003 by site] held out OSL_REF_BJVÂ  (5202 rows): erm 2.475, env-balanced 2.64, group-dro 5.821, env-standardised 4.239, erm-nn 2.379, vrex 3.344, irm 2.829
+  [pm25 PMS5003 by site] held out OSL_REF_BRS (3394 rows): erm 5.991, env-balanced 6.126, group-dro 7.174, env-standardised 7.91, erm-nn 5.84, vrex 6.044, irm 6.083
+  [pm25 PMS5003 by site] held out OSL_REF_HJO (2999 rows): erm 3.37, env-balanced 3.473, group-dro 5.928, env-standardised 4.53, erm-nn 3.421, vrex 3.935, irm 3.957
+  [pm25 PMS5003 by site] held out OSL_REF_KVN (44616 rows): erm 4.456, env-balanced 4.32, group-dro 6.267, env-standardised 10.06, erm-nn 4.204, vrex 4.667, irm 4.283
+  [pm25 PMS5003 by site] held out OSL_REF_SKY (2205 rows): erm 6.167, env-balanced 6.334, group-dro 7.679, env-standardised 6.889, erm-nn 6.308, vrex 6.437, irm 6.161
+  [pm25 PMS5003 by site] held out OSL_REF_SMS (1940 rows): erm 4.085, env-balanced 4.312, group-dro 6.877, env-standardised 5.533, erm-nn 4.181, vrex 4.821, irm 4.51
+  [pm25 PMS5003 by site] held out OSL_TRAF_LIND (6507 rows): erm 4.464, env-balanced 4.483, group-dro 5.918, env-standardised 6.625, erm-nn 4.568, vrex 4.868, irm 4.684
+  [pm25 PMS5003 by site] held out OSL_TRAF_VINK (6489 rows): erm 5.636, env-balanced 5.62, group-dro 7.584, env-standardised 7.048, erm-nn 5.814, vrex 6.195, irm 5.976
+  [pm25 PMS5003 by site] held out ZAG_REF_IMI (49022 rows): erm 5.364, env-balanced 5.206, group-dro 5.951, env-standardised 5.955, erm-nn 5.125, vrex 5.144, irm 5.268
+  [pm25 PMS5003 by site] held out ZAG_REF_JANK (1919 rows): erm 12.26, env-balanced 11.39, group-dro 10.89, env-standardised 19.54, erm-nn 10.39, vrex 9.793, irm 10.75
+  [pm25 PMS5003 by site] held out ZAG_REF_ZAG2 (3915 rows): erm 9.092, env-balanced 8.657, group-dro 7.967, env-standardised 12.13, erm-nn 8.468, vrex 7.924, irm 7.869
+  [pm25 PMS5003 by site] held out ZAG_REF_ZAG3 (4515 rows): erm 11.93, env-balanced 11.8, group-dro 10.32, env-standardised 11.95, erm-nn 11.76, vrex 11.4, irm 11.86
+RESULT [pm25 PMS5003 by site] 21 held-out environments; mean / worst RMSE; environments better than its reference (erm for tree methods, erm-nn for vrex and irm):
+RESULT [pm25 PMS5003 by site]   erm               5.056 / 12.26   better in 0/21
+RESULT [pm25 PMS5003 by site]   env-balanced      5.071 / 11.8   better in 7/21
+RESULT [pm25 PMS5003 by site]   group-dro         6.715 / 10.89   better in 3/21
+RESULT [pm25 PMS5003 by site]   env-standardised  7.028 / 19.54   better in 0/21
+RESULT [pm25 PMS5003 by site]   erm-nn            5.091 / 11.76   better in 8/21
+RESULT [pm25 PMS5003 by site]   vrex              5.737 / 11.4   better in 3/21
+RESULT [pm25 PMS5003 by site]   irm               5.404 / 11.86   better in 2/21
+  [pm25 OPC-N3 by city] held out Antwerp (174376 rows): erm 8.923, env-balanced 8.89, group-dro 8.94, env-standardised 11.31, erm-nn 8.943, vrex 8.873, irm 8.931
+  [pm25 OPC-N3 by city] held out Oslo (73404 rows): erm 8.12, env-balanced 8.608, group-dro 8.117, env-standardised 10.65, erm-nn 8.939, vrex 8.767, irm 9.015
+  [pm25 OPC-N3 by city] held out Zagreb (60965 rows): erm 9.65, env-balanced 9.989, group-dro 9.232, env-standardised 8.573, erm-nn 10.05, vrex 9.249, irm 10.38
+RESULT [pm25 OPC-N3 by city] 3 held-out environments; mean / worst RMSE; environments better than its reference (erm for tree methods, erm-nn for vrex and irm):
+RESULT [pm25 OPC-N3 by city]   erm               8.898 / 9.65   better in 0/3
+RESULT [pm25 OPC-N3 by city]   env-balanced      9.162 / 9.989   better in 1/3
+RESULT [pm25 OPC-N3 by city]   group-dro         8.763 / 9.232   better in 2/3
+RESULT [pm25 OPC-N3 by city]   env-standardised  10.18 / 11.31   better in 1/3
+RESULT [pm25 OPC-N3 by city]   erm-nn            9.311 / 10.05   better in 0/3
+RESULT [pm25 OPC-N3 by city]   vrex              8.963 / 9.249   better in 3/3
+RESULT [pm25 OPC-N3 by city]   irm               9.441 / 10.38   better in 1/3
+  [pm25 OPC-N3 by site] held out ANT_REF_AL01 (5852 rows): erm 5.793, env-balanced 5.624, group-dro 6.362, env-standardised 6.773, erm-nn 5.85, vrex 6.207, irm 5.939
+  [pm25 OPC-N3 by site] held out ANT_REF_M802 (5854 rows): erm 5.985, env-balanced 5.833, group-dro 6.471, env-standardised 6.369, erm-nn 6.041, vrex 6.243, irm 5.851
+  [pm25 OPC-N3 by site] held out ANT_REF_R801 (114471 rows): erm 9.536, env-balanced 9.606, group-dro 10.25, env-standardised 11.15, erm-nn 9.424, vrex 9.911, irm 9.646
+  [pm25 OPC-N3 by site] held out ANT_REF_R802 (12240 rows): erm 7.234, env-balanced 6.793, group-dro 7.822, env-standardised 7.135, erm-nn 6.898, vrex 7.271, irm 6.844
+  [pm25 OPC-N3 by site] held out ANT_REF_R803 (5856 rows): erm 5.726, env-balanced 5.405, group-dro 6.244, env-standardised 6.948, erm-nn 5.721, vrex 6.119, irm 5.735
+  [pm25 OPC-N3 by site] held out ANT_REF_R804 (12502 rows): erm 6.721, env-balanced 6.53, group-dro 7.197, env-standardised 6.815, erm-nn 6.772, vrex 6.923, irm 6.604
+  [pm25 OPC-N3 by site] held out ANT_REF_R805 (5851 rows): erm 6.374, env-balanced 6.019, group-dro 6.533, env-standardised 7.191, erm-nn 6.38, vrex 6.447, irm 6.395
+  [pm25 OPC-N3 by site] held out ANT_REF_R811 (5858 rows): erm 6.757, env-balanced 6.331, group-dro 7.048, env-standardised 6.789, erm-nn 6.685, vrex 6.964, irm 6.575
+  [pm25 OPC-N3 by site] held out ANT_REF_R817 (5847 rows): erm 5.823, env-balanced 5.646, group-dro 6.014, env-standardised 6.486, erm-nn 5.864, vrex 5.98, irm 6.023
+  [pm25 OPC-N3 by site] held out OSL_REF_BJVÂ  (5202 rows): erm 5.241, env-balanced 5.233, group-dro 6.278, env-standardised 6.358, erm-nn 5.662, vrex 6.116, irm 6.298
+  [pm25 OPC-N3 by site] held out OSL_REF_BRS (3393 rows): erm 8.366, env-balanced 8.435, group-dro 9.542, env-standardised 11.56, erm-nn 9.26, vrex 9.564, irm 10.58
+  [pm25 OPC-N3 by site] held out OSL_REF_HJO (2999 rows): erm 5.018, env-balanced 5.021, group-dro 6.135, env-standardised 6.22, erm-nn 5.538, vrex 5.965, irm 5.753
+  [pm25 OPC-N3 by site] held out OSL_REF_KVN (44684 rows): erm 7.054, env-balanced 7.136, group-dro 8.198, env-standardised 9.384, erm-nn 6.961, vrex 7.768, irm 6.89
+  [pm25 OPC-N3 by site] held out OSL_REF_SKY (2205 rows): erm 8.203, env-balanced 8.283, group-dro 8.897, env-standardised 9.67, erm-nn 8.483, vrex 8.601, irm 8.87
+  [pm25 OPC-N3 by site] held out OSL_REF_SMS (1940 rows): erm 7.887, env-balanced 8.335, group-dro 9.35, env-standardised 7.66, erm-nn 9.243, vrex 9.746, irm 8.557
+  [pm25 OPC-N3 by site] held out OSL_TRAF_LIND (6499 rows): erm 5.481, env-balanced 5.493, group-dro 6.175, env-standardised 7.742, erm-nn 5.809, vrex 6.181, irm 6.098
+  [pm25 OPC-N3 by site] held out OSL_TRAF_VINK (6482 rows): erm 7.777, env-balanced 7.714, group-dro 8.92, env-standardised 8.348, erm-nn 8.066, vrex 8.731, irm 7.844
+  [pm25 OPC-N3 by site] held out ZAG_REF_IMI (49041 rows): erm 8.541, env-balanced 7.914, group-dro 7.361, env-standardised 7.73, erm-nn 8.164, vrex 7.575, irm 8.086
+  [pm25 OPC-N3 by site] held out ZAG_REF_JANK (1893 rows): erm 14.98, env-balanced 14.78, group-dro 13.62, env-standardised 22.23, erm-nn 14.44, vrex 14.08, irm 15
+  [pm25 OPC-N3 by site] held out ZAG_REF_ZAG2 (3880 rows): erm 10.42, env-balanced 9.909, group-dro 8.887, env-standardised 14.46, erm-nn 9.892, vrex 8.553, irm 10.44
+  [pm25 OPC-N3 by site] held out ZAG_REF_ZAG3 (5398 rows): erm 9.034, env-balanced 8.737, group-dro 8.078, env-standardised 11.58, erm-nn 8.405, vrex 8.305, irm 8.939
+RESULT [pm25 OPC-N3 by site] 21 held-out environments; mean / worst RMSE; environments better than its reference (erm for tree methods, erm-nn for vrex and irm):
+RESULT [pm25 OPC-N3 by site]   erm               7.521 / 14.98   better in 0/21
+RESULT [pm25 OPC-N3 by site]   env-balanced      7.37 / 14.78   better in 14/21
+RESULT [pm25 OPC-N3 by site]   group-dro         7.875 / 13.62   better in 4/21
+RESULT [pm25 OPC-N3 by site]   env-standardised  8.981 / 22.23   better in 3/21
+RESULT [pm25 OPC-N3 by site]   erm-nn            7.598 / 14.44   better in 9/21
+RESULT [pm25 OPC-N3 by site]   vrex              7.774 / 14.08   better in 4/21
+RESULT [pm25 OPC-N3 by site]   irm               7.76 / 15   better in 8/21
+finished: 2026-11-27T10:20:34Z, exit code 0

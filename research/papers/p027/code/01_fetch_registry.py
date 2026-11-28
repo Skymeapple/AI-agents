@@ -1,12 +1,12 @@
 """Fetch the full official MCP Registry (latest version of every server).
 
-Output: data/registry_latest.json  (list of server records, raw API objects)
+Output: data_cache/registry_latest.json  (list of server records, raw API objects)
 Source: https://registry.modelcontextprotocol.io/v0/servers (public, read-only API)
 """
 import json, time, urllib.request, urllib.parse, os, sys
 
 BASE = "https://registry.modelcontextprotocol.io/v0/servers"
-OUT = os.path.join(os.path.dirname(__file__), "..", "data", "registry_latest.json")
+OUT = os.path.join(os.path.dirname(__file__), "..", "data_cache", "registry_latest.json")
 
 
 def get(url):

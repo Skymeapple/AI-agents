@@ -2,7 +2,7 @@
 and keep, for every published version: publish time and the declared dependency
 ranges on the official MCP SDK packages.
 
-Output: data/npm_deps.jsonl  (one JSON object per package)
+Output: data_cache/npm_deps.jsonl  (one JSON object per package)
 """
 import json, os, sys, time, urllib.request, urllib.parse
 from concurrent.futures import ThreadPoolExecutor
@@ -53,10 +53,10 @@ def extract(name):
 
 
 def main():
-    reg = json.load(open(os.path.join(D, "registry_latest.json")))
+    reg = json.load(open(os.path.join(D, "..", "data_cache", "registry_latest.json")))
     names = sorted({p["identifier"] for x in reg for p in (x["server"].get("packages") or [])
                     if p.get("registryType") == "npm"})
-    out = os.path.join(D, "npm_deps.jsonl")
+    out = os.path.join(D, "..", "data_cache", "npm_deps.jsonl")
     done = set()
     if os.path.exists(out):
         for line in open(out):

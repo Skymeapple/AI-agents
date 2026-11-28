@@ -1,0 +1,33 @@
+# The research agenda autoscout starts from: what it is looking for, and the
+# words it initially believes signal each topic.
+#
+# These are the SEED profiles. The agent is expected to outgrow them -- new
+# terms enter a profile only when a change that adds them wins a measured
+# evaluation (see autoscout/gate.py), never just because they were mined.
+#
+# `queries` is the arXiv category filter used in live harvesting.
+name: self-iterating research agents
+queries:
+  categories: [cs.AI, cs.CL, cs.LG, cs.MA, cs.SE]
+topics:
+  tool_use:
+    description: Agents calling tools, APIs and external systems.
+    terms: [tool, tools, api, function-calling, plugins, invocation, external, calls]
+  planning:
+    description: Planning, search and decomposition in agents.
+    terms: [planning, plan, decomposition, subgoals, lookahead, tree-search, planner]
+  memory:
+    description: Memory, retrieval and long-horizon context for agents.
+    terms: [memory, episodic, long-term, recall, retrieval-augmented, storage-of-experience]
+  multi_agent:
+    description: Multiple agents coordinating, debating or dividing work.
+    terms: [multi-agent, collaboration, debate, roles, coordination, agent-society]
+  self_improvement:
+    description: Agents that improve themselves -- the topic this project is about.
+    terms: [self-improvement, self-refine, reflection, self-feedback, iterative-refinement, bootstrapping]
+  evaluation:
+    description: How agents are measured.
+    terms: [benchmark, evaluation, leaderboard, success-rate, test-suite]
+  efficiency:
+    description: Making agents cheaper and faster.
+    terms: [efficiency, cost, inference-cost, throughput-of-agents, cheaper, compute-efficient]

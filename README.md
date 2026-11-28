@@ -187,6 +187,41 @@ artefact, indistinguishable from a real effect. A worked three-scenario
 comparison is in
 [`examples/sodium-battery-comparison.md`](examples/sodium-battery-comparison.md).
 
+## autoscout: a self-iterating research agent
+
+`autoscout/` is a research project built on sciscout: an agent that keeps up
+with the newest work on AI agents and improves itself as it goes. Each cycle
+it gathers new papers, triages them into a digest, learns emerging vocabulary
+from them, proposes changes to its own configuration, and keeps a change only
+if a paired bootstrap on a labelled benchmark says it helps and a holdout
+split agrees. A sealed split that no decision ever reads tracks whether the
+gains are real. The research questions, first results and roadmap are in
+[`docs/RESEARCH_PLAN.md`](docs/RESEARCH_PLAN.md).
+
+```bash
+python scripts/make_agent_corpus.py                 # synthetic stream + benchmark
+python -m autoscout.cli run --cycles 12             # offline: replay 12 weeks
+cat autoscout_runs/local/REPORT.md                  # trajectory: tune / holdout / sealed
+python scripts/run_ablation.py --seeds 5            # frozen vs mutation vs literature vs full
+python -m autoscout.cli cycle --live                # with egress: real arXiv papers
+```
+
+On the synthetic stream, where the field's vocabulary drifts week by week, the
+agent's sealed triage utility goes from 0.735 (frozen seed) to 0.98. Tuning
+parameters alone reaches 0.88 and cannot keep up with the drift. Learning from
+the literature is what closes the gap ([ablation](examples/autoscout-ablation.md)).
+The same caveat as the demo corpus applies, only more so: the drift was
+planted by the author of the agent, so this shows the mechanism works, not
+how it does on real papers. Real-paper evaluation comes from human labels
+(`autoscout queue` / `autoscout label`), and in live mode the agent will not
+modify itself until those exist.
+
+The agent changes only a bounded, validated configuration, never its own
+code. A Claude proposer (optional; set `ANTHROPIC_API_KEY`) can suggest code
+changes, but they go to an ideas backlog for a person. The scheduled workflow
+(`.github/workflows/autoscout.yml`) opens each cycle as a pull request, so a
+human merge is the checkpoint.
+
 ## Quick start
 
 ```bash
@@ -290,9 +325,20 @@ sciscout/
   commercial/            TRL -> stages, costs, timelines, constraints
   invest/                distributions, investment case, Monte Carlo engine
   priors/sectors.yaml    commercialisation priors, graded by provenance
+autoscout/
+  config.py              the bounded configuration the agent may change
+  scout.py               gather: arXiv (live) or replayed stream (offline)
+  triage.py              flag new papers for reading, by topic
+  mining.py              learn emerging vocabulary from new papers
+  proposers.py           mutation / literature / Claude proposers, bandit
+  bench.py               per-item benchmarks, tune/holdout/sealed splits
+  gate.py                paired-bootstrap acceptance gate
+  loop.py                the self-iteration cycle
+  cli.py                 init / cycle / run / status / queue / label
+docs/RESEARCH_PLAN.md    research questions, results, roadmap for autoscout
 examples/                worked scenario file and its comparison output
-scripts/                 synthetic corpus generator
-tests/                   78 tests
+scripts/                 synthetic corpus generators, autoscout ablation
+tests/                   102 tests
 ```
 
 ## Tests

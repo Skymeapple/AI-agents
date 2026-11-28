@@ -264,12 +264,12 @@ def fig_e4():
     a.set_xticks(range(len(S)), [str(s) for s in S], rotation=45, fontsize=7)
     a.set_xlabel("feature sparsity S")
     a.set_ylabel("features represented (‖W_i‖>0.5)")
-    a.set_title("(a) Sparse worlds are stored in superposition")
+    a.set_title("(a) Superposition grows with sparsity")
     a.legend(fontsize=6.5)
-    for a, s in [(ax[1], S[0]), (ax[2], S[-2])]:
+    for a, s, tag in [(ax[1], S[0], "(b) dense"), (ax[2], S[-2], "(c) sparse")]:
         G = np.asarray(R["relu"][str(s)]["gram"])
         a.imshow(G, cmap="RdBu_r", vmin=-1, vmax=1)
-        a.set_title(f"WᵀW, S={s}")
+        a.set_title(f"{tag}: WᵀW, S={s}")
         a.set_xticks([])
         a.set_yticks([])
         a.grid(False)

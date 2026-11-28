@@ -102,12 +102,30 @@ class DealTerms:
     # not a hurdle rate.
     discount_rate: Distribution
     provenance: Provenance
+    # Total size of the round the cheque is part of, co-investors included.
+    # None means the cheque is the whole round. This is what the entry round
+    # contributes toward the first remaining stage; whatever that stage costs
+    # beyond it has to be raised later, and dilutes.
+    round_usd: float | None = None
 
     def __post_init__(self) -> None:
         if not 0.0 < self.entry_ownership <= 1.0:
             raise ValueError("entry_ownership must be a fraction in (0, 1]")
         if self.check_usd <= 0:
             raise ValueError("check_usd must be positive")
+        if self.round_usd is not None:
+            if self.round_usd < self.check_usd:
+                raise ValueError("round_usd cannot be smaller than the cheque in it")
+            if self.round_usd > self.entry_post_money * (1 + 1e-9):
+                raise ValueError(
+                    "round_usd cannot exceed the post-money valuation implied by "
+                    "check_usd / entry_ownership"
+                )
+
+    @property
+    def entry_round_usd(self) -> float:
+        """Capital the entry round puts toward the first remaining stage."""
+        return self.check_usd if self.round_usd is None else self.round_usd
 
     @classmethod
     def placeholder(

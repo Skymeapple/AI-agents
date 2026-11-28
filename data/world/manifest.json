@@ -1,0 +1,142 @@
+{
+  "population": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SP.POP.TOTL",
+    "title": "Population, total",
+    "unit": "people",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SP.POP.TOTL?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "gdp_per_capita": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "NY.GDP.PCAP.KD",
+    "title": "GDP per capita (constant 2015 US$)",
+    "unit": "constant 2015 US$",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/NY.GDP.PCAP.KD?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "poverty_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SI.POV.DDAY",
+    "title": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+    "unit": "% of population under $3.00/day (2021 PPP)",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SI.POV.DDAY?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "undernourishment_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SN.ITK.DEFC.ZS",
+    "title": "Prevalence of undernourishment (% of population)",
+    "unit": "% of population",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SN.ITK.DEFC.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "food_insecurity_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SN.ITK.MSFI.ZS",
+    "title": "Prevalence of moderate or severe food insecurity in the population (%)",
+    "unit": "% of population, moderate or severe",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SN.ITK.MSFI.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "safe_water_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SH.H2O.SMDW.ZS",
+    "title": "People using safely managed drinking water services (% of population)",
+    "unit": "% of population with safely managed drinking water",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SH.H2O.SMDW.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "safe_sanitation_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SH.STA.SMSS.ZS",
+    "title": "People using safely managed sanitation services (% of population)",
+    "unit": "% of population with safely managed sanitation",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SH.STA.SMSS.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "forest_share": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "AG.LND.FRST.ZS",
+    "title": "Forest area (% of land area)",
+    "unit": "% of land area",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/AG.LND.FRST.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "protected_share": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "ER.PTD.TOTL.ZS",
+    "title": "Terrestrial and marine protected areas (% of total territorial area)",
+    "unit": "% of territorial area, land and sea",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/ER.PTD.TOTL.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "military_spending_share": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "MS.MIL.XPND.GD.ZS",
+    "title": "Military expenditure (% of GDP)",
+    "unit": "% of GDP",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/MS.MIL.XPND.GD.ZS?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "refugees_unhcr_mandate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SM.POP.RHCR.EA",
+    "title": "Refugees under the mandate of the UNHCR by country or territory of asylum",
+    "unit": "people, by country of asylum",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SM.POP.RHCR.EA?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "under5_mortality": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SH.DYN.MORT",
+    "title": "Mortality rate, under-5 (per 1,000 live births)",
+    "unit": "deaths per 1,000 live births",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SH.DYN.MORT?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "life_expectancy": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "SP.DYN.LE00.IN",
+    "title": "Life expectancy at birth, total (years)",
+    "unit": "years",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/SP.DYN.LE00.IN?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "homicide_rate": {
+    "publisher": "World Bank, World Development Indicators",
+    "indicator": "VC.IHR.PSRC.P5",
+    "title": "Intentional homicides (per 100,000 people)",
+    "unit": "per 100,000 people",
+    "url": "https://api.worldbank.org/v2/country/WLD/indicator/VC.IHR.PSRC.P5?format=json&per_page=500",
+    "retrieved": "2026-11-28"
+  },
+  "co2_emissions": {
+    "publisher": "Our World in Data CO2 dataset (Global Carbon Project and others)",
+    "indicator": "co2_including_luc",
+    "unit": "MtCO2 per year, fossil plus land-use change",
+    "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv",
+    "retrieved": "2026-11-28"
+  },
+  "ghg_emissions": {
+    "publisher": "Our World in Data CO2 dataset (Global Carbon Project and others)",
+    "indicator": "total_ghg",
+    "unit": "MtCO2e per year",
+    "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv",
+    "retrieved": "2026-11-28"
+  },
+  "cumulative_co2": {
+    "publisher": "Our World in Data CO2 dataset (Global Carbon Project and others)",
+    "indicator": "cumulative_co2_including_luc",
+    "unit": "MtCO2 since 1850",
+    "url": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv",
+    "retrieved": "2026-11-28"
+  },
+  "temperature_anomaly": {
+    "publisher": "NASA GISTEMP v4 via the datasets/global-temp mirror",
+    "indicator": "annual mean",
+    "unit": "degC relative to 1951-1980 (not pre-industrial)",
+    "url": "https://raw.githubusercontent.com/datasets/global-temp/main/data/annual.csv",
+    "retrieved": "2026-11-28"
+  }
+}

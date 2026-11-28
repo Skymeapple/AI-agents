@@ -1,0 +1,273 @@
+# Parameters of the world model that cannot be estimated from the observed
+# series. Every value carries a `source` block; the loader refuses any that
+# does not. Trend rates are NOT here -- they are fitted from data/world.
+#
+# Most of what follows is graded `assumed`. That is the honest state of
+# knowledge about how global problems drive one another: the direction of each
+# link is well supported, its size is not. The simulation reports how much of
+# every result rests on these.
+
+base_year: 2025
+horizon: 2050
+
+parameters:
+  # --- climate ---------------------------------------------------------------
+  tcre:
+    low: 0.27
+    mode: 0.45
+    high: 0.63
+    unit: degC per 1000 GtCO2
+    source:
+      grade: sourced
+      detail: transient climate response to cumulative emissions, likely range and best estimate
+      reference: IPCC AR6 WG1 Summary for Policymakers, D.1.1
+  nonco2_multiplier:
+    low: 1.0
+    mode: 1.2
+    high: 1.4
+    unit: ratio of total warming to CO2-induced warming
+    source:
+      grade: assumed
+      detail: methane and other gases net of aerosol cooling add roughly a fifth on top of CO2 warming
+
+  # --- how problems drive one another (per-year effect on the target's rate) --
+  conflict_to_poverty:
+    low: 0.0
+    mode: 0.010
+    high: 0.030
+    unit: added poverty growth per log-unit of conflict deaths above the base year
+    source: {grade: assumed, detail: war destroys livelihoods; a doubling of deaths slows poverty reduction by under one point a year}
+  climate_to_poverty:
+    low: 0.0
+    mode: 0.020
+    high: 0.060
+    unit: added poverty growth per degC above the base year
+    source: {grade: assumed, detail: crop losses and disasters fall hardest on the poor}
+  inequality_to_poverty:
+    low: 0.0
+    mode: 0.001
+    high: 0.004
+    unit: added poverty growth per point of top-10% wealth share above the base year
+    source: {grade: assumed, detail: growth reaches the poor more slowly when gains concentrate}
+  poverty_to_hunger:
+    low: 0.2
+    mode: 0.5
+    high: 0.8
+    unit: share of any above-trend poverty change passed through to undernourishment
+    source: {grade: assumed, detail: hunger is largely a purchasing-power problem}
+  conflict_to_hunger:
+    low: 0.0
+    mode: 0.015
+    high: 0.040
+    unit: added hunger growth per log-unit of conflict deaths above the base year
+    source: {grade: assumed, detail: most acute food crises are in conflict zones}
+  climate_to_hunger:
+    low: 0.0
+    mode: 0.030
+    high: 0.080
+    unit: added hunger growth per degC above the base year
+    source: {grade: assumed, detail: heat and drought cut yields in the tropics}
+  hunger_to_conflict:
+    low: 0.0
+    mode: 0.3
+    high: 0.8
+    unit: shift in long-run log conflict deaths per log-unit of hunger above the base year
+    source: {grade: assumed, detail: food price spikes are associated with unrest}
+  climate_to_conflict:
+    low: 0.0
+    mode: 0.10
+    high: 0.30
+    unit: shift in long-run log conflict deaths per degC above the base year
+    source: {grade: assumed, detail: literature finds a positive but contested temperature-conflict link}
+  inequality_to_conflict:
+    low: 0.0
+    mode: 0.02
+    high: 0.06
+    unit: shift in long-run log conflict deaths per point of top-10% wealth share
+    source: {grade: assumed, detail: grievance channel; weakly evidenced at the global level}
+  conflict_to_water:
+    low: 0.0
+    mode: 0.005
+    high: 0.015
+    unit: added growth in share lacking safe water per log-unit of conflict deaths
+    source: {grade: assumed, detail: coverage in fragile states lags far behind}
+  climate_to_water:
+    low: 0.0
+    mode: 0.010
+    high: 0.030
+    unit: added growth in share lacking safe water per degC above the base year
+    source: {grade: assumed, detail: drought and salinisation stress supplies}
+  sanitation_to_amr:
+    low: 0.0
+    mode: 0.15
+    high: 0.40
+    unit: share of any above-trend sanitation change passed through to resistance deaths
+    source: {grade: assumed, detail: fewer infections means less antibiotic use and less spread}
+  climate_to_forest:
+    low: 0.0
+    mode: 0.0005
+    high: 0.0020
+    unit: added forest loss rate per degC above the base year
+    source: {grade: assumed, detail: fire and dieback}
+  conflict_to_displacement:
+    low: 0.3
+    mode: 0.7
+    high: 1.0
+    unit: elasticity of new displacement to conflict deaths
+    source: {grade: assumed, detail: displacement rises with violence but less than proportionally}
+  climate_to_displacement:
+    low: 0.0
+    mode: 0.15
+    high: 0.50
+    unit: fractional rise in new displacement per degC above the base year
+    source: {grade: assumed, detail: climate stress compounds conflict displacement}
+
+  # --- conflict and displacement dynamics ------------------------------------
+  conflict_reversion:
+    low: 0.1
+    mode: 0.3
+    high: 0.6
+    unit: share of the gap to the long-run level closed each year
+    source: {grade: assumed, detail: war intensity spikes and subsides over a few years}
+  displacement_return_rate:
+    low: 0.02
+    mode: 0.05
+    high: 0.09
+    unit: share of displaced people who return or resettle each year
+    source: {grade: assumed, detail: displacement is protracted; most situations last over a decade}
+
+  # --- health security --------------------------------------------------------
+  amr_growth:
+    low: 0.010
+    mode: 0.0178
+    high: 0.025
+    unit: annual log growth of deaths directly attributable to resistance
+    source:
+      grade: sourced
+      detail: mode is the rate implied by the GRAM forecast of 1.14M (2021) to 1.91M (2050); the range around it is our own
+      reference: https://healthdata.org/node/12105
+  pandemic_annual_probability:
+    low: 0.010
+    mode: 0.020
+    high: 0.035
+    kind: probability
+    unit: chance per year of a pandemic on the scale of COVID-19
+    source:
+      grade: sourced
+      detail: historical-record estimate of about 2% a year
+      reference: Marani et al., PNAS 2021, Intensity and frequency of extreme novel epidemics
+      needs_review: true
+  pandemic_deaths:
+    median: 7.0
+    spread: 6.0
+    kind: lognormal
+    unit: million excess deaths per pandemic
+    source: {grade: assumed, detail: centred below COVID-19's roughly 15 million excess deaths in 2020-21 with a tail several times larger}
+  pandemic_to_poverty:
+    low: 0.02
+    mode: 0.065
+    high: 0.12
+    unit: log jump in the poverty rate per 10 million pandemic deaths
+    source: {grade: assumed, detail: anchored on COVID-19 adding roughly a tenth to extreme poverty}
+
+  # --- problems with no usable time series ------------------------------------
+  ai_gap_growth:
+    low: 0.0
+    mode: 0.05
+    high: 0.15
+    unit: annual log growth of an index of AI capability relative to oversight capacity (2025 = 1)
+    source: {grade: assumed, detail: no measured series exists; this index is a placeholder for the direction of travel, not a measurement}
+  inequality_drift:
+    low: -0.10
+    mode: 0.0
+    high: 0.10
+    unit: points per year change in the top-10% wealth share
+    source: {grade: assumed, detail: the share has moved little for decades}
+
+  # --- what one unit of extra effort buys (lever = +1) -------------------------
+  mitigation_effect:
+    low: 0.030
+    mode: 0.050
+    high: 0.076
+    unit: annual log cut in CO2 emissions
+    source: {grade: assumed, detail: UNEP's 45% cut by 2035 implies about 6% a year; treated as near the ceiling of what is achievable}
+  peacebuilding_effect:
+    low: 0.3
+    mode: 0.7
+    high: 1.1
+    unit: reduction in long-run log conflict deaths
+    source: {grade: assumed, detail: sustained mediation and peacekeeping roughly halving long-run deaths}
+  peacebuilding_return_effect:
+    low: 0.01
+    mode: 0.03
+    high: 0.06
+    unit: added annual return rate of displaced people
+    source: {grade: assumed, detail: settlements allow returns}
+  development_poverty_effect:
+    low: 0.010
+    mode: 0.030
+    high: 0.050
+    unit: annual log cut in the poverty rate
+    source: {grade: assumed, detail: transfers and debt relief roughly doubling the recent pace}
+  development_hunger_effect:
+    low: 0.005
+    mode: 0.015
+    high: 0.030
+    unit: annual log cut in undernourishment, beyond what flows through poverty
+    source: {grade: assumed, detail: nutrition programmes and smallholder support}
+  health_amr_effect:
+    low: 0.010
+    mode: 0.030
+    high: 0.050
+    unit: annual log cut in resistance deaths
+    source: {grade: assumed, detail: the GRAM study's better-care scenario averts a large share of deaths}
+  health_pandemic_effect:
+    low: 0.2
+    mode: 0.5
+    high: 0.7
+    unit: fraction of pandemic deaths averted
+    source: {grade: assumed, detail: surveillance and fast vaccine manufacture}
+  conservation_effect:
+    low: 0.0005
+    mode: 0.0012
+    high: 0.0020
+    unit: annual log gain in forest share
+    source: {grade: assumed, detail: enough to halt and slightly reverse the recent loss rate}
+  wash_effect:
+    low: 0.010
+    mode: 0.025
+    high: 0.040
+    unit: annual log cut in the shares lacking safe water and sanitation
+    source: {grade: assumed, detail: roughly doubling the recent pace of coverage gains}
+  ai_governance_effect:
+    low: 0.03
+    mode: 0.08
+    high: 0.15
+    unit: annual log cut in the AI oversight gap index
+    source: {grade: assumed, detail: sized to close the gap at the modal growth rate}
+  redistribution_inequality_effect:
+    low: 0.10
+    mode: 0.25
+    high: 0.40
+    unit: points per year cut in the top-10% wealth share
+    source: {grade: assumed, detail: coordinated wealth and corporate minimum taxes}
+  redistribution_poverty_effect:
+    low: 0.003
+    mode: 0.010
+    high: 0.020
+    unit: annual log cut in the poverty rate
+    source: {grade: assumed, detail: proceeds spent on transfers}
+
+# Levers are extra effort relative to today: 0 continues current effort (the
+# observed trends already embody it), +1 is the full additional push above,
+# negative values withdraw effort.
+scenarios:
+  - name: Current trajectory
+    description: Recent trends continue and no lever moves.
+    levers: {}
+  - name: Cooperation
+    description: Every lever at 0.7 - a sustained, coordinated push on all fronts.
+    levers: {mitigation: 0.7, peacebuilding: 0.7, development: 0.7, health: 0.7, conservation: 0.7, wash: 0.7, ai_governance: 0.7, redistribution: 0.7}
+  - name: Fragmentation
+    description: Every lever at -0.3 - effort is withdrawn as cooperation breaks down.
+    levers: {mitigation: -0.3, peacebuilding: -0.3, development: -0.3, health: -0.3, conservation: -0.3, wash: -0.3, ai_governance: -0.3, redistribution: -0.3}

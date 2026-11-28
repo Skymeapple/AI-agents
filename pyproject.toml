@@ -14,24 +14,28 @@ dev = ["pytest>=8.0"]
 # Only needed for autoscout's LLM proposer; the agent runs without it.
 llm = ["anthropic>=1.8"]
 cosmos = ["scipy>=1.11", "matplotlib>=3.8"]
+# nexus loop runs the checkers in aisci-verifiers/, which need these.
+verify = ["sympy>=1.12", "scipy>=1.11", "jsonschema>=4.0"]
 
 [project.scripts]
 sciscout = "sciscout.cli:main"
 autoscout = "autoscout.cli:main"
 airadar = "airadar.cli:main"
+nexus = "nexus.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["sciscout*", "autoscout*", "airadar*", "cosmos*", "worldsim*"]
+include = ["sciscout*", "autoscout*", "airadar*", "cosmos*", "worldsim*", "nexus*"]
 
 [tool.setuptools.package-data]
 sciscout = ["priors/*.yaml"]
 autoscout = ["agenda.yaml"]
 cosmos = ["data/*"]
 worldsim = ["*.yaml"]
+nexus = ["*.yaml", "*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

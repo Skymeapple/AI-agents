@@ -1,0 +1,28 @@
+# Known pairs between two catalogues, used only to measure the matcher.
+#
+# Each AI-100 question below is, in the model's judgement, about the same topic
+# as one ai2035 question. The ai2035 frontier papers are labelled by the ai2035
+# question whose search returned them, so a pair gives an AI-100 question a set
+# of papers that "should" match it -- while its matching text (the English gloss
+# in ai100_en.yaml) was written separately from the search queries that found
+# those papers. One AI-100 question per ai2035 question; overlapping candidates
+# (e.g. 011, 013, 044) were left out rather than guessed at.
+#
+# Written by the model. Not from any source, not reviewed: graded `assumed`.
+source:
+  grade: assumed
+  detail: topic equivalence between an AI-100 question and an ai2035 question, judged by the model
+pairs:
+  "001": Q03   # scaling laws
+  "003": Q05   # reinforcement learning, verifiable rewards
+  "005": Q09   # generalisation / out-of-distribution
+  "012": Q15   # knowing what it does not know / uncertainty
+  "014": Q08   # causal reasoning
+  "016": Q07   # continual learning
+  "017": Q17   # world models
+  "019": Q20   # scientific discovery
+  "023": Q18   # multi-agent
+  "034": Q14   # reward hacking
+  "036": Q12   # jailbreaks / adversarial robustness
+  "042": Q11   # mechanistic interpretability
+  "099": Q19   # human-AI collaboration

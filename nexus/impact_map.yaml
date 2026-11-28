@@ -1,0 +1,73 @@
+# Which worldsim lever a successful research direction moves, and by how much.
+#
+# Nothing in this file is measured. sciscout says whether and when a direction
+# reaches market; worldsim says what a lever does to the world. The step in
+# between -- "a commercial sodium battery is worth this much of an emissions
+# push" -- exists in neither model and is a judgement. So every value here is
+# graded `assumed`, the loader refuses any value without a `source` block, and
+# the report states what share of each result rests on these lines.
+#
+# A rule applies to a direction when its sector matches and, if the rule lists
+# `terms`, at least `min_share` of the direction's works mention one of them.
+# The first matching rule wins. A direction no rule matches is reported as
+# unpriced. That is not the same as zero impact: it means worldsim has no lever
+# that represents what the direction would change.
+#
+# `size` is in worldsim lever units, where +1 is the full extra push defined in
+# worldsim/params.yaml (for mitigation, roughly a 5% annual cut in emissions,
+# which that file describes as near the ceiling of what is achievable).
+# `ramp_years` is the time from first market entry to the full effect.
+
+rules:
+  - name: low-carbon energy hardware
+    sector: energy_hardware
+    levers:
+      mitigation:
+        value: 1.0
+        source: {grade: assumed, detail: "the whole effect is counted as emissions avoided; no other lever is credited"}
+    size:
+      low: 0.005
+      mode: 0.03
+      high: 0.10
+      unit: share of worldsim's full mitigation push delivered by one commercial technology
+      source: {grade: assumed, detail: "one technology among the dozens a full mitigation push would need; a judgement with no data behind it and the same for every energy direction"}
+    ramp_years:
+      low: 5
+      mode: 12
+      high: 25
+      unit: years from first market entry to full deployment
+      source: {grade: assumed, detail: "energy hardware has historically taken a decade or more to reach scale after first commercial sale; not fitted to any series in this repository"}
+
+  - name: infection control
+    sector: biopharma
+    # Word boundaries matter: a bare 'pathogen' also matches 'pathogenic
+    # mutation' and would credit gene editing with health security.
+    terms: ['\bantibiotics?\b', '\bantimicrobials?\b', '\bdrug[- ]resistan(t|ce)\b', '\bvaccines?\b', '\bpandemics?\b', '\bpathogens?\b']
+    min_share:
+      value: 0.25
+      unit: share of the direction's works mentioning one of the terms
+      source: {grade: assumed, detail: "a quarter of the works must be about infection before the direction is credited with health security; chosen to keep incidental mentions out"}
+    levers:
+      health:
+        value: 1.0
+        source: {grade: assumed, detail: "counted against resistance and pandemic deaths, the only two things worldsim's health lever acts on"}
+    size:
+      low: 0.005
+      mode: 0.03
+      high: 0.10
+      unit: share of worldsim's full health-security push delivered by one approved product class
+      source: {grade: assumed, detail: "one product class among the many a full health-security push would need; a judgement with no data behind it"}
+    ramp_years:
+      low: 3
+      mode: 8
+      high: 15
+      unit: years from first approval to full use
+      source: {grade: assumed, detail: "uptake of a new anti-infective is paced by stewardship, price and manufacturing; not fitted to any series in this repository"}
+
+# Sectors deliberately left without a rule, with the reason shown in the report.
+unpriced:
+  biopharma: worldsim's health lever acts only on drug-resistant infections and pandemics; a therapy for anything else changes no modelled outcome
+  agriculture_food: worldsim has no lever for crop or food technology; hunger there moves through poverty, conflict and climate
+  semiconductors: worldsim has no lever or outcome that computing hardware acts on
+  software_ai: worldsim's only AI lever is governance, which is not what an AI capability advance moves
+  generic: the direction was not routed to a modelled sector, so nothing is known about what it would change

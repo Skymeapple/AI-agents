@@ -1,6 +1,6 @@
 """Revision (R1) MLP experiments, same network/data/phase-1 as mlp_experiments.py.
 (1) Step-size / progress-matched optimiser comparison at rho in {0.1, 0.3}:
-      GD   eta = c / lambda_max(G_rho(theta_0)),  c in {1, 0.3}
+      GD   eta = c / lambda_max(G_rho(theta_0)),  c in {1, 0.3, 0.1}  (4000 / 8000 / 12000 steps)
       Adam lr in {1e-3, 3e-4}
       GGN-flow  delta=1e-3 (relative), lr 0.2, 150 steps
     For each run we store the full (L1, L2) trajectory metrics at matched new-task progress:
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     print(scen, seed, "short done", f"{time.time()-t0:.0f}s", flush=True)
     # (1) matched comparison
     for rho in [0.1, 0.3]:
-        for method, kw, steps in [("gd", dict(c=1.0), 4000), ("gd", dict(c=0.3), 8000),
+        for method, kw, steps in [("gd", dict(c=1.0), 4000), ("gd", dict(c=0.3), 8000), ("gd", dict(c=0.1), 12000),
                                   ("adam", dict(lr=1e-3), 4000), ("adam", dict(lr=3e-4), 8000),
                                   ("ggn", dict(lr=0.2, delta=1e-3), 150)]:
             out["runs"].append(run(th0, T, rho, method, steps, **kw))

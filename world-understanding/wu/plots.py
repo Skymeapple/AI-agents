@@ -138,6 +138,32 @@ def fig_e1():
 
 
 # ----------------------------------------------------------------------------- E2
+def floor_fit(ns, e):
+    """Fit e(n) = a n^-beta + f (power law plus an optimisation/noise floor) in log space.
+    Returns beta."""
+    from scipy.optimize import curve_fit
+    ns, e = np.asarray(ns, float), np.asarray(e, float)
+    f = lambda n, la, b, lf: np.log(np.exp(la) * n ** (-b) + np.exp(lf))
+    p, _ = curve_fit(f, ns, np.log(e), p0=[np.log(e[0] * 128 ** 0.5), 1.0, np.log(e.min() / 2)], maxfev=20000)
+    return float(p[1])
+
+
+def e2_analysis(R):
+    """Exponent per d from a power-law-plus-floor fit (per seed), and the c/d fit."""
+    out = {}
+    for d in R["dims"]:
+        E = np.asarray(R["err"][str(d)])
+        b = [floor_fit(R["ns"], E[:, j]) for j in range(E.shape[1])]
+        out[d] = dict(beta=float(np.mean(b)), beta_sd=float(np.std(b)), beta_seeds=b,
+                      global_=-R["fits"][str(d)]["slope"])
+    ds = list(R["dims"])
+    inv = np.array([1 / d for d in ds])
+    sl = np.array([out[d]["beta"] for d in ds])
+    c = float(inv @ sl / (inv @ inv))
+    r2 = float(1 - ((sl - c * inv) ** 2).sum() / ((sl - sl.mean()) ** 2).sum())
+    return out, ds, c, r2
+
+
 def fig_e2():
     R = load_json("e2_manifold" + SFX)
     fig, ax = plt.subplots(1, 3, figsize=(10.5, 3.2))
@@ -145,7 +171,7 @@ def fig_e2():
     for i, d in enumerate(R["dims"]):
         e = np.asarray(R["err"][str(d)])
         a.errorbar(R["ns"], e.mean(1), yerr=e.std(1), color=C[i], marker="o", capsize=2,
-                   label=f"d={d}  slope {R['fits'][str(d)]['slope']:.2f}")
+                   label=f"d={d}")
     a.set_xscale("log", base=2)
     a.set_yscale("log")
     a.set_xlabel("training samples n")
@@ -153,20 +179,21 @@ def fig_e2():
     a.set_title(f"(a) Learning curves, ambient D={R['D']}")
     a.legend()
     a = ax[1]
-    dims = np.array(R["dims"], float)
-    sl = np.array([-R["fits"][str(d)]["slope"] for d in R["dims"]])
-    ci = np.array([R["fits"][str(d)]["ci"] for d in R["dims"]])
-    a.errorbar(1 / dims, sl, yerr=[sl + ci[:, 1], -ci[:, 0] - sl], fmt="o", color=C[0], capsize=2,
-               label="measured exponent")
+    an, ds, c, r2 = e2_analysis(R)
+    dims = np.array(ds, float)
+    sl = np.array([an[d]["beta"] for d in ds])
+    sd = np.array([an[d]["beta_sd"] for d in ds])
+    a.errorbar(1 / dims, sl, yerr=sd, fmt="o", color=C[0], capsize=2, label="β from power law + floor")
+    a.plot(1 / dims, [an[d]["global_"] for d in ds], "x", color=GRAY, label="naive log-log slope")
     xx = np.linspace(0, 0.55, 50)
-    a.plot(xx, R["slope_vs_invd"]["c"] * xx, color=C[1], ls="--",
-           label=f"fit  {R['slope_vs_invd']['c']:.2f}/d  (R²={R['slope_vs_invd']['r2']:.2f})")
+    a.plot(xx, c * xx, color=C[1], ls="--", label=f"{c:.1f}/d  (R²={r2:.2f})")
+    a.plot(xx, 4 * xx, color=C[2], ls=":", lw=1.2, label="4/d (Sharma & Kaplan)")
     for d, s_ in zip(dims, sl):
         a.annotate(f"d={int(d)}", (1 / d, s_), textcoords="offset points", xytext=(5, -10), fontsize=7)
     a.set_xlabel("1 / intrinsic dimension")
     a.set_ylabel("learning-curve exponent  −slope")
     a.set_title("(b) Exponent scales with 1/d")
-    a.legend(loc="upper left")
+    a.legend(loc="upper left", fontsize=6.5)
     a = ax[2]
     est = [np.mean(R["twonn"][str(d)]) for d in R["dims"]]
     a.plot([0, 9], [0, 9], color=GRAY, lw=1)

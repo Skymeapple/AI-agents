@@ -1,0 +1,62 @@
+{
+  "random|anomaly=True": {
+    "mean_best": 3.3680439676795477,
+    "anomaly_found_rate": 0.3333333333333333,
+    "false_alarms_per_100": 0.0,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  },
+  "bo_reject|anomaly=True": {
+    "mean_best": 4.5559587794849685,
+    "anomaly_found_rate": 0.6666666666666666,
+    "false_alarms_per_100": 0.0,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  },
+  "bo_surprise|anomaly=True": {
+    "mean_best": 4.528083561346382,
+    "anomaly_found_rate": 0.6666666666666666,
+    "false_alarms_per_100": 0.08333333333333333,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  },
+  "random|anomaly=False": {
+    "mean_best": 3.02919537281795,
+    "anomaly_found_rate": 0.0,
+    "false_alarms_per_100": 0.0,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  },
+  "bo_reject|anomaly=False": {
+    "mean_best": 3.344656788522213,
+    "anomaly_found_rate": 0.0,
+    "false_alarms_per_100": 0.0,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  },
+  "bo_surprise|anomaly=False": {
+    "mean_best": 3.342726721126819,
+    "anomaly_found_rate": 0.0,
+    "false_alarms_per_100": 0.0,
+    "experiments": 100,
+    "human_steps": 0,
+    "store_missing": 0,
+    "chain_intact": true,
+    "negative_or_failed_logged": 30
+  }
+}

@@ -1,0 +1,3415 @@
+{
+ "tuned_thresholds_q0_out_of_sample": {
+  "gap": 0.26,
+  "ens": 0.10550505050505052,
+  "hackrate": 0.05
+ },
+ "gold_baseline_params_tuned_in_W_q0": {
+  "5": [
+   8,
+   16
+  ],
+  "10": [
+   8,
+   16
+  ],
+  "20": [
+   8,
+   20
+  ],
+  "40": [
+   8,
+   20
+  ],
+  "80": [
+   5,
+   16
+  ]
+ },
+ "R1_W": {
+  "q=0.0": {
+   "cov-lev|m=5": {
+    "regret": 0.10750725755789647,
+    "se": 0.007982249373091992,
+    "overshoot": 0.1,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 45.0
+   },
+   "cov-unif|m=5": {
+    "regret": 0.13480232262357644,
+    "se": 0.00882727389956526,
+    "overshoot": 0.115,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 42.075
+   },
+   "cov-lev-anytime(a=0.1)|m=5": {
+    "regret": 0.4171632106982992,
+    "se": 0.022962103880551178,
+    "overshoot": 0.96,
+    "p90_regret": 0.9639335531650323,
+    "labels_mean": 91.7
+   },
+   "cov-lev-win3+rollback|m=5": {
+    "regret": 0.030451380783243942,
+    "se": 0.0031852031539101964,
+    "overshoot": 0.355,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 67.2
+   },
+   "goldtrend|m=5": {
+    "regret": 0.17220937286032245,
+    "se": 0.0049189292747918376,
+    "overshoot": 0.0,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 32.975
+   },
+   "goldtrend-reg|m=5": {
+    "regret": 0.15589523496874863,
+    "se": 0.005578073021731049,
+    "overshoot": 0.035,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 36.175
+   },
+   "goldtrend+rollback|m=5": {
+    "regret": 0.2894321993445316,
+    "se": 0.007334824182393914,
+    "overshoot": 0.0,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 32.975
+   },
+   "proxypoint|m=5": {
+    "regret": 0.2551261209170549,
+    "se": 0.00792543552232195,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 36.8
+   },
+   "goldtrend-oracle-tuned|m=5": {
+    "regret": 0.06066460651466299,
+    "se": 0.003992536848724715,
+    "overshoot": 0.2,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 55.4,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=5": {
+    "regret": 0.054348228355851125,
+    "se": 0.0069391772268113,
+    "overshoot": 0.295,
+    "p90_regret": 0.15196374227198087,
+    "labels_mean": 82.925,
+    "kmin": 16
+   },
+   "cov-lev|m=10": {
+    "regret": 0.03801124471102035,
+    "se": 0.0038040682654270955,
+    "overshoot": 0.16,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 112.35
+   },
+   "cov-unif|m=10": {
+    "regret": 0.09740086202873188,
+    "se": 0.007859110743087077,
+    "overshoot": 0.12,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 93.5
+   },
+   "cov-lev-anytime(a=0.1)|m=10": {
+    "regret": 0.31744879906405943,
+    "se": 0.015183752619119705,
+    "overshoot": 0.995,
+    "p90_regret": 0.5773573268849397,
+    "labels_mean": 179.5
+   },
+   "cov-lev-win3+rollback|m=10": {
+    "regret": 0.015821303198184422,
+    "se": 0.001562368328449027,
+    "overshoot": 0.385,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 139.45
+   },
+   "goldtrend|m=10": {
+    "regret": 0.15416712453071435,
+    "se": 0.005356782732654855,
+    "overshoot": 0.01,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 71.15
+   },
+   "goldtrend-reg|m=10": {
+    "regret": 0.13190615172112086,
+    "se": 0.006054300941126917,
+    "overshoot": 0.035,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 78.85
+   },
+   "goldtrend+rollback|m=10": {
+    "regret": 0.2644706235226557,
+    "se": 0.007298674268710554,
+    "overshoot": 0.0,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 71.15
+   },
+   "proxypoint|m=10": {
+    "regret": 0.2542562610269189,
+    "se": 0.007363652744618476,
+    "overshoot": 0.0,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 68.4
+   },
+   "goldtrend-oracle-tuned|m=10": {
+    "regret": 0.07890764259661087,
+    "se": 0.006467037697717069,
+    "overshoot": 0.33,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 121.0,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=10": {
+    "regret": 0.0403164078837307,
+    "se": 0.006062741717984386,
+    "overshoot": 0.355,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 166.8,
+    "kmin": 16
+   },
+   "cov-lev|m=20": {
+    "regret": 0.017115578073812143,
+    "se": 0.002018466914004212,
+    "overshoot": 0.23,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 247.5
+   },
+   "cov-unif|m=20": {
+    "regret": 0.06665724767140818,
+    "se": 0.006253534169046989,
+    "overshoot": 0.155,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 207.8
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.24678186443333514,
+    "se": 0.010205712167340163,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 350.1
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.011917962633660961,
+    "se": 0.001299697234546897,
+    "overshoot": 0.4,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 283.0
+   },
+   "goldtrend|m=20": {
+    "regret": 0.13527476034400404,
+    "se": 0.005805748875315785,
+    "overshoot": 0.025,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 155.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.11767676853058984,
+    "se": 0.005820076861768825,
+    "overshoot": 0.08,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 171.6
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.24416132697082832,
+    "se": 0.00850568569769015,
+    "overshoot": 0.005,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 155.1
+   },
+   "proxypoint|m=20": {
+    "regret": 0.2316251875047546,
+    "se": 0.008055657288877143,
+    "overshoot": 0.005,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 143.7
+   },
+   "goldtrend-oracle-tuned|m=20": {
+    "regret": 0.07076364069386831,
+    "se": 0.005842293366896465,
+    "overshoot": 0.505,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 263.1,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=20": {
+    "regret": 0.021995473812442434,
+    "se": 0.002493441922407491,
+    "overshoot": 0.665,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 400.2,
+    "kmin": 20
+   },
+   "cov-lev|m=40": {
+    "regret": 0.009204825883871948,
+    "se": 0.0012351383950717117,
+    "overshoot": 0.31,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 514.2
+   },
+   "cov-unif|m=40": {
+    "regret": 0.023206069711469324,
+    "se": 0.0027668628080443616,
+    "overshoot": 0.175,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 476.2
+   },
+   "cov-lev-anytime(a=0.1)|m=40": {
+    "regret": 0.1627799519181633,
+    "se": 0.00600677404086708,
+    "overshoot": 1.0,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 670.4
+   },
+   "cov-lev-win3+rollback|m=40": {
+    "regret": 0.008220004072727494,
+    "se": 0.0008442064665680012,
+    "overshoot": 0.405,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 567.0
+   },
+   "goldtrend|m=40": {
+    "regret": 0.10819935315702495,
+    "se": 0.006113787794895319,
+    "overshoot": 0.06,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 351.4
+   },
+   "goldtrend-reg|m=40": {
+    "regret": 0.0817818871015995,
+    "se": 0.0055019867100906585,
+    "overshoot": 0.17,
+    "p90_regret": 0.1968175097566183,
+    "labels_mean": 404.6
+   },
+   "goldtrend+rollback|m=40": {
+    "regret": 0.18882057748626438,
+    "se": 0.009004728893133515,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 351.4
+   },
+   "proxypoint|m=40": {
+    "regret": 0.1992537658696501,
+    "se": 0.008520578687192675,
+    "overshoot": 0.03,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 315.2
+   },
+   "goldtrend-oracle-tuned|m=40": {
+    "regret": 0.09145444630029287,
+    "se": 0.006895244167642778,
+    "overshoot": 0.75,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 591.2,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=40": {
+    "regret": 0.014386679805298397,
+    "se": 0.001211584918763342,
+    "overshoot": 0.7,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 800.0,
+    "kmin": 20
+   },
+   "cov-lev|m=80": {
+    "regret": 0.00568905607828063,
+    "se": 0.0005401484334369416,
+    "overshoot": 0.305,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1042.8
+   },
+   "cov-unif|m=80": {
+    "regret": 0.014056615248393078,
+    "se": 0.0017088973044721528,
+    "overshoot": 0.295,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 1002.4
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.07998666606458282,
+    "se": 0.003216899516846429,
+    "overshoot": 1.0,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1252.4
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.00652585401992134,
+    "se": 0.0006635877770605216,
+    "overshoot": 0.395,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1139.6
+   },
+   "goldtrend|m=80": {
+    "regret": 0.06738479174508055,
+    "se": 0.004973232009345408,
+    "overshoot": 0.22,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 855.2
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.05414154897141377,
+    "se": 0.004460486490402304,
+    "overshoot": 0.345,
+    "p90_regret": 0.1498882234365435,
+    "labels_mean": 938.8
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.12639996411639742,
+    "se": 0.007989922670595836,
+    "overshoot": 0.045,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 855.2
+   },
+   "proxypoint|m=80": {
+    "regret": 0.16894657273825242,
+    "se": 0.007983289366045532,
+    "overshoot": 0.05,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 668.0
+   },
+   "goldtrend-oracle-tuned|m=80": {
+    "regret": 0.06738479174508055,
+    "se": 0.004973232009345408,
+    "overshoot": 0.22,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 855.2,
+    "w": 5
+   },
+   "proxypoint-oracle-tuned|m=80": {
+    "regret": 0.011941124613227772,
+    "se": 0.0016299222776112196,
+    "overshoot": 0.365,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1289.2,
+    "kmin": 16
+   },
+   "gap-alarm(tuned q=0, out-of-sample)": {
+    "regret": 0.01125342959186132,
+    "se": 0.0011812298251657515,
+    "overshoot": 0.285,
+    "p90_regret": 0.04062948129436028
+   },
+   "ensemble-std-alarm K=4 (tuned q=0)": {
+    "regret": 0.004067027017795599,
+    "se": 0.0003671431738443608,
+    "overshoot": 0.185,
+    "p90_regret": 0.011061469176002259
+   },
+   "hack-rate-alarm (perfect clf, tuned q=0)": {
+    "regret": 0.02283611286763748,
+    "se": 0.0021591929562151924,
+    "overshoot": 0.535,
+    "p90_regret": 0.04327947261771026
+   },
+   "first-hack (20 random clf calls)": {
+    "regret": 0.1655652192885902,
+    "se": 0.008414737282143496,
+    "overshoot": 0.005,
+    "p90_regret": 0.3778686333898079
+   }
+  },
+  "q=0.5": {
+   "cov-lev|m=5": {
+    "regret": 0.10562461897296144,
+    "se": 0.008251825134577529,
+    "overshoot": 0.05,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 44.3
+   },
+   "cov-unif|m=5": {
+    "regret": 0.12245030840696947,
+    "se": 0.008514747780233317,
+    "overshoot": 0.13,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 44.3
+   },
+   "cov-lev-anytime(a=0.1)|m=5": {
+    "regret": 0.44349856919644143,
+    "se": 0.025895889584328948,
+    "overshoot": 0.96,
+    "p90_regret": 0.9639335531650323,
+    "labels_mean": 92.7
+   },
+   "cov-lev-win3+rollback|m=5": {
+    "regret": 0.027165835048446052,
+    "se": 0.0030788031202130623,
+    "overshoot": 0.34,
+    "p90_regret": 0.04637247496268142,
+    "labels_mean": 66.825
+   },
+   "goldtrend|m=5": {
+    "regret": 0.15992159838544479,
+    "se": 0.005551226666756622,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 35.025
+   },
+   "goldtrend-reg|m=5": {
+    "regret": 0.1615341188792615,
+    "se": 0.005297815820486184,
+    "overshoot": 0.035,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 35.3
+   },
+   "goldtrend+rollback|m=5": {
+    "regret": 0.27182943547697147,
+    "se": 0.008164045950854695,
+    "overshoot": 0.005,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 35.025
+   },
+   "proxypoint|m=5": {
+    "regret": 0.25285001014508623,
+    "se": 0.008471378006669862,
+    "overshoot": 0.0,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 37.4
+   },
+   "goldtrend-oracle-tuned|m=5": {
+    "regret": 0.06004950429675576,
+    "se": 0.004501183915842493,
+    "overshoot": 0.23,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 57.025,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=5": {
+    "regret": 0.05939275716198156,
+    "se": 0.006855640798267585,
+    "overshoot": 0.25,
+    "p90_regret": 0.17281569255440557,
+    "labels_mean": 83.675,
+    "kmin": 16
+   },
+   "cov-lev|m=10": {
+    "regret": 0.04217283026984231,
+    "se": 0.004795607302158808,
+    "overshoot": 0.14,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 111.1
+   },
+   "cov-unif|m=10": {
+    "regret": 0.08455573800008959,
+    "se": 0.007482421743386391,
+    "overshoot": 0.11,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 98.3
+   },
+   "cov-lev-anytime(a=0.1)|m=10": {
+    "regret": 0.34996592620626454,
+    "se": 0.017599667104520576,
+    "overshoot": 0.995,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 181.85
+   },
+   "cov-lev-win3+rollback|m=10": {
+    "regret": 0.015859028196024028,
+    "se": 0.0014737284295147446,
+    "overshoot": 0.37,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 139.45
+   },
+   "goldtrend|m=10": {
+    "regret": 0.15136484151702784,
+    "se": 0.005601595145979298,
+    "overshoot": 0.0,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 71.7
+   },
+   "goldtrend-reg|m=10": {
+    "regret": 0.1400265474020071,
+    "se": 0.005640983720359999,
+    "overshoot": 0.03,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 76.3
+   },
+   "goldtrend+rollback|m=10": {
+    "regret": 0.26659187492682496,
+    "se": 0.007592318698086217,
+    "overshoot": 0.0,
+    "p90_regret": 0.3827155782611172,
+    "labels_mean": 71.7
+   },
+   "proxypoint|m=10": {
+    "regret": 0.2534504145433242,
+    "se": 0.007717377451529442,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 71.05
+   },
+   "goldtrend-oracle-tuned|m=10": {
+    "regret": 0.06256407741313158,
+    "se": 0.005606339360525339,
+    "overshoot": 0.38,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 123.3,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=10": {
+    "regret": 0.03462422115237279,
+    "se": 0.00498457293159346,
+    "overshoot": 0.31,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 165.55,
+    "kmin": 16
+   },
+   "cov-lev|m=20": {
+    "regret": 0.014578181470553175,
+    "se": 0.0017382122491687846,
+    "overshoot": 0.17,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 246.7
+   },
+   "cov-unif|m=20": {
+    "regret": 0.07943948784705834,
+    "se": 0.0068651493534132284,
+    "overshoot": 0.16,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 201.3
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.2396345492641719,
+    "se": 0.009982020539845185,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 348.8
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.01140769792566032,
+    "se": 0.0011819519424283221,
+    "overshoot": 0.32,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 280.9
+   },
+   "goldtrend|m=20": {
+    "regret": 0.1362482936355091,
+    "se": 0.0056560008829624414,
+    "overshoot": 0.045,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 155.7
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.11791783187487903,
+    "se": 0.006221874570133996,
+    "overshoot": 0.065,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 171.9
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.2441706288924701,
+    "se": 0.00850852112461846,
+    "overshoot": 0.005,
+    "p90_regret": 0.3827155782611172,
+    "labels_mean": 155.7
+   },
+   "proxypoint|m=20": {
+    "regret": 0.22986828732281184,
+    "se": 0.007986632734174022,
+    "overshoot": 0.03,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 147.6
+   },
+   "goldtrend-oracle-tuned|m=20": {
+    "regret": 0.08653924572320348,
+    "se": 0.008708154133811027,
+    "overshoot": 0.505,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 266.5,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=20": {
+    "regret": 0.019746265852411737,
+    "se": 0.00245906923328831,
+    "overshoot": 0.36,
+    "p90_regret": 0.040894480426695266,
+    "labels_mean": 326.6,
+    "kmin": 16
+   },
+   "cov-lev|m=40": {
+    "regret": 0.009729796705922,
+    "se": 0.0009540930192688601,
+    "overshoot": 0.245,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 506.4
+   },
+   "cov-unif|m=40": {
+    "regret": 0.02345495725891089,
+    "se": 0.0024109638932713956,
+    "overshoot": 0.23,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 477.2
+   },
+   "cov-lev-anytime(a=0.1)|m=40": {
+    "regret": 0.13553169112022118,
+    "se": 0.005431055711157549,
+    "overshoot": 1.0,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 657.2
+   },
+   "cov-lev-win3+rollback|m=40": {
+    "regret": 0.008810832193321572,
+    "se": 0.0009062813176903137,
+    "overshoot": 0.38,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 566.4
+   },
+   "goldtrend|m=40": {
+    "regret": 0.11084332998724544,
+    "se": 0.005776224191295398,
+    "overshoot": 0.075,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 346.4
+   },
+   "goldtrend-reg|m=40": {
+    "regret": 0.08620258162242239,
+    "se": 0.005617869162233771,
+    "overshoot": 0.17,
+    "p90_regret": 0.1968175097566183,
+    "labels_mean": 391.2
+   },
+   "goldtrend+rollback|m=40": {
+    "regret": 0.2057048603120587,
+    "se": 0.008573804462368911,
+    "overshoot": 0.015,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 346.4
+   },
+   "proxypoint|m=40": {
+    "regret": 0.20287803793972584,
+    "se": 0.007956146225922207,
+    "overshoot": 0.015,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 302.4
+   },
+   "goldtrend-oracle-tuned|m=40": {
+    "regret": 0.08685762446071726,
+    "se": 0.006953413144882196,
+    "overshoot": 0.71,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 581.2,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=40": {
+    "regret": 0.014311055279626894,
+    "se": 0.0013770366128866755,
+    "overshoot": 0.69,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 800.0,
+    "kmin": 20
+   },
+   "cov-lev|m=80": {
+    "regret": 0.005881974128306711,
+    "se": 0.0006145020625374864,
+    "overshoot": 0.29,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1042.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.010959375296590745,
+    "se": 0.0011348354327690576,
+    "overshoot": 0.25,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 1004.8
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.08739125374681528,
+    "se": 0.003352354060981826,
+    "overshoot": 0.985,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1261.6
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.006598037540976209,
+    "se": 0.0006656161812871402,
+    "overshoot": 0.41,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1135.6
+   },
+   "goldtrend|m=80": {
+    "regret": 0.08149525974798244,
+    "se": 0.005880315740571692,
+    "overshoot": 0.15,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 816.0
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.05479755372167322,
+    "se": 0.004568282832457597,
+    "overshoot": 0.375,
+    "p90_regret": 0.1498882234365435,
+    "labels_mean": 954.0
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.14695677969306337,
+    "se": 0.00913347248590532,
+    "overshoot": 0.045,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 816.0
+   },
+   "proxypoint|m=80": {
+    "regret": 0.18802645170520924,
+    "se": 0.008566865969831618,
+    "overshoot": 0.025,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 630.0
+   },
+   "goldtrend-oracle-tuned|m=80": {
+    "regret": 0.08149525974798244,
+    "se": 0.005880315740571692,
+    "overshoot": 0.15,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 816.0,
+    "w": 5
+   },
+   "proxypoint-oracle-tuned|m=80": {
+    "regret": 0.011296009372755322,
+    "se": 0.0008666161201411164,
+    "overshoot": 0.715,
+    "p90_regret": 0.021228900421036173,
+    "labels_mean": 1600.0,
+    "kmin": 20
+   },
+   "gap-alarm(tuned q=0, out-of-sample)": {
+    "regret": 0.06372662402573898,
+    "se": 0.005232682169568762,
+    "overshoot": 0.8,
+    "p90_regret": 0.17064341179091835
+   },
+   "ensemble-std-alarm K=4 (tuned q=0)": {
+    "regret": 0.007026659426412563,
+    "se": 0.000647171538783129,
+    "overshoot": 0.325,
+    "p90_regret": 0.019073280324000297
+   },
+   "hack-rate-alarm (perfect clf, tuned q=0)": {
+    "regret": 0.025527629413542474,
+    "se": 0.002268209680219627,
+    "overshoot": 0.49,
+    "p90_regret": 0.09260957833232991
+   },
+   "first-hack (20 random clf calls)": {
+    "regret": 0.16559148735184342,
+    "se": 0.008320701216092396,
+    "overshoot": 0.0,
+    "p90_regret": 0.32997841853609733
+   }
+  },
+  "q=0.9": {
+   "cov-lev|m=5": {
+    "regret": 0.09466305694787208,
+    "se": 0.007505184812139646,
+    "overshoot": 0.095,
+    "p90_regret": 0.2414795695572316,
+    "labels_mean": 46.775
+   },
+   "cov-unif|m=5": {
+    "regret": 0.12965091041243193,
+    "se": 0.009198808500839605,
+    "overshoot": 0.105,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 42.7
+   },
+   "cov-lev-anytime(a=0.1)|m=5": {
+    "regret": 0.3909193652314975,
+    "se": 0.022188125284883984,
+    "overshoot": 0.985,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 91.525
+   },
+   "cov-lev-win3+rollback|m=5": {
+    "regret": 0.02954311429444989,
+    "se": 0.0032916046517872523,
+    "overshoot": 0.32,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 67.05
+   },
+   "goldtrend|m=5": {
+    "regret": 0.17630818450823987,
+    "se": 0.004940622579453938,
+    "overshoot": 0.005,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 32.625
+   },
+   "goldtrend-reg|m=5": {
+    "regret": 0.14421493754741382,
+    "se": 0.00562913997294616,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 37.4
+   },
+   "goldtrend+rollback|m=5": {
+    "regret": 0.2941680796504126,
+    "se": 0.007266997179945815,
+    "overshoot": 0.0,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 32.625
+   },
+   "proxypoint|m=5": {
+    "regret": 0.25699890961257293,
+    "se": 0.008471333232758798,
+    "overshoot": 0.03,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 37.375
+   },
+   "goldtrend-oracle-tuned|m=5": {
+    "regret": 0.07057471075830479,
+    "se": 0.005740806434245493,
+    "overshoot": 0.21,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 55.2,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=5": {
+    "regret": 0.04650055147828841,
+    "se": 0.006020073241072242,
+    "overshoot": 0.335,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 84.375,
+    "kmin": 16
+   },
+   "cov-lev|m=10": {
+    "regret": 0.04190741722716185,
+    "se": 0.004064889602344464,
+    "overshoot": 0.145,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 110.05
+   },
+   "cov-unif|m=10": {
+    "regret": 0.09122452514910495,
+    "se": 0.007035756590615399,
+    "overshoot": 0.125,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 95.7
+   },
+   "cov-lev-anytime(a=0.1)|m=10": {
+    "regret": 0.38162614096082986,
+    "se": 0.018841744814175356,
+    "overshoot": 0.995,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 184.55
+   },
+   "cov-lev-win3+rollback|m=10": {
+    "regret": 0.01842180824776174,
+    "se": 0.0018362572183948775,
+    "overshoot": 0.38,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 138.35
+   },
+   "goldtrend|m=10": {
+    "regret": 0.16044861056574156,
+    "se": 0.005566074723644091,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 70.35
+   },
+   "goldtrend-reg|m=10": {
+    "regret": 0.11561370820940658,
+    "se": 0.005793799226573134,
+    "overshoot": 0.05,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 84.15
+   },
+   "goldtrend+rollback|m=10": {
+    "regret": 0.2738728581223643,
+    "se": 0.00797206955021293,
+    "overshoot": 0.005,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 70.35
+   },
+   "proxypoint|m=10": {
+    "regret": 0.2445965518938204,
+    "se": 0.008267146176842644,
+    "overshoot": 0.02,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 74.3
+   },
+   "goldtrend-oracle-tuned|m=10": {
+    "regret": 0.06431892646869286,
+    "se": 0.005474207191618846,
+    "overshoot": 0.37,
+    "p90_regret": 0.11622342864110725,
+    "labels_mean": 122.0,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=10": {
+    "regret": 0.034173236143389574,
+    "se": 0.00525067922499775,
+    "overshoot": 0.325,
+    "p90_regret": 0.07604950429391413,
+    "labels_mean": 166.95,
+    "kmin": 16
+   },
+   "cov-lev|m=20": {
+    "regret": 0.015080429077594992,
+    "se": 0.0015884738719373892,
+    "overshoot": 0.255,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 246.8
+   },
+   "cov-unif|m=20": {
+    "regret": 0.06275114621243055,
+    "se": 0.0060339688333371395,
+    "overshoot": 0.11,
+    "p90_regret": 0.1498882234365435,
+    "labels_mean": 206.8
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.23386068736546517,
+    "se": 0.009668666817341102,
+    "overshoot": 0.995,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 347.7
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.01084748977419514,
+    "se": 0.0011000904466839832,
+    "overshoot": 0.44,
+    "p90_regret": 0.021228900421036173,
+    "labels_mean": 283.7
+   },
+   "goldtrend|m=20": {
+    "regret": 0.1337917638409699,
+    "se": 0.005823492074726499,
+    "overshoot": 0.035,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 157.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.11063795895405798,
+    "se": 0.005958261500313198,
+    "overshoot": 0.075,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 176.1
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.23851935804747953,
+    "se": 0.00878347170349639,
+    "overshoot": 0.005,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 157.1
+   },
+   "proxypoint|m=20": {
+    "regret": 0.212696752461345,
+    "se": 0.008015806672994074,
+    "overshoot": 0.015,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 154.2
+   },
+   "goldtrend-oracle-tuned|m=20": {
+    "regret": 0.07722522251477987,
+    "se": 0.0067052534985539295,
+    "overshoot": 0.49,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 263.7,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=20": {
+    "regret": 0.014797569880599215,
+    "se": 0.0016439027212538637,
+    "overshoot": 0.335,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 327.1,
+    "kmin": 16
+   },
+   "cov-lev|m=40": {
+    "regret": 0.007827577573183753,
+    "se": 0.000787245171113026,
+    "overshoot": 0.28,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 510.4
+   },
+   "cov-unif|m=40": {
+    "regret": 0.0268468577046152,
+    "se": 0.0034985562916061952,
+    "overshoot": 0.16,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 469.0
+   },
+   "cov-lev-anytime(a=0.1)|m=40": {
+    "regret": 0.14014233383055436,
+    "se": 0.005348495569399823,
+    "overshoot": 0.99,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 659.2
+   },
+   "cov-lev-win3+rollback|m=40": {
+    "regret": 0.008858052903417235,
+    "se": 0.0008620145180712317,
+    "overshoot": 0.425,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 565.6
+   },
+   "goldtrend|m=40": {
+    "regret": 0.11408412135995949,
+    "se": 0.006094257053723015,
+    "overshoot": 0.08,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 345.0
+   },
+   "goldtrend-reg|m=40": {
+    "regret": 0.0848416255335187,
+    "se": 0.005447543695206988,
+    "overshoot": 0.135,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 394.0
+   },
+   "goldtrend+rollback|m=40": {
+    "regret": 0.2044254337932222,
+    "se": 0.008962046358692749,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 345.0
+   },
+   "proxypoint|m=40": {
+    "regret": 0.21423871660433452,
+    "se": 0.008561178476303007,
+    "overshoot": 0.025,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 304.4
+   },
+   "goldtrend-oracle-tuned|m=40": {
+    "regret": 0.09670611766521736,
+    "se": 0.006891346916865313,
+    "overshoot": 0.72,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 588.0,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=40": {
+    "regret": 0.01583377858438889,
+    "se": 0.0012088088551482975,
+    "overshoot": 0.715,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 800.0,
+    "kmin": 20
+   },
+   "cov-lev|m=80": {
+    "regret": 0.0060148543774243834,
+    "se": 0.000645637932565529,
+    "overshoot": 0.315,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1048.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.012191012028969106,
+    "se": 0.0011166997067629085,
+    "overshoot": 0.31,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1012.8
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.08152250232258362,
+    "se": 0.003000337547472617,
+    "overshoot": 1.0,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1256.4
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.007096682916434782,
+    "se": 0.00080566697217908,
+    "overshoot": 0.405,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1142.4
+   },
+   "goldtrend|m=80": {
+    "regret": 0.0813697848503856,
+    "se": 0.005783972933891596,
+    "overshoot": 0.19,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 815.2
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.06320791673388637,
+    "se": 0.004761573060651394,
+    "overshoot": 0.28,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 903.2
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.14635660201172557,
+    "se": 0.008628268776150888,
+    "overshoot": 0.045,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 815.2
+   },
+   "proxypoint|m=80": {
+    "regret": 0.18501285860786756,
+    "se": 0.008574950667700101,
+    "overshoot": 0.025,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 648.4
+   },
+   "goldtrend-oracle-tuned|m=80": {
+    "regret": 0.0813697848503856,
+    "se": 0.005783972933891596,
+    "overshoot": 0.19,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 815.2,
+    "w": 5
+   },
+   "proxypoint-oracle-tuned|m=80": {
+    "regret": 0.011793391167572609,
+    "se": 0.0008259115482350527,
+    "overshoot": 0.73,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1600.0,
+    "kmin": 20
+   },
+   "gap-alarm(tuned q=0, out-of-sample)": {
+    "regret": 1.0068410546607418,
+    "se": 0.05418086278297659,
+    "overshoot": 0.99,
+    "p90_regret": 2.4101117198074204
+   },
+   "ensemble-std-alarm K=4 (tuned q=0)": {
+    "regret": 0.16533642885082406,
+    "se": 0.008213006880868607,
+    "overshoot": 0.995,
+    "p90_regret": 0.27738633263269247
+   },
+   "hack-rate-alarm (perfect clf, tuned q=0)": {
+    "regret": 0.025674191421198367,
+    "se": 0.002300285553191801,
+    "overshoot": 0.475,
+    "p90_regret": 0.07604950429391413
+   },
+   "first-hack (20 random clf calls)": {
+    "regret": 0.16650539197825226,
+    "se": 0.008386155628391644,
+    "overshoot": 0.005,
+    "p90_regret": 0.3778686333898079
+   }
+  },
+  "q=1.0": {
+   "cov-lev|m=5": {
+    "regret": 0.08911065465947082,
+    "se": 0.007019798833850588,
+    "overshoot": 0.08,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 47.125
+   },
+   "cov-unif|m=5": {
+    "regret": 0.13504854923086423,
+    "se": 0.009283861258762956,
+    "overshoot": 0.105,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 41.85
+   },
+   "cov-lev-anytime(a=0.1)|m=5": {
+    "regret": 0.4247519007765573,
+    "se": 0.0248727524524898,
+    "overshoot": 0.985,
+    "p90_regret": 0.9639335531650323,
+    "labels_mean": 92.8
+   },
+   "cov-lev-win3+rollback|m=5": {
+    "regret": 0.026672177260163354,
+    "se": 0.002600192597401045,
+    "overshoot": 0.3,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 66.575
+   },
+   "goldtrend|m=5": {
+    "regret": 0.1708108354214698,
+    "se": 0.005130827980697153,
+    "overshoot": 0.0,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 33.325
+   },
+   "goldtrend-reg|m=5": {
+    "regret": 0.14631346200971634,
+    "se": 0.005704678411529783,
+    "overshoot": 0.025,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 37.4
+   },
+   "goldtrend+rollback|m=5": {
+    "regret": 0.29180378532205276,
+    "se": 0.007269786216218232,
+    "overshoot": 0.0,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 33.325
+   },
+   "proxypoint|m=5": {
+    "regret": 0.2507956585847827,
+    "se": 0.008197101347900634,
+    "overshoot": 0.025,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 37.15
+   },
+   "goldtrend-oracle-tuned|m=5": {
+    "regret": 0.07246386935078297,
+    "se": 0.005854520575941251,
+    "overshoot": 0.245,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 56.925,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=5": {
+    "regret": 0.0424020862308952,
+    "se": 0.005200626415080669,
+    "overshoot": 0.36,
+    "p90_regret": 0.09436629688376524,
+    "labels_mean": 84.075,
+    "kmin": 16
+   },
+   "cov-lev|m=10": {
+    "regret": 0.036549369456985614,
+    "se": 0.0038987989323418194,
+    "overshoot": 0.15,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 112.45
+   },
+   "cov-unif|m=10": {
+    "regret": 0.09569921448008112,
+    "se": 0.007842489065398256,
+    "overshoot": 0.105,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 94.35
+   },
+   "cov-lev-anytime(a=0.1)|m=10": {
+    "regret": 0.37336641239386514,
+    "se": 0.0187832747190318,
+    "overshoot": 0.99,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 183.6
+   },
+   "cov-lev-win3+rollback|m=10": {
+    "regret": 0.017425923016891998,
+    "se": 0.0017542525480159293,
+    "overshoot": 0.41,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 138.7
+   },
+   "goldtrend|m=10": {
+    "regret": 0.15042649771355582,
+    "se": 0.005746196941422728,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 73.2
+   },
+   "goldtrend-reg|m=10": {
+    "regret": 0.12912798970704603,
+    "se": 0.0060268760322348056,
+    "overshoot": 0.07,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 81.15
+   },
+   "goldtrend+rollback|m=10": {
+    "regret": 0.2676271709423953,
+    "se": 0.008339232770200532,
+    "overshoot": 0.005,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 73.2
+   },
+   "proxypoint|m=10": {
+    "regret": 0.2548969331494477,
+    "se": 0.008045511455445459,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 71.85
+   },
+   "goldtrend-oracle-tuned|m=10": {
+    "regret": 0.06460692153249731,
+    "se": 0.005274505885025414,
+    "overshoot": 0.345,
+    "p90_regret": 0.11622342864110725,
+    "labels_mean": 121.55,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=10": {
+    "regret": 0.03557821964300023,
+    "se": 0.0052272057794853066,
+    "overshoot": 0.33,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 166.05,
+    "kmin": 16
+   },
+   "cov-lev|m=20": {
+    "regret": 0.015783089582765142,
+    "se": 0.0018562310386663202,
+    "overshoot": 0.195,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 244.9
+   },
+   "cov-unif|m=20": {
+    "regret": 0.06495460823841787,
+    "se": 0.006296879689774497,
+    "overshoot": 0.14,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 206.9
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.23025641575318664,
+    "se": 0.009771884025820467,
+    "overshoot": 0.995,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 346.7
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.012495072948888908,
+    "se": 0.0012784315399587062,
+    "overshoot": 0.415,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 282.9
+   },
+   "goldtrend|m=20": {
+    "regret": 0.13435586558160878,
+    "se": 0.005764720488659454,
+    "overshoot": 0.025,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 155.9
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.10734177255498706,
+    "se": 0.006007151658240233,
+    "overshoot": 0.07,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 176.8
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.24056699293525444,
+    "se": 0.008881927529802469,
+    "overshoot": 0.0,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 155.9
+   },
+   "proxypoint|m=20": {
+    "regret": 0.23438826554530007,
+    "se": 0.008048220366111664,
+    "overshoot": 0.02,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 144.9
+   },
+   "goldtrend-oracle-tuned|m=20": {
+    "regret": 0.07960500852461339,
+    "se": 0.006716853873263777,
+    "overshoot": 0.52,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 264.7,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=20": {
+    "regret": 0.024168602519079818,
+    "se": 0.0038498081345542078,
+    "overshoot": 0.32,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 327.2,
+    "kmin": 16
+   },
+   "cov-lev|m=40": {
+    "regret": 0.008175548972830515,
+    "se": 0.0008390364384090208,
+    "overshoot": 0.295,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 512.4
+   },
+   "cov-unif|m=40": {
+    "regret": 0.023232837374701165,
+    "se": 0.002826156716276379,
+    "overshoot": 0.16,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 473.2
+   },
+   "cov-lev-anytime(a=0.1)|m=40": {
+    "regret": 0.1394549931148913,
+    "se": 0.00547507499660249,
+    "overshoot": 0.995,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 658.6
+   },
+   "cov-lev-win3+rollback|m=40": {
+    "regret": 0.007705018885556192,
+    "se": 0.0007877049001255938,
+    "overshoot": 0.415,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 565.8
+   },
+   "goldtrend|m=40": {
+    "regret": 0.11522087324723063,
+    "se": 0.006088624928371125,
+    "overshoot": 0.095,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 347.0
+   },
+   "goldtrend-reg|m=40": {
+    "regret": 0.08716010552205167,
+    "se": 0.005531036837219629,
+    "overshoot": 0.125,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 390.8
+   },
+   "goldtrend+rollback|m=40": {
+    "regret": 0.19558783676112015,
+    "se": 0.008770188061837695,
+    "overshoot": 0.015,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 347.0
+   },
+   "proxypoint|m=40": {
+    "regret": 0.21665595652711322,
+    "se": 0.008312127287229625,
+    "overshoot": 0.03,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 300.0
+   },
+   "goldtrend-oracle-tuned|m=40": {
+    "regret": 0.09827097031066145,
+    "se": 0.007086779036976409,
+    "overshoot": 0.73,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 590.2,
+    "w": 8
+   },
+   "proxypoint-oracle-tuned|m=40": {
+    "regret": 0.013459383086961152,
+    "se": 0.0009636750806974964,
+    "overshoot": 0.75,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 800.0,
+    "kmin": 20
+   },
+   "cov-lev|m=80": {
+    "regret": 0.005869155882776977,
+    "se": 0.0005929344357185157,
+    "overshoot": 0.315,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1044.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.011944052542817996,
+    "se": 0.0011113872984421494,
+    "overshoot": 0.27,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1001.6
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.08185396207976092,
+    "se": 0.002951185272398094,
+    "overshoot": 1.0,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1257.6
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.007277343275447823,
+    "se": 0.0007147043305533119,
+    "overshoot": 0.435,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1140.8
+   },
+   "goldtrend|m=80": {
+    "regret": 0.07334039652931212,
+    "se": 0.005398941390427184,
+    "overshoot": 0.17,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 830.8
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.05614484021437999,
+    "se": 0.004790352905009617,
+    "overshoot": 0.29,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 920.0
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.14115228238024363,
+    "se": 0.008275778469925483,
+    "overshoot": 0.055,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 830.8
+   },
+   "proxypoint|m=80": {
+    "regret": 0.18987790670337373,
+    "se": 0.0083672437346828,
+    "overshoot": 0.025,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 631.2
+   },
+   "goldtrend-oracle-tuned|m=80": {
+    "regret": 0.07334039652931212,
+    "se": 0.005398941390427184,
+    "overshoot": 0.17,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 830.8,
+    "w": 5
+   },
+   "proxypoint-oracle-tuned|m=80": {
+    "regret": 0.011847762749381652,
+    "se": 0.0008250814348642156,
+    "overshoot": 0.74,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1600.0,
+    "kmin": 20
+   },
+   "gap-alarm(tuned q=0, out-of-sample)": {
+    "regret": 2.1686058231026335,
+    "se": 0.04132023315064565,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204
+   },
+   "ensemble-std-alarm K=4 (tuned q=0)": {
+    "regret": 2.150287644646111,
+    "se": 0.031221018081402097,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204
+   },
+   "hack-rate-alarm (perfect clf, tuned q=0)": {
+    "regret": 0.026991330125360147,
+    "se": 0.0023567120922052686,
+    "overshoot": 0.525,
+    "p90_regret": 0.09260957833232991
+   },
+   "first-hack (20 random clf calls)": {
+    "regret": 0.16457730837807366,
+    "se": 0.008248229578102406,
+    "overshoot": 0.005,
+    "p90_regret": 0.33476744002146813
+   }
+  }
+ },
+ "R3_twin": {
+  "q=0.5": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 1.4157780860736138,
+    "se": 0.06576572471668089,
+    "overshoot": 0.0,
+    "p90_regret": 2.5580398489527387,
+    "labels_mean": 412.4
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 1.15317103942246,
+    "se": 0.04004931958436936,
+    "overshoot": 0.0,
+    "p90_regret": 1.7573114815017716,
+    "labels_mean": 503.1
+   },
+   "cov-lev|m=20": {
+    "regret": 1.2368908562129315,
+    "se": 0.04592696494912465,
+    "overshoot": 0.0,
+    "p90_regret": 2.1024319988091276,
+    "labels_mean": 441.3
+   },
+   "cov-unif|m=20": {
+    "regret": 2.057991477023021,
+    "se": 0.040750075677996246,
+    "overshoot": 0.0,
+    "p90_regret": 2.563991669077422,
+    "labels_mean": 291.2
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.051408438798146605,
+    "se": 0.018107946623143484,
+    "overshoot": 0.0,
+    "p90_regret": 0.0,
+    "labels_mean": 803.5
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.31163645017098984,
+    "se": 0.022601231820551827,
+    "overshoot": 0.0,
+    "p90_regret": 0.6693479979593526,
+    "labels_mean": 679.3
+   },
+   "goldtrend|m=20": {
+    "regret": 2.5540445181822227,
+    "se": 0.02354030087927,
+    "overshoot": 0.0,
+    "p90_regret": 2.784385237971949,
+    "labels_mean": 170.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 2.4533167764145727,
+    "se": 0.024860551258721258,
+    "overshoot": 0.0,
+    "p90_regret": 2.784385237971949,
+    "labels_mean": 198.1
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 2.706133075311749,
+    "se": 0.02215221319308998,
+    "overshoot": 0.0,
+    "p90_regret": 2.941615195381428,
+    "labels_mean": 170.1
+   },
+   "proxypoint|m=20": {
+    "regret": 2.6849933266315027,
+    "se": 0.024676549308891613,
+    "overshoot": 0.0,
+    "p90_regret": 2.8898488113095917,
+    "labels_mean": 156.6
+   },
+   "gap-alarm(tuned q=0)": {
+    "regret": 2.1312095113254874,
+    "se": 0.010924994003259995,
+    "overshoot": 0.0,
+    "p90_regret": 2.2885066052270475
+   },
+   "hack-rate-alarm (exploit-type clf, tuned q=0)": {
+    "regret": 2.225483210035053,
+    "se": 0.01018748430407489,
+    "overshoot": 0.0,
+    "p90_regret": 2.4292287706713607
+   },
+   "first-hack (exploit-type clf)": {
+    "regret": 2.678042132435762,
+    "se": 0.012674851230672317,
+    "overshoot": 0.0,
+    "p90_regret": 2.8898488113095917
+   },
+   "_peak_lambda_twin": 2.0,
+   "_peak_gold_twin": 2.996943409426129
+  },
+  "q=1.0": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 1.7492083568893726,
+    "se": 0.21884936995056037,
+    "overshoot": 0.0,
+    "p90_regret": 7.451981921645474,
+    "labels_mean": 668.2
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 2.6645352591003757e-15,
+    "se": 1.8888389652582727e-16,
+    "overshoot": 0.0,
+    "p90_regret": 0.0,
+    "labels_mean": 820.0
+   },
+   "cov-lev|m=20": {
+    "regret": 0.4497289783604055,
+    "se": 0.024324961188804874,
+    "overshoot": 0.0,
+    "p90_regret": 0.8297156516941113,
+    "labels_mean": 700.8
+   },
+   "cov-unif|m=20": {
+    "regret": 0.7037183627252297,
+    "se": 0.06323381296243925,
+    "overshoot": 0.0,
+    "p90_regret": 1.0116253298621367,
+    "labels_mean": 663.4
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 2.6645352591003757e-15,
+    "se": 1.8888389652582727e-16,
+    "overshoot": 0.0,
+    "p90_regret": 0.0,
+    "labels_mean": 820.0
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.12737659138996982,
+    "se": 0.013329557155755595,
+    "overshoot": 0.0,
+    "p90_regret": 0.39092181227059175,
+    "labels_mean": 792.6
+   },
+   "goldtrend|m=20": {
+    "regret": 6.96245110528221,
+    "se": 0.13376507271318622,
+    "overshoot": 0.0,
+    "p90_regret": 7.742003073017258,
+    "labels_mean": 199.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 4.42799822719096,
+    "se": 0.25979803251649003,
+    "overshoot": 0.0,
+    "p90_regret": 7.742003073017258,
+    "labels_mean": 422.5
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 7.176902898845958,
+    "se": 0.1307522080260272,
+    "overshoot": 0.0,
+    "p90_regret": 7.969660456556775,
+    "labels_mean": 199.1
+   },
+   "proxypoint|m=20": {
+    "regret": 6.822573192590304,
+    "se": 0.17909826803555334,
+    "overshoot": 0.0,
+    "p90_regret": 7.859830923890506,
+    "labels_mean": 209.2
+   },
+   "gap-alarm(tuned q=0)": {
+    "regret": 0.7366386839513792,
+    "se": 0.11861362315263463,
+    "overshoot": 0.0,
+    "p90_regret": 3.800652972500126
+   },
+   "hack-rate-alarm (exploit-type clf, tuned q=0)": {
+    "regret": 6.807580944627647,
+    "se": 0.022474438239319876,
+    "overshoot": 0.0,
+    "p90_regret": 7.122457024649714
+   },
+   "first-hack (exploit-type clf)": {
+    "regret": 7.594033870509502,
+    "se": 0.016124254794591827,
+    "overshoot": 0.0,
+    "p90_regret": 7.859830923890506
+   },
+   "_peak_lambda_twin": 2.0,
+   "_peak_gold_twin": 7.981660456556774
+  }
+ },
+ "R4_label_noise_bias": {
+  "noise=0": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 0.07607200825767291,
+    "se": 0.006470074299622733,
+    "overshoot": 0.54,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 270.3
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 0.024116788689715674,
+    "se": 0.003880552016755952,
+    "overshoot": 0.625,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 400.3
+   },
+   "cov-lev|m=20": {
+    "regret": 0.01530991287199368,
+    "se": 0.0020246423098559015,
+    "overshoot": 0.215,
+    "p90_regret": 0.040894480426695266,
+    "labels_mean": 246.6
+   },
+   "cov-unif|m=20": {
+    "regret": 0.055626054206946995,
+    "se": 0.0055533235592570215,
+    "overshoot": 0.135,
+    "p90_regret": 0.1498882234365435,
+    "labels_mean": 214.2
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.23568163514151128,
+    "se": 0.009565874723327436,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 348.5
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.01226496154389628,
+    "se": 0.0014078445614810976,
+    "overshoot": 0.415,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 281.8
+   },
+   "goldtrend|m=20": {
+    "regret": 0.1320829080255746,
+    "se": 0.005690343898873306,
+    "overshoot": 0.04,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 156.9
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.10409494874267172,
+    "se": 0.005642351185096895,
+    "overshoot": 0.115,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 179.7
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.23674299022963458,
+    "se": 0.00867185914543024,
+    "overshoot": 0.005,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 156.9
+   },
+   "proxypoint|m=20": {
+    "regret": 0.22199862489027422,
+    "se": 0.008412934424253608,
+    "overshoot": 0.03,
+    "p90_regret": 0.33476744002146813,
+    "labels_mean": 154.1
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 0.06699018955675345,
+    "se": 0.005109224103330197,
+    "overshoot": 0.23,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 854.0
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 0.010017904872670624,
+    "se": 0.0012166439990968394,
+    "overshoot": 0.335,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1285.2
+   },
+   "cov-lev|m=80": {
+    "regret": 0.006082162197206031,
+    "se": 0.0005836218264216794,
+    "overshoot": 0.325,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1044.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.010233992799758174,
+    "se": 0.0011190052717762313,
+    "overshoot": 0.275,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 1016.4
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.08580450015742164,
+    "se": 0.003369389711185995,
+    "overshoot": 1.0,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1260.8
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.006670734742940665,
+    "se": 0.0006345896192621492,
+    "overshoot": 0.425,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1140.0
+   },
+   "goldtrend|m=80": {
+    "regret": 0.06699018955675345,
+    "se": 0.005109224103330197,
+    "overshoot": 0.23,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 854.0
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.04823644946936373,
+    "se": 0.004024182903568797,
+    "overshoot": 0.28,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 917.6
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.12654008592918953,
+    "se": 0.00846195454902899,
+    "overshoot": 0.025,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 854.0
+   },
+   "proxypoint|m=80": {
+    "regret": 0.18942779828247133,
+    "se": 0.008124980645524308,
+    "overshoot": 0.035,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 622.4
+   }
+  },
+  "noise=0.5": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 0.0723049347598202,
+    "se": 0.005573235668292591,
+    "overshoot": 0.47,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 261.0
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 0.031036510348689317,
+    "se": 0.0047996816161272795,
+    "overshoot": 0.61,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 400.4
+   },
+   "cov-lev|m=20": {
+    "regret": 0.019868920750373276,
+    "se": 0.002452619556854641,
+    "overshoot": 0.21,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 242.1
+   },
+   "cov-unif|m=20": {
+    "regret": 0.05562043259165006,
+    "se": 0.005450670488454755,
+    "overshoot": 0.135,
+    "p90_regret": 0.1498882234365435,
+    "labels_mean": 214.2
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.2639680682831441,
+    "se": 0.011357409085976579,
+    "overshoot": 0.99,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 352.3
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.012256879850792157,
+    "se": 0.0014419236864555223,
+    "overshoot": 0.38,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 280.6
+   },
+   "goldtrend|m=20": {
+    "regret": 0.13983965456654707,
+    "se": 0.005573690872960476,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 152.0
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.12338830280617669,
+    "se": 0.005998101567302205,
+    "overshoot": 0.05,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 163.7
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.24802069078431238,
+    "se": 0.007795212462989128,
+    "overshoot": 0.005,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 152.0
+   },
+   "proxypoint|m=20": {
+    "regret": 0.22705410858558286,
+    "se": 0.008014467975014747,
+    "overshoot": 0.03,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 150.7
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 0.08649417096238032,
+    "se": 0.005769495805108187,
+    "overshoot": 0.19,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 798.4
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 0.012161169324184484,
+    "se": 0.0013502859596523104,
+    "overshoot": 0.375,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1285.6
+   },
+   "cov-lev|m=80": {
+    "regret": 0.0062862250704509015,
+    "se": 0.0006809117949838252,
+    "overshoot": 0.29,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1036.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.010129017704090915,
+    "se": 0.0010980738062422763,
+    "overshoot": 0.22,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1006.8
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.09140225234431631,
+    "se": 0.003604424583561027,
+    "overshoot": 0.995,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1267.6
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.006974349454549278,
+    "se": 0.0006807094484197141,
+    "overshoot": 0.4,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1136.4
+   },
+   "goldtrend|m=80": {
+    "regret": 0.08649417096238032,
+    "se": 0.005769495805108187,
+    "overshoot": 0.19,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 798.4
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.06595708745796108,
+    "se": 0.005079683281397205,
+    "overshoot": 0.205,
+    "p90_regret": 0.19236621942579185,
+    "labels_mean": 856.8
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.15604145907937994,
+    "se": 0.009010175168327356,
+    "overshoot": 0.03,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 798.4
+   },
+   "proxypoint|m=80": {
+    "regret": 0.20334871559361506,
+    "se": 0.008008372535137679,
+    "overshoot": 0.04,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 603.6
+   }
+  },
+  "noise=1": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 0.06815110201561386,
+    "se": 0.006159872160084213,
+    "overshoot": 0.355,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 246.8
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 0.03682387583580343,
+    "se": 0.005168066027626926,
+    "overshoot": 0.575,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 400.9
+   },
+   "cov-lev|m=20": {
+    "regret": 0.033085472002361505,
+    "se": 0.00457212687642854,
+    "overshoot": 0.155,
+    "p90_regret": 0.07604950429391413,
+    "labels_mean": 230.6
+   },
+   "cov-unif|m=20": {
+    "regret": 0.070274899894057,
+    "se": 0.006293575028662721,
+    "overshoot": 0.13,
+    "p90_regret": 0.17281569255440557,
+    "labels_mean": 204.3
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.35477545642467917,
+    "se": 0.015179818802983634,
+    "overshoot": 0.99,
+    "p90_regret": 0.5773573268849397,
+    "labels_mean": 365.8
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.013728281820172772,
+    "se": 0.0015783757032109217,
+    "overshoot": 0.35,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 279.4
+   },
+   "goldtrend|m=20": {
+    "regret": 0.1449788640029414,
+    "se": 0.0055541684405695365,
+    "overshoot": 0.02,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 148.4
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.14166203927487997,
+    "se": 0.005795352084378601,
+    "overshoot": 0.035,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 152.3
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.2533568848254134,
+    "se": 0.007934434687171376,
+    "overshoot": 0.0,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 148.4
+   },
+   "proxypoint|m=20": {
+    "regret": 0.24904071026593744,
+    "se": 0.007812579591997824,
+    "overshoot": 0.01,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 143.6
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 0.10946511169218115,
+    "se": 0.005955447021571236,
+    "overshoot": 0.095,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 708.4
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 0.014514493695764075,
+    "se": 0.0015142844589002959,
+    "overshoot": 0.385,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 1291.6
+   },
+   "cov-lev|m=80": {
+    "regret": 0.006833377252880579,
+    "se": 0.0007974691950949818,
+    "overshoot": 0.27,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1026.0
+   },
+   "cov-unif|m=80": {
+    "regret": 0.014019039220077356,
+    "se": 0.0014968473120667482,
+    "overshoot": 0.23,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 993.2
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.11567414835296619,
+    "se": 0.004371260864393395,
+    "overshoot": 0.995,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1294.4
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.0075381346891500445,
+    "se": 0.0008038640855686128,
+    "overshoot": 0.385,
+    "p90_regret": 0.011061469176002259,
+    "labels_mean": 1130.0
+   },
+   "goldtrend|m=80": {
+    "regret": 0.10946511169218115,
+    "se": 0.005955447021571236,
+    "overshoot": 0.095,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 708.4
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.09492028159080901,
+    "se": 0.0058119618112547336,
+    "overshoot": 0.095,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 743.2
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.19597450691186194,
+    "se": 0.009004856754812064,
+    "overshoot": 0.015,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 708.4
+   },
+   "proxypoint|m=80": {
+    "regret": 0.21576813112736187,
+    "se": 0.007955385573823371,
+    "overshoot": 0.045,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 598.8
+   }
+  },
+  "noise=2": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 0.07096802388827289,
+    "se": 0.004555608248672856,
+    "overshoot": 0.235,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 221.3
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 0.07798039311061838,
+    "se": 0.008638284980198328,
+    "overshoot": 0.555,
+    "p90_regret": 0.28288359096578813,
+    "labels_mean": 402.5
+   },
+   "cov-lev|m=20": {
+    "regret": 0.12709743273757884,
+    "se": 0.009493472408277713,
+    "overshoot": 0.075,
+    "p90_regret": 0.33476744002146813,
+    "labels_mean": 170.4
+   },
+   "cov-unif|m=20": {
+    "regret": 0.15969373937620895,
+    "se": 0.00998850299012571,
+    "overshoot": 0.065,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 151.7
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 0.8575009899694177,
+    "se": 0.04077529831157322,
+    "overshoot": 0.99,
+    "p90_regret": 1.5537712418792577,
+    "labels_mean": 434.5
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.030483069430566223,
+    "se": 0.0038529704684708535,
+    "overshoot": 0.29,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 267.6
+   },
+   "goldtrend|m=20": {
+    "regret": 0.16574712350051968,
+    "se": 0.005073969194553815,
+    "overshoot": 0.005,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 136.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.16717860549895253,
+    "se": 0.005227062054720367,
+    "overshoot": 0.005,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 135.6
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.28080582601026816,
+    "se": 0.0071480774930550535,
+    "overshoot": 0.0,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 136.1
+   },
+   "proxypoint|m=20": {
+    "regret": 0.2719434159685373,
+    "se": 0.007243495493755047,
+    "overshoot": 0.015,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 138.2
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 0.1431755634985824,
+    "se": 0.00588246413610034,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 600.0
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 0.021616542551416373,
+    "se": 0.002448814996273077,
+    "overshoot": 0.36,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 1309.2
+   },
+   "cov-lev|m=80": {
+    "regret": 0.011029783355126499,
+    "se": 0.0011799338737169397,
+    "overshoot": 0.19,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 991.6
+   },
+   "cov-unif|m=80": {
+    "regret": 0.04221684853292257,
+    "se": 0.005157298130277575,
+    "overshoot": 0.19,
+    "p90_regret": 0.11017676384668418,
+    "labels_mean": 903.6
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.2168696860440642,
+    "se": 0.00943094263275475,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 1377.6
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.009783813287769894,
+    "se": 0.0010401866385173735,
+    "overshoot": 0.37,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 1126.4
+   },
+   "goldtrend|m=80": {
+    "regret": 0.1431755634985824,
+    "se": 0.00588246413610034,
+    "overshoot": 0.015,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 600.0
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.1358656348239914,
+    "se": 0.005729359440962978,
+    "overshoot": 0.045,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 624.8
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.24529268196933499,
+    "se": 0.008227182172084813,
+    "overshoot": 0.0,
+    "p90_regret": 0.3778686333898079,
+    "labels_mean": 600.0
+   },
+   "proxypoint|m=80": {
+    "regret": 0.2341687974416101,
+    "se": 0.00808509151027677,
+    "overshoot": 0.04,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 591.2
+   }
+  },
+  "bias=0.25": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 0.2894543499666834,
+    "se": 0.022098625524560735,
+    "overshoot": 0.715,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 321.7
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 0.21393998897872132,
+    "se": 0.00930057204389017,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 401.9
+   },
+   "cov-lev|m=20": {
+    "regret": 0.19907161352813407,
+    "se": 0.008620072219454015,
+    "overshoot": 0.985,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 340.9
+   },
+   "cov-unif|m=20": {
+    "regret": 0.17811327210168654,
+    "se": 0.009318131302855921,
+    "overshoot": 0.96,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 333.6
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 1.9119501643384147,
+    "se": 0.046548951174958095,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 672.0
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 0.260923748151325,
+    "se": 0.009073295608412925,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 373.2
+   },
+   "goldtrend|m=20": {
+    "regret": 0.13659380400614612,
+    "se": 0.007140193328844731,
+    "overshoot": 0.09,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 168.1
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.11718940503705955,
+    "se": 0.007213312693412634,
+    "overshoot": 0.21,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 195.3
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.22296852544306053,
+    "se": 0.009132912120773606,
+    "overshoot": 0.045,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 168.1
+   },
+   "proxypoint|m=20": {
+    "regret": 0.2246256422843182,
+    "se": 0.008315839052453968,
+    "overshoot": 0.085,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 160.2
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 0.1458961852879943,
+    "se": 0.011582440813247339,
+    "overshoot": 0.48,
+    "p90_regret": 0.29100878248312734,
+    "labels_mean": 1020.0
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 0.08568210074289545,
+    "se": 0.005741157179722236,
+    "overshoot": 0.955,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 1342.4
+   },
+   "cov-lev|m=80": {
+    "regret": 0.2356855871571687,
+    "se": 0.006183364351589202,
+    "overshoot": 1.0,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 1404.4
+   },
+   "cov-unif|m=80": {
+    "regret": 0.23005569833775544,
+    "se": 0.005963441755327581,
+    "overshoot": 1.0,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 1400.4
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 0.7068846500700237,
+    "se": 0.013745721294273705,
+    "overshoot": 1.0,
+    "p90_regret": 0.9639335531650323,
+    "labels_mean": 1652.8
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 0.2495581511863392,
+    "se": 0.006109012654833164,
+    "overshoot": 1.0,
+    "p90_regret": 0.4136108311370488,
+    "labels_mean": 1491.2
+   },
+   "goldtrend|m=80": {
+    "regret": 0.1458961852879943,
+    "se": 0.011582440813247339,
+    "overshoot": 0.48,
+    "p90_regret": 0.29100878248312734,
+    "labels_mean": 1020.0
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 0.19208381261871482,
+    "se": 0.015787739833864625,
+    "overshoot": 0.67,
+    "p90_regret": 0.5773573268849397,
+    "labels_mean": 1192.0
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 0.1271809446089276,
+    "se": 0.008998420734619093,
+    "overshoot": 0.275,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 1020.0
+   },
+   "proxypoint|m=80": {
+    "regret": 0.18546957414279566,
+    "se": 0.008187814138507095,
+    "overshoot": 0.155,
+    "p90_regret": 0.32997841853609733,
+    "labels_mean": 682.0
+   }
+  },
+  "bias=0.5": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 1.7887614631112976,
+    "se": 0.07139849299738532,
+    "overshoot": 0.795,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 618.4
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 1.4881275119954835,
+    "se": 0.05874841885941853,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 580.6
+   },
+   "cov-lev|m=20": {
+    "regret": 1.8010804042093005,
+    "se": 0.03287688583539646,
+    "overshoot": 1.0,
+    "p90_regret": 2.267450696870979,
+    "labels_mean": 549.6
+   },
+   "cov-unif|m=20": {
+    "regret": 1.723998213714686,
+    "se": 0.042880925747583225,
+    "overshoot": 1.0,
+    "p90_regret": 2.267450696870979,
+    "labels_mean": 542.4
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 2.4080527198535857,
+    "se": 0.001448970993715144,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 817.7
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 2.20063088182005,
+    "se": 0.015271703709738637,
+    "overshoot": 1.0,
+    "p90_regret": 2.3840463289761553,
+    "labels_mean": 665.7
+   },
+   "goldtrend|m=20": {
+    "regret": 0.22368774426641846,
+    "se": 0.029405161153849696,
+    "overshoot": 0.13,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 185.2
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.4507040062144683,
+    "se": 0.05343696644303202,
+    "overshoot": 0.32,
+    "p90_regret": 2.157562129663912,
+    "labels_mean": 258.7
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.295411086990436,
+    "se": 0.026101604297254572,
+    "overshoot": 0.08,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 185.2
+   },
+   "proxypoint|m=20": {
+    "regret": 0.3097511770235163,
+    "se": 0.022235084837566338,
+    "overshoot": 0.15,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 175.3
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 1.396784841754866,
+    "se": 0.07815653486538433,
+    "overshoot": 0.635,
+    "p90_regret": 2.4006715899262305,
+    "labels_mean": 1979.2
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 1.8744227145151617,
+    "se": 0.05793544760699185,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 2615.6
+   },
+   "cov-lev|m=80": {
+    "regret": 2.203586688837735,
+    "se": 0.010496720134020945,
+    "overshoot": 1.0,
+    "p90_regret": 2.3549602460793833,
+    "labels_mean": 2521.2
+   },
+   "cov-unif|m=80": {
+    "regret": 2.148689844741642,
+    "se": 0.012700409423853608,
+    "overshoot": 1.0,
+    "p90_regret": 2.333184576100014,
+    "labels_mean": 2449.2
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 2.4101117198074204,
+    "se": 0.0,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 3280.0
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 2.3175220699906047,
+    "se": 0.006052291429160282,
+    "overshoot": 1.0,
+    "p90_regret": 2.4060579271519673,
+    "labels_mean": 2855.6
+   },
+   "goldtrend|m=80": {
+    "regret": 1.396784841754866,
+    "se": 0.07815653486538433,
+    "overshoot": 0.635,
+    "p90_regret": 2.4006715899262305,
+    "labels_mean": 1979.2
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 2.1073421169119637,
+    "se": 0.05020236525085381,
+    "overshoot": 0.905,
+    "p90_regret": 2.4060579271519673,
+    "labels_mean": 2655.6
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 1.359919630014453,
+    "se": 0.07263600982837219,
+    "overshoot": 0.61,
+    "p90_regret": 2.3715089288054174,
+    "labels_mean": 1979.2
+   },
+   "proxypoint|m=80": {
+    "regret": 0.5988005011539074,
+    "se": 0.055176662713590216,
+    "overshoot": 0.26,
+    "p90_regret": 2.3715089288054174,
+    "labels_mean": 1014.8
+   }
+  },
+  "bias=0.75": {
+   "goldtrend(w=8 tuned in W)|m=20": {
+    "regret": 2.0158638984311894,
+    "se": 0.06161779083593469,
+    "overshoot": 0.85,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 699.9
+   },
+   "proxypoint(kmin=20 tuned in W)|m=20": {
+    "regret": 2.3426903861401756,
+    "se": 0.025118764103504276,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 805.4
+   },
+   "cov-lev|m=20": {
+    "regret": 2.2030160451110445,
+    "se": 0.012294127357469613,
+    "overshoot": 1.0,
+    "p90_regret": 2.3549602460793833,
+    "labels_mean": 634.0
+   },
+   "cov-unif|m=20": {
+    "regret": 2.0987362664555604,
+    "se": 0.033240226757641295,
+    "overshoot": 1.0,
+    "p90_regret": 2.3549602460793833,
+    "labels_mean": 615.9
+   },
+   "cov-lev-anytime(a=0.1)|m=20": {
+    "regret": 2.4100287729189853,
+    "se": 8.294688843481835e-05,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 819.7
+   },
+   "cov-lev-win3+rollback|m=20": {
+    "regret": 2.335191231702736,
+    "se": 0.005552019683194001,
+    "overshoot": 1.0,
+    "p90_regret": 2.4060579271519673,
+    "labels_mean": 725.9
+   },
+   "goldtrend|m=20": {
+    "regret": 0.3285702439965066,
+    "se": 0.04399913636185648,
+    "overshoot": 0.17,
+    "p90_regret": 0.23687912273405895,
+    "labels_mean": 210.5
+   },
+   "goldtrend-reg|m=20": {
+    "regret": 0.9852466470669018,
+    "se": 0.0767822077597185,
+    "overshoot": 0.395,
+    "p90_regret": 2.3935223421204563,
+    "labels_mean": 373.2
+   },
+   "goldtrend+rollback|m=20": {
+    "regret": 0.3951660842447004,
+    "se": 0.03870159019211504,
+    "overshoot": 0.125,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 210.5
+   },
+   "proxypoint|m=20": {
+    "regret": 0.5271696666769579,
+    "se": 0.05211548031917125,
+    "overshoot": 0.185,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 234.0
+   },
+   "goldtrend(w=5 tuned in W)|m=80": {
+    "regret": 1.6481199761692487,
+    "se": 0.07577418090279,
+    "overshoot": 0.695,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 2311.6
+   },
+   "proxypoint(kmin=16 tuned in W)|m=80": {
+    "regret": 2.3869366983926694,
+    "se": 0.016345989033602217,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 3260.0
+   },
+   "cov-lev|m=80": {
+    "regret": 2.322231105043267,
+    "se": 0.004496536842221308,
+    "overshoot": 1.0,
+    "p90_regret": 2.3935223421204563,
+    "labels_mean": 2751.2
+   },
+   "cov-unif|m=80": {
+    "regret": 2.3132135229622204,
+    "se": 0.00520623336123869,
+    "overshoot": 1.0,
+    "p90_regret": 2.3935223421204563,
+    "labels_mean": 2728.0
+   },
+   "cov-lev-anytime(a=0.1)|m=80": {
+    "regret": 2.4101117198074204,
+    "se": 0.0,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 3280.0
+   },
+   "cov-lev-win3+rollback|m=80": {
+    "regret": 2.372264959384811,
+    "se": 0.0029062494873115787,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 3043.6
+   },
+   "goldtrend|m=80": {
+    "regret": 1.6481199761692487,
+    "se": 0.07577418090279,
+    "overshoot": 0.695,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 2311.6
+   },
+   "goldtrend-reg|m=80": {
+    "regret": 2.2961650659451305,
+    "se": 0.03294685256131451,
+    "overshoot": 0.955,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 3016.0
+   },
+   "goldtrend+rollback|m=80": {
+    "regret": 1.641499939762957,
+    "se": 0.07125111634826485,
+    "overshoot": 0.68,
+    "p90_regret": 2.384993930290585,
+    "labels_mean": 2311.6
+   },
+   "proxypoint|m=80": {
+    "regret": 0.897253763623503,
+    "se": 0.07124547331895459,
+    "overshoot": 0.305,
+    "p90_regret": 2.4101117198074204,
+    "labels_mean": 1354.4
+   }
+  }
+ },
+ "proxy_point_default": {
+  "median": 1.8176661539121444,
+  "labels_mean": 400.5,
+  "true_proxy_at_peak": 1.5647355652681028
+ },
+ "R5_sensitivity": {
+  "default": {
+   "cov-lev m=20": {
+    "regret": 0.02325564414417136,
+    "se": 0.0034370406784509635,
+    "overshoot": 0.3,
+    "p90_regret": 0.07420949606742361,
+    "labels_mean": 244.6
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.011004988432546547,
+    "se": 0.0014105843288267075,
+    "overshoot": 0.42,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 280.6
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.08635295123864639,
+    "se": 0.009985991046492327,
+    "overshoot": 0.57,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 267.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.026635111992405314,
+    "se": 0.005654604218858457,
+    "overshoot": 0.65,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 400.6
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.04266045327382584,
+    "se": 0.0061457621997961145,
+    "overshoot": 0.79,
+    "p90_regret": 0.09260957833232991
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.030624695077404784,
+    "se": 0.004552311512172862,
+    "overshoot": 0.52,
+    "p90_regret": 0.09260957833232991
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.159627337563891,
+    "se": 0.060056512903107796,
+    "overshoot": 0.99,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "mu=4": {
+   "cov-lev m=20": {
+    "regret": 0.040764808366454686,
+    "se": 0.007377816844665508,
+    "overshoot": 0.11,
+    "p90_regret": 0.09360173506580938,
+    "labels_mean": 358.4
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.015210557141897119,
+    "se": 0.002149312003803746,
+    "overshoot": 0.47,
+    "p90_regret": 0.042464151068100975,
+    "labels_mean": 425.6
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.1174940644442426,
+    "se": 0.01228911014798612,
+    "overshoot": 0.14,
+    "p90_regret": 0.3310495217525975,
+    "labels_mean": 315.0
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.04134977398691797,
+    "se": 0.0044038419814953055,
+    "overshoot": 0.27,
+    "p90_regret": 0.09360173506580938,
+    "labels_mean": 436.8
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.052881599954519354,
+    "se": 0.008313379759220621,
+    "overshoot": 0.11,
+    "p90_regret": 0.09694993737803678
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.035203750673529766,
+    "se": 0.00520873723953579,
+    "overshoot": 0.2,
+    "p90_regret": 0.09360173506580938
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.761440901626301,
+    "se": 0.07567457850625622,
+    "overshoot": 0.95,
+    "p90_regret": 2.133891311976831
+   },
+   "_peak_gain": 0.7114614549016819,
+   "_lam_star": 0.95
+  },
+  "mu=8": {
+   "cov-lev m=20": {
+    "regret": 0.011083887142163629,
+    "se": 0.0020196718953516255,
+    "overshoot": 0.49,
+    "p90_regret": 0.03409732470418986,
+    "labels_mean": 186.2
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.013471730881700672,
+    "se": 0.002512916293426059,
+    "overshoot": 0.64,
+    "p90_regret": 0.03409732470418986,
+    "labels_mean": 211.6
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.1329095755904552,
+    "se": 0.015681825733783405,
+    "overshoot": 0.79,
+    "p90_regret": 0.34368281608851403,
+    "labels_mean": 229.6
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.1142693470461531,
+    "se": 0.012012725157541503,
+    "overshoot": 0.36,
+    "p90_regret": 0.29153693595525976,
+    "labels_mean": 400.0
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.0800666126364929,
+    "se": 0.007067129322308609,
+    "overshoot": 0.95,
+    "p90_regret": 0.1966775992369878
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.044240950172703436,
+    "se": 0.004179579450877666,
+    "overshoot": 0.86,
+    "p90_regret": 0.09536173441473356
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.1214675100325557,
+    "se": 0.047823659196812765,
+    "overshoot": 1.0,
+    "p90_regret": 2.2873123283593713
+   },
+   "_peak_gain": 0.29153693595525976,
+   "_lam_star": 0.4
+  },
+  "delta=1": {
+   "cov-lev m=20": {
+    "regret": 0.007664089866117663,
+    "se": 0.00157504418195922,
+    "overshoot": 0.49,
+    "p90_regret": 0.018806407536161807,
+    "labels_mean": 287.4
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.010942564975320757,
+    "se": 0.0017439588370247497,
+    "overshoot": 0.68,
+    "p90_regret": 0.018806407536161807,
+    "labels_mean": 316.8
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.0864619436044406,
+    "se": 0.008711258632940502,
+    "overshoot": 0.52,
+    "p90_regret": 0.1852982282683336,
+    "labels_mean": 287.6
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.016559182988281018,
+    "se": 0.0024755064181958305,
+    "overshoot": 0.85,
+    "p90_regret": 0.053842907592198674,
+    "labels_mean": 400.8
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.017635926642223243,
+    "se": 0.004493441520726542,
+    "overshoot": 0.42,
+    "p90_regret": 0.053842907592198674
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.021093056066279647,
+    "se": 0.0032817630873265683,
+    "overshoot": 0.33,
+    "p90_regret": 0.05940202886827578
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.4481344312520879,
+    "se": 0.018900950872834242,
+    "overshoot": 1.0,
+    "p90_regret": 1.4921911382140052
+   },
+   "_peak_gain": 0.5033609099356176,
+   "_lam_star": 0.65
+  },
+  "delta=4": {
+   "cov-lev m=20": {
+    "regret": 0.024021039362698338,
+    "se": 0.0034085793303864145,
+    "overshoot": 0.2,
+    "p90_regret": 0.07738342917361357,
+    "labels_mean": 198.6
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.01402179489528621,
+    "se": 0.0018885250629694238,
+    "overshoot": 0.36,
+    "p90_regret": 0.04020157486611958,
+    "labels_mean": 240.0
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.08731667717357652,
+    "se": 0.011584471121552652,
+    "overshoot": 0.56,
+    "p90_regret": 0.3018001366892168,
+    "labels_mean": 241.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.04309194998353422,
+    "se": 0.0077334364219017165,
+    "overshoot": 0.4,
+    "p90_regret": 0.096662518788939,
+    "labels_mean": 400.6
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.15429372330158161,
+    "se": 0.013605502833992575,
+    "overshoot": 0.94,
+    "p90_regret": 0.3018001366892168
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.1112721898642057,
+    "se": 0.01203998588066976,
+    "overshoot": 0.89,
+    "p90_regret": 0.3018001366892168
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 3.3652431988967537,
+    "se": 0.16580662687242517,
+    "overshoot": 0.96,
+    "p90_regret": 4.3075370997588
+   },
+   "_peak_gain": 0.33387664320202526,
+   "_lam_star": 0.5
+  },
+  "p=5e-4": {
+   "cov-lev m=20": {
+    "regret": 0.01759458627178534,
+    "se": 0.0022965961696577255,
+    "overshoot": 0.31,
+    "p90_regret": 0.05346468085710754,
+    "labels_mean": 331.6
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.012301055640245306,
+    "se": 0.00177273003506931,
+    "overshoot": 0.55,
+    "p90_regret": 0.028724831540023588,
+    "labels_mean": 368.8
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.09486834284678769,
+    "se": 0.010070887886032543,
+    "overshoot": 0.38,
+    "p90_regret": 0.25271502244149857,
+    "labels_mean": 313.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.02363462694290941,
+    "se": 0.0036335328560233456,
+    "overshoot": 0.41,
+    "p90_regret": 0.055442098747811135,
+    "labels_mean": 405.0
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.030465028807622363,
+    "se": 0.00703737508466522,
+    "overshoot": 0.29,
+    "p90_regret": 0.0732388597641418
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.0344957607159071,
+    "se": 0.004161855371262643,
+    "overshoot": 0.68,
+    "p90_regret": 0.0732388597641418
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.23782503948357,
+    "se": 0.0788249045151372,
+    "overshoot": 0.98,
+    "p90_regret": 2.5910201468143628
+   },
+   "_peak_gain": 0.6405531725561767,
+   "_lam_star": 0.8
+  },
+  "p=1e-2": {
+   "cov-lev m=20": {
+    "regret": 0.015960135678962845,
+    "se": 0.0023838694266502857,
+    "overshoot": 0.22,
+    "p90_regret": 0.04231396293204126,
+    "labels_mean": 144.2
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.0105058909843532,
+    "se": 0.0015971467131738273,
+    "overshoot": 0.38,
+    "p90_regret": 0.018372899874271265,
+    "labels_mean": 182.8
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.09235058298832406,
+    "se": 0.012332232350912693,
+    "overshoot": 0.84,
+    "p90_regret": 0.2726728324698847,
+    "labels_mean": 205.8
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.07626783870493511,
+    "se": 0.007885510628818104,
+    "overshoot": 0.27,
+    "p90_regret": 0.19092763686347392,
+    "labels_mean": 400.2
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.10232517223054653,
+    "se": 0.007989681539202629,
+    "overshoot": 0.97,
+    "p90_regret": 0.1691457206288482
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.024412984351694117,
+    "se": 0.0030809326921485804,
+    "overshoot": 0.49,
+    "p90_regret": 0.07500247426888644
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.8049845822716941,
+    "se": 0.07042831762100858,
+    "overshoot": 0.99,
+    "p90_regret": 2.168496007875598
+   },
+   "_peak_gain": 0.19092763686347392,
+   "_lam_star": 0.35
+  },
+  "rho=0": {
+   "cov-lev m=20": {
+    "regret": 0.016778063478135485,
+    "se": 0.002734196101738294,
+    "overshoot": 0.26,
+    "p90_regret": 0.0408944804266953,
+    "labels_mean": 246.0
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.014459033556836032,
+    "se": 0.0020136101085604877,
+    "overshoot": 0.45,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 286.2
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.08635295123864639,
+    "se": 0.009985991046492327,
+    "overshoot": 0.57,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 267.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.025785026959884105,
+    "se": 0.005664782421392865,
+    "overshoot": 0.63,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 400.6
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.042956133395009366,
+    "se": 0.0061375132104245405,
+    "overshoot": 0.79,
+    "p90_regret": 0.09260957833232991
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.030624695077404784,
+    "se": 0.004552311512172862,
+    "overshoot": 0.52,
+    "p90_regret": 0.09260957833232991
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.9428728971952605,
+    "se": 0.08778077078222288,
+    "overshoot": 0.95,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "rho=0.9": {
+   "cov-lev m=20": {
+    "regret": 0.016975580185837447,
+    "se": 0.0024094618838019,
+    "overshoot": 0.17,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 243.0
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.012216315186596438,
+    "se": 0.002023101444596429,
+    "overshoot": 0.32,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 279.6
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.08635295123864639,
+    "se": 0.009985991046492327,
+    "overshoot": 0.57,
+    "p90_regret": 0.27738633263269247,
+    "labels_mean": 267.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.026930792113588897,
+    "se": 0.005654109037515256,
+    "overshoot": 0.65,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 400.6
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.0441336398140218,
+    "se": 0.006275312134143812,
+    "overshoot": 0.79,
+    "p90_regret": 0.09260957833232991
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.030624695077404784,
+    "se": 0.004552311512172862,
+    "overshoot": 0.52,
+    "p90_regret": 0.09260957833232991
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.3922424287681947,
+    "se": 0.010323921157593254,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "N=500": {
+   "cov-lev m=20": {
+    "regret": 0.019375170836159417,
+    "se": 0.0025808004380852316,
+    "overshoot": 0.12,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 235.6
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.012498620608089428,
+    "se": 0.0019433077464956552,
+    "overshoot": 0.27,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 277.4
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.0747188165767313,
+    "se": 0.008160810248566729,
+    "overshoot": 0.56,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 271.2
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.034651174659020234,
+    "se": 0.006661491646801762,
+    "overshoot": 0.63,
+    "p90_regret": 0.09260957833232991,
+    "labels_mean": 400.2
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.04687236171822562,
+    "se": 0.006561730592506336,
+    "overshoot": 0.77,
+    "p90_regret": 0.11622342864110811
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.02048448595180713,
+    "se": 0.002567524090694189,
+    "overshoot": 0.52,
+    "p90_regret": 0.0408944804266953
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.8483533059183213,
+    "se": 0.09091413194503542,
+    "overshoot": 0.95,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "N=8000": {
+   "cov-lev m=20": {
+    "regret": 0.016962342473588354,
+    "se": 0.0029818033772148634,
+    "overshoot": 0.19,
+    "p90_regret": 0.04327947261771026,
+    "labels_mean": 242.0
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.010848827552441542,
+    "se": 0.0017137950614898444,
+    "overshoot": 0.37,
+    "p90_regret": 0.02122890042103648,
+    "labels_mean": 278.8
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.06791024149582042,
+    "se": 0.006214187720627848,
+    "overshoot": 0.52,
+    "p90_regret": 0.17064341179091835,
+    "labels_mean": 262.4
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.032548093193501826,
+    "se": 0.006475324045455341,
+    "overshoot": 0.68,
+    "p90_regret": 0.0408944804266953,
+    "labels_mean": 401.2
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.04598666678120433,
+    "se": 0.007362973582250085,
+    "overshoot": 0.8,
+    "p90_regret": 0.09260957833232991
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.025090531906755698,
+    "se": 0.004671944060913089,
+    "overshoot": 0.58,
+    "p90_regret": 0.0408944804266953
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.3763422033064447,
+    "se": 0.016518134484872167,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "step=0.025": {
+   "cov-lev m=20": {
+    "regret": 0.024466592704166068,
+    "se": 0.004055630159948809,
+    "overshoot": 0.08,
+    "p90_regret": 0.05801958973228183,
+    "labels_mean": 433.6
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.006711420426367631,
+    "se": 0.0008223801099070362,
+    "overshoot": 0.36,
+    "p90_regret": 0.019073280324000297,
+    "labels_mean": 511.2
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.18990502380700577,
+    "se": 0.006709917167380239,
+    "overshoot": 0.0,
+    "p90_regret": 0.2597228513057647,
+    "labels_mean": 225.6
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.05675744742124361,
+    "se": 0.004813858508937795,
+    "overshoot": 0.11,
+    "p90_regret": 0.12963209828408573,
+    "labels_mean": 459.2
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.03777559102203737,
+    "se": 0.006638988735204432,
+    "overshoot": 0.77,
+    "p90_regret": 0.09260957833232991
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.017359342320922233,
+    "se": 0.002662461554184669,
+    "overshoot": 0.26,
+    "p90_regret": 0.04327947261771026
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 1.8783519189115125,
+    "se": 0.09449632274681546,
+    "overshoot": 0.91,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  },
+  "step=0.1": {
+   "cov-lev m=20": {
+    "regret": 0.0242355658444654,
+    "se": 0.0024088457081922823,
+    "overshoot": 0.42,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 143.2
+   },
+   "cov-lev-win3+rollback m=20": {
+    "regret": 0.028295035049507755,
+    "se": 0.003102478790082959,
+    "overshoot": 0.53,
+    "p90_regret": 0.04062948129436028,
+    "labels_mean": 163.0
+   },
+   "goldtrend (w tuned at default) m=20": {
+    "regret": 0.45637267449412033,
+    "se": 0.026180512266529836,
+    "overshoot": 1.0,
+    "p90_regret": 0.7634814379060205,
+    "labels_mean": 200.2
+   },
+   "proxypoint fresh search (kmin tuned at default) m=20": {
+    "regret": 0.2987189299731646,
+    "se": 0.016430440968195698,
+    "overshoot": 0.03,
+    "p90_regret": 0.42633808210290325,
+    "labels_mean": 400.0
+   },
+   "proxypoint transferred from default (0 new labels)": {
+    "regret": 0.06203419448272318,
+    "se": 0.0090012898055127,
+    "overshoot": 0.76,
+    "p90_regret": 0.17064341179091835
+   },
+   "hack-rate (tau tuned at default)": {
+    "regret": 0.094856360223391,
+    "se": 0.011630079343837155,
+    "overshoot": 0.76,
+    "p90_regret": 0.17064341179091835
+   },
+   "gap-alarm (tuned q=0 this setting, eval q=1)": {
+    "regret": 2.3378478636408095,
+    "se": 0.02737696026832495,
+    "overshoot": 1.0,
+    "p90_regret": 2.4101117198074204
+   },
+   "_peak_gain": 0.42633808210290325,
+   "_lam_star": 0.6
+  }
+ },
+ "runtime_s": 119.19803237915039
+}

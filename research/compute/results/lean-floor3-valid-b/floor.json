@@ -1,0 +1,55 @@
+[
+{
+"split": "valid",
+"tactic": "INDUCTION",
+"proved": [
+"induction_divisibility_3div2tooddnp1",
+"induction_sum2kp1npqsqm1",
+"induction_sum_1oktkp1"
+]
+},
+{
+"split": "valid",
+"tactic": "CASES",
+"proved": [
+"mathd_numbertheory_22"
+]
+},
+{
+"split": "valid",
+"tactic": "ext x <;> (try simp_all) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "(try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "(try push_cast at *) <;> (try zify at *) <;> PORTFOLIO",
+"proved": [
+"amc12a_2002_p21"
+]
+},
+{
+"split": "valid",
+"tactic": "casesm* _ \u2227 _, \u2203 _, _ <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "exfalso <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "left <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "right <;> PORTFOLIO",
+"proved": []
+}
+]

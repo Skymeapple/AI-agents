@@ -1,0 +1,28 @@
+job: models-probe-2
+started: 2026-11-25T20:33:44Z
+cores: 4, memory: 15 GB
+== dns
+140.82.114.22   glb-db52c2cf8be544.github.com models.github.ai
+140.82.113.6    api.github.com
+== plain, verbose headers
+HTTP/2 200 
+content-type: text/plain
+
+OK
+
+== with API version and user agent
+HTTP/2 200 
+content-type: text/plain
+
+OK
+
+== catalogue with version header
+HTTP/2 200 
+content-type: text/plain
+
+OK
+
+== python
+200 {'Content-Type': 'text/plain', 'connection': 'close'}
+b'OK\r\n'
+finished: 2026-11-25T20:33:45Z, exit code 0

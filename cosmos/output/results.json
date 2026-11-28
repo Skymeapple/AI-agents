@@ -1,0 +1,425 @@
+{
+  "1": {
+    "problem": "What is dark matter?",
+    "figure": "cosmos/output/p01_dark_matter.png",
+    "v_at_30kpc_kms": {
+      "visible matter only": 94.64209712795781,
+      "visible + NFW halo": 193.6644118733588,
+      "MOND": 190.69530236617965
+    },
+    "halo_r200_kpc": 211.63397992804306,
+    "expected_events_at_lz_limit_40GeV": 1.0594237910783,
+    "events_per_tonne_year_at_limit": {
+      "events_per_tonne_year_m40": 0.2522437597805476,
+      "events_per_tonne_year_m200": 0.10159408111181444,
+      "events_per_tonne_year_m1000": 0.02172332313599143
+    },
+    "reading": "Visible matter alone falls away with radius; a halo or MOND both keep the curve flat, so rotation curves alone cannot choose between them. At the published LZ limit a 40 GeV WIMP would give about 1.1 events in the whole exposure: limits of this size are statements about one or two events, which is why a single candidate event cannot be a discovery.",
+    "caveats": [
+      "Galaxy is synthetic (assumed parameters), not a fit to SPARC data.",
+      "Flat 50% detection efficiency and no escape-velocity cut-off."
+    ]
+  },
+  "2": {
+    "problem": "Is dark energy constant?",
+    "figure": "cosmos/output/p02_dark_energy.png",
+    "fits": [
+      {
+        "data": "DESI BAO (+BBN)",
+        "chi2_lcdm": 10.281924460938288,
+        "chi2_w0wa": 5.618400258754316,
+        "delta_chi2": -4.6635242021839725,
+        "sigma": 1.658957021319182,
+        "w0": -0.17977374431365128,
+        "wa": -2.711537311068489,
+        "h_lcdm": 0.6849961125311692,
+        "omega_m_lcdm": 0.2971832350130315,
+        "published_delta_chi2": -4.7
+      },
+      {
+        "data": "DESI + CMB prior",
+        "chi2_lcdm": 14.996424554652886,
+        "chi2_w0wa": 6.904911609520006,
+        "delta_chi2": -8.09151294513288,
+        "sigma": 2.376105403312156,
+        "w0": -0.4468630421675919,
+        "wa": -1.6466283408197322,
+        "h_lcdm": 0.6831230506352054,
+        "omega_m_lcdm": 0.30105075610807874,
+        "published_delta_chi2": -8.0
+      },
+      {
+        "data": "DESI + Pantheon+ (+BBN)",
+        "chi2_lcdm": 72.23994870781712,
+        "chi2_w0wa": 67.92303417075196,
+        "delta_chi2": -4.316914537065159,
+        "sigma": 1.5739319867677124,
+        "w0": -0.8983074994367027,
+        "wa": -0.1868009407890877,
+        "h_lcdm": 0.6849852867217333,
+        "omega_m_lcdm": 0.30338252875394306,
+        "published_delta_chi2": -4.9
+      },
+      {
+        "data": "DESI + CMB prior + Pantheon+",
+        "chi2_lcdm": 76.72744813606745,
+        "chi2_w0wa": 69.80159071992502,
+        "delta_chi2": -6.925857416142435,
+        "sigma": 2.152756149315975,
+        "w0": -0.8611048976982684,
+        "wa": -0.5084902648131608,
+        "h_lcdm": 0.6821296108700539,
+        "omega_m_lcdm": 0.3023579226139333,
+        "published_delta_chi2": null
+      }
+    ],
+    "reading": "The evolving model fits better in every combination, by an amount close to the published values, and never by enough to be decisive. The best fit crosses w = -1, which a single simple scalar field cannot do.",
+    "caveats": [
+      "CMB enters only through the three-parameter compressed prior, not the full likelihood.",
+      "Supernovae are binned; the model is evaluated at each bin's effective redshift.",
+      "Significance uses the chi^2 difference with 2 extra parameters, as DESI does."
+    ]
+  },
+  "3": {
+    "problem": "The Hubble tension",
+    "figure": "cosmos/output/p03_hubble_tension.png",
+    "tension_planck_vs_shoes_sigma": 5.721431203763173,
+    "group_means": {
+      "early": {
+        "mean": 68.07216261101885,
+        "err": 0.2661414665865509
+      },
+      "ladder": {
+        "mean": 72.73265644162191,
+        "err": 0.7002961642116279
+      },
+      "independent": {
+        "mean": 72.95737704918032,
+        "err": 2.3046638387921274
+      }
+    },
+    "tension_early_vs_ladder_sigma": 6.220929918285202,
+    "bao_only": {
+      "omega_m": 0.2971945712715534,
+      "h_times_rd_mpc": 101.54725559806644,
+      "err": 0.7356422241159777
+    },
+    "h0_with_standard_rd": 68.98043293575107,
+    "rd_standard_mpc": 147.21168203256767,
+    "rd_needed_for_shoes_mpc": 138.7826371437289,
+    "rd_shrink_percent": 5.725798912462676,
+    "toy_ede_peak_fraction_needed": 0.2536133416012346,
+    "reading": "BAO alone pin the product of H0 and the sound horizon. Matching the Cepheid value means shrinking the sound horizon by 5.7%, which in the toy model takes a new component peaking at 25% of the energy density around redshift 3500. Published early-dark-energy fits need less (about 10%) because they also let the matter density and other parameters move.",
+    "caveats": [
+      "Grouped means treat measurements as independent; ladder results share calibrators, so the ladder group error is too small.",
+      "The early-dark-energy model is a Gaussian bump in the energy budget, not a scalar field, and ignores the changes to the CMB peaks that a full analysis must also fit."
+    ]
+  },
+  "4": {
+    "problem": "What drove inflation?",
+    "figure": "cosmos/output/p04_inflation.png",
+    "models": [
+      {
+        "model": "phi^2",
+        "ns_N50": 0.9603960271725029,
+        "ns_N60": 0.9669421618727598,
+        "r_N50": 0.1584158415835398,
+        "r_N60": 0.13223140495793925,
+        "allowed_by_r_limit": false,
+        "ns_pull_planck_sigma": -0.293072732706808,
+        "ns_pull_act_sigma": -3.126736905108432,
+        "energy_scale_1e16GeV": 2.0305673259649457
+      },
+      {
+        "model": "phi^1",
+        "ns_N50": 0.9701492537314308,
+        "ns_N60": 0.9751037344399047,
+        "r_N50": 0.07960199004951775,
+        "r_N60": 0.06639004149358732,
+        "allowed_by_r_limit": false,
+        "ns_pull_planck_sigma": 1.8396414489685056,
+        "ns_pull_act_sigma": -0.49220762186245637,
+        "energy_scale_1e16GeV": 1.7094567931118507
+      },
+      {
+        "model": "phi^(2/3)",
+        "ns_N50": 0.9734219464953567,
+        "ns_N60": 0.9778393310474265,
+        "r_N50": 0.05315614617616203,
+        "r_N60": 0.04432132963684751,
+        "allowed_by_r_limit": false,
+        "ns_pull_planck_sigma": 2.5549139931884706,
+        "ns_pull_act_sigma": 0.39136434452691216,
+        "energy_scale_1e16GeV": 1.545261232016061
+      },
+      {
+        "model": "Starobinsky R^2",
+        "ns_N50": 0.9615696153796861,
+        "ns_N60": 0.967827118314449,
+        "r_N50": 0.0041923071851917345,
+        "r_N60": 0.002963891000549186,
+        "allowed_by_r_limit": true,
+        "ns_pull_planck_sigma": -0.048007893555338896,
+        "ns_pull_act_sigma": -2.8240097508624995,
+        "energy_scale_1e16GeV": 0.8043525264573104
+      },
+      {
+        "model": "natural, f = 7",
+        "ns_N50": 0.9569493362518017,
+        "ns_N60": 0.9628442306780215,
+        "r_N50": 0.09057029408798709,
+        "r_N60": 0.06699030213752818,
+        "allowed_by_r_limit": false,
+        "ns_pull_planck_sigma": -1.1912420321639037,
+        "ns_pull_act_sigma": -4.236240157378962,
+        "energy_scale_1e16GeV": 1.742359406249248
+      }
+    ],
+    "r_limit": 0.036,
+    "reading": "Power-law potentials are excluded by the absence of gravitational waves. Plateau models such as Starobinsky survive that test but predict a tilt that sits below the newer ACT-based measurement, so the surviving class is under mild pressure from the other side.",
+    "caveats": [
+      "First-order slow-roll; the number of e-folds is an assumed bracket, not derived from reheating.",
+      "Measured tilt values are quoted from memory and should be checked before reuse."
+    ]
+  },
+  "5": {
+    "problem": "Why matter and not antimatter?",
+    "figure": "cosmos/output/p05_baryogenesis.png",
+    "decay_parameter_K": 46.2962962962963,
+    "efficiency": 0.004943665042190421,
+    "analytic_strong_washout_estimate": 0.003405359690083138,
+    "cp_asymmetry_needed": 1.289529113642252e-05,
+    "min_heavy_neutrino_mass_GeV": 130830272056.21553,
+    "eta_b_observed": 6.12e-10,
+    "reading": "With light-neutrino masses at the measured scale the mechanism sits in the strong-washout regime: the answer no longer depends on initial conditions, about 0.5% of the asymmetry survives, and a CP asymmetry of 1.3e-05 is enough. That needs a heavy neutrino above about 1e+11 GeV, far beyond any collider, which is why the idea is plausible but hard to test.",
+    "caveats": [
+      "One flavour, decays and inverse decays only; no scatterings, flavour or spectator effects.",
+      "The mass bound assumes hierarchical heavy neutrinos (no resonant enhancement)."
+    ]
+  },
+  "6": {
+    "problem": "Black-hole information",
+    "figure": "cosmos/output/p06_black_hole_information.png",
+    "max_abs_deviation_from_page_bits": 0.0012472885036985452,
+    "page_time_fraction_of_qubits": 0.5,
+    "entropy_deficit_at_half_bits": 0.7220431408040728,
+    "solar_mass_evaporation_time_yr": 2.0956820595685698e+67,
+    "solar_mass_entropy_kB": 1.0489547041537046e+77,
+    "page_time_fraction_of_lifetime": 0.6464466094067263,
+    "reading": "A generic quantum-mechanical evolution reproduces Page's curve to within a fraction of a bit: the radiation entropy rises, turns over when half the system has been emitted, and returns to zero. Hawking's calculation keeps rising. The two only disagree after the turnover, which for a solar-mass black hole is ~1e67 years away, so no observation of an astrophysical black hole can distinguish them.",
+    "caveats": [
+      "A random state stands in for the black hole's dynamics; this shows what unitarity requires, not how gravity achieves it.",
+      "14 qubits, against ~1e77 for a solar-mass black hole."
+    ]
+  },
+  "7": {
+    "problem": "Early giant black holes",
+    "figure": "cosmos/output/p07_early_black_holes.png",
+    "efold_time_myr": 50.0,
+    "seed_epoch_myr": 128.784718597357,
+    "objects": [
+      {
+        "name": "J0313-1806",
+        "z": 7.64,
+        "mass_msun": 1600000000.0,
+        "time_available_myr": 547.3256582650941,
+        "seed_needed_at_eddington_msun": 28190.950492111213,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.5153774567032723,
+          "dense-cluster seed, 1e3 Msun": 1.305028731202923,
+          "direct collapse, 1e5 Msun": 0.8843312802022244
+        }
+      },
+      {
+        "name": "J1342+0928",
+        "z": 7.54,
+        "mass_msun": 780000000.0,
+        "time_available_myr": 559.2472535195864,
+        "seed_needed_at_eddington_msun": 10827.661700904986,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.4188388223442587,
+          "dense-cluster seed, 1e3 Msun": 1.2129741463442538,
+          "direct collapse, 1e5 Msun": 0.8012447943442438
+        }
+      },
+      {
+        "name": "J1120+0641",
+        "z": 7.08,
+        "mass_msun": 1350000000.0,
+        "time_available_myr": 618.8782616421606,
+        "seed_needed_at_eddington_msun": 5686.243959325399,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.326448290479927,
+          "dense-cluster seed, 1e3 Msun": 1.1404193704396384,
+          "direct collapse, 1e5 Msun": 0.7683615303590613
+        }
+      },
+      {
+        "name": "UHZ1",
+        "z": 10.1,
+        "mass_msun": 40000000.0,
+        "time_available_myr": 335.24269872059267,
+        "seed_needed_at_eddington_msun": 48998.06260640804,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.9238629022075955,
+          "dense-cluster seed, 1e3 Msun": 1.5804422845801953,
+          "direct collapse, 1e5 Msun": 0.8936010493253956
+        }
+      },
+      {
+        "name": "CEERS-1019",
+        "z": 8.68,
+        "mass_msun": 9000000.0,
+        "time_available_myr": 441.22313927600794,
+        "seed_needed_at_eddington_msun": 1323.8141410335659,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.2927206138860703,
+          "dense-cluster seed, 1e3 Msun": 1.0317885720203264,
+          "direct collapse, 1e5 Msun": 0.5099244882888384
+        }
+      },
+      {
+        "name": "GN-z11",
+        "z": 10.6,
+        "mass_msun": 1600000.0,
+        "time_available_myr": 305.5020879872354,
+        "seed_needed_at_eddington_msun": 3552.7329361590323,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.584333525345068,
+          "dense-cluster seed, 1e3 Msun": 1.2074809302999152,
+          "direct collapse, 1e5 Msun": 0.45377574020960965
+        }
+      },
+      {
+        "name": "Abell2744-QSO1 (LRD)",
+        "z": 7.04,
+        "mass_msun": 40000000.0,
+        "time_available_myr": 624.468054328634,
+        "seed_needed_at_eddington_msun": 150.66049463386045,
+        "mean_eddington_ratio_needed": {
+          "stellar remnant, 100 Msun": 1.032816629824089,
+          "dense-cluster seed, 1e3 Msun": 0.8484529080105243,
+          "direct collapse, 1e5 Msun": 0.479725464383395
+        }
+      }
+    ],
+    "hardest_object_for_light_seeds": "UHZ1",
+    "reading": "A 100-solar-mass seed can reach the observed masses only by accreting at or above the Eddington limit without interruption for the entire available time, which feedback makes implausible. Heavy seeds or sustained super-Eddington phases relax this to duty cycles well below one. The objects at z > 10 are the binding constraint.",
+    "caveats": [
+      "Constant radiative efficiency of 0.1; lower efficiency (spinning-down or slim discs) shortens the e-folding time and eases the problem.",
+      "Observed masses are single-epoch estimates uncertain by a factor of several, and for 'little red dots' may be overestimated.",
+      "Mergers are ignored."
+    ]
+  },
+  "8": {
+    "problem": "Structure growth and the cosmic dipole",
+    "figure": "cosmos/output/p08_structure_and_dipole.png",
+    "s8": [
+      {
+        "name": "Planck 2018 (CMB)",
+        "S8": 0.832,
+        "err": 0.013,
+        "tension_with_planck_sigma": 0.0
+      },
+      {
+        "name": "KiDS-Legacy",
+        "S8": 0.815,
+        "err": 0.018,
+        "tension_with_planck_sigma": 0.7656414934887772
+      },
+      {
+        "name": "KiDS-Legacy + external",
+        "S8": 0.816,
+        "err": 0.006,
+        "tension_with_planck_sigma": 1.1174884732313262
+      },
+      {
+        "name": "DES Y3 3x2pt",
+        "S8": 0.776,
+        "err": 0.017,
+        "tension_with_planck_sigma": 2.6167081556895844
+      },
+      {
+        "name": "DES Y6 3x2pt",
+        "S8": 0.789,
+        "err": 0.012,
+        "tension_with_planck_sigma": 2.4305037014601485
+      },
+      {
+        "name": "HSC Y3",
+        "S8": 0.776,
+        "err": 0.032,
+        "tension_with_planck_sigma": 1.621316509964039
+      }
+    ],
+    "growth_today_evolving_de_over_lcdm": 1.0078913992777445,
+    "dipole_expected_from_motion": 0.00720661371674667,
+    "dipole_observed": 0.01554,
+    "dipole_ratio": 2.156352568736725,
+    "mock_mean": 0.007620287162171415,
+    "mock_std": 0.0014481253827885918,
+    "mocks_exceeding_observed": 0,
+    "n_mocks": 4000,
+    "significance_sigma_gaussian": 5.468941385847363,
+    "published_significance_sigma": 4.9,
+    "reading": "The lensing discrepancy is now survey-dependent and at most 2.6 sigma. The dipole is a different matter: 0 of 4000 mock skies reach the measured amplitude, and the excess is 5.5 standard deviations of the mock scatter (published: 4.9). If the catalogue is sound, our motion does not explain the lopsidedness of the distant universe. Evolving dark energy as fitted in problem 2 changes today's growth by only +0.8%, so it does not by itself explain a low S8.",
+    "caveats": [
+      "Mocks contain shot noise and the mask only: no clustering, no survey systematics. The test shows the excess is not a noise or masking artefact, not that the catalogue is clean.",
+      "Source-count slope and spectral index are quoted from memory."
+    ]
+  },
+  "9": {
+    "problem": "The lithium problem",
+    "figure": "cosmos/output/p09_lithium.png",
+    "helium_fraction_simulated": 0.22386701136223025,
+    "helium_fraction_threshold_range": [
+      0.23364096844981758,
+      0.2139063131968481
+    ],
+    "helium_fraction_observed": 0.245,
+    "nucleosynthesis_temperature_MeV": 0.07978461340530407,
+    "lithium_gap_factor": 2.95,
+    "eta10_that_would_fit_lithium": 3.644224012917379,
+    "deuterium_at_that_eta": 5.768729199162846e-05,
+    "deuterium_observed": 2.527e-05,
+    "lithium_after_measured_depletion": 2.848e-10,
+    "residual_gap_factor_after_depletion": 1.657303370786517,
+    "residual_sigma": 2.0883234742306365,
+    "reading": "The simplified freeze-out integration gives a helium fraction of 0.22 against 0.245 observed (full reaction-network codes give 0.247), so the framework works; yet it overpredicts lithium by a factor of 3.0. Lowering the baryon density enough to fix lithium would more than double deuterium, which is measured to a percent, so the fix cannot be in the cosmology. The depletion measured in globular-cluster stars closes about half of the gap in the log; a factor of 1.7 remains, at 2.1 sigma given the quoted errors.",
+    "caveats": [
+      "Helium comes from a simplified freeze-out integration; the moment fusion starts is set by an assumed deuterium threshold, and the quoted range shows the yield for thresholds ten times lower and higher.",
+      "Deuterium and lithium curves are power-law scalings anchored to published predictions, not a reaction-network calculation."
+    ]
+  },
+  "10": {
+    "problem": "Neutrino masses",
+    "figure": "cosmos/output/p10_neutrino_mass.png",
+    "minimum_sum_eV": {
+      "normal": 0.05878431004734465,
+      "inverted": 0.09892232664659655
+    },
+    "cosmological_limit_95_eV": 0.064,
+    "implied_gaussian_sigma_eV": 0.03265366124317785,
+    "tension_of_minimum_sigma": {
+      "normal": 1.800236414825493,
+      "inverted": 3.0294405858474396
+    },
+    "odds_normal_vs_inverted": 19.459386634360737,
+    "power_suppression_at_minimum": {
+      "normal": 0.03545726141832197,
+      "inverted": 0.059667533618955
+    },
+    "effective_beta_decay_mass_eV": {
+      "normal": 0.008817936266496827,
+      "inverted": 0.048819954936480635
+    },
+    "katrin_limit_eV": 0.45,
+    "katrin_final_sensitivity_eV": 0.3,
+    "reading": "The cosmological limit sits almost exactly on the smallest sum that oscillations allow. Inverted ordering is disfavoured at 3.0 sigma, and even normal ordering sits at 1.8 sigma. The laboratory experiment cannot arbitrate: its final sensitivity (0.3 eV) is 6 to 34 times the effective mass these numbers imply.",
+    "caveats": [
+      "The cosmological posterior is approximated as a zero-centred Gaussian; the real one peaks at negative effective mass, which makes the tension larger than computed here.",
+      "The limit assumes LCDM; with evolving dark energy it relaxes substantially.",
+      "The suppression formula (8 x neutrino fraction) is the standard linear-theory estimate."
+    ]
+  }
+}

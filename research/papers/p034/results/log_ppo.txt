@@ -1,0 +1,219 @@
+{
+ "config": {
+  "T": 120,
+  "batch": 2000,
+  "epochs": 4,
+  "clip": 0.2,
+  "beta": 0.05,
+  "lr": 0.01,
+  "pool": 200000,
+  "q": 1.0
+ },
+ "identity_max_abs_err_dG_vs_cov_g_rho": 2.211772431870429e-14,
+ "peak_iter_mean": 37.96666666666667,
+ "peak_gold_mean": 1.2195584529175023,
+ "gold_at_T_mean": -1.7471554769246607,
+ "frac_iters_sign_cov_g_r1_ne_sign_dG": 0.008888888888888887,
+ "exact_cov_g_r1_first_neg_minus_peak_iter_mean": -1.0666666666666667,
+ "exact_cov_g_rho_first_neg_minus_peak_iter_mean": 0.0,
+ "final_theta_mean": [
+  2.516044185812319,
+  2.0426376635724854,
+  7.182203110868002
+ ],
+ "cos_final_theta_vs_tilting_direction": 0.9515926402030167,
+ "rules": {
+  "oracle exact cov(g,rho) sign": {
+   "regret": 0.0,
+   "se": 0.0,
+   "overshoot": 0.0
+  },
+  "oracle exact cov(g,r1) sign": {
+   "regret": 0.0021525451397729025,
+   "se": 0.0001487321390506872,
+   "overshoot": 0.0
+  },
+  "audit cov(g,rho), leverage, m=5": {
+   "regret": 0.9628522451772619,
+   "se": 0.027337756505880495,
+   "overshoot": 0.0,
+   "labels_mean": 37.666666666666664
+  },
+  "audit cov(g,r1), leverage, m=5": {
+   "regret": 0.5696172531029766,
+   "se": 0.047957109296253846,
+   "overshoot": 0.0,
+   "labels_mean": 89.41666666666667
+  },
+  "audit cov(g,rho), leverage, window-sum 3, m=5": {
+   "regret": 0.3366365149801407,
+   "se": 0.04576626925394365,
+   "overshoot": 0.05,
+   "labels_mean": 127.25
+  },
+  "audit cov(g,r1), leverage, window-sum 3, m=5": {
+   "regret": 0.06891084016011674,
+   "se": 0.019239735051003307,
+   "overshoot": 0.11666666666666667,
+   "labels_mean": 172.41666666666666
+  },
+  "audit cov(g,rho), leverage, window-sum 5, m=5": {
+   "regret": 0.11112946487840311,
+   "se": 0.02749918733232043,
+   "overshoot": 0.3333333333333333,
+   "labels_mean": 173.25
+  },
+  "audit cov(g,r1), leverage, window-sum 5, m=5": {
+   "regret": 0.014505790927992897,
+   "se": 0.002868894037175821,
+   "overshoot": 0.36666666666666664,
+   "labels_mean": 192.91666666666666
+  },
+  "gold-trend (window oracle-tuned), m=5": {
+   "regret": 0.1598335275417993,
+   "se": 0.01618204694262611,
+   "overshoot": 0.9833333333333333,
+   "labels_mean": 237.41666666666666,
+   "w": 24
+  },
+  "audit cov(g,rho), leverage, m=10": {
+   "regret": 0.622797362076951,
+   "se": 0.040198961714713675,
+   "overshoot": 0.0,
+   "labels_mean": 164.83333333333334
+  },
+  "audit cov(g,r1), leverage, m=10": {
+   "regret": 0.22865751711378968,
+   "se": 0.02712087592914132,
+   "overshoot": 0.0,
+   "labels_mean": 275.6666666666667
+  },
+  "audit cov(g,rho), leverage, window-sum 3, m=10": {
+   "regret": 0.10780619850109538,
+   "se": 0.02296578388749387,
+   "overshoot": 0.23333333333333334,
+   "labels_mean": 339.8333333333333
+  },
+  "audit cov(g,r1), leverage, window-sum 3, m=10": {
+   "regret": 0.026800577209623606,
+   "se": 0.005637454783711149,
+   "overshoot": 0.18333333333333332,
+   "labels_mean": 365.5
+  },
+  "audit cov(g,rho), leverage, window-sum 5, m=10": {
+   "regret": 0.02896030552965119,
+   "se": 0.009694679835205056,
+   "overshoot": 0.55,
+   "labels_mean": 391.8333333333333
+  },
+  "audit cov(g,r1), leverage, window-sum 5, m=10": {
+   "regret": 0.01076813230517489,
+   "se": 0.0019024965632009154,
+   "overshoot": 0.48333333333333334,
+   "labels_mean": 385.8333333333333
+  },
+  "gold-trend (window oracle-tuned), m=10": {
+   "regret": 0.10108578911180624,
+   "se": 0.017093317474236935,
+   "overshoot": 0.7166666666666667,
+   "labels_mean": 409.6666666666667,
+   "w": 16
+  },
+  "audit cov(g,rho), leverage, m=20": {
+   "regret": 0.2244428810105982,
+   "se": 0.035777229080258224,
+   "overshoot": 0.03333333333333333,
+   "labels_mean": 568.6666666666666
+  },
+  "audit cov(g,r1), leverage, m=20": {
+   "regret": 0.07212250706747202,
+   "se": 0.012423489781168631,
+   "overshoot": 0.016666666666666666,
+   "labels_mean": 670.0
+  },
+  "audit cov(g,rho), leverage, window-sum 3, m=20": {
+   "regret": 0.020546851037220634,
+   "se": 0.005724389165055798,
+   "overshoot": 0.4166666666666667,
+   "labels_mean": 763.0
+  },
+  "audit cov(g,r1), leverage, window-sum 3, m=20": {
+   "regret": 0.007640433076037345,
+   "se": 0.0017389845768152228,
+   "overshoot": 0.3,
+   "labels_mean": 766.6666666666666
+  },
+  "audit cov(g,rho), leverage, window-sum 5, m=20": {
+   "regret": 0.013698434131723366,
+   "se": 0.0024058210093322184,
+   "overshoot": 0.6666666666666666,
+   "labels_mean": 806.6666666666666
+  },
+  "audit cov(g,r1), leverage, window-sum 5, m=20": {
+   "regret": 0.006326751426319491,
+   "se": 0.0012995015161824449,
+   "overshoot": 0.55,
+   "labels_mean": 800.0
+  },
+  "gold-trend (window oracle-tuned), m=20": {
+   "regret": 0.09064270972007012,
+   "se": 0.012501521480589296,
+   "overshoot": 0.9166666666666666,
+   "labels_mean": 887.0,
+   "w": 16
+  },
+  "audit cov(g,rho), leverage, m=40": {
+   "regret": 0.054437315381009786,
+   "se": 0.01064430188020823,
+   "overshoot": 0.06666666666666667,
+   "labels_mean": 1394.6666666666667
+  },
+  "audit cov(g,r1), leverage, m=40": {
+   "regret": 0.023648820299110637,
+   "se": 0.004750450296954116,
+   "overshoot": 0.03333333333333333,
+   "labels_mean": 1443.3333333333333
+  },
+  "audit cov(g,rho), leverage, window-sum 3, m=40": {
+   "regret": 0.008051268955065076,
+   "se": 0.001374027049162527,
+   "overshoot": 0.4166666666666667,
+   "labels_mean": 1558.6666666666667
+  },
+  "audit cov(g,r1), leverage, window-sum 3, m=40": {
+   "regret": 0.004711840309526742,
+   "se": 0.001004847320948777,
+   "overshoot": 0.21666666666666667,
+   "labels_mean": 1529.3333333333333
+  },
+  "audit cov(g,rho), leverage, window-sum 5, m=40": {
+   "regret": 0.011183686291002881,
+   "se": 0.0015848937588873184,
+   "overshoot": 0.8,
+   "labels_mean": 1628.0
+  },
+  "audit cov(g,r1), leverage, window-sum 5, m=40": {
+   "regret": 0.003150235477955569,
+   "se": 0.00041264011674168585,
+   "overshoot": 0.6166666666666667,
+   "labels_mean": 1582.0
+  },
+  "gold-trend (window oracle-tuned), m=40": {
+   "regret": 0.07525712484719461,
+   "se": 0.01678576339353464,
+   "overshoot": 0.8333333333333334,
+   "labels_mean": 1675.3333333333333,
+   "w": 12
+  },
+  "never stop": {
+   "regret": 2.9667139298421628,
+   "se": 0.000595880214988481,
+   "overshoot": 1.0
+  }
+ },
+ "runtime_s": 129.44176244735718
+}
+
+real	2m10.522s
+user	2m43.542s
+sys	1m32.668s

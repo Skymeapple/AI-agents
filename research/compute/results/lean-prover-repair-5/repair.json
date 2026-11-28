@@ -1,0 +1,103 @@
+[
+{
+"name": "aime_1991_p9",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 104
+},
+{
+"name": "algebra_apbmpcneq0_aeq0anbeq0anceq0",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 216
+},
+{
+"name": "amc12_2001_p5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 67
+},
+{
+"name": "amc12a_2020_p4",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 173
+},
+{
+"name": "amc12b_2020_p13",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 154
+},
+{
+"name": "imo_1963_p5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 369
+},
+{
+"name": "imo_1997_p5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 186
+},
+{
+"name": "mathd_algebra_156",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 67
+},
+{
+"name": "mathd_algebra_362",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 153
+},
+{
+"name": "mathd_numbertheory_296",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 3,
+"variant": "as-is",
+"proof": "  obtain \u27e8x, hx\u27e9 := h\u2081\n  obtain \u27e8t, ht\u27e9 := h\u2082\n  norm_num at hx ht\n  have h\u2083 : x \u2265 16 := by\n    have h\u2084 : x \u2265 16 := by\n      nlinarith [pow_two x, pow_two (x - 1), pow_two (x + 1), pow_two (x - 2), pow_two (x + 2),\n        pow_two (x - 3), pow_two (x + 3), pow_two (x - 4), pow_two (x + 4),\n        pow_two (x - 5), pow_two (x + 5), pow_two (x - 6), pow_two (x + 6),\n        pow_two (x - 7), pow_two (x + 7), pow_two (x - 8), pow_two (x + 8),\n        pow_two (x - 9), pow_two (x + 9), pow_two (x - 10), pow_two (x + 10),\n        pow_two (x - 11), pow_two (x + 11), pow_two (x - 12), pow_two (x + 12),\n        pow_two (x - 13), pow_two (x + 13), pow_two (x - 14), pow_two (x + 14),\n        pow_two (x - 15), pow_two (x + 15)]\n      linarith\n    linarith\n  have h\u2084 : t \u2265 16 := by\n    have h\u2085 : t \u2265 16 := by\n      nlinarith [pow_two t, pow_two (t - 1), pow_two (t + 1), pow_two (t - 2), pow_two (t + 2),\n        pow_two (t - 3), pow_two (t + 3), pow_two (t - 4), pow_two (t + 4),\n        pow_two (t -",
+"lean": "ok"
+},
+{
+"sample": 3,
+"variant": "prefix 4",
+"proof": "  obtain \u27e8x, hx\u27e9 := h\u2081\n  obtain \u27e8t, ht\u27e9 := h\u2082\n  norm_num at hx ht\n  have h\u2083 : x \u2265 16 := by\n    have h\u2084 : x \u2265 16 := by\n      nlinarith [pow_two x, pow_two (x - 1), pow_two (x + 1), pow_two (x - 2), pow_two (x + 2),\n        pow_two (x - 3), pow_two (x + 3), pow_two (x - 4), pow_two (x + 4),\n        pow_two (x - 5), pow_two (x + 5), pow_two (x - 6), pow_two (x + 6),\n        pow_two (x - 7), pow_two (x + 7), pow_two (x - 8), pow_two (x + 8),\n        pow_two (x - 9), pow_two (x + 9), pow_two (x - 10), pow_two (x + 10),\n        pow_two (x - 11), pow_two (x + 11), pow_two (x - 12), pow_two (x + 12),\n        pow_two (x - 13), pow_two (x + 13), pow_two (x - 14), pow_two (x + 14),\n        pow_two (x - 15), pow_two (x + 15)]\n      linarith\n    linarith\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 308
+},
+{
+"name": "mathd_numbertheory_711",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 97
+}
+]

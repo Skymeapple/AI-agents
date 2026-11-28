@@ -5,3 +5,14 @@ __pycache__/
 venv/
 *.egg-info/
 .DS_Store
+# local autoscout runs; CI keeps its tracked state in autoscout_state/
+autoscout_runs/
+/label_queue.jsonl
+/research/papers/p092/data/eval-analysis-public/
+/research/papers/p094/ext/metr/
+ai2035/audit/_arxiv_cache.json
+ai2035/export/_combined.md
+ai2035/export/_combined.html
+# raw downloads and cloned datasets kept out of the repository
+/research/papers/*/data_cache/
+/research/papers/*/ext/

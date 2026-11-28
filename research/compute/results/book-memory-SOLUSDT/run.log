@@ -1,0 +1,26 @@
+job: book-memory-SOLUSDT
+started: 2026-11-27T08:44:38Z
+cores: 4, memory: 15 GB
+total 292512
+drwxr-xr-x 2 runner runner     4096 Nov 27 08:45 .
+drwxr-xr-x 5 runner runner     4096 Nov 27 08:44 ..
+-rw-r--r-- 1 runner runner 86012192 Nov 27 08:44 2024-06-03_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 75422692 Nov 27 08:45 2024-06-04_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 78531527 Nov 27 08:45 2024-06-05_SOLUSDT_ob500.data.zip
+-rw-r--r-- 1 runner runner 20343314 Nov 27 08:44 SOLUSDT2024-06-03.csv.gz
+-rw-r--r-- 1 runner runner 17705743 Nov 27 08:45 SOLUSDT2024-06-04.csv.gz
+-rw-r--r-- 1 runner runner 21497971 Nov 27 08:45 SOLUSDT2024-06-05.csv.gz
+SOLUSDT: 33832 fitting and 16916 test bucket-sides
+RESULT SOLUSDT state                ridge    Spearman +0.484; top-decile hit 0.272
+RESULT SOLUSDT state                boosted  Spearman +0.485; top-decile hit 0.267
+RESULT SOLUSDT + lags               ridge    Spearman +0.524; top-decile hit 0.301
+RESULT SOLUSDT + lags               boosted  Spearman +0.515; top-decile hit 0.280
+RESULT SOLUSDT + drawdown/tipping   ridge    Spearman +0.508; top-decile hit 0.279
+RESULT SOLUSDT + drawdown/tipping   boosted  Spearman +0.518; top-decile hit 0.287
+RESULT SOLUSDT + flow/volatility    ridge    Spearman +0.487; top-decile hit 0.272
+RESULT SOLUSDT + flow/volatility    boosted  Spearman +0.489; top-decile hit 0.274
+RESULT SOLUSDT + lags + flow/vol    ridge    Spearman +0.524; top-decile hit 0.300
+RESULT SOLUSDT + lags + flow/vol    boosted  Spearman +0.514; top-decile hit 0.280
+RESULT SOLUSDT + memory (all)       ridge    Spearman +0.530; top-decile hit 0.300
+RESULT SOLUSDT + memory (all)       boosted  Spearman +0.528; top-decile hit 0.298
+finished: 2026-11-27T08:46:25Z, exit code 0

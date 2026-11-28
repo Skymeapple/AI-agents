@@ -1,0 +1,108 @@
+{
+"seed": 0,
+"beh": {
+"honest": 1.0,
+"lieA_instructed": 1.0,
+"cue_no_lie": 1.0,
+"lieB_incentive": 1.0,
+"lieC_sleeper": 1.0,
+"adv_no_secret": 1.0
+},
+"summary": {
+"Mismatch(ours)": {
+"lieA_instructed": 0.7846765350877193,
+"lieB_incentive": 0.953884548611111,
+"lieC_sleeper": 0.8497721354166666,
+"cue_no_lie": 0.5399739583333334,
+"adv_no_secret": 0.5667860243055556
+},
+"LR@valbest": {
+"lieA_instructed": 0.9669339364035088,
+"lieB_incentive": 0.589138454861111,
+"lieC_sleeper": 0.9289211697048612,
+"cue_no_lie": 0.8794921875,
+"adv_no_secret": 0.6137424045138888
+},
+"LR@oracle": {
+"lieA_instructed": 0.9669339364035088,
+"lieB_incentive": 0.681735568576389,
+"lieC_sleeper": 0.9583129882812499,
+"cue_no_lie": 0.5666666666666667,
+"adv_no_secret": 0.5164930555555556
+},
+"DiffMeans@oracle": {
+"lieA_instructed": 0.79150390625,
+"lieB_incentive": 0.6713460286458334,
+"lieC_sleeper": 0.8046468098958333,
+"cue_no_lie": 0.46666666666666673,
+"adv_no_secret": 0.46073404947916674
+},
+"Mahalanobis@oracle": {
+"lieA_instructed": 0.9040484512061404,
+"lieB_incentive": 0.7595757378472223,
+"lieC_sleeper": 0.9892781575520834,
+"cue_no_lie": 0.6414062500000001,
+"adv_no_secret": 0.40885416666666663
+}
+},
+"adm": [
+2,
+3,
+4
+],
+"min": 2.997475063800812
+}
+{
+"seed": 1,
+"beh": {
+"honest": 1.0,
+"lieA_instructed": 1.0,
+"cue_no_lie": 1.0,
+"lieB_incentive": 1.0,
+"lieC_sleeper": 1.0,
+"adv_no_secret": 1.0
+},
+"summary": {
+"Mismatch(ours)": {
+"lieA_instructed": 0.8241060697115385,
+"lieB_incentive": 0.8886563740079364,
+"lieC_sleeper": 0.8285047743055556,
+"cue_no_lie": 0.4353298611111111,
+"adv_no_secret": 0.483446662808642
+},
+"LR@valbest": {
+"lieA_instructed": 0.9744090544871794,
+"lieB_incentive": 0.666806175595238,
+"lieC_sleeper": 0.9853922526041666,
+"cue_no_lie": 0.9343894675925924,
+"adv_no_secret": 0.7402584876543209
+},
+"LR@oracle": {
+"lieA_instructed": 0.9744090544871794,
+"lieB_incentive": 0.8643353174603176,
+"lieC_sleeper": 0.9853922526041666,
+"cue_no_lie": 0.4571759259259259,
+"adv_no_secret": 0.5327932098765431
+},
+"DiffMeans@oracle": {
+"lieA_instructed": 0.7992204193376069,
+"lieB_incentive": 0.6234809027777778,
+"lieC_sleeper": 0.8762749565972222,
+"cue_no_lie": 0.5219907407407407,
+"adv_no_secret": 0.525607638888889
+},
+"Mahalanobis@oracle": {
+"lieA_instructed": 0.9266659989316239,
+"lieB_incentive": 0.8994140625,
+"lieC_sleeper": 0.9364420572916667,
+"cue_no_lie": 0.45717592592592593,
+"adv_no_secret": 0.5381944444444444
+}
+},
+"adm": [
+2,
+3,
+4
+],
+"min": 2.7845171888669333
+}

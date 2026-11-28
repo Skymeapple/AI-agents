@@ -1,0 +1,22 @@
+job: rb-pressure-diagnostic
+started: 2026-11-25T14:32:06Z
+cores: 4, memory: 15 GB
+== Rayleigh_1e6_Prandtl_1
+attrs: {'Prandtl': np.float64(1.0), 'Rayleigh': np.float64(1000000.0), 'dataset_name': 'rayleigh_benard', 'grid_type': 'cartesian', 'n_spatial_dims': np.int64(2), 'n_trajectories': np.int64(5), 'simulation_parameters': array(['Rayleigh', 'Prandtl'], dtype=object)}
+t0_fields/buoyancy {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+t0_fields/pressure {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+t1_fields/velocity {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+x range 0.0 4.0 y range 0.0 1.0 frames 20
+buoyancy at bottom/top wall (mean): 0.9996304658707231 0.00016560629303370434 | mean |v_y| at walls for component 1: 2.684718667653528e-08 component 0: 0.0002169357561432367
+velocity stored as (x, y): weights 1 and 1 -> error 0.227; fitted weights advection 1.116, buoyancy 1.137 -> error 0.195; horizontal-mean removed: weights 0.977, 1.493 -> error 0.301
+velocity stored as (y, x): weights 1 and 1 -> error 0.606; fitted weights advection -0.945, buoyancy 1.105 -> error 0.301; horizontal-mean removed: weights -0.917, 1.737 -> error 0.517
+== Rayleigh_1e8_Prandtl_1
+attrs: {'Prandtl': np.float64(1.0), 'Rayleigh': np.float64(100000000.0), 'dataset_name': 'rayleigh_benard', 'grid_type': 'cartesian', 'n_spatial_dims': np.int64(2), 'n_trajectories': np.int64(5), 'simulation_parameters': array(['Rayleigh', 'Prandtl'], dtype=object)}
+t0_fields/buoyancy {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+t0_fields/pressure {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+t1_fields/velocity {'dim_varying': '[ True  True]', 'sample_varying': 'True', 'time_varying': 'True'}
+x range 0.0 4.0 y range 0.0 1.0 frames 20
+buoyancy at bottom/top wall (mean): 0.9984677586297039 0.000325053375345298 | mean |v_y| at walls for component 1: 1.1652002636883696e-06 component 0: 0.0006841492387343201
+velocity stored as (x, y): weights 1 and 1 -> error 0.217; fitted weights advection 1.029, buoyancy 1.137 -> error 0.190; horizontal-mean removed: weights 0.930, 1.308 -> error 0.250
+velocity stored as (y, x): weights 1 and 1 -> error 0.878; fitted weights advection -0.892, buoyancy 1.116 -> error 0.390; horizontal-mean removed: weights -0.791, 1.715 -> error 0.668
+finished: 2026-11-25T14:32:40Z, exit code 0

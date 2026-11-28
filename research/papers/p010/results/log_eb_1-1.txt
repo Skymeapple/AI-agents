@@ -1,0 +1,131 @@
+{
+ "lambda_eb": {
+  "Claude 3 Opus (Inspect)": 0.15035617008818167,
+  "Claude 3.5 Sonnet (New) (Inspect)": 0.18928720334405794,
+  "Claude 3.5 Sonnet (Old) (Inspect)": 0.18928720334405794,
+  "Claude 3.7 Sonnet (Inspect)": 0.11943215116604916,
+  "Claude 4 Opus (Inspect)": 0.15035617008818167,
+  "Claude 4.1 Opus (Inspect)": 0.15035617008818167,
+  "Claude Opus 4.5 (Inspect)": 0.05985786944906637,
+  "Claude Opus 4.6 (Inspect)": 0.04754679577383339,
+  "GPT-4 0314": 0.23829847041728439,
+  "GPT-4 1106 (Inspect)": 0.15035617008818167,
+  "GPT-4 Turbo (Inspect)": 0.37767762353825,
+  "GPT-4o (Inspect)": 0.23829847041728439,
+  "GPT-5 (Inspect)": 0.09486832980505133,
+  "GPT-5.1-Codex-Max (Inspect)": 0.09486832980505133,
+  "GPT-5.2": 0.05985786944906637,
+  "GPT-5.3-Codex": 0.05985786944906637,
+  "Gemini 3 Pro": 0.04754679577383339,
+  "o1 (Inspect)": 0.18928720334405794,
+  "o1-preview": 0.2999999999999999,
+  "o3 (Inspect)": 0.11943215116604916
+ },
+ "lambda_eb_task_ess": {
+  "Claude 3 Opus (Inspect)": 3.4307080472459788,
+  "Claude 3.5 Sonnet (New) (Inspect)": 8.50954861051163,
+  "Claude 3.5 Sonnet (Old) (Inspect)": 6.7761412976960775,
+  "Claude 3.7 Sonnet (Inspect)": 3.4472336158743313,
+  "Claude 4 Opus (Inspect)": 22.660657412294995,
+  "Claude 4.1 Opus (Inspect)": 13.723684210526308,
+  "Claude Opus 4.5 (Inspect)": 2.1771427538544765,
+  "Claude Opus 4.6 (Inspect)": 1.8302631578947361,
+  "GPT-4 0314": 15.673997983784757,
+  "GPT-4 1106 (Inspect)": 5.390161559204586,
+  "GPT-4 Turbo (Inspect)": 13.578947368421044,
+  "GPT-4o (Inspect)": 54.687353428664615,
+  "GPT-5 (Inspect)": 2.7723644797462326,
+  "GPT-5.1-Codex-Max (Inspect)": 3.594097512095258,
+  "GPT-5.2": 1.0044071494342557,
+  "GPT-5.3-Codex": 4.205802932342296,
+  "Gemini 3 Pro": 1.7293659604119869,
+  "o1 (Inspect)": 10.91156154015986,
+  "o1-preview": 233.94366197183103,
+  "o3 (Inspect)": 3.4505387296000016
+ },
+ "n_runs": {
+  "Claude 3 Opus (Inspect)": 1038,
+  "Claude 3.5 Sonnet (New) (Inspect)": 1016,
+  "Claude 3.5 Sonnet (Old) (Inspect)": 1005,
+  "Claude 3.7 Sonnet (Inspect)": 1043,
+  "Claude 4 Opus (Inspect)": 1368,
+  "Claude 4.1 Opus (Inspect)": 1043,
+  "Claude Opus 4.5 (Inspect)": 1044,
+  "Claude Opus 4.6 (Inspect)": 1391,
+  "GPT-4 0314": 1401,
+  "GPT-4 1106 (Inspect)": 1029,
+  "GPT-4 Turbo (Inspect)": 1032,
+  "GPT-4o (Inspect)": 1044,
+  "GPT-5 (Inspect)": 1056,
+  "GPT-5.1-Codex-Max (Inspect)": 1369,
+  "GPT-5.2": 961,
+  "GPT-5.3-Codex": 1602,
+  "Gemini 3 Pro": 1044,
+  "o1 (Inspect)": 1044,
+  "o1-preview": 1661,
+  "o3 (Inspect)": 1044
+ },
+ "lambda_eb_task_ess_median": 4.797982245773441,
+ "lambda_eb_task_ess_range": [
+  1.0044071494342557,
+  233.94366197183103
+ ],
+ "lambda_eb_median": 0.15035617008818167,
+ "lambda_eb_range": [
+  0.04754679577383339,
+  0.37767762353825
+ ],
+ "corr_log_lambda_vs_log_runs": -0.02541953670824263,
+ "summary::global_lam1": {
+  "range": [
+   2027.1212876870864,
+   2032.646461239778
+  ],
+  "spread": 5.52517355269174,
+  "spearman_vs_global": 0.9999999999999999,
+  "max_abs_shift_vs_global": 0.0,
+  "defensible_range": [
+   2027.4779330182228,
+   2032.1430195794564
+  ]
+ },
+ "summary::scaled_lam1 (lam*n_m/mean n)": {
+  "range": [
+   2027.0956603822037,
+   2032.7587396413585
+  ],
+  "spread": 5.663079259154756,
+  "spearman_vs_global": 0.9860869565217389,
+  "max_abs_shift_vs_global": 0.5253401779198157,
+  "defensible_range": [
+   2027.479306380251,
+   2032.1443340241256
+  ]
+ },
+ "summary::empirical_bayes_per_system": {
+  "range": [
+   2026.3103062530824,
+   2037.9690489527623
+  ],
+  "spread": 11.658742699679806,
+  "spearman_vs_global": 0.8452173913043477,
+  "max_abs_shift_vs_global": 5.322587712984159,
+  "defensible_range": [
+   2027.1198029767281,
+   2033.2609376843814
+  ]
+ },
+ "summary::empirical_bayes_task_ess": {
+  "range": [
+   2027.2794122715532,
+   2031.1550816568754
+  ],
+  "spread": 3.875669385322226,
+  "spearman_vs_global": 0.9756521739130434,
+  "max_abs_shift_vs_global": 1.5724028862055093,
+  "defensible_range": [
+   2027.5233144603594,
+   2030.692474754589
+  ]
+ }
+}

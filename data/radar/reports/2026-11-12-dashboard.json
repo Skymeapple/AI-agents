@@ -1,0 +1,40 @@
+{
+ "takeaway": "Higgsfield's CEO says it hit a $1.35B annualized run rate in October. Jane Street's one-skill repo accelerated to +2,063 stars in a day. DeepSeek Harness's daily users, now read from the source page, went from 271,000 (late September) to 1.54 million (early November).",
+ "findings": [
+  {
+   "id": "higgsfield",
+   "heading": "Higgsfield: $1.35B run rate in October",
+   "text": "CEO Alex Mashrabov posted: 'We crossed $1B and got faster. In October we hit $1.35B.' The post names only the month, so it is dated to the Nov 11 post.",
+   "source": "https://x.com/alexmashrabov/status/2120322553600430213"
+  },
+  {
+   "id": "janestreet",
+   "heading": "Jane Street's skill repo accelerates",
+   "text": "janestreet/agent_skills gained 2,063 stars in a day, to 6,236, up from 1,641 the day before. It holds a single tutoring skill.",
+   "source": "https://github.com/janestreet/agent_skills"
+  },
+  {
+   "id": "dsh",
+   "heading": "DeepSeek Harness daily users, from the page",
+   "text": "Daily users of DeepSeek's official API: 271,000 (week ended Sept 30), 429,000 (Oct 7), 1.54 million (Nov 4). Read in full via Tavily; earlier only search snippets were available.",
+   "source": "https://www.yicaiglobal.com/news/deepseek-harness-releases-dau-data-for-first-time-topping-15-million"
+  },
+  {
+   "id": "uncensored",
+   "heading": "An 'uncensored' model's likes jump",
+   "text": "A safety-removed DeepSeek-V4-Pro merge went from 1,254 to 4,280 likes in a day against 16,693 downloads, a ratio far above normal. Reviewed as unclear.",
+   "source": "https://huggingface.co/api/models/xtools-at/DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic"
+  },
+  {
+   "id": "forecast",
+   "heading": "Nov 5 forecast: 3 of 15 top picks right",
+   "text": "Its top 100 scored a rank correlation of 0.45, but its top 15 held only 3 of the real top 15, the lowest hit rate so far.",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-12.md"
+  }
+ ],
+ "caveats": [
+  "A cracked-software repo ranked #24 in today's report before it was marked out of scope; the page's app table already leaves it out.",
+  "The Higgsfield figure is the CEO's own post, not a company filing.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "templeton_alive": [
+  1027604.48,
+  2726297.6,
+  11744051.2
+ ],
+ "alive_vs_width_exponent": {
+  "m1_to_m4": 0.7038289844566232,
+  "m4_to_m34": 0.7023050679721707,
+  "m1_to_m34": 0.7029146345659516
+ },
+ "gao_16M": {
+  "tokens": 40000000000.0,
+  "latents": 16000000.0,
+  "tokens_per_latent": 2500.0,
+  "min_learnable_frequency_beta1": {
+   "mstar=100": 2.5e-09,
+   "mstar=343.63": 8.590753451544818e-09,
+   "mstar=1000": 2.5e-08,
+   "mstar=10000": 2.5e-07
+  },
+  "tokens_between_occurrences_at_threshold": {
+   "mstar=100": 400000000.0,
+   "mstar=343.63": 116404225.26852712,
+   "mstar=1000": 40000000.0,
+   "mstar=10000": 4000000.0
+  }
+ }
+}

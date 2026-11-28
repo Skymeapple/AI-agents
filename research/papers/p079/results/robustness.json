@@ -1,0 +1,98 @@
+{
+ "cl100k_base": {
+  "beta_income_ctrl_script": -0.13200012975075043,
+  "ci": [
+   -0.18255956238503102,
+   -0.08278070650657451
+  ],
+  "beta_nonlatin": 0.7855469667413632,
+  "beta_income_latin_only": -0.1036806005649344,
+  "ci_latin_only": [
+   -0.15073113791395437,
+   -0.05967083432176537
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.09154145481634264,
+  "n_languages": 65
+ },
+ "o200k_base": {
+  "beta_income_ctrl_script": -0.10754013362692266,
+  "ci": [
+   -0.15307799792336219,
+   -0.06571634564147565
+  ],
+  "beta_nonlatin": 0.14672370059735984,
+  "beta_income_latin_only": -0.08699595994274284,
+  "ci_latin_only": [
+   -0.1230055761667354,
+   -0.05362048811981975
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.09170133830374251,
+  "n_languages": 65
+ },
+ "llama4": {
+  "beta_income_ctrl_script": -0.12882135091320296,
+  "ci": [
+   -0.16346324659350167,
+   -0.09716208789256127
+  ],
+  "beta_nonlatin": 0.1307116603140501,
+  "beta_income_latin_only": -0.12085507520576678,
+  "ci_latin_only": [
+   -0.15343977495387878,
+   -0.09006881608086327
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.1151135494391141,
+  "n_languages": 65
+ },
+ "gemma3": {
+  "beta_income_ctrl_script": -0.1020952315181459,
+  "ci": [
+   -0.13498250903327727,
+   -0.06950184934862118
+  ],
+  "beta_nonlatin": 0.022312880012487095,
+  "beta_income_latin_only": -0.10746780520508575,
+  "ci_latin_only": [
+   -0.14141710229459928,
+   -0.07442863472635244
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.08577401562222024,
+  "n_languages": 65
+ },
+ "tekken": {
+  "beta_income_ctrl_script": -0.15925531561611808,
+  "ci": [
+   -0.21475209396036696,
+   -0.11038775084289172
+  ],
+  "beta_nonlatin": 0.21172128695435033,
+  "beta_income_latin_only": -0.12598694667422722,
+  "ci_latin_only": [
+   -0.16376795920145357,
+   -0.09136958159500415
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.14276919527458143,
+  "n_languages": 65
+ },
+ "deepseek_v3": {
+  "beta_income_ctrl_script": -0.14376379588413185,
+  "ci": [
+   -0.19348092241290232,
+   -0.09658130950273994
+  ],
+  "beta_nonlatin": 0.2444927263339536,
+  "beta_income_latin_only": -0.10849488141067665,
+  "ci_latin_only": [
+   -0.14907947877542174,
+   -0.06868104953402998
+  ],
+  "n_latin": 51,
+  "beta_income_language_level": -0.12108638507797949,
+  "n_languages": 65
+ }
+}

@@ -1,0 +1,73 @@
+job: data-access-probe
+started: 2026-11-25T00:33:46Z
+cores: 4, memory: 15 GB
+project | http | size | resource | url
+weather-24h                  | 200  |     0.0 MB | WeatherBench 2 bucket listing | https://storage.googleapis.com/storage/v1/b/weatherbench2/o?prefix=datasets/&delimiter=/&maxResults=200
+   WB2 dataset folders: ['aurora', 'ens', 'era5-daily-climatology', 'era5-forecasts', 'era5-hourly-climatology', 'era5', 'era5_biweekly', 'era5_daily', 'era5_weekly', 'fgn', 'fuxi', 'gencast', 'graphcast', 'graphcast_hres_init', 'graphcast_hres_init_v2', 'graphcast_v2', 'hres', 'hres_t0', 'ifs_ens', 'ifs_extended_range', 'keisler', 'metar', 'neuralgcm_deterministic', 'neuralgcm_ens', 'pangu', 'pangu_hres_init', 'sphericalcnn']
+   era5: ['1959-2022-1h-240x121_equiangular_with_poles_conservative.zarr', '1959-2022-1h-360x181_equiangular_with_poles_conservative.zarr', '1959-2022-6h-128x64_equiangular_conservative.zarr', '1959-2022-6h-128x64_equiangular_with_poles_conservative.zarr', '1959-2022-6h-1440x721.zarr', '1959-2022-6h-240x121_equiangular_with_poles_conservative.zarr', '1959-2022-6h-512x256_equiangular_conservative.zarr', '1959-2022-6h-64x32_equiangular_conservative.zarr', '1959-2022-6h-64x32_equiangular_with_poles_conservative.zarr', '1959-2022-6h-64x33.zarr', '1959-2022-full_37-1h-0p25deg-chunk-1.zarr-v2', '1959-2022-full_37-6h-0p25deg-chunk-1.zarr-v2', '1959-2022-full_37-6h-0p25deg_derived.zarr', '1959-2022-wb13-6h-0p25deg-chunk-1.zarr-v2', '1959-2023_01_10-1h-240x121_equiangular_with_poles_conservative.zarr', '1959-2023_01_10-6h-240x121_equiangular_with_poles_conservative.zarr', '1959-2023_01_10-6h-360x181_equiangular_with_poles_conservative.zarr', '1959-2023_01_10-6h-64x32_equiangular_conservative.zarr', '1959-2023_01_10-full_37-1h-0p25deg-chunk-1.zarr', '1959-2023_01_10-full_37-1h-1440x721.zarr', '1959-2023_01_10-full_37-1h-512x256_equiangular_conservative.zarr', '1959-2023_01_10-wb13-6h-1440x721.zarr', '1959-2023_01_10-wb13-6h-1440x721_with_derived_variables.zarr']
+   graphcast: ['2018', '2020']
+   pangu: ['2018-2022_0012_0p25.zarr', '2018-2022_0012_240x121_equiangular_with_poles_conservative.zarr', '2018-2022_0012_64x32_equiangular_conservative.zarr', '2018-2022_0012_combined.zarr']
+   hres: ['2016-2022-0012-1440x721.zarr', '2016-2022-0012-240x121_equiangular_with_poles_conservative.zarr', '2016-2022-0012-512x256_equiangular_conservative.zarr', '2016-2022-0012-64x32_equiangular_conservative.zarr', '2016-2022-12h-6h-0p25deg-chunk-1.zarr']
+   neuralgcm_deterministic: ['2020-240x121_equiangular_with_poles_conservative.zarr', '2020-512x256.zarr', '2020-64x32_equiangular_conservative.zarr']
+   fuxi: ['2020-1440x721.zarr', '2020-240x121_equiangular_with_poles_conservative.zarr', '2020-64x32_equiangular_conservative.zarr', 'fuxi_raw.zarr']
+   keisler: ['2020-240x121_equiangular_with_poles_conservative.zarr', '2020-360x181.zarr', '2020-64x32_equiangular_conservative.zarr', '2020-64x32_equiangular_with_poles_conservative.zarr']
+   sphericalcnn: ['2020-240x121_equiangular_with_poles.zarr', '2020-64x32_equiangular_conservative.zarr', '2020-raw.zarr']
+weather-24h                  | 200  |     0.0 MB | Hugging Face models gcouairon/ArchesWeather | https://huggingface.co/api/models/gcouairon/ArchesWeather
+                               gated=False files=20 e.g. ['.gitattributes', 'LICENSE', 'README.md', 'archesweather-m-seed0_checkpoint.ckpt', 'archesweather-m-seed0_config.yaml', 'archesweather-m-seed1_checkpoint.ckpt']
+rayleigh-benard              | 200  |     0.0 MB | Hugging Face datasets polymathic-ai/rayleigh_benard | https://huggingface.co/api/datasets/polymathic-ai/rayleigh_benard
+                               gated=False files=113 e.g. ['.gitattributes', 'README.md', 'data/test/rayleigh_benard_Rayleigh_1e10_Prandtl_1.hdf5', 'data/test/rayleigh_benard_Rayleigh_1e10_Prandtl_10.hdf5', 'data/test/rayleigh_benard_Rayleigh_1e10_Prandtl_1e-1.hdf5', 'data/test/rayleigh_benard_Rayleigh_1e10_Prandtl_2.hdf5']
+rayleigh-benard              | 200  |     0.0 MB | Hugging Face models polymathic-ai/walrus | https://huggingface.co/api/models/polymathic-ai/walrus
+                               gated=False files=5 e.g. ['.gitattributes', 'README.md', 'extended_config.yaml', 'walrus.pt', 'walrus.safetensors']
+pm25-calibration             | 200  |     0.0 MB | SensEURCity record | https://zenodo.org/api/records/17858205
+lung-cell-annotation         | 200  |     0.1 MB | HLCA collection (CELLxGENE) | https://api.cellxgene.cziscience.com/curation/v1/collections/6f6d381a-7701-4781-935c-db10d30de293
+lung-cell-annotation         | 200  |     0.0 MB | Hugging Face models minwoosun/uce-100m | https://huggingface.co/api/models/minwoosun/uce-100m
+                               gated=False files=4 e.g. ['.gitattributes', 'README.md', 'config.json', 'pytorch_model.bin']
+regulatory-dna-mpra          | 200  |     0.0 MB | Hugging Face models arcinstitute/evo2_7b | https://huggingface.co/api/models/arcinstitute/evo2_7b
+                               gated=False files=4 e.g. ['.gitattributes', 'README.md', 'config.json', 'evo2_7b.pt']
+lung-histology               | 200  |     0.0 MB | Hugging Face models owkin/phikon-v2 | https://huggingface.co/api/models/owkin/phikon-v2
+                               gated=False files=6 e.g. ['.gitattributes', 'LICENSE.pdf', 'README.md', 'config.json', 'model.safetensors', 'preprocessor_config.json']
+lung-histology               | 200  |     0.0 MB | GDC API: TCGA-LUAD/LUSC diagnostic slide count | https://api.gdc.cancer.gov/files?filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUAD%22%2C%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Diagnostic%20Slide%22%5D%7D%7D%5D%7D&size=0
+crystal-generation           | 200  |     0.0 MB | Hugging Face models microsoft/mattergen | https://huggingface.co/api/models/microsoft/mattergen
+                               gated=False files=23 e.g. ['.gitattributes', 'README.md', 'checkpoints/chemical_system/checkpoints/last.ckpt', 'checkpoints/chemical_system/config.yaml', 'checkpoints/chemical_system_energy_above_hull/checkpoints/last.ckpt', 'checkpoints/chemical_system_energy_above_hull/config.yaml']
+crystal-generation           | 401  |          - | Hugging Face models microsoft/mattersim | https://huggingface.co/api/models/microsoft/mattersim
+                               gated=None files=0 e.g. []
+photometric-redshift         | 200  |     0.0 MB | Hugging Face models polymathic-ai/aion-base | https://huggingface.co/api/models/polymathic-ai/aion-base
+                               gated=False files=118 e.g. ['.gitattributes', 'README.md', 'codecs/EBV/README.md', 'codecs/EBV/config.json', 'codecs/EBV/model.safetensors', 'codecs/FLUX_G/README.md']
+photometric-redshift         | 200  |     0.0 MB | Legacy Survey cutout service | https://www.legacysurvey.org/viewer/cutout.jpg?ra=190.1086&dec=1.2005&layer=ls-dr9&pixscale=0.262&size=64
+table-qa-agent               | 200  |     0.0 MB | Hugging Face datasets cardiffnlp/databench | https://huggingface.co/api/datasets/cardiffnlp/databench
+                               gated=False files=326 e.g. ['.DS_Store', '.gitattributes', '.gitignore', 'Databench-LREC-Coling-2024.pdf', 'README.md', 'data/.DS_Store']
+dafny-agent                  | 200  |     0.0 MB | Hugging Face datasets wendy-sun/DafnyBench | https://huggingface.co/api/datasets/wendy-sun/DafnyBench
+                               gated=False files=3 e.g. ['.gitattributes', 'README.md', 'test.json']
+paper-memory-agent           | 200  |     0.0 MB | Hugging Face datasets allenai/qasper | https://huggingface.co/api/datasets/allenai/qasper
+                               gated=False files=5 e.g. ['.gitattributes', 'README.md', 'dataset_infos.json', 'dummy/qasper/0.1.0/dummy_data.zip', 'qasper.py']
+synlogic-training            | 200  |     0.0 MB | Hugging Face datasets MiniMaxAI/SynLogic | https://huggingface.co/api/datasets/MiniMaxAI/SynLogic
+                               gated=False files=6 e.g. ['.gitattributes', 'README.md', 'synlogic_easy/train.parquet', 'synlogic_easy/validation.parquet', 'synlogic_hard/train.parquet', 'synlogic_hard/validation.parquet']
+embspatial-training          | 200  |     0.0 MB | Hugging Face datasets FlagEval/EmbSpatial-Bench | https://huggingface.co/api/datasets/FlagEval/EmbSpatial-Bench
+                               gated=False files=3 e.g. ['.gitattributes', 'README.md', 'data/test-00000-of-00001.parquet']
+fabner-extraction            | 200  |     0.0 MB | Hugging Face datasets DFKI-SLT/fabner | https://huggingface.co/api/datasets/DFKI-SLT/fabner
+                               gated=False files=14 e.g. ['.gitattributes', 'README.md', 'fabner/test-00000-of-00001.parquet', 'fabner/train-00000-of-00001.parquet', 'fabner/validation-00000-of-00001.parquet', 'fabner_bio/test-00000-of-00001.parquet']
+post-training                | 200  |     0.0 MB | Hugging Face models Qwen/Qwen2.5-7B-Instruct | https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct
+                               gated=False files=14 e.g. ['.gitattributes', 'LICENSE', 'README.md', 'config.json', 'generation_config.json', 'merges.txt']
+post-training                | 200  |     0.0 MB | Hugging Face models Qwen/Qwen2-VL-2B-Instruct | https://huggingface.co/api/models/Qwen/Qwen2-VL-2B-Instruct
+                               gated=False files=14 e.g. ['.gitattributes', 'LICENSE', 'README.md', 'chat_template.json', 'config.json', 'generation_config.json']
+pretraining                  | 200  |     0.2 MB | Hugging Face datasets HuggingFaceFW/fineweb-edu | https://huggingface.co/api/datasets/HuggingFaceFW/fineweb-edu
+                               gated=False files=3038 e.g. ['.gitattributes', 'README.md', 'data/CC-MAIN-2013-20/train-00000-of-00014.parquet', 'data/CC-MAIN-2013-20/train-00001-of-00014.parquet', 'data/CC-MAIN-2013-20/train-00002-of-00014.parquet', 'data/CC-MAIN-2013-20/train-00003-of-00014.parquet']
+pretraining                  | 200  |     2.6 MB | Hugging Face datasets mlfoundations/dclm-baseline-1.0 | https://huggingface.co/api/datasets/mlfoundations/dclm-baseline-1.0
+arc-grid-agent               | 200  |     0.0 MB | GitHub repo fchollet/ARC-AGI | https://api.github.com/repos/fchollet/ARC-AGI
+lean-prover-agent            | 200  |     0.0 MB | GitHub repo openai/miniF2F | https://api.github.com/repos/openai/miniF2F
+terminal-agent-harness       | 200  |     0.0 MB | GitHub repo laude-institute/terminal-bench | https://api.github.com/repos/laude-institute/terminal-bench
+scienceworld-training        | 200  |     0.0 MB | GitHub repo allenai/ScienceWorld | https://api.github.com/repos/allenai/ScienceWorld
+mapqa-training               | 200  |     0.0 MB | GitHub repo OSU-slatelab/MapQA | https://api.github.com/repos/OSU-slatelab/MapQA
+topv2-parsing                | 404  |          - | GitHub repo facebookresearch/low-resource-semantic-parsing | https://api.github.com/repos/facebookresearch/low-resource-semantic-parsing
+bus-holding                  | ERR  |          - | HSL vehicle positions (HFP) info | https://hfp.digitransit.fi/
+bus-holding                  | 404  |          - | HSL HFP daily archive container | https://hslstoragekarttatuotanto.blob.core.windows.net/hfp-v2?restype=container&comp=list&maxresults=3
+bike-rebalancing             | 200  |     0.1 MB | Helsinki bike stations with capacity | https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv
+ride-hail-dispatch           | 200  |   472.8 MB | NYC TLC for-hire trips 2024-01 | https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2024-01.parquet
+dam-spill                    | 200  |          - | Columbia Basin DART | https://www.cbr.washington.edu/dart/query/river_daily
+arterial-signals             | 200  |     0.0 MB | Toronto open data: traffic volumes | https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=traffic-volumes-at-intersections-for-all-modes
+portfolio-with-frictions     | 200  |     0.0 MB | Qlib community data release | https://api.github.com/repos/chenditc/investment_data/releases/latest
+cross-venue-routing          | 200  |     0.2 MB | Bybit public trade archive | https://public.bybit.com/trading/BTCUSDT/
+cross-venue-routing          | 200  |          - | OKX public market data API | https://www.okx.com/api/v5/market/history-trades?instId=BTC-USDT-SWAP&limit=1
+order-book projects          | 200  |     0.0 MB | LOBSTER free sample | https://lobsterdata.com/info/sample/LOBSTER_SampleFile_AMZN_2012-06-21_10.zip
+filing-event-strategy        | 403  |          - | SEC financial statement data sets | https://www.sec.gov/files/dera/data/financial-statement-data-sets/2024q1.zip
+finished: 2026-11-25T00:34:35Z, exit code 0

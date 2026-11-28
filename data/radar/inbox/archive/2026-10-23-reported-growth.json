@@ -1,0 +1,212 @@
+{
+  "collected_at": "2026-10-23",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "OpenArt",
+        "url": "https://openart.ai",
+        "kind": "product",
+        "description": "AI image and video creation platform with workflow and 'Director' storytelling tools.",
+        "tags": [
+          "image-generation",
+          "video-generation"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 200000000,
+      "observed_on": "2026-10-21",
+      "source_url": "https://www.morningstar.com/news/business-wire/20261021251869/openart-ai-hires-former-salesforce-global-head-of-brand-and-creative-scott-larson-as-company-nears-200m-arr",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company press release (Business Wire): grew from zero to 'close to' $200M ARR in under two years; on track to pass $250M by year end. Value is the stated approximate figure, not an exact count."
+    },
+    {
+      "app": {
+        "name": "Podium",
+        "url": "https://www.podium.com",
+        "kind": "product",
+        "description": "Local-business communications platform selling AI agents for sales, scheduling and customer messaging.",
+        "tags": [
+          "enterprise-agent",
+          "customer-support",
+          "sales"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 150000000,
+      "observed_on": "2026-10-22",
+      "source_url": "https://www.prnewswire.com/news-releases/podium-surpasses-150m-in-ai-agent-arr-in-2-5-years-302917303.html",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company press release: AI-specific (AI agent product) ARR surpassed $150M, 2.5 years after launch; not company-wide ARR. 20,000+ AI agents deployed."
+    },
+    {
+      "app": {
+        "name": "Meta Muse",
+        "url": "https://muse.ai",
+        "kind": "consumer_app",
+        "description": "Meta's personal AI agent app that sends email, books travel, fills forms and shops on the user's behalf.",
+        "tags": [
+          "assistant",
+          "mobile-agent"
+        ]
+      },
+      "metric": "users",
+      "value": 10000000,
+      "observed_on": "2026-10-21",
+      "source_url": "https://www.wdbo.com/news/business/meta-q3-revenue-tops/LJSNKSJRPQ4XHC7YWQH2BFT3LE/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Registered accounts, not MAU: Zuckerberg on Meta's Q3 2026 earnings call said more than 10M people in the US and Canada have set up Muse accounts (AP). ~25% of those use it daily (no count given)."
+    },
+    {
+      "app": {
+        "name": "Salesforce Agentforce",
+        "url": "https://www.salesforce.com/agentforce",
+        "kind": "product",
+        "description": "Salesforce's enterprise AI agent platform for sales, service and other CRM workflows.",
+        "tags": [
+          "enterprise-agent",
+          "customer-support",
+          "sales"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 1500000000,
+      "observed_on": "2026-07-31",
+      "source_url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-Second-Quarter-Fiscal-2027-Results/default.aspx",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Agentforce ARR exceeded $1.5B in Q2 FY2027 (quarter ended Jul 31, 2026), product-level, reported Aug 26. Definition widened this quarter to include Slackbot and Headless 360, so not like-for-like with the $1.2B prior quarter."
+    },
+    {
+      "app": {
+        "name": "Salesforce Agentforce",
+        "url": "https://www.salesforce.com/agentforce",
+        "kind": "product",
+        "description": "Salesforce's enterprise AI agent platform for sales, service and other CRM workflows.",
+        "tags": [
+          "enterprise-agent",
+          "customer-support",
+          "sales"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 240,
+      "period_days": 365,
+      "observed_on": "2026-07-31",
+      "source_url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-Second-Quarter-Fiscal-2027-Results/default.aspx",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Agentforce ARR up more than 240% year over year, Q2 FY2027; affected by the widened ARR definition."
+    },
+    {
+      "app": {
+        "name": "Adobe AI-first products (Firefly, Acrobat AI Assistant, GenStudio)",
+        "url": "https://www.adobe.com/ai",
+        "kind": "product",
+        "description": "Adobe's AI-first product line, including the Firefly generative image/video app and Acrobat AI Assistant.",
+        "tags": [
+          "image-generation",
+          "video-generation",
+          "productivity"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 150,
+      "period_days": 365,
+      "observed_on": "2026-08-28",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0000796343/000079634326000147/adbeex991q326.htm",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Adobe 8-K exhibit for fiscal Q3 2026 (ended Aug 28): AI-first ARR grew more than 150% YoY; absolute AI-first ARR not disclosed. Product-line figure, not Adobe total ($27.5B ARR)."
+    },
+    {
+      "app": {
+        "name": "Wispr Flow",
+        "url": "https://wisprflow.ai",
+        "kind": "product",
+        "description": "AI voice dictation app that turns natural speech into formatted text across apps.",
+        "tags": [
+          "voice",
+          "productivity"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 150,
+      "period_days": 91,
+      "observed_on": "2026-08-17",
+      "source_url": "https://pulse2.com/wispr-raises-280-million-at-2-billion-valuation-as-revenue-grows-150-quarterly-and-voice-ai-push-accelerates",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company says revenue grew more than 150% in each of the past four quarters (quarter-over-quarter), at its $280M Series B / $2B valuation (Aug 17, 2026). No ARR figure disclosed."
+    },
+    {
+      "app": {
+        "name": "Design Arena (Intelligence)",
+        "url": "https://www.designarena.ai",
+        "kind": "product",
+        "description": "Crowdsourced arena where users vote between AI-generated outputs; preference data is sold to AI labs.",
+        "tags": [
+          "agent-evaluation",
+          "image-generation"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 60000000,
+      "observed_on": "2026-08-03",
+      "source_url": "https://aiweekly.co/alerts/design-arena-maker-intelligence-raises-79m-seed-at-60m-arr",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Self-reported ARR $60M (up from $5M six months earlier) at $7.9M seed led by Index (TechCrunch, Aug 3, 2026); revenue is from selling preference data to AI labs."
+    },
+    {
+      "app": {
+        "name": "Skild AI",
+        "url": "https://www.skild.ai",
+        "kind": "product",
+        "description": "General-purpose robot foundation model ('Skild Brain') licensed to robotics deployments.",
+        "tags": [
+          "foundation-model",
+          "multimodal"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-09-10",
+      "source_url": "https://aiweekly.co/alerts/skild-ai-hits-100m-revenue-run-rate-10-months-after-launch",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Company told Bloomberg it reached a $100M revenue run rate 10 months after first commercial deployment (unaudited; licensing vs integration mix not broken out); $50M revenue recognized to date; 60+ customers."
+    },
+    {
+      "app": {
+        "name": "Z.ai (Zhipu AI)",
+        "url": "https://z.ai",
+        "kind": "product",
+        "description": "Chinese GLM foundation model developer selling MaaS API access and GLM Coding Plan subscriptions.",
+        "tags": [
+          "foundation-model",
+          "llm-inference"
+        ]
+      },
+      "metric": "users",
+      "value": 7400000,
+      "observed_on": "2026-08-31",
+      "source_url": "https://techflowpost.com/en-US/newsletter/134252",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). Registered users of the MaaS (API) platform exceeded 7.4M, per first interim report after listing; stated as of August 2026 (month only, recorded as last day). Not consumer app MAU."
+    },
+    {
+      "app": {
+        "name": "Z.ai (Zhipu AI)",
+        "url": "https://z.ai",
+        "kind": "product",
+        "description": "Chinese GLM foundation model developer selling MaaS API access and GLM Coding Plan subscriptions.",
+        "tags": [
+          "foundation-model",
+          "llm-inference"
+        ]
+      },
+      "metric": "growth_pct",
+      "value": 144,
+      "period_days": 242,
+      "observed_on": "2026-08-31",
+      "source_url": "https://techflowpost.com/en-US/newsletter/134252",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch could not resolve hosts; Tavily over quota). MaaS registered users up 144% since the start of 2026 (Jan 1 to end of Aug; period_days counts that span). Paying DAU reportedly +603% (period not stated, not recorded)."
+    }
+  ]
+}

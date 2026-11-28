@@ -1,0 +1,40 @@
+{
+ "takeaway": "The radar still picks better leaders than momentum but orders them worse: on the Nov 14 forecast relative gain alone ordered its top 100 at 0.50 against the forecast's 0.22. A Blender add-on whose bought stars were purged on Nov 18 reappeared under a new account and reached #3 before review.",
+ "findings": [
+  {
+   "id": "ordering",
+   "heading": "Better picks, worse order",
+   "text": "For the Nov 14 forecast, ranking by relative gain alone scored 0.50 on its own top 100 against the forecast's 0.22, yet the apps only the forecast picked grew more (mean realised percentile 0.92 against 0.85).",
+   "source": "https://github.com/Skymeapple/AI-agents/blob/ai-radar/data/radar/reports/2026-11-21-analysis.md"
+  },
+  {
+   "id": "blender",
+   "heading": "A purged fake returns under a new account",
+   "text": "bookwjitchieni1986/blender-ai-mcp-addon, created Nov 19 with the same name and description as a repo whose stars were purged on Nov 18, has 1,855 stars on 23 forks. Reviewed inorganic.",
+   "source": "https://api.github.com/search/repositories?q=repo:bookwjitchieni1986/blender-ai-mcp-addon"
+  },
+  {
+   "id": "magnific",
+   "heading": "Magnific (formerly Freepik): over $300M ARR",
+   "text": "Magnific announced it has surpassed $300 million in annual recurring revenue.",
+   "source": "https://www.media-marketing.com/en/news/magnific-invests-10-million-in-expansion-among-asian-agencies-studios-and-brands"
+  },
+  {
+   "id": "deepseek",
+   "heading": "DeepSeek Harness: 5.48 million monthly users",
+   "text": "As of Nov 4 the harness had 5.48 million monthly and 1.54 million daily active users of its official API.",
+   "source": "https://m.sohu.com/a/1099299267_115571"
+  },
+  {
+   "id": "soduwork",
+   "heading": "SoduWork leads measured growth",
+   "text": "The self-hosted multi-agent workspace gained 1,685 stars in a day to 6,136, up from 1,404.",
+   "source": "https://github.com/mdiri-ai/SoduWork"
+  }
+ ],
+ "caveats": [
+  "xerj-org/xerj's +1,160 is a reading artefact: a one-day API dip to 17,961 between readings near 19,200.",
+  "Pulley's 5x ARR growth comes from a service that pairs AI agents with licensed experts.",
+  "Hacker News and npm remain unreachable from the cloud environment."
+ ]
+}

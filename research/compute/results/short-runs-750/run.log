@@ -1,0 +1,28 @@
+job: short-runs-750
+started: 2026-11-26T19:50:20Z
+cores: 4, memory: 15 GB
+RESULT base seed 0: steps 750, held-out 1.8665 bits/byte, train time 250s
+RESULT rope seed 0: steps 750, held-out 1.5132 bits/byte, train time 261s
+RESULT wsd seed 0: steps 750, held-out 1.6872 bits/byte, train time 243s
+RESULT long seed 0: steps 750, held-out 2.2887 bits/byte, train time 264s
+RESULT rope+wsd seed 0: steps 750, held-out 1.4403 bits/byte, train time 248s
+RESULT rope+long seed 0: steps 750, held-out 1.5274 bits/byte, train time 270s
+RESULT wsd+long seed 0: steps 750, held-out 1.9283 bits/byte, train time 262s
+RESULT rope+wsd+long seed 0: steps 750, held-out 1.4505 bits/byte, train time 265s
+RESULT base seed 1: steps 750, held-out 1.8696 bits/byte, train time 239s
+RESULT rope seed 1: steps 750, held-out 1.5207 bits/byte, train time 246s
+RESULT wsd seed 1: steps 750, held-out 1.6898 bits/byte, train time 235s
+RESULT long seed 1: steps 750, held-out 2.3369 bits/byte, train time 256s
+RESULT rope+wsd seed 1: steps 750, held-out 1.4521 bits/byte, train time 249s
+RESULT rope+long seed 1: steps 750, held-out 1.5242 bits/byte, train time 269s
+RESULT wsd+long seed 1: steps 750, held-out 2.0164 bits/byte, train time 260s
+RESULT rope+wsd+long seed 1: steps 750, held-out 1.4454 bits/byte, train time 267s
+RESULT base seed 2: steps 750, held-out 1.8880 bits/byte, train time 235s
+RESULT rope seed 2: steps 750, held-out 1.5221 bits/byte, train time 244s
+RESULT wsd seed 2: steps 750, held-out 1.7007 bits/byte, train time 236s
+RESULT long seed 2: steps 750, held-out 2.3498 bits/byte, train time 253s
+RESULT rope+wsd seed 2: steps 750, held-out 1.4525 bits/byte, train time 247s
+RESULT rope+long seed 2: steps 750, held-out 1.5277 bits/byte, train time 265s
+RESULT wsd+long seed 2: steps 750, held-out 2.0230 bits/byte, train time 253s
+RESULT rope+wsd+long seed 2: steps 750, held-out 1.4533 bits/byte, train time 264s
+finished: 2026-11-26T21:32:07Z, exit code 0

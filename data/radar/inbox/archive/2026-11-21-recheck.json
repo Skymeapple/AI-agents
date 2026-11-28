@@ -1,0 +1,347 @@
+{
+ "collector": "agent:recheck",
+ "collected_at": "2026-11-21",
+ "observations": [
+  {
+   "app": {
+    "name": "autotrust/Qwen3.8-Flash-Next-E384-FP4-V2",
+    "url": "https://huggingface.co/autotrust/Qwen3.8-Flash-Next-E384-FP4-V2",
+    "kind": "model",
+    "tags": [
+     "vllm",
+     "safetensors",
+     "qwen4_exp",
+     "qwen3.8",
+     "moe"
+    ]
+   },
+   "metric": "likes",
+   "value": 2441,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/autotrust/Qwen3.8-Flash-Next-E384-FP4-V2",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Cloudflare/clairic-flash",
+    "url": "https://huggingface.co/Cloudflare/clairic-flash",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen3_5",
+     "image-text-to-text",
+     "clairic"
+    ]
+   },
+   "metric": "likes",
+   "value": 73,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/Cloudflare/clairic-flash",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "harness-hub/Qwen3.8-27B-hermes-adapted",
+    "url": "https://huggingface.co/harness-hub/Qwen3.8-27B-hermes-adapted",
+    "kind": "model",
+    "tags": [
+     "peft",
+     "safetensors",
+     "trl",
+     "grpo",
+     "async-grpo"
+    ]
+   },
+   "metric": "likes",
+   "value": 65,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/harness-hub/Qwen3.8-27B-hermes-adapted",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "inworld/sava",
+    "url": "https://huggingface.co/inworld/sava",
+    "kind": "model",
+    "tags": [
+     "inworld-sava",
+     "audio",
+     "speech",
+     "voice-activity-detection",
+     "vad"
+    ]
+   },
+   "metric": "likes",
+   "value": 73,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/inworld/sava",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+    "url": "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+    "kind": "model",
+    "tags": [
+     "gguf",
+     "gsq",
+     "rco",
+     "quantization",
+     "pruning"
+    ]
+   },
+   "metric": "likes",
+   "value": 673,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF",
+    "url": "https://huggingface.co/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "gguf",
+     "text-generation-inference",
+     "unsloth",
+     "qwen3_5"
+    ]
+   },
+   "metric": "likes",
+   "value": 231,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "linlinlinlinsdada/Jeveration",
+    "url": "https://huggingface.co/linlinlinlinsdada/Jeveration",
+    "kind": "model",
+    "tags": [
+     "text-to-image",
+     "image-to-image",
+     "depth-estimation",
+     "image-segmentation",
+     "en"
+    ]
+   },
+   "metric": "likes",
+   "value": 60,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/linlinlinlinsdada/Jeveration",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "open-athena/Marin-Mochi-535B-A23B",
+    "url": "https://huggingface.co/open-athena/Marin-Mochi-535B-A23B",
+    "kind": "model",
+    "tags": [
+     "safetensors",
+     "grug_moe",
+     "marin",
+     "mixture-of-experts",
+     "base-model"
+    ]
+   },
+   "metric": "likes",
+   "value": 51,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/open-athena/Marin-Mochi-535B-A23B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "OVHaiLLM/Olala-v1.0-mini-7A1B-GGUF",
+    "url": "https://huggingface.co/OVHaiLLM/Olala-v1.0-mini-7A1B-GGUF",
+    "kind": "model",
+    "tags": [
+     "gguf",
+     "olala",
+     "ovhai-llm",
+     "mamba",
+     "hybrid"
+    ]
+   },
+   "metric": "likes",
+   "value": 72,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/OVHaiLLM/Olala-v1.0-mini-7A1B-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Qwen/Qwen3.6-35B-A3B",
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "safetensors",
+     "qwen3_5_moe",
+     "image-text-to-text",
+     "conversational"
+    ]
+   },
+   "metric": "likes",
+   "value": 3159,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/Qwen/Qwen3.6-35B-A3B",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "kind": "model",
+    "tags": [
+     "sentence-transformers",
+     "pytorch",
+     "tf",
+     "rust",
+     "onnx"
+    ]
+   },
+   "metric": "likes",
+   "value": 6151,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "unsloth/Qwen3.5-9B-GGUF",
+    "url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF",
+    "kind": "model",
+    "tags": [
+     "transformers",
+     "gguf",
+     "unsloth",
+     "image-text-to-text",
+     "endpoints_compatible"
+    ]
+   },
+   "metric": "likes",
+   "value": 1138,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/models/unsloth/Qwen3.5-9B-GGUF",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "linoyts/Flux2-Klein-Face-Swap",
+    "url": "https://huggingface.co/spaces/linoyts/Flux2-Klein-Face-Swap",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 685,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/linoyts/Flux2-Klein-Face-Swap",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "malcolmrey/browser",
+    "url": "https://huggingface.co/spaces/malcolmrey/browser",
+    "kind": "space",
+    "tags": [
+     "static"
+    ]
+   },
+   "metric": "likes",
+   "value": 538,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/malcolmrey/browser",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Phips/Upscaler",
+    "url": "https://huggingface.co/spaces/Phips/Upscaler",
+    "kind": "space",
+    "tags": [
+     "gradio"
+    ]
+   },
+   "metric": "likes",
+   "value": 432,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/Phips/Upscaler",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "Rchoks/wan555",
+    "url": "https://huggingface.co/spaces/Rchoks/wan555",
+    "kind": "space",
+    "tags": [
+     "gradio",
+     "mcp-server"
+    ]
+   },
+   "metric": "likes",
+   "value": 309,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/Rchoks/wan555",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "townbox/motionbricks-playground",
+    "url": "https://huggingface.co/spaces/townbox/motionbricks-playground",
+    "kind": "space",
+    "tags": [
+     "static",
+     "motion-generation",
+     "robotics",
+     "onnxruntime-web",
+     "three.js"
+    ]
+   },
+   "metric": "likes",
+   "value": 46,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/townbox/motionbricks-playground",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  },
+  {
+   "app": {
+    "name": "webml-community/neuron-studio",
+    "url": "https://huggingface.co/spaces/webml-community/neuron-studio",
+    "kind": "space",
+    "tags": [
+     "static"
+    ]
+   },
+   "metric": "likes",
+   "value": 59,
+   "observed_on": "2026-11-21",
+   "source_url": "https://huggingface.co/api/spaces/webml-community/neuron-studio",
+   "method": "api",
+   "note": "re-read from the Hugging Face API after the item left the trending list"
+  }
+ ]
+}

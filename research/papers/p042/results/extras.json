@@ -1,0 +1,68 @@
+{
+ "freq_alpha1.2": {
+  "p_min": 0.0007433345002886909,
+  "p_max": 0.25,
+  "decades": 2.5267557185472955,
+  "decades_spanned_by_rarest_two_thirds": 0.5715286207004123
+ },
+ "freq_alpha1.5": {
+  "p_min": 0.0003108643840140376,
+  "p_max": 0.25,
+  "decades": 2.9053690412516118,
+  "decades_spanned_by_rarest_two_thirds": 0.7144107758755154
+ },
+ "freq_alpha1.8": {
+  "p_min": 0.00012421224267693474,
+  "p_max": 0.25,
+  "decades": 3.3037756055448186,
+  "decades_spanned_by_rarest_two_thirds": 0.8572929310506184
+ },
+ "recovery_E1_a1.5_s0": {
+  "frac_recovered_then_lost": 0.0,
+  "median_occurrences_at_recovery_top8": 9977.4337381914,
+  "median_occurrences_at_recovery_most_frequent_third": 643.3282341456181,
+  "median_occurrences_at_recovery_rarest_third": 306.98749756649966
+ },
+ "recovery_E3_lr0.003": {
+  "frac_recovered_then_lost": 0.01171875,
+  "median_occurrences_at_recovery_top8": 4022.337628792491,
+  "median_occurrences_at_recovery_most_frequent_third": 257.21180641451224,
+  "median_occurrences_at_recovery_rarest_third": 162.33351797576364
+ },
+ "recovery_E3_lr0.0003": {
+  "frac_recovered_then_lost": 0.00390625,
+  "median_occurrences_at_recovery_top8": 27635.911599676663,
+  "median_occurrences_at_recovery_most_frequent_third": 1851.434636753019,
+  "median_occurrences_at_recovery_rarest_third": 664.5723056632403
+ },
+ "recovery_E5_adam_b20.99": {
+  "frac_recovered_then_lost": 0.0,
+  "median_occurrences_at_recovery_top8": 9977.4337381914,
+  "median_occurrences_at_recovery_most_frequent_third": 694.1037066278321,
+  "median_occurrences_at_recovery_rarest_third": 205.78531336628387
+ },
+ "recovery_E5_adam_b20.9999": {
+  "frac_recovered_then_lost": 0.0,
+  "median_occurrences_at_recovery_top8": 9977.4337381914,
+  "median_occurrences_at_recovery_most_frequent_third": 665.9563679398705,
+  "median_occurrences_at_recovery_rarest_third": 339.049496577099
+ },
+ "recovery_E5_sgd_lr0.1": {
+  "frac_recovered_then_lost": 0.017578125,
+  "median_occurrences_at_recovery_top8": 6271.632678164531,
+  "median_occurrences_at_recovery_most_frequent_third": 1382.3465423859016,
+  "median_occurrences_at_recovery_rarest_third": 832.0566446597252
+ },
+ "recovery_E5_sgd_lr0.3": {
+  "frac_recovered_then_lost": 0.02734375,
+  "median_occurrences_at_recovery_top8": 2844.362390414267,
+  "median_occurrences_at_recovery_most_frequent_third": 509.1879115282262,
+  "median_occurrences_at_recovery_rarest_third": 751.9045361405637
+ },
+ "replay_buffer_100k": {
+  "min_unique_occurrences": 21,
+  "n_features_under_50_unique": 138,
+  "recovered_frac_under_50_unique": 0.9927536231884058,
+  "epochs": 29.99808
+ }
+}

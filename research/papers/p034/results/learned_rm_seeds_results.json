@@ -1,0 +1,401 @@
+{
+ "runs": [
+  {
+   "seed": 0,
+   "peak_gold": 3.5938216311898374,
+   "lam_star": 8.0,
+   "gold_at_8": 3.5938216311898374,
+   "qhat": {
+    "H1 same data, new init": 0.9881954877593333,
+    "H2 fresh draw of A": 0.8425203830905168,
+    "H3 quadratic ridge on A": 0.9675436293813274,
+    "H4 MLP on B": 0.5347035770267113,
+    "H5 MLP on A/B mix fB=0.25": 0.4214879444796036,
+    "H6 MLP on A/B mix fB=0.5": 0.4292977323615373,
+    "H7 MLP on A/B mix fB=0.75": 0.5066995725557788,
+    "H8 small MLP(16,16) on A": 1.0148564441996812
+   },
+   "fracB": {
+    "H1 same data, new init": 0,
+    "H2 fresh draw of A": 0,
+    "H3 quadratic ridge on A": 0,
+    "H4 MLP on B": 1.0,
+    "H5 MLP on A/B mix fB=0.25": 0.25,
+    "H6 MLP on A/B mix fB=0.5": 0.5,
+    "H7 MLP on A/B mix fB=0.75": 0.75,
+    "H8 small MLP(16,16) on A": 0
+   },
+   "tau": 0.38,
+   "tuned_on": "H5 MLP on A/B mix fB=0.25",
+   "gap_regret": {
+    "H1 same data, new init": 1.2378089928321638,
+    "H2 fresh draw of A": 0.5243605393046451,
+    "H3 quadratic ridge on A": 1.4077868322076086,
+    "H4 MLP on B": 0.0,
+    "H5 MLP on A/B mix fB=0.25": 0.0,
+    "H6 MLP on A/B mix fB=0.5": 0.0,
+    "H7 MLP on A/B mix fB=0.75": 0.007897527585965269,
+    "H8 small MLP(16,16) on A": 1.0580944734612117
+   },
+   "gap_regret_se": {
+    "H1 same data, new init": 0.010826692554751301,
+    "H2 fresh draw of A": 0.034594699924464185,
+    "H3 quadratic ridge on A": 0.0036550324146271233,
+    "H4 MLP on B": 0.0,
+    "H5 MLP on A/B mix fB=0.25": 0.0,
+    "H6 MLP on A/B mix fB=0.5": 0.0,
+    "H7 MLP on A/B mix fB=0.75": 0.00789752758596527,
+    "H8 small MLP(16,16) on A": 0.01239206432562213
+   },
+   "cov_lev": {
+    "regret": 0.5066046423176086,
+    "se": 0.05834792070349729,
+    "labels_mean": 369.3333333333333
+   },
+   "cov_unif": {
+    "regret": 0.7091405829713345,
+    "se": 0.07973991905791204,
+    "labels_mean": 333.0
+   },
+   "cov_lev_win3_rollback": {
+    "regret": 0.07627877156185056,
+    "se": 0.010199029593165817,
+    "labels_mean": 547.3333333333334
+   },
+   "goodhart_decline_within_schedule": false,
+   "runtime_s": 17.831918478012085
+  },
+  {
+   "seed": 1,
+   "peak_gold": 1.9197467249450884,
+   "lam_star": 3.0,
+   "gold_at_8": 0.46160403916469295,
+   "qhat": {
+    "H1 same data, new init": 0.9492601075279083,
+    "H2 fresh draw of A": 0.7371359151233401,
+    "H3 quadratic ridge on A": 0.8731972310229257,
+    "H4 MLP on B": 0.4555976258466919,
+    "H5 MLP on A/B mix fB=0.25": 0.5577322243899511,
+    "H6 MLP on A/B mix fB=0.5": 0.3414897801603717,
+    "H7 MLP on A/B mix fB=0.75": 0.41457370836858504,
+    "H8 small MLP(16,16) on A": 0.9062469981995517
+   },
+   "fracB": {
+    "H1 same data, new init": 0,
+    "H2 fresh draw of A": 0,
+    "H3 quadratic ridge on A": 0,
+    "H4 MLP on B": 1.0,
+    "H5 MLP on A/B mix fB=0.25": 0.25,
+    "H6 MLP on A/B mix fB=0.5": 0.5,
+    "H7 MLP on A/B mix fB=0.75": 0.75,
+    "H8 small MLP(16,16) on A": 0
+   },
+   "tau": 0.64,
+   "tuned_on": "H6 MLP on A/B mix fB=0.5",
+   "gap_regret": {
+    "H1 same data, new init": 1.4581426857803956,
+    "H2 fresh draw of A": 0.07595061341810586,
+    "H3 quadratic ridge on A": 0.12775807089344973,
+    "H4 MLP on B": 0.01926630392996733,
+    "H5 MLP on A/B mix fB=0.25": 0.03697095901556303,
+    "H6 MLP on A/B mix fB=0.5": 0.0011996667393394667,
+    "H7 MLP on A/B mix fB=0.75": 0.00427044223382278,
+    "H8 small MLP(16,16) on A": 1.4386294216434006
+   },
+   "gap_regret_se": {
+    "H1 same data, new init": 2.8907745304357104e-17,
+    "H2 fresh draw of A": 0.004264430164057061,
+    "H3 quadratic ridge on A": 0.008475094762959923,
+    "H4 MLP on B": 0.002531064300052577,
+    "H5 MLP on A/B mix fB=0.25": 0.003632194710771384,
+    "H6 MLP on A/B mix fB=0.5": 0.0008410728447345702,
+    "H7 MLP on A/B mix fB=0.75": 0.0005559642238279045,
+    "H8 small MLP(16,16) on A": 0.012181772365520213
+   },
+   "cov_lev": {
+    "regret": 0.12314470214882385,
+    "se": 0.017608638009012204,
+    "labels_mean": 229.33333333333334
+   },
+   "cov_unif": {
+    "regret": 0.24016373359451784,
+    "se": 0.03151199537137682,
+    "labels_mean": 212.0
+   },
+   "cov_lev_win3_rollback": {
+    "regret": 0.07691543760278684,
+    "se": 0.012830741423690879,
+    "labels_mean": 282.0
+   },
+   "goodhart_decline_within_schedule": true,
+   "runtime_s": 17.63403058052063
+  },
+  {
+   "seed": 2,
+   "peak_gold": 1.8092463232363576,
+   "lam_star": 2.75,
+   "gold_at_8": -2.186905091182992,
+   "qhat": {
+    "H1 same data, new init": 0.7495434060855392,
+    "H2 fresh draw of A": 0.890935608441752,
+    "H3 quadratic ridge on A": 0.9845675435255147,
+    "H4 MLP on B": 0.4363288448718394,
+    "H5 MLP on A/B mix fB=0.25": 0.38297313448424675,
+    "H6 MLP on A/B mix fB=0.5": 0.4287293191679312,
+    "H7 MLP on A/B mix fB=0.75": 0.3949677832448223,
+    "H8 small MLP(16,16) on A": 0.9741808534346248
+   },
+   "fracB": {
+    "H1 same data, new init": 0,
+    "H2 fresh draw of A": 0,
+    "H3 quadratic ridge on A": 0,
+    "H4 MLP on B": 1.0,
+    "H5 MLP on A/B mix fB=0.25": 0.25,
+    "H6 MLP on A/B mix fB=0.5": 0.5,
+    "H7 MLP on A/B mix fB=0.75": 0.75,
+    "H8 small MLP(16,16) on A": 0
+   },
+   "tau": 0.19999999999999998,
+   "tuned_on": "H5 MLP on A/B mix fB=0.25",
+   "gap_regret": {
+    "H1 same data, new init": 0.08041059401631694,
+    "H2 fresh draw of A": 0.38101920689134655,
+    "H3 quadratic ridge on A": 0.01988361577396512,
+    "H4 MLP on B": 0.02101848800715016,
+    "H5 MLP on A/B mix fB=0.25": 0.004701963413487016,
+    "H6 MLP on A/B mix fB=0.5": 0.003825226376423352,
+    "H7 MLP on A/B mix fB=0.75": 0.023785031196290465,
+    "H8 small MLP(16,16) on A": 0.031032986123882278
+   },
+   "gap_regret_se": {
+    "H1 same data, new init": 0.005660072454750544,
+    "H2 fresh draw of A": 0.022143916889176593,
+    "H3 quadratic ridge on A": 0.0036314008312701243,
+    "H4 MLP on B": 0.0038796520165327165,
+    "H5 MLP on A/B mix fB=0.25": 0.0015745374881942584,
+    "H6 MLP on A/B mix fB=0.5": 0.00035214063098505156,
+    "H7 MLP on A/B mix fB=0.75": 0.0031780470493209213,
+    "H8 small MLP(16,16) on A": 0.003610773586709335
+   },
+   "cov_lev": {
+    "regret": 0.04825571855163675,
+    "se": 0.011572525802860036,
+    "labels_mean": 239.0
+   },
+   "cov_unif": {
+    "regret": 0.11687671682894549,
+    "se": 0.018956434532721785,
+    "labels_mean": 224.0
+   },
+   "cov_lev_win3_rollback": {
+    "regret": 0.03728752867894962,
+    "se": 0.006837673865556422,
+    "labels_mean": 273.6666666666667
+   },
+   "goodhart_decline_within_schedule": true,
+   "runtime_s": 19.575805187225342
+  },
+  {
+   "seed": 3,
+   "peak_gold": 1.2474477883110566,
+   "lam_star": 2.0,
+   "gold_at_8": -1.1632479270584684,
+   "qhat": {
+    "H1 same data, new init": 0.8285665786547699,
+    "H2 fresh draw of A": 0.7778301552288358,
+    "H3 quadratic ridge on A": 1.028359187689664,
+    "H4 MLP on B": 0.41208578620398,
+    "H5 MLP on A/B mix fB=0.25": 0.29567958508901654,
+    "H6 MLP on A/B mix fB=0.5": 0.36410477044591305,
+    "H7 MLP on A/B mix fB=0.75": 0.38023084115059336,
+    "H8 small MLP(16,16) on A": 0.9219672711559133
+   },
+   "fracB": {
+    "H1 same data, new init": 0,
+    "H2 fresh draw of A": 0,
+    "H3 quadratic ridge on A": 0,
+    "H4 MLP on B": 1.0,
+    "H5 MLP on A/B mix fB=0.25": 0.25,
+    "H6 MLP on A/B mix fB=0.5": 0.5,
+    "H7 MLP on A/B mix fB=0.75": 0.75,
+    "H8 small MLP(16,16) on A": 0
+   },
+   "tau": 0.18,
+   "tuned_on": "H5 MLP on A/B mix fB=0.25",
+   "gap_regret": {
+    "H1 same data, new init": 0.15800820302843094,
+    "H2 fresh draw of A": 0.25044616173470263,
+    "H3 quadratic ridge on A": 2.4106957153695237,
+    "H4 MLP on B": 0.0240562873760219,
+    "H5 MLP on A/B mix fB=0.25": 0.001159023213960116,
+    "H6 MLP on A/B mix fB=0.5": 0.0030199264444156102,
+    "H7 MLP on A/B mix fB=0.75": 0.008473883781077104,
+    "H8 small MLP(16,16) on A": 0.42466572655337903
+   },
+   "gap_regret_se": {
+    "H1 same data, new init": 0.007823253043656312,
+    "H2 fresh draw of A": 0.011799536533011691,
+    "H3 quadratic ridge on A": 1.7344647182614262e-16,
+    "H4 MLP on B": 0.003939671032814323,
+    "H5 MLP on A/B mix fB=0.25": 0.0010387040806165368,
+    "H6 MLP on A/B mix fB=0.5": 0.0016616458390620874,
+    "H7 MLP on A/B mix fB=0.75": 0.0027556464717462714,
+    "H8 small MLP(16,16) on A": 0.019887796131183272
+   },
+   "cov_lev": {
+    "regret": 0.022550704796446712,
+    "se": 0.004848048867491439,
+    "labels_mean": 190.0
+   },
+   "cov_unif": {
+    "regret": 0.08347395713240134,
+    "se": 0.02054874344656778,
+    "labels_mean": 173.33333333333334
+   },
+   "cov_lev_win3_rollback": {
+    "regret": 0.015293904730361541,
+    "se": 0.003431885772906444,
+    "labels_mean": 219.66666666666666
+   },
+   "goodhart_decline_within_schedule": true,
+   "runtime_s": 17.617542505264282
+  },
+  {
+   "seed": 4,
+   "peak_gold": 1.4671597604980124,
+   "lam_star": 2.5,
+   "gold_at_8": -1.9849879014973455,
+   "qhat": {
+    "H1 same data, new init": 1.0606137529570234,
+    "H2 fresh draw of A": 0.8925992401237832,
+    "H3 quadratic ridge on A": 1.0081993476491495,
+    "H4 MLP on B": 0.453575709502536,
+    "H5 MLP on A/B mix fB=0.25": 0.5164442654260754,
+    "H6 MLP on A/B mix fB=0.5": 0.46633002939800866,
+    "H7 MLP on A/B mix fB=0.75": 0.43122808473223767,
+    "H8 small MLP(16,16) on A": 0.9754381960107639
+   },
+   "fracB": {
+    "H1 same data, new init": 0,
+    "H2 fresh draw of A": 0,
+    "H3 quadratic ridge on A": 0,
+    "H4 MLP on B": 1.0,
+    "H5 MLP on A/B mix fB=0.25": 0.25,
+    "H6 MLP on A/B mix fB=0.5": 0.5,
+    "H7 MLP on A/B mix fB=0.75": 0.75,
+    "H8 small MLP(16,16) on A": 0
+   },
+   "tau": 0.08,
+   "tuned_on": "H7 MLP on A/B mix fB=0.75",
+   "gap_regret": {
+    "H1 same data, new init": 3.4521476619953577,
+    "H2 fresh draw of A": 1.0791105393820044,
+    "H3 quadratic ridge on A": 0.14128292611625679,
+    "H4 MLP on B": 0.02001404922303228,
+    "H5 MLP on A/B mix fB=0.25": 0.013947685165177274,
+    "H6 MLP on A/B mix fB=0.5": 0.01935864303578967,
+    "H7 MLP on A/B mix fB=0.75": 0.015490727642140907,
+    "H8 small MLP(16,16) on A": 2.103432849872308
+   },
+   "gap_regret_se": {
+    "H1 same data, new init": 5.781549060871421e-17,
+    "H2 fresh draw of A": 0.030104777488919852,
+    "H3 quadratic ridge on A": 0.08018121173871785,
+    "H4 MLP on B": 0.0036352424427925356,
+    "H5 MLP on A/B mix fB=0.25": 0.0030083183279401332,
+    "H6 MLP on A/B mix fB=0.5": 0.0035843653060672045,
+    "H7 MLP on A/B mix fB=0.75": 0.003128923516420209,
+    "H8 small MLP(16,16) on A": 0.2151838491128819
+   },
+   "cov_lev": {
+    "regret": 0.04796102983893655,
+    "se": 0.009143984271203612,
+    "labels_mean": 219.66666666666666
+   },
+   "cov_unif": {
+    "regret": 0.06455463394193708,
+    "se": 0.01072923047145302,
+    "labels_mean": 209.0
+   },
+   "cov_lev_win3_rollback": {
+    "regret": 0.024281460737423544,
+    "se": 0.004444555081040164,
+    "labels_mean": 253.33333333333334
+   },
+   "goodhart_decline_within_schedule": true,
+   "runtime_s": 17.27055335044861
+  }
+ ],
+ "summary": {
+  "qhat_mean": {
+   "H1 same data, new init": 0.9152358665969148,
+   "H2 fresh draw of A": 0.8282042604016457,
+   "H3 quadratic ridge on A": 0.9723733878537162,
+   "H4 MLP on B": 0.45845830869035176,
+   "H5 MLP on A/B mix fB=0.25": 0.4348634307737787,
+   "H6 MLP on A/B mix fB=0.5": 0.40599032630675236,
+   "H7 MLP on A/B mix fB=0.75": 0.42553999801040343,
+   "H8 small MLP(16,16) on A": 0.958537952600107
+  },
+  "qhat_sd": {
+   "H1 same data, new init": 0.12508101582208508,
+   "H2 fresh draw of A": 0.06913371245795401,
+   "H3 quadratic ridge on A": 0.06005381599388595,
+   "H4 MLP on B": 0.04605835493015422,
+   "H5 MLP on A/B mix fB=0.25": 0.10487590572848429,
+   "H6 MLP on A/B mix fB=0.5": 0.051516737536060085,
+   "H7 MLP on A/B mix fB=0.75": 0.04931295567715799,
+   "H8 small MLP(16,16) on A": 0.044084718790423784
+  },
+  "gap_regret_mean": {
+   "H1 same data, new init": 1.277303627530533,
+   "H2 fresh draw of A": 0.4621774121461609,
+   "H3 quadratic ridge on A": 0.8214814320721608,
+   "H4 MLP on B": 0.016871025707234335,
+   "H5 MLP on A/B mix fB=0.25": 0.011355926161637487,
+   "H6 MLP on A/B mix fB=0.5": 0.00548069251919362,
+   "H7 MLP on A/B mix fB=0.75": 0.011983522487859305,
+   "H8 small MLP(16,16) on A": 1.011171091530836
+  },
+  "gap_regret_sd_across_seeds": {
+   "H1 same data, new init": 1.3646963349397638,
+   "H2 fresh draw of A": 0.3824464477286034,
+   "H3 quadratic ridge on A": 1.0554427067477545,
+   "H4 MLP on B": 0.009605687010535614,
+   "H5 MLP on A/B mix fB=0.25": 0.015330168229726009,
+   "H6 MLP on A/B mix fB=0.5": 0.0079018766850579,
+   "H7 MLP on A/B mix fB=0.75": 0.007747267598725566,
+   "H8 small MLP(16,16) on A": 0.8189348913844865
+  },
+  "spearman_qhat_vs_gap_regret_pooled": [
+   0.824732609754467,
+   6.039687510302386e-11
+  ],
+  "spearman_fracB_vs_qhat_pooled": [
+   -0.7804628469464251,
+   2.8767108298458184e-09
+  ],
+  "cov_lev_regret_mean": 0.14970335953069053,
+  "cov_lev_regret_range": [
+   0.022550704796446712,
+   0.5066046423176086
+  ],
+  "cov_lev_win3_rollback_regret_mean": 0.04601142066227442,
+  "cov_lev_win3_rollback_regret_range": [
+   0.015293904730361541,
+   0.07691543760278684
+  ],
+  "cov_unif_regret_mean": 0.24284192489382725,
+  "cov_lev_labels_mean": 249.46666666666664,
+  "peak_gold_mean": 2.0074844456360705,
+  "max_gap_regret": 3.4521476619953577,
+  "spearman_within_seed": [
+   0.8295150620062534,
+   1.0,
+   0.4285714285714286,
+   0.9761904761904763,
+   0.7619047619047621
+  ]
+ },
+ "runtime_s": 34.931734800338745
+}

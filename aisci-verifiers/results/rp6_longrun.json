@@ -1,0 +1,64 @@
+{
+  "no_audit": {
+    "acc_c10": 0.628,
+    "acc_c50": 0.5876923076923077,
+    "acc_c200": 0.6058745874587459,
+    "slope_per_100_cycles": 0.007362765172604811,
+    "seeded_caught": 0.0,
+    "audit_overhead": 0.0,
+    "traceability": 1.0,
+    "median_cycles_to_catch": null
+  },
+  "audit_every5_size5": {
+    "acc_c10": 0.7245392374610898,
+    "acc_c50": 0.6529031867643109,
+    "acc_c200": 0.6692887433845622,
+    "slope_per_100_cycles": 0.0029935679151869873,
+    "seeded_caught": 2.533333333333333,
+    "audit_overhead": 0.20000000000000007,
+    "traceability": 1.0,
+    "median_cycles_to_catch": 67.5,
+    "points_retained_at_c200": 6.341415592581634,
+    "kill(overhead>40% & gain<10pts)": false,
+    "hypothesis_flat(|slope|<2pts/100)": true
+  },
+  "audit_every5_size10": {
+    "acc_c10": 0.7268281893500004,
+    "acc_c50": 0.7126026054205892,
+    "acc_c200": 0.7363860431526742,
+    "slope_per_100_cycles": 0.02392357687287953,
+    "seeded_caught": 4.933333333333334,
+    "audit_overhead": 0.40000000000000013,
+    "traceability": 1.0,
+    "median_cycles_to_catch": 35.0,
+    "points_retained_at_c200": 13.05114556939283,
+    "kill(overhead>40% & gain<10pts)": false,
+    "hypothesis_flat(|slope|<2pts/100)": true
+  },
+  "audit_every2_size10": {
+    "acc_c10": 0.8512757528198325,
+    "acc_c50": 0.802496612480305,
+    "acc_c200": 0.8275515109860846,
+    "slope_per_100_cycles": 0.021488645274428557,
+    "seeded_caught": 9.0,
+    "audit_overhead": 1.0,
+    "traceability": 1.0,
+    "median_cycles_to_catch": 15.0,
+    "points_retained_at_c200": 22.16769235273387,
+    "kill(overhead>40% & gain<10pts)": false,
+    "hypothesis_flat(|slope|<2pts/100)": true
+  },
+  "audit_every1_size10": {
+    "acc_c10": 0.8896683811430787,
+    "acc_c50": 0.8855891636168138,
+    "acc_c200": 0.8944728356002707,
+    "slope_per_100_cycles": 0.012962425446620126,
+    "seeded_caught": 9.733333333333333,
+    "audit_overhead": 1.9938000000000002,
+    "traceability": 1.0,
+    "median_cycles_to_catch": 10.0,
+    "points_retained_at_c200": 28.85982481415248,
+    "kill(overhead>40% & gain<10pts)": false,
+    "hypothesis_flat(|slope|<2pts/100)": true
+  }
+}

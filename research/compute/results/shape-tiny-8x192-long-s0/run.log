@@ -1,0 +1,8 @@
+job: shape-tiny-8x192-long-s0
+started: 2026-11-26T06:33:24Z
+cores: 4, memory: 15 GB
+  8x192 seed 0 step 3000: held-out 1.2330 bits/byte, 2712s
+  8x192 seed 0 step 6000: held-out 1.0854 bits/byte, 5434s
+  8x192 seed 0 step 9000: held-out 1.0034 bits/byte, 8157s
+RESULT layers 8 width 192 seed 0: parameters 3.67M, per-token compute 12*L*D^2 = 3.54M, steps 12000, held-out 0.9840 bits/byte, train time 10904s
+finished: 2026-11-26T09:35:42Z, exit code 0

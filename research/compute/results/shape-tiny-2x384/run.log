@@ -1,0 +1,12 @@
+job: shape-tiny-2x384
+started: 2026-11-26T06:33:24Z
+cores: 4, memory: 15 GB
+  2x384 seed 0 step 1500: held-out 1.4431 bits/byte, 1173s
+  2x384 seed 0 step 3000: held-out 1.2704 bits/byte, 2355s
+  2x384 seed 0 step 4500: held-out 1.1780 bits/byte, 3538s
+RESULT layers 2 width 384 seed 0: parameters 3.79M, per-token compute 12*L*D^2 = 3.54M, steps 6000, held-out 1.1569 bits/byte, train time 4704s
+  2x384 seed 1 step 1500: held-out 1.4211 bits/byte, 1160s
+  2x384 seed 1 step 3000: held-out 1.2596 bits/byte, 2324s
+  2x384 seed 1 step 4500: held-out 1.1590 bits/byte, 3495s
+RESULT layers 2 width 384 seed 1: parameters 3.79M, per-token compute 12*L*D^2 = 3.54M, steps 6000, held-out 1.1350 bits/byte, train time 4684s
+finished: 2026-11-26T09:10:26Z, exit code 0

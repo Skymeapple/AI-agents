@@ -1,0 +1,49 @@
+{
+  "batch": 5,
+  "status": "paused (interim)",
+  "note": "Workflow run wf_6aa75b6b-f23 was blocked twice by the 5-hour usage limit (resets 10:10 UTC and 15:10 UTC on 2026-11-22). After the second attempt only p041's research finished (paper.md written, not yet reviewed); p042-p050 research did not complete, and the p041 round-1 review also hit the limit. Resumed from cache at 15:13 UTC. This file will be replaced with the workflow's return value when it completes. At ~15:15 UTC the coordinator asked batches 03-10 to pause (throttling to 2 concurrent batches); the resumed run was stopped and will be resumed from cache (run wf_6aa75b6b-f23) when the coordinator signals.",
+  "partial_results": [
+    {
+      "id": 41,
+      "dir": "papers/p041",
+      "title": "Silent Latents: Feature Absorption Is What Sparse Coding Optimises For, and Activations Alone Cannot Certify Its Absence",
+      "status": "research-done, review blocked by usage limit"
+    },
+    {
+      "id": 42,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 43,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 44,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 45,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 46,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 47,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 48,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 49,
+      "status": "research-failed (usage limit)"
+    },
+    {
+      "id": 50,
+      "status": "research-failed (usage limit)"
+    }
+  ]
+}

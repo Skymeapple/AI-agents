@@ -1,0 +1,122 @@
+[
+{
+"name": "aime_1988_p8",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 278
+},
+{
+"name": "algebra_absxm1pabsxpabsxp1eqxp2_0leqxleq1",
+"fresh_ok": 4,
+"feedback_ok": 0,
+"n_feedback": 0,
+"proved": true,
+"by_feedback_only": false,
+"proof": "\n  constructor <;> cases' le_total 0 (x - 1) with h\u2081 h\u2081 <;>\n    cases' le_total 0 x with h\u2082 h\u2082 <;>\n      cases' le_total 0 (x + 1) with h\u2083 h\u2083 <;>\n        simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>\n          linarith\n",
+"secs": 83
+},
+{
+"name": "amc12_2000_p1",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 273
+},
+{
+"name": "amc12a_2020_p10",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 295
+},
+{
+"name": "amc12a_2021_p22",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 359
+},
+{
+"name": "amc12b_2021_p9",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 200
+},
+{
+"name": "imo_1981_p6",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 350
+},
+{
+"name": "induction_nfactltnexpnm1ngt3",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 151
+},
+{
+"name": "mathd_algebra_208",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 85
+},
+{
+"name": "mathd_algebra_756",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 232
+},
+{
+"name": "mathd_numbertheory_451",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 429
+},
+{
+"name": "numbertheory_fxeq4powxp6powxp9powx_f2powmdvdf2pown",
+"fresh_ok": 0,
+"feedback_ok": 0,
+"n_feedback": 4,
+"proved": false,
+"by_feedback_only": false,
+"proof": null,
+"secs": 302
+}
+]

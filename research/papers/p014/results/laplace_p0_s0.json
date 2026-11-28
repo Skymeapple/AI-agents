@@ -1,0 +1,301 @@
+{
+ "name": "laplace_p0",
+ "cfg": {
+  "p_order": 0.0,
+  "family": "laplace",
+  "n_int": 0,
+  "graph": false,
+  "corrupt": 0.0
+ },
+ "steps": 4000,
+ "seed": 0,
+ "train_time_s": 702.0740835666656,
+ "loss_curve": [
+  [
+   0,
+   0.6940054893493652
+  ],
+  [
+   200,
+   0.48295584321022034
+  ],
+  [
+   400,
+   0.2856540381908417
+  ],
+  [
+   600,
+   0.21967455744743347
+  ],
+  [
+   800,
+   0.20837505161762238
+  ],
+  [
+   1000,
+   0.2003558874130249
+  ],
+  [
+   1200,
+   0.16940127313137054
+  ],
+  [
+   1400,
+   0.36419373750686646
+  ],
+  [
+   1600,
+   0.14082437753677368
+  ],
+  [
+   1800,
+   0.20994916558265686
+  ],
+  [
+   2000,
+   0.439179003238678
+  ],
+  [
+   2200,
+   0.33334842324256897
+  ],
+  [
+   2400,
+   0.22334450483322144
+  ],
+  [
+   2600,
+   0.28815001249313354
+  ],
+  [
+   2800,
+   0.20069891214370728
+  ],
+  [
+   3000,
+   0.12237585335969925
+  ],
+  [
+   3200,
+   0.1010536178946495
+  ],
+  [
+   3400,
+   0.21038679778575897
+  ],
+  [
+   3600,
+   0.16986334323883057
+  ],
+  [
+   3800,
+   0.32622280716896057
+  ]
+ ],
+ "iid": {
+  "iid_acc": 0.91725,
+  "iid_acc_ci": [
+   0.9083064127601796,
+   0.9253929024175236
+  ],
+  "frac_identified": 0.45575,
+  "iid_acc_identified": 0.9221064179923204,
+  "iid_acc_unidentified": 0.9131832797427653,
+  "oracle_mec_uniform_acc": 0.8125,
+  "oracle_mec_labelorder_acc": 0.791875
+ },
+ "twins_matched": {
+  "twin_acc": 0.933,
+  "twin_acc_ci": [
+   0.9233333333333333,
+   0.9423333333333334
+  ],
+  "causal_surplus": 0.8660000000000001,
+  "pair_both_correct": 0.8733333333333333,
+  "oracle_ceiling": 0.999,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.9011306762695312,
+  "mean_p_yes_on_B": 0.10760697722434998,
+  "mean_abs_p_diff_within_pair": 0.8053102493286133
+ },
+ "twins_gauss": {
+  "twin_acc": 0.49566666666666664,
+  "twin_acc_ci": [
+   0.4806666666666667,
+   0.5110083333333333
+  ],
+  "causal_surplus": -0.008666666666666711,
+  "pair_both_correct": 0.17266666666666666,
+  "oracle_ceiling": 0.5,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5906610488891602,
+  "mean_p_yes_on_B": 0.5935415029525757,
+  "mean_abs_p_diff_within_pair": 0.2685146927833557
+ },
+ "rev_cov_all": {
+  "twin_acc": 0.9233333333333333,
+  "twin_acc_ci": [
+   0.9133333333333333,
+   0.9326666666666666
+  ],
+  "causal_surplus": 0.8466666666666667,
+  "pair_both_correct": 0.8513333333333334,
+  "oracle_ceiling": 0.9993333333333333,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5032671093940735,
+  "mean_p_yes_on_B": 0.4977887272834778,
+  "mean_abs_p_diff_within_pair": 0.7875040173530579,
+  "kappa": 0.8477970627503338,
+  "kappa_ci": [
+   0.8291054739652872,
+   0.8663123930570589
+  ],
+  "adjacent": {
+   "n_pairs": 1500,
+   "twin_acc": 0.9233333333333333,
+   "oracle_ceiling": 0.9993333333333333
+  },
+  "inprior_is_yes": {
+   "n_pairs": 766,
+   "twin_acc": 0.9203655352480418,
+   "oracle_ceiling": 0.9993472584856397
+  },
+  "inprior_is_no": {
+   "n_pairs": 734,
+   "twin_acc": 0.9264305177111717,
+   "oracle_ceiling": 0.9993188010899182
+  }
+ },
+ "rev_cov_inprior": {
+  "twin_acc": 0.987,
+  "twin_acc_ci": [
+   0.9829916666666667,
+   0.991
+  ],
+  "causal_surplus": 0.974,
+  "pair_both_correct": 0.9746666666666667,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.48163607716560364,
+  "mean_p_yes_on_B": 0.5263961553573608,
+  "mean_abs_p_diff_within_pair": 0.929263174533844,
+  "kappa": 0.974,
+  "kappa_ci": [
+   0.966,
+   0.982
+  ],
+  "adjacent": {
+   "n_pairs": 1500,
+   "twin_acc": 0.987,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 712,
+   "twin_acc": 0.9894662921348315,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 788,
+   "twin_acc": 0.9847715736040609,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_mec_all": {
+  "twin_acc": 0.9003333333333333,
+  "twin_acc_ci": [
+   0.89,
+   0.911
+  ],
+  "causal_surplus": 0.8006666666666666,
+  "pair_both_correct": 0.808,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.521511971950531,
+  "mean_p_yes_on_B": 0.48232799768447876,
+  "mean_abs_p_diff_within_pair": 0.7433327436447144,
+  "kappa": 0.8006666666666666,
+  "kappa_ci": [
+   0.7799833333333334,
+   0.8220000000000001
+  ],
+  "adjacent": {
+   "n_pairs": 1209,
+   "twin_acc": 0.9185277088502894,
+   "oracle_ceiling": 1.0
+  },
+  "nonadjacent": {
+   "n_pairs": 291,
+   "twin_acc": 0.8247422680412371,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 747,
+   "twin_acc": 0.9263721552878179,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 753,
+   "twin_acc": 0.8745019920318725,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_mec_inprior": {
+  "twin_acc": 0.973,
+  "twin_acc_ci": [
+   0.967,
+   0.9786666666666667
+  ],
+  "causal_surplus": 0.946,
+  "pair_both_correct": 0.948,
+  "oracle_ceiling": 1.0,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.5299620628356934,
+  "mean_p_yes_on_B": 0.48900020122528076,
+  "mean_abs_p_diff_within_pair": 0.8885911703109741,
+  "kappa": 0.946,
+  "kappa_ci": [
+   0.9333333333333333,
+   0.9566833333333333
+  ],
+  "adjacent": {
+   "n_pairs": 1209,
+   "twin_acc": 0.989247311827957,
+   "oracle_ceiling": 1.0
+  },
+  "nonadjacent": {
+   "n_pairs": 291,
+   "twin_acc": 0.9054982817869416,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_yes": {
+   "n_pairs": 764,
+   "twin_acc": 0.981675392670157,
+   "oracle_ceiling": 1.0
+  },
+  "inprior_is_no": {
+   "n_pairs": 736,
+   "twin_acc": 0.9639945652173914,
+   "oracle_ceiling": 1.0
+  }
+ },
+ "rev_matched_redraw": {
+  "twin_acc": 0.9366666666666666,
+  "twin_acc_ci": [
+   0.9273333333333333,
+   0.9453333333333334
+  ],
+  "causal_surplus": 0.8733333333333333,
+  "pair_both_correct": 0.8813333333333333,
+  "oracle_ceiling": 0.9993333333333333,
+  "n_pairs": 1500,
+  "mean_p_yes_on_A": 0.8959137201309204,
+  "mean_p_yes_on_B": 0.09850350022315979,
+  "mean_abs_p_diff_within_pair": 0.8080704212188721,
+  "kappa": 0.8744993324432577,
+  "kappa_ci": [
+   0.8553309206137425,
+   0.8923796791443849
+  ]
+ },
+ "total_time_s": 756.61647772789
+}

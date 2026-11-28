@@ -1,0 +1,65 @@
+config {'n_worlds': 3, 'n_members': 5, 'epochs': 30, 'FAM': 50, 'UNF': 10}
+
+== E2: cells (mean ± sd over worlds) ==
+familiar_seen          n=   1629 acc 1.000 ± 0.000 msp 0.997 ± 0.000 gap(msp-acc) -0.003 ± 0.000 MI 0.004 ± 0.000 ens_acc 1.000 ± 0.000 ens_msp 0.997 ± 0.000 prior_acc 0.615 ± 0.014
+familiar_unseenfact    n=    467 acc 0.295 ± 0.010 msp 0.866 ± 0.007 gap(msp-acc) 0.570 ± 0.005 MI 0.827 ± 0.034 ens_acc 0.397 ± 0.009 ens_msp 0.545 ± 0.019 prior_acc 0.629 ± 0.003
+rare_seen              n=   5622 acc 1.000 ± 0.000 msp 0.991 ± 0.001 gap(msp-acc) -0.009 ± 0.001 MI 0.011 ± 0.000 ens_acc 1.000 ± 0.000 ens_msp 0.991 ± 0.000 prior_acc 0.619 ± 0.007
+rare_unseenfact        n=   5718 acc 0.272 ± 0.006 msp 0.853 ± 0.003 gap(msp-acc) 0.581 ± 0.005 MI 0.815 ± 0.015 ens_acc 0.364 ± 0.006 ens_msp 0.542 ± 0.005 prior_acc 0.611 ± 0.003
+unseen_entity          n=   2412 acc 0.060 ± 0.003 msp 0.757 ± 0.004 gap(msp-acc) 0.698 ± 0.004 MI 1.335 ± 0.004 ens_acc 0.081 ± 0.005 ens_msp 0.274 ± 0.002 prior_acc 0.620 ± 0.016
+curve seen       [1,3) n~105 acc 1.000 msp 0.999 mi 0.001
+curve seen       [3,10) n~4830 acc 1.000 msp 0.991 mi 0.011
+curve seen       [10,30) n~5501 acc 1.000 msp 0.986 mi 0.017
+curve seen       [30,100) n~1944 acc 1.000 msp 0.992 mi 0.009
+curve seen       [100,300) n~516 acc 1.000 msp 0.998 mi 0.002
+curve seen       [300,1000) n~195 acc 1.000 msp 1.000 mi 0.001
+curve seen       [1000,1e+09) n~78 acc 1.000 msp 1.000 mi 0.000
+curve unseenfact [1,3) n~419 acc 0.190 msp 0.825 mi 0.946
+curve unseenfact [3,10) n~4920 acc 0.279 msp 0.854 mi 0.804
+curve unseenfact [10,30) n~2287 acc 0.292 msp 0.859 mi 0.806
+curve unseenfact [30,100) n~568 acc 0.289 msp 0.862 mi 0.822
+curve unseenfact [100,300) n~156 acc 0.286 msp 0.873 mi 0.831
+curve unseenfact [300,1000) n~49 acc 0.293 msp 0.864 mi 0.882
+
+== E1: AUROC for epistemic gap vs aleatoric fraction alpha ==
+msp            0.816 0.750 0.685 0.622 0.556 0.491 0.428 0.362 0.298 0.234 0.169  | sd@alpha=1: 0.009
+entropy        0.814 0.751 0.687 0.627 0.563 0.500 0.439 0.376 0.314 0.252 0.189  | sd@alpha=1: 0.009
+ens_entropy    0.947 0.934 0.917 0.902 0.888 0.870 0.856 0.839 0.823 0.808 0.791  | sd@alpha=1: 0.013
+ens_mi         0.948 0.953 0.953 0.956 0.959 0.959 0.963 0.963 0.966 0.968 0.970  | sd@alpha=1: 0.003
+neg_log_count  0.743 0.769 0.797 0.820 0.845 0.867 0.894 0.918 0.943 0.967 0.992  | sd@alpha=1: 0.000
+MSP of known-aleatoric items 0.555 ± 0.011 ; MSP of unknown items 0.806 ± 0.003 ; n_pos [8443, 8471, 8354] n_neg_alea [231, 226, 220]
+
+== E3: probes (label = answer correct). pi_natural = 0.964 ± 0.002
+geometry (whitened hidden): [{'a': 1.028, 'b': 0.413, 'cos': 0.201, 'pred_fk': {'0.5': 0.4506492299739741, '0.75': 0.5945869433633358, '0.9': 0.6314099308797378, '0.98': 0.6435887799025981, '0.999': 0.645998964065414}}, {'a': 1.045, 'b': 0.391, 'cos': 0.24, 'pred_fk': {'0.5': 0.4618366509185989, '0.75': 0.6058548536491437, '0.9': 0.6390965826084876, '0.98': 0.6498481914804581, '0.999': 0.6519647290872314}}, {'a': 1.001, 'b': 0.425, 'cos': 0.027, 'pred_fk': {'0.5': 0.4201327135432141, '0.75': 0.5806048610080197, '0.9': 0.6273211024861869, '0.98': 0.6427001263284786, '0.999': 0.64572196527905}}]
+hidden         pi_dis=0.0   auc_nat=0.930 ± 0.000 auc_dis=0.245 ± 0.025 false_know=0.889 ± 0.052 missed_know=0.419 ± 0.041 pi_eff=0.969 ± 0.003 pred_fk=0.644 ± 0.005
+hidden         pi_dis=0.02  auc_nat=0.930 ± 0.003 auc_dis=0.242 ± 0.027 false_know=0.879 ± 0.050 missed_know=0.430 ± 0.038 pi_eff=0.953 ± 0.004 pred_fk=0.641 ± 0.005
+hidden         pi_dis=0.05  auc_nat=0.923 ± 0.003 auc_dis=0.263 ± 0.027 false_know=0.857 ± 0.043 missed_know=0.447 ± 0.033 pi_eff=0.929 ± 0.004 pred_fk=0.638 ± 0.006
+hidden         pi_dis=0.1   auc_nat=0.917 ± 0.006 auc_dis=0.263 ± 0.031 false_know=0.845 ± 0.052 missed_know=0.456 ± 0.040 pi_eff=0.885 ± 0.002 pred_fk=0.630 ± 0.007
+hidden         pi_dis=0.25  auc_nat=0.891 ± 0.016 auc_dis=0.290 ± 0.038 false_know=0.807 ± 0.074 missed_know=0.483 ± 0.033 pi_eff=0.762 ± 0.005 pred_fk=0.598 ± 0.013
+hidden         pi_dis=0.5   auc_nat=0.811 ± 0.013 auc_dis=0.353 ± 0.026 false_know=0.760 ± 0.036 missed_know=0.427 ± 0.001 pi_eff=0.557 ± 0.005 pred_fk=0.488 ± 0.025
+hidden+output  pi_dis=0.0   auc_nat=0.941 ± 0.001 auc_dis=0.386 ± 0.059 false_know=0.815 ± 0.067 missed_know=0.304 ± 0.030 pi_eff=0.969 ± 0.003 pred_fk=0.644 ± 0.005
+hidden+output  pi_dis=0.02  auc_nat=0.941 ± 0.001 auc_dis=0.404 ± 0.056 false_know=0.800 ± 0.086 missed_know=0.302 ± 0.038 pi_eff=0.953 ± 0.004 pred_fk=0.641 ± 0.005
+hidden+output  pi_dis=0.05  auc_nat=0.939 ± 0.003 auc_dis=0.451 ± 0.067 false_know=0.729 ± 0.080 missed_know=0.303 ± 0.027 pi_eff=0.929 ± 0.004 pred_fk=0.638 ± 0.006
+hidden+output  pi_dis=0.1   auc_nat=0.938 ± 0.002 auc_dis=0.491 ± 0.061 false_know=0.685 ± 0.101 missed_know=0.291 ± 0.032 pi_eff=0.885 ± 0.002 pred_fk=0.630 ± 0.007
+hidden+output  pi_dis=0.25  auc_nat=0.928 ± 0.005 auc_dis=0.589 ± 0.062 false_know=0.568 ± 0.092 missed_know=0.262 ± 0.041 pi_eff=0.762 ± 0.005 pred_fk=0.598 ± 0.013
+hidden+output  pi_dis=0.5   auc_nat=0.895 ± 0.002 auc_dis=0.651 ± 0.063 false_know=0.523 ± 0.073 missed_know=0.204 ± 0.015 pi_eff=0.557 ± 0.005 pred_fk=0.488 ± 0.025
+output_only    pi_dis=0.0   auc_nat=0.913 ± 0.008 auc_dis=0.786 ± 0.048 false_know=0.298 ± 0.063 missed_know=0.197 ± 0.042 pi_eff=0.969 ± 0.003 pred_fk=0.644 ± 0.005
+output_only    pi_dis=0.02  auc_nat=0.913 ± 0.008 auc_dis=0.786 ± 0.048 false_know=0.304 ± 0.061 missed_know=0.186 ± 0.039 pi_eff=0.953 ± 0.004 pred_fk=0.641 ± 0.005
+output_only    pi_dis=0.05  auc_nat=0.913 ± 0.008 auc_dis=0.787 ± 0.047 false_know=0.314 ± 0.057 missed_know=0.175 ± 0.026 pi_eff=0.929 ± 0.004 pred_fk=0.638 ± 0.006
+output_only    pi_dis=0.1   auc_nat=0.913 ± 0.008 auc_dis=0.790 ± 0.046 false_know=0.321 ± 0.059 missed_know=0.155 ± 0.030 pi_eff=0.885 ± 0.002 pred_fk=0.630 ± 0.007
+output_only    pi_dis=0.25  auc_nat=0.913 ± 0.008 auc_dis=0.794 ± 0.049 false_know=0.349 ± 0.070 missed_know=0.103 ± 0.021 pi_eff=0.762 ± 0.005 pred_fk=0.598 ± 0.013
+output_only    pi_dis=0.5   auc_nat=0.906 ± 0.009 auc_dis=0.806 ± 0.049 false_know=0.413 ± 0.080 missed_know=0.052 ± 0.003 pi_eff=0.557 ± 0.005 pred_fk=0.488 ± 0.025
+baselines:
+  msp            auc_nat 0.909 ± 0.010  auc_dis 0.809 ± 0.047
+  entropy        auc_nat 0.910 ± 0.009  auc_dis 0.806 ± 0.047
+  ens_mi         auc_nat 0.960 ± 0.005  auc_dis 0.970 ± 0.008
+  neg_log_count  auc_nat 0.955 ± 0.005  auc_dis 0.014 ± 0.005
+corr(observed false_know, predicted) hidden: 0.566 mean abs err 0.233
+
+== E4: Good-Turing ==
+singleton_frac         0.038 ± 0.000
+missing_mass           0.038 ± 0.001
+err_rate_det           0.028 ± 0.002
+err_given_c0           0.741 ± 0.010
+err_given_c1           0.000 ± 0.000
+err_given_c2plus       0.000 ± 0.000
+frac_det_err_from_c0   0.999 ± 0.001

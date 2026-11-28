@@ -1,0 +1,29 @@
+job: embspatial-depth
+started: 2026-11-26T05:40:46Z
+cores: 4, memory: 15 GB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/287 [00:00<?, ?it/s]Loading weights: 100%|██████████| 287/287 [00:00<00:00, 11302.00it/s]
+100 images, 0.9s each
+200 images, 0.9s each
+300 images, 0.9s each
+400 images, 0.9s each
+500 images, 0.8s each
+600 images, 0.8s each
+700 images, 0.8s each
+800 images, 0.7s each
+900 images, 0.8s each
+1000 images, 0.8s each
+1100 images, 0.8s each
+1200 images, 0.8s each
+
+nearest/farthest questions: 1206
+rule: nearest = highest ...                     all  nearest  farthest  ai2thor   mp3d  scannet
+box bottom edge (no depth model)               67.2     69.6      64.8     65.7   64.3     71.8
+estimated nearness, median in the box          74.8     76.6      72.9     60.6   88.4     76.0
+estimated nearness, middle half of the box     72.2     74.2      70.2     57.2   86.1     74.0
+estimated nearness, box centre pixel           70.6     71.9      69.2     57.2   83.5     71.5
+estimated nearness, 90th percentile            74.5     74.3      74.7     63.3   84.8     76.0
+estimated nearness, 10th percentile            62.9     64.7      60.9     55.5   75.9     57.5
+
+with left/right/above/under answered by box centres (2,411 of 2,434 correct), the whole benchmark would score 91.0% using 'median' (rule picked on these same questions; see the table for the spread)
+finished: 2026-11-26T05:57:34Z, exit code 0

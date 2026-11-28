@@ -1,0 +1,16 @@
+trained legal 0.924 {0: 0.6406, 1: 0.7243, 2: 0.7679, 3: 0.8004, 4: 0.8124} 365s
+  window 1 rf 1 same 0.521 refit 0.6377 legal 0.354
+  window 2 rf 5 same 0.5428 refit 0.6471 legal 0.3286
+  window 3 rf 9 same 0.5736 refit 0.6533 legal 0.4595
+  window 4 rf 13 same 0.583 refit 0.6626 legal 0.4628
+  window 6 rf 21 same 0.6095 refit 0.681 legal 0.5407
+  window 8 rf 29 same 0.631 refit 0.6979 legal 0.5988
+  window 16 rf 61 same 0.7003 refit 0.7486 legal 0.7441
+untrained_twin legal 0.1478 {0: 0.5888, 1: 0.6642, 2: 0.6851, 3: 0.6928, 4: 0.6982} 330s
+  window 1 rf 1 same 0.4553 refit 0.5869 legal 0.1424
+  window 2 rf 5 same 0.4813 refit 0.6143 legal 0.1436
+  window 3 rf 9 same 0.494 refit 0.6078 legal 0.1477
+  window 4 rf 13 same 0.5111 refit 0.6238 legal 0.1463
+  window 6 rf 21 same 0.535 refit 0.6352 legal 0.1451
+  window 8 rf 29 same 0.5559 refit 0.6451 legal 0.1464
+  window 16 rf 61 same 0.6179 refit 0.6739 legal 0.1489

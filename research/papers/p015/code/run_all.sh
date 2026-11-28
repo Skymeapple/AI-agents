@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Reproduce every number and figure in paper.md (~3 h on 4 CPU cores; 08 and 10 need PyTorch, 12 needs CVXPY + Clarabel).
+set -euo pipefail
+cd "$(dirname "$0")"
+[ -f ../data/runs_th11.jsonl ] || bash fetch_data.sh
+python3 01_marginal_fits.py            # pooled survival families, CV, extrapolation
+python3 02_heterogeneity_index.py      # nonparametric heterogeneity index H, retry gains
+python3 03_frailty_glmm.py             # frailty GLMMs: conditional vs pooled Weibull shape; projections
+python3 04_robustness.py               # frailty-distribution, data-subset and TH1.0 robustness
+python3 05_simulation_identification.py # identification simulation on METR's design
+python3 06_figures_and_sensitivity.py  # Wald CIs, capability trend, projection sensitivity, figures
+python3 07_passk_heldout.py            # held-out-task pass@k test
+python3 08_crossed_model.py            # task-validity audit + crossed agent x task frailty model
+python3 09_misspecification_sim.py     # misspecification simulation, exact pooled matching, mechanical-corr check
+python3 10_passk_baselines.py          # held-out pass@m vs beta-binomial/IRT-style baselines; H-brackets
+python3 11_profile_ci.py               # profile-likelihood intervals for per-agent k
+python3 12_duality.py 2                # replicate-length duality: NPMLE k, moment k_j, short->long forecasts, LR bounds
+python3 13_hazard_map.py 2             # piecewise hazard-length map; within-family elasticity
+python3 15_forecast_bootstrap.py 2     # family-cluster bootstrap of forecast errors
+python3 17_forecast_subsets.py         # forecast errors without never-solved / estimated-length targets
+python3 16_npmle_sim.py 2              # NPMLE estimator and forecast test under known truths
+python3 14_duality_figures.py          # fig_duality.png

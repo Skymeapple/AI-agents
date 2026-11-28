@@ -48,7 +48,7 @@ import yaml
 
 from .commercial.profile import CommercialProfile, Stage
 from .invest.dist import Distribution, LogNormal, from_three_point
-from .invest.engine import MonteCarlo, MonteCarloResult
+from .invest.engine import MonteCarlo, MonteCarloResult, _mean_interval
 from .invest.model import DealTerms, MarketModel
 from .provenance import Grade, parse_provenance
 
@@ -67,6 +67,8 @@ _STAGE_FIELDS: dict[str, str] = {
     "duration_years": "pert",
     "cost_usd": "pert",
     "p_success": "probability",
+    # Fraction of the stage's duration run before the previous stage's gate.
+    "overlap": "probability",
 }
 
 
@@ -123,7 +125,9 @@ class Scenario:
         if not self.stage_overrides:
             return profile
 
-        available = {stage.name for stage in profile.remaining_stages}
+        # "Ahead" means ahead under some TRL the belief gives weight to, not
+        # only the modal one: the engine simulates those worlds too.
+        available = {stage.name for stage in profile.possible_stages()}
         unknown = set(self.stage_overrides) - available
         if unknown:
             raise ValueError(
@@ -132,22 +136,19 @@ class Scenario:
                 f"path; remaining stages are {sorted(available)}"
             )
 
-        patched: list[Stage] = []
-        for stage in profile.remaining_stages:
+        def patch(stage: Stage) -> Stage:
             overrides = self.stage_overrides.get(stage.name)
             if not overrides:
-                patched.append(stage)
-                continue
-            patched.append(
-                Stage(
-                    name=stage.name,
-                    from_trl=stage.from_trl,
-                    to_trl=stage.to_trl,
-                    duration_years=overrides.get("duration_years", stage.duration_years),
-                    cost_usd=overrides.get("cost_usd", stage.cost_usd),
-                    p_success=overrides.get("p_success", stage.p_success),
-                    provenance=stage.provenance,
-                )
+                return stage
+            return Stage(
+                name=stage.name,
+                from_trl=stage.from_trl,
+                to_trl=stage.to_trl,
+                duration_years=overrides.get("duration_years", stage.duration_years),
+                cost_usd=overrides.get("cost_usd", stage.cost_usd),
+                p_success=overrides.get("p_success", stage.p_success),
+                provenance=stage.provenance,
+                overlap=overrides.get("overlap", stage.overlap),
             )
 
         return CommercialProfile(
@@ -156,10 +157,58 @@ class Scenario:
             sector=profile.sector,
             sector_label=profile.sector_label,
             trl=profile.trl,
-            remaining_stages=patched,
+            remaining_stages=[patch(s) for s in profile.remaining_stages],
             constraints=profile.constraints,
             ledger=profile.ledger,
+            stage_path=[patch(s) for s in profile.stage_path],
         )
+
+
+def _parse_fields(
+    specs: dict, known: dict[str, str], what: str, context: str, name: str, path: Path
+) -> dict[str, Distribution]:
+    """Build a distribution per field, rejecting any field not in ``known``.
+
+    ``known`` maps each permitted field to the distribution kind it takes.
+    """
+    built: dict[str, Distribution] = {}
+    for field_name, spec in specs.items():
+        if field_name not in known:
+            raise ValueError(
+                f"{path}: scenario {name!r} sets unknown {what} field "
+                f"{field_name!r}; known fields are {', '.join(sorted(known))}"
+            )
+        built[field_name] = _build_distribution(
+            spec, f"{context}/{field_name}", known[field_name]
+        )
+    return built
+
+
+def _parse_market(specs: dict, name: str, path: Path) -> MarketModel:
+    market = MarketModel.placeholder()
+    for field_name, distribution in _parse_fields(
+        specs, _MARKET_FIELDS, "market", name, name, path
+    ).items():
+        setattr(market, field_name, distribution)
+    return market
+
+
+def _parse_deal(spec: dict, name: str) -> DealTerms:
+    deal = DealTerms.placeholder(
+        check_usd=float(spec.get("check_usd", 5.0e6)),
+        entry_ownership=float(spec.get("entry_ownership", 0.15)),
+    )
+    if "round_usd" in spec:
+        deal.round_usd = float(spec["round_usd"])
+        deal.__post_init__()
+    for field_name in ("valuation_step_up", "discount_rate"):
+        if field_name in spec:
+            setattr(
+                deal,
+                field_name,
+                _build_distribution(spec[field_name], f"{name}/{field_name}", "pert"),
+            )
+    return deal
 
 
 @dataclass
@@ -208,60 +257,16 @@ class ScenarioSet:
 
     @staticmethod
     def _parse_scenario(raw: dict, name: str, path: Path) -> Scenario:
-        market = None
-        if "market" in raw:
-            base = MarketModel.placeholder()
-            for field_name, spec in raw["market"].items():
-                if field_name not in _MARKET_FIELDS:
-                    raise ValueError(
-                        f"{path}: scenario {name!r} sets unknown market field "
-                        f"{field_name!r}; known fields are "
-                        f"{', '.join(sorted(_MARKET_FIELDS))}"
-                    )
-                setattr(
-                    base,
-                    field_name,
-                    _build_distribution(
-                        spec, f"{name}/{field_name}", _MARKET_FIELDS[field_name]
-                    ),
-                )
-            market = base
-
-        deal = None
-        if "deal" in raw:
-            spec = raw["deal"]
-            base = DealTerms.placeholder(
-                check_usd=float(spec.get("check_usd", 5.0e6)),
-                entry_ownership=float(spec.get("entry_ownership", 0.15)),
+        # Market, then deal, then stages: the first invalid section is the one
+        # reported, so the order is part of the error behaviour.
+        market = _parse_market(raw["market"], name, path) if "market" in raw else None
+        deal = _parse_deal(raw["deal"], name) if "deal" in raw else None
+        stage_overrides = {
+            str(stage_name): _parse_fields(
+                fields, _STAGE_FIELDS, "stage", f"{name}/{stage_name}", name, path
             )
-            for field_name in ("valuation_step_up", "discount_rate"):
-                if field_name in spec:
-                    setattr(
-                        base,
-                        field_name,
-                        _build_distribution(
-                            spec[field_name], f"{name}/{field_name}", "pert"
-                        ),
-                    )
-            deal = base
-
-        stage_overrides: dict[str, dict[str, Distribution]] = {}
-        for stage_name, fields in (raw.get("stages") or {}).items():
-            built: dict[str, Distribution] = {}
-            for field_name, spec in fields.items():
-                if field_name not in _STAGE_FIELDS:
-                    raise ValueError(
-                        f"{path}: scenario {name!r} sets unknown stage field "
-                        f"{field_name!r}; known fields are "
-                        f"{', '.join(sorted(_STAGE_FIELDS))}"
-                    )
-                built[field_name] = _build_distribution(
-                    spec,
-                    f"{name}/{stage_name}/{field_name}",
-                    _STAGE_FIELDS[field_name],
-                )
-            stage_overrides[str(stage_name)] = built
-
+            for stage_name, fields in (raw.get("stages") or {}).items()
+        }
         return Scenario(
             name=name,
             description=" ".join(str(raw.get("description", "")).split()),
@@ -306,8 +311,8 @@ def render_comparison(outcomes: list[ScenarioOutcome], track_name: str) -> str:
         f"{outcomes[0].result.seed} so differences reflect assumptions rather "
         "than sampling noise._",
         "",
-        "| Scenario | P(market) | NPV P10 | NPV P50 | NPV P90 | E[MOIC] | MOIC if it works | P(loss) | Assumption-driven |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| Scenario | P(market) | NPV P10 | NPV P50 | NPV P90 | E[MOIC] | MOIC if it works | P(loss) | Spread from gate luck | Of the rest, from assumptions |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
 
     def money(value: float) -> str:
@@ -321,10 +326,11 @@ def render_comparison(outcomes: list[ScenarioOutcome], track_name: str) -> str:
         result = outcome.result
         npv = result.percentiles(result.project_npv)
         lines.append(
-            f"| {outcome.scenario.name} | {result.success_rate:.0%} "
+            f"| {outcome.scenario.name} | {result.expected_success_rate():.0%} "
             f"| {money(npv[10])} | {money(npv[50])} | {money(npv[90])} "
             f"| {result.expected_moic():.2f}x | {result.conditional_moic():.2f}x "
             f"| {result.probability_of_loss():.0%} "
+            f"| {result.variance_decomposition().gate_luck:.0%} "
             f"| {outcome.assumption_share:.0%} |"
         )
     lines.append("")
@@ -348,4 +354,21 @@ def render_comparison(outcomes: list[ScenarioOutcome], track_name: str) -> str:
         "narrow if the decision is close."
     )
     lines.append("")
+
+    # Is that gap bigger than the sampling noise? The scenarios share their
+    # random numbers, so the per-draw differences are paired and their mean is
+    # known far more tightly than either scenario's own mean.
+    if best is not worst and len(best.result.moic_given_inputs):
+        gap = best.result.moic_given_inputs - worst.result.moic_given_inputs
+        low, high = _mean_interval(gap, 0.90)
+        verdict = (
+            "resolved at this draw count"
+            if low > 0 or high < 0
+            else "not distinguishable from sampling noise at this draw count; run more draws"
+        )
+        lines.append(
+            f"Difference between them: {gap.mean():+.2f}x, 90% sampling interval "
+            f"{low:+.2f}x to {high:+.2f}x \u2014 {verdict}."
+        )
+        lines.append("")
     return "\n".join(lines)

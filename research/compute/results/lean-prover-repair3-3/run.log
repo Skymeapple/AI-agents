@@ -1,0 +1,23 @@
+job: lean-prover-repair3-3
+started: 2026-11-27T10:00:10Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/home/runner/work/_temp/data/DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf
+Decompressing 7335 file(s)
+Unpacked in 23603 ms
+Completed successfully!
+106 test theorems left by the tactics and the model; this shard tries 11, 8 samples each
+  [1/11] aime_1988_p8: no (473s)
+  [2/11] algebra_apbmpcneq0_aeq0anbeq0anceq0: no (291s)
+  [3/11] amc12_2001_p5: no (107s)
+  [4/11] amc12a_2020_p4: no (237s)
+  [5/11] amc12b_2020_p13: no (203s)
+  [6/11] imo_1963_p5: no (237s)
+  [7/11] imo_2001_p6: no (475s)
+  [8/11] mathd_algebra_17: no (204s)
+  [9/11] mathd_algebra_459: no (228s)
+  [10/11] mathd_numbertheory_435: no (149s)
+  [11/11] numbertheory_exk2powkeqapb2mulbpa2_aeq1: no (169s)
+RESULT shard 3/10: 0 of 11 proved; plain sampling 0, by repair variants 0, only by repair 0
+finished: 2026-11-27T10:48:18Z, exit code 0

@@ -4,12 +4,9 @@ Ties the stages together: harvest works, cluster them into tracks, score
 importance and urgency, infer readiness, build a commercialisation profile, and
 run the investment simulation.
 
-Clustering is the weakest link and is treated as such. Grouping works into
-research directions properly needs embeddings or citation-graph community
-detection; what ships here is grouping by an explicit label, which means a human
-decides what counts as a direction. That is a limitation, and also a defensible
-default: the boundary of a "research direction" is a judgement call that a
-clustering algorithm makes silently and usually badly.
+This module groups works by an explicit label, which means a human decides what
+counts as a direction. :mod:`sciscout.discovery` finds directions without labels
+and hands the same :class:`Track` objects to :meth:`Pipeline.analyse`.
 """
 
 from __future__ import annotations
@@ -48,6 +45,8 @@ class Pipeline:
     asof: dt.date = field(default_factory=dt.date.today)
     draws: int = 20_000
     seed: int = 20260918
+    # Bootstrap resamples for priority and rank intervals; 0 skips them.
+    resamples: int = 0
 
     def tracks_from_works(
         self, works: list[Work], label_key: str = "track"
@@ -97,7 +96,7 @@ class Pipeline:
         # normalised against each other rather than against an external table.
         all_works = [w for t in tracks for w in t.works]
         baseline = CitationBaseline.from_works(all_works, asof=self.asof)
-        scorer = Scorer(baseline, self.weights, asof=self.asof)
+        scorer = Scorer(baseline, self.weights, asof=self.asof, tracks=tracks)
         engine = MonteCarlo(draws=self.draws, seed=self.seed)
 
         reports: list[TrackReport] = []
@@ -113,5 +112,9 @@ class Pipeline:
                 )
             reports.append(TrackReport(track, assessment, profile, simulation))
 
+        if self.resamples:
+            scorer.add_intervals(
+                tracks, [r.assessment for r in reports], self.resamples, self.seed
+            )
         reports.sort(key=lambda r: r.assessment.priority, reverse=True)
         return reports

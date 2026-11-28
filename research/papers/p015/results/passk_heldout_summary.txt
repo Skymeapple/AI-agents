@@ -1,0 +1,27 @@
+Held-out tasks, mean over 20 agents (agent-level means first)
+      emp  pred_frailty  pred_homog  gain_emp  gain_frailty  gain_homog
+k                                                                      
+1  0.6516        0.6543      0.6562    0.0000        0.0000      0.0000
+2  0.6919        0.6933      0.7595    0.0403        0.0390      0.1033
+3  0.7122        0.7096      0.8045    0.0606        0.0554      0.1483
+4  0.7260        0.7193      0.8307    0.0744        0.0650      0.1745
+
+Mean absolute agent-level error
+       ef      eh
+k                
+1  0.0127  0.0055
+2  0.0111  0.0676
+3  0.0080  0.0923
+4  0.0092  0.1047
+
+Split by task length (>=240 min), pooled over task-agent pairs
+            emp  pred_frailty  pred_homog
+long  k                                  
+False 1  0.7861        0.7857      0.7940
+      2  0.8250        0.8240      0.8902
+      3  0.8440        0.8392      0.9241
+      4  0.8569        0.8480      0.9414
+True  1  0.2179        0.2294      0.2110
+      2  0.2621        0.2701      0.3374
+      3  0.2855        0.2897      0.4186
+      4  0.3015        0.3021      0.4741

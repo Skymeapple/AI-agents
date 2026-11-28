@@ -1,0 +1,153 @@
+# Figures that exist only inside agency reports. We did not ingest the data
+# behind them, so they are graded `sourced`, never `observed`.
+#
+# `needs_review: true` marks values written from memory of the publisher's
+# annual releases and not re-checked against the original this session. They
+# are approximate. The model uses them only to calibrate the spread and
+# persistence of conflict and displacement, not as headline results.
+
+series:
+  conflict_deaths:
+    unit: thousand deaths per year from organised violence
+    source:
+      grade: sourced
+      detail: UCDP annual totals for state-based, non-state and one-sided violence
+      reference: https://www.uu.se/en/news/2026/2026-06-09-ucdp-record-number-of-conflicts-between-states
+      retrieved: "2026-11-28"
+    verified_years: [2024, 2025]
+    values:
+      2014: 131
+      2015: 118
+      2016: 104
+      2017: 94
+      2018: 78
+      2019: 76
+      2020: 82
+      2021: 119
+      2022: 310
+      2023: 154
+      2024: 187
+      2025: 244.6
+
+  displaced_total:
+    unit: million people forcibly displaced at year end
+    source:
+      grade: sourced
+      detail: UNHCR Global Trends headline totals
+      reference: https://www.unhcr.org/global-trends
+      retrieved: "2026-11-28"
+    verified_years: [2024, 2025]
+    values:
+      2014: 59.5
+      2015: 65.3
+      2016: 65.6
+      2017: 68.5
+      2018: 70.8
+      2019: 79.5
+      2020: 82.4
+      2021: 89.3
+      2022: 108.4
+      2023: 117.3
+      2024: 123.2
+      2025: 117.8
+
+points:
+  warming_2024:
+    value: 1.36
+    unit: degC of human-induced warming above 1850-1900
+    source:
+      grade: sourced
+      detail: Indicators of Global Climate Change, human-induced warming in 2024
+      reference: Forster et al., Earth System Science Data, 2025
+      needs_review: true
+  undernourishment_2025:
+    value: 7.8
+    unit: "% of population"
+    source:
+      grade: sourced
+      detail: State of Food Security and Nutrition in the World 2026, 645 million people
+      reference: https://www.fao.org/newsroom/detail/un-report--global-hunger-levels-ease-for-third-consecutive-year-as-regional-disparities-persist/en
+      retrieved: "2026-11-28"
+  amr_deaths_2021:
+    value: 1.14
+    unit: million deaths per year directly attributable to bacterial resistance
+    source:
+      grade: sourced
+      detail: GRAM study, Lancet 2024
+      reference: https://healthdata.org/node/12105
+      retrieved: "2026-11-28"
+  amr_deaths_2050_forecast:
+    value: 1.91
+    unit: million deaths per year directly attributable to bacterial resistance
+    source:
+      grade: sourced
+      detail: GRAM study reference forecast, Lancet 2024
+      reference: https://healthdata.org/node/12105
+      retrieved: "2026-11-28"
+  top10_wealth_share_2025:
+    value: 75.0
+    unit: "% of global household wealth held by the richest 10%"
+    source:
+      grade: sourced
+      detail: World Inequality Report 2026
+      reference: https://aljazeera.com/news/2025/12/10/where-in-the-world-are-wealth-and-income-most-unequal
+      retrieved: "2026-11-28"
+  population_2050:
+    value: 9.66
+    unit: billion people
+    source:
+      grade: sourced
+      detail: UN World Population Prospects 2024, medium variant
+      reference: UN DESA World Population Prospects 2024
+      needs_review: true
+
+# Reported for context in the current-state table. Not simulated.
+context:
+  nuclear_warheads_2026:
+    value: 12187
+    unit: warheads, world inventory in January 2026
+    source:
+      grade: sourced
+      detail: SIPRI Yearbook 2026
+      reference: https://www.sipri.org/media/press-release/2026/increasing-focus-nuclear-weapons-amid-heightened-escalation-risks-new-sipri-yearbook-out-now
+      retrieved: "2026-11-28"
+  military_spending_2025:
+    value: 2887
+    unit: billion US$
+    source:
+      grade: sourced
+      detail: SIPRI military expenditure database, April 2026 release
+      reference: https://www.sipri.org/media/press-release/2026/global-military-spending-surges-2025
+      retrieved: "2026-11-28"
+  state_conflicts_2025:
+    value: 65
+    unit: active conflicts involving a state
+    source:
+      grade: sourced
+      detail: UCDP, highest count since 1946
+      reference: https://www.uu.se/en/news/2026/2026-06-09-ucdp-record-number-of-conflicts-between-states
+      retrieved: "2026-11-28"
+  warming_2100_current_policies:
+    value: 2.8
+    unit: degC by 2100
+    source:
+      grade: sourced
+      detail: UNEP Emissions Gap Report 2026, current-policies projection
+      reference: https://www.unep.org/news-and-stories/press-release/new-unep-report-lays-out-emission-cuts-needed-return-15degc
+      retrieved: "2026-11-28"
+  lacking_safe_sanitation_2024:
+    value: 3.4
+    unit: billion people
+    source:
+      grade: sourced
+      detail: WHO/UNICEF Joint Monitoring Programme 2025
+      reference: https://www.who.int/news/item/26-08-2025-1-in-4-people-globally-still-lack-access-to-safe-drinking-water---who--unicef
+      retrieved: "2026-11-28"
+  species_at_risk:
+    value: 1000000
+    unit: species threatened with extinction
+    source:
+      grade: sourced
+      detail: IPBES Global Assessment 2019
+      reference: IPBES Global Assessment Report on Biodiversity and Ecosystem Services, 2019
+      needs_review: true

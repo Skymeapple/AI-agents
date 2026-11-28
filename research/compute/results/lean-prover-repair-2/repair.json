@@ -1,0 +1,105 @@
+[
+{
+"name": "aime_1987_p5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 218
+},
+{
+"name": "algebra_absapbon1pabsapbleqsumabsaon1pabsa",
+"proved": true,
+"plain": false,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "prefix 5",
+"proof": "  cases' le_total 0 (a + b) with h\u2080 h\u2080 <;>\n  cases' le_total 0 a with h\u2081 h\u2081 <;>\n  cases' le_total 0 b with h\u2082 h\u2082 <;>\n  simp_all [abs_of_nonneg, abs_of_nonpos, le_add_iff_nonneg_right, le_add_iff_nonneg_left,\n    le_of_eq] <;>\n  field_simp <;>\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg a, sq_nonneg b, sq_nonneg (a - b), sq_nonneg (a + b), mul_self_nonneg (a * b)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 309
+},
+{
+"name": "amc12_2000_p12",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 124
+},
+{
+"name": "amc12a_2020_p10",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 78
+},
+{
+"name": "amc12a_2021_p25",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 202
+},
+{
+"name": "imo_1959_p1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 114
+},
+{
+"name": "imo_1984_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 101
+},
+{
+"name": "induction_prod1p1onk3le3m1onn",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 90
+},
+{
+"name": "mathd_algebra_288",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 150
+},
+{
+"name": "mathd_numbertheory_227",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 85
+},
+{
+"name": "mathd_numbertheory_5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 104
+},
+{
+"name": "numbertheory_x5neqy2p4",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 306
+}
+]

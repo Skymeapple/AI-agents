@@ -44,9 +44,12 @@ the baseline says so rather than pretending.
 
 **Technology readiness is a distribution, not a number.** Reading TRL off
 abstracts is a weak signal. The inference returns a probability distribution over
-TRL 1-9, and the Monte Carlo consumes the whole thing, so that uncertainty
-propagates into the ROI spread instead of being discarded at the first step. An
-analyst who knows the field can override it.
+TRL 1-9, and the Monte Carlo draws a starting TRL for every simulated world and
+gives it the stages that TRL leaves ahead, so that uncertainty propagates into
+the ROI spread instead of being discarded at the first step. An analyst who knows
+the field can override it — and on abstracts alone should expect to, because the
+inferred distribution is wide and the report says how much of the answer that
+width accounts for.
 
 **The investment model simulates staged abandonment.** Research programmes are a
 sequence of gates, and a programme that dies at the first gate never spends the
@@ -56,7 +59,7 @@ a cumulative success probability overstates expected cost by a large factor. Tha
 abandonment option is also most of why early-stage research investment can be
 rational despite single-digit success rates.
 
-## Two things this model gets right that are easy to get wrong
+## Things this model gets right that are easy to get wrong
 
 **Dilution is capital-weighted, not a fixed percentage.** Each stage is funded by
 a round raising that stage's cost, at a valuation stepping up from the last. A
@@ -65,7 +68,10 @@ near-nothing however well the science goes. A fixed-percentage dilution model
 will happily report a 90x return on a $5M seed cheque into a company that
 consumed three quarters of a billion dollars — which is not a return, it is an
 accounting error. For capital-intensive hardware this effect, not technical risk,
-is often what actually kills early-stage returns.
+is often what actually kills early-stage returns. The first stage is no
+exception: a $5M cheque does not conjure the rest of a $140M pilot line, so
+whatever the first stage costs beyond the entry round (`round_usd`, by default
+the cheque itself) is raised afterwards and dilutes like any other round.
 
 **The discount rate is a cost of capital, not a venture hurdle rate.** A 25-30%
 VC target return is priced to compensate for programme failure. This model
@@ -73,6 +79,46 @@ already simulates that failure explicitly, draw by draw. Discounting the
 survivors at a venture rate on top charges for the same risk twice, and over a
 decade-long development path the double charge is enough to turn genuinely
 attractive programmes negative. The default is 12%.
+
+**Gate luck and input uncertainty are separated exactly.** Given a draw's inputs,
+the mean and variance of its outcome over the gates have a closed form, so the
+engine computes them per draw instead of estimating them from simulated coin
+flips. Two things follow. The variance of project NPV splits, by the law of total
+variance, into the part better information could remove and the part it could
+not — and the first part is attributed to individual inputs by main-effect
+(first-order Sobol) index, with what only combinations of inputs explain reported
+as interactions rather than spread across them. And expected values are averaged
+from exact per-draw expectations, which at a 2% success rate cuts the sampling
+error of the expected multiple by roughly an order of magnitude. Every expected
+multiple is reported with its sampling interval and with the share of it carried
+by the top 1% of draws.
+
+**Overlapping stages are a trade, not a free lunch.** A stage may declare an
+`overlap` — the fraction of its duration run before the previous gate is known.
+That shortens the path on success and loses the money already spent on the next
+stage on failure. The shipped priors declare none, because an invented overlap
+would be one more unfounded number; set it per stage in a scenario file.
+
+## Scoring that does not flatter itself
+
+**A track is never part of its own citation baseline.** When one direction makes
+up most of a discipline in the corpus, the discipline median is that direction's
+own median and every one of its works scores "1.0x expected" — the impact score
+goes blind for exactly the directions that dominate their field. Each track is
+scored against the baseline with its own works removed. A direction alone in its
+discipline then has to be compared across fields, and its provenance says so.
+
+**A ranking says how sure it is.** `rank --resamples 200` resamples each
+direction's works and rescores it, giving a 90% interval for the priority and for
+the rank. Directions whose rank intervals overlap are not separated by the
+evidence, whatever order the table prints them in. On the demo corpus the top
+five are not.
+
+**Foundationality uses the citation graph where the corpus carries one.** Works
+may carry `references` (the OpenAlex adapter fills them). When references resolve
+to other tracked works, foundationality is how many other directions build on
+this one, graded `observed`; otherwise it stays the lexical proxy, graded
+`assumed`.
 
 ## Finding directions without labels
 
@@ -93,11 +139,34 @@ does, and it is deterministic — the same corpus gives the same directions.
 Average linkage rather than single linkage because single linkage chains: one
 paper bridging two topics would otherwise fuse them into one direction.
 
+**Shared references bridge a change of vocabulary.** Two groups describing one
+idea in different words still cite the same prior work. Where works carry
+reference lists, a pair's similarity is its lexical cosine plus
+`--citation-weight` times the cosine of their reference lists (a work citing
+another counts as sharing a reference with it). It only adds evidence, so a
+corpus without references clusters exactly as before.
+
+**It scales past the dense limit.** The mean pairwise cosine between two groups
+of vectors is the dot product of their sums over the product of their sizes, so
+average linkage can run exactly over small micro-clusters instead of over every
+pair of works. Above 12,000 works `discover` cuts the corpus into micro-clusters
+(spherical k-means on a random projection) and links those; memory is
+micro-clusters x vocabulary instead of works x works. A 25,600-work version of
+the demo corpus clusters in about a second. The micro-clustering step is the
+approximation, and it is measured: on the demo corpus the two methods agree at an
+adjusted Rand index of 1.00.
+
 **Discovery is measured, not asserted.** `--evaluate` scores the clustering
 against known labels where a corpus has them. On the shipped demo corpus — 1,174
 works across 16 planted directions, including deliberately adjacent pairs like
 quantum error correction beside topological qubits, and protein design beside
 climate emulators — it recovers **16 of 16 at purity 1.00**.
+
+Purity and recovery alone can be gamed: shattering every direction into pure
+fragments scores perfectly on both. So `--evaluate` also reports completeness,
+V-measure and the adjusted Rand index (all 1.00 here), and `--sensitivity`
+reports, with no labels needed, how far the clustering moves as the threshold
+does — the only quality signal available on a real corpus.
 
 **That number is weaker evidence than it looks**, and worth being plain about: the
 demo corpus is synthetic and its vocabulary was written alongside the classifier's
@@ -187,6 +256,67 @@ artefact, indistinguishable from a real effect. A worked three-scenario
 comparison is in
 [`examples/sodium-battery-comparison.md`](examples/sodium-battery-comparison.md).
 
+## autoscout: a self-iterating research agent
+
+`autoscout/` is a research project built on sciscout: an agent that keeps up
+with the newest work on AI agents and improves itself as it goes. Each cycle
+it gathers new papers, triages them into a digest, learns emerging vocabulary
+from them, proposes changes to its own configuration, and keeps a change only
+if a paired bootstrap on a labelled benchmark says it helps and a holdout
+split agrees. A sealed split that no decision ever reads tracks whether the
+gains are real. The research questions, first results and roadmap are in
+[`docs/RESEARCH_PLAN.md`](docs/RESEARCH_PLAN.md).
+
+```bash
+python scripts/make_agent_corpus.py                 # synthetic stream + benchmark
+python -m autoscout.cli run --cycles 12             # offline: replay 12 weeks
+cat autoscout_runs/local/REPORT.md                  # trajectory: tune / holdout / sealed
+python scripts/run_ablation.py --seeds 5            # frozen vs mutation vs literature vs full
+python -m autoscout.cli cycle --live                # with egress: real arXiv papers
+```
+
+On the synthetic stream, where the field's vocabulary drifts week by week, the
+agent's sealed triage utility goes from 0.735 (frozen seed) to 0.98. Tuning
+parameters alone reaches 0.88 and cannot keep up with the drift. Learning from
+the literature is what closes the gap ([ablation](examples/autoscout-ablation.md)).
+The same caveat as the demo corpus applies, only more so: the drift was
+planted by the author of the agent, so this shows the mechanism works, not
+how it does on real papers. Real-paper evaluation comes from human labels
+(`autoscout queue` / `autoscout label`), and in live mode the agent will not
+modify itself until those exist.
+
+The agent changes only a bounded, validated configuration, never its own
+code. A Claude proposer (optional; set `ANTHROPIC_API_KEY`) can suggest code
+changes, but they go to an ideas backlog for a person. The scheduled workflow
+(`.github/workflows/autoscout.yml`) opens each cycle as a pull request, so a
+human merge is the checkpoint.
+## World problems model
+
+`worldsim/` is a second, separate model that shares sciscout's provenance
+machinery. It simulates ten global problems from 2025 to 2050 -- climate, war,
+extreme poverty, hunger, pandemics and drug resistance, biodiversity, water and
+sanitation, displacement, AI governance and inequality -- as one coupled system.
+
+```bash
+python -m worldsim.cli fetch     # refresh data/world from World Bank, OWID and NASA
+python -m worldsim.cli run       # three scenarios -> examples/world-problems-simulation.md
+python -m worldsim.cli run --lever peacebuilding=1 --lever development=0.5
+```
+
+Baseline rates of change are fitted from 18 global series in
+`data/world/observed.csv`, each with its URL and retrieval date in
+`manifest.json`. Figures that exist only in agency reports sit in
+`data/world/sourced.yaml` with a citation each. The links between problems and
+the effect of each policy lever are in `worldsim/params.yaml`, and almost all of
+them are graded `assumed`.
+
+**It is not a forecast.** 34 of its 43 uncertain inputs are judgement calls, and
+the report says for every result how much of the spread rests on them. It is
+built to answer two narrower questions: where measured trends lead if they
+persist, and which conclusions would survive a change of assumptions. The worked
+output, including where the model disagrees with published projections, is in
+[`examples/world-problems-simulation.md`](examples/world-problems-simulation.md).
+
 ## Quick start
 
 ```bash
@@ -198,8 +328,8 @@ python scripts/make_demo_corpus.py
 # Find research directions with no labels, route and rank them
 python -m sciscout.cli discover --corpus data/demo_corpus.json --evaluate --rank
 
-# Rank research directions
-python -m sciscout.cli rank --corpus data/demo_corpus.json
+# Rank research directions, with intervals on priority and rank
+python -m sciscout.cli rank --corpus data/demo_corpus.json --resamples 200
 
 # Model one direction's investment case
 python -m sciscout.cli model --corpus data/demo_corpus.json \
@@ -238,7 +368,8 @@ These are the things most likely to mislead you. None are hidden in the code.
    biopharma clinical transition rates are well-known headline figures, but a
    figure you have not checked against its original is one you are borrowing,
    not one you know. Any ROI number produced on the defaults will report itself
-   as ~100% assumption-driven. That is the system working, not failing.
+   as resting almost entirely on assumption wherever it rests on inputs at all.
+   That is the system working, not failing.
 
 2. **The demo corpus is synthetic.** All 1,174 records in
    `data/demo_corpus.json` are machine-generated, with `synthetic:` identifiers and
@@ -247,21 +378,19 @@ These are the things most likely to mislead you. None are hidden in the code.
    discovery something measurable to be scored against. It tells you nothing about
    any real field.
 
-3. **Clustering is lexical, and it scales only so far.** `discover` groups
-   papers that use the same words, so one idea pursued in two vocabularies splits,
-   and a shared methods vocabulary can pull unrelated work together. Dense
-   clustering refuses above 12,000 works rather than dying on a multi-gigabyte
-   allocation; `discover_by_discipline` partitions first, which scales further and
-   avoids cross-field lexical collisions, at the cost of splitting genuinely
-   cross-disciplinary directions. Neither failure is hidden — run both and compare.
+3. **Clustering is mostly lexical.** `discover` groups papers that use the same
+   words, so a shared methods vocabulary can pull unrelated work together, and one
+   idea pursued in two vocabularies splits unless the works carry reference lists
+   that tie them. The shared-reference signal and the scalable method are both
+   tested on synthetic corpora only; neither has been run on real abstracts,
+   because this was built without network access. `--sensitivity` is the check to
+   run first on real data.
 
-4. **Foundationality is a lexical proxy.** It counts platform/method/enabling
-   language in abstracts. Properly it is how much downstream work builds on a
-   result, which needs citation-graph data the corpus does not carry. It is
-   marked `assumed` for this reason.
+4. **Foundationality is a lexical proxy unless the corpus carries references**,
+   and even then it sees only citations between tracked directions.
 
-5. **Stages are modelled as sequential and non-overlapping.** Real programmes
-   overlap them, so timelines here are biased long.
+5. **Stages are sequential unless you say otherwise.** No overlap is assumed by
+   default, so default timelines are biased long.
 
 6. **Market models are placeholders until you supply real ones.** `MarketModel`
    and `DealTerms` ship with clearly-labelled defaults so a track can be modelled
@@ -272,6 +401,17 @@ These are the things most likely to mislead you. None are hidden in the code.
    not a bug, and it is why the platform reports NPV and MOIC side by side rather
    than collapsing to one figure of merit. There is a test pinning this
    behaviour so nobody later "fixes" it into agreeing with intuition.
+
+8. **Inferred readiness is wide, and it now shows.** From abstracts alone the TRL
+   belief is close to its prior. Because every draw starts at a sampled TRL, a few
+   percent of draws start with nothing left to develop, at the same entry terms
+   as the rest — an early-stage price for a finished technology. On the demo
+   corpus those draws carry between 9% and 45% of the expected multiple. The report
+   prints that share for each direction; an analyst `trl_override` removes it.
+
+9. **The variance attribution is for NPV in dollars.** It is dominated by
+   whatever has the heaviest tail, and the per-input shares are estimated by
+   binning, so small shares are noisy. The gate-luck / input split is exact.
 
 ## Layout
 
@@ -290,9 +430,35 @@ sciscout/
   commercial/            TRL -> stages, costs, timelines, constraints
   invest/                distributions, investment case, Monte Carlo engine
   priors/sectors.yaml    commercialisation priors, graded by provenance
+autoscout/
+  config.py              the bounded configuration the agent may change
+  scout.py               gather: arXiv (live) or replayed stream (offline)
+  triage.py              flag new papers for reading, by topic
+  mining.py              learn emerging vocabulary from new papers
+  proposers.py           mutation / literature / Claude proposers, bandit
+  bench.py               per-item benchmarks, tune/holdout/sealed splits
+  gate.py                paired-bootstrap acceptance gate
+  loop.py                the self-iteration cycle
+  cli.py                 init / cycle / run / status / queue / label
+docs/RESEARCH_PLAN.md    research questions, results, roadmap for autoscout
 examples/                worked scenario file and its comparison output
-scripts/                 synthetic corpus generator
-tests/                   78 tests
+scripts/                 synthetic corpus generators, autoscout ablation
+tests/                   206 tests across sciscout, autoscout, airadar, worldsim, cosmos
+worldsim/
+  fetch.py               download the observed global series
+  model.py               trend fitting, the coupled simulation, lever experiments
+  report.py              markdown and JSON output
+  params.yaml            couplings, lever effects and scenarios, graded by provenance
+data/world/              observed series, manifest, cited report figures, results
+airadar/                 self-tuning radar for the fastest-growing AI apps
+cosmos/                  data and simulations for ten open problems in cosmology
+open-problems-sim/       numerical experiments for ten open mathematical problems
+aisci-verifiers/         verifier suite and autonomous-science prototypes
+world-understanding/     study: how learning machines model a complex world
+ai2035/                  20 foundational AI science questions for 2035
+research/                AI-100 question papers and Human Frontier Mission projects
+experiments/             discovery validated on real titles
+reports/, research_notes/  frontier technology trends and 2027-2031 forecasts
 ```
 
 ## Tests
@@ -307,4 +473,92 @@ early investors, sensitivity analysis recovers a driver that was deliberately
 planted, missing citation data is scored as absent rather than zero, a two-year
 publication history is refused as a trend, a scenario file cannot introduce a
 number without saying where it came from, and discovery recovers 16 of 16 planted
-directions on a corpus built with adjacent topic pairs.
+directions on a corpus built with adjacent topic pairs. Also: a draw starting at
+a higher TRL does not pay for the stages below it, a first stage larger than the
+entry round dilutes, overlap saves time on success and costs money on failure,
+the exact variance split matches the simulated variance, a track that dominates
+its discipline is not scored against itself, shattering every direction keeps
+purity at 1.0 but not the adjusted Rand index, and the scalable clustering agrees
+with the exact one.
+
+
+# airadar: the AI app radar
+
+A second tool in this repo, built on the same provenance discipline. It collects
+signals on AI applications every day, ranks the fastest-growing ones, groups
+them into directions, generates innovation hypotheses, and **grades its own
+forecasts and tunes itself on the result**.
+
+```
+collect             ->  score growth   ->  directions,     ->  forecast and    ->  tune one knob
+(live APIs, inbox       (measured,         emergent           score matured       by backtest,
+ from agent web         stated,            groupings,         forecasts           if the evidence
+ research)              reported)          hypotheses                             clears the bar)
+```
+
+**Growth is derived, never stored.** Observations are append-only and dated;
+every score is recomputed from them with an `asof` date that hides the future.
+That is what makes backtesting honest: replaying a past day sees exactly what
+was known that day.
+
+**Three grades of growth evidence.** A *delta* between two of the radar's own
+snapshots is measured. A *period* gain ("+4,774 stars this week") is stated by a
+source. A *reported* growth rate ("ARR tripled") is a company's chosen framing.
+Each carries a trust weight, and every number reaches the report labelled with
+how it was obtained.
+
+**Comparable across kinds by percentile.** Stars and revenue cannot be compared
+directly. Relative growth (log-growth per day) is ranked across everything;
+absolute velocity is ranked only within its own metric family. Thin evidence is
+shrunk toward the median, so one page-read claim cannot top the table. A gain of
+more than half an app's total in a week is flagged as possible extraction error
+or star farming, and discounted rather than dropped.
+
+**Self-iteration is measured, not asserted.** Every day's ranking is recorded as
+a forecast. Once its 7-day horizon passes, it is scored against the growth that
+followed: Spearman rank correlation and precision@k. The tuner nudges each
+knob one step up and down, replays every matured day with each candidate, and
+adopts the best only if it beats the current settings by 0.02 on mean Spearman,
+across at least 3 days, winning on two-thirds of them. The yardstick is computed
+with fixed default parameters, so the tuner can never move its own target. A
+test plants a noisy source in a synthetic world and checks the tuner learns to
+discount it, and that it holds still when nothing is wrong.
+
+**Collection works around a sandbox.** Live collectors (GitHub search, Hugging
+Face, Hacker News, npm, PyPI) run wherever outbound network is open, such as the
+included GitHub Actions workflow. A daily Claude Code session collects through
+web tools into a strictly validated inbox (`airadar/INBOX.md`): every
+observation needs a source URL and a method, and a malformed file is rejected
+whole, not partially loaded. The session then writes the prose analysis and makes
+one tested improvement to the system. The procedure and its guardrails are in
+`airadar/DAILY_AGENT.md`.
+
+```bash
+python -m airadar.cli collect                          # live APIs (needs network)
+python -m airadar.cli validate data/radar/inbox/*.json # check inbox files
+python -m airadar.cli daily                            # the full daily cycle
+python -m airadar.cli recheck                          # apps to re-observe today
+```
+
+Reports land in `data/radar/reports/`: `DATE.md` is the radar's own output,
+`DATE-analysis.md` the agent's researched commentary on it.
+The daily run also refreshes a shared web page of the latest report
+(`python -m airadar.cli dashboard` exports its data files; the page template is
+`airadar/dashboard_page.html`, and the refresh procedure is step 7 of the
+runbook).
+
+### Limitations
+
+1. **The first week has no measured growth.** Until apps are re-observed, every
+   signal is a stated period gain or a reported rate, graded `sourced`. The
+   report says so. The forecast scorecard and the tuner need about 10 days of
+   history before either says anything.
+2. **Page reads go through a model.** Numbers read off rendered pages by the
+   agent's fetch tool can be mangled; they are graded `sourced`, flagged
+   `needs_review`, and re-observation corrects them over time.
+3. **Coverage follows the sources.** Open-source repos are easy to measure daily;
+   commercial apps are mostly seen through what companies choose to report. A
+   direction with no open-source footprint is under-represented.
+4. **Opportunities are heuristics.** "Fast and uncrowded" or "open source ahead
+   of product" are patterns in the radar's own table, graded `assumed`. They
+   generate research questions; the agent's analysis is where they are tested.

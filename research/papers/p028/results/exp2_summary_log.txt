@@ -1,0 +1,238 @@
+{
+ "mean_success": {
+  "uniform": 0.5581875,
+  "reach": 0.38729166666666665,
+  "sink-aware": 0.5785833333333333,
+  "combined": 0.5821458333333334,
+  "null:uniform": 0.6019166666666667,
+  "kappa0:uniform": 0.5689166666666666,
+  "kappa0:sink-aware": 0.6010416666666666
+ },
+ "mean_cost": {
+  "uniform": 1.1339825143608582,
+  "reach": 1.111110438013198,
+  "sink-aware": 1.1829621625718,
+  "combined": 1.1810598216673716,
+  "null:uniform": 1.1340953678889047,
+  "kappa0:uniform": 1.1259475286124376,
+  "kappa0:sink-aware": 1.1560243030473074
+ },
+ "n_graphs": 12,
+ "sink_beats_uniform": 12,
+ "sink_beats_uniform_kappa0": 12,
+ "reach_below_uniform": 12,
+ "null_above_real": 11,
+ "prop4_kappa0_z": {
+  "kappa0:uniform": [
+   0.29,
+   0.23,
+   0.53,
+   0.44,
+   1.73,
+   0.1,
+   -0.26,
+   -0.27,
+   -0.47,
+   0.34,
+   -0.19,
+   -0.67
+  ],
+  "kappa0:sink-aware": [
+   -1.57,
+   0.05,
+   -0.37,
+   1.11,
+   0.84,
+   -2.1,
+   -1.14,
+   -1.29,
+   -1.02,
+   -1.81,
+   1.67,
+   -0.01
+  ]
+ },
+ "prop4_max_abs_err": {
+  "uniform": 0.026931708248144837,
+  "reach": 0.014946691578874183,
+  "sink-aware": 0.058653001240893676,
+  "combined": 0.05304655617182552,
+  "kappa0:uniform": 0.007411238153398919,
+  "kappa0:sink-aware": 0.016557794676944737
+ },
+ "prop4_mean_signed_err": {
+  "uniform": -0.009941685607160829,
+  "reach": -0.003483046569092928,
+  "sink-aware": -0.026153031891220004,
+  "combined": -0.02264949602653796,
+  "null:uniform": -0.0140261353885089,
+  "kappa0:uniform": 0.0007874810595058339,
+  "kappa0:sink-aware": -0.0036946985578866823
+ },
+ "structure_means": {
+  "frac_sinks": 0.4432979181575228,
+  "gini_reach": 0.7343548134118963,
+  "neff_frac": 0.35389375378256366
+ },
+ "structure_null_means": {
+  "frac_sinks": 0.26490452320632196,
+  "gini_reach": 0.609172752980383,
+  "neff_frac": 0.2919290778134492
+ },
+ "sinks_real_gt_null": 12,
+ "neff_real_gt_null": 12,
+ "prop4_kappa0_z_summary": {
+  "n": 24,
+  "mean": -0.16,
+  "sd": 0.9996347158924561,
+  "max_abs": 2.1,
+  "frac_within_2": 0.9583333333333334
+ }
+}
+numpy {'uniform': (0.468, 0.4799, 1.1232), 'reach': (0.28375, 0.2726, 1.1071), 'sink-aware': (0.47825, 0.5267, 1.1517), 'combined': (0.48425, 0.5267, 1.1512), 'null:uniform': (0.529, 0.5324, 1.1229), 'kappa0:uniform': (0.48225, 0.4799, 1.1174), 'kappa0:sink-aware': (0.51425, 0.5267, 1.1324)}
+scipy {'uniform': (0.0635, 0.0681, 1.1214), 'reach': (0.0095, 0.0097, 1.1086), 'sink-aware': (0.0745, 0.0943, 1.1629), 'combined': (0.07775, 0.0943, 1.1624), 'null:uniform': (0.10075, 0.1205, 1.1322), 'kappa0:uniform': (0.069, 0.0681, 1.1174), 'kappa0:sink-aware': (0.0945, 0.0943, 1.1424)}
+matplotlib {'uniform': (0.5855, 0.6124, 1.1528), 'reach': (0.13425, 0.1492, 1.1158), 'sink-aware': (0.6455, 0.7042, 1.2502), 'combined': (0.65175, 0.7042, 1.2531), 'null:uniform': (0.70925, 0.7305, 1.1618), 'kappa0:uniform': (0.6165, 0.6124, 1.1415), 'kappa0:sink-aware': (0.7015, 0.7042, 1.1937)}
+networkx {'uniform': (0.19475, 0.2007, 1.1072), 'reach': (0.1555, 0.1686, 1.1046), 'sink-aware': (0.19575, 0.2115, 1.1119), 'combined': (0.21125, 0.2115, 1.1119), 'null:uniform': (0.19625, 0.2101, 1.1082), 'kappa0:uniform': (0.2035, 0.2007, 1.1054), 'kappa0:sink-aware': (0.21875, 0.2115, 1.1079)}
+sympy {'uniform': (0.056, 0.0721, 1.1836), 'reach': (0.00025, 0.0007, 1.1171), 'sink-aware': (0.08275, 0.1157, 1.3136), 'combined': (0.08475, 0.1157, 1.3085), 'null:uniform': (0.14875, 0.1801, 1.1675), 'kappa0:uniform': (0.0795, 0.0721, 1.1731), 'kappa0:sink-aware': (0.12, 0.1157, 1.2669)}
+pandas {'uniform': (0.5155, 0.5237, 1.1341), 'reach': (0.2985, 0.3108, 1.1106), 'sink-aware': (0.536, 0.5551, 1.1558), 'combined': (0.52575, 0.5551, 1.1551), 'null:uniform': (0.5925, 0.6039, 1.1283), 'kappa0:uniform': (0.5245, 0.5237, 1.128), 'kappa0:sink-aware': (0.5385, 0.5551, 1.1417)}
+setuptools {'uniform': (0.55675, 0.5781, 1.127), 'reach': (0.2625, 0.2746, 1.1103), 'sink-aware': (0.597, 0.6405, 1.1688), 'combined': (0.5875, 0.6405, 1.1694), 'null:uniform': (0.601, 0.627, 1.1337), 'kappa0:uniform': (0.576, 0.5781, 1.1208), 'kappa0:sink-aware': (0.63175, 0.6405, 1.1433)}
+pip {'uniform': (0.6655, 0.6758, 1.1497), 'reach': (0.27975, 0.2804, 1.1123), 'sink-aware': (0.686, 0.7326, 1.2364), 'combined': (0.7105, 0.7327, 1.2286), 'null:uniform': (0.7105, 0.7352, 1.1411), 'kappa0:uniform': (0.67375, 0.6758, 1.1398), 'kappa0:sink-aware': (0.7235, 0.7326, 1.1971)}
+asyncio {'uniform': (0.88875, 0.9025, 1.1354), 'reach': (0.752, 0.7654, 1.1159), 'sink-aware': (0.91625, 0.9297, 1.1949), 'combined': (0.923, 0.93, 1.1862), 'null:uniform': (0.913, 0.9207, 1.1336), 'kappa0:uniform': (0.90025, 0.9025, 1.1265), 'kappa0:sink-aware': (0.9255, 0.9297, 1.1552)}
+email {'uniform': (0.8995, 0.8956, 1.1354), 'reach': (0.75275, 0.7408, 1.1115), 'sink-aware': (0.90575, 0.911, 1.1558), 'combined': (0.90725, 0.9111, 1.1576), 'null:uniform': (0.90025, 0.9013, 1.1288), 'kappa0:uniform': (0.89725, 0.8956, 1.121), 'kappa0:sink-aware': (0.9025, 0.911, 1.1364)}
+multiprocessing {'uniform': (0.9085, 0.9161, 1.1234), 'reach': (0.855, 0.8531, 1.1122), 'sink-aware': (0.92525, 0.9371, 1.1738), 'combined': (0.92525, 0.9372, 1.1665), 'null:uniform': (0.9295, 0.9343, 1.1325), 'kappa0:uniform': (0.91525, 0.9161, 1.1126), 'kappa0:sink-aware': (0.94325, 0.9371, 1.1424)}
+importlib {'uniform': (0.896, 0.8926, 1.1146), 'reach': (0.86375, 0.8633, 1.1074), 'sink-aware': (0.9, 0.8986, 1.1199), 'combined': (0.89675, 0.8986, 1.1221), 'null:uniform': (0.89225, 0.8952, 1.1186), 'kappa0:uniform': (0.88925, 0.8926, 1.1079), 'kappa0:sink-aware': (0.8985, 0.8986, 1.113)}
+numpy delta=0.0,b=0.0,uniform {'success': 0.425, 'se': 0.0111, 'prop4': 0.4484, 'cost': 1.1284}
+numpy delta=0.0,b=0.0,reach {'success': 0.277, 'se': 0.01, 'prop4': 0.2796, 'cost': 1.1058}
+numpy delta=0.0,b=0.0,sink-aware {'success': 0.4145, 'se': 0.011, 'prop4': 0.4484, 'cost': 1.1283}
+numpy delta=0.0,b=0.02,uniform {'success': 0.3865, 'se': 0.0109, 'prop4': 0.3879, 'cost': 1.1346}
+numpy delta=0.0,b=0.02,reach {'success': 0.2375, 'se': 0.0095, 'prop4': 0.2441, 'cost': 1.1075}
+numpy delta=0.0,b=0.02,sink-aware {'success': 0.3745, 'se': 0.0108, 'prop4': 0.3879, 'cost': 1.1329}
+numpy delta=0.0,b=0.1,uniform {'success': 0.2005, 'se': 0.009, 'prop4': 0.2171, 'cost': 1.1445}
+numpy delta=0.0,b=0.1,reach {'success': 0.1375, 'se': 0.0077, 'prop4': 0.1417, 'cost': 1.122}
+numpy delta=0.0,b=0.1,sink-aware {'success': 0.201, 'se': 0.009, 'prop4': 0.2171, 'cost': 1.1462}
+numpy delta=0.1,b=0.0,uniform {'success': 0.462, 'se': 0.0111, 'prop4': 0.4878, 'cost': 1.1236}
+numpy delta=0.1,b=0.0,reach {'success': 0.298, 'se': 0.0102, 'prop4': 0.288, 'cost': 1.105}
+numpy delta=0.1,b=0.0,sink-aware {'success': 0.4835, 'se': 0.0112, 'prop4': 0.5018, 'cost': 1.1504}
+numpy delta=0.1,b=0.02,uniform {'success': 0.424, 'se': 0.0111, 'prop4': 0.4284, 'cost': 1.1273}
+numpy delta=0.1,b=0.02,reach {'success': 0.2535, 'se': 0.0097, 'prop4': 0.2556, 'cost': 1.1079}
+numpy delta=0.1,b=0.02,sink-aware {'success': 0.394, 'se': 0.0109, 'prop4': 0.4405, 'cost': 1.1558}
+numpy delta=0.1,b=0.1,uniform {'success': 0.236, 'se': 0.0095, 'prop4': 0.2546, 'cost': 1.1364}
+numpy delta=0.1,b=0.1,reach {'success': 0.146, 'se': 0.0079, 'prop4': 0.1583, 'cost': 1.1217}
+numpy delta=0.1,b=0.1,sink-aware {'success': 0.226, 'se': 0.0094, 'prop4': 0.2611, 'cost': 1.1604}
+numpy delta=0.3,b=0.0,uniform {'success': 0.53, 'se': 0.0112, 'prop4': 0.5371, 'cost': 1.1206}
+numpy delta=0.3,b=0.0,reach {'success': 0.29, 'se': 0.0101, 'prop4': 0.3017, 'cost': 1.105}
+numpy delta=0.3,b=0.0,sink-aware {'success': 0.568, 'se': 0.0111, 'prop4': 0.5905, 'cost': 1.1499}
+numpy delta=0.3,b=0.02,uniform {'success': 0.456, 'se': 0.0111, 'prop4': 0.4799, 'cost': 1.1231}
+numpy delta=0.3,b=0.02,reach {'success': 0.269, 'se': 0.0099, 'prop4': 0.2726, 'cost': 1.1073}
+numpy delta=0.3,b=0.02,sink-aware {'success': 0.476, 'se': 0.0112, 'prop4': 0.5267, 'cost': 1.1541}
+numpy delta=0.3,b=0.1,uniform {'success': 0.302, 'se': 0.0103, 'prop4': 0.3056, 'cost': 1.1301}
+numpy delta=0.3,b=0.1,reach {'success': 0.1645, 'se': 0.0083, 'prop4': 0.1817, 'cost': 1.1141}
+numpy delta=0.3,b=0.1,sink-aware {'success': 0.2955, 'se': 0.0102, 'prop4': 0.3326, 'cost': 1.1563}
+numpy delta=0.6,b=0.0,uniform {'success': 0.5975, 'se': 0.011, 'prop4': 0.5894, 'cost': 1.1158}
+numpy delta=0.6,b=0.0,reach {'success': 0.3155, 'se': 0.0104, 'prop4': 0.3181, 'cost': 1.1051}
+numpy delta=0.6,b=0.0,sink-aware {'success': 0.682, 'se': 0.0104, 'prop4': 0.7023, 'cost': 1.152}
+numpy delta=0.6,b=0.02,uniform {'success': 0.5205, 'se': 0.0112, 'prop4': 0.5356, 'cost': 1.119}
+numpy delta=0.6,b=0.02,reach {'success': 0.27, 'se': 0.0099, 'prop4': 0.2926, 'cost': 1.1062}
+numpy delta=0.6,b=0.02,sink-aware {'success': 0.5965, 'se': 0.011, 'prop4': 0.6358, 'cost': 1.1511}
+numpy delta=0.6,b=0.1,uniform {'success': 0.349, 'se': 0.0107, 'prop4': 0.3646, 'cost': 1.1237}
+numpy delta=0.6,b=0.1,reach {'success': 0.2005, 'se': 0.009, 'prop4': 0.2091, 'cost': 1.1116}
+numpy delta=0.6,b=0.1,sink-aware {'success': 0.3985, 'se': 0.0109, 'prop4': 0.4262, 'cost': 1.1536}
+numpy delta=0.9,b=0.0,uniform {'success': 0.6215, 'se': 0.0108, 'prop4': 0.6285, 'cost': 1.1142}
+numpy delta=0.9,b=0.0,reach {'success': 0.326, 'se': 0.0105, 'prop4': 0.3314, 'cost': 1.1056}
+numpy delta=0.9,b=0.0,sink-aware {'success': 0.8085, 'se': 0.0088, 'prop4': 0.8177, 'cost': 1.1554}
+numpy delta=0.9,b=0.02,uniform {'success': 0.58, 'se': 0.011, 'prop4': 0.5777, 'cost': 1.1138}
+numpy delta=0.9,b=0.02,reach {'success': 0.296, 'se': 0.0102, 'prop4': 0.3085, 'cost': 1.1052}
+numpy delta=0.9,b=0.02,sink-aware {'success': 0.713, 'se': 0.0101, 'prop4': 0.747, 'cost': 1.1567}
+numpy delta=0.9,b=0.1,uniform {'success': 0.417, 'se': 0.011, 'prop4': 0.4117, 'cost': 1.115}
+numpy delta=0.9,b=0.1,reach {'success': 0.214, 'se': 0.0092, 'prop4': 0.2312, 'cost': 1.1081}
+numpy delta=0.9,b=0.1,sink-aware {'success': 0.4825, 'se': 0.0112, 'prop4': 0.5196, 'cost': 1.1556}
+scipy delta=0.0,b=0.0,uniform {'success': 0.0505, 'se': 0.0049, 'prop4': 0.0508, 'cost': 1.1387}
+scipy delta=0.0,b=0.0,reach {'success': 0.0125, 'se': 0.0025, 'prop4': 0.0101, 'cost': 1.1058}
+scipy delta=0.0,b=0.0,sink-aware {'success': 0.0515, 'se': 0.0049, 'prop4': 0.0508, 'cost': 1.1389}
+scipy delta=0.0,b=0.02,uniform {'success': 0.028, 'se': 0.0037, 'prop4': 0.0297, 'cost': 1.1431}
+scipy delta=0.0,b=0.02,reach {'success': 0.0085, 'se': 0.0021, 'prop4': 0.0061, 'cost': 1.11}
+scipy delta=0.0,b=0.02,sink-aware {'success': 0.0225, 'se': 0.0033, 'prop4': 0.0297, 'cost': 1.1434}
+scipy delta=0.0,b=0.1,uniform {'success': 0.0025, 'se': 0.0011, 'prop4': 0.0034, 'cost': 1.1665}
+scipy delta=0.0,b=0.1,reach {'success': 0.0, 'se': 0.0, 'prop4': 0.0008, 'cost': 1.1345}
+scipy delta=0.0,b=0.1,sink-aware {'success': 0.0015, 'se': 0.0009, 'prop4': 0.0034, 'cost': 1.1653}
+scipy delta=0.1,b=0.0,uniform {'success': 0.061, 'se': 0.0054, 'prop4': 0.0699, 'cost': 1.13}
+scipy delta=0.1,b=0.0,reach {'success': 0.011, 'se': 0.0023, 'prop4': 0.0114, 'cost': 1.1056}
+scipy delta=0.1,b=0.0,sink-aware {'success': 0.067, 'se': 0.0056, 'prop4': 0.0772, 'cost': 1.1487}
+scipy delta=0.1,b=0.02,uniform {'success': 0.0445, 'se': 0.0046, 'prop4': 0.0432, 'cost': 1.1298}
+scipy delta=0.1,b=0.02,reach {'success': 0.0075, 'se': 0.0019, 'prop4': 0.0073, 'cost': 1.1091}
+scipy delta=0.1,b=0.02,sink-aware {'success': 0.044, 'se': 0.0046, 'prop4': 0.0476, 'cost': 1.1537}
+scipy delta=0.1,b=0.1,uniform {'success': 0.003, 'se': 0.0012, 'prop4': 0.0063, 'cost': 1.1411}
+scipy delta=0.1,b=0.1,reach {'success': 0.0005, 'se': 0.0005, 'prop4': 0.0012, 'cost': 1.1246}
+scipy delta=0.1,b=0.1,sink-aware {'success': 0.0045, 'se': 0.0015, 'prop4': 0.0069, 'cost': 1.1643}
+scipy delta=0.3,b=0.0,uniform {'success': 0.0845, 'se': 0.0062, 'prop4': 0.1028, 'cost': 1.1205}
+scipy delta=0.3,b=0.0,reach {'success': 0.019, 'se': 0.0031, 'prop4': 0.014, 'cost': 1.1057}
+scipy delta=0.3,b=0.0,sink-aware {'success': 0.1125, 'se': 0.0071, 'prop4': 0.1433, 'cost': 1.1603}
+scipy delta=0.3,b=0.02,uniform {'success': 0.061, 'se': 0.0054, 'prop4': 0.0681, 'cost': 1.1245}
+scipy delta=0.3,b=0.02,reach {'success': 0.0095, 'se': 0.0022, 'prop4': 0.0097, 'cost': 1.1084}
+scipy delta=0.3,b=0.02,sink-aware {'success': 0.0815, 'se': 0.0061, 'prop4': 0.0943, 'cost': 1.1614}
+scipy delta=0.3,b=0.1,uniform {'success': 0.006, 'se': 0.0017, 'prop4': 0.013, 'cost': 1.1301}
+scipy delta=0.3,b=0.1,reach {'success': 0.004, 'se': 0.0014, 'prop4': 0.0022, 'cost': 1.1159}
+scipy delta=0.3,b=0.1,sink-aware {'success': 0.015, 'se': 0.0027, 'prop4': 0.0175, 'cost': 1.1655}
+scipy delta=0.6,b=0.0,uniform {'success': 0.143, 'se': 0.0078, 'prop4': 0.1488, 'cost': 1.1166}
+scipy delta=0.6,b=0.0,reach {'success': 0.016, 'se': 0.0028, 'prop4': 0.018, 'cost': 1.1061}
+scipy delta=0.6,b=0.0,sink-aware {'success': 0.2435, 'se': 0.0096, 'prop4': 0.2884, 'cost': 1.1548}
+scipy delta=0.6,b=0.02,uniform {'success': 0.1005, 'se': 0.0067, 'prop4': 0.1054, 'cost': 1.1176}
+scipy delta=0.6,b=0.02,reach {'success': 0.0125, 'se': 0.0025, 'prop4': 0.0133, 'cost': 1.1075}
+scipy delta=0.6,b=0.02,sink-aware {'success': 0.172, 'se': 0.0084, 'prop4': 0.2013, 'cost': 1.1551}
+scipy delta=0.6,b=0.1,uniform {'success': 0.022, 'se': 0.0033, 'prop4': 0.0263, 'cost': 1.1211}
+scipy delta=0.6,b=0.1,reach {'success': 0.004, 'se': 0.0014, 'prop4': 0.0039, 'cost': 1.1111}
+scipy delta=0.6,b=0.1,sink-aware {'success': 0.0325, 'se': 0.004, 'prop4': 0.0475, 'cost': 1.1548}
+scipy delta=0.9,b=0.0,uniform {'success': 0.1775, 'se': 0.0085, 'prop4': 0.1944, 'cost': 1.1136}
+scipy delta=0.9,b=0.0,reach {'success': 0.021, 'se': 0.0032, 'prop4': 0.0222, 'cost': 1.1068}
+scipy delta=0.9,b=0.0,sink-aware {'success': 0.442, 'se': 0.0111, 'prop4': 0.5044, 'cost': 1.153}
+scipy delta=0.9,b=0.02,uniform {'success': 0.126, 'se': 0.0074, 'prop4': 0.1444, 'cost': 1.1137}
+scipy delta=0.9,b=0.02,reach {'success': 0.019, 'se': 0.0031, 'prop4': 0.0172, 'cost': 1.1065}
+scipy delta=0.9,b=0.02,sink-aware {'success': 0.321, 'se': 0.0104, 'prop4': 0.3664, 'cost': 1.1527}
+scipy delta=0.9,b=0.1,uniform {'success': 0.0345, 'se': 0.0041, 'prop4': 0.0436, 'cost': 1.1171}
+scipy delta=0.9,b=0.1,reach {'success': 0.004, 'se': 0.0014, 'prop4': 0.0062, 'cost': 1.1086}
+scipy delta=0.9,b=0.1,sink-aware {'success': 0.089, 'se': 0.0064, 'prop4': 0.1014, 'cost': 1.1496}
+setuptools delta=0.0,b=0.0,uniform {'success': 0.4575, 'se': 0.0111, 'prop4': 0.4984, 'cost': 1.1395}
+setuptools delta=0.0,b=0.0,reach {'success': 0.257, 'se': 0.0098, 'prop4': 0.2615, 'cost': 1.1083}
+setuptools delta=0.0,b=0.0,sink-aware {'success': 0.4775, 'se': 0.0112, 'prop4': 0.4984, 'cost': 1.1383}
+setuptools delta=0.0,b=0.02,uniform {'success': 0.4115, 'se': 0.011, 'prop4': 0.4395, 'cost': 1.1442}
+setuptools delta=0.0,b=0.02,reach {'success': 0.2165, 'se': 0.0092, 'prop4': 0.2335, 'cost': 1.1137}
+setuptools delta=0.0,b=0.02,sink-aware {'success': 0.42, 'se': 0.011, 'prop4': 0.4395, 'cost': 1.1453}
+setuptools delta=0.0,b=0.1,uniform {'success': 0.233, 'se': 0.0095, 'prop4': 0.2656, 'cost': 1.1661}
+setuptools delta=0.0,b=0.1,reach {'success': 0.138, 'se': 0.0077, 'prop4': 0.1484, 'cost': 1.1355}
+setuptools delta=0.0,b=0.1,sink-aware {'success': 0.2355, 'se': 0.0095, 'prop4': 0.2656, 'cost': 1.1627}
+setuptools delta=0.1,b=0.0,uniform {'success': 0.5575, 'se': 0.0111, 'prop4': 0.5567, 'cost': 1.1322}
+setuptools delta=0.1,b=0.0,reach {'success': 0.246, 'se': 0.0096, 'prop4': 0.274, 'cost': 1.1086}
+setuptools delta=0.1,b=0.0,sink-aware {'success': 0.5385, 'se': 0.0111, 'prop4': 0.572, 'cost': 1.1568}
+setuptools delta=0.1,b=0.02,uniform {'success': 0.4575, 'se': 0.0111, 'prop4': 0.5008, 'cost': 1.1357}
+setuptools delta=0.1,b=0.02,reach {'success': 0.2635, 'se': 0.0099, 'prop4': 0.2499, 'cost': 1.1116}
+setuptools delta=0.1,b=0.02,sink-aware {'success': 0.476, 'se': 0.0112, 'prop4': 0.5142, 'cost': 1.1583}
+setuptools delta=0.1,b=0.1,uniform {'success': 0.3105, 'se': 0.0103, 'prop4': 0.3274, 'cost': 1.153}
+setuptools delta=0.1,b=0.1,reach {'success': 0.1485, 'se': 0.008, 'prop4': 0.1728, 'cost': 1.1318}
+setuptools delta=0.1,b=0.1,sink-aware {'success': 0.294, 'se': 0.0102, 'prop4': 0.3354, 'cost': 1.1739}
+setuptools delta=0.3,b=0.0,uniform {'success': 0.624, 'se': 0.0108, 'prop4': 0.6287, 'cost': 1.1246}
+setuptools delta=0.3,b=0.0,reach {'success': 0.2925, 'se': 0.0102, 'prop4': 0.2943, 'cost': 1.1064}
+setuptools delta=0.3,b=0.0,sink-aware {'success': 0.663, 'se': 0.0106, 'prop4': 0.6982, 'cost': 1.1674}
+setuptools delta=0.3,b=0.02,uniform {'success': 0.576, 'se': 0.0111, 'prop4': 0.5781, 'cost': 1.1277}
+setuptools delta=0.3,b=0.02,reach {'success': 0.2585, 'se': 0.0098, 'prop4': 0.2746, 'cost': 1.1092}
+setuptools delta=0.3,b=0.02,sink-aware {'success': 0.605, 'se': 0.0109, 'prop4': 0.6405, 'cost': 1.1647}
+setuptools delta=0.3,b=0.1,uniform {'success': 0.4205, 'se': 0.011, 'prop4': 0.4124, 'cost': 1.1347}
+setuptools delta=0.3,b=0.1,reach {'success': 0.1875, 'se': 0.0087, 'prop4': 0.208, 'cost': 1.1193}
+setuptools delta=0.3,b=0.1,sink-aware {'success': 0.39, 'se': 0.0109, 'prop4': 0.4528, 'cost': 1.1736}
+setuptools delta=0.6,b=0.0,uniform {'success': 0.696, 'se': 0.0103, 'prop4': 0.6972, 'cost': 1.1195}
+setuptools delta=0.6,b=0.0,reach {'success': 0.324, 'se': 0.0105, 'prop4': 0.3201, 'cost': 1.1054}
+setuptools delta=0.6,b=0.0,sink-aware {'success': 0.819, 'se': 0.0086, 'prop4': 0.8303, 'cost': 1.1678}
+setuptools delta=0.6,b=0.02,uniform {'success': 0.646, 'se': 0.0107, 'prop4': 0.653, 'cost': 1.1196}
+setuptools delta=0.6,b=0.02,reach {'success': 0.29, 'se': 0.0101, 'prop4': 0.3044, 'cost': 1.1076}
+setuptools delta=0.6,b=0.02,sink-aware {'success': 0.732, 'se': 0.0099, 'prop4': 0.7749, 'cost': 1.1682}
+setuptools delta=0.6,b=0.1,uniform {'success': 0.4875, 'se': 0.0112, 'prop4': 0.5018, 'cost': 1.126}
+setuptools delta=0.6,b=0.1,reach {'success': 0.2275, 'se': 0.0094, 'prop4': 0.2486, 'cost': 1.1138}
+setuptools delta=0.6,b=0.1,sink-aware {'success': 0.534, 'se': 0.0112, 'prop4': 0.587, 'cost': 1.1732}
+setuptools delta=0.9,b=0.0,uniform {'success': 0.7315, 'se': 0.0099, 'prop4': 0.7458, 'cost': 1.1168}
+setuptools delta=0.9,b=0.0,reach {'success': 0.333, 'se': 0.0105, 'prop4': 0.3434, 'cost': 1.1058}
+setuptools delta=0.9,b=0.0,sink-aware {'success': 0.906, 'se': 0.0065, 'prop4': 0.9216, 'cost': 1.1645}
+setuptools delta=0.9,b=0.02,uniform {'success': 0.693, 'se': 0.0103, 'prop4': 0.707, 'cost': 1.1165}
+setuptools delta=0.9,b=0.02,reach {'success': 0.314, 'se': 0.0104, 'prop4': 0.3305, 'cost': 1.1059}
+setuptools delta=0.9,b=0.02,sink-aware {'success': 0.861, 'se': 0.0077, 'prop4': 0.8698, 'cost': 1.1668}
+setuptools delta=0.9,b=0.1,uniform {'success': 0.5495, 'se': 0.0111, 'prop4': 0.5702, 'cost': 1.1198}
+setuptools delta=0.9,b=0.1,reach {'success': 0.2645, 'se': 0.0099, 'prop4': 0.2831, 'cost': 1.109}
+setuptools delta=0.9,b=0.1,sink-aware {'success': 0.6385, 'se': 0.0107, 'prop4': 0.6892, 'cost': 1.1659}

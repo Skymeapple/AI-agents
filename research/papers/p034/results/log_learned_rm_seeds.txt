@@ -1,0 +1,75 @@
+{
+ "qhat_mean": {
+  "H1 same data, new init": 0.9152358665969148,
+  "H2 fresh draw of A": 0.8282042604016457,
+  "H3 quadratic ridge on A": 0.9723733878537162,
+  "H4 MLP on B": 0.45845830869035176,
+  "H5 MLP on A/B mix fB=0.25": 0.4348634307737787,
+  "H6 MLP on A/B mix fB=0.5": 0.40599032630675236,
+  "H7 MLP on A/B mix fB=0.75": 0.42553999801040343,
+  "H8 small MLP(16,16) on A": 0.958537952600107
+ },
+ "qhat_sd": {
+  "H1 same data, new init": 0.12508101582208508,
+  "H2 fresh draw of A": 0.06913371245795401,
+  "H3 quadratic ridge on A": 0.06005381599388595,
+  "H4 MLP on B": 0.04605835493015422,
+  "H5 MLP on A/B mix fB=0.25": 0.10487590572848429,
+  "H6 MLP on A/B mix fB=0.5": 0.051516737536060085,
+  "H7 MLP on A/B mix fB=0.75": 0.04931295567715799,
+  "H8 small MLP(16,16) on A": 0.044084718790423784
+ },
+ "gap_regret_mean": {
+  "H1 same data, new init": 1.277303627530533,
+  "H2 fresh draw of A": 0.4621774121461609,
+  "H3 quadratic ridge on A": 0.8214814320721608,
+  "H4 MLP on B": 0.016871025707234335,
+  "H5 MLP on A/B mix fB=0.25": 0.011355926161637487,
+  "H6 MLP on A/B mix fB=0.5": 0.00548069251919362,
+  "H7 MLP on A/B mix fB=0.75": 0.011983522487859305,
+  "H8 small MLP(16,16) on A": 1.011171091530836
+ },
+ "gap_regret_sd_across_seeds": {
+  "H1 same data, new init": 1.3646963349397638,
+  "H2 fresh draw of A": 0.3824464477286034,
+  "H3 quadratic ridge on A": 1.0554427067477545,
+  "H4 MLP on B": 0.009605687010535614,
+  "H5 MLP on A/B mix fB=0.25": 0.015330168229726009,
+  "H6 MLP on A/B mix fB=0.5": 0.0079018766850579,
+  "H7 MLP on A/B mix fB=0.75": 0.007747267598725566,
+  "H8 small MLP(16,16) on A": 0.8189348913844865
+ },
+ "spearman_qhat_vs_gap_regret_pooled": [
+  0.824732609754467,
+  6.039687510302386e-11
+ ],
+ "spearman_fracB_vs_qhat_pooled": [
+  -0.7804628469464251,
+  2.8767108298458184e-09
+ ],
+ "cov_lev_regret_mean": 0.14970335953069053,
+ "cov_lev_regret_range": [
+  0.022550704796446712,
+  0.5066046423176086
+ ],
+ "cov_lev_win3_rollback_regret_mean": 0.04601142066227442,
+ "cov_lev_win3_rollback_regret_range": [
+  0.015293904730361541,
+  0.07691543760278684
+ ],
+ "cov_unif_regret_mean": 0.24284192489382725,
+ "cov_lev_labels_mean": 249.46666666666664,
+ "peak_gold_mean": 2.0074844456360705,
+ "max_gap_regret": 3.4521476619953577,
+ "spearman_within_seed": [
+  0.8295150620062534,
+  1.0,
+  0.4285714285714286,
+  0.9761904761904763,
+  0.7619047619047621
+ ]
+}
+
+real	0m36.145s
+user	1m27.738s
+sys	0m1.882s

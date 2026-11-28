@@ -1,0 +1,21 @@
+bed,cfg,n,design,selected
+synthetic,"0.3*delta(1e-3)+0.7*Beta(.5,2)",16,dynamic,{'ZIBB': 100}
+synthetic,"0.3*delta(1e-3)+0.7*Beta(.5,2)",16,fixed,"{'ZIBB': 95, 'BB': 5}"
+synthetic,"0.3*delta0+0.7*Beta(.5,2)",16,dynamic,{'ZIBB': 100}
+synthetic,"0.3*delta0+0.7*Beta(.5,2)",16,fixed,{'ZIBB': 100}
+synthetic,"Beta(0.3,3)",16,dynamic,{'BB': 100}
+synthetic,"Beta(0.3,3)",16,fixed,{'BB': 100}
+synthetic,"LogitNormal(-3,2.5)",16,dynamic,{'BMix2': 100}
+synthetic,"LogitNormal(-3,2.5)",16,fixed,{'BMix2': 100}
+walksat,A_n75_r426_f300,16,dynamic,"{'ZIBB': 30, 'BB': 20}"
+walksat,A_n75_r426_f300,16,fixed,"{'ZIBB': 30, 'BB': 20}"
+walksat,A_n75_r426_f300,64,dynamic,{'ZIBB': 50}
+walksat,A_n75_r426_f300,64,fixed,{'ZIBB': 50}
+walksat,B_n75_r426_f3000,16,dynamic,{'ZIBB': 50}
+walksat,B_n75_r426_f3000,16,fixed,{'ZIBB': 50}
+walksat,B_n75_r426_f3000,64,dynamic,{'ZIBB': 50}
+walksat,B_n75_r426_f3000,64,fixed,{'ZIBB': 50}
+walksat,C_n150_r410_f1000,16,dynamic,"{'BB': 45, 'ZIBB': 5}"
+walksat,C_n150_r410_f1000,16,fixed,{'BB': 50}
+walksat,C_n150_r410_f1000,64,dynamic,{'ZIBB': 50}
+walksat,C_n150_r410_f1000,64,fixed,"{'BB': 35, 'ZIBB': 15}"

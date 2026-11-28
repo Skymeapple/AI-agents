@@ -1,0 +1,1259 @@
+"""AI app radar.
+
+The tests that matter most pin the claims the radar's output rests on: a backtest
+replays a past day without seeing the future, realised growth does not overlap
+the window a forecast was made from, thin evidence cannot top the ranking, and
+the tuner moves a parameter when the evidence supports it -- and holds still
+when the evidence is noise.
+"""
+
+import datetime as dt
+import json
+import random
+
+import pytest
+
+from airadar.growth import extract_signals, percentile_ranks, score_apps
+from airadar.inbox import InboxError, parse_batch
+from airadar.iterate import realised_scores, source_health, spearman, tune
+from airadar.models import App, AppKind, Method, Observation, canonical_id
+from airadar.params import Params
+from airadar.pipeline import run_day
+from airadar.store import RunRecord, Store
+
+D0 = dt.date(2026, 10, 1)
+
+
+def obs(app_id, metric, value, day, method=Method.API, period=None, url="https://example.com/src"):
+    return Observation(app_id, metric, float(value), day, url, method, "test", period)
+
+
+def inbox_payload(**overrides):
+    observation = {
+        "app": {"name": "o/r", "url": "https://github.com/o/r", "kind": "repo", "tags": ["mcp"]},
+        "metric": "stars_gained",
+        "value": 100,
+        "period_days": 7,
+        "observed_on": "2026-10-19",
+        "source_url": "https://github.com/trending?since=weekly",
+        "method": "page_extract",
+    }
+    observation.update(overrides)
+    return {"collected_at": "2026-10-19", "collector": "agent:test", "observations": [observation]}
+
+
+# -- identity ----------------------------------------------------------------
+
+
+@pytest.mark.parametrize("url,expected", [
+    ("https://github.com/Owner/Repo/tree/main", "gh:owner/repo"),
+    ("github.com/owner/repo.git", "gh:owner/repo"),
+    ("https://huggingface.co/spaces/A/B", "hf-space:a/b"),
+    ("https://huggingface.co/org/model-7b", "hf-model:org/model-7b"),
+    ("https://www.npmjs.com/package/@scope/pkg", "npm:@scope/pkg"),
+    ("https://pypi.org/project/vllm/", "pypi:vllm"),
+    ("https://www.cursor.com/pricing", "web:cursor.com"),
+    ("https://apps.apple.com/app/x/id1", "web:apps.apple.com/app"),
+    ("https://openai.com/codex", "web:openai.com/codex"),
+    ("https://chatgpt.com", "web:chatgpt.com"),
+])
+def test_canonical_id_collapses_variants(url, expected):
+    assert canonical_id(url) == expected
+
+
+# -- inbox validation --------------------------------------------------------
+
+
+def test_inbox_accepts_a_well_formed_batch():
+    batch = parse_batch(inbox_payload())
+    assert batch.apps[0].id == "gh:o/r"
+    assert batch.observations[0].method is Method.PAGE_EXTRACT
+    assert batch.observations[0].provenance().needs_review
+
+
+@pytest.mark.parametrize("override,message", [
+    ({"source_url": ""}, "source_url"),
+    ({"metric": "vibes"}, "unknown metric"),
+    ({"period_days": None}, "period_days"),
+    ({"observed_on": "2026-10-20"}, "after collected_at"),
+    ({"method": "guessed"}, "method"),
+    ({"value": "lots"}, "number"),
+    ({"confidence": 0.9}, "unknown field"),
+])
+def test_inbox_rejects_unfounded_or_malformed_numbers(override, message):
+    with pytest.raises(InboxError, match=message):
+        parse_batch(inbox_payload(**override))
+
+
+def test_inbox_rejects_period_days_on_a_level_metric():
+    with pytest.raises(InboxError, match="must not carry period_days"):
+        parse_batch(inbox_payload(metric="stars", period_days=7))
+
+
+# -- growth signals ----------------------------------------------------------
+
+
+def test_delta_is_measured_between_two_snapshots():
+    rows = [obs("a", "stars", 1000, D0), obs("a", "stars", 1700, D0 + dt.timedelta(days=7))]
+    signals = extract_signals(rows, asof=D0 + dt.timedelta(days=7))
+    (s,) = signals["a"]
+    assert s.kind == "delta"
+    assert s.abs_per_day == pytest.approx(100)
+    assert s.rel_per_day == pytest.approx(0.0758, abs=1e-3)
+
+
+def test_an_exact_count_beats_a_rounded_one_on_the_same_day():
+    d1 = D0 + dt.timedelta(days=1)
+    rounded = Observation("a", "stars", 58700.0, d1, "https://github.com/o/r",
+                          Method.PAGE_EXTRACT, "test", rounded_to=100)
+    exact = obs("a", "stars", 58670, d1, method=Method.PAGE_EXTRACT)
+    rows = [obs("a", "stars", 58000, D0, method=Method.PAGE_EXTRACT), rounded, exact]
+    (s,) = extract_signals(rows, asof=d1)["a"]
+    assert s.evidence[1] is exact
+    assert s.abs_per_day == pytest.approx(670)
+
+
+def test_a_change_within_rounding_is_not_growth():
+    d1 = D0 + dt.timedelta(days=1)
+    rows = [
+        obs("a", "stars", 58670, D0, method=Method.PAGE_EXTRACT),
+        Observation("a", "stars", 58700.0, d1, "https://github.com/o/r",
+                    Method.PAGE_EXTRACT, "test", rounded_to=100),
+    ]
+    assert extract_signals(rows, asof=d1) == {}
+    # A change larger than the rounding still counts.
+    rows[1] = Observation("a", "stars", 59900.0, d1, "https://github.com/o/r",
+                          Method.PAGE_EXTRACT, "test", rounded_to=100)
+    (s,) = extract_signals(rows, asof=d1)["a"]
+    assert s.abs_per_day == pytest.approx(1230)
+
+
+def test_inbox_carries_rounding_and_rejects_a_bad_one():
+    batch = parse_batch(inbox_payload(metric="stars", period_days=None, value=58700, rounded_to=100))
+    assert batch.observations[0].rounded_to == 100
+    assert Observation.from_dict(batch.observations[0].to_dict()).rounded_to == 100
+    for bad, message in ((0, "positive"), ("100", "number"), (True, "number")):
+        with pytest.raises(InboxError, match=message):
+            parse_batch(inbox_payload(metric="stars", period_days=None, value=58700, rounded_to=bad))
+
+
+def test_a_single_level_is_a_baseline_not_growth():
+    assert extract_signals([obs("a", "stars", 5000, D0)], asof=D0) == {}
+
+
+def test_asof_hides_the_future():
+    rows = [obs("a", "stars", 1000, D0), obs("a", "stars", 9000, D0 + dt.timedelta(days=3))]
+    assert extract_signals(rows, asof=D0 + dt.timedelta(days=2)) == {}
+
+
+def test_relative_growth_is_not_computed_below_the_minimum_base():
+    rows = [obs("a", "stars", 5, D0), obs("a", "stars", 50, D0 + dt.timedelta(days=7))]
+    (s,) = extract_signals(rows, asof=D0 + dt.timedelta(days=7))["a"]
+    assert s.rel_per_day is None and s.abs_per_day == pytest.approx(45 / 7)
+
+
+def test_period_gain_reads_against_level_and_flags_implausible_weeks():
+    rows = [
+        obs("a", "stars", 10_000, D0, Method.PAGE_EXTRACT),
+        obs("a", "stars_gained", 8_000, D0, Method.PAGE_EXTRACT, period=7),
+    ]
+    (s,) = extract_signals(rows, asof=D0)["a"]
+    assert s.kind == "period"
+    assert s.rel_per_day == pytest.approx(0.2299, abs=1e-3)  # log(10000/2000) / 7
+    assert s.anomaly and "80%" in s.anomaly
+
+
+def test_a_month_of_growth_on_a_new_repo_is_not_flagged():
+    rows = [
+        obs("a", "stars", 10_000, D0, Method.PAGE_EXTRACT),
+        obs("a", "stars_gained", 8_000, D0, Method.PAGE_EXTRACT, period=30),
+    ]
+    (s,) = extract_signals(rows, asof=D0)["a"]
+    assert s.anomaly is None
+
+
+def test_rate_change_captures_accelerating_downloads():
+    rows = [
+        obs("p", "downloads_period", 10_000, D0, period=7),
+        obs("p", "downloads_period", 20_000, D0 + dt.timedelta(days=7), period=7),
+    ]
+    kinds = {s.kind for s in extract_signals(rows, asof=D0 + dt.timedelta(days=7))["p"]}
+    assert "delta" in kinds
+
+
+def test_daily_gains_a_day_apart_are_not_a_rate_change():
+    rows = [
+        obs("r", "stars_gained", 355, D0, method=Method.PAGE_EXTRACT, period=1),
+        obs("r", "stars_gained", 363, D0 + dt.timedelta(days=1), method=Method.PAGE_EXTRACT, period=1),
+    ]
+    signals = extract_signals(rows, asof=D0 + dt.timedelta(days=1))
+    assert not any(s.family == "stars_rate" for s in signals.get("r", []))
+    # A week apart, the same daily metric does show acceleration.
+    rows[1] = obs("r", "stars_gained", 710, D0 + dt.timedelta(days=7), method=Method.PAGE_EXTRACT, period=1)
+    signals = extract_signals(rows, asof=D0 + dt.timedelta(days=7))
+    assert any(s.family == "stars_rate" for s in signals["r"])
+
+
+def test_realised_growth_excludes_windows_overlapping_the_forecast():
+    # A weekly gain stated the day after the forecast is mostly the week before
+    # it. Counting it would make momentum look more persistent than it is.
+    rows = [obs("a", "stars_gained", 500, D0 + dt.timedelta(days=1), period=7)]
+    assert realised_scores(rows, D0, horizon=7) == {}
+    rows = [obs("a", "stars_gained", 500, D0 + dt.timedelta(days=7), period=7)]
+    assert "a" in realised_scores(rows, D0, horizon=7)
+
+
+# -- scoring -----------------------------------------------------------------
+
+
+def test_percentile_ranks_share_ties():
+    assert percentile_ranks([1, 2, 2, 3]) == [0.125, 0.5, 0.5, 0.875]
+
+
+def test_thin_evidence_is_shrunk_toward_the_median():
+    day = D0 + dt.timedelta(days=7)
+    rows = []
+    # 'strong' is measured twice by API; 'thin' has one page-read claim of the
+    # same top growth. Both top their percentiles; only one should top the table.
+    for app, method in (("strong", Method.API), ("thin", Method.PAGE_EXTRACT)):
+        rows += [obs(app, "stars", 1000, D0, method), obs(app, "stars", 3000, day, method)]
+    rows += [obs("strong", "downloads_period", 9e6, day, period=7)]
+    for i in range(10):
+        rows += [obs(f"slow{i}", "stars", 1000, D0), obs(f"slow{i}", "stars", 1010 + i, day)]
+        rows += [obs(f"slow{i}", "downloads_period", 1000 + i, day, period=7)]
+    scores = score_apps(extract_signals(rows, asof=day), Params.defaults())
+    order = [s.app_id for s in scores]
+    assert order.index("strong") < order.index("thin")
+
+
+def test_anomalous_signals_are_discounted_not_dropped():
+    rows = [
+        obs("a", "stars", 10_000, D0, Method.PAGE_EXTRACT),
+        obs("a", "stars_gained", 8_000, D0, Method.PAGE_EXTRACT, period=7),
+    ]
+    (score,) = score_apps(extract_signals(rows, asof=D0), Params.defaults())
+    assert score.anomalies and score.evidence == pytest.approx(0.35)
+
+
+def test_spearman():
+    assert spearman([1, 2, 3, 4], [10, 20, 30, 40]) == pytest.approx(1.0)
+    assert spearman([1, 2, 3, 4], [4, 3, 2, 1]) == pytest.approx(-1.0)
+    assert spearman([1, 2], [1, 2]) is None
+
+
+# -- self-iteration ----------------------------------------------------------
+
+
+def synthetic_world(days=24, apps=30, noise_reports=True, seed=7):
+    """Apps with a persistent true growth rate, measured daily by API, plus
+    (optionally) a daily 'reported growth' claim that is pure noise."""
+    rng = random.Random(seed)
+    rows = []
+    for i in range(apps):
+        level = rng.uniform(1_000, 50_000)
+        rate = rng.uniform(0.002, 0.05)
+        for d in range(days):
+            day = D0 + dt.timedelta(days=d)
+            level *= 1 + rate * rng.uniform(0.7, 1.3)
+            rows.append(obs(f"app{i}", "stars", round(level), day))
+            if noise_reports:
+                rows.append(obs(f"app{i}", "growth_pct", rng.uniform(0, 300), day,
+                                Method.REPORTED, period=1))
+    return rows
+
+
+def test_tuner_refuses_to_move_without_enough_matured_history():
+    rows = synthetic_world(days=5)
+    outcome = tune(Params.defaults(), rows, D0 + dt.timedelta(days=5))
+    assert not outcome.adopted and "need 3" in outcome.reason
+
+
+def test_tuner_learns_to_distrust_a_noisy_source():
+    # Start from a bad setting: reported growth trusted as much as measurement.
+    rows = synthetic_world()
+    params = Params.defaults().with_value("trust.reported", 1.0).with_value("weight.reported_growth", 1.0)
+    outcome = tune(params, rows, D0 + dt.timedelta(days=24))
+    assert outcome.adopted, outcome.reason
+    # Any of three steps cuts reliance on the noise: distrust the source, weigh
+    # reported growth less, or weigh relative growth (the only thing a reported
+    # rate supplies) less. The tuner picks whichever backtests best.
+    assert outcome.knob in {"trust.reported", "weight.reported_growth", "relative_weight"}
+    assert outcome.new < outcome.old
+    assert outcome.candidate > outcome.baseline
+
+
+def test_tuner_holds_still_when_nothing_beats_the_current_settings():
+    # With no noisy source, every knob that matters already ranks persistently
+    # growing apps correctly; no step clears the improvement bar.
+    rows = synthetic_world(noise_reports=False)
+    outcome = tune(Params.defaults(), rows, D0 + dt.timedelta(days=24))
+    assert not outcome.adopted
+
+
+def test_source_health_counts_consecutive_failures():
+    runs = [
+        RunRecord(D0, "api:github", 50),
+        RunRecord(D0 + dt.timedelta(days=1), "api:github", 0, ["403"]),
+        RunRecord(D0 + dt.timedelta(days=2), "api:github", 0, ["403"]),
+        RunRecord(D0 + dt.timedelta(days=3), "api:github", 0, ["403"]),
+    ]
+    (health,) = source_health(runs)
+    assert health.flagged and health.consecutive_failures == 3 and health.last_ok == D0
+
+
+# -- end to end --------------------------------------------------------------
+
+
+def test_daily_run_ingests_records_forecast_and_archives(tmp_path):
+    store = Store(tmp_path)
+    store.inbox.mkdir(parents=True)
+    payload = inbox_payload()
+    payload["observations"] += [
+        dict(payload["observations"][0], app={"name": f"o/r{i}", "url": f"https://github.com/o/r{i}",
+                                              "kind": "repo", "tags": ["mcp"]}, value=10 * i)
+        for i in range(1, 6)
+    ]
+    (store.inbox / "2026-10-19-test.json").write_text(json.dumps(payload))
+    (store.inbox / "2026-10-19-bad.json").write_text(json.dumps(inbox_payload(source_url="")))
+
+    analysis = run_day(store, dt.date(2026, 10, 19))
+
+    assert len(analysis.scores) == 6
+    assert any("REJECTED" in line for line in analysis.ingest_log)
+    assert (store.inbox / "archive" / "2026-10-19-test.json").exists()
+    assert (store.inbox / "2026-10-19-bad.json").exists()  # left for a person to fix
+    assert len(store.load_predictions()) == 1
+    assert store.load_iterations()[0]["adopted"] is False
+    assert any(h.collector == "inbox:2026-10-19-bad" and h.consecutive_failures for h in analysis.health)
+
+
+# -- late and sparse reporting -----------------------------------------------
+
+
+def test_a_late_reported_figure_is_invisible_before_it_was_collected():
+    june, july, october = dt.date(2026, 6, 1), dt.date(2026, 7, 1), dt.date(2026, 10, 1)
+    rows = [
+        Observation("c", "revenue_annualized_usd", 3e9, june, "https://x/1", Method.REPORTED, "t",
+                    collected_on=october),
+        Observation("c", "revenue_annualized_usd", 4e9, july, "https://x/2", Method.REPORTED, "t",
+                    collected_on=october),
+    ]
+    assert extract_signals(rows, asof=dt.date(2026, 7, 15)) == {}
+    (s,) = extract_signals(rows, asof=october)["c"]
+    assert s.kind == "delta" and s.start == june and s.end == july
+
+
+def test_reported_figures_use_a_longer_window_and_decay_with_age():
+    today = dt.date(2026, 10, 19)
+    rows = [
+        obs("c", "revenue_annualized_usd", 3e9, dt.date(2026, 6, 1), Method.REPORTED),
+        obs("c", "revenue_annualized_usd", 4e9, dt.date(2026, 9, 1), Method.REPORTED),
+        obs("r", "stars", 1000, today - dt.timedelta(days=7)),
+        obs("r", "stars", 1200, today),
+    ]
+    signals = extract_signals(rows, asof=today)
+    assert "c" in signals  # a 7-day window would have dropped it
+    fresh = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults(), asof=today)}
+    stale = {s.app_id: s.evidence for s in score_apps(signals, Params.defaults())}
+    assert fresh["c"] < stale["c"] and fresh["r"] == pytest.approx(stale["r"])
+
+
+# -- shared page export ------------------------------------------------------
+
+
+def _daily_store(tmp_path):
+    store = Store(tmp_path)
+    store.inbox.mkdir(parents=True)
+    payload = inbox_payload()
+    payload["observations"] += [
+        dict(payload["observations"][0], app={"name": f"o/r{i}", "url": f"https://github.com/o/r{i}",
+                                              "kind": "repo", "tags": ["mcp"]}, value=10 * i)
+        for i in range(1, 6)
+    ]
+    (store.inbox / "2026-10-19-test.json").write_text(json.dumps(payload))
+    run_day(store, dt.date(2026, 10, 19))
+    return store
+
+
+def _editorial(store, **overrides):
+    body = {
+        "takeaway": "MCP tooling is growing fastest.",
+        "findings": [{"id": "mcp", "heading": "MCP leads", "text": "Six repos.", "source": "https://github.com/o/r"}],
+        "caveats": ["Day one."],
+    }
+    body.update(overrides)
+    store.reports.mkdir(parents=True, exist_ok=True)
+    (store.reports / "2026-10-19-dashboard.json").write_text(json.dumps(body))
+
+
+def test_dashboard_export_writes_every_dataset(tmp_path):
+    import csv
+
+    from airadar.dashboard import FILES, export
+
+    store = _daily_store(tmp_path)
+    _editorial(store)
+    written = export(store, dt.date(2026, 10, 19), tmp_path / "out")
+    assert set(written) == set(FILES)
+    with written["apps"].open() as handle:
+        apps = list(csv.DictReader(handle))
+    assert len(apps) == 6 and apps[0]["rank"] == "1"
+    with written["summary"].open() as handle:
+        (summary,) = list(csv.DictReader(handle))
+    assert summary["takeaway"] == "MCP tooling is growing fastest."
+    assert summary["first_scorecard_expected"] == "2026-10-26"
+    assert summary["tuning_status"] == "No change"
+    with written["movers"].open() as handle:
+        assert next(csv.reader(handle)) == FILES["movers"]
+
+
+@pytest.mark.parametrize("override,message", [
+    ({"takeaway": ""}, "takeaway"),
+    ({"findings": []}, "at least one finding"),
+    ({"findings": [{"id": "x", "heading": "h", "text": "t", "source": ""}]}, "source"),
+    ({"findings": [{"id": "x", "heading": "h", "text": "t", "source": "github.com/o/r"}]}, "must be a URL"),
+])
+def test_dashboard_refuses_unsourced_findings(tmp_path, override, message):
+    from airadar.dashboard import DashboardError, export
+
+    store = _daily_store(tmp_path)
+    _editorial(store, **override)
+    with pytest.raises(DashboardError, match=message):
+        export(store, dt.date(2026, 10, 19), tmp_path / "out")
+
+
+def test_dashboard_needs_the_agents_editorial_file(tmp_path):
+    from airadar.dashboard import DashboardError, export
+
+    store = _daily_store(tmp_path)
+    with pytest.raises(DashboardError, match="missing"):
+        export(store, dt.date(2026, 10, 19), tmp_path / "out")
+
+
+def test_a_gone_app_leaves_the_ranking_until_it_is_back(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    assert "gh:o/r5" in {s.app_id for s in analyse(store, day).scores}
+
+    store.record_availability("gh:o/r5", "gone", day, "https://github.com/o/r5", "HTTP 404")
+    a = analyse(store, day)
+    assert "gh:o/r5" not in {s.app_id for s in a.scores}
+    assert "gh:o/r5" not in a.baseline_only
+    assert "Removed from the ranking" in render(a) and "HTTP 404" in render(a)
+    # The record of what was seen stays: no observation is touched.
+    assert any(o.app_id == "gh:o/r5" for o in store.load_observations())
+    # A gone record dated later is invisible to an earlier day.
+    assert not store.gone_as_of(day - dt.timedelta(days=1))
+
+    store.record_availability("gh:o/r5", "back", day + dt.timedelta(days=1), "https://github.com/o/r5")
+    assert store.gone_as_of(day) and not store.gone_as_of(day + dt.timedelta(days=1))
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_availability("gh:o/r5", "gone", day, " ")
+
+
+def test_a_moved_app_keeps_one_history(tmp_path):
+    from airadar.pipeline import analyse
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    store.record_move("https://github.com/o/r5", "https://github.com/neworg/r5", day,
+                      "https://github.com/neworg/r5", "transferred")
+    # Old observations now belong to the new identity; the file is untouched.
+    assert {o.app_id for o in store.load_observations()} >= {"gh:neworg/r5"}
+    assert "gh:o/r5" not in {o.app_id for o in store.load_observations()}
+    assert '"gh:o/r5"' in store.observations_path.read_text()
+    apps = store.load_apps()
+    assert "gh:o/r5" not in apps and apps["gh:neworg/r5"].url == "https://github.com/neworg/r5"
+    # A sighting under either url lands on the one app.
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r5", "stars", 900, later, method=Method.PAGE_EXTRACT),
+                   obs("gh:neworg/r5", "stars", 950, later, method=Method.PAGE_EXTRACT,
+                       url="https://github.com/trending")])
+    rows = [o for o in store.load_observations() if o.metric == "stars"]
+    assert {o.app_id for o in rows} == {"gh:neworg/r5"}
+    assert "gh:neworg/r5" in {s.app_id for s in analyse(store, later).scores}
+    # Gone records follow the move.
+    store.record_availability("gh:o/r5", "gone", later, "https://github.com/o/r5")
+    assert "gh:neworg/r5" in store.gone_as_of(later)
+    with pytest.raises(ValueError, match="same app"):
+        store.record_move("https://github.com/A/B", "https://github.com/a/b", day, "https://x")
+    with pytest.raises(ValueError, match="loop"):
+        store.record_move("https://github.com/neworg/r5", "https://github.com/o/r5", day, "https://x")
+
+
+def test_a_research_verdict_travels_with_its_hypothesis(tmp_path, monkeypatch):
+    import airadar.pipeline as pipeline
+    from airadar.dashboard import export
+    from airadar.directions import Opportunity
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 19)
+    monkeypatch.setattr(pipeline, "opportunities", lambda directions, apps: [
+        Opportunity("fast and uncrowded", "mcp", "few tracked apps"),
+        Opportunity("open source ahead of product", "mcp", "no product tracked"),
+    ])
+    assert all(o.verdict is None for o in pipeline.analyse(store, day).opportunities)
+
+    store.record_verdict("mcp", "*", "partly disproved", day - dt.timedelta(days=1),
+                         "https://example.com/older", "older, applies to every pattern")
+    store.record_verdict("mcp", "fast and uncrowded", "disproved", day,
+                         "https://example.com/analysis", "incumbents exist")
+    store.record_verdict("mcp", "*", "holds", day + dt.timedelta(days=1), "https://example.com/later")
+    a = pipeline.analyse(store, day)
+    fast, open_ = a.opportunities
+    assert fast.verdict["verdict"] == "disproved"        # specific and newest as of day
+    assert open_.verdict["verdict"] == "partly disproved"  # falls back to the "*" verdict
+    text = render(a)
+    assert "Researched 2026-10-19: disproved" in text and "https://example.com/analysis" in text
+    assert "https://example.com/later" not in text        # a later verdict is invisible
+
+    out = tmp_path / "page"
+    _editorial(store)
+    export(store, day, out)
+    rows = (out / "hypotheses.csv").read_text().splitlines()
+    assert rows[0].endswith("researched") and "disproved (2026-10-19): incumbents exist" in rows[1]
+
+    with pytest.raises(ValueError, match="verdict must be"):
+        store.record_verdict("mcp", "*", "maybe", day, "https://x")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_verdict("mcp", "*", "holds", day, "")
+
+
+def test_measured_movers_compare_the_last_two_readings():
+    from airadar.growth import measured_movers
+
+    d0, d1, d2 = D0, D0 + dt.timedelta(days=1), D0 + dt.timedelta(days=2)
+    rows = [
+        obs("a", "stars", 1000, d0), obs("a", "stars", 1300, d1), obs("a", "stars", 2300, d2),
+        obs("b", "stars", 5000, d0), obs("b", "stars", 5200, d2),           # 2-day gap
+        obs("c", "stars", 9000, d1),
+        Observation("c", "stars", 9000.0, d2, "https://github.com/o/c", Method.PAGE_EXTRACT,
+                    "test", rounded_to=100),                                  # within rounding
+        obs("d", "stars", 700, d2),                                           # read once
+        obs("e", "stars", 100, D0 - dt.timedelta(days=5)), obs("e", "stars", 900, d2),  # too old
+    ]
+    movers = measured_movers(rows, asof=d2)
+    assert [m.app_id for m in movers] == ["a", "b"]
+    a, b = movers
+    assert (a.start, a.before, a.after, a.change) == (d1, 1300, 2300, 1000)
+    assert b.per_day == pytest.approx(100) and not b.rounded
+    assert measured_movers(rows, asof=d1)[0].app_id == "a"   # asof hides later readings
+    rows.append(Observation("f", "stars", 4000.0, d1, "https://github.com/o/f", Method.PAGE_EXTRACT,
+                            "test", rounded_to=100))
+    rows.append(obs("f", "stars", 4300, d2, method=Method.PAGE_EXTRACT))
+    (f,) = [m for m in measured_movers(rows, asof=d2) if m.app_id == "f"]
+    assert f.before_rounded and not f.after_rounded and f.rounded
+
+
+def test_measured_movers_carry_the_pace_before():
+    from airadar.growth import measured_movers
+
+    d0, d1, d2 = D0, D0 + dt.timedelta(days=1), D0 + dt.timedelta(days=2)
+    rows = [
+        obs("a", "stars", 1000, d0), obs("a", "stars", 1300, d1), obs("a", "stars", 2300, d2),
+        obs("b", "stars", 5000, d1), obs("b", "stars", 5200, d2),            # no earlier pair
+        Observation("c", "stars", 9000.0, d0, "https://github.com/o/c", Method.PAGE_EXTRACT,
+                    "test", rounded_to=100),
+        obs("c", "stars", 9040, d1), obs("c", "stars", 9500, d2),            # prior within rounding
+    ]
+    by_id = {m.app_id: m for m in measured_movers(rows, asof=d2)}
+    assert by_id["a"].prior_per_day == pytest.approx(300) and not by_id["a"].prior_rounded
+    assert by_id["b"].prior_per_day is None
+    assert by_id["c"].prior_per_day is None
+
+
+def test_report_lists_measured_movers(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 400, later, method=Method.PAGE_EXTRACT,
+                       url="https://github.com/o/r3"),
+                   obs("gh:o/r3", "stars", 250, dt.date(2026, 10, 19), method=Method.PAGE_EXTRACT,
+                       url="https://github.com/o/r3")])
+    text = render(analyse(store, later))
+    assert "Measured since the last reading" in text and "| +150 | – |" in text
+
+
+def test_reviews_are_append_only_and_follow_moves(tmp_path):
+    store = Store(tmp_path)
+    day = dt.date(2026, 10, 27)
+    with pytest.raises(ValueError, match="review must be"):
+        store.record_review("https://github.com/o/r", "fine", day, "https://github.com/o/r")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_review("https://github.com/o/r", "organic", day, " ")
+    store.record_review("https://github.com/o/r", "unclear", day, "https://github.com/o/r")
+    store.record_review("https://github.com/o/r", "organic", day + dt.timedelta(days=2),
+                        "https://github.com/o/r", "launch week")
+    assert store.review_for("gh:o/r", day)["verdict"] == "unclear"         # asof hides later ones
+    assert store.review_for("gh:o/r", day + dt.timedelta(days=3))["verdict"] == "organic"
+    store.record_move("https://github.com/o/r", "https://github.com/n/r", day, "https://github.com/n/r")
+    assert store.review_for("gh:n/r", day + dt.timedelta(days=3))["note"] == "launch week"
+    assert store.review_for("gh:o/other", day + dt.timedelta(days=3)) is None
+
+
+def test_report_shows_a_review_beside_the_flag(tmp_path):
+    from airadar.dashboard import _flag
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    later = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 10_000, later, Method.PAGE_EXTRACT, url="https://github.com/o/r3"),
+                   obs("gh:o/r3", "stars_gained", 8_000, later, Method.PAGE_EXTRACT, period=7,
+                       url="https://github.com/o/r3")])
+    assert "reviewed" not in render(analyse(store, later))
+    store.record_review("https://github.com/o/r3", "organic", later, "https://github.com/o/r3/commits")
+    a = analyse(store, later)
+    text = render(a)
+    assert "80%" in text and "**reviewed 2026-10-20: organic**" in text
+    (flagged,) = [s for s in a.scores if s.app_id == "gh:o/r3"]
+    assert _flag(a, flagged).endswith("(reviewed 2026-10-20: organic)")
+    assert flagged.anomalies                                                # the flag itself stays
+
+
+class _FakeGitHubSearch:
+    """Answers repo: searches from a dict of full_name -> stars."""
+
+    def __init__(self, repos):
+        self.repos, self.queries = repos, []
+
+    def get(self, url, params=None, timeout=None, headers=None):
+        self.queries.append(params["q"])
+        if params["q"].startswith("user:"):
+            owner = params["q"][len("user:"):]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.split("/")[0].lower() == owner]
+        elif params["q"].endswith(" in:name"):
+            wanted = params["q"].split()[0]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.split("/")[1].lower() == wanted]
+        else:
+            names = [q[len("repo:"):] for q in params["q"].split()]
+            items = [{"full_name": real, "stargazers_count": stars}
+                     for real, stars in self.repos.items() if real.lower() in names]
+
+        class Response:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"items": items}
+
+        return Response()
+
+
+def test_repos_are_reobserved_by_api_with_exact_counts():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    def repo(name):
+        return App(f"gh:{name.lower()}", name, f"https://github.com/{name}", AppKind.REPO, "", [], D0)
+
+    session = _FakeGitHubSearch({"O/a": 58712, "o/b": 7})
+    out = collect_github_repos([repo("o/a"), repo("o/b"), repo("o/gone")], session, max_query=20)
+    assert len(session.queries) == 2                          # batched under the query cap
+    assert all(len(q) <= 20 for q in session.queries)
+    by_app = {o.app_id: o for o in out.observations}
+    assert by_app["gh:o/a"].value == 58712 and by_app["gh:o/a"].method is Method.API
+    assert by_app["gh:o/a"].rounded_to is None
+    assert by_app["gh:o/a"].source_url.endswith("?q=repo:O/a")
+    assert "gh:o/gone" not in by_app and any("o/gone" in e for e in out.errors)
+
+
+def test_a_repo_missing_from_the_search_gets_a_move_suggestion():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    def repo(name):
+        return App(f"gh:{name.lower()}", name, f"https://github.com/{name}", AppKind.REPO, "", [], D0)
+
+    session = _FakeGitHubSearch({"neworg/tool": 17_400, "fork/tool": 12, "x/other": 17_000})
+    out = collect_github_repos([repo("old/tool")], session, last_stars={"gh:old/tool": 15_700})
+    (error,) = out.errors
+    assert "possible move to neworg/tool (17,400 stars)" in error and "fork/tool" not in error
+    assert not out.observations                                  # suggested, never applied
+    out = collect_github_repos([repo("old/tool")], _FakeGitHubSearch({"neworg/tool": 17_400}))
+    assert "possible move" not in out.errors[0]                   # no last reading, no guess
+
+
+def test_a_renamed_repo_is_found_under_its_owner():
+    from airadar.collectors.live import collect_github_repos
+    from airadar.models import App, AppKind
+
+    app = App("gh:me/old-name", "me/old-name", "https://github.com/me/old-name", AppKind.REPO, "", [], D0)
+    session = _FakeGitHubSearch({"me/new-name": 32_400, "me/small": 900})
+    (error,) = collect_github_repos([app], session, last_stars={"gh:me/old-name": 31_800}).errors
+    assert "possible move to me/new-name (32,400 stars)" in error and "me/small" not in error
+
+
+def test_recheck_leaves_out_apps_already_read_today(tmp_path):
+    from airadar.cli import recheck_targets
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    before = {app.id for app, _ in recheck_targets(store, day)}
+    assert "gh:o/r3" in before
+    store.add([], [obs("gh:o/r3", "stars", 400, day, method=Method.API, url="https://github.com/o/r3")])
+    after = {app.id for app, _ in recheck_targets(store, day)}
+    assert after == before - {"gh:o/r3"}
+
+
+def test_generic_words_never_become_search_terms(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.directions import EmergentGroup
+    from airadar.growth import AppScore
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    watch = load_watch(path)
+    watch["auto_terms"] = ["codex", "engine", "without"]
+    save_watch(path, watch)
+    from airadar.models import App, AppKind
+    store.add([App(i, i, f"https://github.com/o/{i}", AppKind.REPO, "", ["coding-agent"], D0) for i in "ab"], [])
+    group = EmergentGroup("x", ["unified", "orchestration"], ["a", "b"], 0.5)
+    added = expand_watch(store, [group], [AppScore("a", 0.9, 1, [], []), AppScore("b", 0.9, 1, [], [])])
+    assert added == ["orchestration"]
+    assert load_watch(path)["auto_terms"] == ["codex", "orchestration"]
+
+
+def test_only_the_tag_vocabulary_forms_directions():
+    from airadar.directions import tag_directions
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+
+    apps = {
+        f"gh:o/r{i}": App(f"gh:o/r{i}", f"o/r{i}", f"https://github.com/o/r{i}", AppKind.REPO, "",
+                          tags, D0)
+        for i, tags in enumerate([["ai", "cli", "claude-code"], ["ai", "cli", "coding-agent"], ["ai", "mcp"]])
+    }
+    scores = [AppScore(a, 0.5 + 0.1 * i, 1, [], []) for i, a in enumerate(apps)]
+    keys = {d.key for d in tag_directions(apps, scores)}
+    assert keys == {"coding-agent"}                      # "claude-code" joins through its alias
+    (coding,) = tag_directions(apps, scores)
+    assert sorted(coding.members) == ["gh:o/r0", "gh:o/r1"]
+    assert {d.key for d in tag_directions(apps, scores, vocabulary=frozenset({"ai"}))} == {"ai"}
+
+
+def test_out_of_scope_apps_leave_the_ranking_but_keep_their_observations(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    store.add([], [obs("gh:o/r3", "stars", 400, day, method=Method.API, url="https://github.com/o/r3")])
+    assert "gh:o/r3" in {s.app_id for s in analyse(store, day).scores}
+    with pytest.raises(ValueError, match="status"):
+        store.record_scope("https://github.com/o/r3", "maybe", day, "https://github.com/o/r3")
+    with pytest.raises(ValueError, match="source_url"):
+        store.record_scope("https://github.com/o/r3", "out", day, "")
+    before = len(store.load_observations())
+    store.record_scope("https://github.com/o/r3", "out", day, "https://github.com/o/r3", "a TV debloater")
+    a = analyse(store, day)
+    assert "gh:o/r3" not in {s.app_id for s in a.scores} | set(a.baseline_only)
+    assert "gh:o/r3" in a.out_of_scope and len(store.load_observations()) == before
+    assert "### Out of scope" in render(a) and "a TV debloater" in render(a)
+    assert "gh:o/r3" in {s.app_id for s in analyse(store, day - dt.timedelta(days=1)).scores} | \
+        set(analyse(store, day - dt.timedelta(days=1)).baseline_only)          # asof respected
+    store.record_scope("https://github.com/o/r3", "in", day + dt.timedelta(days=1), "https://github.com/o/r3")
+    assert "gh:o/r3" not in analyse(store, day + dt.timedelta(days=1)).out_of_scope
+
+
+def test_computer_use_is_a_direction_its_synonyms_join():
+    from airadar.directions import DIRECTION_TAGS, normalise_tag
+
+    assert "computer-use" in DIRECTION_TAGS
+    assert {normalise_tag(t) for t in ["computer-use-agent", "browser-use", "Computer Use"]} == {"computer-use"}
+
+
+def test_rereads_repeat_until_the_recheck_list_is_settled(tmp_path, monkeypatch):
+    from airadar import cli
+    from airadar.collectors.base import Collected
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    apps = store.load_apps()
+    waves = [["gh:o/r1", "gh:o/r2"], ["gh:o/r3", "gh:o/missing"], ["gh:o/missing"], []]
+    calls = []
+
+    def targets(_store, _date):
+        wave = waves[min(len(calls), len(waves) - 1)]
+        return [(apps.get(a) or apps["gh:o/r1"].__class__(a, a[3:], f"https://github.com/{a[3:]}",
+                                                         apps["gh:o/r1"].kind, "", [], day), "stars")
+                for a in wave]
+
+    def collect(batch, last):
+        calls.append([a.id for a in batch])
+        out = Collected("api:github-repos")
+        for app in batch:
+            if app.id == "gh:o/missing":
+                out.errors.append("github o/missing: not returned")
+            else:
+                out.add(app, obs(app.id, "stars", 999, day, method=Method.API, url=app.url))
+        return out
+
+    monkeypatch.setattr(cli, "recheck_targets", targets)
+    out = cli.reread_until_settled(store, day, collect)
+    assert calls == [["gh:o/r1", "gh:o/r2"], ["gh:o/r3", "gh:o/missing"]]   # the missing repo is tried once
+    assert len(out.observations) == 3 and len(out.errors) == 1
+    assert {o.app_id for o in store.load_observations() if o.observed_on == day and o.value == 999} == \
+        {"gh:o/r1", "gh:o/r2", "gh:o/r3"}
+
+
+def test_off_topic_groups_are_not_mined_for_search_terms(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.directions import EmergentGroup
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    save_watch(path, load_watch(path))
+    store.add([App(f"gh:o/c{i}", f"o/c{i}", f"https://github.com/o/c{i}", AppKind.REPO, "",
+                   ["mc-cheat-client"], D0) for i in range(3)], [])
+    cheats = EmergentGroup("x", ["bedrock", "wardrobe"], [f"gh:o/c{i}" for i in range(3)], 0.6)
+    assert expand_watch(store, [cheats], [AppScore(f"gh:o/c{i}", 0.9, 1, [], []) for i in range(3)]) == []
+
+
+def test_the_report_shows_what_each_auto_term_brought_in(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.models import App, AppKind
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    store = _daily_store(tmp_path)
+    day = dt.date(2026, 10, 20)
+    watch = load_watch(store.root / "watch.json")
+    watch["auto_terms"] = ["standalone", "agentish"]
+    save_watch(store.root / "watch.json", watch)
+    apps = [App(f"gh:o/t{i}", f"o/t{i}", f"https://github.com/o/t{i}", AppKind.REPO, "",
+                ["coding-agent"] if i == 0 else ["windows-tweaks"], day) for i in range(3)]
+    rows = [Observation(a.id, "stars", 500.0, day, a.url, Method.API, "api:github", via="standalone")
+            for a in apps]
+    rows.append(Observation(apps[0].id, "stars", 501.0, day, "https://api.github.com/search?q=agentish",
+                            Method.API, "api:github", via="agentish"))
+    store.add(apps, rows)
+    a = analyse(store, day)
+    intake = {t["term"]: t for t in a.term_intake}
+    assert intake["standalone"]["apps"] == 3 and intake["standalone"]["on_topic"] == 1
+    assert intake["agentish"]["on_topic"] == 1
+    text = render(a)
+    assert "| standalone ⚠ | 3 | 1 | o/t1, o/t2 |" in text and "| agentish | 1 | 1 | – |" in text
+
+
+def test_a_term_with_mostly_off_topic_intake_is_dropped(tmp_path):
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    watch = load_watch(path)
+    watch["auto_terms"] = ["skill", "scenario", "rare"]
+    save_watch(path, watch)
+    intake = [{"term": "skill", "apps": 100, "on_topic": 66, "off_examples": []},
+              {"term": "scenario", "apps": 40, "on_topic": 12, "off_examples": []},
+              {"term": "rare", "apps": 4, "on_topic": 0, "off_examples": []}]   # too few to judge
+    expand_watch(store, [], [], intake)
+    assert load_watch(path)["auto_terms"] == ["skill", "rare"]
+    assert load_watch(path)["dropped_terms"] == ["scenario"]
+
+
+def test_a_dropped_term_is_never_mined_again(tmp_path):
+    """On 2026-11-11 "developer-tools", dropped the day before as off-topic,
+    was mined back from a high-scoring group. Dropped terms are remembered."""
+    from airadar.collectors.base import load_watch, save_watch
+    from airadar.directions import EmergentGroup
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+    from airadar.pipeline import expand_watch
+
+    store = Store(tmp_path)
+    path = store.root / "watch.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    watch = load_watch(path)
+    watch["auto_terms"] = ["developer-tools"]
+    save_watch(path, watch)
+    expand_watch(store, [], [], [{"term": "developer-tools", "apps": 21, "on_topic": 3, "off_examples": []}])
+    assert load_watch(path)["auto_terms"] == []
+
+    members = [f"gh:o/d{i}" for i in range(3)]
+    store.add([App(m, m[3:], f"https://github.com/{m[3:]}", AppKind.REPO, "", ["coding-agent"], D0)
+               for m in members], [])
+    group = EmergentGroup("x", ["developer-tools", "worktree"], members, 0.6)
+    added = expand_watch(store, [group], [AppScore(m, 0.9, 1, [], []) for m in members])
+    assert added == ["worktree"]
+    assert "developer-tools" not in load_watch(path)["auto_terms"]
+
+
+def test_the_scorecard_follows_a_move_made_after_the_forecast(tmp_path):
+    from airadar.iterate import scorecard
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    later = made + dt.timedelta(days=7)
+    apps = [f"gh:o/r{i}" for i in range(5)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        rows.append(obs(app_id, "stars", 1000, made, method=Method.PAGE_EXTRACT))
+        rows.append(obs(app_id, "stars", 1000 + 100 * (i + 1), later, method=Method.PAGE_EXTRACT))
+    store.add([], rows)
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": {a: 0.1 * (i + 1) for i, a in enumerate(apps)}}])
+    (before,) = scorecard(store, later, store.load_observations())
+    assert before.apps == 5
+    store.record_move("https://github.com/o/r4", "https://github.com/neworg/r4", later,
+                      "https://github.com/neworg/r4")
+    (after,) = scorecard(store, later, store.load_observations())
+    assert after.apps == 5 and after.spearman == pytest.approx(before.spearman)
+
+
+def test_report_shows_every_tuning_candidate_against_the_baseline(tmp_path):
+    from airadar.pipeline import analyse
+    from airadar.report import render
+
+    rows = synthetic_world()
+    params = Params.defaults().with_value("trust.reported", 1.0).with_value("weight.reported_growth", 1.0)
+    outcome = tune(params, rows, D0 + dt.timedelta(days=24))
+    assert outcome.candidates_tried
+    store = _daily_store(tmp_path)
+    a = analyse(store, dt.date(2026, 10, 19))
+    a.tuning = outcome
+    text = render(a)
+    assert "| current settings |" in text and "Days better" in text
+    best = max(outcome.candidates_tried, key=lambda c: c["spearman_top"])
+    assert f"| {best['knob']} → {best['value']:g} |" in text
+    # A day without a backtest (too little history) shows no table.
+    a.tuning = tune(Params.defaults(), synthetic_world(days=5), D0 + dt.timedelta(days=5))
+    assert "| current settings |" not in render(a)
+
+
+def test_levels_on_different_bases_are_not_differenced():
+    def users(value, day, basis):
+        return Observation("c", "users", float(value), day, "https://example.com/r", Method.REPORTED,
+                           "test", basis=basis)
+
+    d1 = D0 + dt.timedelta(days=30)
+    # 1.1B monthly then 1.2B weekly: two different counts, not +100M.
+    rows = [users(1.1e9, D0, "mau"), users(1.2e9, d1, "wau")]
+    assert extract_signals(rows, asof=d1) == {}
+    # The same basis on both readings is a real change.
+    rows.append(users(1.0e9, D0, "wau"))
+    (s,) = extract_signals(rows, asof=d1)["c"]
+    assert s.abs_per_day == pytest.approx(0.2e9 / 30)
+
+
+def test_inbox_checks_the_basis_against_the_metric():
+    batch = parse_batch(inbox_payload(metric="users", period_days=None, value=5, basis="mau"))
+    assert batch.observations[0].basis == "mau"
+    assert Observation.from_dict(batch.observations[0].to_dict()).basis == "mau"
+    with pytest.raises(InboxError, match="basis"):
+        parse_batch(inbox_payload(metric="users", period_days=None, value=5, basis="monthly-ish"))
+    with pytest.raises(InboxError, match="basis"):
+        parse_batch(inbox_payload(metric="stars", period_days=None, value=5, basis="net"))
+
+
+def test_scorecard_reports_like_for_like_spearman_over_forecast_top_n():
+    """A pool padded with easy-to-rank, near-zero-growth apps inflates the full
+    Spearman; the top-N figure ranks only the forecast's own top N, so it is
+    unaffected by the padding and comparable across days."""
+    from airadar.iterate import LIKE_FOR_LIKE_N, evaluate
+
+    made_on = dt.date(2026, 11, 2)
+    # The forecast's top N are ranked exactly backwards against what happened.
+    predicted = {f"top{i}": 1000.0 - i for i in range(LIKE_FOR_LIKE_N)}
+    realised = {f"top{i}": float(i) + 100 for i in range(LIKE_FOR_LIKE_N)}
+    small = evaluate(predicted, realised, made_on, 7)
+    assert small.top_n == LIKE_FOR_LIKE_N
+    assert small.spearman_top == pytest.approx(-1.0)
+
+    # Pad with 900 apps the forecast correctly puts last and that did not grow.
+    for i in range(900):
+        predicted[f"pad{i}"] = -float(i)
+        realised[f"pad{i}"] = -float(i)
+    padded = evaluate(predicted, realised, made_on, 7)
+    assert padded.apps == LIKE_FOR_LIKE_N + 900
+    assert padded.spearman > 0.5               # the padding alone lifts the full figure
+    assert padded.spearman_top == pytest.approx(-1.0)   # the like-for-like one is unmoved
+    assert padded.to_dict()["spearman_top"] == padded.spearman_top
+
+
+def test_like_for_like_is_split_by_the_kind_of_evidence_behind_each_score(tmp_path):
+    """Apps measured by the radar's own two readings are classed 'measured';
+    an app known only from a page-stated weekly gain is 'stated on a page'.
+    Each class gets its own rank correlation over the forecast's top N."""
+    from airadar.iterate import evidence_class, like_for_like_by_evidence
+    from airadar.growth import extract_signals
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    before, later = made - dt.timedelta(days=3), made + dt.timedelta(days=7)
+    measured = [f"gh:o/m{i}" for i in range(4)]
+    stated = [f"gh:o/s{i}" for i in range(3)]
+    rows = []
+    for i, app_id in enumerate(measured):
+        rows += [obs(app_id, "stars", 1000, before), obs(app_id, "stars", 1000 + 50 * (i + 1), made),
+                 obs(app_id, "stars", 1000 + 50 * (i + 1) + 100 * (i + 1), later)]
+    for i, app_id in enumerate(stated):
+        rows += [obs(app_id, "stars_gained", 100 * (i + 1), made, method=Method.PAGE_EXTRACT, period=7),
+                 obs(app_id, "stars", 5000, made, method=Method.PAGE_EXTRACT),
+                 # realised order is the reverse of the forecast's
+                 obs(app_id, "stars", 5000 + 300 * (3 - i), later, method=Method.PAGE_EXTRACT)]
+    store.add([], rows)
+
+    signals = extract_signals(store.load_observations(), asof=made)
+    assert evidence_class(signals[measured[0]]) == "measured"
+    assert evidence_class(signals[stated[0]]) == "stated on a page"
+
+    scores = {a: 0.1 * (i + 1) for i, a in enumerate(measured)}
+    scores.update({a: 0.01 * (i + 1) for i, a in enumerate(stated)})
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": scores}])
+    split = {c.evidence: c for c in like_for_like_by_evidence(store, later, store.load_observations())}
+    assert split["measured"].apps == 4 and split["measured"].spearman == pytest.approx(1.0)
+    assert split["stated on a page"].apps == 3 and split["stated on a page"].spearman == pytest.approx(-1.0)
+
+
+def test_a_fragment_of_a_word_with_digits_is_not_a_search_term():
+    """The tokenizer drops digits, so "3d-models" leaves "d-models" and
+    "deepseek-v4" leaves "deepseek-v" (both mined in Nov 2026). A mined term
+    must appear as a word of its own somewhere in its group."""
+    from airadar.directions import _whole_word
+    from sciscout.discovery import tokenize
+
+    text = "awesome 3d-models and deepseek-v4 tools in gguf"
+    assert "d-models" in tokenize(text) and "deepseek-v" in tokenize(text)
+    assert not _whole_word("d-models", [text])
+    assert not _whole_word("deepseek-v", [text])
+    assert _whole_word("gguf", [text])
+    assert _whole_word("d-models", [text, "a list of d-models"])
+
+
+def test_a_frozen_scorecard_row_does_not_drift(tmp_path):
+    """On 2026-11-13 Nov 5's like-for-like moved from 0.452 to 0.468 because a
+    repo move recorded after publication changed its recomputation. Rows are
+    frozen the first day the daily run scores them; a frozen row is reported
+    as frozen and never rewritten."""
+    from airadar.iterate import Evaluation, scorecard
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    later = made + dt.timedelta(days=7)
+    apps = [f"gh:o/r{i}" for i in range(5)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        rows.append(obs(app_id, "stars", 1000, made))
+        rows.append(obs(app_id, "stars", 1000 + 100 * (i + 1), later))
+    store.add([], rows)
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": {a: 0.1 * (i + 1) for i, a in enumerate(apps)}}])
+    (live,) = scorecard(store, later, store.load_observations())
+    assert Evaluation.from_dict(live.to_dict()) == live
+
+    # What was published on the day differs from what a recomputation now gives.
+    published = dict(live.to_dict(), spearman=0.452, spearman_top=0.452, frozen_on=later.isoformat())
+    store.freeze_scores([published])
+    (reported,) = scorecard(store, later + dt.timedelta(days=1), store.load_observations())
+    assert reported.spearman == pytest.approx(0.452) and reported.spearman_top == pytest.approx(0.452)
+
+    store.freeze_scores([dict(live.to_dict(), frozen_on="2026-10-28")])   # never rewritten
+    assert store.frozen_scores()[made.isoformat()]["spearman"] == pytest.approx(0.452)
+
+
+def test_pieces_of_owner_names_are_not_mined_as_terms():
+    """Mining added "gentleman" (Gentleman-Programming) and "daslab"
+    (ISTA-DASLab) in Nov 2026: pieces of a hyphenated owner name are names.
+    The group still forms and keeps its real terms."""
+    from airadar.directions import emergent_groups
+    from airadar.growth import AppScore
+    from airadar.models import App, AppKind
+
+    rnd = random.Random(1)
+    owners = ["Gentleman-Programming", "ISTA-DASLab"]
+    apps, scores = {}, []
+    for i in range(6):
+        owner = owners[i % 2]
+        app = App(f"gh:{owner.lower()}/tool{i}", f"{owner}/tool{i}", f"https://github.com/{owner}/tool{i}",
+                  AppKind.REPO, "gentleman daslab zorblex quantiser toolkit", [], D0)
+        apps[app.id] = app
+        scores.append(AppScore(app.id, 0.9, 1, [], []))
+    vocab = [f"w{chr(97 + a)}{chr(97 + b)}{chr(97 + c)}" for a in range(6) for b in range(6) for c in range(6)]
+    for i in range(40):   # varied background, so the group's words are distinctive
+        app = App(f"gh:o/other{i}", f"o/other{i}", f"https://github.com/o/other{i}", AppKind.REPO,
+                  " ".join(rnd.sample(vocab, 6)), [], D0)
+        apps[app.id] = app
+        scores.append(AppScore(app.id, 0.5, 1, [], []))
+    groups = emergent_groups(apps, scores)
+    group = next(g for g in groups if "zorblex" in g.terms)
+    assert {"gentleman", "daslab", "programming", "ista"}.isdisjoint(group.terms)
+
+
+def test_clone_campaigns_are_flagged_and_real_shared_names_are_not():
+    """On 2026-11-15 about 30 'ai--manus' repos under fresh accounts were
+    deleted together; the registry held 127 owners of that name, most tying
+    another's star count. Real shared names ('skills') spread over weeks with
+    stars that differ by orders of magnitude."""
+    from airadar.models import App, AppKind
+    from airadar.pipeline import clone_campaigns
+
+    day = dt.date(2026, 11, 10)
+    apps, rows = {}, []
+    for i in range(8):   # a campaign: one name, one week, stars bought in batches
+        a = App(f"gh:fresh{i}x/ai--manus", f"Fresh{i}x/ai--manus", f"https://github.com/Fresh{i}x/ai--manus",
+                AppKind.REPO, "", [], day + dt.timedelta(days=i % 3))
+        apps[a.id] = a
+        rows.append(obs(a.id, "stars", 146 if i % 2 else 378, day))
+    for i, (owner, stars) in enumerate([("anthropics", 192000), ("mattpocock", 320000), ("google", 4000),
+                                        ("android", 900), ("vercel-labs", 21000), ("caldoai", 60)]):
+        a = App(f"gh:{owner}/skills", f"{owner}/skills", f"https://github.com/{owner}/skills",
+                AppKind.REPO, "", [], day - dt.timedelta(days=5 * i))
+        apps[a.id] = a
+        rows.append(obs(a.id, "stars", stars, day))
+    found = {c["name"]: c for c in clone_campaigns(apps, rows, {"gh:fresh0x/ai--manus"}, day + dt.timedelta(days=3))}
+    assert set(found) == {"ai-manus"}
+    assert found["ai-manus"]["owners"] == 8 and len(found["ai-manus"]["active"]) == 7
+    assert found["ai-manus"]["left_out"] == 1 and found["ai-manus"]["twin_share"] == 1.0
+
+
+def test_min_delta_span_drops_short_span_deltas_only_when_asked():
+    """The span backtest (2026-11-18) restricts measured deltas to a minimum
+    span; by default nothing changes."""
+    from airadar.growth import extract_signals
+
+    day = dt.date(2026, 11, 10)
+    rows = [obs("gh:o/short", "stars", 1000, day - dt.timedelta(days=1)), obs("gh:o/short", "stars", 1200, day),
+            obs("gh:o/long", "stars", 1000, day - dt.timedelta(days=7)), obs("gh:o/long", "stars", 1500, day)]
+    default = extract_signals(rows, asof=day)
+    assert {"gh:o/short", "gh:o/long"} <= set(default)
+    strict = extract_signals(rows, asof=day, min_delta_span_days=3)
+    assert "gh:o/long" in strict and not any(s.kind == "delta" for s in strict.get("gh:o/short", []))
+
+
+def test_lift_over_chance_compares_hit_rates_across_pool_sizes():
+    """47% of the top 15 right among 1,058 apps (chance 1.4%) is far better
+    than 53% among 46 (chance 33%); lift says so, the raw rate does not."""
+    from airadar.iterate import Evaluation
+
+    big = Evaluation(dt.date(2026, 11, 2), 7, 1058, 0.84, 7 / 15, 15)
+    small = Evaluation(dt.date(2026, 10, 19), 7, 46, 0.55, 8 / 15, 15)
+    assert big.lift == pytest.approx((7 / 15) / (15 / 1058))
+    assert small.lift == pytest.approx((8 / 15) / (15 / 46))
+    assert big.lift > 10 * small.lift
+    assert Evaluation(dt.date(2026, 10, 19), 7, 2, None, None, 1).lift is None
+
+
+def test_persistence_baseline_ranks_the_same_apps_by_latest_measured_gain(tmp_path):
+    """The naive baseline ranks a forecast's apps by their latest measured
+    gain alone (apps with none rank last) and is scored like the forecast.
+    Here past gains rise with i while later growth falls with i: the stored
+    forecast saw it coming (Spearman 1), persistence did not (Spearman -1)."""
+    from airadar.iterate import persistence_backtest
+
+    store = Store(tmp_path)
+    made = dt.date(2026, 10, 19)
+    before, later = made - dt.timedelta(days=3), made + dt.timedelta(days=7)
+    apps = [f"gh:o/m{i}" for i in range(4)]
+    rows = []
+    for i, app_id in enumerate(apps):
+        level = 1000 + 50 * (i + 1)
+        rows += [obs(app_id, "stars", 1000, before), obs(app_id, "stars", level, made),
+                 obs(app_id, "stars", level + 100 * (4 - i), later)]
+    # known only from a page-stated gain: no measured change, ranks last
+    rows += [obs("gh:o/s", "stars_gained", 900, made, method=Method.PAGE_EXTRACT, period=7),
+             obs("gh:o/s", "stars", 5000, made, method=Method.PAGE_EXTRACT),
+             obs("gh:o/s", "stars", 5010, later, method=Method.PAGE_EXTRACT)]
+    store.add([], rows)
+    scores = {a: 0.1 * (4 - i) for i, a in enumerate(apps)}
+    scores["gh:o/s"] = 0.01
+    store.append_predictions([{"made_on": made.isoformat(), "horizon_days": 7, "params": {},
+                               "scores": scores}])
+
+    [row] = persistence_backtest(store, later, store.load_observations())
+    assert row["with_gain"] == 4
+    assert row["forecast_measured"].spearman == pytest.approx(1.0)
+    assert row["abs_measured"].spearman == pytest.approx(-1.0)
+    assert row["rel_measured"].spearman == pytest.approx(-1.0)
+    assert row["forecast"].apps == row["abs"].apps == 5
+    assert row["forecast"].spearman > row["abs"].spearman
+
+
+def test_tuner_objective_is_top_100_spearman_guarded_by_hit_rate(monkeypatch):
+    """The user's choice (2026-11-19): tune on each forecast's top-100 rank
+    correlation, not the full pool's. A candidate that only sorts the whole
+    pool better is not adopted; one that orders the top 100 better but
+    picks fewer of the top 15 is refused; one that does both is adopted."""
+    import airadar.iterate as it
+    from airadar.params import KNOBS
+
+    days = [dt.date(2026, 11, d) for d in range(1, 7)]
+    name = next(iter(KNOBS))
+    current = Params.defaults()
+    target = current.with_value(name, current[name] + KNOBS[name].step)
+
+    def run(full, top, hits):
+        def fake_backtest(params, observations, ds, horizon, cache=None):
+            moved = params[name] == target[name]
+            return [it.Evaluation(d, 7, 500, 0.8 + (full if moved else 0), 0.4 + (hits if moved else 0), 15,
+                                  0.3 + (top if moved else 0), 100) for d in days]
+        monkeypatch.setattr(it, "backtest", fake_backtest)
+        monkeypatch.setattr(it, "_evaluable_days", lambda *a: days)
+        return it.tune(current, [], dt.date(2026, 11, 19))
+
+    only_full = run(full=0.1, top=0.0, hits=0.0)
+    assert not only_full.adopted and "top-100" in only_full.reason
+    fewer_leaders = run(full=0.0, top=0.1, hits=-1 / 15)
+    assert not fewer_leaders.adopted and "hit rate" in fewer_leaders.reason
+    better = run(full=0.0, top=0.1, hits=0.0)
+    assert better.adopted and better.knob == name and better.new == pytest.approx(target[name])
+
+
+def test_top_n_selection_shows_whose_own_picks_grew_more():
+    """Forecast and baseline each pick a top 2 of five apps; they share one.
+    The forecast's own pick (c) grew fastest, the baseline's own pick (d)
+    slowest, so the forecast chose leaders better."""
+    from airadar.iterate import top_n_selection
+
+    realised = {"a": 3.0, "b": 2.0, "c": 5.0, "d": 1.0, "e": 4.0}
+    forecast = {"a": 0.9, "c": 0.8, "b": 0.1, "d": 0.0, "e": 0.05}
+    baseline = {"a": 0.9, "d": 0.8, "b": 0.1, "c": 0.0, "e": 0.05}
+    sel = top_n_selection(forecast, baseline, realised, n=2)
+    assert (sel["shared"], sel["only_forecast"], sel["only_baseline"]) == (1, 1, 1)
+    assert sel["pct_only_forecast"] == pytest.approx(1.0)   # c: fastest of five
+    assert sel["pct_only_baseline"] == pytest.approx(0.0)   # d: slowest
+    assert sel["pct_shared"] == pytest.approx(0.5)          # a: middle
+    assert top_n_selection({"a": 1}, {"a": 1}, {"a": 1}) is None
+
+
+def test_a_page_read_below_the_api_reading_is_flagged_as_stale():
+    """Stars only fall when removed, so a page count well under the radar's
+    own API reading is a stale copy (2026-11-20). Rounding and a small
+    tolerance are allowed; a later API reading is not used against an
+    earlier page; an app the API never read is not checkable."""
+    from airadar.pipeline import checkable_page_reads, stale_page_reads
+
+    day = dt.date(2026, 11, 20)
+    api = [obs("gh:o/a", "stars", 10_000, day), obs("gh:o/b", "stars", 5_000, day),
+           obs("gh:o/c", "stars", 9_000, day + dt.timedelta(days=1))]
+    page = [obs("gh:o/a", "stars", 8_000, day, method=Method.PAGE_EXTRACT),     # stale
+            obs("gh:o/b", "stars", 4_990, day, method=Method.PAGE_EXTRACT),     # within tolerance
+            obs("gh:o/c", "stars", 1_000, day, method=Method.PAGE_EXTRACT),     # API read only later
+            obs("gh:o/d", "stars", 1_000, day, method=Method.PAGE_EXTRACT)]     # never read by API
+    rounded = Observation("gh:o/b", "stars", 4_900, day, "https://example.com", Method.PAGE_EXTRACT,
+                          "test", rounded_to=100)
+    stale = stale_page_reads(page + [rounded], api)
+    assert [r["app_id"] for r in stale] == ["gh:o/a", "gh:o/b"]
+    assert stale[0]["page"] == 8_000 and stale[0]["api"] == 10_000
+    assert checkable_page_reads(page, api) == 3
+    # a rename: the page read under the old name is checked against the new one's history
+    moved = stale_page_reads([obs("gh:o/old", "stars", 8_000, day, method=Method.PAGE_EXTRACT)], api,
+                             {"gh:o/old": ("gh:o/a",)})
+    assert len(moved) == 1

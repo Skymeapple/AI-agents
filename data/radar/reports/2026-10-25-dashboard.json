@@ -1,0 +1,41 @@
+{
+ "takeaway": "After a week of the radar's own readings, Cloudflare's security-audit skill is up 39% (32,421 to 45,182 stars) and holds about 2,500 a day, now #2 on GitHub's weekly trending. morluto/rea is slowing for a fifth day.",
+ "findings": [
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill: +39% in a week",
+   "text": "Measured from 32,421 stars on Oct 19 to 45,182 on Oct 25, about 2,500 a day for four days. The weekly trending page shows +12,680. No announcement or merged commit explains it.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "rea",
+   "heading": "morluto/rea keeps slowing",
+   "text": "Its measured daily gain fell five days running, from 9,917 to 5,570 stars. It stays flagged and discounted.",
+   "source": "https://github.com/morluto/rea"
+  },
+  {
+   "id": "vendors",
+   "heading": "Platform vendors' agent toolkits are trending",
+   "text": "aws/agent-toolkit-for-aws (official AWS skills, MCP servers and plugins for coding agents) and google-gemini/gemini-cli (108,233 stars; releases on Oct 20) both appear on GitHub trending.",
+   "source": "https://github.com/aws/agent-toolkit-for-aws"
+  },
+  {
+   "id": "infra",
+   "heading": "Agent infrastructure leads commercial growth",
+   "text": "Exa reports over $100M ARR growing about 10x a year; Daytona grew 25x from January to September; Blacksmith 17x since January. All three were read from search results.",
+   "source": "https://dealroom.co/news/162184-exa-hits-100m-in-annualized-revenue-growing-10x-a-year/"
+  },
+  {
+   "id": "horizon3",
+   "heading": "Horizon3's $100M ARR is confirmed",
+   "text": "The Oct 20 release is titled 'Horizon3 Surpasses $100 Million ARR with 120%+ Growth'. Earlier 'nearing $100M' wording came from older funding coverage.",
+   "source": "https://horizon3.ai/news/press-release/horizon3-surpasses-100-million-arr/"
+  }
+ ],
+ "caveats": [
+  "Several apps still rank on gains stated up to six days ago; the report's new measured-movers table shows them growing modestly or off trending.",
+  "Every company figure today came from search-result summaries; news sites cannot be opened from the cloud environment.",
+  "Hugging Face and Hacker News remain unreachable, and GitHub trending pages list only 10 to 21 repos.",
+  "The first forecast matures tomorrow; until then the ranking is untested."
+ ]
+}

@@ -1,0 +1,211 @@
+[
+{
+"name": "aime_1994_p3",
+"proved": true,
+"plain": false,
+"repaired": true,
+"wins": [
+{
+"sample": 1,
+"variant": "prefix 43",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  have h43 := h0 54\n  have h44 := h0 53\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 42",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  have h43 := h0 54\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 41",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 40",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 39",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 38",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 37",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 36",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 35",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 1,
+"variant": "prefix 34",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 43",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  have h43 := h0 54\n  have h44 := h0 53\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 42",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  have h43 := h0 54\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 41",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  have h42 := h0 55\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 40",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  have h41 := h0 56\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 39",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  have h40 := h0 57\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 38",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  have h39 := h0 58\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 37",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  have h38 := h0 59\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 36",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  have h37 := h0 60\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 35",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  have h36 := h0 61\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 2,
+"variant": "prefix 34",
+"proof": "  have h2 := h0 19\n  have h3 := h0 94\n  have h4 := h0 93\n  have h5 := h0 92\n  have h6 := h0 91\n  have h7 := h0 90\n  have h8 := h0 89\n  have h9 := h0 88\n  have h10 := h0 87\n  have h11 := h0 86\n  have h12 := h0 85\n  have h13 := h0 84\n  have h14 := h0 83\n  have h15 := h0 82\n  have h16 := h0 81\n  have h17 := h0 80\n  have h18 := h0 79\n  have h19 := h0 78\n  have h20 := h0 77\n  have h21 := h0 76\n  have h22 := h0 75\n  have h23 := h0 74\n  have h24 := h0 73\n  have h25 := h0 72\n  have h26 := h0 71\n  have h27 := h0 70\n  have h28 := h0 69\n  have h29 := h0 68\n  have h30 := h0 67\n  have h31 := h0 66\n  have h32 := h0 65\n  have h33 := h0 64\n  have h34 := h0 63\n  have h35 := h0 62\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 865
+},
+{
+"name": "algebra_apbon2pownleqapownpbpowon2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 74
+},
+{
+"name": "amc12a_2002_p13",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 129
+},
+{
+"name": "amc12a_2020_p7",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 149
+},
+{
+"name": "amc12b_2020_p21",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 255
+},
+{
+"name": "imo_1965_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 268
+},
+{
+"name": "imo_2001_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 191
+},
+{
+"name": "mathd_algebra_17",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 94
+},
+{
+"name": "mathd_algebra_392",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 103
+},
+{
+"name": "mathd_numbertheory_321",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 46
+},
+{
+"name": "mathd_numbertheory_764",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 139
+}
+]

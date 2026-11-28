@@ -1,0 +1,31 @@
+job: lean-floor3-valid-b
+started: 2026-11-26T16:45:55Z
+cores: 4, memory: 15 GB
+info: downloading installer
+Decompressing 7335 file(s)
+Unpacked in 19219 ms
+Completed successfully!
+{'valid': 136}
+valid CASES                                                        proves   1  | 'floor_valid_44_120_0.lean:8:836: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the'
+valid ext x <;> (try simp_all) <;> PORTFOLIO                       proves   0  | 'floor_valid_45_120_0.lean:8:59: error: No applicable extensionality theorem found for type\n  ℕ\n\nNote: Extensionality the'
+watchdog: killed lean process using 5021 MB of private memory
+valid INDUCTION                                                    proves   3  | 'floor_valid_43_120_0.lean:8:995: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the'
+valid casesm* _ ∧ _, ∃ _, _ <;> PORTFOLIO                          proves   0  | "floor_valid_48_120_0.lean:8:59: error: no match\n'mathd_numbertheory_405' depends on axioms: [sorryAx]\nfloor_valid_48_120"
+valid exfalso <;> PORTFOLIO                                        proves   0  | 'floor_valid_49_120_0.lean:8:274: warning: aesop: failed to prove the goal after exhaustive search.\nfloor_valid_49_120_0.'
+valid left <;> PORTFOLIO                                           proves   0  | 'floor_valid_50_120_0.lean:8:59: error: Tactic `left` failed: left tactic works for inductive types with exactly 2 constr'
+valid right <;> PORTFOLIO                                          proves   0  | 'floor_valid_51_120_0.lean:8:59: error: Tactic `right` failed: right tactic works for inductive types with exactly 2 cons'
+valid (try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO proves   0 ['aime_1996_p5: exit 137', 'amc12a_2008_p15: exit 134', 'mathd_numbertheory_543: timeout'] | "floor_valid_46_120_0.lean:8:366: error: tactic 'aesop' failed, made no progress\nInitial goal:\n  a b c : ℕ\n  t : ℕ → ℕ\n  "
+valid (try push_cast at *) <;> (try zify at *) <;> PORTFOLIO       proves   1 ['mathd_numbertheory_543: timeout'] | 'floor_valid_47_120_0.lean:8:147: error: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (400000) has '
+
+RESULT valid: 136 theorems; any single tactic proves 5 (3.7%)
+RESULT   INDUCTION                                                      3   new beyond the tactics above: 3
+RESULT   CASES                                                          1   new beyond the tactics above: 1
+RESULT   (try push_cast at *) <;> (try zify at *) <;> PORTFOLIO         1   new beyond the tactics above: 1
+RESULT   ext x <;> (try simp_all) <;> PORTFOLIO                         0   new beyond the tactics above: 0
+RESULT   (try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO   0   new beyond the tactics above: 0
+RESULT   casesm* _ ∧ _, ∃ _, _ <;> PORTFOLIO                            0   new beyond the tactics above: 0
+RESULT   exfalso <;> PORTFOLIO                                          0   new beyond the tactics above: 0
+RESULT   left <;> PORTFOLIO                                             0   new beyond the tactics above: 0
+RESULT   right <;> PORTFOLIO                                            0   new beyond the tactics above: 0
+RESULT   by source: aime 0/11, aimeI 0/1, aimeII 0/2, algebra 0/11, amc12 0/3, amc12a 1/23, amc12b 0/7, imo 0/19, induction 3/7, mathd 1/45, numbertheory 0/7
+finished: 2026-11-26T17:12:58Z, exit code 0

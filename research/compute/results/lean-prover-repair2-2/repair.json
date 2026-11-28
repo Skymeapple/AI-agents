@@ -1,0 +1,103 @@
+[
+{
+"name": "aime_1987_p5",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 113
+},
+{
+"name": "algebra_amgm_sumasqdivbgeqsuma",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 167
+},
+{
+"name": "amc12_2001_p21",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 98
+},
+{
+"name": "amc12a_2020_p25",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 132
+},
+{
+"name": "amc12b_2002_p4",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 94
+},
+{
+"name": "imo_1962_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 149
+},
+{
+"name": "imo_1992_p1",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "as-is",
+"proof": "  apply or_iff_not_imp_left.2\n  intro h\n  simp_all [Int.dvd_iff_emod_eq_zero, mul_comm, mul_assoc, mul_left_comm, sub_eq_add_neg]\n  omega",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 3",
+"proof": "  apply or_iff_not_imp_left.2\n  intro h\n  simp_all [Int.dvd_iff_emod_eq_zero, mul_comm, mul_assoc, mul_left_comm, sub_eq_add_neg]\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 127
+},
+{
+"name": "mathd_algebra_114",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 89
+},
+{
+"name": "mathd_algebra_320",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 142
+},
+{
+"name": "mathd_numbertheory_277",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 182
+},
+{
+"name": "mathd_numbertheory_711",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 148
+}
+]

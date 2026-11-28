@@ -1,0 +1,51 @@
+[
+{
+"split": "test",
+"tactic": "PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "intros; PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "(repeat' apply And.intro) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "intros; constructor <;> intros <;> PORTFOLIO",
+"proved": [
+"algebra_others_exirrpowirrrat"
+]
+},
+{
+"split": "test",
+"tactic": "(try simp_all) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "(try norm_num [*] at *) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "(try field_simp at *) <;> (try ring_nf at *) <;> PORTFOLIO",
+"proved": [
+"mathd_algebra_302"
+]
+},
+{
+"split": "test",
+"tactic": "subst_vars <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "by_contra! hneg <;> PORTFOLIO",
+"proved": []
+}
+]

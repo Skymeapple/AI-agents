@@ -1,0 +1,117 @@
+[
+{
+"name": "aime_1991_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 127
+},
+{
+"name": "algebra_amgm_sum1toneqn_prod1tonleq1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 73
+},
+{
+"name": "amc12_2000_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 208
+},
+{
+"name": "amc12a_2009_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 64
+},
+{
+"name": "amc12a_2020_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 283
+},
+{
+"name": "amc12b_2002_p7",
+"proved": true,
+"attempts_ok": [
+4,
+7
+],
+"lean": "ok",
+"proof": "\n  have h\u2084 : a * b * c = 8 * (a + b + c) := by assumption\n  have h\u2085 : b = a + 1 := by assumption\n  have h\u2086 : c = b + 1 := by assumption\n  subst_vars\n  ring_nf at h\u2084 \u22a2\n  nlinarith\n",
+"gen_secs": 112
+},
+{
+"name": "imo_1959_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 93
+},
+{
+"name": "imo_1981_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 75
+},
+{
+"name": "imosl_2007_algebra_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 42
+},
+{
+"name": "mathd_algebra_17",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 263
+},
+{
+"name": "mathd_algebra_313",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 93
+},
+{
+"name": "mathd_numbertheory_100",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 82
+},
+{
+"name": "mathd_numbertheory_427",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 48
+},
+{
+"name": "mathd_numbertheory_764",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 114
+}
+]

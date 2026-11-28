@@ -1,0 +1,3572 @@
+[
+  {
+    "input": {
+      "text": "The quantum efficiency of a photon detector is 0.1. If 100 photons are sent into the detector, one after the other, the detector will detect photons"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 3"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 0.1"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id16"
+  },
+  {
+    "input": {
+      "text": "White light is normally incident on a puddle of water (index of refraction 1.33). A thin (500 nm) layer of oil (index of refraction 1.5) floats on the surface of the puddle. Of the following, the most strongly reflected wavelength is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "500 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "550 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "600 nm"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "650 nm"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id17"
+  },
+  {
+    "input": {
+      "text": "Which of the following is true about any system that undergoes a reversible thermodynamic process?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "There are no changes in the internal energy of the system."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The temperature of the system remains constant during the process."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The entropy of the system and its environment remains unchanged."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "The entropy of the system and its environment must increase."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id18"
+  },
+  {
+    "input": {
+      "text": "The best type of laser with which to do spectroscopy over a range of visible wavelengths is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "a dye laser"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "a helium-neon laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an excimer laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "a ruby laser"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id19"
+  },
+  {
+    "input": {
+      "text": "Excited states of the helium atom can be characterized as para- (antiparallel electron spins) and ortho- (parallel electron spins). The observation that an ortho- state has lower energy than the corresponding para- state can be understood in terms of which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "The Heisenberg uncertainty principle"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The Pauli exclusion principle"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "The Bohr model of the atom"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Nuclear hyperfine coupling"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id20"
+  },
+  {
+    "input": {
+      "text": "Which of the following gives the total spin quantum number of the electrons in the ground state of neutral nitrogen (Z = 7)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1/2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3/2"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "5/2"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id21"
+  },
+  {
+    "input": {
+      "text": "Consider three identical, ideal capacitors. The first capacitor is charged to a voltage and then disconnected from the battery. The other two capacitors, initially uncharged and connected in series, are then connected across the first capacitor. What is the final voltage on the first capacitor?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "V_0/5"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "V_0/3"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "V_0/2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2V_0/3"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id22"
+  },
+  {
+    "input": {
+      "text": "Protons used in cancer therapy are typically accelerated to about 0.6c. How much work must be done on a particle of mass m in order for it to reach this speed, assuming it starts at rest?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.25mc^2"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.60mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.67mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.25mc^2"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id23"
+  },
+  {
+    "input": {
+      "text": "De Broglie hypothesized that the linear momentum and wavelength of a free massive particle are related by which of the following constants?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Planck\u2019s constant"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Boltzmann\u2019s constant"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The Rydberg constant"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The speed of light"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id24"
+  },
+  {
+    "input": {
+      "text": "If the total energy of a particle of mass m is equal to twice its rest energy, then the magnitude of the particle\u2019s relativistic momentum is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "mc/2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "mc/(2^(1/2))"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "mc"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "(3^(1/2))mc"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id25"
+  },
+  {
+    "input": {
+      "text": "In the diamond structure of elemental carbon, the nearest neighbors of each C atom lie at the corners of a"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "square"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "hexagon"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "cube"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "tetrahedron"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id26"
+  },
+  {
+    "input": {
+      "text": "The coefficient of static friction between a small coin and the surface of a turntable is 0.30. The turntable rotates at 33.3 revolutions per minute. What is the maximum distance from the center of the turntable at which the coin will not slide?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.024 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.048 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.121 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.242 m"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id27"
+  },
+  {
+    "input": {
+      "text": "The sign of the charge carriers in a doped semiconductor can be deduced by measuring which of the following properties?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Specific heat"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Thermal conductivity"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Electrical resistivity"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Hall coefficient"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id28"
+  },
+  {
+    "input": {
+      "text": "The primary source of the Sun\u2019s energy is a series of thermonuclear reactions in which the energy produced is c^2 times the mass difference between"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "two hydrogen atoms and one helium atom"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "four hydrogen atoms and one helium atom"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "six hydrogen atoms and two helium atoms"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "three helium atoms and one carbon atom"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id29"
+  },
+  {
+    "input": {
+      "text": "Electromagnetic radiation provides a means to probe aspects of the physical universe. Which of the following statements regarding radiation spectra is NOT correct?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Lines in the infrared, visible, and ultraviolet regions of the spectrum reveal primarily the nuclear structure of the sample."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "The wavelengths identified in an absorption spectrum of an element are among those in its emission spectrum."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Absorption spectra can be used to determine which elements are present in distant stars."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Spectral analysis can be used to identify the composition of galactic dust."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id30"
+  },
+  {
+    "input": {
+      "text": "Which of the following statements about bosons and/or fermions is true?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Bosons have symmetric wave functions and obey the Pauli exclusion principle."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Bosons have antisymmetric wave functions and do not obey the Pauli exclusion principle."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Fermions have symmetric wave functions and obey the Pauli exclusion principle."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Fermions have antisymmetric wave functions and obey the Pauli exclusion principle."
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id31"
+  },
+  {
+    "input": {
+      "text": "Excited states of the helium atom can be characterized as para- (antiparallel electron spins) and ortho- (parallel electron spins). The observation that an ortho- state has lower energy than the corresponding para- state can be understood in terms of which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "The Heisenberg uncertainty principle"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The Pauli exclusion principle"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "The Bohr model of the atom"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Nuclear hyperfine coupling"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id32"
+  },
+  {
+    "input": {
+      "text": "One end of a horizontal, massless spring is attached to a wall. A mass of 0.30 kg is attached to the other end of the spring and rests on a table. The mass is displaced 0.030 m from its equilibrium position and released. It has a speed of 0.040 m/s as it passes through its equilibrium position. In the absence of friction, what is the total mechanical energy of the system?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.24 mJ"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.38 mJ"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.48 mJ"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.75 mJ"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id33"
+  },
+  {
+    "input": {
+      "text": "A meter stick with a speed of 0.8c moves past an observer. In the observer\u2019s reference frame, how long does it take the stick to pass the observer ?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.6 ns"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2.5 ns"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "4.2 ns"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "6.9 ns"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id34"
+  },
+  {
+    "input": {
+      "text": "Protons used in cancer therapy are typically accelerated to about 0.6c . How much work must be done on a particle of mass m in order for it to reach this speed, assuming it starts at rest?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.25mc^2"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.60mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.67mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.25mc^2"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id35"
+  },
+  {
+    "input": {
+      "text": "Characteristic X rays, appearing as sharp lines on a continuous background, are produced when high-energy electrons bombard a metal target. Which of the following processes results in the characteristic X rays?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Electrons producing \u010cerenkov radiation"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Electrons colliding with phonons in the metal"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Electrons filling inner shell vacancies that are created in the metal atoms"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Electrons combining with protons to form neutrons"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id36"
+  },
+  {
+    "input": {
+      "text": "An atom has filled n = 1 and n = 2 levels. How many electrons does the atom have?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "6"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id37"
+  },
+  {
+    "input": {
+      "text": "Light from a laser falls on a pair of very narrow slits separated by 0.5 micrometer, and bright fringes separated by 1.0 millimeter are observed on a distant screen. If the frequency of the laser light is doubled, what will be the separation of the bright fringes?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.25 mm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.5 mm"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1.0 mm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2.0 mm"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id38"
+  },
+  {
+    "input": {
+      "text": "Assume that the solar flux at Earth\u2019s surface is 1,000 W/m^2 and that the sunlight is normal to a completely reflecting surface with an area of 3 m^2. What is the total radiation force exerted on the surface?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2 x 10^-6 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1 x 10^-5 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2 x 10^-5 N"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "3 N"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id39"
+  },
+  {
+    "input": {
+      "text": "The sign of the charge carriers in a doped semiconductor can be deduced by measuring which of the following properties?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Magnetic susceptibility"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Hall coefficient"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Electrical resistivity"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Thermal conductivity"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id40"
+  },
+  {
+    "input": {
+      "text": "Which of the following ions CANNOT be used as a dopant in germanium to make an n-type semiconductor?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "As"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "P"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Sb"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "B"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id41"
+  },
+  {
+    "input": {
+      "text": "An astronomer observes a very small moon orbiting a planet and measures the moon\u2019s minimum and maximum distances from the planet\u2019s center and the moon\u2019s maximum orbital speed. Which of the following CANNOT be calculated from these measurements?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Mass of the moon"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Mass of the planet"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Minimum speed of the moon"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Period of the orbit"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id42"
+  },
+  {
+    "input": {
+      "text": "A rod measures 1.00 m in its rest system. How fast must an observer move parallel to the rod to measure its length to be 0.80 m?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.50c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.60c"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.70c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.80c"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id43"
+  },
+  {
+    "input": {
+      "text": "A proton moves in the +z-direction after being accelerated from rest through a potential difference V. The proton then passes through a region with a uniform electric field E in the +x-direction and a uniform magnetic field B in the +y-direction, but the proton\u2019s trajectory is not affected. If the experiment were repeated using a potential difference of 2V, the proton would then be"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "deflected in the +x-direction"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "deflected in the -x-direction"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "deflected in the +y-direction"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "deflected in the -y-direction"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id44"
+  },
+  {
+    "input": {
+      "text": "A magnetic field is directed perpendicular to the plane of a circular coil of area 0.2 m^2 and 250 turns. If the magnetic field is increased from 0.01 T to 0.06 T during a time interval of 0.25 s, the average induced EMF in the coil is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.04 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.1 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2.5 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10 V"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id45"
+  },
+  {
+    "input": {
+      "text": "Light of variable frequency shines on the metal surface of a photoelectric tube. Einstein\u2019s theory of the photoelectric effect predicts that the"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "work function of the metal is proportional to the frequency"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "work function of the metal is proportional to the wavelength"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "current in the tube is a linear function of the wavelength"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "potential difference necessary to stop the emitted electrons is a linear function of the frequency above the threshold frequency"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id46"
+  },
+  {
+    "input": {
+      "text": "If the Sun were suddenly replaced by a black hole of the same mass, it would have a Schwarzschild radius of 3,000 m. What effect, if any, would this change have on the orbits of the planets?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "The planets would move directly toward the Sun."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The planets would move in spiral orbits."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The planets would oscillate about their former elliptical orbits."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The orbits would remain unchanged."
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id47"
+  },
+  {
+    "input": {
+      "text": "At 20\u00b0C, a pipe open at both ends resonates at a frequency of 440 hertz. At what frequency does the same pipe resonate on a particularly cold day when the speed of sound is 3 percent lower than it would be at 20\u00b0C ?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "414 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "427 Hz"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "433 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "440 Hz"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id48"
+  },
+  {
+    "input": {
+      "text": "The quantum efficiency of a photon detector is 0.1. If 100 photons are sent into the detector, one after the other, the detector will detect photons"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "exactly 10 times"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 0.1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an average of 10 times, with an rms deviation of about 3"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id49"
+  },
+  {
+    "input": {
+      "text": "A three-dimensional harmonic oscillator is in thermal equilibrium with a temperature reservoir at temperature T. The average total energy of the oscillator is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "(1/2) k T"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "kT"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "(3/2) k T"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3kT"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id50"
+  },
+  {
+    "input": {
+      "text": "A student makes 10 one-second measurements of the disintegration of a sample of a long-lived radioactive isotope and obtains the following values: 3, 0, 2, 1, 2, 4, 0, 1, 2, 5. How long should the student count to establish the rate to an uncertainty of 1 percent?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "80 s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "160 s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2,000 s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "5,000 s"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id51"
+  },
+  {
+    "input": {
+      "text": "By definition, the electric displacement current through a surface S is proportional to the"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "magnetic flux through S"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "rate of change of the magnetic flux through S"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "time integral of the magnetic flux through S"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "rate of change of the electric flux through S"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id52"
+  },
+  {
+    "input": {
+      "text": "The negative muon, mu^-, has properties most similar to which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Electron"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "Meson"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Photon"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Boson"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id53"
+  },
+  {
+    "input": {
+      "text": "The speed of light inside of a nonmagnetic dielectric material with a dielectric constant of 4.0 is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.2 x 10^9 m/s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3.0 x 10^8 m/s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.5 x 10^8 m/s"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1.0 x 10^8 m/s"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id54"
+  },
+  {
+    "input": {
+      "text": "The energy from electromagnetic waves in equilibrium in a cavity is used to melt ice. If the Kelvin temperature of the cavity is increased by a factor of two, the mass of ice that can be melted in a fixed amount of time is increased by a factor of"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "8"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "16"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id55"
+  },
+  {
+    "input": {
+      "text": "A resistor in a circuit dissipates energy at a rate of 1 W. If the voltage across the resistor is doubled, what will be the new rate of energy dissipation?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.25 W"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.5 W"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1 W"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4 W"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id56"
+  },
+  {
+    "input": {
+      "text": "A gas cell with an optical path length of 10 cm is placed in one arm of a Michelson interferometer. If the light source for the interferometer is a laser with wavelength 632.2 nm, then 100 fringes are counted as the gas cell is evacuated. What is the index of refraction of the original gas?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.00063"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.00032"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1.00016"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.99968"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id57"
+  },
+  {
+    "input": {
+      "text": "Under certain conditions, a beam of electrons impinging on a crystal surface will diffract and a scattering pattern of the beam can be obtained. What is the approximate kinetic energy of the electrons needed in order to see the pattern? (Assume the lattice spacing of the crystal to be 0.4 nm.)"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.1 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10 eV"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "100 eV"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id58"
+  },
+  {
+    "input": {
+      "text": "A uniform solid disk starts from rest and rolls down an inclined plane without slipping. After some time, what fraction of the disk\u2019s total kinetic energy is rotational kinetic energy?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1/4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1/3"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1/2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2/3"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id59"
+  },
+  {
+    "input": {
+      "text": "Blue light of wavelength 480 nanometers is most strongly reflected off a thin film of oil on a glass slide when viewed near normal incidence. Assuming that the index of refraction of the oil is 1.2 and that of the glass is 1.6, what is the minimum thickness of the oil film (other than zero) ?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "150 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "200 nm"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "300 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "400 nm"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id60"
+  },
+  {
+    "input": {
+      "text": "A heat pump is to extract heat from an outdoor environment at 7\u00b0C and heat the environment indoors to 27\u00b0C. For each 15,000 J of heat delivered indoors, the smallest amount of work that must be supplied to the heat pump is approximately"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "500 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1,000 J"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1,100 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2,000 J"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id61"
+  },
+  {
+    "input": {
+      "text": "The driver of a police car hears an echo of the car\u2019s siren from a wall toward which the car is moving with a speed of 3.5 m/s. If the speed of sound is 350 m/s and the frequency of the siren is 600 Hz, the driver hears the echo at a frequency nearest to which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "600 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "606 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "612 Hz"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "618 Hz"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id62"
+  },
+  {
+    "input": {
+      "text": "A particle decays in 2.0 ms in its rest frame. If the same particle moves at v=0.60c in the lab frame, how far will it travel in the lab before decaying?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "150 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "288 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "360 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "450 m"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id63"
+  },
+  {
+    "input": {
+      "text": "A tube of water is traveling at 1/2 c relative to the lab frame when a beam of light traveling in the same direction as the tube enters it. What is the speed of light in the water relative to the lab frame? (The index of refraction of water is 4/3.)"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1/2 c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2/3 c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "5/6 c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10/11 c"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id64"
+  },
+  {
+    "input": {
+      "text": "The rest mass of a particle with total energy 5.0 GeV and momentum 4.9 GeV/c is approximately"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.1 GeV/c^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.2 GeV/c^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.5 GeV/c^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.0 GeV/c^2"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id65"
+  },
+  {
+    "input": {
+      "text": "A grating spectrometer can just barely resolve two wavelengths of 500 nm and 502 nm, respectively. Which of the following gives the resolving power of the spectrometer?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "250"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "5,000"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10,000"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id66"
+  },
+  {
+    "input": {
+      "text": "The best type of laser with which to do spectroscopy over a range of visible wavelengths is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "a dye laser"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "a helium-neon laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "an excimer laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "a ruby laser"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id67"
+  },
+  {
+    "input": {
+      "text": "The eigenvalues of a Hermitian operator are always"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "real"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "imaginary"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "degenerate"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "linear"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id68"
+  },
+  {
+    "input": {
+      "text": "A net force F_A acts on object A, and a net force F_B acts on object B. The mass of object B is twice the mass of object A, and the acceleration of object B is twice that of object A. Which of the following is true of forces F_A and F_B?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "F_B = 1/4 F_A"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "F_B = 1/2 F_A"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "F_B = 2F_A"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "F_B = 4F_A"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id69"
+  },
+  {
+    "input": {
+      "text": "Under ideal conditions, the electric and magnetic fields inside a superconductor are zero. Maxwell\u2019s equations imply that which of the following must be true just outside the surface of the superconductor?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "B = 0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "B is perpendicular to the surface."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "B is tangential to the surface."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "B is time independent."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id70"
+  },
+  {
+    "input": {
+      "text": "Two students perform an experiment in which they drop a ball from rest from a known height above the ground and measure the speed of the ball just before it strikes the ground. From repeated measurement, the students estimate the uncertainty in the measured speed of the ball to be 10 percent. Which of the following gives the uncertainty in the kinetic energy of the ball? (Assume the uncertainty in the ball\u2019s mass is negligibly small.)"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "5%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "15%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "20%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id71"
+  },
+  {
+    "input": {
+      "text": "A particle is constrained to move in a circle with a 10-meter radius. At one instant, the particle\u2019s speed is 10 meters per second and is increasing at a rate of 10 meters per second squared. The angle between the particle\u2019s velocity and acceleration vectors is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0\u00b0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "30\u00b0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "45\u00b0"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "60\u00b0"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id72"
+  },
+  {
+    "input": {
+      "text": "If the absolute temperature of a blackbody is increased by a factor of 3, the energy radiated per second per unit area does which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Decreases by a factor of 81."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Decreases by a factor of 9."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Increases by a factor of 9."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Increases by a factor of 81."
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id73"
+  },
+  {
+    "input": {
+      "text": "A magnetic field is directed perpendicular to the plane of a circular coil of area 0.2 m^2 and 250 turns. If the magnetic field is increased from 0.01 T to 0.06 T during a time interval of 0.25 s, the average induced EMF in the coil is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.04 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.1 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2.5 V"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10 V"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id74"
+  },
+  {
+    "input": {
+      "text": "Which of the following is true about any system that undergoes a reversible thermodynamic process?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "There are no changes in the internal energy of the system."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The temperature of the system remains constant during the process."
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "The entropy of the system and its environment remains unchanged."
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "The entropy of the system and its environment must increase."
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id75"
+  },
+  {
+    "input": {
+      "text": "The first five harmonics produced by an organ pipe open at both ends are 50 Hz, 100 Hz, 150 Hz, 200 Hz, and 250 Hz. Which of the harmonics, if any, will survive once the pipe is closed at one end?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "50 Hz, 150 Hz, and 250 Hz only"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "100 Hz and 200 Hz only"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "150 Hz and 250 Hz only"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "None"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id76"
+  },
+  {
+    "input": {
+      "text": "Electromagnetic radiation emitted from a nucleus is most likely to be in the form of"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "gamma rays"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "microwaves"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "ultraviolet radiation"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "visible light"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id77"
+  },
+  {
+    "input": {
+      "text": "An organ pipe, closed at one end and open at the other, is designed to have a fundamental frequency of C (131 Hz). What is the frequency of the next higher harmonic for this pipe?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "44 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "196 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "262 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "393 Hz"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id78"
+  },
+  {
+    "input": {
+      "text": "A single-electron atom has the electron in the l = 2 state. The number of allowed values of the quantum number m_l is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "5"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id79"
+  },
+  {
+    "input": {
+      "text": "Two simple pendulums A and B consist of identical masses suspended from strings of length L_A and L_B, respectively. The two pendulums oscillate in equal gravitational fields. If the period of pendulum B is twice the period of pendulum A, which of the following is true of the lengths of the two pendulums?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "L_B = 4L_A"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "L_B = 2L_A"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "L_B = L_A"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "L_B = 1/2 L_A"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id80"
+  },
+  {
+    "input": {
+      "text": "According to the BCS theory, the attraction between Cooper pairs in a superconductor is due to"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "the weak nuclear force"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "the strong nuclear force"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "vacuum polarization"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "interactions with the ionic lattice"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id81"
+  },
+  {
+    "input": {
+      "text": "A rod measures 1.00 m in its rest system. How fast must an observer move parallel to the rod to measure its length to be 0.80 m?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.50c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.60c"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.70c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.80c"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id82"
+  },
+  {
+    "input": {
+      "text": "The energy required to remove both electrons from the helium atom in its ground state is 79.0 eV. How much energy is required to ionize helium (i.e., to remove one electron)?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "24.6 eV"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "39.5 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "51.8 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "54.4 eV"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id83"
+  },
+  {
+    "input": {
+      "text": "At the present time, the temperature of the universe (i.e., the microwave radiation background) is about 3 K. When the temperature was 12 K, typical objects in the universe, such as galaxies, were"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "one-quarter as distant as they are today"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "one-half as distant as they are today"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "separated by about the same distances as they are today"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "two times as distant as they are today"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id84"
+  },
+  {
+    "input": {
+      "text": "By definition, the electric displacement current through a surface S is proportional to the"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "rate of change of the electric flux through S"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "electric flux through S"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "time integral of the magnetic flux through S"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "rate of change of the magnetic flux through S"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id85"
+  },
+  {
+    "input": {
+      "text": "The suspension cable of a 1,000 kg elevator snaps, sending the elevator moving downward through its shaft. The emergency brakes of the elevator stop the elevator shortly before it reaches the bottom of the shaft. If the elevator fell a distance of 100 m starting from rest, the heat that the brakes must dissipate to bring the elevator safely to rest is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "100 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1,000 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10,000 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1,000,000 J"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id86"
+  },
+  {
+    "input": {
+      "text": "The hydrogen lines observed in the spectrum of the quasar 3C9 are shifted so far into the red that their wavelengths are three times as long as those observed in the light from hydrogen atoms at rest in a laboratory on Earth. If it is assumed that the shift is entirely due to the relative motion of 3C9 and Earth, the relative speed of the quasar is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.8c"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.5c"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id87"
+  },
+  {
+    "input": {
+      "text": "A 10 kg box slides horizontally without friction at a speed of 1 m/s. At one point, a constant force is applied to the box in the direction of its motion. The box travels 5 m with the constant force applied. The force is then removed, leaving the box with a speed of 2 m/s. Which of the following gives the magnitude of the applied force?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3 N"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "4 N"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id88"
+  },
+  {
+    "input": {
+      "text": "Two spaceships approach Earth with equal speeds, as measured by an observer on Earth, but from opposite directions. A meterstick on one spaceship is measured to be 60 cm long by an occupant of the other spaceship. What is the speed of each spaceship, as measured by the observer on Earth?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.4c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.5c"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.6c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.7c"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id89"
+  },
+  {
+    "input": {
+      "text": "The suspension cable of a 1,000 kg elevator snaps, sending the elevator moving downward through its shaft. The emergency brakes of the elevator stop the elevator shortly before it reaches the bottom of the shaft. If the elevator fell a distance of 100 m starting from rest, the heat that the brakes must dissipate to bring the elevator safely to rest is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10,000 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "100,000 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1,000,000 J"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "10,000,000 J"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id90"
+  },
+  {
+    "input": {
+      "text": "The mean kinetic energy of the conduction electrons in metals is ordinarily much higher than kT because"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "electrons have many more degrees of freedom than atoms do"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "the electrons and the lattice are not in thermal equilibrium"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "the electrons form a degenerate Fermi gas"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "electrons in metals are highly relativistic"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id91"
+  },
+  {
+    "input": {
+      "text": "A 10 kg box slides horizontally without friction at a speed of 1 m/s. At one point, a constant force is applied to the box in the direction of its motion. The box travels 5 m with the constant force applied. The force is then removed, leaving the box with a speed of 2 m/s. Which of the following gives the magnitude of the applied force?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2 N"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3 N"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "4 N"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id92"
+  },
+  {
+    "input": {
+      "text": "Light of variable frequency shines on the metal surface of a photoelectric tube. Einstein\u2019s theory of the photoelectric effect predicts that the"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "work function of the metal is proportional to the frequency"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "work function of the metal is proportional to the wavelength"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "current in the tube is a linear function of the wavelength"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "potential difference necessary to stop the emitted electrons is a linear function of the frequency above the threshold frequency"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id93"
+  },
+  {
+    "input": {
+      "text": "A spring of force constant k is stretched a certain distance. It takes twice as much work to stretch a second spring by half this distance. The force constant of the second spring is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4k"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "8k"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id94"
+  },
+  {
+    "input": {
+      "text": "An observer O at rest midway between two sources of light at x = 0 and x = 10 m observes the two sources to flash simultaneously. According to a second observer O', moving at a constant speed parallel to the x-axis, one source of light flashes 13 ns before the other. Which of the following gives the speed of O' relative to O?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.13c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.15c"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.36c"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.53c"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id95"
+  },
+  {
+    "input": {
+      "text": "The surface of the Sun has a temperature close to 6,000 K and it emits a blackbody (Planck) spectrum that reaches a maximum near 500 nm. For a body with a surface temperature close to 300 K, at what wavelength would the thermal spectrum reach a maximum?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "10:00 PM"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "100 Pm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10 mm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "100 mm"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id96"
+  },
+  {
+    "input": {
+      "text": "Consider an electron in the n = 4, l = 1 state in hydrogen. Which of the following final states can NOT be reached by an allowed transition?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "n = 3, l = 2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "n = 3, l = 1"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "n = 3, l = 0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "n = 2, l = 0"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id97"
+  },
+  {
+    "input": {
+      "text": "A single-electron atom has the electron in the l = 2 state. The number of allowed values of the quantum number m_l is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "5"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id98"
+  },
+  {
+    "input": {
+      "text": "The driver of a police car hears an echo of the car\u2019s siren from a wall toward which the car is moving with a speed of 3.5 m/s. If the speed of sound is 350 m/s and the frequency of the siren is 600 Hz, the driver hears the echo at a frequency nearest to which of the following?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "588 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "594 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "600 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "612 Hz"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id99"
+  },
+  {
+    "input": {
+      "text": "The emission spectrum of the doubly ionized lithium atom Li++ (Z = 3, A = 7) is identical to that of a hydrogen atom in which all the wavelengths are"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "decreased by a factor of 9"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "decreased by a factor of 49"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "decreased by a factor of 81"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "increased by a factor of 9"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id100"
+  },
+  {
+    "input": {
+      "text": "A photon strikes an electron of mass m that is initially at rest, creating an electron-positron pair. The photon is destroyed and the positron and two electrons move off at equal speeds along the initial direction of the photon. The energy of the photon was"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3mc^2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "4mc^2"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id101"
+  },
+  {
+    "input": {
+      "text": "Which of the following lasers utilizes transitions that involve the energy levels of free atoms?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "Diode laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Dye laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Free-electron laser"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "Gas laser"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id102"
+  },
+  {
+    "input": {
+      "text": "Unpolarized light is incident on a pair of ideal linear polarizers whose transmission axes make an angle of 45q with each other. The transmitted light intensity through both polarizers is what percentage of the incident intensity?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "100%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "75%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "50%"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "25%"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id103"
+  },
+  {
+    "input": {
+      "text": "Sound waves moving at 350 m/s diffract out of a speaker enclosure with an opening that is a long rectangular slit 0.14 m across. At about what frequency will the sound first disappear at an angle of 45q from the normal to the speaker face?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "500 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1,750 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2,750 Hz"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3,500 Hz"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id104"
+  },
+  {
+    "input": {
+      "text": "The emission spectrum of the doubly ionized lithium atom Li++ (Z = 3, A = 7) is identical to that of a hydrogen atom in which all the wavelengths are"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "decreased by a factor of 9"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "decreased by a factor of 49"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "decreased by a factor of 81"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "increased by a factor of 9"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id105"
+  },
+  {
+    "input": {
+      "text": "A uniform solid disk starts from rest and rolls down an inclined plane without slipping. After some time, what fraction of the disk\u2019s total kinetic energy is rotational kinetic energy?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1/4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1/3"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1/2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2/3"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id106"
+  },
+  {
+    "input": {
+      "text": "The speed of light inside of a nonmagnetic dielectric material with a dielectric constant of 4.0 is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "1.2 * 10^9 m/s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3.0 * 10^8 m/s"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1.5 * 10^8 m/s"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1.0 * 10^8 m/s"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id107"
+  },
+  {
+    "input": {
+      "text": "A 3-microfarad capacitor is connected in series with a 6-microfarad capacitor. When a 300-volt potential difference is applied across this combination, the total energy stored in the two capacitors is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.09 J"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "0.18 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.27 J"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "0.41 J"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id108"
+  },
+  {
+    "input": {
+      "text": "Under certain conditions, a beam of electrons impinging on a crystal surface will diffract and a scattering pattern of the beam can be obtained. What is the approximate kinetic energy of the electrons needed in order to see the pattern? (Assume the lattice spacing of the crystal to be 0.4 nm.)"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0.1 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10 eV"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "100 eV"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id109"
+  },
+  {
+    "input": {
+      "text": "Two identical satellites, A and B, are in circular orbits around Earth. The orbital radius of A is twice that of B. Which of the following gives the ratio of the angular momentum of A to the angular momentum of B?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "2"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "sqrt(2)"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1/sqrt(2)"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id110"
+  },
+  {
+    "input": {
+      "text": "An object is thrown horizontally from the open window of a building. If the initial speed of the object is 20 m/s and it hits the ground 2.0 s later, from what height was it thrown? (Neglect air resistance and assume the ground is level.)"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "4.9 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "9.8 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "10.0 m"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "19.6 m"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id111"
+  },
+  {
+    "input": {
+      "text": "In a nonrelativistic, one-dimensional collision, a particle of mass 2m collides with a particle of mass m at rest. If the particles stick together after the collision, what fraction of the initial kinetic energy is lost in the collision?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1/4"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "1/3"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1/2"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id112"
+  },
+  {
+    "input": {
+      "text": "White light is normally incident on a puddle of water (index of refraction 1.33). A thin (500 nm) layer of oil (index of refraction 1.5) floats on the surface of the puddle. Of the following, the most strongly reflected wavelength is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "500 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "550 nm"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "600 nm"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "650 nm"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id113"
+  },
+  {
+    "input": {
+      "text": "A nonrelativistic particle with a charge twice that of an electron moves through a uniform magnetic field. The field has a strength of \u03c0/4 tesla and is perpendicular to the velocity of the particle. What is the particle\u2019s mass if it has a cyclotron frequency of 1,600 hertz?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "2.5 * 10^-23 kg"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "1.2 * 10^-22 kg"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "3.3 * 10^-22 kg"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "5.0 * 10^-21 kg"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id114"
+  },
+  {
+    "input": {
+      "text": "An airplane drops a payload while traveling due north, parallel to the ground, at a constant speed of 100 m/s. If air resistance is neglected, what is the velocity of the payload relative to the plane 4.0 s after it is released?"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "0"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "40 m/s down"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "80 m/s down"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "100 m/s north and 40 m/s down"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id115"
+  },
+  {
+    "input": {
+      "text": "Positronium is an atom formed by an electron and a positron (antielectron). It is similar to the hydrogen atom, with the positron replacing the proton. If a positronium atom makes a transition from the state with n=3 to a state with n=1, the energy of the photon emitted in this transition is closest to"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "6.0 e"
+        },
+        "tags": [
+          "correct"
+        ]
+      },
+      {
+        "output": {
+          "text": "6.8 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "12.2 eV"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "13.6 eV"
+        },
+        "tags": []
+      }
+    ],
+    "split": "test",
+    "id": "id116"
+  },
+  {
+    "input": {
+      "text": "A satellite of mass m orbits a planet of mass M in a circular orbit of radius R. The time required for one revolution is"
+    },
+    "references": [
+      {
+        "output": {
+          "text": "independent of M"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "proportional to m^(1/2)"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "linear in R"
+        },
+        "tags": []
+      },
+      {
+        "output": {
+          "text": "proportional to R^(3/2)"
+        },
+        "tags": [
+          "correct"
+        ]
+      }
+    ],
+    "split": "test",
+    "id": "id117"
+  }
+]

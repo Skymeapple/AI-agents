@@ -1,0 +1,203 @@
+{
+  "collected_at": "2026-10-24",
+  "collector": "agent:web-research",
+  "observations": [
+    {
+      "app": {
+        "name": "Runpod",
+        "url": "https://www.runpod.io",
+        "kind": "product",
+        "description": "GPU cloud for AI inference, training and serverless agent workloads.",
+        "tags": [
+          "llm-inference",
+          "agent-runtime"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 325000000,
+      "observed_on": "2026-10-13",
+      "source_url": "https://www.runpod.io/press/runpod-325m-arr-new-cfo",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Company press release: surpassed $325M ARR (up from $120M in January 2026); company-wide."
+    },
+    {
+      "app": {
+        "name": "Runpod",
+        "url": "https://www.runpod.io",
+        "kind": "product",
+        "description": "GPU cloud for AI inference, training and serverless agent workloads.",
+        "tags": [
+          "llm-inference",
+          "agent-runtime"
+        ]
+      },
+      "metric": "users",
+      "value": 1200000,
+      "observed_on": "2026-10-13",
+      "source_url": "https://www.runpod.io/press/runpod-325m-arr-new-cfo",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Developers on the platform ('more than 1.2 million', vs ~495,000 a year earlier); registered developer accounts, not MAU. Also said September had 95,000+ new signups."
+    },
+    {
+      "app": {
+        "name": "Horizon3.ai (NodeZero)",
+        "url": "https://horizon3.ai",
+        "kind": "product",
+        "description": "Autonomous AI pentesting and security platform (NodeZero).",
+        "tags": [
+          "security",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-10-20",
+      "source_url": "https://www.morningstar.com/news/business-wire/20261020386063/horizon3-surpasses-100-million-arr-marking-a-key-milestone-in-the-shift-to-continuous-production-safe-autonomous-security",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Business Wire release: surpassed $100M ARR, company-wide. Headline growth '120%+ YoY' conflicts with another snippet citing 102% for FY2026, so growth not recorded."
+    },
+    {
+      "app": {
+        "name": "Microsoft 365 Copilot",
+        "url": "https://www.microsoft.com/microsoft-365/copilot",
+        "kind": "product",
+        "description": "Microsoft's AI assistant and agents embedded across Microsoft 365 apps.",
+        "tags": [
+          "assistant",
+          "productivity",
+          "enterprise-agent"
+        ]
+      },
+      "metric": "users",
+      "value": 30000000,
+      "observed_on": "2026-07-29",
+      "source_url": "https://www.uctoday.com/unified-communications/microsoft-365-copilot-passes-30-million-paid-seats-as-cloud-and-ai-growth-power-record-quarter",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Paid Microsoft 365 Copilot seats ('over 30 million'), stated by Nadella on the FY26 Q4 call July 29, 2026 ('we now have'); seats, not MAU. Net seat adds more than doubled QoQ."
+    },
+    {
+      "app": {
+        "name": "GitHub Copilot",
+        "url": "https://copilot.github.com",
+        "kind": "product",
+        "description": "GitHub's AI coding assistant and coding agent.",
+        "tags": [
+          "coding-agent",
+          "devtools"
+        ]
+      },
+      "metric": "users",
+      "value": 50000000,
+      "observed_on": "2026-07-29",
+      "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/microsoft-msft-q4-2026-earnings-call-transcript/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Nadella on FY26 Q4 call (July 29, 2026): GitHub Copilot at 50M users; active window not stated, likely cumulative/all users incl. free tiers (earlier 20M figure was all-time users)."
+    },
+    {
+      "app": {
+        "name": "Venice AI",
+        "url": "https://venice.ai",
+        "kind": "consumer_app",
+        "description": "Privacy-focused AI chat app hosting open models with client-side prompt encryption.",
+        "tags": [
+          "assistant",
+          "multimodal"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 100000000,
+      "observed_on": "2026-08-17",
+      "source_url": "https://cryptobriefing.com/venice-ai-100m-annualized-revenue/",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Founder Erik Voorhees announced >$100M annualized revenue; company-wide; up from >$70M reported at July 2026 Series A."
+    },
+    {
+      "app": {
+        "name": "Langdock",
+        "url": "https://www.langdock.com",
+        "kind": "product",
+        "description": "Berlin-based enterprise AI workspace for chat, assistants and agents on multiple models.",
+        "tags": [
+          "enterprise-agent",
+          "assistant"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 55000000,
+      "observed_on": "2026-09-30",
+      "source_url": "https://app.dealroom.co/news/note/langdock-hits-50m-arr-55m",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Co-CEO announced passing EUR 50M ARR in September 2026; $55M is the outlet's stated USD equivalent. Only month stated -> last day of month (ARR Club logs Sep 16). Company-wide."
+    },
+    {
+      "app": {
+        "name": "Viktor",
+        "url": "https://getviktor.com",
+        "kind": "product",
+        "description": "AI coworker agent that works inside Slack and Microsoft Teams.",
+        "tags": [
+          "enterprise-agent",
+          "productivity"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 50000000,
+      "observed_on": "2026-09-18",
+      "source_url": "https://www.arr.club/getviktor/viktor-arr-hit-50m-in-just-7-months",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Co-founder Fryderyk Wiatrowski announced $50M annualized revenue run rate within 7 months; relayed by ARR Club tracker (founder post not seen directly)."
+    },
+    {
+      "app": {
+        "name": "Peec AI",
+        "url": "https://peec.ai",
+        "kind": "product",
+        "description": "Analytics for brand visibility in AI search engines and chatbots.",
+        "tags": [
+          "ai-search"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 15000000,
+      "observed_on": "2026-09-02",
+      "source_url": "https://www.arr.club/peec/peec-arr-hit-15m-up-from-10m-in-just-3-months",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). ARR Club milestone log: $15M ARR, up from $10M in three months; relayed company milestone, not confirmed by a second outlet."
+    },
+    {
+      "app": {
+        "name": "Base44",
+        "url": "https://base44.com",
+        "kind": "product",
+        "description": "Wix-owned vibe-coding app builder.",
+        "tags": [
+          "coding-agent"
+        ]
+      },
+      "metric": "revenue_annualized_usd",
+      "value": 200000000,
+      "observed_on": "2026-08-31",
+      "source_url": "https://calcalistech.com/ctechnews/article/syw900pvdzg",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Founder Maor Shlomo posted Base44 'just blew past' $200M ARR, five months after $100M; product-level (Wix subsidiary). Exact day not given in snippet; dated August 2026 -> last day of month."
+    },
+    {
+      "app": {
+        "name": "Tolan",
+        "url": "https://www.tolans.com",
+        "kind": "consumer_app",
+        "description": "AI companion app with animated alien characters, expanding into daily-assistant tasks.",
+        "tags": [
+          "companion",
+          "assistant"
+        ]
+      },
+      "metric": "users",
+      "value": 250000,
+      "observed_on": "2026-10-19",
+      "source_url": "https://runtimewire.com/article/tolan-raises-30m-ai-companion-daily-assistant",
+      "method": "reported",
+      "note": "Search-result summary only (WebFetch ENOTFOUND, Tavily over quota). Company-reported 'more than 250,000 active users' at $30M raise (Oct 19, 2026); active window not stated. ARR only given as 'double-digit millions', not recorded."
+    }
+  ]
+}

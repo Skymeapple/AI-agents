@@ -1,0 +1,97 @@
+[
+{
+"split": "valid",
+"tactic": "rfl",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "norm_num",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "simp",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "ring",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "linarith",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "nlinarith",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "omega",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "positivity",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "aesop",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "simp_all",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "grind",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "bound",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "intros; norm_num [*]",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "intros; nlinarith [sq_nonneg (0:\u211d)]",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "norm_num at *; linarith",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "field_simp; ring",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "intros; omega",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "intros; simp_all; linarith",
+"proved": []
+},
+{
+"split": "valid",
+"tactic": "norm_num [Nat.Prime, Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial]",
+"proved": []
+}
+]

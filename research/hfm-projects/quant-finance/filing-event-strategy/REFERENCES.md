@@ -1,0 +1,90 @@
+# References: Event-Driven Equity Strategy Based on Financial Filing Events
+
+Checked 2026-11-25. `[S]` = existence, title and URL confirmed by a web search result in this session. `[P]` = confirmed by fetching the primary page (arXiv abstract page or the repository's raw README/LICENSE). Nothing is cited from memory; items that could not be confirmed are under "Unverified leads". This is research material, not investment advice.
+
+## Theory and established methods
+
+- **Bernard, Thomas (1989).** Post-Earnings-Announcement Drift: Delayed Price Response or Risk Premium? Journal of Accounting Research 27 (Supplement), 1-36. https://econpapers.repec.org/RePEc:bla:joares:v:27:y:1989:i::p:1-36 `[S]`
+  - The founding drift result: returns keep moving in the direction of the earnings surprise after the announcement. It is the main hypothesis family for a filing-event policy.
+- **Sloan (1996).** Do Stock Prices Fully Reflect Information in Accruals and Cash Flows About Future Earnings? The Accounting Review 71(3), 289-315. https://www.cuhk.edu.hk/acy2/workshop/June2009Wasley/1996TAR).pdf `[S]`
+  - The accruals anomaly: high-accrual firms earn lower later returns. Accruals can be computed from XBRL values alone, which fits the "no report text" constraint.
+- **McLean, Pontiff (2016).** Does Academic Research Destroy Stock Return Predictability? Journal of Finance 71(1), 5-32. https://econpapers.repec.org/RePEc:bla:jfinan:v:71:y:2016:i:1:p:5-32 `[S]`
+  - Tracks 97 published predictors out of sample and after publication and finds returns fall. The exact size of the decline was not confirmed by a search result in this session, so no figure is quoted here.
+- **Harvey, Liu, Zhu (2016).** ... and the Cross-Section of Expected Returns. Review of Financial Studies 29(1), 5-68. https://nber.org/papers/w20592 `[S]`
+  - Multiple-testing framework; argues a new factor needs a t-statistic above 3.0. HFM scored 65 proposals on one evaluator, so this hurdle applies directly.
+- **Bailey, López de Prado (2014).** The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting and Non-Normality. Journal of Portfolio Management 40(5). https://papers.ssrn.com/abstract=2460551 `[S]`
+  - The correction to apply once the reward is uncapped: deflate the best Sharpe ratio by the number of trials and by non-normal returns.
+- **Bailey, Borwein, López de Prado, Zhu (2017).** The Probability of Backtest Overfitting. Journal of Computational Finance. https://papers.ssrn.com/abstract=2326253 `[S]`
+  - Combinatorially symmetric cross-validation; estimates how often the chosen event rule is below median out of sample.
+- **Chen, Zimmermann (2022).** Open Source Cross-Sectional Asset Pricing. Critical Finance Review 11(2), 207-264. https://papers.ssrn.com/abstract=3604626 `[S]`
+  - Reproduces 319 firm characteristics; for the 161 that were clearly significant originally, 98% of long-short portfolios have t-statistics above 1.96 (source: search summary of the paper). The standard list of accounting signals to rebuild from XBRL.
+- **Chen, Zimmermann (2022).** Publication Bias in Asset Pricing Research. arXiv:2209.13623. https://arxiv.org/abs/2209.13623 `[P]`
+  - Summarises meta-studies: almost all findings replicate and predictability persists out of sample, but at a reduced size; gives empirical-Bayes shrinkage as the correction.
+- **Chen (2022).** Do t-Statistic Hurdles Need to be Raised? arXiv:2204.10275. https://arxiv.org/abs/2204.10275 `[P]`
+  - Counterpoint to Harvey-Liu-Zhu: revised hurdles are weakly identified, while false-discovery-rate and shrinkage estimates are well identified. Use shrinkage, not a single cut-off.
+
+## Recent advances and breakthroughs (2023-2026)
+
+- **Chen, Lopez-Lira, Zimmermann (2022, ongoing revisions).** Does Peer-Reviewed Research Help Predict Stock Returns? arXiv:2212.10317. https://arxiv.org/abs/2212.10317 `[P]`
+  - Mining 29,000 accounting ratios for t-statistics above 2.0 gives out-of-sample predictability similar to peer-reviewed predictors; for both, about 50% remains after the original sample. Direct support for a systematic search over XBRL ratios, with a known expected decay.
+- **Kim, Muhn, Nikolaev (2024).** Financial Statement Analysis with Large Language Models. arXiv:2407.17866. https://arxiv.org/abs/2407.17866 `[S][P]`
+  - Predicts the direction of next-year earnings from anonymised, standardised statements without text. Closest published match to the task's inputs.
+- **Chen, Cho, Dou, Lev (2022).** Predicting Future Earnings Changes Using Machine Learning and Detailed Financial Data. Journal of Accounting Research 60(2), 467-515. https://papers.ssrn.com/abstract=4129242 `[S]`
+  - Machine learning on over 13,000 XBRL-derived predictors beats logistic regression and analysts for the direction of earnings changes. Shows detailed XBRL tags carry information beyond the usual ratios.
+- **Glasserman, Lin (2023).** Assessing Look-Ahead Bias in Stock Return Predictions Generated By GPT Sentiment Analysis. arXiv:2309.17322. https://arxiv.org/abs/2309.17322 `[P]`
+  - A language model can know what happened after the event it is asked to score; any model-generated signal must be tested on a window after the model's training cut-off or on anonymised inputs.
+- **He, Lv, Manela, Wu (2025).** Chronologically Consistent Large Language Models. arXiv:2502.21206. https://arxiv.org/abs/2502.21206 `[P]`
+  - Models trained only on text available at each date (ChronoBERT, ChronoGPT); the clean way to use a language model in a backtest.
+- **Lopez-Lira, Tang (2023).** Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models. arXiv:2304.07619. https://arxiv.org/abs/2304.07619 `[P]`
+  - Scores news headlines dated after the model's knowledge cut-off; the scores capture the initial reaction and predict later drift, and strategy returns fall as model adoption rises. Reference design for event-time evaluation with a clean cut-off.
+- **Zhu, Cai (2026).** Artificial Intelligence in Equity and Crypto Markets: Progress, Profitability Evidence, and the Limits of Automated Investing. arXiv:2609.04917. https://arxiv.org/abs/2609.04917 `[S][P]`
+  - Review to August 2026: point-in-time information must survive four steps (stable signal, feasible positions, executable orders, net returns); evidence for the last step is thin.
+
+## Datasets and benchmarks
+
+- **U.S. Securities and Exchange Commission.** Financial Statement Data Sets. https://www.sec.gov/data/financial-statement-data-sets `[S]`
+  - Quarterly zip files of numeric XBRL facts from the face financial statements (`sub`, `num`, `tag`, `pre` tables), from 2009. The Data.gov catalogue entry carries the U.S. public-domain label (https://catalog.data.gov/dataset/financial-statement-data-sets). The SUB file has one record per submission; time each event from the submission's filing date, not the fiscal period end, to stay point-in-time.
+- **U.S. Securities and Exchange Commission.** Financial Statement and Notes Data Sets. https://www.sec.gov/data-research/financial-statement-notes-data-sets `[S]`
+  - Adds note-level disclosures; monthly since November 2020. Same public source.
+- **Chen, Zimmermann.** Open Source Asset Pricing data. https://www.openassetpricing.com (linked from the repository README) and Federal Reserve page https://www.federalreserve.gov/econres/feds/open-source-cross-sectional-asset-pricing.htm `[S][P]`
+  - Monthly long-short returns for published predictors as free CSV files; a ready benchmark for how accrual and earnings signals performed after publication. Rebuilding the signals needs WRDS/CRSP, which is licensed.
+- **Loukas, Fergadiotis, Androutsopoulos, Malakasiotis (2021).** EDGAR-CORPUS: Billions of Tokens Make The World Go Round. arXiv:2109.14394. https://arxiv.org/abs/2109.14394 `[P]`
+  - Annual-report text corpus. Outside the task's inputs (no report text), listed only as the control for testing how much is lost without text.
+- **Free daily prices.** Qlib ships a public US daily data set (collected from Yahoo Finance per its README). https://github.com/microsoft/qlib `[P]`
+  - Usable for a replay. Caveats from the READMEs: the official Qlib download is marked "disabled temporarily"; Yahoo data "might not be perfect"; the yfinance README says Yahoo's API is "intended for personal use only" and refers users to Yahoo's terms. Survivorship and delisting returns are not handled, which biases event studies on small firms.
+
+## Open-source code and tools
+
+- **OpenSourceAP/CrossSection (repo, GPL).** Code that builds the predictor signals and portfolios; `pip install openassetpricing` downloads the data. https://github.com/OpenSourceAP/CrossSection `[S][P]`
+  - Exact definitions for accruals, earnings surprise and other accounting signals.
+- **dgunning/edgartools (repo, MIT).** Python library that reads filings and XBRL statements straight from EDGAR; no API key. https://github.com/dgunning/edgartools `[P]`
+  - Shortest path from a filing event to standardised statement values.
+- **nlpaueb/edgar-crawler (repo, GPL).** Crawler and parser used to build EDGAR-CORPUS. https://github.com/nlpaueb/edgar-crawler `[P]`
+- **esvhd/pypbo (repo, AGPL-3.0).** Probability of backtest overfitting in Python. https://github.com/esvhd/pypbo `[P]`
+- **stefan-jansen/machine-learning-for-trading (repo, MIT).** Worked deflated Sharpe ratio and multiple-testing examples. https://github.com/stefan-jansen/machine-learning-for-trading `[S][P]`
+- **ranaroussi/yfinance (repo, Apache-2.0).** Yahoo Finance downloader. https://github.com/ranaroussi/yfinance `[P]`
+  - Code licence is Apache-2.0; the data remain under Yahoo's terms (personal use per the README).
+
+## Breakthroughs in related fields that could transfer
+
+- **Poh, Lim, Zohren, Roberts (2020).** Building Cross-Sectional Systematic Strategies By Learning to Rank. arXiv:2012.07149. https://arxiv.org/abs/2012.07149 `[P]`
+  - Ranking losses across the firms that file in the same window, in place of per-firm regression.
+- **Boyd, Busseti, Diamond, Kahn, Koh, Nystrup, Speth (2017).** Multi-Period Trading via Convex Optimization. arXiv:1705.00109. https://arxiv.org/abs/1705.00109 `[P]`
+  - Turns event scores into positions under cost and risk limits; HFM's current policy uses fixed rules.
+
+## Published results to beat
+
+- **Kim, Muhn, Nikolaev (source: SUERF policy brief and CLS Blue Sky blog via search).** GPT-4 with chain-of-thought prompting: about 60% accuracy on the direction of next-year earnings from statements alone; a neural network on the same data: 60.4%; analysts: 53-57%. https://arxiv.org/abs/2407.17866
+  - Figures differ slightly between drafts, and the arXiv v3 entry is marked withdrawn; check the version before relying on a number.
+- **Chen, Cho, Dou, Lev (source: SSRN abstract via search).** Hedge portfolios formed on the predictions earn size-adjusted returns of about 5% to 9.7% a year. https://papers.ssrn.com/abstract=4129242
+- **Chen, Lopez-Lira, Zimmermann (source: arXiv abstract).** About 50% of in-sample predictability remains after the original sample, for mined and for peer-reviewed predictors alike. https://arxiv.org/abs/2212.10317
+  - A practical prior: halve any in-sample effect before judging whether it clears costs.
+
+## Unverified leads
+
+- McLean and Pontiff's headline decline figures (commonly quoted as 26% out of sample and 58% after publication): the search results did not show them; a draft fragment mentioned "about 32%". Read the published paper before quoting.
+- Martineau, "Rest in Peace Post-Earnings Announcement Drift" (Critical Finance Review): search was cut off by the session search limit; not confirmed.
+- Novy-Marx, Velikov, "A Taxonomy of Anomalies and Their Trading Costs" (Review of Financial Studies): same; not confirmed.
+- Hou, Xue, Zhang, "Replicating Anomalies" (Review of Financial Studies): not confirmed in this session.
+- Jensen, Kelly, Pedersen, "Is There a Replication Crisis in Finance?" (Journal of Finance): not confirmed in this session.
+- SEC EDGAR `companyfacts` / XBRL "frames" JSON API at data.sec.gov, and Stooq as a free daily price source with its terms: not confirmed in this session.

@@ -1,0 +1,16 @@
+# Run in the session container (SkyServer reachable there), not on Actions: python run_invariance.py photoz <folder>
+198350 galaxies; rows per 60-degree band: [32421, 5046, 64942, 60418, 12880, 22643]
+  [photoz by sky band] held out 0 (32421 rows): erm 0.0793, env-balanced 0.07976, group-dro 0.07971, env-standardised 0.09404, erm-nn 0.0814, vrex 0.08142, irm 0.082
+  [photoz by sky band] held out 1 (5046 rows): erm 0.06761, env-balanced 0.06768, group-dro 0.06843, env-standardised 0.07029, erm-nn 0.07305, vrex 0.07293, irm 0.0741
+  [photoz by sky band] held out 2 (64942 rows): erm 0.06032, env-balanced 0.06053, group-dro 0.06154, env-standardised 0.06402, erm-nn 0.06203, vrex 0.06228, irm 0.06285
+  [photoz by sky band] held out 3 (60418 rows): erm 0.04882, env-balanced 0.04917, group-dro 0.05004, env-standardised 0.05885, erm-nn 0.05039, vrex 0.05047, irm 0.05098
+  [photoz by sky band] held out 4 (12880 rows): erm 0.04997, env-balanced 0.05049, group-dro 0.05154, env-standardised 0.05406, erm-nn 0.05213, vrex 0.05242, irm 0.05308
+  [photoz by sky band] held out 5 (22643 rows): erm 0.06905, env-balanced 0.07027, group-dro 0.07032, env-standardised 0.07346, erm-nn 0.07106, vrex 0.07152, irm 0.07214
+RESULT [photoz by sky band] 6 held-out environments; mean / worst RMSE; environments better than its reference (erm for tree methods, erm-nn for vrex and irm):
+RESULT [photoz by sky band]   erm               0.06251 / 0.0793   better in 0/6
+RESULT [photoz by sky band]   env-balanced      0.06298 / 0.07976   better in 0/6
+RESULT [photoz by sky band]   group-dro         0.0636 / 0.07971   better in 0/6
+RESULT [photoz by sky band]   env-standardised  0.06912 / 0.09404   better in 0/6
+RESULT [photoz by sky band]   erm-nn            0.06501 / 0.0814   better in 0/6
+RESULT [photoz by sky band]   vrex              0.06517 / 0.08142   better in 1/6
+RESULT [photoz by sky band]   irm               0.06586 / 0.082   better in 0/6

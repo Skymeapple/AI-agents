@@ -1,0 +1,42 @@
+{
+ "takeaway": "Agent safety is the week's theme. Cloudflare's security-audit skill accelerated for a fourth straight day (32,421 to 40,137 stars since Oct 19), and NVIDIA's OpenShell sandbox runtime broke out after its GTC Berlin launch.",
+ "findings": [
+  {
+   "id": "cloudflare",
+   "heading": "Cloudflare's security skill has accelerated four days running",
+   "text": "Measured by the radar: 32,421 stars on Oct 19, 37,369 on Oct 22, 40,137 on Oct 23 (+2,768 in the last day). No announcement or merged commit since Sep 14; community pull requests picked up.",
+   "source": "https://github.com/cloudflare/security-audit-skill"
+  },
+  {
+   "id": "openshell",
+   "heading": "NVIDIA's agent sandbox runtime broke out",
+   "text": "NVIDIA/OpenShell gained 976 stars in a day (17,063 to 18,039) after NVIDIA announced an OpenShell reference architecture at GTC Berlin on Oct 21. It enforces file, system-call and network policy for agents.",
+   "source": "https://github.com/NVIDIA/OpenShell/releases"
+  },
+  {
+   "id": "trajectories",
+   "heading": "Five days of measurements separate steady growers from fading ones",
+   "text": "morluto/rea holds at 8,000 to 10,000 stars a day and orca and VoiceStudio at 1,300 to 1,600. ai-job-search fell from about 2,900 a day to about 600 and dropped off trending.",
+   "source": "https://github.com/trending?since=weekly"
+  },
+  {
+   "id": "sandbox",
+   "heading": "Agent sandboxes are a funded, crowded market",
+   "text": "Daytona raised $60M at a $1B valuation and reports its run-rate grew 25x from January to September. Modal, E2B, Runloop, Cloudflare and Vercel also sell sandboxes; the open gap is self-hosted policy and governance.",
+   "source": "https://dealroom.co/news/164304-daytona-raises-60m-series-b-at-1b-valuation-to-build-the-agentic-cloud/"
+  },
+  {
+   "id": "incumbents",
+   "heading": "Incumbents now report AI-only revenue",
+   "text": "Podium reports $150M in AI-agent ARR; Salesforce reports Agentforce at $1.5B, up more than 240% year on year. Both were read from search results.",
+   "source": "https://www.prnewswire.com/news-releases/podium-surpasses-150m-in-ai-agent-arr-in-2-5-years-302917303.html"
+  }
+ ],
+ "caveats": [
+  "Some apps (ai-job-search, artcraft, ai-memory) still rank on gains stated days ago, while the radar's own readings show them cooling.",
+  "GitHub trending pages were read short for a second day (9 to 20 repos instead of 25), so lower-ranked repos are missed.",
+  "Every company figure today came from search-result summaries; Hugging Face and Hacker News remain unreachable.",
+  "ai-job-search moved to a new owner and is now tracked under ai-job-search-dev, with its full history.",
+  "No forecast has matured yet; the first scorecard is expected around Oct 26 to 27."
+ ]
+}

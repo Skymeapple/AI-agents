@@ -1,0 +1,36 @@
+job: cross-venue-routing
+started: 2026-11-25T15:18:56Z
+cores: 4, memory: 15 GB
+total 4106092
+drwxr-xr-x 2 runner runner      4096 Nov 25 15:19 .
+drwxr-xr-x 5 runner runner      4096 Nov 25 15:18 ..
+-rw-r--r-- 1 runner runner 645215925 Nov 25 15:19 bb-2025-03-03.csv
+-rw-r--r-- 1 runner runner 689323611 Nov 25 15:19 bb-2025-03-04.csv
+-rw-r--r-- 1 runner runner 391253393 Nov 25 15:19 bb-2025-03-05.csv
+-rw-r--r-- 1 runner runner 431610301 Nov 25 15:19 bb-2025-03-06.csv
+-rw-r--r-- 1 runner runner 836758784 Nov 25 15:19 bb-2025-03-07.csv
+-rw-r--r-- 1 runner runner 270054999 Mar  4  2025 bn-2025-03-03.csv
+-rw-r--r-- 1 runner runner 296707984 Mar  5  2025 bn-2025-03-04.csv
+-rw-r--r-- 1 runner runner 180515272 Mar  6  2025 bn-2025-03-05.csv
+-rw-r--r-- 1 runner runner 185219220 Mar  7  2025 bn-2025-03-06.csv
+-rw-r--r-- 1 runner runner 277933949 Mar  8  2025 bn-2025-03-07.csv
+agg_trade_id,price,quantity,first_trade_id,last_trade_id,transact_time,is_buyer_maker
+2601051552,94222.0,0.039,6034690439,6034690439,1740960004233,false
+timestamp,symbol,side,size,price,tickDirection,trdMatchID,grossValue,homeNotional,foreignNotional
+1740960000.0688,BTCUSDT,Buy,0.242,94258.80,MinusTick,660c1527-7504-563f-aaca-271e9df55345,2.28106296e+12,0.242,22810.6296
+loaded bn-2025-03-03.csv: 4065517 Binance trades, 5168058 Bybit trades
+loaded bn-2025-03-04.csv: 4466763 Binance trades, 5460317 Bybit trades
+loaded bn-2025-03-05.csv: 2717367 Binance trades, 3140627 Bybit trades
+loaded bn-2025-03-06.csv: 2788429 Binance trades, 3469082 Bybit trades
+loaded bn-2025-03-07.csv: 4184833 Binance trades, 6697818 Bybit trades
+averaging window chosen on the first day: 3600 s
+
+test: 4 days, 11432 orders; cost in basis points (lower is better)
+  policy                    mean cost  vs always Binance  days better than Binance
+  always Binance               -0.127             +0.000                     0/4
+  always Bybit                 -0.203             -0.075                     4/4
+  last same-side price         -0.827             -0.700                     4/4
+  basis-adjusted               -0.403             -0.276                     4/4
+  hindsight (bound)            -0.897             -0.770                     4/4
+  share routed to Binance: last same-side price 52%, basis-adjusted 52%
+finished: 2026-11-25T15:20:44Z, exit code 0

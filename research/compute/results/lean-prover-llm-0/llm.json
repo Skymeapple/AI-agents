@@ -1,0 +1,293 @@
+[
+{
+"name": "aime_1983_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 80
+},
+{
+"name": "aime_1988_p8",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 82
+},
+{
+"name": "aime_1995_p7",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 63
+},
+{
+"name": "algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 159
+},
+{
+"name": "algebra_amgm_sumasqdivbgeqsuma",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 96
+},
+{
+"name": "algebra_bleqa_apbon2msqrtableqambsqon8b",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 139
+},
+{
+"name": "algebra_sqineq_unitcircatbpabsamblt1",
+"proved": true,
+"attempts_ok": [
+0,
+1,
+2,
+3
+],
+"lean": "ok",
+"proof": "\n  cases' abs_cases (a - b) with h\u2081 h\u2081 <;>\n  nlinarith [sq_nonneg (a + b), sq_nonneg (a - b)]\n",
+"gen_secs": 31
+},
+{
+"name": "amc12_2000_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 89
+},
+{
+"name": "amc12a_2002_p6",
+"proved": true,
+"attempts_ok": [
+1,
+2
+],
+"lean": "ok",
+"proof": "\n  use n + 1\n  constructor\n  linarith\n  use 1\n  linarith\n",
+"gen_secs": 25
+},
+{
+"name": "amc12a_2009_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 40
+},
+{
+"name": "amc12a_2020_p15",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 112
+},
+{
+"name": "amc12a_2020_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 155
+},
+{
+"name": "amc12a_2021_p22",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 105
+},
+{
+"name": "amc12b_2002_p7",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 52
+},
+{
+"name": "amc12b_2020_p6",
+"proved": true,
+"attempts_ok": [
+3
+],
+"lean": "ok",
+"proof": "\n  use (n + 2 - 1)\n  simp [Nat.factorial_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib, Nat.mul_one, Nat.mul_add]\n  field_simp [Nat.factorial_ne_zero]\n  ring\n",
+"gen_secs": 56
+},
+{
+"name": "amc12b_2021_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 68
+},
+{
+"name": "imo_1963_p5",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 101
+},
+{
+"name": "imo_1974_p3",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 99
+},
+{
+"name": "imo_1985_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 37
+},
+{
+"name": "imo_2019_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 166
+},
+{
+"name": "induction_pord1p1on2powklt5on2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 47
+},
+{
+"name": "mathd_algebra_113",
+"proved": true,
+"attempts_ok": [
+0,
+1,
+2,
+3
+],
+"lean": "ok",
+"proof": "\n  nlinarith [sq_nonneg (x - 7)]\n",
+"gen_secs": 20
+},
+{
+"name": "mathd_algebra_17",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 87
+},
+{
+"name": "mathd_algebra_208",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 25
+},
+{
+"name": "mathd_algebra_293",
+"proved": true,
+"attempts_ok": [
+0
+],
+"lean": "ok",
+"proof": "\n  rw [Real.sqrt_mul]\n  ring_nf\n  field_simp\n  ring_nf\n  <;> norm_cast\n  <;> linarith\n  <;> apply Real.sqrt_eq_iff_sq_eq <;> norm_num\n  <;> linarith\n  <;> apply Real.sqrt_eq_iff_sq_eq <;> norm_num\n  <;> linarith\n  <;> apply Real.sqrt_eq_iff_sq_eq <;> norm_num\n  <;> linarith\n",
+"gen_secs": 63
+},
+{
+"name": "mathd_algebra_392",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 69
+},
+{
+"name": "mathd_algebra_756",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 73
+},
+{
+"name": "mathd_numbertheory_227",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 31
+},
+{
+"name": "mathd_numbertheory_296",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 106
+},
+{
+"name": "mathd_numbertheory_435",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 57
+},
+{
+"name": "mathd_numbertheory_5",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 100
+},
+{
+"name": "mathd_numbertheory_618",
+"proved": true,
+"attempts_ok": [
+2
+],
+"lean": "ok",
+"proof": "\n  rw [h\u2080] at h\u2081\n  rw [h\u2080] at h\u2081\n  norm_num at h\u2081\n  contrapose! h\u2081\n  have h\u2082 : n < 41 := by linarith\n  interval_cases n <;> norm_num [Nat.gcd_eq_right] at h\u2081 \u22a2\n  <;> try linarith\n  <;> linarith\n",
+"gen_secs": 54
+},
+{
+"name": "numbertheory_4x3m7y3neq2003",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 57
+},
+{
+"name": "numbertheory_notEquiv2i2jasqbsqdiv8",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 41
+}
+]

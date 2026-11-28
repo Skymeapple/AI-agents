@@ -1,0 +1,133 @@
+job: prover-probe
+started: 2026-11-27T05:23:23Z
+cores: 4, memory: 15 GB
+
+== Kimina-Prover gguf: 12
+  mradermacher/Kimina-Prover-Distill-8B-GGUF dl=1043 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+  prithivMLmods/Kimina-Prover-AI-MO-GGUF dl=821 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B-GGUF/Kimina-Prover-Distill-0.6B.Q4_K_M.gguf', 'Kimina-Prover-Distill-1.7B-GGUF/Kimina-Prover-Distill-1.7B.Q4_K_M.gguf', 'Kimina-Prover-Distill-8B-GGUF/Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-1.7B-GGUF dl=566 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-1.7B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-8B-i1-GGUF dl=523 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B.i1-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-0.6B-i1-GGUF dl=512 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-0.6B.i1-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-0.6B-i1-GGUF dl=429 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B.i1-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-0.6B-GGUF dl=414 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-0.6B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-1.7B-i1-GGUF dl=402 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-1.7B.i1-Q4_K_M.gguf']
+  gabriellarson/Kimina-Prover-Distill-8B-GGUF dl=385 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-0.6B-GGUF dl=378 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-1.7B-GGUF dl=348 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-1.7B.Q4_K_M.gguf']
+  prithivMLmods/Kimina-Prover-Distill-1.7B-F32-GGUF dl=325 gated=False lic=['license:mit'] gguf=['Kimina-Prover-Distill-1.7B.Q4_K_M.gguf']
+
+== DeepSeek-Prover-V2 gguf: 12
+  unsloth/DeepSeek-Prover-V2-7B-GGUF dl=6125 gated=False lic=[] gguf=['DeepSeek-Prover-V2-7B-Q4_K_M.gguf']
+  DevQuasar-15/deepseek-ai.DeepSeek-Prover-V2-671B-GGUF dl=2393 gated=False lic=[] gguf=['deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00001-of-00031.gguf', 'deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00002-of-00031.gguf', 'deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00003-of-00031.gguf']
+  unsloth/DeepSeek-Prover-V2-671B-GGUF dl=2245 gated=False lic=['license:mit'] gguf=['Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00001-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00002-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00003-of-00009.gguf']
+  mradermacher/DeepSeek-Prover-V2-7B-GGUF dl=1300 gated=False lic=[] gguf=['DeepSeek-Prover-V2-7B.Q4_K_M.gguf']
+  mradermacher/DeepSeek-Prover-V2-7B-i1-GGUF dl=488 gated=False lic=[] gguf=['DeepSeek-Prover-V2-7B.i1-Q4_K_M.gguf']
+  Polydim-Einsof/einsof2-deepseek-prover-v2-stiefel-gguf dl=325 gated=False lic=[] gguf=['einsof2-deepseek-prover-v2-stiefel.Q4_K_M.gguf']
+  42ailab/DeepSeek-Prover-V2-7B-GGUF dl=248 gated=False lic=['license:mit'] gguf=['DeepSeek-Prover-V2-7B-Q4_K_M.gguf']
+  DevQuasar/deepseek-ai.DeepSeek-Prover-V2-7B-GGUF dl=63 gated=False lic=[] gguf=['deepseek-ai.DeepSeek-Prover-V2-7B.Q4_K_M.gguf']
+  AbteeXAILab/lumynax-reasoning-deepseek-prover-v2-671b-gguf dl=61 gated=False lic=['license:other'] gguf=['Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00001-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00002-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00003-of-00009.gguf']
+  lovedheart/DeepSeek-Prover-V2-GGUF-IQ1-S dl=39 gated=False lic=['license:mit'] gguf=[]
+  NikolayKozloff/DeepSeek-Prover-V2-7B-Q8_0-GGUF dl=30 gated=False lic=[] gguf=[]
+  irmma/DeepSeek-Prover-V2-7B-Q4_K_M-GGUF dl=30 gated=False lic=[] gguf=['deepseek-prover-v2-7b-q4_k_m-imat.gguf']
+
+== Goedel-Prover gguf: 11
+  mradermacher/Goedel-Prover-V2-8B-GGUF dl=11890 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-8B.Q4_K_M.gguf']
+  mradermacher/Goedel-Prover-V2-32B-GGUF dl=1538 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-32B.Q4_K_M.gguf']
+  mradermacher/Goedel-Code-Prover-8B-GGUF dl=516 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Code-Prover-8B.Q4_K_M.gguf']
+  mradermacher/Goedel-Prover-V2-32B-i1-GGUF dl=354 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-32B.i1-Q4_K_M.gguf']
+  mradermacher/goedel-prover-v2-8b-lf-sft-v4-GGUF dl=320 gated=False lic=[] gguf=['goedel-prover-v2-8b-lf-sft-v4.Q4_K_M.gguf']
+  mradermacher/Goedel-Prover-SFT-GGUF dl=270 gated=False lic=['license:mit'] gguf=['Goedel-Prover-SFT.Q4_K_M.gguf']
+  mradermacher/GAR_Goedel-Prover-V2-GGUF dl=176 gated=False lic=['license:mit'] gguf=['GAR_Goedel-Prover-V2.Q4_K_M.gguf']
+  DevQuasar/Goedel-LM.Goedel-Prover-V2-32B-GGUF dl=150 gated=False lic=[] gguf=['Goedel-LM.Goedel-Prover-V2-32B.Q4_K_M.gguf']
+  mradermacher/Goedel-Prover-DPO-GGUF dl=58 gated=False lic=['license:mit'] gguf=['Goedel-Prover-DPO.Q4_K_M.gguf']
+  mradermacher/Goedel-Prover-SFT-Fork-GGUF dl=34 gated=False lic=['license:mit'] gguf=['Goedel-Prover-SFT-Fork.Q4_K_M.gguf']
+  NikolayKozloff/Goedel-Prover-V2-8B-Q8_0-GGUF dl=22 gated=False lic=['license:apache-2.0'] gguf=[]
+
+== prover gguf: 12
+  mradermacher/Goedel-Prover-V2-8B-GGUF dl=11890 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-8B.Q4_K_M.gguf']
+  unsloth/DeepSeek-Prover-V2-7B-GGUF dl=6125 gated=False lic=[] gguf=['DeepSeek-Prover-V2-7B-Q4_K_M.gguf']
+  DevQuasar-15/deepseek-ai.DeepSeek-Prover-V2-671B-GGUF dl=2393 gated=False lic=[] gguf=['deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00001-of-00031.gguf', 'deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00002-of-00031.gguf', 'deepseek-ai.DeepSeek-Prover-V2-671B.Q4_K_M-00003-of-00031.gguf']
+  tinyopsec/Pythagoras-Prover-4B-GGUF dl=2338 gated=False lic=['license:apache-2.0'] gguf=['model_q4_k_m.gguf']
+  unsloth/DeepSeek-Prover-V2-671B-GGUF dl=2245 gated=False lic=['license:mit'] gguf=['Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00001-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00002-of-00009.gguf', 'Q4_K_M/DeepSeek-Prover-V2-671B-Q4_K_M-00003-of-00009.gguf']
+  mradermacher/Goedel-Prover-V2-32B-GGUF dl=1538 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-32B.Q4_K_M.gguf']
+  mradermacher/BFS-Prover-V1-7B-i1-GGUF dl=1441 gated=False lic=['license:apache-2.0'] gguf=['BFS-Prover-V1-7B.i1-Q4_K_M.gguf']
+  mradermacher/DeepSeek-Prover-V2-7B-GGUF dl=1300 gated=False lic=[] gguf=['DeepSeek-Prover-V2-7B.Q4_K_M.gguf']
+  mradermacher/BFS-Prover-V2-7B-GGUF dl=1145 gated=False lic=['license:apache-2.0'] gguf=['BFS-Prover-V2-7B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-8B-GGUF dl=1043 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+  mradermacher/BFS-Prover-V1-7B-GGUF dl=847 gated=False lic=['license:apache-2.0'] gguf=['BFS-Prover-V1-7B.Q4_K_M.gguf']
+  prithivMLmods/Kimina-Prover-AI-MO-GGUF dl=821 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B-GGUF/Kimina-Prover-Distill-0.6B.Q4_K_M.gguf', 'Kimina-Prover-Distill-1.7B-GGUF/Kimina-Prover-Distill-1.7B.Q4_K_M.gguf', 'Kimina-Prover-Distill-8B-GGUF/Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+
+== Kimina-Prover: 12
+  project-numina/Kimina-Prover-Distill-1.7B dl=1985 gated=False lic=['license:apache-2.0'] gguf=[]
+  mradermacher/Kimina-Prover-Distill-8B-GGUF dl=1043 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+  project-numina/Kimina-Prover-Distill-8B dl=890 gated=False lic=['license:apache-2.0'] gguf=[]
+  project-numina/Kimina-Prover-Preview-Distill-1.5B dl=858 gated=False lic=['license:apache-2.0'] gguf=[]
+  prithivMLmods/Kimina-Prover-AI-MO-GGUF dl=821 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B-GGUF/Kimina-Prover-Distill-0.6B.Q4_K_M.gguf', 'Kimina-Prover-Distill-1.7B-GGUF/Kimina-Prover-Distill-1.7B.Q4_K_M.gguf', 'Kimina-Prover-Distill-8B-GGUF/Kimina-Prover-Distill-8B.Q4_K_M.gguf']
+  project-numina/Kimina-Prover-Distill-0.6B dl=731 gated=False lic=['license:apache-2.0'] gguf=[]
+  mradermacher/Kimina-Prover-RL-1.7B-GGUF dl=566 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-1.7B.Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-Distill-8B-i1-GGUF dl=523 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-8B.i1-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-0.6B-i1-GGUF dl=512 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-0.6B.i1-Q4_K_M.gguf']
+  project-numina/Kimina-Prover-Preview-Distill-7B dl=449 gated=False lic=['license:apache-2.0'] gguf=[]
+  mradermacher/Kimina-Prover-Distill-0.6B-i1-GGUF dl=429 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-Distill-0.6B.i1-Q4_K_M.gguf']
+  mradermacher/Kimina-Prover-RL-0.6B-GGUF dl=414 gated=False lic=['license:apache-2.0'] gguf=['Kimina-Prover-RL-0.6B.Q4_K_M.gguf']
+
+== Goedel-Prover-V2: 12
+  mradermacher/Goedel-Prover-V2-8B-GGUF dl=11890 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-8B.Q4_K_M.gguf']
+  Goedel-LM/Goedel-Prover-V2-8B dl=6364 gated=False lic=['license:apache-2.0'] gguf=[]
+  Goedel-LM/Goedel-Prover-V2-32B dl=1563 gated=False lic=['license:apache-2.0'] gguf=[]
+  mradermacher/Goedel-Prover-V2-32B-GGUF dl=1538 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-32B.Q4_K_M.gguf']
+  viai957/Goedel-Prover-V2-8B-EI-campaign1-r3 dl=913 gated=False lic=['license:apache-2.0'] gguf=[]
+  viai957/Goedel-Prover-V2-8B-EI-campaign1-r1 dl=903 gated=False lic=['license:apache-2.0'] gguf=[]
+  viai957/Goedel-Prover-V2-8B-EI-campaign1-r2 dl=888 gated=False lic=['license:apache-2.0'] gguf=[]
+  mradermacher/Goedel-Prover-V2-32B-i1-GGUF dl=354 gated=False lic=['license:apache-2.0'] gguf=['Goedel-Prover-V2-32B.i1-Q4_K_M.gguf']
+  mradermacher/goedel-prover-v2-8b-lf-sft-v4-GGUF dl=320 gated=False lic=[] gguf=['goedel-prover-v2-8b-lf-sft-v4.Q4_K_M.gguf']
+  mradermacher/GAR_Goedel-Prover-V2-GGUF dl=176 gated=False lic=['license:mit'] gguf=['GAR_Goedel-Prover-V2.Q4_K_M.gguf']
+  DevQuasar/Goedel-LM.Goedel-Prover-V2-32B-GGUF dl=150 gated=False lic=[] gguf=['Goedel-LM.Goedel-Prover-V2-32B.Q4_K_M.gguf']
+  mlx-community/Goedel-Prover-V2-32B-8bit dl=57 gated=False lic=['license:apache-2.0'] gguf=[]
+
+== DeepSeek-Prover-V1.5: 12
+  deepseek-ai/DeepSeek-Prover-V1.5-RL dl=1295 gated=False lic=['license:other'] gguf=[]
+  deepseek-ai/DeepSeek-Prover-V1.5-SFT dl=895 gated=False lic=['license:other'] gguf=[]
+  deepseek-ai/DeepSeek-Prover-V1.5-Base dl=794 gated=False lic=['license:other'] gguf=[]
+  mradermacher/DeepSeek-Prover-V1.5-Base-GGUF dl=237 gated=False lic=['license:other'] gguf=['DeepSeek-Prover-V1.5-Base.Q4_K_M.gguf']
+  mradermacher/DeepSeek-Prover-V1.5-SFT-GGUF dl=187 gated=False lic=['license:other'] gguf=['DeepSeek-Prover-V1.5-SFT.Q4_K_M.gguf']
+  mradermacher/DeepSeek-Prover-V1.5-RL-GGUF dl=186 gated=False lic=['license:other'] gguf=['DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf']
+  neopolita/deepseek-prover-v1.5-rl-gguf dl=133 gated=False lic=[] gguf=['deepseek-prover-v1.5-rl_q4_k_m.gguf']
+  neopolita/deepseek-prover-v1.5-base-gguf dl=89 gated=False lic=[] gguf=['deepseek-prover-v1.5-base_q4_k_m.gguf']
+  neopolita/deepseek-prover-v1.5-sft-gguf dl=85 gated=False lic=[] gguf=['deepseek-prover-v1.5-sft_q4_k_m.gguf']
+  arbius/DeepSeek-Prover-V1.5-RL-GGUF dl=56 gated=False lic=['license:other'] gguf=['DeepSeek-Prover-V1.5-RL.Q4_K_M.gguf']
+  matrixportalx/DeepSeek-Prover-V1.5-RL-GGUF dl=28 gated=False lic=['license:other'] gguf=['deepseek-prover-v1.5-rl-q4_k_m.gguf']
+  CurtHaw/DeepSeek-Prover-V1.5-RL-Q8_0-GGUF dl=20 gated=False lic=['license:other'] gguf=[]
+leanprover/lean4:v4.24.0
+
+{"version": "1.1.0",
+ "packagesDir": ".lake/packages",
+ "packages":
+ [{"url": "https://github.com/leanprover-community/mathlib4",
+   "type": "git",
+   "subDir": null,
+   "scope": "",
+   "rev": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+   "name": "mathlib",
+   "manifestFile": "lake-manifest.json",
+   "inputRev": "v4.24.0",
+   "inherited": false,
+   "configFile": "lakefile.lean"},
+  {"url": "https://github.com/leanprover-community/plausible",
+   "type": "git",
+   "subDir": null,
+   "scope": "leanprover-community",
+   "rev": "dfd06ebfe8d0e8fa7faba9cb5e5a2e74e7bd2805",
+   "name": "plausible",
+   "manifestFile": "lake-manifest.json",
+   "inputRev": "main",
+   "inherited": true,
+   "configFile": "lakefile.toml"},
+  {"url": "https://github.com/leanprover-community/LeanSearchClient",
+   "type": "git",
+   "subDir": null,
+   "scope": "leanprover-community",
+   "rev": "99657ad92e23804e279f77ea6dbdeebaa1317b98",
+   "name": "LeanSearchClient",
+   "manifestFile": "lake-manifest.json",
+finished: 2026-11-27T05:23:24Z, exit code 0

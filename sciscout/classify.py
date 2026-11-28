@@ -163,6 +163,33 @@ class SectorMatch:
         )
 
 
+def _score_sector(
+    rules: dict, corpus: str, disciplines: set[str], n_works: int
+) -> tuple[float, list[str]]:
+    """Score one sector's rules against a track; returns the score and its hits."""
+    discipline_score = 0.0
+    keyword_score = 0.0
+    hits: list[str] = []
+    for fragment in rules["disciplines"]:
+        matched = [d for d in disciplines if fragment in d]
+        if matched:
+            discipline_score += DISCIPLINE_WEIGHT * len(matched)
+            hits.append(f"discipline '{matched[0]}'")
+    for keyword in rules["keywords"]:
+        count = len(re.findall(re.escape(keyword), corpus))
+        if count:
+            # Normalise by corpus size so a large cluster does not outscore a
+            # small one purely by having more text.
+            keyword_score += KEYWORD_WEIGHT * min(3.0, count / max(1, n_works))
+            hits.append(f"'{keyword}'")
+
+    if keyword_score:
+        return discipline_score + keyword_score, hits
+    if discipline_score:
+        hits.append("no sector vocabulary found, discipline match discounted")
+    return discipline_score * UNCORROBORATED_DISCIPLINE_DISCOUNT, hits
+
+
 def classify(track: Track, sectors_available: set[str] | None = None) -> SectorMatch:
     """Route ``track`` to a commercialisation sector.
 
@@ -180,31 +207,7 @@ def classify(track: Track, sectors_available: set[str] | None = None) -> SectorM
     for sector, rules in SECTOR_RULES.items():
         if sectors_available is not None and sector not in sectors_available:
             continue
-        discipline_score = 0.0
-        keyword_score = 0.0
-        hits: list[str] = []
-        for fragment in rules["disciplines"]:
-            matched = [d for d in disciplines if fragment in d]
-            if matched:
-                discipline_score += DISCIPLINE_WEIGHT * len(matched)
-                hits.append(f"discipline '{matched[0]}'")
-        for keyword in rules["keywords"]:
-            count = len(re.findall(re.escape(keyword), corpus))
-            if count:
-                # Normalise by corpus size so a large cluster does not outscore a
-                # small one purely by having more text.
-                keyword_score += KEYWORD_WEIGHT * min(
-                    3.0, count / max(1, len(track.works))
-                )
-                hits.append(f"'{keyword}'")
-
-        if keyword_score == 0.0:
-            score = discipline_score * UNCORROBORATED_DISCIPLINE_DISCOUNT
-            if discipline_score:
-                hits.append("no sector vocabulary found, discipline match discounted")
-        else:
-            score = discipline_score + keyword_score
-
+        score, hits = _score_sector(rules, corpus, disciplines, len(track.works))
         if score > 0:
             scores[sector] = score
             evidence[sector] = hits
@@ -216,11 +219,11 @@ def classify(track: Track, sectors_available: set[str] | None = None) -> SectorM
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
     best, best_score = ranked[0]
     runner_up_score = ranked[1][1] if len(ranked) > 1 else 0.0
-    confidence = best_score / total if total else 0.0
+    confidence = best_score / total
     margin = best_score / runner_up_score if runner_up_score > 0 else float("inf")
 
     if confidence < CONFIDENCE_FLOOR or margin < MARGIN_OVER_RUNNER_UP:
-        return SectorMatch("generic", confidence, scores, evidence.get(best, []))
+        return SectorMatch("generic", confidence, scores, evidence[best])
     return SectorMatch(best, confidence, scores, evidence[best])
 
 

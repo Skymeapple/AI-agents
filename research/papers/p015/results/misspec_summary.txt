@@ -1,0 +1,27 @@
+Design: Claude 4 Opus TH1.1 lengths/run counts; 20 reps per scenario; means
+                                                       k_true  k_marg      H  k_gauss  sig_gauss  k_latent3   k_zi  pi0_zi  frac_kgauss_gt1  sd_kgauss  LR_zi_med  LR_lat3_med
+scenario                                                                                                                                                                      
+B: homogeneous, k=0.63                                   0.63   0.629  0.006    0.636      0.071      0.639  0.636   0.000              0.0      0.026      0.000        0.000
+B*: homogeneous, pooled curve = C exactly                 NaN   0.538  0.009    0.546      0.097      0.548  0.546   0.000              0.0      0.025      0.000        0.323
+C: Gaussian, k=1.5, s=3.2                                1.50   0.554  0.645    1.543      3.016      1.004  1.511   0.001              1.0      0.301      0.496      -18.414
+M1: two-point frailty, k=0.63                            0.63   0.296  0.604    0.825      3.984      0.659  0.751   0.000              0.1      0.171     -5.067       79.957
+M2: t3 frailty, k=0.63                                   0.63   0.357  0.466    0.634      1.942      0.518  0.642   0.008              0.0      0.066     -0.349       -8.490
+M3: skewed 3-point frailty, k=0.63                       0.63   0.242  0.604    0.574      3.264      0.640  0.601   0.002              0.0      0.070     -2.518       38.487
+M4: Gaussian s=2 + 10% impossible (any T), k=0.63        0.63   0.260  0.653    0.605      2.810      0.461  0.666   0.083              0.0      0.078      9.360       -7.456
+M5: Gaussian s=2 + 30% impossible among T>=4h, k=0.63    0.63   0.389  0.481    0.736      2.155      0.595  0.734   0.003              0.0      0.063     -0.049       -9.109
+M6: Gaussian s=2 + 30% impossible among T>=4h, k=1.0     1.00   0.578  0.522    1.152      2.172      0.927  1.152   0.000              0.9      0.156     -0.395       -7.933
+M7: frailty location drifts +0.8 per log T, k=0.63       0.63   0.735  0.452    1.443      1.966      1.211  1.438   0.000              1.0      0.139     -0.158       -5.887
+M8: label noise sd 0.7 (log T), homogeneous k=0.63       0.63   0.569  0.075    0.614      0.428      0.621  0.614   0.001              0.0      0.039      0.000        2.364
+M9: label noise sd 0.7 (log T), Gaussian k=1.5 s=3.2     1.50   0.497  0.669    1.426      3.342      0.957  1.427   0.004              1.0      0.186     -1.026      -23.560
+M10: label noise sd 0.7 + Gaussian s=2, k=0.63           0.63   0.320  0.473    0.617      2.064      0.500  0.611   0.005              0.0      0.079      0.542       -5.433
+
+Mechanical-correlation check (true k=1.5, sigma=3.0 fixed; capability varied):
+        h50_hat  sig_hat  k_hat
+shift                          
+-6     1700.599    3.231  1.959
+-4      665.563    3.005  1.567
+-2      229.552    3.165  1.539
+ 0       76.343    2.982  1.559
+ 2       24.299    3.186  1.554
+ 4        6.535    3.260  1.502
+corr(log h50_hat, log sigma_hat) across 48 fits = 0.048

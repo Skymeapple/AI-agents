@@ -1,0 +1,96 @@
+{
+ "n_configs_prop2": 104,
+ "prop2_corr": 0.9949543857856693,
+ "prop2_sign_agree": 1.0,
+ "prop2_median_abs_err_pp": 0.040576822396771295,
+ "boundary_sign_flip": {
+  "adiab": [
+   "San Jose CA",
+   "Las Vegas NV",
+   "Salt Lake UT",
+   "Boston MA"
+  ],
+  "tower": [
+   "San Jose CA",
+   "Phoenix AZ",
+   "The Dalles OR",
+   "Las Vegas NV",
+   "Salt Lake UT",
+   "Charlotte NC",
+   "Boston MA"
+  ]
+ },
+ "total_water_penalty_sites": {
+  "adiab": [
+   "Phoenix AZ",
+   "The Dalles OR",
+   "Boston MA"
+  ],
+  "tower": [
+   "Charlotte NC",
+   "Boston MA"
+  ]
+ },
+ "onsite_penalty_sites": {
+  "adiab": [
+   "San Jose CA",
+   "Phoenix AZ",
+   "The Dalles OR",
+   "Las Vegas NV",
+   "Salt Lake UT"
+  ],
+  "tower": [
+   "San Jose CA",
+   "Phoenix AZ",
+   "The Dalles OR",
+   "Las Vegas NV",
+   "Salt Lake UT"
+  ]
+ },
+ "knee_retention": {
+  "Charlotte NC|tower": 0.9845248577505461,
+  "Boston MA|tower": 0.9579027147267591,
+  "Phoenix AZ|adiab": 0.9461533252360776,
+  "The Dalles OR|adiab": 0.9891844919803975,
+  "Boston MA|adiab": 0.9664263332052603
+ },
+ "dC_carbon_only_range": [
+  -4.869399860471047,
+  -0.8999855497454967
+ ],
+ "acc_bias_Won_adiab_range": [
+  -19.904966674002143,
+  -7.846003307797577
+ ],
+ "acc_bias_Won_tower_range": [
+  -1.2218186402602416,
+  -0.6312746564725913
+ ],
+ "acc_bias_C_range": [
+  -1.8295772011300948,
+  2.7163654790259173
+ ],
+ "acc_bias_W_range": [
+  -3.072726266979664,
+  1.2962731340898426
+ ],
+ "mc_P_dW_pos_overall": 0.22948717948717948,
+ "mc_P_dWon_pos_overall": 0.42948717948717946,
+ "mc_retained_pen_draws_median": 0.9644812371585807,
+ "mc_retained_pen_draws_p05": 0.829526181543335,
+ "mc_retained_pen_draws_min": 0.7272012917539198,
+ "mc_by_window_P_pos": {
+  "24": 0.24048374306106265,
+  "72": 0.20936139332365747
+ },
+ "mc_by_ci_P_pos": {
+  "ci_cons": 0.2350132625994695,
+  "ci_prod": 0.22431761786600496
+ },
+ "mc_by_hydro_P_pos": {
+  "0.0": 0.16115384615384615,
+  "17.0": 0.2644230769230769,
+  "68.0": 0.26282051282051283
+ },
+ "corr_rhoCW_vs_dW_per_dC": 0.5688018678343334
+}

@@ -41,6 +41,7 @@ def _parse_work(raw: dict, source_label: str) -> Work:
         citations=raw.get("citations"),
         url=raw.get("url"),
         source=raw.get("source", source_label),
+        references=[str(r) for r in raw.get("references", [])],
         extra=raw.get("extra", {}),
     )
 
@@ -53,8 +54,12 @@ class LocalCorpus(Source):
     def __init__(self, path: Path) -> None:
         self.path = Path(path)
 
-    def harvest(self, query: str = "", limit: int = 10_000) -> HarvestResult:
+    def harvest(self, query: str = "", limit: int | None = None) -> HarvestResult:
         """Return works from the corpus, optionally filtered by substring.
+
+        ``limit`` caps the number returned; by default there is no cap. A local
+        file is already the result of a query, so silently dropping its tail
+        would bias every score computed from it.
 
         ``query`` matches against title and abstract, case-insensitively. An
         empty query returns everything, which is the usual case -- the corpus
@@ -84,7 +89,7 @@ class LocalCorpus(Source):
             if needle and needle not in work.text().lower():
                 continue
             works.append(work)
-            if len(works) >= limit:
+            if limit is not None and len(works) >= limit:
                 break
 
         return HarvestResult(works=works, errors=errors, source=self.name, query=query)

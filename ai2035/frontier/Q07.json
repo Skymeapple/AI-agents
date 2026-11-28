@@ -1,0 +1,1128 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "continual learning large language models",
+  "loss of plasticity",
+  "catastrophic forgetting fine-tuning",
+  "continual learning"
+ ],
+ "papers": [
+  {
+   "id": "2503.20018",
+   "title": "Experience Replay Addresses Loss of Plasticity in Continual Learning",
+   "published": "2025-03-25",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.NE"
+   ],
+   "abstract": "Loss of plasticity is one of the main challenges in continual learning with deep neural networks, where neural networks trained via backpropagation gradually lose their ability to adapt to new tasks and perform significantly worse than their freshly initialized counterparts. The main contribution of this paper is to propose a new hypothesis that experience replay addresses the loss of plasticity in continual learning. Here, experience replay is a form of memory. We provide supporting evidence for this hypothesis. In particular, we demonstrate in multiple different tasks, including regression, classification, and policy evaluation, that by simply adding an experience replay and processing the data in the experience replay with Transformers, the loss of plasticity disappears. Notably, we do not alter any standard components of deep learning. For example, we do not change backpropagation. We do not modify the activation functions. And we do not use any regularization. We conjecture that experience replay and Transformers can address the loss of plasticity because of the in-context learning phenomenon.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2605.01131",
+   "title": "Forager: a lightweight testbed for continual learning with partial observability in RL",
+   "published": "2026-05-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In continual reinforcement learning (CRL), good performance requires never-ending learning, acting, and exploration in a big, partially observable world. Most CRL experiments have focused on loss of plasticity---the inability to keep learning---in one-off experiments where some unobservable non-stationarity is added to classic fully observable MDPs. Further, these experiments rarely consider the role of partial observability and the importance of CRL agents that use memory or recurrence. One potential reason for this focus on mitigating loss of plasticity without considering partial observability is that many partially-observable CRL environments are prohibitively expensive. In this paper, we introduce Forager, a lightweight partially-observable CRL environment with a constant memory footprint. We provide a set of experiments and sample tasks demonstrating that Forager is challenging for current CRL agents and yet also allows for in-depth study of those agents. We demonstrate that agents exhibit loss of plasticity, proposed mitigations can help, but that most useful is to leverage state construction. We conclude with a variant of Forager that generates an unending stream of new tasks to learn that clearly highlights the limitations of current CRL agents.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2506.12389",
+   "title": "Revisiting Clustering of Neural Bandits: Selective Reinitialization for Mitigating Loss of Plasticity",
+   "published": "2025-06-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Clustering of Bandits (CB) methods enhance sequential decision-making by grouping bandits into clusters based on similarity and incorporating cluster-level contextual information, demonstrating effectiveness and adaptability in applications like personalized streaming recommendations. However, when extending CB algorithms to their neural version (commonly referred to as Clustering of Neural Bandits, or CNB), they suffer from loss of plasticity, where neural network parameters become rigid and less adaptable over time, limiting their ability to adapt to non-stationary environments (e.g., dynamic user preferences in recommendation). To address this challenge, we propose Selective Reinitialization (SeRe), a novel bandit learning framework that dynamically preserves the adaptability of CNB algorithms in evolving environments. SeRe leverages a contribution utility metric to identify and selectively reset underutilized units, mitigating loss of plasticity while maintaining stable knowledge retention. Furthermore, when combining SeRe with CNB algorithms, the adaptive change detection mechanism adjusts the reinitialization frequency according to the degree of non-stationarity, ensuring effective adaptation without unnecessary resets. Theoretically, we prove that SeRe enables sublinear cumulative regret in piecewise-stationary environments, outperforming traditional CNB approaches in long-term performances. Extensive experiments on six real-world recommendation datasets demonstrate that SeRe-enhanced CNB algorithms can effectively mitigate the loss of plasticity with lower regrets, improving adaptability and robustness in dynamic settings.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2506.00592",
+   "title": "Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn",
+   "published": "2025-05-31",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Plasticity, or the ability of an agent to adapt to new tasks, environments, or distributions, is crucial for continual learning. In this paper, we study the loss of plasticity in deep continual RL from the lens of churn: network output variability for out-of-batch data induced by mini-batch training. We demonstrate that (1) the loss of plasticity is accompanied by the exacerbation of churn due to the gradual rank decrease of the Neural Tangent Kernel (NTK) matrix; (2) reducing churn helps prevent rank collapse and adjusts the step size of regular RL gradients adaptively. Moreover, we introduce Continual Churn Approximated Reduction (C-CHAIN) and demonstrate it improves learning performance and outperforms baselines in a diverse range of continual learning environments on OpenAI Gym Control, ProcGen, DeepMind Control Suite, and MinAtar benchmarks.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2505.09486",
+   "title": "Preserving Plasticity in Continual Learning with Adaptive Linearity Injection",
+   "published": "2025-05-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Loss of plasticity in deep neural networks is the gradual reduction in a model's capacity to incrementally learn and has been identified as a key obstacle to learning in non-stationary problem settings. Recent work has shown that deep linear networks tend to be resilient towards loss of plasticity. Motivated by this observation, we propose Adaptive Linearization (AdaLin), a general approach that dynamically adapts each neuron's activation function to mitigate plasticity loss. Unlike prior methods that rely on regularization or periodic resets, AdaLin equips every neuron with a learnable parameter and a gating mechanism that injects linearity into the activation function based on its gradient flow. This adaptive modulation ensures sufficient gradient signal and sustains continual learning without introducing additional hyperparameters or requiring explicit task boundaries. When used with conventional activation functions like ReLU, Tanh, and GeLU, we demonstrate that AdaLin can significantly improve performance on standard benchmarks, including Random Label and Permuted MNIST, Random Label and Shuffled CIFAR-10, and Class-Split CIFAR-100. Furthermore, its efficacy is shown in more complex scenarios, such as class-incremental learning on CIFAR-100 with a ResNet-18 backbone, and in mitigating plasticity loss in off-policy reinforcement learning agents. We perform a systematic set of ablations that show that neuron-level adaptation is crucial for good performance and analyze a number of metrics in the network that might be correlated to loss of plasticity.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2610.42100",
+   "title": "Towards Understanding the Impact of Plasticity Loss on Reinforcement Learning in Stochastic Environments",
+   "published": "2026-10-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep reinforcement learning (RL) is a powerful framework for sequential decision-making. Despite many high-profile successes in recent years, deep RL is known to be brittle. An emerging line of research attributes this brittleness to a loss of plasticity in neural networks. However, plasticity loss has so far been understudied in stochastic environments. We study this interplay systematically, training SAC agents on three DeepMind Control tasks augmented with controlled levels of observation and action noise. We find that plasticity-preserving methods increase learning robustness on the two harder tasks, with their advantage growing as observation noise increases, while combining resets with layer normalization underperforms resets alone at every observation noise level tested. Further, stochasticity can accelerate the loss of plasticity in harder environments, whereas in easier settings noise can act as a regularizer that sustains plasticity. Lastly, plasticity loss is most pronounced in the early stages of training. In the most challenging stochastic settings, TD instability rather than gradual plasticity loss becomes the dominant failure mode.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2508.00212",
+   "title": "Reinitializing weights vs units for maintaining plasticity in neural networks",
+   "published": "2025-07-31",
+   "categories": [
+    "cs.NE",
+    "cs.AI"
+   ],
+   "abstract": "Loss of plasticity is a phenomenon in which a neural network loses its ability to learn when trained for an extended time on non-stationary data. It is a crucial problem to overcome when designing systems that learn continually. An effective technique for preventing loss of plasticity is reinitializing parts of the network. In this paper, we compare two different reinitialization schemes: reinitializing units vs reinitializing weights. We propose a new algorithm, which we name \\textit{selective weight reinitialization}, for reinitializing the least useful weights in a network. We compare our algorithm to continual backpropagation and ReDo, two previously proposed algorithms that reinitialize units in the network. Through our experiments in continual supervised learning problems, we identify two settings when reinitializing weights is more effective at maintaining plasticity than reinitializing units: (1) when the network has a small number of units and (2) when the network includes layer normalization. Conversely, reinitializing weights and units are equally effective at maintaining plasticity when the network is of sufficient size and does not include layer normalization. We found that reinitializing weights maintains plasticity in a wider variety of settings than reinitializing units.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2603.07787",
+   "title": "Vision Transformers that Never Stop Learning",
+   "published": "2026-03-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Loss of plasticity refers to the progressive inability of a model to adapt to new tasks and poses a fundamental challenge for continual learning. While this phenomenon has been extensively studied in homogeneous neural architectures, such as multilayer perceptrons, its mechanisms in structurally heterogeneous, attention-based models such as Vision Transformers (ViTs) remain underexplored. In this work, we present a systematic investigation of loss of plasticity in ViTs, including a fine-grained diagnosis using local metrics that capture parameter diversity and utilization. Our analysis reveals that stacked attention modules exhibit increasing instability that exacerbates plasticity loss, while feed-forward network modules suffer even more pronounced degradation. Furthermore, we evaluate several approaches for mitigating plasticity loss. The results indicate that methods based on parameter re-initialization fail to recover plasticity in ViTs, whereas approaches that explicitly regulate the update process are more effective. Motivated by this insight, we propose ARROW, a geometry-aware optimizer that preserves plasticity by adaptively reshaping gradient directions using an online curvature estimate for the attention module. Extensive experiments show that ARROW effectively improves plasticity and maintains better performance on newly encountered tasks.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2606.24752",
+   "title": "Can Scale Save Us From Plasticity Loss in Large Language Models?",
+   "published": "2026-06-23",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "The loss of plasticity - the ability of a network to learn new information after having already learned older information - is a fundamental challenge in creating artificial neural networks capable of continual learning. Although this phenomenon has been known for decades, it has mostly been studied in older, relatively small architectures and rarely in natural-language domains. To determine whether loss of plasticity remains a problem in the modern transformer-based LLM paradigm, we study plasticity loss in GPT-style Transformer models trained on a multilingual continual learning problem. Consistent with prior work, we find evidence of plasticity loss across models ranging from 5M to 314M non-embedding parameters, as measured by deterioration on a held-out Vietnamese probing task. We further find that the onset of plasticity loss follows a predictable scaling law, growing sublinearly with model size. These results suggest that larger models may delay the measurable effects of plasticity loss, but that increasing parameter count alone is likely to be insufficient to completely prevent it. We also find evidence of plasticity loss under stationary multilingual training, challenging the view that the phenomenon is exclusive to continual learning with abrupt task changes. Overall, our results suggest that even large Transformer language models trained on natural-language will eventually lose the ability to efficiently adapt to new data after sufficiently long training, in both continual and stationary settings.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2608.18319",
+   "title": "SingularClip: Preventing Spectral Collapse to Maintain Plasticity in Continual and Reinforcement Learning",
+   "published": "2026-08-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Neural networks trained on nonstationary tasks frequently lose the ability to fit new targets, a phenomenon referred to as loss of plasticity. We identify a novel source of plasticity loss due to the growing anisotropy of weight matrices' singular values during training, and analyze this phenomenon both empirically and theoretically. To mitigate this issue, we introduce SingularClip, a procedure that periodically clips the singular values of all weight matrices. We show that SingularClip performs strongly against baselines across a range of tasks in both continual supervised learning and deep reinforcement learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2608.01475",
+   "title": "Plasticity of Growing and Elastic Neural Networks in Online Continual Learning",
+   "published": "2026-08-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Neural networks that can grow or both grow and shrink during learning, referred to as growing neural networks and elastic neural networks, respectively, have recently been explored in offline continual learning with a particular focus on catastrophic forgetting. Driven by the observations that 1) online continual learning closely resembles how animals learn; 2) loss of plasticity---the progressive decline in a learning network's ability to learn---is another crucial challenge facing continual learning; and 3) incremental introduction of randomly initialized hidden units was recently shown to help preserve plasticity, in this paper, we study the plasticity of several foundational growing and elastic networks in online continual learning. Our experiments in supervised learning settings show that adaptive growing networks, which incrementally incorporate new, randomly initialized units to the network while keeping all existing connections adaptive, can maintain high prediction accuracy without losing plasticity despite the continuous increase in the dead hidden unit proportion. Furthermore, we demonstrate that adaptive elastic networks, which in addition to progressively adding new hidden units also prune estimated dead hidden units at the beginning of each new task, can achieve excellent accuracy without loss of plasticity while simultaneously maintaining a near-constant, compact size. Our results suggest that growing and elastic networks, which exhibit the ability to adapt its structure to the relevant learning objectives, can be a promising class of algorithms also for preserving high plasticity in online continual learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2602.09234",
+   "title": "Do Neural Networks Lose Plasticity in a Gradually Changing World?",
+   "published": "2026-02-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning has become a trending topic in machine learning. Recent studies have discovered an interesting phenomenon called loss of plasticity, referring to neural networks gradually losing the ability to learn new tasks. However, existing plasticity research largely relies on benchmarks with abrupt task transitions, without examining whether the abruptness itself contributes to the observed plasticity loss. In this paper, we investigate the role of transition abruptness by simulating gradually changing environments through input/output interpolation and task sampling. We perform theoretical and empirical analysis, showing that the severity of plasticity loss is closely tied to the abruptness of task transitions, and can be substantially reduced when the environment changes gradually.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2511.18987",
+   "title": "Dynamic Mixture of Experts Against Severe Distribution Shifts",
+   "published": "2025-11-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The challenge of building neural networks that can continuously learn and adapt to evolving data streams is central to the fields of continual learning (CL) and reinforcement learning (RL). This lifelong learning problem is often framed in terms of the plasticity-stability dilemma, focusing on issues like loss of plasticity and catastrophic forgetting. Unlike neural networks, biological brains maintain plasticity through capacity growth, inspiring researchers to explore similar approaches in artificial networks, such as adding capacity dynamically. Prior solutions often lack parameter efficiency or depend on explicit task indices, but Mixture-of-Experts (MoE) architectures offer a promising alternative by specializing experts for distinct distributions. This paper aims to evaluate a DynamicMoE approach for continual and reinforcement learning environments and benchmark its effectiveness against existing network expansion methods.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2509.22335",
+   "title": "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We investigate why deep neural networks suffer from loss of plasticity in continual learning, and thus fail to learn new tasks without reinitializing parameters. We show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. Analyzing a linearized ReLU network, we derive explicit $ε$-rank conditions for successful training and prove that the loss-weighted Gram matrix is spectrally equivalent to the Generalized Gauss-Newton approximation, thereby relating NTK dynamics to Hessian curvature. Targeting spectral collapse directly, we then discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2609.01768",
+   "title": "Emergence of Fibrations, Compression, and Symmetry Breaking in Artificial Neural Networks",
+   "published": "2026-09-01",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Artificial neural networks are often regarded as powerful yet opaque black boxes. Here, we demonstrate that learning in deep neural networks generates local symmetries known in graph theory as fibrations and coverings. We prove that covering symmetries are stable attractors of stochastic gradient descent. Consistent with this theory, we report the emergence of covering symmetries across major network architectures, including multilayer, convolutional, recurrent, and transformer networks. Exploiting these symmetries enables drastic model compression - reducing networks to 17% of their original size without sacrificing performance. Furthermore, controlled breaking of covering symmetry overcomes the loss of plasticity, achieving state-of-the-art performance in continual learning. The theoretical results provide a new foundation for AI systems based on symmetries that convert black boxes into interpretable colored graphs and enable more efficient inference and lifelong learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2510.00304",
+   "title": "Barriers for Learning in an Evolving World: Mathematical Understanding of Loss of Plasticity",
+   "published": "2025-09-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Deep learning models excel in stationary data but struggle in non-stationary environments due to a phenomenon known as loss of plasticity (LoP), the degradation of their ability to learn in the future. This work presents a first-principles investigation of LoP in gradient-based learning. Grounded in dynamical systems theory, we formally define LoP by identifying stable manifolds in the parameter space that trap gradient trajectories. Our analysis reveals two primary mechanisms that create these traps: frozen units from activation saturation and cloned-unit manifolds from representational redundancy. Our framework uncovers a fundamental tension: properties that promote generalization in static settings, such as low-rank representations and simplicity biases, directly contribute to LoP in continual learning scenarios. We validate our theoretical analysis with numerical simulations and explore architectural choices or targeted perturbations as potential mitigation strategies.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2606.25335",
+   "title": "Stagnant Neuron: Towards Understanding the Plasticity Loss in Multi-Agent Reinforcement Learning Value Factorization Methods",
+   "published": "2026-06-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Multi-Agent Reinforcement Learning (MARL) value factorization methods can suffer from a loss of plasticity, gradually failing to adapt when transferring to new task instances. We trace this issue to stagnant neurons, units whose gradient updates become negligibly small relative to their weights, thereby hindering learning. While existing plasticity injection methods exist, they prove ineffective for such neurons. To address this, we propose Knowledge-retentive Neuron-level PlastIcity Focusing InjEction (KNIFE), a novel method that directly targets stagnant neurons. KNIFE replaces each stagnant neuron with a composite unit comprising three specialized components: a frozen knowledge neuron to preserve acquired knowledge, a re-initialized active neuron to restore learning capacity, and a compensation neuron to ensure the combined output matches the original, thus maintaining previous learned cooperation knowledge. Extensive experiments on SMACv2, predator-prey, and matrix games demonstrate that KNIFE significantly outperforms state-of-the-art plasticity injection methods.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2610.31401",
+   "title": "HERD: Harness-Evolving Recursive Distillation for Continual Learning",
+   "published": "2026-10-22",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Continual learning requires a model to keep acquiring new skills and knowledge without compromising its existing capabilities. Parametric methods suffer from catastrophic forgetting and loss of plasticity. Non-parametric methods, such as prompts, skills, and harnesses, leverage in-context learning but are limited by context length and lossy plain-text compression. To effectively combine their complementary strengths, we propose HERD (Harness-Evolving Recursive Distillation), a hybrid continual learning framework that learns efficiently in the harness and internalizes experience into cumulative capabilities via distillation. On the harness side, HERD continually refines its skills to capture reusable patterns, while retaining high-residual examples that the skills fail to capture in a bounded memory. On the parameter side, HERD performs drift-constrained distillation with dual anchors, substantially reducing forgetting over long recursive runs. On the 25-stage task stream of TRACE+17, under fixed memory and compute budgets, HERD matches the strongest parametric baseline in new-task acquisition while exhibiting the least forgetting and the strongest retention of general capabilities.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2510.00365",
+   "title": "Continual Learning with Query-Only Attention",
+   "published": "2025-10-01",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning involves learning from a stream of data without repetition of data points, a scenario that is inherently complex due to distributional shift across tasks. We propose a query-only attention mechanism that discards keys and values, yet preserves the core inductive bias of transformer architectures. In continual learning scenarios, this simplified mechanism significantly mitigates both loss of plasticity and catastrophic forgetting, outperforming baselines such as selective re-initialization. We establish a conceptual link between query-only attention, full transformer attention, and model agnostic meta-learning, framing them as instances of meta-learning. We further provide intuition for why query-based models and attention networks help preserve plasticity in continual settings. Finally, through preliminary Hessian spectrum analysis, we observe that models maintaining higher curvature rank across tasks tend to retain plasticity. Our findings suggest that full attention may not be essential for capturing the benefits of meta-learning in continual learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2502.07523",
+   "title": "Scaling Off-Policy Reinforcement Learning with Batch and Weight Normalization",
+   "published": "2025-02-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning has achieved significant milestones, but sample efficiency remains a bottleneck for real-world applications. Recently, CrossQ has demonstrated state-of-the-art sample efficiency with a low update-to-data (UTD) ratio of 1. In this work, we explore CrossQ's scaling behavior with higher UTD ratios. We identify challenges in the training dynamics, which are emphasized by higher UTD ratios. To address these, we integrate weight normalization into the CrossQ framework, a solution that stabilizes training, has been shown to prevent potential loss of plasticity and keeps the effective learning rate constant. Our proposed approach reliably scales with increasing UTD ratios, achieving competitive performance across 25 challenging continuous control tasks on the DeepMind Control Suite and Myosuite benchmarks, notably the complex dog and humanoid environments. This work eliminates the need for drastic interventions, such as network resets, and offers a simple yet robust pathway for improving sample efficiency and scalability in model-free reinforcement learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2506.03758",
+   "title": "Scaling CrossQ with Weight Normalization",
+   "published": "2025-06-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning has achieved significant milestones, but sample efficiency remains a bottleneck for real-world applications. Recently, CrossQ has demonstrated state-of-the-art sample efficiency with a low update-to-data (UTD) ratio of 1. In this work, we explore CrossQ's scaling behavior with higher UTD ratios. We identify challenges in the training dynamics which are emphasized by higher UTDs, particularly Q-bias explosion and the growing magnitude of critic network weights. To address this, we integrate weight normalization into the CrossQ framework, a solution that stabilizes training, prevents potential loss of plasticity and keeps the effective learning rate constant. Our proposed approach reliably scales with increasing UTD ratios, achieving competitive or superior performance across a range of challenging tasks on the DeepMind control benchmark, notably the complex dog and humanoid environments. This work eliminates the need for drastic interventions, such as network resets, and offers a robust pathway for improving sample efficiency and scalability in model-free reinforcement learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2503.00282",
+   "title": "Maintaining Plasticity in Reinforcement Learning: A Cost-Aware Framework for Aerial Robot Control in Non-stationary Environments",
+   "published": "2025-03-01",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Reinforcement learning (RL) has demonstrated the ability to maintain the plasticity of the policy throughout short-term training in aerial robot control. However, these policies have been shown to loss of plasticity when extended to long-term learning in non-stationary environments. For example, the standard proximal policy optimization (PPO) policy is observed to collapse in long-term training settings and lead to significant control performance degradation. To address this problem, this work proposes a cost-aware framework that uses a retrospective cost mechanism (RECOM) to balance rewards and losses in RL training with a non-stationary environment. Using a cost gradient relation between rewards and losses, our framework dynamically updates the learning rate to actively train the control policy in a disturbed wind environment. Our experimental results show that our framework learned a policy for the hovering task without policy collapse in variable wind conditions and has a successful result of 11.29% less dormant units than L2 regularization with PPO.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2605.04712",
+   "title": "SPHERE: Mitigating the Loss of Spectral Plasticity in Mixture-of-Experts for Deep Reinforcement Learning",
+   "published": "2026-05-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In deep reinforcement learning (DRL), an agent is trained from a stream of experience. In a continual learning setting, such agents can suffer from plasticity loss: their ability to learn new skills from new experiences diminishes over training. Recently, Mixture-of-Experts (MoE) networks have been reported to enable scaling laws and facilitate the learning of diverse skills. However, in continual reinforcement learning settings, their performance can degenerate as learning proceeds, indicating a loss of plasticity. To address this, building on Neural Tangent Kernel (NTK) theory, we formalize the plasticity loss in MoE policies as a loss of spectral plasticity. We then derive a tractable proxy for spectral plasticity, one expressible in terms of individual expert feature matrices. Leveraging this proxy, we introduce SPHERE, a practical Parseval penalty tailored for MoE-based policies that alleviates the loss of spectral plasticity. On MetaWorld and HumanoidBench, SPHERE improves average success under continual RL by 133% and 50% over an unregularized MoE baseline, while maintaining higher spectral plasticity throughout training.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2608.25976",
+   "title": "Lost but not erased: Finding traces of a forgotten language in neural speech models",
+   "published": "2026-08-26",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "International adoptees retain phonological traces of a birth language they can no longer speak or comprehend, a persistence typically attributed to a biologically-timed critical period. We asked whether it could instead reflect the ordinary dynamics of learning, using automatic speech recognition models that simulate the international adoptee experience without maturational confounds. Models were trained on one language and then abruptly switched to a second. We found that traces of the first language persisted throughout second-language training, but mainly in the lowest, pre-phonemic layers. These traces were functional, as models with early exposure re-learned their lost first language 14% faster than naive models; this advantage held even against models adopted early from a related language and disappeared when the earliest layers were substituted from a non-adopted model. We argue that these critical-period effects reflect entrenchment of foundational representations rather than a maturational loss of plasticity, and that experience plays a central role in critical periods in language acquisition.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2506.10489",
+   "title": "Class-Incremental Learning for Honey Botanical Origin Classification with Hyperspectral Images: A Study with Continual Backpropagation",
+   "published": "2025-06-12",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Honey is an important commodity in the global market. Honey types of different botanical origins provide diversified flavors and health benefits, thus having different market values. Developing accurate and effective botanical origin-distinguishing techniques is crucial to protect consumers' interests. However, it is impractical to collect all the varieties of honey products at once to train a model for botanical origin differentiation. Therefore, researchers developed class-incremental learning (CIL) techniques to address this challenge. This study examined and compared multiple CIL algorithms on a real-world honey hyperspectral imaging dataset. A novel technique is also proposed to improve the performance of class-incremental learning algorithms by combining with a continual backpropagation (CB) algorithm. The CB method addresses the issue of loss-of-plasticity by reinitializing a proportion of less-used hidden neurons to inject variability into neural networks. Experiments showed that CB improved the performance of most CIL methods by 1-7\\%.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2610.36309",
+   "title": "Bridging Exploration and Loss of Plasticity in On-Policy Reinforcement Learning",
+   "published": "2026-10-26",
+   "categories": [
+    "cs.LG",
+    "cs.RO"
+   ],
+   "abstract": "Deep reinforcement learning (RL) algorithms have been observed to lose the ability to adaptively learn from new data, a phenomenon termed Loss of Plasticity (LoP). While many metrics have been shown to correlate with it, the causal mechanisms and the geometric conditions from which it can arise have not been clearly identified. We analyze LoP in Proximal Policy Optimization with isotropic Gaussian policies, the state-of-the-art formulation for many continuous action spaces in RL. We report multiple metrics which characterize the effect that the policy standard deviation $σ$ has on LoP, and we also suggest related explanations for the effectiveness of widely adopted LoP mitigation techniques. We observe a significant effect of $σ$ on the extent of LoP, and accompany this with both theoretical and experimental supporting arguments. Our experimental validation consists of LoP benchmark evaluations against standard baselines as well as real-world policy deployment on a 7-DoF robotic arm.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2509.22562",
+   "title": "Activation Function Design Sustains Plasticity in Continual Learning",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "In independent, identically distributed (i.i.d.) training regimes, activation functions have been benchmarked extensively, and their differences often shrink once model size and optimization are tuned. In continual learning, however, the picture is different: beyond catastrophic forgetting, models can progressively lose the ability to adapt (referred to as loss of plasticity) and the role of the non-linearity in this failure mode remains underexplored. We show that activation choice is a primary, architecture-agnostic lever for mitigating plasticity loss. Building on a property-level analysis of negative-branch shape and saturation behavior, we introduce two drop-in nonlinearities (Smooth-Leaky and Randomized Smooth-Leaky) and evaluate them in two complementary settings: (i) supervised class-incremental benchmarks and (ii) reinforcement learning with non-stationary MuJoCo environments designed to induce controlled distribution and dynamics shifts. We also provide a simple stress protocol and diagnostics that link the shape of the activation to the adaptation under change. The takeaway is straightforward: thoughtful activation design offers a lightweight, domain-general way to sustain plasticity in continual learning without extra capacity or task-specific tuning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2606.09762",
+   "title": "Preserving Plasticity in Continual Learning via Dynamical Isometry",
+   "published": "2026-06-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual training of deep neural networks under non-stationarity often leads to a progressive loss of plasticity, eventually limiting further learning. We relate plasticity to the empirical Neural Tangent Kernel, and identify dynamical isometry (the condition that layer-wise Jacobian singular values remain close to one) as a key mechanism for preserving plasticity in continual learning. We revisit a class of networks that are almost-everywhere isometric while remaining universal Lipschitz function approximators, demonstrating that near-dynamical isometry is compatible with expressive nonlinear representations. For general architectures, we propose an efficient isometry-promoting regularization scheme and identify a novel mechanism by which it can reactivate dormant ReLU units. Building on this, we introduce AdamO, an Adam-style adaptive optimizer that decouples isometry regularization from gradient updates, analogous to AdamW. We further reinterpret prior plasticity-preserving approaches through the lens of dynamical isometry, showing that they target only a partial measure of isometry. Across supervised and reinforcement-learning continual-learning benchmarks designed to induce plasticity loss, our methods consistently match or outperform existing approaches.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2603.04580",
+   "title": "Why Do Neural Networks Forget: A Study of Collapse in Continual Learning",
+   "published": "2026-03-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Catastrophic forgetting is a major problem in continual learning, and lots of approaches arise to reduce it. However, most of them are evaluated through task accuracy, which ignores the internal model structure. Recent research suggests that structural collapse leads to loss of plasticity, as evidenced by changes in effective rank (eRank). This indicates a link to forgetting, since the networks lose the ability to expand their feature space to learn new tasks, which forces the network to overwrite existing representations. Therefore, in this study, we investigate the correlation between forgetting and collapse through the measurement of both weight and activation eRank. To be more specific, we evaluated four architectures, including MLP, ConvGRU, ResNet-18, and Bi-ConvGRU, in the split MNIST and Split CIFAR-100 benchmarks. Those models are trained through the SGD, Learning-without-Forgetting (LwF), and Experience Replay (ER) strategies separately. The results demonstrate that forgetting and collapse are strongly related, and different continual learning strategies help models preserve both capacity and performance in different efficiency.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2603.20860",
+   "title": "Restoring Neural Network Plasticity for Faster Transfer Learning",
+   "published": "2026-03-21",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Transfer learning with models pretrained on ImageNet has become a standard practice in computer vision. Transfer learning refers to fine-tuning pretrained weights of a neural network on a downstream task, typically unrelated to ImageNet. However, pretrained weights can become saturated and may yield insignificant gradients, failing to adapt to the downstream task. This hinders the ability of the model to train effectively, and is commonly referred to as loss of neural plasticity. Loss of plasticity may prevent the model from fully adapting to the target domain, especially when the downstream dataset is atypical in nature. While this issue has been widely explored in continual learning, it remains relatively understudied in the context of transfer learning. In this work, we propose the use of a targeted weight re-initialization strategy to restore neural plasticity prior to fine-tuning. Our experiments show that both convolutional neural networks (CNNs) and vision transformers (ViTs) benefit from this approach, yielding higher test accuracy with faster convergence on several image classification benchmarks. Our method introduces negligible computational overhead and is compatible with common transfer learning pipelines.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2511.17228",
+   "title": "Intrinsic preservation of plasticity in continual quantum learning",
+   "published": "2025-11-21",
+   "categories": [
+    "quant-ph",
+    "cs.LG"
+   ],
+   "abstract": "Artificial intelligence in dynamic, real-world environments requires the capacity for continual learning. However, standard deep learning suffers from a fundamental issue: loss of plasticity, in which networks gradually lose their ability to learn from new data. Here we show that quantum learning models naturally overcome this limitation, preserving plasticity over long timescales. We demonstrate this advantage systematically across a broad spectrum of tasks from multiple learning paradigms, including supervised learning and reinforcement learning, and diverse data modalities, from classical high-dimensional images to quantum-native datasets. Although classical models exhibit performance degradation correlated with unbounded weight and gradient growth, quantum neural networks maintain consistent learning capabilities regardless of the data or task. We identify the origin of the advantage as the intrinsic physical constraints of quantum models. Unlike classical networks where unbounded weight growth leads to landscape ruggedness or saturation, the unitary constraints confine the optimization to a compact manifold. Our results suggest that the utility of quantum computing in machine learning extends beyond potential speedups, offering a robust pathway for building adaptive artificial intelligence and lifelong learners.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2603.04703",
+   "title": "Implicit Bias and Loss of Plasticity in Matrix Completion: Depth Promotes Low-Rankness",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We study matrix completion via deep matrix factorization (a.k.a. deep linear neural networks) as a simplified testbed to examine how network depth influences training dynamics. Despite the simplicity and importance of the problem, prior theory largely focuses on shallow (depth-2) models and does not fully explain the implicit low-rank bias observed in deeper networks. We identify coupled dynamics as a key mechanism behind this bias and show that it intensifies with increasing depth. Focusing on gradient flow under block-diagonal observations, we prove: (a) networks of depth $\\geq 3$ exhibit coupling unless initialized diagonally, and (b) convergence to rank-1 occurs if and only if the dynamics is coupled -- resolving an open question by Menon (2024) for a family of initializations. We also revisit the loss of plasticity phenomenon in matrix completion (Kleinman et al., 2024), where pre-training on few observations and resuming with more degrades performance. We show that deep models avoid plasticity loss due to their low-rank bias, whereas depth-2 networks pre-trained under decoupled dynamics fail to converge to low-rank, even when resumed training (with additional data) satisfies the coupling condition -- shedding light on the mechanism behind this phenomenon.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2609.17026",
+   "title": "CLARE: Scalable Class-Incremental Continual Learning via a Sparsity-Based Framework",
+   "published": "2026-09-15",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Continual learning must balance the learning of new knowledge with the retention of previously learned knowledge to incrementally learn tasks from a data stream without catastrophic forgetting. While leveraging pretrained models has significantly advanced continual learning, existing methods exhibit a scalability bottleneck when trained sequentially on many tasks, suffering from performance degradation due to inter-task interference and loss of plasticity. Inspired by evidence that sparse fine-tuning achieves performance comparable to full fine-tuning, this paper presents a novel sparsity-driven continual learning framework. Our continual learning method, termed CLARE, operates in two stages: it first identifies a sparse, task-critical parameter mask via a sparsity-inducing objective, then performs mask-constrained fine-tuning by only optimizing parameters selected by the mask. This two-stage sparse adapter mechanism enables all tasks to be accumulated within a shared adapter space while reducing destructive interference across tasks. Extensive experiments demonstrate the scalability of CLARE. On the long task-sequence benchmark Omnibenchmark-1k, CLARE outperforms strong baselines in final accuracy by a large margin, e.g, improving EASE by 4.64% and 13.34% after learning 100 tasks, respectively.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2507.07831",
+   "title": "Rethinking Query-based Transformer for Continual Image Segmentation",
+   "published": "2025-07-10",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Class-incremental/Continual image segmentation (CIS) aims to train an image segmenter in stages, where the set of available categories differs at each stage. To leverage the built-in objectness of query-based transformers, which mitigates catastrophic forgetting of mask proposals, current methods often decouple mask generation from the continual learning process. This study, however, identifies two key issues with decoupled frameworks: loss of plasticity and heavy reliance on input data order. To address these, we conduct an in-depth investigation of the built-in objectness and find that highly aggregated image features provide a shortcut for queries to generate masks through simple feature alignment. Based on this, we propose SimCIS, a simple yet powerful baseline for CIS. Its core idea is to directly select image features for query assignment, ensuring \"perfect alignment\" to preserve objectness, while simultaneously allowing queries to select new classes to promote plasticity. To further combat catastrophic forgetting of categories, we introduce cross-stage consistency in selection and an innovative \"visual query\"-based replay mechanism. Experiments demonstrate that SimCIS consistently outperforms state-of-the-art methods across various segmentation tasks, settings, splits, and input data orders. All models and codes will be made publicly available at https://github.com/SooLab/SimCIS.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2603.04333",
+   "title": "What Does Flow Matching Bring To TD Learning?",
+   "published": "2026-03-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Recent work shows that flow matching can be effective for scalar Q-value function estimation in reinforcement learning (RL), but it remains unclear why or how this approach differs from standard critics. Contrary to conventional belief, we show that their success is not explained by distributional RL, as explicitly modeling return distributions can reduce performance. Instead, we argue that the use of integration for reading out values and dense velocity supervision at each step of this integration process for training improves TD learning via two mechanisms. First, it enables robust value prediction through \\emph{test-time recovery}, whereby iterative computation through integration dampens errors in early value estimates as more integration steps are performed. This recovery mechanism is absent in monolithic critics. Second, supervising the velocity field at multiple interpolant values induces more \\emph{plastic} feature learning within the network, allowing critics to represent non-stationary TD targets without discarding previously learned features or overfitting to individual TD targets encountered during training. We formalize these effects and validate them empirically, showing that flow-matching critics substantially outperform monolithic critics (2$\\times$ in final performance and around 5$\\times$ in sample efficiency) in settings where loss of plasticity poses a challenge e.g., in high-UTD online RL problems, while remaining stable during learning.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2605.09044",
+   "title": "Predicting Plasticity in Deep Continual Learning: A Theoretical Perspective",
+   "published": "2026-05-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep continual learning requires models to adapt to new tasks without retraining from scratch. However, neural networks can lose their ability to adapt to new tasks after training on previous ones, a phenomenon known as loss of plasticity. There have been several explanations and diagnostics proposed for plasticity loss. Motivated by the philosophy that \"all models are wrong, but some are useful\", we ask: can existing diagnostics predict a neural network's plasticity? In this work, we take a practical view to interpret plasticity as trainability, i.e., a neural network's future optimization gain on a target task. We first take a theoretical approach, showing, by constructing a few counterexamples, that some widely adopted diagnostics of plasticity, including representation rank and neural tangent kernel rank, can fail to predict the loss of trainability in both regression and classification settings. We instead propose a novel metric, called optimization readiness, which combines gradient strength and gradient reliability. We prove that optimization readiness lower bounds one-step optimization gain under standard smoothness assumptions, providing a theoretical guarantee for its predictive power. Empirically, we show that across commonly used deep continual learning settings, such as Slowly-Changing Regression and Permuted MNIST, optimization readiness more reliably ranks checkpoints by trainability than prior diagnostics, even with substantially fewer samples.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2608.18803",
+   "title": "Forgetting, plasticity, and co-observation: a third facet of continual learning",
+   "published": "2026-08-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Efficient continual learning remains a fundamental challenge for deep neural networks. While catastrophic forgetting and loss of plasticity are widely considered the primary obstacles to overcome, we show that these two issues cannot fully explain the performance gap between naive sequential training and offline joint training. In this paper, we highlight data co-observation as a distinct factor influencing continual learning performance. By decoupling the constraints of separate data access from stability and plasticity, we systematically investigate the representational benefits gained by observing training data together. Empirically, we demonstrate a consistent performance difference between joint and separate training across both supervised and self-supervised paradigms in generic data-incremental \"chunking\" scenarios, whilst mitigating forgetting and controlling for plasticity. Our findings indicate that simultaneous observation of training data (co-observation) yields benefits to the learner's generalization that extend well beyond mere knowledge retention, and that this effect does not require a specific continual distribution shift. Furthermore, we contextualize prominent continual learning mechanisms through this lens: while distillation-based approaches act only as effective knowledge retention mechanisms, our results suggest that the empirical success of memory replay goes beyond the mitigation of forgetting, actively reintroducing the benefits of data co-observation into the learning process.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2605.06834",
+   "title": "Attribution-Based Neuron Utility for Plasticity Restoration in Deep Networks",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning research attempts to conserve two fundamental capabilities: new knowledge acquisition and the preservation of previously acquired knowledge. While knowledge in this case can be measured through performance over an implicit or explicit task space, model plasticity generally concerns adaptability as data distributions evolve. Though much of the literature has focused on catastrophic forgetting, deep networks can also suffer from loss of plasticity, becoming progressively harder to update under continued training. Recent research has identified multiple mechanisms underlying this phenomenon, including neuron saturation, parameter norm growth, and loss of useful curvature directions. Adaptive reset-based interventions, which selectively reinitialize low-utility network parameters, have emerged as practical solutions to restore trainability. Existing utility measures used to guide resets, such as activation magnitude, contribution utility, or gradient-based activity, rely on proxy signals that can become misaligned with the intervention they are meant to guide. In this paper, we introduce gradient times difference from reference (GXD), a theoretically motivated utility measure based on reference-based gradient attribution that estimates the first-order functional cost of replacing a unit. Our results show that utility measures aligned with the functional cost of the reset can make interventions more reliable in settings where existing reset criteria degrade. GXD reframes adaptive resetting as an intervention cost estimation problem, providing a practical path toward more robust continual learning systems.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2605.12484",
+   "title": "Learning, Fast and Slow: Towards LLMs That Adapt Continually",
+   "published": "2026-05-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) are trained for downstream tasks by updating their parameters (e.g., via RL). However, updating model parameters forces them to absorb task-specific information, which can result in catastrophic forgetting and loss of plasticity. In contrast, in-context learning with fixed LLM parameters can cheaply and rapidly adapt to task-specific requirements (e.g., prompt optimization), but cannot by itself typically match the performance gains available through updating LLM parameters. Inspired by how human learning works at multiple time scales (e.g., System 1 vs 2), we propose a fast-slow learning framework for LLMs, instantiated with model parameters as \"slow\" weights and optimized context as \"fast\" weights. These fast \"weights\" can learn from textual feedback to absorb the task-specific information, while allowing slow weights to stay closer to the base model and persist general reasoning behaviors. Fast-Slow Training (FST) is up to 3x more sample-efficient than only slow learning (RL) across reasoning tasks, while consistently reaching a higher performance asymptote. Moreover, FST-trained models remain closer to the base LLM (up to 70% less KL divergence), resulting in less catastrophic forgetting than RL-training. This reduced drift also preserves plasticity: after training on one task, FST trained models adapt more effectively to a subsequent task. In continual learning scenarios, where task domains change on the fly, FST continues to acquire each new task while RL stalls.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2604.15414",
+   "title": "Beyond Single-Model Optimization: Preserving Plasticity in Continual Reinforcement Learning",
+   "published": "2026-04-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.NE"
+   ],
+   "abstract": "Continual reinforcement learning must balance retention with adaptation, yet many methods still rely on \\emph{single-model preservation}, committing to one evolving policy as the main reusable solution across tasks. Even when a previously successful policy is retained, it may no longer provide a reliable starting point for rapid adaptation after interference, reflecting a form of \\emph{loss of plasticity} that single-policy preservation cannot address. Inspired by quality-diversity methods, we introduce \\textsc{TeLAPA} (Transfer-Enabled Latent-Aligned Policy Archives), a continual RL framework that organizes behaviorally diverse policy neighborhoods into per-task archives and maintains a shared latent space so that archived policies remain comparable and reusable under non-stationary drift. This perspective shifts continual RL from retaining isolated solutions to maintaining \\emph{skill-aligned neighborhoods} with competent and behaviorally related policies that support future relearning. In our MiniGrid CL setting, \\textsc{TeLAPA} learns more tasks successfully, recovers competence faster on revisited tasks after interference, and retains higher performance across a sequence of tasks. Our analyses show that source-optimal policies are often not transfer-optimal, even within a local competent neighborhood, and that effective reuse depends on retaining and selecting among multiple nearby alternatives rather than collapsing them to one representative. Together, these results reframe continual RL around reusable and competent policy neighborhoods, providing a route beyond single-model preservation toward more plastic lifelong agents.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2512.22045",
+   "title": "Learning continually with representational drift",
+   "published": "2025-12-26",
+   "categories": [
+    "q-bio.NC"
+   ],
+   "abstract": "Deep artificial neural networks famously struggle to learn from non-stationary streams of data. Without dedicated mitigation strategies, continual learning is associated with continuous forgetting of previous tasks and a progressive loss of plasticity. Current approaches to continual learning have either focused on increasing the stability of representations of past tasks, or on promoting plasticity for future learning. Paradoxically, while animals including humans achieve a desirable stability-plasticity trade-off, the responses of biological neurons to external stimuli that are associated with stable behaviors gradually change over time. This suggests that, although unstable representations have historically been seen as undesirable in artificial systems, they could be a core property of biological neural networks learning continually. Here, we examine how linking representational drift to continual learning in biological neural networks could inform artificial systems. We highlight the existence of representational drift across numerous animal species and brain regions and propose that drift reflects a mixture of homeostatic turnover and learning-related synaptic plasticity. In particular, we evaluate how plasticity induced by learning new tasks could induce drift in the representation of previous tasks, and how such drift could accumulate across brain regions. In deep artificial neural networks, we propose that representational drift is only compatible with approaches that do not explicitly prevent parameter changes to mitigate forgetting. Remarkably, jointly promoting plasticity while mitigating forgetting could in principle induce representational drift in continual learning. While we argue that drift is a byproduct rather than a solution to incremental learning, its investigation could inform approaches to continual learning in artificial systems.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2610.21230",
+   "title": "Not All Change Is Damage: Update-Matched Unlearning for Large Language Models",
+   "published": "2026-10-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Unlearning aims to remove selected knowledge from large language models to mitigate privacy and safety risks while preserving useful capabilities. For models that continue to be fine-tuned after release, this goal is insufficient: they must also resist relearning the deleted knowledge while preserving plasticity, the ability to learn new tasks. Existing defenses train against simulated relearning while trying to preserve useful capabilities, but low relearning alone cannot distinguish selective resistance from a general loss of plasticity. Evaluating preservation after an update requires deciding what the updated model should remain close to. A pre-update reference penalizes useful changes induced by the update simply because they depart from earlier outputs. We therefore formulate the reference-timing hypothesis that, at comparable target suppression, an update-matched reference better preserves plasticity than a pre-update one. To test and address this hypothesis, we propose Update-Matched Unlearning (UMU), which applies the same simulated relearning update to the defended model and to an undefended reference initialized from the same unlearned model, and uses new-task learning to guide model selection. Extensive experiments on TOFU and FaithUn with Llama and Qwen models show that UMU improves both relearning resistance and plasticity across all three base unlearning methods, lowering harmful and benign relearning by 30.4 and 9.9 points on average while raising new-task accuracy by 3.5 points. When the reference does not receive the update, relearning remains similarly low but new-task accuracy falls below the base method, supporting the reference-timing hypothesis and showing that robust unlearning should prevent recovery selectively without suppressing learning itself.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2604.01913",
+   "title": "The Rank and Gradient Lost in Non-stationarity: Sample Weight Decay for Mitigating Plasticity Loss in Reinforcement Learning",
+   "published": "2026-04-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep reinforcement learning (RL) suffers from plasticity loss severely due to the nature of non-stationarity, which impairs the ability to adapt to new data and learn continually. Unfortunately, our understanding of how plasticity loss arises, dissipates, and can be dissolved remains limited to empirical findings, leaving the theoretical end underexplored.To address this gap, we study the plasticity loss problem from the theoretical perspective of network optimization. By formally characterizing the two culprit factors in online RL process: the non-stationarity of data distributions and the non-stationarity of targets induced by bootstrapping, our theory attributes the loss of plasticity to two mechanisms: the rank collapse of the Neural Tangent Kernel (NTK) Gram matrix and the $Θ(\\frac{1}{k})$ decay of gradient magnitude. The first mechanism echoes prior empirical findings from the theoretical perspective and sheds light on the effects of existing methods, e.g., network reset, neuron recycle, and noise injection. Against this backdrop, we focus primarily on the second mechanism and aim to alleviate plasticity loss by addressing the gradient attenuation issue, which is orthogonal to existing methods. We propose Sample Weight Decay -- a lightweight method to restore gradient magnitude, as a general remedy to plasticity loss for deep RL methods based on experience replay. In experiments, we evaluate the efficacy of \\methodName upon TD3, \\myadded{Double DQN} and SAC with SimBa architecture in MuJoCo, \\myadded{ALE} and DeepMind Control Suite tasks. The results demonstrate that \\methodName effectively alleviates plasticity loss and consistently improves learning performance across various configurations of deep RL algorithms, UTD, network architectures, and environments, achieving SOTA performance on challenging DMC Humanoid tasks.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2610.09621",
+   "title": "When does a network's training history predict its future learning better than its current state? Evidence from a response probe and a forecasting screen",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Networks that behave alike now can still learn differently when training continues. Work on loss of plasticity and critical periods shows that the path to a state shapes what follows; it does not show whether the path carries information that a measurement of the state itself misses. We ask when the training history of a network predicts its future learning better than its current state. In a main study, small multilayer perceptrons were trained under three history regimes (42 histories), and future learning was measured at four checkpoints by a short probe: a copy of the network trained for 100 updates on a new task. Before the prediction result was read, the protocol checked the probe. It responded monotonically to a function-preserving rescaling of hidden units, repeated measurements agreed (intraclass correlation 0.940, [0.903, 0.997], in the least reliable class, mean of three repeats), and a re-initialisation of units was visible directly after it but not 100 to 200 updates later. A history state of at most four dimensions did not improve on a calibrated model of the current state (gain -21.4%, 90% interval [-91.9, 8.1]; required in advance: 10%). A companion screen on 1,560 synthetic regression runs asked the same question for a target further away, the final error of the run. There, history models forecast better than the current validation error after 12 of up to 240 epochs (compact state 30.3%, [15.8, 39.4], a contextual comparison) and were not distinguishable from it after 48. In both studies the history was informative only while the current state was not yet informative about the target; this reading was formed after the results.",
+   "query": "loss of plasticity"
+  },
+  {
+   "id": "2509.25807",
+   "title": "Fine-Tuning Bulk-oriented Universal Interatomic Potentials for Surfaces: Accuracy, Efficiency, and Forgetting Control",
+   "published": "2025-09-30",
+   "categories": [
+    "cond-mat.mtrl-sci"
+   ],
+   "abstract": "Accurate prediction of surface energies and stabilities is essential for materials design, yet first-principles calculations remain computationally expensive and most existing interatomic potentials are trained only on bulk systems. Here, we demonstrate that fine-tuning foundation machine learning potentials (MLPs) significantly improves both computational efficiency and predictive accuracy for surface modeling. While existing universal interatomic potentials (UIPs) have been solely trained and validated on bulk datasets, we extend their applicability to complex and scientifically significant unary, binary, and ternary surface systems. We systematically compare models trained from scratch, zero-shot inference, conventional fine-tuning, and multi-head fine-tuning approach that enhances transferability and mitigates catastrophic forgetting. Fine-tuning consistently reduces prediction errors with orders-of-magnitude fewer training configurations, and multi-head fine-tuning delivers robust and generalizable predictions even for materials beyond the initial training domain. These findings offer practical guidance for leveraging pre-trained MLPs to accelerate surface modeling and highlight a scalable path toward data-efficient, next-generation atomic-scale simulations in computational materials science.",
+   "query": "catastrophic forgetting fine-tuning"
+  },
+  {
+   "id": "2610.13816",
+   "title": "Dream to Remember: Continual Steering of Generalist Robot Policies with World Models",
+   "published": "2026-10-09",
+   "categories": [
+    "cs.RO",
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Generalist robot policies are trained with imitation learning and are bounded by the quality and coverage of their demonstrations. Reinforcement learning can improve and extend them, either by fine-tuning the policy weights or by training a small module to steer the input noise of a frozen generative policy. When tasks arrive sequentially, both approaches suffer from catastrophic forgetting. Fine-tuning on a task degrades prior tasks, and steering only shifts forgetting to the shared steering module. We propose Dream to Remember (D2R), which continually steers a frozen generalist policy toward new tasks, while retaining its earlier skills. As the steering module learns a new task, a frozen pretrained world model rehearses prior tasks through imagined rollouts, anchoring the module to its earlier behavior without a replay buffer or new data. When the world model is faithful enough, D2R learns the new task entirely in imagination. Otherwise, it learns the task in the environment while using the world model only to rehearse prior tasks. On CALVIN, D2R improves eight tasks in sequence entirely in imagination, raising average success from 63.7% to 74.8%, while LoRA fine-tuning on the same sequence drops it to 11.7%. With a frozen off-the-shelf generalist policy and world model, $π_0$ and A2World, D2R learns unseen LIBERO-90 tasks in the environment while keeping $π_0$'s performance on the LIBERO suites it was fine-tuned on, even though the world model is not accurate enough for policy optimization. Finally, on a real Franka robot, D2R improves three tasks in sequence entirely in imagination while retaining the earlier improvements.",
+   "query": "catastrophic forgetting fine-tuning"
+  },
+  {
+   "id": "2503.12635",
+   "title": "Hybrid Learners Do Not Forget: A Brain-Inspired Neuro-Symbolic Approach to Continual Learning",
+   "published": "2025-03-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning is crucial for creating AI agents that can learn and improve themselves autonomously. A primary challenge in continual learning is to learn new tasks without losing previously learned knowledge. Current continual learning methods primarily focus on enabling a neural network with mechanisms that mitigate forgetting effects. Inspired by the two distinct systems in the human brain, System 1 and System 2, we propose a Neuro-Symbolic Brain-Inspired Continual Learning (NeSyBiCL) framework that incorporates two subsystems to solve continual learning: A neural network model responsible for quickly adapting to the most recent task, together with a symbolic reasoner responsible for retaining previously acquired knowledge from previous tasks. Moreover, we design an integration mechanism between these components to facilitate knowledge transfer from the symbolic reasoner to the neural network. We also introduce two compositional continual learning benchmarks and demonstrate that NeSyBiCL is effective and leads to superior performance compared to continual learning methods that merely rely on neural architectures to address forgetting.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2602.22601",
+   "title": "$φ$-DPO: Fairness Direct Preference Optimization Approach to Continual Learning in Large Multimodal Models",
+   "published": "2026-02-26",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Fairness in Continual Learning for Large Multimodal Models (LMMs) is an emerging yet underexplored challenge, particularly in the presence of imbalanced data distributions that can lead to biased model updates and suboptimal performance across tasks. While recent continual learning studies have made progress in addressing catastrophic forgetting, the problem of fairness caused the imbalanced data remains largely underexplored. This paper presents a novel Fairness Direct Preference Optimization (FaiDPO or $φ$-DPO) framework for continual learning in LMMs. In particular, we first propose a new continual learning paradigm based on Direct Preference Optimization (DPO) to mitigate catastrophic forgetting by aligning learning with pairwise preference signals. Then, we identify the limitations of conventional DPO in imbalanced data and present a new $φ$-DPO loss that explicitly addresses distributional biases. We provide a comprehensive theoretical analysis demonstrating that our approach addresses both forgetting and data imbalance. Additionally, to enable $φ$-DPO-based continual learning, we construct pairwise preference annotations for existing benchmarks in the context of continual learning. Extensive experiments and ablation studies show the proposed $φ$-DPO achieves State-of-the-Art performance across multiple benchmarks, outperforming prior continual learning methods of LMMs.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.21076",
+   "title": "KAC: Kolmogorov-Arnold Classifier for Continual Learning",
+   "published": "2025-03-27",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Continual learning requires models to train continuously across consecutive tasks without forgetting. Most existing methods utilize linear classifiers, which struggle to maintain a stable classification space while learning new tasks. Inspired by the success of Kolmogorov-Arnold Networks (KAN) in preserving learning stability during simple continual regression tasks, we set out to explore their potential in more complex continual learning scenarios. In this paper, we introduce the Kolmogorov-Arnold Classifier (KAC), a novel classifier developed for continual learning based on the KAN structure. We delve into the impact of KAN's spline functions and introduce Radial Basis Functions (RBF) for improved compatibility with continual learning. We replace linear classifiers with KAC in several recent approaches and conduct experiments across various continual learning benchmarks, all of which demonstrate performance improvements, highlighting the effectiveness and robustness of KAC in continual learning. The code is available at https://github.com/Ethanhuhuhu/KAC.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2504.17963",
+   "title": "Mathematics of Continual Learning",
+   "published": "2025-04-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning is an emerging subject in machine learning that aims to solve multiple tasks presented sequentially to the learner without forgetting previously learned tasks. Recently, many deep learning based approaches have been proposed for continual learning, however the mathematical foundations behind existing continual learning methods remain underdeveloped. On the other hand, adaptive filtering is a classic subject in signal processing with a rich history of mathematically principled methods. However, its role in understanding the foundations of continual learning has been underappreciated. In this tutorial, we review the basic principles behind both continual learning and adaptive filtering, and present a comparative analysis that highlights multiple connections between them. These connections allow us to enhance the mathematical foundations of continual learning based on existing results for adaptive filtering, extend adaptive filtering insights using existing continual learning methods, and discuss a few research directions for continual learning suggested by the historical developments in adaptive filtering.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2502.01427",
+   "title": "Structural features of the fly olfactory circuit mitigate the stability-plasticity dilemma in continual learning",
+   "published": "2025-02-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "q-bio.NC"
+   ],
+   "abstract": "Artificial neural networks face the stability-plasticity dilemma in continual learning, while the brain can maintain memories and remain adaptable. However, the biological strategies for continual learning and their potential to inspire learning algorithms in neural networks are poorly understood. This study presents a minimal model of the fly olfactory circuit to investigate the biological strategies that support continual odor learning. We introduce the fly olfactory circuit as a plug-and-play component, termed the Fly Model, which can integrate with modern machine learning methods to address this dilemma. Our findings demonstrate that the Fly Model enhances both memory stability and learning plasticity, overcoming the limitations of current continual learning strategies. We validated its effectiveness across various challenging continual learning scenarios using commonly used datasets. The fly olfactory system serves as an elegant biological circuit for lifelong learning, offering a module that enhances continual learning with minimal additional computational cost for machine learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2606.24955",
+   "title": "Towards Continuous Power Forecasting: Practical Continual Learning for Real-World Energy Systems in Nonstationary Time Series",
+   "published": "2026-06-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Power forecasting models deployed in real-world energy markets must operate under nonstationary conditions, where data distributions continually evolve due to weather variability, infrastructure upgrades, and changing consumption behaviors. In practice, these models face strict operational constraints: historical data may be limited or unavailable for repeated retraining, and uninterrupted long-term service is often required. This paper addresses these challenges by proposing the paradigm of Continuous Power Forecasting, which views power forecasting as a continual learning problem rather than a static offline task. Based on an adaptive continual learning framework for regression, we systematically investigate the practical effectiveness of six representative continual learning approaches from three methodological categories. These approaches are evaluated under different realistic assumptions regarding data accessibility and update policies. Experimental validation on real-world power datasets demonstrates that continual learning enables forecasting models to self-adapt to distributional drift, accumulate knowledge over time, and mitigate catastrophic forgetting without relying on large-scale historical data storage. Beyond performance gains, our study provides practical insights into the stability and adaptation behaviors of different continual learning approaches under realistic operational constraints. Overall, this work illustrates how continual learning can be pragmatically integrated into industrial power forecasting pipelines, offering a scalable and sustainable solution for long-term deployment in dynamic environments.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2505.12512",
+   "title": "Scalable Strategies for Continual Learning with Replay",
+   "published": "2025-05-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Future deep learning models will be distinguished by systems that perpetually learn through interaction, imagination, and cooperation, blurring the line between training and inference. This makes continual learning a critical challenge, as methods that efficiently maximize bidirectional transfer across learning trajectories will be essential. Replay is on track to play a foundational role in continual learning, allowing models to directly reconcile new information with past knowledge. In practice, however, replay is quite unscalable, doubling the cost of continual learning when applied naively. Moreover, the continual learning literature has not fully synchronized with the multi-task fine-tuning literature, having not fully integrated highly scalable techniques like model merging and low rank adaptation into a replay-enabled toolset that can produce a unified model in the face of many sequential tasks. In this paper, we begin by applying and analyzing low rank adaptation in a continual learning setting. Next, we introduce consolidation, a phasic approach to replay which leads to up to 55\\% less replay samples being needed for a given performance target. Then, we propose sequential merging, an offshoot of task arithmetic which is tailored to the continual learning setting and is shown to work well in combination with replay. Finally, we demonstrate that the developed strategies can operate synergistically, resulting in a highly scalable toolset that outperforms standalone variants.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2508.16632",
+   "title": "Adaptive Variance-Penalized Continual Learning with Fisher Regularization",
+   "published": "2025-08-15",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The persistent challenge of catastrophic forgetting in neural networks has motivated extensive research in continual learning . This work presents a novel continual learning framework that integrates Fisher-weighted asymmetric regularization of parameter variances within a variational learning paradigm. Our method dynamically modulates regularization intensity according to parameter uncertainty, achieving enhanced stability and performance. Comprehensive evaluations on standard continual learning benchmarks including SplitMNIST, PermutedMNIST, and SplitFashionMNIST demonstrate substantial improvements over existing approaches such as Variational Continual Learning and Elastic Weight Consolidation . The asymmetric variance penalty mechanism proves particularly effective in maintaining knowledge across sequential tasks while improving model accuracy. Experimental results show our approach not only boosts immediate task performance but also significantly mitigates knowledge degradation over time, effectively addressing the fundamental challenge of catastrophic forgetting in neural networks",
+   "query": "continual learning"
+  },
+  {
+   "id": "2607.19661",
+   "title": "Leveraging ECRAM for Edge Continual Learning",
+   "published": "2026-07-22",
+   "categories": [
+    "cs.AR",
+    "cs.ET",
+    "cs.LG"
+   ],
+   "abstract": "Several edge computing platforms, such as autonomous vehicles and smart sensing devices, need to adapt to dynamic environments in real time by learning from new data in the field. Continual learning has emerged as a promising solution for edge training, by incorporating techniques that successfully combine a highly summarized version of previously trained data (to avoid catastrophic forgetting) with recently sensed data. However, as is the case with other ML algorithms, continual learning generates significant data movement between general-purpose CPUs/GPUs and memory, impacting the suitability of continual learning for edge platforms. In-memory computing (IMC; also known as processing-using-memory) can curtail this waste and make continual learning feasible at the edge, but it faces two unique challenges: (1) IMC architectures make use of noisy computation operations that significantly harm training accuracy; and (2) IMC architectures have poor and often incomplete support for resource-efficient training. To address these challenges, we propose CLASP (the Continual Learning Acceleration System Platform), which to our knowledge is the first end-to-end system with IMC acceleration for continual learning. The hardware and software of CLASP are co-designed to support a wide range of continual learning algorithms, through software-visible assembly-level instructions that can be incorporated without constraints into ML-based algorithms. CLASP is designed around a back-end-of-line (BEOL) compatible ECRAM device that we fabricate, which can overcome the challenges of IMC-based training using other emerging memory devices. We show that CLASP with ECRAM approaches the accuracy of in-GPU training, while delivering a speedup of 67x and energy savings of 132x for learning without forgetting and experience replay using MNIST.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.01887",
+   "title": "When Continue Learning Meets Multimodal Large Language Model: A Survey",
+   "published": "2025-02-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Recent advancements in Artificial Intelligence have led to the development of Multimodal Large Language Models (MLLMs). However, adapting these pre-trained models to dynamic data distributions and various tasks efficiently remains a challenge. Fine-tuning MLLMs for specific tasks often causes performance degradation in the model's prior knowledge domain, a problem known as 'Catastrophic Forgetting'. While this issue has been well-studied in the Continual Learning (CL) community, it presents new challenges for MLLMs. This review paper, the first of its kind in MLLM continual learning, presents an overview and analysis of 440 research papers in this area.The review is structured into four sections. First, it discusses the latest research on MLLMs, covering model innovations, benchmarks, and applications in various fields. Second, it categorizes and overviews the latest studies on continual learning, divided into three parts: non-large language models unimodal continual learning (Non-LLM Unimodal CL), non-large language models multimodal continual learning (Non-LLM Multimodal CL), and continual learning in large language models (CL in LLM). The third section provides a detailed analysis of the current state of MLLM continual learning research, including benchmark evaluations, architectural innovations, and a summary of theoretical and empirical studies.Finally, the paper discusses the challenges and future directions of continual learning in MLLMs, aiming to inspire future research and development in the field. This review connects the foundational concepts, theoretical insights, method innovations, and practical applications of continual learning for multimodal large models, providing a comprehensive understanding of the research progress and challenges in this field, aiming to inspire researchers in the field and promote the advancement of related technologies.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2507.08922",
+   "title": "The Bayesian Approach to Continual Learning: An Overview",
+   "published": "2025-07-11",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Continual learning is an online paradigm where a learner continually accumulates knowledge from different tasks encountered over sequential time steps. Importantly, the learner is required to extend and update its knowledge without forgetting about the learning experience acquired from the past, and while avoiding the need to retrain from scratch. Given its sequential nature and its resemblance to the way humans think, continual learning offers an opportunity to address several challenges which currently stand in the way of widening the range of applicability of deep models to further real-world problems. The continual need to update the learner with data arriving sequentially strikes inherent congruence between continual learning and Bayesian inference which provides a principal platform to keep updating the prior beliefs of a model given new data, without completely forgetting the knowledge acquired from the old data. This survey inspects different settings of Bayesian continual learning, namely task-incremental learning and class-incremental learning. We begin by discussing definitions of continual learning along with its Bayesian setting, as well as the links with related fields, such as domain adaptation, transfer learning and meta-learning. Afterwards, we introduce a taxonomy offering a comprehensive categorization of algorithms belonging to the Bayesian continual learning paradigm. Meanwhile, we analyze the state-of-the-art while zooming in on some of the most prominent Bayesian continual learning algorithms to date. Furthermore, we shed some light on links between continual learning and developmental psychology, and correspondingly introduce analogies between both fields. We follow that with a discussion of current challenges, and finally conclude with potential areas for future research on Bayesian continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2508.15494",
+   "title": "High-dimensional Asymptotics of Generalization Performance in Continual Ridge Regression",
+   "published": "2025-08-21",
+   "categories": [
+    "stat.ME",
+    "cs.LG"
+   ],
+   "abstract": "Continual learning is motivated by the need to adapt to real-world dynamics in tasks and data distribution while mitigating catastrophic forgetting. Despite significant advances in continual learning techniques, the theoretical understanding of their generalization performance lags behind. This paper examines the theoretical properties of continual ridge regression in high-dimensional linear models, where the dimension is proportional to the sample size in each task. Using random matrix theory, we derive exact expressions of the asymptotic prediction risk, thereby enabling the characterization of three evaluation metrics of generalization performance in continual learning: average risk, backward transfer, and forward transfer. Furthermore, we present the theoretical risk curves to illustrate the trends in these evaluation metrics throughout the continual learning process. Our analysis reveals several intriguing phenomena in the risk curves, demonstrating how model specifications influence the generalization performance. Simulation studies are conducted to validate our theoretical findings.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2504.14727",
+   "title": "Semi-parametric Memory Consolidation: Towards Brain-like Deep Continual Learning",
+   "published": "2025-04-20",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Humans and most animals inherently possess a distinctive capacity to continually acquire novel experiences and accumulate worldly knowledge over time. This ability, termed continual learning, is also critical for deep neural networks (DNNs) to adapt to the dynamically evolving world in open environments. However, DNNs notoriously suffer from catastrophic forgetting of previously learned knowledge when trained on sequential tasks. In this work, inspired by the interactive human memory and learning system, we propose a novel biomimetic continual learning framework that integrates semi-parametric memory and the wake-sleep consolidation mechanism. For the first time, our method enables deep neural networks to retain high performance on novel tasks while maintaining prior knowledge in real-world challenging continual learning scenarios, e.g., class-incremental learning on ImageNet. This study demonstrates that emulating biological intelligence provides a promising path to enable deep neural networks with continual learning capabilities.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.01669",
+   "title": "An Efficient Continual Learning Framework for Multivariate Time Series Prediction Tasks with Application to Vehicle State Estimation",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In continual time series analysis using neural networks, catastrophic forgetting (CF) of previously learned models when training on new data domains has always been a significant challenge. This problem is especially challenging in vehicle estimation and control, where new information is sequentially introduced to the model. Unfortunately, existing work on continual learning has not sufficiently addressed the adverse effects of catastrophic forgetting in time series analysis, particularly in multivariate output environments. In this paper, we present EM-ReSeleCT (Efficient Multivariate Representative Selection for Continual Learning in Time Series Tasks), an enhanced approach designed to handle continual learning in multivariate environments. Our approach strategically selects representative subsets from old and historical data and incorporates memory-based continual learning techniques with an improved optimization algorithm to adapt the pre-trained model on new information while preserving previously acquired information. Additionally, we develop a sequence-to-sequence transformer model (autoregressive model) specifically designed for vehicle state estimation. Moreover, we propose an uncertainty quantification framework using conformal prediction to assess the sensitivity of the memory size and to showcase the robustness of the proposed method. Experimental results from tests on an electric Equinox vehicle highlight the superiority of our method in continually learning new information while retaining prior knowledge, outperforming state-of-the-art continual learning methods. Furthermore, EM-ReSeleCT significantly reduces training time, a critical advantage in continual learning applications.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2603.17548",
+   "title": "CLeAN: Continual Learning Adaptive Normalization in Dynamic Environments",
+   "published": "2026-03-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Artificial intelligence systems predominantly rely on static data distributions, making them ineffective in dynamic real-world environments, such as cybersecurity, autonomous transportation, or finance, where data shifts frequently. Continual learning offers a potential solution by enabling models to learn from sequential data while retaining prior knowledge. However, a critical and underexplored issue in this domain is data normalization. Conventional normalization methods, such as min-max scaling, presuppose access to the entire dataset, which is incongruent with the sequential nature of continual learning. In this paper we introduce Continual Learning Adaptive Normalization (CLeAN), a novel adaptive normalization technique designed for continual learning in tabular data. CLeAN involves the estimation of global feature scales using learnable parameters that are updated via an Exponential Moving Average (EMA) module, enabling the model to adapt to evolving data distributions. Through comprehensive evaluations on two datasets and various continual learning strategies, including Resevoir Experience Replay, A-GEM, and EwC we demonstrate that CLeAN not only improves model performance on new data but also mitigates catastrophic forgetting. The findings underscore the importance of adaptive normalization in enhancing the stability and effectiveness of tabular data, offering a novel perspective on the use of normalization to preserve knowledge in dynamic learning environments.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2509.05858",
+   "title": "Genesis: A Spiking Neuromorphic Accelerator With On-chip Continual Learning",
+   "published": "2025-09-06",
+   "categories": [
+    "cs.NE",
+    "eess.SY"
+   ],
+   "abstract": "Continual learning, the ability to acquire and transfer knowledge through a models lifetime, is critical for artificial agents that interact in real-world environments. Biological brains inherently demonstrate these capabilities while operating within limited energy and resource budgets. Achieving continual learning capability in artificial systems considerably increases memory and computational demands, and even more so when deploying on platforms with limited resources. In this work, Genesis, a spiking continual learning accelerator, is proposed to address this gap. The architecture supports neurally inspired mechanisms, such as activity-dependent metaplasticity, to alleviate catastrophic forgetting. It integrates low-precision continual learning parametersand employs a custom data movement strategy to accommodate the sparsely distributed spikes. Furthermore, the architecture features a memory mapping technique that places metaplasticity parameters and synaptic weights in a single address location for faster memory access. Results show that the mean classification accuracy for Genesis is 74.6% on a task-agnostic split-MNIST benchmark with power consumption of 17.08mW in a 65nm technology node.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2607.04711",
+   "title": "Learning Probabilistic Prompt for Continual Learning",
+   "published": "2026-07-06",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Continual learning aims to progressively learn from a sequence of tasks, each containing a disjoint subset of classes, while preserving previously learned knowledge. Prompt-based continual learning methods propose to learn a small set of parameters, i.e., prompts, by associating them with a query feature of an input image. These methods optimize the prompts, attempting to represent diverse patterns of images. However, we have observed that existing prompt-based methods suffer from a prompt collapse problem, that is, the prompts tend to be highly similar to each other, thereby failing to capture the diverse data distributions in continual learning scenarios. To address this issue, we propose in this paper a novel prompt-based continual learning framework that captures diverse patterns of images across a sequence of tasks. To this end, we model each prompt as a probabilistic distribution and construct a mixture of these distributions, from which we sample diverse prompts. This enables our model to effectively capture highly diverse image distributions in the continual learning process. We also present a distribution regularization loss to prevent abrupt changes in the prompt distributions throughout the training process. We show extensive experimental results for continual learning on standard benchmarks, including ImageNet-R, CIFAR-100, and CUB-200, demonstrating the effectiveness of our framework.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2602.06586",
+   "title": "Degradation of Feature Space in Continual Learning",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.LG",
+    "cs.DC"
+   ],
+   "abstract": "Centralized training is the standard paradigm in deep learning, enabling models to learn from a unified dataset in a single location. In such setup, isotropic feature distributions naturally arise as a mean to support well-structured and generalizable representations. In contrast, continual learning operates on streaming and non-stationary data, and trains models incrementally, inherently facing the well-known plasticity-stability dilemma. In such settings, learning dynamics tends to yield increasingly anisotropic feature space. This arises a fundamental question: should isotropy be enforced to achieve a better balance between stability and plasticity, and thereby mitigate catastrophic forgetting? In this paper, we investigate whether promoting feature-space isotropy can enhance representation quality in continual learning. Through experiments using contrastive continual learning techniques on CIFAR-10 and CIFAR-100 data, we find that isotropic regularization fails to improve, and can in fact degrade, model accuracy in continual settings. Our results highlight essential differences in feature geometry between centralized and continual learning, suggesting that isotropy, while beneficial in centralized setups, may not constitute an appropriate inductive bias for non-stationary learning scenarios.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2606.05661",
+   "title": "Continual Learning Bench: Evaluating Frontier AI Systems in Real-World Stateful Environments",
+   "published": "2026-06-04",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Continual learning, the ability of AI systems to improve through sequential experience, has attracted substantial interest, but no high-quality benchmark exists to evaluate it. We introduce Continual Learning Bench (CL-Bench), the first difficult, expert-validated benchmark designed to measure whether LLM-based systems genuinely improve with experience. CL-Bench spans six diverse domains (software engineering, signal processing, disease outbreak forecasting, database querying, strategic game-playing, and demand forecasting), each validated by domain experts and designed so that tasks share a learnable latent structure (codebase layout, disease outbreak dynamics, opponent strategies) that a stateful system can discover online but a stateless one cannot. We evaluate frontier models across several agent architectures, from naive in-context learning (ICL) to dedicated memory systems, introducing a gain metric to isolate learning from prior capabilities. We find that these systems leave headroom for improved continual learning: agents frequently overfit to immediate observations or fail to reuse knowledge across instances, and dedicated memory systems do not fix this -- in fact, naive ICL outperforms systems dedicated to memory management. CL-Bench is the first benchmark to evaluate continual learning across diverse real-world domains with expert-validated tasks and isolate online learning from underlying model capability, showing a need for better continual learning systems.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2604.20087",
+   "title": "SkillLearnBench: Benchmarking Continual Learning Methods for Agent Skill Generation on Real-World Tasks",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Skills have become the de facto way to enable LLM agents to perform complex real-world tasks with customized instructions, workflows, and tools, but how to learn them automatically and effectively remains unclear. We introduce SkillLearnBench, the first benchmark for evaluating continual skill learning methods, comprising 20 verified, skill-dependent tasks across 15 sub-domains derived from a real-world skill taxonomy , evaluated at three levels: skill quality, execution trajectory, and task outcome. Using this benchmark, we evaluate recent continual learning techniques, those leveraging one-shot, self/teacher feedback, and skill creator to generate skills from agent experiences. We find that all continual learning methods improve over the no-skill baseline, yet consistent gains remain elusive: no method leads across all tasks and LLMs, and scaling to stronger LLMs does not reliably help. Continual learning improves tasks with clear, reusable workflows but struggles on open-ended tasks, and using stronger LLM backbones does not consistently produce better skills. Our analysis also revealed that multiple iterations in continual learning facilitate genuine improvement via external feedback, whereas self-feedback alone induces recursive drift. Our data and code are open-source at https://github.com/cxcscmu/SkillLearnBench to enable further studies of automatic skill generation and continual learning techniques.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2505.09003",
+   "title": "Continual Reinforcement Learning via Autoencoder-Driven Task and New Environment Recognition",
+   "published": "2025-05-13",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning for reinforcement learning agents remains a significant challenge, particularly in preserving and leveraging existing information without an external signal to indicate changes in tasks or environments. In this study, we explore the effectiveness of autoencoders in detecting new tasks and matching observed environments to previously encountered ones. Our approach integrates policy optimization with familiarity autoencoders within an end-to-end continual learning system. This system can recognize and learn new tasks or environments while preserving knowledge from earlier experiences and can selectively retrieve relevant knowledge when re-encountering a known environment. Initial results demonstrate successful continual learning without external signals to indicate task changes or reencounters, showing promise for this methodology.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2506.08255",
+   "title": "SHIELD: Secure Hypernetworks for Incremental Expansion Learning Defense",
+   "published": "2025-06-09",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CR"
+   ],
+   "abstract": "Continual learning under adversarial conditions remains an open problem, as existing methods often compromise either robustness, scalability, or both. We propose a novel framework that integrates Interval Bound Propagation (IBP) with a hypernetwork-based architecture to enable certifiably robust continual learning across sequential tasks. Our method, SHIELD, generates task-specific model parameters via a shared hypernetwork conditioned solely on compact task embeddings, eliminating the need for replay buffers or full model copies and enabling efficient over time. To further enhance robustness, we introduce Interval MixUp, a novel training strategy that blends virtual examples represented as $\\ell_{\\infty}$ balls centered around MixUp points. Leveraging interval arithmetic, this technique guarantees certified robustness while mitigating the wrapping effect, resulting in smoother decision boundaries. We evaluate SHIELD under strong white-box adversarial attacks, including PGD and AutoAttack, across multiple benchmarks. It consistently outperforms existing robust continual learning methods, achieving state-of-the-art average accuracy while maintaining both scalability and certification. These results represent a significant step toward practical and theoretically grounded continual learning in adversarial settings.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2502.12388",
+   "title": "Achieving Upper Bound Accuracy of Joint Training in Continual Learning",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning has been an active research area in machine learning, focusing on incrementally learning a sequence of tasks. A key challenge is catastrophic forgetting (CF), and most research efforts have been directed toward mitigating this issue. However, a significant gap remains between the accuracy achieved by state-of-the-art continual learning algorithms and the ideal or upper-bound accuracy achieved by training all tasks together jointly. This gap has hindered or even prevented the adoption of continual learning in applications, as accuracy is often of paramount importance. Recently, another challenge, termed inter-task class separation (ICS), was also identified, which spurred a theoretical study into principled approaches for solving continual learning. Further research has shown that by leveraging the theory and the power of large foundation models, it is now possible to achieve upper-bound accuracy, which has been empirically validated using both text and image classification datasets. Continual learning is now ready for real-life applications. This paper surveys the main research leading to this achievement, justifies the approach both intuitively and from neuroscience research, and discusses insights gained.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.23390",
+   "title": "Pareto Continual Learning: Preference-Conditioned Learning and Adaption for Dynamic Stability-Plasticity Trade-off",
+   "published": "2025-03-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning aims to learn multiple tasks sequentially. A key challenge in continual learning is balancing between two objectives: retaining knowledge from old tasks (stability) and adapting to new tasks (plasticity). Experience replay methods, which store and replay past data alongside new data, have become a widely adopted approach to mitigate catastrophic forgetting. However, these methods neglect the dynamic nature of the stability-plasticity trade-off and aim to find a fixed and unchanging balance, resulting in suboptimal adaptation during training and inference. In this paper, we propose Pareto Continual Learning (ParetoCL), a novel framework that reformulates the stability-plasticity trade-off in continual learning as a multi-objective optimization (MOO) problem. ParetoCL introduces a preference-conditioned model to efficiently learn a set of Pareto optimal solutions representing different trade-offs and enables dynamic adaptation during inference. From a generalization perspective, ParetoCL can be seen as an objective augmentation approach that learns from different objective combinations of stability and plasticity. Extensive experiments across multiple datasets and settings demonstrate that ParetoCL outperforms state-of-the-art methods and adapts to diverse continual learning scenarios.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2507.10637",
+   "title": "A Simple Baseline for Stable and Plastic Neural Networks",
+   "published": "2025-07-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Continual learning in computer vision requires that models adapt to a continuous stream of tasks without forgetting prior knowledge, yet existing approaches often tip the balance heavily toward either plasticity or stability. We introduce RDBP, a simple, low-overhead baseline that unites two complementary mechanisms: ReLUDown, a lightweight activation modification that preserves feature sensitivity while preventing neuron dormancy, and Decreasing Backpropagation, a biologically inspired gradient-scheduling scheme that progressively shields early layers from catastrophic updates. Evaluated on the Continual ImageNet benchmark, RDBP matches or exceeds the plasticity and stability of state-of-the-art methods while reducing computational cost. RDBP thus provides both a practical solution for real-world continual learning and a clear benchmark against which future continual learning strategies can be measured.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2507.17482",
+   "title": "LTLZinc: a Benchmarking Framework for Continual Learning and Neuro-Symbolic Temporal Reasoning",
+   "published": "2025-07-23",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Neuro-symbolic artificial intelligence aims to combine neural architectures with symbolic approaches that can represent knowledge in a human-interpretable formalism. Continual learning concerns with agents that expand their knowledge over time, improving their skills while avoiding to forget previously learned concepts. Most of the existing approaches for neuro-symbolic artificial intelligence are applied to static scenarios only, and the challenging setting where reasoning along the temporal dimension is necessary has been seldom explored. In this work we introduce LTLZinc, a benchmarking framework that can be used to generate datasets covering a variety of different problems, against which neuro-symbolic and continual learning methods can be evaluated along the temporal and constraint-driven dimensions. Our framework generates expressive temporal reasoning and continual learning tasks from a linear temporal logic specification over MiniZinc constraints, and arbitrary image classification datasets. Fine-grained annotations allow multiple neural and neuro-symbolic training settings on the same generated datasets. Experiments on six neuro-symbolic sequence classification and four class-continual learning tasks generated by LTLZinc, demonstrate the challenging nature of temporal learning and reasoning, and highlight limitations of current state-of-the-art methods. We release the LTLZinc generator and ten ready-to-use tasks to the neuro-symbolic and continual learning communities, in the hope of fostering research towards unified temporal learning and reasoning frameworks.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2610.12668",
+   "title": "Recurrent Harness for Agentic Continual Learning",
+   "published": "2026-10-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Language model agents increasingly operate over long interaction streams, requiring online adaptation to distribution shifts through continual learning. However, existing agent harnesses typically either evolve their states only through forward information flow or rely on additional replay or validation data for harness optimization. To address this, we propose ReHarness, a recurrent harness framework for agentic continual learning that complements forward read and write with backward revision under a strictly online streaming protocol. We ask what information could have been captured differently in the harness state to better inform the current instance in the stream. Specifically, after each instance, we leverage the resulting trajectory as feedback to revise the reflections retrieved for that instance, thereby propagating feedback backward through the textual harness state. Across three continual learning benchmarks and three language model backbones, ReHarness consistently outperforms strong raw-context baselines, memory- and reflection-based methods, and prompt optimization approaches. Further analysis shows that ReHarness produces source-grounded and meaningful revisions, corrects overgeneralized or outdated experience under distribution shifts, and improves both stability and plasticity during continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2603.11201",
+   "title": "Representation Finetuning for Continual Learning",
+   "published": "2026-03-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The world is inherently dynamic, and continual learning aims to enable models to adapt to ever-evolving data streams. While pre-trained models have shown powerful performance in continual learning, they still require finetuning to adapt effectively to downstream tasks. However, prevailing Parameter-Efficient Fine-Tuning (PEFT) methods operate through empirical, black-box optimization at the weight level. These approaches lack explicit control over representation drift, leading to sensitivity to domain shifts and catastrophic forgetting in continual learning scenarios. In this work, we introduce Continual Representation Learning (CoRe), a novel framework that for the first time shifts the finetuning paradigm from weight space to representation space. Unlike conventional methods, CoRe performs task-specific interventions within a low-rank linear subspace of hidden representations, adopting a learning process with explicit objectives, which ensures stability for past tasks while maintaining plasticity for new ones. By constraining updates to a low-rank subspace, CoRe achieves exceptional parameter efficiency. Extensive experiments across multiple continual learning benchmarks demonstrate that CoRe not only preserves parameter efficiency but also significantly outperforms existing state-of-the-art methods. Our work introduces representation finetuning as a new, more effective and interpretable paradigm for continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2509.01730",
+   "title": "BM-CL: Bias Mitigation through the lens of Continual Learning",
+   "published": "2025-09-01",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Biases in machine learning pose significant challenges, particularly when models amplify disparities that affect disadvantaged groups. Traditional bias mitigation techniques often lead to a {\\itshape leveling-down effect}, whereby improving outcomes of disadvantaged groups comes at the expense of reduced performance for advantaged groups. This study introduces Bias Mitigation through Continual Learning (BM-CL), a novel framework that leverages the principles of continual learning to address this trade-off. We postulate that mitigating bias is conceptually similar to domain-incremental continual learning, where the model must adjust to changing fairness conditions, improving outcomes for disadvantaged groups without forgetting the knowledge that benefits advantaged groups. Drawing inspiration from techniques such as Learning without Forgetting and Elastic Weight Consolidation, we reinterpret bias mitigation as a continual learning problem. This perspective allows models to incrementally balance fairness objectives, enhancing outcomes for disadvantaged groups while preserving performance for advantaged groups. Experiments on synthetic and real-world image datasets, characterized by diverse sources of bias, demonstrate that the proposed framework mitigates biases while minimizing the loss of original knowledge. Our approach bridges the fields of fairness and continual learning, offering a promising pathway for developing machine learning systems that are both equitable and effective.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2602.02417",
+   "title": "Trust Region Continual Learning as an Implicit Meta-Learner",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning aims to acquire tasks sequentially without catastrophic forgetting, yet standard strategies face a core tradeoff: regularization-based methods (e.g., EWC) can overconstrain updates when task optima are weakly overlapping, while replay-based methods can retain performance but drift due to imperfect replay. We study a hybrid perspective: \\emph{trust region continual learning} that combines generative replay with a Fisher-metric trust region constraint. We show that, under local approximations, the resulting update admits a Model-Agnostic Meta-Learning (MAML) interpretation with a single implicit inner step: replay supplies an old-task gradient signal (query-like), while the Fisher-weighted penalty provides efficient offline curvature shaping (support-like). This yields an emergent meta-learning property in continual learning: the model becomes an initialization that rapidly \\emph{re-converges} to prior task optima after each task transition, without explicitly optimizing a bilevel objective that couples inner adaptation with outer meta-updates. Empirically, on task-incremental diffusion image generation and continual diffusion-policy control, trust region continual learning achieves the best final performance and retention, and accelerates early-task recovery compared with EWC, replay, and continual meta-learning baselines.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.18511",
+   "title": "Global Convergence of Continual Learning on Non-IID Data",
+   "published": "2025-03-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continual learning, which aims to learn multiple tasks sequentially, has gained extensive attention. However, most existing work focuses on empirical studies, and the theoretical aspect remains under-explored. Recently, a few investigations have considered the theory of continual learning only for linear regressions, establishes the results based on the strict independent and identically distributed (i.i.d.) assumption and the persistent excitation on the feature data that may be difficult to verify or guarantee in practice. To overcome this fundamental limitation, in this paper, we provide a general and comprehensive theoretical analysis for continual learning of regression models. By utilizing the stochastic Lyapunov function and martingale estimation techniques, we establish the almost sure convergence results of continual learning under a general data condition for the first time. Additionally, without any excitation condition imposed on the data, the convergence rates for the forgetting and regret metrics are provided.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2508.07419",
+   "title": "Statistical Theory of Multi-stage Newton Iteration Algorithm for Online Continual Learning",
+   "published": "2025-08-10",
+   "categories": [
+    "stat.ME",
+    "cs.LG"
+   ],
+   "abstract": "We focus on the critical challenge of handling non-stationary data streams in online continual learning environments, where constrained storage capacity prevents complete retention of historical data, leading to catastrophic forgetting during sequential task training. To more effectively analyze and address the problem of catastrophic forgetting in continual learning, we propose a novel continual learning framework from a statistical perspective. Our approach incorporates random effects across all model parameters and allows the dimension of parameters to diverge to infinity, offering a general formulation for continual learning problems. To efficiently process streaming data, we develop a Multi-step Newton Iteration algorithm that significantly reduces computational costs in certain scenarios by alleviating the burden of matrix inversion. Theoretically, we derive the asymptotic normality of the estimator, enabling subsequent statistical inference. Comprehensive validation through synthetic data experiments and two real datasets analyses demonstrates the effectiveness of our proposed method.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2503.02117",
+   "title": "Parabolic Continual Learning",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Regularizing continual learning techniques is important for anticipating algorithmic behavior under new realizations of data. We introduce a new approach to continual learning by imposing the properties of a parabolic partial differential equation (PDE) to regularize the expected behavior of the loss over time. This class of parabolic PDEs has a number of favorable properties that allow us to analyze the error incurred through forgetting and the error induced through generalization. Specifically, we do this through imposing boundary conditions where the boundary is given by a memory buffer. By using the memory buffer as a boundary, we can enforce long term dependencies by bounding the expected error by the boundary loss. Finally, we illustrate the empirical performance of the method on a series of continual learning tasks.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2610.30460",
+   "title": "Equivariant Experience Replay for Continual Learning in Imaging Inverse Problems",
+   "published": "2026-10-21",
+   "categories": [
+    "eess.IV"
+   ],
+   "abstract": "In this work, we propose Equivariant Experience Replay, a new paradigm for achieving continual learning of deep networks for solving ill-posed imaging inverse problems. Inspired by recent advances on unsupervised learning methods such as equivariant imaging/splitting, we find the exploitation of group-symmetry structure is particularly relevant and effective in continual learning setting for ill-posed inversion tasks. We therefore propose this new experience replay scheme, which is tailored for such inverse problems. Our numerical study demonstrates the superiority of our method compared to existing continual learning methods for inverse problems in medical imaging and image processing.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2604.08336",
+   "title": "Leveraging Complementary Embeddings for Replay Selection in Continual Learning with Small Buffers",
+   "published": "2026-04-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Catastrophic forgetting remains a key challenge in Continual Learning (CL). In replay-based CL with severe memory constraints, performance critically depends on the sample selection strategy for the replay buffer. Most existing approaches construct memory buffers using embeddings learned under supervised objectives. However, class-agnostic, self-supervised representations often encode rich, class-relevant semantics that are overlooked. We propose a new method, Multiple Embedding Replay Selection, MERS, which replaces the buffer selection module with a graph-based approach that integrates both supervised and self-supervised embeddings. Empirical results show consistent improvements over SOTA selection strategies across a range of continual learning algorithms, with particularly strong gains in low-memory regimes. On CIFAR-100 and TinyImageNet, MERS outperforms single-embedding baselines without adding model parameters or increasing replay volume, making it a practical, drop-in enhancement for replay-based continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2511.19344",
+   "title": "Annotation-Free Class-Incremental Learning",
+   "published": "2025-11-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Despite significant progress in continual learning ranging from architectural novelty to clever strategies for mitigating catastrophic forgetting most existing methods rest on a strong but unrealistic assumption the availability of labeled data throughout the learning process. In real-world scenarios, however, data often arrives sequentially and without annotations, rendering conventional approaches impractical. In this work, we revisit the fundamental assumptions of continual learning and ask: Can current systems adapt when labels are absent and tasks emerge incrementally over time? To this end, we introduce Annotation-Free Class-Incremental Learning (AFCIL), a more realistic and challenging paradigm where unlabeled data arrives continuously, and the learner must incrementally acquire new classes without any supervision. To enable effective learning under AFCIL, we propose CrossWorld CL, a Cross Domain World Guided Continual Learning framework that incorporates external world knowledge as a stable auxiliary source. The method retrieves semantically related ImageNet classes for each downstream category, maps downstream and ImageNet features through a cross domain alignment strategy and finally introduce a novel replay strategy. This design lets the model uncover semantic structure without annotations while keeping earlier knowledge intact. Across four datasets, CrossWorld-CL surpasses CLIP baselines and existing continual and unlabeled learning methods, underscoring the benefit of world knowledge for annotation free continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2607.10159",
+   "title": "UNIT: Unleash Large Language Models Potential for Graph Continual Learning",
+   "published": "2026-07-11",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "In real-world multimodal web scenarios, graph-structured data often arrives in a streaming manner, making graph continual learning a crucial paradigm for continuously modeling such evolving structures. However, existing graph continual learning methods still face two fundamental challenges. 1) semantic-structural separation, where the graph-based methods excel at modeling topological relationships but neglect deep semantics. 2) imbalanced knowledge transfer, where existing models fail to effectively leverage general knowledge gained from early tasks to benefit subsequent new tasks. To address above issues, we propose a novel framework, \\textbf{UN}leash Large Language Models PotentIal for Graph ConTinual Learning (UNIT). By fine-tuning large language model only on the first task, we bridge the distributional gap between the pre-trained LLM corpus and the target task dataset to enhance the adaptability of LLMs for graph-structured tasks. Meanwhile, we propose an uncertain-aware anchor generation mechanism to effectively preserve representative knowledge across tasks, avoiding the neglect of universal knowledge learned from previous tasks. Additionally, we introduce structural confluence modeling to explicitly integrates graph topology information into semantic information, enhancing the collaborative capabilities between semantic understanding and structural modeling. Extensive experiments demonstrate that our proposed method achieves state-of-the-art performance in the graph continual learning task.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2609.06346",
+   "title": "Robust Dynamic Expansion for Continual Learning under Backdoor Attacks via Purification and Selective Recovery",
+   "published": "2026-09-06",
+   "categories": [
+    "cs.LG",
+    "cs.CR"
+   ],
+   "abstract": "Continual learning (CL) enables models to acquire new knowledge from sequentially arriving tasks while retaining previously learned knowledge. However, in practical scenarios, task streams collected from untrusted sources may contain backdoor-poisoned samples, posing a critical challenge to the stability, plasticity, and security of continual learners. In this work, we investigate a challenging setting termed Continual Learning Under Backdoor Attack (CLUBA), where each incremental task may involve a small proportion of maliciously manipulated training samples. Unlike conventional continual learning or backdoor defense scenarios, CLUBA requires models to simultaneously mitigate catastrophic forgetting, preserve adaptation capability, and prevent the absorption of malicious supervision during sequential updates. To address this challenge, we propose a robust dynamic-expansion framework that integrates sample purification, selective recovery, and robust expert routing into a unified continual learning paradigm. Specifically, we introduce Bi-Prototype Purification (BPP) to identify suspicious samples by exploiting semantic discrepancies in feature space. Based on purified data, Gradient Discrepancy-based Robustness Optimization (GDBRO) selectively recovers informative poisoned samples through pseudo-label correction and gradient consistency evaluation, improving robustness while maintaining model plasticity. Furthermore, Robust Feature Consistency-based Expert Selection (RFCBES) constructs perturbation-aware class prototypes to enable reliable expert routing under corrupted or shifted inputs.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2608.26720",
+   "title": "Parameter Efficient Continual Learning for Sparse Event-Based Transformers",
+   "published": "2026-08-27",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Robotic and edge intelligence systems operate in dynamic environments where data arrives continuously, requiring models to adapt while preserving previously learned knowledge under strict memory and energy constraints. While parameter-efficient fine-tuning has shown promise for continual learning with vision transformers, conventional architectures rely on dense computation and remain costly for real-world deployment. Sparse event-based vision transformers provide energy-efficient event-driven computation, yet their continual learning capabilities remain largely unexplored. We here introduce sLoTh, a parameter-efficient continual learning framework for pretrained sparse event-based (spiking) vision transformers. sLoTh freezes the backbone and restricts plasticity to scalable-efficient low-rank attention updates (seLoRA) and shared neuronal threshold modulation, enabling adaptation without replay buffers by updating less than 1% of model parameters. Experiments across CIFAR-100, Tiny-ImageNet, ImageNet-100, and ImageNet-R with up to 100 tasks demonstrate competitive rehearsal-free performance in class-incremental learning and online continual learning, while enabling approximately 6.5x lower energy consumption than conventional dense vision transformers.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2504.03793",
+   "title": "Outlook Towards Deployable Continual Learning for Particle Accelerators",
+   "published": "2025-04-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Particle Accelerators are high power complex machines. To ensure uninterrupted operation of these machines, thousands of pieces of equipment need to be synchronized, which requires addressing many challenges including design, optimization and control, anomaly detection and machine protection. With recent advancements, Machine Learning (ML) holds promise to assist in more advance prognostics, optimization, and control. While ML based solutions have been developed for several applications in particle accelerators, only few have reached deployment and even fewer to long term usage, due to particle accelerator data distribution drifts caused by changes in both measurable and non-measurable parameters. In this paper, we identify some of the key areas within particle accelerators where continual learning can allow maintenance of ML model performance with distribution drifts. Particularly, we first discuss existing applications of ML in particle accelerators, and their limitations due to distribution drift. Next, we review existing continual learning techniques and investigate their potential applications to address data distribution drifts in accelerators. By identifying the opportunities and challenges in applying continual learning, this paper seeks to open up the new field and inspire more research efforts towards deployable continual learning for particle accelerators.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2505.09925",
+   "title": "Reinforced Interactive Continual Learning via Real-time Noisy Human Feedback",
+   "published": "2025-05-15",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "This paper introduces an interactive continual learning paradigm where AI models dynamically learn new skills from real-time human feedback while retaining prior knowledge. This paradigm distinctively addresses two major limitations of traditional continual learning: (1) dynamic model updates using streaming, real-time human-annotated data, rather than static datasets with fixed labels, and (2) the assumption of clean labels, by explicitly handling the noisy feedback common in real-world interactions. To tackle these problems, we propose RiCL, a Reinforced interactive Continual Learning framework leveraging Large Language Models (LLMs) to learn new skills effectively from dynamic feedback. RiCL incorporates three key components: a temporal consistency-aware purifier to automatically discern clean from noisy samples in data streams; an interaction-aware direct preference optimization strategy to align model behavior with human intent by reconciling AI-generated and human-provided feedback; and a noise-resistant contrastive learning module that captures robust representations by exploiting inherent data relationships, thus avoiding reliance on potentially unreliable labels. Extensive experiments on two benchmark datasets (FewRel and TACRED), contaminated with realistic noise patterns, demonstrate that our RiCL approach substantially outperforms existing combinations of state-of-the-art online continual learning and noisy-label learning methods.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2505.22370",
+   "title": "SplitLoRA: Balancing Stability and Plasticity in Continual Learning Through Gradient Space Splitting",
+   "published": "2025-05-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual Learning requires a model to learn multiple tasks in sequence while maintaining both stability:preserving knowledge from previously learned tasks, and plasticity:effectively learning new tasks. Gradient projection has emerged as an effective and popular paradigm in CL, where it partitions the gradient space of previously learned tasks into two orthogonal subspaces: a primary subspace and a minor subspace. New tasks are learned effectively within the minor subspace, thereby reducing interference with previously acquired knowledge. However, existing Gradient Projection methods struggle to achieve an optimal balance between plasticity and stability, as it is hard to appropriately partition the gradient space. In this work, we consider a continual learning paradigm based on Low-Rank Adaptation, which has gained considerable attention due to its efficiency and wide applicability, and propose a novel approach for continual learning, called SplitLoRA. We first provide a theoretical analysis of how subspace partitioning affects model stability and plasticity. Informed by this analysis, we then introduce an effective method that derives the optimal partition of the gradient space for previously learned tasks. This approach effectively balances stability and plasticity in continual learning. Experimental results on multiple datasets demonstrate that the proposed method achieves state-of-the-art performance.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2510.15751",
+   "title": "SAMix: Calibrated and Accurate Continual Learning via Sphere-Adaptive Mixup and Neural Collapse",
+   "published": "2025-10-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "While most continual learning methods focus on mitigating forgetting and improving accuracy, they often overlook the critical aspect of network calibration, despite its importance. Neural collapse, a phenomenon where last-layer features collapse to their class means, has demonstrated advantages in continual learning by reducing feature-classifier misalignment. Few works aim to improve the calibration of continual models for more reliable predictions. Our work goes a step further by proposing a novel method that not only enhances calibration but also improves performance by reducing overconfidence, mitigating forgetting, and increasing accuracy. We introduce Sphere-Adaptive Mixup (SAMix), an adaptive mixup strategy tailored for neural collapse-based methods. SAMix adapts the mixing process to the geometric properties of feature spaces under neural collapse, ensuring more robust regularization and alignment. Experiments show that SAMix significantly boosts performance, surpassing SOTA methods in continual learning while also improving model calibration. SAMix enhances both across-task accuracy and the broader reliability of predictions, making it a promising advancement for robust continual learning systems.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2508.04368",
+   "title": "Continual Multiple Instance Learning for Hematologic Disease Diagnosis",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.LG",
+    "cs.CV",
+    "eess.IV",
+    "q-bio.QM"
+   ],
+   "abstract": "The dynamic environment of laboratories and clinics, with streams of data arriving on a daily basis, requires regular updates of trained machine learning models for consistent performance. Continual learning is supposed to help train models without catastrophic forgetting. However, state-of-the-art methods are ineffective for multiple instance learning (MIL), which is often used in single-cell-based hematologic disease diagnosis (e.g., leukemia detection). Here, we propose the first continual learning method tailored specifically to MIL. Our method is rehearsal-based over a selection of single instances from various bags. We use a combination of the instance attention score and distance from the bag mean and class mean vectors to carefully select which samples and instances to store in exemplary sets from previous tasks, preserving the diversity of the data. Using the real-world input of one month of data from a leukemia laboratory, we study the effectiveness of our approach in a class incremental scenario, comparing it to well-known continual learning methods. We show that our method considerably outperforms state-of-the-art methods, providing the first continual learning approach for MIL. This enables the adaptation of models to shifting data distributions over time, such as those caused by changes in disease occurrence or underlying genetic alterations.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2512.01818",
+   "title": "Forget Less, Retain More: A Lightweight Regularizer for Rehearsal-Based Continual Learning",
+   "published": "2025-12-01",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Deep neural networks suffer from catastrophic forgetting, where performance on previous tasks degrades after training on a new task. This issue arises due to the model's tendency to overwrite previously acquired knowledge with new information. We present a novel approach to address this challenge, focusing on the intersection of memory-based methods and regularization approaches. We formulate a regularization strategy, termed Information Maximization (IM) regularizer, for memory-based continual learning methods, which is based exclusively on the expected label distribution, thus making it class-agnostic. As a consequence, IM regularizer can be directly integrated into various rehearsal-based continual learning methods, reducing forgetting and favoring faster convergence. Our empirical validation shows that, across datasets and regardless of the number of tasks, our proposed regularization strategy consistently improves baseline performance at the expense of a minimal computational overhead. The lightweight nature of IM ensures that it remains a practical and scalable solution, making it applicable to real-world continual learning scenarios where efficiency is paramount. Finally, we demonstrate the data-agnostic nature of our regularizer by applying it to video data, which presents additional challenges due to its temporal structure and higher memory requirements. Despite the significant domain gap, our experiments show that IM regularizer also improves the performance of video continual learning methods.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2511.08226",
+   "title": "Are Current Continual Learning Methods Truly Agnostic? Introducing OPRE, a Step Toward Agnostic Continual Learning",
+   "published": "2025-11-11",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "In order to achieve Continual Learning (CL), the problem of catastrophic forgetting, one that has plagued neural networks since their inception, must be overcome. The evaluation of continual learning methods relies on splitting a known homogeneous dataset and learning the associated tasks one after the other. We argue that most CL methods introduce a priori information about the data to come and cannot be considered agnostic. We exemplify this point with the case of methods relying on pretrained feature extractors, which are still used in CL. After showing that pretrained feature extractors imply a loss of generality with respect to the data that can be learned by the model, we then discuss other kinds of a priori information introduced in other CL methods. We then present the Online Patch Redundancy Eliminator (OPRE), an online dataset-compression algorithm that discards information through two explicit, input-space criteria. With a classifier that was randomly initialized at test time, OPRE's performance matches reported state-of-the-art online continual-learning methods on CIFAR 10 and CIFAR-100 without any pretrained feature extractor, and outperforms GDumb at an identical memory budget-while making only minimal and interpretable assumptions about the data to come. We frame these results as an empirical, information-theoretic perspective on continual learning.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2610.13021",
+   "title": "EmbodiedCLBench: Evaluating Continual Learning for Self-Evolving Embodied Agents",
+   "published": "2026-10-09",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.CV"
+   ],
+   "abstract": "Continual learning requires models to accumulate past experience and transfer it to new tasks. Despite substantial research on continual learning, existing work remains largely confined to non-embodied settings, without extending to embodied environments. To address this gap, we introduce EmbodiedCLBench, the first benchmark in embodied simulation for evaluating the continual learning capability of self-evolving agents. With compositional generalization as the core evaluation principle, our benchmark evaluates whether agents can first learn from basic tasks and then recombine the acquired skills to solve complex, unseen advanced tasks. Based on EmbodiedCLBench, we conduct extensive experiments across multiple agent harnesses and learning methods, revealing consistent limitations and distinctive behaviors. Our results show that while advanced tasks can be hardly solved under zero-shot setting, the experience from basic tasks enables consistent improvement. Such benefit from the experience remains stable even if the task complexity increases. However, this improvement does not scale accordingly with the number of learning samples, and current agents cannot extract meaningful information from additional experience. Collectively, our findings highlight continual learning as a fundamental yet underexplored capability, and our benchmark offers valuable resources for designing effective self-evolving agents in embodied environments. Our code and dataset are available at https://pku-value-lab.github.io/EmbodiedCLBench-homepage.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2605.15877",
+   "title": "Shapley Neuron Values for Continual Learning: Which Neurons Matter Most?",
+   "published": "2026-05-15",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning enables neural networks to learn tasks sequentially without forgetting previously acquired knowledge. However, neural networks suffer from catastrophic forgetting, where learning new tasks degrades performance on earlier ones. We address this problem with Shapley Neuron Valuation (SNV), a principled framework that quantifies Neuron importance in continual learning, grounded in cooperative game theory. SNV selectively freezes important Neurons while keeping others plastic, enabling buffer-free continual learning without expanding architecture. Experiments on ImageNet-1k show that SNV consistently outperforms existing buffer-free methods. In particular, SNV improves accuracy by +2.88% in the class incremental learning and +6.46% in the task incremental learning scenarios compared to the second baseline.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2606.14987",
+   "title": "Continual Backdoor Training in IoT/CPS",
+   "published": "2026-06-12",
+   "categories": [
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "Internet of Things (IoT) and Cyber-physical systems (CPS) increasingly rely on continual learning (CL) to adapt to evolving environments, device heterogeneity, and concept drift, thereby improving overall utility. While continual adaptation is essential for long-lived IoT deployments where data patterns evolve, it also introduces new security vulnerabilities. In particular, backdoor attacks can exploit incremental updates, replay buffers, and representation reuse to implant persistent malicious behaviors that remain dormant during normal operation but activate upon specific triggers. In this paper, we present a backdoor attack in continual learning used in IoT/CPS systems. To this end, we formalize an IoT/CPS-specific threat model, analyze why continual learning amplifies backdoor persistence in IoT pipelines, and evaluate our technique under varying conditions. Our analysis highlights critical open challenges in securing lifelong learning in IoT/CPS and industrial IoT (IIoT) environments, as well as the need for heightened security controls.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2506.03320",
+   "title": "The Future of Continual Learning in the Era of Foundation Models: Three Key Directions",
+   "published": "2025-06-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Continual learning--the ability to acquire, retain, and refine knowledge over time--has always been fundamental to intelligence, both human and artificial. Historically, different AI paradigms have acknowledged this need, albeit with varying priorities: early expert and production systems focused on incremental knowledge consolidation, while reinforcement learning emphasised dynamic adaptation. With the rise of deep learning, deep continual learning has primarily focused on learning robust and reusable representations over time to solve sequences of increasingly complex tasks. However, the emergence of Large Language Models (LLMs) and foundation models has raised the question: Do we still need continual learning when centralised, monolithic models can tackle diverse tasks with access to internet-scale knowledge? We argue that continual learning remains essential for three key reasons: (i) continual pre-training is still necessary to ensure foundation models remain up to date, mitigating knowledge staleness and distribution shifts while integrating new information; (ii) continual fine-tuning enables models to specialise and personalise, adapting to domain-specific tasks, user preferences, and real-world constraints without full retraining, avoiding the need for computationally expensive long context-windows; (iii) continual compositionality offers a scalable and modular approach to intelligence, enabling the orchestration of foundation models and agents to be dynamically composed, recombined, and adapted. While continual pre-training and fine-tuning are explored as niche research directions, we argue it is continual compositionality that will mark the rebirth of continual learning. The future of AI will not be defined by a single static model but by an ecosystem of continually evolving and interacting models, making continual learning more relevant than ever.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2510.21175",
+   "title": "Memory-Free Continual Learning with Null Space Adaptation for Zero-Shot Vision-Language Models",
+   "published": "2025-10-24",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Pre-trained vision-language models (VLMs), such as CLIP, have demonstrated remarkable zero-shot generalization, enabling deployment in a wide range of real-world tasks without additional task-specific training. However, in real deployment scenarios with evolving environments or emerging classes, these models inevitably face distributional shifts and novel tasks. In such contexts, static zero-shot capabilities are insufficient, and there is a growing need for continual learning methods that allow models to adapt over time while avoiding catastrophic forgetting. We introduce NuSA-CL (Null Space Adaptation for Continual Learning), a lightweight memory-free continual learning framework designed to address this challenge. NuSA-CL employs low-rank adaptation and constrains task-specific weight updates to lie within an approximate null space of the model's current parameters. This strategy minimizes interference with previously acquired knowledge, effectively preserving the zero-shot capabilities of the original model. Unlike methods relying on replay buffers or costly distillation, NuSA-CL imposes minimal computational and memory overhead, making it practical for deployment in resource-constrained, real-world continual learning environments. Experiments show that our framework not only effectively preserves zero-shot transfer capabilities but also achieves highly competitive performance on continual learning benchmarks. These results position NuSA-CL as a practical and scalable solution for continually evolving zero-shot VLMs in real-world applications.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2603.00253",
+   "title": "CoPeP: Benchmarking Continual Pretraining for Protein Language Models",
+   "published": "2026-02-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Protein language models (pLMs) have recently gained significant attention for their ability to uncover relationships between sequence, structure, and function from evolutionary statistics, thereby accelerating therapeutic drug discovery. These models learn from large protein databases that are continuously updated by the biology community and whose dynamic nature motivates the application of continual learning, not only to keep up with the ever-growing data, but also as an opportunity to take advantage of the temporal meta-information that is created during this process. As a result, we introduce the Continual Pretraining of Protein Language Models (CoPeP) benchmark, a novel benchmark for evaluating continual learning approaches on pLMs. Specifically, we curate a sequence of protein datasets derived from the UniProt Knowledgebase spanning a decade and define metrics to assess pLM performance across 31 protein understanding tasks. We evaluate several methods from the continual learning literature, including replay, unlearning, and plasticity-based methods, some of which have never been applied to models and data of this scale. Our findings reveal that incorporating temporal meta-information improves perplexity by up to 7% even when compared to training on data from all tasks jointly. Moreover, even at scale, several continual learning methods outperform naive continual pretraining. The CoPeP benchmark offers an exciting opportunity to study these methods at scale in an impactful real-world application.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2512.23017",
+   "title": "Merge before Forget: A Single LoRA Continual Learning via Continual Merging",
+   "published": "2025-12-28",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Parameter-efficient continual learning has emerged as a promising approach for large language models (LLMs) to mitigate catastrophic forgetting while enabling adaptation to new tasks. Current Low-Rank Adaptation (LoRA) continual learning techniques often retain and freeze previously learned LoRAs or generate data representations to overcome forgetting, typically utilizing these to support new LoRAs learn new tasks. However, these methods not only ignore growing computational memory with tasks and limited storage space but also suffer from potential task interference due to the lack of effective LoRA merging mechanisms. In this paper, we propose a novel continual learning method that orthogonally initializes and sequentially merges LoRAs updates into a single unified LoRA. Our method leverages orthogonal basis extraction from previously learned LoRA to initialize the learning of new tasks, further exploits the intrinsic asymmetry property of LoRA components by using a time-aware scaling mechanism to balance new and old knowledge during continual merging. Our approach maintains constant memory complexity with respect to the number of tasks, minimizes interference between past and new tasks via orthogonal basis initialization, and improves performance over asymmetric LoRA merging via adaptive scaling. We provide theoretical analysis to justify our design and conduct extensive experiments across diverse continual learning benchmarks using various Llama models, demonstrating the effectiveness and efficiency of our method.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2507.00469",
+   "title": "Bisecle: Binding and Separation in Continual Learning for Video Language Understanding",
+   "published": "2025-07-01",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Frontier vision-language models (VLMs) have made remarkable improvements in video understanding tasks. However, real-world videos typically exist as continuously evolving data streams (e.g., dynamic scenes captured by wearable glasses), necessitating models to continually adapt to shifting data distributions and novel scenarios. Considering the prohibitive computational costs of fine-tuning models on new tasks, usually, a small subset of parameters is updated while the bulk of the model remains frozen. This poses new challenges to existing continual learning frameworks in the context of large multimodal foundation models, i.e., catastrophic forgetting and update conflict. While the foundation models struggle with parameter-efficient continual learning, the hippocampus in the human brain has evolved highly efficient mechanisms for memory formation and consolidation. Inspired by the rapid Binding and pattern separation mechanisms in the hippocampus, in this work, we propose Bisecle for video-language continual learning, where a multi-directional supervision module is used to capture more cross-modal relationships and a contrastive prompt learning scheme is designed to isolate task-specific knowledge to facilitate efficient memory storage. Binding and separation processes further strengthen the ability of VLMs to retain complex experiences, enabling robust and efficient continual learning in video understanding tasks. We perform a thorough evaluation of the proposed Bisecle, demonstrating its ability to mitigate forgetting and enhance cross-task generalization on several VideoQA benchmarks.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2605.20247",
+   "title": "CP-MoE: Consistency-Preserving Mixture-of-Experts for Continual Learning",
+   "published": "2026-05-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL",
+    "cs.CV"
+   ],
+   "abstract": "Catastrophic forgetting remains a major obstacle to continual learning in large language models (LLMs) and vision--language models (VLMs). Although Mixture-of-Experts (MoE) architectures offer an efficient path to scaling, existing LoRA-based MoE continual learning methods still face a fundamental trade-off: they either isolate experts too aggressively, limiting knowledge transfer across tasks, or allow task-specific updates to overwrite important existing parameters, leading to severe forgetting. To address this, we propose CP-MoE, a continual learning framework built around a transient expert that captures early task-specific updates and guides their integration into stable experts. CP-MoE introduces a consistency-preserving routing bias, which uses the transient expert to estimate representation similarity with stable experts and steer routing towards more compatible expert selection, and a transient expert-guided regularisation mechanism, which selectively protects important historical parameters during merging. Together, these components reduce parameter interference and forgetting while preserving cross-task knowledge transfer. We validate CP-MoE on both unimodal and multimodal continual learning benchmarks with LLM-based and VLM-based MoE models. On SuperNI benchmark, spanning diverse sequential language tasks, CP-MoE achieves state-of-the-art performance and stronger zero-shot transfer to unseen tasks. On VQA v2 dataset, it scales effectively to multimodal visual reasoning, consistently reduces forgetting, and outperforms strong MoE baselines.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2609.36559",
+   "title": "HiTS-CL: A Continual Learning Framework for Long-Horizon Temporal Knowledge Graph Extrapolation",
+   "published": "2026-09-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Extrapolative temporal knowledge graph reasoning (TKGR) predicts future facts from historical snapshots. Most existing methods train once on an early prefix of the timeline and then use a frozen model for all future timestamps. We argue that this fixed-prefix protocol is misaligned with extrapolation. It learns from a static prefix, whereas the target stream is non-stationary: new entities and facts emerge, temporal dependencies shift across regimes, and recurring historical signals must be refreshed online. As a result, models trained only on early snapshots become outdated and degrade over long horizons. We address this mismatch by formulating extrapolative TKGR as continual learning over streaming snapshots. Under this view, effective extrapolation must jointly handle current dynamics, stable knowledge, and recurring historical evidence. Based on these requirements, we propose History-enhanced Two-Step Continual Learning (HiTS-CL), a backbone-agnostic continual learning framework for extrapolative TKGR. HiTS-CL tracks current dynamics via continual fine-tuning, preserves stable knowledge via multi-teacher adaptive distillation, and retains recurring historical evidence via a selective memory of recent and frequent facts. We integrate HiTS-CL into five representative TKGR backbones and evaluate it on four benchmark datasets. HiTS-CL consistently improves extrapolation accuracy, reduces long-horizon degradation, and outperforms strong continual-learning baselines, including a recent method for temporal knowledge graphs. Source code and data are available at https://github.com/liuyansong98/HiTS-CL.",
+   "query": "continual learning"
+  },
+  {
+   "id": "2608.21577",
+   "title": "Anchoring Bias: A Persistent Fairness Backdoor Attack against MLLMs under Continual Learning",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Multimodal Large Language Models (MLLMs) are increasingly deployed in high-stakes domains where fairness is a critical safety requirement. In practice, these models are continually updated through continual learning (CL) to adapt to evolving tasks and data distributions. Prior work has shown that backdoor attacks can manipulate MLLM responses through hidden triggers, but naively implanted backdoors degrade as models undergo subsequent updates of CL. Although fairness has emerged as a central concern for MLLM deployment, whether backdoor-induced fairness violations can survive CL remains unexplored, leaving two critical questions unanswered: (1) whether a backdoor can reliably induce fairness violations in MLLMs, and (2) whether such fairness-targeted backdoors can persist through continual learning. We bridge this gap by proposing Persistent Fairness Backdoor Attack (PFBA) to inject persistent and group-specific discrimination into MLLMs. Specifically, PFBA achieves this through two novel mechanisms. The Latent Space Fairness Reinforcement reshapes the model's deep feature geometry by anchoring privileged-group representations to preserve utility while repelling and clustering targeted-group representations to sustain discrimination, and the Continual Learning Simulation iteratively optimizes the trigger against simulated parameter drift to ensure backdoor persistence across future updates. Extensive experiments demonstrate that PFBA induces severe fairness disparities that persist across continual learning rounds, evading standard backdoor defenses. The data and code are publicly available at https://github.com/lyygua/PFBA.",
+   "query": "continual learning"
+  }
+ ]
+}

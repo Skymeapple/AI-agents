@@ -1,0 +1,293 @@
+{
+ "P2_cells": 28,
+ "P2_oracle_width_le_2En_all": false,
+ "P2_max_oracle_width": 0.16309368678379998,
+ "P2_table": [
+  {
+   "model": "Pythia 70M",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 1e-05,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 70M",
+   "n": 32,
+   "k": 256,
+   "oracle_width": 0.00055,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 70M",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.00997,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 70M",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.06841,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 1e-05,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 32,
+   "k": 256,
+   "oracle_width": 0.00132,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.02744,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.13315,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 6e-05,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 32,
+   "k": 256,
+   "oracle_width": 0.00361,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.04781,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.16277,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 8e-05,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 32,
+   "k": 256,
+   "oracle_width": NaN,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.05583,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.16309,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 0.00029,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 32,
+   "k": 256,
+   "oracle_width": NaN,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.05757,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.14202,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 16,
+   "k": 64,
+   "oracle_width": 0.00019,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 32,
+   "k": 256,
+   "oracle_width": 0.00781,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.05359,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.1366,
+   "twoE_n": 0.0048
+  },
+  {
+   "model": "Pythia 12B",
+   "n": 16,
+   "k": 64,
+   "oracle_width": NaN,
+   "twoE_n": 0.00441
+  },
+  {
+   "model": "Pythia 12B",
+   "n": 32,
+   "k": 256,
+   "oracle_width": 0.00859,
+   "twoE_n": 0.00468
+  },
+  {
+   "model": "Pythia 12B",
+   "n": 64,
+   "k": 1024,
+   "oracle_width": 0.05667,
+   "twoE_n": 0.00476
+  },
+  {
+   "model": "Pythia 12B",
+   "n": 128,
+   "k": 4096,
+   "oracle_width": 0.13105,
+   "twoE_n": 0.0048
+  }
+ ],
+ "P3_cells": 140,
+ "P3_frac_BB_above_truth": 0.40714285714285714,
+ "P3_by_model_n": [
+  {
+   "model": "Pythia 12B",
+   "n": 16,
+   "frac_above": 0.7
+  },
+  {
+   "model": "Pythia 12B",
+   "n": 32,
+   "frac_above": 0.0
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 16,
+   "frac_above": 0.6
+  },
+  {
+   "model": "Pythia 160M",
+   "n": 32,
+   "frac_above": 0.7
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 16,
+   "frac_above": 0.2
+  },
+  {
+   "model": "Pythia 1B",
+   "n": 32,
+   "frac_above": 0.2
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 16,
+   "frac_above": 0.4
+  },
+  {
+   "model": "Pythia 2.8B",
+   "n": 32,
+   "frac_above": 0.0
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 16,
+   "frac_above": 0.6
+  },
+  {
+   "model": "Pythia 410M",
+   "n": 32,
+   "frac_above": 0.7
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 16,
+   "frac_above": 0.2
+  },
+  {
+   "model": "Pythia 6.9B",
+   "n": 32,
+   "frac_above": 0.2
+  },
+  {
+   "model": "Pythia 70M",
+   "n": 16,
+   "frac_above": 0.6
+  },
+  {
+   "model": "Pythia 70M",
+   "n": 32,
+   "frac_above": 0.6
+  }
+ ],
+ "P3_mean_bias_BB": 0.02102738028433303,
+ "box_cover_all": 1.0,
+ "box_cells": 1120,
+ "models_unsolved_frac_at_1e4": {
+  "Pythia 70M": 0.734375,
+  "Pythia 160M": 0.4296875,
+  "Pythia 410M": 0.34375,
+  "Pythia 1B": 0.2578125,
+  "Pythia 2.8B": 0.1875,
+  "Pythia 6.9B": 0.1640625,
+  "Pythia 12B": 0.125
+ },
+ "BIC_selection_counts": {
+  "BB": 279,
+  "ZIBB": 1
+ }
+}

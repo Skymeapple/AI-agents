@@ -1,0 +1,285 @@
+[
+{
+"name": "aime_1983_p3",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 55
+},
+{
+"name": "aime_1991_p9",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 76
+},
+{
+"name": "aime_1999_p11",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 54
+},
+{
+"name": "algebra_absxm1pabsxpabsxp1eqxp2_0leqxleq1",
+"proved": true,
+"attempts_ok": [
+0,
+1,
+2,
+3
+],
+"lean": "ok",
+"proof": "\n  constructor <;>\n  rcases le_total 0 (x - 1) with hx1 | hx1 <;>\n  rcases le_total 0 x with hx | hx <;>\n  rcases le_total 0 (x + 1) with hx1 | hx1 <;>\n  simp_all only [abs_of_nonneg, abs_of_nonpos, add_left_neg, add_right_neg, sub_eq_add_neg,\n    neg_add_rev] <;>\n  linarith\n",
+"gen_secs": 92
+},
+{
+"name": "algebra_apbon2pownleqapownpbpowon2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 67
+},
+{
+"name": "algebra_ineq_nto1onlt2m1on",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 63
+},
+{
+"name": "amc12_2000_p1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 94
+},
+{
+"name": "amc12_2001_p5",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 41
+},
+{
+"name": "amc12a_2003_p5",
+"proved": true,
+"attempts_ok": [
+1,
+3
+],
+"lean": "ok",
+"proof": "\n  have h\u2082 := h\u2081\n  simp_all [Nat.ofDigits]\n  -- Use the omega tactic to solve the linear arithmetic problem\n  omega\n",
+"gen_secs": 32
+},
+{
+"name": "amc12a_2019_p12",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 91
+},
+{
+"name": "amc12a_2020_p4",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 89
+},
+{
+"name": "amc12a_2021_p14",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 58
+},
+{
+"name": "amc12a_2021_p8",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 185
+},
+{
+"name": "amc12b_2020_p21",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 269
+},
+{
+"name": "amc12b_2021_p13",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 114
+},
+{
+"name": "imo_1960_p2",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 101
+},
+{
+"name": "imo_1968_p5_1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 60
+},
+{
+"name": "imo_1983_p6",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 118
+},
+{
+"name": "imo_1997_p5",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 85
+},
+{
+"name": "induction_1pxpownlt1pnx",
+"proved": true,
+"attempts_ok": [
+0,
+1
+],
+"lean": "ok",
+"proof": "\n  induction' h\u2081 with n hn\n  \u00b7 simp\n  simp [pow_succ] at *\n  nlinarith [mul_self_nonneg x, mul_self_nonneg (1 + x)]\n",
+"gen_secs": 56
+},
+{
+"name": "induction_prod1p1onk3le3m1onn",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 64
+},
+{
+"name": "mathd_algebra_137",
+"proved": true,
+"attempts_ok": [
+0,
+1
+],
+"lean": "ok",
+"proof": "\n  field_simp at h\u2080\n  ring_nf at h\u2080\n  norm_cast at h\u2080\n  linarith\n",
+"gen_secs": 28
+},
+{
+"name": "mathd_algebra_184",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 58
+},
+{
+"name": "mathd_algebra_276",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 51
+},
+{
+"name": "mathd_algebra_320",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 51
+},
+{
+"name": "mathd_algebra_484",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 36
+},
+{
+"name": "mathd_numbertheory_150",
+"proved": true,
+"attempts_ok": [
+1,
+2
+],
+"lean": "ok",
+"proof": "\n  by_contra! h\n  revert h\u2080\n  revert n\n  norm_num\n  decide\n",
+"gen_secs": 24
+},
+{
+"name": "mathd_numbertheory_234",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 69
+},
+{
+"name": "mathd_numbertheory_353",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 28
+},
+{
+"name": "mathd_numbertheory_457",
+"proved": true,
+"attempts_ok": [
+1
+],
+"lean": "ok",
+"proof": "\n  rw [Nat.dvd_iff_mod_eq_zero] at h\u2081\n  contrapose! h\u2081\n  interval_cases n <;> simp_all [Nat.factorial]\n",
+"gen_secs": 43
+},
+{
+"name": "mathd_numbertheory_541",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 81
+},
+{
+"name": "mathd_numbertheory_764",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 81
+},
+{
+"name": "numbertheory_exk2powkeqapb2mulbpa2_aeq1",
+"proved": false,
+"attempts_ok": [],
+"lean": "ok",
+"proof": null,
+"gen_secs": 80
+}
+]

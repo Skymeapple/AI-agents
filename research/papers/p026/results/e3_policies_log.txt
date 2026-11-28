@@ -1,0 +1,14 @@
+idiosyncratic  P0 rewrite only                          t100=0.173 t2000=0.054 tail_avg=0.055 theory={'c_inf': np.float64(0.055555555555555504), 'fid_t100': 0.18080735834504438}
+idiosyncratic  P1 rewrite + rehearsal h=0.005           t100=0.303 t2000=0.240 tail_avg=0.246 theory={'c_inf': np.float64(0.24520303435966057), 'fid_t100': 0.30584116291452323}
+idiosyncratic  P2 R=7 self-reconciled, gamma=0.01       t100=0.409 t2000=0.056 tail_avg=0.055 theory=None
+idiosyncratic  P3 R=7 self-reconciled, gamma=0          t100=1.000 t2000=0.999 tail_avg=0.999 theory=None
+idiosyncratic  P4 verified anchor, T=20, eps=0.01       t100=0.996 t2000=0.997 tail_avg=0.838 theory={'post': np.float64(0.9968396431612735), 'time_avg': np.float64(0.8377438731403553), 'min': np.float64(0.6967889847104513)}
+idiosyncratic  P5 verified anchor, T=1, eps=0.01        t100=1.000 t2000=1.000 tail_avg=1.000 theory={'post': np.float64(0.9998092416795709), 'time_avg': np.float64(0.9998092416795709), 'min': np.float64(0.9998092416795709)}
+idiosyncratic  P6 unverified generative anchor, T=20    t100=0.172 t2000=0.054 tail_avg=0.054 theory=None
+default-matchi P0 rewrite only                          t100=0.557 t2000=0.491 tail_avg=0.503 theory={'c_inf': np.float64(0.49999999999999956), 'fid_t100': 0.566309777947376}
+default-matchi P1 rewrite + rehearsal h=0.005           t100=0.626 t2000=0.606 tail_avg=0.597 theory={'c_inf': np.float64(0.6004016064257021), 'fid_t100': 0.632504145072394}
+default-matchi P2 R=7 self-reconciled, gamma=0.01       t100=0.675 t2000=0.503 tail_avg=0.498 theory=None
+default-matchi P3 R=7 self-reconciled, gamma=0          t100=1.000 t2000=1.000 tail_avg=1.000 theory=None
+default-matchi P4 verified anchor, T=20, eps=0.01       t100=0.998 t2000=0.999 tail_avg=0.914 theory={'post': np.float64(0.9983268699089095), 'time_avg': np.float64(0.9140996975448938), 'min': np.float64(0.8394765213172977)}
+default-matchi P5 verified anchor, T=1, eps=0.01        t100=1.000 t2000=1.000 tail_avg=1.000 theory={'post': np.float64(0.9998990103009493), 'time_avg': np.float64(0.9998990103009493), 'min': np.float64(0.9998990103009493)}
+default-matchi P6 unverified generative anchor, T=20    t100=0.552 t2000=0.507 tail_avg=0.501 theory=None

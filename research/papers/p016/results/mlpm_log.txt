@@ -1,0 +1,56 @@
+split 0 short done 12s
+perm 0 short done 12s
+perm 1 short done 12s
+split 1 short done 12s
+split 0 0.1 344s
+perm 1 0.1 345s
+split 1 0.1 346s
+perm 0 0.1 347s
+split 0 0.3 637s
+split 1 0.3 637s
+perm 1 0.3 641s
+perm 0 0.3 648s
+split 0 lin done 1088s
+split 1 lin done 1090s
+perm 1 lin done 1097s
+perm 0 lin done 1106s
+perm 2 short done 13s
+split 2 short done 13s
+perm 3 short done 12s
+split 3 short done 9s
+split 2 0.1 269s
+perm 2 0.1 273s
+split 3 0.1 262s
+perm 3 0.1 271s
+split 2 0.3 522s
+perm 2 0.3 530s
+split 3 0.3 516s
+perm 3 0.3 533s
+split 2 lin done 979s
+split 3 lin done 973s
+perm 4 short done 12s
+perm 2 lin done 1000s
+split 4 short done 11s
+perm 3 lin done 1002s
+perm 5 short done 13s
+split 5 short done 10s
+perm 4 0.1 277s
+split 4 0.1 269s
+perm 5 0.1 274s
+split 5 0.1 265s
+split 4 0.3 528s
+perm 4 0.3 543s
+split 5 0.3 528s
+perm 5 0.3 548s
+split 4 lin done 997s
+perm 4 lin done 1011s
+perm 6 short done 12s
+split 6 short done 13s
+split 5 lin done 1002s
+perm 5 lin done 1017s
+perm 7 short done 10s
+split 7 short done 15s
+perm 6 0.1 278s
+split 6 0.1 283s
+split 7 0.1 281s
+perm 7 0.1 288s

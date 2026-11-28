@@ -1,0 +1,26 @@
+job: loops-tiny-fixed-3
+started: 2026-11-26T17:45:34Z
+cores: 4, memory: 15 GB
+  fixed-3 seed 0 step 1500: 1.4054 bits/byte at 3 loops, 1130s
+  fixed-3 seed 0 step 3000: 1.2154 bits/byte at 3 loops, 2260s
+  fixed-3 seed 0 step 4500: 1.1189 bits/byte at 3 loops, 3395s
+RESULT fixed-3 seed 0: mean training loops 3.00, train time 4627s; held-out bits/byte at loops 1: 1.8646, 2: 1.1845, 3: 1.0979, 4: 1.1410, 6: 1.5991, 8: 2.6273
+RESULT fixed-3 seed 0 oracle exit: 0.8888 bits/byte at 2.73 mean loops (share of tokens best at 1/2/3/4 loops: 0.14/0.26/0.35/0.26)
+RESULT fixed-3 seed 0 exit when top probability >= 0.5: 1.5368 bits/byte at 1.73 mean loops
+RESULT fixed-3 seed 0 exit when top probability >= 0.7: 1.3444 bits/byte at 2.20 mean loops
+RESULT fixed-3 seed 0 exit when top probability >= 0.8: 1.2699 bits/byte at 2.45 mean loops
+RESULT fixed-3 seed 0 exit when top probability >= 0.9: 1.2011 bits/byte at 2.76 mean loops
+RESULT fixed-3 seed 0 exit when top probability >= 0.95: 1.1688 bits/byte at 2.99 mean loops
+RESULT fixed-3 seed 0 exit when top probability >= 0.99: 1.1417 bits/byte at 3.38 mean loops
+  fixed-3 seed 1 step 1500: 1.4071 bits/byte at 3 loops, 1129s
+  fixed-3 seed 1 step 3000: 1.2163 bits/byte at 3 loops, 2263s
+  fixed-3 seed 1 step 4500: 1.1156 bits/byte at 3 loops, 3393s
+RESULT fixed-3 seed 1: mean training loops 3.00, train time 4627s; held-out bits/byte at loops 1: 1.8832, 2: 1.1846, 3: 1.0963, 4: 1.1337, 6: 1.5277, 8: 2.4865
+RESULT fixed-3 seed 1 oracle exit: 0.8912 bits/byte at 2.70 mean loops (share of tokens best at 1/2/3/4 loops: 0.14/0.27/0.34/0.25)
+RESULT fixed-3 seed 1 exit when top probability >= 0.5: 1.5086 bits/byte at 1.78 mean loops
+RESULT fixed-3 seed 1 exit when top probability >= 0.7: 1.3189 bits/byte at 2.24 mean loops
+RESULT fixed-3 seed 1 exit when top probability >= 0.8: 1.2471 bits/byte at 2.49 mean loops
+RESULT fixed-3 seed 1 exit when top probability >= 0.9: 1.1856 bits/byte at 2.78 mean loops
+RESULT fixed-3 seed 1 exit when top probability >= 0.95: 1.1579 bits/byte at 2.99 mean loops
+RESULT fixed-3 seed 1 exit when top probability >= 0.99: 1.1369 bits/byte at 3.36 mean loops
+finished: 2026-11-26T20:20:19Z, exit code 0

@@ -1,0 +1,50 @@
+job: crystal-screen-floor
+started: 2026-11-27T00:57:32Z
+cores: 4, memory: 15 GB
+['jdft_3d-12-12-2022.json']
+total 243900
+drwxr-xr-x 2 runner runner      4096 Nov 27 00:57 .
+drwxr-xr-x 5 runner runner      4096 Nov 27 00:57 ..
+-rw-r--r-- 1 runner runner  40811489 Nov 27 00:57 jdft.zip
+-rw-r--r-- 1 runner runner 208929736 Nov 27 00:57 jdft_3d-12-12-2022.json
+entries 75993; fields e.g. ['Tc_supercon', 'atoms', 'avg_elec_mass', 'avg_hole_mass', 'bulk_modulus_kv', 'crys', 'density', 'dfpt_piezo_max_dielectric', 'dfpt_piezo_max_dielectric_electronic', 'dfpt_piezo_max_dielectric_ionic', 'dfpt_piezo_max_dij', 'dfpt_piezo_max_eij', 'dimensionality', 'effective_masses_300K', 'efg', 'ehull', 'elastic_tensor', 'encut', 'epsx', 'epsy', 'epsz', 'exfoliation_energy', 'formation_energy_peratom', 'formula', 'func', 'hse_gap', 'icsd', 'jid', 'kpoint_length_unit', 'magmom_oszicar', 'magmom_outcar', 'max_efg', 'max_ir_mode', 'maxdiff_bz', 'maxdiff_mesh', 'mbj_bandgap', 'mepsx', 'mepsy', 'mepsz', 'min_ir_mode']
+binary/ternary entries 62807, chemical systems 20902, stable share at 0.0 eV/atom: 0.306
+  [system] fold 0: trained on 58305 entries, 294 test systems
+  [system] fold 1: trained on 59144 entries, 294 test systems
+  [system] fold 2: trained on 59038 entries, 294 test systems
+  [system] fold 3: trained on 58452 entries, 293 test systems
+  [system] fold 4: trained on 58894 entries, 293 test systems
+
+===== split: system; screen mean absolute error 0.119 eV/atom on 20202 held-out entries =====
+RESULT system stable<=0.0 k=1 systems 1468: random 0.229 (0.23 formulas)  screen 0.401 (0.40 formulas)  diverse 0.401 (0.40 formulas)  oracle 0.864 (0.86 formulas)
+RESULT system stable<=0.0 k=2 systems 1468: random 0.227 (0.45 formulas)  screen 0.377 (0.70 formulas)  diverse 0.373 (0.75 formulas)  oracle 0.754 (1.42 formulas)
+RESULT system stable<=0.0 k=4 systems 1468: random 0.226 (0.86 formulas)  screen 0.337 (1.21 formulas)  diverse 0.317 (1.26 formulas)  oracle 0.560 (2.01 formulas)
+RESULT system stable<=0.0 k=8 systems 304: random 0.126 (0.90 formulas)  screen 0.190 (1.25 formulas)  diverse 0.175 (1.30 formulas)  oracle 0.340 (2.26 formulas)
+RESULT system stable<=0.05 k=1 systems 1468: random 0.469 (0.47 formulas)  screen 0.718 (0.72 formulas)  diverse 0.718 (0.72 formulas)  oracle 0.929 (0.93 formulas)
+RESULT system stable<=0.05 k=2 systems 1468: random 0.473 (0.87 formulas)  screen 0.701 (1.18 formulas)  diverse 0.672 (1.34 formulas)  oracle 0.896 (1.57 formulas)
+RESULT system stable<=0.05 k=4 systems 1468: random 0.470 (1.54 formulas)  screen 0.650 (1.87 formulas)  diverse 0.575 (2.23 formulas)  oracle 0.818 (2.40 formulas)
+RESULT system stable<=0.05 k=8 systems 304: random 0.405 (2.07 formulas)  screen 0.535 (2.26 formulas)  diverse 0.467 (2.93 formulas)  oracle 0.782 (3.18 formulas)
+RESULT system stable<=0.1 k=1 systems 1468: random 0.575 (0.57 formulas)  screen 0.818 (0.82 formulas)  diverse 0.818 (0.82 formulas)  oracle 0.946 (0.95 formulas)
+RESULT system stable<=0.1 k=2 systems 1468: random 0.575 (1.06 formulas)  screen 0.800 (1.33 formulas)  diverse 0.775 (1.55 formulas)  oracle 0.929 (1.62 formulas)
+RESULT system stable<=0.1 k=4 systems 1468: random 0.574 (1.83 formulas)  screen 0.762 (2.14 formulas)  diverse 0.683 (2.64 formulas)  oracle 0.877 (2.53 formulas)
+RESULT system stable<=0.1 k=8 systems 304: random 0.542 (2.66 formulas)  screen 0.693 (2.84 formulas)  diverse 0.610 (3.86 formulas)  oracle 0.872 (3.51 formulas)
+  [family] fold 0: trained on 44210 entries, 294 test systems
+  [family] fold 1: trained on 44695 entries, 294 test systems
+  [family] fold 2: trained on 44469 entries, 294 test systems
+  [family] fold 3: trained on 46807 entries, 293 test systems
+  [family] fold 4: trained on 45275 entries, 293 test systems
+
+===== split: family; screen mean absolute error 0.126 eV/atom on 20202 held-out entries =====
+RESULT family stable<=0.0 k=1 systems 1468: random 0.228 (0.23 formulas)  screen 0.391 (0.39 formulas)  diverse 0.391 (0.39 formulas)  oracle 0.864 (0.86 formulas)
+RESULT family stable<=0.0 k=2 systems 1468: random 0.226 (0.44 formulas)  screen 0.376 (0.70 formulas)  diverse 0.364 (0.73 formulas)  oracle 0.754 (1.42 formulas)
+RESULT family stable<=0.0 k=4 systems 1468: random 0.227 (0.86 formulas)  screen 0.330 (1.20 formulas)  diverse 0.315 (1.26 formulas)  oracle 0.560 (2.01 formulas)
+RESULT family stable<=0.0 k=8 systems 304: random 0.126 (0.89 formulas)  screen 0.184 (1.20 formulas)  diverse 0.174 (1.30 formulas)  oracle 0.340 (2.26 formulas)
+RESULT family stable<=0.05 k=1 systems 1468: random 0.467 (0.47 formulas)  screen 0.704 (0.70 formulas)  diverse 0.704 (0.70 formulas)  oracle 0.929 (0.93 formulas)
+RESULT family stable<=0.05 k=2 systems 1468: random 0.472 (0.88 formulas)  screen 0.685 (1.16 formulas)  diverse 0.652 (1.30 formulas)  oracle 0.896 (1.57 formulas)
+RESULT family stable<=0.05 k=4 systems 1468: random 0.471 (1.54 formulas)  screen 0.644 (1.84 formulas)  diverse 0.573 (2.22 formulas)  oracle 0.818 (2.40 formulas)
+RESULT family stable<=0.05 k=8 systems 304: random 0.406 (2.08 formulas)  screen 0.537 (2.23 formulas)  diverse 0.458 (2.83 formulas)  oracle 0.782 (3.18 formulas)
+RESULT family stable<=0.1 k=1 systems 1468: random 0.573 (0.57 formulas)  screen 0.802 (0.80 formulas)  diverse 0.802 (0.80 formulas)  oracle 0.946 (0.95 formulas)
+RESULT family stable<=0.1 k=2 systems 1468: random 0.575 (1.06 formulas)  screen 0.784 (1.31 formulas)  diverse 0.754 (1.51 formulas)  oracle 0.929 (1.62 formulas)
+RESULT family stable<=0.1 k=4 systems 1468: random 0.574 (1.83 formulas)  screen 0.754 (2.11 formulas)  diverse 0.680 (2.63 formulas)  oracle 0.877 (2.53 formulas)
+RESULT family stable<=0.1 k=8 systems 304: random 0.541 (2.67 formulas)  screen 0.688 (2.81 formulas)  diverse 0.604 (3.78 formulas)  oracle 0.872 (3.51 formulas)
+finished: 2026-11-27T00:59:10Z, exit code 0

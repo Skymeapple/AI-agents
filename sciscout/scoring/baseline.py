@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import datetime as dt
 import statistics
+from collections import Counter
 from dataclasses import dataclass, field
 
 from ..models import Work
@@ -54,6 +55,82 @@ class CitationBaseline:
     )
     _by_age: dict[tuple[float, float], list[int]] = field(default_factory=dict)
     _all: list[int] = field(default_factory=list)
+    # Citation counts to leave out of each pool; see :meth:`excluding`.
+    _removed: dict[tuple, Counter] = field(default_factory=dict)
+    _cache: dict[tuple, list[int]] = field(default_factory=dict)
+
+    def excluding(self, works: list[Work]) -> "CitationBaseline":
+        """This baseline with ``works`` taken out of every pool.
+
+        A track must not be normalised against itself. When one direction makes
+        up most of a discipline's works in the corpus, the discipline median
+        *is* that direction's median, every one of its works scores about 1.0x
+        expected, and the impact score says nothing -- worst for exactly the
+        directions that dominate their field. Scoring a track against the
+        baseline excluding its own works compares it with everyone else.
+
+        The price is that a direction alone in its discipline has no
+        same-discipline pool left and falls back to the corpus-wide pool for
+        its age, which compares across fields. The provenance of each
+        expectation says which pool answered.
+        """
+        removed: dict[tuple, Counter] = {}
+        for work in works:
+            age = work.age_years(self.asof)
+            if age is None or work.citations is None:
+                continue
+            bucket = _bucket(age)
+            removed.setdefault(("age", bucket), Counter())[work.citations] += 1
+            removed.setdefault(("all",), Counter())[work.citations] += 1
+            for discipline in work.disciplines or ["_unknown"]:
+                key = ("discipline", discipline.lower(), bucket)
+                removed.setdefault(key, Counter())[work.citations] += 1
+        return CitationBaseline(
+            asof=self.asof,
+            _by_discipline=self._by_discipline,
+            _by_age=self._by_age,
+            _all=self._all,
+            _removed=removed,
+        )
+
+    def _pool(self, key: tuple) -> list[int]:
+        if key[0] == "discipline":
+            pool = self._by_discipline.get((key[1], key[2]), [])
+        elif key[0] == "age":
+            pool = self._by_age.get(key[1], [])
+        else:
+            pool = self._all
+        drop = self._removed.get(key)
+        if not drop:
+            return pool
+        if key not in self._cache:
+            remaining = Counter(drop)
+            kept: list[int] = []
+            for value in pool:
+                if remaining[value] > 0:
+                    remaining[value] -= 1
+                else:
+                    kept.append(value)
+            self._cache[key] = kept
+        return self._cache[key]
+
+    # Median per pool, keyed by pool identity and remembered with the pool's
+    # length so a pool that has grown since is recomputed rather than trusted.
+    _medians: dict[int, tuple[int, float]] = field(
+        default_factory=dict, repr=False, compare=False
+    )
+
+    def _median(self, pool: list[int]) -> float:
+        """Median of ``pool``, cached.
+
+        ``expected`` is called once per work, and a pool can hold a large share
+        of the corpus, so sorting it on every call is quadratic in corpus size.
+        """
+        cached = self._medians.get(id(pool))
+        if cached is None or cached[0] != len(pool):
+            cached = (len(pool), statistics.median(pool))
+            self._medians[id(pool)] = cached
+        return cached[1]
 
     @classmethod
     def from_works(
@@ -82,29 +159,31 @@ class CitationBaseline:
         actually answered, so a reader can see how specific the comparison was.
         """
         bucket = _bucket(age)
-        pool = self._by_discipline.get((discipline.lower(), bucket), [])
+        others = " other" if self._removed else ""
+        pool = self._pool(("discipline", discipline.lower(), bucket))
         if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(pool)),
+                max(0.5, self._median(pool)),
                 observed(
-                    f"median of {len(pool)} works in {discipline} aged "
+                    f"median of {len(pool)}{others} works in {discipline} aged "
                     f"{bucket[0]:g}-{bucket[1]:g}y"
                 ),
             )
-        pool = self._by_age.get(bucket, [])
+        pool = self._pool(("age", bucket))
         if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(pool)),
+                max(0.5, self._median(pool)),
                 observed(
-                    f"median of {len(pool)} corpus works aged "
+                    f"median of {len(pool)}{others} corpus works aged "
                     f"{bucket[0]:g}-{bucket[1]:g}y (discipline pool too thin)"
                 ),
             )
-        if len(self._all) >= MIN_BUCKET_SIZE:
+        pool = self._pool(("all",))
+        if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(self._all)),
+                max(0.5, self._median(pool)),
                 observed(
-                    f"median of all {len(self._all)} corpus works "
+                    f"median of all {len(pool)}{others} corpus works "
                     "(age and discipline pools too thin)"
                 ),
             )
@@ -117,6 +196,32 @@ class CitationBaseline:
             ),
         )
 
+    def _expected_for(self, work: Work, age: float) -> tuple[float, Provenance]:
+        """Expectation for ``work``, from the most specific pool any of its disciplines has.
+
+        A work listed under several disciplines is compared within the first
+        one that has an adequate same-age pool, rather than being sent to the
+        corpus-wide fallback because its first-listed discipline happens to be
+        thin.
+        """
+        disciplines = work.disciplines or ["_unknown"]
+        bucket = _bucket(age)
+        for discipline in disciplines:
+            if len(self._pool(("discipline", discipline.lower(), bucket))) >= MIN_BUCKET_SIZE:
+                return self.expected(discipline, age)
+        return self.expected(disciplines[0], age)
+
+    def within_discipline(self, work: Work) -> bool:
+        """Whether ``work`` can be compared against its own discipline and age."""
+        age = work.age_years(self.asof)
+        if age is None:
+            return False
+        bucket = _bucket(age)
+        return any(
+            len(self._pool(("discipline", d.lower(), bucket))) >= MIN_BUCKET_SIZE
+            for d in (work.disciplines or ["_unknown"])
+        )
+
     def normalised_impact(self, work: Work) -> Estimate[float] | None:
         """Citations relative to expectation. 1.0 means exactly typical.
 
@@ -126,8 +231,7 @@ class CitationBaseline:
         age = work.age_years(self.asof)
         if age is None or work.citations is None:
             return None
-        discipline = (work.disciplines or ["_unknown"])[0]
-        expected_count, provenance = self.expected(discipline, age)
+        expected_count, provenance = self._expected_for(work, age)
         ratio = work.citations / expected_count
         return Estimate(
             ratio,

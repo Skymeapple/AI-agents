@@ -1,0 +1,109 @@
+[
+{
+"name": "aime_1983_p3",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 133
+},
+{
+"name": "algebra_amgm_sum1toneqn_prod1tonleq1",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 245
+},
+{
+"name": "amc12_2000_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 177
+},
+{
+"name": "amc12a_2020_p15",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 242
+},
+{
+"name": "amc12a_2021_p8",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 279
+},
+{
+"name": "imo_1960_p2",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 284
+},
+{
+"name": "imo_1985_p6",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 215
+},
+{
+"name": "induction_sumkexp3eqsumksq",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 122
+},
+{
+"name": "mathd_algebra_313",
+"proved": true,
+"plain": true,
+"repaired": true,
+"wins": [
+{
+"sample": 0,
+"variant": "as-is",
+"proof": "  rw [h\u2080, h\u2082] at h\u2081\n  field_simp\n  ring_nf at h\u2081 \u22a2\n  norm_num\n  rw [Complex.ext_iff] at h\u2081 \u22a2\n  simp_all\n  constructor <;> linarith",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 6",
+"proof": "  rw [h\u2080, h\u2082] at h\u2081\n  field_simp\n  ring_nf at h\u2081 \u22a2\n  norm_num\n  rw [Complex.ext_iff] at h\u2081 \u22a2\n  simp_all\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+},
+{
+"sample": 0,
+"variant": "prefix 5",
+"proof": "  rw [h\u2080, h\u2082] at h\u2081\n  field_simp\n  ring_nf at h\u2081 \u22a2\n  norm_num\n  rw [Complex.ext_iff] at h\u2081 \u22a2\n  all_goals (first | (norm_num at * <;> grind; done) | grind | bound | (nlinarith [sq_nonneg (0:\u211d)]) | (intros; norm_num [*]; done) | omega | decide | (field_simp; ring) | linarith | positivity | (simp_all; done) | aesop)",
+"lean": "ok"
+}
+],
+"secs": 173
+},
+{
+"name": "mathd_numbertheory_233",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 65
+},
+{
+"name": "mathd_numbertheory_552",
+"proved": false,
+"plain": false,
+"repaired": false,
+"wins": [],
+"secs": 252
+}
+]

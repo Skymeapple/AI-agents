@@ -1,0 +1,254 @@
+{
+ "numpy": {
+  "N": 144,
+  "E": 215,
+  "frac_sinks": 0.5555555555555556,
+  "frac_sources": 0.4236111111111111,
+  "max_depth": 13,
+  "mean_reach": 5.6875,
+  "max_reach": 55,
+  "gini_reach": 0.8235568443901777,
+  "neff_frac": 0.3927743885097202,
+  "scc_max": 3,
+  "files": 146,
+  "null": {
+   "frac_sinks": 0.2972222222222222,
+   "frac_sources": 0.30694444444444446,
+   "max_depth": 8.2,
+   "mean_reach": 5.159722222222222,
+   "gini_reach": 0.6481094203232447,
+   "neff_frac": 0.3340446146875268
+  }
+ },
+ "scipy": {
+  "N": 535,
+  "E": 995,
+  "frac_sinks": 0.5214953271028038,
+  "frac_sources": 0.20373831775700935,
+  "max_depth": 17,
+  "mean_reach": 8.63551401869159,
+  "max_reach": 334,
+  "gini_reach": 0.8985127644940729,
+  "neff_frac": 0.38694648281760974,
+  "scc_max": 2,
+  "files": 538,
+  "null": {
+   "frac_sinks": 0.2594392523364486,
+   "frac_sources": 0.2725233644859813,
+   "max_depth": 9.8,
+   "mean_reach": 8.882990654205608,
+   "gini_reach": 0.6974370520839741,
+   "neff_frac": 0.3069590174079288
+  }
+ },
+ "matplotlib": {
+  "N": 130,
+  "E": 537,
+  "frac_sinks": 0.2923076923076923,
+  "frac_sources": 0.15384615384615385,
+  "max_depth": 21,
+  "mean_reach": 23.83076923076923,
+  "max_reach": 107,
+  "gini_reach": 0.6755673635596167,
+  "neff_frac": 0.2906924592951914,
+  "scc_max": 2,
+  "files": 131,
+  "null": {
+   "frac_sinks": 0.11692307692307694,
+   "frac_sources": 0.13384615384615386,
+   "max_depth": 14.2,
+   "mean_reach": 28.004615384615384,
+   "gini_reach": 0.5146491237472545,
+   "neff_frac": 0.18796237559731765
+  }
+ },
+ "networkx": {
+  "N": 263,
+  "E": 96,
+  "frac_sinks": 0.844106463878327,
+  "frac_sources": 0.7566539923954373,
+  "max_depth": 3,
+  "mean_reach": 0.44106463878326996,
+  "max_reach": 22,
+  "gini_reach": 0.9176609413924217,
+  "neff_frac": 0.47036865490109464,
+  "scc_max": 1,
+  "files": 263,
+  "null": {
+   "frac_sinks": 0.7095057034220533,
+   "frac_sources": 0.6988593155893537,
+   "max_depth": 3.4,
+   "mean_reach": 0.4996197718631178,
+   "gini_reach": 0.7954910118571845,
+   "neff_frac": 0.45533868349123097
+  }
+ },
+ "sympy": {
+  "N": 571,
+  "E": 1716,
+  "frac_sinks": 0.4413309982486865,
+  "frac_sources": 0.14886164623467601,
+  "max_depth": 19,
+  "mean_reach": 44.31173380035026,
+  "max_reach": 454,
+  "gini_reach": 0.8771191467666041,
+  "neff_frac": 0.3548921282987335,
+  "scc_max": 139,
+  "files": 730,
+  "null": {
+   "frac_sinks": 0.1625218914185639,
+   "frac_sources": 0.16987740805604204,
+   "max_depth": 14.2,
+   "mean_reach": 32.44448336252189,
+   "gini_reach": 0.6871656135526142,
+   "neff_frac": 0.23613667339619923
+  }
+ },
+ "pandas": {
+  "N": 129,
+  "E": 255,
+  "frac_sinks": 0.4496124031007752,
+  "frac_sources": 0.17829457364341086,
+  "max_depth": 8,
+  "mean_reach": 11.651162790697674,
+  "max_reach": 102,
+  "gini_reach": 0.8566226719687241,
+  "neff_frac": 0.3863185757730547,
+  "scc_max": 113,
+  "files": 247,
+  "null": {
+   "frac_sinks": 0.25426356589147286,
+   "frac_sources": 0.25736434108527134,
+   "max_depth": 8.0,
+   "mean_reach": 7.7302325581395355,
+   "gini_reach": 0.6369433240635318,
+   "neff_frac": 0.2967396173210074
+  }
+ },
+ "setuptools": {
+  "N": 125,
+  "E": 269,
+  "frac_sinks": 0.392,
+  "frac_sources": 0.24,
+  "max_depth": 9,
+  "mean_reach": 7.784,
+  "max_reach": 47,
+  "gini_reach": 0.6775745118191161,
+  "neff_frac": 0.3378874263794329,
+  "scc_max": 5,
+  "files": 129,
+  "null": {
+   "frac_sinks": 0.22400000000000003,
+   "frac_sources": 0.2304,
+   "max_depth": 9.8,
+   "mean_reach": 10.0608,
+   "gini_reach": 0.6180977638952652,
+   "neff_frac": 0.28489221599918213
+  }
+ },
+ "pip": {
+  "N": 94,
+  "E": 264,
+  "frac_sinks": 0.35106382978723405,
+  "frac_sources": 0.23404255319148937,
+  "max_depth": 13,
+  "mean_reach": 17.4468085106383,
+  "max_reach": 71,
+  "gini_reach": 0.6942267773741567,
+  "neff_frac": 0.32129869881854933,
+  "scc_max": 36,
+  "files": 130,
+  "null": {
+   "frac_sinks": 0.17446808510638298,
+   "frac_sources": 0.1702127659574468,
+   "max_depth": 11.4,
+   "mean_reach": 14.506382978723403,
+   "gini_reach": 0.594371703196629,
+   "neff_frac": 0.243800136392697
+  }
+ },
+ "asyncio": {
+  "N": 31,
+  "E": 104,
+  "frac_sinks": 0.22580645161290322,
+  "frac_sources": 0.25806451612903225,
+  "max_depth": 10,
+  "mean_reach": 7.129032258064516,
+  "max_reach": 22,
+  "gini_reach": 0.50853889943074,
+  "neff_frac": 0.25519850612557105,
+  "scc_max": 2,
+  "files": 32,
+  "null": {
+   "frac_sinks": 0.18064516129032257,
+   "frac_sources": 0.17419354838709677,
+   "max_depth": 9.4,
+   "mean_reach": 8.896774193548387,
+   "gini_reach": 0.4895615061812233,
+   "neff_frac": 0.22171389620711152
+  }
+ },
+ "email": {
+  "N": 27,
+  "E": 54,
+  "frac_sinks": 0.2962962962962963,
+  "frac_sources": 0.2222222222222222,
+  "max_depth": 9,
+  "mean_reach": 8.444444444444445,
+  "max_reach": 20,
+  "gini_reach": 0.4525666016894087,
+  "neff_frac": 0.31461754652742185,
+  "scc_max": 1,
+  "files": 27,
+  "null": {
+   "frac_sinks": 0.19259259259259257,
+   "frac_sources": 0.2074074074074074,
+   "max_depth": 6.4,
+   "mean_reach": 5.17037037037037,
+   "gini_reach": 0.5346620984576574,
+   "neff_frac": 0.2892689151863104
+  }
+ },
+ "multiprocessing": {
+  "N": 20,
+  "E": 50,
+  "frac_sinks": 0.45,
+  "frac_sources": 0.1,
+  "max_depth": 5,
+  "mean_reach": 3.55,
+  "max_reach": 18,
+  "gini_reach": 0.7345070422535211,
+  "neff_frac": 0.33762374876420065,
+  "scc_max": 2,
+  "files": 21,
+  "null": {
+   "frac_sinks": 0.18,
+   "frac_sources": 0.18,
+   "max_depth": 7.0,
+   "mean_reach": 5.79,
+   "gini_reach": 0.4711500732600733,
+   "neff_frac": 0.25769888255824
+  }
+ },
+ "importlib": {
+  "N": 22,
+  "E": 20,
+  "frac_sinks": 0.5,
+  "frac_sources": 0.4090909090909091,
+  "max_depth": 2,
+  "mean_reach": 1.1818181818181819,
+  "max_reach": 8,
+  "gini_reach": 0.6958041958041958,
+  "neff_frac": 0.39810642918018435,
+  "scc_max": 1,
+  "files": 22,
+  "null": {
+   "frac_sinks": 0.42727272727272725,
+   "frac_sources": 0.44545454545454544,
+   "max_depth": 3.6,
+   "mean_reach": 1.5272727272727273,
+   "gini_reach": 0.6224343451459438,
+   "neff_frac": 0.38859390551663786
+  }
+ }
+}

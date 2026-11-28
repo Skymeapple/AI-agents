@@ -1,0 +1,63 @@
+job: weather-blend-2020
+started: 2026-11-25T00:38:48Z
+cores: 4, memory: 15 GB
+era5 {'time': 92040, 'longitude': 240, 'latitude': 121, 'level': 13} ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_speed', '2m_temperature', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'geopotential', 'geopotential_at_surface']
+  dims ('time', 'longitude', 'latitude') chunks (8, 240, 121)
+pangu {'time': 3652, 'prediction_timedelta': 40, 'longitude': 240, 'latitude': 121, 'level': 13} ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_speed', '2m_temperature', 'geopotential', 'mean_sea_level_pressure', 'specific_humidity', 'temperature']
+  dims ('time', 'prediction_timedelta', 'longitude', 'latitude') chunks (1, 8, 240, 121)
+graphcast/2020 ['LICENSE', 'date_range_2019-11-16_2021-02-01_12_hours-240x121_equiangular_with_poles_conservative.zarr', 'date_range_2019-11-16_2021-02-01_12_hours-64x32_equiangular_conservative.zarr', 'date_range_2019-11-16_2021-02-01_12_hours.zarr', 'date_range_2019-11-16_2021-02-01_12_hours_derived.zarr']
+neuralgcm_deterministic ['2020-240x121_equiangular_with_poles_conservative.zarr', '2020-512x256.zarr', '2020-64x32_equiangular_conservative.zarr']
+fuxi ['2020-1440x721.zarr', '2020-240x121_equiangular_with_poles_conservative.zarr', '2020-64x32_equiangular_conservative.zarr', 'fuxi_raw.zarr']
+keisler ['keisler', '2020-240x121_equiangular_with_poles_conservative.zarr', '2020-360x181.zarr', '2020-64x32_equiangular_conservative.zarr', '2020-64x32_equiangular_with_poles_conservative.zarr']
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/weakref.py", line 666, in _exitfunc
+    f()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/gcsfs/core.py", line 512, in close_session
+    asyn.sync(asyn.loop[0], session.close, timeout=0.1)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py", line 106, in sync
+    raise return_result
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py", line 59, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/client.py", line 1593, in close
+    await self._connector.close()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py", line 1083, in close
+    await super().close(abort_ssl=abort_ssl or self._ssl_shutdown_timeout == 0)
+RuntimeError: Task <Task pending name='Task-98' coro=<_runner() running at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fsspec/asyn.py:59> cb=[_chain_future.<locals>._call_set_state() at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/futures.py:396]> got Future <Task pending name='Task-99' coro=<_wait_for_close() running at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py:124> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>> attached to a different loop
+Task was destroyed but it is pending!
+task: <Task pending name='Task-99' coro=<_wait_for_close() done, defined at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/aiohttp/connector.py:122> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()]>>
+ERA5 targets loaded: 182 dates, grid (121, 240), 12s
+pangu: loaded in 13s
+ifs-hres: loaded in 13s
+graphcast: loaded in 14s
+neuralgcm: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['P_minus_E_cumulative', 'geopotential', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+fuxi: failed (KeyError: "not all values found in index 'time'")
+keisler: skipped, missing ['2m_temperature', '10m_u_component_of_wind', '10m_v_component_of_wind', 'mean_sea_level_pressure']; has ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'wind_speed']
+
+normalised RMSE at 24 h on test blocks (91 forecasts); lower is better
+method                                         t2m     u10     v10    mslp    mean   vs best corrected single model
+pangu, raw                                  0.0268  0.1318  0.1594  0.0403  0.0896                           +12.0%
+pangu, bias-corrected                       0.0265  0.1314  0.1594  0.0399  0.0893                           +11.7%
+ifs-hres, raw                               0.0412  0.1547  0.1877  0.0454  0.1072                           +34.1%
+ifs-hres, bias-corrected                    0.0359  0.1517  0.1855  0.0433  0.1041                           +30.2%
+graphcast, raw                              0.0240  0.1188  0.1435  0.0356  0.0805                            +0.6%
+graphcast, bias-corrected                   0.0234  0.1182  0.1432  0.0351  0.0800                            +0.0%
+equal blend of bias-corrected models        0.0238  0.1152  0.1400  0.0323  0.0778                            -2.7%
+weighted blend of bias-corrected models     0.0226  0.1132  0.1374  0.0319  0.0763                            -4.6%
+
+best corrected single model: graphcast, bias-corrected
+blend weights per variable (pangu, ifs-hres, graphcast):
+  2m_temperature                0.22  0.12  0.66
+  10m_u_component_of_wind       0.19  0.21  0.60
+  10m_v_component_of_wind       0.17  0.20  0.63
+  mean_sea_level_pressure       0.23  0.27  0.50
+bias correction alone, pangu: -0.3%
+bias correction alone, ifs-hres: -2.9%
+bias correction alone, graphcast: -0.6%
+finished: 2026-11-25T00:40:10Z, exit code 0

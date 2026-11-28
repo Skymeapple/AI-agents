@@ -1,0 +1,51 @@
+# 面向2035的人工智能20个基础科学问题 —— 工作清单（重建版）
+#
+# 来源说明（重要）：原始文献为中国科学院学部“中国学科及前沿领域2035发展战略丛书”
+# 中的人工智能卷（《中国人工智能基础研究2035发展战略》，科学出版社，2025）。
+# 本环境无法访问原文及其转载页面，故下列 20 题并非原文逐字条目，而是依据可检索到的
+# 主题片段（认知与计算的关系、机器学习统计学基础、稳健性与稳定性、小样本与缺标签学习、
+# 数据共享与隐私保护、因果驱动方法、可解释性等）与国内同期权威议程（NSFC“可解释、可通用的
+# 下一代人工智能方法”重大研究计划等）重建的工作清单。拿到原文后应逐条核对并替换 title 字段。
+#
+# arxiv: 用于文献计量的 arXiv 检索式（abs 字段短语，OR 连接）。
+questions:
+  - {id: Q01, group: 理论基础, slug: cognition-computation, title: 认知与计算的关系：智能的计算本质是什么,
+     arxiv: ['associative memory', 'cognitive architecture', 'computational model of cognition', 'Hopfield network']}
+  - {id: Q02, group: 理论基础, slug: deep-learning-math, title: 深度学习的数学机理：逼近、优化与隐式偏好,
+     arxiv: ['spectral bias', 'implicit bias', 'neural tangent kernel', 'loss landscape']}
+  - {id: Q03, group: 理论基础, slug: scaling-emergence, title: 大模型的规模律与能力涌现,
+     arxiv: ['scaling law', 'scaling laws', 'emergent abilities', 'emergent ability']}
+  - {id: Q04, group: 理论基础, slug: statistical-foundations, title: 机器学习的统计学基础：过参数化下的泛化,
+     arxiv: ['double descent', 'benign overfitting', 'overparameterized', 'generalization bound']}
+  - {id: Q05, group: 理论基础, slug: rl-theory, title: 强化学习的理论基础：探索与样本复杂度,
+     arxiv: ['regret bound', 'sample complexity of reinforcement learning', 'exploration-exploitation', 'multi-armed bandit']}
+  - {id: Q06, group: 学习范式, slug: few-label-learning, title: 小样本与缺标签学习,
+     arxiv: ['few-shot learning', 'semi-supervised learning', 'label propagation', 'self-training']}
+  - {id: Q07, group: 学习范式, slug: continual-learning, title: 持续学习与灾难性遗忘,
+     arxiv: ['catastrophic forgetting', 'continual learning', 'lifelong learning']}
+  - {id: Q08, group: 学习范式, slug: causal-learning, title: 因果驱动的机器学习,
+     arxiv: ['invariant risk minimization', 'causal representation learning', 'spurious correlation', 'causal discovery']}
+  - {id: Q09, group: 学习范式, slug: ood-generalization, title: 分布外泛化与外推,
+     arxiv: ['out-of-distribution generalization', 'domain generalization', 'distribution shift', 'extrapolation']}
+  - {id: Q10, group: 学习范式, slug: knowledge-data-fusion, title: 知识与数据的融合：神经符号与物理先验,
+     arxiv: ['neuro-symbolic', 'physics-informed', 'knowledge-guided', 'inductive bias']}
+  - {id: Q11, group: 可信智能, slug: interpretability, title: 人工智能的可解释性,
+     arxiv: ['explainable artificial intelligence', 'feature attribution', 'saliency map', 'mechanistic interpretability']}
+  - {id: Q12, group: 可信智能, slug: robustness, title: 稳健性与对抗安全,
+     arxiv: ['adversarial examples', 'adversarial robustness', 'adversarial training', 'certified robustness']}
+  - {id: Q13, group: 可信智能, slug: privacy, title: 数据共享与隐私保护,
+     arxiv: ['differential privacy', 'federated learning', 'membership inference']}
+  - {id: Q14, group: 可信智能, slug: fairness-alignment, title: 公平性与价值对齐,
+     arxiv: ['algorithmic fairness', 'value alignment', 'equalized odds', 'RLHF']}
+  - {id: Q15, group: 可信智能, slug: uncertainty, title: 不确定性量化与可信决策,
+     arxiv: ['uncertainty quantification', 'model calibration', 'conformal prediction', 'deep ensembles']}
+  - {id: Q16, group: 系统与交叉, slug: brain-inspired, title: 类脑智能与低能耗计算,
+     arxiv: ['spiking neural network', 'neuromorphic', 'brain-inspired']}
+  - {id: Q17, group: 系统与交叉, slug: world-models, title: 具身智能与世界模型,
+     arxiv: ['world model', 'embodied intelligence', 'embodied AI', 'model-based reinforcement learning']}
+  - {id: Q18, group: 系统与交叉, slug: multi-agent, title: 多智能体协作与群体智能,
+     arxiv: ['multi-agent reinforcement learning', 'swarm intelligence', 'emergent cooperation', 'multi-agent system']}
+  - {id: Q19, group: 系统与交叉, slug: human-ai-hybrid, title: 人机混合增强智能,
+     arxiv: ['human-AI collaboration', 'learning to defer', 'human-in-the-loop', 'human-AI teaming']}
+  - {id: Q20, group: 系统与交叉, slug: ai-for-science, title: 科学智能：从数据中发现科学规律,
+     arxiv: ['AI for science', 'symbolic regression', 'equation discovery', 'scientific machine learning']}

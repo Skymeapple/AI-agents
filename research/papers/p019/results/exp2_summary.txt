@@ -1,0 +1,40 @@
+candidates 12000 worlds 300 pi1 0.213
+self-verification                             FDR 0.787 [0.779,0.795]  disc/world 40.00 true/world 8.50
+replicate (fresh data, same env)              FDR 0.787 [0.780,0.795]  disc/world 40.00 true/world 8.50
+triangulate across 1 env(s)                   FDR 0.744 [0.736,0.753]  disc/world 32.34 true/world 8.26
+triangulate across 2 env(s)                   FDR 0.720 [0.711,0.729]  disc/world 28.63 true/world 8.02
+triangulate across 3 env(s)                   FDR 0.705 [0.696,0.714]  disc/world 26.49 true/world 7.81
+triangulate across 4 env(s)                   FDR 0.698 [0.688,0.708]  disc/world 25.25 true/world 7.64
+1 intervention, alpha=0.05                    FDR 0.153 [0.141,0.167]  disc/world 9.39 true/world 7.95
+2 interventions, alpha=0.05 each              FDR 0.007 [0.004,0.011]  disc/world 7.72 true/world 7.66
+1 intervention + BH(q=0.1) per world          FDR 0.070 [0.060,0.081]  disc/world 8.38 true/world 7.79
+env2 screen -> intervention + BH(q=0.1)       FDR 0.070 [0.060,0.080]  disc/world 8.03 true/world 7.46
+interventions/world {'all candidates': 40.0, 'after env2 screen': 28.626666666666665}
+true {'share': 0.21258333333333335, 'n': 2551, 'pass_env_K': [0.9717757742061937, 0.9427675421403371, 0.9184633477067816, 0.898079184633477], 'pass_replicate': 1.0, 'pass_intervention': 0.9349274794198353}
+reverse/wrong-sign {'share': 0.21541666666666667, 'n': 2585, 'pass_env_K': [0.9644100580270794, 0.9357833655705996, 0.9110251450676983, 0.8901353965183753], 'pass_replicate': 1.0, 'pass_intervention': 0.0448742746615087}
+observed common cause {'share': 0.30433333333333334, 'n': 3652, 'pass_env_K': [0.9194961664841182, 0.8663745892661555, 0.8209200438116101, 0.7836801752464403], 'pass_replicate': 1.0, 'pass_intervention': 0.04819277108433735}
+latent confounding only {'share': 0.22416666666666665, 'n': 2690, 'pass_env_K': [0.420817843866171, 0.18066914498141265, 0.07360594795539034, 0.03345724907063197], 'pass_replicate': 1.0, 'pass_intervention': 0.041263940520446095}
+other (indirect) {'share': 0.0435, 'n': 522, 'pass_env_K': [0.45977011494252873, 0.21839080459770116, 0.09961685823754789, 0.05747126436781609], 'pass_replicate': 1.0, 'pass_intervention': 0.05555555555555555}
+E3 calibration {'pi1': np.float64(0.212), 'p': np.float64(0.972), 'f': np.float64(0.766), 'piS': np.float64(0.519), 'piI': np.float64(0.268), 'fS': np.float64(0.939), 'fI': np.float64(0.432), 'naive': [0.745, 0.697, 0.645, 0.589], 'decomposed': [0.745, 0.728, 0.723, 0.724], 'class_mixture': [0.745, 0.717, 0.698, 0.685]}
+E3 observed [(0.744, 0.732, 0.755), (0.717, 0.704, 0.731), (0.705, 0.692, 0.718), (0.696, 0.683, 0.71)]
+near (dist=2) share 0.32 pi1 0.197 K* 2 pred K1 0.166 K2 0.010 {'self-verification': 0.803, 'triangulate across 4 env(s)': 0.795, '1 intervention, alpha=0.05': 0.167, '2 interventions, alpha=0.05 each': 0.014, '1 intervention + BH(q=0.1) per world': 0.074}
+mid (dist=3) share 0.07 pi1 0.217 K* 2 pred K1 0.150 K2 0.009 {'self-verification': 0.783, 'triangulate across 4 env(s)': 0.699, '1 intervention, alpha=0.05': 0.197, '2 interventions, alpha=0.05 each': 0.007, '1 intervention + BH(q=0.1) per world': 0.117}
+far (dist>=4 or none) share 0.60 pi1 0.221 K* 2 pred K1 0.147 K2 0.008 {'self-verification': 0.779, 'triangulate across 4 env(s)': 0.605, '1 intervention, alpha=0.05': 0.142, '2 interventions, alpha=0.05 each': 0.005, '1 intervention + BH(q=0.1) per world': 0.064}
+noiseless n 100 {'self': [0.81, 1.0, 40.0], 'replicate': [0.808, 0.982, 38.813], 'env4': [0.672, 0.702, 16.227], 'intervene': [0.19, 0.946, 8.853], 'pi1': 0.19}
+noiseless n 300 {'self': [0.799, 1.0, 40.0], 'replicate': [0.799, 1.0, 40.0], 'env4': [0.682, 0.838, 21.16], 'intervene': [0.177, 0.936, 9.133], 'pi1': 0.201}
+noiseless n 1000 {'self': [0.795, 1.0, 40.0], 'replicate': [0.795, 1.0, 40.0], 'env4': [0.691, 0.862, 22.853], 'intervene': [0.166, 0.94, 9.24], 'pi1': 0.205}
+noiseless n 3000 {'self': [0.796, 1.0, 40.0], 'replicate': [0.796, 1.0, 40.0], 'env4': [0.698, 0.896, 24.147], 'intervene': [0.166, 0.947, 9.24], 'pi1': 0.203}
+noiseless n 10000 {'self': [0.794, 1.0, 40.0], 'replicate': [0.794, 1.0, 40.0], 'env4': [0.695, 0.913, 24.68], 'intervene': [0.162, 0.938, 9.227], 'pi1': 0.206}
+noiseless n 30000 {'self': [0.795, 1.0, 40.0], 'replicate': [0.795, 1.0, 40.0], 'env4': [0.7, 0.906, 24.8], 'intervene': [0.172, 0.933, 9.253], 'pi1': 0.205}
+noisy n 100 {'self': [0.938, 1.0, 40.0], 'replicate': [0.897, 0.219, 5.253], 'env4': [0.886, 0.014, 0.293], 'intervene': [0.896, 0.084, 1.987], 'pi1': 0.062}
+noisy n 300 {'self': [0.908, 1.0, 40.0], 'replicate': [0.862, 0.481, 12.733], 'env4': [0.812, 0.075, 1.453], 'intervene': [0.82, 0.118, 2.413], 'pi1': 0.091}
+noisy n 1000 {'self': [0.874, 1.0, 40.0], 'replicate': [0.857, 0.772, 27.133], 'env4': [0.787, 0.23, 5.44], 'intervene': [0.78, 0.095, 2.187], 'pi1': 0.126}
+noisy n 3000 {'self': [0.857, 1.0, 40.0], 'replicate': [0.853, 0.957, 37.28], 'env4': [0.778, 0.485, 12.52], 'intervene': [0.759, 0.103, 2.433], 'pi1': 0.143}
+noisy n 10000 {'self': [0.854, 1.0, 40.0], 'replicate': [0.854, 1.0, 39.96], 'env4': [0.767, 0.719, 17.96], 'intervene': [0.716, 0.101, 2.067], 'pi1': 0.145}
+noisy n 30000 {'self': [0.856, 1.0, 40.0], 'replicate': [0.856, 1.0, 40.0], 'env4': [0.766, 0.821, 20.2], 'intervene': [0.734, 0.113, 2.433], 'pi1': 0.144}
+ranks 1-40 {'pi1_cal': 0.203, 'pi1_hold': 0.209, 'power_cal': 0.941, 'falsepass_cal': 0.049, 'lambda_cal': 19.059, 'K_star_pred': 2, 'n_hold': 3000, 'pred_fdr_K1': 0.171, 'obs_fdr_K1': 0.166, 'obs_true_K1': 589, 'pred_fdr_K2': 0.011, 'obs_fdr_K2': 0.007, 'obs_true_K2': 563, 'pred_fdr_K3': 0.001, 'obs_fdr_K3': 0.002, 'obs_true_K3': 553, 'K_smallest_obs_meeting_q': 2}
+ranks 41-100 {'pi1_cal': 0.142, 'pi1_hold': 0.144, 'power_cal': 0.901, 'falsepass_cal': 0.045, 'lambda_cal': 19.888, 'K_star_pred': 2, 'n_hold': 4500, 'pred_fdr_K1': 0.233, 'obs_fdr_K1': 0.241, 'obs_true_K1': 591, 'pred_fdr_K2': 0.015, 'obs_fdr_K2': 0.013, 'obs_true_K2': 539, 'pred_fdr_K3': 0.001, 'obs_fdr_K3': 0.0, 'obs_true_K3': 524, 'K_smallest_obs_meeting_q': 2}
+ranks 101-200 {'pi1_cal': 0.102, 'pi1_hold': 0.1, 'power_cal': 0.786, 'falsepass_cal': 0.05, 'lambda_cal': 15.717, 'K_star_pred': 2, 'n_hold': 7500, 'pred_fdr_K1': 0.36, 'obs_fdr_K1': 0.343, 'obs_true_K1': 632, 'pred_fdr_K2': 0.035, 'obs_fdr_K2': 0.032, 'obs_true_K2': 570, 'pred_fdr_K3': 0.002, 'obs_fdr_K3': 0.0, 'obs_true_K3': 517, 'K_smallest_obs_meeting_q': 2}
+near (dist=2): n_false=3120 shared-bias share among false 0.967
+mid (dist=3): n_false=697 shared-bias share among false 0.739
+far (dist>=4 or none): n_false=5632 shared-bias share among false 0.480

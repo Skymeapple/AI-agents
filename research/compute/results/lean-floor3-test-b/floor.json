@@ -1,0 +1,50 @@
+[
+{
+"split": "test",
+"tactic": "INDUCTION",
+"proved": [
+"imo_1977_p6",
+"induction_11div10tonmn1ton"
+]
+},
+{
+"split": "test",
+"tactic": "CASES",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "ext x <;> (try simp_all) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "(try simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.factorial, Nat.ModEq, Int.ModEq]) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "(try push_cast at *) <;> (try zify at *) <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "casesm* _ \u2227 _, \u2203 _, _ <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "exfalso <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "left <;> PORTFOLIO",
+"proved": []
+},
+{
+"split": "test",
+"tactic": "right <;> PORTFOLIO",
+"proved": []
+}
+]

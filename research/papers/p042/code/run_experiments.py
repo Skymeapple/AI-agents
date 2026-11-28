@@ -1,6 +1,6 @@
 """All toy experiments. Usage: python3 run_experiments.py [E1|E2|E3|E4|all]
 Each job writes ../results/raw/<name>.npz (max-cosine of every true feature at each checkpoint).
-Single-threaded BLAS, 4 worker processes."""
+Single-threaded BLAS, 2 worker processes."""
 import os, sys, time, json
 os.environ["OMP_NUM_THREADS"] = "1"; os.environ["OPENBLAS_NUM_THREADS"] = "1"
 import numpy as np
@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from sae import ZipfData, TopKSAE, recovery, fvu
 
-OUT = os.path.join(HERE, "..", "results", "raw")
+OUT = os.environ.get("OUT", os.path.join(HERE, "..", "results", "raw"))
 os.makedirs(OUT, exist_ok=True)
 BASE = dict(N=512, D=128, L0=4.0, K=8, M=768, alpha=1.5, seed=0, lr=1e-3, batch=256,
             tokens=3_000_000, n_ck=14, buffer=None, pmax=0.25, opt="adam", beta2=0.999)
@@ -82,6 +82,6 @@ if __name__ == "__main__":
     C = configs(which)
     cost = lambda c: dict(BASE, **c)["M"] * dict(BASE, **c)["D"] * (4 if dict(BASE, **c)["batch"] == 64 else 1)
     C.sort(key=lambda c: -cost(c))
-    with Pool(4) as pool:
+    with Pool(2) as pool:
         for name, msg in pool.imap_unordered(job, C):
             print(name, msg, flush=True)

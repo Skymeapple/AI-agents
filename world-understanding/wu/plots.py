@@ -358,12 +358,13 @@ def fig_e6():
     a.plot(k, inf["model"], color=C[0], marker="o", label="Transformer (M=∞)")
     a.plot(k, inf["ridge"], color=C[2], ls="--", label="Bayes (ridge, λ=σ²)")
     if "ols" in inf:
-        a.plot(k[1:], inf["ols"][1:], color=C[1], ls=":", label="least squares")
+        a.plot(k[1:], inf["ols"][1:], color=C[1], ls=":", label="least squares (spikes at k=d)")
     a.axhline(R["sigma"] ** 2, color=GRAY, lw=1, label="noise floor σ²")
     a.set_yscale("log")
+    a.set_ylim(0.05, 20)
     a.set_xlabel("in-context examples")
     a.set_ylabel("MSE on next y")
-    a.set_title("(a) Near-Bayes in-context inference")
+    a.set_title("(a) In-context inference tracks Bayes")
     a.legend(fontsize=6.5)
     a = ax[1]
     for i, r in enumerate(runs):

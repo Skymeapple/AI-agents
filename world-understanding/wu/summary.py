@@ -61,6 +61,9 @@ def e6():
     R = load_json("e6_incontext")
     print("E6")
     for r in R["runs"]:
+        for ev in r["eval"].values():
+            for k in ev:
+                ev[k] = np.asarray(ev[k])
         f = r["eval"]["fresh"]
         line = f"  M={r['M']}: fresh model {np.round(f['model'][[1, 4, 8, 15]], 3)} ridge {np.round(f['ridge'][[1, 4, 8, 15]], 3)}"
         line += f" dist_ridge(tail) {np.mean(f['dist_to_ridge'][8:]):.4f}"

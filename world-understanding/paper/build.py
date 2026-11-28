@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PARTS = ["header.md", "front.md", "methods.md", "results_a.md", "results_b.md", "synthesis.md", "appendix.md"]
+PARTS = ["header.md", "front.md", "methods.md", "results_a.md", "results_b.md", "results_c.md", "results_d.md", "synthesis.md", "appendix.md"]
 
 
 def main():

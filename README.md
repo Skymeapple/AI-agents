@@ -372,6 +372,110 @@ The step that would make it real, turning an abstract into a checkable claim,
 needs a model and a sandbox, because the checkers execute what they are given.
 It is not built. `ClaimSource` is where it plugs in.
 
+### Pricing a direction by what it changes
+
+sciscout values a direction as an investment. `nexus impact` adds a second
+valuation: what the direction's success would do to worldsim's 2050 outcomes.
+
+```bash
+python -m nexus.cli impact      # -> examples/nexus-impact.md
+```
+
+Each sciscout draw either reaches market in some year or fails. A success is
+treated as a partial move of one worldsim lever, and worldsim is run with and
+without it on the same random numbers, so the per-draw difference is the
+direction's effect and nothing else. A failed draw moves nothing, exactly.
+
+**The step between the two models is assumed.** `nexus/impact_map.yaml` says
+which lever a sector moves and how much of a full push one technology is worth.
+All 7 values are judgement calls, the loader refuses any without a `source`
+block, and every energy direction gets the same size. Differences between
+directions therefore come only from sciscout's success rate and timing.
+
+On the synthetic demo corpus, 5 of 16 directions are priced, all through the
+mitigation lever, and the two valuations rank all five differently.
+Solid-state sodium is last of the five by expected MOIC (1.58x) and first by
+impact (-0.31 GtCO2/yr expected in 2050, 0.57% of the baseline median). About
+63% of that result's spread traces to assumed inputs.
+
+**Unpriced is not zero.** The other 11 directions are listed with the reason:
+worldsim has no lever for computing hardware, food technology, AI capability,
+or therapies outside infection.
+
+**Late arrival is approximated.** worldsim holds a lever constant from 2025 to
+2050, so a direction arriving in 2035 gets the constant lever with the same
+lever-years. That is exact for emissions and overstates the benefit for
+warming, where an early cut counts for more. The report marks each outcome.
+
+### Forecast ledger
+
+Most projects here say something about the future, and none was ever checked.
+`nexus ledger` holds every dated, checkable prediction in one file
+(`data/nexus/ledger/forecasts.yaml`) and scores it when its date passes.
+
+```bash
+python -m nexus.cli ledger                      # summary: open, due, scores
+python -m nexus.cli ledger due --asof 2027-01-05
+python -m nexus.cli ledger resolve --id <id> --outcome yes \
+    --source "<where you read it>" --date 2027-01-04
+python -m nexus.cli ledger score
+```
+
+It holds 67 forecasts: 52 milestone probabilities from the frontier trends
+report, 12 from worldsim (2030 current-trajectory bands and the pandemic
+probability), 2 from AI-100 paper p077, and 1 imported from a session whose
+model is not in this repository. 60 of the 67 are graded `assumed`.
+
+Three rules are enforced on load. A forecast must name what data would settle
+it. It must point at its source file with an anchor string still present there
+(a test checks all 66 repository entries). An outcome must name its source and
+date, and a "no" cannot be recorded before the deadline.
+
+**Nothing is resolved yet, so there are no scores.** One forecast is past its
+deadline and five more fall due on 31 December 2026. Outcomes are never filled
+in from memory. Scores (Brier and log for probabilities, coverage and Winkler
+interval score for bands) are reported per project and per provenance grade
+with counts and Wilson intervals, and a group with under 20 resolved forecasts
+is labelled as too thin to be a track record. The resolution rules for the 52
+trend milestones were worded for the ledger from each milestone's leading
+indicator; a few milestones stay loosely defined. The worked output is in
+[`examples/nexus-ledger.md`](examples/nexus-ledger.md).
+
+### Physical bottlenecks
+
+`nexus bottleneck` asks how much of the commercialisation case can be moved
+from assumption to measurement with data in this repository. Today: one input,
+for one sector.
+
+```bash
+python -m nexus.cli bottleneck      # -> examples/nexus-bottleneck.md
+```
+
+From Our World in Data's country electricity series (`data/nexus/bottleneck/`,
+URL and retrieval date in `manifest.json`) it measures how long solar and wind
+took to grow from 1% to 10% of a national grid. Unfinished ramps are censored,
+not dropped (Kaplan-Meier): 132 ramps, 54 complete, median 12.0 years. That
+replaces the placeholder `ramp_years` (mode 4 years) for `energy_hardware`,
+graded `observed`. Expected MOIC for the demo energy directions roughly halves.
+
+**It is a weak estimate.** Refitted at 2012, 2015 and 2018 and scored against
+what followed, the curve does no better than the base rate (Brier 0.29 against
+0.22-0.25), and later-starting ramps run faster than the pooled curve says.
+Read the median as "about a decade, not four years".
+
+What it does not do:
+
+- No stage duration, cost or success prior is changed in any sector. Nothing
+  here measures them.
+- Wright's-law fitting and its back-test are implemented but run on planted
+  data only: the host publishing cost series was refused by the network policy.
+  Add a series to the manifest with `kind: cost` and the report picks it up.
+- The manufacturing, precision, chip and technology-transfer models built in
+  other sessions are not in this repository and are not used.
+
+An override graded `observed` must name a series in the manifest, so a guess
+cannot be relabelled as a measurement.
+
 ## Quick start
 
 ```bash
@@ -501,6 +605,9 @@ scripts/                 synthetic corpus generators, autoscout ablation
 tests/                   206 tests across sciscout, autoscout, airadar, worldsim, cosmos
 nexus/
   loop.py                verify claims per direction, re-rank, steer autoscout
+  impact.py              a direction's success priced in worldsim's 2050 outcomes
+  ledger.py              dated forecasts from every project, scored when due
+  bottleneck.py          measured deployment ramps in place of an assumed prior
 worldsim/
   fetch.py               download the observed global series
   model.py               trend fitting, the coupled simulation, lever experiments

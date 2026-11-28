@@ -187,6 +187,33 @@ artefact, indistinguishable from a real effect. A worked three-scenario
 comparison is in
 [`examples/sodium-battery-comparison.md`](examples/sodium-battery-comparison.md).
 
+## World problems model
+
+`worldsim/` is a second, separate model that shares sciscout's provenance
+machinery. It simulates ten global problems from 2025 to 2050 -- climate, war,
+extreme poverty, hunger, pandemics and drug resistance, biodiversity, water and
+sanitation, displacement, AI governance and inequality -- as one coupled system.
+
+```bash
+python -m worldsim.cli fetch     # refresh data/world from World Bank, OWID and NASA
+python -m worldsim.cli run       # three scenarios -> examples/world-problems-simulation.md
+python -m worldsim.cli run --lever peacebuilding=1 --lever development=0.5
+```
+
+Baseline rates of change are fitted from 18 global series in
+`data/world/observed.csv`, each with its URL and retrieval date in
+`manifest.json`. Figures that exist only in agency reports sit in
+`data/world/sourced.yaml` with a citation each. The links between problems and
+the effect of each policy lever are in `worldsim/params.yaml`, and almost all of
+them are graded `assumed`.
+
+**It is not a forecast.** 34 of its 43 uncertain inputs are judgement calls, and
+the report says for every result how much of the spread rests on them. It is
+built to answer two narrower questions: where measured trends lead if they
+persist, and which conclusions would survive a change of assumptions. The worked
+output, including where the model disagrees with published projections, is in
+[`examples/world-problems-simulation.md`](examples/world-problems-simulation.md).
+
 ## Quick start
 
 ```bash
@@ -290,9 +317,15 @@ sciscout/
   commercial/            TRL -> stages, costs, timelines, constraints
   invest/                distributions, investment case, Monte Carlo engine
   priors/sectors.yaml    commercialisation priors, graded by provenance
+worldsim/
+  fetch.py               download the observed global series
+  model.py               trend fitting, the coupled simulation, lever experiments
+  report.py              markdown and JSON output
+  params.yaml            couplings, lever effects and scenarios, graded by provenance
+data/world/              observed series, manifest, cited report figures, results
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generator
-tests/                   78 tests
+tests/                   95 tests
 ```
 
 ## Tests

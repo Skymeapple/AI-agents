@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aisci-verifiers"
+version = "0.1.0"
+description = "Verifier service, provenance-enforcing world model and lab-safety layer for autonomous AI-science agents (research prototype)"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "Liam (Skymeapple)"}]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "sympy>=1.12", "jsonschema>=4.0"]
+classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Science/Research", "License :: OSI Approved :: Apache Software License"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools]
+packages = ["aisci"]
+
+[tool.setuptools.package-data]
+aisci = ["data/verifier_map/*"]

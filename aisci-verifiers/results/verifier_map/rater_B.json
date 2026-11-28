@@ -1,0 +1,22 @@
+[
+{"id":"math_proofs","verifier_strength":5,"cost_per_check_usd":1,"latency_hours":0,"best_verifier":"Lean/Isabelle formal proof check"},
+{"id":"algorithm_design","verifier_strength":5,"cost_per_check_usd":0,"latency_hours":-1,"best_verifier":"Exact correctness check plus operation count or benchmark"},
+{"id":"ml_research","verifier_strength":4,"cost_per_check_usd":2,"latency_hours":1,"best_verifier":"Held-out benchmark re-run with multiple seeds"},
+{"id":"protein_structure","verifier_strength":3,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Experimental structure or CASP-style blind comparison"},
+{"id":"protein_binder_design","verifier_strength":4,"cost_per_check_usd":3,"latency_hours":2.5,"best_verifier":"Expression plus BLI/SPR binding assay"},
+{"id":"drug_potency_invitro","verifier_strength":4,"cost_per_check_usd":3,"latency_hours":2.5,"best_verifier":"Synthesis plus biochemical IC50/Kd assay"},
+{"id":"drug_clinical_efficacy","verifier_strength":1,"cost_per_check_usd":8,"latency_hours":4.5,"best_verifier":"Randomized controlled clinical trial"},
+{"id":"crystal_stability","verifier_strength":3,"cost_per_check_usd":1,"latency_hours":0.5,"best_verifier":"DFT energy above convex hull"},
+{"id":"materials_synthesis","verifier_strength":3,"cost_per_check_usd":3.5,"latency_hours":2.5,"best_verifier":"Synthesis plus XRD with Rietveld refinement"},
+{"id":"battery_materials","verifier_strength":2,"cost_per_check_usd":4,"latency_hours":3.5,"best_verifier":"Coin- or pouch-cell cycling tests"},
+{"id":"heterogeneous_catalysis","verifier_strength":2,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Reactor activity and selectivity testing"},
+{"id":"superconductivity_discovery","verifier_strength":3,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Zero resistance plus Meissner effect on phase-pure sample"},
+{"id":"weather_forecasting","verifier_strength":4,"cost_per_check_usd":2,"latency_hours":2,"best_verifier":"Scoring against observations and reanalysis"},
+{"id":"climate_projection","verifier_strength":1,"cost_per_check_usd":5,"latency_hours":5,"best_verifier":"Hindcast skill plus emergent constraints"},
+{"id":"particle_physics_analysis","verifier_strength":4,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Blinded analysis plus independent confirmation"},
+{"id":"cosmology_inference","verifier_strength":2,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Consistency across independent probes"},
+{"id":"genomic_variant_effect","verifier_strength":3,"cost_per_check_usd":3,"latency_hours":2.5,"best_verifier":"Multiplexed assay of variant effect"},
+{"id":"cell_biology_mechanism","verifier_strength":2,"cost_per_check_usd":4,"latency_hours":3,"best_verifier":"Orthogonal perturbation experiments"},
+{"id":"neuroscience_circuits","verifier_strength":2,"cost_per_check_usd":4.5,"latency_hours":3.5,"best_verifier":"Causal optogenetic/chemogenetic manipulation in vivo"},
+{"id":"fusion_plasma_control","verifier_strength":3,"cost_per_check_usd":5,"latency_hours":2,"best_verifier":"Validated simulator then tokamak shots"}
+]

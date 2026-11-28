@@ -1,0 +1,79 @@
+{
+  "detail_independent_seed_0": {
+    "simulation": {
+      "threshold": 0.6345135532723226,
+      "false_pass_rate": 0.07553707553707553,
+      "false_pass_95ci": [
+        0.0630008787416924,
+        0.09032730867011547
+      ],
+      "false_reject_rate": 0.2980251346499102,
+      "n_wrong": 1443
+    },
+    "literature": {
+      "threshold": 0.582923917041012,
+      "false_pass_rate": 0.10325710325710326,
+      "false_pass_95ci": [
+        0.08859541020558558,
+        0.12002563027320627
+      ],
+      "false_reject_rate": 0.3052064631956912,
+      "n_wrong": 1443
+    },
+    "critic": {
+      "threshold": 0.6486632671962247,
+      "false_pass_rate": 0.0492030492030492,
+      "false_pass_95ci": [
+        0.039190761058943736,
+        0.06160921593922938
+      ],
+      "false_reject_rate": 0.3052064631956912,
+      "n_wrong": 1443
+    },
+    "ensemble": {
+      "threshold": 0.9131432244061536,
+      "false_pass_rate": 0.001386001386001386,
+      "false_pass_95ci": [
+        0.0003801659357486448,
+        0.005039639521877123
+      ],
+      "false_reject_rate": 0.29084380610412924,
+      "n_wrong": 1443
+    },
+    "summary": {
+      "best_single_false_pass": 0.0492030492030492,
+      "ensemble_false_pass": 0.001386001386001386,
+      "relative_reduction": 0.971830985915493,
+      "hypothesis_halved": true,
+      "kill_criterion_triggered(<15%)": false,
+      "weights": {
+        "bias": -0.584,
+        "simulation": 1.062,
+        "literature": 1.167,
+        "critic": 1.512
+      }
+    }
+  },
+  "correlation_sweep": {
+    "shared_error_0.0": {
+      "mean_relative_reduction": 0.9884838442419221,
+      "min": 0.9705882352941176,
+      "max": 1.0
+    },
+    "shared_error_1.0": {
+      "mean_relative_reduction": 0.4123435191955739,
+      "min": 0.32558139534883723,
+      "max": 0.5126582278481013
+    },
+    "shared_error_2.0": {
+      "mean_relative_reduction": 0.0424181804857503,
+      "min": -0.03412969283276457,
+      "max": 0.10869565217391308
+    },
+    "shared_error_3.0": {
+      "mean_relative_reduction": 0.09626274777490058,
+      "min": 0.021077283372365252,
+      "max": 0.16322314049586772
+    }
+  }
+}

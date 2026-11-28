@@ -1,0 +1,1376 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "verifiable rewards",
+  "regret bound",
+  "reinforcement learning exploration",
+  "policy optimization reasoning"
+ ],
+ "papers": [
+  {
+   "id": "2604.20705",
+   "title": "SSL-R1: Self-Supervised Visual Reinforcement Post-Training for Multimodal Large Language Models",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Reinforcement learning (RL) with verifiable rewards (RLVR) has demonstrated the great potential of enhancing the reasoning abilities in multimodal large language models (MLLMs). However, the reliance on language-centric priors and expensive manual annotations prevents MLLMs' intrinsic visual understanding and scalable reward designs. In this work, we introduce SSL-R1, a generic self-supervised RL framework that derives verifiable rewards directly from images. To this end, we revisit self-supervised learning (SSL) in visual domains and reformulate widely-used SSL tasks into a set of verifiable visual puzzles for RL post-training, requiring neither human nor external model supervision. Training MLLMs on these tasks substantially improves their performance on multimodal understanding and reasoning benchmarks, highlighting the potential of leveraging vision-centric self-supervised tasks for MLLM post-training. We think this work will provide useful experience in devising effective self-supervised verifiable rewards to enable RL at scale. Project page: https://github.com/Jiahao000/SSL-R1.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2604.02621",
+   "title": "Reinforcement Learning-based Semi-supervised Knowledge Distillation with LLM-as-a-Judge",
+   "published": "2026-04-03",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement Learning (RL) substantially improves the reasoning capabilities of language models, but most existing RL fine-tuning approaches rely entirely on ground-truth verifiable rewards and thus labeled datasets with verifiable answers. To overcome this, we propose a RL framework for reasoning distillation that leverages continuous, LLM-based rewards. Our method employs an efficient mechanism that computes a continuous CoT reward (CCR) directly from a single-token logit of a judge LLM, evaluating the student model's reasoning trajectory. This formulation provides an effective and scalable online training signal that can be applied to large volumes of unlabeled data. We demonstrate that, when paired with a strong judge, simply using CCR achieves performance comparable to that of ground-truth or pseudo-label verifiable rewards, and even surpasses them as the amount of unlabeled data increases. Furthermore, we find that combining them in a semi-supervised setup is highly synergistic: verifiable rewards help stabilize the CCR, while CCR improves the generalizability of verifiable rewards to related tasks. We also provide a comprehensive empirical comparison of various reward sources across multiple model architectures and dataset sizes. Our results show that this semi-supervised approach consistently enhances mathematical reasoning, yielding an absolute improvement of 5-10% on multiple reasoning tasks.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2609.29230",
+   "title": "EAGER: Enhancing Generative Event Extraction via Reinforcement Learning with Verifiable Rewards",
+   "published": "2026-09-24",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "End-to-end event extraction remains challenging for large language models as it requires simultaneous identification of event triggers, classification of event types, and extraction of schema-grounded argument spans. We present EAGER, a reinforcement learning framework for generative event extraction that combines fine-grained verifiable rewards with Schema-Contrastive Advantage Estimation to alleviate advantage collapse under sparse binary rewards. Our reward design explicitly targets structural validity, extraction accuracy, groundedness, coverage, over-generation, and span precision. Experiments across seven benchmark datasets show that EAGER consistently outperforms prompting, supervised fine-tuning, and prior reinforcement learning baselines, achieving a substantial improvement over the strongest prior method. Results demonstrate that task-aligned verifiable rewards and contrastive advantage estimation substantially improve structured extraction.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2509.05489",
+   "title": "Self-Aligned Reward: Towards Effective and Efficient Reasoners",
+   "published": "2025-09-05",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards has significantly advanced reasoning in large language models (LLMs), but such signals remain coarse, offering only binary correctness feedback. This limitation often results in inefficiencies, including overly verbose reasoning and high computational cost, while existing solutions often compromise accuracy. To address this, we introduce self-aligned reward (SAR), a self-guided signal that complements verifiable rewards to encourage both reasoning accuracy and efficiency. SAR is defined as the relative perplexity difference between an answer conditioned on the query and the standalone answer, thereby favoring responses that are concise and query-specific. Quantitative analysis reveals that SAR reliably distinguishes answer quality: concise, correct answers score higher than redundant ones, and partially correct answers score higher than entirely incorrect ones. Evaluation on 4 models across 7 benchmarks shows that integrating SAR with prevalent RL algorithms like PPO and GRPO improves accuracy by 4%, while reducing inference cost by 30%. Further analysis demonstrates that SAR achieves a Pareto-optimal trade-off between correctness and efficiency compared to reward signals based on length or self-confidence. We also show that SAR shortens responses while preserving advanced reasoning behaviors, demonstrating its ability to suppress unnecessary elaboration without losing critical reasoning. These results highlight the promise of self-aligned reward as a fine-grained complement to verifiable rewards, paving the way for more efficient and effective LLM training.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2607.23802",
+   "title": "From RLVR to RLSVR: Task Transformation Induces Self-Verifiable Rewards for Open-Ended LLM Self-Improvement",
+   "published": "2026-07-26",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has driven recent progress in reasoning-oriented large language models (LLMs) by enabling large-scale optimization. However, its applicability remains largely limited to domains such as mathematics and coding, where correctness can be deterministically verifiable. Open-ended tasks instead often rely on human preferences, reward models, or LLM-based judges, introducing evaluation bias, judge capability bottlenecks, and additional inference costs. Drawing on the principle of self-supervised learning, which constructs pretext tasks to derive supervision from the data itself, we propose Reinforcement Learning with Self-Verifiable Rewards (RLSVR), a task-transformation-based training paradigm for extending RLVR to open-ended tasks. RLSVR transforms open-ended tasks into verifiable proxy environments whose internal rules and interaction outcomes automatically generate reward signals. We instantiate RLSVR with SpyRL, a Self-PlaY Reinforcement Learning method inspired by social deduction game Who Is the Spy?. Agents receive asymmetric information, complete the same target task, and vote to identify a designated spy. Because the spy identity is predetermined, voting outcomes provide fully verifiable rewards, while successful identification remains closely related to output quality. Experiments on text summarization, creative writing, and mathematical reasoning show that SpyRL outperforms existing self-improvement methods on non-verifiable tasks and yields consistent gains on verifiable reasoning tasks. These results demonstrate that task transformation can extend scalable RLVR-based self-improvement beyond inherently verifiable domains. Models and code have been released at https://github.com/wangqinsi1/RLSVR/tree/SpyRL.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.13934",
+   "title": "RLVR-World: Training World Models with Reinforcement Learning",
+   "published": "2025-05-20",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "World models predict state transitions in response to actions and are increasingly developed across diverse modalities. However, standard training objectives such as maximum likelihood estimation (MLE) often misalign with task-specific goals of world models, i.e., transition prediction metrics like accuracy or perceptual quality. In this paper, we present RLVR-World, a unified framework that leverages reinforcement learning with verifiable rewards (RLVR) to directly optimize world models for such metrics. Despite formulating world modeling as autoregressive prediction of tokenized sequences, RLVR-World evaluates metrics of decoded predictions as verifiable rewards. We demonstrate substantial performance gains on both language- and video-based world models across domains, including text games, web navigation, and robot manipulation. Our work indicates that, beyond recent advances in reasoning language models, RLVR offers a promising post-training paradigm for enhancing the utility of generative models more broadly. Code, datasets, models, and video samples are available at the project website: https://thuml.github.io/RLVR-World.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2608.30559",
+   "title": "SPHERE: Automatic Music Upmixing via Audio Language Model Post-Training with Spatial Heuristic Rewards",
+   "published": "2026-08-31",
+   "categories": [
+    "cs.SD"
+   ],
+   "abstract": "In this paper, we study the task of automatic music upmixing, wherein a system predicts spatial mixing parameters from a multi-stem recording. Different from existing methods that rely on task-specific music encoders, we approach this task via audio language model (ALM) post-training, leveraging rich representations from existing ALMs, which encode both music semantics and mixing knowledge. Specifically, we propose a post-training recipe that first employs rejection sampling SFT, followed by reinforcement learning (RL) with verifiable rewards (RLVR) via GRPO. We propose Sphere (Spatial Heuristic Rewards), a deterministic reward suite inspired by music mixing conventions, to guide our post-training. It consists of 6 perceptually-motivated sub-rewards and encourages the output mix to be centered, balanced and spacious. More broadly, our results suggest that expert domain knowledge can be encoded as verifiable rewards and distilled into language models, without task-specific architectures.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2606.31984",
+   "title": "GR2 Technical Report",
+   "published": "2026-06-30",
+   "categories": [
+    "cs.IR",
+    "cs.AI"
+   ],
+   "abstract": "Industrial recommendation systems serve billions of users through a multi-stage funnel -- retrieval, early-stage ranking, and re-ranking -- where the final re-ranking step disproportionately shapes user engagement and downstream performance, particularly for carousel and grid display formats. Despite growing enthusiasm for Large Language Models (LLMs) in recommendation, three gaps hinder industrial adoption: (1) most efforts target retrieval and ranking, leaving re-ranking -- the stage closest to the final user experience -- largely underexplored; (2) LLMs are typically deployed zero-shot or via supervised fine-tuning, underutilizing the reasoning capabilities unlocked by reinforcement learning (RL) on verifiable rewards; (3) deployed catalogs index billions of items with non-semantic identifiers that lie outside any base-LLM vocabulary. We present GR2 (Generative Reasoning Re-Ranker), an end-to-end framework that combines (i) mid-training on semantic IDs produced by a tokenizer with >=99% uniqueness, (ii) reasoning-trace distilled from a stronger teacher via targeted prompting and rejection sampling, and (iii) RL with verifiable rewards purpose-built for re-ranking. To make GR2 resource-viable, we further (iv) introduce a context compressor that amortizes training cost, On-Policy Distillation (OPD) as a scalable alternative to SFT -- which we find collapses at industrial scale -- and reasoning distillation for low-latency serving. GR2 delivers +18.7% R@1, +7.1% R@3, and +9.6% N@3 over legacy baselines on industrial-scale traffic. We further find that reward design is critical in re-ranking: LLMs often hack rewards by preserving the incoming order or exploiting position bias, motivating conditional verifiable rewards as essential industrial components.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2607.19044",
+   "title": "Adopting Reinforcement Learning with Verifiable Rewards for Molecular Generation",
+   "published": "2026-07-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Leveraging large language models (LLMs) for molecular generation has shown remarkable potential in chemical and drug design. Current methods primarily rely on supervised training or fine-tuning with limited datasets, which are insufficient to capture complex molecular design objectives. While some approaches attempt to guide generation toward specific goals, they often lack direct optimization mechanisms, making it difficult to align generated molecules with desired properties. To tackle these challenges, we propose \\textbf{LLMol}, a principled reinforcement learning framework that directly incorporates verifiable rewards for targeted molecule generation. The key insight is to formulate molecular design as a goal-conditioned sequence prediction task, where verifiable rewards serve as explicit supervision to drive generation toward desired objectives. LLMol follows a two-stage training paradigm combining supervised learning and reinforcement learning. In the first stage, large language models are supervised fine-tuned to capture chemical syntax and molecular distributions. In the second stage, we introduce Reinforcement Learning with Verifiable Rewards (RLVR), which directly integrates property-based reward signals to guide molecular generation toward task-specific objectives. To address the high variance and instability common in discrete sequence optimization, we adopt Group Relative Policy Optimization (GRPO), a stable on-policy algorithm that smooths reward signals and improves training robustness. This framework enables LLMol to effectively handle a range of molecular design tasks, including single-property targeting (e.g., penalized logP, QED) and structure-constrained optimization. Experimental results demonstrate that LLMol consistently outperforms existing methods, achieving higher success rates and improved efficiency across diverse molecular benchmarks.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2604.19857",
+   "title": "Rethinking Reinforcement Fine-Tuning in LVLM: Convergence, Reward Decomposition, and Generalization",
+   "published": "2026-04-21",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement fine-tuning with verifiable rewards (RLVR) has emerged as a powerful paradigm for equipping large vision-language models (LVLMs) with agentic capabilities such as tool use and multi-step reasoning. Despite striking empirical successes, most notably Visual Agentic Reinforcement Fine-Tuning (Visual-ARFT), the theoretical underpinnings of this paradigm remain poorly understood. In particular, two critical questions lack rigorous answers: (i)~how does the composite structure of verifiable rewards (format compliance, answer accuracy, tool executability) affect the convergence of Group Relative Policy Optimization (GRPO), and (ii)~why does training on a small set of tool-augmented tasks transfer to out-of-distribution domains? We address these gaps by introducing the \\emph{Tool-Augmented Markov Decision Process} (TA-MDP), a formal framework that models multimodal agentic decision-making with bounded-depth tool calls. Within this framework, we establish three main results. First, we prove that GRPO under composite verifiable rewards converges to a first-order stationary point at rate $O(1/\\sqrt{T})$ with explicit dependence on the number of reward components and group size (\\textbf{Theorem~1}). Second, we derive a \\emph{Reward Decomposition Theorem} that bounds the sub-optimality gap between decomposed per-component optimization and joint optimization, providing a precise characterization of when reward decomposition is beneficial (\\textbf{Theorem~2}). Third, we establish a PAC-Bayes generalization bound for tool-augmented policies that explains the strong out-of-distribution transfer observed in Visual-ARFT (\\textbf{Theorem~3}).",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2604.22880",
+   "title": "TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction",
+   "published": "2026-04-24",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Existing document OCR largely targets plain text or Markdown, discarding the structural and executable properties that make LaTeX essential for scientific publishing. We study page-level reconstruction of scientific PDFs into compilable LaTeX and introduce TexOCR-Bench, a benchmark, and TexOCR-Train, a large-scale training corpus, for this task. TexOCR-Bench features a multi-dimensional evaluation suite that jointly assesses transcription fidelity, structural faithfulness, and end-to-end compilability. Leveraging TexOCR-Train, we train a 2B-parameter model, TexOCR, using supervised fine-tuning (SFT) and reinforcement learning (RL) with verifiable rewards derived from LaTeX unit tests that directly enforce compilability and referential integrity. Experiments across 21 frontier models on TexOCR-Bench show that existing systems frequently violate key document invariants, including consistent section structure, correct float placement, and valid label-reference links, which undermines compilation reliability and downstream usability. Our analysis further reveals that RL with verifiable rewards yields consistent improvements over SFT alone, particularly on structural and compilation metrics.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.05946",
+   "title": "f-GRPO and Beyond: Divergence-Based Reinforcement Learning Algorithms for General LLM Alignment",
+   "published": "2026-02-05",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Recent work shows that preference alignment objectives can be interpreted as divergence estimators between aligned (preferred) & unaligned (less-preferred) distributions, yielding a principled recipe for designing alignment losses. However, this view has so far been limited to preference-based supervision. We extend it to general LLM alignment, including reinforcement learning with verifiable rewards (RLVR), where alignment feedback is given only as scalar rewards. We introduce $f$-Group Relative Policy Optimization ($f$-GRPO), a class of on-policy RL objectives, and $f$-Hybrid Alignment Loss ($f$-HAL), which combines on-policy reward optimization with off-policy preference supervision. We show that these objectives estimate $f$-divergences between reward-aligned & reward-unaligned distributions induced by above- & below-average reward responses, and prove expected reward improvement after alignment. Empirically, $f$-GRPO improves over GRPO on math-reasoning RLVR tasks, while hybrid $f$-HAL mitigates reward hacking in on-policy safety alignment when verifiable rewards are unavailable and learned reward models must be used.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2511.02463",
+   "title": "Extending RLVR to Open-Ended Tasks via Verifiable Multiple-Choice Reformulation",
+   "published": "2025-11-04",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement Learning with Verifiable Rewards(RLVR) has demonstrated great potential in enhancing the reasoning capabilities of large language models (LLMs). However, its success has thus far been largely confined to the mathematical and programming domains with clear and automatically checkable outcomes. Reinforcement learning on open-ended tasks (e.g., creative writing and subjective Q&A) continues to rely on reward models due to the absence of verifiable solutions. This raises a key question: how can we extend RLVR to strengthen reasoning in open-ended tasks regardless of the absence of the unambiguous ground truth? To overcome this challenge, we introduce Verifiable Multiple-Choice Reformulation for Reinforcement Learning from Verifiable Rewards (VMR-RLVR), a novel training strategy that restructures open-ended data into verifiable multiple-choice formats, enabling effective training even in the absence of explicit ground truth. Experimental results on multiple benchmarks validate the effectiveness of our method in improving LLM performance on open-ended tasks. Notably, across seven open-ended benchmarks, our VMR-RLVR training delivers an average gain of 3.29 points over the RL with reward model.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2608.17301",
+   "title": "SignalReasoner: Assessing the Upper Bound of 3B Models for Signal Mathematical Reasoning",
+   "published": "2026-08-18",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Post-training with supervised chain-of-thought fine-tuning and reinforcement learning from verifiable rewards has substantially improved the mathematical reasoning capabilities of large language models (LLMs). However, their application to signal processing problems remains relatively under-explored. This report investigates reinforcement fine-tuning strategies for adapting Qwen2.5-3B-Base to graduate-level signal mathematical problems from WirelessMATHBench-XL, a comprehensive benchmark for mathematical reasoning in this domain. We examine two training paradigms: (i) direct reinforcement learning (RL) on WirelessMATHBench-XL with verifiable rewards; and (ii) supervised fine-tuning (SFT) on a distilled wireless-domain chain-of-thought corpus, followed by the same domain-specific RL stage. Across both paradigms, we benchmark Group Relative Policy Optimization (GRPO), Group Sequence Policy Optimization (GSPO), and Geometric-Mean Policy Optimization (GMPO). We aim to assess whether domain-aware CoT SFT serves as an effective initialization for subsequent RL, and whether GSPO or GMPO offer advantages in stability or accuracy over GRPO for signal reasoning tasks. Our best model achieves an overall accuracy of 39.12\\%, representing a more than threefold improvement over the untrained Base model (12.37\\%).",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2506.00103",
+   "title": "Writing-Zero: Bridge the Gap Between Non-verifiable Tasks and Verifiable Rewards",
+   "published": "2025-05-30",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) has enabled large language models (LLMs) to achieve remarkable breakthroughs in reasoning tasks with objective ground-truth answers, such as mathematics and code generation. However, a significant gap remains for non-verifiable tasks, like creative writing and open-ended dialogue, where quality assessment is inherently subjective and lacks definitive references. Existing approaches for these domains often rely on scalar reward models trained with human preferences, which suffer from limited generalization and are prone to reward hacking, such as over-explanation and length bias. In this work, we propose a unified RLVR-based training paradigm that bridges the gap between non-verifiable tasks and verifiable rewards. We introduce a writing-principle-based pairwise Generative Reward Model (GenRM) and a novel Bootstrapped Relative Policy Optimization (BRPO) algorithm. The pairwise writing GenRM leverages self-principled critique to transform subjective assessments into reliable, verifiable rewards, while BRPO enables dynamic, reference-free pairwise comparison by leveraging a bootstrapped response as temporary reference from within group rollouts during RL training. Our approach empowers LLMs to develop robust writing capabilities without supervised fine-tuning, as demonstrated by Writing-Zero, which shows consistent improvement and strong resistance to reward hacking compared to scalar reward baselines. Furthermore, our method achieves competitive results on both in-house and open-source writing benchmarks. Our findings suggest the potential to unify rule-based, reference-based, and reference-free reward modeling under the RLVR framework, thus paving the way for a comprehensive and scalable RL training paradigm applicable across all language tasks.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2503.19618",
+   "title": "Beyond Verifiable Rewards: Scaling Reinforcement Learning for Language Models to Unverifiable Data",
+   "published": "2025-03-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We propose to scale RL to unverifiable data with a novel algorithm JEPO (Jensen's Evidence lower bound Policy Optimization). While most prior efforts on scaling RL for LLMs focus on verifiable data where ground truth answers are typically short-form and can be matched easily; we investigate the case where such assumptions are less valid (e.g., when answers are long-form such as mathematical proofs). To scale RL training to unverifiable data with contemporary training constraints, we propose JEPO. JEPO applies Jensen's evidence lower bound, a pragmatic simplification of the evidence lower bound which views chain-of-thought as a latent variable in the generative process. We show that on verifiable data (math), JEPO is as effective as RL with verifiable rewards; on semi-verifiable data (numina), JEPO improves on soft-match based evaluations compared to RL with verifiable rewards which can only leverage a subset of the data source; finally, on unverifiable data (numina-proof), JEPO outperforms SFT and a few ablation baselines on likelihood evaluations.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.19590",
+   "title": "Learning to Reason without External Rewards",
+   "published": "2025-05-26",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Training large language models (LLMs) for complex reasoning via Reinforcement Learning with Verifiable Rewards (RLVR) is effective but limited by reliance on costly, domain-specific supervision. We explore Reinforcement Learning from Internal Feedback (RLIF), a framework that enables LLMs to learn from intrinsic signals without external rewards or labeled data. We propose Intuitor, an RLIF method that uses a model's own confidence-termed self-certainty-as its sole reward signal. Intuitor replaces external rewards in Group Relative Policy Optimization (GRPO) with self-certainty scores, enabling fully unsupervised learning. Experiments demonstrate that Intuitor matches GRPO's performance on mathematical benchmarks while achieving better generalization to out-of-domain tasks like code generation, without requiring gold solutions or test cases. Our findings show that intrinsic model signals can drive effective learning across domains, offering a scalable alternative to RLVR for autonomous AI systems where verifiable rewards are unavailable. Code is available at https://github.com/sunblaze-ucb/Intuitor",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2601.03948",
+   "title": "Trade-R1: Bridging Verifiable Rewards to Stochastic Environments via Process-Level Reasoning Verification",
+   "published": "2026-01-07",
+   "categories": [
+    "cs.AI",
+    "q-fin.TR"
+   ],
+   "abstract": "Reinforcement Learning (RL) has enabled Large Language Models (LLMs) to achieve remarkable reasoning in domains like mathematics and coding, where verifiable rewards provide clear signals. However, extending this paradigm to financial decision is challenged by the market's stochastic nature: rewards are verifiable but inherently noisy, causing standard RL to degenerate into reward hacking. To address this, we propose Trade-R1, a model training framework that bridges verifiable rewards to stochastic environments via process-level reasoning verification. Our key innovation is a verification method that transforms the problem of evaluating reasoning over lengthy financial documents into a structured Retrieval-Augmented Generation (RAG) task. We construct a triangular consistency metric, assessing pairwise alignment between retrieved evidence, reasoning chains, and decisions to serve as a validity filter for noisy market returns. We explore two reward integration strategies: Fixed-effect Semantic Reward (FSR) for stable alignment signals, and Dynamic-effect Semantic Reward (DSR) for coupled magnitude optimization. Experiments on different country asset selection demonstrate that our paradigm reduces reward hacking, with DSR achieving superior cross-market generalization while maintaining the highest reasoning consistency.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2603.04124",
+   "title": "BeamPERL: Parameter-Efficient RL with Verifiable Rewards Specializes Compact LLMs for Structured Beam Mechanics Reasoning",
+   "published": "2026-03-04",
+   "categories": [
+    "cs.AI",
+    "cond-mat.mtrl-sci",
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Can reinforcement learning with hard, verifiable rewards teach a compact language model to reason about physics, or does it primarily learn to pattern-match toward correct answers? We study this question by training a 1.5B-parameter reasoning model on beam statics, a classic engineering problem, using parameter-efficient RLVR with binary correctness rewards from symbolic solvers, without teacher-generated reasoning traces. The best BeamPERL checkpoint achieves a 66.7% improvement in Pass@1 over the base model. However, the learned competence is anisotropic: the model generalizes compositionally (more loads) but fails under topological shifts (moved supports) that require the same equilibrium equations. Intermediate checkpoints yield the strongest reasoning, while continued optimization degrades robustness while maintaining reward. These findings reveal a key limitation of outcome-level alignment: reinforcement learning with exact physics rewards induces procedural solution templates rather than internalization of governing equations. The precision of the reward signal - even when analytically exact - does not by itself guarantee transferable physical reasoning. Our results suggest that verifiable rewards may need to be paired with structured reasoning scaffolding to move beyond template matching toward robust scientific reasoning.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2509.02522",
+   "title": "Implicit Actor Critic Coupling via a Supervised Learning Framework for RLVR",
+   "published": "2025-09-02",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Recent advances in Reinforcement Learning with Verifiable Rewards (RLVR) have empowered large language models (LLMs) to tackle challenging reasoning tasks such as mathematics and programming, however existing RLVR methods often suffer from sparse reward signals and unstable policy gradient updates inherent to RL-based approaches. To address the challenges, we propose PACS, a novel RLVR framework that achieves imPlicit Actor Critic coupling via a Supervised learning framework. By treating the outcome reward as a predictable label, we reformulate the RLVR problem into a supervised learning task over a score function parameterized by the policy model and optimized using cross-entropy loss. A detailed gradient analysis shows that this supervised formulation inherently recovers the classical policy gradient update while providing more stable and efficient training. Extensive experiments demonstrate that PACS significantly outperforms strong open-source models and RLVR baselines, yielding substantial average gains of +8.26% (4B) and +9.57% (8B) over base models offering a promising avenue for LLMs post-training with verifiable rewards. Our code and data are available as open source at https://github.com/ritzz-ai/PACS.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2610.22039",
+   "title": "WEAVE: Weaving Real-World Code Evolution into Dependency-Structured Tasks for Benchmarking and Training Code Agents",
+   "published": "2026-10-15",
+   "categories": [
+    "cs.SE",
+    "cs.CL"
+   ],
+   "abstract": "Real-world software engineering rarely consists of isolated changes. Features, migrations, and systematic fixes often unfold across multiple pull requests (PRs), requiring coordinated modifications across a repository. Yet most executable repository-level benchmarks retain a single issue or PR as the task unit, while existing multi-PR settings rely on coarse aggregation and structure-agnostic evaluation. This mismatch obscures dependencies among changes and limits progress measurement and learning signals for long-horizon code agents. We introduce WEAVE, a framework that transforms verified PR histories into executable, dependency-structured tasks. WEAVE leverages repository-calibrated typed change loci to organize related PRs into bounded DAGs and instantiate each as a unified executable task. We further introduce Graph Credit, a deterministic, test-grounded metric that measures dependency-consistent partial progress and supports dense, verifiable rewards for reinforcement learning. Experiments on task construction, agent evaluation, supervised fine-tuning, and reinforcement learning show that WEAVE yields coherent executable tasks, enables more faithful progress measurement than flat scoring, and provides effective supervision and verifiable rewards for training code agents.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2611.30881",
+   "title": "AnchorCredit: Output-Anchored Credit Assignment for Structured Generation with Multiple Verifiable Rewards",
+   "published": "2026-11-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In Reinforcement Learning with Verifiable Rewards (RLVR), Group Relative Policy Optimization (GRPO) and related methods typically compute group-relative advantages from response rewards and broadcast the same advantage to every generated token in a response to guide policy updates. However, we identify a systematic problem of cross-component credit misassignment in tasks with multiple verifiable results, such as joint multi-attribute prediction: low rewards for some components can penalize a well-performing component and its associated reasoning. To address this problem, we propose AnchorCredit. The method uses the policy model's attention from output anchors to preceding reasoning sentences to estimate sentence-component associations and assign component-specific advantages to the relevant reasoning, without additional relevance annotations or a separate relevance discriminator. To support the study of credit assignment with multiple verifiable rewards, we construct ProductAttr, a benchmark of 7,200 real product image-text samples. Experiments show that AnchorCredit outperforms existing baselines on this benchmark. Experiments on the public Nutrition5k dataset further support the method's effectiveness in this setting.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.10973",
+   "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning",
+   "published": "2025-10-13",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "The capabilities of Large Vision-Language Models (LVLMs) have reached state-of-the-art on many visual reasoning tasks, including chart reasoning, yet they still falter on out-of-distribution (OOD) data, and degrade further when asked to produce their chain-of-thought (CoT) rationales, limiting explainability. We present Chart-RVR, a general framework that fine-tunes LVLMs to be more robust and explainable for chart reasoning by coupling Group Relative Policy Optimization (GRPO) with automatically verifiable rewards. Our framework comprises of three rewards that maximize: (i) correct chart-type classification, (ii) faithful chart table reconstruction, and (iii) process conformity. Applied to 3-billion-parameter LVLMs, Chart-RVR consistently outperforms standard supervised fine-tuning (SFT) on both in-distribution and out-of-distribution datasets, closing the OOD performance gap while improving rationale fidelity. The resulting models, the Chart-RVR-3B series, achieve state-of-the-art results on six chart-reasoning benchmarks spanning in-domain and OOD settings, surpassing all existing models of comparable size. Beyond accuracy, Chart-RVR yields more interpretable CoT rationales, strengthening trust and reliability - showcasing the power of verifiable rewards with GRPO for training reliable, interpretable chart-reasoning models.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.25528",
+   "title": "Zero Reinforcement Learning Towards General Domains",
+   "published": "2025-10-29",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Zero Reinforcement Learning (Zero-RL) has proven to be an effective approach for enhancing the reasoning capabilities of large language models (LLMs) by directly applying reinforcement learning with verifiable rewards on pretrained models, without the need for a supervised fine-tuning phase. However, current research on zero-RL primarily focuses on domains with easily verifiable reward signals, such as mathematics, programming, and other reasoning tasks. The challenge of eliciting reasoning abilities in more diverse scenarios, where verification is not straightforward, remains underexplored. To address this gap, we propose a novel zero-RL paradigm designed to improve a model's reasoning ability across both verifiable and non-verifiable domains. By combining verifiable rewards with a generative reward model, we conduct multi-task zero-RL training across both domains, facilitating the transfer of reasoning capabilities between them. Furthermore, to mitigate reward hacking in the generative reward model, we design a smooth length penalty that encourages the generation of more comprehensive thinking tokens in general domains. Experimental results on Qwen3-8B-Base and Qwen3-14B-Base demonstrate that our approach achieves superior reasoning performance, not only on tasks requiring extensive reasoning but also on more general tasks.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2610.10536",
+   "title": "Decoupling Exploration from Optimization in RLVR",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Modern language models undergo reinforcement learning with verifiable rewards (RLVR) on top of already-trained checkpoints. A key promise of RLVR is the discovery of new reasoning strategies. In principle, a model can sample novel ideas absent from its prior training data. In practice, however, augmenting RLVR with strong novelty incentives has seen limited success and can degrade model quality. Because verifiable rewards supervise only a narrow slice of the model's knowledge and behavior, such degradations are difficult to recover from. Instead, we decouple exploration from optimization in a framework we call Exploration-Distillation (ExpDis). We train one or more explorer policies with a novelty bonus in the reward, filter their trajectories for correctness and quality, and distill them into a separate student policy. The student policy is then trained without a novelty bonus. We repeat the above procedure for several rounds, alternating between exploration and optimization. This decoupling allows us to aggressively scale exploration without degrading the student policy. Across seven mathematical reasoning benchmarks and two model families, ExpDis outperforms DAPO at the same wall-clock budget. Moreover, we observe improved pass@$k$ scaling, indicating that ExpDis produces models that generate more diverse correct solutions.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.00072",
+   "title": "Unlocking Zero-Shot Geospatial Reasoning via Indirect Rewards",
+   "published": "2025-09-29",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Training robust reasoning vision-language models (VLMs) in rare domains (such as geospatial) is fundamentally constrained by supervision scarcity. While raw geospatial imagery is abundant, the amount of task-direct supervision falls far behind that of common domains. In this work, we validate an important conclusion: indirect verifiable rewards, derived from seemingly unrelated metadata, are sufficient to induce sophisticated and generalizable geospatial reasoning across a wide range of downstream tasks (25+). We present Geo-R1 as one empirical instantiation of this paradigm. Rather than relying on limited task-specific annotations (i.e., direct rewards), Geo-R1 utilizes scalable, verifiable indirect proxy rewards based on cross-view alignment with metadata (geolocation information) to drive reinforcement learning at scale. Such indirect rewards successfully motivate the model to discover and internalize zero-shot geospatial reasoning across diverse tasks, achieving extraordinary zero-shot transfer on out-of-distribution benchmarks and even surpassing fully supervised specialists on certain benchmarks. These findings indicate that optimizing for indirect verifiable rewards may provide a scalable pathway to unlock generalized reasoning capabilities in rare domains with massive unlabeled data archives. Our code is availavle at: https://github.com/miniHuiHui/Geo-R1.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2605.25864",
+   "title": "When Self-Belief Misleads: Active Label Acquisition for Reinforcement Learning with Verifiable Rewards",
+   "published": "2026-05-25",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) have achieved remarkable advancements in reasoning capabilities empowered by Reinforcement Learning with Verifiable Rewards (RLVR). Nonetheless, RLVR intrinsically relies on ground-truth labels for reward computation, the acquisition of which is often prohibitively expensive in real-world scenarios. While unsupervised RLVR paradigms attempt to circumvent this by training on pseudo-labels, they are notoriously susceptible to training collapse. Moreover, different samples often exhibit varying annotation values. In this paper, we propose Reinforcement Learning with Active Verifiable Rewards (RLAVR), which actively acquires ground-truth labels for a small set of selected samples and integrates them with pseudo-labels, thereby stabilizing training dynamics and improving performance under limited annotation budgets. To identify valuable samples, we propose the Corrective Advantage Gap (CAG) metric and analyze the sample-level supervision value. Building on this, we introduce Correction-Aware Reliability Estimation for RLAVR (CARE), which translates the oracle CAG criterion into a practical pre-query acquisition policy to substantially improve training stability. Extensive experiments across diverse domains, model families, and model scales demonstrate the effectiveness and generality of our approach. Our code is available at https://github.com/Lumina04/CARE.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2511.21005",
+   "title": "ICPO: Intrinsic Confidence-Driven Group Relative Preference Optimization for Efficient Reinforcement Learning",
+   "published": "2025-11-26",
+   "categories": [
+    "cs.AI",
+    "cs.IR"
+   ],
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) demonstrates significant potential in enhancing the reasoning capabilities of Large Language Models (LLMs). However, existing RLVR methods are often constrained by issues such as coarse-grained rewards, reward noise, and inefficient exploration, which lead to unstable training and entropy collapse. To address this challenge, we propose the Intrinsic Confidence-Driven Group Relative Preference Optimization method (ICPO). The intuition behind it lies in the fact that the probabilities of an LLM generating different responses can inherently and directly reflect its self-assessment of the reasoning process. Inspired by the idea of preference modeling, ICPO calculates a preference advantage score for each response by comparing the relative generation probabilities of multiple responses under the same input prompt, and integrates this score with verifiable rewards to guide the exploration process. We have discovered that the preference advantage score not only alleviates the issues of coarse-grained rewards and reward noise but also effectively curbs overconfident errors, enhances the relative superiority of undervalued high-quality responses, and prevents the model from overfitting to specific strategies. Comprehensive experiments across four general-domain benchmarks and three mathematical benchmarks demonstrate that ICPO steadily boosts reasoning compared to GRPO.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2610.25399",
+   "title": "From Unverifiable Domain Text to Cross-Lingual RLVR via Code-Switched Task Synthesis",
+   "published": "2026-10-18",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) can improve reasoning in large language models, but specialized non-English domains expose a data mismatch. Raw English domain text is often available, while target-language RLVR tasks with verifiable rewards are scarce. We introduce code-switched task synthesis for cross-lingual RLVR, a data-centric approach that derives target-language and code-switched RLVR task variants from otherwise unverifiable English domain text. Using fill-in-the-middle multiple-choice QA as a seed task format, we synthesize automatically verifiable tasks from domain passages and reshape them into cross-lingual variants. These variants preserve the same evidence-answer relation but change how English and target-language evidence are presented during RLVR. On Korean medical benchmarks and cybersecurity benchmarks across four target languages, code-switched training outperforms matched monolingual and bilingual-mixture baselines on average target-language performance while maintaining comparable English performance. Additional analyses provide evidence of better target-language input understanding and stronger cross-lingual alignment in both model outputs and internal representations. These results suggest that code-switched training helps target-language inputs access domain reasoning learned more strongly in English.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.06795",
+   "title": "Generating Data-Driven Reasoning Rubrics for Domain-Adaptive Reward Modeling",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "An impediment to using Large Language Models (LLMs) for reasoning output verification is that LLMs struggle to reliably identify errors in thinking traces, particularly in long outputs, domains requiring expert knowledge, and problems without verifiable rewards. We propose a data-driven approach to automatically construct highly granular reasoning error taxonomies to enhance LLM-driven error detection on unseen reasoning traces. Our findings indicate that classification approaches that leverage these error taxonomies, or \"rubrics\", demonstrate strong error identification compared to baseline methods in technical domains like coding, math, and chemical engineering. These rubrics can be used to build stronger LLM-as-judge reward functions for reasoning model training via reinforcement learning. Experimental results show that these rewards have the potential to improve models' task accuracy on difficult domains over models trained by general LLMs-as-judges by +45%, and approach performance of models trained by verifiable rewards while using as little as 20% as many gold labels. Through our approach, we extend the usage of reward rubrics from assessing qualitative model behavior to assessing quantitative model correctness on tasks typically learned via RLVR rewards. This extension opens the door for teaching models to solve complex technical problems without a full dataset of gold labels, which are often highly costly to procure.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2512.00425",
+   "title": "What about gravity in video generation? Post-Training Newton's Laws with Verifiable Rewards",
+   "published": "2025-11-29",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Recent video diffusion models can synthesize visually compelling clips, yet often violate basic physical laws-objects float, accelerations drift, and collisions behave inconsistently-revealing a persistent gap between visual realism and physical realism. We propose $\\texttt{NewtonRewards}$, the first physics-grounded post-training framework for video generation based on $\\textit{verifiable rewards}$. Instead of relying on human or VLM feedback, $\\texttt{NewtonRewards}$ extracts $\\textit{measurable proxies}$ from generated videos using frozen utility models: optical flow serves as a proxy for velocity, while high-level appearance features serve as a proxy for mass. These proxies enable explicit enforcement of Newtonian structure through two complementary rewards: a Newtonian kinematic constraint enforcing constant-acceleration dynamics, and a mass conservation reward preventing trivial, degenerate solutions. We evaluate $\\texttt{NewtonRewards}$ on five Newtonian Motion Primitives (free fall, horizontal/parabolic throw, and ramp sliding down/up) using our newly constructed large-scale benchmark, $\\texttt{NewtonBench-60K}$. Across all primitives in visual and physics metrics, $\\texttt{NewtonRewards}$ consistently improves physical plausibility, motion smoothness, and temporal coherence over prior post-training methods. It further maintains strong performance under out-of-distribution shifts in height, speed, and friction. Our results show that physics-grounded verifiable rewards offer a scalable path toward physics-aware video generation.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.03394",
+   "title": "Studying the Korean Word-Chain Game with RLVR: Mitigating Reward Conflicts via Curriculum Learning",
+   "published": "2025-10-03",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) is a promising approach for training large language models (LLMs) with stronger reasoning abilities. It has also been applied to a variety of logic puzzles. In this work, we study the Korean word-chain game using RLVR. We show that rule-derived rewards can naturally conflict, and demonstrate through experiments that a curriculum-learning scheme mitigates these conflicts. Our findings motivate further studies of puzzle tasks in diverse languages.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2603.27866",
+   "title": "Wan-R1: Verifiable-Reinforcement Learning for Video Reasoning",
+   "published": "2026-03-29",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Video generation models produce visually coherent content but struggle with tasks requiring spatial reasoning and multi-step planning. Reinforcement learning (RL) offers a path to improve generalization, but its effectiveness in video reasoning hinges on reward design -- a challenge that has received little systematic study. We investigate this problem by adapting Group Relative Policy Optimization (GRPO) to flow-based video models and training them on maze-solving and robotic navigation tasks. We first show that multimodal reward models fail catastrophically in this setting. To address this, we design verifiable reward functions grounded in objective task metrics. For structured game environments, we introduce a multi-component trajectory reward. For robotic navigation, we propose an embedding-level verifiable reward. Our experiments show that RL fine-tuning with verifiable rewards improves generalization. For example, on complex 3D mazes, our model improves exact match accuracy by 29.1\\% over the SFT baseline, and on trap-avoidance tasks by 51.4\\%. Our systematic reward analysis reveals that verifiable rewards are critical for stable training, while multimodal reward models could lead to degenerate solutions. These findings establish verifiable reward design as a key enabler for robust video reasoning. Code will be publicly available.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.13445",
+   "title": "Trust, But Verify: A Self-Verification Approach to Reinforcement Learning with Verifiable Rewards",
+   "published": "2025-05-19",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) show great promise in complex reasoning, with Reinforcement Learning with Verifiable Rewards (RLVR) being a key enhancement strategy. However, a prevalent issue is ``superficial self-reflection'', where models fail to robustly verify their own outputs. We introduce RISE (Reinforcing Reasoning with Self-Verification), a novel online RL framework designed to tackle this. RISE explicitly and simultaneously trains an LLM to improve both its problem-solving and self-verification abilities within a single, integrated RL process. The core mechanism involves leveraging verifiable rewards from an outcome verifier to provide on-the-fly feedback for both solution generation and self-verification tasks. In each iteration, the model generates solutions, then critiques its own on-policy generated solutions, with both trajectories contributing to the policy update. Extensive experiments on diverse mathematical reasoning benchmarks show that RISE consistently improves model's problem-solving accuracy while concurrently fostering strong self-verification skills. Our analyses highlight the advantages of online verification and the benefits of increased verification compute. Additionally, RISE models exhibit more frequent and accurate self-verification behaviors during reasoning. These advantages reinforce RISE as a flexible and effective path towards developing more robust and self-aware reasoners.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.20347",
+   "title": "SeRL: Self-Play Reinforcement Learning for Large Language Models with Limited Data",
+   "published": "2025-05-25",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances have demonstrated the effectiveness of Reinforcement Learning (RL) in improving the reasoning capabilities of Large Language Models (LLMs). However, existing works inevitably rely on high-quality instructions and verifiable rewards for effective training, both of which are often difficult to obtain in specialized domains. In this paper, we propose Self-play Reinforcement Learning (SeRL) to bootstrap LLM training with limited initial data. Specifically, SeRL comprises two complementary modules: self-instruction and self-rewarding. The former module generates additional instructions based on the available data at each training step, employing robust online filtering strategies to ensure instruction quality, diversity, and difficulty. The latter module introduces a simple yet effective majority-voting mechanism to estimate response rewards for additional instructions, eliminating the need for external annotations. Finally, SeRL performs conventional RL based on the generated data, facilitating iterative self-play learning. Extensive experiments on various reasoning benchmarks and across different LLM backbones demonstrate that the proposed SeRL yields results superior to its counterparts and achieves performance on par with those obtained by high-quality data with verifiable rewards. Our code is available at https://github.com/wantbook-book/SeRL.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2607.27968",
+   "title": "Beyond Binary Rewards: A Comparative Study of Reward Design for Reinforcement Unlearning",
+   "published": "2026-07-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Machine unlearning seeks to selectively remove specific knowledge from trained language models without full retraining, a growing necessity under privacy regulations such as GDPR and the EU AI Act. Recent work has reformulated unlearning as a Reinforcement Learning with Verifiable Rewards (RLVR) problem, where models are optimized against verifiable rewards computed directly from their outputs. However, existing methods rely on sparse binary rewards that provide minimal learning signal, indicating only whether forbidden content was avoided, and limiting convergence speed. In this paper, we study how reward design affects unlearning efficiency within the Reinforcement Unlearning (RUL) framework. We introduce a principled reward decomposition framework that decouples verifiability from sparsity, and propose two new reward functions: an exponential reward that provides graded penalties based on the count of forbidden-concept occurrences, and a PageRank inspired reward that weights penalties by semantic importance. We conduct experiments on the Real World Knowledge Unlearning (RWKU) benchmark, demonstrating that both rewards consistently outperform the binary setting, while reaching similar forgetting performance up to $3\\times$ faster and preserving general model utility. Our results show that reward design is a key driver of unlearning efficiency offering a practical path toward scalable and efficient machine unlearning.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2605.08817",
+   "title": "How You Begin is How You Reason: Driving Exploration in RLVR via Prefix-Tuned Priors",
+   "published": "2026-05-09",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) recently thrives in large language model (LLM) reasoning tasks. However, the reward sparsity and the long reasoning horizon make effective exploration challenging. In practice, this challenge manifests as the \\emph{entropy collapse} phenomenon, where RLVR improves single-rollout accuracy but fails to expand coverage on successful reasoning trajectories. Passive exploration techniques like entropy regularization tend to dismiss generation quality, resulting in noisy rollouts. In response to this issue, we propose an Information-Maximizing Augmented eXploration (IMAX) framework to train a pool of soft prefixes that reshapes the base model's prior over reasoning trajectories. Rather than relying on RL to incentivize exploration on top of the base model, each prefix acts as a trainable control knob that induces a distinct rollout distribution from the same backbone model. To encourage discovery of diverse and task-relevant reasoning behaviors, we derive an Information Maximization (InfoMax) reward to complement the verifiable rewards for RL training. IMAX is in general algorithm-agnostic and can be seamlessly integrated into existing RLVR pipelines. Experiment results have shown that across three backbone scales, IMAX consistently improves reasoning performance over standard RLVR, with gains up to 11.60\\% in Pass@4 and 10.57\\% in Avg@4.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2607.11506",
+   "title": "SCOPE-RL: Optimizing Reasoning Paths Before and After Success",
+   "published": "2026-07-13",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) optimizes LLMs using sparse verifiable final-answer rewards. This sparse anchor reliably verifies whether a trajectory succeeds but provides no direct feedback on the reasoning path that produced it. Before success, prerequisite progress on hard problems receives no reward signal; after success, outcome rewards cannot distinguish well-organized correct trajectories from redundant or locally flawed ones. We introduce SCOPE-RL (Scaffolded Chain Optimization with Process Efficiency), a two-stage framework that densifies this anchor while retaining the GRPO update: Adaptive Scaffolded RL adds prefix-decomposed verifiable rewards on answer-hidden sub-question chains before success, and Quality-Aware Process RL applies correctness-gated process-shape rewards to refine correct trajectories after success. An expert-validated Step-Quality Evaluation Protocol evaluates useful-step density, error localization, and token efficiency beyond final-answer accuracy. On Qwen3-8B-Instruct trained on DAPO-Math and Big-Math, SCOPE-RL improves average accuracy by up to 11.2 pp and reduces reasoning tokens by up to 27.1% over outcome-only GRPO; the gains hold under GSPO and on Qwen3-0.6B-Instruct, indicating that reward-signal densification is complementary to policy-update-level RLVR advances. Code and data are available at https://github.com/tokencraft-lab/SCOPE-RL.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2512.16301",
+   "title": "Adaptation of Agentic AI: A Survey of Post-Training, Memory, and Skills",
+   "published": "2025-12-18",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large language model (LLM) agents are moving beyond prompting alone. ChatGPT marked the rise of general-purpose LLM assistants, DeepSeek showed that on-policy reinforcement learning with verifiable rewards can improve reasoning and tool use, and OpenClaw highlights a newer direction in which agents accumulate persistent memory and reusable skills. Yet the research landscape remains fragmented across post-training, retrieval, memory, and skill systems. This survey studies these developments under a single notion of \\emph{adaptation}: improving an agent, its tools, or their interaction after pretraining. We organize the field with a four-paradigm framework spanning agent adaptation and tool adaptation. On the agent side, A1 (tool-execution-signaled) and A2 (agent-output-signaled) improve the agent itself through supervised fine-tuning, preference optimization, and reinforcement learning with verifiable rewards. On the tool side, T1 (agent-agnostic) provides reusable pre-trained modules any agent can call, while T2 (agent-supervised) uses the agent's outputs to train memory systems, skill libraries, or lightweight subagents. Using this framework, we review post-training methods, adaptive memory architectures, and agent skills; compare their trade-offs in cost, flexibility, and generalization; and summarize evaluation practices across deep research, software development, computer use, and drug discovery. We conclude by outlining open problems in agent-tool co-adaptation, continual learning, safety, and efficient deployment.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.08819",
+   "title": "Bayesian Preference Learning for Test-Time Steerable Reward Models",
+   "published": "2026-02-09",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Reward models are central to aligning language models with human preferences via reinforcement learning (RL). As RL is increasingly applied to settings such as verifiable rewards and multi-objective alignment, RMs are expected to encode more complex and multifaceted preference distributions. However, classifier RMs remain static once trained, limiting their adaptability at test time. We propose Variational In-Context Reward Modeling (ICRM), a novel Bayesian reward modeling objective that enables test-time steerability via in-context preference demonstrations. ICRM casts reward modeling as amortized variational inference over a latent preference probability under the Bradley-Terry model using a conjugate Beta prior. We show that ICRM adapts to unseen preference distributions at test time for both single and multi-objective settings. With more demonstrations, ICRM improves RM-Bench accuracy from 60.5 to 70.8, achieves lower calibration error than a generative judge on moral dilemma preferences, and expands the attainable Pareto frontier under conflicting preferences. We further study the practical applicability of ICRM for RL training, showing that it can effectively encode verifiable rewards by outperforming a conventional RM in math reasoning. Finally, we provide theoretical guarantees that the variational objective admits a global interior optimum with finite confidence, followed by an ablation study on its role for the test-time steerability, and we analyze how KL regularization mitigates reward over-optimization.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2606.01066",
+   "title": "Before the Model Learns the Bug:Fuzzing RLVR Verifiers",
+   "published": "2026-05-31",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) replaces human preference labels with executable reward functions such as math answer checkers, JSON tool-call validators, and code unit-test harnesses. That makes the reward partly a software artifact: if the verifier is wrong, optimization can learn the bug. We study this failure mode with a lightweight verifier-fuzzing framework that generates adversarial completions, compares buggy and stricter reference verifiers, logs paired decisions, and reports false-positive, false-negative, disagreement, exploit, and uncertainty metrics.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.05630",
+   "title": "Rewards as Labels: Revisiting RLVR from a Classification Perspective",
+   "published": "2026-02-05",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement Learning with Verifiable Rewards has recently advanced the capabilities of Large Language Models in complex reasoning tasks by providing explicit rule-based supervision. Among RLVR methods, GRPO and its variants have achieved strong empirical performance. Despite their success, we identify that they suffer from Gradient Misassignment in Positives and Gradient Domination in Negatives, which lead to inefficient and suboptimal policy updates. To address these issues, we propose Rewards as Labels (REAL), a novel framework that revisits verifiable rewards as categorical labels rather than scalar weights, thereby reformulating policy optimization as a classification problem. Building on this, we further introduce anchor logits to enhance policy learning. Our analysis reveals that REAL induces a monotonic and bounded gradient weighting, enabling balanced gradient allocation across rollouts and effectively mitigating the identified mismatches. Extensive experiments on mathematical reasoning benchmarks show that REAL improves training stability and consistently outperforms GRPO and strong variants such as DAPO. On the 1.5B model, REAL improves average Pass@1 over DAPO by 6.7%. These gains further scale to 7B model, REAL continues to outperform DAPO and GSPO by 6.2% and 1.7%, respectively. Notably, even with a vanilla binary cross-entropy, REAL remains stable and exceeds DAPO by 4.5% on average.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.08827",
+   "title": "RLSR: Reinforcement Learning from Self Reward",
+   "published": "2025-05-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large language models can generate solutions to complex problems, but training them with reinforcement learning typically requires verifiable rewards that are expensive to create and not possible for all domains. We demonstrate that LLMs can effectively self-improve through self-judging without reference solutions, leveraging the inherent asymmetry between generating and verifying solutions. Our experiments show that models can provide reliable reward signals without ground truth answers, enabling reinforcement learning in domains where verifiable rewards are impractical. By implementing self-judging across Countdown puzzles and integration problems, we achieve performance comparable to formal verification without ground truth solutions. Most notably, Qwen 2.5 7B DeepSeek Distilled trained with self-rewards qualifies for the prestigious MIT Integration Bee competition, performance through self-supervised improvement. When combined with synthetic question generation, we establish a complete self-improvement loop where models generate practice problems, solve them, and evaluate their own performance without any external validation. Our findings demonstrate that LLM judges can provide effective reward signals for training, unlocking reinforcement learning in countless domains previously limited by reward engineering challenges. This work represents a significant step toward autonomous AI systems that continuously improve through self-directed learning rather than human-guided training, potentially accelerating progress across domains where training data is scarce or evaluation is complex.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.01623",
+   "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models",
+   "published": "2025-10-02",
+   "categories": [
+    "cs.CV",
+    "cs.RO"
+   ],
+   "abstract": "Vision-Language-Action (VLA) models aim to unify perception, language understanding, and action generation, offering strong cross-task and cross-scene generalization with broad impact on embodied AI. However, current VLA models often lack explicit step-by-step reasoning, instead emitting final actions without considering affordance constraints or geometric relations. Their post-training pipelines also rarely reinforce reasoning quality, relying primarily on supervised fine-tuning with weak reward design. To address these challenges, we present VLA-R1, a reasoning-enhanced VLA that integrates Reinforcement Learning from Verifiable Rewards (RLVR) with Group Relative Policy Optimization (GRPO) to systematically optimize both reasoning and execution. Specifically, we design an RLVR-based post-training strategy with verifiable rewards for region alignment, trajectory consistency, and output formatting, thereby strengthening reasoning robustness and execution accuracy. Moreover, we develop VLA-CoT-13K, a high-quality dataset that provides chain-of-thought supervision explicitly aligned with affordance and trajectory annotations. Furthermore, extensive evaluations on in-domain, out-of-domain, simulation, and real-robot platforms demonstrate that VLA-R1 achieves superior generalization and real-world performance compared to prior VLA methods. We plan to release the model, code, and dataset following the publication of this work. Code: https://github.com/GigaAI-research/VLA-R1. Website: https://gigaai-research.github.io/VLA-R1.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2607.16205",
+   "title": "It Takes 8 Tokens: Weak-to-Strong Off-Policy RL via Auxiliary Branches",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards has emerged as a standard approach for enhancing reasoning in large language models, which typically optimizes the policy by contrasting multiple self generated rollouts. However, we identify a critical support limited bottleneck in this paradigm: on challenging reasoning tasks, the target model's samples often exhibit semantic redundancy, converging into the same erroneous \"reasoning basins\" that offer negligible reward contrast for policy updates. In this paper, we propose to overcome this limitation through a weak to strong learning paradigm, where a policy's exploration is informed by a weaker but computationally efficient auxiliary model. We introduce W2SPO, an off policy RL method that injects short auxiliary segments often as brief as 8 tokens into intermediate target model trajectories and the target model then completes the reasoning path from these diverted states. Policy updates are restricted to these short inserted segments based on final verifiable rewards. Empirically, W2SPO achieves superior performance among evaluated 4B scale models on mathematical reasoning benchmarks, outperforming evaluated post trained baselines. Compared with vanilla GRPO under the same sampling budget, W2SPO improves Pass@1 from 62.3% to 64.2% while achieving a 3.55 times training speedup. These results suggest that weak auxiliary branches can induce stronger target reasoning policies by expanding local exploration support.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2606.09380",
+   "title": "Reasoning Arena: Trace Tournaments When Verifiable Rewards Fall Short",
+   "published": "2026-06-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a leading paradigm for improving the reasoning ability of large language models through outcome-based supervision. However, verifiable rewards frequently become uninformative at the group level: when all sampled traces of a given prompt receive identical rewards, group-relative advantage estimation provides no gradient signal, even though the traces may differ substantially in reasoning quality. We propose Reasoning Arena, an adaptive training framework that routes such non-diverse reward groups to a judge system instead of discarding them. Beyond examining the final answer, Reasoning Arena constructs trace tournaments, where reasoning traces are compared head-to-head to expose finer-grained preferences within the group, converting reasoning quality into rich relative reward signals. To make reward estimation efficient, rather than exhaustively comparing every pair, each new trace is evaluated against a small, dynamically updated pool of previously generated traces as anchors to efficiently establish a relative ranking. We then fit a Bradley-Terry model on the incomplete comparison graph, enabling scalable RL integration without quadratic pairwise comparisons. Empirical results demonstrate that Reasoning Arena consistently outperforms the RLVR baseline by 7.6% on average in competition mathematics and coding benchmarks. By converting otherwise wasted zero-advantage samples into useful gradient updates, our method accelerates training by 27% to 41%, saving nearly 50% of generation compute, and substantially improves overall reasoning performance.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2606.20008",
+   "title": "VIMPO: Value-Implicit Policy Optimization for LLMs",
+   "published": "2026-06-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards has become a central tool for improving the reasoning ability of large language models, but current methods face a trade-off between simplicity and credit assignment. Group-relative methods such as GRPO avoid training a critic, but typically assign a trajectory-level advantage to every token. Actor-critic methods provide denser learning signals, but require a learned value function with its own training instability. We introduce VIMPO, a critic-free policy optimization method that derives a policy-implied value function from the optimality conditions of KL-regularized reinforcement learning. For autoregressive generation, the resulting value recurrence can be written in terms of policy-reference log-ratios and anchored by the terminal condition that no future reward remains at the end of a trajectory. This gives a simple value loss that incorporates outcome-level verifiable rewards without training a critic. The same derivation also yields a critic-free actor advantage, allowing VIMPO to separate reward incorporation through the value loss from policy improvement through a PPO-style actor update. On mathematical RLVR benchmarks, VIMPO improves over GRPO across MATH-500, AIME 2024, AIME 2025, and OlympiadBench, with especially larger gains on competition-style evaluations. Under noisy rewards, VIMPO retains a consistent advantage over GRPO, suggesting that policy-implied value optimization can provide finer credit assignment while preserving the practical simplicity of critic-free training.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2511.07922",
+   "title": "SERL: Self-Examining Reinforcement Learning on Open-Domain",
+   "published": "2025-11-11",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement Learning (RL) has been shown to improve the capabilities of large language models (LLMs). However, applying RL to open-domain tasks faces two key challenges: (1) the inherent subjectivity of these tasks prevents the verifiable rewards as required by Reinforcement Learning with Verifiable Rewards (RLVR); (2) Reinforcement Learning from Human Feedback (RLHF) relies on external reward mechanisms. To overcome these limitations, we propose Self-Examining Reinforcement Learning (SERL), a novel self-improving framework where the LLM serves as both Actor and Judge. SERL introduces two synergistic reward mechanisms without any external signals. On the one hand, to improve the Actor's capability, we derive rewards from Copeland-style pairwise comparison judgments across a group of generated responses. On the other hand, a self-consistency reward that encourages coherent judgments is proposed to improve the Judge's reliability. This process refines the Judge's capability, which in turn provides a more robust reward for Actor. Experiments show that our method outperforms existing self-improvement training methods. SERL improves the LC win rate of Qwen3-8B on AlpacaEval 2 from 52.37% to 59.90%. To the best of our knowledge, our method achieves state-of-the-art performance among self-improving approaches. Furthermore, it achieves a performance comparable to significantly larger models like Qwen3-32B, demonstrating superior effectiveness and robustness on open-domain tasks.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2605.10141",
+   "title": "FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models",
+   "published": "2026-05-11",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Recent neural theorem provers use reinforcement learning with verifiable rewards (RLVR), where proof assistants provide binary correctness signals. While verifiable rewards are cheap and scalable without reward hacking issues, they suffer from sparse credit assignment: models receive no learning signal from difficult problems where partial progress goes unrewarded. This motivates learned reward models that can evaluate proof quality beyond binary verification. However, comparing reward models is challenging since it typically requires expensive RL training ablations. To address this, we introduce \\textbf{FormalRewardBench}, the first benchmark for evaluating reward models in formal theorem proving with Lean 4. Our benchmark consists of 250 preference pairs where correct proofs are paired with incorrect variants generated through five expert curated error injection strategies: forced mistakes, minimal single-point variations, verbose incorrect proofs, natural language justification, and Python code injection. We evaluate frontier LLMs (e.g., Claude Opus 4.5), judge LLMs (e.g., CompassJudger-1-14B), general-purpose LLMs (e.g., Qwen2.5-72B-Instruct), and specialized theorem proving models (e.g., DeepSeek-Prover-V2-7B). Our results reveal that frontier LLMs achieve the highest performance (59.8\\%) while specialized theorem provers perform the worst (24.4\\%), suggesting that theorem proving ability does not transfer to proof evaluation. We provide further insights on various error injection mechanisms, highlighting the challenging nature of most injection mechanisms. We release \\textbf{FormalRewardBench} publicly to encourage more research on developing reward models in formal mathematics.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2506.09016",
+   "title": "SPEED-RL: Faster Training of Reasoning Models via Online Curriculum Learning",
+   "published": "2025-06-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Training large language models with reinforcement learning (RL) against verifiable rewards significantly enhances their reasoning abilities, yet remains computationally expensive due to inefficient uniform prompt sampling. We introduce Selective Prompting with Efficient Estimation of Difficulty (SPEED), an adaptive online RL curriculum that selectively chooses training examples of intermediate difficulty to maximize learning efficiency. Theoretically, we establish that intermediate-difficulty prompts improve the gradient estimator's signal-to-noise ratio, accelerating convergence. Empirically, our efficient implementation leads to 2x to 6x faster training without degrading accuracy, requires no manual tuning, and integrates seamlessly into standard RL algorithms.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2505.24760",
+   "title": "REASONING GYM: Reasoning Environments for Reinforcement Learning with Verifiable Rewards",
+   "published": "2025-05-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "We introduce Reasoning Gym (RG), a library of reasoning environments for reinforcement learning with verifiable rewards. It provides over 100 data generators and verifiers spanning multiple domains including algebra, arithmetic, computation, cognition, geometry, graph theory, logic, and various common games. Its key innovation is the ability to generate virtually infinite training data with adjustable complexity, unlike most previous reasoning datasets, which are typically fixed. This procedural generation approach allows for continuous evaluation across varying difficulty levels. Our experimental results demonstrate the efficacy of RG in both evaluating and reinforcement learning of reasoning models.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.12268",
+   "title": "CM2: Reinforcement Learning with Checklist Rewards for Multi-Turn and Multi-Step Agentic Tool Use",
+   "published": "2026-02-12",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "AI agents are increasingly used to solve real-world tasks by reasoning over multi-turn user interactions and invoking external tools. However, applying reinforcement learning to such settings remains difficult: realistic objectives often lack verifiable rewards and instead emphasize open-ended behaviors; moreover, RL for multi-turn, multi-step agentic tool use is still underexplored; and building and maintaining executable tool environments is costly, limiting scale and coverage. We propose CM2, an RL framework that replaces verifiable outcome rewards with checklist rewards. CM2 decomposes each turn's intended behavior into fine-grained binary criteria with explicit evidence grounding and structured metadata, turning open-ended judging into more stable classification-style decisions. To balance stability and informativeness, our method adopts a strategy of sparse reward assignment but dense evaluation criteria. Training is performed in a scalable LLM-simulated tool environment, avoiding heavy engineering for large tool sets. Experiments show that CM2 consistently improves over supervised fine-tuning. Starting from an 8B Base model and training on an 8k-example RL dataset, CM2 improves over the SFT counterpart by 8 points on tau^-Bench, by 10 points on BFCL-V4, and by 12 points on ToolSandbox. The results match or even outperform similarly sized open-source baselines, including the judging model. CM2 thus provides a scalable recipe for optimizing multi-turn, multi-step tool-using agents without relying on verifiable rewards. Code provided by the open-source community: https://github.com/namezhenzhang/CM2-RLCR-Tool-Agent.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2603.05900",
+   "title": "Reference-guided Policy Optimization for Molecular Optimization via LLM Reasoning",
+   "published": "2026-03-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) benefit substantially from supervised fine-tuning (SFT) and reinforcement learning with verifiable rewards (RLVR) in reasoning tasks. However, these recipes perform poorly in instruction-based molecular optimization, where each data point typically provides only a single optimized reference molecule and no step-by-step optimization trajectory. We reveal that answer-only SFT on the reference molecules collapses reasoning, and RLVR provides sparse feedback under similarity constraints due to the model's lack of effective exploration, which slows learning and limits optimization. To encourage the exploration of new molecules while balancing the exploitation of the reference molecules, we introduce Reference-guided Policy Optimization (RePO), an optimization approach that learns from reference molecules without requiring trajectory data. At each update, RePO samples candidate molecules with their intermediate reasoning trajectories from the model and trains the model using verifiable rewards that measure property satisfaction under similarity constraints in an RL manner. Meanwhile, it applies reference guidance by keeping the policy's intermediate reasoning trajectory as context and training only the answer in a supervised manner. Together, the RL term promotes exploration, while the guidance term mitigates reward sparsity and stabilizes training by grounding outputs to references when many valid molecular edits exist. Across molecular optimization benchmarks, RePO consistently outperforms SFT and RLVR baselines (e.g., GRPO), achieving improvements on the optimization metric (Success Rate $\\times$ Similarity), improving balance across competing objectives, and generalizing better to unseen instruction styles. Our code is publicly available at https://github.com/tmlr-group/RePO.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2510.25801",
+   "title": "Metis-SPECS: Decoupling Multimodal Learning via Self-distilled Preference-based Cold Start",
+   "published": "2025-10-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL",
+    "cs.CV"
+   ],
+   "abstract": "Reinforcement learning (RL) with verifiable rewards has recently catalyzed a wave of \"MLLM-r1\" approaches that bring RL to vision language models. Most representative paradigms begin with a cold start, typically employing supervised fine-tuning (SFT), to initialize the policy before RL. However, SFT-based cold start adopts the reasoning paradigm intertwined with task solution and output format, which may induce instruction-style overfitting, weakens out-of-distribution generalization, and ultimately affects downstream RL. We revisit the cold start along two views, its training method and data construction, and introduce the Generalization Factor (GF) coefficient to quantify the generalization capability under different methods. Our empirical study finds that preference-based training methods (e.g. DPO) generalizes better than SFT-based methods in cold start. Motivated by this, we propose SPECS-a Self-distilled, Preference-based Cold Start framework that decouples multimodal learning: (1) generates introspective preference data pairs via self-distillation, avoiding reliance on larger teachers or manual annotation; (2) performs preference-based training to learn, focusing on shallow, transferable surface-form criteria (format, structure, style) rather than memorizing content; and (3) hands off to RL with verifiable rewards for deep reasoning results. Experimental results across multiple multimodal benchmarks show that our decoupling learning framework yields consistent performance gains over strong baselines, improving MEGA-Bench by 4.1% and MathVista by 12.2%. Additional experiments indicate that SPECS contributes to reducing in-distribution \"stuckness,\" improving exploration, stabilizing training, and raising the performance ceiling. Project Page: https://kwen-chen.github.io/SPECS-VL/",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2610.38851",
+   "title": "Learning to Reason from Reference Samples Alone: Reinforced Adversarial Learning for Modern LLM Post-Training",
+   "published": "2026-10-28",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "In many settings where LLM post-training is desirable, high-quality answers are recognizable but difficult to score with explicit rewards. Reinforcement learning with verifiable rewards (RLVR) is limited to tasks where an explicit correctness signal is available. Prior adversarial approaches to training reasoning LLMs either complement verifiable rewards with co-trained critics or require reference reasoning traces. We ask whether a co-trained LLM judge can turn reference answers alone into the sole reward for on-policy post-training of reasoning LLMs. We call this method Reinforced Adversarial Learning (RAL). We first validate RAL on three verifiable tasks (integer multiplication, code-based arithmetic-expression synthesis, and SMILES-to-formula translation), using the verifiers only for evaluation. With sufficiently capable judges and enough training, RAL matches direct RLVR. We then apply RAL to scientific abstract generation in two settings. In the first setting, RAL guides the generator to produce abstracts in the scientific domain of the reference abstracts, even though the prompt leaves that domain unspecified. In the second setting, we generate abstracts for U.S. National Institutes of Health grant proposals conditioned on the grant title. Human scientists and an ensemble of LLM judges find our generations harder to distinguish from real abstracts than those of frontier-LLM baselines. These results suggest a path toward post-training reasoning models in scientific and other high-value domains, where increasingly capable judges infer hard-to-specify reward functions from example answers.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2605.10218",
+   "title": "Relative Score Policy Optimization for Diffusion Language Models",
+   "published": "2026-05-11",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Diffusion large language models (dLLMs) offer a promising route to parallel and efficient text generation, but improving their reasoning ability requires effective post-training. Reinforcement learning with verifiable rewards (RLVR) is a natural choice for this purpose, yet its application to dLLMs is hindered by the absence of tractable sequence-level log-ratios, which are central to standard policy optimization. The lack of tractable sequence-level log-ratios forces existing methods to rely on high-variance ELBO-based approximations, where high verifier rewards can amplify inaccurate score estimates and destabilize RL training. To overcome this issue, we propose \\textbf{R}elative \\textbf{S}core \\textbf{P}olicy \\textbf{O}ptimization (RSPO), a simple RLVR method that uses verifiable rewards to calibrate noisy likelihood estimates in dLLMs. The core of our algorithm relies on a key observation: a reward advantage can be interpreted not only as an update direction, but also as a target for the relative log-ratio between the current and reference policies. Accordingly, RSPO calibrates this noisy relative log-ratio estimate by comparing its reward advantage with the reward-implied target relative log-ratio, updating the policy according to the gap between the current estimate and the target rather than the raw advantage alone. Experiments on mathematical reasoning and planning benchmarks show that RSPO yields especially strong gains on planning tasks and competitive mathematical-reasoning performance.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2606.07000",
+   "title": "Teaching the Way, Not the Answer: Privileged Tutoring Distillation for Multimodal Policy Optimization",
+   "published": "2026-06-05",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Recent post-training methods, particularly Reinforcement Learning with Verifiable Rewards (RLVR), have significantly enhanced the reasoning ability of Large Vision-Language Models (LVLMs). However, the sparse nature of verifiable rewards provides little token-level supervision for failed rollouts, often leading to inefficient exploration in complex multimodal reasoning tasks. Although policy distillation can offer dense guidance, external teacher based methods introduce substantial computational overhead, while answer conditioned tuning methods may expose answer-level information and induce shortcut-like generation behavior. To address these limitations, we propose PTD-PO, a Privileged Tutoring Distillation Policy Optimization framework for RLVR that provides dense guidance without exposing the answer to the student policy. Specifically, PTD-PO constructs structured privileged hints from spatial attention guidance and intermediate textual reasoning steps, and uses them through in-context learning to produce step-wise token-distribution supervision. The student is still optimized under the original answer-free context, and its failed rollouts are aligned with the hint-augmented reference model at the token-distribution level. To further stabilize distillation under the distribution shift between guided and unguided contexts, we introduce a Top-K Jensen-Shannon divergence objective that focuses alignment on informative token probabilities while reducing memory overhead. Experiments on LVLMs ranging from 2B to 8B parameters show that PTD-PO consistently outperforms RLVR and distillation baselines, mitigates entropy collapse, and improves complex multimodal reasoning performance.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2611.26787",
+   "title": "Spatial Query Execution as Verifiable Rewards for Multi-step Spatial Reasoning",
+   "published": "2026-11-19",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Large vision-language models (LVLMs) remain unreliable on spatial reasoning problems that require composing grounded relations across multiple objects. Yet, scaling reasoning supervision is challenging since human-annotated visual datasets often rely on fixed relational annotations and coarse object localization, making it difficult to obtain precise intermediate reasoning states across diverse spatial configurations and complexities. We introduce FARON (Fully Automated Reasoning Over spatial relatioNs), a framework that executes spatial queries to provide both execution-grounded reasoning supervision and verifiable outcome rewards. Rather than relying on existing annotated data, FARON constructs synthetic 2D and 3D scenes with explicit geometries, enabling configurable object arrangements, spatial relations, and multi-step compositions. Deterministic query execution yields intermediate sets and final answers, providing precise supervision without manual relation annotation. Our pipeline converts intermediate states into natural-language reasoning traces for supervised fine-tuning (SFT), while the execution-derived answers provide verifiable rewards for reinforcement learning with verifiable rewards (RLVR). Controlled experiments show that trace-based SFT improves multi-step spatial reasoning over final-answer supervision and that subsequent group relative policy optimization (GRPO) provides further gains. The resulting models also demonstrate transfer across external spatial reasoning benchmarks and multiple LVLM backbones without benchmark-specific fine-tuning. These results show the potential of using spatial query execution as a unified, flexible source of reasoning supervision and verifiable outcome rewards for multimodal spatial reasoning.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2603.22352",
+   "title": "WIST: Web-Grounded Iterative Self-Play Tree for Domain-Targeted Reasoning Improvement",
+   "published": "2026-03-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Recent progress in reinforcement learning with verifiable rewards (RLVR) offers a practical path to self-improvement of language models, but existing methods face a key trade-off: endogenous self-play can drift over iterations, while corpus-grounded approaches rely on curated data environments. We present \\textbf{WIST}, a \\textbf{W}eb-grounded \\textbf{I}terative \\textbf{S}elf-play \\textbf{T}ree framework for domain-targeted reasoning improvement that learns directly from the open web without requiring any pre-arranged domain corpus. WIST incrementally expands a domain tree for exploration, and retrieves and cleans path-consistent web corpus to construct a controllable training environment. It then performs Challenger--Solver self-play with verifiable rewards, and feeds learnability signals back to update node posteriors and guide subsequent exploration through an adaptive curriculum. Across four backbones, WIST consistently improves over the base models and typically outperforms both purely endogenous self-evolution and corpus-grounded self-play baselines, with the Overall gains reaching \\textbf{+9.8} (\\textit{Qwen3-4B-Base}) and \\textbf{+9.7} (\\textit{OctoThinker-8B}). WIST is also domain-steerable, improving \\textit{Qwen3-8B-Base} by \\textbf{+14.79} in medicine and \\textit{Qwen3-4B-Base} by \\textbf{+5.28} on PhyBench. Ablations further confirm the importance of WIST's key components for stable open-web learning. Our Code is available at https://github.com/lfy-123/WIST.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2605.28631",
+   "title": "Single-Rollout Hidden-State Dynamics for Training-Free RLVR Data Selection",
+   "published": "2026-05-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) can yield large reasoning gains from very few training instances, yet its strong sensitivity to which instances are used makes data selection a central bottleneck. Most existing selection pipelines rely on training-time optimization signals and/or require access to verifiable rewards or ground-truth answers over large candidate pools, which is costly and often infeasible in specialized domains. We study RLVR data selection in a setting where selection must be performed before any RL training and without labels or reward evaluation on the full pool. We propose SHIFT, a one-shot, training-free selector based solely on inference-time hidden-state dynamics. For each candidate instance, SHIFT runs a single deterministic reasoning rollout and computes a reasoning-induced representation shift (RIRS) as the start-to-end hidden-state delta. SHIFT uses the RIRS magnitude as a lightweight proxy for instance utility and enforces coverage via a quality-weighted farthest-first CoreSet procedure in an RIRS-augmented feature space, producing compact subsets that scale to large unlabeled pools. Across mathematical reasoning and medical QA benchmarks under ultra-low budgets, SHIFT consistently outperforms training-free diversity and difficulty/uncertainty baselines, improving both in-domain accuracy and transfer to harder evaluation settings. Ablations show that RIRS-based coverage and quality-weighting contribute complementary gains, and analyses indicate that RIRS is not explained by simple input/output length statistics. Code is available at github.com/JianghaoWu/SHIFT.",
+   "query": "verifiable rewards"
+  },
+  {
+   "id": "2602.13700",
+   "title": "Optimal Regret for Policy Optimization in Contextual Bandits",
+   "published": "2026-02-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We present the first high-probability optimal regret bound for a policy optimization technique applied to the problem of stochastic contextual multi-armed bandit (CMAB) with general offline function approximation. Our algorithm is both efficient and achieves an optimal regret bound of $\\widetilde{O}(\\sqrt{ K|\\mathcal{A}|\\log|\\mathcal{F}|})$, where $K$ is the number of rounds, $\\mathcal{A}$ is the set of arms, and $\\mathcal{F}$ is the function class used to approximate the losses. Our results bridge the gap between theory and practice, demonstrating that the widely used policy optimization methods for the contextual bandit problem can achieve a rigorously-proved optimal regret bound. We support our theoretical results with an empirical evaluation of our algorithm.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2508.00523",
+   "title": "Online Nonsubmodular Optimization with Delayed Feedback in the Bandit Setting",
+   "published": "2025-08-01",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We investigate the online nonsubmodular optimization with delayed feedback in the bandit setting, where the loss function is $α$-weakly DR-submodular and $β$-weakly DR-supermodular. Previous work has established an $(α,β)$-regret bound of $\\mathcal{O}(nd^{1/3}T^{2/3})$, where $n$ is the dimensionality and $d$ is the maximum delay. However, its regret bound relies on the maximum delay and is thus sensitive to irregular delays. Additionally, it couples the effects of delays and bandit feedback as its bound is the product of the delay term and the $\\mathcal{O}(nT^{2/3})$ regret bound in the bandit setting without delayed feedback. In this paper, we develop two algorithms to address these limitations, respectively. Firstly, we propose a novel method, namely DBGD-NF, which employs the one-point gradient estimator and utilizes all the available estimated gradients in each round to update the decision. It achieves a better $\\mathcal{O}(n\\bar{d}^{1/3}T^{2/3})$ regret bound, which is relevant to the average delay $\\bar{d} = \\frac{1}{T}\\sum_{t=1}^T d_t\\leq d$. Secondly, we extend DBGD-NF by employing a blocking update mechanism to decouple the joint effect of the delays and bandit feedback, which enjoys an $\\mathcal{O}(n(T^{2/3} + \\sqrt{dT}))$ regret bound. When $d = \\mathcal{O}(T^{1/3})$, our regret bound matches the $\\mathcal{O}(nT^{2/3})$ bound in the bandit setting without delayed feedback. Compared to our first $\\mathcal{O}(n\\bar{d}^{1/3}T^{2/3})$ bound, it is more advantageous when the maximum delay $d = o(\\bar{d}^{2/3}T^{1/3})$. Finally, we conduct experiments on structured sparse learning to demonstrate the superiority of our methods.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2505.09432",
+   "title": "Establishing Linear Surrogate Regret Bounds for Convex Smooth Losses via Convolutional Fenchel-Young Losses",
+   "published": "2025-05-14",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Surrogate regret bounds, also known as excess risk bounds, bridge the gap between the convergence rates of surrogate and target losses. The regret transfer is lossless if the surrogate regret bound is linear. While convex smooth surrogate losses are appealing in particular due to the efficient estimation and optimization, the existence of a trade-off between the loss smoothness and linear regret bound has been believed in the community. Under this scenario, the better optimization and estimation properties of convex smooth surrogate losses may inevitably deteriorate after undergoing the regret transfer onto a target loss. We overcome this dilemma for arbitrary discrete target losses by constructing a convex smooth surrogate loss, which entails a linear surrogate regret bound composed with a tailored prediction link. The construction is based on Fenchel--Young losses generated by the convolutional negentropy, which are equivalent to the infimal convolution of a generalized negentropy and the target Bayes risk. Consequently, the infimal convolution enables us to derive a smooth loss while maintaining the surrogate regret bound linear. We additionally benefit from the infimal convolution to have a consistent estimator of the underlying class probability. Our results are overall a novel demonstration of how convex analysis penetrates into optimization and statistical efficiency in risk minimization.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2609.19677",
+   "title": "A Logarithmic Regret Bound for Optimistic Hedge in General-Sum Games",
+   "published": "2026-09-17",
+   "categories": [
+    "cs.GT"
+   ],
+   "abstract": "Can simple no-regret dynamics attain smaller regret in self-play than against arbitrary adversaries? In $n$-player general-sum games, Daskalakis et al. 2021 proved an $O(n\\log d_i\\log^4 T)$ individual regret bound for Optimistic Hedge, which improves upon the classical $O(\\sqrt T)$ adversarial regret bound. In this work, we show that Optimistic Hedge with a constant step size can further achieve $O(\\sqrt n\\log d_i\\log T)$ individual external regret under expected loss-vector feedback. The time-averaged play consequently enjoys a coarse correlated equilibrium gap $O(\\sqrt n\\log d\\log T/T)$, where $d=\\max_i d_i$. The improvement comes from a larger admissible step size $η=Θ(1/(\\sqrt n\\log T))$. Our analysis proves factorial bounds on high-order differences of probability-weighted pairwise loss gaps, then applies finite-difference interpolation in a fixed Euclidean norm. These estimates sharpen the analysis of Daskalakis et al. 2021 and yield a logarithmic regret bound.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.01682",
+   "title": "Finite and Corruption-Robust Regret Bounds in Online Inverse Linear Optimization under M-Convex Action Sets",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG",
+    "cs.DS",
+    "stat.ML"
+   ],
+   "abstract": "We study online inverse linear optimization, also known as contextual recommendation, where a learner sequentially infers an agent's hidden objective vector from observed optimal actions over feasible sets that change over time. The learner aims to recommend actions that perform well under the agent's true objective, and the performance is measured by the regret, defined as the cumulative gap between the agent's optimal values and those achieved by the learner's recommended actions. Prior work has established a regret bound of $O(d\\log T)$, as well as a finite but exponentially large bound of $\\exp(O(d\\log d))$, where $d$ is the dimension of the optimization problem and $T$ is the time horizon, while a regret lower bound of $Ω(d)$ is known (Gollapudi et al. 2021; Sakaue et al. 2025). Whether a finite regret bound polynomial in $d$ is achievable or not has remained an open question. We partially resolve this by showing that when the feasible sets are M-convex -- a broad class that includes matroids -- a finite regret bound of $O(d\\log d)$ is possible. We achieve this by combining a structural characterization of optimal solutions on M-convex sets with a geometric volume argument. Moreover, we extend our approach to adversarially corrupted feedback in up to $C$ rounds. We obtain a regret bound of $O((C+1)d\\log d)$ without prior knowledge of $C$, by monitoring directed graphs induced by the observed feedback to detect corruptions adaptively.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2505.20010",
+   "title": "Data-Dependent Regret Bounds for Constrained MABs",
+   "published": "2025-05-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper initiates the study of data-dependent regret bounds in constrained MAB settings. These bounds depend on the sequence of losses that characterize the problem instance. Thus, they can be much smaller than classical $\\widetilde{\\mathcal{O}}(\\sqrt{T})$ regret bounds, while being equivalent to them in the worst case. Despite this, data-dependent regret bounds have been completely overlooked in constrained MAB settings. The goal of this paper is to answer the following question: Can data-dependent regret bounds be derived in the presence of constraints? We answer this question affirmatively in constrained MABs with adversarial losses and stochastic constraints. Specifically, our main focus is on the most challenging and natural settings with hard constraints, where the learner must ensure that the constraints are always satisfied with high probability. We design an algorithm with a regret bound consisting of two data-dependent terms. The first term captures the difficulty of satisfying the constraints, while the second one encodes the complexity of learning independently of the presence of constraints. We also prove a lower bound showing that these two terms are not artifacts of our specific approach and analysis, but rather the fundamental components that inherently characterize the complexities of the problem. Finally, in designing our algorithm, we also derive some novel results in the related (and easier) soft constraints settings, which may be of independent interest.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2610.39292",
+   "title": "Strongly Adaptive Online Learning Achieves Uniform Discounted Regret",
+   "published": "2026-10-29",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Discounted regret measures the performance of an online learner by assigning exponentially decaying weights to past losses, reflecting the greater importance of recent losses in non-stationary online learning. While previous work obtains uniform discounted regret bounds over a continuous range of discount factors using a specialized meta-algorithm, its results are limited to convex functions. In this paper, we demonstrate that strongly adaptive regret bounds can directly imply uniform discounted regret guarantees for convex, strongly convex, and exp-concave loss functions. Our key observation is that discounted regret against a fixed comparator admits an exact decomposition into a convex combination of interval regrets. For convex functions, this reduction yields an $O(\\sqrt{\\log T/(1-λ)})$ discounted regret bound for all discount factors $λ\\in(0,1)$, matching the previous rate over a broader range of discount factors. For strongly convex and exp-concave functions, we provide regret bounds of $O\\left(\\log T\\left(1+\\log\\frac{1}{1-λ}\\right)\\right)$.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2502.04543",
+   "title": "Sparsity-Based Interpolation of External, Internal and Swap Regret",
+   "published": "2025-02-06",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Focusing on the expert problem in online learning, this paper studies the interpolation of several performance metrics via $φ$-regret minimization, which measures the total loss of an algorithm by its regret with respect to an arbitrary action modification rule $φ$. With $d$ experts and $T\\gg d$ rounds in total, we present a single algorithm achieving the instance-adaptive $φ$-regret bound \\begin{equation*} \\tilde O\\left(\\min\\left\\{\\sqrt{d-d^{\\mathrm{unif}}_φ+1},\\sqrt{d-d^{\\mathrm{self}}_φ}\\right\\}\\cdot\\sqrt{T}\\right), \\end{equation*} where $d^{\\mathrm{unif}}_φ$ is the maximum amount of experts modified identically by $φ$, and $d^{\\mathrm{self}}_φ$ is the amount of experts that $φ$ trivially modifies to themselves. By recovering the optimal $O(\\sqrt{T\\log d})$ external regret bound when $d^{\\mathrm{unif}}_φ=d$, the standard $\\tilde O(\\sqrt{T})$ internal regret bound when $d^{\\mathrm{self}}_φ=d-1$ and the optimal $\\tilde O(\\sqrt{dT})$ swap regret bound in the worst case, we improve upon existing algorithms in the intermediate regimes. In addition, the computational complexity of our algorithm matches that of the standard swap-regret minimization algorithm due to (Blum and Mansour, 2007). Technically, building on the well-known reduction from $φ$-regret minimization to external regret minimization on stochastic matrices, our main idea is to further convert the latter to online linear regression using Haar-wavelet-inspired matrix features. Then, by associating the complexity of each $φ$ instance with its sparsity under the feature representation, we apply techniques from comparator-adaptive online learning to exploit the sparsity in this regression subroutine.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2511.07604",
+   "title": "Infinite-Dimensional Operator/Block Kaczmarz Algorithms: Regret Bounds and $λ$-Effectiveness",
+   "published": "2025-11-10",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.FA"
+   ],
+   "abstract": "We present a variety of projection-based linear regression algorithms with a focus on modern machine-learning models and their algorithmic performance. We study the role of the relaxation parameter in generalized Kaczmarz algorithms and establish a priori regret bounds with explicit $λ$-dependence to quantify how much an algorithm's performance deviates from its optimal performance. A detailed analysis of relaxation parameter is also provided. Applications include: explicit regret bounds for the framework of Kaczmarz algorithm models, non-orthogonal Fourier expansions, and the use of regret estimates in modern machine learning models, including for noisy data, i.e., regret bounds for the noisy Kaczmarz algorithms. Motivated by machine-learning practice, our wider framework treats bounded operators (on infinite-dimensional Hilbert spaces), with updates realized as (block) Kaczmarz algorithms, leading to new and versatile results.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2501.04403",
+   "title": "Rising Rested MAB with Linear Drift",
+   "published": "2025-01-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We consider non-stationary multi-arm bandit (MAB) where the expected reward of each action follows a linear function of the number of times we executed the action. Our main result is a tight regret bound of $\\tildeΘ(T^{4/5}K^{3/5})$, by providing both upper and lower bounds. We extend our results to derive instance dependent regret bounds, which depend on the unknown parametrization of the linear drift of the rewards.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.06457",
+   "title": "Achieving Better Local Regret Bound for Online Non-Convex Bilevel Optimization",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Online bilevel optimization (OBO) has emerged as a powerful framework for many machine learning problems. Prior works have developed several algorithms that minimize the standard bilevel local regret or the window-averaged bilevel local regret of the OBO problem, but the optimality of existing regret bounds remains unclear. In this work, we establish optimal regret bounds for both settings. For standard bilevel local regret, we propose an algorithm with adaptive iteration strategy that achieves the optimal regret $Ω(1+V_T)$ with at most $O(T\\log T)$ total inner-level gradient evaluations. We further develop a fully single-loop algorithm whose regret bound includes an additional gradient-variation terms. For the window-averaged bilevel local regret, we design an algorithm that captures linear environmental variation through a novel window-based analysis and achieves the optimal regret $Ω(T/W^2)$. The algorithm also supports an efficient single-loop structure, achieving an $O(T/W)$ regret bound with $O(WT)$ total gradient evaluations. Experiments validate our theoretical findings and demonstrate the practical effectiveness of the proposed methods.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.15692",
+   "title": "Tighter Regret Bounds for Contextual Action-Set Reinforcement Learning",
+   "published": "2026-05-15",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We study episodic reinforcement learning with fixed reward and transition functions, but with episode-dependent admissible action sets that are observed at the start of each episode. Performance is measured by cumulative regret against the episode-wise optimal value, $\\sum_{k=1}^K [V^{*,M^k} - V^{π^k,M^k}]$, where $M^k$ represents the action context in the $k$-th episode. We show that the MVP algorithm naturally extends to this framework and enjoys strong theoretical guarantees. In particular, we establish a minimax regret bound of $\\widetilde{O}(\\sqrt{SAH^3K\\log L})$ for adversarial contexts, where $L$ denotes the number of possible contexts. This result implies a regret bound of $\\widetilde{O}(\\sqrt{SAH^3K})$ for stochastic contexts. We further translate the stochastic regret guarantee into a sample complexity bound of $\\widetilde{O}(SAH^3/ε^2)$ for a fixed context distribution. In addition, we derive a gap-dependent regret bound of \\[ \\widetilde O\\left( \\inf_{p\\in [0,1)} \\left( \\frac{1}{Δ_{\\min}^{p}} + pKΔ_{\\min}^{p} \\right)\\log K \\cdot \\mathrm{poly}(S,A,H) \\right), \\] where $Δ_{\\min}^{p}$ is the global $p$-trimmed positive-gap floor over suboptimal $(h,s,a)$ triples. This bound can substantially improve upon the minimax rate when the relevant suboptimality gaps are large.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.13706",
+   "title": "Near-Optimal Regret for Policy Optimization in Contextual MDPs with General Offline Function Approximation",
+   "published": "2026-02-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We introduce \\texttt{OPO-CMDP}, the first policy optimization algorithm for stochastic Contextual Markov Decision Process (CMDPs) under general offline function approximation. Our approach achieves a high probability regret bound of $\\widetilde{O}(H^4\\sqrt{T|S||A|\\log(|\\mathcal{F}||\\mathcal{P}|)}),$ where $S$ and $A$ denote the state and action spaces, $H$ the horizon length, $T$ the number of episodes, and $\\mathcal{F}, \\mathcal{P}$ the finite function classes used to approximate the losses and dynamics, respectively. This is the first regret bound with optimal dependence on $|S|$ and $|A|$, directly improving the current state-of-the-art (Qian, Hu, and Simchi-Levi, 2024). These results demonstrate that optimistic policy optimization provides a natural, computationally superior and theoretically near-optimal path for solving CMDPs.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2510.16869",
+   "title": "No-Regret Online Autobidding Algorithms in First-price Auctions",
+   "published": "2025-10-19",
+   "categories": [
+    "cs.GT"
+   ],
+   "abstract": "Automated bidding to optimize online advertising with various constraints, e.g. ROI constraints and budget constraints, is widely adopted by advertisers. A key challenge lies in designing algorithms for non-truthful mechanisms with ROI constraints. While prior work has addressed truthful auctions or non-truthful auctions with weaker benchmarks, this paper provides a significant improvement: We develop online bidding algorithms for repeated first-price auctions with ROI constraints, benchmarking against the optimal randomized strategy in hindsight. In the full feedback setting, where the maximum competing bid is observed, our algorithm achieves a near-optimal $\\widetilde{O}(\\sqrt{T})$ regret bound, and in the bandit feedback setting (where the bidder only observes whether the bidder wins each auction), our algorithm attains $\\widetilde{O}(T^{3/4})$ regret bound.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2511.02123",
+   "title": "Variance-Aware Feel-Good Thompson Sampling for Contextual Bandits",
+   "published": "2025-11-03",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Variance-dependent regret bounds have received increasing attention in recent studies on contextual bandits. However, most of these studies are focused on upper confidence bound (UCB)-based bandit algorithms, while sampling based bandit algorithms such as Thompson sampling are still understudied. The only exception is the LinVDTS algorithm (Xu et al., 2023), which is limited to linear reward function and its regret bound is not optimal with respect to the model dimension. In this paper, we present FGTSVA, a variance-aware Thompson Sampling algorithm for contextual bandits with general reward function with optimal regret bound. At the core of our analysis is an extension of the decoupling coefficient, a technique commonly used in the analysis of Feel-good Thompson sampling (FGTS) that reflects the complexity of the model space. With the new decoupling coefficient denoted by $\\mathrm{dc}$, FGTS-VA achieves the regret of $\\tilde{O}(\\sqrt{\\mathrm{dc}\\cdot\\log|\\mathcal{F}|\\sum_{t=1}^Tσ_t^2}+\\mathrm{dc})$, where $|\\mathcal{F}|$ is the size of the model space, $T$ is the total number of rounds, and $σ_t^2$ is the subgaussian norm of the noise (e.g., variance when the noise is Gaussian) at round $t$. In the setting of contextual linear bandits, the regret bound of FGTSVA matches that of UCB-based algorithms using weighted linear regression (Zhou and Gu, 2022).",
+   "query": "regret bound"
+  },
+  {
+   "id": "2505.20734",
+   "title": "Adversarial bandit optimization for approximately linear functions",
+   "published": "2025-05-27",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We consider a bandit optimization problem for nonconvex and non-smooth functions, where in each trial the loss function is the sum of a linear function and a small but arbitrary perturbation chosen after observing the player's choice. We give both expected and high probability regret bounds for the problem. Our result also implies an improved high-probability regret bound for the bandit linear optimization, a special case with no perturbation. We also give a lower bound on the expected regret.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2604.10958",
+   "title": "Continuous-time Online Learning via Mean-Field Neural Networks: Regret Analysis in Diffusion Environments",
+   "published": "2026-04-13",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.OC"
+   ],
+   "abstract": "We study continuous-time online learning where data are generated by a diffusion process with unknown coefficients. The learner employs a two-layer neural network, continuously updating its parameters in a non-anticipative manner. The mean-field limit of the learning dynamics corresponds to a stochastic Wasserstein gradient flow adapted to the data filtration. We establish regret bounds for both the mean-field limit and finite-particle system. Our analysis leverages the logarithmic Sobolev inequality, Polyak-Lojasiewicz condition, Malliavin calculus, and uniform-in-time propagation of chaos. Under displacement convexity, we obtain a constant static regret bound. In the general non-convex setting, we derive explicit linear regret bounds characterizing the effects of data variation, entropic exploration, and quadratic regularization. Finally, our simulations demonstrate the outperformance of the online approach and the impact of network width and regularization parameters.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2611.05243",
+   "title": "Logarithmic Regret for Alternating Mirror Descent",
+   "published": "2026-11-03",
+   "categories": [
+    "cs.LG",
+    "cs.GT",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Alternating online mirror descent (AltOMD) is a simple learning rule for zero-sum games, which improves upon simultaneous OMD numerically and theoretically. Previous work obtained $O(T^{1/3})$ and $O(T^{1/5})$ regret bounds for AltOMD, by leveraging modified-energy-function-based analyses. However, settling whether AltOMD achieves near-constant regret has remained an open question. In this paper we resolve the question of whether AltOMD achieves near-constant regret in the affirmative. In particular, we show an $O(log(T))$ regret bound on the sum of the players' external regrets for any two-player zero-sum bilinear game with compact convex strategy sets, under mild regularity assumptions on the regularizers. We verify that our assumptions hold for the negative entropy regularizer, thereby obtaining logarithmic regret for the alternating multiplicative weights updates algorithm. The regret bound also yields an $O(log(T)/T)$ duality gap bound for the averaged strategies.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2609.22839",
+   "title": "A Horizon-Independent Regret Bound for Optimistic Hedge in General-Sum Games",
+   "published": "2026-09-19",
+   "categories": [
+    "cs.GT",
+    "cs.LG"
+   ],
+   "abstract": "Can simple learning rules keep their regret bounded in self-play? Recent work achieves constant regret bounds through modified regularization and higher-order prediction. Yet for Optimistic Hedge, arguably the most canonical method in games, the best known individual regret bound remains logarithmic. In this work, we prove that plain Optimistic Hedge with a constant step size can attain $O_{n,d}(1)$ individual regret in general-sum games with $n$ players and $d=(d_1,\\ldots,d_n)$ actions, under expected loss-vector feedback. As a corollary, its time-averaged play enjoys an $O_{n,d}(1/T)$ coarse correlated equilibrium (CCE) gap. Our analysis represents Optimistic Hedge as a real-analytic recurrence on a compact space, which yields an exact finite-order difference relation that eliminates horizon dependence. Our proof hinges on nonconstructive Noetherianity argument of Frisch (1967), so the $(n,d)$-dependence remains implicit.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2509.07779",
+   "title": "Decentralized Online Riemannian Optimization Beyond Hadamard Manifolds",
+   "published": "2025-09-09",
+   "categories": [
+    "math.OC",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "We study decentralized online Riemannian optimization over manifolds with possibly positive curvature, going beyond the Hadamard manifold setting. Decentralized optimization techniques rely on a consensus step that is well understood in Euclidean spaces because of their linearity. However, in positively curved Riemannian spaces, a main technical challenge is that geodesic distances may not induce a globally convex structure. In this work, we first analyze a curvature-aware Riemannian consensus step that enables a linear convergence beyond Hadamard manifolds. Building on this step, we establish a $O(\\sqrt{T})$ regret bound for the decentralized online Riemannian gradient descent algorithm. Then, we investigate the two-point bandit feedback setup, where we employ computationally efficient gradient estimators using smoothing techniques, and we demonstrate the same $O(\\sqrt{T})$ regret bound through the subconvexity analysis of smoothed objectives.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.09502",
+   "title": "Improved Approximate Regret for Decentralized Online Continuous Submodular Maximization via Reductions",
+   "published": "2026-02-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "To expand the applicability of decentralized online learning, previous studies have proposed several algorithms for decentralized online continuous submodular maximization (D-OCSM) -- a non-convex/non-concave setting with continuous DR-submodular reward functions. However, there exist large gaps between their approximate regret bounds and the regret bounds achieved in the convex setting. Moreover, if focusing on projection-free algorithms, which can efficiently handle complex decision sets, they cannot even recover the approximate regret bounds achieved in the centralized setting. In this paper, we first demonstrate that for D-OCSM over general convex decision sets, these two issues can be addressed simultaneously. Furthermore, for D-OCSM over downward-closed decision sets, we show that the second issue can be addressed while significantly alleviating the first issue. Our key techniques are two reductions from D-OCSM to decentralized online convex optimization (D-OCO), which can exploit D-OCO algorithms to improve the approximate regret of D-OCSM in these two cases, respectively.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2502.04004",
+   "title": "Near-optimal Regret Using Policy Optimization in Online MDPs with Aggregate Bandit Feedback",
+   "published": "2025-02-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We study online finite-horizon Markov Decision Processes with adversarially changing loss and aggregate bandit feedback (a.k.a full-bandit). Under this type of feedback, the agent observes only the total loss incurred over the entire trajectory, rather than the individual losses at each intermediate step within the trajectory. We introduce the first Policy Optimization algorithms for this setting. In the known-dynamics case, we achieve the first \\textit{optimal} regret bound of $\\tilde Θ(H^2\\sqrt{SAK})$, where $K$ is the number of episodes, $H$ is the episode horizon, $S$ is the number of states, and $A$ is the number of actions. In the unknown dynamics case we establish regret bound of $\\tilde O(H^3 S \\sqrt{AK})$, significantly improving the best known result by a factor of $H^2 S^5 A^2$.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2505.06601",
+   "title": "Learning Guarantee of Reward Modeling Using Deep Neural Networks",
+   "published": "2025-05-10",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "In this work, we study the learning theory of reward modeling with pairwise comparison data using deep neural networks. We establish a novel non-asymptotic regret bound for deep reward estimators in a non-parametric setting, which depends explicitly on the network architecture. Furthermore, to underscore the critical importance of clear human beliefs, we introduce a margin-type condition that assumes the conditional winning probability of the optimal action in pairwise comparisons is significantly distanced from 1/2. This condition enables a sharper regret bound, which substantiates the empirical efficiency of Reinforcement Learning from Human Feedback and highlights clear human beliefs in its success. Notably, this improvement stems from high-quality pairwise comparison data implied by the margin-type condition, is independent of the specific estimators used, and thus applies to various learning algorithms and models.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2603.25311",
+   "title": "Practical Efficient Global Optimization is No-regret",
+   "published": "2026-03-26",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Efficient global optimization (EGO) is one of the most widely used noise-free Bayesian optimization algorithms.It comprises the Gaussian process (GP) surrogate model and expected improvement (EI) acquisition function. In practice, when EGO is applied, a scalar matrix of a small positive value (also called a nugget or jitter) is usually added to the covariance matrix of the deterministic GP to improve numerical stability. We refer to this EGO with a positive nugget as the practical EGO. Despite its wide adoption and empirical success, to date, cumulative regret bounds for practical EGO have yet to be established. In this paper, we present for the first time the cumulative regret upper bound of practical EGO. In particular, we show that practical EGO has sublinear cumulative regret bounds and thus is a no-regret algorithm for commonly used kernels including the squared exponential (SE) and Matérn kernels ($ν>\\frac{1}{2}$). Moreover, we analyze the effect of the nugget on the regret bound and discuss the theoretical implication on its choice. Numerical experiments are conducted to support and validate our findings.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2502.02859",
+   "title": "Gap-Dependent Bounds for Federated $Q$-learning",
+   "published": "2025-02-05",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We present the first gap-dependent analysis of regret and communication cost for on-policy federated $Q$-Learning in tabular episodic finite-horizon Markov decision processes (MDPs). Existing FRL methods focus on worst-case scenarios, leading to $\\sqrt{T}$-type regret bounds and communication cost bounds with a $\\log T$ term scaling with the number of agents $M$, states $S$, and actions $A$, where $T$ is the average total number of steps per agent. In contrast, our novel framework leverages the benign structures of MDPs, such as a strictly positive suboptimality gap, to achieve a $\\log T$-type regret bound and a refined communication cost bound that disentangles exploration and exploitation. Our gap-dependent regret bound reveals a distinct multi-agent speedup pattern, and our gap-dependent communication cost bound removes the dependence on $MSA$ from the $\\log T$ term. Notably, our gap-dependent communication cost bound also yields a better global switching cost when $M=1$, removing $SA$ from the $\\log T$ term.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2601.04907",
+   "title": "Distributed Online Convex Optimization with Efficient Communication: Improved Algorithm and Lower bounds",
+   "published": "2026-01-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We investigate distributed online convex optimization with compressed communication, where $n$ learners connected by a network collaboratively minimize a sequence of global loss functions using only local information and compressed data from neighbors. Prior work has established regret bounds of $O(\\max\\{ω^{-2}ρ^{-4}n^{1/2},ω^{-4}ρ^{-8}\\}n\\sqrt{T})$ and $O(\\max\\{ω^{-2}ρ^{-4}n^{1/2},ω^{-4}ρ^{-8}\\}n\\ln{T})$ for convex and strongly convex functions, respectively, where $ω\\in(0,1]$ is the compression quality factor ($ω=1$ means no compression) and $ρ<1$ is the spectral gap of the communication matrix. However, these regret bounds suffer from a quadratic or even quartic dependence on $ω^{-1}$. Moreover, the super-linear dependence on $n$ is also undesirable. To overcome these limitations, we propose a novel algorithm that achieves improved regret bounds of $\\tilde{O}(ω^{-1/2}ρ^{-1}n\\sqrt{T})$ and $\\tilde{O}(ω^{-1}ρ^{-2}n\\ln{T})$ for convex and strongly convex functions, respectively. The primary idea is to design a two-level blocking update framework incorporating two novel ingredients: an online gossip strategy and an error compensation scheme, which collaborate to achieve a better consensus among learners. Furthermore, we establish the first lower bounds for this problem, justifying the optimality of our results with respect to both $ω$ and $T$. Additionally, we consider the bandit feedback scenario, and extend our method with the classic gradient estimators to enhance existing regret bounds.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2501.16046",
+   "title": "Revisiting Projection-Free Online Learning with Time-Varying Constraints",
+   "published": "2025-01-27",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We investigate constrained online convex optimization, in which decisions must belong to a fixed and typically complicated domain, and are required to approximately satisfy additional time-varying constraints over the long term. In this setting, the commonly used projection operations are often computationally expensive or even intractable. To avoid the time-consuming operation, several projection-free methods have been proposed with an $\\mathcal{O}(T^{3/4} \\sqrt{\\log T})$ regret bound and an $\\mathcal{O}(T^{7/8})$ cumulative constraint violation (CCV) bound for general convex losses. In this paper, we improve this result and further establish \\textit{novel} regret and CCV bounds when loss functions are strongly convex. The primary idea is to first construct a composite surrogate loss, involving the original loss and constraint functions, by utilizing the Lyapunov-based technique. Then, we propose a parameter-free variant of the classical projection-free method, namely online Frank-Wolfe (OFW), and run this new extension over the online-generated surrogate loss. Theoretically, for general convex losses, we achieve an $\\mathcal{O}(T^{3/4})$ regret bound and an $\\mathcal{O}(T^{3/4} \\log T)$ CCV bound, both of which are order-wise tighter than existing results. For strongly convex losses, we establish new guarantees of an $\\mathcal{O}(T^{2/3})$ regret bound and an $\\mathcal{O}(T^{5/6})$ CCV bound. Moreover, we also extend our methods to a more challenging setting with bandit feedback, obtaining similar theoretical findings. Empirically, experiments on real-world datasets have demonstrated the effectiveness of our methods.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2510.09127",
+   "title": "Regret Bounds for Adversarial Contextual Bandits with General Function Approximation and Delayed Feedback",
+   "published": "2025-10-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We present regret minimization algorithms for the contextual multi-armed bandit (CMAB) problem over $K$ actions in the presence of delayed feedback, a scenario where loss observations arrive with delays chosen by an adversary. As a preliminary result, assuming direct access to a finite policy class $Π$ we establish an optimal expected regret bound of $ O (\\sqrt{KT \\log |Π|} + \\sqrt{D \\log |Π|)} $ where $D$ is the sum of delays. For our main contribution, we study the general function approximation setting over a (possibly infinite) contextual loss function class $ \\mathcal{F} $ with access to an online least-square regression oracle $\\mathcal{O}$ over $\\mathcal{F}$. In this setting, we achieve an expected regret bound of $O(\\sqrt{KT\\mathcal{R}_T(\\mathcal{O})} + \\sqrt{ d_{\\max} D β})$ assuming FIFO order, where $d_{\\max}$ is the maximal delay, $\\mathcal{R}_T(\\mathcal{O})$ is an upper bound on the oracle's regret and $β$ is a stability parameter associated with the oracle. We complement this general result by presenting a novel stability analysis of a Hedge-based version of Vovk's aggregating forecaster as an oracle implementation for least-square regression over a finite function class $\\mathcal{F}$ and show that its stability parameter $β$ is bounded by $\\log |\\mathcal{F}|$, resulting in an expected regret bound of $O(\\sqrt{KT \\log |\\mathcal{F}|} + \\sqrt{d_{\\max} D \\log |\\mathcal{F}|})$ which is a $\\sqrt{d_{\\max}}$ factor away from the lower bound of $Ω(\\sqrt{KT \\log |\\mathcal{F}|} + \\sqrt{D \\log |\\mathcal{F}|})$ that we also present.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.20297",
+   "title": "Understanding Gap-Dependent Regret for Optimism-Based Reinforcement Learning with Linear Function Approximation",
+   "published": "2026-02-23",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We study gap-dependent regret for reinforcement learning with linear function approximation. While prior works have established gap-dependent guarantees in this setting, existing analyses do not apply to algorithms that achieve the nearly minimax-optimal worst-case regret bound $\\tilde{O}(d\\sqrt{H^3K})$, where $d$ is the feature dimension, $H$ is the horizon length, and $K$ is the number of episodes. We bridge this gap by establishing the first gap-dependent regret bound for the nearly minimax-optimal algorithm LSVI-UCB++ (He et al., 2023), with an expected regret bound $\\tilde{O}(d^2H^3/Δ_{\\min}+d^6H^5)$, improving the dependence on both $d$ and $H$ in the leading gap-dependent term compared with previous results. To understand the exploration cost induced by optimism, we establish a structural lower bound $Ω(d^2H^3/Δ_{\\min})$ for a broad class of algorithms based on persistent ellipsoidal optimism. When specialized to LSVI-UCB++, this result shows that the leading dependence of our upper bound on $d$, $H$, and $Δ_{\\min}$ is tight up to logarithmic factors. Beyond this algorithmic class, we establish a general gap-dependent lower bound $Ω(dH^3\\log K/Δ_{\\min})$ for arbitrary learning algorithms, showing that the logarithmic dependence on $K$ and the cubic dependence on $H$ are intrinsic to gap-dependent expected regret in linear MDPs. Together, our results substantially narrow the gap between upper and lower bounds and provide a sharper characterization of gap-dependent learning and optimism-based exploration with linear function approximation.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2506.12490",
+   "title": "Note on Follow-the-Perturbed-Leader in Combinatorial Semi-Bandit Problems",
+   "published": "2025-06-14",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "This paper studies the optimality and complexity of Follow-the-Perturbed-Leader (FTPL) policy in size-invariant combinatorial semi-bandit problems. Recently, Honda et al. (2023) and Lee et al. (2024) showed that FTPL achieves Best-of-Both-Worlds (BOBW) optimality in standard multi-armed bandit problems with Fréchet-type distributions. However, the optimality of FTPL in combinatorial semi-bandit problems remains unclear. In this paper, we consider the regret bound of FTPL with geometric resampling (GR) in size-invariant semi-bandit setting, showing that FTPL respectively achieves $O\\left(\\sqrt{m^2 d^\\frac{1}αT}+\\sqrt{mdT}\\right)$ regret with Fréchet distributions, and the best possible regret bound of $O\\left(\\sqrt{mdT}\\right)$ with Pareto distributions in adversarial setting. Furthermore, we extend the conditional geometric resampling (CGR) to size-invariant semi-bandit setting, which reduces the computational complexity from $O(d^2)$ of original GR to $O\\left(md\\left(\\log(d/m)+1\\right)\\right)$ without sacrificing the regret performance of FTPL.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.16274",
+   "title": "Regret and Sample Complexity of Online Q-Learning via Concentration of Stochastic Approximation with Time-Inhomogeneous Markov Chains",
+   "published": "2026-02-18",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We present the first regret bound for classical online Q-learning in infinite-horizon discounted Markov decision processes (MDPs), without relying on optimism or bonus terms. We first analyze Boltzmann Q-learning with decaying temperature and show that its regret depends critically on the suboptimality gap of the MDP: for sufficiently large gaps, the regret is sublinear, while for small gaps it deteriorates and can approach linear growth. To address this limitation, we study a Smoothed $ε_n$-Greedy exploration scheme that combines $ε_n$-greedy and Boltzmann exploration, for which we prove a gap-robust regret bound of near-$\\tilde{O}(N^{9/10})$. We also obtain sample complexity guarantees, with both regret and sample complexity bounds holding with high probability. To analyze these algorithms, we develop a high-probability concentration bound for contractive Markovian stochastic approximation with iterate- and time-dependent transition dynamics. This bound may be of independent interest as the contraction factor in our framework is allowed to converge to one asymptotically.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.05102",
+   "title": "Unified Framework of Distributional Regret in Multi-Armed Bandits and Reinforcement Learning",
+   "published": "2026-05-06",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We study the distribution of regret in stochastic multi-armed bandits and episodic reinforcement learning through a unified framework. We formalize a distributional regret bound as a probabilistic guarantee that holds uniformly over all confidence levels $δ\\in (0,1]$, thereby characterizing the regret distribution across the full range of $δ$. We present a simple UCBVI-style algorithm with exploration bonus $\\min\\{c_{1,k}/N, c_{2,k}/\\sqrt{N}\\}$, where $N$ denotes the visit count and $(c_{1,k},c_{2,k})$ are user-specified parameters. For arbitrary parameter sequences, we derive general gap-independent and gap-dependent distributional regret bounds, yielding a principled characterization of how the parameters control the trade-off between expected performance, tail risk, and instance-dependent behavior. In particular, our bounds achieve optimal trade-offs between expected and distributional regret in both minimax and instance-dependent regimes. As a special case, for multi-armed bandits with $A$ arms and horizon $T$, we obtain a distributional regret bound of order $\\mathcal{O}(\\sqrt{AT}\\log(1/δ))$, confirming the conjecture of Lattimore & Szepesvári (2020, Section 17.1) for the first time.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2506.24005",
+   "title": "Provably Efficient and Agile Randomized Q-Learning",
+   "published": "2025-06-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "While Bayesian-based exploration often demonstrates superior empirical performance compared to bonus-based methods in model-based reinforcement learning (RL), its theoretical understanding remains limited for model-free settings. Existing provable algorithms either suffer from computational intractability or rely on stage-wise policy updates which reduce responsiveness and slow down the learning process. In this paper, we propose a novel variant of Q-learning algorithm, refereed to as RandomizedQ, which integrates sampling-based exploration with agile, step-wise, policy updates, for episodic tabular RL. We establish an $\\widetilde{O}(\\sqrt{H^5SAT})$ regret bound, where $S$ is the number of states, $A$ is the number of actions, $H$ is the episode length, and $T$ is the total number of episodes. In addition, we present a logarithmic regret bound under a mild positive sub-optimality condition on the optimal Q-function. Empirically, RandomizedQ exhibits outstanding performance compared to existing Q-learning variants with both bonus-based and Bayesian-based exploration on standard benchmarks.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.07218",
+   "title": "Improved Model-based Reinforcement Learning with Smooth Kernels",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "For continuous state-action space scenarios, classical reinforcement learning (RL) theory predominantly focuses on low-rank Markov decision processes (MDPs), which provide sample-efficient guarantees at the expense of restrictive structural assumptions. Kernel smoothing model-based approaches offer a promising alternative paradigm that instead leverages the smoothness of the MDP and employs non-parametric kernel smoothing estimates of transition dynamics. This paper proposes a new kernel-smoothing model-based approach for online reinforcement learning in finite-horizon settings under Lipschitz continuity assumptions on the MDP. By incorporating a Bernstein-style exploration bonus into the kernel smoothing framework, our method achieves a regret bound which improves upon the state-of-the-art regret bound in its dependence on the horizon. The theoretical advancement relies on a delicate analysis of the synergy between Bernstein-style bonuses and kernel smoothing, where a new tight Bernstein-type concentration inequality for martingales may be of independent interest.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2507.22854",
+   "title": "A Bit of Freedom Goes a Long Way: Classical and Quantum Algorithms for Reinforcement Learning under a Generative Model",
+   "published": "2025-07-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.OC",
+    "quant-ph",
+    "stat.ML"
+   ],
+   "abstract": "We propose novel classical and quantum online algorithms for learning finite- and infinite-horizon Markov Decision Processes (MDPs). Our algorithms are based on a hybrid online-offline reinforcement learning model wherein the agent can, from time to time, freely interact with the environment in a generative sampling fashion, i.e., by having access to a \"simulator\". By employing known classical and new quantum algorithms for approximating optimal policies under a generative model within our learning algorithms, we show that it is possible to avoid several paradigms from RL like \"optimism in the face of uncertainty\" and \"posterior sampling\" and instead compute and use optimal policies directly, which yields better regret bounds compared to previous works. Our quantum algorithms obtain regret bounds which only a $\\operatorname{poly}\\log{T}$ dependence on the number of time steps $T$, thus breaking the $O(\\sqrt{T})$ classical barrier. Our infinite-horizon discounted regret bound is brand new, while in the finite- and infinite-horizon undiscounted settings, our results match the time dependence of some prior quantum works, but with improved dependence on other parameters like state space size $S$ and action space size $A$.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2512.11201",
+   "title": "Fast EXP3 Algorithms",
+   "published": "2025-12-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.DS"
+   ],
+   "abstract": "We point out that EXP3 can be implemented in constant time per round, propose more practical algorithms, and analyze the trade-offs between the regret bounds and time complexities of these algorithms.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.15972",
+   "title": "Fast Online Learning with Gaussian Prior-Driven Hierarchical Unimodal Thompson Sampling",
+   "published": "2026-02-17",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We study a type of Multi-Armed Bandit (MAB) problems in which arms with a Gaussian reward feedback are clustered. Such an arm setting finds applications in many real-world problems, for example, mmWave communications and portfolio management with risky assets, as a result of the universality of the Gaussian distribution. Based on the Thompson Sampling algorithm with Gaussian prior (TSG) algorithm for the selection of the optimal arm, we propose our Thompson Sampling with Clustered arms under Gaussian prior (TSCG) specific to the 2-level hierarchical structure. We prove that by utilizing the 2-level structure, we can achieve a lower regret bound than we do with ordinary TSG. In addition, when the reward is Unimodal, we can reach an even lower bound on the regret by our Unimodal Thompson Sampling algorithm with Clustered Arms under Gaussian prior (UTSCG). Each of our proposed algorithms are accompanied by theoretical evaluation of the upper regret bound, and our numerical experiments confirm the advantage of our proposed algorithms.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2502.13467",
+   "title": "On the Sublinear Regret of Continuous K-Max Bandits",
+   "published": "2025-02-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The $K$-Max combinatorial multi-armed bandit problem arises in applications such as recommendation and distributed decision making, where the reward is determined by the maximum outcome among $K$ selected arms. When outcomes are continuous and only the maximum value together with the winner's index is observed, this problem introduces unprecedented difficulties including discretization errors, non-deterministic tie-breaking, and severe estimation biases. To overcome these barriers, we introduce DCK-UCB, an efficient algorithm combining adaptive discretization with bias-corrected confidence bounds. We prove that DCK-UCB achieves a $\\widetilde{O}(T^{3/4})$ regret bound, the first sublinear guarantee in this setting. Numerical experiments show strong performance over baseline methods. Furthermore, for the specific case of exponential distributions under full-bandit feedback, we propose the MLE-Exp algorithm that attains a near-optimal $\\widetilde{O}(\\sqrt{T})$ regret bound. This work establishes fundamental theoretical guarantees and provides a powerful algorithmic solution for continuous combinatorial bandits.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2611.04641",
+   "title": "Does LinUCB Need Valid Confidence Sets?",
+   "published": "2026-11-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We show that replacing LinUCB's usual confidence width $β$ by any fixed $α>0$ preserves sublinear regret when the action set is $M$-smooth and $m$-strongly convex. Our high-probability regret bound for this generalisation, $α$-LinUCB, establishes that valid confidence sets are not necessary for the success of LinUCB. We identify the mechanism behind this result: action-set curvature drives $α$-LinUCB to explore every direction, even when optimism is not guaranteed. To analyse this mechanism, we introduce a logarithmically capped spectral potential that, unlike the standard log-determinant potential, caps contributions from well-explored directions. This yields lower bounds on the smallest eigenvalue of the design matrix. At the standard confidence width $α=β\\asymp\\sqrt{d\\log T}$, our $T$-round regret bound in $d$ dimensions is $O\\bigl(\\frac{M}{m}d\\sqrt{T\\log T}\\bigr)$, up to iterated-logarithmic factors, improving the horizon dependence of the classical LinUCB guarantee by a factor of $\\sqrt{\\log T}$.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2504.07307",
+   "title": "Follow-the-Perturbed-Leader Approaches Best-of-Both-Worlds for the m-Set Semi-Bandit Problems",
+   "published": "2025-04-09",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We consider a common case of the combinatorial semi-bandit problem, the $m$-set semi-bandit, where the learner exactly selects $m$ arms from the total $d$ arms. In the adversarial setting, the best regret bound, known to be $\\mathcal{O}(\\sqrt{nmd})$ for time horizon $n$, is achieved by the well-known Follow-the-Regularized-Leader (FTRL) policy. However, this requires to explicitly compute the arm-selection probabilities via optimizing problems at each time step and sample according to them. This problem can be avoided by the Follow-the-Perturbed-Leader (FTPL) policy, which simply pulls the $m$ arms that rank among the $m$ smallest (estimated) loss with random perturbation. In this paper, we show that FTPL with a Fréchet perturbation also enjoys the near optimal regret bound $\\mathcal{O}(\\sqrt{nm}(\\sqrt{d\\log(d)}+m^{5/6}))$ in the adversarial setting and approaches best-of-both-world regret bounds, i.e., achieves a logarithmic regret for the stochastic setting. Moreover, our lower bounds show that the extra factors are unavoidable with our approach; any improvement would require a fundamentally different and more challenging method.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2506.01722",
+   "title": "When Lower-Order Terms Dominate: Adaptive Expert Algorithms for Heavy-Tailed Losses",
+   "published": "2025-06-02",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We consider the problem setting of prediction with expert advice with possibly heavy-tailed losses, i.e. the only assumption on the losses is an upper bound on their second moments, denoted by $θ$. We develop adaptive algorithms that do not require any prior knowledge about the range or the second moment of the losses. Existing adaptive algorithms have what is typically considered a lower-order term in their regret guarantees. We show that this lower-order term, which is often the maximum of the losses, can actually dominate the regret bound in our setting. Specifically, we show that even with small constant $θ$, this lower-order term can scale as $\\sqrt{KT}$, where $K$ is the number of experts and $T$ is the time horizon. We propose adaptive algorithms with improved regret bounds that avoid the dependence on such a lower-order term and guarantee $\\mathcal{O}(\\sqrt{θT\\log(K)})$ regret in the worst case, and $\\mathcal{O}(θ\\log(KT)/Δ_{\\min})$ regret when the losses are sampled i.i.d. from some fixed distribution, where $Δ_{\\min}$ is the difference between the mean losses of the second best expert and the best expert. Additionally, when the loss function is the squared loss, our algorithm also guarantees improved regret bounds over prior results.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2512.12325",
+   "title": "Eventually LIL Regret: Almost Sure $\\ln\\ln T$ Regret for a sub-Gaussian Mixture on Unbounded Data",
+   "published": "2025-12-13",
+   "categories": [
+    "cs.LG",
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "We prove that a classic sub-Gaussian mixture proposed by Robbins in a stochastic setting actually satisfies a path-wise (deterministic) regret bound. For every path in a natural ``Ville event'' $\\mathcal E_α$, this regret till time $T$ is bounded by $\\ln^2(1/α)/V_T + \\ln (1/α) + \\ln \\ln V_T$ up to universal constants, where $V_T$ is a nonnegative, nondecreasing, cumulative variance process. (The bound reduces to $\\ln(1/α) + \\ln \\ln V_T$ if $V_T \\geq \\ln(1/α)$.) If the data were stochastic, then one can show that $\\mathcal E_α$ has probability at least $1-α$ under a wide class of distributions (eg: sub-Gaussian, symmetric, variance-bounded, etc.). In fact, we show that on the Ville event $\\mathcal E_0$ of probability one, the regret on every path in $\\mathcal E_0$ is eventually bounded by $\\ln \\ln V_T$ (up to constants). We explain how this work helps bridge the world of adversarial online learning (which usually deals with regret bounds for bounded data), with game-theoretic statistics (which can handle unbounded data, albeit using stochastic assumptions). In short, conditional regret bounds serve as a bridge between stochastic and adversarial betting.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2506.15817",
+   "title": "Optimizing Bidding Strategies in First-Price Auctions in Binary Feedback Setting with Predictions",
+   "published": "2025-06-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper studies Vickrey first-price auctions under binary feedback. Leveraging the enhanced performance of machine learning algorithms, the new algorithm uses past information to improve the regret bounds of the BROAD-OMD algorithm. Motivated by the growing relevance of first-price auctions and the predictive capabilities of machine learning models, this paper proposes a new algorithm within the BROAD-OMD framework (Hu et al., 2025) that leverages predictions of the highest competing bid. This paper's main contribution is an algorithm that achieves zero regret under accurate predictions. Additionally, a bounded regret bound of O(T^(3/4) * Vt^(1/4)) is established under certain normality conditions.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2509.08911",
+   "title": "Instance-Optimal Matrix Multiplicative Weight Update and Its Quantum Applications",
+   "published": "2025-09-10",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.DS",
+    "quant-ph",
+    "stat.ML"
+   ],
+   "abstract": "The Matrix Multiplicative Weight Update (MMWU) is a seminal online learning algorithm with numerous applications. Applied to the matrix version of the Learning from Expert Advice (LEA) problem on the $d$-dimensional spectraplex, it is well known that MMWU achieves the minimax-optimal regret bound of $O(\\sqrt{T\\log d})$, where $T$ is the time horizon. In this paper, we present an improved algorithm achieving the instance-optimal regret bound of $O(\\sqrt{T\\cdot S(X||d^{-1}I_d)})$, where $X$ is the comparator in the regret, $I_d$ is the identity matrix, and $S(\\cdot||\\cdot)$ denotes the quantum relative entropy. Furthermore, our algorithm has the same computational complexity as MMWU, indicating that the improvement in the regret bound is ``free''. Technically, we first develop a general potential-based framework for matrix LEA, with MMWU being its special case induced by the standard exponential potential. Then, the crux of our analysis is a new ``one-sided'' Jensen's trace inequality built on a Laplace transform technique, which allows the application of general potential functions beyond exponential to matrix LEA. Our algorithm is finally induced by an optimal potential function from the vector LEA problem, based on the imaginary error function. Complementing the above, we provide a memory lower bound for matrix LEA, and explore the applications of our algorithm in quantum learning theory. We show that it outperforms the state of the art for learning quantum states corrupted by depolarization noise, random quantum states, and Gibbs states. In addition, applying our algorithm to linearized convex losses enables predicting nonlinear quantum properties, such as purity, quantum virtual cooling, and Rényi-$2$ correlation.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.21501",
+   "title": "A Researcher's Guide to Empirical Risk Minimization",
+   "published": "2026-02-25",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "This guide provides a reference for high-probability regret bounds in empirical risk minimization (ERM). The presentation is modular: we begin with intuition and general proof strategies, then state broadly applicable guarantees under high-level conditions and provide tools for verifying them for specific losses and function classes. We emphasize that many ERM rate derivations can be organized around a three-step recipe -- a basic inequality, a uniform local concentration bound, and a fixed-point argument -- which yields regret bounds in terms of a critical radius, defined via localized Rademacher complexity, under a mild Bernstein-type variance-risk condition. To make these bounds concrete, we upper bound the critical radius using local maximal inequalities and metric-entropy integrals, thereby recovering familiar rates for VC-subgraph, Sobolev/Hölder, and bounded-variation classes. We also study ERM with nuisance components -- including weighted ERM and Neyman-orthogonal losses -- as they arise in causal inference, missing data, and domain adaptation. Following the orthogonal statistical learning framework, we highlight that these problems often admit regret-transfer bounds linking regret under an estimated loss to population regret under the target loss. These bounds typically decompose the regret into (i) statistical error under the estimated loss and (ii) approximation error due to nuisance estimation. Under sample splitting or cross-fitting, the first term can be controlled using standard fixed-loss ERM regret bounds, while the second depends only on nuisance-estimation accuracy. As a novel contribution, we also treat the in-sample regime, in which the nuisances and the ERM are fit on the same data, deriving regret bounds and showing that fast oracle rates remain attainable under suitable smoothness and Donsker-type conditions.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2607.20316",
+   "title": "Decentralized Online Riemannian Optimization for Strongly Geodesically Convex Functions",
+   "published": "2026-07-22",
+   "categories": [
+    "math.OC",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "We study decentralized online optimization for strongly geodesically convex (strongly g-convex) losses on Riemannian manifolds with bounded sectional curvature, including positively curved manifolds. In centralized Riemannian optimization, strong g-convexity tightens the optimal regret from $O(\\sqrt{T})$ to $O(\\log T)$, where $T$ is the time horizon; in the decentralized Riemannian setting, however, existing methods address only g-convex losses, leaving the strongly g-convex regime unexplored. One challenge is that the required decaying step size in the centralized regime is incompatible with existing network-error analyses, which typically assume a fixed step size. First, we provide a general network-error analysis for time-varying schedules. Next, we build on this analysis to establish the first $O(\\log T)$ static regret bound for decentralized online Riemannian gradient descent, matching the minimax-optimal rate for strongly-convex Euclidean online optimization. Finally, we prove the same $O(\\log T)$ regret bound for the two-point bandit feedback setting using novel strong subconvexity arguments for the smoothed versions of the loss functions.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2502.02486",
+   "title": "Catoni Contextual Bandits are Robust to Heavy-tailed Rewards",
+   "published": "2025-02-04",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Typical contextual bandit algorithms assume that the rewards at each round lie in some fixed range $[0, R]$, and their regret scales polynomially with this reward range $R$. However, many practical scenarios naturally involve heavy-tailed rewards or rewards where the worst-case range can be substantially larger than the variance. In this paper, we develop an algorithmic approach building on Catoni's estimator from robust statistics, and apply it to contextual bandits with general function approximation. When the variance of the reward at each round is known, we use a variance-weighted regression approach and establish a regret bound that depends only on the cumulative reward variance and logarithmically on the reward range $R$ as well as the number of rounds $T$. For the unknown-variance case, we further propose a careful peeling-based algorithm and remove the need for cumbersome variance estimation. With additional dependence on the fourth moment, our algorithm also enjoys a variance-based bound with logarithmic reward-range dependence. Moreover, we demonstrate the optimality of the leading-order term in our regret bound through a matching lower bound.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2606.00431",
+   "title": "Variance-sensitive Thompson sampling for generalised linear bandits, revisited",
+   "published": "2026-05-29",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We prove a variance-sensitive regret bound for Thompson sampling in stochastic generalised linear bandits. The argument assumes a warm-up, after which the regret is controlled through using the Gaussian Poincaré inequality. This bypasses the point at which previous optimism-based analyses break down. Removing the warm-up while retaining the same variance-sensitive scaling remains open, and appears nontrivial.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2501.14349",
+   "title": "Online Inverse Linear Optimization: Efficient Logarithmic-Regret Algorithm, Robustness to Suboptimality, and Lower Bound",
+   "published": "2025-01-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In online inverse linear optimization, a learner observes time-varying sets of feasible actions and an agent's optimal actions, selected by solving linear optimization over the feasible actions. The learner sequentially makes predictions of the agent's true linear objective function, and their quality is measured by the regret, the cumulative gap between optimal objective values and those achieved by following the learner's predictions. A seminal work by Bärmann et al. (2017) obtained a regret bound of $O(\\sqrt{T})$, where $T$ is the time horizon. Subsequently, the regret bound has been improved to $O(n^4 \\ln T)$ by Besbes et al. (2021, 2025) and to $O(n \\ln T)$ by Gollapudi et al. (2021), where $n$ is the dimension of the ambient space of objective vectors. However, these logarithmic-regret methods are highly inefficient when $T$ is large, as they need to maintain regions specified by $O(T)$ constraints, which represent possible locations of the true objective vector. In this paper, we present the first logarithmic-regret method whose per-round complexity is independent of $T$; indeed, it achieves the best-known bound of $O(n \\ln T)$. Our method is strikingly simple: it applies the online Newton step (ONS) to appropriate exp-concave loss functions. Moreover, for the case where the agent's actions are possibly suboptimal, we establish a regret bound of $O(n\\ln T + \\sqrt{Δ_T n\\ln T})$, where $Δ_T$ is the cumulative suboptimality of the agent's actions. This bound is achieved by using MetaGrad, which runs ONS with $Θ(\\ln T)$ different learning rates in parallel. We also present a lower bound of $Ω(n)$, showing that the $O(n\\ln T)$ bound is tight up to an $O(\\ln T)$ factor.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2505.23927",
+   "title": "Thompson Sampling in Online RLHF with General Function Approximation",
+   "published": "2025-05-29",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Reinforcement learning from human feedback (RLHF) has achieved great empirical success in aligning large language models (LLMs) with human preference, and it is of great importance to study the statistical efficiency of RLHF algorithms from a theoretical perspective. In this work, we consider the online RLHF setting where the preference data is revealed during the learning process and study action value function approximation. We design a model-free posterior sampling algorithm for online RLHF inspired by Thompson sampling and provide its theoretical guarantee. Specifically, we adopt Bellman eluder (BE) dimension as the complexity measure of the function class and establish $O(\\sqrt{T})$ regret bound for the proposed algorithm with other multiplicative factor depending on the horizon, BE dimension and the $log$-bracketing number of the function class. Further, in the analysis, we first establish the concentration-type inequality of the squared Bellman error bound based on the maximum likelihood estimator (MLE) generalization bound, which plays the crucial rules in obtaining the eluder-type regret bound and may be of independent interest.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2508.13981",
+   "title": "Multi-User Contextual Cascading Bandits for Personalized Recommendation",
+   "published": "2025-08-19",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "We introduce a Multi-User Contextual Cascading Bandit model, a new combinatorial bandit framework that captures realistic online advertising scenarios where multiple users interact with sequentially displayed items simultaneously. Unlike classical contextual bandits, MCCB integrates three key structural elements: (i) cascading feedback based on sequential arm exposure, (ii) parallel context sessions enabling selective exploration, and (iii) heterogeneous arm-level rewards. We first propose Upper Confidence Bound with Backward Planning (UCBBP), a UCB-style algorithm tailored to this setting, and prove that it achieves a regret bound of $\\widetilde{O}(\\sqrt{THN})$ over $T$ episodes, $H$ session steps, and $N$ contexts per episode. Motivated by the fact that many users interact with the system simultaneously, we introduce a second algorithm, termed Active Upper Confidence Bound with Backward Planning (AUCBBP), which shows a strict efficiency improvement in context scaling, i.e., user scaling, with a regret bound of $\\widetilde{O}(\\sqrt{T+HN})$. We validate our theoretical findings via numerical experiments, demonstrating the empirical effectiveness of both algorithms under various settings.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.10475",
+   "title": "Regret Minimization in Bilateral Trade With Perturbed Markets",
+   "published": "2026-05-11",
+   "categories": [
+    "cs.GT",
+    "cs.LG"
+   ],
+   "abstract": "We address the problem of maximizing Gain from Trade (GFT) in repeated buyer-seller exchanges subject to global budget balance constraints. While this problem is well-understood in purely adversarial and stochastic settings, these environments exhibit a sharp dichotomy: adversarial environments allow for no-regret learning against the best fixed-price mechanism, whereas stochastic environments allow for no-regret learning against the best distribution over prices that is budget balanced in expectation. This gap is significant, as policies balanced in expectation can increase the GFT by a multiplicative factor of two. In this work, we bridge these extremes by studying perturbed markets, where an underlying stochastic distribution is subject to an adversarial corruption $C$. We design an algorithm that adaptively scales with the level of corruption, achieving an $\\tilde{\\mathcal{O}}(T^{3/4}) + \\mathcal{O}(C\\log(T))$ regret bound against the best budget-balanced distribution over prices. Simultaneously, our algorithm maintains the worst-case $\\tilde{\\mathcal{O}}(T^{3/4})$ regret bound relative to a per-round budget-balanced baseline, ensuring optimality even in fully adversarial environments.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2603.27884",
+   "title": "Near-Optimal Primal-Dual Algorithm for Learning Linear Mixture CMDPs with Adversarial Rewards",
+   "published": "2026-03-29",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "We study safe reinforcement learning in finite-horizon linear mixture constrained Markov decision processes (CMDPs) with adversarial rewards under full-information feedback and an unknown transition kernel. We propose a primal-dual policy optimization algorithm that achieves regret and constraint violation bounds of $\\widetilde{O}(\\sqrt{d^2 H^3 K})$ under mild conditions, where $d$ is the feature dimension, $H$ is the horizon, and $K$ is the number of episodes. To the best of our knowledge, this is the first provably efficient algorithm for linear mixture CMDPs with adversarial rewards. In particular, our regret bound is near-optimal, matching the known minimax lower bound up to logarithmic factors. The key idea is to introduce a regularized dual update that enables a drift-based analysis. This step is essential, as strong duality-based analysis cannot be directly applied when reward functions change across episodes. In addition, we extend weighted ridge regression-based parameter estimation to the constrained setting, allowing us to construct tighter confidence intervals that are crucial for deriving the near-optimal regret bound.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2507.04438",
+   "title": "Quantum Algorithms for Bandits with Knapsacks with Improved Regret and Time Complexities",
+   "published": "2025-07-06",
+   "categories": [
+    "quant-ph",
+    "cs.DS",
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Bandits with knapsacks (BwK) constitute a fundamental model that combines aspects of stochastic integer programming with online learning. Classical algorithms for BwK with a time horizon $T$ achieve a problem-independent regret bound of ${O}(\\sqrt{T})$ and a problem-dependent bound of ${O}(\\log T)$. In this paper, we initiate the study of the BwK model in the setting of quantum computing, where both reward and resource consumption can be accessed via quantum oracles. We establish both problem-independent and problem-dependent regret bounds for quantum BwK algorithms. For the problem-independent case, we demonstrate that a quantum approach can improve the classical regret bound by a factor of $(1+\\sqrt{B/\\mathrm{OPT}_\\mathrm{LP}})$, where $B$ is budget constraint in BwK and $\\mathrm{OPT}_{\\mathrm{LP}}$ denotes the optimal value of a linear programming relaxation of the BwK problem. For the problem-dependent setting, we develop a quantum algorithm using an inexact quantum linear programming solver. This algorithm achieves a quadratic improvement in terms of the problem-dependent parameters, as well as a polynomial speedup of time complexity on problem's dimensions compared to classical counterparts. Compared to previous works on quantum algorithms for multi-armed bandits, our study is the first to consider bandit models with resource constraints and hence shed light on operations research.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.27985",
+   "title": "Online Sketched Newton-Raphson",
+   "published": "2026-05-27",
+   "categories": [
+    "math.OC"
+   ],
+   "abstract": "In online convex optimization (OCO), a decision-maker is confronted with an unknown environment and seeks to play an optimal sequence of decisions on a short time-scale using only past information. Recent advances in second-order OCO methods have demonstrated tighter regret bounds and improved empirical performance over traditional first-order methods. However, this performance comes at a cost: a matrix inversion is now required, which scales with the cube of the size of the problem. In this work, we propose sketching to mitigate this limitation. Specifically, we present the online sketched Newton-Raphson method (OSNR) which preserves the tight regret bounds obtained with second-order methods while presenting a strict computational improvement in terms of complexity. We discuss three application scenarios of OSNR: online root finding, unconstrained OCO, and time-varying equality-constrained OCO, and present their respective regret and a constraint violation bound for the latter. In all three applications, OSNR achieves sublinear dynamic regret bounds. For the equality-constrained case, the extension OSNR with equality constraints OSNR-EC is shown to yield sublinear cumulative constraint violation. Finally, we illustrate the performance of OSNR and OSNR-EC on two numerical examples, viz., online position tracking and optimal power flow, and observe that OSNR and OSNR-EC exhibit high performance even at low sampling rates.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2605.05967",
+   "title": "Sharper Guarantees for Misspecified Kernelized Bandit Optimization",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Existing guarantees for misspecified kernelized bandit optimization pay for misspecification through kernel complexity: in generic offline bounds, the misspecification level $\\varepsilon$ is multiplied by $\\sqrt{d_\\mathrm{eff}}$, where $d_\\mathrm{eff}$ is the kernel effective dimension, while in online regret bounds, the corresponding penalty is $\\sqrt{γ_n}\\,n\\varepsilon$, where $γ_n$ is the maximum information gain after $n$ rounds of interaction. In this work, we show that, for a large class of kernels, the misspecification amplification can be reduced to logarithmic or polylogarithmic growth. In the offline setting, we first prove high-probability simple-regret bounds whose misspecification term is governed by a spectral Lebesgue constant. This yields logarithmic amplification for one-dimensional monotone spectra and polylogarithmic amplification for multivariate Fourier-diagonal product kernels. In the online setting, we modify a domain-splitting algorithm and prove a cumulative regret bound of $\\widetilde{\\mathcal O}(\\sqrt{γ_n n}+n\\varepsilon)$ under mild localized eigendecay assumptions, removing the extra $\\sqrt{γ_n}$ factor from the misspecification term. The common principle is localization: spectral localization controls the Lebesgue constant of the offline approximation operator, while domain splitting implements the spatial analogue of this mechanism in the online setting, preventing local misspecification errors from being amplified globally.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2609.20968",
+   "title": "From Switching to Dynamic Regret: A Simple Reduction via Unbiased Random Sequences",
+   "published": "2026-09-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In non-stationary online learning, dynamic regret has attracted increasing attention as a measure of how well an online learner performs against a time-varying comparator sequence. Despite considerable advances, attaining optimal bounds for strongly convex and exp-concave losses often involves intricate analysis. In this paper, we present a \\textit{simple} framework that reduces dynamic regret minimization to switching regret minimization. As a result, we can derive dynamic regret bounds by using off-the-shelf algorithms with switching regret guarantees. The key idea of our reduction is to construct, for \\textit{any} comparator sequence, an auxiliary random sequence that is unbiased at each round, with the controlled variance and a manageable number of switches. Combining this construction with suitable surrogate losses, we can decompose dynamic regret into the expected switching regret against the random sequence and its controlled variance. Theoretically, for strongly convex and exp-concave losses, we establish the $\\widetilde{O}(T^{1/3}P_T^{2/3})$ dynamic regret bounds, where $T$ denotes the time horizon and $P_T$ denotes the path-length of the comparator sequence. Moreover, for general convex losses, the same reduction also recovers the $O(\\sqrt{T(1+P_T)})$ dynamic regret bound. Notably, all our findings match the minimax optimal results for these three types of losses, highlighting the versatility of our proposed framework.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2602.01903",
+   "title": "Data- and Variance-dependent Regret Bounds for Online Tabular MDPs",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "This work studies online episodic tabular Markov decision processes (MDPs) with known transitions and develops best-of-both-worlds algorithms that achieve refined data-dependent regret bounds in the adversarial regime and variance-dependent regret bounds in the stochastic regime. We quantify MDP complexity using a first-order quantity and several new data-dependent measures for the adversarial regime, including a second-order quantity and a path-length measure, as well as variance-based measures for the stochastic regime. To adapt to these measures, we develop algorithms based on global optimization and policy optimization, both built on optimistic follow-the-regularized-leader with log-barrier regularization. For global optimization, our algorithms achieve first-order, second-order, and path-length regret bounds in the adversarial regime, and in the stochastic regime, they achieve a variance-aware gap-independent bound and a variance-aware gap-dependent bound that is polylogarithmic in the number of episodes. For policy optimization, our algorithms achieve the same data- and variance-dependent adaptivity, up to a factor of the episode horizon, by exploiting a new optimistic $Q$-function estimator. Finally, we establish regret lower bounds in terms of data-dependent complexity measures for the adversarial regime and a variance measure for the stochastic regime, implying that the regret upper bounds achieved by the global-optimization approach are nearly optimal.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2511.19937",
+   "title": "Adaptivity and Universality: Problem-dependent Universal Regret for Online Convex Optimization",
+   "published": "2025-11-25",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Universal online learning aims to achieve optimal regret guarantees without requiring prior knowledge of the curvature of online functions. Existing methods have established minimax-optimal regret bounds for universal online learning, where a single algorithm can simultaneously attain $\\mathcal{O}(\\sqrt{T})$ regret for convex functions, $\\mathcal{O}(d \\log T)$ for exp-concave functions, and $\\mathcal{O}(\\log T)$ for strongly convex functions, where $T$ is the number of rounds and $d$ is the dimension of the feasible domain. However, these methods still lack problem-dependent adaptivity. In particular, no universal method provides regret bounds that scale with the gradient variation $V_T$, a key quantity that plays a crucial role in applications such as stochastic optimization and fast-rate convergence in games. In this work, we introduce UniGrad, a novel approach that achieves both universality and adaptivity, with two distinct realizations: UniGrad.Correct and UniGrad.Bregman. Both methods achieve universal regret guarantees that adapt to gradient variation, simultaneously attaining $\\mathcal{O}(\\log V_T)$ regret for strongly convex functions and $\\mathcal{O}(d \\log V_T)$ regret for exp-concave functions. For convex functions, the regret bounds differ: UniGrad.Correct achieves an $\\mathcal{O}(\\sqrt{V_T \\log V_T})$ bound while preserving the RVU property that is crucial for fast convergence in online games, whereas UniGrad.Bregman achieves the optimal $\\mathcal{O}(\\sqrt{V_T})$ regret bound through a novel design. Both methods employ a meta algorithm with $\\mathcal{O}(\\log T)$ base learners, which naturally requires $\\mathcal{O}(\\log T)$ gradient queries per round. To enhance computational efficiency, we introduce UniGrad++, which retains the regret while reducing the gradient query to just $1$ per round via surrogate optimization. We further provide various implications.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2601.02022",
+   "title": "Prior Diffusiveness and Regret in the Linear-Gaussian Bandit",
+   "published": "2026-01-05",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We prove that Thompson sampling exhibits $\\tilde{O}(σd \\sqrt{T} + d r \\sqrt{\\mathrm{Tr}(Σ_0)})$ Bayesian regret in the linear-Gaussian bandit with a $\\mathcal{N}(μ_0, Σ_0)$ prior distribution on the coefficients, where $d$ is the dimension, $T$ is the time horizon, $r$ is the maximum $\\ell_2$ norm of the actions, and $σ^2$ is the noise variance. In contrast to existing regret bounds, this shows that to within logarithmic factors, the prior-dependent ``burn-in'' term $d r \\sqrt{\\mathrm{Tr}(Σ_0)}$ decouples additively from the minimax (long run) regret $σd \\sqrt{T}$. Previous regret bounds exhibit a multiplicative dependence on these terms. We establish these results via a new ``elliptical potential'' lemma, and also provide a lower bound indicating that the burn-in term is unavoidable.",
+   "query": "regret bound"
+  },
+  {
+   "id": "2607.29419",
+   "title": "Explore Beyond the Boundary Using Entropic Information",
+   "published": "2026-07-31",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In reinforcement learning, exploration with sparse and delayed rewards presents a significant challenge due to the limited feedback available for guiding the learning process. Addressing this issue requires extensive exploration in the state space to discover valuable reward signals. In this paper, we propose Entropic Information for Exploration (ENTINEX), a novel method that enhances exploration by incentivizing agents to explore beyond the boundaries of the state distribution. ENTINEX achieves this by assigning intrinsic rewards to these boundaries, leveraging entropic information to identify them effectively. Through extensive experimentation, we demonstrate that ENTINEX consistently improves exploration performance in environments characterized by sparse and delayed rewards. Our experimental results show that ENTINEX outperforms existing exploration methods, highlighting its effectiveness in both sparse and delayed reward scenarios.",
+   "query": "reinforcement learning exploration"
+  },
+  {
+   "id": "2607.06323",
+   "title": "LAMP: Latent Motion Prior-Guided Real-World Learning for Dexterous Hand Manipulation",
+   "published": "2026-07-07",
+   "categories": [
+    "cs.RO"
+   ],
+   "abstract": "Real-world learning for dexterous hands remains brittle because high-dimensional hand actions amplify imitation errors and make reinforcement-learning exploration prone to contact-breaking motion. While combining imitation learning (IL) with online reinforcement learning (RL) can reduce manual supervision, unconstrained exploration in raw hand-action spaces is sample-inefficient and risky for physical hardware. We introduce a latent motion prior module (\\prior{}) that maps recent hand-action histories to a compact, history-conditioned latent prior and decodes continuous latent commands into executable high-dimensional hand targets. Built on this prior, \\method{} is a three-stage real-world dexterous learning framework: it pretrains \\prior{} from demonstrations, trains a visuomotor policy that predicts native arm commands and latent hand-action offsets, and improves the policy with online residual RL in the same latent hand-action space. This shared, decodable interface lets residual exploration make local corrections near demonstrated, contact-consistent hand motions rather than perturbing every finger joint independently. We evaluate \\method{} on four real-robot dexterous manipulation tasks against raw, linear, and discrete hand-action interfaces. Starting from small task-specific demonstration sets, \\method{} achieves a 56.25\\% average IL success rate and raises it to 98.75\\% after online RL, reaching 100\\% final success on three tasks and 95\\% on the remaining task.",
+   "query": "reinforcement learning exploration"
+  },
+  {
+   "id": "2506.21899",
+   "title": "Advancements and Challenges in Continual Reinforcement Learning: A Comprehensive Review",
+   "published": "2025-06-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The diversity of tasks and dynamic nature of reinforcement learning (RL) require RL agents to be able to learn sequentially and continuously, a learning paradigm known as continuous reinforcement learning. This survey reviews how continual learning transforms RL agents into dynamic continual learners. This enables RL agents to acquire and retain useful and reusable knowledge seamlessly. The paper delves into fundamental aspects of continual reinforcement learning, exploring key concepts, significant challenges, and novel methodologies. Special emphasis is placed on recent advancements in continual reinforcement learning within robotics, along with a succinct overview of evaluation environments utilized in prominent research, facilitating accessibility for newcomers to the field. The review concludes with a discussion on limitations and promising future directions, providing valuable insights for researchers and practitioners alike.",
+   "query": "reinforcement learning exploration"
+  },
+  {
+   "id": "2510.01265",
+   "title": "RLP: Reinforcement as a Pretraining Objective",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "The dominant paradigm for training large reasoning models starts with pre-training using next-token prediction loss on vast amounts of data. Reinforcement learning, while powerful in scaling reasoning, is introduced only as the very last phase of post-training, preceded by supervised fine-tuning. While dominant, is this an optimal way of training? In this paper, we present RLP, an information-driven reinforcement pretraining objective, that brings the core spirit of reinforcement learning -- exploration -- to the last phase of pretraining. The key idea is to treat chain-of-thought as an exploratory action, with rewards computed based on the information gain it provides for predicting future tokens. This training objective essentially encourages the model to think for itself before predicting what comes next, thus teaching an independent thinking behavior earlier in the pretraining. More concretely, the reward signal measures the increase in log-likelihood of the next token when conditioning on both context and a sampled reasoning chain, compared to conditioning on context alone. This approach yields a verifier-free dense reward signal, allowing for efficient training for the full document stream during pretraining. Specifically, RLP reframes reinforcement learning for reasoning as a pretraining objective on ordinary text, bridging the gap between next-token prediction and the emergence of useful chain-of-thought reasoning. Pretraining with RLP on Qwen3-1.7B-Base lifts the overall average across an eight-benchmark math-and-science suite by 19%. With identical post-training, the gains compound, with the largest improvements on reasoning-heavy tasks such as AIME25 and MMLU-Pro. Applying RLP to the Nemotron-Nano-12B-v2 increases the overall average from 42.81% to 61.32% and raises the average on scientific reasoning by 23%, demonstrating scalability across architectures and model sizes.",
+   "query": "reinforcement learning exploration"
+  },
+  {
+   "id": "2603.10971",
+   "title": "ContactExplorer: Contact Coverage-Guided Exploration for General-Purpose Dexterous Manipulation",
+   "published": "2026-03-11",
+   "categories": [
+    "cs.RO",
+    "cs.AI"
+   ],
+   "abstract": "Reinforcement learning explores effectively in domains such as Atari games, navigation, and locomotion, where novelty over states or dynamics is a sufficient signal. In contrast, dexterous manipulation requires rich physical hand--object interactions, but existing methods often suffer from unstable contact-based novelty signals, inefficient distance novelty signals, or reliance on task-specific priors. We propose ContactExplorer, a general exploration method for dexterous manipulation tasks. ContactExplorer represents contact as the intersection between object surface points and hand keypoints, encouraging dexterous hands to discover diverse and novel contact patterns, namely which fingers contact which object regions. It maintains a contact counter conditioned on discretized object states obtained via learned hash codes. This counter is leveraged in two complementary ways: (1) a count-based contact coverage reward that promotes exploration of novel contact patterns, and (2) an energy-based reaching reward that guides the agent toward under-explored contact regions. We evaluate ContactExplorer on seven contact-rich manipulation tasks and five dexterous hand embodiments. Experimental results show that ContactExplorer substantially improves sample efficiency and success rates over existing exploration methods, that it reduces the need for task-specific priors, and that it remains effective across hand embodiments and transfers to the real world. Project page is https://contact-explorer.github.io.",
+   "query": "reinforcement learning exploration"
+  },
+  {
+   "id": "2603.18326",
+   "title": "Escaping Offline Pessimism: Vector-Field Reward Shaping for Safe Frontier Exploration",
+   "published": "2026-03-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "While offline reinforcement learning provides reliable policies for real-world deployment, its inherent pessimism severely restricts an agent's ability to explore and collect novel data online. Drawing inspiration from safe reinforcement learning, exploring near the boundary of regions well covered by the offline dataset and reliably modeled by the simulator allows an agent to take manageable risks--venturing into informative but moderate-uncertainty states while remaining close enough to familiar regions for safe recovery. However, naively rewarding this boundary-seeking behavior can lead to a degenerate parking behavior, where the agent simply stops once it reaches the frontier. To solve this, we propose a novel vector-field reward shaping paradigm designed to induce continuous, safe boundary exploration for non-adaptive deployed policies. Operating on an uncertainty oracle trained from offline data, our reward combines two complementary components: a gradient-alignment term that attracts the agent toward a target uncertainty level, and a rotational-flow term that promotes motion along the local tangent plane of the uncertainty manifold. Through theoretical analysis, we show that this reward structure naturally induces sustained exploratory behavior along the boundary while preventing degenerate solutions. Empirically, by integrating our proposed reward shaping with Soft Actor-Critic on a 2D continuous navigation task, we validate that agents successfully traverse uncertainty boundaries while balancing safe, informative data collection with primary task completion.",
+   "query": "reinforcement learning exploration"
+  }
+ ]
+}

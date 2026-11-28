@@ -1,0 +1,1321 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "feature learning theory neural networks",
+  "grokking",
+  "edge of stability"
+ ],
+ "papers": [
+  {
+   "id": "2502.01774",
+   "title": "Grokking Explained: A Statistical Phenomenon",
+   "published": "2025-02-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking, or delayed generalization, is an intriguing learning phenomenon where test set loss decreases sharply only after a model's training set loss has converged. This challenges conventional understanding of the training dynamics in deep learning networks. In this paper, we formalize and investigate grokking, highlighting that a key factor in its emergence is a distribution shift between training and test data. We introduce two synthetic datasets specifically designed to analyze grokking. One dataset examines the impact of limited sampling, and the other investigates transfer learning's role in grokking. By inducing distribution shifts through controlled imbalanced sampling of sub-categories, we systematically reproduce the phenomenon, demonstrating that while small-sampling is strongly associated with grokking, it is not its cause. Instead, small-sampling serves as a convenient mechanism for achieving the necessary distribution shift. We also show that when classes form an equivariant map, grokking can be explained by the model's ability to learn from similar classes or sub-categories. Unlike earlier work suggesting that grokking primarily arises from high regularization and sparse data, we demonstrate that it can also occur with dense data and minimal hyper-parameter tuning. Our findings deepen the understanding of grokking and pave the way for developing better stopping criteria in future training processes.",
+   "query": "grokking"
+  },
+  {
+   "id": "2501.04697",
+   "title": "Grokking at the Edge of Numerical Stability",
+   "published": "2025-01-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "stat.ML"
+   ],
+   "abstract": "Grokking, the sudden generalization that occurs after prolonged overfitting, is a surprising phenomenon challenging our understanding of deep learning. Although significant progress has been made in understanding grokking, the reasons behind the delayed generalization and its dependence on regularization remain unclear. In this work, we argue that without regularization, grokking tasks push models to the edge of numerical stability, introducing floating point errors in the Softmax function, which we refer to as Softmax Collapse (SC). We demonstrate that SC prevents grokking and that mitigating SC enables grokking without regularization. Investigating the root cause of SC, we find that beyond the point of overfitting, the gradients strongly align with what we call the naïve loss minimization (NLM) direction. This component of the gradient does not alter the model's predictions but decreases the loss by scaling the logits, typically by scaling the weights along their current direction. We show that this scaling of the logits explains the delay in generalization characteristic of grokking and eventually leads to SC, halting further learning. To validate our hypotheses, we introduce two key contributions that address the challenges in grokking tasks: StableMax, a new activation function that prevents SC and enables grokking without regularization, and $\\perp$Grad, a training algorithm that promotes quick generalization in grokking tasks by preventing NLM altogether. These contributions provide new insights into grokking, elucidating its delayed generalization, reliance on regularization, and the effectiveness of existing grokking-inducing methods. Code for this paper is available at https://github.com/LucasPrietoAl/grokking-at-the-edge-of-numerical-stability.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.02859",
+   "title": "Late-Stage Generalization Collapse in Grokking: Detecting anti-grokking with Weightwatcher",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "\\emph{Memorization} in neural networks lacks a precise operational definition and is often inferred from the grokking regime, where training accuracy saturates while test accuracy remains very low. We identify a previously unreported third phase of grokking in this training regime: \\emph{anti-grokking}, a late-stage collapse of generalization. We revisit two canonical grokking setups: a 3-layer MLP trained on a subset of MNIST and a transformer trained on modular addition, but extended training far beyond standard. In both cases, after models transition from pre-grokking to successful generalization, test accuracy collapses back to chance while training accuracy remains perfect, indicating a distinct post-generalization failure mode. To diagnose anti-grokking, we use the open-source \\texttt{WeightWatcher} tool based on HTSR/SETOL theory. The primary signal is the emergence of \\emph{Correlation Traps}: anomalously large eigenvalues beyond the Marchenko--Pastur bulk in the empirical spectral density of shuffled weight matrices, which are predicted to impair generalization. As a secondary signal, anti-grokking corresponds to the average HTSR layer quality metric $α$ deviating from $2.0$. Neither metric requires access to the test or training data. We compare these signals to alternative grokking diagnostic, including $\\ell_2$ norms, Activation Sparsity, Absolute Weight Entropy, and Local Circuit Complexity. These track pre-grokking and grokking but fail to identify anti-grokking. Finally, we show that Correlation Traps can induce catastrophic forgetting and/or prototype memorization, and observe similar pathologies in large-scale LLMs, like OSS GPT 20/120B.",
+   "query": "grokking"
+  },
+  {
+   "id": "2610.00620",
+   "title": "Misalignment of Low-Loss Regions Causes Grokking",
+   "published": "2026-09-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking refers to the delayed emergence of validation-set generalization after a model has already overfit the training set. Although first observed in small algorithmic tasks trained with transformers, its underlying mechanism remains unsettled. In this work, we develop an analysis framework based on mode connectivity and the geometry of low-loss regions. The framework predicts that the standard modular-arithmetic setting does not always produce grokking: under a symmetry-preserving train/validation split, we observe a stable anti-grokking case in which validation performance does not recover. This counterexample challenges several existing correlational explanations of grokking. More broadly, our analysis framework and results further suggest that grokking arises when the low-loss regions induced by the training and validation partitions are misaligned. Once these regions become well aligned, training hyperparameters alone cannot produce grokking and the observed dynamics collapse to either trainable or non-trainable behavior.",
+   "query": "grokking"
+  },
+  {
+   "id": "2506.04434",
+   "title": "Grokking and Generalization Collapse: Insights from \\texttt{HTSR} theory",
+   "published": "2025-06-04",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "We study the well-known grokking phenomena in neural networks (NNs) using a 3-layer MLP trained on 1 k-sample subset of MNIST, with and without weight decay, and discover a novel third phase -- \\emph{anti-grokking} -- that occurs very late in training and resembles but is distinct from the familiar \\emph{pre-grokking} phases: test accuracy collapses while training accuracy stays perfect. This late-stage collapse is distinct, from the known pre-grokking and grokking phases, and is not detected by other proposed grokking progress measures. Leveraging Heavy-Tailed Self-Regularization HTSR through the open-source WeightWatcher tool, we show that the HTSR layer quality metric $α$ alone delineates all three phases, whereas the best competing metrics detect only the first two. The \\emph{anti-grokking} is revealed by training for $10^7$ and is invariably heralded by $α< 2$ and the appearance of \\emph{Correlation Traps} -- outlier singular values in the randomized layer weight matrices that make the layer weight matrix atypical and signal overfitting of the training set. Such traps are verified by visual inspection of the layer-wise empirical spectral densities, and by using Kolmogorov--Smirnov tests on randomized spectra. Comparative metrics, including activation sparsity, absolute weight entropy, circuit complexity, and $l^2$ weight norms track pre-grokking and grokking but fail to distinguish grokking from anti-grokking. This discovery provides a way to measure overfitting and generalization collapse without direct access to the test data. These results strengthen the claim that the \\emph{HTSR} $α$ provides universal layer-convergence target at $α\\approx 2$ and underscore the value of using the HTSR alpha $(α)$ metric as a measure of generalization.",
+   "query": "grokking"
+  },
+  {
+   "id": "2502.01739",
+   "title": "Grokking vs. Learning: Same Features, Different Encodings",
+   "published": "2025-02-03",
+   "categories": [
+    "cs.LG",
+    "cond-mat.dis-nn",
+    "cs.AI"
+   ],
+   "abstract": "Grokking typically achieves similar loss to ordinary, \"steady\", learning. We ask whether these different learning paths - grokking versus ordinary training - lead to fundamental differences in the learned models. To do so we compare the features, compressibility, and learning dynamics of models trained via each path in two tasks. We find that grokked and steadily trained models learn the same features, but there can be large differences in the efficiency with which these features are encoded. In particular, we find a novel \"compressive regime\" of steady training in which there emerges a linear trade-off between model loss and compressibility, and which is absent in grokking. In this regime, we can achieve compression factors 25x times the base model, and 5x times the compression achieved in grokking. We then track how model features and compressibility develop through training. We show that model development in grokking is task-dependent, and that peak compressibility is achieved immediately after the grokking plateau. Finally, novel information-geometric measures are introduced which demonstrate that models undergoing grokking follow a straight path in information space.",
+   "query": "grokking"
+  },
+  {
+   "id": "2611.18396",
+   "title": "Deep Neural Networks Training Efficiency: Does Grokking Modify its Dynamics?",
+   "published": "2026-11-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We study whether grokking, the delayed emergence of out-of-distribution generalization after apparent overfitting, alters training efficiency in deep neural networks, where efficiency is measured as accuracy per unit energy. Using two canonical settings, modular arithmetic and MNIST, we analyze two neural network models under 16-, 32-, and 64-bit precision and use Orthograd to test whether grokking produces noticeable deviations from the typically decreasing dynamics of training efficiency. We consider both short training runs of up to 500 epochs and long training runs of up to 20,000 epochs, and in both cases identify grokking as a sharp improvement in test accuracy after a sustained train-test gap. In the short-horizon experiments, applying Orthograd at progressively stronger levels during early training does not induce grokking, and efficiency remains smoothly decreasing. In the long-horizon experiments, Orthograd induces grokking, but the efficiency curves remain approximately monotonic and show no appreciable local increase at the grokking transition. These results suggest that, in our setting, grokking does not materially alter overall training-efficiency dynamics.",
+   "query": "grokking"
+  },
+  {
+   "id": "2504.03162",
+   "title": "Beyond Progress Measures: Theoretical Insights into the Mechanism of Grokking",
+   "published": "2025-04-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking, referring to the abrupt improvement in test accuracy after extended overfitting, offers valuable insights into the mechanisms of model generalization. Existing researches based on progress measures imply that grokking relies on understanding the optimization dynamics when the loss function is dominated solely by the weight decay term. However, we find that this optimization merely leads to token uniformity, which is not a sufficient condition for grokking. In this work, we investigate the grokking mechanism underlying the Transformer in the task of prime number operations. Based on theoretical analysis and experimental validation, we present the following insights: (i) The weight decay term encourages uniformity across all tokens in the embedding space when it is minimized. (ii) The occurrence of grokking is jointly determined by the uniformity of the embedding space and the distribution of the training dataset. Building on these insights, we provide a unified perspective for understanding various previously proposed progress measures and introduce a novel, concise, and effective progress measure that could trace the changes in test loss more accurately. Finally, to demonstrate the versatility of our theoretical framework, we design a dedicated dataset to validate our theory on ResNet-18, successfully showcasing the occurrence of grokking. The code is released at https://github.com/Qihuai27/Grokking-Insight.",
+   "query": "grokking"
+  },
+  {
+   "id": "2607.11666",
+   "title": "How to Tame Grokking: Representation Geometry as a Control Signal",
+   "published": "2026-07-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking is a phenomenon in which neural networks initially memorize training data and only later exhibit strong generalization after prolonged optimization. Despite extensive recent study, the factors influencing the emergence and timing of grokking remain incompletely understood. We investigate the relationship between representation geometry and delayed generalization. We find that dimensionality collapse consistently precedes the onset of grokking in all evaluated settings. Motivated by these observations, we introduce Geometric Dimensionality Regularization (GeomDR), a simple spectral regularizer that modifies the effective dimensionality of hidden representations during training. Across modular addition, modular division, and permutation composition tasks, GeomDR consistently alters grokking dynamics and can substantially accelerate the onset of generalization depending on the intervention schedule and target dimensionality. In several settings, grokking is accelerated by up to 52 times relative to standard AdamW training. Similar qualitative effects are observed in both multilayer perceptrons and transformers. Together, these results suggest that representation geometry can serve as an effective control signal for grokking and provide evidence that geometric interventions offer a practical approach for studying and influencing delayed generalization in neural networks.",
+   "query": "grokking"
+  },
+  {
+   "id": "2505.11411",
+   "title": "Is Grokking a Computational Glass Relaxation?",
+   "published": "2025-05-16",
+   "categories": [
+    "cs.LG",
+    "cond-mat.dis-nn"
+   ],
+   "abstract": "Understanding neural network's (NN) generalizability remains a central question in deep learning research. The special phenomenon of grokking, where NNs abruptly generalize long after the training performance reaches a near-perfect level, offers a unique window to investigate the underlying mechanisms of NNs' generalizability. Here we propose an interpretation for grokking by framing it as a computational glass relaxation: viewing NNs as a physical system where parameters are the degrees of freedom and train loss is the system energy, we find memorization process resembles a rapid cooling of liquid into non-equilibrium glassy state at low temperature and the later generalization is like a slow relaxation towards a more stable configuration. This mapping enables us to sample NNs' Boltzmann entropy (states of density) landscape as a function of training loss and test accuracy. Our experiments in transformers on arithmetic tasks suggests that there is NO entropy barrier in the memorization-to-generalization transition of grokking, challenging previous theory that defines grokking as a first-order phase transition. We identify a high-entropy advantage under grokking, an extension of prior work linking entropy to generalizability but much more significant. Inspired by grokking's far-from-equilibrium nature, we develop a toy optimizer WanD based on Wang-landau molecular dynamics, which can eliminate grokking without any constraints and find high-norm generalizing solutions. This provides strictly-defined counterexamples to theory attributing grokking solely to weight norm evolution towards the Goldilocks zone and also suggests new potential ways for optimizer design.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.06702",
+   "title": "Explaining Grokking in Transformers through the Lens of Inductive Bias",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We investigate grokking in transformers through the lens of inductive bias: dispositions arising from architecture or optimization that let the network prefer one solution over another. We first show that architectural choices such as the position of Layer Normalization (LN) strongly modulates grokking speed. This modulation is explained by isolating how LN on specific pathways shapes shortcut-learning and attention entropy. Subsequently, we study how different optimization settings modulate grokking, inducing distinct interpretations of previously proposed controls such as readout scale. Particularly, we find that using readout scale as a control for lazy training can be confounded by learning rate and weight decay in our setting. Accordingly, we show that features evolve continuously throughout training, suggesting grokking in transformers can be more nuanced than a lazy-to-rich transition of the learning regime. Finally, we show how generalization predictably emerges with feature compressibility in grokking, across different modulators of inductive bias. Our code is released at https://tinyurl.com/y52u3cad.",
+   "query": "grokking"
+  },
+  {
+   "id": "2601.19791",
+   "title": "To Grok Grokking: Provable Grokking in Ridge Regression",
+   "published": "2026-01-27",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We study grokking, the onset of generalization long after overfitting, in a classical ridge regression setting. We prove end-to-end grokking results for learning over-parameterized linear regression models using gradient descent with weight decay. Specifically, we prove that the following stages occur: (i) the model overfits the training data early during training; (ii) poor generalization persists long after overfitting has manifested; and (iii) the generalization error eventually becomes arbitrarily small. Moreover, we show, both theoretically and empirically, that grokking can be amplified or eliminated in a principled manner through proper hyperparameter tuning. To the best of our knowledge, these are the first rigorous quantitative bounds on the generalization delay (which we refer to as the \"grokking time\") in terms of training hyperparameters. Lastly, going beyond the linear setting, we empirically demonstrate that our quantitative bounds also capture the behavior of grokking on non-linear neural networks. Our results suggest that grokking is not an inherent failure mode of deep learning, but rather a consequence of specific training conditions, and thus does not require fundamental changes to the model architecture or learning algorithm to avoid.",
+   "query": "grokking"
+  },
+  {
+   "id": "2605.12394",
+   "title": "Detecting overfitting in Neural Networks during long-horizon grokking using Random Matrix Theory",
+   "published": "2026-05-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Training Neural Networks (NNs) without overfitting is difficult; detecting that overfitting is difficult as well. We present a novel Random Matrix Theory method that detects the onset of overfitting in deep learning models without access to train or test data. For each model layer, we randomize each weight matrix element-wise, $\\mathbf{W} \\to \\mathbf{W}^{\\mathrm{rand}}$, fit the randomized empirical spectral distribution with a Marchenko-Pastur distribution, and identify large outliers that violate self-averaging. We call these outliers Correlation Traps. During the onset of overfitting, which we call the \"anti-grokking\" phase in long-horizon grokking, Correlation Traps form and grow in number and scale as test accuracy decreases while train accuracy remains high. Traps may be benign or may harm generalization; we provide an empirical approach to distinguish between them by passing random data through the trained model and evaluating the JS divergence of output logits. Our findings show that anti-grokking is an additional grokking phase with high train accuracy and decreasing test accuracy, structurally distinct from pre-grokking through its Correlation Traps. More broadly, we find that some foundation-scale LLMs exhibit the same Correlation Traps, indicating potentially harmful overfitting.",
+   "query": "grokking"
+  },
+  {
+   "id": "2601.03162",
+   "title": "On the Convergence Behavior of Preconditioned Gradient Descent Toward the Rich Learning Regime",
+   "published": "2026-01-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Spectral bias, the tendency of neural networks to learn low frequencies first, can be both a blessing and a curse. While it enhances the generalization capabilities by suppressing high-frequency noise, it can be a limitation in scientific tasks that require capturing fine-scale structures. The delayed generalization phenomenon known as grokking is another barrier to rapid training of neural networks. Grokking has been hypothesized to arise as learning transitions from the NTK to the feature-rich regime. This paper explores the impact of preconditioned gradient descent (PGD), such as Gauss-Newton, on spectral bias and grokking phenomena. We demonstrate through theoretical and empirical results how PGD can mitigate issues associated with spectral bias. Additionally, building on the rich learning regime grokking hypothesis, we study how PGD can be used to reduce delays associated with grokking. Our conjecture is that PGD, without the impediment of spectral bias, enables uniform exploration of the parameter space in the NTK regime. Our experimental results confirm this prediction, providing strong evidence that grokking represents a transitional behavior between the lazy regime characterized by the NTK and the rich regime. These findings deepen our understanding of the interplay between optimization dynamics, spectral bias, and the phases of neural network learning.",
+   "query": "grokking"
+  },
+  {
+   "id": "2610.35112",
+   "title": "Subspace Crystallization in Grokking: Rank Compression Tracks the Phase Transition",
+   "published": "2026-10-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking describes understanding something deeply and intuitively. In neural networks, it is the phenomenon where a network generalizes long after memorizing its training data. This delay has been linked to a fall in the effective rank of the network's weight matrices, but whether this rank compression drives grokking or follows it is still unresolved. We study a mean-field MLP and a one-layer transformer trained on modular arithmetic and observe that: (i) Compression follows the onset, not memorization. Every transformer memorizes its training data within 250 steps, while the grokking onset (the first step at which test accuracy reaches 95%) varies from 6,500 to 21,000 steps. The steepest fall in effective rank comes about 900 steps after the onset, however late the onset occurs, and networks that memorize without grokking compress far less. (ii) Subspace crystallization. We call the span of the fewest top singular directions of a weight matrix that preserve 99% of test accuracy its sufficient subspace. Its size can shrink as the margin between the correct and the best wrong output grows, so we also count the directions needed to keep the outputs within 10%. In the transformer, this count falls during the transition from a quarter or more of the available directions to about a tenth, which we call subspace crystallization. (iii) Imposing low rank does not speed up grokking. Against a factorized full-rank control, capping the rank of the transformer's MLP input weights delays the onset, and capping the rank of its embedding stops 15 of 20 runs from grokking. Compression is therefore a signature of grokking rather than its cause.",
+   "query": "grokking"
+  },
+  {
+   "id": "2604.04655",
+   "title": "Grokking as Dimensional Phase Transition in Neural Networks",
+   "published": "2026-04-06",
+   "categories": [
+    "cs.LG",
+    "cond-mat.dis-nn",
+    "cs.AI",
+    "nlin.AO"
+   ],
+   "abstract": "Neural network grokking -- the abrupt memorization-to-generalization transition -- challenges our understanding of learning dynamics. Through finite-size scaling of gradient avalanche dynamics across eight model scales, we find that grokking is a \\textit{dimensional phase transition}: effective dimensionality~$D$ crosses from sub-diffusive (subcritical, $D < 1$) to super-diffusive (supercritical, $D > 1$) at generalization onset, exhibiting self-organized criticality (SOC). Crucially, $D$ reflects \\textbf{gradient field geometry}, not network architecture: synthetic i.i.d.\\ Gaussian gradients maintain $D \\approx 1$ regardless of graph topology, while real training exhibits dimensional excess from backpropagation correlations. The grokking-localized $D(t)$ crossing -- robust across topologies -- offers new insight into the trainability of overparameterized networks.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.19533",
+   "title": "Grokking Finite-Dimensional Algebra",
+   "published": "2026-02-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.RA"
+   ],
+   "abstract": "This paper investigates the grokking phenomenon, which refers to the sudden transition from a long memorization to generalization observed during neural networks training, in the context of learning multiplication in finite-dimensional algebras (FDA). While prior work on grokking has focused mainly on group operations, we extend the analysis to more general algebraic structures, including non-associative, non-commutative, and non-unital algebras. We show that learning group operations is a special case of learning FDA, and that learning multiplication in FDA amounts to learning a bilinear product specified by the algebra's structure tensor. For algebras over the reals, we connect the learning problem to matrix factorization with an implicit low-rank bias, and for algebras over finite fields, we show that grokking emerges naturally as models must learn discrete representations of algebraic elements. This leads us to experimentally investigate the following core questions: (i) how do algebraic properties such as commutativity, associativity, and unitality influence both the emergence and timing of grokking, (ii) how structural properties of the structure tensor of the FDA, such as sparsity and rank, influence generalization, and (iii) to what extent generalization correlates with the model learning latent embeddings aligned with the algebra's representation. Our work provides a unified framework for grokking across algebraic structures and new insights into how mathematical structure governs neural network generalization dynamics.",
+   "query": "grokking"
+  },
+  {
+   "id": "2506.05718",
+   "title": "Grokking Beyond the Euclidean Norm of Model Parameters",
+   "published": "2025-06-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Grokking refers to a delayed generalization following overfitting when optimizing artificial neural networks with gradient-based methods. In this work, we demonstrate that grokking can be induced by regularization, either explicit or implicit. More precisely, we show that when there exists a model with a property $P$ (e.g., sparse or low-rank weights) that generalizes on the problem of interest, gradient descent with a small but non-zero regularization of $P$ (e.g., $\\ell_1$ or nuclear norm regularization) results in grokking. This extends previous work showing that small non-zero weight decay induces grokking. Moreover, our analysis shows that over-parameterization by adding depth makes it possible to grok or ungrok without explicitly using regularization, which is impossible in shallow cases. We further show that the $\\ell_2$ norm is not a reliable proxy for generalization when the model is regularized toward a different property $P$, as the $\\ell_2$ norm grows in many cases where no weight decay is used, but the model generalizes anyway. We also show that grokking can be amplified solely through data selection, with any other hyperparameter fixed.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.11286",
+   "title": "Grok in the Wild: Characterizing the Roles and Uses of Large Language Models on Social Media",
+   "published": "2026-02-11",
+   "categories": [
+    "cs.SI",
+    "cs.CY"
+   ],
+   "abstract": "xAI's large language model, Grok, is called by millions of people each week on the social media platform X. Prior work characterizing how large language models are used has focused on private, one-on-one interactions. Grok's deployment on X represents a major departure from this setting, with interactions occurring in a public social space. In this paper, we systematically sample three months of interaction data to investigate how, when, and to what effect Grok is used on X. At the platform level, we find that Grok responds to 62% of requests, that the majority (51%) are in English, and that engagement is low, with half of Grok's responses receiving 20 or fewer views after 48 hours. We also inductively build a taxonomy of 10 roles that LLMs play in mediating social interactions and use these roles to analyze 41,735 interactions with Grok on X. We find that Grok most often serves as an information provider but, in contrast to LLM use in private one-on-one settings, also takes on roles related to dispute management, such as truth arbiter, advocate, and adversary. Finally, we characterize the population of X users who prompted Grok and find that their self-expressed interests are closely related to the roles the model assumes in the corresponding interactions. Our findings provide an initial quantitative description of human-AI interactions on X, and a broader understanding of the diverse roles that large language models might play in our online social spaces.",
+   "query": "grokking"
+  },
+  {
+   "id": "2604.07380",
+   "title": "The Lifecycle of the Spectral Edge: From Gradient Learning to Weight-Decay Compression",
+   "published": "2026-04-08",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We decompose the spectral edge -- the dominant direction of the Gram matrix of parameter updates -- into its gradient and weight-decay components during grokking in two sequence tasks (Dyck-1 and SCAN). We find a sharp two-phase lifecycle: before grokking the edge is gradient-driven and functionally active; at grokking, gradient and weight decay align, and the edge becomes a compression axis that is perturbation-flat yet ablation-critical (>4000x more impactful than random directions). Three universality classes emerge (functional, mixed, compression), predicted by the gap flow equation. Nonlinear probes show information is re-encoded, not lost (MLP $R^2=0.99$ where linear $R^2=0.86$), and removing weight decay post-grok reverses compression while preserving the algorithm.",
+   "query": "grokking"
+  },
+  {
+   "id": "2607.23967",
+   "title": "Grokking on the Weight-Decay Clock: A Rate Hierarchy from Softly Broken Symmetries",
+   "published": "2026-07-27",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Delayed generalization, or grokking, remains poorly understood despite extensive empirical study. We identify an exactly solvable late-time relaxation mechanism for grokking in linear models trained with full-batch heavy-ball optimization and weight decay, together with a locally quadratic extension to nonlinear neural networks. Our analysis reveals a distinguished population-active component of the empirical null space, which we call the grokking subspace. Along this subspace, the training predictions remain unchanged, leaving weight decay as the sole restoring force and giving rise to a slow dissipative relaxation governed by an exact discrete-time and continuous-time law. We show that only this subspace contributes to the slow asymptotic decay of the population risk and derive explicit iteration-scale predictions for the grokking time, recovering the familiar $(1-β)/(ηλ)$ scaling in the weak-regularization regime. The theory further predicts distinct effects of optimizer choice, distinguishing coupled $L_2$ regularization from decoupled weight decay, and yields causal predictions for interventions that modify the grokking component. We verify all theoretical identities without fitted parameters in a synthetic model where every subspace and relaxation rate is computable in closed form. We further observe genuine delayed generalization in modular addition, where the measured delay follows the predicted scaling and the late-time relaxation agrees closely with the theoretical clock.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.16746",
+   "title": "Low-Dimensional and Transversely Curved Optimization Dynamics in Grokking",
+   "published": "2026-02-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking -- the delayed transition from memorization to generalization in small algorithmic tasks -- remains poorly understood. We present a geometric analysis of optimization dynamics in transformers trained on modular arithmetic. PCA of attention weight trajectories reveals that training evolves predominantly within a low-dimensional execution subspace, with a single principal component capturing 68-83% of trajectory variance. To probe loss-landscape geometry, we measure commutator defects -- the non-commutativity of successive gradient steps -- and project them onto this learned subspace. We find that curvature grows sharply in directions orthogonal to the execution subspace while the trajectory remains largely confined to it. Importantly, curvature growth consistently precedes generalization across learning rates and hyperparameter regimes, with the lead time obeying a power law in the grokking timescale. Causal intervention experiments show that motion along the learned subspace is necessary for grokking, while artificially increasing curvature is insufficient. Together, these results support a geometric account in which grokking reflects escape from a metastable regime characterized by low-dimensional confinement and transverse curvature accumulation. All findings replicate across this learning-rate range, a qualitatively different slow regime (lr=5e-5, wd=0.1, 3 layers), and three random seeds, though alignment dynamics differ quantitatively between regimes. Causal intervention experiments establish that orthogonal gradient flow is necessary but not sufficient for grokking: suppressing it prevents generalization with a monotonic dose-response across four operations, while artificially boosting curvature defects has no effect.",
+   "query": "grokking"
+  },
+  {
+   "id": "2604.13123",
+   "title": "Spectral Entropy Collapse as a Phase Transition in Delayed Generalisation: An Interventional and Predictive Framework for Grokkin",
+   "published": "2026-04-13",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking - the delayed transition from memorisation to generalisation in neural networks - remains poorly understood. We study this phenomenon through the geometry of learned representations and identify a consistent empirical signature preceding generalisation: collapse of the spectral entropy of the representation covariance matrix. Across modular arithmetic tasks and multiple random seeds, spectral entropy decreases gradually during training and crosses a stable task-specific threshold before test accuracy rises. A representation-mixing intervention that delays this collapse also delays grokking, including under norm-matched controls, indicating that the effect is not explained by parameter norm alone. We further show that the entropy gap predicts the remaining time until grokking with useful out-of-sample accuracy. To probe the structure underlying this transition, we introduce a Fourier-alignment observable for cyclic-group tasks. Entropy collapse is strongly coupled to the emergence of Fourier-aligned representations, suggesting that spectral entropy tracks concentration of the representation into task-structured directions rather than generic compression alone. The same qualitative dynamics appear in non-abelian group composition tasks, while MLP controls show that entropy collapse by itself is insufficient for grokking in the absence of appropriate inductive bias. Taken together, the results support a view of grokking as a representational phase transition with an observable geometric signature. We discuss the scope and limitations of this interpretation, connections to recent feature-learning and spectral-dynamics work, and directions for testing whether similar transitions appear in larger-scale learning systems.",
+   "query": "grokking"
+  },
+  {
+   "id": "2608.25813",
+   "title": "Mapping the Emergence of Regularization-Driven Dynamics in Grokking",
+   "published": "2026-08-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "For overparameterized neural networks, many solutions can fit the training data equally well while behaving very differently on unseen samples. Grokking separates training fit from visible generalization, providing a window for studying how this selection develops during training. We sweep short, fixed-duration weight decay (WD) perturbations across the pre-generalization plateau and measure how they shift later generalization time. Across three grokking tasks, these shifts are unordered early in the plateau but later form a stable dose ordering before visible generalization, with stronger WD increases leading to earlier generalization and stronger WD decreases leading to later generalization. Test-loss barriers between perturbed and baseline generalization checkpoints collapse toward zero while the ordered timing effects persist. A similar response reorganization is observed under $\\ell_1$ regularization in the grokking setting of Junior et al. (2025). Drawing on Waddington's developmental landscape as an analogy, we call this combination of increasingly constrained solution selection and persistent dose-ordered timing shifts the canalization of grokking solution selection. Together, our response maps and loss-barrier measurements reveal a dynamical reorganization before visible generalization that is consistent with the theoretical picture of regularization-driven motion along a stable slow manifold (Boursier et al., 2025).",
+   "query": "grokking"
+  },
+  {
+   "id": "2507.11645",
+   "title": "Tracing the Path to Grokking: Embeddings, Dropout, and Network Activation",
+   "published": "2025-07-15",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking refers to delayed generalization in which the increase in test accuracy of a neural network occurs appreciably after the improvement in training accuracy This paper introduces several practical metrics including variance under dropout, robustness, embedding similarity, and sparsity measures, that can forecast grokking behavior. Specifically, the resilience of neural networks to noise during inference is estimated from a Dropout Robustness Curve (DRC) obtained from the variation of the accuracy with the dropout rate as the model transitions from memorization to generalization. The variance of the test accuracy under stochastic dropout across training checkpoints further exhibits a local maximum during the grokking. Additionally, the percentage of inactive neurons decreases during generalization, while the embeddings tend to a bimodal distribution independent of initialization that correlates with the observed cosine similarity patterns and dataset symmetries. These metrics additionally provide valuable insight into the origin and behaviour of grokking.",
+   "query": "grokking"
+  },
+  {
+   "id": "2601.09049",
+   "title": "Is Grokking Worthwhile? Functional Analysis and Transferability of Generalization Circuits in Transformers",
+   "published": "2026-01-14",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "While Large Language Models (LLMs) excel at factual retrieval, they often struggle with the \"curse of two-hop reasoning\" in compositional tasks. Recent research suggests that parameter-sharing transformers can bridge this gap by forming a \"Generalization Circuit\" during a prolonged \"grokking\" phase. A fundamental question arises: Is a grokked model superior to its non-grokked counterparts on downstream tasks? Furthermore, is the extensive computational cost of waiting for the grokking phase worthwhile? In this work, we conduct a mechanistic study to evaluate the Generalization Circuit's role in knowledge assimilation and transfer. We demonstrate that: (i) The inference paths established by non-grokked and grokked models for in-distribution compositional queries are identical. This suggests that the \"Generalization Circuit\" does not represent the sudden acquisition of a new reasoning paradigm. Instead, we argue that grokking is the process of integrating memorized atomic facts into an naturally established reasoning path. (ii) Achieving high accuracy on unseen cases after prolonged training and the formation of a certain reasoning path are not bound; they can occur independently under specific data regimes. (iii) Even a mature circuit exhibits limited transferability when integrating new knowledge, suggesting that \"grokked\" Transformers do not achieve a full mastery of compositional logic.",
+   "query": "grokking"
+  },
+  {
+   "id": "2512.03437",
+   "title": "Grokked Models are Better Unlearners",
+   "published": "2025-12-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking-delayed generalization that emerges well after a model has fit the training data-has been linked to robustness and representation quality. We ask whether this training regime also helps with machine unlearning, i.e., removing the influence of specified data without full retraining. We compare applying standard unlearning methods before versus after the grokking transition across vision (CNNs/ResNets on CIFAR, SVHN, and ImageNet) and language (a transformer on a TOFU-style setup). Starting from grokked checkpoints consistently yields (i) more efficient forgetting (fewer updates to reach a target forget level), (ii) less collateral damage (smaller drops on retained and test performance), and (iii) more stable updates across seeds, relative to early-stopped counterparts under identical unlearning algorithms. Analyses of features and curvature further suggest that post-grokking models learn more modular representations with reduced gradient alignment between forget and retain subsets, which facilitates selective forgetting. Our results highlight when a model is trained (pre- vs. post-grokking) as an orthogonal lever to how unlearning is performed, providing a practical recipe to improve existing unlearning methods without altering their algorithms.",
+   "query": "grokking"
+  },
+  {
+   "id": "2507.20057",
+   "title": "What Can Grokking Teach Us About Learning Under Nonstationarity?",
+   "published": "2025-07-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In continual learning problems, it is often necessary to overwrite components of a neural network's learned representation in response to changes in the data stream; however, neural networks often exhibit \\primacy bias, whereby early training data hinders the network's ability to generalize on later tasks. While feature-learning dynamics of nonstationary learning problems are not well studied, the emergence of feature-learning dynamics is known to drive the phenomenon of grokking, wherein neural networks initially memorize their training data and only later exhibit perfect generalization. This work conjectures that the same feature-learning dynamics which facilitate generalization in grokking also underlie the ability to overwrite previous learned features as well, and methods which accelerate grokking by facilitating feature-learning dynamics are promising candidates for addressing primacy bias in non-stationary learning problems. We then propose a straightforward method to induce feature-learning dynamics as needed throughout training by increasing the effective learning rate, i.e. the ratio between parameter and update norms. We show that this approach both facilitates feature-learning and improves generalization in a variety of settings, including grokking, warm-starting neural network training, and reinforcement learning tasks.",
+   "query": "grokking"
+  },
+  {
+   "id": "2605.09724",
+   "title": "How Large Must a Model Be to Grok? A competition between memorisation and generalisation timescales",
+   "published": "2026-05-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Despite a known dependence between grokking and model parameter count, how model capacity shapes grokking remains an open question. Focusing on small Transformers and modular arithmetic, we give a quantitative account of the relationship between model capacity and grokking as a competition between two timescales: generalisation ($T_{\\text{gen}}$) and memorisation ($T_{\\text{mem}}$). Building on prior formalisms for the empirical information capacity of Transformers, we define and measure $T_{\\text{gen}}$ on modular arithmetic datasets and $T_{\\text{mem}}$ on random-label datasets of equivalent complexity, and show that their intersection correlates with model sizes where consistent grokking begins. We also observe empirical laws for $T_{\\text{gen}}$ and $T_{\\text{mem}}$ as models and datasets scale, motivating their forms theoretically and finding that our model of $T_{\\text{mem}}$ is consistent with prior observations that larger models tend to memorise faster. Moreover, extrapolating our empirical timescale laws predicted the existence of datasets for which no model of any size would consistently grok, a pattern supported on the modular arithmetic datasets of larger primes, demonstrating that our framework can make qualitative predictions out-of-distribution.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.18523",
+   "title": "The Geometry of Multi-Task Grokking: Transverse Instability, Superposition, and Weight Decay Phase Structure",
+   "published": "2026-02-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking -- the abrupt transition from memorization to generalization long after near-zero training loss -- has been studied mainly in single-task settings. We extend geometric analysis to multi-task modular arithmetic, training shared-trunk Transformers on dual-task (mod-add + mod-mul) and tri-task (mod-add + mod-mul + mod-sq) objectives across a systematic weight decay sweep. Five consistent phenomena emerge. (1) Staggered grokking order: multiplication generalizes first, followed by squaring, then addition, with consistent delays across seeds. (2) Universal integrability: optimization trajectories remain confined to an empirically invariant low-dimensional execution manifold; commutator defects orthogonal to this manifold reliably precede generalization. (3) Weight decay phase structure: grokking timescale, curvature depth, reconstruction threshold, and defect lead covary systematically with weight decay, revealing distinct dynamical regimes and a sharp no-decay failure mode. (4) Holographic incompressibility: final solutions occupy only 4--8 principal trajectory directions yet are distributed across full-rank weights and destroyed by minimal perturbations; SVD truncation, magnitude pruning, and uniform scaling all fail to preserve performance. (5) Transverse fragility and redundancy: removing less than 10% of orthogonal gradient components eliminates grokking, yet dual-task models exhibit partial recovery under extreme deletion, suggesting redundant center manifolds enabled by overparameterization. Together, these results support a dynamical picture in which multi-task grokking constructs a compact superposition subspace in parameter space, with weight decay acting as compression pressure and excess parameters supplying geometric redundancy in optimization pathways.",
+   "query": "grokking"
+  },
+  {
+   "id": "2605.19720",
+   "title": "Asking Grok: AI-Assisted Sensemaking in Social Media Conversations",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.SI"
+   ],
+   "abstract": "LLM-powered AI assistants (e.g., Grok) are increasingly integrated into social media platforms, where they help explain content, provide context, and verify claims directly within conversation threads. While prior research has examined the accuracy of LLMs for fact-checking, little is known about how people interact with such systems in real-world social media environments. In this study, we empirically analyze user interactions with the AI assistant Grok on the social media platform X. Using a large-scale dataset consisting of 169,137 posts invoking Grok, we examine the types of requests directed at the AI assistant and the contexts in which it is used. We find that Grok is primarily invoked reactively to obtain or verify information. Although responses appear quickly, they typically only reach small audiences. Adoption is widespread but shallow, with 76.8% of users invoking Grok just once. We further examine how these interactions relate to Community Notes, X's community-based fact-checking system. While overlap between both systems is limited, it concentrates on verification-oriented and high-visibility content. Grok interactions typically occur earlier and do not predict subsequent correction activity. Together, these findings suggest that AI assistants function as an early complementary layer of sensemaking on social media rather than a replacement for crowd-based fact-checking systems.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.13331",
+   "title": "The Norm-Separation Delay Law of Grokking: A First-Principles Theory of Delayed Generalization",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Grokking -- the sudden generalisation that appears long after a model has perfectly memorised its training data -- has been widely observed but lacks a quantitative theory explaining the length of the delay. We show that grokking is a norm-driven representational phase transition in regularised training dynamics, and establish the Norm-Separation Delay Law: $T_{\\mathrm{grok}} - T_{\\mathrm{mem}} = Θ(γ_{\\mathrm{eff}}^{-1} \\log(\\|θ_{\\mathrm{mem}}\\|^2 / \\|θ_{\\mathrm{post}}\\|^2))$, where $γ_{\\mathrm{eff}}$ is the optimiser's effective contraction rate ($γ_{\\mathrm{eff}} = ηλ$ for SGD, $γ_{\\mathrm{eff}} \\ge ηλ$ for AdamW). The upper bound follows from a discrete Lyapunov contraction argument; the matching lower bound from dynamical constraints of regularised first-order optimisation. Across 293 training runs spanning modular addition, modular multiplication, and sparse parity, we confirm three falsifiable predictions: inverse scaling with weight decay ($R^2 = 0.97$), inverse scaling with learning rate ($R^2 = 0.92$), and logarithmic dependence on the norm ratio (Pearson $r = 0.91$). A fourth finding reveals that grokking requires an optimiser capable of decoupling memorisation from contraction: SGD fails entirely at the same hyperparameters where AdamW reliably groks. These results reframe grokking not as a mysterious optimisation artefact but as a predictable consequence of norm separation between competing interpolating representations. We further derive a practical three-input algorithm that predicts grokking delay at memorisation time with 34.6% mean absolute error (bootstrap 95% CI [30.0%, 39.4%], $N=60$ seeds), enabling principled early stopping.",
+   "query": "grokking"
+  },
+  {
+   "id": "2607.05104",
+   "title": "Grokking Is Conditional and Fragile: A Fully-Tractable, Multi-Seed Study at 12K Parameters",
+   "published": "2026-07-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking -- the delayed onset of generalization long after a network has fit its training set - -is usually studied in models too large to read completely and reported from single training runs. We instead study a publicly released ~11,856-parameter Llama-style transformer (Glimmer-1-Base) on modular arithmetic, small enough to enumerate its weights, attention, and full input-output map, and we measure grokking as a multi-seed rate rather than a single outcome. In this fully-tractable regime grokking is a conditional, fragile phase transition. It is gated by training-set coverage, whose threshold tracks output cardinality (the modulus) more than task structure, an ordering that holds above the transition and across a ten-fold change in domain size. Weight decay reproduces the Omnigrok inverted-U at 12K parameters, a positive control on the rate measurement. Grokking also sits on a numerical knife-edge: two perturbations of the floating-point environment -- CPU thread count (reduction order) and CPU-versus-GPU execution -- each flip a minority of same-seed outcomes without a detectable shift in the aggregate rate. Decomposition into sub-task specialists helps chiefly by making coverage cheap rather than by adding supervision. Methodologically, multi-seed control under a fixed numerical environment overturns three dramatic single-run narratives in our own data, each a seed confound. The unit of evidence for grokking must therefore be a multi-seed rate under a pinned numerical environment, checked where possible against a direct reading of the model.",
+   "query": "grokking"
+  },
+  {
+   "id": "2504.16041",
+   "title": "Muon Optimizer Accelerates Grokking",
+   "published": "2025-04-22",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "This paper investigates the impact of different optimizers on the grokking phenomenon, where models exhibit delayed generalization. We conducted experiments across seven numerical tasks (primarily modular arithmetic) using a modern Transformer architecture. The experimental configuration systematically varied the optimizer (Muon vs. AdamW) and the softmax activation function (standard softmax, stablemax, and sparsemax) to assess their combined effect on learning dynamics. Our empirical evaluation reveals that the Muon optimizer, characterized by its use of spectral norm constraints and second-order information, significantly accelerates the onset of grokking compared to the widely used AdamW optimizer. Specifically, Muon reduced the mean grokking epoch from 153.09 to 102.89 across all configurations, a statistically significant difference (t = 5.0175, p = 6.33e-08). This suggests that the optimizer choice plays a crucial role in facilitating the transition from memorization to generalization.",
+   "query": "grokking"
+  },
+  {
+   "id": "2511.04760",
+   "title": "When Data Falls Short: Grokking Below the Critical Threshold",
+   "published": "2025-11-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In this paper, we investigate the phenomenon of grokking, where models exhibit delayed generalization following overfitting on training data. We focus on data-scarce regimes where the number of training samples falls below the critical threshold, making grokking unobservable, and on practical scenarios involving distribution shift. We first show that Knowledge Distillation (KD) from a model that has already grokked on a distribution (p1) can induce and accelerate grokking on a different distribution (p2), even when the available data lies below the critical threshold. This highlights the value of KD for deployed models that must adapt to new distributions under limited data. We then study training on the joint distribution (p1, p2) and demonstrate that while standard supervised training fails when either distribution has insufficient data, distilling from models grokked on the individual distributions enables generalization. Finally, we examine a continual pretraining setup, where a grokked model transitions from p1 to p2, and find that KD both accelerates generalization and mitigates catastrophic forgetting, achieving strong performance even with only 10% of the data. Together, our results provide new insights into the mechanics of grokking under knowledge transfer and underscore the central role of KD in enabling generalization in low-data and evolving distribution settings.",
+   "query": "grokking"
+  },
+  {
+   "id": "2506.12284",
+   "title": "GrokAlign: Geometric Characterisation and Acceleration of Grokking",
+   "published": "2025-06-14",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "A key challenge for the machine learning community is to understand and accelerate the training dynamics of deep networks that lead to delayed generalisation and emergent robustness to input perturbations, also known as grokking. Prior work has associated phenomena like delayed generalisation with the transition of a deep network from a linear to a feature learning regime, and emergent robustness with changes to the network's functional geometry, in particular the arrangement of the so-called linear regions in deep networks employing continuous piecewise affine nonlinearities. Here, we explain how grokking is realised in the Jacobian of a deep network and demonstrate that aligning a network's Jacobians with the training data (in the sense of cosine similarity) ensures grokking under a low-rank Jacobian assumption. Our results provide a strong theoretical motivation for the use of Jacobian regularisation in optimizing deep networks -- a method we introduce as GrokAlign -- which we show empirically to induce grokking much sooner than more conventional regularizers like weight decay. Moreover, we introduce centroid alignment as a tractable and interpretable simplification of Jacobian alignment that effectively identifies and tracks the stages of deep network training dynamics. Accompanying webpage (https://thomaswalker1.github.io/blog/grokalign.html) and code (https://github.com/ThomasWalker1/grokalign).",
+   "query": "grokking"
+  },
+  {
+   "id": "2504.20752",
+   "title": "Grokking in the Wild: Data Augmentation for Real-World Multi-Hop Reasoning with Transformers",
+   "published": "2025-04-29",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Transformers have achieved great success in numerous NLP tasks but continue to exhibit notable gaps in multi-step factual reasoning, especially when real-world knowledge is sparse. Recent advances in grokking have demonstrated that neural networks can transition from memorizing to perfectly generalizing once they detect underlying logical patterns - yet these studies have primarily used small, synthetic tasks. In this paper, for the first time, we extend grokking to real-world factual data and address the challenge of dataset sparsity by augmenting existing knowledge graphs with carefully designed synthetic data to raise the ratio $φ_r$ of inferred facts to atomic facts above the threshold required for grokking. Surprisingly, we find that even factually incorrect synthetic data can strengthen emergent reasoning circuits rather than degrade accuracy, as it forces the model to rely on relational structure rather than memorization. When evaluated on multi-hop reasoning benchmarks, our approach achieves up to 95-100% accuracy on 2WikiMultiHopQA - substantially improving over strong baselines and matching or exceeding current state-of-the-art results. We further provide an in-depth analysis of how increasing $φ_r$ drives the formation of generalizing circuits inside Transformers. Our findings suggest that grokking-based data augmentation can unlock implicit multi-hop reasoning capabilities, opening the door to more robust and interpretable factual reasoning in large-scale language models.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.01968",
+   "title": "Intrinsic Task Symmetry Drives Generalization in Algorithmic Tasks",
+   "published": "2026-03-02",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking, the sudden transition from memorization to generalization, is characterized by the emergence of low-dimensional representations, yet the mechanism underlying this organization remains elusive. We propose that intrinsic task symmetries primarily drive grokking and shape the geometry of the model's representation space. We identify a consistent three-stage training dynamic underlying grokking: (i) memorization, (ii) symmetry acquisition, and (iii) geometric organization. We show that generalization emerges during the symmetry acquisition phase, after which representations reorganize into a structured, task-aligned geometry. We validate this symmetry-driven account across diverse algorithmic domains, including algebraic, structural, and relational reasoning tasks. Building on these findings, we introduce a symmetry-based diagnostic that anticipates the onset of generalization and propose strategies to accelerate it. Together, our results establish intrinsic symmetry as the key factor enabling neural networks to move beyond memorization and achieve robust algorithmic reasoning.",
+   "query": "grokking"
+  },
+  {
+   "id": "2606.30388",
+   "title": "A Stochastic--Geometric Theory of Scaling Laws in Grokking",
+   "published": "2026-06-29",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Delayed generalization (\\ie~grokking) refers to the phenomenon in which a neural network fits its training data early in training but only begins to generalize after a prolonged delay, often through an abrupt transition. Despite extensive empirical study, its underlying mechanism remains poorly understood. In this work, we first theoretically characterize a shell--core topological configuration of the reachable solution space induced by Adam's optimization dynamics with weight-shrinkage regularization, supported by empirical evidence. This optimization-induced topological configuration gives rise to grokking. In model's parameter space, random initialization solutions concentrate on a thin outer spherical shell, enclosing another spherical shell of memorization solutions, which in turn contains a core corresponding to the generalization solutions. Leveraging stopping-time theory, we then analyze the geometry of this topological configuration and the solution transition time at which optimization trajectories escape the memorization manifold and first reach the boundary of the generalization manifold. Our theoretical analysis derives grokking scaling laws for the learning rate, batch size, and $\\ell_2$ regularization coefficient, which are further validated through experiments and shown to recover results from prior literature.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.01192",
+   "title": "A Basin-Selection Perspective on Grokking via Singular Learning Theory",
+   "published": "2026-03-01",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Grokking, the abrupt transition from memorization to generalisation after extended training, suggests the presence of competing solution basins with distinct statistical properties. We study this phenomenon through the lens of Singular Learning Theory (SLT), a Bayesian framework that characterizes the geometry of the loss landscape. The key measure is the local learning coefficient (LLC) which quantifies the local degeneracy of the loss surface. SLT links lower-LLC basins to higher posterior mass concentration and lower expected generalisation error. Leveraging SLT, we develop a basin-selection perspective on grokking in quadratic networks: LLC ranks competing near-zero-loss basins by statistical preference, while the training-time transition between them is governed by optimisation dynamics. In this view, grokking corresponds to a transition from a higher-LLC (memorising) basin to a lower-LLC (generalising) basin that dominates the posterior. To support this, we derive analytic formulas for the LLC in shallow quadratic networks under both lazy and feature learning regimes. Empirically, we demonstrate that LLC trajectories estimated from training data track the onset of generalisation and provide an informative probe of the optimisation path.",
+   "query": "grokking"
+  },
+  {
+   "id": "2609.10657",
+   "title": "Quantifying the Memorization-to-Generalization Transition: Scaling Laws and Phase Structure in Grokking",
+   "published": "2026-09-09",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Neural networks trained past memorization frequently undergo a delayed transition to generalization, a phenomenon known as grokking. Despite theoretical progress on \\emph{why} this transition occurs, the quantitative structure of \\emph{when} it occurs in hyperparameter space remains uncharacterized. We map the memorization-to-generalization boundary across 384 configurations of two-hidden-layer MLPs on modular arithmetic, fitting a power-law scaling relation for generalization onset time: $T_{\\mathrm{grok}} \\propto H^{-0.27}\\, D^{-2.04}\\, η^{-0.50}\\, λ^{-0.64}$ ($R^2 = 0.732$; $0.821$ with interactions). The exponent hierarchy reveals that data complexity ($D^{-2.04}$) is the dominant driver of regime transition, not model capacity ($H^{-0.27}$): doubling data accelerates generalization by ${\\sim}4\\times$, while doubling width yields only ${\\sim}1.2\\times$. A sharp phase boundary at weight decay $λ\\gtrsim 1.0$ separates grokking from non-grokking configurations, and weight norm trajectories show monotonic compression during the transition, consistent with implicit regularization selecting low-complexity solutions. These results provide a quantitative foundation for predicting and controlling regime transitions in overparameterized networks.",
+   "query": "grokking"
+  },
+  {
+   "id": "2605.08237",
+   "title": "Distributional Spectral Diagnostics for Localizing Grokking Transitions",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "In grokking, a model first fits the training data while test accuracy remains low, and only later begins to generalize. We ask whether this transition can be localized from observed training trajectories before the test accuracy rises, and formulate grokking transition localization as a diagnostic problem with an explicit threshold/FPR/lead-time trade-off. Task-dependent observables are summarized as empirical distributions, mapped to Wasserstein/quantile coordinates, and analyzed by Hankel dynamic mode decomposition (DMD); the resulting reconstruction residual, together with spectrum and effective rank, forms the diagnostic output. On held-out modular-addition Transformer runs, the residual achieves AUROC \\(\\approx \\) 0.93 for grokking-vs-non-grokking discrimination at the run level; under a fixed sustained-threshold operating rule, true-positive alarms can precede onset, with lead time reported jointly with false-alarm rate and uncertainty intervals. Perturbation experiments show that, in the tested \\(wd=1\\) pool, high-residual windows exhibit about \\(3\\times\\) larger short-horizon perturbation deviation than low-residual windows. In a same-data norm-window control, perturbation sensitivity aligns with the residual ordering rather than total-parameter-norm ordering, suggesting that the residual is not merely a total-norm proxy at the window level in the studied \\(wd=1\\) dynamics. Norm signals remain strong run-level regime indicators, and log-probability performs best among the observables tested under the current protocol. We position the residual as a window-level monitoring and localization signal in the studied modular-arithmetic Transformer settings, not a universal early-warning predictor or an intervention rule.",
+   "query": "grokking"
+  },
+  {
+   "id": "2607.20552",
+   "title": "Thermodynamic Weight Decay: Exploring Grokking Acceleration via Attention Specific Heat",
+   "published": "2026-07-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking -- the delayed generalization of neural networks long after they have memorized their training data -- wastes thousands of training epochs and is notoriously unpredictable. Building on the recent result that Transformer attention is formally isomorphic to a thermodynamic system, we treat the variance of attention logits as a specific heat Cv and show that its peak reliably precedes the generalization transition. We introduce CvAdamW, a drop-in AdamW variant that monitors Cv online and injects thermal energy by dynamically scaling weight decay when a phase transition is detected. Through a strictly iterative development process we identify three failure modes -- initialization noise, mini-batch micro-ripples, and slingshot blinding -- and resolve them with a memorization gate and an exponential-moving-average shock absorber. On modular arithmetic (a+b mod 97), CvAdamW enables grokking at epoch 2802 in a 4000-epoch budget where the baseline never groks. We further propose a scale-invariant z-score reformulation that removes task-specific hyperparameters, and evaluate it across 10 paired seeds. A paired analysis shows the cold-start variant reduces mean grokking latency by 257 epochs (6.0%; median 166 epochs; Wilcoxon p=0.049, Cohen's d=0.68, bootstrap 95% CI [53,489]), improving 8 of 10 seeds; on this single task Cv peaks before grokking in all 10 seeds. Our results indicate that neural networks may expose detectable precursors of impending generalization transitions, and that a physically motivated, proportional intervention can facilitate generalization within a fixed compute budget. Code and data are public.",
+   "query": "grokking"
+  },
+  {
+   "id": "2608.01833",
+   "title": "Tunneling the Loss Landscape: Bypassing Memorization with Monte Carlo Parameter Swapping",
+   "published": "2026-08-03",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "Grokking is a striking phenomenon in neural network training, where a model can undergo a prolonged period of pure memorization before abrupt generalization. While previous works have attempted to interpret it through classical machine learning mechanisms like weight norm, recent research draws an analogy from statistical physics, framing grokking as a form of computational glass relaxation. This theory defines the initial memorization as a result of `fast cooling' where the training loss is reduced so quickly that a glass state is formed, followed by a `slow relaxation' towards final generalization. Although providing a unifying framework for representative grokking theories, this perspective has remained largely at the theoretical on macroscopic level without direct empirical validation on training dynamics. Here we introduce a three-component framework to directly characterize the training dynamics via parameter mobility (PM), and two representative measurements from glassy dynamics: replica correlation (RC) and fractal dimension (FD). We demonstrate that standard optimization presents clear signatures of glass dynamics and inherently traps the grokking network in a kinetic arrested memorization state with a collapsed mobility, strong history dependence, and channel-like motions. This quantitative agreement motivates us to introduce State-Aware Monte Carlo Parameter Swapping (SAM-Swap), an optimization plug-in that can accelerate generalization, inspired by swap Monte Carlo algorithm widely used in glass dynamics. Comparing SAM-Swap, weight decay, and Gaussian gradient noise, we find that accelerated generalization is consistently associated with random exploration in the parameter space, similar to diffusion in physics.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.05228",
+   "title": "The Geometric Inductive Bias of Grokking: Bypassing Phase Transitions via Architectural Topology",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Mechanistic interpretability typically relies on post-hoc analysis of trained networks. We instead adopt an interventional approach: testing hypotheses a priori by modifying architectural topology to observe training dynamics. We study grokking - delayed generalization in Transformers trained on cyclic modular addition (Zp) - investigating if specific architectural degrees of freedom prolong the memorization phase. We identify two independent structural factors in standard Transformers: unbounded representational magnitude and data-dependent attention routing. First, we introduce a fully bounded spherical topology enforcing L2 normalization throughout the residual stream and an unembedding matrix with a fixed temperature scale. This removes magnitude-based degrees of freedom, reducing grokking onset time by over 20x without weight decay. Second, a Uniform Attention Ablation overrides data-dependent query-key routing with a uniform distribution, reducing the attention layer to a Continuous Bag-of-Words (CBOW) aggregator. Despite removing adaptive routing, these models achieve 100% generalization across all seeds and bypass the grokking delay entirely. To evaluate whether this acceleration is a task-specific geometric alignment rather than a generic optimization stabilizer, we use non-commutative S5 permutation composition as a negative control. Enforcing spherical constraints on S5 does not accelerate generalization. This suggests eliminating the memorization phase depends strongly on aligning architectural priors with the task's intrinsic symmetries. Together, these findings provide interventional evidence that architectural degrees of freedom substantially influence grokking, suggesting a predictive structural perspective on training dynamics.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.25009",
+   "title": "A Systematic Empirical Study of Grokking: Depth, Architecture, Activation, and Regularization",
+   "published": "2026-03-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking the delayed transition from memorization to generalization in neural networks remains poorly understood, in part because prior empirical studies confound the roles of architecture, optimization, and regularization. We present a controlled study that systematically disentangles these factors on modular addition (mod 97), with matched and carefully tuned training regimes across models. Our central finding is that grokking dynamics are not primarily determined by architecture, but by interactions between optimization stability and regularization. Specifically, we show: (1) \\textbf{depth has a non-monotonic effect}, with depth-4 MLPs consistently failing to grok while depth-8 residual networks recover generalization, demonstrating that depth requires architectural stabilization; (2) \\textbf{the apparent gap between Transformers and MLPs largely disappears} (1.11$\\times$ delay) under matched hyperparameters, indicating that previously reported differences are largely due to optimizer and regularization confounds; (3) \\textbf{activation function effects are regime-dependent}, with GELU up to 4.3$\\times$ faster than ReLU only when regularization permits memorization; and (4) \\textbf{weight decay is the dominant control parameter}, exhibiting a narrow ``Goldilocks'' regime in which grokking occurs, while too little or too much prevents generalization. Across 3--5 seeds per configuration, these results provide a unified empirical account of grokking as an interaction-driven phenomenon. Our findings challenge architecture-centric interpretations and clarify how optimization and regularization jointly govern delayed generalization.",
+   "query": "grokking"
+  },
+  {
+   "id": "2510.04930",
+   "title": "Egalitarian Gradient Descent: A Simple Approach to Accelerated Grokking",
+   "published": "2025-10-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking is the phenomenon whereby, unlike the training performance, which peaks early in the training process, the test/generalization performance of a model stagnates over arbitrarily many epochs and then suddenly jumps to usually close to perfect levels. In practice, it is desirable to reduce the length of such plateaus, that is to make the learning process \"grok\" faster. In this work, we provide new insights into grokking. First, we show both empirically and theoretically that grokking can be induced by asymmetric speeds of (stochastic) gradient descent, along different principal (i.e singular directions) of the gradients. We then propose a simple modification that normalizes the gradients so that dynamics along all the principal directions evolves at exactly the same speed. Then, we establish that this modified method, which we call egalitarian gradient descent (EGD) and can be seen as a carefully modified form of natural gradient descent, groks much faster. In fact, in some cases the stagnation is completely removed. Finally, we empirically show that on classical arithmetic problems such as modular addition and sparse parity problem which this stagnation has been widely observed and intensively studied, that our proposed method eliminates the plateaus.",
+   "query": "grokking"
+  },
+  {
+   "id": "2505.15624",
+   "title": "Mechanistic Insights into Grokking from the Embedding Layer",
+   "published": "2025-05-21",
+   "categories": [
+    "cs.LG",
+    "cs.CL"
+   ],
+   "abstract": "Grokking, a delayed generalization in neural networks after perfect training performance, has been observed in Transformers and MLPs, but the components driving it remain underexplored. We show that embeddings are central to grokking: introducing them into MLPs induces delayed generalization in modular arithmetic tasks, whereas MLPs without embeddings can generalize immediately. Our analysis identifies two key mechanisms: (1) Embedding update dynamics, where rare tokens stagnate due to sparse gradient updates and weight decay, and (2) Bilinear coupling, where the interaction between embeddings and downstream weights introduces saddle points and increases sensitivity to initialization. To confirm these mechanisms, we investigate frequency-aware sampling, which balances token updates by minimizing gradient variance, and embedding-specific learning rates, derived from the asymmetric curvature of the bilinear loss landscape. We prove that an adaptive learning rate ratio, \\(\\frac{η_E}{η_W} \\propto \\frac{σ_{\\max}(E)}{σ_{\\max}(W)} \\cdot \\frac{f_W}{f_E}\\), mitigates bilinear coupling effects, accelerating convergence. Our methods not only improve grokking dynamics but also extend to broader challenges in Transformer optimization, where bilinear interactions hinder efficient training.",
+   "query": "grokking"
+  },
+  {
+   "id": "2603.23784",
+   "title": "Latent Algorithmic Structure Precedes Grokking: A Mechanistic Study of ReLU MLPs on Modular Arithmetic",
+   "published": "2026-03-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking on modular addition has been characterized by sinusoidal representations in transformers and MLPs. We find that ReLU MLPs in our setting instead learn near-binary square-wave input weights, with intermediate values appearing only near sign-change boundaries, and output weights whose dominant Fourier phases satisfy $φ_{\\mathrm{out}} \\approx φ_a + φ_b$. These relations persist under label noise and even in models that do not grok. Using DFT-extracted frequencies and phases to replace learned weights with ideal square/cosine waves yields 95.8% accuracy from noisy models that achieve only 0.40%. This suggests that grokking sharpens an algorithm already encoded during memorization.",
+   "query": "grokking"
+  },
+  {
+   "id": "2606.17120",
+   "title": "Noise-Driven Escape from Metastable Phases explains Grokking in Deep Neural Networks",
+   "published": "2026-06-15",
+   "categories": [
+    "cs.LG",
+    "physics.chem-ph"
+   ],
+   "abstract": "Deep neural networks (DNNs) exhibit first order phase transitions under variations of the L2 regularization strength, with each transition marking the onset of a new learnable feature. Below a critical regularization strength, all features are in principle learnable, but coexisting metastable states, separated by energy barriers, can trap the network and impede convergence. A strength of DNNs is their ability to generalize. But many open questions remain, among them the origin of so called grokking: the abrupt, delayed onset of generalization after prolonged apparent overfitting. We show for linear DNNs that grokking is consistent with hysteresis in first-order L2 phase transitions: using L2 regularization to engineer deliberate trapping, we demonstrate that a model in a low-accuracy metastable state escapes only when SGD noise drives it across an energy barrier, with escape times following Arrhenius scaling. We reproduce grokking-like delayed convergence across two orders of magnitude in escape time by deliberately trapping models in metastable phases. Using sparse sub-sampling we also reproduce the canonical grokking curve where test error eventually approaches the final training error. Our work suggests that the number of metastable states equals the number of learnable features -- one per singular value of the data covariance -- the potential for hysteresis grows naturally with task complexity. We provide evidence that the same mechanism likely operates in general nonlinear DNNs. Our results provide routes toward more efficient learning schemes.",
+   "query": "grokking"
+  },
+  {
+   "id": "2602.16967",
+   "title": "Early-Warning Signals of Grokking via Loss-Landscape Geometry",
+   "published": "2026-02-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking -- the abrupt transition from memorization to generalization after prolonged training -- has been linked to confinement on low-dimensional execution manifolds in modular arithmetic. Whether this mechanism extends beyond arithmetic remains open. We study two sequence-learning benchmarks: SCAN compositional generalization and Dyck-1 depth prediction. Across both tasks and a wide range of learning rates, the commutator defect -- a curvature measure derived from non-commuting gradient updates -- rises well before generalization, with lead times following a superlinear power law (alpha approximately 1.18 for SCAN, approximately 1.13 for Dyck), consistent with prior results on modular arithmetic. Weight-space PCA reveals that spectral concentration is not a universal precursor; the commutator defect is. Causal interventions demonstrate a mechanistic role: amplifying non-commutativity accelerates grokking (roughly 32% on SCAN, roughly 50% on Dyck), while suppressing orthogonal gradient flow delays or prevents it. The three task families form a spectrum of causal sensitivity -- modular arithmetic is rigid, Dyck is responsive, SCAN is intermediate -- yet suppression delays or prevents grokking in all cases, establishing necessity as a universal finding. These results identify the commutator defect as a robust, architecture-agnostic, causally implicated early-warning signal for delayed generalization in transformers.",
+   "query": "grokking"
+  },
+  {
+   "id": "2506.21551",
+   "title": "Grokking in LLM Pretraining? Monitor Memorization-to-Generalization without Test",
+   "published": "2025-06-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper presents the first study of grokking in practical LLM pretraining. Specifically, we investigate when an LLM memorizes the training data, when its generalization on downstream tasks starts to improve, and what happens if there is a lag between the two. Unlike existing works studying when a small model generalizes to limited and specified tasks during thousands epochs' training on algorithmic data, we focus on a practical setting for LLMs, i.e., one-epoch pretraining of next-token prediction on a cross-domain, large-scale corpus, and generalization on diverse benchmark tasks covering math/commonsense reasoning, code generation, and domain-specific retrieval. Our study, for the first time, verifies that grokking still emerges in pretraining mixture-of-experts (MoE) LLMs, though different local data groups may enter their grokking stages asynchronously due to the heterogeneity of their distributions and attributions to others. To find a mechanistic interpretation of this local grokking, we investigate the dynamics of training data's pathways (i.e., expert choices across layers in MoE). Our primary discovery is that the pathways evolve from random, non-smooth across layers, instance-specific to more structured and transferable across samples, despite the converged pretraining loss. This depicts a transition from memorization to generalization. Two novel metrics are developed to quantify these patterns: one computes the pathway similarity between samples, while the other measures the consistency of aggregated experts between subsequent layers for each sample. These training data based metrics induce zero cost but can faithfully track and monitor the generalization of LLMs on downstream tasks, which, in conventional settings, requires costly instruction tuning and benchmark evaluation.",
+   "query": "grokking"
+  },
+  {
+   "id": "2604.20923",
+   "title": "ILDR: Geometric Early Detection of Grokking",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Grokking describes a delayed generalization phenomenon in which a neural network achieves perfect training accuracy long before validation accuracy improves, followed by an abrupt transition to strong generalization. Existing detection signals are indirect: weight norm reflects parameter-space regularization and consistently lags the transition, while GrokFast's slow gradient EMA, used without gradient amplification, is unstable across seeds with standard deviation exceeding mean lead time. We propose the Inter/Intra-class Distance Ratio (ILDR), a geometric metric computed on second-to-last layer representations as the ratio of inter-class centroid separation to intra-class scatter. ILDR provides an early detection signal: it rises and crosses a threshold at 2.5 times its baseline before the grokking transition appears in validation accuracy, indicating early geometric reorganization in representation space. Grounded in Fisher's linear discriminant criterion, ILDR requires no eigendecomposition and runs in O(|C|^2 + N). It is evaluated exclusively on held-out data, making it robust to memorization effects. Across modular arithmetic and permutation group composition (S5), ILDR leads the grokking transition by 9 to 73 percent of the training budget, with lead time increasing with task algebraic complexity. Over eight random seeds, ILDR leads by 950 +/- 250 steps with a coefficient of variation of 26 percent, and post-grokking variance drops by 1696 times, consistent with a sharp phase transition in representation space. Using ILDR as an early stopping trigger reduces training by 18.6 percent on average. Optimizer interventions triggered at the ILDR threshold demonstrate bidirectional control over the transition, suggesting ILDR tracks representational conditions underlying generalization rather than a downstream correlate.",
+   "query": "grokking"
+  },
+  {
+   "id": "2610.18811",
+   "title": "Statistical Vignettes on the Grokking Phenomenon",
+   "published": "2026-10-13",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "In this work, we study grokking in a simple, analytically tractable setting whose rich phenomenology allows us to disentangle the effects of initialization, signal strength, weight decay, sample size, and input dimension. These factors can produce superficially similar learning curves through distinct mechanisms, complicating their interpretation. Our analysis distinguishes early fitting through nuisance features, core feature learning, and delayed generalization. We identify sharp conditions under which grokking provably occurs and derive analytic asymptotic expressions for the lengths of the generalization plateaus. Our results also characterize regimes of early generalization and failure to reach a prescribed test accuracy target. We show that the interpolation edge constitutes a distinct dynamical regime, where vanishing spectral gaps separate core learning from generalization, helping clarify the role of proximity to interpolation in existing accounts of grokking. The resulting picture is analogous to fast and slow phases in chemical kinetics and suggests that the lazy-to-rich transition discussed in the literature may reflect a similar separation of dynamical time scales. Our theoretical results are faithfully supported by extensive experiments.",
+   "query": "grokking"
+  },
+  {
+   "id": "2607.20512",
+   "title": "The Active Ingredient in Muon's Grokking",
+   "published": "2026-07-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The Muon optimizer reaches the grokking threshold on modular arithmetic faster than AdamW. Prior work attributes this to \"spectral-norm constraints plus orthogonalized momentum\" but does not isolate which mechanism matters. To better understand Moun's behavior, we run multi-seed and multi-learning-rate sweeps to decompose and stress-test the effect. First, an ablation shows the speedup comes from orthogonalization (the Newton-Schulz iteration): orthogonalize-only matches full Muon, whereas spectral-only is no faster than AdamW and is unreliable, and this verdict holds across learning rates. Second, a mechanistic analysis finds that orthogonalizing optimizers reach generalization at roughly 3x lower spectral norm and, controlling for how much the embedding actually moves, settle into a lower-norm solution rather than simply perturbing the embedding less. Third, reducing the Newton-Schulz iteration count from five to one accelerates reaching the threshold but makes the grokked solution fragile, prone to transient collapse, with fragility that grows with learning rate; a single iteration is fast and stable only at small learning rate, while the canonical five iterations are the learning-rate-robust choice. We also show spectral scaling can be dropped at no measured cost. A methodological thread runs throughout: under a stability-aware metric, \"faster\" claims about grokking optimizers can invert, so we report both first-crossing and sustained-grok times. To support reproducibility, we release our full training and analysis code at https://github.com/louiswang524/muon-grokking-frontier",
+   "query": "grokking"
+  },
+  {
+   "id": "2606.13753",
+   "title": "The Weight Norm Sets the Grokking Timescale: A Causal Delay Law",
+   "published": "2026-06-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Grokking is the delayed onset of generalization in neural networks, arising long after they fit the training data. Whether the weight norm causes this delay is disputed: some studies report a critical norm at the transition, others observe grokking with no fixed norm at all. We settle this by intervening on the norm during training rather than only observing it. Under free training with weight decay, networks grok when the weight norm reaches a value Wc that varies little across seeds and learning rates (CV 1 to 2 percent) and grows with the modular base as a power law. When we instead clamp the norm to a fixed multiple rho of Wc and hold it there, the network still groks, but the delay follows T_grok proportional to exp(alpha rho). One exponent, alpha near 7.5, fits this delay across four moduli (R^2 = 0.996). Over the swept ranges the held norm moves the delay by about 19x and the learning rate by only about 2x, and holding the norm above Wc slows grokking rather than preventing it. A final LayerNorm removes the dependence by decoupling weight scale from the network function; without it the exponential law returns. This pinned-norm delay is the exponential counterpart to the logarithmic delay predicted for a freely contracting norm.",
+   "query": "grokking"
+  },
+  {
+   "id": "2605.27078",
+   "title": "Two Speeds of Learning: A Representation-Readout Decomposition of Grokking and Double Descent",
+   "published": "2026-05-26",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Training loss and accuracy are the standard signals used to monitor generalization during deep neural network training. Two well-documented phenomena complicate this picture: in grokking, train loss falls rapidly while test performance improves abruptly only after a long delay; in epoch-wise double descent, train loss decreases monotonically while test loss or error rises and falls. Existing accounts are often task-specific, and a task-agnostic analysis framework for diagnosing and explaining these phenomena across realistic tasks and architectures is missing. We address this challenge by analyzing two competing processes that underlie learning dynamics: representation learning in the encoder and readout calibration in the final classifier. Using tools from representational geometry, neural tangent kernels, and linear probing, we show that both processes are active throughout training, with the fluctuations of their relative speed giving rise to seemingly anomalous generalization dynamics. Applying the representation-readout decomposition to grokking across a wide range of tasks and architectures, we find that the readout is train-biased before grokking onset, and representation learning is gradual but not absent, contrary to the lazy-to-rich account. The framework further provides diagnostic signatures distinguishing spurious from genuine generalization: in a previously reported MNIST grokking example and an epoch-wise double descent example, apparent delayed or non-monotone generalization is shown to arise from representation degradation and readout misalignment induced by non-standard training recipes. Together, these results establish the representation-readout decomposition as a top-down framework for understanding learning dynamics and revealing underlying algorithms for interpretability research.",
+   "query": "grokking"
+  },
+  {
+   "id": "2604.12434",
+   "title": "A Bayesian Perspective on the Role of Epistemic Uncertainty for Delayed Generalization in In-Context Learning",
+   "published": "2026-04-14",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "In-context learning enables transformers to adapt to new tasks from a few examples at inference time, while grokking highlights that this generalization can emerge abruptly only after prolonged training. We study task generalization and grokking in in-context learning using a Bayesian perspective, asking what enables the delayed transition from memorization to generalization. Concretely, we consider modular arithmetic tasks in which a transformer must infer a latent linear function solely from in-context examples and analyze how predictive uncertainty evolves during training. We combine approximate Bayesian techniques to estimate the posterior distribution and we study how uncertainty behaves across training and under changes in task diversity, context length, and context noise. We find that epistemic uncertainty collapses sharply when the model groks, making uncertainty a practical label-free diagnostic of generalization in transformers. Additionally, we provide theoretical support with a simplified Bayesian linear model, showing that asymptotically both delayed generalization and uncertainty peaks arise from the same underlying spectral mechanism, which links grokking time to uncertainty dynamics.",
+   "query": "grokking"
+  },
+  {
+   "id": "2606.09883",
+   "title": "TD-Grokking: Learning from Zero-Reward Problems by Training-Time Decomposition",
+   "published": "2026-06-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large language models (LLMs) have made remarkable progress in reasoning tasks, largely driven by post-training paradigms, especially reinforcement learning with verifiable rewards (RLVR). However, a critical bottleneck persists: RLVR fails on highly challenging zero-reward problems, where all sampled reasoning trajectories yield uniformly failed outcomes, providing no optimization signal to drive model improvement. Prior efforts to address this limitation, such as dense process supervision, partial reward assignment, or prefix-guided exploration, suffer from inherent task constraints or do not fully equip the policy model with the capabilities necessary to solve the original intractable problems. To address this, we propose TD-Grokking, a training-time decomposition framework for zero-reward problems. It recursively decomposes intractable root problems into self-contained, verifiable subproblems, forming hierarchical trees where solvable leaves provide non-zero rewards. Evaluations on mathematical and medical tasks show that TD-Grokking outperforms vanilla GRPO as well as all baseline approaches. Together with detailed analysis, these results confirm that training-time decomposition effectively converts zero-reward examples into usable training signals, enabling consistent performance gains. Our code and datasets are available at https://anonymous.4open.science/r/TD-Grokking-6567/.",
+   "query": "grokking"
+  },
+  {
+   "id": "2509.17738",
+   "title": "Flatness is Necessary, Neural Collapse is Not: Rethinking Generalization via Grokking",
+   "published": "2025-09-22",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Neural collapse, i.e., the emergence of highly symmetric, class-wise clustered representations, is frequently observed in deep networks and is often assumed to reflect or enable generalization. In parallel, flatness of the loss landscape has been theoretically and empirically linked to generalization. Yet, the causal role of either phenomenon remains unclear: Are they prerequisites for generalization, or merely by-products of training dynamics? We disentangle these questions using grokking, a training regime in which memorization precedes generalization, allowing us to temporally separate generalization from training dynamics and we find that while both neural collapse and relative flatness emerge near the onset of generalization, only flatness consistently predicts it. Models encouraged to collapse or prevented from collapsing generalize equally well, whereas models regularized away from flat solutions exhibit delayed generalization, resembling grokking, even in architectures and datasets where it does not typically occur. Furthermore, we show theoretically that neural collapse leads to relative flatness under classical assumptions, explaining their empirical co-occurrence. Our results support the view that relative flatness is a potentially necessary and more fundamental property for generalization, and demonstrate how grokking can serve as a powerful probe for isolating its geometric underpinnings.",
+   "query": "grokking"
+  },
+  {
+   "id": "2608.21660",
+   "title": "Variational Structure at the Edge of Stability",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "When discrete-time optimizers operate at the edge of stability, they exhibit near-two-periodic behavior. These oscillatory dynamics are reminiscent of conservative systems, such as the dynamics generated by symplectic integrators. However, a precise formulation of the connection between discrete-time optimizers at the edge of stability and discrete mechanics remains underexplored. Recently, Litman introduced the \"edge coupling\": a functional on consecutive gradient descent iterates whose critical points encode the fixed points and two-point orbits of the gradient descent dynamics. Here we extend the edge coupling to heavy-ball and Nesterov momentum. We show that its critical points characterize the fixed points and two-point orbits, with its Hessian characterizing their stability. We also show that the edge coupling can be identified with the symmetric Verlet action, formalizing the connection between the edge of stability and discrete mechanics.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.29043",
+   "title": "Mirror Descent at the Edge of Stability",
+   "published": "2026-11-21",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "In many deep learning settings, gradient descent has been shown to operate at the edge of stability -- a regime where the largest eigenvalue of the loss Hessian hovers around $2/η$. We study this phenomenon in mirror descent, a generalization of gradient descent. As mirror descent is non-Euclidean, existing explanations of the edge of stability phase do not extend to this setting. We generalize the existing notion of sharpness to introduce mirror sharpness, which measures the curvature of the loss with respect to the mirror potential. Empirically, we observe that the mirror sharpness hovers slightly above the $2/η$ threshold. Furthermore, we derive a dual central flow ODE for mirror descent that models iterates in continuous time at the onset of edge of stability. Our ODE provides insights into the difficulties of extending existing arguments for why sharpness stabilizes at $2/η$ from gradient descent to mirror descent in full generality.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2605.06821",
+   "title": "A Rod Flow Model for Adam at the Edge of Stability",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Cohen et al. (arXiv:2207.14484) observed that adaptive gradient methods such as Adam operate at the edge of stability. While there has been significant work on continuous-time modeling of gradient descent at the edge of stability, extending these models to momentum methods remains underdeveloped. In the gradient descent setting, Regis et al. (arXiv:2602.01480) introduced rod flow, which models consecutive iterates as an extended one-dimensional object -- a \"rod.\" Here we extend rod flow to Adam by working in the joint phase space of parameters and first moment $(w, m)$ and treating the second moment $ν$ as a smooth auxiliary variable. We also develop rod flows for heavy ball momentum, Nesterov momentum, and scalar and per-component versions of RMSProp, Adam, and NAdam. For all eight optimizers, we empirically evaluate rod flow on representative machine learning architectures, where it tracks the discrete iterates through the edge-of-stability regime significantly more accurately than the corresponding stable flow.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2608.18415",
+   "title": "The Road Taken: The Role of Optimizers at the Edge of Stability",
+   "published": "2026-08-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The edge of stability refers to a phenomenon in deep learning with gradient-based optimizers where the Hessian eigenvalues of the loss remain stable above a threshold that the classical descent lemma predicts to be unstable. Previous works formulate the edge of stability with respect to the maximum Hessian eigenvalue and the learning rate. However, we observe that many first-order methods, including gradient descent, significantly violate the stability bound predicted by these theories by a factor as large as $\\times 21.1$. Moreover, this deviation turns out to be systematic and highly dependent on the underlying optimizer, which is not captured by previous formulations. This calls for a new formulation of the stability threshold, which we derive from the directional Hessian and the gradient-alignment score with respect to the actual update taken by the optimizer, rather than the maximum curvature mode. Our new formulation of the realized edge of stability not only removes optimizer-dependent offsets and provides more consistent predictions of the stability threshold, but also introduces new diagnostic tools that reveal the unique role of the optimizer in actively balancing between the temporal and spatial budgets in first-order optimization.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.08358",
+   "title": "Unifying Central Flow, Rod Flow, and the Edge Coupling",
+   "published": "2026-11-05",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "At the edge of stability, the iterates of gradient descent oscillate along the sharp directions of the Hessian. This poses a significant challenge for continuous-time models as the usual continuous-time approximation -- the gradient flow -- admits no oscillations. Several continuous-time models have been proposed to capture the behavior at the edge of stability, among them central flow and rod flow. Although both models can be interpreted as performing a coarse-graining in time, the connection between them remains poorly understood. Here we show that both flows can be derived from a third object, the edge coupling: a functional on consecutive iterates whose critical points are the fixed points and period-two orbits of gradient descent. It is revealed that the two flows correspond to coarse-grainings at different time scales. Rod flow coarse-grains over only the fastest time scale, while central flow coarse-grains over both the fast and intermediate time scales. Furthermore, using the edge coupling, we derive rod flows and central flows for momentum methods such as heavy ball and Adam. We verify the derived flows experimentally on representative neural network architectures, where they track the discrete iterates throughout all phases of training -- including the transition from the stable regime to the edge of stability.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2610.24305",
+   "title": "Muon Operates Beyond the Edge of Stability",
+   "published": "2026-10-16",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We study the Muon optimizer using sharpness and provide the first empirical evidence that the Flat Minima Hypothesis also applies to Muon. Further, we derive Muon's implicit preconditioner to analyze its potential Edge of Stability behavior. Experiments on CIFAR-10 show sharpness strongly correlates with generalization gap within each optimizer (Pearson $r = 0.45$-$0.69$, $p \\leq 10^{-4}$), confirming the hypothesis holds for Muon similarly to Adam and SGD. However, Muon operates above the classical sharpness-based Adaptive Edge of Stability threshold that bounds diagonally-preconditioned optimizers like Adam and RMSprop, yet remains stable. Our findings suggest Muon operates in a fundamentally different regime than diagonally-adaptive methods. Defining the exact stability boundary for Muon remains an open question. All code is available at https://github.com/NikoCovic/DL-project.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2609.01034",
+   "title": "The Multiple Timescales of Gradient Descent on the Edge of Stability: A Perturbative Derivation of the Central Flow",
+   "published": "2026-09-01",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "The central flow of Cohen et al. (2025) is an empirically accurate continuous-time model of gradient descent at the edge of stability in deep learning, However, its derivation is heuristic. We propose a perturbative regime in which the central flow is the limit of gradient descent: we assume that the loss decomposes as $f = g + \\varepsilon h$; in the limit $\\varepsilon \\to 0$, the dynamics of gradient descent with learning rate $η$ converge to the gradient flow of $h$ constrained to the minimizers of $g$ of sharpness at most $2/η$. Our approach is formal rather than rigorous; it treats gradient descent as a singularly perturbed dynamical system in $\\varepsilon$. Three timescales emerge: a fast timescale of oscillations along the sharpest direction, an intermediate timescale of the self-stabilization mechanism, and a slow timescale of the dynamics along the minimizers of $g$-the central flow. Using the method of multiple scales, a classical formal method from singular perturbation theory, we derive the expansion of the dynamics in $\\varepsilon$: the central flow emerges as the leading-order term in the expansion, while the self-stabilization mechanism appears in the next-order term. We study this mechanism beyond previous analyses: with a single eigenvalue at the edge of stability, we compute the slow drift of the energy of the fluctuations; with several eigenvalues at the edge of stability, we derive the self-stabilization system and explain why fluctuations persist.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.15551",
+   "title": "A Bifurcation Theory Framework for Gradient Descent on the Edge of Stability",
+   "published": "2026-06-14",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The Edge of Stability (EoS) phenomenon, where gradient descent operates with sharpness exceeding the classical convergence threshold yet the loss decreases over long timescales, is ubiquitous in modern deep learning but remains poorly understood in realistic settings. Prior rigorous analyses have been largely confined to scalar or low-dimensional losses with specific structural forms. In this work, we develop a bifurcation theory framework for gradient descent on the edge of stability that applies directly to overparameterized neural networks. By decomposing the training dynamics into components normal and tangent to the manifold of minimizers, we show that stable EoS training arises from a flip bifurcation in the normal direction, governed by the sign of the first Lyapunov coefficient, while the tangent dynamics drift toward regions of decreasing sharpness. Under mild spectral and geometric assumptions on the loss landscape, we prove convergence to the minimizing manifold when training at the EoS threshold. As a corollary, we recover and unify prior results: we show that the product-stability condition of Gan (2026) is an instance of our framework.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2512.19019",
+   "title": "Optimizer Dynamics at the Edge of Stability with Differential Privacy",
+   "published": "2025-12-22",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Deep learning models can reveal sensitive information about individual training examples, and while differential privacy (DP) provides guarantees restricting such leakage, it also alters optimization dynamics in poorly understood ways. We study the training dynamics of neural networks under DP by comparing Gradient Descent (GD), and Adam to their privacy-preserving variants. Prior work shows that these optimizers exhibit distinct stability dynamics: full-batch methods train at the Edge of Stability (EoS), while mini-batch and adaptive methods exhibit analogous edge-of-stability behavior. At these regimes, the training loss and the sharpness--the maximum eigenvalue of the training loss Hessian--exhibit certain characteristic behavior. In DP training, per-example gradient clipping and Gaussian noise modify the update rule, and it is unclear whether these stability patterns persist. We analyze how clipping and noise change sharpness and loss evolution and show that while DP generally reduces the sharpness and can prevent optimizers from fully reaching the classical stability thresholds, patterns from EoS and analogous adaptive methods stability regimes persist, with the largest learning rates and largest privacy budgets approaching, and sometimes exceeding, these thresholds. These findings highlight the unpredictability introduced by DP in neural network optimization.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.19059",
+   "title": "High-dimensional limit theorems for adaptive variants of SGD I: Ballistic limits",
+   "published": "2026-11-14",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.PR",
+    "math.ST"
+   ],
+   "abstract": "We develop the high-dimensional effective dynamics for adaptive, momentum-based variants of Stochastic Gradient Descent (SGD). These effective dynamics are given by a Markov process. They key observation is that the non-Markovianity in the algorithm due to the exponential moving average and preconditioning can be treated using the method of averaging. Our approach applies to a broad class of algorithms including to Adaptive momentum estimation (ADAM), Momentum orthogonalized by Newton-Schultz (MUON), and its variants. It also applies to a broad class of learning tasks, such at tensor PCA, Gaussian projective models, teacher-student networks, and a multi-layer neural network trained on the XOR problem using a hybrid of MUON and ADAM as commonly done in practice. We demonstrate how to this technique can give precise, quantitative comparisons between algorithms. In particular, we find interesting phenomena, such as the cross-over phenomenon where online SGD has better generalization than ADAM early in training until the learning curves cross and ADAM dominates. Furthermore, we prove a version of the Edge of Stability phenomenon. In particular, we introduce an analogue of the infinity Laplacian that sharply characterizes the Edge of Stability.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2609.34915",
+   "title": "Muon Sublates the Edge of Stability in LLM Pretraining: What Persists and What Changes",
+   "published": "2026-09-28",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Muon is increasingly used for language-model pretraining, yet its large-step dynamics are not captured by the classical edge-of-stability (EoS) picture of gradient descent (GD). We study stochastic (no-momentum) Muon through theoretical analysis, controlled networks, and language models from 22M to 1B parameters, distinguishing three diagnostics: generalized sharpness, loss balance, and update alignment. We theoretically and empirically demonstrate that loss balance differs from its generalized sharpness and cannot determine update alignment across various learning rates in 130M pre-training as well as 1B runs. Besides, our experiments also show that increasing the batch size encourages update alignment towards to total reversal. Furthermore, checkpoint interventions in the 22M and 130M models show that increasing the learning rate can initially raise the loss but a lower validation loss at the end of the prescribed warmup-stable-decay continuation. These results support a split EoS picture: generalized-sharpness saturation persists in the measured runs, but loss balance and update geometry require separate characterization, allowing for learning-rate schedules design. The source code for reproducing the experiments can be found in https://github.com/cyzebra/Muon-Sublates-the-Edge-of-Stability-in-LLM-Pretraining.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2505.13196",
+   "title": "A Physics-Inspired Optimizer: Velocity Regularized Adam",
+   "published": "2025-05-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "quant-ph"
+   ],
+   "abstract": "We introduce Velocity-Regularized Adam (VRAdam), a physics-inspired optimizer for training deep neural networks that draws on ideas from quartic terms for kinetic energy with its stabilizing effects on various system dynamics. Previous algorithms, including the ubiquitous Adam, operate at the so-called adaptive edge of stability regime during training, leading to rapid oscillations and slowed convergence of loss. However, VRAdam adds a higher order penalty on the learning rate based on the velocity such that the algorithm automatically slows down whenever weight updates become large. In practice, we observe that the effective dynamic learning rate shrinks in high-velocity regimes, and damping oscillations. By combining this velocity-based regularizer for global damping with per-parameter scaling of Adam, we create a powerful hybrid optimizer. For this optimizer, we provide rigorous theoretical analysis of operation at the edge of stability from a physical and control perspective for the momentum. Furthermore, we derive convergence bounds with the rate $\\mathcal{O}(\\ln(N)/\\sqrt{N})$ for a stochastic non convex objective under mild assumptions. We demonstrate that VRAdam exceeds the performance against standard optimizers including AdamW. We benchmark various tasks such as image classification, language modeling, and generative modeling using diverse architectures and training methodologies including Convolutional Neural Networks (CNNs), Transformers, and GFlowNets.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.02600",
+   "title": "High-Dimensional Latents Should Be Diagnosed Through Phase Structure",
+   "published": "2026-05-23",
+   "categories": [
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "We study autoencoder and variational-autoencoder latent spaces through the lens of spin-glass theory. The paper has two components. First, we formalize a latent-space spin-glass dictionary: for a fixed decoder, the reconstruction term together with a hyperspherical coordinates prior induces a Hamiltonian on the latent sphere, where latent coordinates play the role of continuous spins and the prior acts as an external magnetic field. This allows us to import operational spin-glass diagnostics -- overlap distributions, susceptibility, and block-spin coarse-graining -- to detect ordered, disordered, and edge-of-stability phases in trained latent representations. Second, we show that deliberately driving the latent system toward the edge-of-stability of the topological trivialization regime has concrete downstream consequences. In generation, hyperspherical compression improves the reconstruction-generation trade-off on CIFAR-10 and CelebA64, yielding lower self-FID while preserving or improving reconstruction. In anomaly detection, the same semi-ordered latent geometry improves both fully unsupervised and conditional OOD detection, including real-world Mars Rover and Galaxy Zoo datasets, as well as CIFAR-10/100 and Imagenette-based OOD benchmarks. We therefore advocate a phase-aware evaluation paradigm for AEs/VAEs, in which spin-glass observables complement standard ML metrics and expose the latent regimes that underlie downstream success or failure in many cases.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2609.32290",
+   "title": "A Journey to the Edge of Stability",
+   "published": "2026-09-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "It has recently been found that deep learning often occurs at the \"edge of stability (EoS),\" where the maximum Hessian eigenvalue of the model is stabilized at a value reciprocal to the learning rate. However, what happens before we reach that regime? We fix a deep learning problem and vary first order optimization methods with dense learning rate sweeps. We then track the characterizing quantities of a learning trajectory: the loss, the sharpness, and the alignment between consecutive gradients. To our surprise, if we scale the learning rate by the dc gain of the optimizer, these traces from the sweeps from different optimizers almost perfectly overlap across a large range of learning rates. The dc-normalized optimizers have another role that only becomes apparent in high learning rates: they select when the sharpness value detaches from this universal curve and enters the edge of stability. Upon this discovery, we specify three distinct regimes with respect to the dc-adjusted learning rate: the low-LR regime where the trajectory is nearly insensitive to the optimizer, the high-LR regime, where the optimizer governs the sharpness according to the EoS reciprocal rule, and the in-between mid-LR regime where so-called progressive sharpening originates independently of the optimizer. This distinguishes the role of the optimizer, the learning rate, and the model in shaping the learning progress.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2511.23083",
+   "title": "Spectral Concentration at the Edge of Stability: Information Geometry of Kernel Associative Memory",
+   "published": "2025-11-28",
+   "categories": [
+    "cs.LG",
+    "cs.NE",
+    "stat.ML"
+   ],
+   "abstract": "High-capacity kernel Hopfield networks exhibit a \\textit{Ridge of Optimization} characterized by extreme stability. While previously linked to \\textit{Spectral Concentration}, its origin remains elusive. Here, we analyze the network dynamics on a statistical manifold, revealing that the Ridge corresponds to the Edge of Stability, a critical boundary where the Fisher Information Matrix becomes singular. We demonstrate that the apparent Euclidean force antagonism is a manifestation of \\textit{Dual Equilibrium} in the Riemannian space. This unifies learning dynamics and capacity via the Minimum Description Length principle, offering a geometric theory of self-organized criticality.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2502.04889",
+   "title": "Any-stepsize Gradient Descent for Separable Data under Fenchel-Young Losses",
+   "published": "2025-02-07",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "The gradient descent (GD) has been one of the most common optimizer in machine learning. In particular, the loss landscape of a neural network is typically sharpened during the initial phase of training, making the training dynamics hover on the edge of stability. This is beyond our standard understanding of GD convergence in the stable regime where arbitrarily chosen stepsize is sufficiently smaller than the edge of stability. Recently, Wu et al. (COLT2024) have showed that GD converges with arbitrary stepsize under linearly separable logistic regression. Although their analysis hinges on the self-bounding property of the logistic loss, which seems to be a cornerstone to establish a modified descent lemma, our pilot study shows that other loss functions without the self-bounding property can make GD converge with arbitrary stepsize. To further understand what property of a loss function matters in GD, we aim to show arbitrary-stepsize GD convergence for a general loss function based on the framework of \\emph{Fenchel--Young losses}. We essentially leverage the classical perceptron argument to derive the convergence rate for achieving $ε$-optimal loss, which is possible for a majority of Fenchel--Young losses. Among typical loss functions, the Tsallis entropy achieves the GD convergence rate $T=Ω(ε^{-1/2})$, and the R{é}nyi entropy achieves the far better rate $T=Ω(ε^{-1/3})$. We argue that these better rate is possible because of \\emph{separation margin} of loss functions, instead of the self-bounding property.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2508.21353",
+   "title": "Adaptive Heavy-Tailed Stochastic Gradient Descent",
+   "published": "2025-08-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "In the era of large-scale neural network models, optimization algorithms often struggle with generalization due to an overreliance on training loss. One key insight widely accepted in the machine learning community is the idea that wide basins (regions around a local minimum where the loss increases gradually) promote better generalization by offering greater stability to small changes in input data or model parameters. In contrast, sharp minima are typically more sensitive and less stable. Motivated by two key empirical observations - the inherent heavy-tailed distribution of gradient noise in stochastic gradient descent and the Edge of Stability phenomenon during neural network training, in which curvature grows before settling at a plateau, we introduce Adaptive Heavy Tailed Stochastic Gradient Descent (AHTSGD). The algorithm injects heavier-tailed noise into the optimizer during the early stages of training to enhance exploration and gradually transitions to lighter-tailed noise as sharpness stabilizes. By dynamically adapting to the sharpness of the loss landscape throughout training, AHTSGD promotes accelerated convergence to wide basins. AHTSGD is the first algorithm to adjust the nature of injected noise into an optimizer based on the Edge of Stability phenomenon. AHTSGD consistently outperforms SGD and other noise-based methods on benchmarks like MNIST and CIFAR-10, with marked gains on noisy datasets such as SVHN. It ultimately accelerates early training from poor initializations and improves generalization across clean and noisy settings, remaining robust to learning rate choices.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2607.04993",
+   "title": "The Map Behind the Flow: Finite-Step Gradient Descent as a Dynamical System",
+   "published": "2026-07-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Many phenomena of deep learning are dynamical: they concern not only which minima exist, but how gradient descent reaches, avoids, or selects among them. Edge-of-stability behavior, sharpness oscillations, catapult phases, balancing, and movement toward flatter representations are effects of the training map itself, and are poorly captured by the small-step gradient-flow limit. This paper studies fixed-step gradient descent as a discrete dynamical system in a hierarchy of exactly solvable models retaining basic structures of deep learning: depth, factorization, width, data coupling, activation, and stochasticity. The starting point is the balanced scalar reduction of a deep linear chain, giving a quartic loss and a cubic gradient map whose post-edge behavior is explicit. Under the natural large-depth scaling, this dynamics converges to a universal Ricker-type map. The edge of stability is therefore not a breakdown of optimization, but the first bifurcation of the training map. Embedding the scalar dynamics back into factored models turns these regimes into learning phenomena. Finite steps break conservation laws of gradient flow and contract factorization imbalance; residual oscillations move parameters toward flatter, more balanced representations. Wider linear networks produce a ladder of spectral edges, so the optimal learning rate can lie beyond the first edge. Data coupling, nonlinear activations, and stochastic targets preserve the same organizing principle: finite-step oscillations drive alignment, balancing, and representation selection. Thus the learning rate is not merely a numerical stability parameter. It is a structural parameter of the training dynamics, determining its attractors and shaping the representations gradient descent selects.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2610.36778",
+   "title": "Does LLM Pre-Training Typically Occur at the Edge of Stability?",
+   "published": "2026-10-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Quadratic approximations provide a common lens for studying neural network optimization, but recent evidence challenges their predictive validity. In full-batch gradient descent with learning rate (LR) $η$, Cohen et al. (2021) observed the Edge of Stability (EoS), where the largest Hessian eigenvalue concentrates near $2/η$, seemingly at odds with classical stability conditions predicted by quadratic approximations. In this work, we revisit the fidelity of quadratic approximations as a model of neural network training dynamics, with a particular focus on their failure modes in LLM training. We first highlight a distinct failure mode of the quadratic approximation, where persistent negative curvature causes the quadratic dynamics to diverge regardless of the LR, even though the real dynamics remain stable. We term this phenomenon the Edge of Convexity (EoC). After removing the effect of this LR-independent instability, we then propose a generalized definition of Edge of Stability (EoS) for stochastic training with adaptive optimizers, based on whether increasing the LR induces significant divergence in the quadratic dynamics while leaving the real dynamics largely unchanged. Across different LLM pretraining runs with various model sizes up to 787M, we find that (1) EoC is always observed across LLM pretraining, and (2) EoS is also prevalent but not universal: it disappears when the LR becomes sufficiently small (e.g., after decay) or when the batch size falls below a critical threshold that has a positive correlation with the critical batch size. Together, these findings characterize when and how quadratic approximations fail and provide a foundation for future work on understanding training dynamics.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2608.21586",
+   "title": "A minimal mechanism to generate long timescales without fine tuning",
+   "published": "2026-08-21",
+   "categories": [
+    "cond-mat.dis-nn"
+   ],
+   "abstract": "Long timescales in brain dynamics give rise to power law correlations measured in experiments. A simple linear recurrent neural network model can reproduce this power law behavior, but the recurrent interaction strength needs to be fine tuned in order to sit at the edge of stability. We show that by adding a dynamical recurrent feedback gain to the simple linear model removes the need for fine tuning, because the gain self-organizes so that the spectrum of the effective recurrent matrix is always gapless with the top eigenvalue landing on the stability edge for any recurrent strength. As a consequence, long timescales and scale free correlations arise generically, as we demonstrate both analytically and numerically.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2502.13110",
+   "title": "Feature Learning Beyond the Edge of Stability",
+   "published": "2025-02-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We propose a homogeneous multilayer perceptron parameterization with polynomial hidden layer width pattern and analyze its training dynamics under stochastic gradient descent with depthwise gradient scaling in a general supervised learning scenario. We obtain formulas for the first three Taylor coefficients of the minibatch loss during training that illuminate the connection between sharpness and feature learning, providing in particular a soft rank variant that quantifies the quality of learned hidden layer features. Based on our theory, we design a gradient scaling scheme that in tandem with a quadratic width pattern enables training beyond the edge of stability without loss explosions or numerical errors, resulting in improved feature learning and implicit sharpness regularization as demonstrated empirically.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2610.27321",
+   "title": "Physics-Inspired Optimizers beyond the Edge of Stability: Period-Two Orbits and Delayed Instability",
+   "published": "2026-10-19",
+   "categories": [
+    "nlin.CD",
+    "cond-mat.dis-nn",
+    "cs.LG"
+   ],
+   "abstract": "Gradient descent with momentum can be viewed as a particle moving with friction in the loss landscape. In deep learning the learning rate is usually large, so training is a discrete dynamical system: in many full-batch experiments the sharpness grows to the optimizer's stability limit, the edge of stability (EoS), and training continues there. Physics-inspired optimizers change this motion; Velocity-Regularized Adam (VRAdam), for example, shrinks the step at high speed. We study kinetic maps, in which the step is the gradient of a kinetic energy of the momentum, and ask what they do beyond the EoS. (i) In a reduced model, a kinetic map creates a symmetric period-two orbit beyond the edge, strictly linearly stable if and only if the map's elasticity (the log-log slope of step length versus momentum) lies between 0 and 1; on it, training sits at an effective edge of stability. VRAdam's damper fails above twice the critical learning rate, where its kinetic energy is not convex; the Legendre dual of VRAdam's own Lagrangian is convex and passes at every learning rate. (ii) Because the sharpness rises gradually, the loss of stability is delayed, as in Neishtadt's theory of slowly swept bifurcations. In a network with a controlled sweep, the dynamics match this theory without fitted parameters, including the memory of where the sweep started and its erasure by noise. (iii) With momentum, reaching the oscillation also requires elasticity at large momentum: maps that bound the step have competing period-four and chaotic attractors already at beta1 = 0.9, while the cubic-Legendre map reached the oscillation from every sampled start up to beta1 = 0.99. Experiments on an exact quadratic problem, a full-batch MLP and ResNet-32 support the theory; on ResNet-18, much of the apparent benefit of the maps is reproduced by matching the effective learning rate.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2501.09137",
+   "title": "Gradient Descent Converges Linearly to Flatter Minima than Gradient Flow in Shallow Linear Networks",
+   "published": "2025-01-15",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "We study the gradient descent (GD) dynamics of a depth-2 linear neural network with a single input and output. We show that GD converges at an explicit linear rate to a global minimum of the training loss, even with a large stepsize -- about $2/\\textrm{sharpness}$. It still converges for even larger stepsizes, but may do so very slowly. We also characterize the solution to which GD converges, which has lower norm and sharpness than the gradient flow solution. Our analysis reveals a trade off between the speed of convergence and the magnitude of implicit regularization. This sheds light on the benefits of training at the ``Edge of Stability'', which induces additional regularization by delaying convergence and may have implications for training more complex models.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2508.15271",
+   "title": "An edge-spectral Erdős-Stone-Simonovits theorem and its stability",
+   "published": "2025-08-21",
+   "categories": [
+    "math.CO"
+   ],
+   "abstract": "We study the extremal problem that relates the spectral radius $λ(G)$ of an $F$-free graph $G$ to its number of edges. Firstly, we prove that for any graph $F$ with chromatic number $χ(F)=r+1\\ge 3$, if $G$ is an $F$-free graph with $m$ edges, then $λ^2(G)\\le {(1-\\frac{1}{r} + o(1))2m}$. This provides a unified extension of both the Erdős-Stone-Simonovits theorem and its vertex-spectral extension due to Nikiforov, and confirms a conjecture proposed by Li, Liu and Feng. We also establish the corresponding edge-spectral stability, showing that if $G$ is an $F$-free graph with $m$ edges with $λ^2(G) \\ge (1- \\frac{1}{r} - o(1))2m$, then $G$ differs from a complete bipartite graph by $o(m)$ edges when $r=2$, and $G$ differs from an $r$-partite Turán graph by $o(m)$ edges when $r\\ge 3$. This extends both the classical Erdős-Simonovits stability and the Nikiforov vertex-spectral stability. This edge-spectral stability theorem is the key ingredient in our companion work on the Brualdi-Hoffman-Turán problem for color-critical forbidden graphs. As an application of our method, we improve a result of Zhai, Lin and Shu by showing that if $λ(G)>\\sqrt{m}$, then there exist two vertices in $G$ that have at least $\\frac{1}{2}\\sqrt{m} - O(1)$ common neighbors. The constant $\\frac{1}{2}$ is best possible as witnessed by a random construction.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2610.15223",
+   "title": "Non-Euclidean Gradient Descent Has Many Edges of Stability",
+   "published": "2026-10-10",
+   "categories": [
+    "math.OC",
+    "cs.LG"
+   ],
+   "abstract": "Recent observations that deep learning models train at the edge of stability have renewed interest in understanding stability properties of classical optimization algorithms. For quadratic objectives, standard gradient descent has a sharp stability threshold: it converges from every initialization when $η<2/L$, diverges from almost every initialization when $η>2/L$, and diverges from every nonzero initialization when $η>2/μ$. For non-Euclidean gradient descent, the corresponding known guarantees are weaker: convergence holds for every initialization when $η<2/S$, where $S$ is the generalized sharpness, while every nonzero initialization diverges when $η>2/μ$. The behavior in the intermediate regime $2/S<η<2/μ$ is not fully characterized. We show that Hilbertian norms are the only ones for which $2/S$ is an almost-everywhere sharp threshold for every positive-definite quadratic objective. Using linear conjugacy between non-Euclidean and Euclidean gradient descent, we show that for general norms the intermediate regime can contain arbitrarily many edges of stability associated with distinct attracting directions. We identify a forward-invariant region of exponentially divergent directions beyond the generalized stability threshold. When the directions of minimum curvature are finite and nondegenerate, we prove that, sufficiently close to $2/μ$ from below, only their invariant directions remain convergent. We give smooth two-dimensional constructions with arbitrarily many distinct thresholds, arbitrarily large relative threshold separation and show these properties to be stable.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.05219",
+   "title": "Gradient Descent with Large Step Size Restores Symmetry in Deep Linear Networks with Multi-Pathway",
+   "published": "2026-05-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Recent analyses of multi-pathway Deep Linear Networks use Gradient Flow to predict a \"winner-takes-all\" specialization in which path symmetry breaks and each feature concentrates in a single pathway. In this work, we show that discrete Gradient Descent (GD) with a large step size tells a different story. We prove that single-path solutions are sharp minima, whereas distributing signals across pathways reduces sharpness by a factor that decreases with both the number of pathways and depth. Consequently, while early training reproduces the depth-driven symmetry breaking predicted by GF, oscillations at the Edge of Stability subsequently override this tendency and drive the network into a re-balancing phase, where signals redistribute across pathways. Together, these results clarify how depth shapes pathway competition and explain why large-step GD favors shared representations rather than persistent single-pathway dominance.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2609.06885",
+   "title": "Constraining the orbit of the retrograde planet in the $ν$ Octantis system",
+   "published": "2026-09-07",
+   "categories": [
+    "astro-ph.EP"
+   ],
+   "abstract": "The $ν$ Octantis system is composed of a compact stellar binary and a retrograde S-type planet orbiting near the edge of stability. Here, we investigate the dynamically viable architectures of this system by exploring the planetary orbital elements with a Monte Carlo method. To handle the large number of free parameters, we employed a novel approach in which all relevant orbital parameters were varied simultaneously, which we refer to as corner stability maps. Furthermore, since the osculating orbital period of the planet undergoes large oscillations, we combined these maps with frequency analysis to identify the stable configurations that remain consistent with the observational data. We find that the retrograde planetary orbit most likely lies in the region of influence of the high-order 28/$-$11 mean-motion resonance, where its long-term stability is enhanced by secular apsidal alignment.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2505.21423",
+   "title": "Conflicting Biases at the Edge of Stability: Norm versus Sharpness Regularization",
+   "published": "2025-05-27",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "The remarkable generalization properties of overparameterized networks are often attributed to implicit biases, such as norm minimization at small learning rates and low sharpness in the Edge-of-Stability regime. In this work, we argue that a comprehensive understanding of the generalization performance of gradient descent requires analyzing the interaction between these various forms of implicit regularization. We empirically demonstrate that the learning rate interpolates between low parameter norm and low sharpness of the trained model. We furthermore prove that neither implicit bias alone minimizes the generalization error for diagonal linear networks trained on a simple regression task. These findings demonstrate that focusing on a single implicit bias is insufficient to explain good generalization, and they motivate a broader view of implicit regularization that captures the dynamic trade-off between norm and sharpness induced by non-negligible learning rates.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2508.10726",
+   "title": "Edge Reconstruction in a Quantum Spin Hall Insulator",
+   "published": "2025-08-14",
+   "categories": [
+    "cond-mat.mes-hall"
+   ],
+   "abstract": "We study interaction-driven edge reconstruction in a quantum spin Hall insulator described by the Bernevig-Hughes-Zhang model with Kanamori-Hubbard interactions using the real-space density matrix renormalization group method in both the grand-canonical and canonical ensembles. For a two-dimensional cylinder with a smooth edge, we identify discrete particle-number transitions that lead to a spin-polarized edge state stabilized by an emergent ferromagnetic exchange interaction. The reconstruction is orbital-selective, occurring predominantly in the $s$-orbital channel. Our results reveal a microscopic mechanism for emergent fluctuating moments at the edge that could compromise the topological protection of helical edge states by time reversal symmetry.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.05326",
+   "title": "Mean--Fluctuation Dynamics at the Edge of Stability",
+   "published": "2026-06-03",
+   "categories": [
+    "math.OC",
+    "cs.AI",
+    "cs.LG",
+    "math-ph",
+    "math.AP"
+   ],
+   "abstract": "We study the dynamics of gradient descent in the Edge of Stability regime, where the learning rate is large enough to induce persistent oscillations in the trajectory, which has been linked to better generalization performance. We introduce the mean--fluctuation dynamics, a tractable continuous-time model coupling the window-averaged trajectory to its fluctuation covariance. Among our contributions, we rigorously derive this model from gradient descent in a sharp-valley framework, characterize its stationary states and their linear stability, and establish precise connections with other effective dynamics. Numerical experiments illustrate these predictions and their finite-time limitations. We also study our model in the overparametrized regime of wide two-layer networks at a fixed learning rate, where we rigorously derive a kinetic equation describing weights and their fluctuations as a Wasserstein-2 gradient flow, for which we prove well-posedness, a mean-field limit, and conditional convergence results.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2506.06940",
+   "title": "Understanding Sharpness Dynamics in NN Training with a Minimalist Example: The Effects of Dataset Difficulty, Depth, Stochasticity, and More",
+   "published": "2025-06-07",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "When training deep neural networks with gradient descent, sharpness often increases -- a phenomenon known as progressive sharpening -- before saturating at the edge of stability. Although commonly observed in practice, the underlying mechanisms behind progressive sharpening remain poorly understood. In this work, we study this phenomenon using a minimalist model: a deep linear network with a single neuron per layer. We show that this simple model effectively captures the sharpness dynamics observed in recent empirical studies, offering a simple testbed to better understand neural network training. Moreover, we theoretically analyze how dataset properties, network depth, stochasticity of optimizers, and step size affect the degree of progressive sharpening in the minimalist model. We then empirically demonstrate how these theoretical insights extend to practical scenarios. This study offers a deeper understanding of sharpness dynamics in neural network training, highlighting the interplay between depth, training data, and optimizers.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2510.09034",
+   "title": "Convergence of optimizers implies eigenvalues filtering at equilibrium",
+   "published": "2025-10-10",
+   "categories": [
+    "cs.LG",
+    "math.DS",
+    "math.OC"
+   ],
+   "abstract": "Ample empirical evidence in deep neural network training suggests that a variety of optimizers tend to find nearly global optima. In this article, we adopt the reversed perspective that convergence to an arbitrary point is assumed rather than proven, focusing on the consequences of this assumption. From this viewpoint, in line with recent advances on the edge-of-stability phenomenon, we argue that different optimizers effectively act as eigenvalue filters determined by their hyperparameters. Specifically, the standard gradient descent method inherently avoids the sharpest minima, whereas Sharpness-Aware Minimization (SAM) algorithms go even further by actively favoring wider basins. Inspired by these insights, we propose two novel algorithms that exhibit enhanced eigenvalue filtering, effectively promoting wider minima. Our theoretical analysis leverages a generalized Hadamard--Perron stable manifold theorem and applies to general semialgebraic $C^2$ functions, without requiring additional non-degeneracy conditions or global Lipschitz bound assumptions. We support our conclusions with numerical experiments on feed-forward neural networks.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2608.20638",
+   "title": "Adam at the Edge of Stability: Adaptive Feedback, Provable Oscillation, and Gradient Reversal",
+   "published": "2026-08-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.OC"
+   ],
+   "abstract": "The edge-of-stability (EoS) phenomenon of full-batch Adam has been widely observed, yet its underlying dynamical mechanism remains poorly understood. In this paper, we identify Adam's second-moment adaptation as a negative-feedback mechanism that drives the dynamics toward the stability boundary. We characterize this mechanism through the *active curvature*, namely, the preconditioned curvature along the preconditioned gradient direction, and establish rigorous characterizations in progressively richer settings: rank-one quadratics with momentum, diagonal quadratics, on which the active curvature separates from the sharpness, and general objectives. Importantly, the mechanism predicts *gradient reversal* of full-batch Adam near the edge: consecutive gradients repeatedly point in nearly opposite directions, as we observe across fully connected networks, ResNets, ViTs, LSTMs, GPT-2 medium, and Adam-family optimizers. Consistent with this picture, averaging iterates suppresses these fast oscillations and produces smoother and lower loss curves. Together, these results provide an important first step towards fully understanding the dynamical behavior of Adam's EoS through active curvature and gradient reversal.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.30930",
+   "title": "Convergence of Large-Stepsize SGD for the Cross-entropy Loss via Stochastic Lyapunov Stability",
+   "published": "2026-06-29",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Modern deep learning has been shown to operate using learning rates far larger than those justified by classical optimization theory. Most prior analyses of this phenomenon focus on deterministic gradient descent, leaving the stochastic setting largely unexplored. In this work, we provide sharp convergence guarantees for Stochastic Gradient Descent (SGD) applied to the multiclass cross-entropy loss, for both linear classifiers and two-layer neural networks. We show that the stochasticity of SGD may cause the dynamics to alternate between an edge-of-stability regime that is dominated by curvature-driven oscillations, and a stable regime in which the expected loss decreases at a controlled rate. Despite that, we prove that SGD stabilizes the dynamics, ensuring that the iterates return to stability in a fixed number of iterations and allowing convergence in the best-iterate sense even with large learning rates. Experiments validate our theoretical findings and illustrate the benefits of SGD in the large-stepsize regime.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2604.19740",
+   "title": "Generalization at the Edge of Stability",
+   "published": "2026-04-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "stat.ML"
+   ],
+   "abstract": "Training modern neural networks often relies on large learning rates, operating at the edge of stability, where the optimization dynamics exhibit oscillatory and chaotic behavior. Empirically, this regime often yields improved generalization performance, yet the underlying mechanism remains poorly understood. In this work, we represent stochastic optimizers as random dynamical systems, which often converge to a fractal attractor set (rather than a point) with a smaller intrinsic dimension. Building on this connection and inspired by Lyapunov dimension theory, we introduce a novel notion of dimension, coined the `sharpness dimension', and prove a generalization bound based on this dimension. Our results show that generalization in the chaotic regime depends on the complete Hessian spectrum and the structure of its partial determinants, highlighting a complexity that cannot be captured by the trace or spectral norm considered in prior work. Experiments across various MLPs and transformers validate our theory while also providing new insights into the recently observed phenomenon of grokking.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.06718",
+   "title": "Symmetry Breaking at the Edge of Stability via Central Flow Analysis",
+   "published": "2026-11-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Continuous symmetries in neural networks lead to conserved quantities that are invariant under gradient flow, such as layer balancedness in linear and ReLU networks. Finite-step gradient descent need not preserve these laws, particularly at the edge of stability (EOS), where the iterates oscillate around a smoother trajectory, which can be described by the central flow dynamics (Cohen et al., 2025). We study how gradient flow conservation laws evolve under the central flow description of this regime. We show that the curvature correction induces a finite-dimensional drift determined by the oscillation covariance along critical parameter directions. We thus take the first steps to analyse which conservation laws remain and are broken at the EOS according to the central flow dynamics by analysing a scalar two-layer model, two-layer matrix factorisation, and a two-layer ReLU network, where the known conservation laws are shown to be complete (Marcotte et al., 2023).",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2610.01459",
+   "title": "Tight Transition Time Bounds for Separable Logistic Regression at the Edge of Stability",
+   "published": "2026-10-01",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We study logistic regression on linearly separable data under gradient descent with a large constant stepsize $η$. Such dynamics may exhibit a characteristic Edge of Stability phenomenon, in which the loss initially oscillates before transitioning to a stable phase of monotone decrease. Existing work provides a tight $Θ(1)$ bound in dimension $d=2$ as $η\\to \\infty$ and conjectures a bound independent of $η$ in arbitrary dimensions $d\\geq 2$. In this paper, we disprove this conjecture by showing that, for every fixed sample size $n\\geq 2$ and sufficiently small margin $γ$, the worst-case transition time is $$Θ\\!\\left((\\logη)^{\\min\\{n-2,d-2\\}}\\right)$$ uniformly over $d\\geq2$. The key challenge in establishing a tight bound is that the sample contributing most strongly to the gradient can change repeatedly across iterations. To address this issue, we control such changes by induction on dimension and sample size, and construct matching hard instances.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2604.02653",
+   "title": "Product-Stability: Provable Convergence for Gradient Descent on the Edge of Stability",
+   "published": "2026-04-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Empirically, modern deep learning training often occurs at the Edge of Stability (EoS), where the sharpness of the loss exceeds the threshold below which classical convergence analysis applies. Despite recent progress, existing theoretical explanations of EoS either rely on restrictive assumptions or focus on specific squared-loss-type objectives. In this work, we introduce and study a structural property of loss functions that we term product-stability. We show that for losses with product-stable minima, gradient descent applied to objectives of the form $(x,y) \\mapsto l(xy)$ can provably converge to the local minimum even when training in the EoS regime. This framework substantially generalizes prior results and applies to a broad class of losses, including binary cross entropy. Using bifurcation diagrams, we characterize the resulting training dynamics, explain the emergence of stable oscillations, and precisely quantify the sharpness at convergence. Together, our results offer a principled explanation for stable EoS training for a wider class of loss functions.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.04212",
+   "title": "Edge of Stability Selectively Shapes Learning Across the Data Distribution",
+   "published": "2026-06-02",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Existing analyses of the edge of stability (EoS) treat it as a global property of optimization. We show that it is also selective: the stability constraint redistributes learning across subsets of the training distribution, amplifying progress on some groups while suppressing progress on others. Using a branching intervention that enters or exits the EoS regime from the same training state, we causally demonstrate this trade-off and identify two necessary conditions for a group to benefit. First, its aggregate gradient must align with the top Hessian eigenvector. We isolate this mechanism with a controlled perturbation that preserves distance but randomizes direction, destroying alignment and eliminating the advantage. Second, the group must sustain non-vanishing gradient magnitude over time. Under cross-entropy loss, gradient saturation decouples confidently classified groups, shifting the advantage to output-outliers, whose gradients persist. Together, these results show that EoS functions not only as a stability boundary, but as a mechanism governing the allocation of learning across the data distribution.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2602.18946",
+   "title": "Exponential Convergence of (Stochastic) Gradient Descent for Separable Logistic Regression",
+   "published": "2026-02-21",
+   "categories": [
+    "cs.LG",
+    "math.OC"
+   ],
+   "abstract": "Gradient descent and stochastic gradient descent are central to modern machine learning, yet their behavior under large step sizes remains theoretically unclear. Recent work suggests that acceleration often arises near the edge of stability, where optimization trajectories become unstable and difficult to analyze. Existing results for separable logistic regression achieve faster convergence by explicitly leveraging such unstable regimes through constant or adaptive large step sizes. In this paper, we show that instability is not inherent to acceleration. We prove that gradient descent with a simple, non-adaptive increasing step-size schedule achieves exponential convergence for separable logistic regression under a margin condition, while remaining entirely within a stable optimization regime. The resulting method is anytime and does not require prior knowledge of the optimization horizon or target accuracy. We also establish exponential convergence of stochastic gradient descent using a lightweight adaptive step-size rule that avoids line search and specialized procedures, improving upon existing polynomial-rate guarantees. Together, our results demonstrate that carefully structured step-size growth alone suffices to obtain exponential acceleration for both gradient descent and stochastic gradient descent.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2602.01480",
+   "title": "Rod Flow: A Continuous-Time Model for Gradient Descent at the Edge of Stability",
+   "published": "2026-02-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "How can we understand gradient-based training over non-convex landscapes? The edge of stability phenomenon, introduced in Cohen et al. (2021), indicates that the answer is not so simple: namely, gradient descent (GD) with large step sizes often diverges away from the gradient flow. In this regime, the \"Central Flow\", recently proposed in Cohen et al. (2025), provides an accurate ODE approximation to the GD dynamics over many architectures. In this work, we propose Rod Flow, an alternative ODE approximation, which carries the following advantages: (1) it rests on a principled derivation stemming from a physical picture of GD iterates as an extended one-dimensional object -- a \"rod\"; (2) it better captures GD dynamics for simple toy examples and matches the accuracy of Central Flow for representative neural network architectures, and (3) is explicit and cheap to compute. Theoretically, we prove that Rod Flow correctly predicts the critical sharpness threshold and explains self-stabilization in quartic potentials. We validate our theory with a range of numerical experiments.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2603.05002",
+   "title": "Non-Euclidean Gradient Descent Operates at the Edge of Stability",
+   "published": "2026-03-05",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "The Edge of Stability (EoS) is a phenomenon where the sharpness (largest eigenvalue) of the Hessian approaches and then hovers near the stability threshold $2/η$ during gradient descent (GD) with step size $η$. Despite (apparently) violating classical smoothness assumptions, EoS has been widely observed in deep learning, but its theoretical foundations remain incomplete. We provide an interpretation of EoS through the lens of Directional Smoothness [Mishkin et al., 2024]. This interpretation naturally extends to non-Euclidean norms, which we use to define generalized sharpness under an arbitrary norm. Our generalized sharpness measure includes previously studied vanilla GD and preconditioned GD as special cases, as well as methods for which EoS has not been studied, such as $\\ell_{\\infty}$-descent, Block CD, Spectral GD, and their normalized versions. Through experiments on neural networks, we show that non-Euclidean GD with our generalized sharpness also exhibits progressive sharpening followed by oscillations around or above the threshold $2/η$. Practically, our framework provides a geometry-aware spectral diagnostic that can be applied across a broad class of non-Euclidean gradient methods.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2503.02809",
+   "title": "A Minimalist Example of Edge-of-Stability and Progressive Sharpening",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Recent advances in deep learning optimization have unveiled two intriguing phenomena under large learning rates: Edge of Stability (EoS) and Progressive Sharpening (PS), challenging classical Gradient Descent (GD) analyses. Current research approaches, using either generalist frameworks or minimalist examples, face significant limitations in explaining these phenomena. This paper advances the minimalist approach by introducing a two-layer network with a two-dimensional input, where one dimension is relevant to the response and the other is irrelevant. Through this model, we rigorously prove the existence of progressive sharpening and self-stabilization under large learning rates, and establish non-asymptotic analysis of the training dynamics and sharpness along the entire GD trajectory. Besides, we connect our minimalist example to existing works by reconciling the existence of a well-behaved ``stable set\" between minimalist and generalist analyses, and extending the analysis of Gradient Flow Solution sharpness to our two-dimensional input scenario. These findings provide new insights into the EoS phenomenon from both parameter and input data distribution perspectives, potentially informing more effective optimization strategies in deep learning practice.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2512.01473",
+   "title": "Does Flatness imply Generalization for Logistic Loss in Univariate Two-Layer ReLU Network?",
+   "published": "2025-12-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "We consider the problem of generalization of arbitrarily overparameterized two-layer ReLU Neural Networks with univariate input. Recent work showed that under square loss, flat solutions (motivated by flat / stable minima and Edge of Stability phenomenon) provably cannot overfit, but it remains unclear whether the same phenomenon holds for logistic loss. This is a puzzling open problem because existing work on logistic loss shows that gradient descent with increasing step size converges to interpolating solutions (at infinity, for the margin-separable cases). In this paper, we prove that the \\emph{flatness implied generalization} is more delicate under logistic loss. On the positive side, we show that flat solutions enjoy near-optimal generalization bounds within a region between the left-most and right-most \\emph{uncertain} sets determined by each candidate solution. On the negative side, we show that there exist arbitrarily flat yet overfitting solutions at infinity that are (falsely) certain everywhere, thus certifying that flatness alone is insufficient for generalization in general. We demonstrate the effects predicted by our theory in a well-controlled simulation study.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2510.02670",
+   "title": "Topological Invariance and Breakdown in Learning",
+   "published": "2025-10-03",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "We prove that for a broad class of permutation-equivariant learning rules (including SGD, Adam, and others), the training process induces a bi-Lipschitz mapping between neurons and strongly constrains the topology of the neuron distribution during training. This result reveals a qualitative difference between small and large learning rates $η$. With a learning rate below a topological critical point $η^*$, the training is constrained to preserve all topological structure of the neurons. In contrast, above $η^*$, the learning process allows for topological simplification, making the neuron manifold progressively coarser and thereby reducing the model's expressivity. Viewed in combination with the recent discovery of the edge of stability phenomenon, the learning dynamics of neuron networks under gradient descent can be divided into two phases: first they undergo smooth optimization under topological constraints, and then enter a second phase where they learn through drastic topological simplifications. A key feature of our theory is that it is independent of specific architectures or loss functions, enabling the universal application of topological methods to the study of deep learning.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.00473",
+   "title": "Stochastic learning flow: moment equations for stochastic gradient descent at finite step size",
+   "published": "2026-10-30",
+   "categories": [
+    "cs.LG",
+    "cond-mat.dis-nn"
+   ],
+   "abstract": "Analytical theories of learning in deep networks often assume gradient flow, discarding the finite step size and batch noise of stochastic gradient descent (SGD). Starting from the discrete update, we derive continuous-time equations for the mean and covariance of the parameter distribution under a Gaussian closure for a general stochastic learning, to first order in the learning rate $η$. Applying these stochastic learning flow (SLF) equations to SGD, we show that the mean descends an effective loss regularized by the covariance and loss curvature, while the covariance, unlike in stochastic differential equation approximations, becomes unstable at curvature $2/η$. In SGD ensembles of linear and nonlinear networks, SLF predicts learning curves and mean trajectories more accurately than gradient flow and captures the covariance dynamics, failing where the parameter distribution becomes strongly non-Gaussian. In the full-batch limit, the edge of stability corresponds to a stationary point of the coupled sharpness-covariance dynamics, recovering self-stabilization and central flow, and batch-to-batch curvature fluctuations lower this threshold under SGD.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2607.21005",
+   "title": "Weight-norm Criticality: A Mechanism for Loss Spikes Induced by the Normalization and Weight Decay",
+   "published": "2026-07-23",
+   "categories": [
+    "cs.LG",
+    "cs.NE"
+   ],
+   "abstract": "Most explanations of training instability focus on learning-rate criticality, typically characterized by the Edge of Stability, beyond which optimization becomes unstable. We argue that, in practical deep neural network training, there is an additional and often overlooked weight-norm criticality. This criticality is induced by the interaction between normalization (which introduces scale-invariant components) and weight decay (which persistently shrinks parameter norms). As the weight decay coefficient increases, the norms of scale-invariant weights are progressively driven toward zero. Meanwhile, the sharpness of the loss landscape increases rapidly, destabilizing the optimization dynamics and resulting in abrupt loss spikes. This perspective provides a rationale for why weight penalties can improve generalization yet cannot be made arbitrarily strong: excessive decay drives scale-invariant weight norms past a critical boundary and destabilizes training. Our work provides a new mechanistic understanding of loss spikes through the lens of weight-norm criticality. Moreover, weight-norm criticality yields testable predictions that we validate empirically in networks with scale-invariant components, providing empirical support for the proposed mechanism.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2507.12837",
+   "title": "Understanding the Evolution of the Neural Tangent Kernel at the Edge of Stability",
+   "published": "2025-07-17",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The study of Neural Tangent Kernels (NTKs) in deep learning has drawn increasing attention in recent years. NTKs typically actively change during training and are related to feature learning. In parallel, recent work on Gradient Descent (GD) has found a phenomenon called Edge of Stability (EoS), in which the largest eigenvalue of the NTK oscillates around a value inversely proportional to the step size. However, although follow-up works have explored the underlying mechanism of such eigenvalue behavior in depth, the understanding of the behavior of the NTK eigenvectors during EoS is still missing. This paper examines the dynamics of NTK eigenvectors during EoS in detail. Across different architectures, we observe that larger learning rates cause the leading eigenvectors of the final NTK, as well as the full NTK matrix, to have greater alignment with the training target. We then study the underlying mechanism of this phenomenon and provide a theoretical analysis for a two-layer linear network. Our study enhances the understanding of GD training dynamics in deep learning.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2607.16706",
+   "title": "Edge of Stability in Nonlinear Photonic Reservoirs: Universal Design Principle for Exciton-Polariton Computing",
+   "published": "2026-07-18",
+   "categories": [
+    "physics.optics"
+   ],
+   "abstract": "Reservoir computing has emerged as a powerful paradigm for harnessing the intrinsic dynamics of physical systems to perform complex information processing. Here, we theoretically and numerically investigate a reservoir computing system based on the two-dimensional discrete complex Ginzburg-Landau equation, a fundamental model describing driven-dissipative exciton-polariton lattices. We apply this framework to the challenging 52-class handwritten letter recognition task, decomposing temporal input signals to simulate word recognition. Our system achieves a high test accuracy, significantly outperforming a linear baseline. Through systematic parameter scans and nonlinear dynamics analysis, we establish a quantitative link between computational performance and the underlying physics: optimal classification occurs near the edge of stability, where the maximum Lyapunov exponent approaches zero. This principle holds universally across different control parameters, including nonlinear coupling and linear gain. Furthermore, we validate the practical feasibility of this approach by deploying the trained model on a Raspberry Pi 5 edge device. These results not only demonstrate the potential of polariton lattices for neuromorphic computing but also provide a general design principle for optimizing physical reservoir computing hardware.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2510.18120",
+   "title": "Generalization Below the Edge of Stability: The Role of Data Geometry",
+   "published": "2025-10-20",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Understanding generalization in overparameterized neural networks hinges on the interplay between the data geometry, neural architecture, and training dynamics. In this paper, we theoretically explore how data geometry controls this implicit bias. This paper presents theoretical results for overparametrized two-layer ReLU networks trained below the edge of stability. First, for data distributions supported on a mixture of low-dimensional balls, we derive generalization bounds that provably adapt to the intrinsic dimension. Second, for a family of isotropic distributions that vary in how strongly probability mass concentrates toward the unit sphere, we derive a spectrum of bounds showing that rates deteriorate as the mass concentrates toward the sphere. These results instantiate a unifying principle: When the data is harder to \"shatter\" with respect to the activation thresholds of the ReLU neurons, gradient descent tends to learn representations that capture shared patterns and thus finds solutions that generalize well. On the other hand, for data that is easily shattered (e.g., data supported on the sphere) gradient descent favors memorization. Our theoretical results consolidate disparate empirical findings that have appeared in the literature.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2604.20446",
+   "title": "The Origin of Edge of Stability",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Full-batch gradient descent on neural networks drives the largest Hessian eigenvalue to the threshold $2/η$, where $η$ is the learning rate. This phenomenon, the Edge of Stability, has resisted a unified explanation: existing accounts establish self-regulation near the edge but do not explain why the trajectory is forced toward $2/η$ from arbitrary initialization. We introduce the edge coupling, a functional on consecutive iterate pairs whose coefficient is uniquely fixed by the gradient-descent update. Differencing its criticality condition yields a step recurrence with stability boundary $2/η$, and a second-order expansion yields a loss-change formula whose telescoping sum forces curvature toward $2/η$. The two formulas involve different Hessian averages, but the mean value theorem localizes each to the true Hessian at an interior point of the step segment, yielding exact forcing of the Hessian eigenvalue with no gap. Setting both gradients of the edge coupling to zero classifies fixed points and period-two orbits; near a fixed point, the problem reduces to a function of the half-amplitude alone, which determines which directions support period-two orbits and on which side of the critical learning rate they appear.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2508.12705",
+   "title": "On the Gaussian Limit of the Output of IIR Filters",
+   "published": "2025-08-18",
+   "categories": [
+    "eess.SY",
+    "eess.SP"
+   ],
+   "abstract": "We study the asymptotic distribution of the output of a stable Linear Time-Invariant (LTI) system driven by a non-Gaussian stochastic input. Motivated by longstanding heuristics in the stochastic describing function method, we rigorously characterize when the output process becomes approximately Gaussian, even when the input is not. Using the Wasserstein-1 distance as a quantitative measure of non-Gaussianity, we derive upper bounds on the distance between the appropriately scaled output and a standard normal distribution. These bounds are obtained via Stein's method and depend explicitly on the system's impulse response and the dependence structure of the input process. We show that when the dominant pole of the system approaches the edge of stability and the input satisfies one of the following conditions: (i) independence, (ii) positive correlation with a real and positive dominant pole, or (iii) sufficient correlation decay, the output converges to a standard normal distribution at rate $O(1/\\sqrt{t})$. We also present counterexamples where convergence fails, thereby motivating the stated assumptions. Our results provide a rigorous foundation for the widespread observation that outputs of low-pass LTI systems tend to be approximately Gaussian.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2601.01916",
+   "title": "Toward Thermodynamic Reservoir Computing: Exploring SHA-256 ASICs as Potential Physical Substrates",
+   "published": "2026-01-05",
+   "categories": [
+    "cs.NE"
+   ],
+   "abstract": "We propose a theoretical framework--Holographic Reservoir Computing (HRC)--which hypothesizes that the thermodynamic noise and timing dynamics in voltage-stressed Bitcoin mining ASICs (BM1366) could potentially serve as a physical reservoir computing substrate. We present the CHIMERA (Conscious Hybrid Intelligence via Miner-Embedded Resonance Architecture) system architecture, which treats the SHA-256 hashing pipeline not as an entropy source, but as a deterministic diffusion operator whose timing characteristics under controlled voltage and frequency conditions may exhibit computationally useful dynamics. We report preliminary observations of non-Poissonian variability in inter-arrival time statistics during edge-of-stability operation, which we term the \"Silicon Heartbeat\" hypothesis. Theoretical analysis based on Hierarchical Number System (HNS) representations suggests that such architectures could achieve O(log n) energy scaling compared to traditional von Neumann O(2^n) dependencies. However, we emphasize that these are theoretical projections requiring experimental validation. We present the implemented measurement infrastructure, acknowledge current limitations, and outline the experimental program necessary to confirm or refute these hypotheses. This work contributes to the emerging field of thermodynamic computing by proposing a novel approach to repurposing obsolete cryptographic hardware for neuromorphic applications.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2506.12903",
+   "title": "Variational Learning Finds Flatter Solutions at the Edge of Stability",
+   "published": "2025-06-15",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Variational Learning (VL) has recently gained popularity for training deep neural networks. Part of its empirical success can be explained by theories such as PAC-Bayes bounds, minimum description length and marginal likelihood, but little has been done to unravel the implicit regularization in play. Here, we analyze the implicit regularization of VL through the Edge of Stability (EoS) framework. EoS has previously been used to show that gradient descent can find flat solutions and we extend this result to show that VL can find even flatter solutions. This result is obtained by controlling the shape of the variational posterior as well as the number of posterior samples used during training. The derivation follows in a similar fashion as in the standard EoS literature for deep learning, by first deriving a result for a quadratic problem and then extending it to deep neural networks. We empirically validate these findings on a wide variety of large networks, such as ResNet and ViT, to find that the theoretical results closely match the empirical ones. Ours is the first work to analyze the EoS dynamics of VL.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2604.14669",
+   "title": "Zeroth-Order Optimization at the Edge of Stability",
+   "published": "2026-04-16",
+   "categories": [
+    "cs.LG",
+    "math.DS",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Zeroth-order (ZO) methods are widely used when gradients are unavailable or prohibitively expensive, including black-box learning and memory-efficient fine-tuning of large models, yet their optimization dynamics in deep learning remain underexplored. In this work, we provide an explicit step size condition that exactly captures the (mean-square) linear stability of a family of ZO methods based on the standard two-point estimator. Our characterization reveals a sharp contrast with first-order (FO) methods: whereas FO stability is governed solely by the largest Hessian eigenvalue, mean-square stability of ZO methods depends on the entire Hessian spectrum. Since computing the full Hessian spectrum is infeasible in practical neural network training, we further derive tractable stability bounds that depend only on the largest eigenvalue and the Hessian trace. Empirically, we find that full-batch ZO methods operate at the edge of stability: ZO-GD, ZO-GDM, and ZO-Adam consistently stabilize near the predicted stability boundary across a range of deep learning training problems. Our results highlight an implicit regularization effect specific to ZO methods, where large step sizes primarily regularize the Hessian trace, whereas in FO methods they regularize the top eigenvalue.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2606.16768",
+   "title": "Taming Curvature: Architecture Warm-Up for Stable Transformer Training",
+   "published": "2026-06-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Training billion-parameter Transformers is often brittle, with transient loss spikes and divergence that waste compute. Even though the recently developed Edge of Stability (EoS) theory provides a powerful tool to understand and control the stability of optimization methods via the (preconditioned) curvature, these curvature-controlling methods are not popular in large-scale Transformer training due to the complexity of curvature estimation. To this end, we first introduce a fast online estimator of the largest (preconditioned) Hessian eigenvalue (i.e., curvature) based on a warm-started variant for power iteration with Hessian-vector products. We show theoretically, and verify empirically, that the proposed method makes per-iteration curvature tracking feasible at billion parameter scale while being more accurate. Using this tool, we find that training instabilities coincide with surges in preconditioned curvature and that curvature grows with depth. Motivated by these observations, we propose architecture warm-up: progressively growing network depth to carefully control the preconditioned Hessian and stabilize training. Experiments on large Transformers validate that our approach enables efficient curvature tracking and reduces instabilities compared to existing state-of-the-art stabilization techniques without slowing down convergence.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2605.16622",
+   "title": "Does Weight Decay Enhance Training Stability?",
+   "published": "2026-05-15",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "In modern deep learning, weight decay is often credited with \"stabilizing\" training dynamics, diverging from its classical role as a static regularization penalty. We investigate a fundamental question: *does weight decay stabilize training dynamics, and if so, through which mechanism?* Indeed, training stability is understood through different but related notions in the literature. We consider how weight decay affects the parameter-space dynamics and loss sharpness by analyzing its effects at the \\emph{Edge of Stability} (EoS). We show that weight decay robustly slows *progressive sharpening}. Furthermore, we uncover a striking architecture-dependent phase transition. In CNNs, weight decay dampens the oscillations at the EoS, while in MLPs, increasing weight decay causes a phase transition in which the sharpness stabilizes at a threshold significantly below the theoretical $\\frac{2}η$ boundary. We develop a mathematical framework that accurately models these phenomena and identify the global alignment of the parameter vector and the sharpness gradient as the mechanistic driver of the phase transition. Importantly, we show that these phenomena translate into stability in terms of search in function-space (NTK). Last, this shows that curvature thresholds obtained from convex/quadratic heuristics may not be reliable stability diagnostics under regularization.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2611.15990",
+   "title": "Characterizing the Edge of Stability in Variational Training Without Priors",
+   "published": "2026-11-11",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Variational approaches in deep learning promise to deliver improved uncertainty quantification and out-of-distribution generalization by inferring a distribution over weights, regularized by a divergence to a chosen prior. However, prior elicitation presents a significant challenge in deep learning, resulting in the common practice of significantly downweighting the regularization term in the variational objective. Recently, it was proposed to train solely via the expected loss by relying on implicit regularization from the optimizer, rather than explicit regularization from the divergence to the prior. While this approach largely sidesteps the issue of prior elicitation, current theory lacks an understanding of how key optimization hyperparameters impact the implicit regularization. Here, we theoretically and empirically demonstrate that larger learning rates and fewer parameter samples lead to flatter minima of the loss landscape, which are known to generalize better. We show that training on the expected loss operates at a modified edge of stability, characterized by the signal-to-noise ratio of the gradient estimates and the number of Monte Carlo samples. Experiments on out-of-distribution benchmark datasets confirm the practical significance of the theoretical results.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2608.16127",
+   "title": "The Brualdi--Hoffman--Turán problem for odd wheels: Resolving a conjecture of Yu, Li and Peng",
+   "published": "2026-08-17",
+   "categories": [
+    "math.CO"
+   ],
+   "abstract": "This paper addresses the Brualdi--Hoffman--Turán problem, which asks for the maximum adjacency spectral radius over graphs with a fixed number of edges that forbid a prescribed subgraph. We settle an open conjecture due to Yu, Li and Peng for odd wheel graphs $W_{2k+1}$. A striking dichotomy appears in the extremal configurations: the forbidden-$W_5$ case and the general case $k\\ge 3$ rely on identical stability and dense-core reductions but produce completely different extremal graphs. For sufficiently large size $m$, we derive sharp spectral inequalities and give complete characterizations for graphs achieving equality. Our approach combines the edge-spectral stability theorem with the dense-core method and residual-function analysis. Beyond solving the target conjecture, the developed framework provides a systematic approach for edge-spectral Turán problems and implies several known results for odd cycles, friendship graphs and odd fans. Directions for future research on edge-spectral supersaturation are also discussed.",
+   "query": "edge of stability"
+  },
+  {
+   "id": "2508.06217",
+   "title": "A Preliminary Study on the Dimensional Stability Classification of Polynomial Spline Spaces over T-meshes",
+   "published": "2025-08-08",
+   "categories": [
+    "math.NA"
+   ],
+   "abstract": "This paper studies dimensional stability of polynomial spline spaces over T-meshes with highest-order smoothness. Dimensional stability is defined as the invariance of the dimension of the spline space over structurally isomorphic T-meshes, where a structurally isomorphic map preserves edge intersections and the mutual positions of all edges. Absolute stability, a stronger notion, is introduced via structurally similar maps that depend solely on the topology of T-connected components. It is proved that every T-connected component admits a unique decomposition into a diagonalizable part and a completely non-diagonalizable component (CNDC). This reduces stability to the rank stability of the conformality matrix associated with the CNDC. For diagonalizable T-meshes, the conformality vector space decomposes as a direct sum over independent T $l$-edges, supporting basis function construction per T $l$-edge. These results provide a systematic framework for classifying dimensional stability and a rigorous theoretical foundation for constructing basis functions of spline spaces over T-meshes.",
+   "query": "edge of stability"
+  }
+ ]
+}

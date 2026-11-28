@@ -1,0 +1,922 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "causal representation learning",
+  "causal reasoning large language models",
+  "invariant risk minimization"
+ ],
+ "papers": [
+  {
+   "id": "2507.14126",
+   "title": "Toward Temporal Causal Representation Learning with Tensor Decomposition",
+   "published": "2025-07-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Temporal causal representation learning is a powerful tool for uncovering complex patterns in observational studies, which are often represented as low-dimensional time series. However, in many real-world applications, data are high-dimensional with varying input lengths and naturally take the form of irregular tensors. To analyze such data, irregular tensor decomposition is critical for extracting meaningful clusters that capture essential information. In this paper, we focus on modeling causal representation learning based on the transformed information. First, we present a novel causal formulation for a set of latent clusters. We then propose CaRTeD, a joint learning framework that integrates temporal causal representation learning with irregular tensor decomposition. Notably, our framework provides a blueprint for downstream tasks using the learned tensor factors, such as modeling latent structures and extracting causal information, and offers a more flexible regularization design to enhance tensor decomposition. Theoretically, we show that our algorithm converges to a stationary point. More importantly, our results fill the gap in theoretical guarantees for the convergence of state-of-the-art irregular tensor decomposition. Experimental results on synthetic and real-world electronic health record (EHR) datasets (MIMIC-III), with extensive benchmarks from both phenotyping and network recovery perspectives, demonstrate that our proposed method outperforms state-of-the-art techniques and enhances the explainability of causal representations.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.25796",
+   "title": "Beyond identifiability: Learning causal representations with few environments and finite samples",
+   "published": "2026-03-26",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "We provide explicit, finite-sample guarantees for learning causal representations from data with a sublinear number of environments. Causal representation learning seeks to provide a rigourous foundation for the general representation learning problem by bridging causal models with latent factor models in order to learn interpretable representations with causal semantics. Despite a blossoming theory of identifiability in causal representation learning, estimation and finite-sample bounds are less well understood. We show that causal representations can be learned with only a logarithmic number of unknown, multi-node interventions, and that the intervention targets need not be carefully designed in advance. Through a careful perturbation analysis, we provide a new analysis of this problem that guarantees consistent recovery of (a) the latent causal graph, (b) the mixing matrix and representations, and (c) \\emph{unknown} intervention targets.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.18052",
+   "title": "Measure-Theoretic Anti-Causal Representation Learning",
+   "published": "2025-10-16",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ME"
+   ],
+   "abstract": "Causal representation learning in the anti-causal setting (labels cause features rather than the reverse) presents unique challenges requiring specialized approaches. We propose Anti-Causal Invariant Abstractions (ACIA), a novel measure-theoretic framework for anti-causal representation learning. ACIA employs a two-level design, low-level representations capture how labels generate observations, while high-level representations learn stable causal patterns across environment-specific variations. ACIA addresses key limitations of existing approaches by accommodating prefect and imperfect interventions through interventional kernels, eliminating dependency on explicit causal structures, handling high-dimensional data effectively, and providing theoretical guarantees for out-of-distribution generalization. Experiments on synthetic and real-world medical datasets demonstrate that ACIA consistently outperforms state-of-the-art methods in both accuracy and invariance metrics. Furthermore, our theoretical results establish tight bounds on performance gaps between training and unseen environments, confirming the efficacy of our approach for robust anti-causal learning.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2609.30995",
+   "title": "Learning Hierarchical Causal Representations of the Effects of Forcings on Temperature in Climate Models",
+   "published": "2026-09-25",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Machine learning (ML) emulators provide a fast and cost-effective method to simulate climate change scenarios after being trained on Earth System Models projections. However, the black-box nature of those data-driven approaches limit the usability and trustworthiness of their outputs and in particular their use as causal attribution tools. Here, we develop a hierarchical causal representation learning framework applied to sea surface temperature fields from a state-of-the-art global climate model. As a key advance over previous work, our framework explicitly models both atmospheric dynamical interactions arising from internal climate variability and forced responses due to changes in atmospheric greenhouse gas and aerosol concentrations. When trained on future climate change scenarios, our method accurately predicts the long-term global mean and regional temperature evolution and shows physically realistic responses to perturbations in greenhouse gas and aerosol concentrations when evaluated on unseen scenarios. Our results underline the potential of causal representation learning frameworks for advancing climate model emulation.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.27512",
+   "title": "When Distributions Shifts: Causal Generalization for Low-Resource Languages",
+   "published": "2025-10-31",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Machine learning models often fail under distribution shifts, a problem exacerbated in low-resource settings where limited data restricts robust generalization. Domain generalization(DG) methods address this challenge by learning representations that remain invariant across domains, frequently leveraging causal principles. In this work, we study two causal DG approaches for low-resource natural language processing. First, we apply causal data augmentation using GPT-4o-mini to generate counterfactual paraphrases for sentiment classification on the NaijaSenti Twitter corpus in Yoruba and Igbo. Second, we investigate invariant causal representation learning with the Debiasing in Aspect Review (DINER) framework for aspect-based sentiment analysis. We extend DINER to a multilingual setting by introducing Afri-SemEval, a dataset of 17 languages translated from SemEval-2014 Task. Experiments show improved robustness to unseen domains, with consistent gains from counterfactual augmentation and enhanced out-of-distribution performance from causal representation learning across multiple languages.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2509.23323",
+   "title": "LLM Interpretability with Identifiable Temporal-Instantaneous Representation",
+   "published": "2025-09-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Despite Large Language Models' remarkable capabilities, understanding their internal representations remains challenging. Mechanistic interpretability tools such as sparse autoencoders (SAEs) were developed to extract interpretable features from LLMs but lack temporal dependency modeling, instantaneous relation representation, and more importantly theoretical guarantees, undermining both the theoretical foundations and the practical confidence necessary for subsequent analyses. While causal representation learning (CRL) offers theoretically grounded approaches for uncovering latent concepts, existing methods cannot scale to LLMs' rich conceptual space due to inefficient computation. To bridge the gap, we introduce an identifiable temporal causal representation learning framework specifically designed for LLMs' high-dimensional concept space, capturing both time-delayed and instantaneous causal relations. Our approach provides theoretical guarantees and demonstrates efficacy on synthetic datasets scaled to match real-world complexity. By extending SAE techniques with our temporal causal framework, we successfully discover meaningful concept relationships in LLM activations. Our findings show that modeling both temporal and instantaneous conceptual relationships advances the interpretability of LLMs.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.25017",
+   "title": "Discrete Causal Representation Learning",
+   "published": "2026-03-26",
+   "categories": [
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "Causal representation learning seeks to uncover causal relationships among high-level latent variables from low-level, entangled, and noisy observations. Existing approaches often either rely on deep neural networks, which lack interpretability and formal guarantees, or impose restrictive assumptions like linearity, continuous-only observations, and strong structural priors. These limitations particularly challenge applications with a large number of discrete latent variables and mixed-type observations. To address these challenges, we propose discrete causal representation learning (DCRL), a generative framework that models a directed acyclic graph among discrete latent variables, along with a sparse bipartite graph linking latent and observed layers. This design accommodates continuous, count, and binary responses through flexible measurement models while maintaining interpretability. Under mild conditions, we prove that both the bipartite measurement graph and the latent causal graph are identifiable from the observed data distribution alone. We further propose a three-stage estimate-resample-discovery pipeline: penalized estimation of the generative model parameters, resampling of latent configurations from the fitted model, and score-based causal discovery on the resampled latents. We establish the consistency of this procedure, ensuring reliable recovery of the latent causal structure. Empirical studies on educational assessment and synthetic image data demonstrate that DCRL recovers sparse and interpretable latent causal structures.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2604.23800",
+   "title": "Causal Representation Learning from General Environments under Nonparametric Mixing",
+   "published": "2026-04-26",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Causal representation learning aims to recover the latent causal variables and their causal relations, typically represented by directed acyclic graphs (DAGs), from low-level observations such as image pixels. A prevailing line of research exploits multiple environments, which assume how data distributions change, including single-node interventions, coupled interventions, or hard interventions, or parametric constraints on the mixing function or the latent causal model, such as linearity. Despite the novelty and elegance of the results, they are often violated in real problems. Accordingly, we formalize a set of desiderata for causal representation learning that applies to a broader class of environments, referred to as general environments. Interestingly, we show that one can fully recover the latent DAG and identify the latent variables up to minor indeterminacies under a nonparametric mixing function and nonlinear latent causal models, such as additive (Gaussian) noise models or heteroscedastic noise models, by properly leveraging sufficient change conditions on the causal mechanisms up to third-order derivatives. These represent, to our knowledge, the first results to fully recover the latent DAG from general environments under nonparametric mixing. Notably, our results match or improve upon many existing works, but require less restrictive assumptions about changing environments.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2506.20582",
+   "title": "Causal Representation Learning with Observational Grouping for CXR Classification",
+   "published": "2025-06-25",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Identifiable causal representation learning seeks to uncover the true causal relationships underlying a data generation process. In medical imaging, this presents opportunities to improve the generalisability and robustness of task-specific latent features. This work introduces the concept of grouping observations to learn identifiable representations for disease classification in chest X-rays via an end-to-end framework. Our experiments demonstrate that these causal representations improve generalisability and robustness across multiple classification tasks when grouping is used to enforce invariance w.r.t race, sex, and imaging views.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2506.09891",
+   "title": "Causal Climate Emulation with Bayesian Filtering",
+   "published": "2025-06-11",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CE",
+    "physics.ao-ph"
+   ],
+   "abstract": "Traditional models of climate change use complex systems of coupled equations to simulate physical processes across the Earth system. These simulations are highly computationally expensive, limiting our predictions of climate change and analyses of its causes and effects. Machine learning has the potential to quickly emulate data from climate models, but current approaches are not able to incorporate physically-based causal relationships. Here, we develop an interpretable climate model emulator based on causal representation learning. We derive a novel approach including a Bayesian filter for stable long-term autoregressive emulation. We demonstrate that our emulator learns accurate climate dynamics, and we show the importance of each one of its components on a realistic synthetic dataset and data from two widely deployed climate models.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.18404",
+   "title": "Multi-Domain Empirical Bayes for Linearly-Mixed Causal Representations",
+   "published": "2026-03-19",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "stat.ME"
+   ],
+   "abstract": "Causal representation learning (CRL) aims to learn low-dimensional causal latent variables from high-dimensional observations. While identifiability has been extensively studied for CRL, estimation has been less explored. We use empirical Bayes (EB) to estimate causal representations from multiple domains whose differences reflect interventions in a shared causal model. Multi-domain CRL poses a simultaneous inference problem suited to EB. Here, we propose an EB $f$-modeling algorithm that improves the quality of learned causal variables by exploiting invariant structure within and across domains. Specifically, we consider linear measurement models with interventional priors induced by an acyclic latent causal model with known graph and intervention targets. We develop an EM-style algorithm based on causally structured score matching. In experiments on synthetic and semi-synthetic single-cell data, our proposed method achieves more accurate estimation than alternative methods and baselines.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2601.21135",
+   "title": "TRACE: Trajectory Recovery for Continuous Mechanism Evolution in Causal Representation Learning",
+   "published": "2026-01-29",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Temporal causal representation learning methods assume that causal mechanisms switch instantaneously between discrete domains, yet real-world systems often exhibit continuous mechanism transitions. For example, a vehicle's dynamics evolve gradually through a turning maneuver, and human gait shifts smoothly from walking to running. We formalize this setting by modeling transitional mechanisms as convex combinations of finitely many atomic mechanisms, governed by time-varying mixing coefficients. Our theoretical contributions establish that both the latent causal variables and the continuous mixing trajectory are jointly identifiable. We further propose TRACE, a Mixture-of-Experts framework where each expert learns one atomic mechanism during training, enabling recovery of mechanism trajectories at test time. This formulation generalizes to intermediate mechanism states never observed during training. Experiments on synthetic and real-world data demonstrate that TRACE recovers mixing trajectories with up to 0.99 correlation, substantially outperforming discrete-switching baselines.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2512.18135",
+   "title": "Unifying Causal Reinforcement Learning: Survey, Taxonomy, Algorithms and Applications",
+   "published": "2025-12-19",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Integrating causal inference (CI) with reinforcement learning (RL) has emerged as a powerful paradigm to address critical limitations in classical RL, including low explainability, lack of robustness and generalization failures. Traditional RL techniques, which typically rely on correlation-driven decision-making, struggle when faced with distribution shifts, confounding variables, and dynamic environments. Causal reinforcement learning (CRL), leveraging the foundational principles of causal inference, offers promising solutions to these challenges by explicitly modeling cause-and-effect relationships. In this survey, we systematically review recent advancements at the intersection of causal inference and RL. We categorize existing approaches into causal representation learning, counterfactual policy optimization, offline causal RL, causal transfer learning, and causal explainability. Through this structured analysis, we identify prevailing challenges, highlight empirical successes in practical applications, and discuss open problems. Finally, we provide future research directions, underscoring the potential of CRL for developing robust, generalizable, and interpretable artificial intelligence systems.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2503.10834",
+   "title": "On the Identifiability of Causal Abstractions",
+   "published": "2025-03-13",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning (CRL) enhances machine learning models' robustness and generalizability by learning structural causal models associated with data-generating processes. We focus on a family of CRL methods that uses contrastive data pairs in the observable space, generated before and after a random, unknown intervention, to identify the latent causal model. (Brehmer et al., 2022) showed that this is indeed possible, given that all latent variables can be intervened on individually. However, this is a highly restrictive assumption in many systems. In this work, we instead assume interventions on arbitrary subsets of latent variables, which is more realistic. We introduce a theoretical framework that calculates the degree to which we can identify a causal model, given a set of possible interventions, up to an abstraction that describes the system at a higher level of granularity.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2602.02381",
+   "title": "Self-Supervised Learning from Structural Invariance",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Joint-embedding self-supervised learning (SSL), the key paradigm for unsupervised representation learning from visual data, learns from invariances between semantically-related data pairs. We study the one-to-many mapping problem in SSL, where each datum may be mapped to multiple valid targets. This arises when data pairs come from naturally occurring generative processes, e.g., successive video frames. We show that existing methods struggle to flexibly capture this conditional uncertainty. As a remedy, we introduce a latent variable to account for this uncertainty and derive a variational lower bound on the mutual information between paired embeddings. Our derivation yields a simple regularization term for standard SSL objectives. The resulting method, which we call AdaSSL, applies to both contrastive and distillation-based SSL objectives, and we empirically show its versatility in causal representation learning, fine-grained image understanding, and world modeling on videos.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2604.13218",
+   "title": "Identifiability of Potentially Degenerate Gaussian Mixture Models With Piecewise Affine Mixing",
+   "published": "2026-04-14",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Causal representation learning (CRL) aims to identify the underlying latent variables from high-dimensional observations, even when variables are dependent with each other. We study this problem for latent variables that follow a potentially degenerate Gaussian mixture distribution and that are only observed through the transformation via a piecewise affine mixing function. We provide a series of progressively stronger identifiability results for this challenging setting in which the probability density functions are ill-defined because of the potential degeneracy. For identifiability up to permutation and scaling, we leverage a sparsity regularization on the learned representation. Based on our theoretical results, we propose a two-stage method to estimate the latent variables by enforcing sparsity and Gaussianity in the learned representations. Experiments on synthetic and image data highlight our method's effectiveness in recovering the ground-truth latent variables.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2503.20987",
+   "title": "A Causal Perspective of Stock Prediction Models",
+   "published": "2025-03-26",
+   "categories": [
+    "q-fin.PM"
+   ],
+   "abstract": "In the realm of stock prediction, machine learning models encounter considerable obstacles due to the inherent low signal-to-noise ratio and the nonstationary nature of financial markets. These challenges often result in spurious correlations and unstable predictive relationships, leading to poor performance of models when applied to out-of-sample (OOS) domains. To address these issues, we investigate \\textit{Domain Generalization} techniques, with a particular focus on causal representation learning to improve a prediction model's generalizability to OOS domains. By leveraging multi-factor models from econometrics, we introduce a novel error bound that explicitly incorporates causal relationships. In addition, we present the connection between the proposed error bound and market nonstationarity. We also develop a \\textit{Causal Discovery} technique to discover invariant feature representations, which effectively mitigates the proposed error bound, and the influence of spurious correlations on causal discovery is rigorously examined. Our theoretical findings are substantiated by numerical results, showcasing the effectiveness of our approach in enhancing the generalizability of stock prediction models.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2509.19058",
+   "title": "Towards Causal Representation Learning with Observable Sources as Auxiliaries",
+   "published": "2025-09-23",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Causal representation learning seeks to recover latent factors that generate observational data through a mixing function. Needing assumptions on latent structures or relationships to achieve identifiability in general, prior works often build upon conditional independence given known auxiliary variables. However, prior frameworks limit the scope of auxiliary variables to be external to the mixing function. Yet, in some cases, system-driving latent factors can be easily observed or extracted from data, possibly facilitating identification. In this paper, we introduce a framework of observable sources being auxiliaries, serving as effective conditioning variables. Our main results show that one can identify entire latent variables up to subspace-wise transformations and permutations using volume-preserving encoders. Moreover, when multiple known auxiliary variables are available, we offer a variable-selection scheme to choose those that maximize recoverability of the latent factors given knowledge of the latent causal graph. Finally, we demonstrate the effectiveness of our framework through experiments on synthetic graph and image data, thereby extending the boundaries of current approaches.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.07409",
+   "title": "The Proxy Presumption: From Semantic Embeddings to Valid Social Measures",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.CL",
+    "cs.LG",
+    "stat.AP"
+   ],
+   "abstract": "Natural Language Processing is rapidly evolving into a primary instrument for Computational Social Science, with researchers increasingly using embeddings to measure latent constructs such as novelty, creativity, and bias. However, this transition faces a fundamental validity challenge: the ''Proxy Presumption,'' or the reliance on geometric properties (e.g., cosine distance) as direct measures of social concepts. We argue that without explicit validation, unsupervised representations remain entangled mixtures of the target construct ($C$) and confounding attributes ($Z$) like topic, style, and authorship. To bridge the gap between semantic embeddings and valid social measures, we introduce the Construct Validity Protocol (CVP). Drawing on causal representation learning and psychometrics, the CVP offers a rigorous pipeline from conceptualization to quantitative verification. We further propose Counterfactual Neutralization, a novel method using LLMs to reduce confounding in embedding space. By providing a standardized Validity Suite -- including tests for discriminant, incremental, and predictive validity -- this work offers the community a toolkit to transform heuristic proxies into robust, scientifically defensible instruments.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.08682",
+   "title": "Structural Causal Bottleneck Models",
+   "published": "2026-03-09",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We introduce structural causal bottleneck models (SCBMs), a novel class of structural causal models in which causal effects between high-dimensional variables are mediated by low-dimensional summary statistics, or *bottlenecks*. SCBMs provide a flexible framework for mechanism-specific, target-dependent dimension reduction while remaining estimable via standard learning algorithms. We prove that bottleneck variables are identifiable up to bijection from observational data, and validate this experimentally. We then study causal effect estimation in linear SCBMs under three standard adjustment strategies. For instrumental variables, we identify a population-level non-identifiability of naïve two-stage least squares when all variables are high-dimensional, and show that bottleneck representations restore identification. For mediation and backdoor adjustment, we prove that conditioning on bottleneck variables yields valid effect estimates with explicit finite-sample efficiency gains over conditioning on full high-dimensional variables. We argue that SCBMs provide a principled alternative to existing causal dimension reduction frameworks such as causal representation learning and causal abstractions.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2503.04358",
+   "title": "Learning Causal Response Representations through Direct Effect Analysis",
+   "published": "2025-03-06",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST",
+    "stat.AP"
+   ],
+   "abstract": "We propose a novel approach for learning causal response representations. Our method aims to extract directions in which a multidimensional outcome is most directly caused by a treatment variable. By bridging conditional independence testing with causal representation learning, we formulate an optimisation problem that maximises the evidence against conditional independence between the treatment and outcome, given a conditioning set. This formulation employs flexible regression models tailored to specific applications, creating a versatile framework. The problem is addressed through a generalised eigenvalue decomposition. We show that, under mild assumptions, the distribution of the largest eigenvalue can be bounded by a known $F$-distribution, enabling testable conditional independence. We also provide theoretical guarantees for the optimality of the learned representation in terms of signal-to-noise ratio and Fisher information maximisation. Finally, we demonstrate the empirical effectiveness of our approach in simulation and real-world experiments. Our results underscore the utility of this framework in uncovering direct causal effects within complex, multivariate settings.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2502.00983",
+   "title": "CausalCOMRL: Context-Based Offline Meta-Reinforcement Learning with Causal Representation",
+   "published": "2025-02-03",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Context-based offline meta-reinforcement learning (OMRL) methods have achieved appealing success by leveraging pre-collected offline datasets to develop task representations that guide policy learning. However, current context-based OMRL methods often introduce spurious correlations, where task components are incorrectly correlated due to confounders. These correlations can degrade policy performance when the confounders in the test task differ from those in the training task. To address this problem, we propose CausalCOMRL, a context-based OMRL method that integrates causal representation learning. This approach uncovers causal relationships among the task components and incorporates the causal relationships into task representations, enhancing the generalizability of RL agents. We further improve the distinction of task representations from different tasks by using mutual information optimization and contrastive learning. Utilizing these causal task representations, we employ SAC to optimize policies on meta-RL benchmarks. Experimental results show that CausalCOMRL achieves better performance than other methods on most benchmarks.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2503.04852",
+   "title": "CAUSAL3D: A Comprehensive Benchmark for Causal Learning from Visual Data",
+   "published": "2025-03-06",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "True intelligence hinges on the ability to uncover and leverage hidden causal relations. Despite significant progress in AI and computer vision (CV), there remains a lack of benchmarks for assessing models' abilities to infer latent causality from complex visual data. In this paper, we introduce \\textsc{\\textbf{Causal3D}}, a novel and comprehensive benchmark that integrates structured data (tables) with corresponding visual representations (images) to evaluate causal reasoning. Designed within a systematic framework, Causal3D comprises 19 3D-scene datasets capturing diverse causal relations, views, and backgrounds, enabling evaluations across scenes of varying complexity. We assess multiple state-of-the-art methods, including classical causal discovery, causal representation learning, and large/vision-language models (LLMs/VLMs). Our experiments show that as causal structures grow more complex without prior knowledge, performance declines significantly, highlighting the challenges even advanced methods face in complex causal scenarios. Causal3D serves as a vital resource for advancing causal reasoning in CV and fostering trustworthy AI in critical domains.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2610.00968",
+   "title": "Structure-agnostic Causal Representation Learning",
+   "published": "2026-10-01",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Causal representation learning aims to discover robust features by exploiting the causal structure underlying data generation. Existing methods require specifying the causal structure a priori, yet different structures demand fundamentally incompatible invariance constraints, and misspecification leads to representations that discard predictive information. We introduce SaCRL, a framework that jointly identifies the causal structure and learns the corresponding invariant representation without prior structural knowledge. Our approach formulates structure selection as a soft optimization over candidate invariances using HSIC-based violation metrics, with adaptive weights that automatically concentrate on the achievable structure. We provide theoretical guarantees for structure identification, including under random-feature approximation, invariance satisfaction, and out-of-distribution generalization. Empirically, SaCRL recovers the true structure on synthetic and semi-synthetic Bayesian-network benchmarks, outperforms fixed-invariance baselines on Colored MNIST, achieves state-of-the-art accuracy on three DomainBed benchmarks (PACS, VLCS, OfficeHome), and degrades gracefully under structural misspecification and limited environment diversity. Code is available at: https://github.com/ArmanBehnam/sacrl.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.04108",
+   "title": "MuCALD-SplitFed: Causal-Latent Diffusion for Privacy-Preserving Multi-Task Split-Federated Medical Image Segmentation",
+   "published": "2026-05-04",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Federated Learning enables decentralized training by aggregating model updates across clients without sharing raw data, while Split Federated Learning further partitions the model between clients and a server to reduce computation and communication at the client side. However, decentralized medical institutions rarely operate on a single shared task, making standard Federated and SplitFed collaborations poorly aligned with real clinical workflows. Multi-task FL extends these frameworks by allowing clients to handle different tasks, but often introduces instability and privacy vulnerabilities. This study proposes \\textbf{MuCALD-SplitFed}, a multi-task SplitFed framework that integrates causal representation learning and latent diffusion. Experiments show MuCALD-SplitFed consistently improves segmentation, while baseline SplitFed fails to converge. The proposed approach further reduces information leakage at split points, mitigating reconstruction-based and membership inference attacks. Additionally, MuCALD SplitFed outperforms state-of-the-art personalized FL and multi-task FL approaches. The code repository is: https://github.com/ChamaniS/MuCALD_SplitFed.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2505.17708",
+   "title": "The Third Pillar of Causal Analysis? A Measurement Perspective on Causal Representations",
+   "published": "2025-05-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Causal reasoning and discovery, two fundamental tasks of causal analysis, often face challenges in applications due to the complexity, noisiness, and high-dimensionality of real-world data. Despite recent progress in identifying latent causal structures using causal representation learning (CRL), what makes learned representations useful for causal downstream tasks and how to evaluate them are still not well understood. In this paper, we reinterpret CRL using a measurement model framework, where the learned representations are viewed as proxy measurements of the latent causal variables. Our approach clarifies the conditions under which learned representations support downstream causal reasoning and provides a principled basis for quantitatively assessing the quality of representations using a new Test-based Measurement EXclusivity (T-MEX) score. We validate T-MEX across diverse causal inference scenarios, including numerical simulations and real-world ecological video analysis, demonstrating that the proposed framework and corresponding score effectively assess the identification of learned representations and their usefulness for causal downstream tasks.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.05706",
+   "title": "Resolving the bias-precision paradox with stochastic causal representation learning for personalized medicine",
+   "published": "2026-05-07",
+   "categories": [
+    "cs.AI",
+    "q-bio.QM"
+   ],
+   "abstract": "Estimating individualized treatment effects from longitudinal observational data is central to data-driven medicine, yet existing methods face a fundamental limitation: reducing confounding bias often suppresses clinically informative heterogeneity, degrading patient-specific predictions. Here, we identify this tension as a bias-precision paradox in causal representation learning and introduce sampling-based maximum mean discrepancy (sMMD), a stochastic alignment strategy that replaces global adversarial balancing with subset-level matching. We instantiate this approach in a framework for counterfactual outcome prediction with attribution-grounded interpretability. Across two large-scale ICU cohorts (n = 27,783), our framework improves accuracy under distribution shift, reducing error by up to 11.5% and substantially increasing recall in high-risk tasks. Mechanistic analyses show that sMMD selectively preserves clinically decisive variables. In human-AI evaluation, our method outperforms clinicians-in-training and large language models, and improves clinician accuracy by 14.7% while reducing decision time, enabling interpretable, real-time clinical decision support.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2602.16698",
+   "title": "Causality is Key for Interpretability Claims to Generalise",
+   "published": "2026-02-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Interpretability research on large language models (LLMs) has yielded important insights into model behaviour, yet recurring pitfalls persist: findings that do not generalise, and causal interpretations that outrun the evidence. Our position is that causal inference specifies what constitutes a valid mapping from model activations to invariant high-level structures, the data or assumptions needed to achieve it, and the inferences it can support. Specifically, Pearl's causal hierarchy clarifies what an interpretability study can justify. Observations establish associations between model behaviour and internal components. Interventions (e.g., ablations or activation patching) support claims how these edits affect a behavioural metric (e.g., average change in token probabilities) over a set of prompts. However, counterfactual claims -- i.e., asking what the model output would have been for the same prompt under an unobserved intervention -- remain largely unverifiable without controlled supervision. We show how causal representation learning (CRL) operationalises this hierarchy, specifying which variables are recoverable from activations and under what assumptions. Together, these motivate a diagnostic framework that helps practitioners select methods and evaluations matching claims to evidence such that findings generalise.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.21427",
+   "title": "Causality Meets Locality: Provably Generalizable and Scalable Policy Learning for Networked Systems",
+   "published": "2025-10-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Large-scale networked systems, such as traffic, power, and wireless grids, challenge reinforcement-learning agents with both scale and environment shifts. To address these challenges, we propose GSAC (Generalizable and Scalable Actor-Critic), a framework that couples causal representation learning with meta actor-critic learning to achieve both scalability and domain generalization. Each agent first learns a sparse local causal mask that provably identifies the minimal neighborhood variables influencing its dynamics, yielding exponentially tight approximately compact representations (ACRs) of state and domain factors. These ACRs bound the error of truncating value functions to $κ$-hop neighborhoods, enabling efficient learning on graphs. A meta actor-critic then trains a shared policy across multiple source domains while conditioning on the compact domain factors; at test time, a few trajectories suffice to estimate the new domain factor and deploy the adapted policy. We establish finite-sample guarantees on causal recovery, actor-critic convergence, and adaptation gap, and show that GSAC adapts rapidly and significantly outperforms learning-from-scratch and conventional adaptation baselines.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2601.06140",
+   "title": "Causal and Federated Multimodal Learning for Cardiovascular Risk Prediction under Heterogeneous Populations",
+   "published": "2026-01-05",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Cardiovascular disease (CVD) continues to be the major cause of death globally, calling for predictive models that not only handle diverse and high-dimensional biomedical signals but also maintain interpretability and privacy. We create a single multimodal learning framework that integrates cross modal transformers with graph neural networks and causal representation learning to measure personalized CVD risk. The model combines genomic variation, cardiac MRI, ECG waveforms, wearable streams, and structured EHR data to predict risk while also implementing causal invariance constraints across different clinical subpopulations. To maintain transparency, we employ SHAP based feature attribution, counterfactual explanations and causal latent alignment for understandable risk factors. Besides, we position the design in a federated, privacy, preserving optimization protocol and establish rules for convergence, calibration and uncertainty quantification under distributional shift. Experimental studies based on large-scale biobank and multi institutional datasets reveal state discrimination and robustness, exhibiting fair performance across demographic strata and clinically distinct cohorts. This study paves the way for a principled approach to clinically trustworthy, interpretable and privacy respecting CVD prediction at the population level.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2506.11034",
+   "title": "CausalVLBench: Benchmarking Visual Causal Reasoning in Large Vision-Language Models",
+   "published": "2025-05-21",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large language models (LLMs) have shown remarkable ability in various language tasks, especially with their emergent in-context learning capability. Extending LLMs to incorporate visual inputs, large vision-language models (LVLMs) have shown impressive performance in tasks such as recognition and visual question answering (VQA). Despite increasing interest in the utility of LLMs in causal reasoning tasks such as causal discovery and counterfactual reasoning, there has been relatively little work showcasing the abilities of LVLMs on visual causal reasoning tasks. We take this opportunity to formally introduce a comprehensive causal reasoning benchmark for multi-modal in-context learning from LVLMs. Our CausalVLBench encompasses three representative tasks: causal structure inference, intervention target prediction, and counterfactual prediction. We evaluate the ability of state-of-the-art open-source LVLMs on our causal reasoning tasks across three causal representation learning datasets and demonstrate their fundamental strengths and weaknesses. We hope that our benchmark elucidates the drawbacks of existing vision-language models and motivates new directions and paradigms in improving the visual causal reasoning abilities of LVLMs.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2610.03452",
+   "title": "Causal Representation Learning with Instantaneous and Lagged Relations via Nonstationarity",
+   "published": "2026-10-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning for time-series data aims to identify latent states and their causal relations from observations. In this setting, an important challenge is to model both lagged causal relations across observation intervals and faster causal effects that appear as instantaneous relations within an interval, while accounting for nonstationarity in time-series data. However, methods that jointly handle these causal relations and nonstationarity remain limited. To address this gap, we establish sufficient conditions for identifying latent states up to component permutation and component-wise invertible transformations, and their instantaneous and lagged causal structures up to the same permutation, using an observed auxiliary variable, such as time or a condition label, associated with changes in transition-noise distributions. Based on these results, we propose iCReN, a framework that uses contrastive learning with discrete or continuous auxiliary variables to learn latent representations and estimate their instantaneous and lagged causal structures. Experiments demonstrate accurate recovery of latent states and both instantaneous and lagged causal structures on synthetic data and the utility of the learned representations for downstream forecasting on real-world data.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2602.05033",
+   "title": "Causal Representation Meets Stochastic Modeling under Generic Geometry",
+   "published": "2026-02-04",
+   "categories": [
+    "cs.LG",
+    "math.AG"
+   ],
+   "abstract": "Learning meaningful causal representations from observations has emerged as a crucial task for facilitating machine learning applications and driving scientific discoveries in fields such as climate science, biology, and physics. This process involves disentangling high-level latent variables and their causal relationships from low-level observations. Previous work in this area that achieves identifiability typically focuses on cases where the observations are either i.i.d. or follow a latent discrete-time process. Nevertheless, many real-world settings require identifying latent variables that are continuous-time stochastic processes (e.g., multivariate point processes). To this end, we develop identifiable causal representation learning for continuous-time latent stochastic point processes. We study its identifiability by analyzing the geometry of the parameter space. Furthermore, we develop MUTATE, an identifiable variational autoencoder framework with a time-adaptive transition module to infer stochastic dynamics. Across simulated and empirical studies, we find that MUTATE can effectively answer scientific questions, such as the accumulation of mutations in genomics and the mechanisms driving neuron spike triggers in response to time-varying dynamics.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2606.28228",
+   "title": "Disentangling Continuous-Time Latent Dynamics: Identifiability of Latent SDEs via Diffusion Shifts",
+   "published": "2026-06-26",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Causal representation learning for time series has developed strong identifiability results in discrete-time latent causal models, but identifiability in continuous-time latent stochastic differential equation (SDE) models remains largely open. We address this gap using environment-induced shifts in diffusion covariance. We study additive-noise latent SDEs observed through an unknown nonlinear diffeomorphism, with shared drift but environment-specific diffusion covariance. We show that two diagonal diffusion regimes with pairwise distinct coordinate-wise variance ratios identify the latent coordinates up to permutation, coordinate-wise scaling, and a possible constant shift, without any sparsity assumption on the drift. We first prove this result for linear Ornstein-Uhlenbeck systems and then extend it to general additive-noise latent SDEs. Under mild smoothness, the instantaneous drift-Jacobian causal graph is identifiable up to the same permutation. We propose a two-stage estimator for latent disentanglement and optional graph recovery; experiments on synthetic systems confirm the predicted identifiability boundary, and an application to Hardanger Bridge monitoring data illustrates the approach on real sensor trajectories.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.19343",
+   "title": "What Makes a Representation Good for Single-Cell Perturbation Prediction?",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Single-cell perturbation modeling is fundamental for understanding and predicting cellular responses to genetic perturbations. However, existing approaches, from causal representation learning to foundation models, often struggle with an overlooked challenge: gene expression is dominated by perturbation-invariant information, while perturbation-specific signals are intrinsically sparse. As a result, learned representations either entangle invariant and perturbation-specific information, leading to spurious and non-generalizable predictors, or suppress perturbation-specific signals altogether, rendering them ineffective for prediction. To address this, we propose PerturbedVAE, a general framework designed to resolve this signal imbalance. The framework explicitly separates perturbation-specific information from dominant invariant structure and recovers causal representations to effectively utilize such information for prediction. We further provide an identifiability analysis that characterizes the conditions under which sparse perturbation effects can be reliably recovered, thereby clarifying how the framework can be concretely specified under such conditions. Empirically, PerturbedVAE achieves state-of-the-art performance on a widely used benchmark across multiple evaluation settings, yielding significant gains on out-of-distribution combinatorial predictions and uncovering interpretable perturbation-response programs.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2504.11609",
+   "title": "Towards Interpretable Deep Generative Models via Causal Representation Learning",
+   "published": "2025-04-15",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG",
+    "stat.ME"
+   ],
+   "abstract": "Recent developments in generative artificial intelligence (AI) rely on machine learning techniques such as deep learning and generative modeling to achieve state-of-the-art performance across wide-ranging domains. These methods' surprising performance is due in part to their ability to learn implicit \"representations\" of complex, multi-modal data. Unfortunately, deep neural networks are notoriously black boxes that obscure these representations, making them difficult to interpret or analyze. To resolve these difficulties, one approach is to build new interpretable neural network models from the ground up. This is the goal of the emerging field of causal representation learning (CRL) that uses causality as a vector for building flexible, interpretable, and transferable generative AI. CRL can be seen as a synthesis of three intrinsically statistical ideas: (i) latent variable models such as factor analysis; (ii) causal graphical models with latent variables; and (iii) nonparametric statistics and deep learning. This paper introduces CRL from a statistical perspective, focusing on connections to classical models as well as statistical and causal identifiability results. We also highlights key application areas, implementation strategies, and open statistical questions.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2602.19414",
+   "title": "Federated Causal Representation Learning in State-Space Systems for Decentralized Counterfactual Reasoning",
+   "published": "2026-02-23",
+   "categories": [
+    "cs.LG",
+    "eess.SY",
+    "stat.ML"
+   ],
+   "abstract": "Networks of interdependent industrial assets (clients) are tightly coupled through physical processes and control inputs, raising a key question: how would the output of one client change if another client were operated differently? This is difficult to answer because client-specific data are high-dimensional and private, making centralization of raw data infeasible. Each client also maintains proprietary local models that cannot be modified. We propose a federated framework for causal representation learning in state-space systems that captures interdependencies among clients under these constraints. Each client maps high-dimensional observations into low-dimensional latent states that disentangle intrinsic dynamics from control-driven influences. A central server estimates the global state-transition and control structure. This enables decentralized counterfactual reasoning where clients predict how outputs would change under alternative control inputs at others while only exchanging compact latent states. We prove convergence to a centralized oracle and provide privacy guarantees. Our experiments demonstrate scalability, and accurate cross-client counterfactual inference on synthetic and real-world industrial control system datasets.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2608.13456",
+   "title": "A Unifying Perspective on Causal World Models: From Observations to Representations to Structure",
+   "published": "2026-08-13",
+   "categories": [
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "World Models (WM) are increasingly seen as a foundation for intelligent agents that can predict, plan, and act beyond their training distribution. In this paper, we study WMs from a causal perspective across multiple levels of abstraction, ranging from perceptual observations to building a conceptual representation of the structure governing the environment dynamics. We argue that useful WMs must go beyond generative capabilities alone: they should also capture entity properties, entity-to-entity interactions, and entity-to-environment interactions that determine and explain the dynamics of a system. We provide a formal definition of Causal WMs (CWMs) grounded in the tasks they are intended to support, connecting world modelling with existing work in causal representation learning, object-centric learning, causal discovery, structural causal models, and model-based decision-making. Finally, we relate CWMs to the literature on identifiability, clarifying when the components of a WM can be recovered from data and up to which equivalence. With this, we ground WMs in representations and structures that support causal reasoning and informed decision-making.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.19135",
+   "title": "Identifiable Multimodal Causal Representation Learning under Partial Latent Sharing",
+   "published": "2026-05-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning (CRL) seeks to uncover meaningful latent variables and their corresponding causal structure from high-dimensional observational data. Although its significance, CRL identifiability remains a crucial property, as it ensures the recovery of the mechanisms behind the data generation process, and hence the interpretability and robustness of the representation. Proving identifiability in CRL is intrinsically difficult, and we address in this work an even more challenging setting: multimodality. We consider multimodal observed data with a latent partially shared structure. Each modality is generated, through non linear mixing functions, from a specific subset of causal latent variables. Under flexible assumptions and without imposing any parametric distribution on the latent variables, we establish component-wise identifiability guarantees for the causal latent representation. Our identifiability results, furthermore, apply to the undercomplete scenario where we have, for each modality, more observed than latent variables. To instantiate our theoretical analysis, we introduce a Wasserstein-based module to recover the partially shared latent structure. Due to its differentiability, the latter can be easily integrated into all types of architecture, only requiring minimal changes. Extensive experiments on synthetic and realistic datasets validate the superiority of our approach over SOTA methods.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2506.12439",
+   "title": "Interpretable Causal Representation Learning for Biological Data in the Pathway Space",
+   "published": "2025-06-14",
+   "categories": [
+    "cs.LG",
+    "q-bio.QM",
+    "stat.ML"
+   ],
+   "abstract": "Predicting the impact of genomic and drug perturbations in cellular function is crucial for understanding gene functions and drug effects, ultimately leading to improved therapies. To this end, Causal Representation Learning (CRL) constitutes one of the most promising approaches, as it aims to identify the latent factors that causally govern biological systems, thus facilitating the prediction of the effect of unseen perturbations. Yet, current CRL methods fail in reconciling their principled latent representations with known biological processes, leading to models that are not interpretable. To address this major issue, we present SENA-discrepancy-VAE, a model based on the recently proposed CRL method discrepancy-VAE, that produces representations where each latent factor can be interpreted as the (linear) combination of the activity of a (learned) set of biological processes. To this extent, we present an encoder, SENA-δ, that efficiently compute and map biological processes' activity levels to the latent causal factors. We show that SENA-discrepancy-VAE achieves predictive performances on unseen combinations of interventions that are comparable with its original, non-interpretable counterpart, while inferring causal latent factors that are biologically meaningful.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2601.11915",
+   "title": "Low-rank Orthogonal Subspace Intervention for Generalizable Face Forgery Detection",
+   "published": "2026-01-17",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "The generalization problem remains a key challenge in face forgery detection. This paper explores the reasons for the generalization failure of Vanilla CLIP: in ``real vs. fake\" detection, the few dominant principal components in the feature space primarily encode forgery-irrelevant information, rather than authentic forgery traces. However, this irrelevant information inevitably leads to spurious correlations, severely limiting detector performance. We define this phenomenon as ``low-rank spurious bias\". To address this, we propose a low-rank representation space intervention paradigm, named the SeLop, from the perspective of causal representation learning. SeLop unifies the spurious correlation factors irrelevant to forgery into a low-rank subspace and cuts off the statistical shortcut between it and the label, thus aligning representation learning with authentic forgery traces. Specifically, we decompose spurious correlation features into a low-rank subspace through orthogonal low-rank projection, then remove this subspace from the original representation and train its orthogonal complement to capture forgery-related features. This low-rank projection removal effectively eliminates spurious correlation factors, ensuring that classification decisions are based on authentic forgery cues. With only 0.39M trainable parameters, our method achieves state-of-the-art performance across several benchmarks, demonstrating excellent robustness and generalization.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2506.10378",
+   "title": "Discovering Hierarchical Latent Capabilities of Language Models via Causal Representation Learning",
+   "published": "2025-06-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL",
+    "stat.ML"
+   ],
+   "abstract": "Faithful evaluation of language model capabilities is crucial for deriving actionable insights that can inform model development. However, rigorous causal evaluations in this domain face significant methodological challenges, including complex confounding effects and prohibitive computational costs associated with extensive retraining. To tackle these challenges, we propose a causal representation learning framework wherein observed benchmark performance is modeled as a linear transformation of a few latent capability factors. Crucially, these latent factors are identified as causally interrelated after appropriately controlling for the base model as a common confounder. Applying this approach to a comprehensive dataset encompassing over 1500 models evaluated across six benchmarks from the Open LLM Leaderboard, we identify a concise three-node linear causal structure that reliably explains the observed performance variations. Further interpretation of this causal structure provides substantial scientific insights beyond simple numerical rankings: specifically, we reveal a clear causal direction starting from general problem-solving capabilities, advancing through instruction-following proficiency, and culminating in mathematical reasoning ability. Our results underscore the essential role of carefully controlling base model variations during evaluation, a step critical to accurately uncovering the underlying causal relationships among latent model capabilities.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.07707",
+   "title": "Causality Guided Representation Learning for Cross-Style Hate Speech Detection",
+   "published": "2025-10-09",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "The proliferation of online hate speech poses a significant threat to the harmony of the web. While explicit hate is easily recognized through overt slurs, implicit hate speech is often conveyed through sarcasm, irony, stereotypes, or coded language -- making it harder to detect. Existing hate speech detection models, which predominantly rely on surface-level linguistic cues, fail to generalize effectively across diverse stylistic variations. Moreover, hate speech spread on different platforms often targets distinct groups and adopts unique styles, potentially inducing spurious correlations between them and labels, further challenging current detection approaches. Motivated by these observations, we hypothesize that the generation of hate speech can be modeled as a causal graph involving key factors: contextual environment, creator motivation, target, and style. Guided by this graph, we propose CADET, a causal representation learning framework that disentangles hate speech into interpretable latent factors and then controls confounders, thereby isolating genuine hate intent from superficial linguistic cues. Furthermore, CADET allows counterfactual reasoning by intervening on style within the latent space, naturally guiding the model to robustly identify hate speech in varying forms. CADET demonstrates superior performance in comprehensive experiments, highlighting the potential of causal priors in advancing generalizable hate speech detection.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2609.37083",
+   "title": "Identifying ODEs from Unstructured Data with Causal Representation Learning",
+   "published": "2026-09-29",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "We study the problem of recovering the governing ODE of a dynamical system from unstructured, high-dimensional observations such as images. Existing methods for ODE discovery typically assume direct measurements of the variables, or do not provide theoretical guarantees on the learned variables and equations. While Causal Representation Learning (CRL) methods provide guarantees on identifying variables from high-dimensional observations up to component-wise diffeomorphisms, we show that in general these variables cannot be used directly as input to equation discovery methods, which typically assume that the variables will lead to sparse equations. So we introduce SParse Equivalent Equation Discovery AutoEncoder (SPEED-AE), a framework that combines a pretrained CRL method with a component-wise autoencoder that learns transformations of variables that are amenable to sparse ODE discovery. We show that for polynomial ODEs, this additional step allows us to restrict the identifiability of each variable from polynomial to monomial diffeomorphisms. Experiments on Lotka-Volterra, Lorenz, and a two-pendulum system show that SPEED-AE improves on the disentanglement of the CRL methods and that it recovers ODEs that are closest to the ground truth, while achieving state-of-the-art forecasting performance.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2509.22553",
+   "title": "Linear Causal Representation Learning by Topological Ordering, Pruning, and Disentanglement",
+   "published": "2025-09-26",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning (CRL) has garnered increasing interest from the causal inference and artificial intelligence communities due to its potential to disentangle complex data-generating mechanism into causally interpretable latent features by leveraging the heterogeneity of modern datasets. In this paper, we further contribute to the CRL literature, by focusing on the stylized linear structural causal model over latent features and assuming a linear mixing function that maps latent features to the observed data or measurements. Existing linear CRL methods often rely on stringent assumptions, such as access to single-node interventional data or restrictive distributional constraints on latent features and/or exogenous measurement noise. However, these prerequisites can be easy to violate in practice. In this work, we propose a novel linear CRL algorithm that, unlike existing methods, operates under weaker assumptions on environment heterogeneity and data-generating distributions while still recovering latent causal features up to an equivalence class. We further validate our new algorithm via synthetic experiments and an interpretability analysis of large language models, demonstrating both its superiority over competing methods in finite samples and its potential in integrating causality into understanding artificial intelligence. The source code is available at https://github.com/utulie/code_for_linear_crl_paper_creator.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2503.16865",
+   "title": "Nonparametric Factor Analysis and Beyond",
+   "published": "2025-03-21",
+   "categories": [
+    "cs.LG",
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "Nearly all identifiability results in unsupervised representation learning inspired by, e.g., independent component analysis, factor analysis, and causal representation learning, rely on assumptions of additive independent noise or noiseless regimes. In contrast, we study the more general case where noise can take arbitrary forms, depend on latent variables, and be non-invertibly entangled within a nonlinear function. We propose a general framework for identifying latent variables in the nonparametric noisy settings. We first show that, under suitable conditions, the generative model is identifiable up to certain submanifold indeterminacies even in the presence of non-negligible noise. Furthermore, under the structural or distributional variability conditions, we prove that latent variables of the general nonlinear models are identifiable up to trivial indeterminacies. Based on the proposed theoretical framework, we have also developed corresponding estimation methods and validated them in various synthetic and real-world settings. Interestingly, our estimate of the true GDP growth from alternative measurements suggests more insightful information on the economies than official reports. We expect our framework to provide new insight into how both researchers and practitioners deal with latent variables in real-world scenarios.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2508.04492",
+   "title": "Learning Robust Intervention Representations with Delta Embeddings",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Causal representation learning has attracted significant research interest during the past few years, as a means for improving model generalization and robustness. Causal representations of interventional image pairs (also called ``actionable counterfactuals'' in the literature), have the property that only variables corresponding to scene elements affected by the intervention / action are changed between the start state and the end state. While most work in this area has focused on identifying and representing the variables of the scene under a causal model, fewer efforts have focused on representations of the interventions themselves. In this work, we show that an effective strategy for improving out of distribution (OOD) robustness is to focus on the representation of actionable counterfactuals in the latent space. Specifically, we propose that an intervention can be represented by a Causal Delta Embedding that is invariant to the visual scene and sparse in terms of the causal variables it affects. Leveraging this insight, we propose a method for learning causal representations from image pairs, without any additional supervision. Experiments in the Causal Triplet challenge demonstrate that Causal Delta Embeddings are highly effective in OOD settings, significantly exceeding baseline performance in both synthetic and real-world benchmarks.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2607.12474",
+   "title": "From Observation to Insight: Mechanistic World Models and the Quest for Autonomous Discovery",
+   "published": "2026-07-14",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in foundation models have transformed AI for Science, enabling remarkably accurate predictive performance across domains ranging from protein folding to weather forecasting. Yet prediction alone does not constitute scientific discovery. Scientific understanding depends on uncovering the reusable explanatory mechanisms that generate observations, whereas contemporary machine learning remains fundamentally organised around predictive mappings rather than explanatory structure. In this paper, we argue that scientific discovery is fundamentally a problem of knowledge organisation. To this end, we introduce Mechanistic World Models, a new design paradigm that places reusable mechanisms at the centre of representation, computation and learning. Drawing on insights from the philosophy of science, we derive the computational capabilities required for discovery, identify the design principles and inductive pressures that encourage explanatory knowledge to emerge, and formalise the anatomy of a mechanism-centric world model. Finally, we show how diverse research directions including mechanistic interpretability, causal representation learning, equation discovery and modular architectures capture complementary ingredients of this paradigm while lacking a unified framework. We propose Mechanistic World Models as a conceptual foundation and computational blueprint for moving AI beyond predictive forecasting towards autonomous scientific discovery.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2610.23025",
+   "title": "Causal Value Attribution of Marketing Labels in LLM-Generated Ads: A Deconfounder Approach",
+   "published": "2026-10-16",
+   "categories": [
+    "cs.AI",
+    "cs.CY"
+   ],
+   "abstract": "As AI-generated content becomes commoditized, economic value increasingly shifts from final artifacts to the upstream expertise used to specify inputs that steer LLM generation. Yet organizations lack methods for valuing this expertise and identifying which individual skills or configurations causally improve performance. This study examines generative marketing, where structured expert labels serve as skill primitives conditioning LLM-generated advertisements. Estimating their causal effects is difficult because outcomes reflect stochastic LLM mediation, high-dimensional label interactions, and multimodal confounding. This study proposes D-VAE (Deconfounder Variational Autoencoder), a counterfactual-inference framework integrating a multi-treatment deconfounder with causal representation learning. D-VAE recovers causally disentangled expert-labeling logic and derives PAC-based bounds on omitted-variable bias from single-treatment confounders. Applied to 29,177 foundation-makeup ad creatives, D-VAE outperforms state-of-the-art benchmarks. A field experiment shows that recommended configurations increase engagement by 32.7% and perform statistically indistinguishably from human experts, while a simulation study confirms causal attribution under complex confounding and treatment interactions. Overall, the study shifts value assessment from AI-generated products to skills, providing a foundation for pricing and optimizing AI-augmented skill portfolios.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.18310",
+   "title": "Towards Identifiability of Hierarchical Temporal Causal Representation Learning",
+   "published": "2025-10-21",
+   "categories": [
+    "cs.LG",
+    "stat.ME"
+   ],
+   "abstract": "Modeling hierarchical latent dynamics behind time series data is critical for capturing temporal dependencies across multiple levels of abstraction in real-world tasks. However, existing temporal causal representation learning methods fail to capture such dynamics, as they fail to recover the joint distribution of hierarchical latent variables from \\textit{single-timestep observed variables}. Interestingly, we find that the joint distribution of hierarchical latent variables can be uniquely determined using three conditionally independent observations. Building on this insight, we propose a Causally Hierarchical Latent Dynamic (CHiLD) identification framework. Our approach first employs temporal contextual observed variables to identify the joint distribution of multi-layer latent variables. Sequentially, we exploit the natural sparsity of the hierarchical structure among latent variables to identify latent variables within each layer. Guided by the theoretical results, we develop a time series generative model grounded in variational inference. This model incorporates a contextual encoder to reconstruct multi-layer latent variables and normalize flow-based hierarchical prior networks to impose the independent noise condition of hierarchical latent dynamics. Empirical evaluations on both synthetic and real-world datasets validate our theoretical claims and demonstrate the effectiveness of CHiLD in modeling hierarchical latent dynamics.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2610.06809",
+   "title": "Block Disentanglement in CRL: Bridging Identifiability and Visual State Estimation",
+   "published": "2026-10-05",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Causal representation learning (CRL) is the process of recovering causally-related latent variables from high-dimensional observations. As a label-free inference method, CRL is particularly attractive for applications where data labels are unavailable or impractical to obtain. While there has been significant progress in understanding the identifiability guarantees of CRL, such guarantees often hold under highly stylized assumptions, which temper the direct application to real-world problems. This paper has a two-fold objective for interventional CRL. First, it establishes identifiability guarantees for substantially weaker interventional assumptions, resulting in block disentanglement of the causal variables, where the block structure depends on the realistically available intervention mechanisms. Secondly, the block disentanglement framework is used for embodied visual state estimation, in which the objective is to recover the latent physical variables of a robotic system directly from visual data (images and videos) without labeled data. These two components are critically complementary. The block disentanglement theory delineates identifiability guarantees under weakened assumptions, and the application demonstrates that the resulting objective remains effective in a controlled embodied setting despite further assumption violations, providing a theory-to-practice bridge needed to translate the promise of label-free CRL into practical problems.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2501.19335",
+   "title": "What is causal about causal models and representations?",
+   "published": "2025-01-31",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Causal Bayesian networks are often described as causal because they support reasoning about interventions. Yet interventions are defined in the mathematical model, whereas the resulting model predictions concern the effects of actions in the real world. Consequently, whether and how a causal model makes falsifiable predictions about the effects of actions depends on how actions are interpreted as interventions. This requires specifying which actions correspond to which interventions, a step that is frequently left implicit. We develop a formal framework that separates a causal model from the data-generating process it aims to describe and formalizes interpretations connecting actions to interventions. Within this framework, we prove an impossibility result: no interpretation can simultaneously satisfy a collection of desirable properties while remaining non-circular. Under a circular interpretation, every model that fits the observational distribution is interventionally valid, so no experiment can falsify it. We analyze several non-circular alternatives and discuss implications for falsification, causal discovery, causal representation learning, and causal abstraction. More broadly, our framework provides a way to make assumptions about the connections between actions and interventions explicit and to reason formally about the empirical content of causal models.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.17405",
+   "title": "Causal Representation Learning on High-Dimensional Data: Benchmarks, Reproducibility, and Evaluation Metrics",
+   "published": "2026-03-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning (CRL) models aim to transform high-dimensional data into a latent space, enabling interventions to generate counterfactual samples or modify existing data based on the causal relationships among latent variables. To facilitate the development and evaluation of these models, a variety of synthetic and real-world datasets have been proposed, each with distinct advantages and limitations. For practical applications, CRL models must perform robustly across multiple evaluation directions, including reconstruction, disentanglement, causal discovery, and counterfactual reasoning, using appropriate metrics for each direction. However, this multi-directional evaluation can complicate model comparison, as a model may excel in some direction while under-performing in others. Another significant challenge in this field is reproducibility: the source code corresponding to published results must be publicly available, and repeated runs should yield performance consistent with the original reports. In this study, we critically analyzed the synthetic and real-world datasets currently employed in the literature, highlighting their limitations and proposing a set of essential characteristics for suitable datasets in CRL model development. We also introduce a single aggregate metric that consolidates performance across all evaluation directions, providing a comprehensive score for each model. Finally, we reviewed existing implementations from the literature and assessed them in terms of reproducibility, identifying gaps and best practices in the field.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2602.15916",
+   "title": "Nonparametric Identification and Inference for Counterfactual Distributions with Confounding",
+   "published": "2026-02-17",
+   "categories": [
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "We propose nonparametric identification and semiparametric estimation of joint potential outcome distributions in the presence of confounding. First, in settings with observed confounding, we derive tighter, covariate-informed bounds on the joint distribution by leveraging conditional copulas. To overcome the non-differentiability of bounding min/max operators, we establish the asymptotic properties for both a direct estimator with polynomial margin condition and a smooth approximation with log-sum-exp operator, facilitating valid inference for individual-level effects under the canonical rank-preserving assumption. Second, we tackle the challenge of unmeasured confounding by introducing a causal representation learning framework. By utilizing instrumental variables, we prove the nonparametric identifiability of the latent confounding subspace under injectivity and completeness conditions. We develop a ``triple machine learning\" estimator that employs cross-fitting scheme to sequentially handle the learned representation, nuisance parameters, and target functional. We characterize the asymptotic distribution with variance inflation induced by representation learning error, and provide conditions for semiparametric efficiency. We also propose a practical VAE-based algorithm for confounding representation learning. Simulations and real-world analysis validate the effectiveness of proposed methods. By bridging classical semiparametric theory with modern representation learning, this work provides a robust statistical foundation for distributional and counterfactual inference in complex causal systems.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2603.14483",
+   "title": "Disentangling Dynamical Systems: Causal Representation Learning Meets Local Sparse Attention",
+   "published": "2026-03-15",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Parametric system identification methods estimate the parameters of explicitly defined physical systems from data. Yet, they remain constrained by the need to provide an explicit function space, typically through a predefined library of candidate functions chosen via available domain knowledge. In contrast, deep learning can demonstrably model systems of broad complexity with high fidelity, but black-box function approximation typically fails to yield explicit descriptive or disentangled representations revealing the structure of a system. We develop a novel identifiability theorem, leveraging causal representation learning, to uncover disentangled representations of system parameters without structural assumptions. We derive a graphical criterion specifying when system parameters can be uniquely disentangled from raw trajectory data, up to permutation and diffeomorphism. Crucially, our analysis demonstrates that global causal structures provide a lower bound on the disentanglement guarantees achievable when considering local state-dependent causal structures. We instantiate system parameter identification as a variational inference problem, leveraging a sparsity-regularised transformer to uncover state-dependent causal structures. We empirically validate our approach across four synthetic domains, demonstrating its ability to recover highly disentangled representations that baselines fail to recover. Corroborating our theoretical analysis, our results confirm that enforcing local causal structure is often necessary for full identifiability.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2610.09457",
+   "title": "DSReg: Provably Recovering Individual World Latents without Reconstruction",
+   "published": "2026-10-07",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.RO",
+    "stat.ML"
+   ],
+   "abstract": "Methods that recover individual latent variables of the world, from nonlinear ICA to dictionary learning and causal representation learning, anchor the latents to observations through reconstruction, auxiliary supervision, or distributional asymmetries such as non-Gaussianity. Methods without these anchors, including joint-embedding predictive architectures (JEPAs), identify the latent state only up to a linear transformation, so individual latents remain mixed. We close this gap: individual world latents can be provably recovered with no reconstruction, no decoder, and no labels. The key condition is Structural Diversity: different latents leave distinct dependency footprints on observations, just as no two snowflakes are alike. Building on the linear identifiability that LeJEPA provides, we prove that under Structural Diversity, DSReg (Dependency-Sparsity Regularization) recovers individual world latents up to signed permutation, without reconstruction or a decoder. It applies post hoc to any linearly identified representation, reusing trained checkpoints at no loss over joint training, and establishes the first fully identifiable JEPA that recovers every world latent. Moreover, as a condition on dependency footprints, Structural Diversity is strictly weaker than all structural conditions of prior identifiable latent variable models. Across synthetic regimes, world model probes, learned visual encoders, and external renderers, DSReg preserves dense prediction while improving individual-latent recovery and downstream use with scales.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2606.05413",
+   "title": "CausalPOI: Spatio-Temporal Graph-Based Causal Modeling for Cold-Start POI Check-in Forecasting",
+   "published": "2026-06-03",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "As urban environments continue to evolve rapidly, accurately modeling the dynamic behaviour of Points of Interest is essential for supporting data-driven urban planning and commercial decision-making. While recent advancements in spatio-temporal graph learning have improved POI forecasting, most methods rely on proximity-based graphs and correlation-driven modeling, which overlook the functional dependencies between POIs and fail to capture the causal effects of urban interventions. In this paper, we introduce a novel research problem -- cold-start POI check-in forecasting, which aims to predict the future check-in pattern of a newly introduced POI, by modeling its temporal evolution and functional interactions with nearby POIs in a structured urban spatial context. To address these challenges, we propose CausalPOI, a spatio-temporal graph-based causal representation learning framework. CausalPOI leverages Spatio-Temporal Functional Interaction Graph to model semantic and spatial relationships between POIs, and constructs structurally aligned treatment and control graphs to simulate factual and counterfactual scenarios. Extensive experiments on real-world SafeGraph datasets demonstrate that CausalPOI significantly outperforms state-of-the-art baselines across the board, validating its effectiveness in spatio-temporal forecasting, semantic interaction modeling, and causal effect estimation, providing a more interpretable and actionable foundation for urban intervention analysis. Source code is available at Github.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2605.21058",
+   "title": "A Dialogue between Causal and Traditional Representation Learning: Toward Mutual Benefits in a Unified Formulation",
+   "published": "2026-05-20",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning (CRL) and traditional representation learning have largely developed along different trajectories. Traditional representation learning has been driven mainly by applications and empirical objectives, whereas CRL has focused more on theoretical questions, particularly identifiability. This difference in emphasis has created a gap between the two fields in terminology, problem formulation, and evaluation, limiting communication and sometimes leading to disconnected or redundant efforts. In this paper, we argue that these two fields should be brought into dialogue rather than treated as separate paradigms. To this end, we introduce a unified formulation in which the representation learning is characterized by two components: a task component, which specifies what information the learned representation is required to preserve, and a constraint component, which specifies what structure is imposed on the latent space. Under this formulation, the benefits run in both directions. CRL provides theoretical tools for understanding when structured latent constraints are useful or necessary, while traditional representation learning offers practical insights on task design and objective choice that can improve the development of CRL methods. To illustrate this interaction, we experimentally study how different task components affect the behavior of CRL methods under different structured constraints. Results on CausalVerse show that the effectiveness of causal constraints depends strongly on the tasks with which they are paired.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2510.26302",
+   "title": "Understanding Hardness of Vision-Language Compositionality from A Token-level Causal Lens",
+   "published": "2025-10-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Contrastive Language-Image Pre-training (CLIP) delivers strong cross modal generalization by aligning images and texts in a shared embedding space, yet it persistently fails at compositional reasoning over objects, attributes, and relations often behaving like a bag-of-words matcher. Prior causal accounts typically model text as a single vector, obscuring token-level structure and leaving core phenomena-such as prompt sensitivity and failures on hard negatives unexplained. We address this gap with a token-aware causal representation learning (CRL) framework grounded in a sequential, language-token SCM. Our theory extends block identifiability to tokenized text, proving that CLIP's contrastive objective can recover the modal-invariant latent variable under both sentence-level and token-level SCMs. Crucially, token granularity yields the first principled explanation of CLIP's compositional brittleness: composition nonidentifiability. We show the existence of pseudo-optimal text encoders that achieve perfect modal-invariant alignment yet are provably insensitive to SWAP, REPLACE, and ADD operations over atomic concepts, thereby failing to distinguish correct captions from hard negatives despite optimizing the same training objective as true-optimal encoders. The analysis further links language-side nonidentifiability to visual-side failures via the modality gap and shows how iterated composition operators compound hardness, motivating improved negative mining strategies.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2606.06288",
+   "title": "Discrete Causal Representations from Heterogeneous Domains: A Bayesian Approach with Social Survey Applications",
+   "published": "2026-06-04",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Causal representation learning aims to infer the high-level latent causal concepts that give rise to observed low-level measurements. This is particularly relevant for heterogeneous data from different environments or domains since distribution shifts often arise through sparse, localized changes in some of the underlying causal mechanisms, while other parts of the generative process remain unchanged. Whereas identifiability of causal representations has been studied extensively, practical uncertainty-aware methods and real-world use cases remain less explored. In this work, we propose a Bayesian approach to learning causal representations from multi-environment data, focusing on the case of discrete causal concepts and unknown multi-node soft interventions. To this end, we translate causal assumptions and interpretability desiderata into suitable priors and parametric choices within a hierarchical model. We then devise an inference scheme based on sequential Monte Carlo sampling to approximate the resulting multimodal posterior. We showcase our approach through case studies on social survey data, where latent causal concepts correspond to cultural values or political opinions, measurements to survey responses, and environments to different countries or states. Our model infers meaningful high-level concepts and plausible causal relations among them, demonstrating its utility for learning causal representations of complex real-world data.",
+   "query": "causal representation learning"
+  },
+  {
+   "id": "2507.14925",
+   "title": "User Invariant Preference Learning for Multi-Behavior Recommendation",
+   "published": "2025-07-20",
+   "categories": [
+    "cs.IR"
+   ],
+   "abstract": "In multi-behavior recommendation scenarios, analyzing users' diverse behaviors, such as click, purchase, and rating, enables a more comprehensive understanding of their interests, facilitating personalized and accurate recommendations. A fundamental assumption of multi-behavior recommendation methods is the existence of shared user preferences across behaviors, representing users' intrinsic interests. Based on this assumption, existing approaches aim to integrate information from various behaviors to enrich user representations. However, they often overlook the presence of both commonalities and individualities in users' multi-behavior preferences. These individualities reflect distinct aspects of preferences captured by different behaviors, where certain auxiliary behaviors may introduce noise, hindering the prediction of the target behavior. To address this issue, we propose a user invariant preference learning for multi-behavior recommendation (UIPL for short), aiming to capture users' intrinsic interests (referred to as invariant preferences) from multi-behavior interactions to mitigate the introduction of noise. Specifically, UIPL leverages the paradigm of invariant risk minimization to learn invariant preferences. To implement this, we employ a variational autoencoder (VAE) to extract users' invariant preferences, replacing the standard reconstruction loss with an invariant risk minimization constraint. Additionally, we construct distinct environments by combining multi-behavior data to enhance robustness in learning these preferences. Finally, the learned invariant preferences are used to provide recommendations for the target behavior. Extensive experiments on four real-world datasets demonstrate that UIPL significantly outperforms current state-of-the-art methods.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2502.19665",
+   "title": "Out-of-distribution Generalization for Total Variation based Invariant Risk Minimization",
+   "published": "2025-02-27",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Invariant risk minimization is an important general machine learning framework that has recently been interpreted as a total variation model (IRM-TV). However, how to improve out-of-distribution (OOD) generalization in the IRM-TV setting remains unsolved. In this paper, we extend IRM-TV to a Lagrangian multiplier model named OOD-TV-IRM. We find that the autonomous TV penalty hyperparameter is exactly the Lagrangian multiplier. Thus OOD-TV-IRM is essentially a primal-dual optimization model, where the primal optimization minimizes the entire invariant risk and the dual optimization strengthens the TV penalty. The objective is to reach a semi-Nash equilibrium where the balance between the training loss and OOD generalization is maintained. We also develop a convergent primal-dual algorithm that facilitates an adversarial learning scheme. Experimental results show that OOD-TV-IRM outperforms IRM-TV in most situations.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2510.18374",
+   "title": "Towards Fair ASR For Second Language Speakers Using Fairness Prompted Finetuning",
+   "published": "2025-10-21",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "In this work, we address the challenge of building fair English ASR systems for second-language speakers. Our analysis of widely used ASR models, Whisper and Seamless-M4T, reveals large fluctuations in word error rate (WER) across 26 accent groups, indicating significant fairness gaps. To mitigate this, we propose fairness-prompted finetuning with lightweight adapters, incorporating Spectral Decoupling (SD), Group Distributionally Robust Optimization (Group-DRO), and Invariant Risk Minimization (IRM). Our proposed fusion of traditional empirical risk minimization (ERM) with cross-entropy and fairness-driven objectives (SD, Group DRO, and IRM) enhances fairness across accent groups while maintaining overall recognition accuracy. In terms of macro-averaged word error rate, our approach achieves a relative improvement of 58.7% and 58.5% over the large pretrained Whisper and SeamlessM4T, and 9.7% and 7.8% over them, finetuning with standard empirical risk minimization with cross-entropy loss.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2505.16126",
+   "title": "Robust Invariant Representation Learning by Distribution Extrapolation",
+   "published": "2025-05-22",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Invariant risk minimization (IRM) aims to enable out-of-distribution (OOD) generalization in deep learning by learning invariant representations. As IRM poses an inherently challenging bi-level optimization problem, most existing approaches -- including IRMv1 -- adopt penalty-based single-level approximations. However, empirical studies consistently show that these methods often fail to outperform well-tuned empirical risk minimization (ERM), highlighting the need for more robust IRM implementations. This work theoretically identifies a key limitation common to many IRM variants: their penalty terms are highly sensitive to limited environment diversity and over-parameterization, resulting in performance degradation. To address this issue, a novel extrapolation-based framework is proposed that enhances environmental diversity by augmenting the IRM penalty through synthetic distributional shifts. Extensive experiments -- ranging from synthetic setups to realistic, over-parameterized scenarios -- demonstrate that the proposed method consistently outperforms state-of-the-art IRM variants, validating its effectiveness and robustness.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2505.12506",
+   "title": "Unsupervised Representation Learning - an Invariant Risk Minimization Perspective",
+   "published": "2025-05-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We propose a novel unsupervised framework for \\emph{Invariant Risk Minimization} (IRM), extending the concept of invariance to settings where labels are unavailable. Traditional IRM methods rely on labeled data to learn representations that are robust to distributional shifts across environments. In contrast, our approach redefines invariance through feature distribution alignment, enabling robust representation learning from unlabeled data. We introduce two methods within this framework: Principal Invariant Component Analysis (PICA), a linear method that extracts invariant directions under Gaussian assumptions, and Variational Invariant Autoencoder (VIAE), a deep generative model that separates environment-invariant and environment-dependent latent factors. Our approach is based on a novel ``unsupervised'' structural causal model and supports environment-conditioned sample-generation and intervention. Empirical evaluations on synthetic dataset, modified versions of MNIST, and CelebA demonstrate the effectiveness of our methods in capturing invariant structure, preserving relevant information, and generalizing across environments without access to labels.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2502.05593",
+   "title": "Semantic Data Augmentation Enhanced Invariant Risk Minimization for Medical Image Domain Generalization",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Deep learning has achieved remarkable success in medical image classification. However, its clinical application is often hindered by data heterogeneity caused by variations in scanner vendors, imaging protocols, and operators. Approaches such as invariant risk minimization (IRM) aim to address this challenge of out-of-distribution generalization. For instance, VIRM improves upon IRM by tackling the issue of insufficient feature support overlap, demonstrating promising potential. Nonetheless, these methods face limitations in medical imaging due to the scarcity of annotated data and the inefficiency of augmentation strategies. To address these issues, we propose a novel domain-oriented direction selector to replace the random augmentation strategy used in VIRM. Our method leverages inter-domain covariance as a guider for augmentation direction, guiding data augmentation towards the target domain. This approach effectively reduces domain discrepancies and enhances generalization performance. Experiments on a multi-center diabetic retinopathy dataset demonstrate that our method outperforms state-of-the-art approaches, particularly under limited data conditions and significant domain heterogeneity.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2611.17107",
+   "title": "Disentangling Spurious Correlations: How IRM Handles Diverse Shortcuts in Text Classification",
+   "published": "2026-11-12",
+   "categories": [
+    "cs.CL",
+    "stat.ML"
+   ],
+   "abstract": "In NLP, models trained via Empirical Risk Minimization (ERM) often exploit spurious correlations, such as dialectal markers, at the expense of robust linguistic features, thereby degrading their out-of-distribution (OOD) generalization. Invariant Risk Minimization (IRM) aims to suppress such shortcuts by identifying predictive relationships that remain stable across environments, but its practical utility for NLP remains debated. We use a causality-driven framework to evaluate IRM under three shortcut-generating mechanisms: label-generated features, confounding, and selection bias. Our results show that IRM successfully rejects shortcuts across the evaluated causal and anti-causal structures, including under limited environmental variation and increasing label noise. We then extend our analysis beyond controlled synthetic artifacts to two less constrained settings: gender-profession associations in Bias in Bios and semantically loaded actor-name shortcuts in ActorCorr. These experiments show that invariant learning can mitigate more realistic textual shortcuts, while semantically meaningful features require careful calibration of the invariance penalty.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2510.20295",
+   "title": "Quantifying Distributional Invariance in Causal Subgraph for IRM-Free Graph Generalization",
+   "published": "2025-10-23",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Out-of-distribution generalization under distributional shifts remains a critical challenge for graph neural networks. Existing methods generally adopt the Invariant Risk Minimization (IRM) framework, requiring costly environment annotations or heuristically generated synthetic splits. To circumvent these limitations, in this work, we aim to develop an IRM-free method for capturing causal subgraphs. We first identify that causal subgraphs exhibit substantially smaller distributional variations than non-causal components across diverse environments, which we formalize as the Invariant Distribution Criterion and theoretically prove in this paper. Building on this criterion, we systematically uncover the quantitative relationship between distributional shift and representation norm for identifying the causal subgraph, and investigate its underlying mechanisms in depth. Finally, we propose an IRM-free method by introducing a norm-guided invariant distribution objective for causal subgraph discovery and prediction. Extensive experiments on two widely used benchmarks demonstrate that our method consistently outperforms state-of-the-art methods in graph generalization.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2506.01339",
+   "title": "Invariance Makes LLM Unlearning Resilient Even to Unanticipated Downstream Fine-Tuning",
+   "published": "2025-06-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Machine unlearning offers a promising solution to privacy and safety concerns in large language models (LLMs) by selectively removing targeted knowledge while preserving utility. However, current methods are highly sensitive to downstream fine-tuning, which can quickly recover forgotten information-even from unrelated tasks. To address this, we introduce invariance into unlearning for the first time, inspired by invariant risk minimization (IRM). Building on this principle, we propose invariant LLM unlearning (ILU), a regularization-based framework that enhances robustness. Notably, ILU generalizes well to diverse fine-tuning tasks, even when trained using a single dataset. A task vector analysis is also provided to further elucidate the rationale behind ILU's effectiveness. Extensive experiments on the WMDP and MUSE benchmark, reveal that ILU significantly outperforms state-of-the-art unlearning methods, including negative preference optimization (NPO) and representation misdirection for unlearning (RMU). Notably, ILU achieves superior unlearning robustness across diverse downstream fine-tuning scenarios (e.g., math, paraphrase detection, and sentiment analysis) while preserving the fine-tuning performance.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2503.06759",
+   "title": "Revisiting Invariant Learning for Out-of-Domain Generalization on Multi-Site Mammogram Datasets",
+   "published": "2025-03-09",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Achieving health equity in Artificial Intelligence (AI) requires diagnostic models that maintain reliability across diverse populations. However, breast cancer screening systems frequently suffer from domain overfitting, degrading significantly when deployed to varying demographics. While Invariant Learning algorithms aim to mitigate this by suppressing site-specific correlations, their efficacy in medical imaging remains underexplored. This study comprehensively evaluates domain generalization techniques for mammography. We constructed a multi-source training environment aggregating datasets from the United States (CBIS-DDSM, EMBED), Portugal (INbreast, BCDR), and Cyprus (BMCD). To assess global generalizability, we evaluated performance on unseen cohorts from Egypt (CDD-CESM) and Sweden (CSAW-CC). We benchmarked Invariant Risk Minimization (IRM) and Variance Risk Extrapolation (VREx) against a rigorously optimized Empirical Risk Minimization (ERM) baseline. Contrary to expectations, standard ERM consistently outperformed specialized invariant mechanisms on out-of-domain testing. While VREx showed potential in stabilizing attention maps, invariant objectives proved unstable and prone to underfitting. We conclude that engineering equitable AI is currently best served by maximizing multi-national data diversity rather than relying on complex algorithmic invariance.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2509.17593",
+   "title": "Domain Adaptive Object Detection for Space Applications with Real-Time Constraints",
+   "published": "2025-09-22",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Object detection is essential in space applications targeting Space Domain Awareness and also applications involving relative navigation scenarios. Current deep learning models for Object Detection in space applications are often trained on synthetic data from simulators, however, the model performance drops significantly on real-world data due to the domain gap. However, domain adaptive object detection is an overlooked problem in the community. In this work, we first show the importance of domain adaptation and then explore Supervised Domain Adaptation (SDA) to reduce this gap using minimal labeled real data. We build on a recent semi-supervised adaptation method and tailor it for object detection. Our approach combines domain-invariant feature learning with a CNN-based domain discriminator and invariant risk minimization using a domain-independent regression head. To meet real-time deployment needs, we test our method on a lightweight Single Shot Multibox Detector (SSD) with MobileNet backbone and on the more advanced Fully Convolutional One-Stage object detector (FCOS) with ResNet-50 backbone. We evaluated on two space datasets, SPEED+ and SPARK. The results show up to 20-point improvements in average precision (AP) with just 250 labeled real images.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2505.05785",
+   "title": "Rethinking Graph Out-Of-Distribution Generalization: A Learnable Random Walk Perspective",
+   "published": "2025-05-09",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Out-Of-Distribution (OOD) generalization has gained increasing attentions for machine learning on graphs, as graph neural networks (GNNs) often exhibit performance degradation under distribution shifts. Existing graph OOD methods tend to follow the basic ideas of invariant risk minimization and structural causal models, interpreting the invariant knowledge across datasets under various distribution shifts as graph topology or graph spectrum. However, these interpretations may be inconsistent with real-world scenarios, as neither invariant topology nor spectrum is assured. In this paper, we advocate the learnable random walk (LRW) perspective as the instantiation of invariant knowledge, and propose LRW-OOD to realize graph OOD generalization learning. Instead of employing fixed probability transition matrix (i.e., degree-normalized adjacency matrix), we parameterize the transition matrix with an LRW-sampler and a path encoder. Furthermore, we propose the kernel density estimation (KDE)-based mutual information (MI) loss to generate random walk sequences that adhere to OOD principles. Extensive experiment demonstrates that our model can effectively enhance graph OOD generalization under various types of distribution shifts and yield a significant accuracy improvement of 3.87% over state-of-the-art graph OOD generalization baselines.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2609.30831",
+   "title": "CDBG: Causally Motivated Dual-Invariance Learning against Topological and Predictive Shifts in EEG Workload Recognition",
+   "published": "2026-09-25",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Generalizing Electroencephalography (EEG)-based mental workload recognition to unseen subjects remains a formidable challenge due to severe inter-subject variability. While functional brain graphs effectively model distributed cognitive dynamics, their inherent subject-specificity induces two coupled distribution shifts: a class-conditional topological shift in the underlying functional connectivity, and a predictive mechanism shift in the learned representation-to-label mapping. Motivated by the subject-induced distribution shifts, we propose CDBG, a Causally motivated Dual-invariance learning framework for Brain Graphs. CDBG disentangles and mitigates these shifts via a two-stage rationale learning pipeline. First, it employs stochastic edge masking to extract sparse, workload-predictive graph rationales, regularized by workload-conditional Laplacian spectral alignment to enforce topological invariance across subjects. Second, it applies subject-wise Invariant Risk Minimization (IRM) to the graph representations, ensuring environment-wise risk stationarity. Extensive experiments on a self-built air traffic controller EEG cognitive workload dataset and multiple public datasets under a strict leave-one-subject-out protocol demonstrate that CDBG significantly outperforms state-of-the-art cross-subject and graph-based baselines, improving the Macro-F1 score by up to 4.23%, while simultaneously providing neurophysiologically interpretable functional rationales.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2605.24076",
+   "title": "Causality as the Statistical Conscience of Artificial Intelligence: From Pearl's Ladder to Trustworthy Machines",
+   "published": "2026-05-22",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Modern Artificial Intelligence achieves remarkable predictive power by optimizing statistical risk functionals over vast corpora. Yet a gap separates this from genuine intelligence: the inability to distinguish correlation from causation. This paper argues that causal inference (identifying mechanisms invariant under intervention) is AI's indispensable statistical conscience. Without causal grounding, AI systems are correlation machines: powerful in familiar domains, brittle under distribution shift, and biased in high-stakes settings. Three contributions develop this argument. First, a Statistical Necessity Theorem for Causal Generalization: any algorithm achieving out-of-distribution generalization must encode causal structure, formalizing the distinction between prediction P(Y|X) and intelligence P(Y|do(X)). Second, a unified framework connects Pearl's do-calculus, the Potential Outcomes framework, Double Machine Learning, and Invariant Risk Minimization as a family of Causal Statistical Estimators, each identifying interventional distributions under different assumptions. Third, three AI failure modes (hallucination in large language models, reward hacking in reinforcement learning from human feedback, and degradation under distribution shift) are manifestations of causal blindness, each admitting a principled statistical remedy. Trustworthy AI is, at its core, a problem of causal statistics. The statistical community is not merely equipped to solve it -- it is the only community with the foundational tools to do so rigorously.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2601.08705",
+   "title": "RMBRec: Robust Multi-Behavior Recommendation towards Target Behaviors",
+   "published": "2026-01-13",
+   "categories": [
+    "cs.IR",
+    "cs.LG"
+   ],
+   "abstract": "Multi-behavior recommendation faces a critical challenge in practice: auxiliary behaviors (e.g., clicks, carts) are often noisy, weakly correlated, or semantically misaligned with the target behavior (e.g., purchase), which leads to biased preference learning and suboptimal performance. While existing methods attempt to fuse these heterogeneous signals, they inherently lack a principled mechanism to ensure robustness against such behavioral inconsistency. In this work, we propose Robust Multi-Behavior Recommendation towards Target Behaviors (RMBRec), a robust multi-behavior recommendation framework grounded in an information-theoretic robustness principle. We interpret robustness as a joint process of maximizing predictive information while minimizing its variance across heterogeneous behavioral environments. Under this perspective, the Representation Robustness Module (RRM) enhances local semantic consistency by maximizing the mutual information between users' auxiliary and target representations, whereas the Optimization Robustness Module (ORM) enforces global stability by minimizing the variance of predictive risks across behaviors, which is an efficient approximation to invariant risk minimization. This local-global collaboration bridges representation purification and optimization invariance in a theoretically coherent way. Extensive experiments on three real-world datasets demonstrate that RMBRec not only outperforms state-of-the-art methods in accuracy but also maintains remarkable stability under various noise perturbations. For reproducibility, our code is available at https://github.com/miaomiao-cai2/RMBRec/.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2609.09511",
+   "title": "Adaptive Distributed Physical-Layer Authentication and Attack Detection in 6G Non-Terrestrial Networks via Causal Meta-Learning",
+   "published": "2026-09-08",
+   "categories": [
+    "eess.SP",
+    "cs.AI",
+    "cs.CR",
+    "cs.LG",
+    "eess.SY"
+   ],
+   "abstract": "Physical-layer authentication (PLA) in non-terrestrial networks (NTNs) is challenged by severe Doppler shifts, long delays, and fast channel variations, which cause distribution shifts and degrade conventional learning methods. Existing PLA schemes often rely on single features or generalize poorly to unseen environments. This paper proposes a secure adaptive framework for authentication in multi-zone networks (SAFA-MZ), a causal meta-learning framework for distributed PLA (DPLA) in NTNs. First, we design a multi-feature fingerprint that combines spatial, angular, combiner, subspace, and Doppler-delay features. The fingerprint is adaptive and distributed, as it fuses heterogeneous physical-layer features and measurements from multiple aerial nodes. Second, we formulate a structural causal model (SCM) to capture the relations among design choices, environmental factors, extracted features, and authentication outcomes. Third, we develop a model-agnostic meta-learning (MAML) strategy with invariant risk minimization (IRM) and causal consistency regularization for fast adaptation to unseen NTN environments with few labeled samples. Fourth, we propose a two-stage authentication scheme that performs local recognition and activates time-difference-of-arrival (TDOA) localization with a graph attention (GAT) network only when needed, which reduces backhaul overhead. Simulations show that SAFA-MZ achieves 92% accuracy and 96% AUC, outperforming centralized deep learning and single-feature baselines across diverse environments.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2511.14157",
+   "title": "Learning Representation and Synergy Invariances: A Povable Framework for Generalized Multimodal Face Anti-Spoofing",
+   "published": "2025-11-18",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Multimodal Face Anti-Spoofing (FAS) methods, which integrate multiple visual modalities, often suffer even more severe performance degradation than unimodal FAS when deployed in unseen domains. This is mainly due to two overlooked risks that affect cross-domain multimodal generalization. The first is the modal representation invariant risk, i.e., whether representations remain generalizable under domain shift. We theoretically show that the inherent class asymmetry in FAS (diverse spoofs vs. compact reals) enlarges the upper bound of generalization error, and this effect is further amplified in multimodal settings. The second is the modal synergy invariant risk, where models overfit to domain-specific inter-modal correlations. Such spurious synergy cannot generalize to unseen attacks in target domains, leading to performance drops. To solve these issues, we propose a provable framework, namely Multimodal Representation and Synergy Invariance Learning (RiSe). For representation risk, RiSe introduces Asymmetric Invariant Risk Minimization (AsyIRM), which learns an invariant spherical decision boundary in radial space to fit asymmetric distributions, while preserving domain cues in angular space. For synergy risk, RiSe employs Multimodal Synergy Disentanglement (MMSD), a self-supervised task enhancing intrinsic, generalizable modal features via cross-sample mixing and disentanglement. Theoretical analysis and experiments verify RiSe, which achieves state-of-the-art cross-domain performance.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2601.02884",
+   "title": "Domain Generalization for Time Series: Enhancing Drilling Regression Models for Stick-Slip Index Prediction",
+   "published": "2026-01-06",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "This paper provides a comprehensive comparison of domain generalization techniques applied to time series data within a drilling context, focusing on the prediction of a continuous Stick-Slip Index (SSI), a critical metric for assessing torsional downhole vibrations at the drill bit. The study aims to develop a robust regression model that can generalize across domains by training on 60 second labeled sequences of 1 Hz surface drilling data to predict the SSI. The model is tested in wells that are different from those used during training. To fine-tune the model architecture, a grid search approach is employed to optimize key hyperparameters. A comparative analysis of the Adversarial Domain Generalization (ADG), Invariant Risk Minimization (IRM) and baseline models is presented, along with an evaluation of the effectiveness of transfer learning (TL) in improving model performance. The ADG and IRM models achieve performance improvements of 10% and 8%, respectively, over the baseline model. Most importantly, severe events are detected 60% of the time, against 20% for the baseline model. Overall, the results indicate that both ADG and IRM models surpass the baseline, with the ADG model exhibiting a slight advantage over the IRM model. Additionally, applying TL to a pre-trained model further improves performance. Our findings demonstrate the potential of domain generalization approaches in drilling applications, with ADG emerging as the most effective approach.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2511.19257",
+   "title": "Medusa: Cross-Modal Transferable Adversarial Attacks on Multimodal Medical Retrieval-Augmented Generation",
+   "published": "2025-11-24",
+   "categories": [
+    "cs.CR",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "With the rapid advancement of retrieval-augmented vision-language models, multimodal medical retrieval-augmented generation (MMed-RAG) systems are increasingly adopted in clinical decision support. These systems enhance medical applications by performing cross-modal retrieval to integrate relevant visual and textual evidence for tasks, e.g., report generation and disease diagnosis. However, their complex architecture also introduces underexplored adversarial vulnerabilities, particularly via visual input perturbations. In this paper, we propose Medusa, a novel framework for crafting cross-modal transferable adversarial attacks on MMed-RAG systems under a black-box setting. Specifically, Medusa formulates the attack as a perturbation optimization problem, leveraging a multi-positive InfoNCE loss (MPIL) to align adversarial visual embeddings with medically plausible but malicious textual targets, thereby hijacking the retrieval process. To enhance transferability, we adopt a surrogate model ensemble and design a dual-loop optimization strategy augmented with invariant risk minimization (IRM). Extensive experiments on two real-world medical tasks, including medical report generation and disease diagnosis, demonstrate that Medusa achieves over 90% average attack success rate across various generation models and retrievers under appropriate parameter configuration, while remaining robust against four mainstream defenses, outperforming state-of-the-art baselines. Our results reveal critical vulnerabilities in the MMed-RAG systems and highlight the necessity of robustness benchmarking in safety-critical medical applications. The code and data are available at https://anonymous.4open.science/r/MMed-RAG-Attack-F05A.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2508.04247",
+   "title": "I$^3$-MRec: Invariant Learning with Information Bottleneck for Incomplete Modality Recommendation",
+   "published": "2025-08-06",
+   "categories": [
+    "cs.IR",
+    "cs.MM"
+   ],
+   "abstract": "Multimodal recommender systems (MRS) improve recommendation performance by integrating complementary semantic information from multiple modalities. However, the assumption of complete multimodality rarely holds in practice due to missing images and incomplete descriptions, hindering model robustness and generalization. To address these challenges, we introduce a novel method called \\textbf{I$^3$-MRec}, which uses \\textbf{I}nvariant learning with \\textbf{I}nformation bottleneck principle for \\textbf{I}ncomplete \\textbf{M}odality \\textbf{Rec}ommendation. To achieve robust performance in missing modality scenarios, I$^3$-MRec enforces two pivotal properties: (i) cross-modal preference invariance, ensuring consistent user preference modeling across varying modality environments, and (ii) compact yet effective multimodal representation, as modality information becomes unreliable in such scenarios, reducing the dependence on modality-specific information is particularly important. By treating each modality as a distinct semantic environment, I$^3$-MRec employs invariant risk minimization (IRM) to learn preference-oriented representations. In parallel, a missing-aware fusion module is developed to explicitly simulate modality-missing scenarios. Built upon the Information Bottleneck (IB) principle, the module aims to preserve essential user preference signals across these scenarios while effectively compressing modality-specific information. Extensive experiments conducted on three real-world datasets demonstrate that I$^3$-MRec consistently outperforms existing state-of-the-art MRS methods across various modality-missing scenarios, highlighting its effectiveness and robustness in practical applications.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2604.04518",
+   "title": "Reproducibility study on how to find Spurious Correlations, Shortcut Learning, Clever Hans or Group-Distributional non-robustness and how to fix them",
+   "published": "2026-04-06",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "Deep Neural Networks (DNNs) are increasingly utilized in high-stakes domains like medical diagnostics and autonomous driving where model reliability is critical. However, the research landscape for ensuring this reliability is terminologically fractured across communities that pursue the same goal of ensuring models rely on causally relevant features rather than confounding signals. While frameworks such as distributionally robust optimization (DRO), invariant risk minimization (IRM), shortcut learning, simplicity bias, and the Clever Hans effect all address model failure due to spurious correlations, researchers typically only reference work within their own domains. This reproducibility study unifies these perspectives through a comparative analysis of correction methods under challenging constraints like limited data availability and severe subgroup imbalance. We evaluate recently proposed correction methods based on explainable artificial intelligence (XAI) techniques alongside popular non-XAI baselines using both synthetic and real-world datasets. Findings show that XAI-based methods generally outperform non-XAI approaches, with Counterfactual Knowledge Distillation (CFKD) proving most consistently effective at improving generalization. Our experiments also reveal that the practical application of many methods is hindered by a dependency on group labels, as manual annotation is often infeasible and automated tools like Spectral Relevance Analysis (SpRAy) struggle with complex features and severe imbalance. Furthermore, the scarcity of minority group samples in validation sets renders model selection and hyperparameter tuning unreliable, posing a significant obstacle to the deployment of robust and trustworthy models in safety-critical areas.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2504.09448",
+   "title": "Bayesian Cross-Modal Alignment Learning for Few-Shot Out-of-Distribution Generalization",
+   "published": "2025-04-13",
+   "categories": [
+    "cs.CV",
+    "cs.LG"
+   ],
+   "abstract": "Recent advances in large pre-trained models showed promising results in few-shot learning. However, their generalization ability on two-dimensional Out-of-Distribution (OoD) data, i.e., correlation shift and diversity shift, has not been thoroughly investigated. Researches have shown that even with a significant amount of training data, few methods can achieve better performance than the standard empirical risk minimization method (ERM) in OoD generalization. This few-shot OoD generalization dilemma emerges as a challenging direction in deep neural network generalization research, where the performance suffers from overfitting on few-shot examples and OoD generalization errors. In this paper, leveraging a broader supervision source, we explore a novel Bayesian cross-modal image-text alignment learning method (Bayes-CAL) to address this issue. Specifically, the model is designed as only text representations are fine-tuned via a Bayesian modelling approach with gradient orthogonalization loss and invariant risk minimization (IRM) loss. The Bayesian approach is essentially introduced to avoid overfitting the base classes observed during training and improve generalization to broader unseen classes. The dedicated loss is introduced to achieve better image-text alignment by disentangling the causal and non-casual parts of image features. Numerical experiments demonstrate that Bayes-CAL achieved state-of-the-art OoD generalization performances on two-dimensional distribution shifts. Moreover, compared with CLIP-like models, Bayes-CAL yields more stable generalization performances on unseen classes. Our code is available at https://github.com/LinLLLL/BayesCAL.",
+   "query": "invariant risk minimization"
+  },
+  {
+   "id": "2506.07378",
+   "title": "Moment Alignment: Unifying Gradient and Hessian Matching for Domain Generalization",
+   "published": "2025-06-09",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Domain generalization (DG) seeks to develop models that generalize well to unseen target domains, addressing the prevalent issue of distribution shifts in real-world applications. One line of research in DG focuses on aligning domain-level gradients and Hessians to enhance generalization. However, existing methods are computationally inefficient and the underlying principles of these approaches are not well understood. In this paper, we develop the theory of moment alignment for DG. Grounded in \\textit{transfer measure}, a principled framework for quantifying generalizability between two domains, we first extend the definition of transfer measure to domain generalization that includes multiple source domains and establish a target error bound. Then, we prove that aligning derivatives across domains improves transfer measure both when the feature extractor induces an invariant optimal predictor across domains and when it does not. Notably, moment alignment provides a unifying understanding of Invariant Risk Minimization, gradient matching, and Hessian matching, three previously disconnected approaches to DG. We further connect feature moments and derivatives of the classifier head, and establish the duality between feature learning and classifier fitting. Building upon our theory, we introduce \\textbf{C}losed-Form \\textbf{M}oment \\textbf{A}lignment (CMA), a novel DG algorithm that aligns domain-level gradients and Hessians in closed-form. Our method overcomes the computational inefficiencies of existing gradient and Hessian-based techniques by eliminating the need for repeated backpropagation or sampling-based Hessian estimation. We validate the efficacy of our approach through two sets of experiments: linear probing and full fine-tuning. CMA demonstrates superior performance in both settings compared to Empirical Risk Minimization and state-of-the-art algorithms.",
+   "query": "invariant risk minimization"
+  }
+ ]
+}

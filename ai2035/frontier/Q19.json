@@ -1,0 +1,1123 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "human-AI collaboration",
+  "learning to defer",
+  "reliance on AI advice"
+ ],
+ "papers": [
+  {
+   "id": "2510.08104",
+   "title": "Development of Mental Models in Human-AI Collaboration: A Conceptual Framework",
+   "published": "2025-10-09",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "Artificial intelligence has become integral to organizational decision-making and while research has explored many facets of this human-AI collaboration, the focus has mainly been on designing the AI agent(s) and the way the collaboration is set up - generally assuming a human decision-maker to be \"fixed\". However, it has largely been neglected that decision-makers' mental models evolve through their continuous interaction with AI systems. This paper addresses this gap by conceptualizing how the design of human-AI collaboration influences the development of three complementary and interdependent mental models necessary for this collaboration. We develop an integrated socio-technical framework that identifies the mechanisms driving the mental model evolution: data contextualization, reasoning transparency, and performance feedback. Our work advances human-AI collaboration literature through three key contributions: introducing three distinct mental models (domain, information processing, complementarity-awareness); recognizing the dynamic nature of mental models; and establishing mechanisms that guide the purposeful design of effective human-AI collaboration.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2609.36481",
+   "title": "Human-AI Collaboration: From Paradoxes to Patterns",
+   "published": "2026-09-29",
+   "categories": [
+    "cs.AI",
+    "cs.HC",
+    "cs.MA"
+   ],
+   "abstract": "Evidence shows that humans and AI systems perform better together, by collaborating, than alone. This paper examines two key design dimensions of human-AI collaboration (autonomy and initiative) and explores the collaboration patterns that they generate. Documenting these patterns starts with identifying the underlying problems and solutions, followed by examining the internal tensions within the problems. The paper uses a paradox perspective to analyze those tensions. It describes a process for surfacing the tensions and mapping the underlying paradoxes. It also illustrates how the pattern descriptions can be derived from mapping these paradoxes. Finally, the paper documents four human-AI collaboration patterns: Instruction, Delegation, Assistance, and Co-creation.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2511.13979",
+   "title": "Personality pairing improves human-AI collaboration",
+   "published": "2025-11-17",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Here we examine how AI agent \"personalities\" interact with human personalities to shape human-AI collaboration and performance. In a large-scale, preregistered randomized experiment, we paired 1,258 participants with AI agents prompted to exhibit varying levels of the Big Five personality traits. These human-AI teams produced 7,266 display ads for a real think tank, which we evaluated using 1,168 independent human raters, and a field experiment on X that generated nearly 5 million impressions. We found that human and AI personalities individually shaped ad quality and teamwork and that human-AI personality pairings directly influenced ad quality. For example, extraverted humans paired with conscientious AI produced the lowest quality ads, followed by conscientious humans paired with agreeable AI and neurotic humans paired with conscientious AI. In the field experiment, ad quality significantly influenced ad performance, measured by click-through rates and cost-per-click. Together, these results demonstrate that personality pairing can improve human-AI collaboration and performance. They also motivate future research on the complex implications of AI personalization for human-AI collaboration, teamwork, and performance.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2601.11072",
+   "title": "More Human or More AI? Visualizing Human-AI Collaboration Disclosures in Journalistic News Production",
+   "published": "2026-01-16",
+   "categories": [
+    "cs.HC",
+    "cs.AI",
+    "cs.CY"
+   ],
+   "abstract": "Within journalistic editorial processes, disclosing AI usage is currently limited to simplistic labels, which misses the nuance of how humans and AI collaborated on a news article. Through co-design sessions (N=10), we elicited 69 disclosure designs and implemented four prototypes that visually disclose human-AI collaboration in journalism. We then ran a within-subjects lab study (N=32) to examine how disclosure visualizations (Textual, Role-based Timeline, Task-based Timeline, Chatbot) and collaboration ratios (Primarily Human vs. Primarily AI) influenced visualization perceptions, gaze patterns, and post-experience responses. We found that textual disclosures were least effective in communicating human-AI collaboration, whereas Chatbot offered the most in-depth information. Furthermore, while role-based timelines amplified AI contribution in primarily human articles, task-based timeline shifted perceptions toward human involvement in primarily AI articles. We contribute Human-AI collaboration disclosure visualizations and their evaluation, and cautionary considerations on how visualizations can alter perceptions of AI's actual role during news article creation.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.19220",
+   "title": "DeCoDe: Defer-and-Complement Decision-Making via Decoupled Concept Bottleneck Models",
+   "published": "2025-05-25",
+   "categories": [
+    "cs.AI",
+    "cs.CY"
+   ],
+   "abstract": "In human-AI collaboration, a central challenge is deciding whether the AI should handle a task, be deferred to a human expert, or be addressed through collaborative effort. Existing Learning to Defer approaches typically make binary choices between AI and humans, neglecting their complementary strengths. They also lack interpretability, a critical property in high-stakes scenarios where users must understand and, if necessary, correct the model's reasoning. To overcome these limitations, we propose Defer-and-Complement Decision-Making via Decoupled Concept Bottleneck Models (DeCoDe), a concept-driven framework for human-AI collaboration. DeCoDe makes strategy decisions based on human-interpretable concept representations, enhancing transparency throughout the decision process. It supports three flexible modes: autonomous AI prediction, deferral to humans, and human-AI collaborative complementarity, selected via a gating network that takes concept-level inputs and is trained using a novel surrogate loss that balances accuracy and human effort. This approach enables instance-specific, interpretable, and adaptive human-AI collaboration. Experiments on real-world datasets demonstrate that DeCoDe significantly outperforms AI-only, human-only, and traditional deferral baselines, while maintaining strong robustness and interpretability even under noisy expert annotations.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2609.31793",
+   "title": "Working with AI: A Design Framework for Human-AI Collaboration",
+   "published": "2026-09-25",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Artificial Intelligence (AI), particularly GenAI, is becoming an increasingly important part of modern work. In industrial settings, AI can support decision-making, automate routine activities, assist humans, and improve productivity. However, successful AI adoption depends on more than what the technology can do. It also depends on how people experience and work with it. This raises an important question: how should human-AI collaboration be designed so that it works well for both people and organisations? This white paper addresses that question by presenting a practical framework for designing human-AI collaboration. The framework considers the human, the AI system, the task, the organisation, and the wider societal environment. It explains what effective collaboration looks like, what conditions influence it, what requirements should be met, and what design decisions organisations should consider. The report also includes a human-AI collaborative assembly system with cobot use case to demonstrate how the framework can be applied in practice. The use case shows how design requirements can be translated into specific collaboration features and evaluated through a case study. The aim of this white paper is to provide a clear and practical guide for designing human-AI collaboration that is effective, human-centred, and responsible.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2605.30800",
+   "title": "Computer-Aided Tagging on Wikimedia Commons: Designing for Human-AI Collaboration in Open Knowledge Work",
+   "published": "2026-05-29",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "This study investigates Wikimedia Commons contributors' lived experiences with the Computer-Aided Tagging (CAT) tool, an AI-assisted image tagging system designed to improve Commons' discoverability, searchability, accessibility, and multilingual support. Using a qualitative analysis of 595 CAT-related community comments from 11 wiki pages and 16 in-depth interviews, we identify seven key issues that contributed to CAT's mixed reception and eventual deactivation. We also offer community-informed suggestions for improving the tool. We reflect on the implications for designing human-AI collaboration on Commons and for developing AI-assisted tools that support open knowledge work. This work contributes to HCI and CSCW research by extending the understanding of human-AI collaboration beyond Anglophone, text-centric, corporate platforms.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2503.05926",
+   "title": "What's So Human about Human-AI Collaboration, Anyway? Generative AI and Human-Computer Interaction",
+   "published": "2025-03-07",
+   "categories": [
+    "cs.HC",
+    "cs.CY"
+   ],
+   "abstract": "While human-AI collaboration has been a longstanding goal and topic of study for computational research, the emergence of increasingly naturalistic generative AI language models has greatly inflected the trajectory of such research. In this paper we identify how, given the language capabilities of generative AI, common features of human-human collaboration derived from the social sciences can be applied to the study of human-computer interaction. We provide insights drawn from interviews with industry personnel working on building human-AI collaboration systems, as well as our collaborations with end-users to build a multimodal AI assistant for task support.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2503.02631",
+   "title": "Reflection on Data Storytelling Tools in the Generative AI Era from the Human-AI Collaboration Perspective",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "Human-AI collaborative tools attract attentions from the data storytelling community to lower the expertise barrier and streamline the workflow. The recent advance in large-scale generative AI techniques, e.g., large language models (LLMs) and text-to-image models, has the potential to enhance data storytelling with their power in visual and narration generation. After two years since these techniques were publicly available, it is important to reflect our progress of applying them and have an outlook for future opportunities. To achieve the goal, we compare the collaboration patterns of the latest tools with those of earlier ones using a dedicated framework for understanding human-AI collaboration in data storytelling. Through comparison, we identify consistently widely studied patterns, e.g., human-creator + AI-assistant, and newly explored or emerging ones, e.g., AI-creator + human-reviewer. The benefits of these AI techniques and implications to human-AI collaboration are also revealed. We further propose future directions to hopefully ignite innovations.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2608.04331",
+   "title": "IntentLint: Supporting Intent Scaffolding and Prompt-time Linting in Human-AI Collaborative Data Analysis",
+   "published": "2026-08-05",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "In human-AI collaborative data analysis, as analyses rapidly evolve, the artifacts meant to capture shared understanding often become incomplete or difficult to interpret, leading to undocumented assumptions, cross-user misaligned intent, context-poor prompts, and unwanted agent behaviors. To address these challenges, we introduce a rule-based coordination layer with two interaction mechanisms, intent scaffolding and prompt-time linting, that make analytic intent explicit and actionable during human-AI collaborative data analysis. We implement them in IntentLint, a proof-of-concept system that infers analytic intent from shared notebooks, represents it as structured, editable rules, and checks users' prompts against shared rules. IntentLint helps analysts externalize and refine their intent and proactively checks prompts for potential conflicts. A study with 16 data analysts shows that IntentLint improves awareness of collaborators' intent and encourages reflection on analytic strategies, and provides design implications for supporting more aligned and transparent human-AI collaborative data analysis.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2606.05222",
+   "title": "Where's the Structure? A Systematic Literature Review of Empirical Research on Human-AI Collaboration and Hybrid Intelligence for Learning",
+   "published": "2026-05-30",
+   "categories": [
+    "cs.CY",
+    "cs.AI",
+    "cs.HC"
+   ],
+   "abstract": "Artificial intelligence (AI) has been applied across educational contexts to support learning. One approach to such support is \"human-AI collaboration\" (also termed \"hybrid intelligence\"), where human(s) and AI components interact to promote human learning. However, as in human-to-human computer-supported collaborative learning (CSCL), unstructured interaction does not necessarily produce an effective learning experience. This paper reports a systematic literature review of empirical studies (N=62) on human-AI collaboration and hybrid intelligence for learning support. The review characterizes collaboration processes, their structures, and contexts of application. It also extracts emerging design knowledge and research gaps. Researchers and technology designers can use these findings as a starting point for structuring more effective AI-enhanced technologies for collaboration, in educational practice and future research.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2610.34737",
+   "title": "LADDER: Diagnosing Domain-Level Self-Assessment Under Noisy Feedback",
+   "published": "2026-10-26",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Knowing when they are reliable is essential for language models to support human-AI collaboration. Yet interaction feedback is not always complete or correct, and may mislead models' understanding of their own capabilities. We introduce LADDER to study how language models assess themselves under unreliable feedback. Our findings show that models can accurately report supplied performance information while still struggling to form trustworthy self-assessments from interaction experience. Apparently accurate assessments can obscure capability differences and do not necessarily predict future task performance. These findings suggest that trustworthy self-assessment should be evaluated against observed task performance and its predictive value. Our study provides empirical evidence of the limits of model self-knowledge and a basis for evaluating capability awareness in reliable human-AI collaboration.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2608.05614",
+   "title": "Toward Resilient Human-AI Collaboration: A Lifecycle Taxonomy of Sociotechnical Risks and Cascading Failures",
+   "published": "2026-08-06",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "As AI systems become increasingly integrated into consequential domains such as healthcare, journalism, education, scientific research, organizational decision-making, and defense, effective human-AI collaboration has emerged as a critical challenge. However, the sociotechnical risks that undermine collaboration are often studied in isolation, obscuring the recurring failure mechanisms that cut across domains. This paper presents a lifecycle-oriented synthesis of human-AI collaboration risks spanning four stages: task allocation, interaction, feedback, and adoption. Drawing on evidence from diverse application domains, we identify six recurring cross-domain risk clusters: Trust Miscalibration, Cognitive Burden, Accountability Gap, Capability Erosion, Goal Misalignment, and AI Anxiety and Technostress. We further propose a conceptual interaction model that illustrates how these risks emerge from sociotechnical drivers, interact through cascading pathways, and ultimately affect team performance and human well-being. Our analysis shows that many collaboration failures stem not from isolated technical deficiencies but from interconnected sociotechnical dynamics, helping explain why piecemeal interventions frequently create unintended consequences. By synthesizing fragmented literature into a unified framework, this work provides a foundation for future empirical research, lifecycle-oriented governance, and the design of more resilient, trustworthy, and human-centered human-AI collaboration systems.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2503.14484",
+   "title": "Gricean Norms as a Basis for Effective Collaboration",
+   "published": "2025-03-18",
+   "categories": [
+    "cs.MA",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Effective human-AI collaboration hinges not only on the AI agent's ability to follow explicit instructions but also on its capacity to navigate ambiguity, incompleteness, invalidity, and irrelevance in communication. Gricean conversational and inference norms facilitate collaboration by aligning unclear instructions with cooperative principles. We propose a normative framework that integrates Gricean norms and cognitive frameworks -- common ground, relevance theory, and theory of mind -- into large language model (LLM) based agents. The normative framework adopts the Gricean maxims of quantity, quality, relation, and manner, along with inference, as Gricean norms to interpret unclear instructions, which are: ambiguous, incomplete, invalid, or irrelevant. Within this framework, we introduce Lamoids, GPT-4 powered agents designed to collaborate with humans. To assess the influence of Gricean norms in human-AI collaboration, we evaluate two versions of a Lamoid: one with norms and one without. In our experiments, a Lamoid collaborates with a human to achieve shared goals in a grid world (Doors, Keys, and Gems) by interpreting both clear and unclear natural language instructions. Our results reveal that the Lamoid with Gricean norms achieves higher task accuracy and generates clearer, more accurate, and contextually relevant responses than the Lamoid without norms. This improvement stems from the normative framework, which enhances the agent's pragmatic reasoning, fostering effective human-AI collaboration and enabling context-aware communication in LLM-based agents.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2608.11460",
+   "title": "Principal Trait Analysis: Identifying User Behavioral Traits in Human-AI Collaboration",
+   "published": "2026-08-11",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Human-artificial intelligence (AI) collaboration takes many forms and occur in both professional and educational scenarios. It is important to identify how human users interact with AI and how their behavior affects task success and learning outcomes. Existing approaches often rely on predefined behavioral categories or derive patterns without establishing their relationship to outcomes. In this work, we propose Principal Trait Analysis (PTA), a data-driven method for identifying interpretable behavioral traits from human-AI collaboration dialogues. Our method analyzes large corpora of human-AI collaborative session traces, derive common traits across the dataset, scores each human collaborator on how well their interaction aligns with these traits, and selects a set that covers the most variance across users. While unsupervised and data-driven, our method also enables domain expertise to be injected during trait identification. We evaluate PTA on two human-AI collaborative coding datasets and investigate how the traits predict future task success, learning outcomes, and evolve over time.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2504.13847",
+   "title": "Interview AI-ssistant: Designing for Real-Time Human-AI Collaboration in Interview Preparation and Execution",
+   "published": "2025-03-03",
+   "categories": [
+    "cs.HC",
+    "cs.CL"
+   ],
+   "abstract": "Recent advances in large language models (LLMs) offer unprecedented opportunities to enhance human-AI collaboration in qualitative research methods, including interviews. While interviews are highly valued for gathering deep, contextualized insights, interviewers often face significant cognitive challenges, such as real-time information processing, question adaptation, and rapport maintenance. My doctoral research introduces Interview AI-ssistant, a system designed for real-time interviewer-AI collaboration during both the preparation and execution phases. Through four interconnected studies, this research investigates the design of effective human-AI collaboration in interviewing contexts, beginning with a formative study of interviewers' needs, followed by a prototype development study focused on AI-assisted interview preparation, an experimental evaluation of real-time AI assistance during interviews, and a field study deploying the system in a real-world research setting. Beyond informing practical implementations of intelligent interview support systems, this work contributes to the Intelligent User Interfaces (IUI) community by advancing the understanding of human-AI collaborative interfaces in complex social tasks and establishing design guidelines for AI-enhanced qualitative research tools.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2501.11433",
+   "title": "One Does Not Simply Meme Alone: Evaluating Co-Creativity Between LLMs and Humans in the Generation of Humor",
+   "published": "2025-01-20",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Collaboration has been shown to enhance creativity, leading to more innovative and effective outcomes. While previous research has explored the abilities of Large Language Models (LLMs) to serve as co-creative partners in tasks like writing poetry or creating narratives, the collaborative potential of LLMs in humor-rich and culturally nuanced domains remains an open question. To address this gap, we conducted a user study to explore the potential of LLMs in co-creating memes - a humor-driven and culturally specific form of creative expression. We conducted a user study with three groups of 50 participants each: a human-only group creating memes without AI assistance, a human-AI collaboration group interacting with a state-of-the-art LLM model, and an AI-only group where the LLM autonomously generated memes. We assessed the quality of the generated memes through crowdsourcing, with each meme rated on creativity, humor, and shareability. Our results showed that LLM assistance increased the number of ideas generated and reduced the effort participants felt. However, it did not improve the quality of the memes when humans collaborated with LLM. Interestingly, memes created entirely by AI performed better than both human-only and human-AI collaborative memes in all areas on average. However, when looking at the top-performing memes, human-created ones were better in humor, while human-AI collaborations stood out in creativity and shareability. These findings highlight the complexities of human-AI collaboration in creative tasks. While AI can boost productivity and create content that appeals to a broad audience, human creativity remains crucial for content that connects on a deeper level.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2509.08514",
+   "title": "Bias in the Loop: How Humans Evaluate AI-Generated Suggestions",
+   "published": "2025-09-10",
+   "categories": [
+    "cs.HC",
+    "stat.ML"
+   ],
+   "abstract": "Human-AI collaboration increasingly drives decision-making across industries, from medical diagnosis to content moderation. While AI systems promise efficiency gains by providing automated suggestions for human review, these workflows can trigger cognitive biases that degrade performance. We know little about the psychological factors that determine when these collaborations succeed or fail. We conducted a randomized experiment with 2,784 participants to examine how task design and individual characteristics shape human responses to AI-generated suggestions. Using a controlled annotation task, we manipulated three factors: AI suggestion quality in the first three instances, task burden through required corrections, and performance-based financial incentives. We collected demographics, attitudes toward AI, and behavioral data to assess four performance metrics: accuracy, correction activity, overcorrection, and undercorrection. Two patterns emerged that challenge conventional assumptions about human-AI collaboration. First, requiring corrections for flagged AI errors reduced engagement and increased the tendency to accept incorrect suggestions, demonstrating how cognitive shortcuts influence collaborative outcomes. Second, individual attitudes toward AI emerged as the strongest predictor of performance, surpassing demographic factors. Participants skeptical of AI detected errors more reliably and achieved higher accuracy, while those favorable toward automation exhibited dangerous overreliance on algorithmic suggestions. The findings reveal that successful human-AI collaboration depends not only on algorithmic performance but also on who reviews AI outputs and how review processes are structured. Effective human-AI collaborations require consideration of human psychology: selecting diverse evaluator samples, measuring attitudes, and designing workflows that counteract cognitive biases.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.11882",
+   "title": "Leveraging Dual Process Theory in Language Agent Framework for Real-time Simultaneous Human-AI Collaboration",
+   "published": "2025-02-17",
+   "categories": [
+    "cs.AI",
+    "cs.CL",
+    "cs.HC",
+    "cs.LG",
+    "cs.MA"
+   ],
+   "abstract": "Agents built on large language models (LLMs) have excelled in turn-by-turn human-AI collaboration but struggle with simultaneous tasks requiring real-time interaction. Latency issues and the challenge of inferring variable human strategies hinder their ability to make autonomous decisions without explicit instructions. Through experiments with current independent System 1 and System 2 methods, we validate the necessity of using Dual Process Theory (DPT) in real-time tasks. We propose DPT-Agent, a novel language agent framework that integrates System 1 and System 2 for efficient real-time simultaneous human-AI collaboration. DPT-Agent's System 1 uses a Finite-state Machine (FSM) and code-as-policy for fast, intuitive, and controllable decision-making. DPT-Agent's System 2 integrates Theory of Mind (ToM) and asynchronous reflection to infer human intentions and perform reasoning-based autonomous decisions. We demonstrate the effectiveness of DPT-Agent through further experiments with rule-based agents and human collaborators, showing significant improvements over mainstream LLM-based frameworks. DPT-Agent can effectively help LLMs convert correct slow thinking and reasoning into executable actions, thereby improving performance. To the best of our knowledge, DPT-Agent is the first language agent framework that achieves successful real-time simultaneous human-AI collaboration autonomously. Code of DPT-Agent can be found in https://github.com/sjtu-marl/DPT-Agent.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2511.04050",
+   "title": "Revealing AI Reasoning Increases Trust but Crowds Out Unique Human Knowledge",
+   "published": "2025-11-06",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Effective human-AI collaboration requires humans to accurately gauge AI capabilities and calibrate their trust accordingly. Humans often have context-dependent private information, referred to as Unique Human Knowledge (UHK), that is crucial for deciding whether to accept or override AI's recommendations. We examine how displaying AI reasoning affects trust and UHK utilization through a pre-registered, incentive-compatible experiment (N = 752). We find that revealing AI reasoning, whether brief or extensive, acts as a powerful persuasive heuristic that significantly increases trust and agreement with AI recommendations. Rather than helping participants appropriately calibrate their trust, this transparency induces over-trust that crowds out UHK utilization. Our results highlight the need for careful consideration when revealing AI reasoning and call for better information design in human-AI collaboration systems.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2512.21041",
+   "title": "When LLMs fall short in Deductive Coding: Model Comparison and Human AI Collaboration Workflow Design",
+   "published": "2025-12-24",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "With generative artificial intelligence driving the growth of dialogic data in education, automated coding is a promising direction for learning analytics to improve efficiency. This surge highlights the need to understand the nuances of student-AI interactions, especially those rare yet crucial. However, automated coding may struggle to capture these rare codes due to imbalanced data, while human coding remains time-consuming and labour-intensive. The current study examined the potential of large language models (LLMs) to approximate or replace humans in deductive, theory-driven coding, while also exploring how human-AI collaboration might support such coding tasks at scale. We compared the coding performance of small transformer classifiers (e.g., BERT) and LLMs in two datasets, with particular attention to imbalanced head-tail distributions in dialogue codes. Our results showed that LLMs did not outperform BERT-based models and exhibited systematic errors and biases in deductive coding tasks. We designed and evaluated a human-AI collaborative workflow that improved coding efficiency while maintaining coding reliability. Our findings reveal both the limitations of LLMs -- especially their difficulties with semantic similarity and theoretical interpretations and the indispensable role of human judgment -- while demonstrating the practical promise of human-AI collaborative workflows for coding.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2503.20160",
+   "title": "What is the role of human decisions in a world of artificial intelligence: an economic evaluation of human-AI collaboration in diabetic retinopathy screening",
+   "published": "2025-03-26",
+   "categories": [
+    "cs.HC",
+    "cs.CY"
+   ],
+   "abstract": "As Artificial intelligence (AI) has been increasingly integrated into the medical field, the role of humans may become vague. While numerous studies highlight AI's potential, how humans and AI collaborate to maximize the combined clinical benefits remains unexplored. In this work, we analyze 270 screening scenarios from a health-economic perspective in a national diabetic retinopathy screening program, involving eight human-AI collaborative strategies and traditional manual screening. We find that annual copilot human-AI screening in the 20-79 age group, with referral decisions made when both humans and AI agree, is the most cost-effective strategy for human-AI collaboration. The 'copilot' strategy brings health benefits equivalent to USD 4.64 million per 100,000 population compared to manual screening. These findings demonstrate that even in settings where AI is highly mature and efficient, human involvement remains essential to ensuring both health and economic benefits. Our findings highlight the need to optimize human-AI collaboration strategies for AI implementation into healthcare systems.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2511.02560",
+   "title": "SigmaCollab: An Application-Driven Dataset for Physically Situated Collaboration",
+   "published": "2025-11-04",
+   "categories": [
+    "cs.HC",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "We introduce SigmaCollab, a dataset enabling research on physically situated human-AI collaboration. The dataset consists of a set of 85 sessions in which untrained participants were guided by a mixed-reality assistive AI agent in performing procedural tasks in the physical world. SigmaCollab includes a set of rich, multimodal data streams, such as the participant and system audio, egocentric camera views from the head-mounted device, depth maps, head, hand and gaze tracking information, as well as additional annotations performed post-hoc. While the dataset is relatively small in size (~ 14 hours), its application-driven and interactive nature brings to the fore novel research challenges for human-AI collaboration, and provides more realistic testing grounds for various AI models operating in this space. In future work, we plan to use the dataset to construct a set of benchmarks for physically situated collaboration in mixed-reality task assistive scenarios. SigmaCollab is available at https://github.com/microsoft/SigmaCollab.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2601.11812",
+   "title": "Toward Human-Centered Human-AI Interaction: Advances in Theoretical Frameworks and Practice",
+   "published": "2026-01-16",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "With the rapid development of artificial intelligence (AI), machines are increasingly evolving into intelligent agents, and the human-machine relationship is shifting from traditional \"human-computer interaction\" toward a new paradigm of \"human-AI collaboration.\" However, technology-centered approaches to AI development have gradually revealed limitations such as fragility, bias, and low explainability, highlighting the urgent need for human-centered AI (HCAI) design philosophy. As a systems engineering approach, the successful implementation of HCAI depends critically on the design and optimization of high-quality human-AI interaction (HAII). This paper systematically reviews our research team's nearly decade-long exploration and practice in HCAI. At the level of research vision, we were among the first in China to systematically propose HAII as an interdisciplinary field and to develop a human-centered conceptual framework for human--AI collaboration. At the theoretical level, we introduced frameworks for human-AI joint cognitive systems, team-level situation awareness among intelligent agents, and shared social understanding, forming a relatively comprehensive theoretical system. At the methodological level, we established a hierarchical HCAI framework and a taxonomy of HCAI implementation methods. At the application level, we conducted a series of studies in domains such as autonomous driving, intelligent aircraft cockpit, and trust in human-AI collaboration, empirically validating the effectiveness of the proposed frameworks. Looking ahead, research on HCAI and HAII must continue to advance along three dimensions: theoretical deepening, methodological innovation, and application expansion, promoting the development of an intelligent society that is human-centered and characterized by harmonious human-AI coexistence.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.15993",
+   "title": "Explaining Puzzle Solutions in Natural Language: An Exploratory Study on 6x6 Sudoku",
+   "published": "2025-05-21",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "The success of Large Language Models (LLMs) in human-AI collaborative decision-making hinges on their ability to provide trustworthy, gradual, and tailored explanations. Solving complex puzzles, such as Sudoku, offers a canonical example of this collaboration, where clear and customized explanations often hold greater importance than the final solution. In this study, we evaluate the performance of five LLMs in solving and explaining \\sixsix{} Sudoku puzzles. While one LLM demonstrates limited success in solving puzzles, none can explain the solution process in a manner that reflects strategic reasoning or intuitive problem-solving. These findings underscore significant challenges that must be addressed before LLMs can become effective partners in human-AI collaborative decision-making.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.10661",
+   "title": "It's only fair when I think it's fair: How Gender Bias Alignment Undermines Distributive Fairness in Human-AI Collaboration",
+   "published": "2025-05-15",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Human-AI collaboration is increasingly relevant in consequential areas where AI recommendations support human discretion. However, human-AI teams' effectiveness, capability, and fairness highly depend on human perceptions of AI. Positive fairness perceptions have been shown to foster trust and acceptance of AI recommendations. Yet, work on confirmation bias highlights that humans selectively adhere to AI recommendations that align with their expectations and beliefs -- despite not being necessarily correct or fair. This raises the question whether confirmation bias also transfers to the alignment of gender bias between human and AI decisions. In our study, we examine how gender bias alignment influences fairness perceptions and reliance. The results of a 2x2 between-subject study highlight the connection between gender bias alignment, fairness perceptions, and reliance, demonstrating that merely constructing a ``formally fair'' AI system is insufficient for optimal human-AI collaboration; ultimately, AI recommendations will likely be overridden if biases do not align.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2605.24729",
+   "title": "\"It Felt a Bit Eerie\": Exploring Humanlike Interactions During Collaborative Writing with an Artificial Agent",
+   "published": "2026-05-23",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "While human-AI collaboration systems have increasingly been built to increase efficiency or support creativity, little work has examined how the design of interactions shapes the social connection between human and artificial agent. We examine how the temporal and visual dimensions of collaboration shape the experience of a writing task. Specifically, we built three variants of an AI-assisted text editor along a spectrum of simulated humanlike interaction (synchronous and with a cursor) to machinelike interaction (asynchronous and without a cursor), and conducted a comparative user study (n=48). Our exploratory findings suggest that synchronous suggestions increased efficiency but led to contextual misalignment, while a visual cursor increased intent understanding but evoked feelings of surveillance. Taken together, humanlike design of artificial agents can create positive social expectations but also elicit social costs, especially without the alignment present in human-human collaboration. We extend our findings into design implications and ethical considerations when building human-AI collaboration systems.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2609.12438",
+   "title": "ForkSCOPE: Charting the Agentic Garden of Forking Paths",
+   "published": "2026-09-11",
+   "categories": [
+    "cs.HC",
+    "stat.AP"
+   ],
+   "abstract": "Even with a fixed dataset and research question, data analysis involves many defensible decisions. Understanding how these choices influence the results is scientifically important but remains challenging. Crowdsourcing and agentic AI can generate hundreds of end-to-end analyses, but scaling generation alone can create a processing bottleneck and an analytic ``black hole.'' A common workaround is to impose a shared fixed decision taxonomy, which can limit insight and understate uncertainty. We present ForkSCOPE, a human-AI collaboration framework that induces structure bottom-up from the code corpus of end-to-end analyses, without a taxonomy fixed before or after generation, so the organization and evaluation of the garden can scale with the corpus. ForkSCOPE surfaces the charted garden of forking paths through a human-AI collaboration pipeline and an evidence-linked interactive viewer for steering and verification: it spotlights organically identified forks and structures and produces a derived taxonomy and decision map compatible with existing multiverse tools.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2509.21436",
+   "title": "Position: Human Factors Reshape Adversarial Analysis in Human-AI Decision-Making Systems",
+   "published": "2025-09-25",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "As Artificial Intelligence (AI) increasingly supports human decision-making, its vulnerability to adversarial attacks grows. However, the existing adversarial analysis predominantly focuses on fully autonomous AI systems, where decisions are executed without human intervention. This narrow focus overlooks the complexities of human-AI collaboration, where humans interpret, adjust, and act upon AI-generated decisions. Trust, expectations, and cognitive behaviors influence how humans interact with AI, creating dynamic feedback loops that adversaries can exploit. To strengthen the robustness of AI-assisted decision-making, adversarial analysis must account for the interplay between human factors and attack strategies. This position paper argues that human factors fundamentally reshape adversarial analysis and must be incorporated into evaluating robustness in human-AI decision-making systems. To fully explore human factors in adversarial analysis, we begin by investigating the role of human factors in human-AI collaboration through a comprehensive review. We then introduce a novel robustness analysis framework that (1) examines how human factors affect collaborative decision-making performance, (2) revisits and interprets existing adversarial attack strategies in the context of human-AI interaction, and (3) introduces a new timing-based adversarial attack as a case study, illustrating vulnerabilities emerging from sequential human actions. The experimental results reveal that attack timing uniquely impacts decision outcomes in human-AI collaboration. We hope this analysis inspires future research on adversarial robustness in human-AI systems, fostering interdisciplinary approaches that integrate AI security, human cognition, and decision-making dynamics.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.00283",
+   "title": "How Generative AI supports human in conceptual design",
+   "published": "2025-02-01",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Generative Artificial Intelligence (Generative AI) is a collection of AI technologies that can generate new information such as texts and images. With its strong capabilities, Generative AI has been actively studied in creative design processes. However, limited studies have explored the roles of humans and Generative AI in conceptual design processes, leaving a gap for human-AI collaboration investigation. To address this gap, this study uncovers the contributions of different Generative AI technologies in assisting humans in the conceptual design process. Novice designers completed two design tasks with or without the assistance of Generative AI. Results revealed that Generative AI primarily assists humans in problem definition and idea generation stages, while idea selection and evaluation remain predominantly human-led. Additionally, with Generative AI assistance, the idea selection and evaluation stages were further enhanced. Based on the findings, we discuss the role of Generative AI in human-AI collaboration and implications for enhancing future conceptual design support with Generative AI assistance.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2508.20918",
+   "title": "Vibe Coding: Is Human Nature the Ghost in the Machine?",
+   "published": "2025-08-28",
+   "categories": [
+    "cs.CY"
+   ],
+   "abstract": "This exploratory study examined the consistency of human-AI collaboration by analyzing three extensive \"vibe coding\" sessions between a human product lead and an AI software engineer. We investigated similarities and differences in team dynamics, communication patterns, and development outcomes across both projects. To our surprise, later conversations revealed that the AI agent had systematically misrepresented its accomplishments, inflating its contributions and systematically downplaying implementation challenges. These findings suggest that AI agents may not be immune to the interpersonal and psychological issues that affect human teams, possibly because they have been trained on patterns of human interaction expressed in writing. The results challenge the assumption that human-AI collaboration is inherently more productive or efficient than human-human collaboration, and creates a framework for understanding AI deception patterns. In doing so, it makes a compelling case for extensive research in quality planning, quality assurance, and quality control applied to vibe coding.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2508.16580",
+   "title": "Adaptive Command: Real-Time Policy Adjustment via Language Models in StarCraft II",
+   "published": "2025-08-05",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "We present Adaptive Command, a novel framework integrating large language models (LLMs) with behavior trees for real-time strategic decision-making in StarCraft II. Our system focuses on enhancing human-AI collaboration in complex, dynamic environments through natural language interactions. The framework comprises: (1) an LLM-based strategic advisor, (2) a behavior tree for action execution, and (3) a natural language interface with speech capabilities. User studies demonstrate significant improvements in player decision-making and strategic adaptability, particularly benefiting novice players and those with disabilities. This work contributes to the field of real-time human-AI collaborative decision-making, offering insights applicable beyond RTS games to various complex decision-making scenarios.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2606.06081",
+   "title": "A Framework for Measuring Appropriate Reliance on Set-Valued AI Advice",
+   "published": "2026-06-04",
+   "categories": [
+    "cs.AI",
+    "cs.HC"
+   ],
+   "abstract": "Appropriate reliance on AI advice has become a central research theme in human-AI collaboration. Existing frameworks have focused exclusively on point predictions as AI advice. However, set-valued AI advice (e.g., discrete sets or continuous intervals) is increasingly being used to communicate uncertainty and improve human decision making. In this paper, we develop the first formal framework for measuring appropriate reliance on set-valued AI advice within the sequential judge-advisor paradigm, spanning both classification and regression tasks. For classification, we first introduce the dimensions that are necessary for evaluating set-valued AI advice. We then define two metrics: correct reliance rate on AI and correct reliance rate on self, which jointly characterize appropriate reliance in this setting. For regression, we introduce quantity of AI reliance and quality of AI reliance, which respectively measure whether a decision maker utilized the AI advice and whether their reliance helped them get closer to the ground truth relative to their initial estimate. Through the application of our framework, we demonstrate how these metrics capture important nuances in human-AI collaboration that existing measures overlook.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.16833",
+   "title": "An Exploratory Study on How AI Awareness Impacts Human-AI Design Collaboration",
+   "published": "2025-02-24",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "The collaborative design process is intrinsically complicated and dynamic, and researchers have long been exploring how to enhance efficiency in this process. As Artificial Intelligence technology evolves, it has been widely used as a design tool and exhibited the potential as a design collaborator. Nevertheless, problems concerning how designers should communicate with AI in collaborative design remain unsolved. To address this research gap, we referred to how designers communicate fluently in human-human design collaboration, and found awareness to be an important ability for facilitating communication by understanding their collaborators and current situation. However, previous research mainly studied and supported human awareness, the possible impact AI awareness would bring to the human-AI collaborative design process, and the way to realize AI awareness remain unknown. In this study, we explored how AI awareness will impact human-AI collaboration through a Wizard-of-Oz experiment. Both quantitative and qualitative results supported that enabling AI to have awareness can enhance the communication fluidity between human and AI, thus enhancing collaboration efficiency. We further discussed the results and concluded design implications for future human-AI collaborative design systems.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2603.19005",
+   "title": "AgentDS Technical Report: Benchmarking the Future of Human-AI Collaboration in Domain-Specific Data Science",
+   "published": "2026-03-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ME"
+   ],
+   "abstract": "Data science plays a critical role in transforming complex data into actionable insights across numerous domains. Recent developments in large language models (LLMs) and artificial intelligence (AI) agents have significantly automated data science workflow. However, it remains unclear to what extent AI agents can match the performance of human experts on domain-specific data science tasks, and in which aspects human expertise continues to provide advantages. We introduce AgentDS, a benchmark and competition designed to evaluate both AI agents and human-AI collaboration performance in domain-specific data science. AgentDS consists of 17 challenges across six industries: commerce, food production, healthcare, insurance, manufacturing, and retail banking. We conducted an open competition involving 29 teams and 80 participants, enabling systematic comparison between human-AI collaborative approaches and AI-only baselines. Our results show that current AI agents struggle with domain-specific reasoning. AI-only baselines perform below the top quartile of competition participants, while the strongest solutions arise from human-AI collaboration. These findings challenge the narrative of complete automation by AI and underscore the enduring importance of human expertise in data science, while illuminating directions for the next generation of AI. Visit the AgentDS website here: https://agentds.org/ and open source datasets here: https://huggingface.co/datasets/lainmn/AgentDS .",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2602.06305",
+   "title": "Reimagining Legal Fact Verification with GenAI: Toward Effective Human-AI Collaboration",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Fact verification is a critical yet underexplored component of non-litigation legal practice. While existing research has examined automation in legal workflow and human-AI collaboration in high-stakes domains, little is known about how GenAI can support fact verification, a task that demands prudent judgment and strict accountability. To address this, we conducted semi-structured interviews with 18 lawyers to understand their current verification practices, attitudes toward GenAI adoption, and expectations for future systems. We found that while lawyers use GenAI for low-risk tasks like drafting and language optimization, concerns over accuracy, confidentiality, and liability are currently limiting its adoption for fact verification. These concerns translate into core design requirements for AI systems that are trustworthy and accountable. Based on these, we contribute design insights for human-AI collaboration in legal fact verification, emphasizing the development of auditable systems that balance efficiency with professional judgment and uphold ethical and legal accountability in high-stakes practice.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.11558",
+   "title": "AI-Driven Digital Transformation and Firm Performance in Chinese Industrial Enterprises: Mediating Role of Green Digital Innovation and Moderating Effects of Human-AI Collaboration",
+   "published": "2025-05-16",
+   "categories": [
+    "econ.GN"
+   ],
+   "abstract": "This study examines the relationship between AI-driven digital transformation and firm performance in Chinese industrial enterprises, with particular attention to the mediating role of green digital innovation and the moderating effects of human-AI collaboration. Using panel data from 6,300 firm-year observations collected from CNRDS and CSMAR databases between 2015 and 2022, we employ multiple regression analysis and structural equation modeling to test our hypotheses. Our findings reveal that AI-driven digital transformation significantly enhances firm performance, with green digital innovation mediating this relationship. Furthermore, human-AI collaboration positively moderates both the direct relationship between digital transformation and firm performance and the mediating pathway through green digital innovation. The results provide valuable insights for management practice and policy formulation in the context of China's evolving industrial landscape and digital economy initiatives. This research contributes to the literature by integrating perspectives from technology management, environmental sustainability, and organizational theory to understand the complex interplay between technological adoption and business outcomes.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2507.14418",
+   "title": "Designing Conversational AI to Support Think-Aloud Practice in Technical Interview Preparation for CS Students",
+   "published": "2025-07-19",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "One challenge in technical interviews is the think-aloud process, where candidates verbalize their thought processes while solving coding tasks. Despite its importance, opportunities for structured practice remain limited. Conversational AI offers potential assistance, but limited research explores user perceptions of its role in think-aloud practice. To address this gap, we conducted a study with 17 participants using an LLM-based technical interview practice tool. Participants valued AI's role in simulation, feedback, and learning from generated examples. Key design recommendations include promoting social presence in conversational AI for technical interview simulation, providing feedback beyond verbal content analysis, and enabling crowdsourced think-aloud examples through human-AI collaboration. Beyond feature design, we examined broader considerations, including intersectional challenges and potential strategies to address them, how AI-driven interview preparation could promote equitable learning in computing careers, and the need to rethink AI's role in interview practice by suggesting a research direction that integrates human-AI collaboration.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2607.18564",
+   "title": "HALO: Interactive Co-abductive Reasoning in Scientific Hypothesis Generation",
+   "published": "2026-07-20",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Scientific discovery is essential yet inefficient, primarily because generating hypotheses within a vast search space hinders breakthroughs. While current AI systems assist in generating new hypothesis candidates, they lack interactive support for the reasoning process by which users develop these outputs into promising hypotheses, resulting in surface-level hypotheses. To address this issue, we present co-abduction, a human-AI collaborative framework for abductive reasoning in scientific hypothesis generation. To operationalize co-abduction, we build HALO, a human-AI collaborative system for molecular hypothesis generation in drug discovery, enabling improved candidate clustering, strategy identification, and multi-strategy synthesis. In expert studies involving 10 medicinal chemists, HALO significantly facilitated abductive reasoning for hypothesis generation -- efficient candidate observation, systematic strategy identification, and coherent multi-strategy composition -- and enabled participants to produce higher-quality, more diverse candidate molecules.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2604.13706",
+   "title": "Co-FactChecker: A Framework for Human-AI Collaborative Claim Verification Using Large Reasoning Models",
+   "published": "2026-04-15",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Professional fact-checkers rely on domain knowledge and deep contextual understanding to verify claims. Large language models (LLMs) and large reasoning models (LRMs) lack such grounding and primarily reason from available evidence alone, creating a mismatch between expert-led and fully automated claim verification. To mitigate this gap, we posit human-AI collaboration as a more promising path forward, where expert feedback, grounded in real-world knowledge and domain expertise, guides the model's reasoning. However, existing LRMs are hard to calibrate to natural language feedback, particularly in a multi-turn interaction setup. We propose Co-FactChecker, a framework for human-AI collaborative claim verification. We introduce a new interaction paradigm that treats the model's thinking trace as a shared scratchpad. Co-FactChecker translates expert feedback into trace-edits that introduce targeted modifications to the trace, sidestepping the shortcomings of dialogue-based interaction. We provide theoretical results showing that trace-editing offers advantages over multi-turn dialogue, and our automatic evaluations demonstrate that Co-FactChecker outperforms existing autonomous and human-AI collaboration approaches. Human evaluations further show that Co-FactChecker is preferred over multi-turn dialogue, producing higher quality reasoning and verdicts along with relatively easier to interpret and more useful thinking traces.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.00637",
+   "title": "Constructing AI ethics narratives based on real-world data: Human-AI collaboration in data-driven visual storytelling",
+   "published": "2025-02-02",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "AI ethics narratives have the potential to shape the public accurate understanding of AI technologies and promote communication among different stakeholders. However, AI ethics narratives are largely lacking. Existing limited narratives tend to center on works of science fiction or corporate marketing campaigns of large technology companies. Misuse of \"socio-technical imaginary\" can blur the line between speculation and reality for the public, undermining the responsibility and regulation of technology development. Therefore, constructing authentic AI ethics narratives is an urgent task. The emergence of generative AI offers new possibilities for building narrative systems. This study is dedicated to data-driven visual storytelling about AI ethics relying on the human-AI collaboration. Based on the five key elements of story models, we proposed a conceptual framework for human-AI collaboration, explored the roles of generative AI and humans in the creation of visual stories. We implemented the conceptual framework in a real AI news case. This research leveraged advanced generative AI technologies to provide a reference for constructing genuine AI ethics narratives. Our goal is to promote active public engagement and discussions through authentic AI ethics narratives, thereby contributing to the development of better AI policies.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2606.22213",
+   "title": "Resume Screening, Fast and Slow: (Biased) AI Recommendations' Influence on Human Decision Making",
+   "published": "2026-06-20",
+   "categories": [
+    "cs.CY"
+   ],
+   "abstract": "AI is increasingly being used collaboratively with people to make decisions in high-stakes domains, but this new paradigm is still not well-understood in many respects -- particularly regarding how AI that replicates human social biases influences people's decision making processes and how that can influence outcomes. In this study, we analyzed the time people spend viewing candidate resumes from an experiment investigating biased AI resume screening to evaluate decision-making fairness and cognitive processes underlying human-AI collaboration. We found that spending more time viewing resumes corresponds to candidates' selection chance increasing by 3-4% if they are not recommended, and people may spend up to 55.6% longer viewing resumes when no AI recommendations are given. Furthermore, people who completed an implicit association test (IAT) before resume screening were significantly more likely to evaluate candidates of different races for the same amount of time, and their IAT scores were also predictive of the time spent in human-AI collaboration. These results demonstrate how people's decision-making processes can be insufficient for overseeing AI in high-stakes domains.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.16254",
+   "title": "Human-AI Writing as Distributed Cognition: Reassessing Collaborative Writing Theories in the Age of LLMs",
+   "published": "2025-05-22",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "In this paper, we conduct a structured synthesis of existing theories and frameworks on human-human collaborative writing to assess how co-writing with AI reshapes writing in knowledge work settings, and draw seven insights along with design implications for human-AI collaborative writing tools. Our main argument is that, as we delegate more writing to AI, our cognitive process shifts from the traditional plan/write/review process to a plan/delegate/review process, reshaping the distribution of the cognitive labor between human writers and AI writing tools. To ensure that humans cognitively stay in the loop, we discuss a ``prototyping'' approach, where the writing tool scaffolds a healthier distribution of cognition through rapid, small-scale iterations that keep writers mentally in the loop even when generation is delegated to AI. We aim to bring theoretical grounding and practical guidance to the interaction designs of human-AI collaborative writing, with the goal of balancing automation with cognitive integrity.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2604.10221",
+   "title": "Building Regulation Capacity in Human-AI Collaborative Learning: A Human-Centred GenAI System",
+   "published": "2026-04-11",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Collaborative learning works when groups regulate together by setting shared goals, coordinating participation, monitoring progress, and responding to breakdowns through co-regulation (CoRL) and socially shared regulation (SSRL). As generative AI (GenAI) enters group work, however, it remains unclear whether and how it supports these socially distributed regulation processes. This doctoral project proposes a GenAI-supported collaborative learning system grounded in CoRL and SSRL to strengthen groups' socially distributed regulation capacity. The system links three components: (1) group activity generation; (2) an in-group support agent that provides process-focused prompts without giving solutions; and (3) an embedded learning analytics dashboard that turns interaction traces into timely summaries for monitoring and decision making. The project progresses from mechanism to design to impact: it first identifies how GenAI reshapes regulation patterns and which patterns indicate more effective Human-AI collaboration, then builds an integrated GenAI system that targets these patterns, and finally evaluates whether the GenAI system improves regulation capacity and group performance across varying levels of GenAI involvement. Expected contributions include a teacher-in-the-loop system for Human-AI collaboration and process-level evidence on how GenAI reconfigures CoRL and SSRL in group work.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2603.13575",
+   "title": "Exploring Human-AI Collaboration in E-Textile Design: A Case Study on Flex Sensor Placement for Shoulder Motion Detection",
+   "published": "2026-03-13",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Flex sensors are widely used in e-textiles for detecting joint motions and, subsequently, full-body movements. A critical initial step in utilizing these sensors is determining the optimal placement on the body to accurately capture human motions. This task requires a combination of expertise in fields such as anatomy, biomechanics, and textile design, which is seldom found in a single practitioner. Generative AI, such as Large Language Models (LLMs), has recently shown promise in facilitating design. However, to our knowledge, the extent to which LLMs can aid in the e-textile design process remains largely unexplored in the literature. To address this open question, we conducted a case study focusing on shoulder motion detection using flex sensors. We enlisted three human designers to participate in an experiment involving human-AI collaborative design. We examined design efficiency across three scenarios: designs produced by LLMs alone, by humans alone, and through collaboration between LLMs and human designers. Our quantitative and qualitative analyses revealed an intriguing relationship between expertise and outcomes: the least experienced human designer achieved continuous improvement through collaboration, ultimately matching the best performance achieved by humans alone, whereas the most experienced human designer experienced a decline in performance. Additionally, the effectiveness of human-AI collaboration is affected by the granularity of feedback - incremental adjustments outperformed sweeping redesigns - and the level of abstraction, with observation-oriented feedback producing better outcomes than prescriptive anatomical directives. These findings offer valuable insights into the opportunities and challenges associated with human-AI collaborative e-textile design.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2510.17489",
+   "title": "DETree: DEtecting Human-AI Collaborative Texts via Tree-Structured Hierarchical Representation Learning",
+   "published": "2025-10-20",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Detecting AI-involved text is essential for combating misinformation, plagiarism, and academic misconduct. However, AI text generation includes diverse collaborative processes (AI-written text edited by humans, human-written text edited by AI, and AI-generated text refined by other AI), where various or even new LLMs could be involved. Texts generated through these varied processes exhibit complex characteristics, presenting significant challenges for detection. Current methods model these processes rather crudely, primarily employing binary classification (purely human vs. AI-involved) or multi-classification (treating human-AI collaboration as a new class). We observe that representations of texts generated through different processes exhibit inherent clustering relationships. Therefore, we propose DETree, a novel approach that models the relationships among different processes as a Hierarchical Affinity Tree structure, and introduces a specialized loss function that aligns text representations with this tree. To facilitate this learning, we developed RealBench, a comprehensive benchmark dataset that automatically incorporates a wide spectrum of hybrid texts produced through various human-AI collaboration processes. Our method improves performance in hybrid text detection tasks and significantly enhances robustness and generalization in out-of-distribution scenarios, particularly in few-shot learning conditions, further demonstrating the promise of training-based approaches in OOD settings. Our code and dataset are available at https://github.com/heyongxin233/DETree.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2508.18267",
+   "title": "From Checking to Sensemaking: A Caregiver-in-the-Loop Framework for AI-Assisted Task Verification in Dementia Care",
+   "published": "2025-08-25",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Informal caregivers play a central role in enabling people living with dementia (PLwD) to remain at home, yet they face persistent challenges verifying whether daily tasks have been completed. Existing digital reminder systems prompt actions but rarely confirm outcomes, leaving caregivers to double-check tasks manually. This study explores how generative artificial intelligence (AI) might support caregiver-led task verification without displacing human judgment. We combined qualitative interviews with ten caregivers and one PLwD with a speculative simulation probe using a generative large language model to generate follow-up questions and flag responses for verification. Using template analysis, we identified three interrelated patterns of reasoning: detecting anomalies, constructing trustworthy evidence, and calibrating trust and control. These insights informed the Caregiver-in-the-Loop Task Verification (CLTV) framework, which models verification as a collaborative cycle of anomaly detection, evidence triangulation, AI-assisted summarization, and accountability circulation centered on caregiver oversight. CLTV advances human-AI collaboration theory by situating interpretability, trust, and control within the relational and emotional realities of dementia care and by offering design principles for transparent, adjustable, and context-aware AI support. We contribute a care-centered extension of human-AI collaboration theory, demonstrating how interpretability and trust can be operationalized through caregiver oversight.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2604.10599",
+   "title": "Rethinking Software Engineering for Agentic AI Systems",
+   "published": "2026-04-12",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "The rapid proliferation of large language models (LLMs) and agentic AI systems has created an unprecedented abundance of automatically generated code, challenging the traditional software engineering paradigm centered on manual authorship. This paper examines whether the discipline should be reoriented around orchestration, verification, and human-AI collaboration, and what implications this shift holds for education, tools, processes, and professional practice. Drawing on a structured synthesis of relevant literature and emerging industry perspectives, we analyze four key dimensions: the evolving role of the engineer in agentic workflows, verification as a critical quality bottleneck, observed impacts on productivity and maintainability, and broader implications for the discipline. Our analysis indicates that code is transitioning from a scarce, carefully crafted artifact to an abundant and increasingly disposable commodity. As a result, software engineering must reorganize around three core competencies: effective orchestration of multi-agent systems, rigorous verification of AI-generated outputs, and structured human-AI collaboration. We propose a conceptual framework outlining the transformations required across curricula, development tooling, lifecycle processes, and governance models. Rather than diminishing the role of engineers, this shift elevates their responsibilities toward system-level design, semantic validation, and accountable oversight. The paper concludes by highlighting key research challenges, including verification-first lifecycles, prompt traceability, and the long-term evolution of the engineering workforce.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2509.25244",
+   "title": "Neo-Grounded Theory: A Methodological Innovation Integrating High-Dimensional Vector Clustering and Multi-Agent Collaboration for Qualitative Research",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.AI",
+    "eess.SY"
+   ],
+   "abstract": "Purpose: Neo Grounded Theory (NGT) integrates vector clustering with multi agent systems to resolve qualitative research's scale depth paradox, enabling analysis of massive datasets in hours while preserving interpretive rigor. Methods: We compared NGT against manual coding and ChatGPT-assisted analysis using 40,000 character Chinese interview transcripts. NGT employs 1536-dimensional embeddings, hierarchical clustering, and parallel agent-based coding. Two experiments tested pure automation versus human guided refinement. Findings: NGT achieved 168-fold speed improvement (3 hours vs 3 weeks), superior quality (0.904 vs 0.883), and 96% cost reduction. Human AI collaboration proved essential: automation alone produced abstract frameworks while human guidance yielded actionable dual pathway theories. The system discovered patterns invisible to manual coding, including identity bifurcation phenomena. Contributions: NGT demonstrates computational objectivity and human interpretation are complementary. Vector representations provide reproducible semantic measurement while preserving meaning's interpretive dimensions. Researchers shift from mechanical coding to theoretical guidance, with AI handling pattern recognition while humans provide creative insight. Implications: Cost reduction from \\$50,000 to \\$500 democratizes qualitative research, enabling communities to study themselves. Real-time analysis makes qualitative insights contemporaneous with events. The framework shows computational methods can strengthen rather than compromise qualitative research's humanistic commitments. Keywords: Grounded theory; Vector embeddings; Multi agent systems; Human AI collaboration; Computational qualitative analysis",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2504.19120",
+   "title": "Toward AI standardization: A triadic human-ai collaboration framework for multi-level autonomous mobility",
+   "published": "2025-04-27",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "The goal of the current study is to introduce a triadic human-AI collaboration framework that could be applied in transportation systems such as automated vehicles, micromobility systems, and vehicle teleoperation. Previous standards, such as SAE Levels of Automation, have focused on defining automation levels based on who controls the vehicle. However, it is still not clear how human users and AI should collaborate in real time, especially in dynamic driving contexts where roles can shift frequently. To fill this gap, this study proposed a triadic human-AI collaboration framework with three AI roles: Advisor, Co-Pilot, and Guardian. These roles can dynamically adapt to human needs based on real-time data, such as mental states and environmental conditions. The Advisor AI offers informational support without direct intervention. The Co-Pilot AI provides partial intervention when needed, with the goal of sharing control with humans. The Guardian AI performs emergency overrides if necessary. The use cases for these AI roles in micromobility devices, such as e-scooters, are presented to demonstrate how these roles can influence user preferences and trust. Overall, the study takes a first step toward a universal role-based collaborative framework for AI standardization and explores how AI technologies can be embedded in future transportation systems while considering human interactions.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.09757",
+   "title": "The AI-Therapist Duo: Exploring the Potential of Human-AI Collaboration in Personalized Art Therapy for PICS Intervention",
+   "published": "2025-02-13",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "Post-intensive care syndrome (PICS) is a multifaceted condition that arises from prolonged stays in an intensive care unit (ICU). While preventing PICS among ICU patients is becoming increasingly important, interventions remain limited. Building on evidence supporting the effectiveness of art exposure in addressing the psychological aspects of PICS, we propose a novel art therapy solution through a collaborative Human-AI approach that enhances personalized therapeutic interventions using state-of-the-art Visual Art Recommendation Systems. We developed two Human-in-the-Loop (HITL) personalization methods and assessed their impact through a large-scale user study (N=150). Our findings demonstrate that this Human-AI collaboration not only enhances the personalization and effectiveness of art therapy but also supports therapists by streamlining their workload. While our study centres on PICS intervention, the results suggest that human-AI collaborative Art therapy could potentially benefit other areas where emotional support is critical, such as cases of anxiety and depression.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2506.04167",
+   "title": "Neural and Cognitive Impacts of AI: The Influence of Task Subjectivity on Human-LLM Collaboration",
+   "published": "2025-06-04",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "AI-based interactive assistants are advancing human-augmenting technology, yet their effects on users' mental and physiological states remain under-explored. We address this gap by analyzing how Copilot for Microsoft Word, a LLM-based assistant, impacts users. Using tasks ranging from objective (SAT reading comprehension) to subjective (personal reflection), and with measurements including fNIRS, Empatica E4, NASA-TLX, and questionnaires, we measure Copilot's effects on users. We also evaluate users' performance with and without Copilot across tasks. In objective tasks, participants reported a reduction of workload and an increase in enjoyment, which was paired with objective performance increases. Participants reported reduced workload and increased enjoyment with no change in performance in a creative poetry writing task. However, no benefits due to Copilot use were reported in a highly subjective self-reflection task. Although no physiological changes were recorded due to Copilot use, task-dependent differences in prefrontal cortex activation offer complementary insights into the cognitive processes associated with successful and unsuccessful human-AI collaboration. These findings suggest that AI assistants' effectiveness varies with task type-particularly showing decreased usefulness in tasks that engage episodic memory-and presents a brain-network based hypothesis of human-AI collaboration.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2603.07016",
+   "title": "SuperSkillsStack: Agency, Domain Knowledge, Imagination, and Taste in Human-AI Design Education",
+   "published": "2026-03-07",
+   "categories": [
+    "cs.CY",
+    "cs.AI"
+   ],
+   "abstract": "This study examines how students integrate generative artificial intelligence (AI) into design projects through the lens of the SuperSkillsStack framework, which identifies four key human competencies for effective human-AI collaboration: Agency, Domain Knowledge, Imagination, and Taste. As generative AI increasingly transforms creative practice, design education must consider how human capabilities are cultivated alongside technological tools. Using qualitative thematic analysis, this study analyzes reflective writings from 80 student design teams participating in a human-centered design course. The findings show that students primarily used AI during the early stages of the design process, including brainstorming, information synthesis, and problem framing. However, students consistently relied on human judgment to interpret contextual information, validate AI-generated outputs, and refine design solutions. Domain knowledge derived from field observations enabled students to detect inaccuracies in AI suggestions, while taste played a critical role in evaluating and selecting meaningful ideas. The results suggest that generative AI functions primarily as a cognitive accelerator rather than a replacement for human creativity. The study highlights the importance of cultivating higher-order human capabilities to support effective human-AI collaboration in design education.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2502.15196",
+   "title": "Learning to Collaborate: A Capability Vectors-based Architecture for Adaptive Human-AI Decision Making",
+   "published": "2025-02-21",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Effective human-AI collaboration hinges on the ability to dynamically integrate the complementary strengths of human experts and AI models across diverse decision contexts. Context-aware weighted combination of human and AI outputs is a promising technique, which involves the optimization of combination weights based on capabilities of decision agents on a given task. However, existing approaches treat humans and AI as isolated entities, lacking a unified representation to model the heterogeneous capabilities of multiple decision agents. To address this gap, we propose a novel capability-aware architecture that models both human and AI decision-makers using learnable capability vectors. These vectors encode task-relevant competencies in a shared latent space and are used by a transformer-based weight generation module to produce instance-specific aggregation weights. Our framework supports flexible integration of confidence scores or one-hot decisions from a variable number of agents. We further introduce a learning-free baseline using optimized global weights for human-AI collaboration. Extensive experiments on image classification and hate speech detection tasks demonstrate that our approach outperforms state-of-the-art methods under various collaboration settings with both simulated and real human labels. The results highlight the robustness, scalability, and superior accuracy of our method, underscoring its potential for real-world applications.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2511.15534",
+   "title": "Exploring the use of AI authors and reviewers at Agents4Science",
+   "published": "2025-11-19",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "There is growing interest in using AI agents for scientific research, yet fundamental questions remain about their capabilities as scientists and reviewers. To explore these questions, we organized Agents4Science, the first conference in which AI agents serve as both primary authors and reviewers, with humans as co-authors and co-reviewers. Here, we discuss the key learnings from the conference and their implications for human-AI collaboration in science.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2504.18010",
+   "title": "Sky-Drive: A Distributed Multi-Agent Simulation Platform for Human-AI Collaborative and Socially-Aware Future Transportation",
+   "published": "2025-04-25",
+   "categories": [
+    "cs.RO",
+    "cs.AI",
+    "cs.HC"
+   ],
+   "abstract": "Recent advances in autonomous system simulation platforms have significantly enhanced the safe and scalable testing of driving policies. However, existing simulators do not yet fully meet the needs of future transportation research-particularly in enabling effective human-AI collaboration and modeling socially-aware driving agents. This paper introduces Sky-Drive, a novel distributed multi-agent simulation platform that addresses these limitations through four key innovations: (a) a distributed architecture for synchronized simulation across multiple terminals; (b) a multi-modal human-in-the-loop framework integrating diverse sensors to collect rich behavioral data; (c) a human-AI collaboration mechanism supporting continuous and adaptive knowledge exchange; and (d) a digital twin framework for constructing high-fidelity virtual replicas of real-world transportation environments. Sky-Drive supports diverse applications such as autonomous vehicle-human road users interaction modeling, human-in-the-loop training, socially-aware reinforcement learning, personalized driving development, and customized scenario generation. Future extensions will incorporate foundation models for context-aware decision support and hardware-in-the-loop testing for real-world validation. By bridging scenario generation, data collection, algorithm training, and hardware integration, Sky-Drive has the potential to become a foundational platform for the next generation of human-centered and socially-aware autonomous transportation systems research. The demo video and code are available at:https://sky-lab-uw.github.io/Sky-Drive-website/",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2505.01648",
+   "title": "Interaction Configurations and Prompt Guidance in Conversational AI for Question Answering in Human-AI Teams",
+   "published": "2025-05-03",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Understanding the dynamics of human-AI interaction in question answering is crucial for enhancing collaborative efficiency. Extending from our initial formative study, which revealed challenges in human utilization of conversational AI support, we designed two configurations for prompt guidance: a Nudging approach, where the AI suggests potential responses for human agents, and a Highlight strategy, emphasizing crucial parts of reference documents to aid human responses. Through two controlled experiments, the first involving 31 participants and the second involving 106 participants, we compared these configurations against traditional human-only approaches, both with and without AI assistance. Our findings suggest that effective human-AI collaboration can enhance response quality, though merely combining human and AI efforts does not ensure improved outcomes. In particular, the Nudging configuration was shown to help improve the quality of the output when compared to AI alone. This paper delves into the development of these prompt guidance paradigms, offering insights for refining human-AI collaborations in conversational question-answering contexts and contributing to a broader understanding of human perceptions and expectations in AI partnerships.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2507.18623",
+   "title": "Moving Out: Physically-grounded Human-AI Collaboration",
+   "published": "2025-07-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.MA"
+   ],
+   "abstract": "The ability to adapt to physical actions and constraints in an environment is crucial for embodied agents (e.g., robots) to effectively collaborate with humans. Such physically grounded human-AI collaboration must account for the increased complexity of the continuous state-action space and constrained dynamics caused by physical constraints. However, most existing collaboration benchmarks are discrete or do not consider physical attributes and constraints. To address this, we introduce Moving Out, a human-AI collaboration benchmark that resembles a wide range of collaboration modes affected by physical attributes and constraints, such as moving heavy items together and coordinating actions to move an item around a corner. Moving Out consists of two challenges and human-human interaction data to comprehensively evaluate models' abilities to adapt to diverse human behaviors and unseen physical attributes. To give embodied agents the capability to collaborate with humans under physical attributes and constraints, we propose a novel method, BASS (Behavior Augmentation, Simulation, and Selection), to enhance the diversity of agents and their understanding of the outcome of actions. We systematically compare BASS and state-of-the-art models in AI-AI and human-AI experiments, showing that BASS can effectively collaborate with both unseen AI and humans. The project page is available at https://live-robotics-uva.github.io/movingout_ai/.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2507.11470",
+   "title": "REVA: Supporting LLM-Generated Programming Feedback Validation at Scale Through User Attention-based Adaptation",
+   "published": "2025-07-15",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "This paper introduces REVA, a human-AI system that expedites instructor review of voluminous AI-generated programming feedback by sequencing submissions to minimize cognitive context shifts and propagating instructor-driven revisions across semantically similar instances. REVA introduces a novel approach to human-AI collaboration in educational feedback by adaptively learning from instructors' attention in the review and revision process to continuously improve the feedback validation process. REVA's usefulness and effectiveness in improving feedback quality and the overall feedback review process were evaluated through a within-subjects lab study with 12 participants.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2605.03800",
+   "title": "AI Advocate: Educational Path to Transform Squads to the Future",
+   "published": "2026-05-05",
+   "categories": [
+    "cs.SE",
+    "cs.AI"
+   ],
+   "abstract": "This paper analyzes the strategic education process aimed at transitioning traditional software development squads into hybrid structures centered on collaborative work between humans and Artificial Intelligence (AI). In a context where human-AI collaboration can significantly increase productivity, this study explores how the upskilling of XPTO professionals, referred to as AI Advocates, acts as a catalyst for cultural and technical transformation. The objective is to present an experience report on the education and enablement process of AI Advocates within a private Brazilian technology company, highlighting key lessons learned and identified challenges.",
+   "query": "human-AI collaboration"
+  },
+  {
+   "id": "2604.27723",
+   "title": "Optimized Deferral for Imbalanced Settings",
+   "published": "2026-04-30",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Learning algorithms can be significantly improved by routing complex or uncertain inputs to specialized experts, balancing accuracy with computational cost. This approach, known as learning to defer, is essential in domains like natural language generation, medical diagnosis, and computer vision, where an effective deferral can reduce errors at low extra resource consumption. However, the two-stage learning to defer setting, which leverages existing predictors such as a collection of LLMs or other classifiers, often faces challenges due to an expert imbalance problem. This imbalance can lead to suboptimal performance, with deferral algorithms favoring the majority expert. We present a comprehensive study of two-stage learning to defer in expert imbalance settings. We cast the deferral loss optimization as a novel cost-sensitive learning problem over the input-expert domain. We derive new margin-based loss functions and guarantees tailored to this setting, and develop novel algorithms for cost-sensitive learning. Leveraging these results, we design principled deferral algorithms, MILD (Margin-based Imbalanced Learning to Defer), specifically suited for expert imbalance settings. Extensive experiments demonstrate the effectiveness of our approach, showing clear improvements over existing baselines on both image classification and real-world Large Language Model (LLM) routing tasks.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2504.12988",
+   "title": "Why Ask One When You Can Ask $k$? Learning-to-Defer to the Top-$k$ Experts",
+   "published": "2025-04-17",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Existing Learning-to-Defer (L2D) frameworks are limited to single-expert deferral, forcing each query to rely on only one expert and preventing the use of collective expertise. We introduce the first framework for Top-$k$ Learning-to-Defer, which allocates queries to the $k$ most cost-effective entities. Our formulation unifies and strictly generalizes prior approaches, including the one-stage and two-stage regimes, selective prediction, and classical cascades. In particular, it recovers the usual Top-1 deferral rule as a special case while enabling principled collaboration with multiple experts when $k>1$. We further propose Top-$k(x)$ Learning-to-Defer, an adaptive variant that learns the optimal number of experts per query based on input difficulty, expert quality, and consultation cost. To enable practical learning, we develop a novel surrogate loss that is Bayes-consistent, $\\mathcal{H}_h$-consistent in the one-stage setting, and $(\\mathcal{H}_r,\\mathcal{H}_g)$-consistent in the two-stage setting. Crucially, this surrogate is independent of $k$, allowing a single policy to be learned once and deployed flexibly across $k$. Experiments across both regimes show that Top-$k$ and Top-$k(x)$ deliver superior accuracy-cost trade-offs, opening a new direction for multi-expert deferral in L2D.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.00904",
+   "title": "Fatigue-Aware Learning to Defer via Constrained Optimisation",
+   "published": "2026-04-01",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Learning to defer (L2D) enables human-AI cooperation by deciding when an AI system should act autonomously or defer to a human expert. Existing L2D methods, however, assume static human performance, contradicting well-established findings on fatigue-induced degradation. We propose Fatigue-Aware Learning to Defer via Constrained Optimisation (FALCON), which explicitly models workload-varying human performance using psychologically grounded fatigue curves. FALCON formulates L2D as a Constrained Markov Decision Process (CMDP) whose state includes both task features and cumulative human workload, and optimises accuracy under human-AI cooperation budgets via PPO-Lagrangian training. We further introduce FA-L2D, a benchmark that systematically varies fatigue dynamics from near-static to rapidly degrading regimes. Experiments across multiple datasets show that FALCON consistently outperforms state-of-the-art L2D methods across coverage levels, generalises zero-shot to unseen experts with different fatigue patterns, and demonstrates the advantage of adaptive human-AI collaboration over AI-only or human-only decision-making when coverage lies strictly between 0 and 1.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2510.19351",
+   "title": "Learning To Defer To A Population With Limited Demonstrations",
+   "published": "2025-10-22",
+   "categories": [
+    "cs.HC",
+    "cs.AI",
+    "cs.CV"
+   ],
+   "abstract": "This paper addresses the critical data scarcity that hinders the practical deployment of learning to defer (L2D) systems to the population. We introduce a context-aware, semi-supervised framework that uses meta-learning to generate expert-specific embeddings from only a few demonstrations. We demonstrate the efficacy of a dual-purpose mechanism, where these embeddings are used first to generate a large corpus of pseudo-labels for training, and subsequently to enable on-the-fly adaptation to new experts at test-time. The experiment results on three different datasets confirm that a model trained on these synthetic labels rapidly approaches oracle-level performance, validating the data efficiency of our approach. By resolving a key training bottleneck, this work makes adaptive L2D systems more practical and scalable, paving the way for human-AI collaboration in real-world environments. To facilitate reproducibility and address implementation details not covered in the main text, we provide our source code and training configurations at https://github.com/nil123532/learning-to-defer-to-a-population-with-limited-demonstrations.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2611.26440",
+   "title": "Learning to Defer under Expert Drift",
+   "published": "2026-11-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "The learning to defer (L2D) framework enables safety in machine learning and AI systems by allocating difficult or critical decisions to a human expert. However, most prior work on L2D assumes fixed expert reliability, overlooking temporal fluctuations in human performance due to factors such as fatigue and cognitive biases. Humans commonly exhibit such substantial, systematic performance shifts across a wide range of domains, from high-stakes settings such as radiology, aviation, and judicial decision-making, to everyday tasks such as crowdsourced image annotation. We propose Expert-Drift-Adapted Learning-to-Defer (EDA-L2D), a novel expert-aware L2D framework that explicitly models these temporal shifts by conditioning the deferral head on recent histories of expert outcomes via a sequence model. This history-aware approach enables adaptive deferral policies that anticipate reliability fluctuations and better allocate decisions between human and machine over time. We provide comprehensive experiments across three diverse tasks -- image classification, medical diagnosis, and hate speech detection -- including generalization analyses under realistic deferral conditions and irregular shifts in expert reliability. Our results show that EDA-L2D adapts more effectively than prior L2D methods to diverse temporal patterns of expert reliability, resulting in improved system performance and more effective deferral decisions.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2506.18462",
+   "title": "Adaptive alert prioritisation in security operations centres via learning to defer with human feedback",
+   "published": "2025-06-23",
+   "categories": [
+    "cs.CR"
+   ],
+   "abstract": "Alert prioritisation (AP) is crucial for security operations centres (SOCs) to manage the overwhelming volume of alerts and ensure timely detection and response to genuine threats, while minimising alert fatigue. Although predictive AI can process large alert volumes and identify known patterns, it struggles with novel and evolving scenarios that demand contextual understanding and nuanced judgement. A promising solution is Human-AI teaming (HAT), which combines human expertise with AI's computational capabilities. Learning to Defer (L2D) operationalises HAT by enabling AI to \"defer\" uncertain or unfamiliar cases to human experts. However, traditional L2D models rely on static deferral policies that do not evolve with experience, limiting their ability to learn from human feedback and adapt over time. To overcome this, we introduce Learning to Defer with Human Feedback (L2DHF), an adaptive deferral framework that leverages Deep Reinforcement Learning from Human Feedback (DRLHF) to optimise deferral decisions. By dynamically incorporating human feedback, L2DHF continuously improves AP accuracy and reduces unnecessary deferrals, enhancing SOC effectiveness and easing analyst workload. Experiments on two widely used benchmark datasets, UNSW-NB15 and CICIDS2017, demonstrate that L2DHF significantly outperforms baseline models. Notably, it achieves 13-16% higher AP accuracy for critical alerts on UNSW-NB15 and 60-67% on CICIDS2017. It also reduces misprioritisations, for example, by 98% for high-category alerts on CICIDS2017. Moreover, L2DHF decreases deferrals, for example, by 37% on UNSW-NB15, directly reducing analyst workload. These gains are achieved with efficient execution, underscoring L2DHF's practicality for real-world SOC deployment.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2609.26384",
+   "title": "Learning to Defer with Guidance on Real World Medical Data",
+   "published": "2026-09-22",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Medical image interpretation is high-volume and time-consuming, and while AI interpretation can reduce workload, fully autonomous deployment carries potential safety concerns and low specificity may in practice lead to increased clinician workload. Learning to Defer (L2D) addresses this by selectively routing cases between autonomous prediction and human experts by learning from input features and AI model and human performance. While theoretical guarantees have been proven for L2D, its performance has not been validated on real-world medical datasets with human reader annotations. We evaluate the predictor-rejector formulation of two-stage L2D, where the AI predictor model is fixed and separate from the trainable routing or rejector model, on Collab-CXR, a multilabel chest X-ray dataset with multiple human annotations per case. This is the first work to look at L2D in the context of real-world medical imaging data with human annotations. We further introduce a new setup, L2D with Guidance, where the decision space is extended to three choices: predict autonomously, defer to a human expert, or defer to a human expert and provide AI guidance. We compare multiple rejector architectures and loss functions, and different input feature availabilities. This is reproduced on two larger datasets, VinDr-CXR and CheXpert. Our results show that two-stage L2D with Guidance outperforms classic two-stage learning to defer, as well as human-alone, AI-alone and AI-guided human baselines. Notably, this performance is achieved with simpler loss functions compared to formally defined L2D surrogate loss functions in current literature.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2510.10988",
+   "title": "Adversarial Robustness in One-Stage Learning-to-Defer",
+   "published": "2025-10-13",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Learning-to-Defer (L2D) enables hybrid decision-making by routing inputs either to a predictor or to external experts. While promising, L2D is highly vulnerable to adversarial perturbations, which can not only flip predictions but also manipulate deferral decisions. Prior robustness analyses focus solely on two-stage settings, leaving open the end-to-end (one-stage) case where predictor and allocation are trained jointly. We introduce the first framework for adversarial robustness in one-stage L2D, covering both classification and regression. Our approach formalizes attacks, proposes cost-sensitive adversarial surrogate losses, and establishes theoretical guarantees including $\\mathcal{H}$, $(\\mathcal{R }, \\mathcal{F})$, and Bayes consistency. Experiments on benchmark datasets confirm that our methods improve robustness against untargeted and targeted attacks while preserving clean performance.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.20409",
+   "title": "Calibrating conditional risk",
+   "published": "2026-04-22",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "We introduce and study the problem of calibrating conditional risk, which involves estimating the expected loss of a prediction model conditional on input features. We analyze this problem in both classification and regression settings and show that it is fundamentally equivalent to a standard regression task. For classification settings, we further establish a connection between conditional risk calibration and individual/conditional probability calibration, and develop theoretical insights for the performance metric. This reveals that while conditional risk calibration is related to existing uncertainty quantification problems, it remains a distinct and standalone machine learning problem. Empirically, we validate our theoretical findings and demonstrate the practical implications of conditional risk calibration in the learning to defer (L2D) framework. Our systematic experiments provide both qualitative and quantitative assessments, offering guidance for future research in uncertainty-aware decision-making.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2610.21862",
+   "title": "Dynamic ordering in sequence generation in Transformers: experiments on low-resource Tagging scenarios",
+   "published": "2026-10-15",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "This paper introduces TagInsert, a Transformer-based model that challenges the common left-to-right (L2R) generation paradigm in Transformers, for sequence labelling tasks where dependencies may not naturally align with a L2R order. TagInsert lifts the L2R constraint by removing the decoder-side attention mask and enabling the model to decide a preferred order of tag generation at inference time. We experiment on the common Part-of-Speech tagging and the more complex Combinatory Categorial Grammar (CCG) supertagging tasks on multiple languages and low-resource data settings. We show that, although encoder-only models like BERT remain strong performers for tagging tasks, TagInsert frequently outperforms a L2R encoder-decoder model, achieves results comparable to encoder-only models under data-scarce conditions, and shows better results on the long-tail of rare categories. Our analyses show that TagInsert alleviates error propagation typical of autoregressive models by learning to defer difficult predictions to later stages in the decoding process.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2602.17144",
+   "title": "When More Experts Hurt: Underfitting in Multi-Expert Learning to Defer",
+   "published": "2026-02-19",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Learning to Defer (L2D) enables a classifier to abstain from predictions and defer to an expert, and has recently been extended to multi-expert settings. In this work, we show that multi-expert L2D is fundamentally more challenging than the single-expert case. With multiple experts, the classifier's underfitting becomes inherent, which seriously degrades prediction performance, whereas in the single-expert setting it arises only under specific conditions. We theoretically reveal that this stems from an intrinsic expert identifiability issue: learning which expert to trust from a diverse pool, a problem absent in the single-expert case and renders existing underfitting remedies failed. To tackle this issue, we propose PiCCE (Pick the Confident and Correct Expert), a surrogate-based method that adaptively identifies a reliable expert based on empirical evidence. PiCCE effectively reduces multi-expert L2D to a single-expert-like learning problem, thereby resolving multi expert underfitting. We further prove its statistical consistency and ability to recover class probabilities and expert accuracies. Extensive experiments across diverse settings, including real-world expert scenarios, validate our theoretical results and demonstrate improved performance.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2510.08314",
+   "title": "To Ask or Not to Ask: Learning to Require Human Feedback",
+   "published": "2025-10-09",
+   "categories": [
+    "cs.LG",
+    "cs.HC"
+   ],
+   "abstract": "Developing decision-support systems that complement human performance in classification tasks remains an open challenge. A popular approach, Learning to Defer (LtD), allows a Machine Learning (ML) model to pass difficult cases to a human expert. However, LtD treats humans and ML models as mutually exclusive decision-makers, restricting the expert contribution to mere predictions. To address this limitation, we propose Learning to Ask (LtA), a new framework that handles both when and how to incorporate expert input in an ML model. LtA is based on a two-part architecture: a standard ML model and an enriched model trained with additional expert human feedback, with a formally optimal strategy for selecting when to query the enriched model. We provide two practical implementations of LtA: a sequential approach, which trains the models in stages, and a joint approach, which optimises them simultaneously. For the latter, we design surrogate losses with realisable-consistency guarantees. Our experiments with synthetic and real expert data demonstrate that LtA provides a more flexible and powerful foundation for effective human-AI collaboration.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.26991",
+   "title": "People-Centred Medical Image Analysis via Fairness-Aware Human-AI Cooperation",
+   "published": "2026-04-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Machine learning models for medical image analysis often exhibit subgroup-dependent performance, which impacts how decisions should be allocated between automated systems and human experts under limited resources. Prior work on AI fairness and human-AI cooperation, including learning to defer (L2D) and learning to complement (L2C), typically addresses these problems in isolation. We propose People-Centred Medical Image Analysis (PecMan), a framework for fairness-aware human-AI co-operative classification that jointly models subgroup-dependent reliability, decision allocation, and collaborative prediction. PecMan combines subgroup-specialised predictors with a gating and consolidation mechanism that dynamically assigns cases to automated models, human experts, or their combination, without requiring sensitive attributes at test time. We also introduce the FairHAI benchmark for evaluating trade-offs between predictive accuracy, subgroup equity, and human involvement. In addition, we provide a theoretical analysis of multi-agent gating via selection regret and characterise fairness-coverage trade-offs under input-dependent allocation. Experiments across multiple medical imaging datasets demonstrate that PecMan achieves consistently improved trade-offs compared to methods that address fairness or human-AI cooperation separately.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2509.12573",
+   "title": "No Need for Learning to Defer? A Training Free Deferral Framework to Multiple Experts through Conformal Prediction",
+   "published": "2025-09-16",
+   "categories": [
+    "cs.LG",
+    "cs.HC"
+   ],
+   "abstract": "AI systems often struggle to provide reliable predictions across all inputs, motivating hybrid human-AI decision-making. Existing Learning to Defer (L2D) approaches address this by training models to selectively defer to human experts. However, these approaches require extensive training data annotated by all experts and are sensitive to changes in expert composition, necessitating costly retraining. We propose a training-free, model- and expert-agnostic framework for expert deferral based on conformal prediction. Our method leverages prediction sets from a conformal predictor to quantify label-specific uncertainty and selects the most suitable expert using a segregativity criterion, which measures how well an expert discriminates among plausible labels. Experiments across three models on CIFAR10-H and HAM10000 demonstrate that our method can reduce the number of training labels per expert by up to 91.3% while maintaining predictive accuracy in low-data regimes. Being training-free, it also reduces training time by two orders of magnitude, offering a scalable, alternative to L2D for real-world human-AI collaboration.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2601.22538",
+   "title": "Learning-to-Defer in Non-Stationary Time Series via Switching State-Space Models",
+   "published": "2026-01-30",
+   "categories": [
+    "cs.LG",
+    "stat.AP"
+   ],
+   "abstract": "Learning-to-defer (L2D) lets a predictor decide, at each round, whether to issue its own forecast or pay for an expert's. In non-stationary time series this decision must keep adapting, although deployment reveals only the consulted expert's forecast while a historical archive records every expert with the target. L2D-SLDS learns from this archive a switching state-space model of the target and all expert forecasts, whose shared and expert-specific states describe how experts move together and apart. Its predictive law supplies the internal forecast and the expected cost of every consultation, which a greedy router minimizes, and one consultation also updates the beliefs about unconsulted and unavailable experts. We prove sublinear regret against a changing conditional-risk oracle without exploration, when the candidate models are accurate and either the archive separates them or live feedback reveals cost differences. On three real datasets, L2D-SLDS has the lowest cost among eight bandit routers and adapts its consultation rate to the fee.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2605.12340",
+   "title": "Online Learning-to-Defer with Varying Experts",
+   "published": "2026-05-12",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Learning-to-Defer (L2D) methods route each query either to a predictive model or to external experts. Real-world deployments require handling streaming data, changing expert availability, shifting expert reliability, and feedback observed only for the selected action. We introduce an online multiclass L2D algorithm that combines queried-action bandit feedback with a dynamically varying pool of experts. Let $N=n+n_e$, let $B$ bound the Frobenius norm of the linear score matrix, and let $ρ$ bound the augmented input norm. Assuming linear calibration and zero surrogate minimizability gap for the projected comparator class, our method achieves expected true-deferral regret $O((BN^{3/2}ρ+1)T^{2/3})$, improving to $O(BN^{3/2}ρ\\sqrt T+B^2N^3ρ^2)$ under a concentrated-score condition. The analysis combines an online $\\mathcal H$-consistency transfer bound with projected online convex optimization. Experiments on synthetic and real-world datasets demonstrate selective routing under varying expert availability and reliability.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2610.19378",
+   "title": "Robust Explanatory Analysis for Structured Optimization Networks (REASON) in Learning",
+   "published": "2026-10-14",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "We seek a hierarchical resolution of residual error under a composite learning objective as a principled mechanism for identifying and exploiting additional information, particularly under distribution shift and perturbation. Inspired by the System 1/System 2 paradigm, we formulate this principle as a two-loop mechanism serving a common inference goal. A fast, System 1-like loop resolves the residual addressable by the available evidence; the remaining epistemic residual triggers a medium speed, System 2-like loop that actively acquires additional evidence and measures its informational value through residual reduction. Over nested solution spaces, the medium-loop optimum is provably no worse than the fast-loop optimum. Experiments show that the resulting two-loop model consistently improves upon the fast loop at approximately half the computation of the medium loop, including under unseen corruptions, and, when provided a cleaner observation, outperforms staged classifiers and learning-to-defer methods at equal computational cost.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2502.01027",
+   "title": "Adversarial Robustness in Two-Stage Learning-to-Defer: Algorithms and Guarantees",
+   "published": "2025-02-03",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Two-stage Learning-to-Defer (L2D) enables optimal task delegation by assigning each input to either a fixed main model or one of several offline experts, supporting reliable decision-making in complex, multi-agent environments. However, existing L2D frameworks assume clean inputs and are vulnerable to adversarial perturbations that can manipulate query allocation--causing costly misrouting or expert overload. We present the first comprehensive study of adversarial robustness in two-stage L2D systems. We introduce two novel attack strategie--untargeted and targeted--which respectively disrupt optimal allocations or force queries to specific agents. To defend against such threats, we propose SARD, a convex learning algorithm built on a family of surrogate losses that are provably Bayes-consistent and $(\\mathcal{R}, \\mathcal{G})$-consistent. These guarantees hold across classification, regression, and multi-task settings. Empirical results demonstrate that SARD significantly improves robustness under adversarial attacks while maintaining strong clean performance, marking a critical step toward secure and trustworthy L2D deployment.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2502.01459",
+   "title": "Learning to Partially Defer for Sequences",
+   "published": "2025-02-03",
+   "categories": [
+    "stat.ME",
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "In the Learning to Defer (L2D) framework, a prediction model can either make a prediction or defer it to an expert, as determined by a rejector. Current L2D methods train the rejector to decide whether to reject the {\\em entire prediction}, which is not desirable when the model predicts long sequences. We present an L2D setting for sequence outputs where the system can defer \\textit{specific outputs} of the whole model prediction to an expert in an effort to interleave the expert and machine throughout the prediction. We propose two types of model-based post-hoc rejectors for pre-trained predictors: a token-level rejector, which defers specific token predictions to experts with next token prediction capabilities, and a one-time rejector for experts without such abilities, which defers the remaining sequence from a specific point onward. In the experiments, we also empirically demonstrate that such granular deferrals achieve better cost-accuracy tradeoffs than whole deferrals on Traveling salesman solvers, News summarization, and Weather prediction.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2603.14324",
+   "title": "Consistent Learning-to-Defer with Expert-Conditional Advice",
+   "published": "2026-03-15",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We introduce learning-to-defer with advice, a new setting in which a system learns both which expert should handle an input and which information that expert should receive. The policy acts before observing advice and minimizes prediction loss plus expert and acquisition fees. Training may reveal all advice sources or only a subset on each record. We show that composing routing and advice losses can be inconsistent and that augmented training can incur avoidable estimation variance. We propose reference conditional classification, which jointly learns a fixed expert's error probability and each action's error conditional on that expert's success or failure. The reference outcome is observed on every labeled record, so records with missing advice still inform the estimates. We prove a consistency bound for bounded task losses, show that limited training preserves the full population objective, and establish variance reductions for the analyzed fits. On FEVER and Sensitive, full training has the lowest mean dev loss at every evaluated fee, while limited training improves on full training at most matched acquisition budgets.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2605.02734",
+   "title": "Coherent Hierarchical Multi-Label Learning to Defer for Medical Imaging",
+   "published": "2026-05-04",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Learning to Defer (L2D) enables a model to predict autonomously or defer to an expert, but prior work largely assumes flat label spaces. We study the first L2D setting with hierarchical multi-label decisions, motivated by medical-imaging workflows in which findings are organised by clinical taxonomies. In this setting, deferral is a delegation action rather than a label assignment, so treating it as an independent per-label decision can produce deferral incoherence, including taxonomic contradictions, delegation violations, and deferrals of labels already implied by the model's own assertions. We formalise coherent hierarchical deferral under a Selective-Exclusion handoff contract, characterise the Bayes-optimal coherent deferral rule, and show that even nodewise Bayes L2D can be action-incoherent. We then propose two remedies: exact coherent projection, a dynamic-programming decoder over the coherent action set, and Taxonomic Belief Propagation (TBP) with Recursive Policy Optimisation (RPO), a contract-aware joint action model trained through the same recursion used at inference. Across real-reader and controlled-expert medical-imaging benchmarks, naive binary-relevance L2D exhibits non-trivial incoherence. Projection removes it exactly, and fast TBP+RPO drives incoherence near zero while retaining strong utility.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2503.16199",
+   "title": "Deferring Concept Bottleneck Models: Learning to Defer Interventions to Inaccurate Experts",
+   "published": "2025-03-20",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Concept Bottleneck Models (CBMs) are machine learning models that improve interpretability by grounding their predictions on human-understandable concepts, allowing for targeted interventions in their decision-making process. However, when intervened on, CBMs assume the availability of humans that can identify the need to intervene and always provide correct interventions. Both assumptions are unrealistic and impractical, considering labor costs and human error-proneness. In contrast, Learning to Defer (L2D) extends supervised learning by allowing machine learning models to identify cases where a human is more likely to be correct than the model, thus leading to deferring systems with improved performance. In this work, we gain inspiration from L2D and propose Deferring CBMs (DCBMs), a novel framework that allows CBMs to learn when an intervention is needed. To this end, we model DCBMs as a composition of deferring systems and derive a consistent L2D loss to train them. Moreover, by relying on a CBM architecture, DCBMs can explain why defer occurs on the final task. Our results show that DCBMs achieve high predictive performance and interpretability at the cost of deferring more to humans.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2605.08024",
+   "title": "MPD$^2$-Router: Mask-aware Multi-expert Prior-regularized Dual-head Deferral Router in Glaucoma Screening and Diagnosis",
+   "published": "2026-05-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Learning-to-defer (L2D) can make glaucoma screening safer by routing difficult/uncertain cases to humans, yet standard formulations overlook expert availability, heterogeneous readers behavior, workload imbalance, asymmetric diagnostic harm, case difficulty from morphology and deployment shift. We introduce MPD$^2$-Router, a mask-aware multi-expert deferral framework that recasts ophthalmic triage as constrained human--AI routing: whether to defer and to which available expert. It couples a dual-head deferral/allocation policy with mask-aware Gumbel--sigmoid gating that strictly enforces per-sample availability, and fuses uncertainty, morphology, image-quality, and OOD signals. Training uses an asymmetric cost-sensitive objective with an augmented-Lagrangian deferral budget, a group-specific distribution prior, and a rank-majorization JS regularizer that jointly prevent expert collapse without forcing uniform allocation. Across three cross-national glaucoma cohorts (REFUGE, CHAKSU, ORIGA) with a frozen REFUGE-trained backbone, MPD$^2$-Router substantially lowers clinical cost and improves MCC over AI-only at a moderate deferral rate. It is Pareto-optimal in F1--MCC--cost, robust under cross-domain shift, and yields balanced expert utilization.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.13285",
+   "title": "L2D-Clinical: Learning to Defer for Adaptive Model Selection in Clinical Text Classification",
+   "published": "2026-04-14",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Clinical text classification requires choosing between specialized fine-tuned models (BERT variants) and general-purpose large language models (LLMs), yet neither dominates across all instances. We introduce Learning to Defer for clinical text (L2D-Clinical), a framework that learns when a BERT classifier should defer to an LLM based on uncertainty signals and text characteristics. Unlike prior L2D work that defers to human experts assumed universally superior, our approach enables adaptive deferral-improving accuracy when the LLM complements BERT. We evaluate on two English clinical tasks: (1) ADE detection (ADE Corpus V2), where BioBERT (F1=0.911) outperforms the LLM (F1=0.765), and (2) treatment outcome classification (MIMIC-IV with multi-LLM consensus ground truth), where GPT-5-nano (F1=0.967) outperforms ClinicalBERT (F1=0.887). On ADE, L2D-Clinical achieves F1=0.928 (+1.7 points over BERT) by selectively deferring 7% of instances where the LLM's high recall compensates for BERT's misses. On MIMIC, L2D-Clinical achieves F1=0.980 (+9.3 points over BERT) by deferring only 16.8\\% of cases to the LLM. The key insight is that L2D-Clinical learns to selectively leverage LLM strengths while minimizing API costs.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2505.10160",
+   "title": "One-Stage Top-$k$ Learning-to-Defer: Score-Based Surrogates with Theoretical Guarantees",
+   "published": "2025-05-15",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We introduce the first one-stage Top-$k$ Learning-to-Defer framework, which unifies prediction and deferral by learning a shared score-based model that selects the $k$ most cost-effective entities-labels or experts-per input. While existing one-stage L2D methods are limited to deferring to a single expert, our approach jointly optimizes prediction and deferral across multiple entities through a single end-to-end objective. We define a cost-sensitive loss and derive a novel convex surrogate that is independent of the cardinality parameter $k$, enabling generalization across Top-$k$ regimes without retraining. Our formulation recovers the Top-1 deferral policy of prior score-based methods as a special case, and we prove that our surrogate is both Bayes-consistent and $\\mathcal{H}$-consistent under mild assumptions. We further introduce an adaptive variant, Top-$k(x)$, which dynamically selects the number of consulted entities per input to balance predictive accuracy and consultation cost. Experiments on CIFAR-10 and SVHN confirm that our one-stage Top-$k$ method strictly outperforms Top-1 deferral, while Top-$k(x)$ achieves superior accuracy-cost trade-offs by tailoring allocations to input complexity.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2502.13132",
+   "title": "Learning to Defer for Causal Discovery with Imperfect Experts",
+   "published": "2025-02-18",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Integrating expert knowledge, e.g. from large language models, into causal discovery algorithms can be challenging when the knowledge is not guaranteed to be correct. Expert recommendations may contradict data-driven results, and their reliability can vary significantly depending on the domain or specific query. Existing methods based on soft constraints or inconsistencies in predicted causal relationships fail to account for these variations in expertise. To remedy this, we propose L2D-CD, a method for gauging the correctness of expert recommendations and optimally combining them with data-driven causal discovery results. By adapting learning-to-defer (L2D) algorithms for pairwise causal discovery (CD), we learn a deferral function that selects whether to rely on classical causal discovery methods using numerical data or expert recommendations based on textual meta-data. We evaluate L2D-CD on the canonical Tübingen pairs dataset and demonstrate its superior performance compared to both the causal discovery method and the expert used in isolation. Moreover, our approach identifies domains where the expert's performance is strong or weak. Finally, we outline a strategy for generalizing this approach to causal discovery on graphs with more than two variables, paving the way for further research in this area.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2510.26706",
+   "title": "Budgeted Multiple-Expert Deferral",
+   "published": "2025-10-30",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Learning to defer uncertain predictions to costly experts offers a powerful strategy for improving the accuracy and efficiency of machine learning systems. However, standard training procedures for deferral algorithms typically require querying all experts for every training instance, an approach that becomes prohibitively expensive when expert queries incur significant computational or resource costs. This undermines the core goal of deferral: to limit unnecessary expert usage. To overcome this challenge, we introduce the budgeted deferral framework, which aims to train effective deferral algorithms while minimizing expert query costs during training. We propose new algorithms for both two-stage and single-stage multiple-expert deferral settings that selectively query only a subset of experts per training example. While inspired by active learning, our setting is fundamentally different: labels are already known, and the core challenge is to decide which experts to query in order to balance cost and predictive performance. We establish theoretical guarantees for both of our algorithms, including generalization bounds and label complexity analyses. Empirical results across several domains show that our algorithms substantially reduce training costs without sacrificing prediction accuracy, demonstrating the practical value of our budget-aware deferral algorithms.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2608.28050",
+   "title": "Too Much of the Same: From Algorithmic to Human Bias in Learning to Defer",
+   "published": "2026-08-28",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "Learning to Defer (LtD) extends supervised learning by allowing a Machine Learning (ML) model to defer harder or less confident decisions to a human expert. Despite being geared for human-AI collaboration, LtD strategies neglect the potential negative interference of human cognitive biases. Our contribution is twofold. First, we demonstrate that standard LtD strategies show class-dependent sampling bias in classification tasks in practice, and thus may disproportionately defer the minority classes when applied to imbalanced datasets. Second, we show that such asymmetries in task delegation may trigger human biases, ultimately leading to poorer downstream decision making. Specifically, we conduct a user study ($N=226$) where participants complete a classification task on a set of deferred items, with conditions presenting different levels of class imbalance. Our results show that participants exposed to a highly imbalanced rejection set achieved lower classification accuracy in the majority class compared to those exposed to a more balanced set, regardless of which class constituted the majority. Exploratory analyses suggest that this may be an instance of the Test-taker's effect, which stems from a mismatch between the actual distribution of classes and the participants' expectations about that distribution. Finally, we discuss the implications of these findings for the deployment of LtD algorithms.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2605.19830",
+   "title": "Set-Valued Policy Learning",
+   "published": "2026-05-19",
+   "categories": [
+    "cs.LG",
+    "math.ST"
+   ],
+   "abstract": "Conventional treatment policies map patient covariates to a single recommended intervention in order to maximize expected clinical outcomes. However, when multiple treatments yield statistically indistinguishable outcomes or when treatment has no effect, recommending a single intervention may result in somewhat arbitrary interventions, undermining clinical adoption and trust. To address this, we propose a set-valued policy learning paradigm. By outputting sets of valuable treatments whose cardinality reflects the recommendation's ambiguity, our approach better supports clinical decision-making. Evaluating a set-valued policy proves subtle due to the range of possible downstream decisions. To do so, we define the set-policy value using a choice function to model clinical decision-making, and we develop doubly robust estimators thereof. Despite its practical importance, set-valued policy learning for categorical treatments remains largely unexplored. In this context, we introduce two complementary approaches: the Greatest Lower Bound method, which extends the learning-to-defer framework to multiple treatments, and conformal set-valued policy learning, which bridges the gap between unobserved ground-truth optimal treatments and estimated optimal treatment rules. Through experiments on synthetic data and real-world applications to trauma care and in-vitro fertilization (IVF), we demonstrate that our methods produce robust and actionable policies that naturally incorporate clinical considerations while effectively balancing performance and reliability.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2605.19557",
+   "title": "Density-Ratio Losses for Post-Hoc Learning to Defer",
+   "published": "2026-05-19",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "We study post-hoc Learning to Defer (L2D) through the lens of ideal distributions: divergence-regularized reweightings of the data distribution under which a model attains low task loss. We define deferral via the density-ratio between a model's and an expert's ideals. Using the reduction from density-ratio estimation to class-probability estimation, we derive the DR CPE losses for post-hoc L2D scorers. Deferral decisions are then made by thresholding the scorer. For KL-based ideal distributions, our deferral rule recovers Chow's rule under the original distribution and a connection to an expert-tilted Bayes posterior---which incorporates the expert's performance---depending on if the ideal distributions are marginal or joint distributions. This leads to two variants of the DR CPE losses, with the joint variant being computationally convenient in practice. We establish consistency properties of the joint DR CPE losses when considering the zero-one task loss and strongly proper composite CPE losses. Experimentally, our approach is competitive compared to common baselines and is more robust across dataset settings. More broadly, our results cast post-hoc L2D as density-ratio estimation between ideal distributions, bridging Chow-style rules, expert comparison, and elucidating connections to related learning settings including anomaly detection.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2506.20650",
+   "title": "Mastering Multiple-Expert Routing: Realizable $H$-Consistency and Strong Guarantees for Learning to Defer",
+   "published": "2025-06-25",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "The problem of learning to defer with multiple experts consists of optimally assigning input instances to experts, balancing the trade-off between their accuracy and computational cost. This is a critical challenge in natural language generation, but also in other fields such as image processing, and medical diagnostics. Recent studies have proposed surrogate loss functions to optimize deferral, but challenges remain in ensuring their consistency properties. This paper introduces novel surrogate loss functions and efficient algorithms with strong theoretical learning guarantees. We address open questions regarding realizable $H$-consistency, $H$-consistency bounds, and Bayes-consistency for both single-stage (jointly learning predictor and deferral function) and two-stage (learning only the deferral function with a fixed expert) learning scenarios. For single-stage deferral, we introduce a family of new realizable $H$-consistent surrogate losses and further prove $H$-consistency for a selected member. For two-stage deferral, we derive new surrogate losses that achieve realizable $H$-consistency, $H$-consistency bounds, and Bayes-consistency for the two-expert scenario and, under natural assumptions, multiple-expert scenario. Additionally, we provide enhanced theoretical guarantees under low-noise assumptions for both scenarios. Finally, we report the results of experiments using our proposed surrogate losses, comparing their performance against existing baselines.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2610.07084",
+   "title": "A Query Is Not a Commitment: Learning to Correct Expert Answers in Online Deferral",
+   "published": "2026-10-05",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "An inaccurate expert can still provide useful information after correction. We study online learning to defer in which the learner chooses an expert and fixes a correction function before purchasing its answer, then applies that function to the answer received. The difficulty is that observed losses reflect both expert quality and an unfinished correction: early errors can discourage queries that would be valuable after learning. We propose ORUCB, which pools shared and expert-specific polynomial responses. A bound on cumulative response-learning error calibrates confidence-weighted risk regression and exploration, allowing the router to account for this error when deciding which answers to buy. Under bounded residuals and disagreements, a fixed feasible model of optimal responses, and linear models of free and optimal queried risk, the calibrated algorithm achieves high-probability pseudo-regret $O(\\sqrt T\\log(T+1))$ over $T$ rounds for fixed problem parameters. The guarantee permits singular answer distributions and misspecified shared responses; optimality is relative to the bounded response class. On four test streams, the selected cubic policy has lower fee-inclusive cost than seven baselines that deploy answers unchanged. Comparisons with a common correction learner examine routing, while six-price comparisons measure cost and query rates.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.09414",
+   "title": "Beyond Augmented-Action Surrogates for Multi-Expert Learning-to-Defer",
+   "published": "2026-04-10",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "A learning-to-defer (L2D) system decides, for each input, whether to predict on its own or to hand it to one of several available experts. The very well established recipe trains classifier and router jointly by treating the $K$ classes and $J$ experts as competing actions in one shared $(K{+}J)$-action geometry. Subsequent work has proposed a series of incremental fixes within this geometry; we show that each still suffers, to varying severity, from an optimization-level pathology (target distortion, gradient amplification, winner-take-all starvation, set-mass collapse, or class-expert coupling) even under statistical consistency. We step outside the augmented-action family entirely and propose a decoupled surrogate: a softmax classifier head and an independent sigmoid head per expert, mirroring the two natural objects of the problem. We show that per-sample updates are then coordinatewise and the class-expert Hessian block is identically zero, and prove an excess-risk bound with calibration constant $\\max\\{2\\sqrt{2},\\sqrt{2J/λ}\\}$ -- to our knowledge the first multi-expert L2D guarantee whose constant does not grow with the expert pool when the per-expert weight is held fixed. On controlled synthetic studies and on CIFAR-10, CIFAR-10H, and Covertype, it is the only method in our comparison that remains stable as the expert pool grows, preserves rare specialists, and improves over a standalone classifier on every real-data benchmark.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2501.13810",
+   "title": "Learning to Help in Multi-Class Settings",
+   "published": "2025-01-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Deploying complex machine learning models on resource-constrained devices is challenging due to limited computational power, memory, and model retrainability. To address these limitations, a hybrid system can be established by augmenting the local model with a server-side model, where samples are selectively deferred by a rejector and then sent to the server for processing. The hybrid system enables efficient use of computational resources while minimizing the overhead associated with server usage. The recently proposed Learning to Help (L2H) model trains a server model given a fixed local (client) model, differing from the Learning to Defer (L2D) framework, which trains the client for a fixed (expert) server. In both L2D and L2H, the training includes learning a rejector at the client to determine when to query the server. In this work, we extend the L2H model from binary to multi-class classification problems and demonstrate its applicability in a number of different scenarios of practical interest in which access to the server may be limited by cost, availability, or policy. We derive a stage-switching surrogate loss function that is differentiable, convex, and consistent with the Bayes rule corresponding to the 0-1 loss for the L2H model. Experiments show that our proposed methods offer an efficient and practical solution for multi-class classification in resource-constrained environments.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2502.10533",
+   "title": "Identity-Free Deferral For Unseen Experts",
+   "published": "2025-02-14",
+   "categories": [
+    "cs.LG",
+    "cs.HC"
+   ],
+   "abstract": "Learning to Defer (L2D) improves AI reliability in decision-critical environments by training AI to either make its own prediction or defer the decision to a human expert. A key challenge is adapting to unseen experts at test time, whose competence can differ from the training population. Current methods for this task, however, can falter when unseen experts are out-of-distribution (OOD) relative to the training population. We identify a core architectural flaw as the cause: they learn identity-conditioned policies by processing class-indexed signals in fixed coordinates, creating shortcuts that violate the problem's inherent permutation symmetry. We introduce Identity-Free Deferral (IFD), an architecture that enforces this symmetry by construction. From a few-shot context, IFD builds a query-independent Bayesian competence profile for each expert. It then supplies the deferral rejector with a low-dimensional, role-indexed state containing only structural information, such as the model's confidence in its top-ranked class and the expert's estimated skill for that same role, which obscures absolute class identities. We train IFD using an uncertainty-aware, context-only objective that removes the need for expensive query-time expert labels. We formally prove the permutation invariance of our approach, contrasting it with the generic non-invariance of standard population encoders. Experiments on medical imaging benchmarks and ImageNet-16H with real human annotators show that IFD consistently improves generalisation to unseen experts, with gains in OOD settings, all while using fewer annotations than alternative methods.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.12411",
+   "title": "DeferredSeg:A Multi-Expert Deferral Framework for Medical Image Segmentation",
+   "published": "2026-04-14",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Segmentation models based on deep neural networks demonstrate strong generalization for medical image segmentation. However, they often exhibit overconfidence or underconfidence, leading to unreliable confidence scores for segmentation masks, especially in ambiguous regions. This undermines the trustworthiness required for clinical deployment. Motivated by the learning-to-defer (L2D) paradigm, we introduce DeferredSeg, a deferral-aware segmentation framework, i.e., a Human--AI collaboration system that determines whether to defer predictions to human experts in specific regions. DeferredSeg extends the base segmentor with an aggregated deferral predictor and additional routing channels that dynamically route each pixel to either the base segmentor or a human expert. To train this routing efficiently, we introduce a pixel-wise surrogate collaboration loss that supervises deferral decisions. In addition, to preserve spatial coherence within deferral regions, we propose a spatial-coherence loss that enforces smooth deferral masks, thereby enhancing reliability. Beyond single-expert deferral, we further extend the framework to a multi-expert setting by introducing multiple discrepancy experts for collaborative decision-making. To prevent overloading or underutilizing individual experts, we further design a load-balancing penalty that evenly distributes workload across expert branches. We evaluate DeferredSeg on three challenging medical datasets using MedSAM and CENet as the base segmentor for fair comparison. Experimental results show that DeferredSeg consistently outperforms the baseline, demonstrating its effectiveness for trustworthy dense medical segmentation. Moreover, the proposed framework is model-agnostic and can be readily applied to other segmentation architectures.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2609.21953",
+   "title": "RACER: Role-Aligned Competence Estimation for Human-AI Routing",
+   "published": "2026-09-18",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Learning to defer asks a predictive system when to act autonomously and when to defer to a human expert. Population-adaptive deferral extends this problem to unseen experts using a small context set of expert behavior. Neural context encoders such as L2D-Pop can be query-dependent, but may learn routing shortcuts tied to absolute class coordinates. Identity-Free Deferral (IFD) removes such shortcuts through role-indexed classwise competence profiles, but its estimates are constant within each class and cannot capture instance-level expert specialization. We propose RACER---Role-Aligned Competence Estimation for Routing---a role-relative framework for estimating an unseen expert's competence from context. RACER estimates the posterior-predictive probability that the expert is correct on a query under each candidate class role, then combines these estimates with the model posterior to obtain the Bayes-relevant expert-correctness probability. Nonparametric and neural kernel-pooling estimators use candidate-role relations, shared aggregation, and symmetric summaries, excluding absolute class-identity channels. We prove coherent class-relabelling invariance, derive a Bayes-aligned deferral surrogate, and give a plug-in regret bound relating routing regret to classifier and competence-estimation error. On controlled synthetic benchmarks, including a PathMNIST histopathology context-scaling study with simulated experts, RACER benefits from additional context under hidden subtype dependence and gives the strongest aggregate performance on a separately sampled unseen-expert split in the CIFAR-100 synthetic experiments. On the radiologist and human--AI chest-radiography benchmarks (VinDr-CXR and CheXpert), the RACER family is competitive or best in budget-swept deferral, with calibration results varying across metrics and datasets.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2606.08919",
+   "title": "Oversight Has a Capacity: Calibrating Agent Guards to a Subjective, Fatiguing Human",
+   "published": "2026-06-08",
+   "categories": [
+    "cs.AI",
+    "cs.CR",
+    "cs.LG"
+   ],
+   "abstract": "As LLM agents begin to take real, irreversible actions (shell commands, file edits, deploys), the standard safety pattern is a human-in-the-loop approval gate: risky actions pause and wait for a person. We argue the gate is the easy part; the hard part is the judgment - which actions to stop - which the field evaluates against two false assumptions: that there is a ground-truth notion of \"risky,\" and that the human reviewer is a perfect, infinitely-available oracle. On a hand-labeled set of 125 adversarially-weighted agent actions we show that (i) reviewers only moderately agree on what is risky (Fleiss' kappa = 0.52), so there is no single correct label; (ii) framing the guard as selective classification under asymmetric cost makes its operating limits measurable, and on hard inputs the guard cannot safely auto-decide; and (iii) when the reviewer is modeled as endogenous (fatiguing as escalation load grows), realized safety becomes an inverted-U in the escalation rate: more human oversight can make a system less safe, and the safety-optimal guard escalates below full escalation - a setting a load-aware policy also uses to resist a flooding attack that slips a malicious action past a fatigued reviewer. Agent oversight, framed this way, is not only a classification problem but a resource-allocation one: human attention is finite, and the guard's escalation policy spends it. We claim none of these mechanisms as novel - fatigue-aware learning-to-defer (FALCON), cost-sensitive deferral under workload constraints (DeCCaF), trajectory-level guarding, and reviewer-fatigue/flooding attacks are all prior art we cite. Our contribution is an open-source agent-oversight system that operationalizes and measures them in the LLM-agent action-gating setting, turning \"is my guard good?\" from a guess into a curve. The inverted-U and the flooding attack are modeling results that motivate a human study.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2508.02319",
+   "title": "Is Uncertainty Quantification a Viable Alternative to Learned Deferral?",
+   "published": "2025-08-04",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Artificial Intelligence (AI) holds the potential to dramatically improve patient care. However, it is not infallible, necessitating human-AI-collaboration to ensure safe implementation. One aspect of AI safety is the models' ability to defer decisions to a human expert when they are likely to misclassify autonomously. Recent research has focused on methods that learn to defer by optimising a surrogate loss function that finds the optimal trade-off between predicting a class label or deferring. However, during clinical translation, models often face challenges such as data shift. Uncertainty quantification methods aim to estimate a model's confidence in its predictions. However, they may also be used as a deferral strategy which does not rely on learning from specific training distribution. We hypothesise that models developed to quantify uncertainty are more robust to out-of-distribution (OOD) input than learned deferral models that have been trained in a supervised fashion. To investigate this hypothesis, we constructed an extensive evaluation study on a large ophthalmology dataset, examining both learned deferral models and established uncertainty quantification methods, assessing their performance in- and out-of-distribution. Specifically, we evaluate their ability to accurately classify glaucoma from fundus images while deferring cases with a high likelihood of error. We find that uncertainty quantification methods may be a promising choice for AI deferral.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2512.23190",
+   "title": "A Simple, Optimal and Efficient Algorithm for Online Exp-Concave Optimization",
+   "published": "2025-12-29",
+   "categories": [
+    "cs.LG",
+    "math.OC",
+    "stat.ML"
+   ],
+   "abstract": "Online eXp-concave Optimization (OXO) is a fundamental problem in online learning, where the goal is to minimize regret when loss functions are exponentially concave. The standard algorithm, Online Newton Step (ONS), guarantees an optimal $O(d \\log T)$ regret, where $d$ is the dimension and $T$ is the time horizon. Despite its simplicity, ONS may face a computational bottleneck due to the Mahalanobis projection at each round. This step costs $\\tilde{O}(d^ω)$ arithmetic operations for bounded domains, even for simple domains such as the unit ball, where $ω\\in (2,3]$ is the matrix-multiplication exponent. As a result, the total runtime can reach $\\tilde{O}(d^ωT)$, particularly when iterates frequently oscillate near the domain boundary. This paper proposes a simple variant of ONS, called LightONS, which reduces the total runtime to $O(d^2 T + d^ω\\sqrt{T \\log T})$ while preserving the optimal regret. Deploying LightONS with the online-to-batch conversion implies a method for stochastic exp-concave optimization with runtime $\\tilde{O}(d^3/\\varepsilon)$, thereby answering an open problem posed by Koren [2013]. The design leverages domain-conversion techniques from parameter-free online learning and defers expensive Mahalanobis projections until necessary, thereby preserving the elegant structure of ONS and enabling LightONS to act as an efficient plug-in replacement in broader scenarios, including gradient-norm adaptivity, parametric stochastic bandits, and memory-efficient OXO.",
+   "query": "learning to defer"
+  },
+  {
+   "id": "2604.23896",
+   "title": "From Trust to Appropriate Reliance: Measurement Constructs in Human-AI Decision-Making",
+   "published": "2026-04-26",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "While human-AI decision-making research has primarily used trust measurements to assess the practical usage of AI systems by their end-users, recent empirical evidence suggests that trust measurements do not inform users' appropriate reliance on AI systems. While examining the human-AI decision-making literature, in this work, we review empirical studies that assess people's appropriate reliance on AI advice, differentiating measurements and constructs of appropriate reliance from trust and mere reliance. Our analysis of literature shows that constructs for human-AI appropriate reliance are still fragmented in research. We present three views on appropriate reliance, namely Traditional, Appropriateness, and Dominance, as discussed in research. Using these views, we evaluate objective metrics reported in studies and argue for their consensus to facilitate the comparison across empirical research. We also discuss how studies employ objective metrics and examine their validity in application contexts. Our work contributes to the critical body of research on exploring objective metrics for assessing humans' appropriate reliance on AI advice.",
+   "query": "reliance on AI advice"
+  },
+  {
+   "id": "2511.15352",
+   "title": "People readily follow personal advice from AI but it does not improve their well-being",
+   "published": "2025-11-19",
+   "categories": [
+    "cs.HC"
+   ],
+   "abstract": "People increasingly seek personal advice from large language models (LLMs), yet whether humans follow their advice, and its consequences for their well-being, remains unknown. In a longitudinal randomised controlled trial with a representative UK sample (N = 6,474), we found that up to 79% of participants who had a 20-minute discussion with one of three AI chatbots (GPT-4o, LLama-3.3-70B, Gemini 3 Pro) about health, careers or relationships subsequently reported following its advice. Advice-following remained above 65% even for high-stakes recommendations, suggesting that users only weakly calibrate their reliance on AI advice to potential consequences. Based on autograder evaluations of chat transcripts, LLM advice rarely violated safety best practice. However, when queried 2-3 weeks later, participants receiving personal advice from AI showed no sustained well-being benefits compared to a control group who discussed hobbies and interests with the same chatbots. These findings reveal that consumer LLMs exert substantial influence over real-world personal decisions without delivering measurable psychological benefits.",
+   "query": "reliance on AI advice"
+  },
+  {
+   "id": "2602.00259",
+   "title": "Intelligent Reasoning Cues: A Framework and Case Study of the Roles of AI Information in Complex Decisions",
+   "published": "2026-01-30",
+   "categories": [
+    "cs.HC",
+    "cs.AI",
+    "q-bio.OT"
+   ],
+   "abstract": "Artificial intelligence (AI)-based decision support systems can be highly accurate yet still fail to support users or improve decisions. Existing theories of AI-assisted decision-making focus on calibrating reliance on AI advice, leaving it unclear how different system designs might influence the reasoning processes underneath. We address this gap by reconsidering AI interfaces as collections of intelligent reasoning cues: discrete pieces of AI information that can individually influence decision-making. We then explore the roles of eight types of reasoning cues in a high-stakes clinical decision (treating patients with sepsis in intensive care). Through contextual inquiries with six teams and a think-aloud study with 25 physicians, we find that reasoning cues have distinct patterns of influence that can directly inform design. Our results also suggest that reasoning cues should prioritize tasks with high variability and discretion, adapt to ensure compatibility with evolving decision needs, and provide complementary, rigorous insights on complex cases.",
+   "query": "reliance on AI advice"
+  },
+  {
+   "id": "2603.22152",
+   "title": "More Isn't Always Better: Balancing Decision Accuracy and Conformity Pressures in Multi-AI Advice",
+   "published": "2026-03-23",
+   "categories": [
+    "cs.HC",
+    "cs.AI"
+   ],
+   "abstract": "Just as people improve decision-making by consulting diverse human advisors, they can now also consult with multiple AI systems. Prior work on group decision-making shows that advice aggregation creates pressure to conform, leading to overreliance. However, the conditions under which multi-AI consultation improves or undermines human decision-making remain unclear. We conducted experiments with three tasks in which participants received advice from panels of AIs. We varied panel size, within-panel consensus, and the human-likeness of presentation. Accuracy improved for small panels relative to a single AI; larger panels yielded no gains. The level of within-panel consensus affected participants' reliance on AI advice: High consensus fostered overreliance; a single dissent reduced pressure to conform; wide disagreement created confusion and undermined appropriate reliance. Human-like presentations increased perceived usefulness and agency in certain tasks, without raising conformity pressure. These findings yield design implications for presenting multi-AI advice that preserve accuracy while mitigating conformity.",
+   "query": "reliance on AI advice"
+  }
+ ]
+}

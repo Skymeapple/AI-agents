@@ -1,0 +1,1331 @@
+{
+ "retrieved": "2026-11-26",
+ "queries": [
+  "conformal prediction",
+  "uncertainty quantification large language models",
+  "hallucination detection"
+ ],
+ "papers": [
+  {
+   "id": "2610.02357",
+   "title": "Conformal Prediction for Time Series with Deep Sequence Models",
+   "published": "2026-10-01",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Recent advances in deep learning for time series prediction have amplified the need for reliable uncertainty quantification. Conformal prediction has gained attention as a distribution-free framework for constructing prediction intervals with coverage guarantees. However, its coverage guarantees rely on data exchangeability, an assumption generally violated in time series. Active research has focused on developing conformal prediction methods for time series that overcome this limitation. While deep sequence models, such as recurrent neural networks and Transformers, have often been used in conformal prediction for time series, limited work has systematically studied how deep sequence models can be utilized in conformal prediction for time series. In this work, we systematically investigate the use of deep sequence models in conformal prediction for time series through three approaches: conditional quantile regression, conditional quantile function estimation, and localized conformal prediction. We provide a theoretical analysis establishing asymptotic conditional coverage guarantees for all three approaches under suitable assumptions. Through comprehensive experiments on real-world datasets, we demonstrate the effectiveness of leveraging deep sequence models into conformal prediction for time series.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2605.29200",
+   "title": "Approximating full conformal prediction: distribution free guarantees via the tournament correction",
+   "published": "2026-05-28",
+   "categories": [
+    "stat.ME"
+   ],
+   "abstract": "Conformal prediction is a framework for providing prediction intervals with distribution-free validity, guaranteeing predictive coverage for data drawn from any distribution. Its two main variants are full conformal prediction and split conformal prediction (also called transductive and inductive). Full conformal prediction is widely considered to be statistically more efficient (since split conformal prediction requires data splitting, and therefore can lead to wider prediction intervals due to the resulting loss in sample size), but its implementation is computationally prohibitive, as it requires the underlying model to be refit for every candidate value in the response space. Existing computational shortcuts, such as using a discrete grid of values to approximate the full conformal prediction construction, frequently lack theoretical guarantees on marginal coverage and can fail in practice. To address this limitation, we introduce a novel class of approximations to the full conformal prediction method, based on the idea of \\emph{tournaments}, which enables the construction of prediction sets with a rigorous marginal coverage guarantee of $1-2α$. Under stability conditions, the theoretical coverage guarantee tightens to approximately $1-α$. This new framework generalizes the existing method of leave-one-out cross-conformal prediction, while allowing for flexible use of various existing approximation strategies.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.02292",
+   "title": "Unifying Different Theories of Conformal Prediction",
+   "published": "2025-04-03",
+   "categories": [
+    "math.ST"
+   ],
+   "abstract": "This paper presents a unified framework for understanding the methodology and theory behind several different methods in the conformal prediction literature, which includes standard conformal prediction (CP), weighted conformal prediction (WCP), nonexchangeable conformal prediction (NexCP), and randomly-localized conformal prediction (RLCP), among others. At the crux of our framework is the idea that conformal methods are based on revealing partial information about the data at hand, and positing a conditional distribution for the data given the partial information. Different methods arise from different choices of partial information, and of the corresponding (approximate) conditional distribution. In addition to recovering and unifying existing results, our framework leads to both new theoretical guarantees for existing methods, and new extensions of the conformal methodology.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2510.10324",
+   "title": "On some practical challenges of conformal prediction",
+   "published": "2025-10-11",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction is a model-free machine learning method for constructing prediction regions at a guaranteed coverage probability level. However, a data scientist often faces three challenges in practice: (i) the determination of a conformal prediction region is only approximate, jeopardizing the finite-sample validity of prediction, (ii) the computation required could be prohibitively expensive, and (iii) the shape of a conformal prediction region is hard to control. This article offers new insights into the relationship among the monotonicity of the non-conformity measure, the monotonicity of the plausibility function, and the exact determination of a conformal prediction region. Based on these new insights, we propose a quadratic-polynomial non-conformity measure that allows a data scientist to circumvent the three challenges simultaneously within the full conformal prediction framework.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2603.10674",
+   "title": "Conformal prediction for high-dimensional functional time series: Applications to subnational mortality",
+   "published": "2026-03-11",
+   "categories": [
+    "stat.ME",
+    "stat.AP"
+   ],
+   "abstract": "In statistics, forecast uncertainty is often quantified using a specified statistical model, though such approaches may be vulnerable to model misspecification, selection bias, and limited finite-sample validity. While bootstrap procedures may alleviate some of these concerns, their validity is not guaranteed and they are often computationally demanding. Instead, we take a model-agnostic and distribution-free approach, namely conformal prediction, to construct pointwise prediction intervals in high-dimensional functional time series. Among a rich family of conformal prediction methods, we study split, non-conformity score, sequential predictive, and adaptive conformal prediction. In split and non-conformity score conformal prediction, the data are divided into training, validation, and test sets, and the interval width is calibrated on the validation set so that the empirical coverage probability matches the nominal level, by tuning a coefficient of the residual standard deviation and by taking an empirical quantile of the non-conformity scores, respectively. Sequential predictive conformal prediction removes the need for a validation set by updating predictive quantiles sequentially via an autoregressive process, whereas adaptive conformal prediction updates the significance level over time according to the coverage of past intervals. Using subnational age- and sex-specific $\\log$ mortality data from Japan and Canada, we compare the finite-sample forecast performance of the conformal prediction methods considered, using empirical coverage probability and the mean interval score.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.12582",
+   "title": "Fair Conformal Prediction for Incomplete Covariate Data",
+   "published": "2025-04-17",
+   "categories": [
+    "stat.ME"
+   ],
+   "abstract": "Conformal prediction provides a distribution-free framework for uncertainty quantification. This study explores the application of conformal prediction in scenarios where covariates are missing, which introduces significant challenges for uncertainty quantification. We establish that marginal validity holds for imputed datasets across various mechanisms of missing data and most imputation methods. Building on the framework of nonexchangeable conformal prediction, we demonstrate that coverage guarantees depend on the mask. To address this, we propose a nonexchangeable conformal prediction method for missing covariates that satisfies both marginal and mask-conditional validity. However, as this method does not ensure asymptotic conditional validity, we further introduce a localized conformal prediction approach that employs a novel score function based on kernel smoothing. This method achieves marginal, mask-conditional, and asymptotic conditional validity under certain assumptions. Extensive simulation studies and real-data analysis demonstrate the advantages of these proposed methods.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2503.13050",
+   "title": "E-Values Expand the Scope of Conformal Prediction",
+   "published": "2025-03-17",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction is a powerful framework for distribution-free uncertainty quantification. The standard approach to conformal prediction relies on comparing the ranks of prediction scores: under exchangeability, the rank of a future test point cannot be too extreme relative to a calibration set. This rank-based method can be reformulated in terms of p-values. In this paper, we explore an alternative approach based on e-values, known as conformal e-prediction. E-values offer key advantages that cannot be achieved with p-values, enabling new theoretical and practical capabilities. In particular, we present three applications that leverage the unique strengths of e-values: batch anytime-valid conformal prediction, fixed-size conformal sets with data-dependent coverage, and conformal prediction under ambiguous ground truth. Overall, these examples demonstrate that e-value-based constructions provide a flexible expansion of the toolbox of conformal prediction.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2510.05566",
+   "title": "Domain-Shift-Aware Conformal Prediction for Large Language Models",
+   "published": "2025-10-07",
+   "categories": [
+    "stat.ML",
+    "cs.AI",
+    "cs.CL",
+    "cs.LG",
+    "stat.AP"
+   ],
+   "abstract": "Large language models have achieved impressive performance across diverse tasks. However, their tendency to produce overconfident and factually incorrect outputs, known as hallucinations, poses risks in real-world applications. Conformal prediction provides finite-sample, distribution-free coverage guarantees, but standard conformal prediction breaks down under domain shift, often leading to under-coverage and unreliable prediction sets. We propose a new framework called Domain-Shift-Aware Conformal Prediction (DS-CP). Our framework adapts conformal prediction to large language models under domain shift, by systematically reweighting calibration samples based on their proximity to the test prompt, thereby preserving validity while enhancing adaptivity. Our theoretical analysis and experiments on the MMLU benchmark demonstrate that the proposed method delivers more reliable coverage than standard conformal prediction, especially under substantial distribution shifts, while maintaining efficiency. This provides a practical step toward trustworthy uncertainty quantification for large language models in real-world deployment.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.17058",
+   "title": "Statistical Guarantees in Synthetic Data through Conformal Adversarial Generation",
+   "published": "2025-04-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "The generation of high-quality synthetic data presents significant challenges in machine learning research, particularly regarding statistical fidelity and uncertainty quantification. Existing generative models produce compelling synthetic samples but lack rigorous statistical guarantees about their relation to the underlying data distribution, limiting their applicability in critical domains requiring robust error bounds. We address this fundamental limitation by presenting a novel framework that incorporates conformal prediction methodologies into Generative Adversarial Networks (GANs). By integrating multiple conformal prediction paradigms including Inductive Conformal Prediction (ICP), Mondrian Conformal Prediction, Cross-Conformal Prediction, and Venn-Abers Predictors, we establish distribution-free uncertainty quantification in generated samples. This approach, termed Conformalized GAN (cGAN), demonstrates enhanced calibration properties while maintaining the generative power of traditional GANs, producing synthetic data with provable statistical guarantees. We provide rigorous mathematical proofs establishing finite-sample validity guarantees and asymptotic efficiency properties, enabling the reliable application of synthetic data in high-stakes domains including healthcare, finance, and autonomous systems.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2507.08085",
+   "title": "Conformal prediction for uncertainties in nucleon-nucleon scattering",
+   "published": "2025-07-10",
+   "categories": [
+    "nucl-th",
+    "physics.data-an"
+   ],
+   "abstract": "Conformal prediction is a distribution-free and model-agnostic uncertainty-quantification method that provides finite-sample prediction intervals with guaranteed coverage. In this work, for the first time, we apply conformal-prediction to generate uncertainty bands for physical observables in nuclear physics, such as the total cross section and nucleon-nucleon phase shifts. We demonstrate the method's flexibility by considering three scenarios: (i) a pointwise model, where expansion coefficients in chiral effective field theory are treated as random variables; (ii) a Gaussian-process model for the coefficients; and (iii) phase shifts at various energies and partial waves calculated using local interactions from chiral effective field theory. In each case, conformal-prediction intervals are constructed and validated empirically. Our results show that conformal prediction provides reliable and adaptive uncertainty bands even in the presence of non-Gaussian behavior, such as skewness and heavy tails. These findings highlight conformal prediction as a robust and practical framework for quantifying theoretical uncertainties.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2503.23561",
+   "title": "Bridging conformal prediction and scenario optimization",
+   "published": "2025-03-30",
+   "categories": [
+    "cs.LG",
+    "eess.SY",
+    "math.OC"
+   ],
+   "abstract": "Conformal prediction and scenario optimization constitute two important classes of statistical learning frameworks to certify decisions made using data. They have found numerous applications in control theory, machine learning and robotics. Despite intense research in both areas, and apparently similar results, a clear connection between these two frameworks has not been established. By focusing on the so-called vanilla conformal prediction, we show rigorously how to choose appropriate score functions and set predictor map to recover well-known bounds on the probability of constraint violation associated with scenario programs. We also show how to treat ranking of nonconformity scores as a one-dimensional scenario program with discarded constraints, and use such connection to recover vanilla conformal prediction guarantees on the validity of the set predictor. We also capitalize on the main developments of the scenario approach, and show how we could analyze calibration conditional conformal prediction under this lens. Our results establish a theoretical bridge between conformal prediction and scenario optimization.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2501.19403",
+   "title": "Tackling Fake Forgetting through Uncertainty Quantification",
+   "published": "2025-01-31",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Machine unlearning seeks to remove the influence of specified data from a trained model. While the unlearning accuracy provides a widely used metric for assessing unlearning performance, it falls short in assessing the reliability of forgetting. In this paper, we find that the forgetting data points misclassified by unlearning accuracy still have their ground truth labels included in the conformal prediction set from the uncertainty quantification perspective, leading to a phenomenon we term fake forgetting. To address this issue, we propose a novel metric CR, inspired by conformal prediction, that offers a more reliable assessment of forgetting quality. Building on these insights, we further propose an unlearning framework CPU that incorporates conformal prediction into the Carlini & Wagner adversarial attack loss, enabling the ground truth label to be effectively removed from the conformal prediction set. Through extensive experiments on image classification tasks, we demonstrate both the effectiveness of our proposed metric and the superior forgetting quality achieved by our framework. Code is available at https://github.com/TIML-Group/Conformal-Prediction-Unlearning.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2501.10139",
+   "title": "Conformal Prediction Sets with Improved Conditional Coverage using Trust Scores",
+   "published": "2025-01-17",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "Standard conformal prediction offers a marginal guarantee on coverage, but for prediction sets to be truly useful, they should ideally ensure coverage conditional on each test point. Unfortunately, it is impossible to achieve exact, distribution-free conditional coverage in finite samples. In this work, we propose an alternative conformal prediction algorithm that targets coverage where it matters most--in instances where a classifier is overconfident in its incorrect predictions. We start by dissecting miscoverage events in marginally-valid conformal prediction, and show that miscoverage rates vary based on the classifier's confidence and its deviation from the Bayes optimal classifier. Motivated by this insight, we develop a variant of conformal prediction that targets coverage conditional on a reduced set of two variables: the classifier's confidence in a prediction and a nonparametric trust score that measures its deviation from the Bayes classifier. Empirical evaluation on multiple image datasets shows that our method generally improves conditional coverage properties compared to standard conformal prediction, including class-conditional coverage, coverage over arbitrary subgroups, and coverage over demographic groups.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2605.29296",
+   "title": "Conformal prediction for functional time series: Application to age-specific mortality rates",
+   "published": "2026-05-28",
+   "categories": [
+    "stat.AP"
+   ],
+   "abstract": "In demographic literature, forecast uncertainty is often quantified with a statistical model. This model-based approach may potentially suffer from drawbacks, namely model misspecification, selection effect, and lack of finite-sample validity. We introduce a model-agnostic and distribution-free procedure, conformal prediction, for constructing prediction intervals for a functional time series. In the family of conformal prediction, split conformal prediction divides the data into training, validation, and test sets. Within the validation set, we can select optimal tuning parameters by calibrating the empirical coverage probabilities to match their nominal values. With the selected optimal tuning parameters, we then construct the prediction intervals using the same forecasting model for the holdout data in the testing set. Without sample splitting, sequential conformal prediction sequentially updates the predicted quantiles via an autoregressive process. Using Australian age- and sex-specific log mortality rates, we evaluate and compare the interval forecast accuracy, as measured by empirical coverage probability, coverage probability difference and mean interval score, between the two variants of conformal prediction.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.17264",
+   "title": "Kandinsky Conformal Prediction: Beyond Class- and Covariate-Conditional Coverage",
+   "published": "2025-02-24",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Conformal prediction is a powerful distribution-free framework for constructing prediction sets with coverage guarantees. Classical methods, such as split conformal prediction, provide marginal coverage, ensuring that the prediction set contains the label of a random test point with a target probability. However, these guarantees may not hold uniformly across different subpopulations, leading to disparities in coverage. Prior work has explored coverage guarantees conditioned on events related to the covariates and label of the test point. We present Kandinsky conformal prediction, a framework that significantly expands the scope of conditional coverage guarantees. In contrast to Mondrian conformal prediction, which restricts its coverage guarantees to disjoint groups -- reminiscent of the rigid, structured grids of Piet Mondrian's art -- our framework flexibly handles overlapping and fractional group memberships defined jointly on covariates and labels, reflecting the layered, intersecting forms in Wassily Kandinsky's compositions. Our algorithm unifies and extends existing methods, encompassing covariate-based group conditional, class conditional, and Mondrian conformal prediction as special cases, while achieving a minimax-optimal high-probability conditional coverage bound. Finally, we demonstrate the practicality of our approach through empirical evaluation on real-world datasets.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2503.11709",
+   "title": "Conformal Prediction and Human Decision Making",
+   "published": "2025-03-12",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Methods to quantify uncertainty in predictions from arbitrary models are in demand in high-stakes domains like medicine and finance. Conformal prediction has emerged as a popular method for producing a set of predictions with specified average coverage, in place of a single prediction and confidence value. However, the value of conformal prediction sets to assist human decisions remains elusive due to the murky relationship between coverage guarantees and decision makers' goals and strategies. How should we think about conformal prediction sets as a form of decision support? We outline a decision theoretic framework for evaluating predictive uncertainty as informative signals, then contrast what can be said within this framework about idealized use of calibrated probabilities versus conformal prediction sets. Informed by prior empirical results and theories of human decisions under uncertainty, we formalize a set of possible strategies by which a decision maker might use a prediction set. We identify ways in which conformal prediction sets and posthoc predictive uncertainty quantification more broadly are in tension with common goals and needs in human-AI decision making. We give recommendations for future research in predictive uncertainty quantification to support human decision makers.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2505.08845",
+   "title": "Validation of Conformal Prediction in Cervical Atypia Classification",
+   "published": "2025-05-13",
+   "categories": [
+    "eess.IV",
+    "cs.AI",
+    "cs.CV",
+    "cs.LG",
+    "q-bio.QM"
+   ],
+   "abstract": "Deep learning based cervical cancer classification can potentially increase access to screening in low-resource regions. However, deep learning models are often overconfident and do not reliably reflect diagnostic uncertainty. Moreover, they are typically optimized to generate maximum-likelihood predictions, which fail to convey uncertainty or ambiguity in their results. Such challenges can be addressed using conformal prediction, a model-agnostic framework for generating prediction sets that contain likely classes for trained deep-learning models. The size of these prediction sets indicates model uncertainty, contracting as model confidence increases. However, existing conformal prediction evaluation primarily focuses on whether the prediction set includes or covers the true class, often overlooking the presence of extraneous classes. We argue that prediction sets should be truthful and valuable to end users, ensuring that the listed likely classes align with human expectations rather than being overly relaxed and including false positives or unlikely classes. In this study, we comprehensively validate conformal prediction sets using expert annotation sets collected from multiple annotators. We evaluate three conformal prediction approaches applied to three deep-learning models trained for cervical atypia classification. Our expert annotation-based analysis reveals that conventional coverage-based evaluations overestimate performance and that current conformal prediction methods often produce prediction sets that are not well aligned with human labels. Additionally, we explore the capabilities of the conformal prediction methods in identifying ambiguous and out-of-distribution data.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2508.05272",
+   "title": "Conditional validity and a fast approximation formula of full conformal prediction sets",
+   "published": "2025-08-07",
+   "categories": [
+    "math.ST"
+   ],
+   "abstract": "Prediction sets based on full conformal prediction have seen an increasing interest in statistical learning due to their universal marginal coverage guarantees. However, practitioners have refrained from using it in applications for two reasons: Firstly, it comes at very high computational costs, exceeding even that of cross-validation. Secondly, an applicant is typically not interested in a marginal coverage guarantee which averages over all possible (but not available) training data sets, but rather in a guarantee conditional on the specific training data. This work tackles these problems by, firstly, showing that full conformal prediction sets are conditionally conservative given the training data if the conformity score is stochastically bounded and satisfies a stability condition. Secondly, we propose an approximation for the full conformal prediction set that has asymptotically the same training conditional coverage as full conformal prediction under the stability assumption derived before, and can be computed more easily. Furthermore, we show that under the stability assumption, $n$-fold cross-conformal prediction also has the same asymptotic training conditional coverage guarantees as full conformal prediction. If the conformity score is defined as the out-of-sample prediction error, our approximation of the full conformal set coincides with the symmetrized Jackknife. We conclude that for this conformity score, if based on a stable prediction algorithm, full-conformal, $n$-fold cross-conformal, the Jackknife+, our approximation formula, and hence also the Jackknife, all yield the same asymptotic training conditional coverage guarantees.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2606.31915",
+   "title": "Accelerating Conformal Prediction via Approximate Leave-One-Out",
+   "published": "2026-06-30",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "While conformal prediction provides a general framework for uncertainty quantification in predictive inference, its application is often limited by computational cost. Recent methods, including Jackknife+ and Jackknife-minmax, achieve faster computation by trading a slight loss of efficiency relative to full conformal prediction, but still requires computing leave-one-out refits for all observations. In this paper, we further accelerate conformal prediction by incorporating approximate leave-one-out (ALO) estimators, and establish asymptotic coverage and efficiency. While our proof draws on methods developed for analyzing the consistency of ALO cross-validation risk estimators in high-dimensional statistics, it requires adaptations to handle conformal prediction, where leave-$i$-out residuals are needed for predictions at $x_{n+1}$ rather than just at the training covariate $x_i$. Simulation results validate our theoretical findings, showing that the ALO-based methods achieve coverage and efficiency comparable to the exact methods, while significantly reducing the runtime.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.05709",
+   "title": "Flow-based Conformal Prediction for Multi-dimensional Time Series",
+   "published": "2025-02-08",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Time series prediction underpins a broad range of downstream tasks across many scientific domains. Recent advances and increasing adoption of black-box machine learning models for time series prediction highlight the critical need for uncertainty quantification. While conformal prediction has gained attention as a reliable uncertainty quantification method, conformal prediction for time series faces two key challenges: (1) \\textbf{leveraging correlations in observations and non-conformity scores to overcome the exchangeability assumption}, and (2) \\textbf{constructing prediction sets for multi-dimensional outcomes}. To address these challenges, we propose a novel conformal prediction method for time series using flow with classifier-free guidance. We provide coverage guarantees by establishing exact non-asymptotic marginal coverage and a finite-sample bound on conditional coverage for the proposed method. Evaluations on real-world time series datasets demonstrate that our method constructs significantly smaller prediction sets than existing conformal prediction methods, maintaining target coverage.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.06331",
+   "title": "Conformal Prediction Regions are Imprecise Highest Density Regions",
+   "published": "2025-02-10",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.PR"
+   ],
+   "abstract": "Recently, Cella and Martin proved how, under an assumption called consonance, a credal set (i.e. a closed and convex set of probabilities) can be derived from the conformal transducer associated with transductive conformal prediction. We show that the Imprecise Highest Density Region (IHDR) associated with such a credal set corresponds to the classical Conformal Prediction Region. In proving this result, we establish a new relationship between Conformal Prediction and Imprecise Probability (IP) theories, via the IP concept of a cloud. A byproduct of our presentation is the discovery that consonant plausibility functions are monoid homomorphisms, a new algebraic property of an IP tool.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2505.16740",
+   "title": "Robust Vision-Based Runway Detection through Conformal Prediction and Conformal mAP",
+   "published": "2025-05-22",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "We explore the use of conformal prediction to provide statistical uncertainty guarantees for runway detection in vision-based landing systems (VLS). Using fine-tuned YOLOv5 and YOLOv6 models on aerial imagery, we apply conformal prediction to quantify localization reliability under user-defined risk levels. We also introduce Conformal mean Average Precision (C-mAP), a novel metric aligning object detection performance with conformal guarantees. Our results show that conformal prediction can improve the reliability of runway detection by quantifying uncertainty in a statistically sound way, increasing safety on-board and paving the way for certification of ML system in the aerospace domain.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2606.28730",
+   "title": "Full Conformal Prediction under Stochastic Non-Conformity Measure",
+   "published": "2026-06-27",
+   "categories": [
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "The theory of full conformal prediction uses deterministic non-conformity measure, but modern usage of full conformal prediction often relies on machine learning training, making stochasticity inevitable. A simple sufficient condition of almost sure permutation invariance of the non-conformity measure can be too restrictive, so many have suggested the relaxation to permutation in distribution as a condition for full conformal prediction validity. We, however, show that this commonly known condition is actually insufficient. We then provide a correct sufficient condition: Conditional Independence & Permutation Invariance in Distribution, which encompasses several stochastic settings that may be used in machine learning.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2507.02151",
+   "title": "Non-exchangeable Conformal Prediction for Temporal Graph Neural Networks",
+   "published": "2025-07-02",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction for graph neural networks (GNNs) offers a promising framework for quantifying uncertainty, enhancing GNN reliability in high-stakes applications. However, existing methods predominantly focus on static graphs, neglecting the evolving nature of real-world graphs. Temporal dependencies in graph structure, node attributes, and ground truth labels violate the fundamental exchangeability assumption of standard conformal prediction methods, limiting their applicability. To address these challenges, in this paper, we introduce NCPNET, a novel end-to-end conformal prediction framework tailored for temporal graphs. Our approach extends conformal prediction to dynamic settings, mitigating statistical coverage violations induced by temporal dependencies. To achieve this, we propose a diffusion-based non-conformity score that captures both topological and temporal uncertainties within evolving networks. Additionally, we develop an efficiency-aware optimization algorithm that improves the conformal prediction process, enhancing computational efficiency and reducing coverage violations. Extensive experiments on diverse real-world temporal graphs, including WIKI, REDDIT, DBLP, and IBM Anti-Money Laundering dataset, demonstrate NCPNET's capability to ensure guaranteed coverage in temporal graphs, achieving up to a 31% reduction in prediction set size on the WIKI dataset, significantly improving efficiency compared to state-of-the-art methods. Our data and code are available at https://github.com/ODYSSEYWT/NCPNET.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2511.11567",
+   "title": "Who Moved My Distribution? Conformal Prediction for Interactive Multi-Agent Systems",
+   "published": "2025-11-14",
+   "categories": [
+    "eess.SY",
+    "cs.RO"
+   ],
+   "abstract": "Uncertainty-aware prediction is essential for safe motion planning, especially when using learned models to forecast the behavior of surrounding agents. Conformal prediction is a statistical tool often used to produce uncertainty-aware prediction regions for machine learning models. Most existing frameworks utilizing conformal prediction-based uncertainty predictions assume that the surrounding agents are non-interactive. This is because in closed-loop, as uncertainty-aware agents change their behavior to account for prediction uncertainty, the surrounding agents respond to this change, leading to a distribution shift which we call endogenous distribution shift. To address this challenge, we introduce an iterative conformal prediction framework that systematically adapts the uncertainty-aware ego-agent controller to the endogenous distribution shift. The proposed method provides probabilistic safety guarantees while adapting to the evolving behavior of reactive, non-ego agents. We establish a model for the endogenous distribution shift and provide the conditions for the iterative conformal prediction pipeline to converge under such a distribution shift. We validate our framework in simulation for 2- and 3- agent interaction scenarios, demonstrating collision avoidance without resulting in overly conservative behavior and an overall improvement in success rates of up to 9.6% compared to other conformal prediction-based baselines.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2501.14544",
+   "title": "Distributed Conformal Prediction via Message Passing",
+   "published": "2025-01-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Post-hoc calibration of pre-trained models is critical for ensuring reliable inference, especially in safety-critical domains such as healthcare. Conformal Prediction (CP) offers a robust post-hoc calibration framework, providing distribution-free statistical coverage guarantees for prediction sets by leveraging held-out datasets. In this work, we address a decentralized setting where each device has limited calibration data and can communicate only with its neighbors over an arbitrary graph topology. We propose two message-passing-based approaches for achieving reliable inference via CP: quantile-based distributed conformal prediction (Q-DCP) and histogram-based distributed conformal prediction (H-DCP). Q-DCP employs distributed quantile regression enhanced with tailored smoothing and regularization terms to accelerate convergence, while H-DCP uses a consensus-based histogram estimation approach. Through extensive experiments, we investigate the trade-offs between hyperparameter tuning requirements, communication overhead, coverage guarantees, and prediction set sizes across different network topologies. The code of our work is released on: https://github.com/HaifengWen/Distributed-Conformal-Prediction.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2510.05060",
+   "title": "ResCP: Reservoir Conformal Prediction for Time Series Forecasting",
+   "published": "2025-10-06",
+   "categories": [
+    "cs.LG",
+    "math.ST",
+    "stat.ML"
+   ],
+   "abstract": "Conformal prediction offers a powerful framework for building distribution-free prediction intervals for exchangeable data. Existing methods that extend conformal prediction to sequential data rely on fitting a relatively complex model to capture temporal dependencies. However, these methods can fail if the sample size is small and often require expensive retraining when the underlying data distribution changes. To overcome these limitations, we propose Reservoir Conformal Prediction (ResCP), a novel training-free conformal prediction method for time series. Our approach leverages the efficiency and representation learning capabilities of reservoir computing to dynamically reweight conformity scores. In particular, we compute similarity scores among reservoir states and use them to adaptively reweight the observed residuals at each step. With this approach, ResCP enables us to account for local temporal dynamics when modeling the error distribution without compromising computational scalability. We prove that, under reasonable assumptions, ResCP achieves asymptotic conditional coverage, and we empirically demonstrate its effectiveness across diverse forecasting tasks.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2609.37298",
+   "title": "Scaling Full Conformal Image Classifiers",
+   "published": "2026-09-29",
+   "categories": [
+    "cs.LG",
+    "cs.CV"
+   ],
+   "abstract": "Conformal prediction provides set-valued predictions with distribution-free coverage guarantees, making it attractive for high-stakes image classification. However, split conformal prediction is data-inefficient, while full conformal prediction (FCP), despite its stronger statistical efficiency, is computationally prohibitive at scale because it requires candidate-specific model refits at test time. We address this limitation by leveraging zero-shot vision-language models (VLMs) to guide scalable FCP in large label spaces. We introduce Targeted Full Conformal Prediction (T-FCP), which uses a lightweight inductive conformal predictor to prune unlikely labels and applies FCP only to the remaining candidates, reducing computation while retaining the formal guarantee of the combined conformal procedure. We further propose Stabilized Online LDA (SO-LDA), an efficient VLM adaptation solver based on rank-one inverse-covariance updates. Across multiple benchmarks, including ImageNet, T-FCP enables practical full-conformal image classification with modest test-time overhead, yielding efficient prediction sets and more stable empirical coverage than split conformal alternatives.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.19194",
+   "title": "Self-supervised conformal prediction for uncertainty quantification in Poisson imaging problems",
+   "published": "2025-02-26",
+   "categories": [
+    "cs.CV",
+    "eess.IV",
+    "eess.SP"
+   ],
+   "abstract": "Image restoration problems are often ill-posed, leading to significant uncertainty in reconstructed images. Accurately quantifying this uncertainty is essential for the reliable interpretation of reconstructed images. However, image restoration methods often lack uncertainty quantification capabilities. Conformal prediction offers a rigorous framework to augment image restoration methods with accurate uncertainty quantification estimates, but it typically requires abundant ground truth data for calibration. This paper presents a self-supervised conformal prediction method for Poisson imaging problems which leverages Poisson Unbiased Risk Estimator to eliminate the need for ground truth data. The resulting self-calibrating conformal prediction approach is applicable to any Poisson linear imaging problem that is ill-conditioned, and is particularly effective when combined with modern self-supervised image restoration techniques trained directly on measurement data. The proposed method is demonstrated through numerical experiments on image denoising and deblurring; its performance are comparable to supervised conformal prediction methods relying on ground truth data.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2509.13130",
+   "title": "Fuzzy Prediction Sets: Conformal Prediction with E-values",
+   "published": "2025-09-16",
+   "categories": [
+    "math.ST",
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "Prediction sets offer a binary inclusion/exclusion for each element at the same fixed confidence level. We generalize to fuzzy prediction sets, which exclude elements at their own data-driven confidence level. Our key insight is that a fuzzy prediction set \\emph{is} an e-value, capturing precisely what e-values bring to predictive inference. Fuzzy prediction sets inherit the merging properties of their e-value, offer richer guarantees to decision-makers. We also show in what sense optimal e-values give rise to optimal (fuzzy) prediction sets. We apply our results to conformal prediction, deriving optimal fuzzy conformal prediction sets, and characterizing in what sense classical conformal prediction is optimal.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2509.02844",
+   "title": "Conformal Prediction for Time-series Forecasting with Change Points",
+   "published": "2025-09-02",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Conformal prediction has been explored as a general and efficient way to provide uncertainty quantification for time series. However, current methods struggle to handle time series data with change points - sudden shifts in the underlying data-generating process. In this paper, we propose a novel Conformal Prediction for Time-series with Change points (CPTC) algorithm, addressing this gap by integrating a model to predict the underlying state with online conformal prediction to model uncertainties in non-stationary time series. We prove CPTC's validity and improved adaptivity in the time series setting under minimum assumptions, and demonstrate CPTC's practical effectiveness on 6 synthetic and real-world datasets, showing improved validity and adaptivity compared to state-of-the-art baselines.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2606.11136",
+   "title": "Conformal Prediction for Dyadic Regression Under Complex Missingness",
+   "published": "2026-06-09",
+   "categories": [
+    "math.ST",
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "We develop a framework for conformal prediction in dyadic regression problems under complex missingness mechanisms. At the theoretical level, we develop general technical tools for establishing finite-sample validity of conformal prediction under distributional invariance conditions weaker than exchangeability. A key result handles the case where the sample itself is a random subset of the index set, a setting not covered by existing theory. In addition, we propose conformal prediction procedures for jointly exchangeable arrays, including full conformal, split conformal, a row-column approach exploiting similarities within rows and columns, and a selective conformal procedure achieving mask-conditional validity. For missing elements, we establish asymptotic validity of a weighted conformal procedure under a nonparametric graphon model for the missingness mechanism. We further establish conditional validity results for both continuous and discrete responses; to the best of our knowledge, this is the first formal proof of asymptotic conditional validity for weighted conformal prediction under a missing-not-at-random assumption. The proposed methods are illustrated on synthetic and real network data.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2609.33868",
+   "title": "Conformal Coverage of Time Series: Validity and Inference",
+   "published": "2026-09-27",
+   "categories": [
+    "math.ST",
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "Conformal prediction provides marginal coverage guarantees, yet practitioners may wonder if the observed coverage is truly abnormal or consistent with sampling variation. Inference for realized coverage has received comparatively little attention, especially for time series. We study split conformal prediction with adjacent calibration and test sets of temporally dependent data. Using the functional dependence measure, we derive non-asymptotic bounds on marginal coverage error without mixing assumptions, which can be difficult to verify and may fail even for simple short-memory models. We establish a Bahadur representation to derive, to our knowledge, the first central limit theorem for realized coverage of split conformal prediction under temporal dependence. A consistent block-based estimator of the standard error yields an asymptotically justified test. We further study long-memory time series, which remain understudied in conformal prediction. For Gaussian linear processes, we show how very strong temporal dependence can lead to a non-Gaussian limiting law of realized coverage and establish block-sampling inference with an estimated normalization. The resulting theory explains how temporal dependence changes coverage uncertainty.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2507.11739",
+   "title": "Sparse Identification of Nonlinear Dynamics with Conformal Prediction",
+   "published": "2025-07-15",
+   "categories": [
+    "cs.LG",
+    "cs.CE",
+    "math.DS"
+   ],
+   "abstract": "The Sparse Identification of Nonlinear Dynamics (SINDy) is a method for discovering nonlinear dynamical system models from data. Quantifying uncertainty in SINDy models is essential for assessing their reliability, particularly in safety-critical applications. While various uncertainty quantification methods exist for SINDy, including Bayesian and ensemble approaches, this work explores the integration of Conformal Prediction, a framework that can provide valid prediction intervals with coverage guarantees based on minimal assumptions like data exchangeability. We introduce three applications of conformal prediction with Ensemble-SINDy (E-SINDy): (1) quantifying uncertainty in time series prediction, (2) model selection based on library feature importance, and (3) quantifying the uncertainty of identified model coefficients using feature conformal prediction. We demonstrate the three applications on stochastic predator-prey dynamics and several chaotic dynamical systems. We show that conformal prediction methods integrated with E-SINDy can reliably achieve desired target coverage for time series forecasting, effectively quantify feature importance, and produce more robust uncertainty intervals for model coefficients, even under non-Gaussian noise, compared to standard E-SINDy coefficient estimates.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2605.07100",
+   "title": "TRACE: Transport Alignment Conformal Prediction via Diffusion and Flow Matching Models",
+   "published": "2026-05-08",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Constructing valid and informative conformal prediction regions for multi-dimensional outputs remains a fundamental challenge. While conformal prediction provides finite-sample, distribution-free coverage guarantees, its practical performance critically depends on the choice of nonconformity score. Existing approaches often rely on restrictive geometric assumptions or require explicit likelihood evaluation and invertible transformations, limiting their applicability in complex generative settings. In this work, we introduce TRACE (TRansport Alignment Conformal Estimation), a conformal prediction framework that defines nonconformity through transport alignment in diffusion and flow matching models. Rather than evaluating likelihoods, we measure how well a candidate output aligns with the learned generative dynamics by averaging denoising or velocity-matching errors along stochastic transport trajectories. The resulting transport-based scores are scalar-valued and can be calibrated using split conformal prediction, yielding valid marginal coverage under exchangeability. We further analyze the statistical properties of the proposed scores and their sensitivity to computational budget. Experiments on synthetic and real datasets demonstrate valid coverage and show that the resulting regions adapt naturally to multimodal and non-convex conditional distributions.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2608.27310",
+   "title": "Conformal Prediction Through the Lens of Hypothesis Testing: Universality, Impossibility, and Optimality",
+   "published": "2026-08-27",
+   "categories": [
+    "math.ST"
+   ],
+   "abstract": "The connections between conformal prediction and permutation tests are already widely-known in the literature. Some authors motivate conformal prediction by saying that it computes a permutation p-value for the hypothesis $H_0 : Y_{n+1} = y$, and then inverts this to form a prediction set for $Y_{n+1}$ (i.e., accepts all values $y$ into the prediction set for which the p-value is large). In this paper, we examine an alternative view, which is less well-known: we again cast conformal prediction via the inversion of a permutation test, but for the null of exchangeability of the joint distribution of the $n+1$ samples. This change in perspective, while simple, adheres more closely to traditional formalization in hypothesis testing, which offers several benefits. First, we use the duality between conformal sets and testing to show that foundational universality and impossibility results in the conformal prediction literature can be reproduced directly using classical hypothesis testing theory (due to Neyman, Lehmann, Scheff{é}, Kraft, Le Cam, and others). Furthermore, we show that an optimality result for conformal prediction can be derived using standard Neyman-Pearson theory: for any joint distribution of the covariates and response $X,Y$, and any sample size, the optimal method for prediction sets---delivering the most efficient set among all methods with valid coverage for exchangeable distributions---is a conformal predictor whose score is the inverse conditional density of $Y|X$.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.05127",
+   "title": "Self-supervised Conformal Prediction for Uncertainty Quantification in Imaging Problems",
+   "published": "2025-02-07",
+   "categories": [
+    "cs.CV",
+    "stat.ME"
+   ],
+   "abstract": "Most image restoration problems are ill-conditioned or ill-posed and hence involve significant uncertainty. Quantifying this uncertainty is crucial for reliably interpreting experimental results, particularly when reconstructed images inform critical decisions and science. However, most existing image restoration methods either fail to quantify uncertainty or provide estimates that are highly inaccurate. Conformal prediction has recently emerged as a flexible framework to equip any estimator with uncertainty quantification capabilities that, by construction, have nearly exact marginal coverage. To achieve this, conformal prediction relies on abundant ground truth data for calibration. However, in image restoration problems, reliable ground truth data is often expensive or not possible to acquire. Also, reliance on ground truth data can introduce large biases in situations of distribution shift between calibration and deployment. This paper seeks to develop a more robust approach to conformal prediction for image restoration problems by proposing a self-supervised conformal prediction method that leverages Stein's Unbiased Risk Estimator (SURE) to self-calibrate itself directly from the observed noisy measurements, bypassing the need for ground truth. The method is suitable for any linear imaging inverse problem that is ill-conditioned, and it is especially powerful when used with modern self-supervised image restoration techniques that can also be trained directly from measurement data. The proposed approach is demonstrated through numerical experiments on image denoising and deblurring, where it delivers results that are remarkably accurate and comparable to those obtained by supervised conformal prediction with ground truth data.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2509.24095",
+   "title": "Singleton-Optimized Conformal Prediction",
+   "published": "2025-09-28",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction can be used to construct prediction sets that cover the true outcome with a desired probability, but can sometimes lead to large prediction sets that are costly in practice. The most useful outcome is a singleton prediction-an unambiguous decision-yet existing efficiency-oriented methods primarily optimize average set size. Motivated by this, we propose a new nonconformity score that aims to minimize the probability of producing non-singleton sets. Starting from a non-convex constrained optimization problem as a motivation, we provide a geometric reformulation and associated algorithm for computing the nonconformity score and associated split conformal prediction sets in O(K) time for K-class problems. Using this score in split conformal prediction leads to our proposed Singleton-Optimized Conformal Prediction (SOCOP) method. We evaluate our method in experiments on image classification and LLM multiple-choice question-answering, comparing with standard nonconformity scores such as the (negative) label probability estimates and their cumulative distribution function; both of which are motivated by optimizing length. The results show that SOCOP increases singleton frequency (sometimes by over 20%) compared to the above scores, with minimal impact on average set size.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2503.14106",
+   "title": "Reliable uncertainty quantification for 2D/3D anatomical landmark localization using multi-output conformal prediction",
+   "published": "2025-03-18",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Automatic anatomical landmark localization in medical imaging requires not just accurate predictions but reliable uncertainty quantification for effective clinical decision support. Current uncertainty quantification approaches often fall short, particularly when combined with normality assumptions, systematically underestimating total predictive uncertainty. This paper introduces conformal prediction as a framework for reliable uncertainty quantification in anatomical landmark localization, addressing a critical gap in automatic landmark localization. We present two novel approaches guaranteeing finite-sample validity for multi-output prediction: Multi-output Regression-as-Classification Conformal Prediction (M-R2CCP) and its variant Multi-output Regression to Classification Conformal Prediction set to Region (M-R2C2R). Unlike conventional methods that produce axis-aligned hyperrectangular or ellipsoidal regions, our approaches generate flexible, non-convex prediction regions that better capture the underlying uncertainty structure of landmark predictions. Through extensive empirical evaluation across multiple 2D and 3D datasets, we demonstrate that our methods consistently outperform existing multi-output conformal prediction approaches in both validity and efficiency. This work represents a significant advancement in reliable uncertainty estimation for anatomical landmark localization, providing clinicians with trustworthy confidence measures for their diagnoses. While developed for medical imaging, these methods show promise for broader applications in multi-output regression problems.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2611.25342",
+   "title": "Class-Conditional Conformal Triage for ICAO Face-Image Compliance under Class Imbalance",
+   "published": "2026-11-19",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Automated ICAO/ISO face-image compliance analysers provide criterion-level pass/fail decisions, yet these verdicts do not quantify uncertainty when deciding whether to accept, reject, or retake a photograph. We investigate conformal prediction as a triage layer for BioGaze, evaluating 14 compliance criteria on the synthetic TONO benchmark. Without retraining the analyser, we fit per-criterion logistic classifiers and compare marginal and label-conditional (Mondrian) conformal prediction with conventional abstention rules using subject-disjoint splits. Marginal conformal prediction achieved approximately 0.90 overall coverage but substantially under-covered violations, with a ten-partition mean of 0.37 for one criterion. The corresponding Mondrian means ranged from 0.89 to 0.92 across criteria. However, most of the reduction in criterion-level false positives came from the logistic layer (0.145 to 0.048), while tuned abstention rules achieved lower false-positive rates than Mondrian at comparable retake rates. Bonferroni correction for joint coverage across 14 criteria required retaking nearly all images. These findings show that class-conditional conformal prediction can achieve near-target empirical coverage for minority violation classes and reveal trade-offs between statistical coverage, classification performance, and retake requirements in multi-criterion face-image compliance assessment.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2605.24872",
+   "title": "Cluster Frequency Conformal Prediction for Local Coverage",
+   "published": "2026-05-24",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction provides distribution-free coverage guarantees, but in many-class classification it may still under-cover specific classes or subpopulations, preventing safe deployment in high-stakes applications. We propose Cluster Frequency Conformal Prediction (CFCP), a plug-in framework that adapts conformal prediction to local structure in a learned representation space. CFCP clusters learned embeddings, estimates cluster-level label-frequency distributions from calibration data, and for each test point constructs a sample-specific probability vector by softly mixing nearby cluster distributions regularized with global-prior and reliability-aware shrinkage. This vector is then conformalized using standard set constructors. In the disjoint-split regime, CFCP inherits standard finite-sample marginal validity. Under additional assumptions, CFCP further admits a local-validity interpretation. Since representation clusters aggregate locally similar samples, their empirical class frequencies provide a stable estimate of local label ambiguity. Across image and text benchmarks, CFCP achieves the best class coverage in 15/16 dataset/score-family comparisons and a competitive prediction set size efficiency, with several settings substantially more efficient. Overall, our results show that cluster-frequency information provides an effective localized signal for improving classwise reliability in many-class conformal prediction.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2507.14023",
+   "title": "Conformalized Regression for Continuous Bounded Outcomes",
+   "published": "2025-07-18",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "stat.ME"
+   ],
+   "abstract": "Regression problems with continuous bounded outcomes frequently arise in statistical and machine learning applications, such as the analysis of rates and proportions. A central challenge in this setting is predicting the response at a new covariate value. Most of the existing literature has focused either on point prediction or on interval prediction based on asymptotic approximations. We develop conformal prediction intervals for bounded outcomes within the framework of transformation regression models, encompassing widely used models such as beta regression and logit-normal regression. We construct non-conformity scores based on model-aligned residuals and identify a quantile-residual score that is particularly well suited to bounded outcomes, bridging normalized conformal prediction and distributional conformal prediction. This score accounts for both the heteroscedasticity inherent in such data and the asymmetry that emerges near the boundaries of the response space. We establish marginal validity and asymptotic conditional validity for both full and split conformal prediction, holding under model misspecification. A comprehensive simulation study confirms that both methods empirically attain valid finite-sample coverage, including cases under model misspecification. A real-data application demonstrates their practical performance against bootstrap-based alternatives.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.17655",
+   "title": "Aerial Image Classification in Scarce and Unconstrained Environments via Conformal Prediction",
+   "published": "2025-04-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "stat.ML"
+   ],
+   "abstract": "This paper presents a comprehensive empirical analysis of conformal prediction methods on a challenging aerial image dataset featuring diverse events in unconstrained environments. Conformal prediction is a powerful post-hoc technique that takes the output of any classifier and transforms it into a set of likely labels, providing a statistical guarantee on the coverage of the true label. Unlike evaluations on standard benchmarks, our study addresses the complexities of data-scarce and highly variable real-world settings. We investigate the effectiveness of leveraging pretrained models (MobileNet, DenseNet, and ResNet), fine-tuned with limited labeled data, to generate informative prediction sets. To further evaluate the impact of calibration, we consider two parallel pipelines (with and without temperature scaling) and assess performance using two key metrics: empirical coverage and average prediction set size. This setup allows us to systematically examine how calibration choices influence the trade-off between reliability and efficiency. Our findings demonstrate that even with relatively small labeled samples and simple nonconformity scores, conformal prediction can yield valuable uncertainty estimates for complex tasks. Moreover, our analysis reveals that while temperature scaling is often employed for calibration, it does not consistently lead to smaller prediction sets, underscoring the importance of careful consideration in its application. Furthermore, our results highlight the significant potential of model compression techniques within the conformal prediction pipeline for deployment in resource-constrained environments. Based on our observations, we advocate for future research to delve into the impact of noisy or ambiguous labels on conformal prediction performance and to explore effective model reduction strategies.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2605.01452",
+   "title": "Stable Localized Conformal Prediction via Transduction",
+   "published": "2026-05-02",
+   "categories": [
+    "stat.ME",
+    "cs.LG"
+   ],
+   "abstract": "Existing evaluations of conformal prediction, such as prediction efficiency and test-conditional coverage, are defined in expectation over the calibration data. In practice, when only one calibration set of limited size is available, prediction sets often exhibit high variability in size, especially for methods with localization. We formalize this concern as set stability, defined as the variance of the conditional expectation of the set size given the calibration data. To improve stability without requiring additional target-task labels, we propose Stable Conformal Prediction (StCP), a transfer learning approach that utilizes labeled source-task data and unlabeled target data. Theoretically, we characterize the marginal coverage and stability of StCP; empirically, it delivers more stable prediction sets than standard conformal prediction methods, especially for those with localization, when calibration data are limited.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2510.26930",
+   "title": "The Interplay between Bayesian Inference and Conformal Prediction",
+   "published": "2025-10-30",
+   "categories": [
+    "stat.ME",
+    "stat.CO"
+   ],
+   "abstract": "Conformal prediction has emerged as a cutting-edge methodology in statistics and machine learning, providing prediction intervals with finite-sample frequentist coverage guarantees. Yet, its interplay with Bayesian statistics, often criticised for lacking frequentist guarantees, remains underexplored. Recent work has suggested that conformal prediction can serve to \"calibrate\" Bayesian credible sets, thereby imparting frequentist validity and motivating deeper investigation into frequentist-Bayesian hybrids. We further argue that Bayesian procedures have the potential to enhance conformal prediction, not only in terms of more informative intervals, but also for achieving nearly optimal solutions under a decision-theoretic framework. Thus, the two paradigms can be jointly used for a principled balance between validity and efficiency. This work provides a basis for bridging this gap. After surveying existing ideas, we formalise the Bayesian conformal inference framework, covering challenging aspects such as statistical efficiency and computational complexity.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2509.18658",
+   "title": "Analyzing Uncertainty of LLM-as-a-Judge: Interval Evaluations with Conformal Prediction",
+   "published": "2025-09-23",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "LLM-as-a-judge has become a promising paradigm for using large language models (LLMs) to evaluate natural language generation (NLG), but the uncertainty of its evaluation remains underexplored. This lack of reliability may limit its deployment in many applications. This work presents the first framework to analyze the uncertainty by offering a prediction interval of LLM-based scoring via conformal prediction. Conformal prediction constructs continuous prediction intervals from a single evaluation run, and we design an ordinal boundary adjustment for discrete rating tasks. We also suggest a midpoint-based score within the interval as a low-bias alternative to raw model score and weighted average. We perform extensive experiments and analysis, which show that conformal prediction can provide valid prediction interval with coverage guarantees. We also explore the usefulness of interval midpoint and judge reprompting for better judgment.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2603.27699",
+   "title": "Calibrated Conformal Prediction Intervals for Microphysical Process Rates",
+   "published": "2026-03-29",
+   "categories": [
+    "physics.ao-ph"
+   ],
+   "abstract": "Conformal prediction can yield statistically valid prediction intervals for any regression model, with no model modifications and small computational costs. To assess its practical value, we apply conformal methods to quantify uncertainty in machine learning emulators of six microphysical process rates. Microphysical process rates describe small-scale processes in atmospheric clouds such as precipitation formation and aerosol-cloud interactions, and help understand weather and climate. The emulators are trained on simulation output from the ICOsahedral Nonhydrostatic (ICON) model in a limited-area numerical weather prediction configuration. We compare split conformal prediction for deterministic emulators with conformalized quantile regression for quantile regression emulators. Both conformal prediction methods yield well-calibrated and sharp prediction intervals on average, but conformalized quantile regression provides more consistent intervals across several orders of magnitude, making it preferable for the uncertainty quantification of climate variables.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2603.23923",
+   "title": "Elements of Conformal Prediction",
+   "published": "2026-03-25",
+   "categories": [
+    "stat.ME",
+    "stat.ML"
+   ],
+   "abstract": "Predictive inference is a fundamental task in statistics, traditionally addressed using parametric assumptions about the data distribution and detailed analyses of how models learn from data. In recent years, conformal prediction has emerged as an alternative framework that is well suited to modern applications involving high-dimensional data and complex machine learning models. Its appeal stems from being both distribution-free---relying mainly on symmetry assumptions such as exchangeability---and model-agnostic, treating the learning algorithm as a black box. Even under such limited assumptions, conformal prediction provides exact finite-sample guarantees, although these are typically marginal and require careful interpretation. This paper explains the core ideas of conformal prediction and reviews selected methods. Rather than offering an exhaustive survey, it aims to provide a clear conceptual entry point and a pedagogical overview of the field.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2606.08551",
+   "title": "Enhanced localized conformal prediction with imperfect auxiliary information",
+   "published": "2026-06-07",
+   "categories": [
+    "stat.ME"
+   ],
+   "abstract": "There is growing interest in constructing conformal prediction sets that provide approximate or asymptotic conditional coverage guarantees, capturing local data heterogeneity. However, methods like localized conformal prediction (LCP) may face challenges in ensuring reliable prediction sets in regions with sparse calibration data. This paper introduces Enhanced Localized Conformal Prediction (ELCP), a novel approach that incorporates auxiliary data to refine localized prediction sets while preserving finite-sample marginal coverage guarantees. By utilizing a density-ratio-weighted kernel estimator, ELCP seamlessly integrates auxiliary and calibration data, accommodating potential distributional shifts and improving the local reliability of prediction sets. Theoretical analysis confirms that ELCP maintains marginal coverage and enhances asymptotic test-conditional coverage. Simulation results demonstrate its superior local coverage and smaller prediction sets compared to standard LCP, highlighting its effectiveness in settings with limited calibration data but available auxiliary information from related tasks.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2604.17984",
+   "title": "Online Conformal Prediction with Adversarial Semi-bandit Feedback via Regret Minimization",
+   "published": "2026-04-20",
+   "categories": [
+    "cs.LG",
+    "stat.ML"
+   ],
+   "abstract": "Uncertainty quantification is crucial in safety-critical systems, where decisions must be made under uncertainty. In particular, we consider the problem of online uncertainty quantification, where data points arrive sequentially. Online conformal prediction is a principled online uncertainty quantification method that dynamically constructs a prediction set at each time step. While existing methods for online conformal prediction provide long-run coverage guarantees without any distributional assumptions, they typically assume a full feedback setting in which the true label is always observed. In this paper, we propose a novel learning method for online conformal prediction with partial feedback from an adaptive adversary-a more challenging setup where the true label is revealed only when it lies inside the constructed prediction set. Specifically, we formulate online conformal prediction as an adversarial bandit problem by treating each candidate prediction set as an arm. Building on an existing algorithm for adversarial bandits, our method achieves a long-run coverage guarantee by explicitly establishing its connection to the regret of the learner. Finally, we empirically demonstrate the effectiveness of our method in both independent and identically distributed (i.i.d.) and non-i.i.d. settings, showing that it successfully controls the miscoverage rate while maintaining a reasonable size of the prediction set.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2501.18363",
+   "title": "Exploring the Noise Robustness of Online Conformal Prediction",
+   "published": "2025-01-30",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction is an emerging technique for uncertainty quantification that constructs prediction sets guaranteed to contain the true label with a predefined probability. Recent work develops online conformal prediction methods that adaptively construct prediction sets to accommodate distribution shifts. However, existing algorithms typically assume perfect label accuracy which rarely holds in practice. In this work, we investigate the robustness of online conformal prediction under uniform label noise with a known noise rate, in both constant and dynamic learning rate schedules. We show that label noise causes a persistent gap between the actual mis-coverage rate and the desired rate $α$, leading to either overestimated or underestimated coverage guarantees. To address this issue, we propose Noise Robust Online Conformal Prediction (dubbed NR-OCP) by updating the threshold with a novel robust pinball loss, which provides an unbiased estimate of clean pinball loss without requiring ground-truth labels. Our theoretical analysis shows that NR-OCP eliminates the coverage gap in both constant and dynamic learning rate schedules, achieving a convergence rate of $\\mathcal{O}(T^{-1/2})$ for both empirical and expected coverage errors under uniform label noise. Extensive experiments demonstrate the effectiveness of our method by achieving both precise coverage and improved efficiency.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2508.11025",
+   "title": "Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks",
+   "published": "2025-08-14",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "eess.SY"
+   ],
+   "abstract": "Conformal prediction is a popular uncertainty quantification method that augments a base predictor to return sets of predictions with statistically valid coverage guarantees. However, current methods are often computationally expensive and data-intensive, as they require constructing an uncertainty model before calibration. Moreover, existing approaches typically represent the prediction sets with intervals, which limits their ability to capture dependencies in multi-dimensional outputs. We address these limitations by introducing zono-conformal prediction, a novel approach inspired by interval predictor models and reachset-conformant identification that constructs prediction zonotopes with assured coverage. By placing zonotopic uncertainty sets directly into the model of the base predictor, zono-conformal predictors can be identified via a single, data-efficient linear program. While we can apply zono-conformal prediction to arbitrary nonlinear base predictors, we focus on feed-forward neural networks in this work. Aside from regression tasks, we also construct optimal zono-conformal predictors in classification settings where the output of an uncertain predictor is a set of possible classes. We provide probabilistic coverage guarantees and present methods for detecting outliers in the identification data. In extensive numerical experiments, we show that zono-conformal predictors are less conservative than interval predictor models and standard conformal prediction methods, while achieving a similar coverage over the test data.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2505.08578",
+   "title": "Extreme Conformal Prediction: Reliable Intervals for High-Impact Events",
+   "published": "2025-05-13",
+   "categories": [
+    "stat.ME",
+    "stat.AP",
+    "stat.ML"
+   ],
+   "abstract": "Conformal prediction is a popular method to construct prediction intervals with marginal coverage guarantees from black-box machine learning models. In applications with potentially high-impact events, such as flooding or financial crises, regulators often require very high confidence for such intervals. However, if the desired level of confidence is too large relative to the amount of data used for calibration, then classical conformal methods provide infinitely wide, thus, uninformative prediction intervals. In this paper, we propose a new method to overcome this limitation. We bridge extreme value statistics and conformal prediction to provide reliable and informative prediction intervals with high-confidence coverage, which can be constructed using any black-box extreme quantile regression method. A weighted version of our approach can account for nonstationary data. The advantages of our extreme conformal prediction method are illustrated in a simulation study and in an application to flood risk forecasting.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2512.07770",
+   "title": "Distribution-informed Online Conformal Prediction",
+   "published": "2025-12-08",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Conformal prediction provides a pivotal and flexible technique for uncertainty quantification by constructing prediction sets with a predefined coverage rate. Many online conformal prediction methods have been developed to address data distribution shifts in fully adversarial environments, resulting in overly conservative prediction sets. We propose Conformal Optimistic Prediction (COP), an online conformal prediction algorithm incorporating underlying data pattern into the update rule. Through estimated cumulative distribution function of non-conformity scores, COP produces tighter prediction sets when predictable pattern exists, while retaining valid coverage guarantees even when estimates are inaccurate. We establish a joint bound on coverage and regret, which further confirms the validity of our approach. We also prove that COP achieves distribution-free, finite-sample coverage under arbitrary learning rates and can converge when scores are $i.i.d.$. The experimental results also show that COP can achieve valid coverage and construct shorter prediction intervals than other baselines.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2511.13533",
+   "title": "Minimax Multi-Target Conformal Prediction with Applications to Imaging Inverse Problems",
+   "published": "2025-11-17",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "In ill-posed imaging inverse problems, uncertainty quantification remains a fundamental challenge, especially in safety-critical applications. Recently, conformal prediction has been used to quantify the uncertainty that the inverse problem contributes to downstream tasks like image classification, image quality assessment, fat mass quantification, etc. While existing works handle only a scalar estimation target, practical applications often involve multiple targets. In response, we propose an asymptotically minimax approach to multi-target conformal prediction that provides tight prediction intervals while ensuring joint marginal coverage. We then outline how our minimax approach can be applied to multi-metric blind image quality assessment, multi-task uncertainty quantification, and multi-round measurement acquisition. Finally, we numerically demonstrate the benefits of our minimax method, relative to existing multi-target conformal prediction methods, using both synthetic and magnetic resonance imaging (MRI) data. Code is available at https://github.com/jwen307/multi_target_minimax.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2511.18225",
+   "title": "Adaptive Conformal Prediction for Quantum Machine Learning",
+   "published": "2025-11-23",
+   "categories": [
+    "cs.LG",
+    "stat.ML",
+    "stat.OT"
+   ],
+   "abstract": "Quantum machine learning seeks to leverage quantum computers to improve upon classical machine learning algorithms. Currently, robust uncertainty quantification methods remain underdeveloped in the quantum domain, despite the critical need for reliable and trustworthy predictions. Recent work has introduced quantum conformal prediction, a framework that produces prediction sets that are guaranteed to contain the true outcome with a user-specified probability. In this work, we formalise how the time-varying noise inherent in quantum processors can undermine conformal guarantees, even when calibration and test data are exchangeable. To address this challenge, we draw on Adaptive Conformal Inference, a method which maintains validity over time via repeated recalibration. We introduce Adaptive Quantum Conformal Prediction (AQCP), an algorithm which provides asymptotic average coverage guarantees under arbitrary hardware noise conditions. Empirical studies on an IBM quantum processor demonstrate that AQCP achieves the target coverage level and exhibits greater stability than quantum conformal prediction.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2506.20898",
+   "title": "Multi-model Online Conformal Prediction with Graph-Structured Feedback",
+   "published": "2025-06-26",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Online conformal prediction has demonstrated its capability to construct a prediction set for each incoming data point that covers the true label with a predetermined probability. To cope with potential distribution shift, multi-model online conformal prediction has been introduced to select and leverage different models from a preselected candidate set. Along with the improved flexibility, the choice of the preselected set also brings challenges. A candidate set that includes a large number of models may increase the computational complexity. In addition, the inclusion of irrelevant models with poor performance may negatively impact the performance and lead to unnecessarily large prediction sets. To address these challenges, we propose a novel multi-model online conformal prediction algorithm that identifies a subset of effective models at each time step by collecting feedback from a bipartite graph, which is refined upon receiving new data. A model is then selected from this subset to construct the prediction set, resulting in reduced computational complexity and smaller prediction sets. Additionally, we demonstrate that using prediction set size as feedback, alongside model loss, can significantly improve efficiency by constructing smaller prediction sets while still satisfying the required coverage guarantee. The proposed algorithms are proven to ensure valid coverage and achieve sublinear regret. Experiments on real and synthetic datasets validate that the proposed methods construct smaller prediction sets and outperform existing multi-model online conformal prediction approaches.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2606.00717",
+   "title": "Multi-Agent Conformal Prediction with Personalized Statistical Validity",
+   "published": "2026-05-30",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "stat.ML"
+   ],
+   "abstract": "Uncertainty quantification is essential in high-stakes machine learning tasks. However, one of the principled solutions, conformal prediction, faces challenges under limited local calibration data, privacy constraints, and data heterogeneity. In multi-agent settings, existing works do not simultaneously and satisfactorily address these challenges with guarantees either limited to averages across agents or losing validity in heterogeneous settings. Hence, we propose personalized federated weighted conformal prediction (PFWCP), a framework that combines local density ratio weighting with weighted quantile aggregation to correct for heterogeneity while preserving privacy. The method yields asymptotically valid marginal and calibration-conditional coverage guarantees for each participating agent and supports protocols with one-shot communication. Theoretical analysis presents an adjustment to the coverage variance, governed by an effective sample size expression, which is necessary in the context of weighted conformal prediction, and experiments on synthetic and real datasets show improved calibration quality over state-of-the-art federated conformal baselines.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2502.14105",
+   "title": "Conformal Prediction under Levy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+   "published": "2025-02-19",
+   "categories": [
+    "stat.ML",
+    "cs.LG",
+    "math.ST",
+    "stat.ME"
+   ],
+   "abstract": "Conformal prediction provides a powerful framework for constructing prediction intervals with finite-sample guarantees, yet its robustness under distribution shifts remains a significant challenge. This paper addresses this limitation by modeling distribution shifts using Levy-Prokhorov (LP) ambiguity sets, which capture both local and global perturbations. We provide a self-contained overview of LP ambiguity sets and their connections to popular metrics such as Wasserstein and Total Variation. We show that the link between conformal prediction and LP ambiguity sets is a natural one: by propagating the LP ambiguity set through the scoring function, we reduce complex high-dimensional distribution shifts to manageable one-dimensional distribution shifts, enabling exact quantification of worst-case quantiles and coverage. Building on this analysis, we construct robust conformal prediction intervals that remain valid under distribution shifts, explicitly linking LP parameters to interval width and confidence levels. Experimental results on real-world datasets demonstrate the effectiveness of the proposed approach.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.15722",
+   "title": "From predictions to confidence intervals: an empirical study of conformal prediction methods for in-context learning",
+   "published": "2025-04-22",
+   "categories": [
+    "stat.ML",
+    "cs.LG"
+   ],
+   "abstract": "Transformers have become a standard architecture in machine learning, demonstrating strong in-context learning (ICL) abilities that allow them to learn from the prompt at inference time. However, uncertainty quantification for ICL remains an open challenge, particularly in noisy regression tasks. This paper investigates whether ICL can be leveraged for distribution-free uncertainty estimation, proposing a method based on conformal prediction to construct prediction intervals with guaranteed coverage. While traditional conformal methods are computationally expensive due to repeated model fitting, we exploit ICL to efficiently generate confidence intervals in a single forward pass. Our empirical analysis compares this approach against ridge regression-based conformal methods, showing that conformal prediction with in-context learning (CP with ICL) achieves robust and scalable uncertainty estimates. Additionally, we evaluate its performance under distribution shifts and establish scaling laws to guide model training. These findings bridge ICL and conformal prediction, providing a theoretically grounded and new framework for uncertainty quantification in transformer-based models.",
+   "query": "conformal prediction"
+  },
+  {
+   "id": "2504.08596",
+   "title": "MedHal: a Synthetic Dataset for Medical Hallucination Detection",
+   "published": "2025-04-11",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Hallucination, the generation of non factual content by AI systems, poses serious risks in medical contexts, where errors can directly affect patient outcomes. We present MedHal, a large-scale dataset specifically designed to assess capabilities and train models on the task of hallucination detection in medical texts. Current hallucination detection methods face significant limitations when applied to specialized domains like medicine, where they can have disastrous consequences. MedHal addresses this issue by incorporating diverse medical text sources and tasks covering both intrinsic and extrinsic hallucinations, and by providing a substantial volume of data samples suitable for training medical hallucination detection models. We demonstrate MedHal's utility by training and evaluating a baseline medical hallucination detection model, showing improvements over general-purpose hallucination detection approaches. This resource enables more efficient evaluation and training of medical text generation systems while reducing reliance on costly expert review, potentially accelerating the development of medical AI research.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2602.07253",
+   "title": "From Out-of-Distribution Detection to Hallucination Detection: A Geometric View",
+   "published": "2026-02-06",
+   "categories": [
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Detecting hallucinations in large language models is a critical open problem with significant implications for safety and reliability. While existing hallucination detection methods achieve strong performance in question-answering tasks, they remain less effective on tasks requiring reasoning. In this work, we revisit hallucination detection through the lens of out-of-distribution (OOD) detection, a well-studied problem in areas like computer vision. Treating next-token prediction in language models as a classification task allows us to apply OOD techniques, provided appropriate modifications are made to account for the structural differences in large language models. We show that OOD-based approaches yield training-free, single-sample-based detectors, achieving strong accuracy in hallucination detection for reasoning tasks. Overall, our work suggests that reframing hallucination detection as OOD detection provides a promising and scalable pathway toward language model safety.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2504.17004",
+   "title": "(Im)possibility of Automated Hallucination Detection in Large Language Models",
+   "published": "2025-04-23",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL",
+    "stat.ML"
+   ],
+   "abstract": "Is automated hallucination detection possible? In this work, we introduce a theoretical framework to analyze the feasibility of automatically detecting hallucinations produced by large language models (LLMs). Inspired by the classical Gold-Angluin framework for language identification and its recent adaptation to language generation by Kleinberg and Mullainathan, we investigate whether an algorithm, trained on examples drawn from an unknown target language $K$ (selected from a countable collection) and given access to an LLM, can reliably determine whether the LLM's outputs are correct or constitute hallucinations. First, we establish an equivalence between hallucination detection and the classical task of language identification. We prove that any hallucination detection method can be converted into a language identification method, and conversely, algorithms solving language identification can be adapted for hallucination detection. Given the inherent difficulty of language identification, this implies that hallucination detection is fundamentally impossible for most language collections if the detector is trained using only correct examples from the target language. Second, we show that the use of expert-labeled feedback, i.e., training the detector with both positive examples (correct statements) and negative examples (explicitly labeled incorrect statements), dramatically changes this conclusion. Under this enriched training regime, automated hallucination detection becomes possible for all countable language collections. These results highlight the essential role of expert-labeled examples in training hallucination detectors and provide theoretical support for feedback-based methods, such as reinforcement learning with human feedback (RLHF), which have proven critical for reliable LLM deployment.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2509.15339",
+   "title": "Quantifying Genuine Awareness in Hallucination Prediction Beyond Question-Side Shortcuts",
+   "published": "2025-09-18",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Many works have proposed methodologies for language model (LM) hallucination detection and reported seemingly strong performance. However, we argue that the reported performance to date reflects not only a model's genuine awareness of its internal information, but also awareness derived purely from question-side information (e.g., benchmark hacking). While benchmark hacking can be effective for boosting hallucination detection score on existing benchmarks, it does not generalize to out-of-domain settings and practical usage. Nevertheless, disentangling how much of a model's hallucination detection performance arises from question-side awareness is non-trivial. To address this, we propose a methodology for measuring this effect without requiring human labor, Approximate Question-side Effect (AQE). Our analysis using AQE reveals that existing hallucination detection methods rely heavily on benchmark hacking.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2502.08109",
+   "title": "HuDEx: Integrating Hallucination Detection and Explainability for Enhancing the Reliability of LLM responses",
+   "published": "2025-02-12",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in large language models (LLMs) have shown promising improvements, often surpassing existing methods across a wide range of downstream tasks in natural language processing. However, these models still face challenges, which may hinder their practical applicability. For example, the phenomenon of hallucination is known to compromise the reliability of LLMs, especially in fields that demand high factual precision. Current benchmarks primarily focus on hallucination detection and factuality evaluation but do not extend beyond identification. This paper proposes an explanation enhanced hallucination-detection model, coined as HuDEx, aimed at enhancing the reliability of LLM-generated responses by both detecting hallucinations and providing detailed explanations. The proposed model provides a novel approach to integrate detection with explanations, and enable both users and the LLM itself to understand and reduce errors. Our measurement results demonstrate that the proposed model surpasses larger LLMs, such as Llama3 70B and GPT-4, in hallucination detection accuracy, while maintaining reliable explanations. Furthermore, the proposed model performs well in both zero-shot and other test environments, showcasing its adaptability across diverse benchmark datasets. The proposed approach further enhances the hallucination detection research by introducing a novel approach to integrating interpretability with hallucination detection, which further enhances the performance and reliability of evaluating hallucinations in language models.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2610.27370",
+   "title": "SHAM-Bench: A Span-level Hallucination Benchmark Across Multiple Tasks",
+   "published": "2026-10-19",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Span-level hallucination detection pinpoints unsupported content in LLM outputs, enabling actionable feedback and targeted mitigation. Existing evaluations for span-level hallucination detection methods are fragmented across tasks, annotation formats, and metrics, and most span-level datasets cover only a single NLG domain, making it difficult to assess whether a detection method actually generalizes across tasks and domains. In this paper, we introduce SHAM-Bench (Span-level Hallucination Benchmark Across Multiple Tasks), a unified benchmark for span-level hallucination detection spanning six NLG tasks, aggregated from existing human-annotated datasets totaling 6,461 examples under a common schema and evaluation protocol. Using SHAM-Bench, we evaluate existing hallucination detection methods and find that fine-tuned detectors often perform well in-domain but degrade under distribution shift, whereas prompt-based methods with reasoning are more robust across tasks. Our analysis further shows that subtle unsupported content remains difficult to detect and span-level evaluation is still challenged by ambiguous span boundaries and noisy labels. We release the dataset, evaluation code, and a public leaderboard to support future research on broadly generalizable hallucination detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2510.19318",
+   "title": "HAD: HAllucination Detection Language Models Based on a Comprehensive Hallucination Taxonomy",
+   "published": "2025-10-22",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "The increasing reliance on natural language generation (NLG) models, particularly large language models, has raised concerns about the reliability and accuracy of their outputs. A key challenge is hallucination, where models produce plausible but incorrect information. As a result, hallucination detection has become a critical task. In this work, we introduce a comprehensive hallucination taxonomy with 11 categories across various NLG tasks and propose the HAllucination Detection (HAD) models https://github.com/pku0xff/HAD, which integrate hallucination detection, span-level identification, and correction into a single inference process. Trained on an elaborate synthetic dataset of about 90K samples, our HAD models are versatile and can be applied to various NLG tasks. We also carefully annotate a test set for hallucination detection, called HADTest, which contains 2,248 samples. Evaluations on in-domain and out-of-domain test sets show that our HAD models generally outperform the existing baselines, achieving state-of-the-art results on HaluEval, FactCHD, and FaithBench, confirming their robustness and versatility.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2502.13490",
+   "title": "What are Models Thinking about? Understanding Large Language Model Hallucinations \"Psychology\" through Model Inner State Analysis",
+   "published": "2025-02-19",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large language model (LLM) systems suffer from the models' unstable ability to generate valid and factual content, resulting in hallucination generation. Current hallucination detection methods heavily rely on out-of-model information sources, such as RAG to assist the detection, thus bringing heavy additional latency. Recently, internal states of LLMs' inference have been widely used in numerous research works, such as prompt injection detection, etc. Considering the interpretability of LLM internal states and the fact that they do not require external information sources, we introduce such states into LLM hallucination detection. In this paper, we systematically analyze different internal states' revealing features during inference forward and comprehensively evaluate their ability in hallucination detection. Specifically, we cut the forward process of a large language model into three stages: understanding, query, generation, and extracting the internal state from these stages. By analyzing these states, we provide a deep understanding of why the hallucinated content is generated and what happened in the internal state of the models. Then, we introduce these internal states into hallucination detection and conduct comprehensive experiments to discuss the advantages and limitations.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2510.01274",
+   "title": "TraceDet: Hallucination Detection from the Decoding Trace of Diffusion Large Language Models",
+   "published": "2025-09-30",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Diffusion large language models (D-LLMs) have recently emerged as a promising alternative to auto-regressive LLMs (AR-LLMs). However, the hallucination problem in D-LLMs remains underexplored, limiting their reliability in real-world applications. Existing hallucination detection methods are designed for AR-LLMs and rely on signals from single-step generation, making them ill-suited for D-LLMs where hallucination signals often emerge throughout the multi-step denoising process. To bridge this gap, we propose TraceDet, a novel framework that explicitly leverages the intermediate denoising steps of D-LLMs for hallucination detection. TraceDet models the denoising process as an action trace, with each action defined as the model's prediction over the cleaned response, conditioned on the previous intermediate output. By identifying the sub-trace that is maximally informative to the hallucinated responses, TraceDet leverages the key hallucination signals in the multi-step denoising process of D-LLMs for hallucination detection. Extensive experiments on various open source D-LLMs demonstrate that TraceDet consistently improves hallucination detection, achieving an average gain in AUROC of 15.2% compared to baselines.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2606.06959",
+   "title": "OpenHalDet: A Unified Benchmark for Hallucination Detection across Diverse Generation Scenarios",
+   "published": "2026-06-05",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Hallucination detection is essential for the reliable deployment of large language models (LLMs). However, existing evaluations face two core challenges: inconsistent inference configuration and evaluation, and limited coverage of downstream domains and tasks. Consequently, reported detector performance is often difficult to compare, reproduce, and generalize beyond specific experimental settings. We introduce OpenHalDet, a unified benchmark for hallucination detection across diverse generation scenarios. OpenHalDet standardizes the evaluation pipeline, from prompt construction and response generation to truthfulness annotation, detector scoring, and metric computation. It supports heterogeneous detector families under different access settings, including black-box methods that use only generated outputs, gray-box methods that rely on probability-based signals, and white-box methods that exploit internal model signals. By bringing diverse tasks, models, and detectors into a shared framework, OpenHalDet enables controlled comparison and provides a systematic view of how different detection paradigms behave in LLM applications. We release OpenHalDet as an open and extensible codebase to facilitate reproducible evaluation and future development of hallucination detection methods. The code and datasets are available at https://github.com/Nellie179/Hallucination-Detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2510.15977",
+   "title": "Bolster Hallucination Detection via Prompt-Guided Data Augmentation",
+   "published": "2025-10-13",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large language models (LLMs) have garnered significant interest in AI community. Despite their impressive generation capabilities, they have been found to produce misleading or fabricated information, a phenomenon known as hallucinations. Consequently, hallucination detection has become critical to ensure the reliability of LLM-generated content. One primary challenge in hallucination detection is the scarcity of well-labeled datasets containing both truthful and hallucinated outputs. To address this issue, we introduce Prompt-guided data Augmented haLlucination dEtection (PALE), a novel framework that leverages prompt-guided responses from LLMs as data augmentation for hallucination detection. This strategy can generate both truthful and hallucinated data under prompt guidance at a relatively low cost. To more effectively evaluate the truthfulness of the sparse intermediate embeddings produced by LLMs, we introduce an estimation metric called the Contrastive Mahalanobis Score (CM Score). This score is based on modeling the distributions of truthful and hallucinated data in the activation space. CM Score employs a matrix decomposition approach to more accurately capture the underlying structure of these distributions. Importantly, our framework does not require additional human annotations, offering strong generalizability and practicality for real-world applications. Extensive experiments demonstrate that PALE achieves superior hallucination detection performance, outperforming the competitive baseline by a significant margin of 6.55%.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2509.11536",
+   "title": "HARP: Hallucination Detection via Reasoning Subspace Projection",
+   "published": "2025-09-15",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Hallucinations in Large Language Models (LLMs) pose a major barrier to their reliable use in critical decision-making. Although existing hallucination detection methods have improved accuracy, they still struggle with disentangling semantic and reasoning information and maintaining robustness. To address these challenges, we propose HARP (Hallucination detection via reasoning subspace projection), a novel hallucination detection framework. HARP establishes that the hidden state space of LLMs can be decomposed into a direct sum of a semantic subspace and a reasoning subspace, where the former encodes linguistic expression and the latter captures internal reasoning processes. Moreover, we demonstrate that the Unembedding layer can disentangle these subspaces, and by applying Singular Value Decomposition (SVD) to its parameters, the basis vectors spanning the semantic and reasoning subspaces are obtained. Finally, HARP projects hidden states onto the basis vectors of the reasoning subspace, and the resulting projections are then used as input features for hallucination detection in LLMs. By using these projections, HARP reduces the dimension of the feature to approximately 5% of the original, filters out most noise, and achieves enhanced robustness. Experiments across multiple datasets show that HARP achieves state-of-the-art hallucination detection performance; in particular, it achieves an AUROC of 92.8% on TriviaQA, outperforming the previous best method by 7.5%.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2601.19245",
+   "title": "Beyond In-Domain Detection: SpikeScore for Cross-Domain Hallucination Detection",
+   "published": "2026-01-27",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Hallucination detection is critical for deploying large language models (LLMs) in real-world applications. Existing hallucination detection methods achieve strong performance when the training and test data come from the same domain, but they suffer from poor cross-domain generalization. In this paper, we study an important yet overlooked problem, termed generalizable hallucination detection (GHD), which aims to train hallucination detectors on data from a single domain while ensuring robust performance across diverse related domains. In studying GHD, we simulate multi-turn dialogues following LLMs' initial response and observe an interesting phenomenon: hallucination-initiated multi-turn dialogues universally exhibit larger uncertainty fluctuations than factual ones across different domains. Based on the phenomenon, we propose a new score SpikeScore, which quantifies abrupt fluctuations in multi-turn dialogues. Through both theoretical analysis and empirical validation, we demonstrate that SpikeScore achieves strong cross-domain separability between hallucinated and non-hallucinated responses. Experiments across multiple LLMs and benchmarks demonstrate that the SpikeScore-based detection method outperforms representative baselines in cross-domain generalization and surpasses advanced generalization-oriented methods, verifying the effectiveness of our method in cross-domain hallucination detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2508.19972",
+   "title": "GLSim: Detecting Object Hallucinations in LVLMs via Global-Local Similarity",
+   "published": "2025-08-27",
+   "categories": [
+    "cs.CV",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Object hallucination in large vision-language models presents a significant challenge to their safe deployment in real-world applications. Recent works have proposed object-level hallucination scores to estimate the likelihood of object hallucination; however, these methods typically adopt either a global or local perspective in isolation, which may limit detection reliability. In this paper, we introduce GLSim, a novel training-free object hallucination detection framework that leverages complementary global and local embedding similarity signals between image and text modalities, enabling more accurate and reliable hallucination detection in diverse scenarios. We comprehensively benchmark existing object hallucination detection methods and demonstrate that GLSim achieves superior detection performance, outperforming competitive baselines by a significant margin.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2502.17598",
+   "title": "Hallucination Detection in LLMs Using Spectral Features of Attention Maps",
+   "published": "2025-02-24",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) have demonstrated remarkable performance across various tasks but remain prone to hallucinations. Detecting hallucinations is essential for safety-critical applications, and recent methods leverage attention map properties to this end, though their effectiveness remains limited. In this work, we investigate the spectral features of attention maps by interpreting them as adjacency matrices of graph structures. We propose the $\\text{LapEigvals}$ method, which utilises the top-$k$ eigenvalues of the Laplacian matrix derived from the attention maps as an input to hallucination detection probes. Empirical evaluations demonstrate that our approach achieves state-of-the-art hallucination detection performance among attention-based methods. Extensive ablation studies further highlight the robustness and generalisation of $\\text{LapEigvals}$, paving the way for future advancements in the hallucination detection domain.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2609.05025",
+   "title": "Leveraging Low-Level Symbolic Competences for Unsupervised Grounding in Hallucination Detection",
+   "published": "2026-09-04",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.IR"
+   ],
+   "abstract": "Hallucination-where a language model generates outputs that are factually incorrect or unsupported by the source-is a major challenge for both prompted and fine-tuned language models. Detecting hallucinations is difficult due to the opaque reasoning processes of LLMs, which often provide little insight into why a model's output may be inaccurate. In this work, we investigate whether an LLM can use an alternative, low level, symbolic competence such as SQL for unsupervised hallucination detection in some high level task. For this, we make an LLM build an SQL database from reference documents. This SQL database is then used for reasoning over the reference and the sampled response in a hallucination detection pipeline that is grounded in the database, thereby providing a neurosymbolic checkup. On RAGTruth and DiaHalu hallucination detection datasets, we find that our approach improves on direct prediction and competes with state-of-the-art hallucination detection methods, while not requiring domain-specific fine-tuning. Instead it relies on a low-level general competence already present in LLMs. This warrants further investigation of low-level LLM competences in neurosymbolic approaches.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2509.19372",
+   "title": "Representation-based Broad Hallucination Detectors Fail to Generalize Out of Distribution",
+   "published": "2025-09-19",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "We critically assess the efficacy of the current SOTA in hallucination detection and find that its performance on the RAGTruth dataset is largely driven by a spurious correlation with data. Controlling for this effect, state-of-the-art performs no better than supervised linear probes, while requiring extensive hyperparameter tuning across datasets. Out-of-distribution generalization is currently out of reach, with all of the analyzed methods performing close to random. We propose a set of guidelines for hallucination detection and its evaluation.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2605.26366",
+   "title": "Automatic Layer Selection for Hallucination Detection",
+   "published": "2026-05-25",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Recent studies on hallucination detection have shown that hallucination-related signals are more strongly encoded in intermediate layers than in the final layer of large language models (LLMs). Although a growing body of work has sought to exploit this property for hallucination detection, how to automate the selection of high-performing layers remains underexplored, and principled methods for this purpose are still lacking. To address this gap, we first propose several hypotheses for why such signals emerge in intermediate layers and evaluate corresponding criteria for automatic layer selection across diverse LLM architectures, scales, and tasks, covering both question answering and summarization hallucination detection benchmarks. However, we find that none of these criteria consistently delivers satisfactory performance. We therefore propose a new selection criterion, First Effective Peak of Intrinsic Dimension (FEPoID), which consistently identify optimal or near-optimal layers and outperforms both the aforementioned criteria and existing hallucination detection baselines. FEPoID is training-free and incurs negligible computational overhead. In addition, we study the generation behaviors of LLMs and introduce a simple yet effective truncation strategy, which further amplifies hallucination-related signals and substantially improves overall detection performance. Code is publicly available at https://github.com/DesoloYw/Automatic-Layer-Selection-for-Hallucination-Detection.git",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2501.02020",
+   "title": "Enhancing Uncertainty Modeling with Semantic Graph for Hallucination Detection",
+   "published": "2025-01-02",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) are prone to hallucination with non-factual or unfaithful statements, which undermines the applications in real-world scenarios. Recent researches focus on uncertainty-based hallucination detection, which utilizes the output probability of LLMs for uncertainty calculation and does not rely on external knowledge or frequent sampling from LLMs. Whereas, most approaches merely consider the uncertainty of each independent token, while the intricate semantic relations among tokens and sentences are not well studied, which limits the detection of hallucination that spans over multiple tokens and sentences in the passage. In this paper, we propose a method to enhance uncertainty modeling with semantic graph for hallucination detection. Specifically, we first construct a semantic graph that well captures the relations among entity tokens and sentences. Then, we incorporate the relations between two entities for uncertainty propagation to enhance sentence-level hallucination detection. Given that hallucination occurs due to the conflict between sentences, we further present a graph-based uncertainty calibration method that integrates the contradiction probability of the sentence with its neighbors in the semantic graph for uncertainty calculation. Extensive experiments on two datasets show the great advantages of our proposed approach. In particular, we obtain substantial improvements with 19.78% in passage-level hallucination detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2504.07863",
+   "title": "Robust Hallucination Detection in LLMs via Adaptive Token Selection",
+   "published": "2025-04-10",
+   "categories": [
+    "cs.LG"
+   ],
+   "abstract": "Hallucinations in large language models (LLMs) pose significant safety concerns that impede their broader deployment. Recent research in hallucination detection has demonstrated that LLMs' internal representations contain truthfulness hints, which can be harnessed for detector training. However, the performance of these detectors is heavily dependent on the internal representations of predetermined tokens, fluctuating considerably when working on free-form generations with varying lengths and sparse distributions of hallucinated entities. To address this, we propose HaMI, a novel approach that enables robust detection of hallucinations through adaptive selection and learning of critical tokens that are most indicative of hallucinations. We achieve this robustness by an innovative formulation of the Hallucination detection task as Multiple Instance (HaMI) learning over token-level representations within a sequence, thereby facilitating a joint optimisation of token selection and hallucination detection on generation sequences of diverse forms. Comprehensive experimental results on four hallucination benchmarks show that HaMI significantly outperforms existing state-of-the-art approaches.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2604.16430",
+   "title": "HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders",
+   "published": "2026-04-06",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) are powerful and widely adopted, but their practical impact is limited by the well-known hallucination phenomenon. While recent hallucination detection methods have made notable progress, we find most of them overlook the dynamic nature and underlying mechanisms of it. To address this gap, we propose HalluSAE, a phase transition-inspired framework that models hallucination as a critical shift in the model's latent dynamics. By modeling the generation process as a trajectory through a potential energy landscape, HalluSAE identifies critical transition zones and attributes factual errors to specific high-energy sparse features. Our approach consists of three stages: (1) Potential Energy Empowered Phase Zone Localization via sparse autoencoders and a geometric potential energy metric; (2) Hallucination-related Sparse Feature Attribution using contrastive logit attribution; and (3) Probing-based Causal Hallucination Detection through linear probes on disentangled features. Extensive experiments on Gemma-2-9B demonstrate that HalluSAE achieves state-of-the-art hallucination detection performance.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2506.09886",
+   "title": "Probabilistic distances-based hallucination detection in LLMs with RAG",
+   "published": "2025-06-11",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Detecting hallucinations in large language models (LLMs) is critical for their safety in many applications. Without proper detection, these systems often provide harmful, unreliable answers. In recent years, LLMs have been actively used in retrieval-augmented generation (RAG) settings. However, hallucinations remain even in this setting, and while numerous hallucination detection methods have been proposed, most approaches are not specifically designed for RAG systems. To overcome this limitation, we introduce a hallucination detection method based on estimating the distances between the distributions of prompt token embeddings and language model response token embeddings. The method examines the geometric structure of token hidden states to reliably extract a signal of factuality in text, while remaining friendly to long sequences. Extensive experiments demonstrate that our method achieves state-of-the-art or competitive performance. It also has transferability from solving the NLI task to the hallucination detection task, making it a fully unsupervised and efficient method with a competitive performance on the final task.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2602.08048",
+   "title": "TDGNet: Hallucination Detection in Diffusion Language Models via Temporal Dynamic Graphs",
+   "published": "2026-02-08",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Diffusion language models (D-LLMs) offer parallel denoising and bidirectional context, but hallucination detection for D-LLMs remains underexplored. Prior detectors developed for auto-regressive LLMs typically rely on single-pass cues and do not directly transfer to diffusion generation, where factuality evidence is distributed across the denoising trajectory and may appear, drift, or be self-corrected over time. We introduce TDGNet, a temporal dynamic graph framework that formulates hallucination detection as learning over evolving token-level attention graphs. At each denoising step, we sparsify the attention graph and update per-token memories via message passing, then apply temporal attention to aggregate trajectory-wide evidence for final prediction. Experiments on LLaDA-8B and Dream-7B across QA benchmarks show consistent AUROC improvements over output-based, latent-based, and static-graph baselines, with single-pass inference and modest overhead. These results highlight the importance of temporal reasoning on attention graphs for robust hallucination detection in diffusion language models.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2504.19254",
+   "title": "Uncertainty Quantification for Language Models: A Suite of Black-Box, White-Box, LLM Judge, and Ensemble Scorers",
+   "published": "2025-04-27",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Hallucinations are a persistent problem with Large Language Models (LLMs). As these models become increasingly used in high-stakes domains, such as healthcare and finance, the need for effective hallucination detection is crucial. To this end, we outline a versatile framework for closed-book hallucination detection that practitioners can apply to real-world use cases. To achieve this, we adapt a variety of existing uncertainty quantification (UQ) techniques, including black-box UQ, white-box UQ, and LLM-as-a-Judge, transforming them as necessary into standardized response-level confidence scores ranging from 0 to 1. To enhance flexibility, we propose a tunable ensemble approach that incorporates any combination of the individual confidence scores. This approach enables practitioners to optimize the ensemble for a specific use case for improved performance. To streamline implementation, the full suite of scorers is offered in this paper's companion Python toolkit, UQLM. To evaluate the performance of the various scorers, we conduct an extensive set of experiments using several LLM question-answering benchmarks. We find that our tunable ensemble typically surpasses its individual components and outperforms existing hallucination detection methods. Our results demonstrate the benefits of customized hallucination detection strategies for improving the accuracy and reliability of LLMs.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2503.02442",
+   "title": "AILS-NTUA at SemEval-2025 Task 3: Leveraging Large Language Models and Translation Strategies for Multilingual Hallucination Detection",
+   "published": "2025-03-04",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Multilingual hallucination detection stands as an underexplored challenge, which the Mu-SHROOM shared task seeks to address. In this work, we propose an efficient, training-free LLM prompting strategy that enhances detection by translating multilingual text spans into English. Our approach achieves competitive rankings across multiple languages, securing two first positions in low-resource languages. The consistency of our results highlights the effectiveness of our translation strategy for hallucination detection, demonstrating its applicability regardless of the source language.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2509.21999",
+   "title": "Black-Box Hallucination Detection via Consistency Under the Uncertain Expression",
+   "published": "2025-09-26",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Despite the great advancement of Language modeling in recent days, Large Language Models (LLMs) such as GPT3 are notorious for generating non-factual responses, so-called \"hallucination\" problems. Existing methods for detecting and alleviating this hallucination problem require external resources or the internal state of LLMs, such as the output probability of each token. Given the LLM's restricted external API availability and the limited scope of external resources, there is an urgent demand to establish the Black-Box approach as the cornerstone for effective hallucination detection. In this work, we propose a simple black-box hallucination detection metric after the investigation of the behavior of LLMs under expression of uncertainty. Our comprehensive analysis reveals that LLMs generate consistent responses when they present factual responses while non-consistent responses vice versa. Based on the analysis, we propose an efficient black-box hallucination detection metric with the expression of uncertainty. The experiment demonstrates that our metric is more predictive of the factuality in model responses than baselines that use internal knowledge of LLMs.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2602.11166",
+   "title": "Small Updates, Big Doubts: Does Parameter-Efficient Fine-tuning Enhance Hallucination Detection ?",
+   "published": "2026-01-17",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Parameter-efficient fine-tuning (PEFT) methods are widely used to adapt large language models (LLMs) to downstream tasks and are often assumed to improve factual correctness. However, how the parameter-efficient fine-tuning methods affect hallucination behavior remains insufficiently understood, especially on QA datasets. In this work, we systematically investigate the impact of PEFT on hallucination detection through a comprehensive empirical study across three open-weight LLM backbones and three fact-seeking QA benchmarks. For each model, we evaluate performance using seven unsupervised hallucination detection methods spanning three complementary approaches: semantic consistency based detectors, confidence based detectors, and entropy based detectors. This multifaceted evaluation enables us to characterize how PEFT reshapes uncertainty across different detection paradigms. In conclusion, our experimental results show that PEFT consistently strengthens hallucination detection ability, substantially improving AUROC across a wide range of hallucination detectors. Besides, further analyses using linear probes and representation diagnostics indicate that PEFT methods primarily reshapes how uncertainty is encoded and surfaced, comparing with injecting new factual knowledge into the models.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2607.22098",
+   "title": "Reasoning Denoiser: Denoising Reasoning Traces for Hallucination Detection in Large Reasoning Models",
+   "published": "2026-07-24",
+   "categories": [
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Large reasoning models (LRMs) generate long reasoning traces before producing final answers. While these traces may contain useful signals for hallucination detection, harnessing them is non-trivial because long trajectories often include noisy steps that obscure the cues relevant to truthfulness assessment. In this paper, we identify two prevalent forms of reasoning noises, i.e., irrelevant steps and repetitive steps, and show that both substantially degrade hallucination detection performance. Existing confidence-based scores and naive embedding-based filtering fail to reliably separate noisy from informative steps. To address this challenge, we propose REDE, a novel learning framework for denoising reasoning traces for hallucination detection. Specifically, REDE leverages final-answer attention as an automatic supervision signal to shape the step-level representation space, yielding refined embeddings in which noisy steps can be reliably identified and filtered. REDE can be readily plugged into diverse hallucination detectors by operating on the filtered reasoning trajectory after removing noisy steps. Extensive experiments on multiple reasoning benchmarks show that REDE consistently improves detection performance over competitive baselines.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2609.38355",
+   "title": "Halluscoring 2026: The first shared task on llms hallucination detection and answer verification",
+   "published": "2026-09-29",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "We present HalluScoring 2026, a shared task for evaluating hallucination detection and factual verification in Arabic question answering under challenging generalization settings. Its four subtasks are organized into two tasks. Task~1 evaluates binary hallucination detection, considering generalization to unseen questions (Subtask 1.1) and responses generated by unseen LLMs (Subtask 1.2). Task 2 extends the evaluation beyond detection by requiring the systems to additionally identify the correct factual answer from six related candidates, covering Islamic knowledge (Subtask 2.1) and general knowledge (Subtask 2.2). The shared task is based on two Arabic datasets: HalluScore and HalluTruthQA. A total of 13 teams participated in the shared task, ten of which submitted system description papers. The results of Task 1 demonstrate that hallucination detection remains challenging. On the Task 1 test sets, the top-ranked systems achieved AUC-ROC scores of 0.7717 for Subtask 1.1 (REGLAT) and 0.7670 for Subtask 1.2 (NAMAA). Under assisted evaluation, the highest combined detection and answer-selection scores for Subtasks 2.1 and 2.2 were 0.8824 and 0.8565, respectively.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2611.15530",
+   "title": "MAGIC: Modality-Aware Gini Inspection for Clinical Hallucination Detection in LMMs",
+   "published": "2026-11-11",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "Recent advances in medical large multimodal models (LMMs) have brought promising progress to clinical decision support, yet hallucination, the generation of confident but clinically unverifiable outputs, poses a critical threat to the reliability demanded in high-stakes medical settings. Existing hallucination detection methods, predominantly designed for unimodal settings, fail to capture the visual-linguistic dynamics inherent to medical imaging. We formulate the problem of hallucination detection in LMMs as disproportionate distribution of attention weights across the modalities during answer token generation. We quantify modality-specific attention concentration across layers and heads using the Gini coefficient and demonstrate statistically significant redistribution of attention mass between visual and textual tokens in hallucinated responses. We leverage these features to train a logistic regression-based classifier and evaluate it on two medical LMMs across three medical imaging modalities, demonstrating that our method achieves competitive or superior performance against contemporary hallucination detection baselines.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2604.02784",
+   "title": "EnsemHalDet: Robust VLM Hallucination Detection via Ensemble of Internal State Detectors",
+   "published": "2026-04-03",
+   "categories": [
+    "cs.CV",
+    "cs.CL"
+   ],
+   "abstract": "Vision-Language Models (VLMs) excel at multimodal tasks, but they remain vulnerable to hallucinations that are factually incorrect or ungrounded in the input image. Recent work suggests that hallucination detection using internal representations is more efficient and accurate than approaches that rely solely on model outputs. However, existing internal-representation-based methods typically rely on a single representation or detector, limiting their ability to capture diverse hallucination signals. In this paper, we propose EnsemHalDet, an ensemble-based hallucination detection framework that leverages multiple internal representations of VLMs, including attention outputs and hidden states. EnsemHalDet trains independent detectors for each representation and combines them through ensemble learning. Experimental results across multiple VQA datasets and VLMs show that EnsemHalDet consistently outperforms prior methods and single-detector models in terms of AUC. These results demonstrate that ensembling diverse internal signals significantly improves robustness in multimodal hallucination detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2604.15945",
+   "title": "RAGognizer: Hallucination-Aware Fine-Tuning via Detection Head Integration",
+   "published": "2026-04-17",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Retrieval-Augmented Generation (RAG) is widely used to augment the input to Large Language Models (LLMs) with external information, such as recent or domain-specific knowledge. Nonetheless, current models still produce closed-domain hallucinations and generate content that is unsupported by the retrieved context. Current detection approaches typically treat hallucination as a post-hoc problem, relying on black-box consistency checks or probes over frozen internal representations. In this work, we demonstrate that hallucination detection based on internal state representation can also serve as a direct training signal. We introduce RAGognize, a dataset of naturally occurring closed-domain hallucinations with token-level annotations, and RAGognizer, a hallucination-aware fine-tuning approach that integrates a lightweight detection head into an LLM, allowing for the joint optimization of language modeling and hallucination detection. This joint objective forces the model to improve the separability of its internal states regarding hallucinations while simultaneously learning to generate well-formed and meaningful responses. Across multiple benchmarks, RAGognizer achieves state-of-the-art token-level hallucination detection while substantially reducing hallucination rates during generation, without degrading language quality or relevance.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2507.20546",
+   "title": "Enhancing Hallucination Detection via Future Context",
+   "published": "2025-07-28",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) are widely used to generate plausible text on online platforms, without revealing the generation process. As users increasingly encounter such black-box outputs, detecting hallucinations has become a critical challenge. To address this challenge, we focus on developing a hallucination detection framework for black-box generators. Motivated by the observation that hallucinations, once introduced, tend to persist, we sample future contexts. The sampled future contexts provide valuable clues for hallucination detection and can be effectively integrated with various sampling-based methods. We extensively demonstrate performance improvements across multiple methods using our proposed sampling approach.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2503.04615",
+   "title": "HalluCounter: Reference-free LLM Hallucination Detection in the Wild!",
+   "published": "2025-03-06",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Response consistency-based, reference-free hallucination detection (RFHD) methods do not depend on internal model states, such as generation probabilities or gradients, which Grey-box models typically rely on but are inaccessible in closed-source LLMs. However, their inability to capture query-response alignment patterns often results in lower detection accuracy. Additionally, the lack of large-scale benchmark datasets spanning diverse domains remains a challenge, as most existing datasets are limited in size and scope. To this end, we propose HalluCounter, a novel reference-free hallucination detection method that utilizes both response-response and query-response consistency and alignment patterns. This enables the training of a classifier that detects hallucinations and provides a confidence score and an optimal response for user queries. Furthermore, we introduce HalluCounterEval, a benchmark dataset comprising both synthetically generated and human-curated samples across multiple domains. Our method outperforms state-of-the-art approaches by a significant margin, achieving over 90\\% average confidence in hallucination detection across datasets.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2604.10697",
+   "title": "Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models",
+   "published": "2026-04-12",
+   "categories": [
+    "cs.CL",
+    "cs.LG"
+   ],
+   "abstract": "Large language models frequently exhibit hallucinations: fluent and confident outputs that are factually incorrect or unsupported by the input context. While recent hallucination detection methods have explored various features derived from attention maps, the underlying mechanisms they exploit remain poorly understood. In this work, we propose SinkProbe, a hallucination detection method grounded in the observation that hallucinations are deeply entangled with attention sinks - tokens that accumulate disproportionate attention mass during generation - indicating a transition from distributed, input-grounded attention to compressed, prior-dominated computation. Importantly, although sink scores are computed solely from attention maps, we find that the classifier preferentially relies on sinks whose associated value vectors have large norms. Moreover, we show that previous methods implicitly depend on attention sinks by establishing their mathematical relationship to sink scores. Our findings yield a novel hallucination detection method grounded in theory that produces state-of-the-art results across popular datasets and LLMs.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2503.00436",
+   "title": "HalCECE: A Framework for Explainable Hallucination Detection through Conceptual Counterfactuals in Image Captioning",
+   "published": "2025-03-01",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ],
+   "abstract": "In the dynamic landscape of artificial intelligence, the exploration of hallucinations within vision-language (VL) models emerges as a critical frontier. This work delves into the intricacies of hallucinatory phenomena exhibited by widely used image captioners, unraveling interesting patterns. Specifically, we step upon previously introduced techniques of conceptual counterfactual explanations to address VL hallucinations. The deterministic and efficient nature of the employed conceptual counterfactuals backbone is able to suggest semantically minimal edits driven by hierarchical knowledge, so that the transition from a hallucinated caption to a non-hallucinated one is performed in a black-box manner. HalCECE, our proposed hallucination detection framework is highly interpretable, by providing semantically meaningful edits apart from standalone numbers, while the hierarchical decomposition of hallucinated concepts leads to a thorough hallucination analysis. Another novelty tied to the current work is the investigation of role hallucinations, being one of the first works to involve interconnections between visual concepts in hallucination detection. Overall, HalCECE recommends an explainable direction to the crucial field of VL hallucination detection, thus fostering trustworthy evaluation of current and future VL systems.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2510.19310",
+   "title": "JointCQ: Improving Factual Hallucination Detection with Joint Claim and Query Generation",
+   "published": "2025-10-22",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Current large language models (LLMs) often suffer from hallucination issues, i,e, generating content that appears factual but is actually unreliable. A typical hallucination detection pipeline involves response decomposition (i.e., claim extraction), query generation, evidence collection (i.e., search or retrieval), and claim verification. However, existing methods exhibit limitations in the first two stages, such as context loss during claim extraction and low specificity in query generation, resulting in degraded performance across the hallucination detection pipeline. In this work, we introduce JointCQ https://github.com/pku0xff/JointCQ, a joint claim-and-query generation framework designed to construct an effective and efficient claim-query generator. Our framework leverages elaborately designed evaluation criteria to filter synthesized training data, and finetunes a language model for joint claim extraction and query generation, providing reliable and informative inputs for downstream search and verification. Experimental results demonstrate that our method outperforms previous methods on multiple open-domain QA hallucination detection benchmarks, advancing the goal of more trustworthy and transparent language model systems.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2511.11087",
+   "title": "Can LLMs Detect Their Own Hallucinations?",
+   "published": "2025-11-14",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large language models (LLMs) can generate fluent responses, but sometimes hallucinate facts. In this paper, we investigate whether LLMs can detect their own hallucinations. We formulate hallucination detection as a classification task of a sentence. We propose a framework for estimating LLMs' capability of hallucination detection and a classification method using Chain-of-Thought (CoT) to extract knowledge from their parameters. The experimental results indicated that GPT-$3.5$ Turbo with CoT detected $58.2\\%$ of its own hallucinations. We concluded that LLMs with CoT can detect hallucinations if sufficient knowledge is contained in their parameters.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2507.06196",
+   "title": "UQLM: A Python Package for Uncertainty Quantification in Large Language Models",
+   "published": "2025-07-08",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Hallucinations, defined as instances where Large Language Models (LLMs) generate false or misleading content, pose a significant challenge that impacts the safety and trust of downstream applications. We introduce UQLM, a Python package for LLM hallucination detection using state-of-the-art uncertainty quantification (UQ) techniques. This toolkit offers a suite of UQ-based scorers that compute response-level confidence scores ranging from 0 to 1. This library provides an off-the-shelf solution for UQ-based hallucination detection that can be easily integrated to enhance the reliability of LLM outputs.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2607.04029",
+   "title": "CrossHallu: Do Hallucination Signals Generalize Across Languages and Domains in Large Language Model's Internals?",
+   "published": "2026-07-04",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Recent hallucination detection techniques in large language models (LLMs) focus on directly extracting features from a model's internal representations and training a classifier on these features to detect hallucinations, demonstrating promising results. Notwithstanding this advancement, most internal-state hallucination detection techniques have been explored predominantly in English, raising the question of whether such internal signals generalize across different languages and domains. To address this gap, we present CrossHallu, the first study to evaluate the cross-lingual and cross-domain generalization of hallucination detection using internal representations from six LLMs on the generative question-answering task. We conduct a systematic Arabic <-> English evaluation using TruthfulQA, an Arabic translated version of TruthfulQA, and HalluScore. This evaluation encompasses monolingual training and testing, cross-lingual transfer, cross-domain transfer, and combined cross-lingual and cross-domain transfer. The results reveal that internal-state hallucination signals in LLMs transfer across languages and domains for most models, with cross-lingual performance highly dependent on both class separability and language alignment in the feature space, whereas cross-domain transfer within Arabic varies depending on the training and testing datasets used for the hallucination detector. The code is publicly available at https://github.com/aishaalansari57/CrossHal.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2503.18242",
+   "title": "ShED-HD: A Shannon Entropy Distribution Framework for Lightweight Hallucination Detection on Edge Devices",
+   "published": "2025-03-23",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) have demonstrated impressive capabilities on a broad array of NLP tasks, but their tendency to produce hallucinations$\\unicode{x2013}$plausible-sounding but factually incorrect content$\\unicode{x2013}$poses severe challenges in high-stakes domains. Existing hallucination detection methods either bear the computational cost of multiple inference passes or sacrifice accuracy for efficiency with single-pass approaches, neither of which is ideal in resource-constrained environments such as edge devices. We propose the Shannon Entropy Distribution Hallucination Detector (ShED-HD), a novel hallucination detection framework that bridges this gap by classifying sequence-level entropy patterns using a lightweight BiLSTM architecture with single-headed attention. In contrast to prior approaches, ShED-HD efficiently detects distinctive uncertainty patterns across entire output sequences, preserving contextual awareness. Through in-depth evaluation on three datasets (BioASQ, TriviaQA, and Jeopardy Questions), we show that ShED-HD significantly outperforms other computationally efficient approaches in the out-of-distribution setting, while achieving comparable performance in the in-distribution setting. ShED-HD facilitates hallucination detection that is low-cost, accurate, and generalizable, improving the credibility of content generated by LLMs in resource-constrained environments where trustworthy AI functionality is crucial.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2605.20772",
+   "title": "VIHD: Visual Intervention-based Hallucination Detection for Medical Visual Question Answering",
+   "published": "2026-05-20",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "While medical Multimodal Large Language Models (MLLMs) have shown promise in assisting diagnosis, they still frequently generate hallucinated responses that appear linguistically plausible but lack visual evidence. Such hallucinations pose risks to clinical decision-making and necessitate effective detection. Existing introspective detection methods primarily perform uncertainty estimation or logical verification by analyzing model responses conditioned on original or perturbed inputs. However, such external perturbations are often heuristic and context-agnostic, which overlooks the internal cross-modal dependency between generated tokens and related visual tokens during decoding. To address this issue, we propose VIHD, a Visual Intervention-based Hallucination Detection method that leverages targeted visual token masking to calibrate semantic entropy for more effective hallucination detection. VIHD locates visually dominant decoder layers via Visual Dependency Probing (VDP), executes Visual Intervention Decoding (VID) via token masking to calibrate the semantic distribution, and quantifies the resulting Calibrated Semantic Entropy (CSE) as a reliable hallucination signal. Extensive experiments on three medical VQA benchmarks with two medical MLLMs demonstrate that VIHD consistently outperforms state-of-the-art methods, underscoring the importance of fine-grained visual dependency for hallucination detection. The code will be available at https://github.com/Jiayi-Chen-AU/VIHD",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2507.20836",
+   "title": "First Hallucination Tokens Are Different from Conditional Ones",
+   "published": "2025-07-28",
+   "categories": [
+    "cs.LG",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) hallucinate, and detecting these cases is key to ensuring trust. While many approaches address hallucination detection at the response or span level, recent work explores token-level detection, enabling more fine-grained intervention. However, the distribution of hallucination signal across sequences of hallucinated tokens remains unexplored. We leverage token-level annotations from the RAGTruth corpus and find that the first hallucinated token is far more detectable than later ones. This structural property holds across models, suggesting that first hallucination tokens play a key role in token-level hallucination detection. Our code is available at https://github.com/jakobsnl/RAGTruth_Xtended.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2511.05854",
+   "title": "Can a Small Model Learn to Look Before It Leaps? Dynamic Learning and Proactive Correction for Hallucination Detection",
+   "published": "2025-11-08",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Hallucination in large language models (LLMs) remains a critical barrier to their safe deployment. For hallucination detection to be practical in real-world scenarios, the use of efficient small models is essential to ensure low latency and minimal resource consumption. However, existing methods rely on fixed verification strategies, where simply tuning small models to mimic fixed verification trajectories fails to capture the adaptability required for diverse hallucination patterns, thereby inducing planning instability. To address this limitation, we propose a ``Learning to Evaluate and Adaptively Plan'' (LEAP) framework, which shifts hallucination detection from fixed execution to dynamic strategy learning. Specifically, LEAP first employs a powerful teacher model to iteratively explore and refine verification strategies through a failure-driven loop. This dynamic planning capability is then distilled into an efficient student model, augmented by a novel proactive correction mechanism that enables the model to evaluate and optimize its verification strategy before execution. Experiments on three benchmarks demonstrate that LEAP outperforms state-of-the-art methods, offering an effective and scalable solution for reliable hallucination detection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2502.15845",
+   "title": "Verify when Uncertain: Beyond Self-Consistency in Black Box Hallucination Detection",
+   "published": "2025-02-20",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Large Language Models (LLMs) often hallucinate, limiting their reliability in sensitive applications. In black-box settings, several self-consistency-based techniques have been proposed for hallucination detection. We empirically show that these methods perform nearly as well as a supervised (black-box) oracle, leaving limited room for further gains within this paradigm. To address this limitation, we explore cross-model consistency checking between the target model and an additional verifier LLM. With this extra information, we observe improved oracle performance compared to purely self-consistency-based methods. We then propose a budget-friendly, two-stage detection algorithm that calls the verifier model only for a subset of cases. It dynamically switches between self-consistency and cross-consistency based on an uncertainty interval of the self-consistency classifier. We provide a geometric interpretation of consistency-based hallucination detection methods through the lens of kernel mean embeddings, offering deeper theoretical insights. Extensive experiments on QA-style hallucination detection benchmarks show that this approach maintains high detection performance while significantly reducing computational cost.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2610.38314",
+   "title": "CHORD: Cross-Model Hallucination Detection via Relational Graph Discrimination",
+   "published": "2026-10-28",
+   "categories": [
+    "cs.AI"
+   ],
+   "abstract": "Hallucination detection is critical for deploying large language models (LLMs) in real-world applications. Due to strong empirical performance, internal representation-based methods have emerged as the prevailing direction for detecting hallucinations, yet they remain largely model-specific and often fail to generalize to unseen LLMs. In this paper, we study an important yet underexplored problem, termed cross-model hallucination detection (CMHD), which aims to train hallucination detectors on source LLMs while ensuring performance on unseen target LLMs. The core challenge of CMHD lies in cross-model representation heterogeneity: hidden states from different LLMs exhibit severe semantic inconsistency, which limits the transferability of classical representation-based detectors. Through analysis and empirical validation, we show that relational structures over layers, tokens, and features capture transferable detection signals despite semantic inconsistency. Based on this observation, we propose cross-model hallucination detection via heterogeneity-oriented relational discrimination (CHORD), a relational graph discrimination framework that represents hidden states as joint relational graphs over layers, tokens, and features. It feeds these graphs into relation-aware attention to obtain structure-aware features, and uses meta-learning to shape these features toward transferable detection signals. Extensive experiments show that CHORD outperforms representative detection methods in cross-model generalization. Code is available at https://github.com/MiracleworkerD/CHORD.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2511.17946",
+   "title": "Measuring the Impact of Lexical Training Data Coverage on Hallucination Detection in Large Language Models",
+   "published": "2025-11-22",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Hallucination in large language models (LLMs) is a fundamental challenge, particularly in open-domain question answering. Prior work attempts to detect hallucination with model-internal signals such as token-level entropy or generation consistency, while the connection between pretraining data exposure and hallucination is underexplored. Existing studies show that LLMs underperform on long-tail knowledge, i.e., the accuracy of the generated answer drops for the ground-truth entities that are rare in pretraining. However, examining whether data coverage itself can serve as a detection signal is overlooked. We propose a complementary question: Does lexical training-data coverage of the question and/or generated answer provide additional signal for hallucination detection? To investigate this, we construct scalable suffix arrays over RedPajama's 1.3-trillion-token pretraining corpus to retrieve $n$-gram statistics for both prompts and model generations. We evaluate their effectiveness for hallucination detection across three QA benchmarks. Our observations show that while occurrence-based features are weak predictors when used alone, they yield modest gains when combined with log-probabilities, particularly on datasets with higher intrinsic model uncertainty. These findings suggest that lexical coverage features provide a complementary signal for hallucination detection. All code and suffix-array infrastructure are provided at https://github.com/WWWonderer/ostd.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2503.16541",
+   "title": "Poly-FEVER: A Multilingual Fact Verification Benchmark for Hallucination Detection in Large Language Models",
+   "published": "2025-03-19",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Hallucinations in generative AI, particularly in Large Language Models (LLMs), pose a significant challenge to the reliability of multilingual applications. Existing benchmarks for hallucination detection focus primarily on English and a few widely spoken languages, lacking the breadth to assess inconsistencies in model performance across diverse linguistic contexts. To address this gap, we introduce Poly-FEVER, a large-scale multilingual fact verification benchmark specifically designed for evaluating hallucination detection in LLMs. Poly-FEVER comprises 77,973 labeled factual claims spanning 11 languages, sourced from FEVER, Climate-FEVER, and SciFact. It provides the first large-scale dataset tailored for analyzing hallucination patterns across languages, enabling systematic evaluation of LLMs such as ChatGPT and the LLaMA series. Our analysis reveals how topic distribution and web resource availability influence hallucination frequency, uncovering language-specific biases that impact model accuracy. By offering a multilingual benchmark for fact verification, Poly-FEVER facilitates cross-linguistic comparisons of hallucination detection and contributes to the development of more reliable, language-inclusive AI systems. The dataset is publicly available to advance research in responsible AI, fact-checking methodologies, and multilingual NLP, promoting greater transparency and robustness in LLM performance. The proposed Poly-FEVER is available at: https://huggingface.co/datasets/HanzhiZhang/Poly-FEVER.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2506.10286",
+   "title": "HalLoc: Token-level Localization of Hallucinations for Vision Language Models",
+   "published": "2025-06-12",
+   "categories": [
+    "cs.CV"
+   ],
+   "abstract": "Hallucinations pose a significant challenge to the reliability of large vision-language models, making their detection essential for ensuring accuracy in critical applications. Current detection methods often rely on computationally intensive models, leading to high latency and resource demands. Their definitive outcomes also fail to account for real-world scenarios where the line between hallucinated and truthful information is unclear. To address these issues, we propose HalLoc, a dataset designed for efficient, probabilistic hallucination detection. It features 150K token-level annotated samples, including hallucination types, across Visual Question Answering (VQA), instruction-following, and image captioning tasks. This dataset facilitates the development of models that detect hallucinations with graded confidence, enabling more informed user interactions. Additionally, we introduce a baseline model trained on HalLoc, offering low-overhead, concurrent hallucination detection during generation. The model can be seamlessly integrated into existing VLMs, improving reliability while preserving efficiency. The prospect of a robust plug-and-play hallucination detection module opens new avenues for enhancing the trustworthiness of vision-language models in real-world applications. The HalLoc dataset and code are publicly available at: https://github.com/dbsltm/cvpr25_halloc.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2506.04832",
+   "title": "Joint Evaluation of Answer and Reasoning Consistency for Hallucination Detection in Large Reasoning Models",
+   "published": "2025-06-05",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large Reasoning Models (LRMs) extend large language models with explicit, multi-step reasoning traces to enhance transparency and performance on complex tasks. However, these reasoning traces can be redundant or logically inconsistent, becoming a new and hard-to-detect source of hallucination. Existing hallucination detection methods focus primarily on answer-level uncertainty and often fail to detect hallucinations or logical inconsistencies arising from the model's reasoning trace. This oversight is particularly problematic for LRMs, where the explicit thinking trace is not only an important support to the model's decision-making process but also a key source of potential hallucination. To this end, we propose RACE (Reasoning and Answer Consistency Evaluation), a novel framework specifically tailored for hallucination detection in LRMs. RACE operates by extracting essential reasoning steps and computing four diagnostic signals: inter-sample consistency of reasoning traces, entropy-based answer uncertainty, semantic alignment between reasoning and answers, and internal coherence of reasoning. The joint utilization of these signals makes RACE a more robust detector of hallucinations in LRMs. Experiments across datasets and different LLMs demonstrate that RACE outperforms existing hallucination detection baselines, offering a robust and generalizable solution for evaluating LRMs. The source code is available at https://github.com/bebr2/RACE",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2510.04849",
+   "title": "When Models Lie, We Learn: Multilingual Span-Level Hallucination Detection with PsiloQA",
+   "published": "2025-10-06",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Hallucination detection remains a fundamental challenge for the safe and reliable deployment of large language models (LLMs), especially in applications requiring factual accuracy. Existing hallucination benchmarks often operate at the sequence level and are limited to English, lacking the fine-grained, multilingual supervision needed for a comprehensive evaluation. In this work, we introduce PsiloQA, a large-scale, multilingual dataset annotated with span-level hallucinations across 14 languages. PsiloQA is constructed through an automated three-stage pipeline: generating question-answer pairs from Wikipedia using GPT-4o, eliciting potentially hallucinated answers from diverse LLMs in a no-context setting, and automatically annotating hallucinated spans using GPT-4o by comparing against golden answers and retrieved context. We evaluate a wide range of hallucination detection methods -- including uncertainty quantification, LLM-based tagging, and fine-tuned encoder models -- and show that encoder-based models achieve the strongest performance across languages. Furthermore, PsiloQA demonstrates effective cross-lingual generalization and supports robust knowledge transfer to other benchmarks, all while being significantly more cost-efficient than human-annotated datasets. Our dataset and results advance the development of scalable, fine-grained hallucination detection in multilingual settings.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2609.08267",
+   "title": "Evidence-Aligned Entity Verification for Hallucination Detection in Retrieval-Augmented Generation",
+   "published": "2026-09-08",
+   "categories": [
+    "cs.AI",
+    "cs.IR"
+   ],
+   "abstract": "Hallucination detection is crucial for large language models (LLMs), as hallucinated content creates significant barriers in applications requiring factual accuracy. Current detection methods mainly depend on internal signals like uncertainty and self-consistency checks, using the model's pre-trained knowledge to identify unreliable outputs. However, pre-trained knowledge may become outdated and has coverage limitations, especially for specialized or recent information. To address these limitations, retrieval-augmented generation (RAG) has emerged as a promising solution by retrieving relevant evidence at inference time, grounding outputs beyond the model's parametric knowledge. In this paper, we target a critical and practical learning problem RAG-based hallucination detection (RHD), where RAG is employed to enhance hallucination detection by addressing information updating challenges. To address RHD, we propose a novel method Evidence-Aligned Entity Verification (EAEV), which detects entity-level hallucinations by leveraging RAG to align generated entities with retrieved evidence contexts. Specifically, EAEV evaluates entity-evidence alignment through three complementary dimensions and introduces counterfactual stability analysis to ensure robust alignments under evidence perturbations. Experiments across multiple RAG benchmarks demonstrate that EAEV achieves consistent improvements over existing methods with strong generalization capabilities.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2512.22250",
+   "title": "Hallucination Detection for LLM-based Text-to-SQL Generation via Two-Stage Metamorphic Testing",
+   "published": "2025-12-24",
+   "categories": [
+    "cs.SE"
+   ],
+   "abstract": "In Text-to-SQL generation, large language models (LLMs) have shown strong generalization and adaptability. However, LLMs sometimes generate hallucinations, i.e.,unrealistic or illogical content, which leads to incorrect SQL queries and negatively impacts downstream applications. Detecting these hallucinations is particularly challenging. Existing Text-to-SQL error detection methods, which are tailored for traditional deep learning models, face significant limitations when applied to LLMs. This is primarily due to the scarcity of ground-truth data. To address this challenge, we propose SQLHD, a novel hallucination detection method based on metamorphic testing (MT) that does not require standard answers. SQLHD splits the detection task into two sequentiial stages: schema-linking hallucination detection via eight structure-aware Metamorphic Relations (MRs) that perturb comparative words, entities, sentence structure or database schema, and logical-synthesis hallucination detection via nine logic-aware MRs that mutate prefix words, extremum expressions, comparison ranges or the entire database. In each stage the LLM is invoked separately to generate schema mappings or SQL artefacts; the follow-up outputs are cross-checked against their source counterparts through the corresponding MRs, and any violation is flagged as a hallucination without requiring ground-truth SQL. The experimental results demonstrate our method's superior performance in terms of the F1-score, which ranges from 69.36\\% to 82.76\\%. Additionally, SQLHD demonstrates superior performance over LLM Self-Evaluation methods, effectively identifying hallucinations in Text-to-SQL tasks.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2504.11975",
+   "title": "SemEval-2025 Task 3: Mu-SHROOM, the Multilingual Shared Task on Hallucinations and Related Observable Overgeneration Mistakes",
+   "published": "2025-04-16",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "We present the Mu-SHROOM shared task which is focused on detecting hallucinations and other overgeneration mistakes in the output of instruction-tuned large language models (LLMs). Mu-SHROOM addresses general-purpose LLMs in 14 languages, and frames the hallucination detection problem as a span-labeling task. We received 2,618 submissions from 43 participating teams employing diverse methodologies. The large number of submissions underscores the interest of the community in hallucination detection. We present the results of the participating systems and conduct an empirical analysis to identify key factors contributing to strong performance in this task. We also emphasize relevant current challenges, notably the varying degree of hallucinations across languages and the high annotator disagreement when labeling hallucination spans.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2602.02290",
+   "title": "Hallucination or Creativity: How to Evaluate AI-Generated Scientific Stories?",
+   "published": "2026-02-02",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Generative AI can turn scientific articles into narratives for diverse audiences, but evaluating these stories remains challenging. Storytelling demands abstraction, simplification, and pedagogical creativity-qualities that are not often well-captured by standard summarization metrics. Meanwhile, factual hallucinations are critical in scientific contexts, yet, detectors often misclassify legitimate narrative reformulations or prove unstable when creativity is involved. In this work, we propose StoryScore, a composite metric for evaluating AI-generated scientific stories. StoryScore integrates semantic alignment, lexical grounding, narrative control, structural fidelity, redundancy avoidance, and entity-level hallucination detection into a unified framework. Our analysis also reveals why many hallucination detection methods fail to distinguish pedagogical creativity from factual errors, highlighting a key limitation: while automatic metrics can effectively assess semantic similarity with original content, they struggle to evaluate how it is narrated and controlled.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2608.14632",
+   "title": "DeMTS: Denoising Trajectories as Multivariate Time Series for Hallucination Detection in Diffusion Language Models",
+   "published": "2026-07-24",
+   "categories": [
+    "cs.CL",
+    "cs.AI"
+   ],
+   "abstract": "Diffusion large language models (D-LLMs) have emerged as a promising paradigm for text generation. However, similar to autoregressive LLMs, D-LLMs remain vulnerable to hallucinations, where fluent outputs may contain factually incorrect or unsupported content. Although existing hallucination detection methods for D-LLMs attempt to leverage uncertainty trajectories of the denoising process to better identify hallucination signals, they typically compress the trajectories along either the temporal or token dimension, overlooking the useful information encoded in the complete two-dimensional token-step structure. Consequently, they may fail to capture hallucination-relevant patterns, such as inconsistent convergence and cross-token fault propagation, leading to suboptimal detection performance. To bridge this gap, we propose a D-LLM hallucination detection framework that formulates the Denoising trajectories as Multivariate Time Series over learnable latent variables (DeMTS for short). DeMTS employs a trajectory-preserving token-to-variable assignment module to convert token signals into stable latent variables. Based on these variables, we propose dynamic multivariate temporal modeling to progressively integrate inter-variable dependency modeling with temporal encoding for hallucination prediction. Extensive experiments on two D-LLMs backbones and three benchmarks demonstrate that DeMTS outperforms existing hallucination detection methods while maintaining strong robustness, efficiency, and cross-task transferability.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2606.29545",
+   "title": "AURORA: Asymmetry and Update-Induced Rotation for Robust Hallucination Detection in Large Language Models",
+   "published": "2026-06-28",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities across a wide range of natural language processing tasks. However, their tendency to generate hallucinations, namely factually incorrect or unfaithful outputs, poses a critical obstacle to their deployment in high-stakes applications. Although recent hallucination detection methods have made encouraging progress, they typically rely on costly output-level consistency checks or static hidden-state probes that capture shallow dataset-specific patterns, leading to substantial degradation under cross-dataset evaluation. In this work, we propose AURORA, a novel hallucination detection framework that shifts the focus from static representations to the weight-gradient dynamics of LLMs. Our key insight is that hallucinated and faithful answers induce qualitatively different gradient update patterns on the model's parameters. Specifically, hallucinated samples trigger asymmetric and structurally misaligned gradients, which can be captured through two complementary features: (1) the skewness of the cosine similarity distribution between weight matrices and their gradient update directions, and (2) the rotation ratio, which quantifies how much the gradient update reorients the singular-vector basis of weight matrices via SVD. AURORA achieves strong hallucination detection performance across four model families and four benchmark datasets. Further analyses demonstrate that our method scales effectively across model sizes and transfers to out-of-domain tasks, including mathematical reasoning and vision-language scenarios.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2601.06196",
+   "title": "Geometry-Aware Hallucination Detection in Large Language Models",
+   "published": "2026-01-08",
+   "categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CL"
+   ],
+   "abstract": "Large language models (LLMs) frequently generate factually incorrect or unsupported content, commonly referred to as hallucinations. Prior work has explored decoding strategies, retrieval augmentation, and supervised fine-tuning for hallucination detection, while recent studies show that in-context learning (ICL) can substantially influence factual reliability. However, existing ICL demonstration selection methods often rely on surface-level similarity heuristics and exhibit limited robustness across tasks and models. We propose GA-ICL, a geometry-aware demonstration sampling framework for selecting in-context demonstrations that leverages latent representations extracted from frozen LLMs. By jointly modeling local manifold structure and class-aware prototype geometry, GA-ICL selects demonstrations based on their proximity to learned prototypes rather than lexical or embedding similarity alone. Across factual verification (FEVER) and hallucination detection (HaluEval) benchmarks, GA-ICL outperforms standard ICL selection baselines in the majority of evaluated settings, with particularly strong gains on dialogue and summarization tasks. The method remains robust under temperature perturbations and model variation, indicating improved stability compared to heuristic retrieval strategies. While lexical retrieval can remain competitive in certain question-answering regimes at smaller model scales, our results demonstrate that geometry-aware prototype selection provides a reliable and training-light approach for hallucination detection without modifying LLM parameters. Extended evaluations on Phi-14B and Qwen3-32B confirm that GA-ICL scales effectively to larger models, outperforming all compared baselines including on QA tasks where smaller models show boundary-condition limitations, offering a principled direction for improved ICL demonstration selection.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2508.08285",
+   "title": "The Illusion of Progress: Re-evaluating Hallucination Detection in LLMs",
+   "published": "2025-08-01",
+   "categories": [
+    "cs.CL",
+    "cs.AI",
+    "cs.LG"
+   ],
+   "abstract": "Large language models (LLMs) have revolutionized natural language processing, yet their tendency to hallucinate poses serious challenges for reliable deployment. Despite numerous hallucination detection methods, their evaluations often rely on ROUGE, a metric based on lexical overlap that misaligns with human judgments. Through comprehensive human studies, we demonstrate that while ROUGE exhibits high recall, its extremely low precision leads to misleading performance estimates. In fact, several established detection methods show performance drops of up to 45.9\\% when assessed using human-aligned metrics like LLM-as-Judge. Moreover, our analysis reveals that simple heuristics based on response length can rival complex detection techniques, exposing a fundamental flaw in current evaluation practices. We argue that adopting semantically aware and robust evaluation frameworks is essential to accurately gauge the true performance of hallucination detection methods, ultimately ensuring the trustworthiness of LLM outputs.",
+   "query": "hallucination detection"
+  },
+  {
+   "id": "2611.08231",
+   "title": "From Twisted Facts to Rogue Agents: Can LLMs Reliably Detect Multi-Dimensional Hallucinations?",
+   "published": "2026-11-05",
+   "categories": [
+    "cs.CL"
+   ],
+   "abstract": "Large language models (LLMs) are widely used for information access, content production, and agent-based task execution, but their outputs remain vulnerable to subtle, high-risk hallucinations. To systematically evaluate and advance post-generation hallucination detection, we introduce HaluCheck, a large-scale, bilingual benchmark comprising over 42k instances spanning both factual hallucinations in text and faithfulness hallucinations in agent trajectories. HaluCheck features fine-grained, multi-level annotations for detection, localization, and correction, covering different tasks and perturbation degrees. Experiments on fourteen LLMs reveal that, while models show basic sample-level detection ability, they struggle with fine-grained localization, correction, and agent hallucination detection. Further analysis demonstrates that thinking, web search, and supervised fine-tuning each offer partial improvements, but none fully solve the problem. HaluCheck thus provides a solid basis for benchmarking and diagnosing LLM reliability across text and agent scenarios.",
+   "query": "hallucination detection"
+  }
+ ]
+}

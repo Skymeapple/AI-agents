@@ -13,7 +13,7 @@ The output is an academic paper: [`paper/paper.pdf`](paper/paper.pdf)
 | E2 | Manifold hypothesis | Observations in ℝ⁶⁴ from d latent factors | Learning-curve exponent ≈ 4.9/d (R² 0.96), independent of ambient dimension |
 | E3 | Scaling laws from a heavy-tailed world | Zipf-distributed facts | Data exponents match −(α−1)/α to within 0.02; capacity scaling is frequency-ordered but optimisation-limited |
 | E4 | Superposition | Sparse features through a bottleneck | Up to 18.7 features in 5 dimensions; linear model never exceeds 5 |
-| E5 | Algorithmic compression (grokking) | a + b mod 97 | See paper §4.5 |
+| E5 | Algorithmic compression (grokking) | a + b mod 97 | Generalisation ~15k steps after memorisation, only with weight decay; it coincides with a sparse Fourier code (ρ = 0.95 over 21 runs) |
 | E6 | In-context Bayesian inference | Linear worlds with controlled task diversity | Below a diversity threshold: memorised-pool Bayes; above it: ridge-like generalisation |
 | E7 | Limits: shortcut learning | Digits with a planted watermark | Reversed-cue accuracy 98% → 0% as correlation → 1; only decorrelation restores it |
 

@@ -292,57 +292,68 @@ def fig_e4():
 # ----------------------------------------------------------------------------- E5
 def fig_e5():
     R = load_json("e5_grokking" + SFX)
-    fig, ax = plt.subplots(1, 4, figsize=(11.5, 2.9))
+    fig, ax = plt.subplots(1, 5, figsize=(14, 2.9))
     a = ax[0]
     h = np.asarray(R["main"][0]["hist"])
     a.plot(h[:, 0], h[:, 2], color=C[1], label="train acc")
     a.plot(h[:, 0], h[:, 3], color=C[0], label="test acc")
-    a2 = a.twinx()
-    a2.plot(h[:, 0], h[:, 6], color=C[2], lw=1.3, ls="--", label="Fourier concentration")
-    a2.set_ylim(0, 1)
-    a2.grid(False)
-    a2.spines["right"].set_visible(True)
+    a.plot(h[:, 0], h[:, 6], color=C[2], lw=1.3, ls="--", label="Fourier conc.")
+    a.axhline(6 / 48, color=GRAY, lw=0.8, ls=":")
     a.set_xscale("log")
+    a.set_ylim(0, 1.03)
     a.set_xlabel("step")
-    a.set_ylabel("accuracy")
+    a.set_ylabel("accuracy / concentration")
     a.set_title("(a) Memorise, then generalise")
-    h1, l1 = a.get_legend_handles_labels()
-    h2, l2 = a2.get_legend_handles_labels()
-    a.legend(h1 + h2, l1 + l2, loc="center left", fontsize=6.5)
+    a.legend(loc="center left", fontsize=6.5)
     a = ax[1]
     for i, r in enumerate(R["main"]):
         h = np.asarray(r["hist"])
         a.plot(h[:, 0], h[:, 5], color=C[i], lw=1.4, label=f"seed {r['seed']}")
+        if r["t_test99"]:
+            a.axvline(r["t_test99"], color=C[i], lw=0.8, ls=":")
     a.set_xscale("log")
-    a.set_xlabel("step")
+    a.set_xlabel("step  (dotted: test acc ≥ 99%)")
     a.set_ylabel("parameter norm")
-    a.set_title("(b) Generalisation = norm collapse")
+    a.set_title("(b) Norm peaks, then shrinks")
     a.legend(fontsize=6.5)
     a = ax[2]
     pw = np.asarray(R["main"][0]["power"])
     a.bar(np.arange(1, len(pw) + 1), pw, color=C[0], width=0.8)
+    a.axhline(1 / len(pw), color=GRAY, lw=0.8, ls=":")
     a.set_xlabel("frequency k")
     a.set_ylabel("share of embedding power")
-    a.set_title("(c) Final embedding: few frequencies")
+    a.set_title("(c) Final embedding: sparse spectrum")
     a = ax[3]
-    for key, sweep, col, lab in [("wd", R["wd_sweep"] + [dict(r, wd=1.0) for r in R["main"]], C[0], "weight decay (frac 0.3)")]:
-        vals = sorted(set(r[key] for r in sweep))
-        fin = [np.mean([r["final_test"] for r in sweep if r[key] == v]) for v in vals]
-        a.plot(range(len(vals)), fin, marker="o", color=col, label=lab)
-        a.set_xticks(range(len(vals)), [str(v) for v in vals])
-    fr = R["frac_sweep"] + [r for r in R["main"]]
-    vals = sorted(set(r["frac"] for r in fr))
-    a3 = a.twiny()
-    a3.plot(range(len(vals)), [np.mean([r["final_test"] for r in fr if r["frac"] == v]) for v in vals],
-            marker="s", color=C[1], label="train fraction (wd 1.0)")
-    a3.set_xticks(range(len(vals)), [str(v) for v in vals], fontsize=7)
-    a3.grid(False)
+    groups = [("main", "wd 1, frac 0.3", C[0]), ("wd_sweep", "weight-decay sweep", C[1]), ("frac_sweep", "train-fraction sweep", C[2])]
+    allf, allt = [], []
+    for key, lab, col in groups:
+        f = [r["final_fourier"] for r in R[key]]
+        t = [r["final_test"] for r in R[key]]
+        allf += f
+        allt += t
+        a.plot(f, t, "o", color=col, label=lab, alpha=0.85)
+    from scipy.stats import spearmanr
+    a.axvline(6 / 48, color=GRAY, lw=0.8, ls=":")
+    a.set_xlabel("final Fourier concentration (top 6 of 48)")
     a.set_ylabel("final test accuracy")
-    a.set_xlabel("weight decay")
-    a.set_title("(d) Conditions for discovering the rule", pad=18)
-    h1, l1 = a.get_legend_handles_labels()
-    h2, l2 = a3.get_legend_handles_labels()
-    a.legend(h1 + h2, l1 + l2, fontsize=6.5, loc="center right")
+    a.set_title(f"(d) Rule ⇔ structure (ρ={spearmanr(allf, allt).correlation:.2f}, n={len(allf)})")
+    a.legend(fontsize=6.3, loc="center right")
+    a = ax[4]
+    fr = R["frac_sweep"] + R["main"]
+    vals = sorted(set(r["frac"] for r in fr))
+    for v in vals:
+        ts = [r["t_test99"] for r in fr if r["frac"] == v]
+        ok = [t for t in ts if t]
+        if ok:
+            a.plot([v] * len(ok), ok, "o", color=C[0])
+        if len(ok) < len(ts):
+            a.plot([v] * (len(ts) - len(ok)), [R["steps"] * 1.4] * (len(ts) - len(ok)), "v", color=C[7])
+    a.axhline(R["steps"], color=GRAY, lw=0.8, ls="--")
+    a.text(0.21, R["steps"] * 1.65, "no generalisation in 20k steps", fontsize=6.3, color=INK2)
+    a.set_yscale("log")
+    a.set_xlabel("training fraction of the 97×97 table")
+    a.set_ylabel("steps to 99% test accuracy")
+    a.set_title("(e) Less data, longer delay")
     fig.tight_layout()
     save(fig, "fig_e5_grokking")
 

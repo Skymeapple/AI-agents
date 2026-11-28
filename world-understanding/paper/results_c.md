@@ -1,4 +1,17 @@
-{{E5_SECTION}}
+### 4.5 E5 — From table to rule: generalisation coincides with structure
+
+![**E5: grokking modular addition (p = 97).** (a) Training and test accuracy and the Fourier concentration of the embedding (share of power in the top 6 of 48 frequencies; dotted line: the uniform value 0.125) for one seed with 30% of the table and weight decay 1.0. (b) Parameter norm for three seeds; dotted verticals mark 99% test accuracy. (c) Final embedding power spectrum. (d) Final Fourier concentration against final test accuracy for all 21 runs (main condition, weight-decay sweep, training-fraction sweep). (e) Steps to 99% test accuracy against training fraction; triangles mark runs that never generalised within 20,000 steps.](figures/fig_e5_grokking.png)
+
+**Memorisation first, generalisation much later.** With 30% of the table and weight decay 1.0, all three seeds fit the training set by step 300 while test accuracy stays at chance. They reach 99% test accuracy only at steps 14,400–17,400 — a delay of about 50× (Fig. E5a). The transition is abrupt: test accuracy passes from 50% to 99% in 2,900–4,200 steps, after 11,000–13,000 steps near zero.
+
+**Generalisation coincides with the emergence of a structured, compressed representation.** At the point of memorisation the embedding's power is spread almost uniformly across frequencies: Fourier concentration is 0.15 against a uniform 0.125. It stays there through the plateau, then rises with the test accuracy, to 0.32–0.37 when test accuracy crosses 50% and 0.49–0.68 at the end. By then the top 10 of 48 frequencies carry 72–91% of the power (Fig. E5c). This is the representation Nanda et al. [-@nanda2023grok] identified: numbers embedded as points on a few circles, so that addition becomes rotation. Across all 21 runs, final Fourier concentration predicts generalisation almost perfectly (Spearman ρ = 0.95; Fig. E5d). Every run that generalised has concentration ≥ 0.37; every run that did not has ≤ 0.28. No run found the rule without the structure, or the structure without the rule.
+
+**The simplicity pressure is necessary.** Without weight decay, or with too little (0.1, 0.3), the network memorises the training set and never generalises within 20,000 steps (test accuracy ≤ 1%). With weight decay 1.0 or 3.0, all five runs generalise (≥ 97.6%). Parameter norm tells the same story (Fig. E5b): it grows during memorisation to a peak of about 96 at step 1,400, then declines steadily through the plateau to about 64 at generalisation, *below* its value at the moment of memorisation (70). The table is the more expensive description, and weight decay makes the network pay for it until a cheaper one — the rule — is found [@liu2022grok].
+
+**Less data, longer delay.** The training fraction sets the delay (Fig. E5e). With 70% of the table, generalisation follows memorisation after about 950 steps; with 50%, 2,200–3,100; with 40%, 5,300–6,100; with 30%, 14,400–17,400. With 20–25% no run generalises within the budget. Fewer examples constrain the rule less relative to the table, so the gradient toward it is weaker.
+
+**Interpretation.** "Understanding" modular addition — getting every unseen pair right — is identical here to having found a compressed, structured representation. A network can reach zero training error either way. Which solution it ends up with is decided by a pressure toward simplicity, and how long it takes by how strongly the data constrain the rule. This is the MDL principle of Section 2 acting on representations, observed directly.
+
 
 ### 4.6 E6 — In-context learning: amortised inference, and when it generalises
 

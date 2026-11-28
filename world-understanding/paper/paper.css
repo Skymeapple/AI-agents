@@ -1,0 +1,26 @@
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+:root { --ink:#191919; --ink2:#555; --rule:#d9d9d9; --accent:#1f5fae; }
+html { background:#fff; }
+body { font-family: "Charter","Georgia","Times New Roman",serif; color:var(--ink); background:#fff;
+       font-size:10.5pt; line-height:1.45; max-width:180mm; margin:0 auto; padding:0 16px; }
+h1.title { font-size:19pt; line-height:1.2; text-align:center; margin:0 0 6pt; }
+p.subtitle { text-align:center; font-size:12pt; color:var(--ink2); margin:0 0 10pt; font-style:italic; }
+p.author, p.date { text-align:center; margin:2pt 0; color:var(--ink2); }
+.abstract { margin:14pt 8mm; font-size:9.8pt; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:8pt 0; }
+.abstract-title { font-weight:bold; text-align:center; font-variant:small-caps; }
+h2 { font-size:13pt; margin:18pt 0 6pt; border-bottom:1px solid var(--rule); padding-bottom:2pt; }
+h3 { font-size:11pt; margin:12pt 0 4pt; }
+p { margin:0 0 7pt; text-align:justify; hyphens:auto; }
+figure { margin:10pt 0; break-inside:avoid; page-break-inside:avoid; }
+figure img { width:100%; }
+figcaption { font-size:8.8pt; color:var(--ink2); line-height:1.35; margin-top:4pt; }
+table { border-collapse:collapse; width:100%; font-size:8.6pt; margin:8pt 0 10pt; break-inside:avoid; }
+th, td { border-bottom:1px solid var(--rule); padding:3pt 4pt; vertical-align:top; text-align:left; }
+th { border-bottom:1.5px solid var(--ink); }
+caption { font-size:8.8pt; color:var(--ink2); text-align:left; margin-bottom:4pt; caption-side:top; }
+code { font-size:9pt; }
+a { color:var(--accent); text-decoration:none; }
+#refs { font-size:8.8pt; }
+#refs .csl-entry { margin-bottom:3pt; padding-left:1.5em; text-indent:-1.5em; }
+blockquote { margin:6pt 8mm; color:var(--ink2); }
+@media screen and (max-width:600px) { body { font-size:15px; } .abstract { margin:12px 0; } }

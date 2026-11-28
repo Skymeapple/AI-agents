@@ -317,6 +317,61 @@ persist, and which conclusions would survive a change of assumptions. The worked
 output, including where the model disagrees with published projections, is in
 [`examples/world-problems-simulation.md`](examples/world-problems-simulation.md).
 
+## nexus: connecting the projects
+
+The projects in this repository were each built alone. `nexus/` wires them to
+each other. Every module follows sciscout's rule that a number says where it
+came from.
+
+```bash
+pip install sympy scipy jsonschema      # the aisci checkers need these
+python -m nexus.cli loop --experiment   # verify, re-rank, write an agenda for autoscout
+```
+
+### The closed discovery loop
+
+autoscout reads the literature, sciscout ranks what was read, and
+aisci-verifiers checks claims, but none of them heard from the others.
+`nexus loop` closes the circle: it spreads a checking budget over sciscout's
+directions by Thompson sampling on priority times the share of a direction's
+claims that are true, runs each claim through the aisci verifier service,
+updates the direction's yield, re-ranks by verified priority, and writes the
+top of that ranking as an agenda autoscout can be initialised from. Checks are
+stored per claim and per paper, so a corpus that clusters differently next
+time inherits everything already learned.
+
+**A pass is evidence, not truth.** `aisci.calibration` measured the checkers'
+error rates and they differ enormously: the tensor check passed 0 of 40 wrong
+algorithms, the weak test suite 6 of 8 wrong programs. So each outcome enters
+through `P(pass) = yield * (1 - false_reject) + (1 - yield) * false_pass`. A
+pass from the weak suite is right 49% of the time at even odds and moves the
+estimate almost nowhere; a checker with no calibration moves it exactly
+nowhere.
+
+On a planted test (768 claims, 16 directions, 192 checks, 20 seeds), measured
+as the sciscout priority of each true claim confirmed:
+
+| Policy | Share of the best possible | Checks spent on the two trap directions |
+| --- | --- | --- |
+| loop | 80% | 12% |
+| the same loop believing every pass | 66% | 29% |
+| sciscout priority alone | 60% | 14% |
+| uniform | 60% | 13% |
+
+The full output is in [`examples/nexus-loop.md`](examples/nexus-loop.md).
+Every check, including each failure, goes to the hash-chained store from
+`aisci.datastore`, and passing claims enter the `aisci.worldmodel` with the
+verifier run as their evidence.
+
+**What this does not show.** The claim bank is synthetic
+(`scripts/make_claim_bank.py`): its candidates are real verifier payloads that
+the real checkers run, but which paper each claim belongs to and how many of a
+direction's claims are true were planted by the author of the loop, including
+the two traps. The result says the mechanism works on a case built to test it.
+The step that would make it real, turning an abstract into a checkable claim,
+needs a model and a sandbox, because the checkers execute what they are given.
+It is not built. `ClaimSource` is where it plugs in.
+
 ## Quick start
 
 ```bash
@@ -444,6 +499,8 @@ docs/RESEARCH_PLAN.md    research questions, results, roadmap for autoscout
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generators, autoscout ablation
 tests/                   206 tests across sciscout, autoscout, airadar, worldsim, cosmos
+nexus/
+  loop.py                verify claims per direction, re-rank, steer autoscout
 worldsim/
   fetch.py               download the observed global series
   model.py               trend fitting, the coupled simulation, lever experiments

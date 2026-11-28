@@ -47,7 +47,7 @@ def fig_e1():
     # (a) code length
     a = ax[0, 0]
     keys = ["uniform", "best_ngram", "model", "bayes"]
-    labels = ["Uniform", "Best n-gram", "Transformer", "Bayes filter"]
+    labels = ["Uniform", "Best\nn-gram", "Trans-\nformer", "Bayes\nfilter"]
     m, s = mean_sd([[r["nll"][k] for k in keys] for r in R])
     mo, so = mean_sd([[r["nll"]["model_ood"], r["nll"]["bayes_ood"]] for r in R])
     a.bar(np.arange(4), m, yerr=s, color=[GRAY, C[1], C[0], C[2]], width=0.62, capsize=2)
@@ -79,7 +79,8 @@ def fig_e1():
     # (c) probes by layer
     a = ax[0, 2]
     L = np.arange(len(r0["probes"]))
-    for key, col, lab in [("acc_state", C[0], "state (trained)"), ("acc_cell", C[6], "cell (trained)"),
+    for key, col, lab in [("acc_state", C[0], "state (trained)"),
+                          ("acc_state_identified", C[4], "state, belief collapsed"), ("acc_cell", C[6], "cell (trained)"),
                           ("acc_heading", C[3], "heading (trained)")]:
         mm, ss = mean_sd([[p[key] for p in r["probes"]] for r in R])
         a.errorbar(L, mm, yerr=ss, color=col, marker="o", label=lab, capsize=2)
@@ -92,7 +93,7 @@ def fig_e1():
     a.set_ylim(0, 1.02)
     a.set_ylabel("linear-probe accuracy")
     a.set_title("(c) Hidden state is linearly decodable")
-    a.legend(loc="center right", fontsize=6.5)
+    a.legend(loc="upper left", fontsize=6, ncol=2)
     # (d) interventions
     a = ax[1, 0]
     layers = [iv["layer"] for iv in r0["interventions"]]
@@ -129,6 +130,8 @@ def fig_e1():
                label=f"seed {r['seed']}")
     a.set_xscale("log")
     a.invert_xaxis()
+    a.set_xticks([0.5, 0.2, 0.1, 0.05, 0.02], ["0.5", "0.2", "0.1", "0.05", "0.02"])
+    a.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     a.set_xlabel("excess loss over Bayes (nats, log; training →)")
     a.set_ylabel("best-layer state-probe accuracy")
     a.set_title("(f) World model emerges as loss falls")

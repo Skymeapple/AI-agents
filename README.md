@@ -364,16 +364,22 @@ autoscout/
 docs/RESEARCH_PLAN.md    research questions, results, roadmap for autoscout
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generators, autoscout ablation
-tests/                   102 tests
+tests/                   206 tests across sciscout, autoscout, airadar, worldsim, cosmos
 worldsim/
   fetch.py               download the observed global series
   model.py               trend fitting, the coupled simulation, lever experiments
   report.py              markdown and JSON output
   params.yaml            couplings, lever effects and scenarios, graded by provenance
 data/world/              observed series, manifest, cited report figures, results
-examples/                worked scenario file and its comparison output
-scripts/                 synthetic corpus generator
-tests/                   95 tests
+airadar/                 self-tuning radar for the fastest-growing AI apps
+cosmos/                  data and simulations for ten open problems in cosmology
+open-problems-sim/       numerical experiments for ten open mathematical problems
+aisci-verifiers/         verifier suite and autonomous-science prototypes
+world-understanding/     study: how learning machines model a complex world
+ai2035/                  20 foundational AI science questions for 2035
+research/                AI-100 question papers and Human Frontier Mission projects
+experiments/             discovery validated on real titles
+reports/, research_notes/  frontier technology trends and 2027-2031 forecasts
 ```
 
 ## Tests

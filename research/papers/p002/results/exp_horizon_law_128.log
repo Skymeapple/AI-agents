@@ -1,0 +1,44 @@
+/home/user/AI-agents/research/papers/p002/code/exp_minimax.py:65: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver="CLARABEL")
+/home/user/AI-agents/research/papers/p002/code/exp_minimax.py:65: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver="CLARABEL")
+/home/user/AI-agents/research/papers/p002/code/exp_minimax.py:65: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver="CLARABEL")
+/home/user/AI-agents/research/papers/p002/code/exp_minimax.py:65: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver="CLARABEL")
+128 1024 263s [(128, np.float64(0.17381), np.float64(0.419), 'hoeffding_lp'), (1000, np.float64(0.11522), np.float64(0.27066), 'hoeffding_lp'), (10000, np.float64(0.07577), np.float64(0.19747), 'hoeffding_lp'), (100000, np.float64(0.05156), np.float64(0.13403), 'hoeffding_lp'), (1000000, np.float64(0.03589), np.float64(0.10309), 'hoeffding_lp'), (100000000, np.float64(0.01387), np.float64(0.08627), 'hoeffding_lp')]
+128 512 274s [(128, np.float64(0.11682), np.float64(0.31819), 'hoeffding_lp'), (1000, np.float64(0.05984), np.float64(0.16493), 'hoeffding_lp'), (10000, np.float64(0.02877), np.float64(0.09138), 'hoeffding_lp'), (100000, np.float64(0.01431), np.float64(0.04641), 'hoeffding_lp'), (1000000, np.float64(0.00733), np.float64(0.02908), 'hoeffding_lp'), (100000000, np.float64(0.00204), np.float64(0.01713), 'hoeffding_lp')]
+128 2048 276s [(128, np.float64(0.23809), np.float64(0.46135), 'hoeffding_lp'), (1000, np.float64(0.1832), np.float64(0.36162), 'hoeffding_lp'), (10000, np.float64(0.14196), np.float64(0.30414), 'hoeffding_lp'), (100000, np.float64(0.11299), np.float64(0.23982), 'hoeffding_lp'), (1000000, np.float64(0.09168), np.float64(0.20378), 'hoeffding_lp'), (100000000, np.float64(0.04529), np.float64(0.18899), 'hoeffding_lp')]
+128 256 278s [(128, np.float64(0.07123), np.float64(0.20674), 'hoeffding_lp'), (1000, np.float64(0.02802), np.float64(0.0818), 'hoeffding_lp'), (10000, np.float64(0.00954), np.float64(0.02738), 'hoeffding_lp'), (100000, np.float64(0.00315), np.float64(0.00917), 'hoeffding_lp'), (1000000, np.float64(0.00103), np.float64(0.00343), 'hoeffding_lp'), (100000000, np.float64(0.00011), np.float64(0.00102), 'hoeffding_lp')]
+128 128 103s [(128, np.float64(0.04715), np.float64(0.11877), 'unbiased'), (1000, np.float64(0.01694), np.float64(0.04331), 'unbiased'), (10000, np.float64(0.00536), np.float64(0.01402), 'unbiased'), (100000, np.float64(0.00169), np.float64(0.00474), 'unbiased'), (1000000, np.float64(0.00054), np.float64(0.0018), 'unbiased'), (100000000, np.float64(5e-05), np.float64(0.00058), 'unbiased')]
+      n     k          M  pop_halfwidth      R_lo      R_up
+24  128   128        128   6.463718e-13  0.047145  0.118775
+18  128   256        128   1.457412e-11  0.071229  0.206744
+12  128   512        128   2.138845e-12  0.116817  0.318187
+6   128  1024        128   4.233742e-08  0.173811  0.419004
+0   128  2048        128   3.211358e-05  0.238088  0.461355
+25  128   128       1000   6.463718e-13  0.016939  0.043311
+19  128   256       1000   1.457412e-11  0.028019  0.081797
+13  128   512       1000   2.138845e-12  0.059838  0.164925
+7   128  1024       1000   4.233742e-08  0.115217  0.270665
+1   128  2048       1000   3.211358e-05  0.183201  0.361618
+26  128   128      10000   6.463718e-13  0.005360  0.014022
+20  128   256      10000   1.457412e-11  0.009541  0.027376
+14  128   512      10000   2.138845e-12  0.028772  0.091379
+8   128  1024      10000   4.233742e-08  0.075765  0.197473
+2   128  2048      10000   3.211358e-05  0.141956  0.304141
+27  128   128     100000   6.463718e-13  0.001695  0.004738
+21  128   256     100000   1.457412e-11  0.003153  0.009165
+15  128   512     100000   2.138845e-12  0.014307  0.046410
+9   128  1024     100000   4.233742e-08  0.051560  0.134027
+3   128  2048     100000   3.211358e-05  0.112991  0.239817
+28  128   128    1000000   6.463718e-13  0.000536  0.001801
+22  128   256    1000000   1.457412e-11  0.001026  0.003431
+16  128   512    1000000   2.138845e-12  0.007332  0.029082
+10  128  1024    1000000   4.233742e-08  0.035891  0.103089
+4   128  2048    1000000   3.211358e-05  0.091680  0.203779
+29  128   128  100000000   6.463718e-13  0.000054  0.000579
+23  128   256  100000000   1.457412e-11  0.000106  0.001023
+17  128   512  100000000   2.138845e-12  0.002037  0.017130
+11  128  1024  100000000   4.233742e-08  0.013872  0.086266
+5   128  2048  100000000   3.211358e-05  0.045293  0.188986

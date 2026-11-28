@@ -1,0 +1,26 @@
+5 1e-05 39s
+5 3e-05 78s
+5 0.0001 133s
+5 0.0003 188s
+5 0.001 246s
+5 0.003 304s
+5 0.01 365s
+5 0.03 409s
+5 0.1 477s
+6 1e-05 533s
+6 3e-05 590s
+/home/user/AI-agents/research/papers/p016/code/linear_speedlimit.py:193: RuntimeWarning: overflow encountered in multiply
+  nPF = np.linalg.norm(e0 - PS @ e0)
+6 0.0001 672s
+6 0.0003 744s
+6 0.001 812s
+6 0.003 883s
+6 0.01 941s
+6 0.03 993s
+6 0.1 1050s
+7 1e-05 1093s
+7 3e-05 1137s
+/home/user/AI-agents/research/papers/p016/code/linear_speedlimit.py:80: RuntimeWarning: overflow encountered in multiply
+  pa = pa + alpha * qa; qa = -lam_all * pa + beta * qa
+/home/user/AI-agents/research/papers/p016/code/linear_speedlimit.py:80: RuntimeWarning: invalid value encountered in add
+  pa = pa + alpha * qa; qa = -lam_all * pa + beta * qa

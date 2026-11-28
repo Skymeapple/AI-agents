@@ -1,0 +1,60 @@
+{
+ "n_conversations": 17,
+ "spearman_n_ratio_cons": [
+  0.8921568627450982,
+  1.4893515661379575e-06
+ ],
+ "spearman_n_ratio_full": [
+  0.8970588235294119,
+  1.0662246540443243e-06
+ ],
+ "spearman_n_sample_swap_cons": [
+  -0.2303921568627451,
+  0.3736648667172987
+ ],
+ "spearman_n_designer_swap_cons": [
+  0.20098039215686278,
+  0.4392338761888678
+ ],
+ "spearman_n_ratio_sub_q05": [
+  0.8970588235294119,
+  1.0662246540443243e-06
+ ],
+ "wilcoxon_designer_vs_sample_cons_p": 0.4873809814453125,
+ "wilcoxon_designer_vs_sample_full_p": 0.00384521484375,
+ "n_cons_ratio_ci_above_1": 8,
+ "n_cons_ratio_ci_below_1": 3,
+ "n_full_ratio_ci_above_1": 12,
+ "median_variance_shares_cons": {
+  "designer": 0.2531826911891678,
+  "sample": 0.2029556813796571,
+  "inter": 0.54313897756804
+ },
+ "median_variance_shares_full": {
+  "designer": 0.3255884070379073,
+  "sample": 0.1653856267851748,
+  "inter": 0.5091503588697165
+ },
+ "spearman_n_ratio_cons_no_austria": [
+  0.7552447552447553,
+  0.004508435484294223
+ ],
+ "ols_logratio_cons_on_logn_logM": {
+  "coef": [
+   -0.6294279740310741,
+   0.14100957032470063,
+   -0.05079654293464887
+  ],
+  "t": [
+   -6.213632897212134,
+   5.977944624990529,
+   -1.8956625755510168
+  ]
+ },
+ "jr_any_violation_conversations": {
+  "consensus": 6,
+  "majoritarian": 6,
+  "proportional": 0,
+  "hybrid": 0
+ }
+}

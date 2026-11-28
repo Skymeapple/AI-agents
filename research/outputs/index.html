@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AI ���������������������������</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body{max-width:820px;margin:40px auto;padding:0 20px;font-family:"Georgia","Noto Serif","Songti SC",serif;line-height:1.6;color:#1a1a1a;background:#fff;font-size:16px}
+h1{font-size:1.7em;line-height:1.25}h2{border-bottom:1px solid #ddd;padding-bottom:4px;margin-top:2em}
+table{border-collapse:collapse;margin:1em 0;font-size:.9em;display:block;overflow-x:auto}th,td{border:1px solid #ccc;padding:4px 8px}
+code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:.9em}pre{background:#f4f4f4;padding:10px;overflow-x:auto}
+img{max-width:100%}blockquote{border-left:3px solid #ccc;margin-left:0;padding-left:1em;color:#444}
+.status{background:#fff8e1;border:1px solid #f0d58c;padding:10px 14px;border-radius:6px;font-family:sans-serif;font-size:.9em}
+@media print{body{margin:0;max-width:none}}
+</style>
+</head>
+<body>
+<h1 id="ai-百题研究精选论文">AI 百题研究：精选论文</h1>
+<p>本目录收录 100 个研究项目中审稿得分最高、完成度最好的 6
+篇论文，每篇提供两种格式：</p>
+<ul>
+<li><strong>PDF</strong>：适合阅读和打印</li>
+<li><strong>HTML</strong>：单文件，图表已内嵌，可直接用浏览器打开</li>
+</ul>
+<p>研究已于 2026-11-23 按要求停止。</p>
+<h2 id="先说明评分">先说明评分</h2>
+<ul>
+<li>每篇论文都由独立的审稿智能体评审。审稿人会重跑代码、联网核实引用、逐行检查证明，按顶会标准打
+1–10 分：5＝弱拒，6＝边缘或 workshop
+水平，7＝好会议接收，8＝顶会强接收。</li>
+<li><strong>6 篇里没有一篇达到 8 分。</strong> 最好的是 6
+分，相当于”认真、诚实，但新颖性有限”的边缘论文或 workshop 论文。</li>
+<li>审稿人和作者是同一个模型，这些分数是内部的严格门槛，不等于真实的同行评审结论。</li>
+<li>所有数字都来自实际运行的代码或核实过的公开数据，没有编造数据或引用。没有
+GPU，所以都是 CPU 规模的实验、理论推导和公开数据分析。</li>
+</ul>
+<h2 id="精选论文">精选论文</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>论文</th>
+<th>对应问题</th>
+<th>历次得分</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="p002.pdf">p002</a> · <em>Depth Is Linear, Breadth Is
+Logarithmic: How Far Can a Test-Time-Compute Evaluation See?</em></td>
+<td>推理时计算还能带来多大提升？</td>
+<td>5 → 6</td>
+<td>按第 2 轮意见修改后的版本，<strong>修改后未复审</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="p032.pdf">p032</a> · <em>Beyond the Chain: Propagation
+Blocking, Correlated Errors, and Collusion in Nested Scalable
+Oversight</em></td>
+<td>可扩展监督：人类如何监督更聪明的系统？</td>
+<td>5 → 6（小修）</td>
+<td>第 2 轮审稿时的版本</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><a href="p001.pdf">p001</a> · <em>How Much Slowdown Can a Loss Curve
+Hide? A Compute-Equivalent Audit Ceiling for Pretraining Scaling
+Laws</em></td>
+<td>预训练的扩展定律是否正在放缓？</td>
+<td>5 → 6</td>
+<td>按第 2 轮意见修改后的版本，<strong>修改后未复审</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><a href="p015.pdf">p015</a> · <em>Replicates Buy Hazard, Not Length:
+What Repeated Runs Can and Cannot Tell Us About AI Agents on Multi-Day
+Tasks</em></td>
+<td>模型能否完成跨越数天、数周的长期任务？</td>
+<td>6</td>
+<td>按第 1 轮意见修改后的版本，<strong>修改后未复审</strong></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><a href="p035.pdf">p035</a> · <em>What Can Evaluations Tell Us About
+Deployment? Partial Identification of the Evaluation–Deployment Gap for
+Evaluation-Aware Models</em></td>
+<td>模型在评估时和部署时行为是否一致？</td>
+<td>5 → 5.5</td>
+<td>第 2 轮审稿时的版本</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><a href="p040.pdf">p040</a> · <em>The Public Writes a Shortlist:
+Certification Limits and Authorship in Public-Input AI
+Constitutions</em></td>
+<td>“宪法”“价值观”该由谁来书写？</td>
+<td>5.5</td>
+<td>按第 1 轮意见修改后的版本，<strong>修改后未复审</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="各篇要点">各篇要点</h2>
+<p><strong>p002：推理时计算的评测能看多远。</strong> 用 n 次采样、M
+个任务评测 pass@k 时，任何有效方法能认证的最远预算是 k* = Θ(n·min{log M,
+n})：随采样深度线性增长，随任务数量只按对数增长。实用结论是”加深，不要加宽”。作者在
+9
+个前沿模型的公开越狱日志上验证：常用的参数化外推一致低估了大预算下的成功率，最多低估
+0.68。审稿人的最后意见：理论很扎实，但部分结果是已知的极小极大理论的实例，新颖性有限；另有几处文字与输出不一致需要更正（第
+2 轮后已修改）。</p>
+<p><strong>p032：嵌套监督不必是链。</strong>
+把”弱模型逐级监督强模型”的链式模型推广为监督图，考虑跨代相关错误、合谋、纠正失败等因素。作者给出精确动态规划和失守速率的界。在校准到公开数据的设计研究中，跨代监督图从不比链差，并在
+61–64%
+的设置中明显更好。审稿人认为这是认真诚实的建模论文，但纯模型分析，部分结论是模型结构的直接推论。</p>
+<p><strong>p001：损失曲线能藏住多大的放缓。</strong>
+作者推出”审计上限”的闭式表达：超过某个算力后，扩展放缓再大也无法从损失比较中检测出来。基于
+240 个公开 Chinchilla 训练点，50% 检验力下的上限约为 1.3×10²⁶–7.6×10²⁶
+FLOP，正好覆盖当前最大的训练规模。审稿人在第 2
+轮指出：相关噪声”摧毁检验力”的结论主要来自实验设计，把同样的训练点分散到更多预算上，检验力能提高
+5 倍以上。第 2 轮修改已据此重写。</p>
+<p><strong>p015：重复运行能告诉我们什么。</strong>
+作者证明，只看结果数据无法识别单个任务内部的风险累积方式。在”异质性不随时长变化”的假设下，“重复—时长对偶”成立：j
+次运行全部成功的概率，等于累积风险为 j 倍的单次成功率。作者用公开的 METR
+运行日志检验了这一结论。审稿人指出：“风险随时长递增”的结论依赖少数从未被解决的长任务，比较脆弱。</p>
+<p><strong>p035：评估结果能否推断部署行为。</strong>
+作者用部分识别框架回答：只有评估期访问时，审计者能对部署行为作出哪些有效推断。结论包括：识别区间的宽度由审计者触达不到的信念区域决定；在一定假设下，“真实性改写”后的不安全率是部署不安全率的有效下界。作者在
+408 个 CPU
+上训练的模型中检验了这些预测。审稿人的评价是：方法严谨，所有数字都能复现，已达到
+workshop 水平；离顶会的差距在证据层面，而不在写作。</p>
+<p><strong>p040：公众是否真的”写”了宪法。</strong>
+作者用排序置信集检验公众投票是否在统计上确定了宪法内容。在公开的
+Collective Constitutional AI 数据上（1002 人、34563 票），58
+个席位<strong>一个都无法在 95%
+水平上认证</strong>。作者还给出与具体方法无关的下界，证明这不是方法保守造成的。审稿人的评价是：实证管线非常透明，几乎所有数字都能从公开数据复现；但理论偏增量，“设计者主导”的结论依赖所选的设计集合。</p>
+<h2 id="怎样读这些状态">怎样读这些”状态”</h2>
+<ul>
+<li><strong>“修改后未复审”</strong>：作者已按最近一轮审稿意见完成修改并写了逐条回复，但研究停止时新版本还没经过复审。修改是实质性的，比如补实验、撤回或缩小站不住的结论。</li>
+<li><strong>“第 N
+轮审稿时的版本”</strong>：就是审稿人打分的那个版本。</li>
+</ul>
+<p>每篇论文完整的代码、数据、结果和历次审稿意见及作者回复，都在
+<code>research/papers/pNNN/</code>
+下：<code>code/</code>、<code>results/</code>、<code>reviews/review_rN.md</code>、<code>reviews/response_rN.md</code>。</p>
+<h2 id="整个项目的完成度">整个项目的完成度</h2>
+<ul>
+<li>100 个问题中，66 个写出了完整初稿。</li>
+<li>约 30 篇完成了至少一轮审稿。第一轮得分几乎都在 4.5–6 分之间。</li>
+<li>其余项目停在初稿或部分草稿阶段，都保留在
+<code>research/papers/</code> 中。</li>
+</ul>
+</body>
+</html>

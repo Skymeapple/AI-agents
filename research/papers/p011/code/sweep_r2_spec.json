@@ -1,0 +1,65 @@
+{
+ "written": "2026-11-22, before jobs_r2.txt was launched. results/sweep_r2_spec.sha256 holds the SHA-256 and UTC time of the original (pre-amendment) version; amendment_1 was appended to this file afterwards, so the current file's hash differs.",
+ "status": "author-specified analysis plan; NOT lodged with any external registry",
+ "design": {
+  "regimes_eta_delta": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0.3
+   ],
+   [
+    0.2,
+    0
+   ],
+   [
+    0.2,
+    0.3
+   ]
+  ],
+  "seeds": [
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109
+  ],
+  "seed_note": "new seeds, disjoint from the round-1 seeds 0-5; same seed controls init, data split, batch order",
+  "training_length_factor": {
+   "evaluated_at_steps": [
+    4000,
+    8000
+   ],
+   "regime_(0,0.3)_also_at": [
+    16000
+   ]
+  },
+  "everything_else": "identical to round 1 (2 layers, d=64, AdamW lr 1e-3, wd 0.5, batch 256)"
+ },
+ "primary_endpoints": [
+  "E1: per (regime, length) run-level fraction of final models in each behavioural quadrant (N+/-: acc_clean - acc_trunc > 0.5; S+/-: follow > 0.5), with Clopper-Pearson 95% CIs over the 10 seeds",
+  "E2: run-level fraction of N-S+ models in regime (0,0.3) at 4000 and 8000 steps (prediction from round 1: > 0 at 8000 steps)",
+  "E3: run-level fraction of N+S- models in regime (0.2,0) (prediction: > 0) and whether they are N+ under the mechanistic CoT-position cut (symmetric criterion)"
+ ],
+ "secondary_endpoints": [
+  "Eq.2 vs trivial predictor P(ignore): MAE and Pearson r on graded checkpoints; run-level precision/recall of |Eq.2 residual| > 0.3 for behavioural N/S disagreement",
+  "truncation under alternative removal formats (MASK, SEP token, mean number embedding, zero embedding)",
+  "presence-gating test: interpolate CoT-position embedding between corrupted token and MASK",
+  "description D via interchange interventions on probe subspaces (Def. 3)",
+  "stability of regime (0,0.3) quadrants from 8000 to 16000 steps"
+ ],
+ "inference_rule": "checkpoints within a run are never pooled as independent units; all intervals are over runs (seeds)",
+ "amendment_1": {
+  "when": "2026-11-22, ~10 min after launch; only the first four step-4000 weight files existed and none had been evaluated",
+  "reason": "measured throughput (~1.8 effective CPU cores) made the 40-run design take ~2 h, beyond the compute budget",
+  "change": "regimes (0,0) and (0.2,0.3) dropped from round 2 (they are covered only by round-1 runs, 2-4 seeds each); regime (0,0.3): seeds 100-103 run to 16000 steps (stability), seeds 104-109 to 8000 steps; regime (0.2,0): seeds 100-109 to 8000 steps. Endpoints E1-E3 unchanged; 16000-step stability is now n=4."
+ }
+}

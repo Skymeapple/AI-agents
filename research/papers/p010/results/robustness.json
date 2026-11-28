@@ -1,0 +1,106 @@
+{
+ "metr_1-1_lam1": {
+  "n_def": 24,
+  "n_finite": 24,
+  "arrival_range": [
+   2027.1212876870864,
+   2032.646461239778
+  ],
+  "argmin": "pmean+1|0.5",
+  "argmax": "minfam|0.95",
+  "dt_range": [
+   3.7328937596498255,
+   6.760873161184295
+  ],
+  "pooled50_arrival": 2027.7132402899208,
+  "pooled50_ci": [
+   2027.1642118799823,
+   2028.277945003592
+  ],
+  "pooled50_dt": 4.229661158793552,
+  "delay_q80_vs_q50_pooled": 0.9467610350632185,
+  "minfam50_arrival": 2029.5769109262687,
+  "q10fam50_arrival": 2029.0418664010133,
+  "spearman_vs_main": 0.9999999999999999,
+  "prop1_order_pairs_satisfied": "9/9",
+  "q_monotone_aggregators": "8/8"
+ },
+ "metr_1-1_lam0.25": {
+  "n_def": 24,
+  "n_finite": 24,
+  "arrival_range": [
+   2026.7044626985,
+   2033.990525020327
+  ],
+  "argmin": "pmean+1|0.5",
+  "argmax": "minfam|0.95",
+  "dt_range": [
+   3.447648419504961,
+   7.457272321953025
+  ],
+  "pooled50_arrival": 2027.7132402899208,
+  "pooled50_ci": [
+   2027.1642118799823,
+   2028.277945003592
+  ],
+  "pooled50_dt": 4.229661158793552,
+  "delay_q80_vs_q50_pooled": 0.9467610350632185,
+  "minfam50_arrival": 2030.93172800936,
+  "q10fam50_arrival": 2029.9698932222664,
+  "spearman_vs_main": 0.9147826086956521,
+  "prop1_order_pairs_satisfied": "9/9",
+  "q_monotone_aggregators": "8/8"
+ },
+ "metr_1-1_lam4": {
+  "n_def": 24,
+  "n_finite": 24,
+  "arrival_range": [
+   2027.5435408275807,
+   2031.348015115324
+  ],
+  "argmin": "pmean+1|0.5",
+  "argmax": "q25fam|0.95",
+  "dt_range": [
+   4.059237107849815,
+   6.081505391583804
+  ],
+  "pooled50_arrival": 2027.7132402899208,
+  "pooled50_ci": [
+   2027.1642118799823,
+   2028.277945003592
+  ],
+  "pooled50_dt": 4.229661158793552,
+  "delay_q80_vs_q50_pooled": 0.9467610350632185,
+  "minfam50_arrival": 2028.77441564948,
+  "q10fam50_arrival": 2028.433658953078,
+  "spearman_vs_main": 0.9304347826086956,
+  "prop1_order_pairs_satisfied": "9/9",
+  "q_monotone_aggregators": "8/8"
+ },
+ "metr_1-0_lam1": {
+  "n_def": 24,
+  "n_finite": 24,
+  "arrival_range": [
+   2027.9539305592932,
+   2032.796596081292
+  ],
+  "argmin": "pmean+1|0.5",
+  "argmax": "minfam|0.5",
+  "dt_range": [
+   4.561876856385158,
+   8.281061732257378
+  ],
+  "pooled50_arrival": 2028.710665130636,
+  "pooled50_ci": [
+   2027.900168529422,
+   2029.6165387457384
+  ],
+  "pooled50_dt": 5.769649013567337,
+  "delay_q80_vs_q50_pooled": 0.9081567166319928,
+  "minfam50_arrival": 2032.796596081292,
+  "q10fam50_arrival": 2028.980866538009,
+  "spearman_vs_main": 0.8217391304347826,
+  "prop1_order_pairs_satisfied": "9/9",
+  "q_monotone_aggregators": "6/8"
+ }
+}

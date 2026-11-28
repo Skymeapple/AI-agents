@@ -1,0 +1,43 @@
+Held-out tasks (5 shared task folds), mean over 20 agents of agent-level means
+      emp   homog      bb    bb_T   gauss  logitnorm  latent3  crossed_T  crossed_X
+m                                                                                  
+1  0.6516  0.6557  0.6486  0.6527  0.6549     0.6513   0.6596     0.6196     0.6545
+2  0.6919  0.7587  0.6873  0.6932  0.6940     0.6906   0.7078     0.6557     0.6954
+3  0.7122  0.8036  0.7061  0.7136  0.7104     0.7104   0.7276     0.6710     0.7127
+4  0.7260  0.8298  0.7183  0.7267  0.7201     0.7234   0.7391     0.6802     0.7228
+
+Gain over m=1
+      emp   homog      bb    bb_T   gauss  logitnorm  latent3  crossed_T  crossed_X
+m                                                                                  
+1  0.0000  0.0000  0.0000  0.0000  0.0000     0.0000   0.0000     0.0000     0.0000
+2  0.0403  0.1030  0.0386  0.0405  0.0391     0.0393   0.0483     0.0361     0.0409
+3  0.0606  0.1479  0.0575  0.0609  0.0555     0.0591   0.0680     0.0515     0.0582
+4  0.0744  0.1741  0.0697  0.0740  0.0652     0.0721   0.0796     0.0606     0.0684
+
+Mean absolute agent-level error
+    homog      bb    bb_T   gauss  logitnorm  latent3  crossed_T  crossed_X
+m                                                                          
+1  0.0056  0.0051  0.0066  0.0108     0.0091   0.0099     0.0365     0.0051
+2  0.0668  0.0061  0.0059  0.0090     0.0072   0.0159     0.0377     0.0054
+3  0.0914  0.0070  0.0040  0.0066     0.0054   0.0154     0.0412     0.0039
+4  0.1038  0.0084  0.0037  0.0078     0.0066   0.0142     0.0458     0.0054
+
+Mean squared task-level error vs unbiased pass@m estimate
+    homog      bb    bb_T   gauss  logitnorm  latent3  crossed_T  crossed_X
+m                                                                          
+1  0.0746  0.1740  0.0746  0.0754     0.0756   0.0759     0.0789     0.0317
+2  0.0924  0.1731  0.0831  0.0837     0.0838   0.0852     0.0881     0.0378
+3  0.1081  0.1747  0.0897  0.0902     0.0902   0.0922     0.0952     0.0443
+4  0.1221  0.1793  0.0977  0.0982     0.0980   0.1003     0.1036     0.0524
+
+Held-out tasks >= 4 h, pooled over task-agent pairs
+      emp   homog      bb    bb_T   gauss  logitnorm  latent3  crossed_T  crossed_X
+m                                                                                  
+1  0.2179  0.2082  0.6584  0.2288  0.2323     0.2314   0.2553     0.1566     0.2302
+2  0.2621  0.3336  0.6964  0.2748  0.2732     0.2748   0.3111     0.1870     0.2699
+3  0.2855  0.4145  0.7149  0.3001  0.2930     0.2997   0.3386     0.2021     0.2887
+4  0.3015  0.4701  0.7268  0.3173  0.3055     0.3175   0.3561     0.2118     0.3003
+
+Sharp H-brackets of Prop. 4 (in-sample agent-strata):
+  m=3: 89 strata; observed inside [lo,up] (+-0.02 tol): 0.989; mean width 0.033; mean homog-minus-up 0.129; sum obs gain 8.67 vs homog gain 21.03 vs upper-bracket gain 9.55
+  m=4: 89 strata; observed inside [lo,up] (+-0.02 tol): 0.966; mean width 0.065; mean homog-minus-up 0.136; sum obs gain 10.66 vs homog gain 25.04 vs upper-bracket gain 12.97

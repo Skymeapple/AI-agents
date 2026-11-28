@@ -1,0 +1,82 @@
+E1 headline sweep
+  priority     p=0.000 mean=0.0007 CVaR99=0.059 P>10%=0.0010 geo-share=0.00
+  priority     p=0.005 mean=0.0021 CVaR99=0.177 P>10%=0.0049 geo-share=0.61
+  priority     p=0.010 mean=0.0033 CVaR99=0.272 P>10%=0.0079 geo-share=0.76
+  priority     p=0.020 mean=0.0057 CVaR99=0.423 P>10%=0.0149 geo-share=0.87
+  priority     p=0.050 mean=0.0135 CVaR99=0.599 P>10%=0.0369 geo-share=0.95
+  proportional p=0.000 mean=0.0019 CVaR99=0.090 P>10%=0.0026 geo-share=0.00
+  proportional p=0.005 mean=0.0033 CVaR99=0.201 P>10%=0.0065 geo-share=0.41
+  proportional p=0.010 mean=0.0045 CVaR99=0.292 P>10%=0.0100 geo-share=0.57
+  proportional p=0.020 mean=0.0071 CVaR99=0.440 P>10%=0.0171 geo-share=0.74
+  proportional p=0.050 mean=0.0153 CVaR99=0.618 P>10%=0.0397 geo-share=0.88
+E2 hazard decomposition
+  priority     local        alone mean=0.00012 CVaR99=0.012
+  priority     tw_quake     alone mean=0.00000 CVaR99=0.000
+  priority     kr_regional  alone mean=0.00015 CVaR99=0.015
+  priority     hbm_yield    alone mean=0.00029 CVaR99=0.029
+  priority     tw_geo       alone mean=0.00246 CVaR99=0.246
+  proportional local        alone mean=0.00046 CVaR99=0.040
+  proportional tw_quake     alone mean=0.00000 CVaR99=0.000
+  proportional kr_regional  alone mean=0.00016 CVaR99=0.016
+  proportional hbm_yield    alone mean=0.00065 CVaR99=0.054
+  proportional tw_geo       alone mean=0.00254 CVaR99=0.254
+E3 input hardening
+  priority     immune=none               mean=0.00325 (-0.0%) CVaR99=0.272 (-0.0%)
+  priority     immune=logic              mean=0.00325 (-0.0%) CVaR99=0.271 (-0.0%)
+  priority     immune=cowos              mean=0.00252 (-22.6%) CVaR99=0.206 (-24.1%)
+  priority     immune=hbm                mean=0.00243 (-25.3%) CVaR99=0.243 (-10.6%)
+  priority     immune=logic+cowos        mean=0.00082 (-74.9%) CVaR99=0.065 (-76.2%)
+  priority     immune=cowos+hbm          mean=0.00172 (-47.2%) CVaR99=0.172 (-36.7%)
+  priority     immune=logic+hbm          mean=0.00243 (-25.4%) CVaR99=0.243 (-10.6%)
+  priority     immune=logic+cowos+hbm    mean=0.00000 (-100.0%) CVaR99=0.000 (-100.0%)
+  proportional immune=none               mean=0.00454 (-0.0%) CVaR99=0.292 (-0.0%)
+  proportional immune=logic              mean=0.00427 (-5.9%) CVaR99=0.284 (-2.5%)
+  proportional immune=cowos              mean=0.00434 (-4.3%) CVaR99=0.290 (-0.6%)
+  proportional immune=hbm                mean=0.00262 (-42.2%) CVaR99=0.259 (-11.4%)
+  proportional immune=logic+cowos        mean=0.00170 (-62.5%) CVaR99=0.093 (-68.3%)
+  proportional immune=cowos+hbm          mean=0.00256 (-43.6%) CVaR99=0.255 (-12.5%)
+  proportional immune=logic+hbm          mean=0.00249 (-45.2%) CVaR99=0.248 (-14.8%)
+  proportional immune=logic+cowos+hbm    mean=0.00000 (-100.0%) CVaR99=0.000 (-100.0%)
+E4 regional cut-off analytics
+  2025-26 baseline (short run)               priority     output=0.056 binding=cowos
+  2025-26 baseline (short run)               proportional output=0.030 binding=logic
+  after porting to non-TSMC foundries        priority     output=0.056 binding=cowos
+  after porting to non-TSMC foundries        proportional output=0.050 binding=cowos
+  US logic x3 only (0.09), no CoWoS move     priority     output=0.056 binding=cowos
+  US logic x3 only (0.09), no CoWoS move     proportional output=0.050 binding=cowos
+  CoWoS outside TW 30%, logic unchanged      priority     output=0.250 binding=logic
+  CoWoS outside TW 30%, logic unchanged      proportional output=0.030 binding=logic
+  logic 0.09 + CoWoS 30% outside             priority     output=0.333 binding=cowos
+  logic 0.09 + CoWoS 30% outside             proportional output=0.090 binding=logic
+  logic 0.09 + CoWoS 50% outside             priority     output=0.556 binding=cowos
+  logic 0.09 + CoWoS 50% outside             proportional output=0.090 binding=logic
+  Korea cut-off priority: output=0.211
+  Korea cut-off proportional: output=0.190
+E5 buffers
+E6 sensitivity
+  priority     local site-incident rate     mean 0.00304..0.00395  CVaR99 0.269..0.289
+  priority     local outage median (wk)     mean 0.00297..0.00409  CVaR99 0.267..0.282
+  priority     Taiwan quake rate            mean 0.00329..0.00346  CVaR99 0.278..0.291
+  priority     Taiwan quake median (wk)     mean 0.00324..0.00382  CVaR99 0.271..0.282
+  priority     Korea regional rate          mean 0.00312..0.00360  CVaR99 0.268..0.289
+  priority     HBM yield-shock rate         mean 0.00295..0.00428  CVaR99 0.267..0.289
+  priority     TW cut-off probability       mean 0.00208..0.00573  CVaR99 0.177..0.423
+  priority     TW cut-off median (wk)       mean 0.00228..0.00404  CVaR99 0.181..0.349
+  priority     buffer (wk)                  mean 0.00820..0.00195  CVaR99 0.329..0.195
+  priority     AI share of CoWoS            mean 0.00319..0.00338  CVaR99 0.268..0.275
+  priority     AI share of HBM              mean 0.00265..0.00407  CVaR99 0.259..0.281
+  priority     CoWoS share outside Taiwan   mean 0.00344..0.00288  CVaR99 0.289..0.237
+  proportional local site-incident rate     mean 0.00386..0.00665  CVaR99 0.287..0.313
+  proportional local outage median (wk)     mean 0.00368..0.00688  CVaR99 0.284..0.306
+  proportional Taiwan quake rate            mean 0.00454..0.00474  CVaR99 0.297..0.310
+  proportional Taiwan quake median (wk)     mean 0.00450..0.00543  CVaR99 0.291..0.302
+  proportional Korea regional rate          mean 0.00433..0.00495  CVaR99 0.288..0.308
+  proportional HBM yield-shock rate         mean 0.00379..0.00664  CVaR99 0.286..0.311
+  proportional TW cut-off probability       mean 0.00331..0.00712  CVaR99 0.201..0.440
+  proportional TW cut-off median (wk)       mean 0.00356..0.00534  CVaR99 0.203..0.368
+  proportional buffer (wk)                  mean 0.01507..0.00218  CVaR99 0.349..0.215
+  proportional AI share of CoWoS            mean 0.00454..0.00454  CVaR99 0.292..0.292
+  proportional AI share of HBM              mean 0.00454..0.00454  CVaR99 0.292..0.292
+  proportional CoWoS share outside Taiwan   mean 0.00469..0.00451  CVaR99 0.302..0.291
+E7 slack asymmetry
+done

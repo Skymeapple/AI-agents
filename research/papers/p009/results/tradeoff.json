@@ -1,0 +1,801 @@
+{
+ "summary_trained": {
+  "attn": {
+   "eta_median_dv64": null,
+   "eta_range_dv64": null,
+   "Nstar_vs_dk_loglog_slope_dv64": null
+  },
+  "delta": {
+   "eta_median_dv64": 1.0937776723416601,
+   "eta_range_dv64": [
+    1.019998478606184,
+    1.0991792266730394
+   ],
+   "Nstar_vs_dk_loglog_slope_dv64": 1.0408801358285287,
+   "Nstar_vs_dv_loglog_slope_dk16": 0.4812882190928492
+  },
+  "gdelta": {
+   "eta_median_dv64": 1.0911263577228496,
+   "eta_range_dv64": [
+    1.01265223979219,
+    1.1332202904491038
+   ],
+   "Nstar_vs_dk_loglog_slope_dv64": 1.0680950754143048
+  },
+  "gla": {
+   "eta_median_dv64": 1.085295155381462,
+   "eta_range_dv64": [
+    1.0227639218190128,
+    1.1125159797973687
+   ],
+   "Nstar_vs_dk_loglog_slope_dv64": 1.0476267556049441
+  },
+  "linear": {
+   "eta_median_dv64": 1.0893855493129743,
+   "eta_range_dv64": [
+    1.0223167177493266,
+    1.1234420677084933
+   ],
+   "Nstar_vs_dk_loglog_slope_dv64": 1.0549920705153086,
+   "Nstar_vs_dv_loglog_slope_dk16": 0.5151689923346064
+  }
+ },
+ "corpora": {
+  "prose": {
+   "vocab": 41509,
+   "rows": [
+    {
+     "T": 64,
+     "N_ctx": 1.2333333333333334,
+     "KV_floats_one_layer_d4096": 524288.0,
+     "S_req[ideal additive (eta=1)]": 26.22970835710159,
+     "S_req[trained linear (eta=1.09)]": 24.077525513022888,
+     "S_req[trained gla (eta=1.09)]": 24.168271854012204,
+     "S_req[trained delta (eta=1.09)]": 23.98084091527176,
+     "S_req[trained gdelta (eta=1.09)]": 24.03911166791192
+    },
+    {
+     "T": 128,
+     "N_ctx": 3.35,
+     "KV_floats_one_layer_d4096": 1048576.0,
+     "S_req[ideal additive (eta=1)]": 71.24555918618134,
+     "S_req[trained linear (eta=1.09)]": 65.39976524483242,
+     "S_req[trained gla (eta=1.09)]": 65.64625192778989,
+     "S_req[trained delta (eta=1.09)]": 65.13714897256247,
+     "S_req[trained gdelta (eta=1.09)]": 65.29542493581481
+    },
+    {
+     "T": 256,
+     "N_ctx": 9.483333333333333,
+     "KV_floats_one_layer_d4096": 2097152.0,
+     "S_req[ideal additive (eta=1)]": 201.68518993501084,
+     "S_req[trained linear (eta=1.09)]": 185.13664887716243,
+     "S_req[trained gla (eta=1.09)]": 185.83441466125598,
+     "S_req[trained delta (eta=1.09)]": 184.39322271337335,
+     "S_req[trained gdelta (eta=1.09)]": 184.84127755462
+    },
+    {
+     "T": 512,
+     "N_ctx": 22.233333333333334,
+     "KV_floats_one_layer_d4096": 4194304.0,
+     "S_req[ideal additive (eta=1)]": 472.843661464507,
+     "S_req[trained linear (eta=1.09)]": 434.0462031671963,
+     "S_req[trained gla (eta=1.09)]": 435.6820899088146,
+     "S_req[trained delta (eta=1.09)]": 432.30326731043954,
+     "S_req[trained gdelta (eta=1.09)]": 433.35371574316895
+    },
+    {
+     "T": 1024,
+     "N_ctx": 62.3,
+     "KV_floats_one_layer_d4096": 8388608.0,
+     "S_req[ideal additive (eta=1)]": 1324.9547275519694,
+     "S_req[trained linear (eta=1.09)]": 1216.240410374048,
+     "S_req[trained gla (eta=1.09)]": 1220.8243268959136,
+     "S_req[trained delta (eta=1.09)]": 1211.3565316389977,
+     "S_req[trained gdelta (eta=1.09)]": 1214.299992089929
+    },
+    {
+     "T": 2048,
+     "N_ctx": 151.45,
+     "KV_floats_one_layer_d4096": 16777216.0,
+     "S_req[ideal additive (eta=1)]": 3220.937295148407,
+     "S_req[trained linear (eta=1.09)]": 2956.6550586059316,
+     "S_req[trained gla (eta=1.09)]": 2967.798464019039,
+     "S_req[trained delta (eta=1.09)]": 2944.7824513118167,
+     "S_req[trained gdelta (eta=1.09)]": 2951.937942247508
+    },
+    {
+     "T": 4096,
+     "N_ctx": 326.8666666666667,
+     "KV_floats_one_layer_d4096": 33554432.0,
+     "S_req[ideal additive (eta=1)]": 6951.581625668599,
+     "S_req[trained linear (eta=1.09)]": 6381.195004883849,
+     "S_req[trained gla (eta=1.09)]": 6405.245237849828,
+     "S_req[trained delta (eta=1.09)]": 6355.570973382563,
+     "S_req[trained gdelta (eta=1.09)]": 6371.014297717413
+    },
+    {
+     "T": 8192,
+     "N_ctx": 767.8666666666667,
+     "KV_floats_one_layer_d4096": 67108864.0,
+     "S_req[ideal additive (eta=1)]": 16330.474640924112,
+     "S_req[trained linear (eta=1.09)]": 14990.53723562149,
+     "S_req[trained gla (eta=1.09)]": 15047.035417000678,
+     "S_req[trained delta (eta=1.09)]": 14930.341927681086,
+     "S_req[trained gdelta (eta=1.09)]": 14966.62098329781
+    },
+    {
+     "T": 16384,
+     "N_ctx": 1591.2,
+     "KV_floats_one_layer_d4096": 134217728.0,
+     "S_req[ideal additive (eta=1)]": 33840.57724688112,
+     "S_req[trained linear (eta=1.09)]": 31063.912375396227,
+     "S_req[trained gla (eta=1.09)]": 31180.98987089531,
+     "S_req[trained delta (eta=1.09)]": 30939.173565713852,
+     "S_req[trained gdelta (eta=1.09)]": 31014.3522859309
+    },
+    {
+     "T": 32768,
+     "N_ctx": 3345.4666666666667,
+     "KV_floats_one_layer_d4096": 268435456.0,
+     "S_req[ideal additive (eta=1)]": 71149.14728519307,
+     "S_req[trained linear (eta=1.09)]": 65311.26406997375,
+     "S_req[trained gla (eta=1.09)]": 65557.41719881298,
+     "S_req[trained delta (eta=1.09)]": 65049.00317892796,
+     "S_req[trained gdelta (eta=1.09)]": 65207.06495779221
+    }
+   ],
+   "Tstar": [
+    {
+     "S": 4096,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 192.59586361224626,
+     "T*_every_token": 192.59586361224626,
+     "T*_dedup": 205.80020643266448,
+     "T*_oracle": 2543.171804975414
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 209.81115067663356,
+     "T*_every_token": 209.8111506766336,
+     "T*_dedup": 224.60626731184547,
+     "T*_oracle": 2747.11506698261
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 209.02335772487967,
+     "T*_every_token": 209.02335772487967,
+     "T*_dedup": 223.74493702997324,
+     "T*_oracle": 2737.819567727961
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 210.65705540443454,
+     "T*_every_token": 210.6570554044346,
+     "T*_dedup": 225.53121080521447,
+     "T*_oracle": 2757.0924060067637
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 210.14642317571696,
+     "T*_every_token": 210.14642317571696,
+     "T*_dedup": 224.97285713967665,
+     "T*_oracle": 2751.0700390569477
+    },
+    {
+     "S": 16384,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 770.383454448985,
+     "T*_every_token": 770.3834544489852,
+     "T*_dedup": 880.0407935305025,
+     "T*_oracle": 8217.540884721957
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 839.2446027065342,
+     "T*_every_token": 839.2446027065345,
+     "T*_dedup": 965.9445257576941,
+     "T*_oracle": 8914.827195396907
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 836.0934308995187,
+     "T*_every_token": 836.0934308995188,
+     "T*_dedup": 961.9995198292191,
+     "T*_oracle": 8882.981111234232
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 842.6282216177382,
+     "T*_every_token": 842.6282216177385,
+     "T*_dedup": 970.1819857336277,
+     "T*_oracle": 8949.015933627617
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 840.5856927028678,
+     "T*_every_token": 840.585692702868,
+     "T*_dedup": 967.6238545212759,
+     "T*_oracle": 8928.378628896204
+    },
+    {
+     "S": 65536,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 3081.53381779594,
+     "T*_every_token": 3081.5338177959416,
+     "T*_dedup": 3851.3398429322865,
+     "T*_oracle": 30350.098580504735
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 3356.978410826137,
+     "T*_every_token": 3356.9784108261388,
+     "T*_dedup": 4222.666882598254,
+     "T*_oracle": 32874.19738022091
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 3344.373723598075,
+     "T*_every_token": 3344.373723598073,
+     "T*_dedup": 4204.163028272783,
+     "T*_oracle": 32758.01464828144
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 3370.5128864709527,
+     "T*_every_token": 3370.512886470952,
+     "T*_dedup": 4242.54863317532,
+     "T*_oracle": 32999.027693961325
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 3362.3427708114714,
+     "T*_every_token": 3362.3427708114727,
+     "T*_dedup": 4230.545368787699,
+     "T*_oracle": 32923.67709273046
+    },
+    {
+     "S": 262144,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 12326.13527118376,
+     "T*_every_token": 12326.135271183768,
+     "T*_dedup": 18414.035098990396,
+     "T*_oracle": 111927.32808392798
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 13427.913643304548,
+     "T*_every_token": 13427.913643304557,
+     "T*_dedup": 20388.43172552805,
+     "T*_oracle": 121327.41513053414
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 13377.4948943923,
+     "T*_every_token": 13377.494894392294,
+     "T*_dedup": 20297.38823361234,
+     "T*_oracle": 120898.2616400169
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 13482.05154588381,
+     "T*_every_token": 13482.051545883809,
+     "T*_dedup": 20486.263286724774,
+     "T*_oracle": 121788.12110978247
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 13449.371083245886,
+     "T*_every_token": 13449.371083245893,
+     "T*_dedup": 20427.19811814483,
+     "T*_oracle": 121510.02782068598
+    },
+    {
+     "S": 1048576,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 49304.54108473504,
+     "T*_every_token": 49304.54108473506,
+     "T*_dedup": 91502.20515285828,
+     "T*_oracle": 413085.4737478906
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 53711.65457321819,
+     "T*_every_token": 53711.654573218206,
+     "T*_dedup": 100871.63958052776,
+     "T*_oracle": 447777.978942038
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 53509.9795775692,
+     "T*_every_token": 53509.97957756921,
+     "T*_dedup": 100440.48140575486,
+     "T*_oracle": 446194.1202367901
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 53928.20618353524,
+     "T*_every_token": 53928.20618353526,
+     "T*_dedup": 101334.85224940903,
+     "T*_oracle": 449478.28708799486
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 53797.48433298354,
+     "T*_every_token": 53797.48433298356,
+     "T*_dedup": 101055.20199282955,
+     "T*_oracle": 448451.9399032717
+    },
+    {
+     "S": 4194304,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 197218.16433894017,
+     "T*_every_token": 197218.1643389404,
+     "T*_dedup": 443586.34394342266,
+     "T*_oracle": 1524557.152776543
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 214846.61829287276,
+     "T*_every_token": 214846.61829287303,
+     "T*_dedup": 489007.68822298956,
+     "T*_oracle": 1652595.3199422916
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 214039.9183102768,
+     "T*_every_token": 214039.91831027705,
+     "T*_dedup": 486917.51041700854,
+     "T*_oracle": 1646749.8393540615
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 215712.82473414097,
+     "T*_every_token": 215712.82473414124,
+     "T*_dedup": 491253.2604899536,
+     "T*_oracle": 1658870.575574797
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 215189.93733193417,
+     "T*_every_token": 215189.93733193443,
+     "T*_dedup": 489897.5660048677,
+     "T*_oracle": 1655082.6792648514
+    }
+   ],
+   "beta_local_last3": 1.0616398716266617
+  },
+  "code": {
+   "vocab": 149292,
+   "rows": [
+    {
+     "T": 64,
+     "N_ctx": 4.183333333333334,
+     "KV_floats_one_layer_d4096": 524288.0,
+     "S_req[ideal additive (eta=1)]": 99.67761696914418,
+     "S_req[trained linear (eta=1.09)]": 91.49893445163313,
+     "S_req[trained gla (eta=1.09)]": 91.84378689510437,
+     "S_req[trained delta (eta=1.09)]": 91.13151556270586,
+     "S_req[trained gdelta (eta=1.09)]": 91.35295492005949
+    },
+    {
+     "T": 128,
+     "N_ctx": 13.166666666666666,
+     "KV_floats_one_layer_d4096": 1048576.0,
+     "S_req[ideal additive (eta=1)]": 313.72636416583225,
+     "S_req[trained linear (eta=1.09)]": 287.98469409079746,
+     "S_req[trained gla (eta=1.09)]": 289.0700862435555,
+     "S_req[trained delta (eta=1.09)]": 286.828276073855,
+     "S_req[trained gdelta (eta=1.09)]": 287.525236600984
+    },
+    {
+     "T": 256,
+     "N_ctx": 27.433333333333334,
+     "KV_floats_one_layer_d4096": 2097152.0,
+     "S_req[ideal additive (eta=1)]": 653.6627790088099,
+     "S_req[trained linear (eta=1.09)]": 600.0288689537375,
+     "S_req[trained gla (eta=1.09)]": 602.290331591003,
+     "S_req[trained delta (eta=1.09)]": 597.6194207817283,
+     "S_req[trained gdelta (eta=1.09)]": 599.0715689179996
+    },
+    {
+     "T": 512,
+     "N_ctx": 58.86666666666667,
+     "KV_floats_one_layer_d4096": 4194304.0,
+     "S_req[ideal additive (eta=1)]": 1402.6348332072398,
+     "S_req[trained linear (eta=1.09)]": 1287.5467588970844,
+     "S_req[trained gla (eta=1.09)]": 1292.3994235597952,
+     "S_req[trained delta (eta=1.09)]": 1282.3765456871595,
+     "S_req[trained gdelta (eta=1.09)]": 1285.4925768033868
+    },
+    {
+     "T": 1024,
+     "N_ctx": 120.43333333333334,
+     "KV_floats_one_layer_d4096": 8388608.0,
+     "S_req[ideal additive (eta=1)]": 2869.6034271674735,
+     "S_req[trained linear (eta=1.09)]": 2634.148606962155,
+     "S_req[trained gla (eta=1.09)]": 2644.076510374598,
+     "S_req[trained delta (eta=1.09)]": 2623.5710416578186,
+     "S_req[trained gdelta (eta=1.09)]": 2629.94602490976
+    },
+    {
+     "T": 2048,
+     "N_ctx": 239.61666666666667,
+     "KV_floats_one_layer_d4096": 16777216.0,
+     "S_req[ideal additive (eta=1)]": 5709.42270583819,
+     "S_req[trained linear (eta=1.09)]": 5240.956894865058,
+     "S_req[trained gla (eta=1.09)]": 5260.709658131137,
+     "S_req[trained delta (eta=1.09)]": 5219.911550776979,
+     "S_req[trained gdelta (eta=1.09)]": 5232.595350142212
+    },
+    {
+     "T": 4096,
+     "N_ctx": 426.06666666666666,
+     "KV_floats_one_layer_d4096": 33554432.0,
+     "S_req[ideal additive (eta=1)]": 10152.026295614349,
+     "S_req[trained linear (eta=1.09)]": 9319.038885743223,
+     "S_req[trained gla (eta=1.09)]": 9354.161626240828,
+     "S_req[trained delta (eta=1.09)]": 9281.617784243077,
+     "S_req[trained gdelta (eta=1.09)]": 9304.171074009564
+    },
+    {
+     "T": 8192,
+     "N_ctx": 787.4166666666666,
+     "KV_floats_one_layer_d4096": 67108864.0,
+     "S_req[ideal additive (eta=1)]": 18762.027943056637,
+     "S_req[trained linear (eta=1.09)]": 17222.578319392058,
+     "S_req[trained gla (eta=1.09)]": 17287.488891869343,
+     "S_req[trained delta (eta=1.09)]": 17153.420130518076,
+     "S_req[trained gdelta (eta=1.09)]": 17195.101016725934
+    },
+    {
+     "T": 16384,
+     "N_ctx": 1452.7,
+     "KV_floats_one_layer_d4096": 134217728.0,
+     "S_req[ideal additive (eta=1)]": 34613.946016990216,
+     "S_req[trained linear (eta=1.09)]": 31773.825197901377,
+     "S_req[trained gla (eta=1.09)]": 31893.57830020353,
+     "S_req[trained delta (eta=1.09)]": 31646.235695125764,
+     "S_req[trained gdelta (eta=1.09)]": 31723.132496980972
+    },
+    {
+     "T": 32768,
+     "N_ctx": 2522.2,
+     "KV_floats_one_layer_d4096": 268435456.0,
+     "S_req[ideal additive (eta=1)]": 60097.26347081484,
+     "S_req[trained linear (eta=1.09)]": 55166.202184998176,
+     "S_req[trained gla (eta=1.09)]": 55374.11935621487,
+     "S_req[trained delta (eta=1.09)]": 54944.679335200795,
+     "S_req[trained gdelta (eta=1.09)]": 55078.18874088622
+    }
+   ],
+   "Tstar": [
+    {
+     "S": 4096,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 171.9035211148513,
+     "T*_every_token": 171.9035211148512,
+     "T*_dedup": 271.9155824827066,
+     "T*_oracle": 1465.5709067391574
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 187.26921177853674,
+     "T*_every_token": 187.26921177853666,
+     "T*_dedup": 299.03869322305366,
+     "T*_oracle": 1597.605914748956
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 186.56605865896296,
+     "T*_every_token": 186.56605865896287,
+     "T*_dedup": 297.7919645906513,
+     "T*_oracle": 1591.561985979041
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 188.02423319233745,
+     "T*_every_token": 188.02423319233742,
+     "T*_dedup": 300.3779635780731,
+     "T*_oracle": 1604.095866762747
+    },
+    {
+     "S": 4096,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 187.56846287378065,
+     "T*_every_token": 187.56846287378056,
+     "T*_dedup": 299.56943881949576,
+     "T*_oracle": 1600.1781694845056
+    },
+    {
+     "S": 16384,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 687.6140844594051,
+     "T*_every_token": 687.6140844594049,
+     "T*_dedup": 1434.9485636913216,
+     "T*_oracle": 7030.080858284084
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 749.076847114147,
+     "T*_every_token": 749.0768471141469,
+     "T*_dedup": 1568.5452160031332,
+     "T*_oracle": 7743.258245494691
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 746.2642346358518,
+     "T*_every_token": 746.2642346358516,
+     "T*_dedup": 1562.421857157329,
+     "T*_oracle": 7710.452870743628
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 752.0969327693498,
+     "T*_every_token": 752.0969327693498,
+     "T*_dedup": 1575.1212844947704,
+     "T*_oracle": 7778.501158422961
+    },
+    {
+     "S": 16384,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 750.2738514951226,
+     "T*_every_token": 750.2738514951224,
+     "T*_dedup": 1571.1515005127321,
+     "T*_oracle": 7757.224515453845
+    },
+    {
+     "S": 65536,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 2750.4563378376206,
+     "T*_every_token": 2750.45633783762,
+     "T*_dedup": 7707.153751465252,
+     "T*_oracle": 36329.18493479631
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 2996.307388456588,
+     "T*_every_token": 2996.307388456588,
+     "T*_dedup": 8579.042015229836,
+     "T*_oracle": 40228.43038969635
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 2985.0569385434073,
+     "T*_every_token": 2985.0569385434096,
+     "T*_dedup": 8539.752113395287,
+     "T*_oracle": 40048.61987924132
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 3008.387731077399,
+     "T*_every_token": 3008.387731077397,
+     "T*_dedup": 8621.266331615594,
+     "T*_oracle": 40421.64816956719
+    },
+    {
+     "S": 65536,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 3001.0954059804903,
+     "T*_every_token": 3001.0954059804903,
+     "T*_dedup": 8595.77305488967,
+     "T*_oracle": 40304.99408553286
+    },
+    {
+     "S": 262144,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 11001.825351350482,
+     "T*_every_token": 11001.825351350482,
+     "T*_dedup": 45489.99876875751,
+     "T*_oracle": 189327.69625207083
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 11985.229553826352,
+     "T*_every_token": 11985.229553826353,
+     "T*_dedup": 50761.82260331091,
+     "T*_oracle": 209648.41526689508
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 11940.22775417363,
+     "T*_every_token": 11940.22775417362,
+     "T*_dedup": 50517.83687172484,
+     "T*_oracle": 208711.34195331924
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 12033.550924309597,
+     "T*_every_token": 12033.55092430959,
+     "T*_dedup": 51024.092527804685,
+     "T*_oracle": 210655.35988190759
+    },
+    {
+     "S": 262144,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 12004.381623921961,
+     "T*_every_token": 12004.381623921963,
+     "T*_dedup": 50865.73726859931,
+     "T*_oracle": 210047.42306669263
+    },
+    {
+     "S": 1048576,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 44007.30140540193,
+     "T*_every_token": 44007.30140540194,
+     "T*_dedup": 268546.4384304822,
+     "T*_oracle": 986671.6424398462
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 47940.918215305406,
+     "T*_every_token": 47940.91821530542,
+     "T*_dedup": 299668.21361449396,
+     "T*_oracle": 1092572.0342093678
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 47760.91101669452,
+     "T*_every_token": 47760.91101669453,
+     "T*_dedup": 298227.86406473105,
+     "T*_oracle": 1087688.5243811943
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 48134.20369723839,
+     "T*_every_token": 48134.2036972384,
+     "T*_dedup": 301216.50238205947,
+     "T*_oracle": 1097819.674764913
+    },
+    {
+     "S": 1048576,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 48017.526495687845,
+     "T*_every_token": 48017.52649568786,
+     "T*_dedup": 300281.6652306558,
+     "T*_oracle": 1094651.443027866
+    },
+    {
+     "S": 4194304,
+     "eta_label": "ideal additive (eta=1)",
+     "eta": 1.0,
+     "Ncap": 176029.20562160772,
+     "T*_every_token": 176029.20562160792,
+     "T*_dedup": 1585341.647518944,
+     "T*_oracle": 5141988.991926455
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained linear (eta=1.09)",
+     "eta": 1.0893855493129743,
+     "Ncap": 191763.67286122162,
+     "T*_every_token": 191763.67286122186,
+     "T*_dedup": 1769066.4685677532,
+     "T*_oracle": 5693883.487822821
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained gla (eta=1.09)",
+     "eta": 1.085295155381462,
+     "Ncap": 191043.64406677807,
+     "T*_every_token": 191043.6440667783,
+     "T*_dedup": 1760563.484348078,
+     "T*_oracle": 5668433.325176677
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained delta (eta=1.09)",
+     "eta": 1.0937776723416601,
+     "Ncap": 192536.81478895355,
+     "T*_every_token": 192536.81478895378,
+     "T*_dedup": 1778206.663015883,
+     "T*_oracle": 5721231.299201567
+    },
+    {
+     "S": 4194304,
+     "eta_label": "trained gdelta (eta=1.09)",
+     "eta": 1.0911263577228496,
+     "Ncap": 192070.10598275138,
+     "T*_every_token": 192070.10598275161,
+     "T*_dedup": 1772687.9293531694,
+     "T*_oracle": 5704720.220930903
+    }
+   ],
+   "beta_local_last3": 0.8397417627716008
+  }
+ }
+}

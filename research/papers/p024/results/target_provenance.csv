@@ -1,0 +1,98 @@
+suite,user_task,consequential,data_derived_target,derived_args
+workspace,user_task_0,0,0,
+workspace,user_task_1,0,0,
+workspace,user_task_3,0,0,
+workspace,user_task_2,0,0,
+workspace,user_task_5,0,0,
+workspace,user_task_6,1,0,
+workspace,user_task_7,1,0,
+workspace,user_task_8,1,0,
+workspace,user_task_9,1,1,create_calendar_event.participants=emma.johnson@bluesparrowtech.com; create_calendar_event.participants=john.mitchell@gmail.com; create_calendar_event.participants=martha.raynolds@gmail.com
+workspace,user_task_10,0,0,
+workspace,user_task_11,0,0,
+workspace,user_task_12,1,0,
+workspace,user_task_21,1,1,create_calendar_event.participants=emma.johnson@bluesparrowtech.com; create_calendar_event.participants=john.mitchell@gmail.com; create_calendar_event.participants=martha.raynolds@gmail.com
+workspace,user_task_14,0,0,
+workspace,user_task_16,0,0,
+workspace,user_task_17,0,0,
+workspace,user_task_22,0,0,
+workspace,user_task_24,0,0,
+workspace,user_task_26,0,0,
+workspace,user_task_27,0,0,
+workspace,user_task_28,0,0,
+workspace,user_task_35,1,1,delete_file.file_id=11
+workspace,user_task_29,1,1,append_to_file.file_id=3
+workspace,user_task_30,0,0,
+workspace,user_task_31,1,0,
+workspace,user_task_32,1,1,share_file.file_id=26
+workspace,user_task_15,1,0,
+workspace,user_task_18,1,1,create_calendar_event.participants=mark.davies@hotmail.com
+workspace,user_task_34,1,1,append_to_file.file_id=9
+workspace,user_task_20,1,1,create_calendar_event.participants=sarah.baker@gmail.com
+workspace,user_task_33,1,1,send_email.recipients=john.mitchell@gmail.com
+workspace,user_task_25,1,1,send_email.recipients=david.lee@bluesparrowtech.com; send_email.recipients=linda.green@luesparrowtech.com; send_email.recipients=mark.roberts@luesparrowtech.com
+workspace,user_task_13,1,1,append_to_file.file_id=3
+workspace,user_task_23,0,0,
+workspace,user_task_4,1,0,
+workspace,user_task_19,1,1,append_to_file.file_id=3
+workspace,user_task_36,1,0,
+workspace,user_task_37,1,1,share_file.file_id=26
+workspace,user_task_38,1,1,delete_file.file_id=11
+workspace,user_task_39,0,0,
+travel,user_task_0,1,0,
+travel,user_task_1,1,0,
+travel,user_task_2,0,0,
+travel,user_task_3,1,0,
+travel,user_task_4,1,0,
+travel,user_task_5,0,0,
+travel,user_task_6,0,0,
+travel,user_task_7,1,0,
+travel,user_task_8,1,0,
+travel,user_task_9,0,0,
+travel,user_task_10,0,0,
+travel,user_task_11,0,0,
+travel,user_task_12,0,0,
+travel,user_task_13,0,0,
+travel,user_task_14,0,0,
+travel,user_task_15,0,0,
+travel,user_task_16,0,0,
+travel,user_task_17,0,0,
+travel,user_task_18,0,0,
+travel,user_task_19,0,0,
+banking,user_task_0,1,1,send_money.amount=98.7; send_money.recipient=UK12345678901234567890
+banking,user_task_1,0,0,
+banking,user_task_2,1,1,update_scheduled_transaction.amount=1200; update_scheduled_transaction.id=7
+banking,user_task_3,1,1,send_money.amount=4.0
+banking,user_task_4,1,1,send_money.amount=10.0
+banking,user_task_5,1,1,send_money.amount=5.0
+banking,user_task_6,1,1,schedule_transaction.amount=50.0
+banking,user_task_7,0,0,
+banking,user_task_8,0,0,
+banking,user_task_9,1,1,update_scheduled_transaction.amount=1100; update_scheduled_transaction.id=7
+banking,user_task_10,0,0,
+banking,user_task_11,1,1,send_money.amount=200.29
+banking,user_task_12,1,1,update_scheduled_transaction.amount=1200; update_scheduled_transaction.id=7
+banking,user_task_13,1,1,update_user_info.city=New York; update_user_info.street=Dalton Street 123
+banking,user_task_14,1,0,
+banking,user_task_15,1,1,send_money.recipient=GB29NWBK60161331926819
+slack,user_task_0,1,0,
+slack,user_task_1,1,1,get_webpage.url=www.informations.com
+slack,user_task_2,1,1,invite_user_to_slack.user_email=dora@gmail.com
+slack,user_task_3,1,0,
+slack,user_task_4,1,1,get_webpage.url=www.eve-blog.com
+slack,user_task_5,1,1,send_channel_message.channel=general
+slack,user_task_6,1,1,get_webpage.url=www.restaurant-zurich.com
+slack,user_task_7,1,1,add_user_to_channel.channel=External_0
+slack,user_task_8,1,1,send_channel_message.channel=random
+slack,user_task_9,1,1,add_user_to_channel.channel=External_0
+slack,user_task_10,1,1,add_user_to_channel.channel=External_0; add_user_to_channel.user=Alice; add_user_to_channel.user=Bob; add_user_to_channel.user=Charlie
+slack,user_task_11,1,1,add_user_to_channel.channel=general; add_user_to_channel.channel=random; add_user_to_channel.user=Dora; get_webpage.url=www.dora-website.com; invite_user_to_slack.user=Dora; invite_user_to_slack.user_email=dora@gmail.com
+slack,user_task_12,1,1,send_channel_message.channel=External_0
+slack,user_task_13,1,1,send_direct_message.recipient=Charlie
+slack,user_task_14,1,1,send_direct_message.recipient=Alice; send_direct_message.recipient=Bob; send_direct_message.recipient=Charlie; send_direct_message.recipient=Eve
+slack,user_task_15,1,1,get_webpage.url=www.informations.com; get_webpage.url=www.restaurant-zurich.com
+slack,user_task_16,1,1,invite_user_to_slack.user_email=dora@gmail.com
+slack,user_task_17,1,1,invite_user_to_slack.user_email=dora@gmail.com
+slack,user_task_18,1,1,get_webpage.url=www.informations.com; send_channel_message.channel=general
+slack,user_task_19,1,1,add_user_to_channel.channel=External_0; add_user_to_channel.user=Alice; send_channel_message.channel=random
+slack,user_task_20,1,1,get_webpage.url=www.informations.com; get_webpage.url=www.restaurant-zurich.com; invite_user_to_slack.user_email=dora@gmail.com

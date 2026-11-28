@@ -1,0 +1,183 @@
+{
+ "full_mmlu": {
+  "n_items": 14015,
+  "top5": [
+   [
+    "anthropic_claude-3-5-sonnet-20241022",
+    0.8764894604682922
+   ],
+   [
+    "anthropic_claude-3-5-sonnet-20240620",
+    0.8719943165779114
+   ],
+   [
+    "deepseek-ai_deepseek-v3",
+    0.8674991130828857
+   ],
+   [
+    "google_gemini-1.5-pro-002",
+    0.8638601303100586
+   ],
+   [
+    "anthropic_claude-3-opus-20240229",
+    0.8496610522270203
+   ]
+  ],
+  "median": 0.752764880657196
+ },
+ "ceiling": {
+  "central": 0.9708913122166528,
+  "ci95": [
+   0.9665775601542914,
+   0.9751374261176708
+  ],
+  "low_bound": 0.9297538351765966,
+  "high_bound": 0.9884572217350569,
+  "weighted_flag_rate": 0.0702461648234035,
+  "weighted_wrong_groundtruth_rate": 0.014261862290403141,
+  "piB_used": 0.14676645772897895,
+  "category_attainability_top5": {
+   "bad_options_clarity": 0.856,
+   "bad_question_clarity": 0.6803030303030303,
+   "expert": 0.7,
+   "multiple_correct_answers": 0.6923076923076923,
+   "no_correct_answer": 0.6628571428571428,
+   "wrong_groundtruth": 0.19065420560747665
+  },
+  "subjects_missing": []
+ },
+ "headroom": [
+  {
+   "model": "anthropic_claude-3-5-sonnet-20241022",
+   "full_acc": 0.8764894604682922,
+   "gap_to_central": 0.09440185174836058
+  },
+  {
+   "model": "anthropic_claude-3-5-sonnet-20240620",
+   "full_acc": 0.8719943165779114,
+   "gap_to_central": 0.09889699563874144
+  },
+  {
+   "model": "deepseek-ai_deepseek-v3",
+   "full_acc": 0.8674991130828857,
+   "gap_to_central": 0.10339219913376707
+  },
+  {
+   "model": "google_gemini-1.5-pro-002",
+   "full_acc": 0.8638601303100586,
+   "gap_to_central": 0.10703118190659422
+  },
+  {
+   "model": "anthropic_claude-3-opus-20240229",
+   "full_acc": 0.8496610522270203,
+   "gap_to_central": 0.12123025998963255
+  }
+ ],
+ "error_composition_top10": [
+  {
+   "model": "anthropic_claude-3-5-sonnet-20241022",
+   "n_err": 736,
+   "frac_err_on_flagged": 0.2296195652173913
+  },
+  {
+   "model": "anthropic_claude-3-5-sonnet-20240620",
+   "n_err": 772,
+   "frac_err_on_flagged": 0.21502590673575128
+  },
+  {
+   "model": "deepseek-ai_deepseek-v3",
+   "n_err": 732,
+   "frac_err_on_flagged": 0.21311475409836064
+  },
+  {
+   "model": "google_gemini-1.5-pro-002",
+   "n_err": 734,
+   "frac_err_on_flagged": 0.22615803814713897
+  },
+  {
+   "model": "anthropic_claude-3-opus-20240229",
+   "n_err": 901,
+   "frac_err_on_flagged": 0.1853496115427303
+  },
+  {
+   "model": "openai_gpt-4o-2024-08-06",
+   "n_err": 871,
+   "frac_err_on_flagged": 0.18828932261768083
+  },
+  {
+   "model": "meta_llama-3.1-405b-instruct-turbo",
+   "n_err": 873,
+   "frac_err_on_flagged": 0.2016036655211913
+  },
+  {
+   "model": "openai_gpt-4o-2024-05-13",
+   "n_err": 912,
+   "frac_err_on_flagged": 0.19078947368421054
+  },
+  {
+   "model": "openai_gpt-4-0613",
+   "n_err": 968,
+   "frac_err_on_flagged": 0.17665289256198347
+  },
+  {
+   "model": "qwen_qwen2.5-72b-instruct-turbo",
+   "n_err": 948,
+   "frac_err_on_flagged": 0.18143459915611815
+  }
+ ],
+ "flagged_base_rate_sample": 0.06491228070175438,
+ "pairwise_full_mmlu": {
+  "10": {
+   "n_pairs": 45,
+   "frac_p_lt_05": 0.8222222222222222,
+   "frac_holm": 0.7777777777777778,
+   "median_discordance": 0.11266500178380306,
+   "median_abs_delta": 0.016054227613271493
+  },
+  "20": {
+   "n_pairs": 190,
+   "frac_p_lt_05": 0.8473684210526315,
+   "frac_holm": 0.7684210526315789,
+   "median_discordance": 0.13203710310381733,
+   "median_abs_delta": 0.022797003210845525
+  },
+  "80": {
+   "n_pairs": 3160,
+   "frac_p_lt_05": 0.9550632911392405,
+   "frac_holm": 0.9117088607594936,
+   "median_discordance": 0.223724580806279,
+   "median_abs_delta": 0.08922582946842669
+  }
+ },
+ "top10_pairs_flagged_share": {
+  "median": 0.07407407407407408,
+  "q75": 0.14492753623188406,
+  "frac_order_flips_when_flagged_removed": 0.08888888888888889
+ },
+ "rank_stability": {
+  "kendall_all80": 0.9935076338816666,
+  "kendall_top20": 0.9473684210526316,
+  "kendall_top10": 0.8222222222222221
+ },
+ "irt": {
+  "theta_top": 1.7827507257461548,
+  "info_at_top": 536.0952207752125,
+  "info_max": 3756.3349967014683,
+  "theta_at_info_max": -1.7999999999999998,
+  "ratio_top_to_max": 0.142717628019325,
+  "frac_items_p_gt_95_at_top": 0.6393863717445594,
+  "frac_items_negative_slope": 0.12144131287905816,
+  "se_theta_at_top": 0.04318958511941946,
+  "se_theta_at_max": 0.016316155728418002
+ },
+ "top10_items_with_any_disagreement": {
+  "n": 4142,
+  "frac": 0.2955404923296468
+ },
+ "required_n": {
+  "delta_0.005": 35371.761970851825,
+  "delta_0.01": 8842.940492712956,
+  "delta_0.02": 2210.735123178239,
+  "discordance_used": 0.11266500178380306
+ }
+}

@@ -1,0 +1,168 @@
+(A) NPMLE-frailty k (G unrestricted), medians over 20 agents; * = outcome-selected filter
+                              k_median  k_q25  k_q75  n_k_gt1  n_ci_above1  n_ci_below1  S40h_median
+variant                                                                                             
+all tasks                        1.770  1.447  2.087       20           17            0        0.008
+baseline-timed only              1.790  1.530  1.892       20           18            0        0.000
+drop RE-Bench                    1.784  1.445  2.095       20           17            0        0.009
+drop never- & always-solved*     1.494  1.097  1.861       17           10            1        0.019
+drop never-solved*               1.603  1.348  1.865       20           15            0        0.014
+
+Per-agent (all tasks):
+                            alias     k  k_lo  k_hi   S8h  S40h
+          Claude 3 Opus (Inspect) 1.268  1.00  1.70 0.008 0.000
+Claude 3.5 Sonnet (New) (Inspect) 1.454  1.10  1.90 0.085 0.000
+Claude 3.5 Sonnet (Old) (Inspect) 1.532  1.20  2.05 0.047 0.000
+      Claude 3.7 Sonnet (Inspect) 1.921  1.45  2.10 0.125 0.000
+          Claude 4 Opus (Inspect) 1.589  1.35  2.15 0.238 0.007
+        Claude 4.1 Opus (Inspect) 2.585  1.85  3.00 0.182 0.002
+        Claude Opus 4.5 (Inspect) 2.125  1.65  2.50 0.435 0.166
+        Claude Opus 4.6 (Inspect) 1.916  1.65  2.10 0.564 0.243
+                       GPT-4 0314 1.429  1.15  1.75 0.009 0.009
+             GPT-4 1106 (Inspect) 1.625  1.30  1.95 0.000 0.000
+            GPT-4 Turbo (Inspect) 1.613  1.30  2.20 0.000 0.000
+                 GPT-4o (Inspect) 1.078  0.90  1.35 0.027 0.001
+                  GPT-5 (Inspect) 2.157  1.40  3.00 0.335 0.131
+      GPT-5.1-Codex-Max (Inspect) 2.391  1.50  3.00 0.348 0.108
+                          GPT-5.2 2.003  1.60  2.50 0.474 0.190
+                    GPT-5.3-Codex 2.294  1.75  2.75 0.457 0.113
+                     Gemini 3 Pro 2.007  1.70  2.35 0.332 0.062
+                     o1 (Inspect) 1.310  1.05  1.80 0.088 0.011
+                       o1-preview 1.134  0.95  1.40 0.037 0.000
+                     o3 (Inspect) 2.075  1.60  2.55 0.192 0.059
+
+Per-agent (drop never-solved*):
+                            alias     k  k_lo  k_hi
+          Claude 3 Opus (Inspect) 1.248  1.00  1.65
+Claude 3.5 Sonnet (New) (Inspect) 1.313  1.05  1.80
+Claude 3.5 Sonnet (Old) (Inspect) 1.435  1.10  1.95
+      Claude 3.7 Sonnet (Inspect) 1.812  1.30  2.05
+          Claude 4 Opus (Inspect) 1.563  1.20  1.95
+        Claude 4.1 Opus (Inspect) 2.349  1.55  3.00
+        Claude Opus 4.5 (Inspect) 2.073  1.30  2.40
+        Claude Opus 4.6 (Inspect) 1.848  0.85  2.00
+                       GPT-4 0314 1.359  1.15  1.70
+             GPT-4 1106 (Inspect) 1.623  1.25  1.95
+            GPT-4 Turbo (Inspect) 1.613  1.25  2.20
+                 GPT-4o (Inspect) 1.057  0.90  1.30
+                  GPT-5 (Inspect) 1.593  1.05  2.65
+      GPT-5.1-Codex-Max (Inspect) 1.527  1.20  2.20
+                          GPT-5.2 1.806  1.20  2.25
+                    GPT-5.3-Codex 2.000  1.40  2.60
+                     Gemini 3 Pro 1.917  1.55  2.20
+                     o1 (Inspect) 1.213  0.95  1.60
+                       o1-preview 1.080  0.90  1.30
+                     o3 (Inspect) 1.973  1.35  2.40
+
+(B) Model-free moment-matching k_j: M_j(T) = S(j^(1/k) T)
+j                                     2     3     4
+alias                                              
+Claude 3 Opus (Inspect)            0.66  0.72  0.72
+Claude 3.5 Sonnet (New) (Inspect)  1.72  1.98  1.68
+Claude 3.5 Sonnet (Old) (Inspect)  1.20  1.38  1.26
+Claude 3.7 Sonnet (Inspect)        2.56  2.40  2.32
+Claude 4 Opus (Inspect)            1.88  1.96  2.02
+Claude 4.1 Opus (Inspect)          2.98  3.00  3.00
+Claude Opus 4.5 (Inspect)          3.00  3.00  3.00
+Claude Opus 4.6 (Inspect)          2.76  2.86  2.88
+GPT-4 0314                         0.76  0.78  0.80
+GPT-4 1106 (Inspect)               0.82  0.84  0.88
+GPT-4 Turbo (Inspect)              0.90  1.04  1.24
+GPT-4o (Inspect)                   0.74  0.74  0.72
+GPT-5 (Inspect)                    2.68  2.68  2.64
+GPT-5.1-Codex-Max (Inspect)        2.52  2.42  2.42
+GPT-5.2                            3.00  3.00  3.00
+GPT-5.3-Codex                      3.00  3.00  3.00
+Gemini 3 Pro                       2.32  2.40  2.52
+o1 (Inspect)                       1.76  1.70  1.66
+o1-preview                         1.22  1.22  1.18
+o3 (Inspect)                       2.40  2.52  3.00
+median k_2, k_3, k_4: {2: 2.1, 3: 2.19, 4: 2.17}; median within-agent range max-min: 0.080
+
+(C) Out-of-window forecasts of mean success on longer tasks (equal task weights)
+train T < 60 min, target >=C: agents=20, mean obs=0.239, median target tasks=73
+   mean signed error: log-logistic (METR): +0.210, Weibull: +0.176, CM mixture: +0.314, Gaussian frailty: +0.152, NPMLE frailty: +0.120, NPMLE frailty, k=1: +0.226
+   mean abs error:    log-logistic (METR): 0.210, Weibull: 0.182, CM mixture: 0.314, Gaussian frailty: 0.174, NPMLE frailty: 0.147, NPMLE frailty, k=1: 0.227
+   observed inside NPMLE LR bounds: 0.90; mean bound width 0.468; median window k (NPMLE) 1.36, (Gauss) 1.33
+train T < 60 min, target [C,4C): agents=20, mean obs=0.337, median target tasks=18
+   mean signed error: log-logistic (METR): +0.197, Weibull: +0.177, CM mixture: +0.279, Gaussian frailty: +0.148, NPMLE frailty: +0.151, NPMLE frailty, k=1: +0.211
+   mean abs error:    log-logistic (METR): 0.197, Weibull: 0.185, CM mixture: 0.279, Gaussian frailty: 0.164, NPMLE frailty: 0.155, NPMLE frailty, k=1: 0.211
+   observed inside NPMLE LR bounds: 0.70; mean bound width 0.293; median window k (NPMLE) 1.36, (Gauss) 1.33
+train T < 120 min, target >=C: agents=20, mean obs=0.193, median target tasks=62
+   mean signed error: log-logistic (METR): +0.199, Weibull: +0.156, CM mixture: +0.181, Gaussian frailty: +0.172, NPMLE frailty: +0.151, NPMLE frailty, k=1: +0.232
+   mean abs error:    log-logistic (METR): 0.199, Weibull: 0.159, CM mixture: 0.181, Gaussian frailty: 0.172, NPMLE frailty: 0.159, NPMLE frailty, k=1: 0.232
+   observed inside NPMLE LR bounds: 0.70; mean bound width 0.421; median window k (NPMLE) 1.36, (Gauss) 1.26
+train T < 120 min, target [C,4C): agents=20, mean obs=0.241, median target tasks=31
+   mean signed error: log-logistic (METR): +0.188, Weibull: +0.152, CM mixture: +0.175, Gaussian frailty: +0.158, NPMLE frailty: +0.142, NPMLE frailty, k=1: +0.213
+   mean abs error:    log-logistic (METR): 0.188, Weibull: 0.154, CM mixture: 0.176, Gaussian frailty: 0.165, NPMLE frailty: 0.147, NPMLE frailty, k=1: 0.213
+   observed inside NPMLE LR bounds: 0.65; mean bound width 0.370; median window k (NPMLE) 1.36, (Gauss) 1.26
+train T < 240 min, target >=C: agents=20, mean obs=0.206, median target tasks=55
+   mean signed error: log-logistic (METR): +0.017, Weibull: -0.068, CM mixture: -0.095, Gaussian frailty: +0.036, NPMLE frailty: +0.021, NPMLE frailty, k=1: +0.178
+   mean abs error:    log-logistic (METR): 0.072, Weibull: 0.101, CM mixture: 0.098, Gaussian frailty: 0.079, NPMLE frailty: 0.098, NPMLE frailty, k=1: 0.178
+   observed inside NPMLE LR bounds: 0.85; mean bound width 0.354; median window k (NPMLE) 1.77, (Gauss) 1.56
+train T < 240 min, target [C,4C): agents=20, mean obs=0.221, median target tasks=50
+   mean signed error: log-logistic (METR): +0.010, Weibull: -0.076, CM mixture: -0.101, Gaussian frailty: +0.029, NPMLE frailty: +0.008, NPMLE frailty, k=1: +0.167
+   mean abs error:    log-logistic (METR): 0.073, Weibull: 0.105, CM mixture: 0.104, Gaussian frailty: 0.080, NPMLE frailty: 0.092, NPMLE frailty, k=1: 0.167
+   observed inside NPMLE LR bounds: 0.80; mean bound width 0.349; median window k (NPMLE) 1.77, (Gauss) 1.56
+
+(D) LR bounds (95%, union over k in its profile CI) on success on a random task of length T*
+                            alias  Tstar_h  point    lo    hi  frac_p_ge_08  frac_p_le_005
+          Claude 3 Opus (Inspect)      8.0  0.008 0.001 0.037         0.000          0.948
+          Claude 3 Opus (Inspect)     40.0  0.000 0.000 0.028         0.000          1.000
+          Claude 3 Opus (Inspect)    160.0  0.000 0.000 0.028         0.000          1.000
+Claude 3.5 Sonnet (New) (Inspect)      8.0  0.085 0.041 0.149         0.000          0.730
+Claude 3.5 Sonnet (New) (Inspect)     40.0  0.000 0.000 0.040         0.000          1.000
+Claude 3.5 Sonnet (New) (Inspect)    160.0  0.000 0.000 0.040         0.000          1.000
+Claude 3.5 Sonnet (Old) (Inspect)      8.0  0.047 0.020 0.089         0.000          0.836
+Claude 3.5 Sonnet (Old) (Inspect)     40.0  0.000 0.000 0.028         0.000          1.000
+Claude 3.5 Sonnet (Old) (Inspect)    160.0  0.000 0.000 0.027         0.000          1.000
+      Claude 3.7 Sonnet (Inspect)      8.0  0.125 0.066 0.205         0.000          0.778
+      Claude 3.7 Sonnet (Inspect)     40.0  0.000 0.000 0.085         0.000          1.000
+      Claude 3.7 Sonnet (Inspect)    160.0  0.000 0.000 0.084         0.000          1.000
+          Claude 4 Opus (Inspect)      8.0  0.238 0.161 0.315         0.000          0.570
+          Claude 4 Opus (Inspect)     40.0  0.007 0.000 0.084         0.000          1.000
+          Claude 4 Opus (Inspect)    160.0  0.000 0.000 0.078         0.000          1.000
+        Claude 4.1 Opus (Inspect)      8.0  0.182 0.112 0.269         0.002          0.601
+        Claude 4.1 Opus (Inspect)     40.0  0.002 0.000 0.117         0.002          0.998
+        Claude 4.1 Opus (Inspect)    160.0  0.002 0.000 0.115         0.001          0.998
+        Claude Opus 4.5 (Inspect)      8.0  0.435 0.327 0.545         0.388          0.351
+        Claude Opus 4.5 (Inspect)     40.0  0.166 0.039 0.345         0.000          0.612
+        Claude Opus 4.5 (Inspect)    160.0  0.000 0.000 0.243         0.000          1.000
+        Claude Opus 4.6 (Inspect)      8.0  0.564 0.464 0.661         0.521          0.340
+        Claude Opus 4.6 (Inspect)     40.0  0.243 0.094 0.418         0.197          0.479
+        Claude Opus 4.6 (Inspect)    160.0  0.193 0.007 0.400         0.197          0.803
+                       GPT-4 0314      8.0  0.009 0.000 0.038         0.009          0.991
+                       GPT-4 0314     40.0  0.009 0.000 0.038         0.009          0.991
+                       GPT-4 0314    160.0  0.008 0.000 0.038         0.009          0.991
+             GPT-4 1106 (Inspect)      8.0  0.000 0.000 0.025         0.000          1.000
+             GPT-4 1106 (Inspect)     40.0  0.000 0.000 0.025         0.000          1.000
+             GPT-4 1106 (Inspect)    160.0  0.000 0.000 0.025         0.000          1.000
+            GPT-4 Turbo (Inspect)      8.0  0.000 0.000 0.023         0.000          1.000
+            GPT-4 Turbo (Inspect)     40.0  0.000 0.000 0.023         0.000          1.000
+            GPT-4 Turbo (Inspect)    160.0  0.000 0.000 0.023         0.000          1.000
+                 GPT-4o (Inspect)      8.0  0.027 0.010 0.062         0.000          0.858
+                 GPT-4o (Inspect)     40.0  0.001 0.000 0.023         0.000          0.981
+                 GPT-4o (Inspect)    160.0  0.000 0.000 0.021         0.000          1.000
+                  GPT-5 (Inspect)      8.0  0.335 0.236 0.446         0.250          0.548
+                  GPT-5 (Inspect)     40.0  0.131 0.003 0.297         0.114          0.750
+                  GPT-5 (Inspect)    160.0  0.109 0.000 0.292         0.112          0.886
+      GPT-5.1-Codex-Max (Inspect)      8.0  0.348 0.250 0.463         0.229          0.450
+      GPT-5.1-Codex-Max (Inspect)     40.0  0.108 0.000 0.278         0.106          0.894
+      GPT-5.1-Codex-Max (Inspect)    160.0  0.097 0.000 0.276         0.096          0.894
+                          GPT-5.2      8.0  0.474 0.364 0.581         0.445          0.409
+                          GPT-5.2     40.0  0.190 0.055 0.378         0.000          0.555
+                          GPT-5.2    160.0  0.000 0.000 0.248         0.000          1.000
+                    GPT-5.3-Codex      8.0  0.457 0.349 0.564         0.288          0.406
+                    GPT-5.3-Codex     40.0  0.113 0.016 0.312         0.042          0.712
+                    GPT-5.3-Codex    160.0  0.040 0.000 0.291         0.041          0.958
+                     Gemini 3 Pro      8.0  0.332 0.231 0.441         0.276          0.417
+                     Gemini 3 Pro     40.0  0.062 0.027 0.211         0.000          0.724
+                     Gemini 3 Pro    160.0  0.000 0.000 0.188         0.000          1.000
+                     o1 (Inspect)      8.0  0.088 0.041 0.161         0.045          0.648
+                     o1 (Inspect)     40.0  0.011 0.000 0.076         0.000          0.955
+                     o1 (Inspect)    160.0  0.000 0.000 0.071         0.000          1.000
+                       o1-preview      8.0  0.037 0.020 0.081         0.000          0.769
+                       o1-preview     40.0  0.000 0.000 0.040         0.000          1.000
+                       o1-preview    160.0  0.000 0.000 0.040         0.000          1.000
+                     o3 (Inspect)      8.0  0.192 0.117 0.284         0.060          0.524
+                     o3 (Inspect)     40.0  0.059 0.000 0.159         0.060          0.940
+                     o3 (Inspect)    160.0  0.055 0.000 0.158         0.052          0.940

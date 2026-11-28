@@ -1,0 +1,67 @@
+calibration {'F_gemm': 390060642950.5089, 'B_gemv': 30365022847.438225, 'B_batched_rowvec': 13684171928.245453, 'B_attn_kernel': 12824702120.768337}
+nkv=16 L=256 b=128 t/tok=2.42ms pred=1.84ms
+nkv=16 L=512 b=64 t/tok=4.76ms pred=3.14ms
+nkv=16 L=1024 b=1 t/tok=19.76ms pred=18.77ms
+nkv=16 L=1024 b=2 t/tok=26.39ms pred=12.00ms
+nkv=16 L=1024 b=4 t/tok=17.68ms pred=8.62ms
+nkv=16 L=1024 b=8 t/tok=12.65ms pred=6.92ms
+nkv=16 L=1024 b=16 t/tok=10.72ms pred=6.08ms
+nkv=16 L=1024 b=32 t/tok=7.62ms pred=5.76ms
+nkv=16 L=2048 b=16 t/tok=15.26ms pred=11.31ms
+nkv=16 L=4096 b=1 t/tok=40.63ms pred=34.47ms
+nkv=16 L=4096 b=2 t/tok=48.78ms pred=27.70ms
+nkv=16 L=4096 b=4 t/tok=38.72ms pred=24.32ms
+nkv=16 L=4096 b=8 t/tok=32.45ms pred=22.62ms
+nkv=4 L=1024 b=1 t/tok=12.61ms pred=13.19ms
+nkv=4 L=1024 b=2 t/tok=19.99ms pred=7.25ms
+nkv=4 L=1024 b=4 t/tok=11.00ms pred=4.28ms
+nkv=4 L=1024 b=8 t/tok=7.96ms pred=2.79ms
+nkv=4 L=1024 b=16 t/tok=7.21ms pred=2.05ms
+nkv=4 L=1024 b=32 t/tok=4.99ms pred=1.77ms
+nkv=4 L=1024 b=64 t/tok=4.54ms pred=1.77ms
+nkv=4 L=1024 b=128 t/tok=4.20ms pred=1.77ms
+nkv=4 L=2048 b=64 t/tok=7.72ms pred=3.08ms
+nkv=4 L=4096 b=1 t/tok=17.48ms pred=17.11ms
+nkv=4 L=4096 b=2 t/tok=24.01ms pred=11.17ms
+nkv=4 L=4096 b=4 t/tok=15.66ms pred=8.20ms
+nkv=4 L=4096 b=8 t/tok=11.82ms pred=6.72ms
+nkv=4 L=4096 b=16 t/tok=10.51ms pred=5.98ms
+nkv=4 L=4096 b=32 t/tok=9.72ms pred=5.70ms
+nkv=1 L=1024 b=1 t/tok=11.20ms pred=11.79ms
+nkv=1 L=1024 b=2 t/tok=16.86ms pred=6.06ms
+nkv=1 L=1024 b=4 t/tok=9.31ms pred=3.19ms
+nkv=1 L=1024 b=8 t/tok=5.08ms pred=1.76ms
+nkv=1 L=1024 b=16 t/tok=3.50ms pred=1.04ms
+nkv=1 L=1024 b=32 t/tok=2.65ms pred=0.77ms
+nkv=1 L=1024 b=64 t/tok=2.18ms pred=0.77ms
+nkv=1 L=1024 b=128 t/tok=1.91ms pred=0.77ms
+nkv=1 L=2048 b=64 t/tok=3.12ms pred=1.10ms
+nkv=1 L=4096 b=1 t/tok=13.36ms pred=12.77ms
+nkv=1 L=4096 b=2 t/tok=20.02ms pred=7.04ms
+nkv=1 L=4096 b=4 t/tok=12.43ms pred=4.17ms
+nkv=1 L=4096 b=8 t/tok=7.49ms pred=2.74ms
+nkv=1 L=4096 b=16 t/tok=5.94ms pred=2.02ms
+nkv=1 L=4096 b=32 t/tok=5.41ms pred=1.75ms
+ffn=1408 L=256 b=1 t/tok=10.46ms
+ffn=1408 L=256 b=8 t/tok=4.64ms
+ffn=1408 L=4096 b=1 t/tok=33.44ms
+ffn=1408 L=4096 b=8 t/tok=24.33ms
+ffn=2816 L=256 b=1 t/tok=12.91ms
+ffn=2816 L=256 b=8 t/tok=6.21ms
+ffn=2816 L=4096 b=1 t/tok=34.87ms
+ffn=2816 L=4096 b=8 t/tok=28.05ms
+ffn=5632 L=256 b=1 t/tok=20.84ms
+ffn=5632 L=256 b=8 t/tok=9.60ms
+ffn=5632 L=4096 b=1 t/tok=38.49ms
+ffn=5632 L=4096 b=8 t/tok=35.28ms
+tau=1 L=512 t/tok=8.52ms pred=4.31
+tau=2 L=512 t/tok=5.06ms pred=2.15
+tau=4 L=512 t/tok=3.12ms pred=1.18
+tau=8 L=512 t/tok=2.26ms pred=0.85
+tau=16 L=512 t/tok=1.66ms pred=0.69
+tau=1 L=4096 t/tok=31.98ms pred=22.62
+tau=2 L=4096 t/tok=22.57ms pred=11.31
+tau=4 L=4096 t/tok=10.18ms pred=5.76
+tau=8 L=4096 t/tok=6.39ms pred=3.14
+tau=16 L=4096 t/tok=6.28ms pred=1.84
+done in 119.0s

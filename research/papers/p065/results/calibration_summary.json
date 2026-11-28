@@ -1,0 +1,26 @@
+{
+  "GPT_Base": {
+    "n_cells": 36,
+    "n_feasible": 15,
+    "kappa_min": 0.0,
+    "kappa_median": 0.305,
+    "kappa_max": 0.61,
+    "a_min": 0.355,
+    "a_median": 0.7075,
+    "a_max": 1.0
+  },
+  "GPT_Tutor": {
+    "n_cells": 36,
+    "n_feasible": 9,
+    "kappa_min": 1.0,
+    "kappa_median": 1.0,
+    "kappa_max": 1.0,
+    "a_min": 0.465,
+    "a_median": 0.79,
+    "a_max": 0.975
+  },
+  "retention_ratio_reported": {
+    "GPT_Base": -0.35416666666666674,
+    "GPT_Tutor": 0.0
+  }
+}

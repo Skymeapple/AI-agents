@@ -1,0 +1,209 @@
+{
+ "d": 64,
+ "q": 16,
+ "M": 4,
+ "r": 40,
+ "bbp_specialist_n": 32.0,
+ "bbp_unified_private_n": 64.0,
+ "bbp_unified_shared_n": 16.0,
+ "rows": [
+  {
+   "case": "private",
+   "n": 8,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999996,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 16,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999998,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 24,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999994,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 32,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999998,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 48,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999992,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 64,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9999999999999996,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 96,
+   "sim_u": 8.0,
+   "sim_s": 7.168040137115955,
+   "sim_ratio": 1.116065179180035,
+   "th_ratio": 1.3333333333333328,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 128,
+   "sim_u": 7.300475854124409,
+   "sim_s": 5.169530389897972,
+   "sim_ratio": 1.412212580932036,
+   "th_ratio": 1.3333333333333328,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 256,
+   "sim_u": 3.365697201981277,
+   "sim_s": 2.3911527018951064,
+   "sim_ratio": 1.4075626367625105,
+   "th_ratio": 1.3333333333333313,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 512,
+   "sim_u": 1.5986650378642593,
+   "sim_s": 1.1696276882760295,
+   "sim_ratio": 1.36681531558184,
+   "th_ratio": 1.333333333333327,
+   "total_energy": 8.0
+  },
+  {
+   "case": "private",
+   "n": 2048,
+   "sim_u": 0.38087252605177957,
+   "sim_s": 0.28429455504581397,
+   "sim_ratio": 1.3397109416689394,
+   "th_ratio": 1.3333333333333186,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 8,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 1.0,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 16,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 1.0,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 24,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 1.0,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 32,
+   "sim_u": 8.0,
+   "sim_s": 8.0,
+   "sim_ratio": 1.0,
+   "th_ratio": 0.9375,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 48,
+   "sim_u": 7.041586091716411,
+   "sim_s": 8.0,
+   "sim_ratio": 0.8801982614645514,
+   "th_ratio": 0.6250000000000002,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 64,
+   "sim_u": 4.948310303427096,
+   "sim_s": 8.0,
+   "sim_ratio": 0.618538787928387,
+   "th_ratio": 0.4687500000000002,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 96,
+   "sim_u": 2.976430011632082,
+   "sim_s": 7.165052577439364,
+   "sim_ratio": 0.4154093748040289,
+   "th_ratio": 0.41666666666666696,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 128,
+   "sim_u": 2.151887361280024,
+   "sim_s": 5.154627494480879,
+   "sim_ratio": 0.41746709409827876,
+   "th_ratio": 0.41666666666666713,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 256,
+   "sim_u": 1.01732384773918,
+   "sim_s": 2.430223826965848,
+   "sim_ratio": 0.4186132307859544,
+   "th_ratio": 0.4166666666666676,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 512,
+   "sim_u": 0.4888449935102292,
+   "sim_s": 1.1638352567730827,
+   "sim_ratio": 0.42002937328572537,
+   "th_ratio": 0.4166666666666699,
+   "total_energy": 8.0
+  },
+  {
+   "case": "shared",
+   "n": 2048,
+   "sim_u": 0.11810122465004107,
+   "sim_s": 0.28351208936573685,
+   "sim_ratio": 0.4165650393048597,
+   "th_ratio": 0.4166666666666734,
+   "total_energy": 8.0
+  }
+ ]
+}

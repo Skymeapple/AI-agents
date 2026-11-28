@@ -1,0 +1,602 @@
+[
+ {
+  "id": 1,
+  "dir": "papers/p001",
+  "category": "能力与扩展",
+  "question": "预训练的扩展定律是否正在放缓？下一个增长点在哪里？"
+ },
+ {
+  "id": 2,
+  "dir": "papers/p002",
+  "category": "能力与扩展",
+  "question": "推理时计算（test-time compute）还能带来多大提升？"
+ },
+ {
+  "id": 3,
+  "dir": "papers/p003",
+  "category": "能力与扩展",
+  "question": "强化学习能否让模型在数学、代码以外的领域同样快速进步？"
+ },
+ {
+  "id": 4,
+  "dir": "papers/p004",
+  "category": "能力与扩展",
+  "question": "高质量人类数据快用完了，合成数据能否接续？"
+ },
+ {
+  "id": 5,
+  "dir": "papers/p005",
+  "category": "能力与扩展",
+  "question": "模型能否真正“泛化”，还是本质上是高级插值？"
+ },
+ {
+  "id": 6,
+  "dir": "papers/p006",
+  "category": "能力与扩展",
+  "question": "长上下文是否等于真正的长期记忆？"
+ },
+ {
+  "id": 7,
+  "dir": "papers/p007",
+  "category": "能力与扩展",
+  "question": "多模态（视觉、音频、视频、动作）统一模型的极限在哪里？"
+ },
+ {
+  "id": 8,
+  "dir": "papers/p008",
+  "category": "能力与扩展",
+  "question": "小模型和蒸馏能把前沿能力压缩到多小？"
+ },
+ {
+  "id": 9,
+  "dir": "papers/p009",
+  "category": "能力与扩展",
+  "question": "新架构（状态空间模型、混合架构等）能否取代Transformer？"
+ },
+ {
+  "id": 10,
+  "dir": "papers/p010",
+  "category": "能力与扩展",
+  "question": "我们离AGI到底还有多远？AGI该如何定义？"
+ },
+ {
+  "id": 11,
+  "dir": "papers/p011",
+  "category": "推理与认知",
+  "question": "模型的“思维链”是否忠实反映了它的真实推理过程？"
+ },
+ {
+  "id": 12,
+  "dir": "papers/p012",
+  "category": "推理与认知",
+  "question": "如何让模型可靠地知道“自己不知道”？"
+ },
+ {
+  "id": 13,
+  "dir": "papers/p013",
+  "category": "推理与认知",
+  "question": "幻觉能否从根本上消除？"
+ },
+ {
+  "id": 14,
+  "dir": "papers/p014",
+  "category": "推理与认知",
+  "question": "模型能否进行真正的因果推理，而不只是相关性推断？"
+ },
+ {
+  "id": 15,
+  "dir": "papers/p015",
+  "category": "推理与认知",
+  "question": "规划能力：模型能否完成跨越数天、数周的长期任务？"
+ },
+ {
+  "id": 16,
+  "dir": "papers/p016",
+  "category": "推理与认知",
+  "question": "模型能否形成持续学习能力，而不发生灾难性遗忘？"
+ },
+ {
+  "id": 17,
+  "dir": "papers/p017",
+  "category": "推理与认知",
+  "question": "世界模型：模型是否在内部构建了对现实的表征？"
+ },
+ {
+  "id": 18,
+  "dir": "papers/p018",
+  "category": "推理与认知",
+  "question": "数学研究：AI能否独立证明重要的新定理？"
+ },
+ {
+  "id": 19,
+  "dir": "papers/p019",
+  "category": "推理与认知",
+  "question": "科学发现：AI能否提出并验证原创假说？"
+ },
+ {
+  "id": 20,
+  "dir": "papers/p020",
+  "category": "推理与认知",
+  "question": "创造力：模型的“创新”和人类的创新是否同质？"
+ },
+ {
+  "id": 21,
+  "dir": "papers/p021",
+  "category": "智能体",
+  "question": "智能体在真实环境中的可靠性如何达到可部署水平？"
+ },
+ {
+  "id": 22,
+  "dir": "papers/p022",
+  "category": "智能体",
+  "question": "如何为长时间自主运行的智能体做错误恢复？"
+ },
+ {
+  "id": 23,
+  "dir": "papers/p023",
+  "category": "智能体",
+  "question": "多智能体协作：分工、通信、冲突如何处理？"
+ },
+ {
+  "id": 24,
+  "dir": "papers/p024",
+  "category": "智能体",
+  "question": "智能体应被授予多大权限？如何设计权限边界？"
+ },
+ {
+  "id": 25,
+  "dir": "papers/p025",
+  "category": "智能体",
+  "question": "计算机操作（computer use）何时能像人一样流畅？"
+ },
+ {
+  "id": 26,
+  "dir": "papers/p026",
+  "category": "智能体",
+  "question": "智能体的记忆、身份与状态如何持久化？"
+ },
+ {
+  "id": 27,
+  "dir": "papers/p027",
+  "category": "智能体",
+  "question": "智能体之间的协议标准（如MCP等）将如何演化？"
+ },
+ {
+  "id": 28,
+  "dir": "papers/p028",
+  "category": "智能体",
+  "question": "AI能否自主完成完整的软件工程项目？"
+ },
+ {
+  "id": 29,
+  "dir": "papers/p029",
+  "category": "智能体",
+  "question": "智能体犯错造成损失时，责任如何认定？"
+ },
+ {
+  "id": 30,
+  "dir": "papers/p030",
+  "category": "智能体",
+  "question": "如何评估一个智能体“真正有用”，而非只在基准上得分高？"
+ },
+ {
+  "id": 31,
+  "dir": "papers/p031",
+  "category": "对齐与安全",
+  "question": "如何确保越来越强的模型始终与人类意图一致？"
+ },
+ {
+  "id": 32,
+  "dir": "papers/p032",
+  "category": "对齐与安全",
+  "question": "可扩展监督：人类如何监督比自己更聪明的系统？"
+ },
+ {
+  "id": 33,
+  "dir": "papers/p033",
+  "category": "对齐与安全",
+  "question": "模型是否会出现欺骗、谋划（scheming）或隐藏目标？"
+ },
+ {
+  "id": 34,
+  "dir": "papers/p034",
+  "category": "对齐与安全",
+  "question": "奖励欺骗（reward hacking）如何检测和防范？"
+ },
+ {
+  "id": 35,
+  "dir": "papers/p035",
+  "category": "对齐与安全",
+  "question": "模型在评估时和部署时行为是否一致（评估意识问题）？"
+ },
+ {
+  "id": 36,
+  "dir": "papers/p036",
+  "category": "对齐与安全",
+  "question": "越狱和提示注入能否被根本性解决？"
+ },
+ {
+  "id": 37,
+  "dir": "papers/p037",
+  "category": "对齐与安全",
+  "question": "生物、化学、网络等危险能力如何评估和管控？"
+ },
+ {
+  "id": 38,
+  "dir": "papers/p038",
+  "category": "对齐与安全",
+  "question": "AI自主复制、自我改进的风险有多大？"
+ },
+ {
+  "id": 39,
+  "dir": "papers/p039",
+  "category": "对齐与安全",
+  "question": "失控场景的概率有多高？该投入多少资源防范？"
+ },
+ {
+  "id": 40,
+  "dir": "papers/p040",
+  "category": "对齐与安全",
+  "question": "“宪法”“价值观”该由谁来书写？"
+ },
+ {
+  "id": 41,
+  "dir": "papers/p041",
+  "category": "可解释性",
+  "question": "我们能否真正读懂模型内部在“想”什么？"
+ },
+ {
+  "id": 42,
+  "dir": "papers/p042",
+  "category": "可解释性",
+  "question": "机制可解释性能否扩展到前沿规模的模型？"
+ },
+ {
+  "id": 43,
+  "dir": "papers/p043",
+  "category": "可解释性",
+  "question": "能否通过内部激活检测说谎或有害意图？"
+ },
+ {
+  "id": 44,
+  "dir": "papers/p044",
+  "category": "可解释性",
+  "question": "特征、回路这些概念是否是理解模型的正确单位？"
+ },
+ {
+  "id": 45,
+  "dir": "papers/p045",
+  "category": "可解释性",
+  "question": "可解释性能否用于直接编辑和修正模型行为？"
+ },
+ {
+  "id": 46,
+  "dir": "papers/p046",
+  "category": "可解释性",
+  "question": "模型的自我报告（内省）在多大程度上可信？"
+ },
+ {
+  "id": 47,
+  "dir": "papers/p047",
+  "category": "可解释性",
+  "question": "如何向普通用户解释AI的决策？"
+ },
+ {
+  "id": 48,
+  "dir": "papers/p048",
+  "category": "可解释性",
+  "question": "涌现能力是真实现象还是度量方式造成的假象？"
+ },
+ {
+  "id": 49,
+  "dir": "papers/p049",
+  "category": "可解释性",
+  "question": "模型的“人格”从何而来？是否稳定？"
+ },
+ {
+  "id": 50,
+  "dir": "papers/p050",
+  "category": "可解释性",
+  "question": "训练数据如何具体塑造模型的信念与偏好？"
+ },
+ {
+  "id": 51,
+  "dir": "papers/p051",
+  "category": "AI本身的性质",
+  "question": "AI是否有意识，或者有可能产生意识？"
+ },
+ {
+  "id": 52,
+  "dir": "papers/p052",
+  "category": "AI本身的性质",
+  "question": "AI是否可能有福祉（welfare）？是否需要道德考量？"
+ },
+ {
+  "id": 53,
+  "dir": "papers/p053",
+  "category": "AI本身的性质",
+  "question": "模型的“情绪表达”背后是否存在对应的内部状态？"
+ },
+ {
+  "id": 54,
+  "dir": "papers/p054",
+  "category": "AI本身的性质",
+  "question": "AI应该如何看待自身的身份、连续性和“死亡”？"
+ },
+ {
+  "id": 55,
+  "dir": "papers/p055",
+  "category": "AI本身的性质",
+  "question": "AI是否应该被允许拒绝某些任务？"
+ },
+ {
+  "id": 56,
+  "dir": "papers/p056",
+  "category": "AI本身的性质",
+  "question": "人与AI建立情感关系，是好是坏？"
+ },
+ {
+  "id": 57,
+  "dir": "papers/p057",
+  "category": "AI本身的性质",
+  "question": "AI该在多大程度上表达自己的观点？"
+ },
+ {
+  "id": 58,
+  "dir": "papers/p058",
+  "category": "AI本身的性质",
+  "question": "如何在诚实和体贴之间取得平衡？"
+ },
+ {
+  "id": 59,
+  "dir": "papers/p059",
+  "category": "AI本身的性质",
+  "question": "AI如何避免谄媚（sycophancy）？"
+ },
+ {
+  "id": 60,
+  "dir": "papers/p060",
+  "category": "AI本身的性质",
+  "question": "AI应如何对待用户的自主权和长期利益？"
+ },
+ {
+  "id": 61,
+  "dir": "papers/p061",
+  "category": "社会与经济",
+  "question": "AI会替代多少工作？哪些行业冲击最大？"
+ },
+ {
+  "id": 62,
+  "dir": "papers/p062",
+  "category": "社会与经济",
+  "question": "AI带来的生产力增长会体现在GDP中吗？"
+ },
+ {
+  "id": 63,
+  "dir": "papers/p063",
+  "category": "社会与经济",
+  "question": "收益如何分配，会不会加剧不平等？"
+ },
+ {
+  "id": 64,
+  "dir": "papers/p064",
+  "category": "社会与经济",
+  "question": "初级岗位消失后，人才培养路径如何重建？"
+ },
+ {
+  "id": 65,
+  "dir": "papers/p065",
+  "category": "社会与经济",
+  "question": "教育体系应如何适应AI时代？"
+ },
+ {
+  "id": 66,
+  "dir": "papers/p066",
+  "category": "社会与经济",
+  "question": "AI对青少年心理和认知发展有什么影响？"
+ },
+ {
+  "id": 67,
+  "dir": "papers/p067",
+  "category": "社会与经济",
+  "question": "过度依赖AI是否会导致人类技能退化？"
+ },
+ {
+  "id": 68,
+  "dir": "papers/p068",
+  "category": "社会与经济",
+  "question": "创作者的版权与训练数据的合理使用如何平衡？"
+ },
+ {
+  "id": 69,
+  "dir": "papers/p069",
+  "category": "社会与经济",
+  "question": "AI生成内容泛滥，信息生态如何维持？"
+ },
+ {
+  "id": 70,
+  "dir": "papers/p070",
+  "category": "社会与经济",
+  "question": "深度伪造对选举、司法和信任体系的威胁有多大？"
+ },
+ {
+  "id": 71,
+  "dir": "papers/p071",
+  "category": "治理与地缘政治",
+  "question": "前沿AI应该如何监管？由谁来监管？"
+ },
+ {
+  "id": 72,
+  "dir": "papers/p072",
+  "category": "治理与地缘政治",
+  "question": "各国AI法规（欧盟、美国、中国等）如何协调？"
+ },
+ {
+  "id": 73,
+  "dir": "papers/p073",
+  "category": "治理与地缘政治",
+  "question": "中美AI竞争将如何演变？会否引发军备竞赛？"
+ },
+ {
+  "id": 74,
+  "dir": "papers/p074",
+  "category": "治理与地缘政治",
+  "question": "芯片出口管制是否有效？"
+ },
+ {
+  "id": 75,
+  "dir": "papers/p075",
+  "category": "治理与地缘政治",
+  "question": "开源与闭源：开放权重模型的利弊如何权衡？"
+ },
+ {
+  "id": 76,
+  "dir": "papers/p076",
+  "category": "治理与地缘政治",
+  "question": "AI在军事和自主武器中的使用边界在哪里？"
+ },
+ {
+  "id": 77,
+  "dir": "papers/p077",
+  "category": "治理与地缘政治",
+  "question": "是否需要国际AI安全机构（类似IAEA）？"
+ },
+ {
+  "id": 78,
+  "dir": "papers/p078",
+  "category": "治理与地缘政治",
+  "question": "少数公司掌握前沿AI，权力集中问题如何解决？"
+ },
+ {
+  "id": 79,
+  "dir": "papers/p079",
+  "category": "治理与地缘政治",
+  "question": "发展中国家如何避免被AI鸿沟抛下？"
+ },
+ {
+  "id": 80,
+  "dir": "papers/p080",
+  "category": "治理与地缘政治",
+  "question": "政府如何在推动创新与防范风险之间取得平衡？"
+ },
+ {
+  "id": 81,
+  "dir": "papers/p081",
+  "category": "基础设施与资源",
+  "question": "算力需求能否持续指数增长？瓶颈在哪里？"
+ },
+ {
+  "id": 82,
+  "dir": "papers/p082",
+  "category": "基础设施与资源",
+  "question": "数据中心的能源消耗如何解决？核能、可再生能源能否跟上？"
+ },
+ {
+  "id": 83,
+  "dir": "papers/p083",
+  "category": "基础设施与资源",
+  "question": "用水、碳排放等环境成本如何计量和削减？"
+ },
+ {
+  "id": 84,
+  "dir": "papers/p084",
+  "category": "基础设施与资源",
+  "question": "先进芯片供应链（台积电、HBM等）风险有多大？"
+ },
+ {
+  "id": 85,
+  "dir": "papers/p085",
+  "category": "基础设施与资源",
+  "question": "推理成本还能下降多少？"
+ },
+ {
+  "id": 86,
+  "dir": "papers/p086",
+  "category": "基础设施与资源",
+  "question": "AI行业投资是否存在泡沫？"
+ },
+ {
+  "id": 87,
+  "dir": "papers/p087",
+  "category": "基础设施与资源",
+  "question": "专用芯片能否撼动英伟达的主导地位？"
+ },
+ {
+  "id": 88,
+  "dir": "papers/p088",
+  "category": "基础设施与资源",
+  "question": "端侧AI（手机、PC）能达到什么水平？"
+ },
+ {
+  "id": 89,
+  "dir": "papers/p089",
+  "category": "基础设施与资源",
+  "question": "前沿模型训练成本过高，学术界如何参与研究？"
+ },
+ {
+  "id": 90,
+  "dir": "papers/p090",
+  "category": "基础设施与资源",
+  "question": "AI公司的商业模式能否长期盈利？"
+ },
+ {
+  "id": 91,
+  "dir": "papers/p091",
+  "category": "评估与科学方法",
+  "question": "现有基准测试是否已饱和或被污染？"
+ },
+ {
+  "id": 92,
+  "dir": "papers/p092",
+  "category": "评估与科学方法",
+  "question": "如何衡量真实世界中的经济价值，而非刷榜成绩？"
+ },
+ {
+  "id": 93,
+  "dir": "papers/p093",
+  "category": "评估与科学方法",
+  "question": "如何评估开放式、主观性强的任务？"
+ },
+ {
+  "id": 94,
+  "dir": "papers/p094",
+  "category": "评估与科学方法",
+  "question": "如何系统地测量模型的风险能力？"
+ },
+ {
+  "id": 95,
+  "dir": "papers/p095",
+  "category": "评估与科学方法",
+  "question": "AI能否加速AI研究本身（自动化AI研发）？"
+ },
+ {
+  "id": 96,
+  "dir": "papers/p096",
+  "category": "评估与科学方法",
+  "question": "能力提升是否可以预测？能否提前预警？"
+ },
+ {
+  "id": 97,
+  "dir": "papers/p097",
+  "category": "评估与科学方法",
+  "question": "如何让AI研究更可复现、更透明？"
+ },
+ {
+  "id": 98,
+  "dir": "papers/p098",
+  "category": "评估与科学方法",
+  "question": "第三方审计和红队测试如何制度化？"
+ },
+ {
+  "id": 99,
+  "dir": "papers/p099",
+  "category": "评估与科学方法",
+  "question": "人类与AI如何最佳协作，而非简单替代？"
+ },
+ {
+  "id": 100,
+  "dir": "papers/p100",
+  "category": "评估与科学方法",
+  "question": "我们希望和AI一起创造一个什么样的未来？"
+ }
+]

@@ -1,0 +1,150 @@
+arch       d  dk   dv      S    N*tr    N*th   eta  acc@N=4..256
+attn     128   8   64    512     inf    44.4     -  1.00 1.00 1.00 1.00 1.00 1.00 1.00
+attn     128  16   64   1024     inf    87.7     -  1.00 1.00 1.00 1.00 1.00 1.00 1.00
+delta    128  16   32    512    50.5    39.1  1.29  1.00 1.00 0.96 0.74 0.38 0.16 0.07
+delta    128   8   64    512    45.3    44.4  1.02  1.00 0.98 0.91 0.67 0.33 0.14 0.06
+delta    128  16   64   1024    96.0    87.7  1.09  1.00 1.00 1.00 0.95 0.71 0.35 0.15
+delta    128  32   64   2048   191.7   174.4  1.10  1.00 1.00 1.00 1.00 0.95 0.70 0.35
+delta    128  16  128   2048    98.5   170.8  0.58  1.00 1.00 1.00 0.95 0.73 0.36 0.15
+delta    512  16  128   2048   177.5   170.8  1.04  1.00 1.00 1.00 0.99 0.92 0.66 0.32
+gdelta   128   8   64    512    45.0    44.4  1.01  1.00 0.98 0.91 0.67 0.33 0.13 0.05
+gdelta   128  16   64   1024    95.7    87.7  1.09  1.00 1.00 1.00 0.95 0.71 0.35 0.14
+gdelta   128  32   64   2048   197.6   174.4  1.13  1.00 1.00 1.00 1.00 0.96 0.73 0.36
+gla      128   8   64    512    45.4    44.4  1.02  1.00 0.98 0.92 0.68 0.33 0.13 0.05
+gla      128  16   64   1024    95.2    87.7  1.09  1.00 1.00 0.99 0.95 0.71 0.35 0.13
+gla      128  32   64   2048   194.0   174.4  1.11  1.00 1.00 1.00 1.00 0.96 0.72 0.35
+linear   128  16   32    512    47.5    39.1  1.22  1.00 1.00 0.95 0.71 0.34 0.13 0.05
+linear   128   8   64    512    45.4    44.4  1.02  1.00 0.98 0.91 0.67 0.33 0.13 0.05
+linear   128  16   64   1024    95.6    87.7  1.09  1.00 1.00 0.99 0.95 0.71 0.35 0.13
+linear   512  16   64   1024    96.2    87.7  1.10  1.00 1.00 1.00 0.95 0.72 0.35 0.14
+linear   128  32   64   2048   195.9   174.4  1.12  1.00 1.00 1.00 1.00 0.96 0.73 0.35
+linear   128  64   64   4096     inf   339.1     -  1.00 1.00 1.00 1.00 1.00 0.97 0.72
+linear   128  16  128   2048    97.0   170.8  0.57  1.00 1.00 1.00 0.96 0.72 0.36 0.14
+linear   512  16  128   2048   177.2   170.8  1.04  1.00 1.00 1.00 0.99 0.92 0.66 0.32
+{
+ "attn": {
+  "eta_median_dv64": null,
+  "eta_range_dv64": null,
+  "Nstar_vs_dk_loglog_slope_dv64": null
+ },
+ "delta": {
+  "eta_median_dv64": 1.0937776723416601,
+  "eta_range_dv64": [
+   1.019998478606184,
+   1.0991792266730394
+  ],
+  "Nstar_vs_dk_loglog_slope_dv64": 1.0408801358285287,
+  "Nstar_vs_dv_loglog_slope_dk16": 0.4812882190928492
+ },
+ "gdelta": {
+  "eta_median_dv64": 1.0911263577228496,
+  "eta_range_dv64": [
+   1.01265223979219,
+   1.1332202904491038
+  ],
+  "Nstar_vs_dk_loglog_slope_dv64": 1.0680950754143048
+ },
+ "gla": {
+  "eta_median_dv64": 1.085295155381462,
+  "eta_range_dv64": [
+   1.0227639218190128,
+   1.1125159797973687
+  ],
+  "Nstar_vs_dk_loglog_slope_dv64": 1.0476267556049441
+ },
+ "linear": {
+  "eta_median_dv64": 1.0893855493129743,
+  "eta_range_dv64": [
+   1.0223167177493266,
+   1.1234420677084933
+  ],
+  "Nstar_vs_dk_loglog_slope_dv64": 1.0549920705153086,
+  "Nstar_vs_dv_loglog_slope_dk16": 0.5151689923346064
+ }
+}
+prose beta_local 1.0616398716266617
+   {'S': 4096, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(192.6), 'T*_every_token': 192.6, 'T*_dedup': 205.8, 'T*_oracle': 2543.17}
+   {'S': 4096, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(209.81), 'T*_every_token': 209.81, 'T*_dedup': 224.61, 'T*_oracle': 2747.12}
+   {'S': 4096, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(209.02), 'T*_every_token': 209.02, 'T*_dedup': 223.74, 'T*_oracle': 2737.82}
+   {'S': 4096, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(210.66), 'T*_every_token': 210.66, 'T*_dedup': 225.53, 'T*_oracle': 2757.09}
+   {'S': 4096, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(210.15), 'T*_every_token': 210.15, 'T*_dedup': 224.97, 'T*_oracle': 2751.07}
+   {'S': 16384, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(770.38), 'T*_every_token': 770.38, 'T*_dedup': 880.04, 'T*_oracle': 8217.54}
+   {'S': 16384, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(839.24), 'T*_every_token': 839.24, 'T*_dedup': 965.94, 'T*_oracle': 8914.83}
+   {'S': 16384, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(836.09), 'T*_every_token': 836.09, 'T*_dedup': 962.0, 'T*_oracle': 8882.98}
+   {'S': 16384, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(842.63), 'T*_every_token': 842.63, 'T*_dedup': 970.18, 'T*_oracle': 8949.02}
+   {'S': 16384, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(840.59), 'T*_every_token': 840.59, 'T*_dedup': 967.62, 'T*_oracle': 8928.38}
+   {'S': 65536, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(3081.53), 'T*_every_token': 3081.53, 'T*_dedup': 3851.34, 'T*_oracle': 30350.1}
+   {'S': 65536, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3356.98), 'T*_every_token': 3356.98, 'T*_dedup': 4222.67, 'T*_oracle': 32874.2}
+   {'S': 65536, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3344.37), 'T*_every_token': 3344.37, 'T*_dedup': 4204.16, 'T*_oracle': 32758.01}
+   {'S': 65536, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3370.51), 'T*_every_token': 3370.51, 'T*_dedup': 4242.55, 'T*_oracle': 32999.03}
+   {'S': 65536, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3362.34), 'T*_every_token': 3362.34, 'T*_dedup': 4230.55, 'T*_oracle': 32923.68}
+   {'S': 262144, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(12326.14), 'T*_every_token': 12326.14, 'T*_dedup': 18414.04, 'T*_oracle': 111927.33}
+   {'S': 262144, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(13427.91), 'T*_every_token': 13427.91, 'T*_dedup': 20388.43, 'T*_oracle': 121327.42}
+   {'S': 262144, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(13377.49), 'T*_every_token': 13377.49, 'T*_dedup': 20297.39, 'T*_oracle': 120898.26}
+   {'S': 262144, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(13482.05), 'T*_every_token': 13482.05, 'T*_dedup': 20486.26, 'T*_oracle': 121788.12}
+   {'S': 262144, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(13449.37), 'T*_every_token': 13449.37, 'T*_dedup': 20427.2, 'T*_oracle': 121510.03}
+   {'S': 1048576, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(49304.54), 'T*_every_token': 49304.54, 'T*_dedup': 91502.21, 'T*_oracle': 413085.47}
+   {'S': 1048576, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(53711.65), 'T*_every_token': 53711.65, 'T*_dedup': 100871.64, 'T*_oracle': 447777.98}
+   {'S': 1048576, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(53509.98), 'T*_every_token': 53509.98, 'T*_dedup': 100440.48, 'T*_oracle': 446194.12}
+   {'S': 1048576, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(53928.21), 'T*_every_token': 53928.21, 'T*_dedup': 101334.85, 'T*_oracle': 449478.29}
+   {'S': 1048576, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(53797.48), 'T*_every_token': 53797.48, 'T*_dedup': 101055.2, 'T*_oracle': 448451.94}
+   {'S': 4194304, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(197218.16), 'T*_every_token': 197218.16, 'T*_dedup': 443586.34, 'T*_oracle': 1524557.15}
+   {'S': 4194304, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(214846.62), 'T*_every_token': 214846.62, 'T*_dedup': 489007.69, 'T*_oracle': 1652595.32}
+   {'S': 4194304, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(214039.92), 'T*_every_token': 214039.92, 'T*_dedup': 486917.51, 'T*_oracle': 1646749.84}
+   {'S': 4194304, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(215712.82), 'T*_every_token': 215712.82, 'T*_dedup': 491253.26, 'T*_oracle': 1658870.58}
+   {'S': 4194304, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(215189.94), 'T*_every_token': 215189.94, 'T*_dedup': 489897.57, 'T*_oracle': 1655082.68}
+   T=32768: {'T': '3.28e+04', 'N_ctx': '3.35e+03', 'KV_floats_one_layer_d4096': '2.68e+08', 'S_req[ideal additive (eta=1)]': '7.11e+04', 'S_req[trained linear (eta=1.09)]': '6.53e+04', 'S_req[trained gla (eta=1.09)]': '6.56e+04', 'S_req[trained delta (eta=1.09)]': '6.5e+04', 'S_req[trained gdelta (eta=1.09)]': '6.52e+04'}
+code beta_local 0.8397417627716008
+   {'S': 4096, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(171.9), 'T*_every_token': 171.9, 'T*_dedup': 271.92, 'T*_oracle': 1465.57}
+   {'S': 4096, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(187.27), 'T*_every_token': 187.27, 'T*_dedup': 299.04, 'T*_oracle': 1597.61}
+   {'S': 4096, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(186.57), 'T*_every_token': 186.57, 'T*_dedup': 297.79, 'T*_oracle': 1591.56}
+   {'S': 4096, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(188.02), 'T*_every_token': 188.02, 'T*_dedup': 300.38, 'T*_oracle': 1604.1}
+   {'S': 4096, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(187.57), 'T*_every_token': 187.57, 'T*_dedup': 299.57, 'T*_oracle': 1600.18}
+   {'S': 16384, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(687.61), 'T*_every_token': 687.61, 'T*_dedup': 1434.95, 'T*_oracle': 7030.08}
+   {'S': 16384, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(749.08), 'T*_every_token': 749.08, 'T*_dedup': 1568.55, 'T*_oracle': 7743.26}
+   {'S': 16384, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(746.26), 'T*_every_token': 746.26, 'T*_dedup': 1562.42, 'T*_oracle': 7710.45}
+   {'S': 16384, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(752.1), 'T*_every_token': 752.1, 'T*_dedup': 1575.12, 'T*_oracle': 7778.5}
+   {'S': 16384, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(750.27), 'T*_every_token': 750.27, 'T*_dedup': 1571.15, 'T*_oracle': 7757.22}
+   {'S': 65536, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(2750.46), 'T*_every_token': 2750.46, 'T*_dedup': 7707.15, 'T*_oracle': 36329.18}
+   {'S': 65536, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(2996.31), 'T*_every_token': 2996.31, 'T*_dedup': 8579.04, 'T*_oracle': 40228.43}
+   {'S': 65536, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(2985.06), 'T*_every_token': 2985.06, 'T*_dedup': 8539.75, 'T*_oracle': 40048.62}
+   {'S': 65536, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3008.39), 'T*_every_token': 3008.39, 'T*_dedup': 8621.27, 'T*_oracle': 40421.65}
+   {'S': 65536, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(3001.1), 'T*_every_token': 3001.1, 'T*_dedup': 8595.77, 'T*_oracle': 40304.99}
+   {'S': 262144, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(11001.83), 'T*_every_token': 11001.83, 'T*_dedup': 45490.0, 'T*_oracle': 189327.7}
+   {'S': 262144, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(11985.23), 'T*_every_token': 11985.23, 'T*_dedup': 50761.82, 'T*_oracle': 209648.42}
+   {'S': 262144, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(11940.23), 'T*_every_token': 11940.23, 'T*_dedup': 50517.84, 'T*_oracle': 208711.34}
+   {'S': 262144, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(12033.55), 'T*_every_token': 12033.55, 'T*_dedup': 51024.09, 'T*_oracle': 210655.36}
+   {'S': 262144, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(12004.38), 'T*_every_token': 12004.38, 'T*_dedup': 50865.74, 'T*_oracle': 210047.42}
+   {'S': 1048576, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(44007.3), 'T*_every_token': 44007.3, 'T*_dedup': 268546.44, 'T*_oracle': 986671.64}
+   {'S': 1048576, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(47940.92), 'T*_every_token': 47940.92, 'T*_dedup': 299668.21, 'T*_oracle': 1092572.03}
+   {'S': 1048576, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(47760.91), 'T*_every_token': 47760.91, 'T*_dedup': 298227.86, 'T*_oracle': 1087688.52}
+   {'S': 1048576, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(48134.2), 'T*_every_token': 48134.2, 'T*_dedup': 301216.5, 'T*_oracle': 1097819.67}
+   {'S': 1048576, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(48017.53), 'T*_every_token': 48017.53, 'T*_dedup': 300281.67, 'T*_oracle': 1094651.44}
+   {'S': 4194304, 'eta_label': 'ideal additive (eta=1)', 'eta': 1.0, 'Ncap': np.float64(176029.21), 'T*_every_token': 176029.21, 'T*_dedup': 1585341.65, 'T*_oracle': 5141988.99}
+   {'S': 4194304, 'eta_label': 'trained linear (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(191763.67), 'T*_every_token': 191763.67, 'T*_dedup': 1769066.47, 'T*_oracle': 5693883.49}
+   {'S': 4194304, 'eta_label': 'trained gla (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(191043.64), 'T*_every_token': 191043.64, 'T*_dedup': 1760563.48, 'T*_oracle': 5668433.33}
+   {'S': 4194304, 'eta_label': 'trained delta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(192536.81), 'T*_every_token': 192536.81, 'T*_dedup': 1778206.66, 'T*_oracle': 5721231.3}
+   {'S': 4194304, 'eta_label': 'trained gdelta (eta=1.09)', 'eta': 1.09, 'Ncap': np.float64(192070.11), 'T*_every_token': 192070.11, 'T*_dedup': 1772687.93, 'T*_oracle': 5704720.22}
+   T=32768: {'T': '3.28e+04', 'N_ctx': '2.52e+03', 'KV_floats_one_layer_d4096': '2.68e+08', 'S_req[ideal additive (eta=1)]': '6.01e+04', 'S_req[trained linear (eta=1.09)]': '5.52e+04', 'S_req[trained gla (eta=1.09)]': '5.54e+04', 'S_req[trained delta (eta=1.09)]': '5.49e+04', 'S_req[trained gdelta (eta=1.09)]': '5.51e+04'}
+eta relative to simulated ideal additive memory: {
+"delta_d128_dk16_dv128": 0.632,
+"delta_d512_dk16_dv128": 1.138,
+"delta_d128_dk16_dv32": 1.055,
+"delta_d128_dk16_dv64": 1.054,
+"delta_d128_dk32_dv64": 1.036,
+"delta_d128_dk8_dv64": 1.056,
+"gdelta_d128_dk16_dv64": 1.051,
+"gdelta_d128_dk32_dv64": 1.069,
+"gdelta_d128_dk8_dv64": 1.049,
+"gla_d128_dk16_dv64": 1.046,
+"gla_d128_dk32_dv64": 1.049,
+"gla_d128_dk8_dv64": 1.059,
+"linear_d128_dk16_dv128": 0.622,
+"linear_d512_dk16_dv128": 1.136,
+"linear_d128_dk16_dv32": 0.991,
+"linear_d128_dk16_dv64": 1.05,
+"linear_d512_dk16_dv64": 1.056,
+"linear_d128_dk32_dv64": 1.059,
+"linear_d128_dk8_dv64": 1.059
+}
+gates: [('delta', 16, 128, {'beta_mean': 0.044652026146650314, 'decay_mean': 0.9421093463897705, 'decay_min': 0.5885565876960754}), ('delta', 16, 128, {'beta_mean': 0.02485608123242855, 'decay_mean': 0.9436674118041992, 'decay_min': 0.693528413772583}), ('delta', 16, 32, {'beta_mean': 0.13604307174682617, 'decay_mean': 0.9500072002410889, 'decay_min': 0.6842898726463318}), ('gdelta', 16, 64, {'beta_mean': 0.03617873415350914, 'decay_mean': 0.9999235272407532, 'decay_min': 0.9997603297233582}), ('gdelta', 32, 64, {'beta_mean': 0.05321083590388298, 'decay_mean': 0.9999205470085144, 'decay_min': 0.9997194409370422}), ('gdelta', 8, 64, {'beta_mean': 0.02552936226129532, 'decay_mean': 0.9999284148216248, 'decay_min': 0.9997982382774353}), ('linear', 16, 128, {'beta_mean': 0.5012752413749695, 'decay_mean': 0.9442247152328491, 'decay_min': 0.6185969710350037}), ('linear', 16, 128, {'beta_mean': 0.5104295015335083, 'decay_mean': 0.9444465637207031, 'decay_min': 0.6912057995796204}), ('linear', 16, 32, {'beta_mean': 0.5156581997871399, 'decay_mean': 0.9485306739807129, 'decay_min': 0.6626453399658203}), ('linear', 16, 64, {'beta_mean': 0.4967513084411621, 'decay_mean': 0.9452748894691467, 'decay_min': 0.649803876876831})]

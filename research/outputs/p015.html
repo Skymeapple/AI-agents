@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>p015</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">body{max-width:820px;margin:40px auto;padding:0 20px;font-family:"Georgia","Noto Serif","Songti SC",serif;line-height:1.6;color:#1a1a1a;background:#fff;font-size:16px}
+h1{font-size:1.7em;line-height:1.25}h2{border-bottom:1px solid #ddd;padding-bottom:4px;margin-top:2em}
+table{border-collapse:collapse;margin:1em 0;font-size:.9em;display:block;overflow-x:auto}th,td{border:1px solid #ccc;padding:4px 8px}
+code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:.9em}pre{background:#f4f4f4;padding:10px;overflow-x:auto}
+img{max-width:100%}blockquote{border-left:3px solid #ccc;margin-left:0;padding-left:1em;color:#444}
+.status{background:#fff8e1;border:1px solid #f0d58c;padding:10px 14px;border-radius:6px;font-family:sans-serif;font-size:.9em}
+@media print{body{margin:0;max-width:none}}
+</style>
+</head>
+<body>
+<h1 id="replicates-buy-hazard-not-length-what-repeated-runs-can-and-cannot-tell-us-about-ai-agents-on-multi-day-tasks">Replicates
+Buy Hazard, Not Length: What Repeated Runs Can and Cannot Tell Us About
+AI Agents on Multi-Day Tasks</h1>
+<p><strong>Target venue:</strong> ICLR 2027 (main track, evaluation
+methodology / datasets and benchmarks area)</p>
+<p><strong>Code and data:</strong> <code>code/</code> (run
+<code>bash code/run_all.sh</code>); all outputs are in
+<code>results/</code>. Every number in this paper comes either from that
+code, run on METR’s public run logs, or from a cited source. Each use
+says which.</p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>Can AI agents complete tasks that take a human days or weeks? The
+usual evidence is METR’s <em>time horizon</em>: a curve of agent success
+against human task length, fitted to a pool of tasks and extrapolated.
+Whether that extrapolation is safe depends on how failure risk grows
+with length. Pooled curves cannot answer this, because a flattening
+curve can come from a hazard that declines within tasks or from tasks of
+equal length that differ in difficulty (“frailty”). Others have made
+this second point before us. We ask a sharper question: what do the
+<em>replicate runs</em> in public agent logs identify, and is that
+enough to forecast success on longer tasks?</p>
+<p><strong>Theory.</strong> (i) Outcome data cannot identify how risk
+accumulates <em>within</em> a task, even with infinitely many
+replicates. They identify only the distribution of per-task success at
+each length. Any claim about hazard shape, ours included, therefore
+rests on an invariance assumption: that the law of frailty does not
+change with length. (ii) Under that assumption we prove a
+<strong>replicate–length duality</strong>. The probability of succeeding
+in all <em>j</em> runs of tasks of length <em>T</em> (τ-bench’s
+pass^<em>j</em>) equals single-run success on tasks whose cumulative
+hazard is <em>j</em> times larger. Mathematically this is the diagonal
+of the Archimedean copula that a shared frailty induces (Oakes, 1989).
+It has three uses. It identifies the hazard-length map without any
+assumption about the frailty distribution. It turns heterogeneity models
+into falsifiable forecasts with likelihood-ratio bounds. And it shows
+that replicates extend what is identified in <em>hazard</em>, but not in
+<em>length</em>. (iii) A closed-form, sharp bracket on
+best-of-<em>m</em> success, given the heterogeneity index
+<em>H</em>.</p>
+<p><strong>Evidence.</strong> We analyse 23,235 runs by 20 agents on 228
+tasks (METR Time Horizon 1.1).</p>
+<ul>
+<li>Heterogeneity is large and mostly task-intrinsic. Median <em>H</em>
+= 0.61 within length strata. About 80% of between-task log-hazard
+variance is shared across agents.</li>
+<li>The hazard-length elasticity is above 1 with the frailty law left
+unrestricted. Its median is 1.77, and 17 of 20 agents have a profile CI
+above 1.</li>
+<li><strong>The decisive test fails, and it fails at a specific
+place.</strong> Models calibrated on tasks under 1 h, or under 2 h,
+overpredict success on longer tasks. This holds for every model, the
+nonparametric frailty model included: +0.15 on 1–4 h tasks, with
+family-bootstrap 95% CI [+0.05, +0.26]. The observed rate lies outside
+the model’s 95% bounds for 6 of 20 agents. A quarter to a half of the
+bias comes from never-solved tasks whose lengths are mostly estimated.
+With those removed, the bias is +0.11 on 1–4 h tasks (CI [+0.00, +0.23])
+and +0.07 on all tasks ≥ 1 h (CI [+0.01, +0.13]). Calibrated on tasks
+under 4 h, the same models predict 4–30 h tasks without bias: +0.01, CI
+[−0.06, +0.08]. Across all 20 agents, a piecewise hazard map is
+preferred, with a steep segment between 1 and 4 h (joint p = 2×10⁻⁶). In
+simulation, the forecast test returns errors of −0.09 to +0.02 when
+invariance holds. A kink in the hazard-length map reproduces the
+observed +0.12.</li>
+<li>On TH1.1, then, the binding obstacle to extrapolation is not
+between-task heterogeneity, which replicates measure, but a change in
+how difficulty scales with length, which only data at the target lengths
+can reveal.</li>
+<li>Where invariance does hold (4–30 h), 95% bounds on the four
+strongest agents’ success on a random 40-hour task lie within [0.02,
+0.42]. At 160 hours every lower bound is ≤ 0.007.</li>
+</ul>
+<h2 id="中文摘要">中文摘要</h2>
+<p>AI 智能体能否完成人类需要数天乃至数周的任务？目前的主要证据是 METR
+的”时间跨度”（time
+horizon）：在一个任务池上拟合智能体成功率随人类完成时长变化的曲线，再向更长任务外推。外推是否可靠，取决于失败风险如何随任务时长增长。仅凭合并曲线无法回答这个问题：曲线变平，既可能是因为单个任务内部的风险率在下降，也可能是因为同样时长的任务难度不同（生存分析中称为
+frailty，即异质性）。后一点前人已经指出。本文提出一个更尖锐的问题：公开日志中的<strong>重复运行</strong>到底能识别什么？这些信息是否足以预测更长任务上的成功率？</p>
+<p><strong>理论。</strong>（i）只用结果数据，即使重复次数无限，也无法识别单个任务<em>内部</em>的风险累积方式，能识别的只是各时长下”每个任务成功概率”的分布。因此，任何关于风险形状的结论（包括本文的结论）都依赖一个不变性假设：异质性的分布不随时长改变。（ii）在这一假设下，我们证明了<strong>“重复—时长对偶”</strong>：长度为
+<em>T</em> 的任务上 <em>j</em> 次运行全部成功的概率（即 τ-bench 的
+pass^<em>j</em>），等于累积风险为其 <em>j</em>
+倍的任务上的单次成功率。数学上，这是共享 frailty 所诱导的阿基米德 copula
+的对角线（Oakes，1989）。它有三个用途：不对异质性分布作任何假设即可识别”风险—时长映射”；把异质性模型变成可证伪的预测，并给出似然比界；并且表明重复运行扩展的是可识别的<em>风险</em>范围，而不是<em>时长</em>范围。（iii）给定异质性指数
+<em>H</em>，我们给出 best-of-<em>m</em> 成功率的闭式锐界。</p>
+<p><strong>证据。</strong> 我们分析了 METR Time Horizon 1.1 中 20
+个智能体在 228 个任务上的 23,235 次运行。</p>
+<ul>
+<li>异质性很大，且主要是任务本身的属性：按时长分层后 <em>H</em>
+的中位数为 0.61；任务间对数风险方差中约 80% 为各智能体共有。</li>
+<li>在不限定异质性分布的情况下，风险—时长弹性大于 1：中位数 1.77，20
+个智能体中 17 个的轮廓置信区间完全在 1 以上。</li>
+<li><strong>决定性检验没有通过，而且失败在一个明确的位置。</strong> 用 1
+小时（或 2 小时）以内任务校准的所有模型，包括非参数 frailty
+模型，都高估更长任务的成功率：在 1–4 小时任务上高估 0.15（任务族
+bootstrap 95% 区间 [0.05, 0.26]），20 个智能体中有 6 个的观测值落在模型
+95%
+界之外。四分之一到一半的偏差来自从未被解决、且时长多为估计值的任务；去掉这些任务后，1–4
+小时任务上的偏差为 0.11（区间 [0.00, 0.23]），全部 1 小时以上任务上为
+0.07（区间 [0.01, 0.13]）。用 4 小时以内任务校准时，对 4–30
+小时任务的预测没有偏差：+0.01，区间 [−0.06, 0.08]。对全部 20
+个智能体而言，分段风险映射更受支持，其中 1–4 小时之间有一段陡升（联合 p
+= 2×10⁻⁶）。模拟显示：当不变性成立时，该检验的预测误差在 −0.09 到 +0.02
+之间；风险—时长映射中的一个拐折则能复现观测到的 +0.12。</li>
+<li>因此，在 TH1.1
+上，阻碍外推的主要不是任务间异质性（重复运行可以测量它），而是难度随时长的标度方式发生了变化，这只有在目标时长上的数据才能揭示。</li>
+<li>在不变性成立的区间（4–30 小时）内，最强的四个智能体在随机 40
+小时任务上成功率的 95% 界都落在 [0.02, 0.42] 之内；到 160
+小时，所有智能体的下界都不超过 0.007。</li>
+</ul>
+<hr />
+<h2 id="introduction">1 Introduction</h2>
+<p>METR’s time-horizon methodology is the most widely used quantitative
+evidence on whether AI agents can do long work (Kwa et al., 2025; METR,
+2026). Agents attempt software, ML-engineering and cybersecurity tasks
+whose length is calibrated by human completion time (Rein et al., 2025;
+Wijk et al., 2024). A logistic curve in log human time is fitted per
+agent, and the <em>50% time horizon</em> is where predicted success is
+one half. The horizon has grown exponentially for six years.
+Extrapolating the trend is how one gets to agents that “independently
+complete a large fraction of software tasks that currently take humans
+days or weeks” (Kwa et al., 2025). METR itself warns that horizons above
+16 h are unreliable on the current suite (METR, 2026), and that
+reasonable modelling alternatives move recent horizons substantially
+(METR, 2026b).</p>
+<p>How far an extrapolation can be trusted depends on the <em>shape</em>
+of the success-versus-length relation. Ord (2025) proposed a constant
+hazard: a fixed chance of failing per minute, so that the 50% horizon is
+a half-life. A Weibull analysis by Gus Hamilton, reported by Ord (2026),
+found shape <em>k</em> ≈ 0.6 &lt; 1 for every agent. It was read as a
+hazard that “declines as a task goes on”. That reading is optimistic for
+multi-day tasks. Several public analyses have since pointed out the
+classical objection (Vaupel, Manton and Stallard, 1979; Proschan, 1963).
+A pooled curve also flattens if tasks of equal length differ in
+difficulty, because the hard ones drop out early. A LessWrong analysis
+simulated per-task constant hazards with spread difficulty and
+reproduced a pooled shape near 0.57 (LessWrong, 2026a). Item-response
+analyses showed that tasks of the same length are solved by the frontier
+months apart (LessWrong, 2026a; Nguyen and Fithian, 2026). An essay
+argued that the time-horizon curve “cannot tell a half-life from
+recovery” (Reasoning Under Uncertainty, 2026). A preprint frames rising,
+flat and cliff-shaped hazards as all compatible with one pooled curve
+(Mahendrakar, 2026). The round-1 version of this paper re-derived the
+frailty explanation and measured it with replicate runs. We now treat
+the frailty critique of the Lindy reading as <strong>known</strong>, and
+do not claim it.</p>
+<p>This paper asks the next question. METR’s public logs contain
+<strong>replicate runs</strong>: a median of 4 independent attempts per
+agent-task pair, and at least 2 for 99.96% of pairs. <em>Exactly what do
+replicates identify, and is it enough to forecast success on tasks
+longer than any in the suite?</em> The question decides whether “days or
+weeks” can be answered from today’s data, or only from new data at those
+lengths.</p>
+<p><strong>Contributions.</strong></p>
+<ol type="1">
+<li><strong>What is and is not identified (Sec. 3).</strong>
+<ul>
+<li><em>Theorem 1.</em> Even with infinite replicates, outcome data
+identify only the law of per-task success <em>p</em> given length
+<em>T</em>. Within-task hazard shape is identified only under an
+<em>invariance</em> assumption (frailty law independent of <em>T</em>).
+Under a location drift of frailty with log <em>T</em>, only the sum of
+elasticity and drift is identified. This sets an honest ceiling on what
+we, or anyone, can claim from outcome logs.</li>
+<li><em>Theorem 2 (replicate–length duality).</em> Under invariance,
+pass^<em>j</em> at length <em>T</em> equals pass@1 at the length whose
+cumulative hazard is <em>j</em> times larger. As a consequence, the
+hazard-length map is identified with the frailty law left completely
+unrestricted, a single elasticity must fit every <em>j</em> (an
+overidentifying restriction), and <em>n</em> replicates extend the
+identified range by a factor <em>n</em> in hazard. Converting that to
+length requires the hazard-length map beyond the data, which replicates
+cannot supply. The identity is the diagonal section of the Archimedean
+copula of a shared-frailty model (Oakes, 1989). We claim its use for
+identification and forecasting in agent evaluation, not the identity
+itself.</li>
+<li><em>Proposition 3.</em> A closed-form sharp bracket for
+best-of-<em>m</em> success given <em>S̄</em> and <em>H</em>, for every
+<em>m</em>. This answers a gap in the round-1 version.</li>
+</ul></li>
+<li><strong>A falsifiable forecasting method (Sec. 4).</strong> It
+combines a nonparametric-maximum-likelihood (NPMLE) frailty model with a
+profiled elasticity, likelihood-ratio bounds on long-task success
+computed as convex programs, and an out-of-window test that trains on
+short tasks and predicts longer ones.</li>
+<li><strong>Findings on METR TH1.1 (Sec. 5).</strong>
+<ul>
+<li><ol type="a">
+<li>Heterogeneity is large (<em>H</em> ≈ 0.61) and mostly shared across
+agents.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>The elasticity is &gt; 1 with an unrestricted frailty law, with a
+median of 1.77.</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li><strong>Invariance fails between about 1 and 4 hours.</strong> Every
+model trained below 1–2 h overpredicts longer tasks by 0.12–0.31. The
+nonparametric model is the least biased of them, yet its bounds are
+violated for 6–7 of 20 agents. The over-prediction shrinks, but
+persists, when never-solved tasks are removed. Simulations show that the
+test is unbiased under invariance and reproduces the observed bias under
+a kinked hazard map. Trained below 4 h, the models are unbiased on 4–30
+h tasks.</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>Under invariance beyond 4 h, 40-hour success is bounded to intervals
+about 0.3 wide for frontier agents, and 160-hour success is essentially
+unidentified.</li>
+</ol></li>
+</ul></li>
+<li><strong>Design rule (Sec. 6).</strong> To identify success at length
+<em>T</em>* from tasks no longer than <em>T</em>_max under invariance,
+one needs <em>n</em> ≥ (<em>T</em>*/<em>T</em>_max)^<em>k</em>
+replicates. With <em>k</em> ≈ 1.8, that is about 5 runs of 16-hour tasks
+for 40-hour claims. But invariance must itself be checked at the target
+lengths, because Sec. 5.4 shows that it can break.</li>
+</ol>
+<p>All empirical results are re-analyses of METR’s public run logs. We
+ran no agents.</p>
+<h2 id="related-work">2 Related Work</h2>
+<p><strong>Time horizons and their statistics.</strong> Kwa et
+al. (2025) introduced the 50% time horizon on HCAST (Rein et al., 2025),
+RE-Bench (Wijk et al., 2024) and SWAA tasks. Time Horizon 1.1 expanded
+the suite to 228 tasks (METR, 2026). METR has also measured horizons
+across domains (METR, 2025) and has studied the sensitivity of horizons
+to modelling assumptions (METR, 2026b). BRIDGE (Liu et al., 2026) fits a
+two-parameter IRT model across benchmarks and finds latent difficulty
+roughly linear in log human time. Nguyen and Fithian (2026) relax
+linearity with splines and IRT, report better cross-validated scores,
+and recommend diagnostic plots, especially as suites grow to include
+longer tasks. Our finding of a steep segment between 1 and 4 h (Sec.
+5.4) is the kind of non-linearity their spline model allows. We add a
+<em>forecasting</em> test of it, and a decomposition into heterogeneity
+versus the hazard-length map.</p>
+<p><strong>Frailty critiques of pooled hazard shapes.</strong> These
+were made publicly before this paper.</p>
+<ul>
+<li><em>LessWrong (2026a)</em> simulates per-task constant hazards with
+spread difficulty and reproduces a pooled shape near METR’s. It also
+documents that same-length tasks are solved months apart.</li>
+<li><em>LessWrong (2026b)</em> contrasts typical-task and marginal
+horizons under Bayesian IRT.</li>
+<li><em>Reasoning Under Uncertainty (2026)</em> argues that pooled
+curves cannot separate decay from recovery.</li>
+<li><em>Mahendrakar (2026)</em> frames three hazard shapes under one
+horizon.</li>
+</ul>
+<p>We could read the two LessWrong posts in full. For the essay and the
+preprint we had only search-engine abstracts, because their hosts were
+unreachable from our environment, so we cite them only for the framing
+visible there. None of these uses replicate runs to identify anything,
+and none tests a forecast out of window. That is the scope of our
+contribution.</p>
+<p><strong>Repeated sampling and reliability.</strong> τ-bench (Yao et
+al., 2024) introduced pass^<em>k</em>, the probability that all
+<em>k</em> trials succeed, as a reliability metric. Chen et al. (2021)
+gave the unbiased pass@<em>k</em> estimator. Schaeffer et al. (2025)
+showed that power-law scaling of pass@<em>k</em> in the number of
+attempts arises from a heavy left tail of per-problem success
+probabilities. Our duality links pass^<em>j</em> to task length, and our
+Prop. 3 bounds pass@<em>m</em> through the second moment, which is the
+quantity replicates identify.</p>
+<p><strong>Long-horizon execution.</strong> Sinha et al. (2025) isolate
+execution and find <em>self-conditioning</em>: models err more once
+their own errors are in context. That is an increasing within-run
+hazard, which Theorem 1 says outcome logs cannot confirm. Vending-Bench
+(Backlund and Petersson, 2025) and TheAgentCompany (Xu et al., 2024)
+document derailment and low success on long, multi-step work. PlanBench
+(Valmeekam et al., 2023) and LLM-Modulo (Kambhampati et al., 2024)
+concern planning with and without verifiers.</p>
+<p><strong>Frailty, copulas and marginal versus conditional
+models.</strong> Vaupel et al. (1979) and Proschan (1963) are the
+classical sources on frailty-induced hazard decline. Oakes (1989) showed
+that shared frailties induce Archimedean copulas whose generator is the
+frailty Laplace transform. Our Theorem 2 is the diagonal of that
+structure, read along the length axis. Zeger, Liang and Albert (1988)
+formalised marginal-versus-conditional attenuation. The Kiefer–Wolfowitz
+NPMLE of a mixing distribution (Kiefer and Wolfowitz, 1956) underlies
+our frailty estimator.</p>
+<h2 id="theory">3 Theory</h2>
+<p><strong>Setup.</strong> Fix an agent. Task <em>i</em> has human
+length <em>T</em>ᵢ and success probability <em>p</em>ᵢ ∈ [0, 1]. Runs
+are conditionally i.i.d. Bernoulli(<em>p</em>ᵢ) given the task. Write
+<em>p</em>ᵢ = exp(−Λᵢ), where Λᵢ ≥ 0 is the task’s cumulative hazard.
+Define the pooled curve <em>S̄</em>(<em>T</em>) = E[<em>p</em> |
+<em>T</em>] and the replicate moments <em>M</em>ⱼ(<em>T</em>) =
+E[<em>p</em>^<em>j</em> | <em>T</em>]. <em>M</em>ⱼ is the population
+value of τ-bench’s pass^<em>j</em>. A <strong>multiplicative frailty
+model</strong> is Λᵢ = <em>Z</em>ᵢ Λ₀(<em>T</em>ᵢ), with Λ₀ continuous,
+strictly increasing and Λ₀(0) = 0. <strong>Invariance</strong> means
+<em>Z</em> ⟂ <em>T</em> with law <em>G</em>. The Weibull case is
+Λ₀(<em>T</em>) = <em>cT^k</em>. We call <em>k</em> the <em>hazard-length
+elasticity</em>: the growth of log cumulative hazard per unit of log
+length at fixed frailty.</p>
+<p><strong>Background facts (classical, stated for
+reference).</strong></p>
+<ul>
+<li>(F1) Pooled curves generated by tasks that each have a constant
+hazard are exactly the completely monotone survival functions. Every
+Weibull curve with <em>k</em> ≤ 1 is one of them (Bernstein; Feller,
+1971, Ch. XIII; Proschan, 1963).</li>
+<li>(F2) Under invariance with non-degenerate <em>G</em>, the local
+pooled shape d log(−log <em>S̄</em>)/d log <em>T</em> is strictly below
+<em>k</em>. The reason is that <em>g</em>(<em>x</em>) = −log E
+e^(−<em>Zx</em>) is strictly concave with <em>g</em>(0) = 0, so <em>x
+g</em>′(<em>x</em>) &lt; <em>g</em>(<em>x</em>). This is the survival
+form of the attenuation in Zeger et al. (1988).</li>
+<li>(F3) With ≥ 2 replicates, <em>s</em>(<em>s</em> −
+1)/(<em>n</em>(<em>n</em> − 1)) is unbiased for <em>p</em>², so
+<em>H</em>(<em>T</em>) = Var(<em>p</em> | <em>T</em>)/[<em>S̄</em>(1 −
+<em>S̄</em>)] (the intraclass correlation of runs within tasks) is
+identified. Ratio estimators of it are consistent, not unbiased.</li>
+</ul>
+<p>F1 and F2 are why the pooled <em>k</em> ≈ 0.6 says nothing about
+within-task dynamics. That point is not new (Sec. 2).</p>
+<p><strong>Theorem 1 (what outcome data identify).</strong></p>
+<ul>
+<li><ol type="a">
+<li>The distribution of all run outcomes, for any number of replicates
+per task, depends on the task population only through the joint law of
+(<em>T</em>, <em>p</em>).</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>For any joint law of (<em>T</em>, <em>p</em>) with <em>p</em> ∈ (0,
+1], and <em>any</em> strictly increasing Λ₀ (constant, declining or
+increasing hazard), the dependent frailty <em>Z</em> := −log <em>p</em>
+/ Λ₀(<em>T</em>) reproduces it exactly.</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>If log <em>Z</em> | <em>T</em> = δ log <em>T</em> + ε, with ε ⟂
+<em>T</em>, and Λ₀ = <em>cT^k</em>, then the law of the data depends on
+(<em>k</em>, δ) only through <em>k</em> + δ.</li>
+</ol></li>
+</ul>
+<p><em>Proof.</em> (a) Given <em>p</em>, runs are i.i.d.
+Bernoulli(<em>p</em>), so the joint law of any number of runs is a
+mixture over the law of (<em>T</em>, <em>p</em>). (b) By construction
+<em>Z</em>Λ₀(<em>T</em>) = −log <em>p</em>. (c) log Λ = log <em>c</em> +
+(<em>k</em> + δ) log <em>T</em> + ε. ∎</p>
+<p>So “within-task hazard” claims, Lindy or fatigue alike, are claims
+about Λ₀ that outcome data reach only through invariance. Without
+invariance, <em>k</em> is the <em>across-suite</em> elasticity of
+difficulty with length. That quantity is still what matters for
+extrapolating to longer tasks drawn from the same kind of suite, but it
+is not a within-run hazard. We use <em>k</em> in that sense from now on.
+Theorem 1(c) is also why the drift scenario in our misspecification
+simulation inflates the estimated <em>k</em> (Sec. 5.6).</p>
+<p><strong>Theorem 2 (replicate–length duality).</strong> Under
+invariance, for every <em>T</em> and every integer <em>j</em> ≥ 1,</p>
+<p><em>M</em>ⱼ(<em>T</em>) = <em>S̄</em>( Λ₀⁻¹( <em>j</em> Λ₀(<em>T</em>)
+) ).</p>
+<p>Its consequences are:</p>
+<ul>
+<li><ol type="i">
+<li><em>G-free identification of the hazard-length map.</em> If
+<em>S̄</em> is strictly decreasing, the map φⱼ(<em>T</em>) :=
+<em>S̄</em>⁻¹(<em>M</em>ⱼ(<em>T</em>)) = Λ₀⁻¹(<em>j</em>Λ₀(<em>T</em>))
+is identified from (<em>S̄</em>, <em>M</em>ⱼ) alone, with <em>G</em>
+arbitrary. In the Weibull case φⱼ(<em>T</em>) =
+<em>j</em>^(1/<em>k</em>) <em>T</em>, so <em>k</em> = log <em>j</em> /
+log(φⱼ(<em>T</em>)/<em>T</em>) at every <em>T</em> and <em>j</em>.
+Constancy across <em>T</em> and <em>j</em> is an overidentifying
+restriction.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><em>Replicates extend identification in hazard, not in length.</em>
+With <em>n</em> replicates on tasks up to <em>T</em>_max, the law of
+<em>p</em> is identified at every cumulative-hazard level up to
+<em>n</em>Λ₀(<em>T</em>_max). Which <em>length</em> that level
+corresponds to depends on Λ₀ beyond <em>T</em>_max. Data on tasks ≤
+<em>T</em>_max do not identify that unless Λ₀ is assumed to keep its
+form. In the Weibull case, pooled success is identified up to
+<em>n</em>^(1/<em>k</em>) <em>T</em>_max.</li>
+</ol></li>
+<li><ol start="3" type="i">
+<li><em>Falsifiability.</em> Calibrated on tasks shorter than
+<em>C</em>, the model predicts the whole law of <em>p</em> on longer
+tasks with no free parameters left. Under invariance and a correct Λ₀
+form, success on longer tasks must lie within the likelihood-ratio
+bounds of Sec. 4. A violation means that invariance or the Λ₀ form fails
+beyond <em>C</em>.</li>
+</ol></li>
+</ul>
+<p><em>Proof.</em> <em>M</em>ⱼ(<em>T</em>) =
+E[e^(−<em>jZ</em>Λ₀(<em>T</em>))] = 𝓛_G(<em>j</em>Λ₀(<em>T</em>)), where
+𝓛_G is the Laplace transform of <em>G</em>. Likewise
+<em>S̄</em>(<em>T</em>′) = 𝓛_G(Λ₀(<em>T</em>′)). Put <em>T</em>′ =
+Λ₀⁻¹(<em>j</em>Λ₀(<em>T</em>)). For (i), 𝓛_G is strictly decreasing when
+<em>G</em> ≠ δ₀, so <em>S̄</em> is invertible on its range. (ii) follows
+because 𝓛_G is identified on [0, <em>n</em>Λ₀(<em>T</em>_max)] by
+(<em>M</em>₁, …, <em>M</em>ₙ) at <em>T</em> ≤ <em>T</em>_max. ∎</p>
+<p><em>Remarks.</em></p>
+<ul>
+<li>With <em>k</em> = 1 (Ord’s constant hazard at the task level),
+“pass^4 on 2-hour tasks equals pass@1 on 8-hour tasks”. With <em>k</em>
+≈ 1.8 (Sec. 5.3), it equals pass@1 on about 4.3-hour tasks.</li>
+<li>The identity is the diagonal of the Archimedean copula
+<em>C</em>(<em>u</em>, <em>v</em>) = 𝓛_G(𝓛_G⁻¹(<em>u</em>) +
+𝓛_G⁻¹(<em>v</em>)) induced by a shared frailty (Oakes, 1989). Its use
+here is new to our knowledge: replicate runs at one length are mapped
+onto single runs at another length.</li>
+<li>Because 𝓛_G is analytic, exact knowledge of it on any interval would
+determine it everywhere. Analytic continuation is severely ill-posed,
+though, and with finite data the bounds of Sec. 4 are the operational
+content of (ii).</li>
+</ul>
+<p><strong>Proposition 3 (sharp retry bracket).</strong> Let <em>S̄</em>
+= E <em>p</em>, <em>Q</em> = 1 − <em>S̄</em> and <em>H</em> as in F3, all
+at fixed <em>T</em>. For every <em>m</em> ≥ 1,</p>
+<p>(<em>S̄</em>/<em>r</em>) [1 − (1 − <em>r</em>)^<em>m</em>] ≤
+pass@<em>m</em> := 1 − E(1 − <em>p</em>)^<em>m</em> ≤ 1 − <em>Q</em>
+(<em>Q</em> + <em>H S̄</em>)^(<em>m</em>−1), with <em>r</em> = <em>S̄</em>
++ <em>H Q</em>.</p>
+<p>Both bounds are attained, by two-point laws of <em>p</em> on {0,
+<em>r</em>} and on {1 − <em>Q</em> − <em>H S̄</em>, 1} respectively. For
+<em>m</em> = 2 they coincide: pass@2 = 1 − <em>Q</em>² − <em>H S̄
+Q</em>.</p>
+<p><em>Proof.</em> Let <em>q</em> = 1 − <em>p</em> ∈ [0, 1] and
+<em>f</em>(<em>q</em>) = <em>q^m</em>, so that <em>f</em>‴ ≥ 0. The mean
+<em>Q</em> and the second moment E<em>q</em>² = <em>Q</em>² + <em>H S̄
+Q</em> are fixed.</p>
+<ul>
+<li><em>Lower bound on E f</em>, which gives the upper bound on
+pass@<em>m</em>. Take <em>b</em> = E<em>q</em>²/<em>Q</em> = <em>Q</em>
++ <em>H S̄</em>. Let <em>h</em> be the quadratic that interpolates
+<em>f</em> at 0 and has a double contact at <em>b</em>. Then
+<em>f</em>(<em>q</em>) − <em>h</em>(<em>q</em>) = <em>f</em>‴(ξ)
+<em>q</em> (<em>q</em> − <em>b</em>)²/6 ≥ 0. Hence E <em>f</em> ≥ E
+<em>h</em>. E <em>h</em> depends only on the first two moments and
+equals E <em>f</em> under the two-point law on {0, <em>b</em>}, which
+gives <em>Q b</em>^(<em>m</em>−1).</li>
+<li><em>Upper bound on E f.</em> Use the double contact at <em>a</em>
+and the simple contact at 1: <em>f</em> − <em>h</em> =
+<em>f</em>‴(ξ)(<em>q</em> − <em>a</em>)²(<em>q</em> − 1)/6 ≤ 0. The
+extremal law puts <em>p</em> on {0, <em>r</em>}, and pass@<em>m</em> =
+(<em>S̄</em>/<em>r</em>)(1 − (1 − <em>r</em>)^<em>m</em>). ∎</li>
+</ul>
+<p>Under homogeneity (<em>H</em> = 0) the upper bound is 1 −
+<em>Q^m</em>. Large <em>H</em> compresses both bounds toward the gain of
+a single retry, multiplied by (1 − <em>H</em>).</p>
+<h2 id="method">4 Method</h2>
+<p><strong>Data.</strong> We use METR’s public Time Horizon 1.1 run logs
+(<code>reports/time-horizon-1-1/data/raw/runs.jsonl</code> at commit
+<code>52cb829</code> of <code>METR/eval-analysis-public</code>),
+excluding human-baseline rows. This gives:</p>
+<ul>
+<li>23,235 runs by 20 agents, from GPT-4 0314 to Claude Opus 4.6 and
+GPT-5.3-Codex, on 228 tasks in 79 families;</li>
+<li>lengths from 0.02 to 1,800 min, with 55 tasks ≥ 4 h and 5 tasks ≥ 16
+h;</li>
+<li>162 tasks timed by human baselines, the rest estimated;</li>
+<li>a median of 4 runs per pair (≥ 2 for 99.96%, ≥ 4 for 98.3%).</li>
+</ul>
+<p>Usage-limit terminations (4.3% of runs) are kept, as METR does.
+Robustness to dropping them was checked in round 1, and the results did
+not change. [Counts: our code.]</p>
+<p><strong>NPMLE frailty model.</strong> For each agent, P(success |
+task <em>i</em>) = exp(−exp(<em>k</em> log(<em>T</em>ᵢ/60) +
+<em>u</em>ᵢ)), with <em>u</em>ᵢ ~ <em>G</em> and <em>G</em>
+unrestricted. We approximate <em>G</em> by free weights on a 105-point
+grid of <em>u</em> ∈ [−16, 10] (step 0.25), estimated by EM
+(Kiefer–Wolfowitz NPMLE). We profile <em>k</em> over [0.3, 3.0] in steps
+of 0.05 and refine. 95% CIs are profile-likelihood intervals (deviance ≤
+3.84). By Theorem 2(i), <em>k</em> is identified without any form for
+<em>G</em>.</p>
+<p><strong>Model-free moment matching.</strong> For <em>j</em> = 2, 3, 4
+we smooth the U-statistics of <em>M</em>ⱼ and of <em>S̄</em> in log
+<em>T</em> (local-linear, Gaussian kernel, bandwidth 0.7). We then
+choose <em>k</em>ⱼ so that <em>M</em>ⱼ(<em>T</em>) ≈
+<em>S̄</em>(<em>j</em>^(1/<em>k</em>)<em>T</em>) over <em>T</em> ∈ [4
+min, 16 h/<em>j</em>^(1/<em>k</em>)]. Agreement of <em>k</em>₂,
+<em>k</em>₃ and <em>k</em>₄ is the overidentification check of Theorem
+2(i).</p>
+<p><strong>Likelihood-ratio bounds.</strong> For fixed <em>k</em>,
+success at <em>T</em>* is linear in the weights of <em>G</em>, and the
+log-likelihood is concave in them. The minimum and maximum of
+<em>S̄</em>(<em>T</em>*) over {<em>G</em> : ℓ(<em>k</em>, <em>G</em>) ≥ ℓ̂
+− 1.92} are therefore convex programs, which we solve with Clarabel via
+CVXPY. We take the union over <em>k</em> in its profile CI on a 0.1
+grid. These are 95% profile-LR bounds for a scalar functional,
+conservative in <em>k</em>.</p>
+<p><strong>Out-of-window test.</strong> Per agent, all models are fitted
+on tasks with <em>T</em> &lt; <em>C</em>, for <em>C</em> ∈ {1 h, 2 h, 4
+h}. They predict the equal-task-weight mean success on tasks in
+[<em>C</em>, 4<em>C</em>) and on all tasks ≥ <em>C</em>. The models
+are:</p>
+<ul>
+<li>pooled log-logistic (METR’s form);</li>
+<li>pooled Weibull;</li>
+<li>the completely monotone mixture (constant-hazard frailty,
+NPMLE);</li>
+<li>Gaussian frailty GLMM;</li>
+<li>NPMLE frailty;</li>
+<li>NPMLE frailty with <em>k</em> fixed at 1.</li>
+</ul>
+<p>Uncertainty accounts for the fact that all agents share the target
+tasks. We use a family-cluster bootstrap (2,000 draws) of the
+mean-over-agents error, plus leave-one-family-out.</p>
+<p><strong>Hazard-length map.</strong> To locate the failure, we replace
+<em>k</em> log <em>T</em> by a continuous piecewise-linear function of
+log <em>T</em>, with knots at 1 h and 4 h and slopes <em>k</em>₁,
+<em>k</em>₂, <em>k</em>₃, keeping the NPMLE <em>G</em>. We test against
+a single <em>k</em> by LR (2 df per agent), and summarise over agents by
+summing the LR statistics. As an alternative identification, we estimate
+a <em>within-family</em> elasticity. This uses a cloglog model with
+family fixed effects (ridge 0.01) and Gaussian task frailty, on the 155
+tasks in the 28 families that contain tasks differing in length by at
+least a factor 2.</p>
+<p><strong>Crossed model, task audit, retry baselines.</strong> These
+address review r1.</p>
+<ul>
+<li>A joint cloglog model with crossed effects: η_ai = μ_a +
+<em>k</em>_a log <em>T</em>ᵢ + λ_a <em>u</em>ᵢ + τ_a <em>w</em>_ai. Here
+<em>u</em>ᵢ is shared task difficulty, either Gaussian or discrete with
+free weights, and <em>w</em>_ai is the agent-specific task effect. An
+optional latent class of “invalid” tasks has <em>p</em> = 0 for all
+agents.</li>
+<li>A task-validity audit of tasks never solved by any agent.</li>
+<li>Held-out pass@<em>m</em> against beta-binomial, IRT-style and
+latent-class baselines, with folds shared across agents.</li>
+<li>Profile-likelihood CIs for the Gaussian model.</li>
+<li>A misspecification simulation, now extended to the NPMLE estimator
+and to the out-of-window test (Sec. 5.6).</li>
+</ul>
+<h2 id="results">5 Results</h2>
+<h3 id="heterogeneity-is-large-and-mostly-a-property-of-the-task">5.1
+Heterogeneity is large, and mostly a property of the task</h3>
+<p>[Source: <code>results/heterogeneity_summary.txt</code>,
+<code>results/crossed_summary.txt</code>.]</p>
+<p>Across the 89 eligible agent × length strata, the median <em>H</em>
+is <strong>0.61</strong> (IQR 0.49–0.75), and the bootstrap CI excludes
+0 for 81% of strata. The stratum medians are 0.67 (1–4 min), 0.72 (4–15
+min), 0.47 (15–60 min), 0.68 (1–4 h) and 0.67 (4–16 h). Length
+differences within a stratum explain at most 0.027 of variance on
+average.</p>
+<p>The crossed agent × task model separates heterogeneity that is shared
+across agents (scale λ_a) from heterogeneity that is agent-specific
+(τ_a). The median agent-specific share τ²/(τ² + λ²) is
+<strong>0.19</strong> (Gaussian <em>u</em>), and 0.16 with a discrete
+<em>u</em>. Roughly four-fifths of the between-task spread in log hazard
+at fixed length is therefore task-intrinsic, ordering tasks the same way
+for all 20 agents. The model’s latent “invalid task” class receives
+weight 0.011 (Gaussian) or 0.006 (discrete), so the data give little
+support to a block of broken tasks.</p>
+<p><strong>Task audit.</strong> 17 tasks are never solved by any agent,
+all HCAST and 13 of them ≥ 4 h, and 16 of the 17 have <em>estimated</em>
+lengths. That is far above the base rate of 66/228. In 6 of them some
+run reached a continuous score ≥ 0.8, so they are near the binarisation
+threshold. In 5 every run scored ≤ 0.02. These tasks are candidates for
+mis-timing or mis-scoring, and every result below is reported with and
+without them. 59 tasks, all SWAA and under 1 min, are solved in every
+run by every agent.</p>
+<h3 id="retries-what-h-buys-and-what-it-does-not">5.2 Retries: what
+<em>H</em> buys and what it does not</h3>
+<p>[Source: <code>results/passk_baselines_summary.txt</code>,
+<code>results/passk_H_brackets.csv</code>.]</p>
+<p>Proposition 3’s bracket contains the observed pass@3 in 98.9% of the
+89 agent-strata and pass@4 in 96.6% (tolerance ±0.02). The mean bracket
+widths are 0.033 and 0.065. The homogeneous prediction lies a mean 0.13
+above the upper bracket.</p>
+<p>On held-out tasks (5 task folds shared by all agents),
+pass@<em>m</em> is predicted to within a mean absolute agent-level error
+of 0.004–0.009 at <em>m</em> = 2–4 by every overdispersed model:</p>
+<ul>
+<li>beta-binomial with logit mean linear in log <em>T</em>: 0.0059 /
+0.0040 / 0.0037;</li>
+<li>Gaussian frailty: 0.0090 / 0.0066 / 0.0078;</li>
+<li>logit-normal frailty: 0.0072 / 0.0054 / 0.0066.</li>
+</ul>
+<p>The homogeneous pooled curve misses by 0.067–0.104. On held-out tasks
+≥ 4 h, pass@4 is 0.30 observed, 0.31 under Gaussian frailty, 0.32 under
+the beta-binomial and 0.47 under homogeneity.</p>
+<p>We draw a narrower conclusion than in round 1. <em>Retry gains are
+governed by overdispersion (H), which any overdispersed model
+captures.</em> They are not evidence for a particular survival
+structure. The frailty model underpredicts the gain at <em>m</em> = 4 by
+about 12% (0.065 against 0.074).</p>
+<h3 id="the-hazard-length-elasticity-without-assumptions-on-the-frailty-law">5.3
+The hazard-length elasticity without assumptions on the frailty law</h3>
+<p>[Source: <code>results/duality_summary.txt</code> (A, B),
+<code>results/profile_ci_summary.txt</code>,
+<code>results/crossed_summary.txt</code>,
+<code>results/fig_duality.png</code>a.]</p>
+<p><strong>Table 1.</strong> Elasticity <em>k</em> under increasingly
+weak assumptions about heterogeneity. Medians over 20 agents. “CI &gt;
+1” counts agents whose 95% profile CI lies entirely above 1. Rows marked
+* use outcome-selected filters and are diagnostics only.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estimator</th>
+<th><em>k</em> median (IQR)</th>
+<th><em>k</em> &gt; 1</th>
+<th>CI &gt; 1</th>
+<th>CI &lt; 1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pooled Weibull, no heterogeneity</td>
+<td>0.63</td>
+<td>0/20</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Gaussian frailty, per agent</td>
+<td>1.56 (1.34–1.85)</td>
+<td>20</td>
+<td>15</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>crossed agent × task, Gaussian shared effect</td>
+<td>1.78 (1.54–2.06)</td>
+<td>20</td>
+<td>19 (Wald)</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>crossed, discrete shared effect + invalid class</td>
+<td>1.69 (1.47–2.00)</td>
+<td>20</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td><strong>NPMLE frailty, G unrestricted</strong></td>
+<td><strong>1.77 (1.45–2.09)</strong></td>
+<td><strong>20</strong></td>
+<td><strong>17</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td>NPMLE, baseline-timed tasks only</td>
+<td>1.79 (1.53–1.89)</td>
+<td>20</td>
+<td>18</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>NPMLE, RE-Bench removed</td>
+<td>1.78 (1.45–2.10)</td>
+<td>20</td>
+<td>17</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>NPMLE, never-solved tasks removed*</td>
+<td>1.60 (1.35–1.87)</td>
+<td>20</td>
+<td>15</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>NPMLE, never- and always-solved removed*</td>
+<td>1.49 (1.10–1.86)</td>
+<td>17</td>
+<td>10</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>crossed Gaussian, never-solved removed*</td>
+<td>1.72 (1.53–1.96)</td>
+<td>20</td>
+<td>19 (Wald)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Removing the 17 never-solved tasks lowers the NPMLE median from 1.77
+to 1.60. This answers the reviewer’s concern that the frontier estimates
+rest on those tasks: Claude Opus 4.6 goes from 1.92 to 1.85, GPT-5.2
+from 2.00 to 1.81, and GPT-5.3-Codex from 2.29 to 2.00. The large drops
+the reviewer found came from the single-agent Gaussian model, whose tail
+is forced. The NPMLE absorbs never-solved tasks with atoms instead of a
+forced Gaussian tail. Also removing the 59 always-solved sub-minute
+tasks takes away most short-length leverage, and leaves a median of
+1.49. A common <em>k</em> in the crossed model is 1.42 (profile CI
+1.39–1.56), but the free-<em>k</em> model fits better (LR 49.6 on 19
+df).</p>
+<p><strong>Overidentification.</strong> The model-free moment estimates
+<em>k</em>₂, <em>k</em>₃ and <em>k</em>₄ agree within agents: the median
+within-agent range is 0.08, and the medians are 2.10, 2.19 and 2.17.
+This is the restriction that Theorem 2(i) imposes along the <em>j</em>
+direction, and it holds.</p>
+<p>The <em>level</em> of the kernel estimator is imprecise. It hits the
+grid edge of 3.0 for 4 agents, and falls below 1 for the five weakest
+agents. For those agents, success is near zero beyond 1 h, so the
+matching is dominated by sub-hour tasks. Its ranking of agents agrees
+with the NPMLE (Spearman ρ = 0.82, p = 9×10⁻⁶), so we use it only as a
+check.</p>
+<p>Fig. <code>fig_duality.png</code>a shows the NPMLE reproducing
+pass@1, pass^2 and pass^4 jointly for two agents.</p>
+<p><strong>Within-family elasticity.</strong> [Source:
+<code>results/hazard_map_summary.txt</code> (b).] Using only length
+contrasts within the same family, the median <em>k</em> is 1.42. It is
+above 1 for 14 of 20 agents, with the CI above 1 for 5 and below 1 for
+none. The intervals are wide (155 tasks in 28 families), but they do not
+suggest a declining hazard even when family composition is held
+fixed.</p>
+<p><em>Reading.</em> At fixed frailty, the cumulative hazard of the
+suite’s tasks grows faster than proportionally with length. Doubling
+length multiplies it by 2^1.77 ≈ 3.4, against 2^0.63 ≈ 1.55 for the
+pooled fit. By Theorem 1 this is an across-suite elasticity, and a
+within-run “fatigue” only under invariance. It agrees with the
+self-conditioning mechanism of Sinha et al. (2025), but it does not
+establish it.</p>
+<h3 id="the-decisive-test-short-to-long-forecasts-fail-at-one-to-four-hours">5.4
+The decisive test: short-to-long forecasts fail at one to four
+hours</h3>
+<p>[Source: <code>results/duality_summary.txt</code> (C),
+<code>results/forecast_bootstrap.txt</code>,
+<code>results/hazard_map_summary.txt</code> (a),
+<code>results/fig_duality.png</code>b.]</p>
+<p><strong>Table 2.</strong> Out-of-window forecasts of mean success on
+longer tasks. Mean over 20 agents of (predicted − observed). The
+family-bootstrap CI and the coverage of the NPMLE’s 95% LR bounds are
+given for the target band [<em>C</em>, 4<em>C</em>).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Train on</th>
+<th>Target</th>
+<th>Observed</th>
+<th>log-logistic (METR)</th>
+<th>Weibull</th>
+<th>CM mixture</th>
+<th>Gaussian frailty</th>
+<th><strong>NPMLE frailty</strong> [95% family-bootstrap CI]</th>
+<th>NPMLE, <em>k</em> = 1</th>
+<th>Observed inside NPMLE LR bounds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 1 h</td>
+<td>[1 h, 4 h), 18 tasks</td>
+<td>0.337</td>
+<td>+0.197</td>
+<td>+0.177</td>
+<td>+0.279</td>
+<td>+0.148</td>
+<td><strong>+0.151</strong> [+0.050, +0.261]</td>
+<td>+0.211</td>
+<td>14/20</td>
+</tr>
+<tr class="even">
+<td>&lt; 1 h</td>
+<td>≥ 1 h, 73 tasks</td>
+<td>0.239</td>
+<td>+0.210</td>
+<td>+0.176</td>
+<td>+0.314</td>
+<td>+0.152</td>
+<td><strong>+0.120</strong> [+0.063, +0.179]</td>
+<td>+0.226</td>
+<td>18/20</td>
+</tr>
+<tr class="odd">
+<td>&lt; 2 h</td>
+<td>[2 h, 8 h), 31 tasks</td>
+<td>0.241</td>
+<td>+0.188</td>
+<td>+0.152</td>
+<td>+0.175</td>
+<td>+0.158</td>
+<td><strong>+0.142</strong> [+0.038, +0.237]</td>
+<td>+0.213</td>
+<td>13/20</td>
+</tr>
+<tr class="even">
+<td>&lt; 4 h</td>
+<td>[4 h, 16 h), 50 tasks</td>
+<td>0.221</td>
+<td>+0.010</td>
+<td>−0.076</td>
+<td>−0.101</td>
+<td>+0.029</td>
+<td><strong>+0.008</strong> [−0.061, +0.079]</td>
+<td>+0.167</td>
+<td>16/20</td>
+</tr>
+<tr class="odd">
+<td>&lt; 4 h</td>
+<td>≥ 4 h, 55 tasks</td>
+<td>0.206</td>
+<td>+0.017</td>
+<td>−0.068</td>
+<td>−0.095</td>
+<td>+0.036</td>
+<td><strong>+0.021</strong> [−0.053, +0.091]</td>
+<td>+0.178</td>
+<td>17/20</td>
+</tr>
+</tbody>
+</table>
+<p>Point errors are means over agents of agent-level means, from
+<code>duality_summary.txt</code>. The CIs come from
+<code>forecast_bootstrap.txt</code>, which averages per task over
+agents. The two differ by at most 0.002, because one agent lacks some
+tasks.</p>
+<p>Four facts stand out.</p>
+<ul>
+<li><strong>(1) Calibrated below one or two hours, every model
+overpredicts longer tasks, the nonparametric frailty model
+included.</strong> The NPMLE is the least biased (+0.12 to +0.15), yet
+its bias is large and its family-bootstrap CIs exclude 0.
+Leave-one-family-out ranges stay between +0.11 and +0.19, so no single
+family drives it. Eighteen of 20 agents err in the same direction.
+Because the agents share tasks, we rely on the task-level bootstrap and
+not on that count. The observed value falls outside the 95% LR bounds
+for 6 of 20 agents in the 1–4 h band and 7 of 20 in the 2–8 h band.
+Under invariance with a power-law Λ₀ the nominal expectation is about 1.
+Our simulation shows that profile intervals undercover (Sec. 5.6), so
+this count is suggestive, and the bootstrap carries the inference.</li>
+<li><strong>(2) The failure is not about heterogeneity.</strong>
+Modelling heterogeneity reduces the bias (+0.20 for the logistic, +0.15
+for the NPMLE), but cannot remove it. The NPMLE leaves <em>G</em> free,
+and in simulation non-Gaussian frailty does not bias its forecasts
+upward (Sec. 5.6). By Theorem 2(iii), what fails is invariance or the
+form of Λ₀ beyond 1–2 h.</li>
+<li><strong>(3) Calibrated below four hours, forecasts of 4–30 h tasks
+are unbiased</strong> for the logistic, the Gaussian and the NPMLE
+models (+0.01 to +0.04, CIs covering 0). Pooled Weibull and CM curves
+now <em>under</em>predict. Coverage of the LR bounds rises to 16–17 of
+20.</li>
+<li><strong>(4) Fixing <em>k</em> = 1 (task-level constant hazard)
+overpredicts by 0.17–0.23 at every cut.</strong> Long tasks are harder
+than a constant per-minute hazard allows, even after heterogeneity is
+accounted for.</li>
+</ul>
+<p><strong>Where the map bends.</strong> A piecewise hazard-length map
+with knots at 1 h and 4 h beats a single <em>k</em> jointly across
+agents: summed LR = 94.8 on 40 df, p = 2.4×10⁻⁶. Individually, 6 of 20
+agents reach p &lt; 0.05. The median local elasticities are <em>k</em>₁
+= 1.41 below 1 h, <strong><em>k</em>₂ = 2.91 between 1 and 4 h</strong>,
+and <em>k</em>₃ = 1.80 above 4 h. The segment estimates are noisy. For
+the weakest agents, whose success is near zero beyond 1 h, <em>k</em>₂
+and <em>k</em>₃ are unidentified, and the fits place them at extreme
+values (Table in <code>hazard_map_summary.txt</code>). The medians are
+robust to this.</p>
+<p>So in the TH1.1 suite, failure risk at fixed frailty rises steeply
+between about one and four human-hours. Below and above that range it
+rises more slowly. This is visible as a shoulder in the pass^<em>j</em>
+curves of Fig. <code>fig_duality.png</code>a. It shows up as a regime
+change that short-task calibration cannot anticipate.</p>
+<p>Two caveats limit how far this can be read.</p>
+<ul>
+<li>The [1 h, 4 h) band contains only 18 tasks in 14 families. The
+[<em>C</em>, 4<em>C</em>) bootstrap intervals are wide for this
+reason.</li>
+<li>By Theorem 1(c), “steeper Λ₀” and “harder tasks in this length
+range” cannot be told apart. 6 of these 18 lengths are estimates, and 2
+of the 18 tasks are never solved. Suspect target tasks account for part
+of the effect [Source: <code>results/forecast_subsets.txt</code>].
+Removing the never-solved target tasks is an outcome-selected filter, so
+it biases the comparison <em>against</em> finding over-prediction. Even
+so, the NPMLE bias in the 1–4 h band falls from +0.151 to +0.114 (CI
+[+0.004, +0.227]), and on all tasks ≥ 1 h from +0.122 to +0.065 (CI
+[+0.008, +0.126]). Restricting targets to baseline-timed tasks gives
++0.090 (CI [−0.018, +0.212]) and +0.076 (CI [−0.002, +0.151]). In every
+variant, calibrating below 4 h gives no significant bias. So the
+over-prediction survives the audit. About 40–50% of its size in the ≥ 1
+h bands is attributable to never-solved tasks with mostly estimated
+lengths, and on baselined tasks alone it is borderline.</li>
+</ul>
+<p>METR (2026b) notes that the logistic fit is highly sensitive to
+performance on very easy tasks, which flattens the fitted slope. That
+explains part of the logistic’s bias here. It cannot explain the
+NPMLE’s, which leaves the frailty law free and so has no such
+sensitivity.</p>
+<p>Either way the forecasting conclusion is the same. <em>Short-task
+data, with or without replicates and with or without a heterogeneity
+model, did not predict success on the next factor of four in length on
+this suite.</em></p>
+<h3 id="what-the-data-allow-at-day-week-and-month-lengths">5.5 What the
+data allow at day, week and month lengths</h3>
+<p>[Source: <code>results/duality_bounds.csv</code>,
+<code>results/fig_duality.png</code>c.]</p>
+<p>These numbers assume invariance and a power-law Λ₀ beyond the data.
+Sec. 5.4(3) supports that assumption within 4–30 h, and nothing supports
+it beyond.</p>
+<p><strong>Table 3.</strong> 95% LR bounds (union over <em>k</em> in its
+CI) on success on a random task of length <em>T</em>* drawn from a
+TH1.1-like population, for frontier agents. The point value is the NPMLE
+fit.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Agent</th>
+<th>8 h: point [bounds]</th>
+<th>40 h: point [bounds]</th>
+<th>160 h: point [bounds]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Claude Opus 4.6</td>
+<td>0.56 [0.46, 0.66]</td>
+<td>0.24 [0.09, 0.42]</td>
+<td>0.19 [0.007, 0.40]</td>
+</tr>
+<tr class="even">
+<td>Claude Opus 4.5</td>
+<td>0.44 [0.33, 0.55]</td>
+<td>0.17 [0.04, 0.35]</td>
+<td>0.00 [0.00, 0.24]</td>
+</tr>
+<tr class="odd">
+<td>GPT-5.2</td>
+<td>0.47 [0.36, 0.58]</td>
+<td>0.19 [0.06, 0.38]</td>
+<td>0.00 [0.00, 0.25]</td>
+</tr>
+<tr class="even">
+<td>GPT-5.3-Codex</td>
+<td>0.46 [0.35, 0.56]</td>
+<td>0.11 [0.02, 0.31]</td>
+<td>0.04 [0.00, 0.29]</td>
+</tr>
+<tr class="odd">
+<td>GPT-5.1-Codex-Max</td>
+<td>0.35 [0.25, 0.46]</td>
+<td>0.11 [0.00, 0.28]</td>
+<td>0.10 [0.00, 0.28]</td>
+</tr>
+<tr class="even">
+<td>Gemini 3 Pro</td>
+<td>0.33 [0.23, 0.44]</td>
+<td>0.06 [0.03, 0.21]</td>
+<td>0.00 [0.00, 0.19]</td>
+</tr>
+<tr class="odd">
+<td>GPT-5</td>
+<td>0.34 [0.24, 0.45]</td>
+<td>0.13 [0.00, 0.30]</td>
+<td>0.11 [0.00, 0.29]</td>
+</tr>
+</tbody>
+</table>
+<p>What these bounds show:</p>
+<ul>
+<li><strong>At 8 h, inside the data, the answer is identified to about
+±0.1.</strong></li>
+<li><strong>At 40 h, the bounds narrow the round-1 range but do not
+close it.</strong> The earlier range of model-dependent projections,
+0.01–0.76 for Claude Opus 4.6, came from different parametric frailty
+families. The exponential (0.03) and the three-class model (0.76) both
+fall outside the bounds [0.09, 0.42]. Those were artefacts of parametric
+tails, as round 1 suspected.</li>
+<li><strong>At 160 h, the lower bound is ≤ 0.007 for every
+agent.</strong> Week-to-month success is not identified even under
+invariance. That is Theorem 2(ii) in practice: with <em>n</em> ≤ 8
+replicates and <em>k</em> ≈ 1.8, the identified range ends near
+8^(1/1.8) × 30 h ≈ 95 h, and only for the few tasks with 8 runs.</li>
+<li><strong>Every frailty fit makes success at multi-day lengths
+bimodal.</strong> For Claude Opus 4.6 at 40 h, the NPMLE puts 20% of
+tasks at <em>p</em> ≥ 0.8 and 48% at <em>p</em> ≤ 0.05. Whatever success
+exists sits in a minority of tasks that are easy for their length.</li>
+</ul>
+<p>For 12 of the 20 agents, all of them released before Claude Opus 4.5,
+the upper bound at 40 h is below 0.12.</p>
+<h3 id="simulations-what-the-estimators-recover-and-what-the-forecast-test-detects">5.6
+Simulations: what the estimators recover and what the forecast test
+detects</h3>
+<p>[Sources: <code>results/misspec_summary.txt</code>,
+<code>results/npmle_sim_summary.txt</code>. Both use Claude 4 Opus’s
+TH1.1 design: 228 tasks, 1,368 runs.]</p>
+<p><em>Gaussian GLMM under misspecification</em> (20 replicates per
+scenario). With a declining true hazard (<em>k</em> = 0.63) and
+non-Gaussian frailty, the Gaussian GLMM reports:</p>
+<ul>
+<li>0.83 for two-point frailty, with 10% of replicates above 1;</li>
+<li>0.63 for <em>t</em>₃ frailty;</li>
+<li>0.57 for skewed three-point frailty;</li>
+<li>0.61 with 10% impossible tasks;</li>
+<li>0.74 with 30% impossible long tasks.</li>
+</ul>
+<p>So it does not manufacture <em>k</em> &gt; 1 from a declining hazard
+under these forms. Label noise of s.d. 0.7 in log <em>T</em> barely
+moves it. The exception is the one Theorem 1(c) predicts. A frailty
+location drift of +0.8 per log <em>T</em> with true <em>k</em> = 0.63
+yields <em>k̂</em> = 1.44, above 1 in every replicate. Drift is
+unidentifiable, and we do not claim to exclude it. The
+mechanical-correlation check (true σ and <em>k</em> fixed, capability
+varied) gives corr(log <em>ĥ</em>₅₀, log σ̂) = 0.05. So the round-1
+correlation of 0.87 between capability and frailty spread across agents
+is not a fitting artefact. It remains descriptive and confounded with
+release date.</p>
+<p><em>NPMLE and the forecast test</em> (10 replicates per scenario).
+The NPMLE recovers a declining hazard under non-Gaussian frailty:
+<em>k̂</em> = 0.65 (homogeneous), 0.65 (two-point), 0.72 (skewed
+three-point) and 0.67 (10% impossible tasks), all for true <em>k</em> =
+0.63. In a Gaussian truth with <em>k</em> = 1.5 it gives 1.66 ± 0.24, a
+small upward bias. Its profile CIs undercover: they contain the truth in
+6–10 of 10 replicates depending on scenario. This is one reason we
+report agent-level CIs only as descriptive and rely on task-level
+bootstraps for the forecast test. With location drift (M7), <em>k̂</em> =
+1.51, as Theorem 1(c) says it must be.</p>
+<p>The out-of-window test (train &lt; 1 h, predict the true mean
+<em>p</em> on 1–4 h tasks) separates the scenarios:</p>
+<ul>
+<li>When invariance and a power-law Λ₀ hold, its mean error is −0.03 to
+−0.09, and +0.02 in one scenario. It never shows the large positive bias
+seen in the data.</li>
+<li><em>Smooth drift</em> (M7) also gives a negative error (−0.06),
+because a window fit absorbs drift into <em>k</em>.</li>
+<li>An <em>invariant frailty with a kinked hazard-length map</em>
+(<em>k</em> = 1, then 3 on 1–4 h, then 1) gives <strong>+0.12 ±
+0.11</strong>, the magnitude observed in the data.</li>
+</ul>
+<p>The test therefore detects exactly the departure that Sec. 5.4
+reports: a change of regime in length, not misspecified heterogeneity
+and not smooth drift.</p>
+<h2 id="discussion">6 Discussion</h2>
+<p><strong>What can be said today about tasks spanning days and
+weeks.</strong></p>
+<ul>
+<li><em>On TH1.1-type tasks, heterogeneity is not the main obstacle to
+extrapolation.</em> Replicate runs measure it, nonparametrically.
+Whatever success agents have on long tasks is concentrated in a minority
+of tasks.</li>
+<li><em>The obstacle is the hazard-length map.</em> Between 1 and 4 h it
+steepens in a way that no model trained on shorter tasks anticipated.
+Nothing in outcome data can rule out a similar break between 30 h and
+300 h.</li>
+<li><em>Within the range where the map is stable (4–30 h), it supports
+useful bounds.</em> For frontier agents, success on a random 40-hour
+task is between about 0.05 and 0.4. Month-scale success is not
+identified.</li>
+</ul>
+<p>A statement such as “the 50% horizon will reach a work-week by year
+<em>X</em>” is therefore an extrapolation of an <em>across-length</em>
+relation that has already bent once inside the observed range. It should
+be read as such.</p>
+<p><strong>Why the duality matters beyond this suite.</strong> Theorem 2
+converts a cheap measurement, more runs of existing tasks, into
+information about higher cumulative hazard. It also makes precise what
+that measurement cannot buy: length. That yields a <em>design rule</em>.
+To identify, under invariance, success at length <em>T</em>* from tasks
+no longer than <em>T</em>_max, one needs <em>n</em> ≥
+(<em>T</em>*/<em>T</em>_max)^<em>k</em> replicates per task. With
+<em>k</em> ≈ 1.8, this is 5.2 runs of 16-hour tasks, or 18 runs of
+8-hour tasks, to reach 40 h. Sec. 5.4 shows that invariance itself needs
+checking at the target length, so the economical design is a
+<em>few</em> tasks at the target length to test invariance, plus
+<em>many</em> replicates on somewhat shorter tasks to pin down the
+frailty tail.</p>
+<p><strong>Recommendations for horizon reporting.</strong></p>
+<ul>
+<li><ol type="1">
+<li>Report the out-of-window forecast error, i.e. train on tasks below
+<em>C</em> and predict tasks above it, as a routine diagnostic. This
+complements the diagnostic plots recommended by Nguyen and Fithian
+(2026).</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Report <em>H</em>, or pass^<em>j</em> by length, next to the
+horizon.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Do not translate a pooled <em>k</em> into per-minute reliability
+(F2), or a conditional <em>k</em> into within-run fatigue (Theorem
+1).</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Report retry gains through <em>H</em>, which bounds them (Prop.
+3).</li>
+</ol></li>
+</ul>
+<p><strong>Implications for agent design.</strong> When <em>H</em> is
+large, re-running the same agent on the same long task buys little.
+Prop. 3 bounds the gain, and about four-fifths of the heterogeneity is
+task-intrinsic. Interventions that change the agent-task interaction
+should be worth more than resampling: decomposition into verified
+sub-goals, external verifiers (Kambhampati et al., 2024), and memory or
+hand-off across sessions. If the 1–4 h steepening reflects within-run
+error accumulation, as self-conditioning would predict (Sinha et al.,
+2025), then checkpointing and context resets around that scale are where
+to look. Testing this requires time-stamped trajectory data. Outcome
+logs cannot test it (Theorem 1).</p>
+<p><strong>A protocol, with predictions stated in advance.</strong> This
+is not a registered protocol. It is a proposal with predictions written
+before any data exist.</p>
+<ul>
+<li>(P1) Build ≥ 40 tasks of 16–80 human hours in ≥ 10 families, sampled
+to span difficulty.</li>
+<li>(P2) Run each frontier agent ≥ 6 times per task.</li>
+<li>(P3) Fit the NPMLE frailty model to the existing suite,
+<em>without</em> the new tasks, and publish its LR bounds for the new
+tasks before scoring them.</li>
+</ul>
+<p>Our predictions from TH1.1:</p>
+<ul>
+<li><ol type="i">
+<li><em>H</em> in the new stratum ≥ 0.5 whenever stratum success lies in
+(0.1, 0.9);</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li>observed success inside the published 95% bounds for at least 15 of
+20 agents if invariance holds from 4 h to 80 h, and systematically below
+them if a second steepening exists;</li>
+</ol></li>
+<li><ol start="3" type="i">
+<li>observed pass@4 − pass@1 within Prop. 3’s bracket computed from the
+new stratum’s <em>H</em>;</li>
+</ol></li>
+<li><ol start="4" type="i">
+<li>a bimodal distribution of per-task success, with more than a third
+of tasks never solved in 6 runs whenever stratum success is below
+0.5.</li>
+</ol></li>
+</ul>
+<h2 id="limitations">7 Limitations</h2>
+<ul>
+<li><strong>Invariance is assumed, and partly rejected.</strong> All
+statements about <em>k</em> as a within-task hazard, and all bounds at
+40 and 160 h, assume invariance and a power-law Λ₀ beyond the data. Sec.
+5.4 shows that this fails across 1–4 h on this suite. Our support for
+invariance beyond 4 h rests on 55 tasks (37 families) and only 5 tasks ≥
+16 h.</li>
+<li><strong>Drift is unidentifiable (Theorem 1c).</strong> The
+elasticity estimates cannot separate “longer tasks accumulate hazard
+faster” from “the suite’s longer tasks are intrinsically harder”. The
+within-family estimate (median 1.42) is the closest we can get, and it
+is imprecise.</li>
+<li><strong>Few long tasks; estimated lengths.</strong> 40 of the 55
+tasks ≥ 4 h, and 16 of the 17 never-solved tasks, have estimated rather
+than baselined lengths. Restricting to baselined tasks leaves <em>k</em>
+unchanged (1.79), but it also removes most long tasks.</li>
+<li><strong>The 1–4 h band is small.</strong> Its 18 tasks in 14
+families make the band-specific CI wide. The piecewise slopes are
+unidentified for weak agents, and the fits put them at extreme values.
+The knots at 1 h and 4 h were chosen once and not tuned, but other knots
+could locate the bend differently.</li>
+<li><strong>Shared tasks.</strong> All agents share the tasks, so agent
+counts are not independent evidence. We report task-level
+(family-cluster) uncertainty for the forecast test. Per-agent profile
+CIs in Table 1 do not account for this dependence.</li>
+<li><strong>Likelihood bounds.</strong> The LR bounds are 95%
+profile-likelihood bounds on a 105-point frailty grid with a union over
+a <em>k</em> grid. They are not exact finite-sample confidence sets. The
+grid also caps <em>k</em> at 3.0, and for a few agents the CI reaches
+that cap.</li>
+<li><strong>Moment-matching estimator.</strong> It is a crude kernel
+method. We use it only for its internal consistency across <em>j</em>
+and its rank agreement with the NPMLE.</li>
+<li><strong>Replicate independence.</strong> Shared infrastructure
+failures (4.3% usage-limit runs) or scaffold changes could inflate
+within-task correlation. Dropping usage-limit runs did not change the
+round-1 results.</li>
+<li><strong>Scope.</strong> The data are METR’s automatically scored
+software, ML and cybersecurity tasks. Real multi-day work involves
+interruptions, coordination and changing specifications. We ran no
+agents, and every empirical claim is a re-analysis of public logs.</li>
+<li><strong>Prior work we could not read in full.</strong> Two related
+pieces (Reasoning Under Uncertainty, 2026; Mahendrakar, 2026) were
+reachable only through search snippets. They may contain points we have
+not credited.</li>
+</ul>
+<h2 id="conclusion">8 Conclusion</h2>
+<p>The flattening of pooled success-versus-length curves has been read
+as agents “settling in” to long tasks. That reading was already known to
+be confounded with heterogeneity. We showed what replicate runs add.
+Even with infinite replicates they cannot reveal within-task hazard
+dynamics without an invariance assumption. Under that assumption,
+through the replicate–length duality, they identify the hazard-length
+map without any model of heterogeneity, and they turn heterogeneity
+models into falsifiable forecasts.</p>
+<p>On METR’s Time Horizon 1.1 data, the forecasts fail in a specific
+place. Tasks between one and four human-hours are harder than any model
+calibrated on shorter tasks predicts. Beyond four hours the models
+recover, and they bound frontier agents’ success on a random 40-hour
+task to roughly 0.05–0.4. They leave month-long success
+unidentified.</p>
+<p>For the question this paper started from, the answer is that today’s
+public data cannot say whether agents will complete tasks spanning
+weeks. The suite has already shown one change of regime with length, and
+only replicate-rich measurements at the target lengths can rule out
+another.</p>
+<h2 id="references">References</h2>
+<p>All references were checked to exist via web search in November 2026.
+For the two items whose hosts were unreachable from our environment, the
+content was confirmed only through search snippets, and we cite them
+only for what those show.</p>
+<ul>
+<li>Backlund, A. and Petersson, L. (2025). Vending-Bench: A Benchmark
+for Long-Term Coherence of Autonomous Agents. arXiv:2502.15840.</li>
+<li>Chen, M., et al. (2021). Evaluating Large Language Models Trained on
+Code. arXiv:2107.03374.</li>
+<li>Feller, W. (1971). <em>An Introduction to Probability Theory and Its
+Applications, Vol. II</em> (2nd ed.). Wiley.</li>
+<li>Kambhampati, S., Valmeekam, K., Guan, L., Verma, M., Stechly, K.,
+Bhambri, S., Saldyt, L. and Murthy, A. (2024). Position: LLMs Can’t
+Plan, But Can Help Planning in LLM-Modulo Frameworks. <em>ICML
+2024</em>, PMLR 235:22895–22907. arXiv:2402.01817.</li>
+<li>Kiefer, J. and Wolfowitz, J. (1956). Consistency of the maximum
+likelihood estimator in the presence of infinitely many incidental
+parameters. <em>Annals of Mathematical Statistics</em>, 27(4),
+887–906.</li>
+<li>Kwa, T., West, B., Becker, J., Deng, A., Garcia, K., Hasin, M.,
+Jawhar, S., Kinniment, M., Rush, N., Von Arx, S., et al. (2025).
+Measuring AI Ability to Complete Long Tasks. arXiv:2503.14499 (NeurIPS
+2025).</li>
+<li>LessWrong (2026a). “A(nother) look at METR’s time horizon: tasks of
+the same duration get solved months apart.”
+https://www.lesswrong.com/posts/qHztdHtoXixCWAr7z/ (author not shown in
+our sources).</li>
+<li>LessWrong (2026b). “(Updated) METR’s data can’t distinguish between
+trajectories (and 80% horizons are an order of magnitude off).”
+https://www.lesswrong.com/posts/sBEzomgnYJmYHki9T/ (author not shown in
+our sources).</li>
+<li>Liu, F., Gala, J., Nilaksh, Bahdanau, D., Reddy, S. and Larochelle,
+H. (2026). BRIDGE: Predicting Human Task Completion Time From Model
+Performance. arXiv:2602.07267.</li>
+<li>Mahendrakar, P. (2026). Three Hazards Under One Horizon. Preprint, 8
+October 2026, Zenodo DOI 10.5281/zenodo.23240102. (Content known to us
+only from search snippets.)</li>
+<li>METR (2025). How Does Time Horizon Vary Across Domains? Blog post,
+14 July 2025.
+https://metr.org/blog/2025-07-14-how-does-time-horizon-vary-across-domains/</li>
+<li>METR (2026). Time Horizon 1.1. Blog post, 29 January 2026.
+https://metr.org/blog/2026-01-29-time-horizon-1-1/ ; data and code:
+https://github.com/METR/eval-analysis-public (commit
+52cb829c7a2efb2d659285c4b1768d191d97f8d2).</li>
+<li>METR (2026b). Impact of modelling assumptions on time horizon
+results. Note, 20 March 2026.
+https://metr.org/notes/2026-03-20-impact-of-modelling-assumptions-on-time-horizon-results/</li>
+<li>Nguyen, D. T. and Fithian, W. (2026). On the estimation and validity
+of AI time horizons—a statistical look at the METR plot.
+arXiv:2610.12466 (NeurIPS 2026).</li>
+<li>Oakes, D. (1989). Bivariate survival models induced by frailties.
+<em>Journal of the American Statistical Association</em>, 84(406),
+487–493.</li>
+<li>Ord, T. (2025). Is there a half-life for the success rates of AI
+agents? arXiv:2505.05115.</li>
+<li>Ord, T. (2026). Hazard Rates for AI Agents Decline as a Task Goes
+On. Blog post, 4 February 2026, reporting analysis by Gus Hamilton.
+https://www.tobyord.com/writing/hazard-rates-for-ai-agents-decline</li>
+<li>Proschan, F. (1963). Theoretical explanation of observed decreasing
+failure rate. <em>Technometrics</em>, 5(3), 375–383.</li>
+<li>Reasoning Under Uncertainty (2026). “The time-horizon curve cannot
+tell a half-life from recovery.” Substack essay.
+https://reasoningunderuncertainty.substack.com/p/the-time-horizon-curve-cannot-tell
+(author and date not verified; content known to us only from search
+snippets).</li>
+<li>Rein, D., Becker, J., Deng, A., Nix, S., Canal, C., O’Connell, D.,
+Arnott, P., Bloom, R., Broadley, T., Garcia, K., et al. (2025). HCAST:
+Human-Calibrated Autonomy Software Tasks. arXiv:2503.17354.</li>
+<li>Schaeffer, R., et al. (2025). How Do Large Language Monkeys Get
+Their Power (Laws)? <em>ICML 2025</em>, PMLR 267. arXiv:2502.17578.</li>
+<li>Sinha, A., Arun, A., Goel, S., Staab, S. and Geiping, J. (2025). The
+Illusion of Diminishing Returns: Measuring Long Horizon Execution in
+LLMs. arXiv:2509.09677 (ICLR 2026).</li>
+<li>Valmeekam, K., Marquez, M., Olmo, A., Sreedharan, S. and
+Kambhampati, S. (2023). PlanBench: An Extensible Benchmark for
+Evaluating Large Language Models on Planning and Reasoning about Change.
+<em>NeurIPS 2023 Datasets and Benchmarks</em>. arXiv:2206.10498.</li>
+<li>Vaupel, J. W., Manton, K. G. and Stallard, E. (1979). The impact of
+heterogeneity in individual frailty on the dynamics of mortality.
+<em>Demography</em>, 16(3), 439–454.</li>
+<li>Wijk, H., et al. (2024). RE-Bench: Evaluating frontier AI R&amp;D
+capabilities of language model agents against human experts.
+arXiv:2411.15114 (ICML 2025).</li>
+<li>Xu, F. F., et al. (2024). TheAgentCompany: Benchmarking LLM Agents
+on Consequential Real World Tasks. arXiv:2412.14161.</li>
+<li>Yao, S., Shinn, N., Razavi, P. and Narasimhan, K. (2024). τ-bench: A
+Benchmark for Tool-Agent-User Interaction in Real-World Domains.
+arXiv:2406.12045 (ICLR 2025).</li>
+<li>Zeger, S. L., Liang, K.-Y. and Albert, P. S. (1988). Models for
+longitudinal data: a generalized estimating equation approach.
+<em>Biometrics</em>, 44(4), 1049–1060.</li>
+</ul>
+</body>
+</html>

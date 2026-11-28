@@ -1,0 +1,357 @@
+/home/user/AI-agents/research/papers/p075/code/analysis.py:66: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.mean((A - O)[w])), "O": O, "A": A, "C": C, "L": L}
+/home/user/AI-agents/research/papers/p075/code/analysis.py:88: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.nanmean(np.where(np.isfinite(Om), O - Om, np.nan)[w])),
+/usr/local/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1215: RuntimeWarning: All-NaN slice encountered
+  return fnb._ureduce(a, func=_nanmedian, keepdims=keepdims,
+/usr/local/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1593: RuntimeWarning: All-NaN slice encountered
+  return fnb._ureduce(a,
+/home/user/AI-agents/research/papers/p075/code/analysis.py:66: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.mean((A - O)[w])), "O": O, "A": A, "C": C, "L": L}
+/home/user/AI-agents/research/papers/p075/code/analysis.py:88: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.nanmean(np.where(np.isfinite(Om), O - Om, np.nan)[w])),
+/home/user/AI-agents/research/papers/p075/code/analysis.py:66: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.mean((A - O)[w])), "O": O, "A": A, "C": C, "L": L}
+/home/user/AI-agents/research/papers/p075/code/analysis.py:88: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.nanmean(np.where(np.isfinite(Om), O - Om, np.nan)[w])),
+/home/user/AI-agents/research/papers/p075/code/analysis.py:66: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.mean((A - O)[w])), "O": O, "A": A, "C": C, "L": L}
+/home/user/AI-agents/research/papers/p075/code/analysis.py:88: RuntimeWarning: invalid value encountered in subtract
+  "gap_eci": float(np.nanmean(np.where(np.isfinite(Om), O - Om, np.nan)[w])),
+{
+ "lag": {
+  "2024+": {
+   "lag_all_mo": {
+    "median": 4.524402526526183,
+    "lo90": 3.52641219228457,
+    "hi90": 5.701064170329712,
+    "mean": 4.57324849118917
+   },
+   "lag_closed_mo": {
+    "median": 4.479009376878694,
+    "lo90": 3.231045978716594,
+    "hi90": 5.701064170329712,
+    "mean": 4.495723737322475
+   },
+   "gap_eci": {
+    "median": 7.737663496164914,
+    "lo90": 6.747407500026102,
+    "hi90": 8.529602599230465,
+    "mean": 7.682709572908126
+   }
+  },
+  "2025+": {
+   "lag_all_mo": {
+    "median": 4.438119982519262,
+    "lo90": 3.6870109733538476,
+    "hi90": 5.16202369478152,
+    "mean": 4.4486948234265835
+   },
+   "lag_closed_mo": {
+    "median": 4.436467693560264,
+    "lo90": 3.641766991337456,
+    "hi90": 5.16202369478152,
+    "mean": 4.4362227716548635
+   },
+   "gap_eci": {
+    "median": 8.049724879394484,
+    "lo90": 7.214612392137468,
+    "hi90": 8.880874593863723,
+    "mean": 8.038564757993832
+   }
+  },
+  "2026+": {
+   "lag_all_mo": {
+    "median": 5.541358818374306,
+    "lo90": 4.468540943023278,
+    "hi90": 6.794025344310323,
+    "mean": 5.561138792403103
+   },
+   "lag_closed_mo": {
+    "median": 5.541358818374306,
+    "lo90": 4.468540943023278,
+    "hi90": 6.794025344310323,
+    "mean": 5.561138792403103
+   },
+   "gap_eci": {
+    "median": 10.053912128436243,
+    "lo90": 8.844777375272187,
+    "hi90": 11.296602191006002,
+    "mean": 10.053783126052299
+   }
+  }
+ },
+ "coordination_gap": {
+  "CN developers": {
+   "joint_stale_mo": {
+    "median": 4.1258134230518255,
+    "lo90": 3.008047126154657,
+    "hi90": 5.755161906358318,
+    "mean": 4.223783143060686
+   },
+   "sum_unilateral_stale_mo": {
+    "median": 1.0875892744894966,
+    "lo90": 0.7582377979059034,
+    "hi90": 1.5817577720439893,
+    "mean": 1.1217577480977725
+   },
+   "sum_over_joint": {
+    "median": 0.26495571111081134,
+    "lo90": 0.17989460498162022,
+    "hi90": 0.37357342358040674,
+    "mean": 0.27046650142902984
+   },
+   "frac_draws_superadditive": 1.0
+  },
+  "US developers": {
+   "joint_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.008821786268041884,
+    "mean": 0.005172957537371064
+   },
+   "sum_unilateral_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.008716422914134854,
+    "mean": 0.005049203488963787
+   },
+   "sum_over_joint": {
+    "median": 1.0,
+    "lo90": 1.0,
+    "hi90": 1.0,
+    "mean": 0.9912932138284251
+   },
+   "frac_draws_superadditive": 1.0
+  },
+  "non-CN developers": {
+   "joint_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.008821786268041884,
+    "mean": 0.00517659736232422
+   },
+   "sum_unilateral_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.008716422914134854,
+    "mean": 0.005051933357678653
+   },
+   "sum_over_joint": {
+    "median": 1.0,
+    "lo90": 1.0,
+    "hi90": 1.0,
+    "mean": 0.991385814889336
+   },
+   "frac_draws_superadditive": 1.0
+  },
+  "FR developers": {
+   "joint_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.0,
+    "mean": 2.72986871486641e-06
+   },
+   "sum_unilateral_stale_mo": {
+    "median": 0.0,
+    "lo90": 0.0,
+    "hi90": 0.0,
+    "mean": 2.72986871486641e-06
+   },
+   "sum_over_joint": {
+    "median": 1.0,
+    "lo90": 1.0,
+    "hi90": 1.0,
+    "mean": 1.0
+   },
+   "frac_draws_superadditive": 1.0
+  }
+ },
+ "lag_trend_mo_per_year_2024on": {
+  "median": 0.2369360717794537,
+  "lo90": -1.2639846983309044,
+  "hi90": 1.595871902035228,
+  "mean": 0.19776870339951114
+ },
+ "open_frontier_holder_share": {
+  "CN": {
+   "median": 1.0,
+   "lo90": 0.9723032069970845,
+   "hi90": 1.0,
+   "mean": 0.993405247813411
+  },
+  "US": {
+   "median": 0.0,
+   "lo90": 0.0,
+   "hi90": 0.027696793002915453,
+   "mean": 0.006400874635568514
+  },
+  "FR": {
+   "median": 0.0,
+   "lo90": 0.0,
+   "hi90": 0.0,
+   "mean": 0.0001938775510204082
+  },
+  "UK": {
+   "median": 0.0,
+   "lo90": 0.0,
+   "hi90": 0.0,
+   "mean": 0.0
+  },
+  "AE": {
+   "median": 0.0,
+   "lo90": 0.0,
+   "hi90": 0.0,
+   "mean": 0.0
+  }
+ },
+ "robustness": {
+  "point_main": {
+   "lag_all_mo": 4.55327733909639,
+   "lag_closed_mo": 4.55327733909639,
+   "gap_eci": 7.953790087463561
+  },
+  "vintage_2026-11-11": {
+   "lag_all_mo": 4.502625792735004,
+   "lag_closed_mo": 4.502625792735004,
+   "gap_eci": 7.842536873156335
+  },
+  "vintage_2026-11-11_CN_removal_stale_mo": 3.8193260768173087,
+  "unrestricted_only": {
+   "lag_all_mo": 5.1765015774570315,
+   "lag_closed_mo": 5.1765015774570315,
+   "gap_eci": 8.53881924198251
+  },
+  "unrestricted_only_CN_removal_stale_mo": 4.43445621134931,
+  "ci_as_95pct_lag_all_mo": {
+   "median": 4.471860201986338,
+   "lo90": 4.034437054375872,
+   "hi90": 5.1473805832101105,
+   "mean": 4.526307194042181
+  },
+  "point_removal_stale_mo": {
+   "CN developers": 3.812716638430086,
+   "US developers": 0.0,
+   "non-CN developers": 0.0,
+   "FR developers": 0.0
+  },
+  "by_window": {
+   "2024": {
+    "CN developers": {
+     "joint_setback_mo": 0.2140011893941944,
+     "sum_unilateral_mo": 0.21400118939419444
+    },
+    "US developers": {
+     "joint_setback_mo": 0.18428877593384277,
+     "sum_unilateral_mo": 0.18428877593384274
+    },
+    "non-CN developers": {
+     "joint_setback_mo": 2.3138878603247273,
+     "sum_unilateral_mo": 1.591813377318477
+    },
+    "FR developers": {
+     "joint_setback_mo": 1.4075246013846343,
+     "sum_unilateral_mo": 1.4075246013846343
+    },
+    "holder_share": {
+     "CN": 0.14207650273224043,
+     "FR": 0.29508196721311475,
+     "US": 0.5628415300546448
+    },
+    "lag_mo": 6.183054498939644
+   },
+   "2025": {
+    "CN developers": {
+     "joint_setback_mo": 2.793417906669292,
+     "sum_unilateral_mo": 1.2077747461393493
+    },
+    "US developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "non-CN developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "FR developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "holder_share": {
+     "CN": 1.0
+    },
+    "lag_mo": 3.702984444882001
+   },
+   "2026": {
+    "CN developers": {
+     "joint_setback_mo": 4.971732330307624,
+     "sum_unilateral_mo": 0.6171678596787502
+    },
+    "US developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "non-CN developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "FR developers": {
+     "joint_setback_mo": 0.0,
+     "sum_unilateral_mo": 0.0
+    },
+    "holder_share": {
+     "CN": 1.0
+    },
+    "lag_mo": 5.520121284231132
+   },
+   "2024+": {
+    "CN developers": {
+     "joint_setback_mo": 2.560692062054481,
+     "sum_unilateral_mo": 0.6818185367072399
+    },
+    "US developers": {
+     "joint_setback_mo": 0.0641156767982761,
+     "sum_unilateral_mo": 0.0641156767982761
+    },
+    "non-CN developers": {
+     "joint_setback_mo": 0.8050218221281845,
+     "sum_unilateral_mo": 0.5538057947704969
+    },
+    "FR developers": {
+     "joint_setback_mo": 0.4896901179722207,
+     "sum_unilateral_mo": 0.4896901179722207
+    },
+    "holder_share": {
+     "CN": 0.7015209125475285,
+     "FR": 0.10266159695817491,
+     "US": 0.1958174904942966
+    },
+    "lag_mo": 5.120291065809917
+   }
+  }
+ }
+}
+              removed       kind  n_open_releases  stale_mo  stale_mo_lo  stale_mo_hi   gap_eci  gap_eci_lo  gap_eci_hi  lag_closed_cf_mo  lag_closed_cf_mo_lo  lag_closed_cf_mo_hi  delay_145.0  delay_145.0_cens  delay_150.0  delay_150.0_cens  delay_155.0  delay_155.0_cens  delay_158.0  delay_158.0_cens
+0       CN developers  coalition               56  4.125813     3.008047     5.755162  6.857801    5.775841    7.908097          7.724523             6.392397             8.795295     6.899384               0.0     3.252567               0.0     2.989733             0.211     4.106776             0.953
+10           DeepSeek  developer               16  0.573656     0.221716     1.035145  1.130002    0.652242    1.728222          4.780407             3.968408             5.658771     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.001
+16           Moonshot  developer                7  0.234864     0.104949     0.482404  0.667050    0.331480    1.165508          4.952078             4.092614             5.687760     0.000000               0.0     0.000000               0.0     0.919918             0.000     0.952772             0.095
+5             Alibaba  developer               23  0.181895     0.000000     0.418963  0.185929    0.000000    0.548679          4.476362             3.633204             5.280969     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+25    Z.ai (Zhipu AI)  developer                6  0.109147     0.005747     0.204788  0.088482    0.004398    0.313764          4.446549             3.628338             5.245840     0.000000               0.0     0.427105               0.0     0.000000             0.000     0.000000             0.000
+1       US developers  coalition               44  0.000000     0.000000     0.008822  0.000000    0.000000    0.043895          4.447100             3.647940             5.179813     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+6            Baichuan  developer                2  0.000000     0.000000     0.000000  0.000000    0.000000    0.000000          4.436468             3.641767             5.162024     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+2   non-CN developers  coalition               57  0.000000     0.000000     0.008822  0.000000    0.000000    0.046848          4.447100             3.647940             5.179813     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+3       FR developers  coalition                8  0.000000     0.000000     0.000000  0.000000    0.000000    0.000000          4.436468             3.641767             5.162024     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+4               01.AI  developer                1  0.000000     0.000000     0.000000  0.000000    0.000000    0.000000          4.436468             3.641767             5.162024     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+9          Databricks  developer                1  0.000000     0.000000     0.000000  0.000000    0.000000    0.000000          4.436468             3.641767             5.162024     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+8    Cerebras Systems  developer                1  0.000000     0.000000     0.000000  0.000000    0.000000    0.000000          4.436468             3.641767             5.162024     0.000000               0.0     0.000000               0.0     0.000000             0.000     0.000000             0.000
+            developer country  shapley_eci_months  marginal_eci_months  shapley_months_above_155  marginal_months_above_155
+6            DeepSeek      CN           87.999548            20.461602                  0.967146                   0.000000
+12           Moonshot      CN           72.675128            15.091910                  1.913314                   0.919918
+1             Alibaba      CN           62.600002             4.380123                  0.000000                   0.000000
+21    Z.ai (Zhipu AI)      CN           40.600054             2.223901                  0.957667                   0.000000
+15             OpenAI      US           23.313259             0.000000                  0.000000                   0.000000
+7     Google DeepMind      US           11.960292             0.000000                  0.000000                   0.000000
+11         Mistral AI      FR            9.859757             0.000000                  0.000000                   0.000000
+10            MiniMax      CN            9.854850             0.000000                  0.000000                   0.000000
+14             Nvidia      US            9.133192             0.000000                  0.000000                   0.000000
+20  Thinking Machines      US            8.913961             0.000000                  0.000000                   0.000000

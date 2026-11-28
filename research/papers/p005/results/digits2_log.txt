@@ -1,0 +1,66 @@
+1 none mlp 0.971 I0 0.984 Ipen 0.977 C 0.877 Cvis 0.912
+0 none mlp 0.974 I0 0.99 Ipen 0.985 C 0.866 Cvis 0.911
+1 none cnn 0.982 I0 0.984 Ipen 0.985 C 0.862 Cvis 0.922
+0 none cnn 0.982 I0 0.99 Ipen 0.987 C 0.855 Cvis 0.924
+1 right1 mlp 0.414 I0 0.535 Ipen 0.5 C 0.179 Cvis 0.35
+0 right1 mlp 0.447 I0 0.579 Ipen 0.483 C 0.122 Cvis 0.294
+1 right1 cnn 0.637 I0 0.535 Ipen 0.705 C 0.188 Cvis 0.305
+0 right1 cnn 0.585 I0 0.579 Ipen 0.666 C 0.163 Cvis 0.312
+1 right2 mlp 0.086 I0 0.119 Ipen 0.153 C 0.009 Cvis 0.165
+0 right2 mlp 0.088 I0 0.145 Ipen 0.154 C 0.004 Cvis 0.12
+1 right2 cnn 0.092 I0 0.119 Ipen 0.135 C 0.023 Cvis 0.099
+0 right2 cnn 0.188 I0 0.145 Ipen 0.211 C 0.018 Cvis 0.08
+0 down1 mlp 0.425 I0 0.559 Ipen 0.45 C 0.202 Cvis 0.338
+1 down1 mlp 0.475 I0 0.566 Ipen 0.492 C 0.24 Cvis 0.357
+0 down1 cnn 0.475 I0 0.559 Ipen 0.513 C 0.118 Cvis 0.267
+1 down1 cnn 0.541 I0 0.566 Ipen 0.574 C 0.246 Cvis 0.401
+0 noise0.25 mlp 0.901 I0 0.967 Ipen 0.915 C 0.464 Cvis 0.755
+1 noise0.25 mlp 0.88 I0 0.956 Ipen 0.903 C 0.466 Cvis 0.758
+0 noise0.25 cnn 0.913 I0 0.967 Ipen 0.91 C 0.493 Cvis 0.745
+1 noise0.25 cnn 0.915 I0 0.956 Ipen 0.932 C 0.635 Cvis 0.776
+0 rot15 mlp 0.524 I0 0.749 Ipen 0.577 C 0.195 Cvis 0.348
+1 rot15 mlp 0.675 I0 0.784 Ipen 0.668 C 0.289 Cvis 0.475
+0 rot15 cnn 0.809 I0 0.749 Ipen 0.801 C 0.302 Cvis 0.555
+1 rot15 cnn 0.835 I0 0.784 Ipen 0.831 C 0.251 Cvis 0.578
+0 padding {'C_pred_orig': 0.8663324979114453, 'Cvis_pred_orig': 0.910609857978279, 'by_scale': {'1.0': {'acc': 0.9741019214703425, 'max_abs_logit_change': 3.552713678800501e-14, 'pad_norm_ratio': 0.3279227305527874, 'C_pred_padded': 0.8412698412698413, 'Cvis_pred_padded': 0.910609857978279}, '4.0': {'acc': 0.9741019214703425, 'max_abs_logit_change': 3.552713678800501e-14, 'pad_norm_ratio': 1.3116909222111497, 'C_pred_padded': 0.5288220551378446, 'Cvis_pred_padded': 0.910609857978279}, '16.0': {'acc': 0.9741019214703425, 'max_abs_logit_change': 3.552713678800501e-14, 'pad_norm_ratio': 5.246763688844599, 'C_pred_padded': 0.0, 'Cvis_pred_padded': 0.910609857978279}}}
+1 padding {'C_pred_orig': 0.8771929824561403, 'Cvis_pred_orig': 0.9122807017543859, 'by_scale': {'1.0': {'acc': 0.9707602339181286, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 0.3041891202312845, 'C_pred_padded': 0.8563074352548037, 'Cvis_pred_padded': 0.9122807017543859}, '4.0': {'acc': 0.9707602339181286, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 1.216756480925138, 'C_pred_padded': 0.556390977443609, 'Cvis_pred_padded': 0.9122807017543859}, '16.0': {'acc': 0.9707602339181286, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 4.867025923700552, 'C_pred_padded': 0.003341687552213868, 'Cvis_pred_padded': 0.9122807017543859}}}
+2 none mlp 0.973 I0 0.979 Ipen 0.975 C 0.875 Cvis 0.911
+2 none cnn 0.977 I0 0.979 Ipen 0.98 C 0.843 Cvis 0.905
+3 none mlp 0.962 I0 0.984 Ipen 0.976 C 0.885 Cvis 0.915
+2 right1 mlp 0.463 I0 0.582 Ipen 0.524 C 0.152 Cvis 0.336
+3 none cnn 0.972 I0 0.984 Ipen 0.978 C 0.86 Cvis 0.918
+2 right1 cnn 0.566 I0 0.582 Ipen 0.63 C 0.164 Cvis 0.297
+3 right1 mlp 0.409 I0 0.536 Ipen 0.467 C 0.143 Cvis 0.322
+2 right2 mlp 0.109 I0 0.183 Ipen 0.147 C 0.001 Cvis 0.072
+3 right1 cnn 0.586 I0 0.536 Ipen 0.618 C 0.236 Cvis 0.397
+2 right2 cnn 0.135 I0 0.183 Ipen 0.186 C 0.004 Cvis 0.038
+3 right2 mlp 0.085 I0 0.166 Ipen 0.152 C 0.002 Cvis 0.043
+2 down1 mlp 0.464 I0 0.555 Ipen 0.474 C 0.219 Cvis 0.376
+3 right2 cnn 0.213 I0 0.166 Ipen 0.231 C 0.011 Cvis 0.071
+2 down1 cnn 0.52 I0 0.555 Ipen 0.541 C 0.242 Cvis 0.415
+3 down1 mlp 0.41 I0 0.541 Ipen 0.417 C 0.208 Cvis 0.344
+2 noise0.25 mlp 0.865 I0 0.949 Ipen 0.883 C 0.474 Cvis 0.741
+3 down1 cnn 0.443 I0 0.541 Ipen 0.48 C 0.152 Cvis 0.297
+2 noise0.25 cnn 0.908 I0 0.949 Ipen 0.922 C 0.542 Cvis 0.743
+3 noise0.25 mlp 0.891 I0 0.961 Ipen 0.903 C 0.485 Cvis 0.762
+2 rot15 mlp 0.624 I0 0.752 Ipen 0.637 C 0.382 Cvis 0.535
+3 noise0.25 cnn 0.903 I0 0.961 Ipen 0.908 C 0.522 Cvis 0.744
+2 rot15 cnn 0.742 I0 0.752 Ipen 0.738 C 0.231 Cvis 0.53
+2 padding {'C_pred_orig': 0.87468671679198, 'Cvis_pred_orig': 0.9114452798663325, 'by_scale': {'1.0': {'acc': 0.9732664995822891, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 0.31227153966664484, 'C_pred_padded': 0.8521303258145363, 'Cvis_pred_padded': 0.9114452798663325}, '4.0': {'acc': 0.9732664995822891, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 1.2490861586665793, 'C_pred_padded': 0.5839598997493735, 'Cvis_pred_padded': 0.9114452798663325}, '16.0': {'acc': 0.9732664995822891, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 4.996344634666317, 'C_pred_padded': 0.0, 'Cvis_pred_padded': 0.9114452798663325}}}
+3 rot15 mlp 0.715 I0 0.841 Ipen 0.718 C 0.316 Cvis 0.529
+3 rot15 cnn 0.631 I0 0.841 Ipen 0.659 C 0.267 Cvis 0.471
+3 padding {'C_pred_orig': 0.8847117794486216, 'Cvis_pred_orig': 0.9147869674185464, 'by_scale': {'1.0': {'acc': 0.9624060150375939, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 0.31335429441360446, 'C_pred_padded': 0.8705096073517126, 'Cvis_pred_padded': 0.9147869674185464}, '4.0': {'acc': 0.9624060150375939, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 1.2534171776544178, 'C_pred_padded': 0.5647451963241437, 'Cvis_pred_padded': 0.9147869674185464}, '16.0': {'acc': 0.9624060150375939, 'max_abs_logit_change': 2.842170943040401e-14, 'pad_norm_ratio': 5.013668710617671, 'C_pred_padded': 0.0, 'Cvis_pred_padded': 0.9147869674185464}}}
+4 none mlp 0.977 I0 0.984 Ipen 0.981 C 0.879 Cvis 0.926
+4 none cnn 0.973 I0 0.984 Ipen 0.982 C 0.856 Cvis 0.919
+4 right1 mlp 0.49 I0 0.565 Ipen 0.533 C 0.141 Cvis 0.346
+4 right1 cnn 0.611 I0 0.565 Ipen 0.706 C 0.225 Cvis 0.39
+4 right2 mlp 0.104 I0 0.141 Ipen 0.127 C 0.001 Cvis 0.126
+4 right2 cnn 0.168 I0 0.141 Ipen 0.209 C 0.016 Cvis 0.099
+4 down1 mlp 0.448 I0 0.569 Ipen 0.472 C 0.228 Cvis 0.376
+4 down1 cnn 0.529 I0 0.569 Ipen 0.536 C 0.216 Cvis 0.418
+4 noise0.25 mlp 0.891 I0 0.963 Ipen 0.9 C 0.484 Cvis 0.736
+4 noise0.25 cnn 0.909 I0 0.963 Ipen 0.913 C 0.572 Cvis 0.756
+4 rot15 mlp 0.625 I0 0.805 Ipen 0.634 C 0.244 Cvis 0.385
+4 rot15 cnn 0.749 I0 0.805 Ipen 0.75 C 0.257 Cvis 0.471
+4 padding {'C_pred_orig': 0.8788638262322472, 'Cvis_pred_orig': 0.9256474519632414, 'by_scale': {'1.0': {'acc': 0.9766081871345029, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 0.3288134340790548, 'C_pred_padded': 0.8546365914786967, 'Cvis_pred_padded': 0.9256474519632414}, '4.0': {'acc': 0.9766081871345029, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 1.3152537363162191, 'C_pred_padded': 0.5597326649958229, 'Cvis_pred_padded': 0.9256474519632414}, '16.0': {'acc': 0.9766081871345029, 'max_abs_logit_change': 2.1316282072803006e-14, 'pad_norm_ratio': 5.2610149452648765, 'C_pred_padded': 0.000835421888053467, 'Cvis_pred_padded': 0.9256474519632414}}}
+total 144.2091212272644

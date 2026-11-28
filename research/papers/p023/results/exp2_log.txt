@@ -1,0 +1,58 @@
+/home/user/AI-agents/research/papers/p023/code/exp2_voting.py:48: RuntimeWarning: Mean of empty slice
+  neff=f(neff), rho_bar=[float(np.nanmean(rbar)), float(np.nanstd(rbar))]))
+/usr/local/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+all46 1 {'N': 1, 'real': 0.5235, 'scrambled': 0.5235, 'independent': 0.5235, 'member_mean': 0.5235, 'member_best': 0.5235, 'frac_teams_vote_beats_best': 0.0, 'neff': 1.0, 'rho_bar': nan}
+all46 3 {'N': 3, 'real': 0.5849, 'scrambled': 0.6006, 'independent': 0.6375, 'member_mean': 0.5025, 'member_best': 0.6802, 'frac_teams_vote_beats_best': 0.06666666666666667, 'neff': 1.7995, 'rho_bar': 0.3403}
+all46 5 {'N': 5, 'real': 0.6332, 'scrambled': 0.6759, 'independent': 0.7847, 'member_mean': 0.4946, 'member_best': 0.7276, 'frac_teams_vote_beats_best': 0.05333333333333334, 'neff': 2.1252, 'rho_bar': 0.3417}
+all46 7 {'N': 7, 'real': 0.682, 'scrambled': 0.7384, 'independent': 0.8852, 'member_mean': 0.5108, 'member_best': 0.7788, 'frac_teams_vote_beats_best': 0.013333333333333334, 'neff': 2.2932, 'rho_bar': 0.3442}
+all46 9 {'N': 9, 'real': 0.6957, 'scrambled': 0.7621, 'independent': 0.9297, 'member_mean': 0.5069, 'member_best': 0.7965, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.4092, 'rho_bar': 0.3437}
+all46 11 {'N': 11, 'real': 0.7039, 'scrambled': 0.7794, 'independent': 0.9567, 'member_mean': 0.5018, 'member_best': 0.8135, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.4907, 'rho_bar': 0.3431}
+all46 15 {'N': 15, 'real': 0.7219, 'scrambled': 0.8072, 'independent': 0.985, 'member_mean': 0.5032, 'member_best': 0.8331, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.5907, 'rho_bar': 0.343}
+all46 21 {'N': 21, 'real': 0.7362, 'scrambled': 0.8294, 'independent': 0.9966, 'member_mean': 0.5055, 'member_best': 0.8553, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.666, 'rho_bar': 0.3445}
+all46 31 {'N': 31, 'real': 0.7443, 'scrambled': 0.8474, 'independent': 0.9995, 'member_mean': 0.501, 'member_best': 0.8737, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.7501, 'rho_bar': 0.3426}
+all46 46 {'N': 46, 'real': 0.752, 'scrambled': 0.8629, 'independent': 0.9999, 'member_mean': 0.5032, 'member_best': 0.8995, 'frac_teams_vote_beats_best': 0.0, 'neff': 2.7949, 'rho_bar': 0.3435}
+peer_0.60-0.80 1 {'N': 1, 'real': 0.6925, 'scrambled': 0.6925, 'independent': 0.6925, 'member_mean': 0.6925, 'member_best': 0.6925, 'frac_teams_vote_beats_best': 0.0, 'neff': 1.0, 'rho_bar': nan}
+peer_0.60-0.80 3 {'N': 3, 'real': 0.7404, 'scrambled': 0.7549, 'independent': 0.8386, 'member_mean': 0.698, 'member_best': 0.7516, 'frac_teams_vote_beats_best': 0.3, 'neff': 1.4611, 'rho_bar': 0.5286}
+peer_0.60-0.80 5 {'N': 5, 'real': 0.7639, 'scrambled': 0.7974, 'independent': 0.9477, 'member_mean': 0.6978, 'member_best': 0.7663, 'frac_teams_vote_beats_best': 0.41333333333333333, 'neff': 1.607, 'rho_bar': 0.5288}
+peer_0.60-0.80 7 {'N': 7, 'real': 0.7732, 'scrambled': 0.8149, 'independent': 0.9808, 'member_mean': 0.6977, 'member_best': 0.7725, 'frac_teams_vote_beats_best': 0.56, 'neff': 1.6786, 'rho_bar': 0.529}
+peer_0.60-0.80 9 {'N': 9, 'real': 0.7785, 'scrambled': 0.8258, 'independent': 0.9932, 'member_mean': 0.6973, 'member_best': 0.7771, 'frac_teams_vote_beats_best': 0.5866666666666667, 'neff': 1.722, 'rho_bar': 0.5286}
+peer_0.60-0.80 11 {'N': 11, 'real': 0.782, 'scrambled': 0.8336, 'independent': 0.9975, 'member_mean': 0.6973, 'member_best': 0.7787, 'frac_teams_vote_beats_best': 0.8333333333333334, 'neff': 1.7499, 'rho_bar': 0.5288}
+peer_0.60-0.80 13 {'N': 13, 'real': 0.7846, 'scrambled': 0.841, 'independent': 0.9992, 'member_mean': 0.6975, 'member_best': 0.7799, 'frac_teams_vote_beats_best': 1.0, 'neff': 1.7695, 'rho_bar': 0.5289}
+peer_0.35-0.55 1 {'N': 1, 'real': 0.4445, 'scrambled': 0.4445, 'independent': 0.4445, 'member_mean': 0.4445, 'member_best': 0.4445, 'frac_teams_vote_beats_best': 0.0, 'neff': 1.0, 'rho_bar': nan}
+peer_0.35-0.55 3 {'N': 3, 'real': 0.5008, 'scrambled': 0.5161, 'independent': 0.5585, 'member_mean': 0.4414, 'member_best': 0.4999, 'frac_teams_vote_beats_best': 0.54, 'neff': 1.6591, 'rho_bar': 0.4052}
+peer_0.35-0.55 5 {'N': 5, 'real': 0.5443, 'scrambled': 0.5875, 'independent': 0.7198, 'member_mean': 0.4444, 'member_best': 0.5229, 'frac_teams_vote_beats_best': 0.82, 'neff': 1.9162, 'rho_bar': 0.4029}
+peer_0.35-0.55 7 {'N': 7, 'real': 0.5597, 'scrambled': 0.6189, 'independent': 0.8052, 'member_mean': 0.4418, 'member_best': 0.5308, 'frac_teams_vote_beats_best': 0.8933333333333333, 'neff': 2.0511, 'rho_bar': 0.4025}
+peer_0.35-0.55 9 {'N': 9, 'real': 0.5704, 'scrambled': 0.6411, 'independent': 0.8644, 'member_mean': 0.4405, 'member_best': 0.5343, 'frac_teams_vote_beats_best': 0.96, 'neff': 2.1298, 'rho_bar': 0.4035}
+peer_0.35-0.55 11 {'N': 11, 'real': 0.5801, 'scrambled': 0.6605, 'independent': 0.9084, 'member_mean': 0.4426, 'member_best': 0.5411, 'frac_teams_vote_beats_best': 1.0, 'neff': 2.1834, 'rho_bar': 0.4039}
+peer_0.35-0.55 15 {'N': 15, 'real': 0.5911, 'scrambled': 0.6853, 'independent': 0.9563, 'member_mean': 0.442, 'member_best': 0.5454, 'frac_teams_vote_beats_best': 1.0, 'neff': 2.2565, 'rho_bar': 0.4034}
+peer_0.35-0.55 18 {'N': 18, 'real': 0.5945, 'scrambled': 0.698, 'independent': 0.9745, 'member_mean': 0.4423, 'member_best': 0.5491, 'frac_teams_vote_beats_best': 1.0, 'neff': 2.2891, 'rho_bar': 0.4037}
+{
+  "all46": {
+    "N": 46,
+    "independent": 0.9999125032811269,
+    "scrambled": 0.8628926415259428,
+    "real": 0.7520342987137982,
+    "loss_shared_difficulty": 0.1370198617551841,
+    "loss_shared_wrong_answers": 0.11085834281214457,
+    "share_wrong_answers": 0.44722908577479725
+  },
+  "peer_0.60-0.80": {
+    "N": 13,
+    "independent": 0.9992125295301426,
+    "scrambled": 0.8410184618076822,
+    "real": 0.78458307813457,
+    "loss_shared_difficulty": 0.15819406772246036,
+    "loss_shared_wrong_answers": 0.056435383673112294,
+    "share_wrong_answers": 0.2629433346922138
+  },
+  "peer_0.35-0.55": {
+    "N": 18,
+    "independent": 0.9744509580890717,
+    "scrambled": 0.6979613264502581,
+    "real": 0.5945402047423222,
+    "loss_shared_difficulty": 0.27648963163881357,
+    "loss_shared_wrong_answers": 0.10342112170793594,
+    "share_wrong_answers": 0.2722247812068171
+  }
+}

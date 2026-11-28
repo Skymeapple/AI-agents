@@ -1,0 +1,34 @@
+{
+ "priority_mean": {
+  "shapley_pct": {
+   "logic": 26.319406093762492,
+   "cowos": 48.5530587792473,
+   "hbm": 25.127535126990203
+  },
+  "logic_cowos_interaction_pct": 52.24731554735498
+ },
+ "priority_CVaR99": {
+  "shapley_pct": {
+   "logic": 29.773975074581877,
+   "cowos": 54.91051328689965,
+   "hbm": 15.31551163851845
+  },
+  "logic_cowos_interaction_pct": 52.06722011009829
+ },
+ "proportional_mean": {
+  "shapley_pct": {
+   "logic": 30.93697420879915,
+   "cowos": 29.370412295802517,
+   "hbm": 39.69261349539833
+  },
+  "logic_cowos_interaction_pct": 52.24343504798392
+ },
+ "proportional_CVaR99": {
+  "shapley_pct": {
+   "logic": 41.85846991730172,
+   "cowos": 39.729681107866284,
+   "hbm": 18.411848974831994
+  },
+  "logic_cowos_interaction_pct": 65.21736934478699
+ }
+}

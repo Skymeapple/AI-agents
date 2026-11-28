@@ -30,7 +30,9 @@ from collections import Counter
 from dataclasses import dataclass, field
 
 import numpy as np
+import scipy.sparse as sp
 
+from .linkage import agglomerate_dense, agglomerate_sparse
 from .models import Track, Work
 
 # Words that carry no topical signal in scientific abstracts. Kept deliberately
@@ -112,14 +114,15 @@ class DiscoveryResult:
         )
 
 
-def _build_tfidf(
+def _weighted_terms(
     works: list[Work], min_df: int, max_df_ratio: float
-) -> tuple[np.ndarray, list[str]]:
-    """TF-IDF matrix over works, L2-normalised, and its vocabulary.
+) -> tuple[list[int], list[int], list[float], list[str]]:
+    """TF-IDF weights as parallel (work, term, weight) lists, and the vocabulary.
 
     Terms appearing in fewer than ``min_df`` documents are dropped as noise, and
     terms in more than ``max_df_ratio`` of documents are dropped because a word
-    every paper uses cannot distinguish between them.
+    every paper uses cannot distinguish between them. Weights are not yet
+    normalised per work; the index that receives them does that.
     """
     tokenized = [tokenize(w.text()) for w in works]
     document_frequency: Counter[str] = Counter()
@@ -133,162 +136,139 @@ def _build_tfidf(
         for term, count in document_frequency.items()
         if min_df <= count <= max_df
     )
-    if not vocabulary:
-        return np.zeros((n_docs, 0)), []
-
     index = {term: i for i, term in enumerate(vocabulary)}
-    matrix = np.zeros((n_docs, len(vocabulary)), dtype=np.float64)
+    idf = [math.log((1 + n_docs) / (1 + document_frequency[t])) + 1.0 for t in vocabulary]
+
+    rows: list[int] = []
+    columns: list[int] = []
+    weights: list[float] = []
     for row, tokens in enumerate(tokenized):
         counts = Counter(t for t in tokens if t in index)
         for term, count in counts.items():
+            column = index[term]
+            rows.append(row)
+            columns.append(column)
             # Sublinear term frequency: a word used ten times is not ten times
             # as indicative as one used once.
-            matrix[row, index[term]] = 1.0 + math.log(count)
-
-    idf = np.array(
-        [math.log((1 + n_docs) / (1 + document_frequency[t])) + 1.0 for t in vocabulary]
-    )
-    matrix *= idf
-
-    norms = np.linalg.norm(matrix, axis=1, keepdims=True)
-    norms[norms == 0] = 1.0
-    matrix /= norms  # in place: a second works x vocabulary array is not free
-    return matrix, vocabulary
+            weights.append((1.0 + math.log(count)) * idf[column])
+    return rows, columns, weights, vocabulary
 
 
-class _AverageLinkage:
-    """Mutable state for average-linkage clustering, with cached row maxima.
+class _DenseIndex:
+    """Works as dense unit vectors, with every pairwise similarity in memory.
 
-    ``pair_sum[i, j]`` is the total similarity between members of ``i`` and
-    members of ``j``; dividing by the product of sizes gives average linkage.
-    Each active row caches its best partner, so finding the closest pair is a
-    scan of one vector rather than of the whole matrix.
+    The faster index on a small corpus. Memory grows with works x vocabulary
+    for the vectors and with works squared for the similarities.
     """
 
-    def __init__(self, similarity: np.ndarray) -> None:
-        n = similarity.shape[0]
-        self.clusters: dict[int, list[int]] = {i: [i] for i in range(n)}
-        self.pair_sum = similarity.astype(np.float64)  # astype copies
-        np.fill_diagonal(self.pair_sum, -np.inf)
-        self.sizes = np.ones(n, dtype=np.float64)
-        self.active = np.ones(n, dtype=bool)
-        self.average = self.pair_sum.copy()  # sizes are all 1 initially
-        self.best_index = np.zeros(n, dtype=np.int64)
-        self.best_value = np.full(n, -np.inf)
-        for row in range(n):
-            self.refresh(row)
+    def __init__(self, rows, columns, weights, shape: tuple[int, int]) -> None:
+        matrix = np.zeros(shape, dtype=np.float64)
+        matrix[rows, columns] = weights
+        norms = np.linalg.norm(matrix, axis=1, keepdims=True)
+        norms[norms == 0] = 1.0
+        matrix /= norms  # in place: a second works x vocabulary array is not free
+        self.matrix = matrix
+        self.similarity = matrix @ matrix.T
+        self.corpus_mean = matrix.mean(axis=0)
 
-    def refresh(self, row: int) -> None:
-        """Recompute the cached best partner for ``row``."""
-        masked = np.where(self.active, self.average[row], -np.inf)
-        masked[row] = -np.inf
-        best = int(np.argmax(masked))
-        self.best_index[row] = best
-        self.best_value[row] = masked[best]
+    def clusters(self, threshold: float) -> list[list[int]]:
+        return agglomerate_dense(self.similarity, threshold)
 
-    def closest(self) -> tuple[int, int, float]:
-        """The active row with the highest cached similarity, and its partner."""
-        candidates = np.where(self.active, self.best_value, -np.inf)
-        i = int(np.argmax(candidates))
-        return i, int(self.best_index[i]), float(candidates[i])
+    def mean_vector(self, members: list[int]) -> np.ndarray:
+        return self.matrix[members].mean(axis=0)
 
-    def merge(self, i: int, j: int) -> None:
-        """Merge cluster ``j`` into ``i`` and repair the caches it invalidates."""
-        self.clusters[i].extend(self.clusters.pop(j))
-        self.pair_sum[i, :] += self.pair_sum[j, :]
-        self.pair_sum[:, i] = self.pair_sum[i, :]
-        self.sizes[i] += self.sizes[j]
-        self.active[j] = False
-        self.pair_sum[i, i] = -np.inf
-
-        # Recompute average linkage for the merged row only.
-        with np.errstate(invalid="ignore"):
-            denom = self.sizes[i] * self.sizes
-            safe = np.where(denom > 0, denom, 1.0)
-            self.average[i, :] = np.where(denom > 0, self.pair_sum[i, :] / safe, -np.inf)
-        self.average[i, i] = -np.inf
-        self.average[:, i] = self.average[i, :]
-
-        self.refresh(i)
-        # Any row that was pointing at i or j needs a new best partner.
-        pointed_at_merge = (self.best_index == i) | (self.best_index == j)
-        for row in np.where(self.active & pointed_at_merge)[0]:
-            if row != i:
-                self.refresh(int(row))
+    def cohesion(self, members: list[int]) -> float:
+        """Mean pairwise similarity within a cluster. A singleton scores 1.0."""
+        if len(members) < 2:
+            return 1.0
+        block = self.similarity[np.ix_(members, members)]
+        n = len(members)
+        return float((block.sum() - np.trace(block)) / (n * (n - 1)))
 
 
-def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
-    """Average-linkage agglomerative clustering down to a similarity floor.
+class _SparseIndex:
+    """Works as sparse unit vectors; no pairwise similarity is ever stored.
 
-    Merges the closest pair of clusters repeatedly, stopping when the best
-    available merge falls below ``threshold``. Average linkage rather than single
-    linkage because single linkage chains: one paper bridging two topics would
-    otherwise fuse them into one direction.
-
-    Implemented with cached per-row maxima rather than rescanning the whole
-    matrix on every merge. The naive form is O(n^3), which takes tens of seconds
-    at a thousand works and is hopeless at the scale a broad survey of science
-    would produce. Here a merge updates one row and column, then refreshes only
-    the rows whose best partner was one of the two clusters just merged.
+    Memory grows with the amount of text rather than with works squared, which
+    is what lets discovery run on a corpus the dense index cannot hold.
     """
-    linkage = _AverageLinkage(similarity)
-    while True:
-        i, j, value = linkage.closest()
-        if not np.isfinite(value) or value < threshold:
-            break
-        if not linkage.active[j] or i == j:
-            linkage.refresh(i)
-            continue
-        linkage.merge(i, j)
-    return list(linkage.clusters.values())
+
+    def __init__(self, rows, columns, weights, shape: tuple[int, int]) -> None:
+        matrix = sp.csr_matrix((weights, (rows, columns)), shape=shape, dtype=np.float64)
+        norms = np.sqrt(_row_sums(matrix.multiply(matrix)))
+        norms[norms == 0] = 1.0
+        self.matrix = sp.csr_matrix(sp.diags(1.0 / norms) @ matrix)
+        # Each work's similarity to itself: 1 for a unit vector, 0 for a work
+        # with no vocabulary terms. Cohesion has to leave these out.
+        self.self_similarity = _row_sums(self.matrix.multiply(self.matrix))
+        self.corpus_mean = np.asarray(self.matrix.mean(axis=0)).ravel()
+
+    def clusters(self, threshold: float) -> list[list[int]]:
+        return agglomerate_sparse(self.matrix, threshold)
+
+    def _sum_vector(self, members: list[int]) -> np.ndarray:
+        return np.asarray(self.matrix[members].sum(axis=0)).ravel()
+
+    def mean_vector(self, members: list[int]) -> np.ndarray:
+        return self._sum_vector(members) / len(members)
+
+    def cohesion(self, members: list[int]) -> float:
+        """Mean pairwise similarity within a cluster. A singleton scores 1.0.
+
+        The similarities among a cluster's members sum to the squared length
+        of their summed vector, so no pair is ever looked up individually.
+        """
+        if len(members) < 2:
+            return 1.0
+        total = self._sum_vector(members)
+        n = len(members)
+        between = total @ total - self.self_similarity[members].sum()
+        return float(between / (n * (n - 1)))
 
 
-def _label_cluster(
-    matrix: np.ndarray,
-    corpus_mean: np.ndarray,
-    vocabulary: list[str],
-    members: list[int],
-    top: int,
+def _row_sums(matrix) -> np.ndarray:
+    return np.asarray(matrix.sum(axis=1)).ravel()
+
+
+def _distinctive_terms(
+    index: _DenseIndex | _SparseIndex, vocabulary: list[str], members: list[int], top: int
 ) -> list[str]:
-    """Terms that distinguish this cluster from the corpus as a whole.
-
-    ``corpus_mean`` is ``matrix.mean(axis=0)``, passed in because it is the same
-    for every cluster: recomputing it per cluster made labelling cost grow with
-    clusters x works x vocabulary and dominate discovery on large corpora.
-    """
-    if not vocabulary:
-        return []
-    distinctiveness = matrix[members].mean(axis=0) - corpus_mean
+    """Terms that distinguish this cluster from the corpus as a whole."""
+    distinctiveness = index.mean_vector(members) - index.corpus_mean
     order = np.argsort(distinctiveness)[::-1][:top]
     return [vocabulary[i] for i in order if distinctiveness[i] > 0]
 
 
-def _cohesion(similarity: np.ndarray, members: list[int]) -> float:
-    """Mean pairwise similarity within a cluster. A singleton scores 1.0."""
-    if len(members) < 2:
-        return 1.0
-    block = similarity[np.ix_(members, members)]
-    n = len(members)
-    return float((block.sum() - np.trace(block)) / (n * (n - 1)))
-
-
-# Above this many works the dense similarity matrix stops being reasonable:
-# memory grows as n^2 (25k works is roughly 5GB) and clustering time with it.
-# Rather than grinding or dying on an allocation, discovery refuses and points
-# at partitioning, which is both faster and usually better clustering.
+# The dense index refuses above this many works: its memory grows with works
+# squared (25k works is roughly 5GB for one similarity matrix, and it holds
+# three), and refusing beats dying on an allocation.
 MAX_WORKS_DENSE = 12_000
 
+# Above this many works ``method="auto"`` uses the sparse index. The dense
+# index is the faster of the two throughout its range -- about three times at
+# a thousand works, under half again at this size -- but here it already needs
+# around 2GB and that quadruples with each doubling of the corpus.
+AUTO_SPARSE_ABOVE = 8_000
 
-def _check_dense_limit(n_works: int) -> None:
+METHODS = ("auto", "dense", "sparse")
+
+
+def _index_class(method: str, n_works: int) -> type[_DenseIndex] | type[_SparseIndex]:
+    """The index to cluster ``n_works`` with, honouring an explicit ``method``."""
+    if method not in METHODS:
+        raise ValueError(f"unknown method {method!r}; expected one of {', '.join(METHODS)}")
+    if method == "auto":
+        method = "sparse" if n_works > AUTO_SPARSE_ABOVE else "dense"
+    if method == "sparse":
+        return _SparseIndex
     if n_works > MAX_WORKS_DENSE:
         raise ValueError(
             f"discover() was given {n_works:,} works, above the "
-            f"{MAX_WORKS_DENSE:,} limit for dense clustering: the similarity "
-            f"matrix alone would need roughly "
-            f"{n_works ** 2 * 8 / 1e9:.1f}GB. Use discover_by_discipline(), "
-            f"which clusters within each discipline and is usually better "
-            f"anyway, or narrow the corpus first"
+            f"{MAX_WORKS_DENSE:,} limit for dense clustering: one similarity "
+            f"matrix alone would need roughly {n_works ** 2 * 8 / 1e9:.1f}GB. "
+            f"Use method='sparse' (or 'auto'), which needs no such matrix"
         )
+    return _DenseIndex
 
 
 def _dedupe_ids(tracks: list[DiscoveredTrack]) -> None:
@@ -307,6 +287,7 @@ def discover(
     min_df: int = 2,
     max_df_ratio: float = 0.5,
     top_terms: int = 10,
+    method: str = "auto",
 ) -> DiscoveryResult:
     """Cluster ``works`` into candidate research directions.
 
@@ -319,18 +300,22 @@ def discover(
             ``unclustered`` rather than reported as directions. Two papers that
             resemble each other are not evidence of a research direction, and
             promoting them to one would flood the ranking with noise.
+        method: ``"dense"`` holds every pairwise similarity in memory, which is
+            fastest on a small corpus and impossible on a large one.
+            ``"sparse"`` stores none, so it scales with the amount of text. The
+            two find the same clusters except where similarities tie exactly.
+            ``"auto"`` picks by corpus size.
     """
     if not works:
         return DiscoveryResult(tracks=[])
-    _check_dense_limit(len(works))
+    index_class = _index_class(method, len(works))
 
-    matrix, vocabulary = _build_tfidf(works, min_df, max_df_ratio)
+    rows, columns, weights, vocabulary = _weighted_terms(works, min_df, max_df_ratio)
     if not vocabulary:
         return DiscoveryResult(tracks=[], unclustered=list(works), threshold=threshold)
 
-    similarity = matrix @ matrix.T
-    clusters = _agglomerate(similarity, threshold)
-    corpus_mean = matrix.mean(axis=0)
+    index = index_class(rows, columns, weights, (len(works), len(vocabulary)))
+    clusters = index.clusters(threshold)
 
     tracks: list[DiscoveredTrack] = []
     unclustered: list[Work] = []
@@ -338,7 +323,7 @@ def discover(
         if len(members) < min_cluster_size:
             unclustered.extend(works[i] for i in members)
             continue
-        terms = _label_cluster(matrix, corpus_mean, vocabulary, members, top_terms)
+        terms = _distinctive_terms(index, vocabulary, members, top_terms)
         label = " / ".join(terms[:3]) if terms else f"cluster of {len(members)}"
         tracks.append(
             DiscoveredTrack(
@@ -346,7 +331,7 @@ def discover(
                 label=label,
                 works=[works[i] for i in members],
                 terms=terms,
-                cohesion=_cohesion(similarity, members),
+                cohesion=index.cohesion(members),
             )
         )
     _dedupe_ids(tracks)
@@ -396,8 +381,9 @@ def discover_by_discipline(
 ) -> DiscoveryResult:
     """Cluster within each discipline, then combine.
 
-    The route to breadth. Partitioning keeps each clustering problem small enough
-    for the dense method, and it removes a real failure mode: shared methods
+    The route to breadth. Partitioning keeps each clustering problem small,
+    which matters because clustering time grows with roughly the square of the
+    number of works, and it removes a real failure mode: shared methods
     vocabulary pulling unrelated fields together, so that a machine-learning
     paper in cardiology and one in seismology land in the same "direction"
     because both are full of the word "network".

@@ -50,7 +50,7 @@ def extract(name):
 
 
 def main():
-    reg = json.load(open(os.path.join(D, "registry_latest.json")))
+    reg = json.load(open(os.path.join(D, "..", "data_cache", "registry_latest.json")))
     names = sorted({p["identifier"] for x in reg for p in (x["server"].get("packages") or [])
                     if p.get("registryType") == "pypi"})
     out = os.path.join(D, "pypi_deps.jsonl")

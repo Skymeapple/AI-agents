@@ -158,6 +158,7 @@ if "C" in PARTS:
                        E_of_max_mc=float(Lmc.max(0).mean()), sd_of_max_mc=float(Lmc.max(0).std()),
                        curve_k=list(range(0, steps+1, 10)), curve_exact=Lex[::10].tolist(), curve_mc=Lmc.mean(1)[::10].tolist(),
                        curve_mc_se=se[::10].tolist())
+            res = {B_: sgd_moments(X1, X2, S1, S2, e0, 0.1, B_, eta, 3000, stop_frac=-1) for B_ in Bs}   # rho=0.1 curves for Fig. 5b
             gdcurve = res[None]; sgdcurves = {str(B): res[B][:len(gdcurve)].tolist()[::10] for B in Bs[:-1]}
             mcC["fig_curves"] = dict(gd=gdcurve[::10].tolist(), **sgdcurves)
         print("C seed", seed, f"{time.time()-t00:.0f}s", flush=True)

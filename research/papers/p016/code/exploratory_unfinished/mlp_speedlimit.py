@@ -1,9 +1,8 @@
-"""R2 nonlinear test of the first-order speed limit (pre-specified before running):
-  prediction S1: recovery time of GD scales like rho^-1;
-  prediction S2: heavy-ball momentum with FIXED beta=0.9 keeps the exponent -1 (prefactor ~(1-beta) smaller);
-  prediction S3: heavy-ball with beta(rho) = 1 - sqrt(rho) (momentum tuned to the replay time scale, as the
-                 Chebyshev/heavy-ball optimum on [a, L] with a ~ rho prescribes) changes the exponent to about -1/2;
-  prediction S4: at matched new-task progress, momentum does not reduce the depth of the gap.
+"""R1 revision: recovery time of the stability gap in an over-parameterised network (uncensored test of the 1/rho scaling).
+The 64-16-10 network of mlp_experiments.py cannot fit both tasks, so its recovery times are censored and confounded by
+terminal forgetting. Here the joint problem is over-parameterised so that joint training drives both losses near zero.
+Methods are selected with the METHODS env variable (default: GD only, which is all the paper uses; heavy-ball variants
+HB_0.9 and HB_tuned (beta = 1 - sqrt(rho)) exist in the code but are exploratory and not reported).
 Network: 64-HID-10 tanh MLP, squared loss on one-hot targets, sklearn digits, N_PER samples per task so that
 the joint problem is over-parameterised (joint training can drive both losses near zero).
 Recovery time T = last step at which (L1 - L1(0) >= EPS * F_ref  or  L2 >= EPS * L2(0)), F_ref = peak excess old-task
@@ -15,7 +14,8 @@ from sklearn.datasets import load_digits
 torch.set_default_dtype(torch.float64); torch.set_num_threads(1)
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
 HID = 64; N_PER = 200; EPS = 0.1; KMAX = int(os.environ.get("KMAX", 300000))
-RHOS = [0.3, 0.1, 0.03, 0.01, 0.003, 0.001]
+RHOS = [float(x) for x in os.environ.get("RHOS", "0.3,0.1,0.03,0.01").split(",")]
+METHODS = os.environ.get("METHODS", "GD").split(",")
 
 
 def data(scenario, seed):
@@ -107,6 +107,7 @@ if __name__ == "__main__":
     for rho in RHOS:
         lr = 1.0 / lmax_ggn(th0, t1, t2, rho)
         for method, beta in [("GD", 0.0), ("HB_0.9", 0.9), ("HB_tuned", 1 - np.sqrt(rho))]:
+            if method not in METHODS: continue
             r = phase2(th0, (t1, t2), (Y1, Y2), rho, beta, lr, Fref, KMAX); r.update(method=method)
             out["runs"].append(r)
             print(scen, seed, rho, method, "G=%.3f T=%s" % (r["G"], r["T"]), f"{time.time()-t0:.0f}s", flush=True)

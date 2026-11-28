@@ -80,7 +80,7 @@ for scen in ["perm", "split"]:
                                            n_never_diverge=sum(x["diverge"] is None for x in lst))
 json.dump(out, open(os.path.join(R, "mlpm_summary.json"), "w"), indent=1)
 
-def fmt(c): return "NA" if c is None else (f"{c[0]:.4f} [{c[1]:.4f},{c[2]:.4f}] n={c[3]}" if c[1] is not None else f"{c[0]:.4f} n={c[3]}")
+def fmt(c): return "NA" if (c is None or c[0] is None) else (f"{c[0]:.4f} [{c[1]:.4f},{c[2]:.4f}] n={c[3]}" if c[1] is not None else f"{c[0]:.4f} n={c[3]}")
 for k, v in out["matched"].items(): print("M", k, {kk: fmt(vv) for kk, vv in v.items()})
 for k, v in out["paired_vs_GDc1"].items():
     print("P", k, {kk: (fmt(vv["rel"]), vv["n_lower"], None if vv["p_paired_t"] is None else round(vv["p_paired_t"], 5)) for kk, vv in v.items()})

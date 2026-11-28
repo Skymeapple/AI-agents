@@ -14,4 +14,3 @@ python3 analyze_mlp.py > ../results/mlp_summary.txt   # -> results/mlp_summary.j
 python3 analyze_damping.py        # -> results/mlpdamp_summary.json
 python3 audit_mlp_r1.py > ../results/mlp_audit_r1.txt   # -> results/mlp_audit_r1.json
 ./run_matched.sh                  # matched comparison, short-time, linearisation -> results/mlpm_*, fig6, fig7
-./run_recovery.sh                 # recovery time in an over-parameterised MLP -> results/mlps_*, fig9

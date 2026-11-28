@@ -2,7 +2,7 @@
 
 Requirements: Python 3, numpy, scipy, matplotlib, torch (CPU is enough), scikit-learn (for the bundled `digits` dataset; no download).
 
-Run everything: `bash run_all.sh`. On 4 otherwise idle cores this takes roughly 1.5 h (the round-1 additions account for about 1 h of it). Individual pieces:
+Run everything: `bash run_all.sh`. On 4 otherwise idle cores this takes roughly 1.5 h (the round-1 matched comparison accounts for about 1 h of it). Individual pieces:
 
 | script | what it produces |
 |---|---|
@@ -16,8 +16,7 @@ Run everything: `bash run_all.sh`. On 4 otherwise idle cores this takes roughly 
 | `mlp_damping.py <scen> <seed>` | damping-scaling test (δ ∈ {1e-3,1e-4,1e-5}, ρ ∈ {0.01,0.1}) → `results/mlpdamp_*.json` |
 | `analyze_mlp.py`, `analyze_damping.py` | aggregate tables and figures `fig3_mlp_curves.png`, `fig4_mlp_scaling.png` |
 | `audit_mlp_r1.py` | **R1.** From the main-sweep JSONs: per-run half-recovery steps, paired relative gap change vs GD with 95% CIs, multi-step normalised short-time curves → `results/mlp_audit_r1.json` |
-| `mlp_matched.py <scen> <seed>`, `run_matched.sh`, `analyze_matched.py` | **R1.** Progress-matched optimiser comparison (8 seeds), common-step multi-step short-time test, comparison with the network linearised at θ0 → `results/mlpm_<scen>_<seed>.json`, `mlpm_summary.json`, `mlpm_summary.txt`, `fig6_mlp_pareto.png`, `fig7_mlp_short_lin.png` |
-| `mlp_speedlimit.py <scen> <seed>`, `run_recovery.sh`, `analyze_mlp_speedlimit.py` | **R1.** Recovery time vs ρ for GD in an over-parameterised 64-64-10 network (200 samples per task) → `results/mlps_<scen>_<seed>.json`, `mlps_summary.json`, `fig9_mlp_recovery.png` |
+| `mlp_matched.py <scen> <seed>`, `run_matched.sh`, `analyze_matched.py` | **R1.** Progress-matched optimiser comparison (8 seeds requested; seeds 0–5 completed and are what the paper reports — the seed 6–7 jobs were killed by a machine restart), common-step multi-step short-time test, comparison with the network linearised at θ0 → `results/mlpm_<scen>_<seed>.json`, `mlpm_summary.json`, `mlpm_summary.txt`, `fig6_mlp_pareto.png`, `fig7_mlp_short_lin.png` |
 | `exploratory_unfinished/` | left over from an interrupted session; **not used by the paper** (see the README inside) |
 
 All randomness is seeded. Every number in `paper.md` comes from these outputs. `results/mlp_<scen>_<seed>.json` (main sweep) and `results/mlpdamp_*` were produced for the first submission and were not regenerated in round 1; phase 1 of the main sweep was re-run and reproduces the stored base losses to all printed digits.

@@ -123,7 +123,7 @@ for t in range(draws):
                 "origin_over_fb": r["origin_dwl"] / r["first_best_cost"],
                 "channel_over_fb": r["best_channel_dwl"] / r["first_best_cost"],
                 "gain_of_opt_vs_best_simple": (best_simple - r["optimal_dwl"]) / r["first_best_cost"],
-                "sum_theta_opt": float(np.sum(m.theta_of(m.optimal_rule(C, bb * 0 + L, bb, tt, n_starts=0)[0], C))) if False else float(np.sum(m.theta_of(S_raw, C)))})
+                "sum_theta_opt": float(np.sum(m.theta_of(S_raw, C)))})
 A = lambda k: np.array([x[k] for x in rec], float)
 res["e_sensitivity"] = {
     "draws": draws,

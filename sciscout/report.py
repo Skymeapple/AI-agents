@@ -16,8 +16,11 @@ import datetime as dt
 
 import numpy as np
 
+from .commercial.profile import CommercialProfile
+from .invest.engine import MonteCarloResult
 from .pipeline import TrackReport
 from .provenance import Grade
+from .scoring.importance import Assessment
 
 _GRADE_MARK = {Grade.OBSERVED: "measured", Grade.SOURCED: "sourced", Grade.ASSUMED: "ASSUMED"}
 
@@ -37,28 +40,46 @@ def _money(value: float) -> str:
 
 def render_track(report: TrackReport, detail: bool = True) -> str:
     """Full markdown section for one research direction."""
-    assessment = report.assessment
-    profile = report.profile
-    lines: list[str] = []
+    lines = [
+        *_header_lines(report),
+        *_scoring_lines(report.assessment),
+        *_path_lines(report.profile),
+        *_constraint_lines(report.profile),
+    ]
+    if report.simulation is None:
+        lines += ["_No investment simulation was run for this direction._", ""]
+    else:
+        lines += _investment_lines(report.simulation)
+        lines += _failure_lines(report.simulation)
+        if detail:
+            lines += _sensitivity_lines(report.simulation)
+        lines += _provenance_lines(report.simulation)
+    return "\n".join(lines)
 
-    lines.append(f"## {report.name}")
-    lines.append("")
-    lines.append(
+
+def _header_lines(report: TrackReport) -> list[str]:
+    assessment = report.assessment
+    return [
+        f"## {report.name}",
+        "",
         f"**Priority {assessment.priority:.2f}** "
         f"(importance {assessment.importance:.2f}, urgency {assessment.urgency:.2f}) "
         f"| evidence confidence {assessment.confidence:.0%} "
         f"| {len(report.track.works)} works "
-        f"| {report.track.independent_groups(months=None)} groups"
-    )
-    lines.append("")
-    lines.append(f"Readiness: {profile.trl.describe()}")
-    lines.append("")
+        f"| {report.track.independent_groups(months=None)} groups",
+        "",
+        f"Readiness: {report.profile.trl.describe()}",
+        "",
+    ]
 
-    # -- scoring breakdown ---------------------------------------------------
-    lines.append("### Why it scores this way")
-    lines.append("")
-    lines.append("| Axis | Sub-score | Value | Basis |")
-    lines.append("| --- | --- | --- | --- |")
+
+def _scoring_lines(assessment: Assessment) -> list[str]:
+    lines = [
+        "### Why it scores this way",
+        "",
+        "| Axis | Sub-score | Value | Basis |",
+        "| --- | --- | --- | --- |",
+    ]
     for axis, parts in (
         ("importance", assessment.importance_parts),
         ("urgency", assessment.urgency_parts),
@@ -70,146 +91,155 @@ def render_track(report: TrackReport, detail: bool = True) -> str:
             mark = _GRADE_MARK[estimate.grade]
             lines.append(f"| {axis} | {key} | {estimate.value:.2f} | _{mark}_ — {basis} |")
     lines.append("")
+    return lines
 
-    # -- commercialisation path ----------------------------------------------
-    lines.append("### Path to market")
-    lines.append("")
+
+def _path_lines(profile: CommercialProfile) -> list[str]:
+    lines = ["### Path to market", ""]
     if not profile.remaining_stages:
-        lines.append(
+        return lines + [
             "_No development stages remain at the inferred readiness level: this "
-            "direction is modelled as already commercialised._"
-        )
-        lines.append("")
-    else:
+            "direction is modelled as already commercialised._",
+            "",
+        ]
+    lines += [
+        f"Sector: **{profile.sector_label}**. "
+        f"Nominally **{profile.nominal_years_to_market():.1f} years** and "
+        f"**{_money(profile.nominal_cost_usd())}** to market if every stage is "
+        f"survived, with cumulative technical success of "
+        f"**{profile.cumulative_probability():.1%}**.",
+        "",
+        "| Stage | TRL | Duration (y) | Cost | P(success) | Basis |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for stage in profile.remaining_stages:
         lines.append(
-            f"Sector: **{profile.sector_label}**. "
-            f"Nominally **{profile.nominal_years_to_market():.1f} years** and "
-            f"**{_money(profile.nominal_cost_usd())}** to market if every stage is "
-            f"survived, with cumulative technical success of "
-            f"**{profile.cumulative_probability():.1%}**."
+            f"| {stage.name} | {stage.from_trl}-{stage.to_trl} "
+            f"| {stage.duration_years} | {stage.cost_usd} "
+            f"| {stage.p_success} | _{_GRADE_MARK[stage.provenance.grade]}_ |"
         )
-        lines.append("")
-        lines.append("| Stage | TRL | Duration (y) | Cost | P(success) | Basis |")
-        lines.append("| --- | --- | --- | --- | --- | --- |")
-        for stage in profile.remaining_stages:
-            lines.append(
-                f"| {stage.name} | {stage.from_trl}-{stage.to_trl} "
-                f"| {stage.duration_years} | {stage.cost_usd} "
-                f"| {stage.p_success} | _{_GRADE_MARK[stage.provenance.grade]}_ |"
-            )
-        lines.append("")
+    lines.append("")
+    return lines
 
-    if profile.constraints:
-        lines.append("**Constraints**")
-        lines.append("")
-        for constraint in sorted(
-            profile.constraints, key=lambda c: -c.severity_rank
-        ):
-            lines.append(f"- _{constraint.severity}_ **{constraint.kind}** — {constraint.note}")
-        lines.append("")
 
-    # -- simulation ----------------------------------------------------------
-    simulation = report.simulation
-    if simulation is None:
-        lines.append("_No investment simulation was run for this direction._")
-        lines.append("")
-        return "\n".join(lines)
+def _constraint_lines(profile: CommercialProfile) -> list[str]:
+    if not profile.constraints:
+        return []
+    lines = ["**Constraints**", ""]
+    for constraint in sorted(profile.constraints, key=lambda c: -c.severity_rank):
+        lines.append(f"- _{constraint.severity}_ **{constraint.kind}** — {constraint.note}")
+    lines.append("")
+    return lines
 
+
+def _percentile_row(label: str, values: np.ndarray, fmt) -> str:
+    """One P10/P50/P90 table row, each cell formatted by ``fmt``."""
+    cells = " | ".join(fmt(np.percentile(values, q)) for q in (10, 50, 90))
+    return f"| {label} | {cells} |"
+
+
+def _investment_lines(simulation: MonteCarloResult) -> list[str]:
     npv = simulation.percentiles(simulation.project_npv)
     moic = simulation.percentiles(simulation.investor_moic)
     success = simulation.reached_market
-    lines.append("### Investment case")
-    lines.append("")
-    lines.append(f"_{simulation.draws:,} Monte Carlo draws, seed {simulation.seed}._")
-    lines.append("")
-    lines.append("| Measure | P10 | P50 | P90 |")
-    lines.append("| --- | --- | --- | --- |")
-    lines.append(
-        f"| Project NPV | {_money(npv[10])} | {_money(npv[50])} | {_money(npv[90])} |"
-    )
-    lines.append(
-        f"| Investor MOIC | {moic[10]:.2f}x | {moic[50]:.2f}x | {moic[90]:.2f}x |"
-    )
+    lines = [
+        "### Investment case",
+        "",
+        f"_{simulation.draws:,} Monte Carlo draws, seed {simulation.seed}._",
+        "",
+        "| Measure | P10 | P50 | P90 |",
+        "| --- | --- | --- | --- |",
+        f"| Project NPV | {_money(npv[10])} | {_money(npv[50])} | {_money(npv[90])} |",
+        f"| Investor MOIC | {moic[10]:.2f}x | {moic[50]:.2f}x | {moic[90]:.2f}x |",
+    ]
     if success.any():
-        years = simulation.years_to_market[success]
-        spend = simulation.total_spend[success]
-        own = simulation.final_ownership[success]
-        lines.append(
-            f"| Years to market _(successes)_ | {np.percentile(years, 10):.1f} "
-            f"| {np.percentile(years, 50):.1f} | {np.percentile(years, 90):.1f} |"
-        )
-        lines.append(
-            f"| Capital consumed _(successes)_ | {_money(np.percentile(spend, 10))} "
-            f"| {_money(np.percentile(spend, 50))} | {_money(np.percentile(spend, 90))} |"
-        )
-        lines.append(
-            f"| Investor stake at exit _(successes)_ | {np.percentile(own, 10):.2%} "
-            f"| {np.percentile(own, 50):.2%} | {np.percentile(own, 90):.2%} |"
-        )
-    lines.append("")
+        lines += [
+            _percentile_row(
+                "Years to market _(successes)_",
+                simulation.years_to_market[success],
+                "{:.1f}".format,
+            ),
+            _percentile_row(
+                "Capital consumed _(successes)_", simulation.total_spend[success], _money
+            ),
+            _percentile_row(
+                "Investor stake at exit _(successes)_",
+                simulation.final_ownership[success],
+                "{:.2%}".format,
+            ),
+        ]
     low, high = simulation.expected_moic_interval()
-    lines.append(
-        f"- Probability of reaching market: **{simulation.expected_success_rate():.1%}**"
-    )
-    lines.append(
+    lines += [
+        "",
+        f"- Probability of reaching market: **{simulation.expected_success_rate():.1%}**",
         f"- Expected investor multiple across all outcomes: "
         f"**{simulation.expected_moic():.2f}x** "
         f"(**{simulation.conditional_moic():.2f}x** conditional on reaching market). "
         f"Sampling error at this draw count: {low:.2f}x to {high:.2f}x (90% interval); "
-        f"the top 1% of draws contribute {simulation.tail_concentration():.0%} of it"
-    )
-    lines.append(
-        f"- Probability the project destroys value: **{simulation.probability_of_loss():.1%}**"
-    )
-    if len(simulation.starting_trl) and len(set(simulation.starting_trl.tolist())) > 1:
-        levels, counts = np.unique(simulation.starting_trl, return_counts=True)
-        mix = ", ".join(
-            f"TRL {int(level)} {count / simulation.draws:.0%}"
-            for level, count in zip(levels, counts)
-            if count / simulation.draws >= 0.005
-        )
-        lines.append(f"- Starting readiness simulated per draw: {mix}")
-        no_stage = simulation.reached_market & (simulation.total_spend == 0)
-        if no_stage.any() and simulation.moic_given_inputs.sum() > 0:
-            carried = (
-                simulation.moic_given_inputs[no_stage].sum()
-                / simulation.moic_given_inputs.sum()
-            )
-            lines.append(
-                f"- {no_stage.mean():.1%} of draws start with no development stage "
-                f"left and carry {carried:.0%} of the expected multiple. Entry terms "
-                "are the same in every draw, so those are worlds in which an "
-                "early-stage price buys a finished technology: if that share is "
-                "large, narrow the TRL with an analyst override before reading the "
-                "multiple"
-            )
-    lines.append("")
+        f"the top 1% of draws contribute {simulation.tail_concentration():.0%} of it",
+        f"- Probability the project destroys value: **{simulation.probability_of_loss():.1%}**",
+        *_starting_readiness_lines(simulation),
+        "",
+    ]
+    return lines
 
-    lines.append("**Where the programme dies**")
-    lines.append("")
+
+def _starting_readiness_lines(simulation: MonteCarloResult) -> list[str]:
+    """How the simulated starting TRL was spread, when it varied across draws."""
+    if not len(simulation.starting_trl) or len(set(simulation.starting_trl.tolist())) <= 1:
+        return []
+    levels, counts = np.unique(simulation.starting_trl, return_counts=True)
+    mix = ", ".join(
+        f"TRL {int(level)} {count / simulation.draws:.0%}"
+        for level, count in zip(levels, counts)
+        if count / simulation.draws >= 0.005
+    )
+    lines = [f"- Starting readiness simulated per draw: {mix}"]
+    no_stage = simulation.reached_market & (simulation.total_spend == 0)
+    if no_stage.any() and simulation.moic_given_inputs.sum() > 0:
+        carried = (
+            simulation.moic_given_inputs[no_stage].sum()
+            / simulation.moic_given_inputs.sum()
+        )
+        lines.append(
+            f"- {no_stage.mean():.1%} of draws start with no development stage "
+            f"left and carry {carried:.0%} of the expected multiple. Entry terms "
+            "are the same in every draw, so those are worlds in which an "
+            "early-stage price buys a finished technology: if that share is "
+            "large, narrow the TRL with an analyst override before reading the "
+            "multiple"
+        )
+    return lines
+
+
+def _failure_lines(simulation: MonteCarloResult) -> list[str]:
+    lines = ["**Where the programme dies**", ""]
     for name, share in simulation.failure_breakdown().items():
         lines.append(f"- {name}: {share:.1%}")
     lines.append("")
+    return lines
 
-    if detail:
-        lines.append("**What drives the outcome** (rank correlation with project NPV)")
-        lines.append("")
-        lines.append("| Input | All draws | Conditional on success | Provenance |")
-        lines.append("| --- | --- | --- | --- |")
-        conditional = dict(
-            (label, value)
-            for label, value, _ in simulation.sensitivity(
-                top=30, conditional_on_success=True
-            )
-        )
-        for label, value, grade in simulation.sensitivity(top=8):
-            cond = conditional.get(label)
-            cond_text = f"{cond:+.2f}" if cond is not None else "—"
-            lines.append(
-                f"| {label} | {value:+.2f} | {cond_text} | _{_GRADE_MARK[grade]}_ |"
-            )
-        lines.append("")
 
+def _sensitivity_lines(simulation: MonteCarloResult) -> list[str]:
+    lines = [
+        "**What drives the outcome** (rank correlation with project NPV)",
+        "",
+        "| Input | All draws | Conditional on success | Provenance |",
+        "| --- | --- | --- | --- |",
+    ]
+    conditional = {
+        label: value
+        for label, value, _ in simulation.sensitivity(top=30, conditional_on_success=True)
+    }
+    for label, value, grade in simulation.sensitivity(top=8):
+        cond = conditional.get(label)
+        cond_text = f"{cond:+.2f}" if cond is not None else "—"
+        lines.append(f"| {label} | {value:+.2f} | {cond_text} | _{_GRADE_MARK[grade]}_ |")
+    lines.append("")
+    return lines
+
+
+def _provenance_lines(simulation: MonteCarloResult) -> list[str]:
     split = simulation.variance_decomposition()
     by_grade = dict(split.by_grade)
     # Readiness is pulled out by name. It is graded by how the TRL belief was
@@ -218,7 +248,7 @@ def render_track(report: TrackReport, detail: bool = True) -> str:
     readiness = split.by_input.get("starting TRL", 0.0)
     if readiness:
         by_grade[simulation.input_grades["starting TRL"]] -= readiness
-    lines.append(
+    lines = [
         f"**Where the spread comes from:** {split.gate_luck:.0%} of the variance in "
         f"project NPV is gate luck \u2014 which side of each gate the programme lands on "
         f"\u2014 and would remain if every input were known exactly. The other "
@@ -228,17 +258,17 @@ def render_track(report: TrackReport, detail: bool = True) -> str:
         f"{max(0.0, by_grade[Grade.SOURCED]):.1%} from sourced figures, "
         f"**{max(0.0, by_grade[Grade.ASSUMED]):.1%} from assumptions**, and "
         f"{split.interactions:.1%} from combinations of inputs that no single one "
-        f"accounts for."
-    )
-    lines.append("")
+        f"accounts for.",
+        "",
+    ]
     needing = simulation.ledger.needing_review()
     if needing:
-        lines.append(
+        lines += [
             f"{len(needing)} of {len(simulation.ledger.entries)} simulation inputs are "
-            "flagged as placeholders awaiting a real number."
-        )
-        lines.append("")
-    return "\n".join(lines)
+            "flagged as placeholders awaiting a real number.",
+            "",
+        ]
+    return lines
 
 
 def render_portfolio(reports: list[TrackReport], asof: dt.date | None = None) -> str:

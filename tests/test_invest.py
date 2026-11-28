@@ -464,3 +464,28 @@ def test_tail_concentration_reports_how_much_the_mean_leans_on_the_tail():
     result = run()
     assert 0.01 < result.tail_concentration(0.01) < 1.0
     assert result.tail_concentration(0.5) > result.tail_concentration(0.01)
+
+
+def test_ranks_average_across_ties():
+    from sciscout.invest.engine import _rank
+
+    assert _rank(np.array([3.0, 1.0, 3.0, 2.0, 3.0])).tolist() == [4.0, 1.0, 4.0, 2.0, 4.0]
+    assert _rank(np.array([5.0, 5.0])).tolist() == [1.5, 1.5]
+    assert _rank(np.array([2.0, 1.0, 3.0])).tolist() == [2.0, 1.0, 3.0]
+    # Missing values share a rank rather than being ordered arbitrarily.
+    assert _rank(np.array([np.nan, 1.0, np.nan])).tolist() == [2.5, 1.0, 2.5]
+
+
+def test_sensitivity_is_stable_across_repeated_and_differently_sized_requests():
+    """The ranking is computed once and reused; reuse must not change an answer."""
+    result = MonteCarlo(draws=5_000, seed=5).run(
+        profile_for(), MarketModel.placeholder(), DealTerms.placeholder()
+    )
+    everything = result.sensitivity(top=50)
+    assert result.sensitivity(top=3) == everything[:3]
+    assert result.sensitivity(top=50) == everything
+    # The two conditioning modes are separate rankings, not one shared answer.
+    assert result.sensitivity(top=50, conditional_on_success=True) != everything
+    # A caller trimming its copy must not corrupt later answers.
+    result.sensitivity(top=50).clear()
+    assert result.sensitivity(top=50) == everything

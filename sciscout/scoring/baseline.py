@@ -114,6 +114,24 @@ class CitationBaseline:
             self._cache[key] = kept
         return self._cache[key]
 
+    # Median per pool, keyed by pool identity and remembered with the pool's
+    # length so a pool that has grown since is recomputed rather than trusted.
+    _medians: dict[int, tuple[int, float]] = field(
+        default_factory=dict, repr=False, compare=False
+    )
+
+    def _median(self, pool: list[int]) -> float:
+        """Median of ``pool``, cached.
+
+        ``expected`` is called once per work, and a pool can hold a large share
+        of the corpus, so sorting it on every call is quadratic in corpus size.
+        """
+        cached = self._medians.get(id(pool))
+        if cached is None or cached[0] != len(pool):
+            cached = (len(pool), statistics.median(pool))
+            self._medians[id(pool)] = cached
+        return cached[1]
+
     @classmethod
     def from_works(
         cls, works: list[Work], asof: dt.date | None = None
@@ -145,7 +163,7 @@ class CitationBaseline:
         pool = self._pool(("discipline", discipline.lower(), bucket))
         if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(pool)),
+                max(0.5, self._median(pool)),
                 observed(
                     f"median of {len(pool)}{others} works in {discipline} aged "
                     f"{bucket[0]:g}-{bucket[1]:g}y"
@@ -154,7 +172,7 @@ class CitationBaseline:
         pool = self._pool(("age", bucket))
         if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(pool)),
+                max(0.5, self._median(pool)),
                 observed(
                     f"median of {len(pool)}{others} corpus works aged "
                     f"{bucket[0]:g}-{bucket[1]:g}y (discipline pool too thin)"
@@ -163,7 +181,7 @@ class CitationBaseline:
         pool = self._pool(("all",))
         if len(pool) >= MIN_BUCKET_SIZE:
             return (
-                max(0.5, statistics.median(pool)),
+                max(0.5, self._median(pool)),
                 observed(
                     f"median of all {len(pool)}{others} corpus works "
                     "(age and discipline pools too thin)"

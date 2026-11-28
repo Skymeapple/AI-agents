@@ -293,3 +293,17 @@ def test_rank_intervals_are_reproducible():
 def test_too_few_resamples_is_rejected():
     with pytest.raises(ValueError, match="noise"):
         _ranked([make_track("a")], resamples=5)
+
+
+def test_citation_baseline_median_stays_correct_as_a_pool_grows():
+    """The median is cached per pool; a pool that grows must not serve a stale one."""
+    low = make_track("low", citations=10)
+    baseline = CitationBaseline.from_works(low.works, asof=ASOF)
+    age = low.works[0].age_years(ASOF)
+    assert baseline.expected("physics", age)[0] == 10
+    assert baseline.expected("physics", age)[0] == 10  # served from the cache
+
+    high = make_track("high", years=((2023, 20),), citations=90)
+    pool = next(iter(baseline._by_discipline.values()))
+    pool.extend(w.citations for w in high.works)
+    assert baseline.expected("physics", age)[0] == 90

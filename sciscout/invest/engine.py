@@ -71,6 +71,11 @@ class MonteCarloResult:
     npv_given_inputs: np.ndarray = field(default_factory=lambda: np.zeros(0))
     npv_var_given_inputs: np.ndarray = field(default_factory=lambda: np.zeros(0))
     moic_given_inputs: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    # Full sensitivity ranking per conditioning mode. A report asks for it
+    # several times over, and each ranking sorts every input across every draw.
+    _sensitivity_cache: dict[bool, list[tuple[str, float, Grade]]] = field(
+        default_factory=dict, repr=False, compare=False
+    )
 
     # -- headline statistics --------------------------------------------------
 
@@ -208,7 +213,17 @@ class MonteCarloResult:
         actually drives the value of the outcome you are buying.
 
         Returns ``(label, correlation, grade)`` sorted by absolute correlation.
+        The ranking is computed once per mode and reused, on the understanding
+        that a result's arrays are not modified after the simulation returns.
         """
+        if conditional_on_success not in self._sensitivity_cache:
+            self._sensitivity_cache[conditional_on_success] = self._rank_inputs(
+                conditional_on_success
+            )
+        return self._sensitivity_cache[conditional_on_success][:top]
+
+    def _rank_inputs(self, conditional_on_success: bool) -> list[tuple[str, float, Grade]]:
+        """Every non-constant input's rank correlation with NPV, strongest first."""
         mask = self.reached_market if conditional_on_success else slice(None)
         target = self.project_npv[mask]
         if len(target) < 30:
@@ -224,7 +239,7 @@ class MonteCarloResult:
                 continue
             results.append((label, float(correlation), self.input_grades[label]))
         results.sort(key=lambda row: abs(row[1]), reverse=True)
-        return results[:top]
+        return results
 
     def variance_decomposition(self, bins: int = 20) -> "VarianceDecomposition":
         """Split the variance of project NPV by where it comes from.
@@ -401,16 +416,22 @@ def _first_order_index(x: np.ndarray, y: np.ndarray, bins: int) -> float:
 
 def _rank(values: np.ndarray) -> np.ndarray:
     """Average ranks, ties shared. Equivalent to scipy.stats.rankdata."""
+    n = len(values)
     order = values.argsort()
-    ranks = np.empty(len(values), dtype=float)
-    ranks[order] = np.arange(1, len(values) + 1, dtype=float)
+    ordered = values[order]
+    sorted_ranks = np.arange(1, n + 1, dtype=float)
     # Average tied ranks so that a heavily-tied input (many zeros) does not get
-    # an arbitrary ordering baked into its correlation.
-    unique, inverse, counts = np.unique(values, return_inverse=True, return_counts=True)
-    if len(unique) < len(values):
-        sums = np.zeros(len(unique))
-        np.add.at(sums, inverse, ranks)
-        ranks = (sums / counts)[inverse]
+    # an arbitrary ordering baked into its correlation. Ties are runs of equal
+    # neighbours in the sorted order, so one sort serves both jobs. NaNs sort
+    # last and count as tied with each other.
+    same = (ordered[1:] == ordered[:-1]) | (np.isnan(ordered[1:]) & np.isnan(ordered[:-1]))
+    if same.any():
+        starts = np.concatenate(([0], np.flatnonzero(~same) + 1))
+        ends = np.concatenate((starts[1:], [n]))
+        # A run occupying ranks start+1 .. end has mean rank (start + 1 + end) / 2.
+        sorted_ranks = np.repeat((starts + 1 + ends) / 2.0, ends - starts)
+    ranks = np.empty(n, dtype=float)
+    ranks[order] = sorted_ranks
     return ranks
 
 

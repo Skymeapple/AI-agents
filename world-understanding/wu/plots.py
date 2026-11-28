@@ -230,8 +230,9 @@ def fig_e3():
         a.set_xlabel(xl)
         a.set_ylabel("Zipf-weighted error")
         a.set_title(t)
-        a.legend(fontsize=6.5, title="fitted slope", title_fontsize=6.5)
-    ax[1].text(0.02, 0.03, "dotted: unseen-mass theory", transform=ax[1].transAxes, fontsize=6.5, color=INK2)
+        a.legend(fontsize=6.5, title="fitted slope (asymptotic theory)" if a is ax[0] else
+                 "fitted slope (asymptotic theory)\ndotted: exact finite-K unseen mass", title_fontsize=6.5,
+                 loc="lower left")
     a = ax[2]
     a_ = R["alphas"][1]
     rc = R["capacity"][str(a_)]["rank_curves"]

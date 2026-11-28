@@ -326,6 +326,7 @@ came from.
 ```bash
 pip install sympy scipy jsonschema      # the aisci checkers need these
 python -m nexus.cli loop --experiment   # verify, re-rank, write an agenda for autoscout
+python -m nexus.cli matching | impact | ledger | bottleneck
 ```
 
 ### The closed discovery loop
@@ -371,6 +372,41 @@ the two traps. The result says the mechanism works on a case built to test it.
 The step that would make it real, turning an abstract into a checkable claim,
 needs a model and a sandbox, because the checkers execute what they are given.
 It is not built. `ClaimSource` is where it plugs in.
+
+### Open problems against active directions
+
+The repository catalogues about 200 open problems and, separately, finds the
+research directions active in a corpus. `nexus matching` joins the two.
+
+```bash
+python -m nexus.cli matching      # -> examples/nexus-matching.md, about a minute
+```
+
+A problem and a direction are compared lexically, and a link needs a
+similarity floor and a margin over the runner-up problem of the same
+catalogue, so a direction sitting between two problems is linked to neither.
+An unmatched problem is called *neglected* only if its field is one the corpus
+covers; a machine-learning corpus says nothing about dark matter, and those
+problems are listed as outside the corpus with no conclusion drawn.
+
+On 2,444 real arXiv abstracts (the ai2035 frontier harvest, 196 directions)
+against 204 problems from six catalogues: 51 matched, 55 neglected, 98 outside
+the corpus, and 98 directions tied to no catalogued problem.
+
+**Measured, and weak where it matters.** On 7 held-out AI-100 questions paired
+by hand with the topic whose papers are labelled: match recall 7 of 7, link
+precision 11 of 15, and neglect detection 4 of 7. When a problem's own
+literature is removed, a neighbouring direction often still clears the floor,
+so the neglected list is an undercount. With every harvest-query word
+withheld, recall falls to 1 of 20: the matcher runs on a topic's name-words.
+
+Read "neglected" as "no direction in this corpus uses this problem's words".
+The corpus was harvested with queries for the 20 ai2035 questions, so it is
+not a sample of machine learning. The AI-100 catalogue is in Chinese and is
+matched on an English gloss written for this purpose
+(`data/nexus/matching/ai100_en.yaml`, graded `assumed`, not reviewed). The
+floor, the margin, the field declarations and the known pairs are judgement
+calls and are printed as such.
 
 ### Pricing a direction by what it changes
 
@@ -602,9 +638,10 @@ autoscout/
 docs/RESEARCH_PLAN.md    research questions, results, roadmap for autoscout
 examples/                worked scenario file and its comparison output
 scripts/                 synthetic corpus generators, autoscout ablation
-tests/                   206 tests across sciscout, autoscout, airadar, worldsim, cosmos
+tests/                   342 tests across sciscout, autoscout, airadar, worldsim, cosmos, nexus
 nexus/
   loop.py                verify claims per direction, re-rank, steer autoscout
+  matching.py            open-problem catalogues against discovered directions
   impact.py              a direction's success priced in worldsim's 2050 outcomes
   ledger.py              dated forecasts from every project, scored when due
   bottleneck.py          measured deployment ramps in place of an assumed prior

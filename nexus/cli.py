@@ -14,13 +14,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", required=True)
     for name in COMMANDS:
-        try:
-            module = importlib.import_module(f"nexus.{name}")
-        except ModuleNotFoundError as exc:
-            if exc.name != f"nexus.{name}":
-                raise
-            continue
-        module.register(sub)
+        importlib.import_module(f"nexus.{name}").register(sub)
     return parser
 
 

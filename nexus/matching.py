@@ -18,11 +18,15 @@ scores into links refuses rather than guesses, in the spirit of
 problem must beat the runner-up problem of its own catalogue by a margin. A
 direction that sits between two problems is linked to neither.
 
-Two failure modes are kept apart because they mean opposite things. A problem
-whose words barely occur in the corpus is *outside* it -- the corpus says nothing
-about dark matter if it holds only machine-learning papers -- and calling that
-problem neglected would be reading an absence of data as a finding. Only a
-problem the corpus does talk about, with no direction on it, is neglected.
+Two failure modes are kept apart because they mean opposite things. A corpus of
+machine-learning papers says nothing about dark matter, and calling that problem
+neglected would be reading an absence of data as a finding. So every catalogue
+declares a field, the corpus declares the fields it covers, and only an unmatched
+problem inside those fields is *neglected*; the rest are *outside* the corpus and
+nothing is concluded. The declaration is a judgement and is printed as one. (A
+data-driven test was tried first -- how much of a problem's vocabulary the corpus
+uses, and its best similarity to any single paper -- and neither separated
+cosmology from machine learning on the real corpus, so it was not shipped.)
 
 None of this is asserted. :func:`evaluate_leave_one_out` measures it on the one
 real, labelled corpus the repository has (the ai2035 frontier harvest): remove a
@@ -58,16 +62,16 @@ DEFAULT_OUT = ROOT / "examples" / "nexus-matching.md"
 
 # -- the match rule ------------------------------------------------------------
 #
-# Every constant here is a judgement call and says so. The floor and the margin
-# were picked on the tuning half of the leave-one-out experiment (ai2035 Q01-Q10)
-# and the report prints how they do on the half they never saw (Q11-Q20).
+# Every constant here is a judgement call and says so. The floor was picked on
+# the tuning half of the known-pairs experiment (six AI-100 questions) and the
+# report prints how it does on the half it never saw.
 
 SIMILARITY_FLOOR: Estimate[float] = Estimate(
-    0.12,
+    0.15,
     assumed(
         "cosine below which a problem and a direction share too little vocabulary "
-        "to call a match; chosen on the tuning half (ai2035 Q01-Q10) of the "
-        "leave-one-out experiment, not derived"
+        "to call a match; the value that best separated matched from neglected on the "
+        "tuning half of the known-pairs experiment (6 questions), not derived"
     ),
     label="similarity floor",
 )
@@ -75,29 +79,12 @@ MARGIN_OVER_RUNNER_UP: Estimate[float] = Estimate(
     1.25,
     assumed(
         "how far the best problem of a catalogue must beat the runner-up before a "
-        "direction is linked to it; chosen on the tuning half (ai2035 Q01-Q10). "
-        "Lower than sciscout.classify's 1.5 because neighbouring problems in one "
-        "catalogue overlap far more than commercial sectors do"
+        "direction is linked to it. The tuning half could not tell 1.0 from 1.5 at the "
+        "shipped floor, so this is a precaution, not a fitted value. Lower than "
+        "sciscout.classify's 1.5 because neighbouring problems in one catalogue overlap "
+        "far more than commercial sectors do"
     ),
     label="margin over runner-up",
-)
-COVERAGE_FLOOR: Estimate[float] = Estimate(
-    0.5,
-    assumed(
-        "share of a problem's distinctive vocabulary that must occur in the corpus "
-        "before an unmatched problem is called neglected rather than outside the "
-        "corpus; the report prints each catalogue's observed coverage beside it"
-    ),
-    label="coverage floor",
-)
-DISTINCTIVE_DF_RATIO: Estimate[float] = Estimate(
-    0.02,
-    assumed(
-        "a term used by more than this share of the corpus is treated as generic "
-        "('model', 'problem') and ignored when asking whether the corpus covers a "
-        "problem's vocabulary"
-    ),
-    label="distinctive document-frequency ratio",
 )
 REAL_ABSTRACT_THRESHOLD: Estimate[float] = Estimate(
     0.10,
@@ -108,10 +95,32 @@ REAL_ABSTRACT_THRESHOLD: Estimate[float] = Estimate(
     ),
     label="discovery threshold",
 )
+# Which field each catalogue belongs to, and which fields the shipped real corpus
+# covers. Judgement calls, used only to decide whether an unmatched problem may
+# be called neglected.
+AI100_FIELDS = {
+    "能力与扩展": "ai", "推理与认知": "ai", "智能体": "ai", "对齐与安全": "ai",
+    "可解释性": "ai", "评估与科学方法": "ai", "AI本身的性质": "ai-nature",
+    "社会与经济": "ai-society", "治理与地缘政治": "ai-governance",
+    "基础设施与资源": "ai-infrastructure",
+}
+HFM_AI_FIELDS = {"harness", "pre", "post"}  # agent harnesses, pre- and post-training
+FIELD_PROVENANCE = assumed(
+    "each catalogue's field, and the fields a corpus covers, are declared by hand: "
+    "AI-100 by its own category column (technical categories -> 'ai'), Human Frontier "
+    "by its field column (harness / pre / post -> 'ai'), the rest by catalogue"
+)
+FRONTIER_FIELDS: Estimate[frozenset] = Estimate(
+    frozenset({"ai"}),
+    assumed(
+        "the ai2035 frontier harvest holds technical machine-learning papers only; it "
+        "was built from search queries for 20 questions, so it is not a sample of all "
+        "of machine learning either"
+    ),
+    label="fields the corpus covers",
+)
 TUNE_FLOORS = (0.06, 0.08, 0.10, 0.12, 0.15, 0.20)
-TUNE_MARGINS = (1.0, 1.1, 1.25, 1.5, 2.0)
-
-_TERM_SPLIT = re.compile(r"[,;]")
+TUNE_MARGINS = (1.0, 1.25, 1.5, 2.0)
 
 
 # -- problems --------------------------------------------------------------------
@@ -126,6 +135,7 @@ class Problem:
     title: str
     text: str
     provenance: Provenance
+    field: str = "unknown"
     # Tokens that must not be used when this problem is scored in a leak-free
     # evaluation (the queries its labelled papers were harvested with).
     withheld: frozenset[str] = frozenset()
@@ -148,7 +158,8 @@ def _load_ai100(root: Path) -> list[Problem]:
         if not entry:
             continue
         text = entry["en"] + ". " + ". ".join(entry["terms"])
-        problems.append(Problem(f"{int(row['id']):03d}", "ai100", entry["en"], text, provenance))
+        problems.append(Problem(f"{int(row['id']):03d}", "ai100", entry["en"], text, provenance,
+                                AI100_FIELDS.get(row.get("category", ""), "ai")))
     return problems
 
 
@@ -171,7 +182,7 @@ def _load_ai2035(root: Path) -> list[Problem]:
         withheld = frozenset(t for phrase in queries.get(q["id"], []) for t in tokenize(str(phrase)))
         problems.append(Problem(
             q["id"], "ai2035", titles.get(q["id"], q["slug"].replace("-", " ")),
-            ". ".join(phrases), provenance, withheld,
+            ". ".join(phrases), provenance, "ai", withheld,
         ))
     return problems
 
@@ -188,6 +199,7 @@ def _load_hfm(root: Path) -> list[Problem]:
             problems.append(Problem(
                 row["source_id"].removeprefix("discovery_live_"), "hfm", row["title"],
                 row["title"], provenance,
+                "ai" if row["field"] in HFM_AI_FIELDS else row["field"],
             ))
     return problems
 
@@ -203,7 +215,7 @@ def _load_cosmos(root: Path) -> list[Problem]:
         title = re.sub(r"^Problem \d+ - ", "", doc.splitlines()[0]).rstrip(".?")
         problems.append(Problem(
             path.stem[:3], "cosmos", title[0].upper() + title[1:], doc,
-            sourced("module docstring", reference=f"cosmos/{path.name}"),
+            sourced("module docstring", reference=f"cosmos/{path.name}"), "cosmology",
         ))
     return problems
 
@@ -218,7 +230,7 @@ def _load_maths(root: Path) -> list[Problem]:
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) >= 3 and cells[0].isdigit():
             problems.append(Problem(f"m{int(cells[0]):02d}", "maths", cells[1],
-                                    f"{cells[1]}. {cells[2]}", provenance))
+                                    f"{cells[1]}. {cells[2]}", provenance, "mathematics"))
     return problems
 
 
@@ -232,7 +244,7 @@ def _load_world(root: Path) -> list[Problem]:
         grouped.setdefault(outcome.problem, []).append(outcome.label)
     provenance = sourced("problem names and outcome labels", reference="worldsim/model.py OUTCOMES")
     return [
-        Problem(f"w{i:02d}", "world", name, f"{name}. " + ". ".join(labels), provenance)
+        Problem(f"w{i:02d}", "world", name, f"{name}. " + ". ".join(labels), provenance, "global")
         for i, (name, labels) in enumerate(grouped.items(), start=1)
     ]
 
@@ -365,22 +377,6 @@ class _Space:
         norm = float(np.linalg.norm(vec))
         return vec / norm if norm else vec
 
-    def coverage(self, terms: list[str], distinctive_ratio: float) -> float | None:
-        """Share of a problem's distinctive single words the corpus uses at all.
-
-        Words used by more than ``distinctive_ratio`` of the corpus are generic
-        and say nothing about whether the corpus covers the problem. ``None``
-        when the problem has no distinctive words to judge by.
-        """
-        words = {t for t in terms if " " not in t}
-        distinctive = [
-            t for t in words
-            if t not in self.index or self.df[self.index[t]] <= distinctive_ratio * self.n_docs
-        ]
-        if not distinctive:
-            return None
-        return sum(t in self.index for t in distinctive) / len(distinctive)
-
 
 # -- matching ----------------------------------------------------------------------
 
@@ -406,6 +402,54 @@ class Refusal:
     similarity: float
     runner_up: float
     reason: str
+    ambiguous: bool  # cleared the floor, lost on the margin
+
+
+@dataclass
+class Scored:
+    """Problem-by-direction similarities, before any rule is applied."""
+
+    problems: list[Problem]
+    directions: list[DiscoveredTrack]
+    similarity: np.ndarray  # problems x directions
+
+
+@dataclass
+class _Clustered:
+    """A corpus, its directions, and their centroids in the corpus's vector space."""
+
+    works: list[Work]
+    found: DiscoveryResult
+    space: _Space
+    centroids: np.ndarray
+
+    @classmethod
+    def build(cls, works: list[Work], found: DiscoveryResult) -> "_Clustered":
+        space = _Space.build(works)
+        row_of = {id(w): i for i, w in enumerate(works)}
+        centroids = (
+            np.stack([space.centroid([row_of[id(w)] for w in d.works]) for d in found.tracks])
+            if found.tracks else np.zeros((0, len(space.index)), dtype=np.float32)
+        )
+        return cls(works, found, space, centroids)
+
+    def score(self, problems: list[Problem], leak_free: bool = False) -> Scored:
+        vectors = (
+            np.stack([self.space.problem_vector(_problem_terms(p, leak_free)) for p in problems])
+            if problems else np.zeros((0, len(self.space.index)), dtype=np.float32)
+        )
+        return Scored(list(problems), list(self.found.tracks), vectors @ self.centroids.T)
+
+
+def score(problems: list[Problem], found: DiscoveryResult, works: list[Work],
+          leak_free: bool = False) -> Scored:
+    """Cosine between every problem and every direction's centroid.
+
+    ``works`` must be the corpus ``found`` was discovered in; it supplies the
+    vocabulary and document frequencies. ``leak_free`` drops each problem's
+    ``withheld`` tokens, for scoring against papers harvested with them.
+    """
+    return _Clustered.build(works, found).score(problems, leak_free)
 
 
 @dataclass
@@ -413,12 +457,13 @@ class MatchResult:
     problems: list[Problem]
     directions: list[DiscoveredTrack]
     similarity: np.ndarray  # problems x directions
-    coverage: dict[str, float | None]  # problem key -> corpus coverage
     links: list[Link]
     refusals: list[Refusal]
     floor: float
     margin: float
-    coverage_floor: float
+    # Fields the corpus is taken to cover; None means nobody has said, and then
+    # no unmatched problem can be called neglected.
+    corpus_fields: frozenset[str] | None
 
     def links_for(self, problem: Problem) -> list[Link]:
         return [l for l in self.links if l.problem is problem]
@@ -432,19 +477,18 @@ class MatchResult:
         seen = {id(l.problem) for l in self.links}
         return [p for p in self.problems if id(p) not in seen]
 
-    def _covered(self, problem: Problem) -> bool:
-        share = self.coverage[problem.key]
-        return share is not None and share >= self.coverage_floor
+    def in_scope(self, problem: Problem) -> bool:
+        return self.corpus_fields is not None and problem.field in self.corpus_fields
 
     @property
     def neglected(self) -> list[Problem]:
-        """Problems the corpus talks about with no direction on them."""
-        return [p for p in self._unmatched() if self._covered(p)]
+        """Unmatched problems in a field the corpus covers."""
+        return [p for p in self._unmatched() if self.in_scope(p)]
 
     @property
     def outside(self) -> list[Problem]:
         """Unmatched problems the corpus cannot speak to either way."""
-        return [p for p in self._unmatched() if not self._covered(p)]
+        return [p for p in self._unmatched() if not self.in_scope(p)]
 
     @property
     def orphans(self) -> list[DiscoveredTrack]:
@@ -465,11 +509,69 @@ class MatchResult:
                 f"{self.margin:g}"), label=what)
         return {
             "matched": obs(len(self.matched), "problems matched to a direction"),
-            "neglected": obs(len(self.neglected), "problems covered by the corpus with no direction"),
-            "outside": obs(len(self.outside), "problems outside the corpus"),
+            "neglected": obs(len(self.neglected), "in-scope problems with no direction"),
+            "outside": obs(len(self.outside), "unmatched problems outside the corpus"),
             "orphans": obs(len(self.orphans), "directions tied to no problem"),
             "links": obs(len(self.links), "problem-direction links"),
         }
+
+
+def apply_rule(
+    scored: Scored,
+    floor: float | None = None,
+    margin: float | None = None,
+    corpus_fields: frozenset[str] | None = None,
+    without: Problem | None = None,
+) -> MatchResult:
+    """Turn similarities into links, refusing where the evidence is thin.
+
+    A link (problem, direction) is made when the problem is the direction's best
+    match within its catalogue, clears ``floor``, and beats that catalogue's
+    runner-up by ``margin``. A direction may therefore be linked once per
+    catalogue -- catalogues overlap, and "continual learning" is rightly both an
+    AI-100 and an ai2035 problem -- but never to two problems of one catalogue.
+
+    ``without`` drops one problem from the catalogue, as if it had never been
+    written down.
+    """
+    floor = SIMILARITY_FLOOR.value if floor is None else floor
+    margin = MARGIN_OVER_RUNNER_UP.value if margin is None else margin
+    keep = [i for i, p in enumerate(scored.problems) if p is not without]
+    problems = [scored.problems[i] for i in keep]
+    similarity = scored.similarity[keep]
+
+    by_catalogue: dict[str, list[int]] = {}
+    for i, p in enumerate(problems):
+        by_catalogue.setdefault(p.catalogue, []).append(i)
+    links: list[Link] = []
+    refusals: list[Refusal] = []
+    for members in by_catalogue.values():
+        block = similarity[members]  # catalogue problems x directions
+        if block.shape[1] == 0:
+            continue
+        order = np.argsort(-block, axis=0, kind="stable")
+        for j, direction in enumerate(scored.directions):
+            i = members[order[0, j]]
+            best = float(block[order[0, j], j])
+            runner_up = float(block[order[1, j], j]) if len(members) > 1 else 0.0
+            if best <= 0:
+                continue
+            ratio = best / runner_up if runner_up > 0 else float("inf")
+            if best < floor:
+                # Only near misses are worth a reader's time.
+                if best >= 0.75 * floor:
+                    refusals.append(Refusal(
+                        problems[i], direction, best, runner_up,
+                        f"similarity {best:.2f} is under the floor {floor:g}", False))
+            elif ratio < margin:
+                rival = problems[members[order[1, j]]]
+                refusals.append(Refusal(
+                    problems[i], direction, best, runner_up,
+                    f"only {ratio:.2f}x the runner-up ({rival.key}), needing {margin:g}x", True))
+            else:
+                links.append(Link(problems[i], direction, best, runner_up))
+    return MatchResult(problems, scored.directions, similarity, links, refusals, floor, margin,
+                       corpus_fields)
 
 
 def match(
@@ -478,69 +580,11 @@ def match(
     works: list[Work],
     floor: float | None = None,
     margin: float | None = None,
-    coverage_floor: float | None = None,
+    corpus_fields: frozenset[str] | None = None,
     leak_free: bool = False,
 ) -> MatchResult:
-    """Link problems to the directions in ``found``.
-
-    A link (problem, direction) is made when the problem is the direction's best
-    match within its catalogue, clears ``floor``, and beats that catalogue's
-    runner-up by ``margin``. A direction may therefore be linked once per
-    catalogue -- catalogues overlap, and "continual learning" is rightly both an
-    AI-100 and an ai2035 problem -- but never to two problems of one catalogue.
-
-    ``works`` must be the corpus ``found`` was discovered in; it supplies the
-    vocabulary and document frequencies. ``leak_free`` drops each problem's
-    ``withheld`` tokens, for scoring against papers harvested with them.
-    """
-    floor = SIMILARITY_FLOOR.value if floor is None else floor
-    margin = MARGIN_OVER_RUNNER_UP.value if margin is None else margin
-    coverage_floor = COVERAGE_FLOOR.value if coverage_floor is None else coverage_floor
-
-    space = _Space.build(works)
-    row_of = {id(w): i for i, w in enumerate(works)}
-    directions = list(found.tracks)
-    centroids = (
-        np.stack([space.centroid([row_of[id(w)] for w in d.works]) for d in directions])
-        if directions else np.zeros((0, len(space.index)), dtype=np.float32)
-    )
-    term_lists = [_problem_terms(p, leak_free) for p in problems]
-    vectors = (
-        np.stack([space.problem_vector(t) for t in term_lists])
-        if problems else np.zeros((0, len(space.index)), dtype=np.float32)
-    )
-    similarity = vectors @ centroids.T
-    coverage = {
-        p.key: space.coverage(t, DISTINCTIVE_DF_RATIO.value) for p, t in zip(problems, term_lists)
-    }
-
-    links: list[Link] = []
-    refusals: list[Refusal] = []
-    by_catalogue: dict[str, list[int]] = {}
-    for i, p in enumerate(problems):
-        by_catalogue.setdefault(p.catalogue, []).append(i)
-    for j, direction in enumerate(directions):
-        for members in by_catalogue.values():
-            scores = sorted(((float(similarity[i, j]), i) for i in members), reverse=True)
-            best, i = scores[0]
-            runner_up = scores[1][0] if len(scores) > 1 else 0.0
-            if best <= 0:
-                continue
-            ratio = best / runner_up if runner_up > 0 else float("inf")
-            if best < floor:
-                # Only near misses are worth a reader's time.
-                if best >= 0.75 * floor:
-                    refusals.append(Refusal(problems[i], direction, best, runner_up,
-                                            f"similarity {best:.2f} is under the floor {floor:g}"))
-            elif ratio < margin:
-                refusals.append(Refusal(
-                    problems[i], direction, best, runner_up,
-                    f"only {ratio:.2f}x the runner-up "
-                    f"({problems[scores[1][1]].key}), needing {margin:g}x"))
-            else:
-                links.append(Link(problems[i], direction, best, runner_up))
-    return MatchResult(problems, directions, similarity, coverage, links, refusals,
-                       floor, margin, coverage_floor)
+    """Score ``problems`` against the directions in ``found`` and apply the rule."""
+    return apply_rule(score(problems, found, works, leak_free), floor, margin, corpus_fields)
 
 
 # -- measuring the matcher -----------------------------------------------------------
@@ -560,19 +604,18 @@ def _majority_label(direction: DiscoveredTrack, label_key: str) -> tuple[str | N
 
 @dataclass
 class LeaveOneOut:
-    """Scores for the three claims, on one set of labelled problems."""
+    """Counts behind the three claims, for one set of labelled problems."""
 
-    problems: int
-    # Present: problem and its papers both in. Did it get a link, and a right one?
-    matched_present: int
-    linked_correctly: int
-    links: int
-    links_correct: int
-    # Papers removed: the problem should be reported neglected (or outside).
-    refused_when_absent: int
-    # Problem removed: its papers' directions should be orphans.
-    own_directions: int
-    own_directions_orphaned: int
+    problems: int = 0
+    # Present: the problem and its papers are both in the corpus.
+    linked_correctly: int = 0  # problems linked to a direction of their own papers
+    links: int = 0
+    links_correct: int = 0
+    # Papers removed and the corpus re-clustered: the problem should go unmatched.
+    refused_when_absent: int = 0
+    # Problem removed from the catalogue: its papers' directions should be orphans.
+    own_directions: int = 0
+    own_directions_orphaned: int = 0
 
     def rates(self) -> dict[str, float]:
         def ratio(a: int, b: int) -> float:
@@ -585,109 +628,142 @@ class LeaveOneOut:
         }
 
     @property
-    def balanced(self) -> float:
-        values = [v for v in self.rates().values() if not math.isnan(v)]
-        return sum(values) / len(values) if values else 0.0
+    def verdict_accuracy(self) -> float:
+        """Mean of match recall and neglect detection: how often the matched /
+        neglected verdict on a problem is right, weighting both cases equally."""
+        if not self.problems:
+            return 0.0
+        return (self.linked_correctly + self.refused_when_absent) / (2 * self.problems)
 
 
-def evaluate_leave_one_out(
-    problems: list[Problem],
-    works: list[Work],
-    label_key: str = "question",
-    threshold: float | None = None,
-    floor: float | None = None,
-    margin: float | None = None,
-    leak_free: bool = True,
-    min_purity: float = 0.5,
-    _cache: dict | None = None,
-) -> LeaveOneOut:
-    """Test the matcher on a corpus whose works are labelled by problem id.
+class LeaveOneOutExperiment:
+    """Test the matcher on a corpus whose works are labelled.
 
-    For each problem in turn: (1) with everything present, is it linked to a
-    direction whose works are mostly its own; (2) with its papers removed and the
-    corpus re-clustered, does it come back unmatched; (3) with the problem
-    removed from the catalogue, do the directions made of its papers come back
-    orphaned. ``leak_free`` matches without the words the papers were harvested
-    with, so the score is not just the search query finding itself.
+    ``labels`` maps a problem's key to the corpus label of the papers that are
+    its own. For each such problem in turn: (1) with everything present, is it
+    linked to a direction whose works mostly carry its label; (2) with those
+    papers removed and the corpus re-clustered, does it come back unmatched;
+    (3) with the problem removed from the catalogue, do the directions made of
+    its papers come back orphaned.
 
-    A direction counts as a problem's own when at least ``min_purity`` of its
-    works carry that label.
+    The clustering and the similarities do not depend on the floor or margin, so
+    they are computed once here and :meth:`evaluate` re-applies the rule.
+    ``problems`` is the whole catalogue the labelled problems compete in.
+    ``leak_free`` matches without each problem's ``withheld`` words. A direction
+    counts as a label's own when at least ``min_purity`` of its works carry it.
     """
-    threshold = REAL_ABSTRACT_THRESHOLD.value if threshold is None else threshold
-    cache = _cache if _cache is not None else {}
 
-    def clustered(excluded: str | None) -> tuple[list[Work], DiscoveryResult]:
-        key = (excluded, threshold)
-        if key not in cache:
-            kept = [w for w in works if excluded is None or excluded not in w.extra.get(label_key, [])]
-            cache[key] = (kept, discover(kept, threshold=threshold))
-        return cache[key]
+    def __init__(self, problems: list[Problem], labels: dict[str, str], works: list[Work],
+                 label_key: str = "question", threshold: float | None = None,
+                 leak_free: bool = False, min_purity: float = 0.5,
+                 cache: dict | None = None) -> None:
+        threshold = REAL_ABSTRACT_THRESHOLD.value if threshold is None else threshold
+        self.problems = list(problems)
+        self.labels = labels
+        self.labelled = [p for p in self.problems if p.key in labels]
+        # Clusterings are shared between experiments over the same corpus.
+        cache = cache if cache is not None else {}
 
-    all_works, full = clustered(None)
-    own = {id(d): _majority_label(d, label_key) for d in full.tracks}
-    present = match(problems, full, all_works, floor, margin, leak_free=leak_free)
+        def clustered(excluded: str | None) -> _Clustered:
+            key = (excluded, threshold)
+            if key not in cache:
+                kept = [w for w in works
+                        if excluded is None or excluded not in w.extra.get(label_key, [])]
+                cache[key] = _Clustered.build(kept, discover(kept, threshold=threshold))
+            return cache[key]
 
-    links_correct = sum(
-        1 for l in present.links
-        if own[id(l.direction)][0] == l.problem.id and own[id(l.direction)][1] >= min_purity
-    )
-    linked_correctly = sum(
-        1 for p in problems
-        if any(own[id(l.direction)][0] == p.id and own[id(l.direction)][1] >= min_purity
-               for l in present.links_for(p))
-    )
+        full = clustered(None)
+        self.full = full.score(self.problems, leak_free)
+        self.own = {}
+        for d in full.found.tracks:
+            label, purity = _majority_label(d, label_key)
+            self.own[id(d)] = label if purity >= min_purity else None
+        self.absent = {
+            p.key: clustered(labels[p.key]).score(self.problems, leak_free) for p in self.labelled
+        }
 
-    refused = 0
-    own_total = own_orphaned = 0
-    for p in problems:
-        kept, found = clustered(p.id)
-        absent = match(problems, found, kept, floor, margin, leak_free=leak_free)
-        refused += not absent.links_for(p)
+    def evaluate(self, subset: list[Problem] | None = None, floor: float | None = None,
+                 margin: float | None = None) -> LeaveOneOut:
+        """Score ``subset`` (default: every labelled problem) under one rule."""
+        subset = self.labelled if subset is None else subset
+        keys = {p.key for p in subset}
+        out = LeaveOneOut(problems=len(subset))
+        present = apply_rule(self.full, floor, margin)
+        for link in present.links:
+            if link.problem.key in keys:
+                out.links += 1
+                out.links_correct += self.own[id(link.direction)] == self.labels[link.problem.key]
+        for p in subset:
+            label = self.labels[p.key]
+            out.linked_correctly += any(
+                self.own[id(l.direction)] == label for l in present.links_for(p))
+            absent = apply_rule(self.absent[p.key], floor, margin)
+            out.refused_when_absent += not absent.links_for(p)
+            without = apply_rule(self.full, floor, margin, without=p)
+            orphaned = {id(d) for d in without.orphans}
+            mine = [d for d in self.full.directions if self.own[id(d)] == label]
+            out.own_directions += len(mine)
+            out.own_directions_orphaned += sum(id(d) in orphaned for d in mine)
+        return out
 
-        others = [q for q in problems if q is not p]
-        without = match(others, full, all_works, floor, margin, leak_free=leak_free)
-        orphan_ids = {id(d) for d in without.orphans}
-        mine = [d for d in full.tracks if own[id(d)][0] == p.id and own[id(d)][1] >= min_purity]
-        own_total += len(mine)
-        own_orphaned += sum(id(d) in orphan_ids for d in mine)
 
-    return LeaveOneOut(
-        problems=len(problems), matched_present=len(present.matched),
-        linked_correctly=linked_correctly, links=len(present.links), links_correct=links_correct,
-        refused_when_absent=refused, own_directions=own_total, own_directions_orphaned=own_orphaned,
-    )
+def load_known_pairs(path: Path | None = None) -> dict[str, str]:
+    """AI-100 problem key -> the ai2035 label of the papers that should match it."""
+    path = path or DATA_DIR / "known_pairs.yaml"
+    if not path.exists():
+        return {}
+    raw = yaml.safe_load(path.read_text())
+    parse_provenance(raw["source"], path.name)
+    return {f"ai100:{int(k):03d}": str(v) for k, v in raw["pairs"].items()}
 
 
-def tune_and_test(
-    problems: list[Problem], works: list[Work], label_key: str = "question",
-    threshold: float | None = None,
-) -> dict:
-    """Pick the floor and margin on half the labelled problems, score the other half.
+def tune_and_test(works: list[Work], label_key: str = "question",
+                  threshold: float | None = None, root: Path = ROOT) -> dict:
+    """Measure the matcher three ways on the labelled frontier corpus.
 
-    The split is by problem id order (first half tunes), fixed, so the held-out
-    half never influences the rule it is scored with.
+    *own words*: each ai2035 question against the papers its own query returned.
+    The matching text and the harvest query nearly coincide, so this is the easy
+    case and mostly shows the plumbing works.
+
+    *leak-free*: the same with every harvest-query word withheld.
+
+    *independent wording*: AI-100 questions paired by hand with an ai2035
+    question, matched on a gloss written separately from the harvest queries,
+    competing against the other 99 AI-100 questions. The floor was chosen on
+    the first half of the pairs (by :attr:`LeaveOneOut.verdict_accuracy`); the
+    second half is the held-out score.
     """
-    ordered = sorted(problems, key=lambda p: p.id)
+    cache: dict = {}
+    ai2035 = load_catalogues(root, only=["ai2035"])
+    own_labels = {p.key: p.id for p in ai2035}
+    easy = LeaveOneOutExperiment(ai2035, own_labels, works, label_key, threshold, False, cache=cache)
+    clean = LeaveOneOutExperiment(ai2035, own_labels, works, label_key, threshold, True, cache=cache)
+    left = [len(_problem_terms(p, True)) for p in ai2035]
+
+    ai100 = load_catalogues(root, only=["ai100"])
+    pairs = load_known_pairs()
+    paired = LeaveOneOutExperiment(ai100, pairs, works, label_key, threshold, False, cache=cache)
+    ordered = sorted(paired.labelled, key=lambda p: p.id)
     half = len(ordered) // 2
     tune, test = ordered[:half], ordered[half:]
-    cache: dict = {}
+    # Ties on verdict accuracy are broken by link precision on the tuning half.
     grid = []
     for floor in TUNE_FLOORS:
         for margin in TUNE_MARGINS:
-            score = evaluate_leave_one_out(tune, works, label_key, threshold, floor, margin,
-                                           _cache=cache)
-            grid.append((score.balanced, floor, margin, score))
-    best = max(grid, key=lambda g: (round(g[0], 6), g[1], g[2]))
-    shipped = (SIMILARITY_FLOOR.value, MARGIN_OVER_RUNNER_UP.value)
+            result = paired.evaluate(tune, floor, margin)
+            precision = result.links_correct / result.links if result.links else 0.0
+            grid.append(((result.verdict_accuracy, precision), floor, margin))
+    top = max(g[0] for g in grid)
     return {
+        "own_words": easy.evaluate(),
+        "leak_free": clean.evaluate(),
+        "leak_free_terms_left": float(np.median(left)) if left else 0.0,
         "tune_ids": [p.id for p in tune],
         "test_ids": [p.id for p in test],
-        "grid": [(b, f, m) for b, f, m, _ in grid],
-        "best": (best[1], best[2]),
-        "tune": evaluate_leave_one_out(tune, works, label_key, threshold, *shipped, _cache=cache),
-        "test": evaluate_leave_one_out(test, works, label_key, threshold, *shipped, _cache=cache),
-        "test_leaky": evaluate_leave_one_out(test, works, label_key, threshold, *shipped,
-                                             leak_free=False, _cache=cache),
+        "grid": grid,
+        "best": [(f, m) for b, f, m in grid if b == top],
+        "tune": paired.evaluate(tune),
+        "test": paired.evaluate(test),
     }
 
 
@@ -707,8 +783,11 @@ def _cell(text: str, limit: int = 70) -> str:
 
 
 def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
-           evaluation: dict | None = None, synthetic: bool = False, top: int = 25) -> str:
+           evaluation: dict | None = None, synthetic: bool = False, top: int = 25,
+           fields_note: Estimate | None = None) -> str:
     counts = result.counts()
+    scope = ("not declared" if result.corpus_fields is None
+             else ", ".join(f"`{f}`" for f in sorted(result.corpus_fields)))
     lines = [
         "# Open problems against active research directions",
         "",
@@ -716,50 +795,48 @@ def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
         f"Discovery: {found.summary()} (similarity floor {found.threshold:g}).",
         f"Catalogues: {len(result.problems)} problems in "
         f"{len({p.catalogue for p in result.problems})} catalogues.",
+        f"Fields the corpus is taken to cover: {scope}.",
         "",
     ]
     if synthetic:
         lines += [
             "**This corpus is synthetic.** Its directions were planted by a generator, so a "
-            "match here shows the matcher can connect a problem to a direction with the "
-            "right vocabulary, and a neglected or orphan verdict shows the refusal rule "
-            "working. Neither says anything about what real research groups are doing.",
+            "match here shows the matcher can connect a problem to a direction that shares "
+            "its vocabulary, and an orphan shows the refusal rule working. Neither says "
+            "anything about what real research groups are doing. No field is declared for "
+            "it, so no problem is called neglected.",
             "",
         ]
     lines += [
         "| Result | Count |", "| --- | --- |",
         f"| Problems matched to at least one direction | {counts['matched'].value} |",
-        f"| Problems neglected (corpus covers the vocabulary, no direction on it) | {counts['neglected'].value} |",
+        f"| Problems neglected (in a field the corpus covers, no direction on them) | {counts['neglected'].value} |",
         f"| Problems outside the corpus (cannot be judged from it) | {counts['outside'].value} |",
         f"| Directions orphaned (tied to no catalogued problem) | {counts['orphans'].value} of {len(result.directions)} |",
         "",
-        "All four counts are `observed`: they are computed from this corpus by the rule "
-        "below. The rule's three constants are `assumed`.",
+        "The counts are `observed`: computed from this corpus by the rule below. The "
+        "rule's constants and the field declarations are `assumed`.",
         "",
         "## The rule",
         "",
     ]
-    used = (
-        (SIMILARITY_FLOOR, result.floor),
-        (MARGIN_OVER_RUNNER_UP, result.margin),
-        (COVERAGE_FLOOR, result.coverage_floor),
-        (DISTINCTIVE_DF_RATIO, DISTINCTIVE_DF_RATIO.value),
-    )
-    for estimate, value in used:
+    for estimate, value in ((SIMILARITY_FLOOR, result.floor), (MARGIN_OVER_RUNNER_UP, result.margin)):
         note = "" if value == estimate.value else f" (overridden from {estimate.value:g} for this run)"
         lines.append(f"- {estimate.label} = {value:g}{note}  <- {estimate.provenance.describe()}")
+    lines.append(f"- problem fields  <- {FIELD_PROVENANCE.describe()}")
+    if fields_note is not None:
+        lines.append(f"- {fields_note.label} = {scope}  <- {fields_note.provenance.describe()}")
     lines += [
         "",
         "A direction is linked to a problem when the problem is its best match within "
         "its catalogue, clears the floor, and beats that catalogue's runner-up by the "
-        "margin. An unmatched problem is *neglected* only if the corpus uses at least "
-        "the coverage floor's share of its distinctive words; otherwise it is *outside* "
-        "the corpus and nothing is concluded.",
+        "margin. An unmatched problem is *neglected* only if its field is one the corpus "
+        "covers; otherwise it is *outside* the corpus and nothing is concluded.",
         "",
         "## By catalogue",
         "",
-        "| Catalogue | Problems | Matched | Neglected | Outside corpus | Median vocabulary coverage | Matching text |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| Catalogue | Problems | Matched | Neglected | Outside corpus | Matching text |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
     matched_ids = {id(p) for p in result.matched}
     neglected_ids = {id(p) for p in result.neglected}
@@ -767,14 +844,12 @@ def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
         members = [p for p in result.problems if p.catalogue == name]
         if not members:
             continue
-        shares = [result.coverage[p.key] for p in members if result.coverage[p.key] is not None]
-        median = f"{float(np.median(shares)):.0%}" if shares else "n/a"
         n_matched = sum(id(p) in matched_ids for p in members)
         n_neglected = sum(id(p) in neglected_ids for p in members)
         lines.append(
             f"| {title} (`{name}`) | {len(members)} | {n_matched} | {n_neglected} "
-            f"| {len(members) - n_matched - n_neglected} | {median} "
-            f"| {members[0].provenance.grade.value}: {_cell(members[0].provenance.detail, 60)} |"
+            f"| {len(members) - n_matched - n_neglected} "
+            f"| {members[0].provenance.grade.value}: {_cell(members[0].provenance.detail, 80)} |"
         )
     lines.append("")
 
@@ -794,28 +869,33 @@ def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
         )
     if not ordered:
         lines.append("| _none_ | | | | | |")
+
     lines += ["", "## Neglected problems", "",
-              "The corpus uses these problems' vocabulary, but no direction is plainly about "
-              "them. The nearest direction is shown so the verdict can be checked.", "",
-              "| Problem | Coverage | Nearest direction | Similarity |", "| --- | --- | --- | --- |"]
+              "In a field the corpus covers, with no direction plainly about them. The nearest "
+              "direction is shown so each verdict can be checked.", "",
+              "| Problem | Nearest direction | Similarity | Why not linked |",
+              "| --- | --- | --- | --- |"]
     for problem in sorted(result.neglected, key=lambda p: (p.catalogue, p.id)):
         nearest = result.best_direction(problem)
-        near = f"{_cell(', '.join(nearest[0].terms[:4]), 50)} | {nearest[1]:.2f}" if nearest else "none | 0.00"
+        if nearest is None or nearest[1] <= 0:
+            lines.append(f"| `{problem.key}` {_cell(problem.title, 70)} | none | 0.00 | no shared vocabulary |")
+            continue
+        why = "under the floor" if nearest[1] < result.floor else "another problem claims it, or too close to call"
         lines.append(f"| `{problem.key}` {_cell(problem.title, 70)} "
-                     f"| {result.coverage[problem.key]:.0%} | {near} |")
+                     f"| {_cell(', '.join(nearest[0].terms[:4]), 50)} | {nearest[1]:.2f} | {why} |")
     if not result.neglected:
         lines.append("| _none_ | | | |")
 
     outside = result.outside
     lines += ["", "## Outside the corpus", "",
-              f"{len(outside)} problems are unmatched and the corpus uses under "
-              f"{result.coverage_floor:.0%} of their distinctive vocabulary. This is an absence "
-              "of data, not a finding that nobody works on them.", ""]
-    by_cat = Counter(p.catalogue for p in outside)
-    for name, n in by_cat.most_common():
-        sample = [p.title for p in outside if p.catalogue == name][:4]
+              f"{len(outside)} unmatched problems are in fields this corpus does not cover. "
+              "That is an absence of data, not a finding that nobody works on them.", ""]
+    by_field = Counter(p.field for p in outside)
+    for name, n in by_field.most_common():
+        sample = [p.title for p in outside if p.field == name][:3]
         lines.append(f"- `{name}`: {n} ({'; '.join(_cell(s, 45) for s in sample)}"
                      f"{'; …' if n > len(sample) else ''})")
+
     lines += ["", f"## Orphan directions (largest {top})", "",
               "Active directions no catalogued problem claims. Either the catalogues have a "
               "gap, or the direction's vocabulary differs from the problem statement's.", "",
@@ -836,12 +916,12 @@ def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
     if len(orphans) > top:
         lines.append(f"\n{len(orphans) - top} smaller orphan directions not shown.")
 
-    ambiguous = [r for r in result.refusals if "runner-up" in r.reason]
+    ambiguous = sorted((r for r in result.refusals if r.ambiguous), key=lambda r: -r.similarity)
     lines += ["", "## Refused", "",
               f"{len(ambiguous)} direction-catalogue pairs cleared the floor but not the margin: "
               "the direction sits between two problems and was linked to neither. "
               f"{len(result.refusals) - len(ambiguous)} more fell just under the floor.", ""]
-    for refusal in sorted(ambiguous, key=lambda r: -r.similarity)[:8]:
+    for refusal in ambiguous[:8]:
         lines.append(f"- {_cell(', '.join(refusal.direction.terms[:4]), 50)} -> "
                      f"`{refusal.problem.key}` at {refusal.similarity:.2f}: {refusal.reason}")
 
@@ -851,36 +931,60 @@ def render(result: MatchResult, corpus_note: str, found: DiscoveryResult,
 
 
 def _render_evaluation(ev: dict) -> list[str]:
-    def row(name: str, score: LeaveOneOut) -> str:
+    def row(name: str, score: LeaveOneOut, orphans: bool = False) -> str:
         r = score.rates()
+        precision = f"{score.links_correct}/{score.links} ({r['link precision']:.0%})" if score.links else "no links"
+        orphan = (f"{score.own_directions_orphaned}/{score.own_directions} ({r['orphan detection']:.0%})"
+                  if orphans else "not defined")
         return (f"| {name} | {score.problems} "
                 f"| {score.linked_correctly}/{score.problems} ({r['match recall']:.0%}) "
-                f"| {score.links_correct}/{score.links} ({r['link precision']:.0%}) "
+                f"| {precision} "
                 f"| {score.refused_when_absent}/{score.problems} ({r['neglect detection']:.0%}) "
-                f"| {score.own_directions_orphaned}/{score.own_directions} ({r['orphan detection']:.0%}) |")
-    best_floor, best_margin = ev["best"]
+                f"| {orphan} |")
+    floors = sorted({f for f, _ in ev["best"]})
+    margins = sorted({m for _, m in ev["best"]})
+    best = (f"floor {', '.join(f'{f:g}' for f in floors)} at margin "
+            f"{', '.join(f'{m:g}' for m in margins)}")
     return [
         "## How well the matcher works, measured",
         "",
         "The ai2035 frontier papers are labelled by the question whose search returned "
-        "them, which gives a leave-one-out test of all three lists. For each question: "
-        "is it linked to a direction made mostly of its own papers; with its papers "
-        "removed and the corpus re-clustered, does it come back unmatched; with the "
-        "question removed, do its papers' directions come back orphaned.",
+        "them, which gives a leave-one-out test of all three lists. For each problem with "
+        "known papers: is it linked to a direction made mostly of those papers (match "
+        "recall, and link precision over every link it gets); with the papers removed and "
+        "the corpus re-clustered, does it come back unmatched (neglect detection); with "
+        "the problem removed from the catalogue, do its papers' directions come back "
+        "orphaned (orphan detection).",
         "",
-        "| Split | Questions | Match recall | Link precision | Neglect detection | Orphan detection |",
+        "| Test | Problems | Match recall | Link precision | Neglect detection | Orphan detection |",
         "| --- | --- | --- | --- | --- | --- |",
-        row(f"Tuning half ({ev['tune_ids'][0]}-{ev['tune_ids'][-1]}), leak-free", ev["tune"]),
-        row(f"**Held-out half ({ev['test_ids'][0]}-{ev['test_ids'][-1]}), leak-free**", ev["test"]),
-        row("Held-out half, with the harvest words left in", ev["test_leaky"]),
+        row("ai2035 questions on their own search phrases (easy)", ev["own_words"], True),
+        row("the same with every harvest-query word withheld", ev["leak_free"], True),
+        row(f"AI-100 known pairs, tuning half ({ev['tune_ids'][0]}-{ev['tune_ids'][-1]})", ev["tune"]),
+        row(f"**AI-100 known pairs, held-out half ({ev['test_ids'][0]}-{ev['test_ids'][-1]})**", ev["test"]),
         "",
-        f"The floor and margin were chosen on the tuning half only (grid optimum there: "
-        f"floor {best_floor:g}, margin {best_margin:g}). \"Leak-free\" "
-        "matches each question without any word from the search queries its papers were "
-        "harvested with, so a link has to be made on the rest of its vocabulary; the last "
-        "row shows how much easier the test is when the query is allowed to find itself. "
-        "All figures are `observed` on this corpus and are small-sample: ten questions a "
-        "half.",
+        "How to read it:",
+        "",
+        "- The first row is the easy case: a question's matching text is nearly the query "
+        "its papers were found with. It shows the plumbing works and little more.",
+        f"- Withholding the query words leaves a median of {ev['leak_free_terms_left']:g} "
+        "terms per question, so almost nothing matches. The matcher runs on a topic's "
+        "name-words and has nothing else to go on.",
+        "- The known pairs are the fairest test here: 13 AI-100 questions paired by hand "
+        "(`data/nexus/matching/known_pairs.yaml`, `assumed`) with the ai2035 question on "
+        "the same topic, matched on a gloss written separately from the harvest queries, "
+        "against the other 99 AI-100 questions. Orphan detection is not defined for them: "
+        "other AI-100 questions legitimately claim the same papers.",
+        f"- The floor was chosen on the tuning half only, by the share of matched / "
+        f"neglected verdicts it got right, ties broken by link precision (best there: "
+        f"{best}; shipped: floor {SIMILARITY_FLOOR.value:g}, margin "
+        f"{MARGIN_OVER_RUNNER_UP.value:g}). The tuning half cannot tell the margins apart.",
+        "- **Neglect detection is the weak number.** When a problem's own literature is "
+        "taken out, a neighbouring direction often still clears the floor and the problem "
+        "is reported matched. So the neglected list below is an undercount, and a "
+        "\"matched\" verdict deserves a look at the direction's terms.",
+        "- Every figure is `observed` on this corpus, and the samples are tiny: 20, 6 and 7 "
+        "problems.",
         "",
     ]
 
@@ -889,20 +993,27 @@ def _limitations(synthetic: bool) -> list[str]:
     out = [
         "Matching is lexical. A problem stated in different words from the papers working "
         "on it is reported neglected, and a direction sharing a method's vocabulary with a "
-        "problem can be linked to it wrongly. Read a neglected verdict as \"no direction "
-        "uses this problem's words\", not \"nobody is working on it\".",
+        "problem can be linked to it wrongly. Read a neglected verdict as \"no direction in "
+        "this corpus uses this problem's words\", not \"nobody is working on it\".",
+        "The default corpus is not a sample of machine learning. It was harvested with "
+        "search queries for the 20 ai2035 questions, so an AI-100 or Human Frontier "
+        "problem with no direction may simply be one nobody queried for. A corpus "
+        "harvested without reference to any catalogue is what a real neglect claim needs.",
         "The AI-100 catalogue is in Chinese. Its English rendering and matching terms "
         "(`data/nexus/matching/ai100_en.yaml`) were written by the model, not taken from "
         "the source and not reviewed; a poor gloss produces a false neglected verdict.",
-        "The measured scores come from one corpus in one field (machine learning), whose "
-        "papers were found by lexical search in the first place. They say nothing about "
-        "how the matcher does on cosmology or mathematics, where it has never been tested.",
-        "The floor, margin and coverage floor are judgement calls tuned on ten questions.",
-        "Catalogue coverage is uneven: Human Frontier challenges are matched on a title "
-        "alone, worldsim problems on a name and outcome labels. Short text matches badly.",
+        "The measured scores come from one corpus in one field, whose papers were found by "
+        "lexical search in the first place. The matcher has never been tested on cosmology, "
+        "mathematics or global-development literature.",
+        "The floor and margin are judgement calls; the floor was tuned on six questions. Which fields a "
+        "corpus covers is declared by hand; a vocabulary-overlap test was tried and could "
+        "not tell cosmology from machine learning.",
+        "Catalogues differ in how much text they give: Human Frontier challenges are "
+        "matched on a title alone, worldsim problems on a name and outcome labels. Short "
+        "text matches badly.",
         "Science's 125 questions, discussed elsewhere in this project, are not in the "
         "repository and are not matched.",
-        "\"Active\" means present in the corpus. No growth rate is computed here; use "
+        "\"Active\" means present in the corpus. No growth rate is computed here; run "
         "`sciscout rank` on the same directions for momentum and priority.",
     ]
     if synthetic:
@@ -924,9 +1035,21 @@ def run(args: argparse.Namespace) -> int:
         print(f"error: no works loaded from {corpus_path}")
         return 2
     synthetic = all(w.id.startswith("synthetic:") for w in works)
+    is_frontier = corpus_path.resolve() == FRONTIER_DIR.resolve()
     threshold = args.threshold
     if threshold is None:
         threshold = 0.16 if synthetic else REAL_ABSTRACT_THRESHOLD.value
+
+    fields_note: Estimate | None = None
+    corpus_fields: frozenset[str] | None = None
+    if args.field:
+        corpus_fields = frozenset(args.field)
+        fields_note = Estimate(corpus_fields, assumed("declared on the command line"),
+                               label="fields the corpus covers")
+    elif is_frontier:
+        fields_note = FRONTIER_FIELDS
+        corpus_fields = FRONTIER_FIELDS.value
+
     problems = load_catalogues(only=args.catalogue or None)
     if not problems:
         print("error: no problem catalogues found")
@@ -936,31 +1059,34 @@ def run(args: argparse.Namespace) -> int:
     except ValueError as exc:
         print(f"error: {exc}")
         return 2
-    result = match(problems, found, works, args.floor, args.margin, args.coverage_floor)
+    result = match(problems, found, works, args.floor, args.margin, corpus_fields)
 
     evaluation = None
-    labelled = [p for p in load_catalogues(only=["ai2035"])]
+    labelled = load_catalogues(only=["ai2035"])
     has_labels = any("question" in w.extra for w in works)
     if args.evaluate and has_labels and labelled:
-        evaluation = tune_and_test(labelled, works, threshold=threshold)
-    elif args.evaluate and not has_labels:
-        print("note: --evaluate needs works labelled by question; skipped for this corpus")
+        evaluation = tune_and_test(works, threshold=threshold)
 
-    text = render(result, note, found, evaluation, synthetic=synthetic, top=args.top)
-    if args.out:
-        out = Path(args.out)
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(text)
+    text = render(result, note, found, evaluation, synthetic=synthetic, top=args.top,
+                  fields_note=fields_note)
     counts = result.counts()
-    print(f"{note}")
-    print(f"{found.summary()}")
+    print(note)
+    print(found.summary())
     print(f"{len(problems)} problems: {counts['matched'].value} matched, "
           f"{counts['neglected'].value} neglected, {counts['outside'].value} outside the corpus; "
           f"{counts['orphans'].value} of {len(result.directions)} directions orphaned")
     if evaluation:
-        for name, value in evaluation["test"].rates().items():
-            print(f"held-out {name}: {value:.0%}")
+        held = evaluation["test"]
+        rates = held.rates()
+        print(f"held-out known pairs ({held.problems} problems): match recall "
+              f"{rates['match recall']:.0%}, link precision {rates['link precision']:.0%}, "
+              f"neglect detection {rates['neglect detection']:.0%}")
+    elif args.evaluate:
+        print("matcher not measured: this corpus carries no per-question labels")
     if args.out:
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(text)
         print(f"report written to {args.out}")
     else:
         print()
@@ -979,12 +1105,15 @@ def register(subparsers) -> None:
                              "the real arXiv abstracts in ai2035/frontier)")
     parser.add_argument("--catalogue", action="append", choices=sorted(CATALOGUES),
                         help="limit to one catalogue; repeatable (default: all)")
+    parser.add_argument("--field", action="append",
+                        help="a field the corpus covers (ai, cosmology, mathematics, global, "
+                             "...); repeatable. Without it only the default corpus has a "
+                             "declared scope, and nothing else is called neglected")
     parser.add_argument("--threshold", type=float, default=None,
                         help="discovery similarity floor (default 0.10 real, 0.16 synthetic)")
     parser.add_argument("--min-cluster-size", type=int, default=3)
     parser.add_argument("--floor", type=float, default=None, help="match similarity floor")
     parser.add_argument("--margin", type=float, default=None, help="margin over the runner-up")
-    parser.add_argument("--coverage-floor", type=float, default=None)
     parser.add_argument("--no-evaluate", dest="evaluate", action="store_false",
                         help="skip the leave-one-out measurement (about a minute)")
     parser.add_argument("--top", type=int, default=25, help="orphan directions to list")

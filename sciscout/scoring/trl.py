@@ -120,18 +120,7 @@ def infer_trl(track: Track) -> TRLBelief:
     downstream model should see it.
     """
     if track.trl_override is not None:
-        level = max(1, min(9, track.trl_override))
-        probabilities = {t: 0.0 for t in TRL_NAMES}
-        probabilities[level] = 0.7
-        for neighbour, share in ((level - 1, 0.15), (level + 1, 0.15)):
-            if neighbour in probabilities:
-                probabilities[neighbour] = share
-        total = sum(probabilities.values())
-        return TRLBelief(
-            {t: p / total for t, p in probabilities.items()},
-            [f"analyst override: TRL {level}"],
-            observed(f"analyst-supplied TRL {level} for track {track.id}"),
-        )
+        return _override_belief(track)
 
     if not track.works:
         return TRLBelief(
@@ -144,47 +133,9 @@ def infer_trl(track: Track) -> TRLBelief:
         )
 
     posterior = dict(_PRIOR)
-    evidence: list[str] = []
-    corpus = " \n ".join(w.text() for w in track.works)
     n_works = len(track.works)
-
-    for pattern, levels, strength in _SIGNALS:
-        matches = len(re.findall(pattern, corpus, re.IGNORECASE))
-        if matches == 0:
-            continue
-        # Scale by prevalence, not raw count: one mention of "prototype" across
-        # 50 papers is noise, the same word in half of them is a signal.
-        prevalence = min(1.0, matches / max(1, n_works))
-        multiplier = 1.0 + (strength - 1.0) * prevalence
-        for level in levels:
-            posterior[level] *= multiplier
-        phrase = pattern.replace("\\b", "").replace("\\", "")
-        bands = "/".join(str(level) for level in levels)
-        evidence.append(
-            f"{matches} mention(s) matching {phrase!r} -> TRL {bands} x{multiplier:.2f}"
-        )
-
-    # Registered clinical trials are strong structural evidence, not lexical.
-    clinical = sum(1 for w in track.works if w.maturity is Maturity.CLINICAL_REGISTRY)
-    if clinical:
-        for level in (6, 7, 8):
-            posterior[level] *= 1.0 + 1.5 * min(1.0, clinical / n_works)
-        evidence.append(f"{clinical} registered clinical trial record(s) -> TRL 6-8")
-
-    patents = sum(1 for w in track.works if w.maturity is Maturity.PATENT)
-    if patents:
-        for level in (4, 5, 6, 7):
-            posterior[level] *= 1.0 + 1.0 * min(1.0, patents / n_works)
-        evidence.append(f"{patents} patent record(s) -> TRL 4-7")
-
-    industry = track.industry_fraction()
-    if industry > 0.2:
-        for level in (5, 6, 7, 8):
-            posterior[level] *= 1.0 + industry
-        evidence.append(f"{industry:.0%} of works industry-affiliated -> TRL 5-8")
-
-    total = sum(posterior.values())
-    normalised = {t: p / total for t, p in posterior.items()}
+    evidence = _apply_lexical_signals(posterior, track)
+    evidence += _apply_structural_signals(posterior, track)
 
     if not evidence:
         note = assumed(
@@ -200,4 +151,75 @@ def infer_trl(track: Track) -> TRLBelief:
             "treat the distribution's width as real and override it where a "
             "domain expert knows better",
         )
-    return TRLBelief(normalised, evidence, note)
+    return TRLBelief(_normalise(posterior), evidence, note)
+
+
+def _normalise(weights: dict[int, float]) -> dict[int, float]:
+    total = sum(weights.values())
+    return {level: weight / total for level, weight in weights.items()}
+
+
+def _override_belief(track: Track) -> TRLBelief:
+    """Tight distribution around an analyst-supplied TRL, clamped to 1-9."""
+    level = max(1, min(9, track.trl_override))
+    probabilities = {t: 0.0 for t in TRL_NAMES}
+    probabilities[level] = 0.7
+    for neighbour in (level - 1, level + 1):
+        if neighbour in probabilities:
+            probabilities[neighbour] = 0.15
+    return TRLBelief(
+        _normalise(probabilities),
+        [f"analyst override: TRL {level}"],
+        observed(f"analyst-supplied TRL {level} for track {track.id}"),
+    )
+
+
+def _boost(posterior: dict[int, float], levels, multiplier: float) -> None:
+    for level in levels:
+        posterior[level] *= multiplier
+
+
+def _apply_lexical_signals(posterior: dict[int, float], track: Track) -> list[str]:
+    """Reweight ``posterior`` in place by indicative phrases; return the evidence."""
+    evidence: list[str] = []
+    corpus = " \n ".join(w.text() for w in track.works)
+    n_works = len(track.works)
+
+    for pattern, levels, strength in _SIGNALS:
+        matches = len(re.findall(pattern, corpus, re.IGNORECASE))
+        if matches == 0:
+            continue
+        # Scale by prevalence, not raw count: one mention of "prototype" across
+        # 50 papers is noise, the same word in half of them is a signal.
+        prevalence = min(1.0, matches / max(1, n_works))
+        multiplier = 1.0 + (strength - 1.0) * prevalence
+        _boost(posterior, levels, multiplier)
+        phrase = pattern.replace("\\b", "").replace("\\", "")
+        bands = "/".join(str(level) for level in levels)
+        evidence.append(
+            f"{matches} mention(s) matching {phrase!r} -> TRL {bands} x{multiplier:.2f}"
+        )
+    return evidence
+
+
+def _apply_structural_signals(posterior: dict[int, float], track: Track) -> list[str]:
+    """Reweight ``posterior`` in place by record types and industry share."""
+    evidence: list[str] = []
+    n_works = len(track.works)
+
+    # Registered clinical trials are strong structural evidence, not lexical.
+    clinical = sum(1 for w in track.works if w.maturity is Maturity.CLINICAL_REGISTRY)
+    if clinical:
+        _boost(posterior, (6, 7, 8), 1.0 + 1.5 * min(1.0, clinical / n_works))
+        evidence.append(f"{clinical} registered clinical trial record(s) -> TRL 6-8")
+
+    patents = sum(1 for w in track.works if w.maturity is Maturity.PATENT)
+    if patents:
+        _boost(posterior, (4, 5, 6, 7), 1.0 + 1.0 * min(1.0, patents / n_works))
+        evidence.append(f"{patents} patent record(s) -> TRL 4-7")
+
+    industry = track.industry_fraction()
+    if industry > 0.2:
+        _boost(posterior, (5, 6, 7, 8), 1.0 + industry)
+        evidence.append(f"{industry:.0%} of works industry-affiliated -> TRL 5-8")
+    return evidence

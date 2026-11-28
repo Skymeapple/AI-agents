@@ -27,6 +27,8 @@ from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "demo_corpus.json"
 SEED = 20260918
+# The date the synthetic corpus is "observed" from; nothing is published after it.
+ASOF = dt.date(2026, 9, 18)
 
 # Each track gets a shape: how activity grows, how cited it is, how far along it
 # is, and how much industry has moved in. These shapes are what the scoring
@@ -321,78 +323,92 @@ TRACKS = [
     },
 ]
 
+def _publication_date(year: int, rng: random.Random) -> dt.date:
+    day = rng.randint(1, 28)
+    month = rng.randint(1, 12)
+    if year == ASOF.year and month > ASOF.month:
+        month = rng.randint(1, ASOF.month)
+    return dt.date(year, month, day)
+
+
+def _citations(spec: dict, published: dt.date, rng: random.Random) -> int:
+    # Citations accumulate roughly linearly with age, with a heavy-tailed
+    # multiplier so a few works dominate -- which is how real citation
+    # distributions behave.
+    age_years = max(0.05, (ASOF - published).days / 365.25)
+    tail = rng.paretovariate(1.6)
+    return int(spec["citation_scale"] * age_years * min(tail, 12) * rng.uniform(0.3, 1.4))
+
+
+def _authors(spec: dict, counter: int, institutions: list[str], rng: random.Random) -> list[dict]:
+    n_authors = rng.randint(2, 7)
+    authors = []
+    chosen = rng.sample(institutions, k=min(n_authors, len(institutions)))
+    for index, institution in enumerate(chosen):
+        is_industry = rng.random() < spec["industry_rate"]
+        authors.append(
+            {
+                "name": f"Author {counter}-{index}",
+                "affiliation": f"{institution} (industry)" if is_industry else institution,
+                "is_industry": is_industry,
+            }
+        )
+    return authors
+
+
+def _maturity(spec: dict, rng: random.Random) -> str:
+    if rng.random() < 0.55:
+        return "peer_reviewed"
+    if rng.random() < 0.85:
+        return "preprint"
+    return "clinical_registry" if spec["sector"] == "biopharma" else "patent"
+
+
+def _record(
+    spec: dict, counter: int, year: int, institutions: list[str], rng: random.Random
+) -> dict:
+    """One synthetic work.
+
+    The helpers are called in a fixed order because they share ``rng``:
+    reordering them changes every record that follows.
+    """
+    published = _publication_date(year, rng)
+    citations = _citations(spec, published, rng)
+    authors = _authors(spec, counter, institutions, rng)
+    maturity = _maturity(spec, rng)
+    abstract = " ".join(rng.sample(spec["phrases"], k=min(3, len(spec["phrases"]))))
+    return {
+        "id": f"synthetic:{spec['track']}:{counter:04d}",
+        "title": f"{spec['name']}: study {counter}",
+        "abstract": abstract,
+        "authors": authors,
+        "published": published.isoformat(),
+        "venue": "Synthetic Journal of Demonstration Data",
+        "maturity": maturity,
+        "disciplines": rng.sample(
+            spec["disciplines"], k=rng.randint(1, len(spec["disciplines"]))
+        ),
+        "citations": citations,
+        "url": None,
+        "source": "synthetic",
+        "extra": {
+            "track": spec["track"],
+            "track_name": spec["name"],
+            "sector": spec["sector"],
+            "SYNTHETIC": True,
+        },
+    }
+
+
 def build() -> list[dict]:
     rng = random.Random(SEED)
-    asof = dt.date(2026, 9, 18)
     records: list[dict] = []
 
     for spec in TRACKS:
         institutions = [f"Institution {chr(65 + i)}" for i in range(spec["n_institutions"])]
-        counter = 0
-        for year, count in spec["yearly"].items():
-            for _ in range(count):
-                counter += 1
-                day = rng.randint(1, 28)
-                month = rng.randint(1, 12)
-                if year == 2026 and month > 9:
-                    month = rng.randint(1, 9)
-                published = dt.date(year, month, day)
-                age_years = max(0.05, (asof - published).days / 365.25)
-
-                # Citations accumulate roughly linearly with age, with a
-                # heavy-tailed multiplier so a few works dominate -- which is how
-                # real citation distributions behave.
-                tail = rng.paretovariate(1.6)
-                citations = int(spec["citation_scale"] * age_years * min(tail, 12) * rng.uniform(0.3, 1.4))
-
-                n_authors = rng.randint(2, 7)
-                authors = []
-                chosen = rng.sample(institutions, k=min(n_authors, len(institutions)))
-                for index, institution in enumerate(chosen):
-                    is_industry = rng.random() < spec["industry_rate"]
-                    authors.append(
-                        {
-                            "name": f"Author {counter}-{index}",
-                            "affiliation": (
-                                f"{institution} (industry)" if is_industry else institution
-                            ),
-                            "is_industry": is_industry,
-                        }
-                    )
-
-                if rng.random() < 0.55:
-                    maturity = "peer_reviewed"
-                elif rng.random() < 0.85:
-                    maturity = "preprint"
-                elif spec["sector"] == "biopharma":
-                    maturity = "clinical_registry"
-                else:
-                    maturity = "patent"
-
-                abstract = " ".join(rng.sample(spec["phrases"], k=min(3, len(spec["phrases"]))))
-                records.append(
-                    {
-                        "id": f"synthetic:{spec['track']}:{counter:04d}",
-                        "title": f"{spec['name']}: study {counter}",
-                        "abstract": abstract,
-                        "authors": authors,
-                        "published": published.isoformat(),
-                        "venue": "Synthetic Journal of Demonstration Data",
-                        "maturity": maturity,
-                        "disciplines": rng.sample(
-                            spec["disciplines"], k=rng.randint(1, len(spec["disciplines"]))
-                        ),
-                        "citations": citations,
-                        "url": None,
-                        "source": "synthetic",
-                        "extra": {
-                            "track": spec["track"],
-                            "track_name": spec["name"],
-                            "sector": spec["sector"],
-                            "SYNTHETIC": True,
-                        },
-                    }
-                )
+        years = (year for year, count in spec["yearly"].items() for _ in range(count))
+        for counter, year in enumerate(years, start=1):
+            records.append(_record(spec, counter, year, institutions, rng))
     return records
 
 

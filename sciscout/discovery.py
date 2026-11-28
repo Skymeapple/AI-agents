@@ -155,6 +155,67 @@ def _build_tfidf(
     return matrix / norms, vocabulary
 
 
+class _AverageLinkage:
+    """Mutable state for average-linkage clustering, with cached row maxima.
+
+    ``pair_sum[i, j]`` is the total similarity between members of ``i`` and
+    members of ``j``; dividing by the product of sizes gives average linkage.
+    Each active row caches its best partner, so finding the closest pair is a
+    scan of one vector rather than of the whole matrix.
+    """
+
+    def __init__(self, similarity: np.ndarray) -> None:
+        n = similarity.shape[0]
+        self.clusters: dict[int, list[int]] = {i: [i] for i in range(n)}
+        self.pair_sum = similarity.astype(np.float64).copy()
+        np.fill_diagonal(self.pair_sum, -np.inf)
+        self.sizes = np.ones(n, dtype=np.float64)
+        self.active = np.ones(n, dtype=bool)
+        self.average = self.pair_sum.copy()  # sizes are all 1 initially
+        self.best_index = np.zeros(n, dtype=np.int64)
+        self.best_value = np.full(n, -np.inf)
+        for row in range(n):
+            self.refresh(row)
+
+    def refresh(self, row: int) -> None:
+        """Recompute the cached best partner for ``row``."""
+        masked = np.where(self.active, self.average[row], -np.inf)
+        masked[row] = -np.inf
+        best = int(np.argmax(masked))
+        self.best_index[row] = best
+        self.best_value[row] = masked[best]
+
+    def closest(self) -> tuple[int, int, float]:
+        """The active row with the highest cached similarity, and its partner."""
+        candidates = np.where(self.active, self.best_value, -np.inf)
+        i = int(np.argmax(candidates))
+        return i, int(self.best_index[i]), float(candidates[i])
+
+    def merge(self, i: int, j: int) -> None:
+        """Merge cluster ``j`` into ``i`` and repair the caches it invalidates."""
+        self.clusters[i].extend(self.clusters.pop(j))
+        self.pair_sum[i, :] += self.pair_sum[j, :]
+        self.pair_sum[:, i] = self.pair_sum[i, :]
+        self.sizes[i] += self.sizes[j]
+        self.active[j] = False
+        self.pair_sum[i, i] = -np.inf
+
+        # Recompute average linkage for the merged row only.
+        with np.errstate(invalid="ignore"):
+            denom = self.sizes[i] * self.sizes
+            safe = np.where(denom > 0, denom, 1.0)
+            self.average[i, :] = np.where(denom > 0, self.pair_sum[i, :] / safe, -np.inf)
+        self.average[i, i] = -np.inf
+        self.average[:, i] = self.average[i, :]
+
+        self.refresh(i)
+        # Any row that was pointing at i or j needs a new best partner.
+        pointed_at_merge = (self.best_index == i) | (self.best_index == j)
+        for row in np.where(self.active & pointed_at_merge)[0]:
+            if row != i:
+                self.refresh(int(row))
+
+
 def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
     """Average-linkage agglomerative clustering down to a similarity floor.
 
@@ -169,66 +230,16 @@ def _agglomerate(similarity: np.ndarray, threshold: float) -> list[list[int]]:
     would produce. Here a merge updates one row and column, then refreshes only
     the rows whose best partner was one of the two clusters just merged.
     """
-    n = similarity.shape[0]
-    clusters: dict[int, list[int]] = {i: [i] for i in range(n)}
-
-    # pair_sum[i, j] is the total similarity between members of i and members of
-    # j; dividing by the product of sizes gives average linkage.
-    pair_sum = similarity.astype(np.float64).copy()
-    np.fill_diagonal(pair_sum, -np.inf)
-    sizes = np.ones(n, dtype=np.float64)
-    active = np.ones(n, dtype=bool)
-
-    average = pair_sum.copy()  # sizes are all 1 initially
-
-    def refresh(row: int) -> None:
-        values = average[row]
-        masked = np.where(active, values, -np.inf)
-        masked[row] = -np.inf
-        best = int(np.argmax(masked))
-        row_best_index[row] = best
-        row_best_value[row] = masked[best]
-
-    row_best_index = np.zeros(n, dtype=np.int64)
-    row_best_value = np.full(n, -np.inf)
-    for row in range(n):
-        refresh(row)
-
+    linkage = _AverageLinkage(similarity)
     while True:
-        candidate_values = np.where(active, row_best_value, -np.inf)
-        i = int(np.argmax(candidate_values))
-        if not np.isfinite(candidate_values[i]) or candidate_values[i] < threshold:
+        i, j, value = linkage.closest()
+        if not np.isfinite(value) or value < threshold:
             break
-        j = int(row_best_index[i])
-        if not active[j] or i == j:
-            refresh(i)
+        if not linkage.active[j] or i == j:
+            linkage.refresh(i)
             continue
-
-        # Merge j into i.
-        clusters[i].extend(clusters[j])
-        del clusters[j]
-        pair_sum[i, :] += pair_sum[j, :]
-        pair_sum[:, i] = pair_sum[i, :]
-        sizes[i] += sizes[j]
-        active[j] = False
-        pair_sum[i, i] = -np.inf
-
-        # Recompute average linkage for the merged row only.
-        with np.errstate(invalid="ignore"):
-            denom = sizes[i] * sizes
-            safe = np.where(denom > 0, denom, 1.0)
-            average[i, :] = np.where(denom > 0, pair_sum[i, :] / safe, -np.inf)
-        average[i, i] = -np.inf
-        average[:, i] = average[i, :]
-
-        refresh(i)
-        # Any row that was pointing at i or j needs a new best partner.
-        stale = np.where(active & ((row_best_index == i) | (row_best_index == j)))[0]
-        for row in stale:
-            if row != i:
-                refresh(int(row))
-
-    return [members for members in clusters.values()]
+        linkage.merge(i, j)
+    return list(linkage.clusters.values())
 
 
 def _label_cluster(
@@ -260,6 +271,27 @@ def _cohesion(similarity: np.ndarray, members: list[int]) -> float:
 MAX_WORKS_DENSE = 12_000
 
 
+def _check_dense_limit(n_works: int) -> None:
+    if n_works > MAX_WORKS_DENSE:
+        raise ValueError(
+            f"discover() was given {n_works:,} works, above the "
+            f"{MAX_WORKS_DENSE:,} limit for dense clustering: the similarity "
+            f"matrix alone would need roughly "
+            f"{n_works ** 2 * 8 / 1e9:.1f}GB. Use discover_by_discipline(), "
+            f"which clusters within each discipline and is usually better "
+            f"anyway, or narrow the corpus first"
+        )
+
+
+def _dedupe_ids(tracks: list[DiscoveredTrack]) -> None:
+    """Suffix repeated ids: two clusters can slug identically from similar terms."""
+    seen: Counter[str] = Counter()
+    for track in tracks:
+        seen[track.id] += 1
+        if seen[track.id] > 1:
+            track.id = f"{track.id}-{seen[track.id]}"
+
+
 def discover(
     works: list[Work],
     threshold: float = 0.16,
@@ -282,15 +314,7 @@ def discover(
     """
     if not works:
         return DiscoveryResult(tracks=[])
-    if len(works) > MAX_WORKS_DENSE:
-        raise ValueError(
-            f"discover() was given {len(works):,} works, above the "
-            f"{MAX_WORKS_DENSE:,} limit for dense clustering: the similarity "
-            f"matrix alone would need roughly "
-            f"{len(works) ** 2 * 8 / 1e9:.1f}GB. Use discover_by_discipline(), "
-            f"which clusters within each discipline and is usually better "
-            f"anyway, or narrow the corpus first"
-        )
+    _check_dense_limit(len(works))
 
     matrix, vocabulary = _build_tfidf(works, min_df, max_df_ratio)
     if not vocabulary:
@@ -316,13 +340,7 @@ def discover(
                 cohesion=_cohesion(similarity, members),
             )
         )
-
-    # Guard against two clusters producing the same slug from similar top terms.
-    seen: Counter[str] = Counter()
-    for track in tracks:
-        seen[track.id] += 1
-        if seen[track.id] > 1:
-            track.id = f"{track.id}-{seen[track.id]}"
+    _dedupe_ids(tracks)
 
     return DiscoveryResult(
         tracks=tracks,
